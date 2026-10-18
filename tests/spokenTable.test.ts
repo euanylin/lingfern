@@ -3,7 +3,7 @@ import { spokenAttributionPairs } from '../src/core/spokenAttribution';
 import { spokenCondition } from '../src/core/spokenCondition';
 import { createHash } from 'node:crypto';
 import { unzipSync } from 'fflate';
-import { expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { corpusDates, corpusRestoration, corpusQualification, corpusAttribution, corpusSequence } from '../src/core/corpus';
 import { corpusOperation, corpusPracticeHistory } from '../src/core/corpusPractice';
 import { spokenCorpusLesson, spokenCorpusSchema } from '../src/core/spokenCorpus';
@@ -118,10 +118,12 @@ it('reaches every available semantic recording through default generation rather
 });
 
 
-it('reaches every eligible recording-operation pair across all24 actual listening packages in bounded default cycles', () => {
+describe('bounded default cycles across all24 actual listening packages', () => {
  const catalogue=regressionSourcePacks as {packs:{id:string;path:string;sha256:string;skill:string}[]};
- let sequenceCount=0, tableCount=0, semanticCount=0, matchingCount=0;
- for(const entry of catalogue.packs.filter(pack=>pack.skill==='listening')) {
+ const entries=catalogue.packs.filter(pack=>pack.skill==='listening');
+ const totals=new Map<string,number[]>();
+ it.each(entries.map(entry=>[entry.id,entry] as const))('reaches every eligible recording-operation pair in %s', (_id,entry) => {
+  let sequenceCount=0, tableCount=0, semanticCount=0, matchingCount=0;
   const bytes=readSourcePackFixture(entry.id);expect(createHash('sha256').update(bytes).digest('hex')).toBe(entry.sha256);
   const raw=JSON.parse(new TextDecoder().decode(unzipSync(bytes,{filter:file=>file.name==='spoken.json'})['spoken.json']));
   const bank=spokenCorpusSchema.parse({...raw,communityPackageId:entry.sha256,records:raw.records.map((source:{clips:{audio:{src:string}}[]})=>({...source,clips:source.clips.map(clip=>({...clip,audio:{...clip.audio,src:clip.audio.src.replace(/^media\//,`/audio/community-${entry.sha256}/`)}}))}))});
@@ -147,7 +149,12 @@ it('reaches every eligible recording-operation pair across all24 actual listenin
    expect(new Set(lesson.materials.map(material=>material.rootId)).size).toBe(2);
   }
   expect([...reached].sort(),entry.id).toEqual([...expected].sort());
- }
+  totals.set(entry.id,[sequenceCount,tableCount,semanticCount,matchingCount]);
+ });
+ afterAll(() => {
+  expect(totals.size).toBe(24);
+  const [sequenceCount,tableCount,semanticCount,matchingCount]=[...totals.values()].reduce((sum,counts)=>sum.map((value,index)=>value+counts[index]),[0,0,0,0]);
  // Six initial-split clips, including U.S. Coast Guard and vs. Homer Simpson, contain only two complete sentences.
  expect(sequenceCount).toBe(145);expect(tableCount).toBe(15);expect(semanticCount).toBe(8);expect(matchingCount).toBe(2);
+ });
 });

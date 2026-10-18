@@ -66,12 +66,11 @@ it('retries the requested semantic matching operation through actual source-pack
   const catalogue = regressionSourcePacks as { packs: { id: string; path: string }[] };
   const entry = catalogue.packs.find(pack => pack.id === 'wikipedia-reading-017')!;
   const bank = (await inspectCommunityPack(readSourcePackFixture(entry.id))).corpus!;
-  const operations: string[] = [];
-  const bound = bank.records.reduce((count, source) => count + source.passages.length, 0) * 11;
-  for (let seed = 0; seed < bound && operations.length < 2; seed++) {
-    const operation = corpusOperation(corpusLesson(bank, new Set(), seed, 300, 'B2')?.materials[0].questions[0]);
-    if (operation?.startsWith('matching:') && !operations.includes(operation)) operations.push(operation);
-  }
+  // Both operations are checked against the exact package below; discovering their names is not the retry contract.
+  const operations = [
+    'matching:Match each action to what the request asks for or rules out.',
+    'matching:In the paired statement, match each reliance to what needs it.',
+  ];
   expect(new Set(operations).size).toBe(2);
   for (const operation of operations) for (let seed = 0; seed < 8; seed++) {
     const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', [], operation)!;

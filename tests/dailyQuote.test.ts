@@ -94,15 +94,15 @@ describe('English Wikiquote daily quotations', () => {
     }
   });
 
-  it('associates only an exact local calendar date with an eligible Wikiquote page', () => {
+  it.each(Array.from({ length: 12 }, (_, month) => month))('associates only an exact local calendar date in month %i with an eligible Wikiquote page', month => {
     for (const anchor of calendar) {
       expect(anchor.date).toMatch(/^\d{2}-\d{2}$/);
       expect(anchor.pages.length).toBeGreaterThan(0);
       expect(anchor).not.toHaveProperty('source');
       expect(anchor).not.toHaveProperty('themes');
     }
-    for (let day = 1; day <= 366; day++) {
-      const date = new Date(2028, 0, day, 12);
+    for (let day = 1; day <= new Date(2028, month + 1, 0).getDate(); day++) {
+      const date = new Date(2028, month, day, 12);
       const selected = select(date, undefined, () => .5);
       expect(selected.day).toBe(localDay(date));
       expect(catalogue.quotes.some(item => item.id === selected.quote.id)).toBe(true);

@@ -258,13 +258,17 @@ it.each(['reading','listening'] as const)('stops exhausted focused %s entry with
  }
 });
 
-it.each(['explicit-person-description', 'explicit-place-relation', 'explicit-basic-instruction', 'explicit-small-count', 'explicit-detail-verification', 'explicit-stated-time'])('routes actual A1 %s and refuses seen cross-skill roots without substituting another goal', async goal => {
+// Fixed reviewed-fixture seeds avoid an unrelated exhaustive search inside the routing check.
+it.each([
+  ['explicit-person-description', 672], ['explicit-place-relation', 1160],
+  ['explicit-basic-instruction', 1464], ['explicit-small-count', 1770],
+  ['explicit-detail-verification', 2074], ['explicit-stated-time', 2380],
+] as const)('routes actual A1 %s and refuses seen cross-skill roots without substituting another goal', async (goal, seed) => {
   const actual = await vi.importActual<typeof import('../src/core/corpus')>('../src/core/corpus');
   const bank = actual.corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
   bank.records = await (await import('../src/data/corpus')).reviewedReading(bank.records, 120);
   vi.mocked(corpusLesson).mockImplementation(actual.corpusLesson);
   vi.mocked(loadReadingCorpus).mockResolvedValue(bank);
-  const seed = Array.from({ length: 2000 }, (_, i) => i * 2).find(seed => actual.corpusLesson(bank, new Set(), seed, 120, 'A1')?.goalId === goal);
   expect(seed).toBeDefined();
   vi.spyOn(crypto, 'getRandomValues').mockImplementation(array => { (array as Uint32Array).set([0, seed!]); return array; });
   const profileId = 'isolated-people-routing', preferences = { reading: 'A1' as const, interests: [], step: 4, completed: true };

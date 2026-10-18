@@ -28,13 +28,14 @@ it('keeps the observed event distinct from a leading or trailing tentative cause
  for(const sentence of [trees,storm,trees.replace('trees inside the parks','plants outside the garden').replace('are bigger','were older')])for(let seed=0;seed<8;seed++){const task=corpusQualifiedCause(sentence,seed)!;expect(task).toBeDefined();expect(sentence.slice(task.evidence.start,task.evidence.end)).toBe(sentence);expect(task.options[task.answer]).toBe('The passage states what happened but only proposes an explanation.');expect(task.explanations[task.answer]).toContain('does not verify');}
  for(const text of [trees.replace('were growing','may have been growing'),trees.replace('probably because','because'),trees.replace('they are','it is'),trees.replace('were growing','were not growing'),trees.replace('The trees','They'),storm.replace('Possibly due to','Due to'),storm.replace('became','might have become'),storm.replace('its fast forward motion','its reported fast forward motion'),storm.replace('weakened.','weakened, according to a witness.'),storm+' '+storm,`“The story began. ${trees} No one observed it.”`,`A witness said that ${storm}`,`Imagine ${trees}`])expect(corpusQualifiedCause(text,0),text).toBeUndefined();
 });
-it('generates B1 supported/normal reliance and B1/B2 normal cause with exact source, feedback, teaching and two roots',async()=>{
- for(const [bounds,operation,kind,roots]of [
+it.each([
   [160,pairedRelianceOperation,'matching',['wikipedia-article-9228','openstax-book-astronomy-2e']],
   [220,pairedRelianceOperation,'matching',['wikipedia-article-9228','openstax-book-astronomy-2e']],
   [220,'choice:qualified-cause','choice',['frontiers-article-10.3389-frym.2022.729784','wikipedia-article-3511662']],
   [300,'choice:qualified-cause','choice',['frontiers-article-10.3389-frym.2022.729784','wikipedia-article-3511662']],
- ]as const){const bank={version:1 as const,failures:[],records:(await reviewedReading(current(),bounds)).filter(source=>roots.includes(source.rootId as never))};for(const point of ['B1','B2']as const)for(let seed=0;seed<8;seed++){
+
+] as const)('generates supported/normal semantics at %i words for %s with exact source, feedback, teaching and two roots', async (bounds, operation, kind, roots) => {
+ const bank={version:1 as const,failures:[],records:(await reviewedReading(current(),bounds)).filter(source=>roots.includes(source.rootId as never))};for(const point of ['B1','B2']as const)for(let seed=0;seed<8;seed++){
   const lesson=corpusLesson(bank,new Set(),seed,bounds,point,[],kind,[],operation)!;expect(lesson).toBeDefined();expect(new Set(lesson.materials.map(m=>m.rootId))).toEqual(new Set(roots));expect(lesson.teaching!.en).toBeTruthy();expect(lesson.workedExample!.en).toContain('Example:');
   for(const {material,question:q}of questions(lesson)){expect(material.blocks[0].text.split(/\s+/).length).toBeLessThanOrEqual(bounds);const text=material.blocks[0].text.slice(q.evidence.start,q.evidence.end);expect(text).toBeTruthy();
    if('kind'in q&&q.kind==='response'){expect(score(q,'Source-supported interpretation.').correct).toBeNull();continue;}
@@ -43,7 +44,7 @@ it('generates B1 supported/normal reliance and B1/B2 normal cause with exact sou
   if(operation==='choice:qualified-cause'){expect(lesson.teaching!.en).toContain('CWD means large pieces of dead wood');expect(corpusStartingPoint(lesson,point).teaching).toEqual(lesson.teaching);}
   const test=asTestLesson(lesson);expect(test.teaching).toBeUndefined();expect(test.workedExample).toBeUndefined();expect(test.materials.map(m=>m.blocks)).toEqual(lesson.materials.map(m=>m.blocks));expect(test.materials.flatMap(m=>m.questions).every(q=>!q.hints)).toBe(true);
   expect(corpusLesson(filterCorpusRoots(bank,new Set(roots)),new Set(),seed,bounds,point,[],kind,[],operation)).toBeUndefined();
- }}
+ }
 });
 it('retains four original cause roots at the actual independent B2 bound without fresh-root or snapshot shortcuts',async()=>{
  const roots=['frontiers-article-10.3389-frym.2022.729784','wikipedia-article-3511662','wikipedia-article-159895','wikipedia-article-40685706'];const maxWords=startingBounds.B2.words[2];const bank={version:1 as const,failures:[],records:(await reviewedReading(current(),maxWords)).filter(source=>roots.includes(source.rootId))};

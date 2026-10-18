@@ -1001,7 +1001,7 @@ it('separates a beginner requested address from a full introduction and unrelate
   }
 });
 
-it('states each beginner first-task goal in all locales independently of the application task', async () => {
+it.each(['A1', 'A2'] as const)('states each %s beginner first-task goal in all locales independently of the application task', async point => {
   const { corpusOperation } = await import('../src/core/corpusPractice');
   const bank = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
   const beginnerBook = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/gutenberg.json', 'utf8'))).records.find(source => source.rootId === 'gutenberg-book-45')!;
@@ -1024,7 +1024,6 @@ it('states each beginner first-task goal in all locales independently of the app
     'choice:stated-time': ['Find the written clock time for the asked event.', '找到题目所问事情的书面时刻。', '找到題目所問事情的書面時刻。'],
     'choice:detail-verification': ['Check a written detail against the text.', '用原文核对一条书面信息。', '用原文核對一條書面資訊。'],
   };
-  for (const point of ['A1', 'A2'] as const) {
     const operations = new Set<string>();
     const cycle = bank.records.reduce((count, source) => count + source.passages.filter(passage => passage.startingPoints?.includes(point)).length, 0);
     for (let seed = 0; seed < cycle * (point === 'A2' ? 24 : 45); seed++) {
@@ -1037,7 +1036,6 @@ it('states each beginner first-task goal in all locales independently of the app
       expect(corpusStartingPoint(changed, point).goal).toEqual(lesson.goal);
     }
     expect([...operations].sort()).toEqual(Object.keys(goals).filter(operation => point === 'A2' ? !['matching:Who? Match each description to a person.', 'choice:stated-location', 'choice:basic-instruction', 'choice:small-quantity', 'choice:detail-verification', 'choice:stated-time'].includes(operation) : operation !== 'choice:stated-origin').sort());
-  }
 }, 20000);
 
 it('keeps the teaching source while finding a same-operation reading application in installed texts', () => {
