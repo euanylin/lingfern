@@ -50,7 +50,8 @@ export async function pendingSyncBatch(profileId: string, database: Dexie = db):
   // ponytail: scans the pending queue; add a profile/counter index if large offline queues make sealing slow.
   selected.sort(compareSyncEvents);
   selected.splice(500);
-  if (!selected.length) return undefined;
+  // A concurrent reader may have sealed these events after the first pending lookup.
+  if (!selected.length) return database.table('syncBatches').where('[profileId+state]').equals([profileId, 'pending']).first();
   const clock: Clock | undefined = await database.table('syncClocks').get(profileId);
   if (!clock) throw new Error('SYNC_CLOCK_MISSING');
   const batch: SyncBatch = { product: 'Lingfern', formatVersion: 1, profileId: clock.logicalProfileId ?? profileId, deviceId: selected[0].deviceId, batchId: crypto.randomUUID(), events: [] };

@@ -14,6 +14,7 @@ test('explicit upload round retries fixed batches and stops after local consent 
     await route.fulfill({ json: { scope, batchId: value.batch.batchId, hash: value.hash, previouslyWritten: true } });
   });
   await page.goto('/today');
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
   const consent = await page.evaluate(async ({ scope, summary }) => {
     const { db } = await import('/src/data/db.ts' as string);
     const { appendSyncEvent } = await import('/src/data/sync.ts' as string);
@@ -84,6 +85,7 @@ test('native browser lock prevents another tab from sending a simultaneous sync 
   const scope = { accountId: 1, profileId: 'sync-lock-browser', bindingVersion: 'a'.repeat(43) };
   const summary = { account: { id: 1, login: 'synthetic' }, csrfToken: 't'.repeat(43), syncAvailable: true, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: scope.profileId, disabled: false, bindingVersion: scope.bindingVersion }] };
   await page.goto('/today');
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
   const consent = await page.evaluate(async ({ scope, summary }) => {
     const { db } = await import('/src/data/db.ts' as string);
     const { allowSyncUpload } = await import('/src/data/syncClient.ts' as string);

@@ -383,9 +383,16 @@ test('table prompts use the full card width with inputs underneath on desktop an
   for (const width of [1440, 375]) {
     await page.setViewportSize({ width, height: 812 });
     if (width < 1200) await page.locator('.workspace-questions .question-sheet-toggle').click();
-    const row = page.locator('.workspace-question .answer-table label').first(), label = await row.locator('span').boundingBox(), input = await row.locator('input').boundingBox(), bounds = await row.boundingBox();
-    expect(label!.width).toBeGreaterThan(bounds!.width * .9); expect(input!.y).toBeGreaterThanOrEqual(label!.y + label!.height + 4);
-    expect(input!.height).toBeGreaterThanOrEqual(44);
+    const row = page.locator('.workspace-question .answer-table label').first();
+    // The sheet moves while opening; compare all three boxes in the same frame.
+    const boxes = await row.evaluate(element => ({
+      row: element.getBoundingClientRect().toJSON(),
+      label: element.querySelector('span')!.getBoundingClientRect().toJSON(),
+      input: element.querySelector('input')!.getBoundingClientRect().toJSON(),
+    }));
+    expect(boxes.label.width).toBeGreaterThan(boxes.row.width * .9);
+    expect(boxes.input.y).toBeGreaterThanOrEqual(boxes.label.y + boxes.label.height + 4);
+    expect(boxes.input.height).toBeGreaterThanOrEqual(44);
   }
 });
 

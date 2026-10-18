@@ -233,6 +233,9 @@ test('select all toggles all packages and removal keeps learning records', async
   await confirmTask(page);
   await page.getByRole('radio', { name: 'At the library.' }).check();
   await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await page.goto('/progress');
+  await expect(page.locator('.totals dd').first()).toHaveText('1');
   await page.goto('/library');
   await expect(page.locator('.package-row input:checked')).toHaveCount(0);
   await page.getByRole('button', { name: '全选', exact: true }).click();

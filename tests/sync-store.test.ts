@@ -1,4 +1,4 @@
-import { afterEach, expect, it } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
 import Dexie from 'dexie';
 import { syncConflictReport, appendSyncEvent, confirmSyncUpload, nextSyncUpload, confirmSyncBatch, pendingSyncBatch, readSyncEvents, readSyncDownload, knownSyncFiles, receiveSyncPage, receiveSyncBatch } from '../src/data/sync';
 import { projectSyncEvents, validateSyncBatch } from '../src/shared/sync';
@@ -231,4 +231,26 @@ it('exports both validated conflict copies without mutations or foreign-profile 
     await expect(syncConflictReport('p', '../invalid', database)).rejects.toThrow('SYNC_INTEGRITY');
   }
   await expect(nextSyncUpload('p', { accountId: 1, profileId: 'p', bindingVersion: 'a'.repeat(43) }, database)).rejects.toThrow('SYNC_BATCH_CONFLICT');
+});
+
+
+it('returns the immutable batch another reader seals between the pending and event queries', async () => {
+  const database = device();
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, database);
+  const first = database.Collection.prototype.first;
+  let interleaved = false, concurrent: Awaited<ReturnType<typeof pendingSyncBatch>>;
+  const query = vi.spyOn(database.Collection.prototype, 'first').mockImplementation(function (this: Dexie.Collection) {
+    return first.call(this, value => value).then(async value => {
+      if (!interleaved && value === undefined) {
+        interleaved = true;
+        concurrent = await pendingSyncBatch('p', database);
+      }
+      return value;
+    });
+  });
+  try {
+    const selected = await pendingSyncBatch('p', database);
+    expect(interleaved).toBe(true); expect(concurrent).toBeDefined();
+    expect(selected).toEqual(concurrent);
+  } finally { query.mockRestore(); }
 });
