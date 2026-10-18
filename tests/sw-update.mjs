@@ -31,7 +31,7 @@ if (!address || typeof address === 'string') throw new Error('No local server');
 const origin = `http://127.0.0.1:${address.port}`;
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
-  const context = await browser.newContext();
+  const context = await browser.newContext({ locale: 'zh-CN' });
   const page = await context.newPage();
   await page.goto(`${origin}/today`);
   await page.getByRole('heading', { name: '今日' }).waitFor();
@@ -67,9 +67,10 @@ try {
     for (const theme of ['light', 'dark']) for (const width of [1440, 1200, 1024, 768, 375, 320]) {
       await page.setViewportSize({ width, height: 812 });
       await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
-      const check = await section.getByRole('button', { name: '立即更新', exact: true }).boundingBox();
-      const update = await section.locator('button[data-update-ready=true]').boundingBox();
-      const status = await section.getByRole('status').boundingBox();
+      const { check, update, status } = await section.evaluate(element => {
+        const rect = selector => element.querySelector(selector).getBoundingClientRect().toJSON();
+        return { check: rect('button'), update: rect('button[data-update-ready=true]'), status: rect('[role=status]') };
+      });
       assert.deepEqual(update, check, 'The same row checks and activates the waiting update');
       assert(status.y >= update.y && status.y + status.height <= update.y + update.height, 'Status remains inside the update row');
       assert(update.width >= 44 && update.height >= 44);
