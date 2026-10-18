@@ -30,6 +30,12 @@ test('resource updates delete verified superseded outputs and preserve failed up
     await assert.rejects(readFile(join(root, 'public/packs', oldName)), /ENOENT/);
     await run('--check'); await run();
     const currentCatalogue = await readFile(join(root, 'content/resource-packs.json'));
+    const currentPack = await readFile(join(root, 'public/packs/corpus-2222222222222222.zip'));
+    for (const timezone of ['UTC', 'Asia/Shanghai', 'America/New_York', 'Pacific/Kiritimati', 'Europe/Berlin']) {
+      await promisify(execFile)(process.execPath, [script, '--check'], { cwd: root, env: { ...process.env, TZ: timezone, LINGFERN_RESOURCE_PUBLIC_ROOT: join(root, 'public'), LINGFERN_RESOURCE_CATALOGUE_ROOT: join(root, 'content') } });
+      assert.deepEqual(await readFile(join(root, 'public/packs/corpus-2222222222222222.zip')), currentPack);
+      assert.deepEqual(await readFile(join(root, 'content/resource-packs.json')), currentCatalogue);
+    }
     await writeFile(join(root, 'public/packs/corpus-2222222222222222.zip'), 'Unexpected corruption.');
     await writeFile(join(root, 'content/offline-resources.json'), catalogue('3333333333333333'));
     await assert.rejects(run(), /Previous resource package changed/);
