@@ -33,6 +33,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const [playing, setPlaying] = useState(false), [elapsed, setElapsed] = useState(0), [duration, setDuration] = useState(0), [audioError, setAudioError] = useState(false);
   const previousMaterial = useRef(material.id);
   const positions = useRef(new Map<string, number>());
+  const focusRequest = useRef<{ questionId: string; slot: number } | undefined>(undefined);
   let number = 1;
   const numbered = all.map(item => { const start = number; number += questionSlots(item.question); return { ...item, start }; });
   const visible = numbered.filter(item => item.material.id === material.id);
@@ -56,28 +57,34 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     });
     return () => { player?.pause(); };
   }, [material.id]);
-  function focusQuestion(questionId: string, slot: number) {
-    const element = document.getElementById(`answer-${questionId}-${slot}`) ?? document.getElementById(`prompt-${questionId}`);
-    const panel = element?.closest<HTMLElement>('.question-sheet-content');
-    if (!element || element.closest('[inert]') || !element.getClientRects().length) return;
-    // The sheet's visibility transition can begin after the first animation frame.
-    if (getComputedStyle(element).visibility !== 'visible') {
-      if (panel?.closest<HTMLElement>('.question-panel')?.dataset.open === 'true') requestAnimationFrame(() => focusQuestion(questionId, slot));
-      return;
-    }
-    element.focus({ preventScroll: true });
-    if (listening) {
-      const bar = document.querySelector<HTMLElement>('.workspace-questions .question-progress');
-      const offset = bar && getComputedStyle(bar).position === 'sticky' ? parseFloat(getComputedStyle(bar).top) + bar.getBoundingClientRect().height + 16 : 16;
-      scrollTo(0, scrollY + element.getBoundingClientRect().top - offset);
-    } else if (element && panel) panel.scrollTop += element.getBoundingClientRect().top - panel.getBoundingClientRect().top - 16;
-  }
+  useEffect(() => {
+    const request = focusRequest.current;
+    if (!request) return;
+    let frame = 0;
+    // Parent session updates can commit after the navigation callback's first frame.
+    const focusQuestion = () => {
+      if (focusRequest.current !== request) return;
+      const element = document.getElementById(`answer-${request.questionId}-${request.slot}`) ?? document.getElementById(`prompt-${request.questionId}`);
+      if (!element) return;
+      const panel = element.closest<HTMLElement>('.question-sheet-content');
+      if (element.closest('[inert]') || !element.getClientRects().length || getComputedStyle(element).visibility !== 'visible') {
+        if (panel?.closest<HTMLElement>('.question-panel')?.dataset.open === 'true') frame = requestAnimationFrame(focusQuestion);
+        return;
+      }
+      element.focus({ preventScroll: true }); focusRequest.current = undefined;
+      if (listening) {
+        const bar = document.querySelector<HTMLElement>('.workspace-questions .question-progress');
+        const offset = bar && getComputedStyle(bar).position === 'sticky' ? parseFloat(getComputedStyle(bar).top) + bar.getBoundingClientRect().height + 16 : 16;
+        scrollTo(0, scrollY + element.getBoundingClientRect().top - offset);
+      } else if (panel) panel.scrollTop += element.getBoundingClientRect().top - panel.getBoundingClientRect().top - 16;
+    };
+    frame = requestAnimationFrame(focusQuestion);
+    return () => cancelAnimationFrame(frame);
+  }, [session, selected, selectedSlot, pane, mobile, listening]);
   function switchPane(next: 'material' | 'question') {
+    focusRequest.current = next === 'question' ? { questionId: selected, slot: selectedSlot } : undefined;
     setPane(next); setBlurBackground(false);
-    requestAnimationFrame(() => {
-      if (next === 'question') focusQuestion(selected, selectedSlot);
-      else document.querySelector<HTMLElement>('.workspace-questions .question-sheet-toggle')?.focus({ preventScroll: true });
-    });
+    if (next === 'material') requestAnimationFrame(() => document.querySelector<HTMLElement>('.workspace-questions .question-sheet-toggle')?.focus({ preventScroll: true }));
   }
   useEffect(() => {
     if (!mobile || listening || pane !== 'question') return;
@@ -101,6 +108,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     if (busy) return;
     const target = all.find(item => item.question.id === questionId)!;
     if (target.material.id !== material.id && annotationDirty.current && !confirm(readingAnnotationCopy[locale].leave)) return;
+    const request = { questionId, slot }; focusRequest.current = request;
     setSelected(questionId); setSelectedSlot(slot); setPane('question');
     try {
       await pending.current;
@@ -108,8 +116,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
       if (updated.lesson.skill === 'reading' && target.material.id !== material.id) await markExposure(updated);
       if (target.material.id !== material.id && !listening) positions.current.set(material.id, scrollY);
       onSession(updated);
-      requestAnimationFrame(() => focusQuestion(questionId, slot));
-    } catch { setError(t.saveError); }
+    } catch { if (focusRequest.current === request) focusRequest.current = undefined; setError(t.saveError); }
   }
   async function lookup() { await recordDictionaryUse(session.id, owner, all[live.current.position].question.id); await refresh(); }
   async function play() {

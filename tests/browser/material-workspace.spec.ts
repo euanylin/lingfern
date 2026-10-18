@@ -293,6 +293,34 @@ test('mobile reading focuses a multiple-choice prompt after the sheet becomes vi
   }
 });
 
+for (const width of [1440, 375]) test(`cross-material focus waits for the parent commit and preserves drafts: ${width}`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 812 });
+  await page.addInitScript(raw => { (window as unknown as { deferredLesson: unknown }).deferredLesson = raw; }, worksheet);
+  await page.route('**/src/main.tsx', route => route.fulfill({ contentType: 'text/javascript', body: "import {mountDeferredWorkspace} from '/tests/fixtures/deferred-workspace.tsx'; mountDeferredWorkspace(window.deferredLesson);" }));
+  await page.goto('/today');
+  const panel = page.locator('.workspace-questions'), toggle = panel.locator('.question-sheet-toggle');
+  await expect(panel).toBeVisible();
+  if (width < 1200) await toggle.click();
+  await panel.locator('.workspace-card button').last().click();
+  const input = panel.locator('.workspace-question[data-selected=true] input').first();
+  await expect(input).toBeFocused();
+  await input.fill('retained-after-deferred-material');
+  await expect.poll(() => page.evaluate(async () => {
+    const { sessions } = await import('/src/data/db.ts' as string);
+    return Object.values((await sessions.toArray())[0].workspace?.drafts ?? {}).includes('retained-after-deferred-material');
+  })).toBe(true);
+  if (width < 1200) {
+    await panel.locator('.workspace-card button').first().click();
+    await page.keyboard.press('Escape');
+    await expect(panel).toHaveAttribute('data-open', 'false');
+    await expect(input).toHaveCount(1);
+    await expect(toggle).toBeFocused();
+    await expect(input).not.toBeFocused();
+    await toggle.click();
+    await expect(panel.locator('.workspace-question[data-selected=true] h2')).toBeFocused();
+  }
+});
+
 for (const raw of [worksheet, listening]) test(`responsive learning controls stay usable across short, tablet and desktop viewports: ${raw.skill}`, async ({ page }, testInfo) => {
   await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, 'ar');
