@@ -1,0 +1,1460 @@
+{
+  "version": 1,
+  "inputDirectory": "private/corpus/reading-expansion-20261010/cloud-bccampus-results",
+  "manifestSha256": "c7fc5551832021da6a2a3283821ffbe719b26ea2367894c10e4442b08bc29ed7",
+  "preparedSha256": "86669a052adaddeaae6a27acc73c9d10ac3db33e557a7c55cb5ec8a96811c327",
+  "sourceLedgerSha256": "b6e09747e66e9c6083eedffb4775d8d769ec16fede25266eee0e8727a10ea2fb",
+  "reviewer": "Codex/AI",
+  "scope": "All35 ordinary prepared excerpts full text + immediate native pre/post paragraphs actually read; Reader2/3/4 full26chapter canonical prose/poetry/context actually read. All cloud archive member hashes verified. Exact39 reviewed scopes:14 ordinary approved,21 ordinary held,4 complete native A2 source-specific support approved. No wholebook/current advice/CEFR or audio acceptance.",
+  "books": [
+    {
+      "id": "bccampus-abealfreader2",
+      "rootId": "bccampus-book-abealfreader2",
+      "title": "BC Reads: Adult Literacy Fundamental English - Reader 2",
+      "authors": [
+        "Shantel Ivits"
+      ],
+      "editors": [],
+      "attribution": "BC Reads: Adult Literacy Fundamental English - Reader 2 by Shantel Ivits. ©2015 Shantel Ivits. CC BY4.0. Download for free from the B.C. Open Collection: https://collection.bccampus.ca/. Complete original-prose native paragraphs; whitespace normalised; media, exercises and underlying poetry excluded.",
+      "sourceHash": "c0a7dd7f9aef317da7ddf56d62142579e99a8bd3df5a3247c8e49aff78252fb1",
+      "homeRawPath": "raw/bccampus-abealfreader2-home.html",
+      "homeRawSha256": "c0a7dd7f9aef317da7ddf56d62142579e99a8bd3df5a3247c8e49aff78252fb1",
+      "sourceUrl": "https://opentextbc.ca/abealfreader2/",
+      "licence": "CC BY4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "copyrightHolder": "Shantel Ivits",
+      "licenceEvidence": {
+        "@type": "CreativeWork",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "CC BY (Attribution)",
+        "code": "CC BY",
+        "description": "<p>© 2015 Shantel Ivits</p><p>The CC licence permits you to retain, reuse, copy, redistribute, and revise this book—in whole or in part—for free providing the author is attributed as follows:</p><div class=\"textbox\"><a href=\"https://opentextbc.ca/abealfreader2/\"><em>BC Reads: Adult Literacy Fundamental English – Reader 2</em></a> by Shantel Ivits is used under a <a href=\"http://creativecommons.org/licenses/by/4.0/\">CC BY 4.0 licence</a>.</div><p>If you redistribute all or part of this book, you must include the following on the copyright page:</p><div class=\"textbox\">Download for free from the <a href=\"https://collection.bccampus.ca/\" target=\"_blank\" rel=\"noopener\">B.C. Open Collection</a>.</div><p>This textbook can be referenced. In APA citation style, it should appear as follows:</p><div class=\"textbox\">Ivits, S. (2015). <em>BC Reads: Adult Literacy Fundamental English – Reader 2</em>. Victoria, B.C.: BCampus. Retrieved from https://opentextbc.ca/abealfreader2/.</div><p><strong>Cover image attribution:</strong></p><div class=\"textbox\"><a href=\"https://commons.wikimedia.org/wiki/File:Langston_Hughes_by_Carl_Van_Vechten_1936.jpg#globalusage\">Langston Hughes</a> by Carl Van Vechten is in the <a href=\"https://en.wikipedia.org/wiki/Public_domain\">public domain</a>.</div><p>Visit <a href=\"http://open.bccampus.ca/\">BCcampus Open Education</a> to learn about open education in British Columbia.</p>"
+      },
+      "authorEvidence": [
+        {
+          "rawPath": "raw/bccampus-abealfreader2-home.html",
+          "sha256": "c0a7dd7f9aef317da7ddf56d62142579e99a8bd3df5a3247c8e49aff78252fb1",
+          "author": [
+            {
+              "@type": "Person",
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits"
+            }
+          ],
+          "editor": [],
+          "contributors": []
+        }
+      ],
+      "topic": "culture",
+      "paragraphCount": 2,
+      "paragraphIds": [
+        "0403e7452e3144fbcfa03271314056bf411f5b9d51125eea1fda4dd06b2cf609",
+        "f935e15ab3dfec7f400b6a5b334ed84f26ee3140ff2279dc077aa9570b6be198"
+      ],
+      "boundaries": {
+        "authorsCount": 1,
+        "joinedAuthorLength": 13,
+        "attributionLength": 301
+      },
+      "acquiredAt": "2026-10-10T01:43:02Z"
+    },
+    {
+      "id": "bccampus-abealfreader3",
+      "rootId": "bccampus-book-abealfreader3",
+      "title": "BC Reads: Adult Literacy Fundamental English - Reader 3",
+      "authors": [
+        "Shantel Ivits"
+      ],
+      "editors": [],
+      "attribution": "BC Reads: Adult Literacy Fundamental English - Reader 3 by Shantel Ivits. ©2015 Shantel Ivits. CC BY4.0. Download for free from the B.C. Open Collection: https://collection.bccampus.ca/. Complete original-prose native paragraphs; whitespace normalised; media, exercises and underlying poetry excluded.",
+      "sourceHash": "ece5616c9b2ab3f6b6bb7c26db8496edc73614ded4b6f383084dd4b26f182bd3",
+      "homeRawPath": "raw/bccampus-abealfreader3-home.html",
+      "homeRawSha256": "ece5616c9b2ab3f6b6bb7c26db8496edc73614ded4b6f383084dd4b26f182bd3",
+      "sourceUrl": "https://opentextbc.ca/abealfreader3/",
+      "licence": "CC BY4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "copyrightHolder": "Shantel Ivits",
+      "licenceEvidence": {
+        "@type": "CreativeWork",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "CC BY (Attribution)",
+        "code": "CC BY",
+        "description": "<p>© 2015 Shantel Ivits</p><p>The CC licence permits you to retain, reuse, copy, redistribute, and revise this book—in whole or in part—for free providing the author is attributed as follows:</p><div class=\"textbox\"><a href=\"https://opentextbc.ca/abealfreader3/\"><em>BC Reads: Adult Literacy Fundamental English – Reader 3</em></a> by Shantel Ivits is used under a <a href=\"http://creativecommons.org/licenses/by/4.0/\">CC BY 4.0 licence</a>.</div><p>If you redistribute all or part of this book, you must include the following on the copyright page:</p><div class=\"textbox\">Download for free from the <a href=\"https://collection.bccampus.ca/\" target=\"_blank\" rel=\"noopener\">B.C. Open Collection</a>.</div><p>This textbook can be referenced. In APA citation style, it should appear as follows:</p><div class=\"textbox\">Ivits, S. (2015) <em>BC Reads: Adult Literacy Fundamental English – Reader 3</em>. Victoria, B.C.: BCcampus. Retrieved from https://opentextbc.ca/abealfreader3/.</div><p><strong>Cover image attribution:</strong></p><div class=\"textbox\"> <a href=\"https://www.flickr.com/photos/qousqous/17305813/in/photolist-2wGq6-4GjG9n-m8iBMP-e4H8ki-2UCfh-fistAm-cD3A9y-3cqQkb-3mZSnX-fRZEeE-pyy6-9LkHpc-e4cqxD-nGzSVF-o9H13R-5AfeJ4-Pg8ij-Pg83d-5hb3h9-qVoqqh-6RxLJn-atpHUq-bWDE1g-9JNg3a-adveFy-7wJ3gZ-9KRKVJ-6zphAP-6hTUZh-dfBoWm-9Kx699-6RxKqn-9uHLvW-422k5w-atn4XH-6RxNL2-dxSRBz-bFbJ8Y-9HxHn1-422jHj-3Vgbzg-3Vkvo1-cs9kDj-4GoSqu-oW94ka-8yexQd-4XsfxV-bmyS4C-bfuDNv-7Hfa7K\">Meagan reading</a> by <a href=\"https://www.flickr.com/photos/qousqous/\">Christopher Cotrell</a> is used under a <a href=\"https://creativecommons.org/licenses/by/2.0/\">CC-BY 2.0</a> licence.</div><p>Visit <a href=\"http://open.bccampus.ca/\">BCcampus Open Education</a> to learn about open education in British Columbia.</p>"
+      },
+      "authorEvidence": [
+        {
+          "rawPath": "raw/bccampus-abealfreader3-home.html",
+          "sha256": "ece5616c9b2ab3f6b6bb7c26db8496edc73614ded4b6f383084dd4b26f182bd3",
+          "author": [
+            {
+              "@type": "Person",
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits"
+            }
+          ],
+          "editor": [],
+          "contributors": []
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader3-005.html",
+          "sha256": "b80e20155fb8c34b111e6457d1298dce435146703dac9690a4f64b79ca7578a4",
+          "locator": "chapter/the-shooting-of-ginger-goodwin",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader3-006.html",
+          "sha256": "2dcbc02d98ba7dee1b8c649121c4c61bb3d49106f4125ab1c9e7f0e3562ac17d",
+          "locator": "chapter/the-gentleman-bandit",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader3-009.html",
+          "sha256": "5a777c0b42d8a5b581a2f17969a8a6faa48b18d0b06b5eae3e68b199bbf8efbf",
+          "locator": "chapter/spread-the-word-first-nations-languages-in-bc",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader3-011.html",
+          "sha256": "40ad3c73896aea6f34e0d687893d40af41730ce6f05fabb7a623fd5516891e02",
+          "locator": "chapter/the-journey-of-the-salmon",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        }
+      ],
+      "topic": "culture",
+      "paragraphCount": 4,
+      "paragraphIds": [
+        "75fb92754e3437fe1e3d832aedfb484dbe53accabc477cc09472800906c3aabf",
+        "e9fe63e986a11a1a12d222375576cea348864f7073b485a40dba89b10e010199",
+        "8145eccba24d5c2117ccfc7b4f65fc5fcc2374fcb426299d01b1c0f855648d84",
+        "b1806777d78c6d829397833f80272a7287ff2a4c39c0d255586a34ce6e2270ea"
+      ],
+      "boundaries": {
+        "authorsCount": 1,
+        "joinedAuthorLength": 13,
+        "attributionLength": 301
+      },
+      "acquiredAt": "2026-10-10T01:43:06Z"
+    },
+    {
+      "id": "bccampus-abealfreader4",
+      "rootId": "bccampus-book-abealfreader4",
+      "title": "BC Reads: Adult Literacy Fundamental English - Reader 4",
+      "authors": [
+        "Shantel Ivits"
+      ],
+      "editors": [],
+      "attribution": "BC Reads: Adult Literacy Fundamental English - Reader 4 by Shantel Ivits. ©2015 Shantel Ivits. CC BY4.0. Download for free from the B.C. Open Collection: https://collection.bccampus.ca/. Complete original-prose native paragraphs; whitespace normalised; media, exercises and underlying poetry excluded.",
+      "sourceHash": "5b37986ce396493aa00e61ecff2883dffd5558cb2a587154b252e63d3e8ab3ca",
+      "homeRawPath": "raw/bccampus-abealfreader4-home.html",
+      "homeRawSha256": "5b37986ce396493aa00e61ecff2883dffd5558cb2a587154b252e63d3e8ab3ca",
+      "sourceUrl": "https://opentextbc.ca/abealfreader4/",
+      "licence": "CC BY4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "copyrightHolder": "Shantel Ivits",
+      "licenceEvidence": {
+        "@type": "CreativeWork",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "CC BY (Attribution)",
+        "code": "CC BY",
+        "description": "<p>© 2015 Shantel Ivits</p><p>The CC licence permits you to retain, reuse, copy, redistribute, and revise this book—in whole or in part—for free providing the author is attributed as follows:</p><div class=\"textbox\"><a href=\"https://opentextbc.ca/abealfreader4/\"><em>BC Reads: Adult Literacy Fundamental English – Reader 4</em></a> by Shantel Ivits is used under a <a href=\"http://creativecommons.org/licenses/by/4.0/\">CC BY 4.0 licence</a>.</div><p>If you redistribute all or part of this book, you must include the following on the copyright page:</p><div class=\"textbox\">Download for free from the <a href=\"https://collection.bccampus.ca/\" target=\"_blank\" rel=\"noopener\">B.C. Open Collection</a>.</div><p>This textbook can be referenced. In APA citation style, it should appear as follows:</p><div class=\"textbox\">Ivits, S. (2015). <em>BC Reads: Adult Literacy Fundamental English – Reader 4</em>. Victoria, B.C.: BCampus. Retrieved from https://opentextbc.ca/abealfreader4/.</div><p><strong>Cover image attribution:</strong></p><div class=\"textbox\"> <a href=\"http://(https://www.flickr.com/photos/caelie/6852290940/\">Community March Against Racism</a> by <a href=\"https://www.flickr.com/photos/caelie/)\">Caelie Frampton</a> is used under a <a href=\"https://creativecommons.org/licenses/by/2.0/\">CC-BY 2.0 licence</a>.</div><p>Visit <a href=\"http://open.bccampus.ca/\">BCcampus Open Education</a> to learn about open education in British Columbia.</p>"
+      },
+      "authorEvidence": [
+        {
+          "rawPath": "raw/bccampus-abealfreader4-home.html",
+          "sha256": "5b37986ce396493aa00e61ecff2883dffd5558cb2a587154b252e63d3e8ab3ca",
+          "author": [
+            {
+              "@type": "Person",
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits"
+            }
+          ],
+          "editor": [],
+          "contributors": []
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader4-007.html",
+          "sha256": "97cf44439beac9b92847291e148cbdee247937f12cf2d3710ba3462a404fd575",
+          "locator": "chapter/the-story-of-tommy-douglas",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader4-008.html",
+          "sha256": "ef7cae1157cfd424a2d27ff28be2d25ace703b864df8cb6800429e8fe7471ee4",
+          "locator": "chapter/the-story-of-joy-kogawa",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader4-009.html",
+          "sha256": "18fb6253eaf43e5cca62525dda0f4426863a219197a3df00bb7656d3cf2be45b",
+          "locator": "chapter/the-story-of-jim-egan",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-abealfreader4-011.html",
+          "sha256": "deb0652a95dc493e3baf057add276d669fb2c42c5584121f6c40f100ad0ab24d",
+          "locator": "chapter/the-story-of-gabor-mate",
+          "authors": [
+            {
+              "name": "Shantel Ivits",
+              "slug": "shantel-ivits",
+              "@type": "Person"
+            }
+          ],
+          "editors": [],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        }
+      ],
+      "topic": "culture",
+      "paragraphCount": 2,
+      "paragraphIds": [
+        "df97e5bcb7b4df49d3af382599366c569cc25ed4a03307df4d28f96016f06c48",
+        "729fb20201a5e854a010a673b830593c6da9c412b2190febc01b67f62bc55518"
+      ],
+      "boundaries": {
+        "authorsCount": 1,
+        "joinedAuthorLength": 13,
+        "attributionLength": 301
+      },
+      "acquiredAt": "2026-10-10T01:43:12Z"
+    },
+    {
+      "id": "bccampus-introduction-tourism-hospitality",
+      "rootId": "bccampus-book-introduction-tourism-hospitality",
+      "title": "Introduction to Tourism and Hospitality in BC",
+      "authors": [
+        "Don Webster",
+        "Donna Owens",
+        "Eugene Thomlinson",
+        "Geoffrey Bird",
+        "Griff Tripp",
+        "Heather Knowles",
+        "Keith Henry",
+        "Kelley Glazer",
+        "Lynda Robinson",
+        "Micki McCartney",
+        "Morgan Westcott",
+        "Peter Briscoe",
+        "Ray Freeman",
+        "Rebecca Wilson-Mah",
+        "Terry Hood"
+      ],
+      "editors": [
+        "Morgan Westcott"
+      ],
+      "attribution": "Tourism and Hospitality in B.C. by Morgan Westcott (Editor), with Don Webster; Donna Owens; Eugene Thomlinson; Geoffrey Bird; Griff Tripp; Heather Knowles; Keith Henry; Kelley Glazer; Lynda Robinson; Micki McCartney; Morgan Westcott; Peter Briscoe; Ray Freeman; Rebecca Wilson-Mah; Terry Hood. ©2015 Capilano University. CC BY4.0. Frozen first-edition text (home citation dated2019); not current travel/legal/financial guidance. Download for free from the B.C. Open Textbook Collection: https://open.bccampus.ca/find-open-textbooks/. Complete native original prose; whitespace normalised; media, third-party quotations and dependent/exercise spans excluded.",
+      "sourceHash": "a90219d114cedad1c3fa6190e54e83154252276a5843ba5aa8e4a0b7653ff744",
+      "homeRawPath": "raw/bccampus-introduction-tourism-hospitality-home.html",
+      "homeRawSha256": "a90219d114cedad1c3fa6190e54e83154252276a5843ba5aa8e4a0b7653ff744",
+      "sourceUrl": "https://opentextbc.ca/introtourism/",
+      "licence": "CC BY4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "copyrightHolder": "Capilano University",
+      "licenceEvidence": {
+        "@type": "CreativeWork",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "CC BY (Attribution)",
+        "code": "CC BY",
+        "description": "<p>© 2015 Capilano University</p><p>The CC licence permits you to retain, reuse, copy, redistribute, and revise this book—in whole or in part—for free providing the author is attributed as follows:</p><div class=\"textbox\"><em>Tourism and Hospitality in B.C.</em> by Morgan Westcott (Editor) is used under a <a href=\"http://creativecommons.org/licenses/by/4.0/\">CC BY 4.0 Licence</a>.</div><p>If you redistribute all or part of this book, it is recommended the following statement be added to the copyright page so readers can access the original book at no cost:</p><div class=\"textbox\">Download for free from the <a href=\"https://open.bccampus.ca/find-open-textbooks/\">B.C. Open Textbook Collection</a>.</div><p><strong>Sample APA-style citation:</strong></p><p>This textbook can be referenced. In APA citation style, it would appear as follows:</p><div class=\"textbox\">Westcott, M. (Ed.). (2019). <i>Introduction to Tourism and Hospitality in B.C</i>. Victoria, B.C.: BCcampus. Retrieved from https://opentextbc.ca/introtourism/</div><p><strong>Cover image attribution:</strong></p><div class=\"textbox\">This montage includes: <a href=\"https://www.flickr.com/photos/83374808@N05/14169303681/\">Vancouver Island University</a>; <a href=\"https://www.flickr.com/photos/83374808@N05/13986039017/\">BC Ferries from Nanaimo</a>; <a href=\"https://www.flickr.com/photos/83374808@N05/10594703525/\">Capilano University&#8217;s Team</a>, all by <a href=\"https://www.flickr.com/photos/83374808@N05/\">LinkBC</a> and all used under a <a href=\"https://creativecommons.org/licenses/by/2.0/\">CC BY 2.0 License</a>.</div><p><strong>Ebook ISBN:</strong> 978-1-989623-69-5</p><p><strong>Print ISBN: </strong>978-1-989623-68-8<br />Visit <a href=\"http://open.bccampus.ca/\">BCcampus Open Education</a> to learn about open education in British Columbia.</p>"
+      },
+      "authorEvidence": [
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-home.html",
+          "sha256": "a90219d114cedad1c3fa6190e54e83154252276a5843ba5aa8e4a0b7653ff744",
+          "author": [],
+          "editor": [
+            {
+              "@type": "Person",
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott"
+            }
+          ],
+          "contributors": [
+            {
+              "@type": "Person",
+              "name": "Don Webster",
+              "slug": "don-webster"
+            },
+            {
+              "@type": "Person",
+              "name": "Donna Owens",
+              "slug": "donna-owens"
+            },
+            {
+              "@type": "Person",
+              "name": "Eugene Thomlinson",
+              "slug": "eugene-thomlinson"
+            },
+            {
+              "@type": "Person",
+              "name": "Geoffrey Bird",
+              "slug": "geoffrey-bird"
+            },
+            {
+              "@type": "Person",
+              "name": "Griff Tripp",
+              "slug": "griff-tripp"
+            },
+            {
+              "@type": "Person",
+              "name": "Heather Knowles",
+              "slug": "heather-knowles"
+            },
+            {
+              "@type": "Person",
+              "name": "Keith Henry",
+              "slug": "keith-henry"
+            },
+            {
+              "@type": "Person",
+              "name": "Kelley Glazer",
+              "slug": "kelley-glazer"
+            },
+            {
+              "@type": "Person",
+              "name": "Lynda Robinson",
+              "slug": "lynda-robinson"
+            },
+            {
+              "@type": "Person",
+              "name": "Micki McCartney",
+              "slug": "micki-mccartney"
+            },
+            {
+              "@type": "Person",
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott"
+            },
+            {
+              "@type": "Person",
+              "name": "Peter Briscoe",
+              "slug": "peter-briscoe"
+            },
+            {
+              "@type": "Person",
+              "name": "Ray Freeman",
+              "slug": "ray-freeman"
+            },
+            {
+              "@type": "Person",
+              "name": "Rebecca Wilson-Mah",
+              "slug": "rebecca-wilson-mah"
+            },
+            {
+              "@type": "Person",
+              "name": "Terry Hood",
+              "slug": "terry-hood"
+            }
+          ]
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-002.html",
+          "sha256": "c8595ec60b8c69d65047910b22cde70ed360a4506a0716e5791e1320d4fe6b4c",
+          "locator": "chapter/chapter-1-history-and-overview",
+          "authors": [],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-003.html",
+          "sha256": "281e2f081247e635897a1fc38e03efdb2c7baf82f5ce9c9f60551969282fe5ba",
+          "locator": "chapter/chapter-2-transportation",
+          "authors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-004.html",
+          "sha256": "f5f116c59d08ed54fa5d7ef4321ffe2435669fe55e1610396ab001ffa32d08ad",
+          "locator": "chapter/chapter-3-accommodation",
+          "authors": [
+            {
+              "name": "Rebecca Wilson-Mah",
+              "slug": "rebecca-wilson-mah",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-005.html",
+          "sha256": "92a98f9537da6373f455fd513c246755aa571eff16d6527d88d6bb00b31e1aa6",
+          "locator": "chapter/chapter-4-food-and-beverage-services",
+          "authors": [
+            {
+              "name": "Peter Briscoe and Griff Tripp",
+              "slug": "peter-briscoe-and-griff-tripp",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-006.html",
+          "sha256": "1ffd93d661d5656af4a12c23088b2f8e22d11a32cc9963a1e44854c0e227d036",
+          "locator": "chapter/chapter-5-recreation",
+          "authors": [
+            {
+              "name": "Don Webster",
+              "slug": "don-webster",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-007.html",
+          "sha256": "5b5b48ec0582659c83ef86b01e323f604a7f398f9889a6f7c355bd8929a7510b",
+          "locator": "chapter/chapter-6-entertainment",
+          "authors": [
+            {
+              "name": "Donna Owens",
+              "slug": "donna-owens",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-008.html",
+          "sha256": "edf685c9f0c65d09adc17bac0cad945c57b7f294eb7e0871e34cc2448121f853",
+          "locator": "chapter/chapter-7-travel-services",
+          "authors": [
+            {
+              "name": "Heather Knowles and Morgan Westcott",
+              "slug": "heather-knowles-and-morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-009.html",
+          "sha256": "57b2765f14b7c0797bd8a61d7772c1ff82a19f3a7fc5a4ec9d474623faa0b710",
+          "locator": "chapter/chapter-8-services-marketing",
+          "authors": [
+            {
+              "name": "Ray Freeman and Kelley Glazer",
+              "slug": "ray-freeman-and-kelley-glazer",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-010.html",
+          "sha256": "4ee1ea55bd8e2bc09d93952c0d9d71caa1e39c7dd5174c3dbba410893b9e054b",
+          "locator": "chapter/chapter-9-customer-service",
+          "authors": [
+            {
+              "name": "Ray Freeman and Kelley Glazer",
+              "slug": "ray-freeman-and-kelley-glazer",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-011.html",
+          "sha256": "22feb1102f1f1fdb8d5bdb6ca92185ed805742d87c5609bc751963c974174521",
+          "locator": "chapter/chapter-10-environmental-stewardship",
+          "authors": [
+            {
+              "name": "Don Webster",
+              "slug": "don-webster",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-012.html",
+          "sha256": "444ffd6e948e2d24baa3ce244b3db0da8e4634e664498d14ba15239656a6045c",
+          "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+          "authors": [
+            {
+              "name": "Don Webster",
+              "slug": "don-webster",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        },
+        {
+          "rawPath": "raw/bccampus-introduction-tourism-hospitality-015.html",
+          "sha256": "7caab35951e68e2afe1dcc8ff8d96c5cb6452b8eb891115e561c07a97ae2ba09",
+          "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+          "authors": [
+            {
+              "name": "Geoffrey Bird and Eugene Thomlinson",
+              "slug": "geoffrey-bird-and-eugene-thomlinson",
+              "@type": "Person"
+            }
+          ],
+          "editors": [
+            {
+              "name": "Morgan Westcott",
+              "slug": "morgan-westcott",
+              "@type": "Person"
+            }
+          ],
+          "licence": {
+            "@type": "CreativeWork",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "name": "CC BY (Attribution)"
+          },
+          "evidence": "Exact raw chapter JSON-LD @type Chapter; no invented author for chapter1 blank array."
+        }
+      ],
+      "topic": "business",
+      "paragraphCount": 10,
+      "paragraphIds": [
+        "fd6f58906a521ff6383ffc578d73282d0624a1f6bd0b7281abf85b047dda54bc",
+        "edf1fad26921a39c072d00aa27584c3ce94473d2f5dd3fabfa877b56f229bcfd",
+        "ff4cdff47006f2b8ea645dc225b63a26c05c2db083afc07f75deb0d7c5235ab5",
+        "86bd2b43e450c2bd948f5f52adddd8cebb378fbfcc18b9167b96308b54fff1ed",
+        "c213cd7f1a5c864cdff37888b08e5d2da5e5a2150551d7cef983c9adb724a162",
+        "edc4ac49dc65646a3d961b6e000d31f2074f0574859deac17a25cea2e1b91c23",
+        "2bdaa71b6355f566977e968aa0bb4bff0061518844bf7e5a31593cca8d25c130",
+        "eb87dd6168e1cbbfd16516bc907ac157b007713054e59749645a8757380c7267",
+        "d5d126bfcb7c413ee89816840f4b0dab5f11b2e9c9ab726b3dda75c03c818049",
+        "28c6149e5bf7c1f590fb52ba431bb90bb5449d9fc6f5e7a819e6debceb403cdd"
+      ],
+      "boundaries": {
+        "authorsCount": 15,
+        "joinedAuthorLength": 226,
+        "attributionLength": 657
+      },
+      "acquiredAt": "2026-10-10T01:43:16Z"
+    }
+  ],
+  "excludedPassageIds": [
+    "436ae2ae4571fa096b9220b4e6421da6d4b5d0f38dfc04730aa701ba3c028477",
+    "3c210940cafb08acdedcc5df1c97406b4aa4f0a2bb0130f678c6d0b14ba693c8",
+    "89f2f3e1083d5a6213ce243b5fd677ac353c49ec1b2fe6875ccf2518bb8eeab4",
+    "e37030938f429c49478f816e9a5e17d191bcca6b13eb81d7a7ecaa2303a3542a",
+    "97bcc15bd27dda42b4dac6af60c98aa215ddfd445ab8482f056790a3ae24b82a",
+    "03e202dfca0a09f91cd4355c077a08beaa171e02cd0505433468e10466525d32",
+    "c6034bf024c07a1a62004b4ca3bcf45f64fc48dc54c2977ea3213f00519f669c",
+    "7565c5c83ab360e61e290d670e84aaf94614a5a9b9cc5edc430eca680075562a",
+    "6f71b4e13fe86ab43027e370028d58dc564dcf1a0ac00924f67d6dc4ac7d79d7",
+    "d51f7328ee4da4ca166f958a96cf962a5a0ec7ff70e54f3b5c8692618387eacf",
+    "45bd379a5174e3b792fed79c1a57af917bd0ee7ede72c5710d9e6bc8a16edb65",
+    "23957f8af06080aad3ee079e1d40c12914ae258c5d13fdc15a6e4c2a8e6cd5de",
+    "ea0f13ce13c0b24bc96453e6ca95bb8cd606c25c7d2cbfd2ffe45e3e2d9ff93a",
+    "c0a43900f7a9fbd05e948ebc5e559ab42f2f9a0a5b131f7812af8de676818837",
+    "bcb0dfaee408800df1470c0b920c9b70b419ff6ac371c9f6e2624ee05e8098de",
+    "c9449ba55ba7d7f6f1cdf16db317fb33fd8ed07de5c01020dda222e76a3ca324",
+    "ae53e17e26d007e3864f5d55d3a277de70fd0ffab44bf4684053e59dbaac9edf",
+    "6b77e5168305301240429eca87c4d51db58c04792ea3bdb4cf0efe5c01495191",
+    "f56c219180c393283b6808fec405a706556ad8591c4a0e8061627e2cf873037e",
+    "bffee95dc74655f9d90235918ffcc755d1b59349c354bda7522742fabfbf6bf2",
+    "f8a38a5fcee08366f00f76347056911d8090914763a205ee2e4c206c318cd7df"
+  ],
+  "excluded": [
+    {
+      "id": "436ae2ae4571fa096b9220b4e6421da6d4b5d0f38dfc04730aa701ba3c028477",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/the-shooting-of-ginger-goodwin",
+      "paragraphIndex": 5,
+      "textSha256": "b63d5aed9c2d2754dd39fa268c5b4e87f01c24ad8d133e321feb2f36bf407a74",
+      "decision": "held",
+      "reason": "historical-conscription-all-men-overgeneralisation-and-unresolved-context"
+    },
+    {
+      "id": "3c210940cafb08acdedcc5df1c97406b4aa4f0a2bb0130f678c6d0b14ba693c8",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/spread-the-word-first-nations-languages-in-bc",
+      "paragraphIndex": 5,
+      "textSha256": "34a1e593cb6fcba643276ee4f9bf4c2aa80207539f50e2bdcaae4e2f45e7c379",
+      "decision": "held",
+      "reason": "historical-culture-ban-all-practice-overgeneralisation-and-current-majority-claim"
+    },
+    {
+      "id": "89f2f3e1083d5a6213ce243b5fd677ac353c49ec1b2fe6875ccf2518bb8eeab4",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/the-journey-of-the-salmon",
+      "paragraphIndex": 2,
+      "textSha256": "1dd9ff1e36e41ed490ddcbe2186112ef050ce20fb3b3c07c0a458b1fcef48e32",
+      "decision": "held",
+      "reason": "salmon-species-and-season-overgeneralisation-science-scope-unresolved"
+    },
+    {
+      "id": "e37030938f429c49478f816e9a5e17d191bcca6b13eb81d7a7ecaa2303a3542a",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-tommy-douglas",
+      "paragraphIndex": 4,
+      "textSha256": "5a1a0b9ea8d14788de4f98c6bf93b6de1d772d21706a9bd2237cbb47224d5234",
+      "decision": "held",
+      "reason": "Mouseland-underlying-retold-story-rights-unresolved"
+    },
+    {
+      "id": "97bcc15bd27dda42b4dac6af60c98aa215ddfd445ab8482f056790a3ae24b82a",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-joy-kogawa",
+      "paragraphIndex": 3,
+      "textSha256": "f95d971926070973228a79999e8eb59ba10e1306ee959338f800c21a273f1687",
+      "decision": "held",
+      "reason": "misleading-one-warplane-one-bomb-history-summary"
+    },
+    {
+      "id": "03e202dfca0a09f91cd4355c077a08beaa171e02cd0505433468e10466525d32",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-gabor-mate",
+      "paragraphIndex": 2,
+      "textSha256": "7310bdfa8b9e8ce271fdc6948918824ced147dbea2a033de88e78a023ccba906",
+      "decision": "held",
+      "reason": "infant-stress-and-clinical-psychological-speculation"
+    },
+    {
+      "id": "c6034bf024c07a1a62004b4ca3bcf45f64fc48dc54c2977ea3213f00519f669c",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-2-transportation",
+      "paragraphIndex": 89,
+      "textSha256": "61d786c1f892e2425911948ab7189deec9194d3127ca39b37854c857972154e5",
+      "decision": "held",
+      "reason": "2014-taxi-prices-market-and-app-restrictions-present-tense-outdated-guide"
+    },
+    {
+      "id": "7565c5c83ab360e61e290d670e84aaf94614a5a9b9cc5edc430eca680075562a",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-3-accommodation",
+      "paragraphIndex": 97,
+      "textSha256": "e789450fcf238f4061b5c874d8bc424a6d0bbe5bc6a74f70b48a38831001a921",
+      "decision": "held",
+      "reason": "OTA-abbreviation-defined-only-in-excluded-previous-paragraph"
+    },
+    {
+      "id": "6f71b4e13fe86ab43027e370028d58dc564dcf1a0ac00924f67d6dc4ac7d79d7",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-5-recreation",
+      "paragraphIndex": 59,
+      "textSha256": "606404711fbb8b8e396216efebd2673f616ac1dc0296df27b244bbabe9f0ce80",
+      "decision": "held",
+      "reason": "health-alternative-therapy-and-current-ranch-service-promotion"
+    },
+    {
+      "id": "d51f7328ee4da4ca166f958a96cf962a5a0ec7ff70e54f3b5c8692618387eacf",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-5-recreation",
+      "paragraphIndex": 114,
+      "textSha256": "0ea57af8410c4482485cb559d867795533bec7653b6336999902a1bd462637ff",
+      "decision": "held",
+      "reason": "barriers-listed-above-external-context-and-current-career-promise"
+    },
+    {
+      "id": "45bd379a5174e3b792fed79c1a57af917bd0ee7ede72c5710d9e6bc8a16edb65",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-6-entertainment",
+      "paragraphIndex": 86,
+      "textSha256": "f683cacdcc4c1dc3953e49a4590bf3f569a1f106a702d7728c83fd5538021f9a",
+      "decision": "held",
+      "reason": "current-program-ministry-and-one-million-attendance-unverified"
+    },
+    {
+      "id": "23957f8af06080aad3ee079e1d40c12914ae258c5d13fdc15a6e4c2a8e6cd5de",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-7-travel-services",
+      "paragraphIndex": 15,
+      "textSha256": "0d1cca0b86731ee70f1c7be2bcc651a55692e4f03776c6998373df12f0a42eab",
+      "decision": "held",
+      "reason": "OTA-external-definition-and-current-market-ownership-commission-guide"
+    },
+    {
+      "id": "ea0f13ce13c0b24bc96453e6ca95bb8cd606c25c7d2cbfd2ffe45e3e2d9ff93a",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-7-travel-services",
+      "paragraphIndex": 18,
+      "textSha256": "db5a11e9dea815cba9ef7d3fce03aca40588b8e352408e404af7b46beec9ba6e",
+      "decision": "held",
+      "reason": "2014-smartphone-forecast-and-ever-increasing-current-guide"
+    },
+    {
+      "id": "c0a43900f7a9fbd05e948ebc5e559ab42f2f9a0a5b131f7812af8de676818837",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-7-travel-services",
+      "paragraphIndex": 45,
+      "textSha256": "e155968ae839bf3d590171596553dd1490c66a9644317a05de5a490fa3c11570",
+      "decision": "held",
+      "reason": "RTO-DMO-unexpanded-outside-paragraph-and-current-marketplace-guide"
+    },
+    {
+      "id": "bcb0dfaee408800df1470c0b920c9b70b419ff6ac371c9f6e2624ee05e8098de",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-9-customer-service",
+      "paragraphIndex": 39,
+      "textSha256": "aebf5e8c85feacad76f9940fc5d4806b1471ae8ee0feb545122bc5f463f35a81",
+      "decision": "held",
+      "reason": "the-following-examples-these-past-winners-excluded-list-context"
+    },
+    {
+      "id": "c9449ba55ba7d7f6f1cdf16db317fb33fd8ed07de5c01020dda222e76a3ca324",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-10-environmental-stewardship",
+      "paragraphIndex": 48,
+      "textSha256": "af0864470a3618f4e8f7be8fd9c4c4b924551f90d9170c9d3fc0881c283eed5f",
+      "decision": "held",
+      "reason": "current-crown-land-licence-term-legal-guide-not-verified"
+    },
+    {
+      "id": "ae53e17e26d007e3864f5d55d3a277de70fd0ffab44bf4684053e59dbaac9edf",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+      "paragraphIndex": 24,
+      "textSha256": "a3e214f02162572687c74a1690157458d3e0a26726746feeb8169ddd81918c0f",
+      "decision": "held",
+      "reason": "legal-risk-transfer-waiver-and-insurance-guidance-not-currently-verified"
+    },
+    {
+      "id": "6b77e5168305301240429eca87c4d51db58c04792ea3bdb4cf0efe5c01495191",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+      "paragraphIndex": 50,
+      "textSha256": "17df087969539d1492d5e8e20058b2228c1099a908637005902390bbd84332bd",
+      "decision": "held",
+      "reason": "legal-waiver-enforceability-guide-not-currently-verified"
+    },
+    {
+      "id": "f56c219180c393283b6808fec405a706556ad8591c4a0e8061627e2cf873037e",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+      "paragraphIndex": 73,
+      "textSha256": "39aa2c78384594cacfbe9f5b3496a2e2bc500bae9b000f72dc67b93c978112e2",
+      "decision": "held",
+      "reason": "insurance-coverage-financial-guide-not-currently-verified"
+    },
+    {
+      "id": "bffee95dc74655f9d90235918ffcc755d1b59349c354bda7522742fabfbf6bf2",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 25,
+      "textSha256": "9ec94415320d18a71bc5858c648c02bf45e3823b75f45c5c1fe13b7ead1e8b39",
+      "decision": "held",
+      "reason": "current-criminal-law-and-cross-jurisdiction-guidance-not-verified"
+    },
+    {
+      "id": "f8a38a5fcee08366f00f76347056911d8090914763a205ee2e4c206c318cd7df",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 68,
+      "textSha256": "87ecbe6d4c1ea276e36521cbeba8786a7ddb093773f8d95bb0aeea9237d41ea0",
+      "decision": "held",
+      "reason": "this-purchasing-antecedent-external-context-and-unqualified-industrial-model-claim"
+    }
+  ],
+  "paragraphIds": [
+    "75fb92754e3437fe1e3d832aedfb484dbe53accabc477cc09472800906c3aabf",
+    "e9fe63e986a11a1a12d222375576cea348864f7073b485a40dba89b10e010199",
+    "df97e5bcb7b4df49d3af382599366c569cc25ed4a03307df4d28f96016f06c48",
+    "729fb20201a5e854a010a673b830593c6da9c412b2190febc01b67f62bc55518",
+    "fd6f58906a521ff6383ffc578d73282d0624a1f6bd0b7281abf85b047dda54bc",
+    "edf1fad26921a39c072d00aa27584c3ce94473d2f5dd3fabfa877b56f229bcfd",
+    "ff4cdff47006f2b8ea645dc225b63a26c05c2db083afc07f75deb0d7c5235ab5",
+    "86bd2b43e450c2bd948f5f52adddd8cebb378fbfcc18b9167b96308b54fff1ed",
+    "c213cd7f1a5c864cdff37888b08e5d2da5e5a2150551d7cef983c9adb724a162",
+    "edc4ac49dc65646a3d961b6e000d31f2074f0574859deac17a25cea2e1b91c23",
+    "2bdaa71b6355f566977e968aa0bb4bff0061518844bf7e5a31593cca8d25c130",
+    "eb87dd6168e1cbbfd16516bc907ac157b007713054e59749645a8757380c7267",
+    "d5d126bfcb7c413ee89816840f4b0dab5f11b2e9c9ab726b3dda75c03c818049",
+    "28c6149e5bf7c1f590fb52ba431bb90bb5449d9fc6f5e7a819e6debceb403cdd",
+    "0403e7452e3144fbcfa03271314056bf411f5b9d51125eea1fda4dd06b2cf609",
+    "f935e15ab3dfec7f400b6a5b334ed84f26ee3140ff2279dc077aa9570b6be198",
+    "8145eccba24d5c2117ccfc7b4f65fc5fcc2374fcb426299d01b1c0f855648d84",
+    "b1806777d78c6d829397833f80272a7287ff2a4c39c0d255586a34ce6e2270ea"
+  ],
+  "beginnerScopes": [
+    {
+      "workId": "bccampus-abealfreader2",
+      "rootId": "bccampus-book-abealfreader2",
+      "chapter": "Chapter 1 – BC Reads: Adult Literacy Fundamental English – Reader 2",
+      "locator": "chapter/chapter-1",
+      "sourceUrl": "https://opentextbc.ca/abealfreader2/chapter/chapter-1/",
+      "sourceHash": "643dadb49d732a6ac66fcb44d9e33b20f6820093406c85157d8339d11ca37aa2",
+      "rawPath": "raw/bccampus-abealfreader2-004.html",
+      "canonicalPath": "raw/bccampus-abealfreader2-004.canonical.txt",
+      "canonicalSha256": "2644de616c0b51ed304ea7987db900c2fc803dbb74a62ec820d771e51fefc3dc",
+      "paragraphIndex": 2,
+      "start": 86,
+      "end": 325,
+      "sourceStart": 86,
+      "sourceEnd": 325,
+      "textSha256": "1a79c0c7ca0b71cd300b842cc30f51da5da7488fbd745b43d8d5374439a950e3",
+      "text": "Many people think that poems are not for them. They may not have read a poem by a good poet. A good poet can make us feel less cut off from the world. A good poet can make us see the world with new eyes. A good poet can make us feel alive.",
+      "wordCount": 53,
+      "reason": "below-current-reading-schema-120-words",
+      "proposedStartingPoints": [
+        "A2"
+      ],
+      "releaseStatus": "pending-explicit-schema-source-support-not-public",
+      "id": "0403e7452e3144fbcfa03271314056bf411f5b9d51125eea1fda4dd06b2cf609",
+      "startingPoints": [
+        "A2"
+      ],
+      "decision": "approved-explicit-A2-source-scope",
+      "approvalLimit": "Complete native original-author paragraph only, no poems/concatenation/modern-history claim or CEFR calibration."
+    },
+    {
+      "workId": "bccampus-abealfreader2",
+      "rootId": "bccampus-book-abealfreader2",
+      "chapter": "Chapter 1 – BC Reads: Adult Literacy Fundamental English – Reader 2",
+      "locator": "chapter/chapter-1",
+      "sourceUrl": "https://opentextbc.ca/abealfreader2/chapter/chapter-1/",
+      "sourceHash": "643dadb49d732a6ac66fcb44d9e33b20f6820093406c85157d8339d11ca37aa2",
+      "rawPath": "raw/bccampus-abealfreader2-004.html",
+      "canonicalPath": "raw/bccampus-abealfreader2-004.canonical.txt",
+      "canonicalSha256": "2644de616c0b51ed304ea7987db900c2fc803dbb74a62ec820d771e51fefc3dc",
+      "paragraphIndex": 3,
+      "start": 327,
+      "end": 640,
+      "sourceStart": 327,
+      "sourceEnd": 640,
+      "textSha256": "4501571a7ba51c0938425f2c860e810cea926bd70696cb1be3fed7b605c10b55",
+      "text": "Many people think Langston Hughes was a very good poet. Langston was black. He grew up in a time when white people did not treat black people well. So he wrote poems about the need to make a better world. Many people still do not treat black people well. So we still need Langston’s poems. His poems give us hope.",
+      "wordCount": 60,
+      "reason": "below-current-reading-schema-120-words",
+      "proposedStartingPoints": [
+        "A2"
+      ],
+      "releaseStatus": "pending-explicit-schema-source-support-not-public",
+      "id": "f935e15ab3dfec7f400b6a5b334ed84f26ee3140ff2279dc077aa9570b6be198",
+      "startingPoints": [
+        "A2"
+      ],
+      "decision": "approved-explicit-A2-source-scope",
+      "approvalLimit": "Complete native original-author paragraph only, no poems/concatenation/modern-history claim or CEFR calibration."
+    },
+    {
+      "workId": "bccampus-abealfreader3",
+      "rootId": "bccampus-book-abealfreader3",
+      "chapter": "The Gentleman Bandit – BC Reads: Adult Literacy Fundamental English – Reader 3",
+      "locator": "chapter/the-gentleman-bandit",
+      "sourceUrl": "https://opentextbc.ca/abealfreader3/chapter/the-gentleman-bandit/",
+      "sourceHash": "2dcbc02d98ba7dee1b8c649121c4c61bb3d49106f4125ab1c9e7f0e3562ac17d",
+      "rawPath": "raw/bccampus-abealfreader3-006.html",
+      "canonicalPath": "raw/bccampus-abealfreader3-006.canonical.txt",
+      "canonicalSha256": "888222c0209352d1ec63ca9cf20eb8c658690e5f5dd362dce059b50bc6e3d85a",
+      "paragraphIndex": 2,
+      "start": 86,
+      "end": 396,
+      "sourceStart": 86,
+      "sourceEnd": 396,
+      "textSha256": "36106f0102400eba32e7577496b326a9db11ab6b7d91f7d5955b43ff077ff75e",
+      "text": "In the days before cars, people and goods travelled a long way on horses and trains. Horses and trains were easy targets for bandits looking to make easy money. Bill Miner was one of the most feared train bandits. He spent four years of his life here in British Columbia. This is the story of those four years.",
+      "wordCount": 58,
+      "reason": "below-current-reading-schema-120-words",
+      "proposedStartingPoints": [
+        "A2"
+      ],
+      "releaseStatus": "pending-explicit-schema-source-support-not-public",
+      "id": "8145eccba24d5c2117ccfc7b4f65fc5fcc2374fcb426299d01b1c0f855648d84",
+      "startingPoints": [
+        "A2"
+      ],
+      "decision": "approved-explicit-A2-source-scope",
+      "approvalLimit": "Complete native original-author paragraph only, no poems/concatenation/modern-history claim or CEFR calibration."
+    },
+    {
+      "workId": "bccampus-abealfreader3",
+      "rootId": "bccampus-book-abealfreader3",
+      "chapter": "The Gentleman Bandit – BC Reads: Adult Literacy Fundamental English – Reader 3",
+      "locator": "chapter/the-gentleman-bandit",
+      "sourceUrl": "https://opentextbc.ca/abealfreader3/chapter/the-gentleman-bandit/",
+      "sourceHash": "2dcbc02d98ba7dee1b8c649121c4c61bb3d49106f4125ab1c9e7f0e3562ac17d",
+      "rawPath": "raw/bccampus-abealfreader3-006.html",
+      "canonicalPath": "raw/bccampus-abealfreader3-006.canonical.txt",
+      "canonicalSha256": "888222c0209352d1ec63ca9cf20eb8c658690e5f5dd362dce059b50bc6e3d85a",
+      "paragraphIndex": 3,
+      "start": 398,
+      "end": 851,
+      "sourceStart": 398,
+      "sourceEnd": 851,
+      "textSha256": "a107ff8bc0b996ae18cd1958fa86c78ecdcfedff64ebd5300369247a8b2667da",
+      "text": "Wanted posters with Bill Miner’s face were put up all over the west coast of the United States. Bill needed to escape. He slipped across the border into Canada. George Edwards was the name he gave anyone who asked who he was. He went from town to town in British Columbia. He had no trouble making friends. He was a charming man. He played the fiddle. He showed people how to dance. He was known as a real gentleman. Nobody thought he could be a bandit.",
+      "wordCount": 86,
+      "reason": "below-current-reading-schema-120-words",
+      "proposedStartingPoints": [
+        "A2"
+      ],
+      "releaseStatus": "pending-explicit-schema-source-support-not-public",
+      "id": "b1806777d78c6d829397833f80272a7287ff2a4c39c0d255586a34ce6e2270ea",
+      "startingPoints": [
+        "A2"
+      ],
+      "decision": "approved-explicit-A2-source-scope",
+      "approvalLimit": "Complete native original-author paragraph only, no poems/concatenation/modern-history claim or CEFR calibration."
+    }
+  ],
+  "ordinaryDecisions": [
+    {
+      "id": "436ae2ae4571fa096b9220b4e6421da6d4b5d0f38dfc04730aa701ba3c028477",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/the-shooting-of-ginger-goodwin",
+      "paragraphIndex": 5,
+      "textSha256": "b63d5aed9c2d2754dd39fa268c5b4e87f01c24ad8d133e321feb2f36bf407a74",
+      "decision": "held",
+      "reason": "historical-conscription-all-men-overgeneralisation-and-unresolved-context"
+    },
+    {
+      "id": "75fb92754e3437fe1e3d832aedfb484dbe53accabc477cc09472800906c3aabf",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/the-gentleman-bandit",
+      "paragraphIndex": 5,
+      "textSha256": "14e2be7869a66fc21f95aec280eb7069383e298e2e0881a68171fd00a8d57bf8",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "e9fe63e986a11a1a12d222375576cea348864f7073b485a40dba89b10e010199",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/the-gentleman-bandit",
+      "paragraphIndex": 8,
+      "textSha256": "01d917d01b24a7c5541265aaf42a7b6f2393af6726026a8f2d3d764c5ba79dce",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "3c210940cafb08acdedcc5df1c97406b4aa4f0a2bb0130f678c6d0b14ba693c8",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/spread-the-word-first-nations-languages-in-bc",
+      "paragraphIndex": 5,
+      "textSha256": "34a1e593cb6fcba643276ee4f9bf4c2aa80207539f50e2bdcaae4e2f45e7c379",
+      "decision": "held",
+      "reason": "historical-culture-ban-all-practice-overgeneralisation-and-current-majority-claim"
+    },
+    {
+      "id": "89f2f3e1083d5a6213ce243b5fd677ac353c49ec1b2fe6875ccf2518bb8eeab4",
+      "workId": "bccampus-abealfreader3",
+      "locator": "chapter/the-journey-of-the-salmon",
+      "paragraphIndex": 2,
+      "textSha256": "1dd9ff1e36e41ed490ddcbe2186112ef050ce20fb3b3c07c0a458b1fcef48e32",
+      "decision": "held",
+      "reason": "salmon-species-and-season-overgeneralisation-science-scope-unresolved"
+    },
+    {
+      "id": "e37030938f429c49478f816e9a5e17d191bcca6b13eb81d7a7ecaa2303a3542a",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-tommy-douglas",
+      "paragraphIndex": 4,
+      "textSha256": "5a1a0b9ea8d14788de4f98c6bf93b6de1d772d21706a9bd2237cbb47224d5234",
+      "decision": "held",
+      "reason": "Mouseland-underlying-retold-story-rights-unresolved"
+    },
+    {
+      "id": "97bcc15bd27dda42b4dac6af60c98aa215ddfd445ab8482f056790a3ae24b82a",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-joy-kogawa",
+      "paragraphIndex": 3,
+      "textSha256": "f95d971926070973228a79999e8eb59ba10e1306ee959338f800c21a273f1687",
+      "decision": "held",
+      "reason": "misleading-one-warplane-one-bomb-history-summary"
+    },
+    {
+      "id": "df97e5bcb7b4df49d3af382599366c569cc25ed4a03307df4d28f96016f06c48",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-joy-kogawa",
+      "paragraphIndex": 5,
+      "textSha256": "8e4ad248866741e1d63c7de81e3b828507e63893a17fbe3fc022f185275bb3f1",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "729fb20201a5e854a010a673b830593c6da9c412b2190febc01b67f62bc55518",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-jim-egan",
+      "paragraphIndex": 4,
+      "textSha256": "d1be508eb6d974599a55e98eca3b05930a06271d02db453e82788719c6d96b60",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "03e202dfca0a09f91cd4355c077a08beaa171e02cd0505433468e10466525d32",
+      "workId": "bccampus-abealfreader4",
+      "locator": "chapter/the-story-of-gabor-mate",
+      "paragraphIndex": 2,
+      "textSha256": "7310bdfa8b9e8ce271fdc6948918824ced147dbea2a033de88e78a023ccba906",
+      "decision": "held",
+      "reason": "infant-stress-and-clinical-psychological-speculation"
+    },
+    {
+      "id": "fd6f58906a521ff6383ffc578d73282d0624a1f6bd0b7281abf85b047dda54bc",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-1-history-and-overview",
+      "paragraphIndex": 64,
+      "textSha256": "2569a921a1aa6a21ab4069ff353c09888bc7eca963d8520810980d26dcf017d8",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "c6034bf024c07a1a62004b4ca3bcf45f64fc48dc54c2977ea3213f00519f669c",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-2-transportation",
+      "paragraphIndex": 89,
+      "textSha256": "61d786c1f892e2425911948ab7189deec9194d3127ca39b37854c857972154e5",
+      "decision": "held",
+      "reason": "2014-taxi-prices-market-and-app-restrictions-present-tense-outdated-guide"
+    },
+    {
+      "id": "7565c5c83ab360e61e290d670e84aaf94614a5a9b9cc5edc430eca680075562a",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-3-accommodation",
+      "paragraphIndex": 97,
+      "textSha256": "e789450fcf238f4061b5c874d8bc424a6d0bbe5bc6a74f70b48a38831001a921",
+      "decision": "held",
+      "reason": "OTA-abbreviation-defined-only-in-excluded-previous-paragraph"
+    },
+    {
+      "id": "edf1fad26921a39c072d00aa27584c3ce94473d2f5dd3fabfa877b56f229bcfd",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-4-food-and-beverage-services",
+      "paragraphIndex": 24,
+      "textSha256": "177eb29ddea61324550a3691d0939425d41b106fafc8c7daeb131e7fec091dd3",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "6f71b4e13fe86ab43027e370028d58dc564dcf1a0ac00924f67d6dc4ac7d79d7",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-5-recreation",
+      "paragraphIndex": 59,
+      "textSha256": "606404711fbb8b8e396216efebd2673f616ac1dc0296df27b244bbabe9f0ce80",
+      "decision": "held",
+      "reason": "health-alternative-therapy-and-current-ranch-service-promotion"
+    },
+    {
+      "id": "ff4cdff47006f2b8ea645dc225b63a26c05c2db083afc07f75deb0d7c5235ab5",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-5-recreation",
+      "paragraphIndex": 96,
+      "textSha256": "5d262ea0c909a0e792e9ab817a348ff2661344ab17f1f146fd5b60351e5fd82e",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "86bd2b43e450c2bd948f5f52adddd8cebb378fbfcc18b9167b96308b54fff1ed",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-5-recreation",
+      "paragraphIndex": 109,
+      "textSha256": "959f6a165b1d7f23ddd318c84128ec6e53869f38f644c57d2f2896a316f09253",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "d51f7328ee4da4ca166f958a96cf962a5a0ec7ff70e54f3b5c8692618387eacf",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-5-recreation",
+      "paragraphIndex": 114,
+      "textSha256": "0ea57af8410c4482485cb559d867795533bec7653b6336999902a1bd462637ff",
+      "decision": "held",
+      "reason": "barriers-listed-above-external-context-and-current-career-promise"
+    },
+    {
+      "id": "45bd379a5174e3b792fed79c1a57af917bd0ee7ede72c5710d9e6bc8a16edb65",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-6-entertainment",
+      "paragraphIndex": 86,
+      "textSha256": "f683cacdcc4c1dc3953e49a4590bf3f569a1f106a702d7728c83fd5538021f9a",
+      "decision": "held",
+      "reason": "current-program-ministry-and-one-million-attendance-unverified"
+    },
+    {
+      "id": "23957f8af06080aad3ee079e1d40c12914ae258c5d13fdc15a6e4c2a8e6cd5de",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-7-travel-services",
+      "paragraphIndex": 15,
+      "textSha256": "0d1cca0b86731ee70f1c7be2bcc651a55692e4f03776c6998373df12f0a42eab",
+      "decision": "held",
+      "reason": "OTA-external-definition-and-current-market-ownership-commission-guide"
+    },
+    {
+      "id": "ea0f13ce13c0b24bc96453e6ca95bb8cd606c25c7d2cbfd2ffe45e3e2d9ff93a",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-7-travel-services",
+      "paragraphIndex": 18,
+      "textSha256": "db5a11e9dea815cba9ef7d3fce03aca40588b8e352408e404af7b46beec9ba6e",
+      "decision": "held",
+      "reason": "2014-smartphone-forecast-and-ever-increasing-current-guide"
+    },
+    {
+      "id": "c0a43900f7a9fbd05e948ebc5e559ab42f2f9a0a5b131f7812af8de676818837",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-7-travel-services",
+      "paragraphIndex": 45,
+      "textSha256": "e155968ae839bf3d590171596553dd1490c66a9644317a05de5a490fa3c11570",
+      "decision": "held",
+      "reason": "RTO-DMO-unexpanded-outside-paragraph-and-current-marketplace-guide"
+    },
+    {
+      "id": "c213cd7f1a5c864cdff37888b08e5d2da5e5a2150551d7cef983c9adb724a162",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-8-services-marketing",
+      "paragraphIndex": 9,
+      "textSha256": "daa44414f622b94eb1dfc79e9fcf30f01b1226d17b8184f93e3dd440ba3d46cb",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "edc4ac49dc65646a3d961b6e000d31f2074f0574859deac17a25cea2e1b91c23",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-8-services-marketing",
+      "paragraphIndex": 77,
+      "textSha256": "adb76a08732c3bab4b9146622450a234d4cae501cc5b3aaa32da61ba3ed55906",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "bcb0dfaee408800df1470c0b920c9b70b419ff6ac371c9f6e2624ee05e8098de",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-9-customer-service",
+      "paragraphIndex": 39,
+      "textSha256": "aebf5e8c85feacad76f9940fc5d4806b1471ae8ee0feb545122bc5f463f35a81",
+      "decision": "held",
+      "reason": "the-following-examples-these-past-winners-excluded-list-context"
+    },
+    {
+      "id": "c9449ba55ba7d7f6f1cdf16db317fb33fd8ed07de5c01020dda222e76a3ca324",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-10-environmental-stewardship",
+      "paragraphIndex": 48,
+      "textSha256": "af0864470a3618f4e8f7be8fd9c4c4b924551f90d9170c9d3fc0881c283eed5f",
+      "decision": "held",
+      "reason": "current-crown-land-licence-term-legal-guide-not-verified"
+    },
+    {
+      "id": "2bdaa71b6355f566977e968aa0bb4bff0061518844bf7e5a31593cca8d25c130",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-10-environmental-stewardship",
+      "paragraphIndex": 84,
+      "textSha256": "c16ce6c2dcd8d0c21db589598e8ca56f9e22cc7b2d53159d79c36ab90b19c873",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "ae53e17e26d007e3864f5d55d3a277de70fd0ffab44bf4684053e59dbaac9edf",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+      "paragraphIndex": 24,
+      "textSha256": "a3e214f02162572687c74a1690157458d3e0a26726746feeb8169ddd81918c0f",
+      "decision": "held",
+      "reason": "legal-risk-transfer-waiver-and-insurance-guidance-not-currently-verified"
+    },
+    {
+      "id": "6b77e5168305301240429eca87c4d51db58c04792ea3bdb4cf0efe5c01495191",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+      "paragraphIndex": 50,
+      "textSha256": "17df087969539d1492d5e8e20058b2228c1099a908637005902390bbd84332bd",
+      "decision": "held",
+      "reason": "legal-waiver-enforceability-guide-not-currently-verified"
+    },
+    {
+      "id": "f56c219180c393283b6808fec405a706556ad8591c4a0e8061627e2cf873037e",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-11-risk-management-and-legal-liability",
+      "paragraphIndex": 73,
+      "textSha256": "39aa2c78384594cacfbe9f5b3496a2e2bc500bae9b000f72dc67b93c978112e2",
+      "decision": "held",
+      "reason": "insurance-coverage-financial-guide-not-currently-verified"
+    },
+    {
+      "id": "eb87dd6168e1cbbfd16516bc907ac157b007713054e59749645a8757380c7267",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 10,
+      "textSha256": "9c36c14580f506e5bf7277dad5a8e259fa3266c702cb7e1fdcd7b5b1874662b6",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "d5d126bfcb7c413ee89816840f4b0dab5f11b2e9c9ab726b3dda75c03c818049",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 20,
+      "textSha256": "e49f18fd4f3a366510e897a45615fae351de2398e6046043afed5a5c30af7b46",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "bffee95dc74655f9d90235918ffcc755d1b59349c354bda7522742fabfbf6bf2",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 25,
+      "textSha256": "9ec94415320d18a71bc5858c648c02bf45e3823b75f45c5c1fe13b7ead1e8b39",
+      "decision": "held",
+      "reason": "current-criminal-law-and-cross-jurisdiction-guidance-not-verified"
+    },
+    {
+      "id": "28c6149e5bf7c1f590fb52ba431bb90bb5449d9fc6f5e7a819e6debceb403cdd",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 59,
+      "textSha256": "ba40d88c45470fa4beab8e7817702f7445481021955ea77b47bbd121f17e06ec",
+      "decision": "approved-original-prose",
+      "reason": "Complete native original-author prose; frozen source edition context, not contemporary service/ability endorsement."
+    },
+    {
+      "id": "f8a38a5fcee08366f00f76347056911d8090914763a205ee2e4c206c318cd7df",
+      "workId": "bccampus-introduction-tourism-hospitality",
+      "locator": "chapter/chapter-14-back-to-the-big-picture-globalization-and-trends",
+      "paragraphIndex": 68,
+      "textSha256": "87ecbe6d4c1ea276e36521cbeba8786a7ddb093773f8d95bb0aeea9237d41ea0",
+      "decision": "held",
+      "reason": "this-purchasing-antecedent-external-context-and-unqualified-industrial-model-claim"
+    }
+  ],
+  "conservation": {
+    "originalCloudNativeParagraphs": 2590,
+    "cloudPrepared": 35,
+    "cloudHeld": 2555,
+    "ordinaryApproved": 14,
+    "ordinaryHeld": 21,
+    "sourceSpecificA2ApprovedFromCloudHeld": 4,
+    "totalApproved": 18,
+    "finalHeld": 2572,
+    "omitted": 0
+  },
+  "singletonStatus": "All428 native Reader2/3/4 spans actualfour singleton extractors0. requested-address/work-phone/apartment-code/room-matching remain pending; no fallback completion counted as closure.",
+  "rightsLimits": "Reader2 Langston Hughes poems and poem-dependent introductions remain excluded; original Shantel Ivits biography prose only. Tourism cited facts/paraphrases remain original textbook prose under chapter/home grant, not permission to copy cited works. All external media/figures/captions and precise cloud exclusions remain private.",
+  "integrationLimit": "Four A2 short paragraphs require explicit source-scoped schema support; generic120-word minimum unchanged. Roots wholebook, not chapter or rewritten source. Root agent owns all public integration and final checks.",
+  "verifiedAt": "2026-10-10T01:56:44.613Z",
+  "timeSemantics": "Actual owned cloud ZIP member raw-file modification time; DOS two-second precision truncated to even seconds. UTC clock mapping independently verified against481 hash-bound actual cloud-stat timestamps in respective original archives. Not publication date or exact HTTP request time.",
+  "approvedRowsPath": "private/verification/bccampus-approved-rows.json",
+  "approvedRowsSha256": "6ee388c1eef6a7eb38b79bf5ed8bc125de649c12a3265cc95ac925100aeb98f6",
+  "independentReviewPath": "private/verification/bccampus-source-config.json",
+  "independentReviewSha256": "b3331275c3b8053ebb050208711274949a9261bae1715752717836b1c157401c",
+  "captureTimesPath": "private/corpus/reading-expansion-20261010/cloud-bccampus-archive-capture-times.json",
+  "captureTimesSha256": "fccd33382e3c88763868291dcb8099d6dae24615ef28566b4add99c1c83f38e2",
+  "sourceArchivePath": "private/corpus/reading-expansion-20261010/cloud-bccampus-export.zip",
+  "sourceArchiveSha256": "819a0585472bdab57e100c0bd96e668f01e7952c70a19ae5eeeeed585c591ca0"
+}

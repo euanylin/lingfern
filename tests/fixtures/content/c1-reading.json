@@ -1,0 +1,311 @@
+{
+  "id": "c1-approval-commitment-reading",
+  "targetLevel": "C1",
+  "skill": "reading",
+  "title": {
+    "zh-Hans": "读懂支持与承诺",
+    "zh-Hant": "讀懂支持與承諾",
+    "en": "Read support and commitment"
+  },
+  "goal": {
+    "zh-Hans": "在完整邮件往来中区分积极评价、下一步工作与已确认的对外承诺。",
+    "zh-Hant": "在完整郵件往來中區分正面評價、下一步工作與已確認的對外承諾。",
+    "en": "Distinguish positive evaluation, next steps and confirmed public commitments across an email exchange."
+  },
+  "goalId": "approval-versus-commitment",
+  "sourceId": "lingfern-original-c1-exchanges",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先标出谁能做决定，再追踪“暂定”“取决于”“将回复”等语句，最后核对可以公开宣称什么。礼貌赞赏不自动等于拒绝或批准。",
+    "zh-Hant": "先標出誰能做決定，再追蹤「暫定」「取決於」「將回覆」等語句，最後核對可以公開聲稱甚麼。禮貌讚賞不自動等於拒絕或批准。",
+    "en": "Identify who can decide, track provisional and conditional language, then check what may be said publicly. Polite praise alone is neither refusal nor approval."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“方案很有帮助；我周五确认经费。”→ 赞赏方案，并承诺周五回复；尚未批准经费。",
+    "zh-Hant": "示範（不計分）：「方案很有幫助；我週五確認經費。」→ 讚賞方案，並承諾週五回覆；尚未核准經費。",
+    "en": "Unscored example: “This is useful; I will confirm funding on Friday.” → The person praises the idea and promises an update, not funding approval."
+  },
+  "materials": [
+    {
+      "id": "gallery-audio-guide-exchange",
+      "rootId": "original-gallery-guide-exchange",
+      "title": "An exchange about an audio-guide pilot",
+      "blocks": [
+        {
+          "id": "gallery-lea",
+          "title": "Lea · Visitor programmes",
+          "text": "Subject: A short audio-guide trial for the autumn exhibition\n\nDear Arun, The visitor team has finished three sample audio-guide stops for the autumn exhibition. In last month's small visitor workshop, people appreciated being able to pause a description and move through the room at their own pace. Several participants also asked for written captions, since they could not always hear the recording clearly beside a group. I propose a six-week pilot beginning with the October open house, using loan tablets rather than asking everyone to install an app. We could keep the stops optional and collect anonymous comments at the exit.\n\nI know the sample workshop does not tell us how every visitor would use the guide. The point of a pilot is to learn whether the descriptions help and whether the loan process is manageable. The exhibition team can revise the scripts next week, but I have not booked tablets or told volunteers to expect a launch. If your team can confirm the equipment budget and an accessibility review this month, I can prepare a public announcement with a clear start date. If either step takes longer, I would rather publish a short exhibition introduction and test the guide later than promise visitors a service we cannot provide. What can we responsibly say at Thursday's board update?"
+        },
+        {
+          "id": "gallery-arun",
+          "title": "Arun · Operations",
+          "text": "Subject: Re: A short audio-guide trial for the autumn exhibition\n\nDear Lea, The samples make a persuasive case for testing a slower, visitor-controlled explanation. I also welcome your decision to include captions and loan equipment. I have put an October slot in the planning calendar so that the teams can estimate staffing, but that entry is provisional; it is not a booking for visitors. Finance has not authorised the tablet rental, and the access team needs to check both the captions and how a visitor would ask for help if a device fails. They can review a revised script next Tuesday, but their review is not yet a decision that the service can open.\n\nFor Thursday, you may tell the board that operations supports developing a limited pilot, provided those two checks are completed. Please avoid describing the October date as agreed. I will request a budget decision at the following finance meeting and report back on Friday. If the rental is refused, we should compare a bring-your-own-device option with a later trial, but neither alternative has been checked for access needs. Your proposal is worth advancing; it would be misleading to convert that encouragement into a launch commitment before we know what we can support."
+        },
+        {
+          "id": "gallery-lea-followup",
+          "title": "Lea · Follow-up",
+          "text": "Subject: Wording for Thursday\n\nThanks, Arun. I will keep the calendar entry inside the planning team and send the access reviewers the revised captions on Monday. My board slide will say: “The teams support further planning for a limited audio-guide pilot. An October opening remains possible, subject to equipment funding and an accessibility review; no public start date has been approved.” I will explain that visitor comments from the small workshop motivated the proposal but do not establish demand across the whole audience. If the board asks whether visitors can rely on a guide at the open house, I will say no and point them to the confirmed exhibition introduction instead. After Friday's budget response and the access review, we can choose a date or revise the plan. Please tell me if this wording attributes more to operations than you intended."
+        }
+      ],
+      "questions": [
+        {
+          "id": "gallery-commitment",
+          "blockId": "gallery-arun",
+          "prompt": "What has Arun actually committed operations to at this point?",
+          "options": [
+            "Supporting further planning and seeking decisions, without confirming an October launch.",
+            "Providing tablets and a public opening date for the October open house.",
+            "Rejecting the idea until every visitor has used the sample guide."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 844,
+            "end": 936
+          },
+          "hints": [
+            {
+              "zh-Hans": "分别找支持的动作和尚未作出的决定。",
+              "zh-Hant": "分別找支持的動作和尚未作出的決定。",
+              "en": "Separate support for a process from a decision to launch."
+            },
+            {
+              "zh-Hans": "规划日历是暂定；资金和无障碍审查仍在等待。",
+              "zh-Hant": "規劃日曆是暫定；資金和無障礙審查仍在等待。",
+              "en": "The calendar slot is provisional, while funding and access review are outstanding."
+            },
+            {
+              "zh-Hans": "他承诺申请预算决定并回复，但未承诺十月开放。",
+              "zh-Hant": "他承諾申請預算決定並回覆，但未承諾十月開放。",
+              "en": "He promises to seek and report decisions, not to open in October."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：支持推进规划并报告预算结果，不等于承诺开放。",
+              "zh-Hant": "正確：支持推進規劃並報告預算結果，不等於承諾開放。",
+              "en": "Correct: he supports planning and promises a report, not a launch."
+            },
+            {
+              "zh-Hans": "不对：设备预算和公众开放日期尚未批准。",
+              "zh-Hant": "不對：設備預算和公開日期尚未核准。",
+              "en": "Funding and a public date remain unapproved."
+            },
+            {
+              "zh-Hans": "不对：他认为方案值得继续推进，并未拒绝。",
+              "zh-Hant": "不對：他認為方案值得繼續推進，並未拒絕。",
+              "en": "He considers the proposal worth advancing."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "gallery-arun",
+              "start": 703,
+              "end": 791
+            }
+          ]
+        },
+        {
+          "id": "gallery-board-wording",
+          "blockId": "gallery-lea-followup",
+          "prompt": "Which board statement would preserve the status of the proposal?",
+          "options": [
+            "The guide will launch at the open house because operations reserved a calendar slot.",
+            "Teams support further planning; an October opening depends on funding and an access review, and no public date is approved.",
+            "The visitor workshop proved demand across the whole audience, so the budget review is a formality."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 257,
+            "end": 391
+          },
+          "hints": [
+            {
+              "zh-Hans": "注意 possible 与 approved 的差别。",
+              "zh-Hant": "注意 possible 與 approved 的差別。",
+              "en": "Distinguish “possible” from “approved”."
+            },
+            {
+              "zh-Hans": "回看样本工作坊能证明什么。",
+              "zh-Hant": "回看樣本工作坊能證明什麼。",
+              "en": "Check what the small visitor workshop can establish."
+            },
+            {
+              "zh-Hans": "保留两项前提和未批准日期，不扩大样本结论。",
+              "zh-Hant": "保留兩項前提和未核准日期，不擴大樣本結論。",
+              "en": "Keep both conditions, the unapproved date and the sample limit."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：内部暂定时段不是公开开放承诺。",
+              "zh-Hant": "不對：內部暫定時段不是公開開放承諾。",
+              "en": "A provisional internal slot is not a public promise."
+            },
+            {
+              "zh-Hans": "正确：这个说法保留支持、条件与尚未作出的决定。",
+              "zh-Hant": "正確：此說法保留支持、條件與尚未作出的決定。",
+              "en": "Correct: it keeps the support, conditions and unresolved decision."
+            },
+            {
+              "zh-Hans": "不对：小规模工作坊不能证明全体访客需求，预算也未决定。",
+              "zh-Hant": "不對：小型工作坊不能證明全體訪客需求，預算亦未決定。",
+              "en": "The workshop does not prove broad demand, and funding is undecided."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "gallery-lea",
+              "start": 634,
+              "end": 716
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbour-walk-exchange",
+      "rootId": "original-harbour-walk-exchange",
+      "title": "An exchange about a community harbour walk",
+      "blocks": [
+        {
+          "id": "harbour-noor",
+          "title": "Noor · Community organiser",
+          "text": "Subject: Harbour history walk in the spring programme\n\nDear Celia, The local history group has prepared a route that links the old market, the ferry steps and the restored warehouse. It would make a useful addition to the spring programme because residents often ask how the harbour changed after the ferry moved. Our volunteers can draft a short map and lead a small group on a weekday morning. We would like to mention the city museum as a partner on the invitation. The draft route uses the public path, although the ferry steps become slippery after rain, so the map needs an alternative section before we invite anyone.\n\nI do not want to confuse interest in the idea with permission to advertise a date. Could your team confirm whether a museum guide can join us and whether the museum's insurance covers a volunteer-led walk? We can adjust the route if it does not. The community calendar closes for submissions in two weeks. If those decisions are still open then, perhaps the listing could describe a planned collaboration without promising a walk. I would appreciate your advice on wording that signals the historical idea while leaving space for the safety and staffing decisions."
+        },
+        {
+          "id": "harbour-celia",
+          "title": "Celia · Museum programme lead",
+          "text": "Subject: Re: Harbour history walk in the spring programme\n\nDear Noor, Your route connects the sites more clearly than our current indoor display, and I would be pleased to discuss it with the guides. That is support for exploring the proposal, not an agreement to co-host the walk on the suggested morning. Our rota is not settled, and I cannot extend the museum's insurance to an event until the risk team has reviewed the route and the volunteer roles. The ferry steps are a particular concern after rain. Please send the alternative path and a note on who will decide whether to use it on the day. The risk team can then advise whether a guide must be present for the museum to be named as an organiser.\n\nYou may tell the community calendar editor that the history group and museum are discussing a possible walk. Please do not use the museum logo or call the walk a confirmed museum event yet. If the calendar requires a fixed date and named partner, omit the listing this round; we can still announce a later event once the relevant decisions are made. I will meet the guide coordinator next Wednesday and send you a written answer about staff availability. A positive conversation now should not leave readers with a promise that only a later safety and staffing decision can make."
+        },
+        {
+          "id": "harbour-noor-followup",
+          "title": "Noor · Follow-up",
+          "text": "Subject: Route details and calendar entry\n\nThank you. I have revised the map so that a dry-weather group can view the ferry steps from the upper path, while a wet-weather group stays on the paved market route. The leader will check conditions before the meeting time, but I will not present that procedure as approved by the museum until the risk team has considered it. I will send the route and volunteer roles today. For the community calendar, I will use only a general note about a possible collaboration, with no date, museum logo or registration link. If the editor cannot carry a general note, we will wait. I will also ask volunteers not to accept bookings on the basis of our correspondence. Once you have the coordinator's written answer and the risk advice, we can decide whether a museum-backed walk is feasible or whether the group should run a separate event under its own arrangements."
+        }
+      ],
+      "questions": [
+        {
+          "id": "harbour-stance",
+          "blockId": "harbour-celia",
+          "prompt": "How should Noor understand Celia’s positive response?",
+          "options": [
+            "It is a polite refusal of any future collaboration.",
+            "It is interest in exploring the walk, while co-hosting still depends on staffing and risk decisions.",
+            "It is permission to use the museum logo because the route is on a public path."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 200,
+            "end": 306
+          },
+          "hints": [
+            {
+              "zh-Hans": "赞赏路线与同意联合举办是不同的行为。",
+              "zh-Hant": "讚賞路線與同意聯合舉辦是不同的行為。",
+              "en": "Praise for the route differs from agreement to co-host."
+            },
+            {
+              "zh-Hans": "找人员和风险审查的限制。",
+              "zh-Hant": "找人員和風險審查的限制。",
+              "en": "Find the staffing and risk-review limits."
+            },
+            {
+              "zh-Hans": "她有兴趣继续讨论，但没有授予联合举办许可。",
+              "zh-Hant": "她有興趣繼續討論，但未授予聯合舉辦許可。",
+              "en": "She is interested in discussion, without authorising co-hosting."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：她希望与向导讨论，未拒绝未来合作。",
+              "zh-Hant": "不對：她希望與導覽員討論，未拒絕未來合作。",
+              "en": "She wants to discuss the proposal with guides."
+            },
+            {
+              "zh-Hans": "正确：积极态度仍受人员和安全决定约束。",
+              "zh-Hant": "正確：積極態度仍受人員和安全決定約束。",
+              "en": "Correct: her interest remains conditional on staffing and safety decisions."
+            },
+            {
+              "zh-Hans": "不对：她明确要求暂时不要使用博物馆标志。",
+              "zh-Hant": "不對：她明確要求暫時不要使用博物館標誌。",
+              "en": "She explicitly asks Noor not to use the museum logo yet."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "harbour-celia",
+              "start": 307,
+              "end": 454
+            }
+          ]
+        },
+        {
+          "id": "harbour-calendar",
+          "blockId": "harbour-noor-followup",
+          "prompt": "What public calendar action follows from the exchange?",
+          "options": [
+            "Announce a fixed museum-backed walk and invite bookings, because a route alternative exists.",
+            "Describe only a possible collaboration without a date or museum logo; if that format is not allowed, wait.",
+            "Name the museum as organiser but leave the weather route undecided for participants."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 420,
+            "end": 615
+          },
+          "hints": [
+            {
+              "zh-Hans": "把内部准备与对公众可说的话分开。",
+              "zh-Hant": "把內部準備與對公眾可說的話分開。",
+              "en": "Separate internal preparation from public wording."
+            },
+            {
+              "zh-Hans": "找日历编辑器只接受固定日期时的备选做法。",
+              "zh-Hant": "找日曆編輯只接受固定日期時的替代做法。",
+              "en": "Find what happens if the calendar requires a fixed date."
+            },
+            {
+              "zh-Hans": "只能说可能合作，不能给日期或接受报名；必要时等下一轮。",
+              "zh-Hant": "只能說可能合作，不能給日期或接受報名；必要時等下一輪。",
+              "en": "Mention only possible collaboration, without a date or booking; otherwise wait."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：替代路线尚未获风险团队审查，联合举办也未确定。",
+              "zh-Hant": "不對：替代路線尚未獲風險團隊審查，聯合舉辦亦未確定。",
+              "en": "The alternate route and co-hosting have not been cleared."
+            },
+            {
+              "zh-Hans": "正确：对外措辞只反映仍在讨论的合作。",
+              "zh-Hant": "正確：對外措辭只反映仍在討論的合作。",
+              "en": "Correct: public wording reflects only a possible collaboration."
+            },
+            {
+              "zh-Hans": "不对：不能在人员与风险决定前把博物馆列为主办方。",
+              "zh-Hant": "不對：不能在人員與風險決定前把博物館列為主辦方。",
+              "en": "The museum cannot be named as organiser before the decisions."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "harbour-celia",
+              "start": 898,
+              "end": 1057
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "science",
+    "campus"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次区分推进规划的承诺与对外开放的决定。",
+    "zh-Hant": "下次區分推進規劃的承諾與對外開放的決定。",
+    "en": "Next time, distinguish a planning commitment from a public launch decision."
+  }
+}

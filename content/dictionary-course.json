@@ -1,0 +1,396 @@
+{
+  "reviewStatus": "draft",
+  "source": "Lingfern original course explanations; definitions remain draft; selected sense mappings reviewed by Codex/AI",
+  "entries": [
+    {
+      "term": "book",
+      "senseId": "book%1:06:00::",
+      "definition": "A set of pages with words or pictures that you can read.",
+      "example": "Bring a book to the reading group."
+    },
+    {
+      "term": "pen",
+      "senseId": "pen%1:06:00::",
+      "definition": "An object you use to write with ink.",
+      "example": "Write your name with a pen."
+    },
+    {
+      "term": "bag",
+      "senseId": "bag%1:06:00::",
+      "definition": "Something you carry things in.",
+      "example": "Put your book in your bag."
+    },
+    {
+      "term": "cup",
+      "senseId": "cup%1:06:00::",
+      "definition": "A small container you drink from.",
+      "example": "This is a cup of water."
+    },
+    {
+      "term": "library",
+      "senseId": "library%1:06:00::",
+      "definition": "A place where you can read or borrow books.",
+      "example": "Meet me at the library."
+    },
+    {
+      "term": "bring",
+      "senseId": "bring%2:38:00::",
+      "definition": "Take something with you to a place.",
+      "example": "Bring your student card."
+    },
+    {
+      "term": "student card",
+      "senseId": null,
+      "definition": "A card that shows you are a student.",
+      "example": "Show your student card at the desk."
+    },
+    {
+      "term": "notebook",
+      "senseId": "notebook%1:10:00::",
+      "definition": "A book of empty pages for writing notes.",
+      "example": "You do not need a notebook today."
+    },
+    {
+      "term": "pencil",
+      "senseId": "pencil%1:06:00::",
+      "definition": "An object you write or draw with; it usually has a graphite point.",
+      "example": "Bring a pencil to the art club."
+    },
+    {
+      "term": "paper",
+      "senseId": "paper%1:27:00::",
+      "definition": "A thin material you can write or draw on.",
+      "example": "Paper is on the table."
+    },
+    {
+      "term": "table",
+      "senseId": "table%1:06:01::",
+      "definition": "A piece of furniture with a flat top.",
+      "example": "The paper is on the table."
+    },
+    {
+      "term": "café",
+      "senseId": "cafe%1:06:00::",
+      "definition": "A place where people buy drinks and small meals.",
+      "example": "The art club meets at the café."
+    },
+    {
+      "term": "museum",
+      "senseId": "museum%1:06:00::",
+      "definition": "A place where people can see objects about art, history or science.",
+      "example": "The museum opens at eleven on Friday."
+    },
+    {
+      "term": "ticket",
+      "senseId": "ticket%1:10:01::",
+      "definition": "A paper or digital record that lets you enter a place or use a service.",
+      "example": "Get your ticket at the front desk."
+    },
+    {
+      "term": "arrive",
+      "senseId": "arrive%2:38:00::",
+      "definition": "Get to a place.",
+      "example": "Please arrive after the doors open."
+    },
+    {
+      "term": "open",
+      "senseId": "open%2:41:00::",
+      "definition": "Start allowing people to enter or use a place.",
+      "example": "The studio opens at noon."
+    },
+    {
+      "term": "close",
+      "senseId": "close%2:41:00::",
+      "definition": "Stop allowing people to enter or use a place.",
+      "example": "The museum closes at five."
+    },
+    {
+      "term": "front desk",
+      "senseId": null,
+      "definition": "The place near an entrance where staff help visitors.",
+      "example": "Ask at the front desk for Room Twelve."
+    },
+    {
+      "term": "room",
+      "senseId": "room%1:06:00::",
+      "definition": "A space inside a building, with walls around it.",
+      "example": "The group meets in Room Twelve."
+    },
+    {
+      "term": "meeting",
+      "senseId": "meeting%1:14:00::",
+      "definition": "A time when people come together to talk or plan.",
+      "example": "The staff have a meeting this morning."
+    },
+    {
+      "term": "gallery",
+      "senseId": "gallery%1:06:04::",
+      "definition": "A room or building where people can see works of art.",
+      "example": "The staff prepare the gallery on Thursday."
+    },
+    {
+      "term": "class",
+      "senseId": "class%1:14:03::",
+      "definition": "A group of people learning together.",
+      "example": "The beginners’ class starts at half past ten."
+    },
+    {
+      "term": "pool",
+      "senseId": null,
+      "definition": "A place filled with water where people can swim.",
+      "example": "The pool opens at ten this Saturday."
+    },
+    {
+      "term": "provided",
+      "senseId": null,
+      "definition": "Only if a stated condition is met. In a recommendation, it introduces a condition on support.",
+      "example": "We support the trial provided a staffed walk-in period remains."
+    },
+    {
+      "term": "concession",
+      "senseId": "concession%1:10:02::",
+      "definition": "Acknowledging a point that supports another view, without necessarily accepting that whole view.",
+      "example": "The writer concedes that appointments reduce waiting, but objects to booking-only access."
+    },
+    {
+      "term": "accountable",
+      "senseId": "accountable%5:00:00:responsible:00",
+      "definition": "Responsible for a decision or action and expected to explain or correct it.",
+      "example": "A named catalogue team remains accountable for the published description."
+    },
+    {
+      "term": "exclusive",
+      "senseId": "exclusive%3:00:00::",
+      "definition": "Allowing only one route or group and excluding alternatives.",
+      "example": "The objection concerns an exclusive online route into the service."
+    },
+    {
+      "term": "request",
+      "senseId": "request%1:10:01::",
+      "definition": "A formal message asking someone to give you something or do something for you.",
+      "example": "Send a request for the library book."
+    },
+    {
+      "term": "ready",
+      "senseId": "ready%3:00:00::",
+      "definition": "Prepared and available for you to use or collect.",
+      "example": "Wait for a message saying that your book is ready."
+    },
+    {
+      "term": "kitchen",
+      "senseId": "kitchen%1:06:00::",
+      "definition": "A room where people prepare and cook food.",
+      "example": "We cook in the kitchen."
+    },
+    {
+      "term": "bedroom",
+      "senseId": "bedroom%1:06:00::",
+      "definition": "A room where people sleep.",
+      "example": "I sleep in the bedroom."
+    },
+    {
+      "term": "bathroom",
+      "senseId": "bathroom%1:06:00::",
+      "definition": "A room with a bath or shower, where people wash.",
+      "example": "I wash in the bathroom."
+    },
+    {
+      "term": "living room",
+      "senseId": "living_room%1:06:00::",
+      "definition": "A room where people sit and relax at home.",
+      "example": "We relax in the living room."
+    },
+    {
+      "term": "relax",
+      "senseId": "relax%2:29:00::",
+      "definition": "Rest and feel calm.",
+      "example": "I relax in the living room."
+    },
+    {
+      "term": "cook",
+      "senseId": "cook%2:36:00::",
+      "definition": "Prepare food so people can eat it.",
+      "example": "We cook in the kitchen."
+    },
+    {
+      "term": "gym",
+      "senseId": "gym%1:06:00::",
+      "definition": "A room or building where people exercise.",
+      "example": "Where is the gym?"
+    },
+    {
+      "term": "mailroom",
+      "senseId": null,
+      "definition": "A room where people collect or sort letters and other mail.",
+      "example": "This is the mailroom."
+    },
+    {
+      "term": "lounge",
+      "senseId": "lounge%1:06:00::",
+      "definition": "A room where people can sit and relax.",
+      "example": "The gym is across from the lounge."
+    },
+    {
+      "term": "work out",
+      "senseId": "work_out%2:29:00::",
+      "definition": "Exercise to keep your body strong and healthy.",
+      "example": "I want to work out."
+    },
+    {
+      "term": "next to",
+      "senseId": null,
+      "definition": "Very close to the side of someone or something.",
+      "example": "The gym is next to the mailroom."
+    },
+    {
+      "term": "across from",
+      "senseId": null,
+      "definition": "On the other side, facing someone or something.",
+      "example": "The gym is across from the lounge."
+    },
+    {
+      "term": "awesome",
+      "senseId": null,
+      "definition": "Very good or exciting. This is informal language.",
+      "example": "Things are awesome!"
+    },
+    {
+      "term": "upstairs",
+      "senseId": "upstairs%4:02:00::",
+      "definition": "On or towards a higher floor in a building.",
+      "example": "Let’s go upstairs!"
+    },
+    {
+      "term": "busy",
+      "senseId": "busy%3:00:00::",
+      "definition": "Doing something that needs your time and attention.",
+      "example": "Right now I am busy."
+    },
+    {
+      "term": "record",
+      "senseId": "record%2:32:01::",
+      "definition": "Save sound or video so that people can play it later.",
+      "example": "I have to record again."
+    },
+    {
+      "term": "show",
+      "senseId": "show%1:04:00::",
+      "definition": "A programme made for an audience.",
+      "example": "I am doing my show!"
+    },
+    {
+      "term": "again",
+      "senseId": "again%4:02:00::",
+      "definition": "One more time.",
+      "example": "Can I read again?"
+    },
+    {
+      "term": "co-worker",
+      "senseId": "co-worker%1:18:00::",
+      "definition": "A person who works with you.",
+      "example": "Please meet your co-workers."
+    },
+    {
+      "term": "studio",
+      "senseId": "studio%1:06:02::",
+      "definition": "A room where people make or record programmes.",
+      "example": "May I see the studio?"
+    },
+    {
+      "term": "afternoon",
+      "senseId": "afternoon%1:28:00::",
+      "definition": "The part of the day between midday and evening.",
+      "example": "Come by this afternoon."
+    },
+    {
+      "term": "apologize",
+      "senseId": "apologize%2:32:00::",
+      "definition": "Say that you are sorry for something you did.",
+      "example": "Today I want to apologize to my co-workers."
+    },
+    {
+      "term": "phoneme",
+      "senseId": "phoneme%1:10:00::",
+      "definition": "A distinct speech sound that can distinguish words in a language.",
+      "example": "The word “cat” has three phonemes."
+    },
+    {
+      "term": "phonetic",
+      "senseId": "phonetic%3:01:01::",
+      "definition": "Related to the sounds people make when they speak.",
+      "example": "The phonetic alphabet uses symbols for sounds."
+    },
+    {
+      "term": "symbol",
+      "senseId": "symbol%1:10:00::",
+      "definition": "A written sign that represents a sound, idea or thing.",
+      "example": "A special symbol can show a phoneme."
+    },
+    {
+      "term": "momentary",
+      "senseId": "momentary%5:00:00:short:02",
+      "definition": "Lasting for a very short time.",
+      "example": "A state of being is longer than a momentary feeling."
+    },
+    {
+      "term": "state of being",
+      "senseId": null,
+      "definition": "A condition describing how a person feels or experiences life over a period of time.",
+      "example": "In retirement, her state of being became more relaxed."
+    },
+    {
+      "term": "link",
+      "senseId": null,
+      "definition": "Connect one thing with another.",
+      "example": "The verb can link a subject with its description."
+    },
+    {
+      "term": "noun",
+      "senseId": "noun%1:10:00::",
+      "definition": "A word used to name a person, place, thing or idea.",
+      "example": "Farmer is a noun."
+    },
+    {
+      "term": "adjective",
+      "senseId": "adjective%1:10:00::",
+      "definition": "A word used to describe a noun.",
+      "example": "Rich is an adjective."
+    },
+    {
+      "term": "apartment",
+      "senseId": "apartment%1:06:00::",
+      "definition": "A set of rooms where someone lives.",
+      "example": "Anna lives in an apartment."
+    },
+    {
+      "term": "roommate",
+      "senseId": null,
+      "definition": "A person you share a room or apartment with.",
+      "example": "Anna and Marsha are roommates."
+    },
+    {
+      "term": "supermarket",
+      "senseId": "supermarket%1:06:00::",
+      "definition": "A large shop where people buy food and things for their home.",
+      "example": "Is there a supermarket near here?"
+    },
+    {
+      "term": "dinner",
+      "senseId": "dinner%1:13:00::",
+      "definition": "The main meal of the day, often eaten in the evening.",
+      "example": "I want to cook dinner."
+    },
+    {
+      "term": "wrong number",
+      "senseId": null,
+      "definition": "A telephone number for a different person from the one you want to call.",
+      "example": "You have the wrong number."
+    },
+    {
+      "term": "call me",
+      "senseId": null,
+      "definition": "With a name after it, asks someone to use that name for you. It can also ask someone to phone you.",
+      "example": "Please call me Caty. (Use this name.) / Please call me later. (Phone me.)"
+    }
+  ]
+}

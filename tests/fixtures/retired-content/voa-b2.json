@@ -1,0 +1,1100 @@
+[
+  {
+    "id": "b2-voa-qualifications-reading",
+    "targetLevel": "B2",
+    "skill": "reading",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Scope and frequency",
+      "zh-Hans": "Scope and frequency",
+      "zh-Hant": "Scope and frequency"
+    },
+    "goalId": "preserve-qualification-reading",
+    "goal": {
+      "en": "Preserve the strength and scope of an author’s claims.",
+      "zh-Hans": "Preserve the strength and scope of an author’s claims.",
+      "zh-Hant": "Preserve the strength and scope of an author’s claims."
+    },
+    "sourceId": "voa-article-7908917",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "The first excerpt discusses “that’s swell”, an older expression of approval. Separate a likely interpretation from a universal claim. Then apply the same care to another source: sharing meaning and sharing frequency are different claims.",
+      "zh-Hans": "The first excerpt discusses “that’s swell”, an older expression of approval. Separate a likely interpretation from a universal claim. Then apply the same care to another source: sharing meaning and sharing frequency are different claims.",
+      "zh-Hant": "The first excerpt discusses “that’s swell”, an older expression of approval. Separate a likely interpretation from a universal claim. Then apply the same care to another source: sharing meaning and sharing frequency are different claims."
+    },
+    "workedExample": {
+      "en": "A statement that something is “probably” used jokingly leaves room for other uses. A summary saying it is “always” a joke is stronger than the author’s claim.",
+      "zh-Hans": "A statement that something is “probably” used jokingly leaves room for other uses. A summary saying it is “always” a joke is stronger than the author’s claim.",
+      "zh-Hant": "A statement that something is “probably” used jokingly leaves room for other uses. A summary saying it is “always” a joke is stronger than the author’s claim."
+    },
+    "nextStep": {
+      "en": "Find a qualified statement in another original article. Write a faithful summary and an exaggerated version; underline the words that change its strength.",
+      "zh-Hans": "Find a qualified statement in another original article. Write a faithful summary and an exaggerated version; underline the words that change its strength.",
+      "zh-Hant": "Find a qualified statement in another original article. Write a faithful summary and an exaggerated version; underline the words that change its strength."
+    },
+    "materials": [
+      {
+        "id": "voa-usage",
+        "rootId": "voa-article-7908917",
+        "sourceId": "voa-article-7908917",
+        "title": "Do People Still Say That?",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "But nowadays people do not commonly say that. And if they do say it, they are probably saying it in a joking way because they know the expression is rare and not currently used.\n\nHere are some ways to help you find out if an expression belongs to an earlier time:\n\nLanguage exchange partners\n\nFind a native English language partner. Then you can ask him or her if expressions are no longer used very much. Our VOA Learning English article “Five Tips for Great Language Exchanges” gives advice on how you can do a language exchange."
+          }
+        ],
+        "questions": [
+          {
+            "id": "usage-1",
+            "blockId": "source",
+            "prompt": "Which statement preserves the author’s degree of certainty?",
+            "options": [
+              "Every present-day use must be a joke.",
+              "It is uncommon today, and a present-day use is likely to be joking.",
+              "Its use always shows that the speaker dislikes something."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 46,
+              "end": 177
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "“Probably” signals a likely interpretation; it does not mean “always”.",
+                "zh-Hans": "“Probably” signals a likely interpretation; it does not mean “always”.",
+                "zh-Hant": "“Probably” signals a likely interpretation; it does not mean “always”."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "“Probably” expresses likelihood, not certainty about every speaker.",
+                "zh-Hans": "“Probably” expresses likelihood, not certainty about every speaker.",
+                "zh-Hant": "“Probably” expresses likelihood, not certainty about every speaker."
+              },
+              {
+                "en": "This retains both the uncommon use and the author’s qualified interpretation.",
+                "zh-Hans": "This retains both the uncommon use and the author’s qualified interpretation.",
+                "zh-Hant": "This retains both the uncommon use and the author’s qualified interpretation."
+              },
+              {
+                "en": "The excerpt discusses rarity and joking use; it does not claim dislike.",
+                "zh-Hans": "The excerpt discusses rarity and joking use; it does not claim dislike.",
+                "zh-Hant": "The excerpt discusses rarity and joking use; it does not claim dislike."
+              }
+            ]
+          },
+          {
+            "id": "usage-2",
+            "blockId": "source",
+            "prompt": "Which action does the author suggest for checking whether an expression is still used?",
+            "options": [
+              "Ask a language partner whether people still use it much.",
+              "Assume that every expression in an old film remains common.",
+              "Decide from its literal meaning alone."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 293,
+              "end": 405
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "“No longer” describes a change from earlier use, rather than the meaning of the words.",
+                "zh-Hans": "“No longer” describes a change from earlier use, rather than the meaning of the words.",
+                "zh-Hant": "“No longer” describes a change from earlier use, rather than the meaning of the words."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author recommends asking a language partner about current use.",
+                "zh-Hans": "The author recommends asking a language partner about current use.",
+                "zh-Hant": "The author recommends asking a language partner about current use."
+              },
+              {
+                "en": "The purpose is to check current use; an old film alone does not provide that check.",
+                "zh-Hans": "The purpose is to check current use; an old film alone does not provide that check.",
+                "zh-Hant": "The purpose is to check current use; an old film alone does not provide that check."
+              },
+              {
+                "en": "Understanding the literal meaning does not answer how common the expression is now.",
+                "zh-Hans": "Understanding the literal meaning does not answer how common the expression is now.",
+                "zh-Hant": "Understanding the literal meaning does not answer how common the expression is now."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voa-types",
+        "rootId": "voa-article-7902900",
+        "sourceId": "voa-article-7902900",
+        "title": "Kinds and Types",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "We can use each of the words you ask about to describe what category something belongs in. A category is a group of things that share similar qualities.\n\nFor example, apples, bananas, and oranges all belong in the same category, which is fruit.\n\nKind and type\n\nThe words “kind” and “type” are synonyms. That means they each share the same meaning. And they have the most general meaning of the four words you ask about.\n\nA “kind” or a “type” is a group that shares things in common. For example:\n\nElectric cars are one kind of car, while gasoline-powered cars are another type (or kind) of car.\n\nNotice that we commonly put the preposition “of” after the words “kind” or “type.”\n\nThe phrases “a kind of” and “a type of” are both very common in spoken English. We use the phrase “a kind of” more often than we use the phrase “a type of.”"
+          }
+        ],
+        "questions": [
+          {
+            "id": "types-1",
+            "blockId": "source",
+            "prompt": "Which summary preserves both the meaning and frequency claims?",
+            "options": [
+              "Only “a type of” is common in speech.",
+              "Both phrases mean the same thing and occur equally often.",
+              "Both phrases are common, but “a kind of” is used more often."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 680,
+              "end": 836
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "“More often” compares frequency; it does not make the other phrase uncommon.",
+                "zh-Hans": "“More often” compares frequency; it does not make the other phrase uncommon.",
+                "zh-Hant": "“More often” compares frequency; it does not make the other phrase uncommon."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author explicitly says both phrases are very common.",
+                "zh-Hans": "The author explicitly says both phrases are very common.",
+                "zh-Hant": "The author explicitly says both phrases are very common."
+              },
+              {
+                "en": "Sharing meaning does not imply equal frequency; the final sentence gives a difference.",
+                "zh-Hans": "Sharing meaning does not imply equal frequency; the final sentence gives a difference.",
+                "zh-Hant": "Sharing meaning does not imply equal frequency; the final sentence gives a difference."
+              },
+              {
+                "en": "This retains “both” being common and the comparative “more often”.",
+                "zh-Hans": "This retains “both” being common and the comparative “more often”.",
+                "zh-Hant": "This retains “both” being common and the comparative “more often”."
+              }
+            ]
+          },
+          {
+            "id": "types-2",
+            "blockId": "source",
+            "prompt": "What follows from the author calling “kind” and “type” synonyms?",
+            "options": [
+              "They must have identical frequencies in spoken English.",
+              "They share meaning, but that alone does not make their use equally frequent.",
+              "They refer only to groups of cars."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 261,
+              "end": 347
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "A definition of shared meaning is not a claim about every feature of usage.",
+                "zh-Hans": "A definition of shared meaning is not a claim about every feature of usage.",
+                "zh-Hant": "A definition of shared meaning is not a claim about every feature of usage."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author defines shared meaning, then separately describes unequal frequency.",
+                "zh-Hans": "The author defines shared meaning, then separately describes unequal frequency.",
+                "zh-Hant": "The author defines shared meaning, then separately describes unequal frequency."
+              },
+              {
+                "en": "“Synonyms” is explained as shared meaning; frequency is a separate claim in this excerpt.",
+                "zh-Hans": "“Synonyms” is explained as shared meaning; frequency is a separate claim in this excerpt.",
+                "zh-Hant": "“Synonyms” is explained as shared meaning; frequency is a separate claim in this excerpt."
+              },
+              {
+                "en": "Cars are an example; the broader definition is a group sharing things in common.",
+                "zh-Hans": "Cars are an example; the broader definition is a group sharing things in common.",
+                "zh-Hant": "Cars are an example; the broader definition is a group sharing things in common."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b2-voa-qualifications-listening",
+    "targetLevel": "B2",
+    "skill": "listening",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Scope and frequency",
+      "zh-Hans": "Scope and frequency",
+      "zh-Hant": "Scope and frequency"
+    },
+    "goalId": "preserve-qualification-listening",
+    "goal": {
+      "en": "Preserve the strength and scope of an author’s claims.",
+      "zh-Hans": "Preserve the strength and scope of an author’s claims.",
+      "zh-Hant": "Preserve the strength and scope of an author’s claims."
+    },
+    "sourceId": "voa-article-7908917",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "The first excerpt discusses “that’s swell”, an older expression of approval. Separate a likely interpretation from a universal claim. Then apply the same care to another source: sharing meaning and sharing frequency are different claims.",
+      "zh-Hans": "The first excerpt discusses “that’s swell”, an older expression of approval. Separate a likely interpretation from a universal claim. Then apply the same care to another source: sharing meaning and sharing frequency are different claims.",
+      "zh-Hant": "The first excerpt discusses “that’s swell”, an older expression of approval. Separate a likely interpretation from a universal claim. Then apply the same care to another source: sharing meaning and sharing frequency are different claims."
+    },
+    "workedExample": {
+      "en": "A statement that something is “probably” used jokingly leaves room for other uses. A summary saying it is “always” a joke is stronger than the author’s claim.",
+      "zh-Hans": "A statement that something is “probably” used jokingly leaves room for other uses. A summary saying it is “always” a joke is stronger than the author’s claim.",
+      "zh-Hant": "A statement that something is “probably” used jokingly leaves room for other uses. A summary saying it is “always” a joke is stronger than the author’s claim."
+    },
+    "nextStep": {
+      "en": "Find a qualified statement in another original article. Write a faithful summary and an exaggerated version; underline the words that change its strength.",
+      "zh-Hans": "Find a qualified statement in another original article. Write a faithful summary and an exaggerated version; underline the words that change its strength.",
+      "zh-Hant": "Find a qualified statement in another original article. Write a faithful summary and an exaggerated version; underline the words that change its strength."
+    },
+    "materials": [
+      {
+        "id": "voa-usage",
+        "rootId": "voa-article-7908917",
+        "sourceId": "voa-article-7908917",
+        "title": "Do People Still Say That?",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "But nowadays people do not commonly say that. And if they do say it, they are probably saying it in a joking way because they know the expression is rare and not currently used.\n\nHere are some ways to help you find out if an expression belongs to an earlier time:\n\nLanguage exchange partners\n\nFind a native English language partner. Then you can ask him or her if expressions are no longer used very much. Our VOA Learning English article “Five Tips for Great Language Exchanges” gives advice on how you can do a language exchange."
+          }
+        ],
+        "questions": [
+          {
+            "id": "usage-1",
+            "blockId": "source",
+            "prompt": "Which statement preserves the author’s degree of certainty?",
+            "options": [
+              "Every present-day use must be a joke.",
+              "It is uncommon today, and a present-day use is likely to be joking.",
+              "Its use always shows that the speaker dislikes something."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 46,
+              "end": 177,
+              "audioStart": 5.36,
+              "audioEnd": 18.16
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "“Probably” signals a likely interpretation; it does not mean “always”.",
+                "zh-Hans": "“Probably” signals a likely interpretation; it does not mean “always”.",
+                "zh-Hant": "“Probably” signals a likely interpretation; it does not mean “always”."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "“Probably” expresses likelihood, not certainty about every speaker.",
+                "zh-Hans": "“Probably” expresses likelihood, not certainty about every speaker.",
+                "zh-Hant": "“Probably” expresses likelihood, not certainty about every speaker."
+              },
+              {
+                "en": "This retains both the uncommon use and the author’s qualified interpretation.",
+                "zh-Hans": "This retains both the uncommon use and the author’s qualified interpretation.",
+                "zh-Hant": "This retains both the uncommon use and the author’s qualified interpretation."
+              },
+              {
+                "en": "The excerpt discusses rarity and joking use; it does not claim dislike.",
+                "zh-Hans": "The excerpt discusses rarity and joking use; it does not claim dislike.",
+                "zh-Hant": "The excerpt discusses rarity and joking use; it does not claim dislike."
+              }
+            ]
+          },
+          {
+            "id": "usage-2",
+            "blockId": "source",
+            "prompt": "Which action does the author suggest for checking whether an expression is still used?",
+            "options": [
+              "Ask a language partner whether people still use it much.",
+              "Assume that every expression in an old film remains common.",
+              "Decide from its literal meaning alone."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 293,
+              "end": 405,
+              "audioStart": 27.26,
+              "audioEnd": 40.22
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "“No longer” describes a change from earlier use, rather than the meaning of the words.",
+                "zh-Hans": "“No longer” describes a change from earlier use, rather than the meaning of the words.",
+                "zh-Hant": "“No longer” describes a change from earlier use, rather than the meaning of the words."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author recommends asking a language partner about current use.",
+                "zh-Hans": "The author recommends asking a language partner about current use.",
+                "zh-Hant": "The author recommends asking a language partner about current use."
+              },
+              {
+                "en": "The purpose is to check current use; an old film alone does not provide that check.",
+                "zh-Hans": "The purpose is to check current use; an old film alone does not provide that check.",
+                "zh-Hant": "The purpose is to check current use; an old film alone does not provide that check."
+              },
+              {
+                "en": "Understanding the literal meaning does not answer how common the expression is now.",
+                "zh-Hans": "Understanding the literal meaning does not answer how common the expression is now.",
+                "zh-Hant": "Understanding the literal meaning does not answer how common the expression is now."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b2-speech/voa-usage.mp3",
+          "sha256": "ab550b8a23be7a58f900be61a5e4dc27a64266c48d745d3c17e713bc9cc83528",
+          "duration": 54.204082,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/do-people-still-say-that-/7908917.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      },
+      {
+        "id": "voa-types",
+        "rootId": "voa-article-7902900",
+        "sourceId": "voa-article-7902900",
+        "title": "Kinds and Types",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "We can use each of the words you ask about to describe what category something belongs in. A category is a group of things that share similar qualities.\n\nFor example, apples, bananas, and oranges all belong in the same category, which is fruit.\n\nKind and type\n\nThe words “kind” and “type” are synonyms. That means they each share the same meaning. And they have the most general meaning of the four words you ask about.\n\nA “kind” or a “type” is a group that shares things in common. For example:\n\nElectric cars are one kind of car, while gasoline-powered cars are another type (or kind) of car.\n\nNotice that we commonly put the preposition “of” after the words “kind” or “type.”\n\nThe phrases “a kind of” and “a type of” are both very common in spoken English. We use the phrase “a kind of” more often than we use the phrase “a type of.”"
+          }
+        ],
+        "questions": [
+          {
+            "id": "types-1",
+            "blockId": "source",
+            "prompt": "Which summary preserves both the meaning and frequency claims?",
+            "options": [
+              "Only “a type of” is common in speech.",
+              "Both phrases mean the same thing and occur equally often.",
+              "Both phrases are common, but “a kind of” is used more often."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 680,
+              "end": 836,
+              "audioStart": 69.54,
+              "audioEnd": 88.22
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "“More often” compares frequency; it does not make the other phrase uncommon.",
+                "zh-Hans": "“More often” compares frequency; it does not make the other phrase uncommon.",
+                "zh-Hant": "“More often” compares frequency; it does not make the other phrase uncommon."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author explicitly says both phrases are very common.",
+                "zh-Hans": "The author explicitly says both phrases are very common.",
+                "zh-Hant": "The author explicitly says both phrases are very common."
+              },
+              {
+                "en": "Sharing meaning does not imply equal frequency; the final sentence gives a difference.",
+                "zh-Hans": "Sharing meaning does not imply equal frequency; the final sentence gives a difference.",
+                "zh-Hant": "Sharing meaning does not imply equal frequency; the final sentence gives a difference."
+              },
+              {
+                "en": "This retains “both” being common and the comparative “more often”.",
+                "zh-Hans": "This retains “both” being common and the comparative “more often”.",
+                "zh-Hant": "This retains “both” being common and the comparative “more often”."
+              }
+            ]
+          },
+          {
+            "id": "types-2",
+            "blockId": "source",
+            "prompt": "What follows from the author calling “kind” and “type” synonyms?",
+            "options": [
+              "They must have identical frequencies in spoken English.",
+              "They share meaning, but that alone does not make their use equally frequent.",
+              "They refer only to groups of cars."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 261,
+              "end": 347,
+              "audioStart": 26.66,
+              "audioEnd": 35.76
+            },
+            "hints": [
+              {
+                "en": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hans": "Preserve the scope and strength of the author’s statement.",
+                "zh-Hant": "Preserve the scope and strength of the author’s statement."
+              },
+              {
+                "en": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hans": "Compare the definition or recommendation with the qualifying words beside it.",
+                "zh-Hant": "Compare the definition or recommendation with the qualifying words beside it."
+              },
+              {
+                "en": "A definition of shared meaning is not a claim about every feature of usage.",
+                "zh-Hans": "A definition of shared meaning is not a claim about every feature of usage.",
+                "zh-Hant": "A definition of shared meaning is not a claim about every feature of usage."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author defines shared meaning, then separately describes unequal frequency.",
+                "zh-Hans": "The author defines shared meaning, then separately describes unequal frequency.",
+                "zh-Hant": "The author defines shared meaning, then separately describes unequal frequency."
+              },
+              {
+                "en": "“Synonyms” is explained as shared meaning; frequency is a separate claim in this excerpt.",
+                "zh-Hans": "“Synonyms” is explained as shared meaning; frequency is a separate claim in this excerpt.",
+                "zh-Hant": "“Synonyms” is explained as shared meaning; frequency is a separate claim in this excerpt."
+              },
+              {
+                "en": "Cars are an example; the broader definition is a group sharing things in common.",
+                "zh-Hans": "Cars are an example; the broader definition is a group sharing things in common.",
+                "zh-Hant": "Cars are an example; the broader definition is a group sharing things in common."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b2-speech/voa-types.mp3",
+          "sha256": "51ec7c99cceae184732929810413ac72a33b8d7300bdec73376e3f96f3d150c9",
+          "duration": 88.52898,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/kinds-and-types/7902900.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b2-voa-methods-reading",
+    "targetLevel": "B2",
+    "skill": "reading",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Advice, context and conditions",
+      "zh-Hans": "Advice, context and conditions",
+      "zh-Hant": "Advice, context and conditions"
+    },
+    "goalId": "evaluate-advice-and-context-reading",
+    "goal": {
+      "en": "Connect recommendations to their reasons, preserve their conditions, and use examples to infer intended meaning.",
+      "zh-Hans": "Connect recommendations to their reasons, preserve their conditions, and use examples to infer intended meaning.",
+      "zh-Hant": "Connect recommendations to their reasons, preserve their conditions, and use examples to infer intended meaning."
+    },
+    "sourceId": "voa-7847923",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Read or listen for the overall recommendation before examining its support. A useful method is not necessarily the only method. Track the order of suggested actions, and distinguish a conditional benefit from a guarantee. In the next source, use the surrounding situation to interpret an idiom.",
+      "zh-Hans": "Read or listen for the overall recommendation before examining its support. A useful method is not necessarily the only method. Track the order of suggested actions, and distinguish a conditional benefit from a guarantee. In the next source, use the surrounding situation to interpret an idiom.",
+      "zh-Hant": "Read or listen for the overall recommendation before examining its support. A useful method is not necessarily the only method. Track the order of suggested actions, and distinguish a conditional benefit from a guarantee. In the next source, use the surrounding situation to interpret an idiom."
+    },
+    "workedExample": {
+      "en": "“This can help if used correctly” does not support “This always works.” The condition limits when the benefit applies, and can leaves the outcome uncertain.",
+      "zh-Hans": "“This can help if used correctly” does not support “This always works.” The condition limits when the benefit applies, and can leaves the outcome uncertain.",
+      "zh-Hant": "“This can help if used correctly” does not support “This always works.” The condition limits when the benefit applies, and can leaves the outcome uncertain."
+    },
+    "nextStep": {
+      "en": "In an unfamiliar explanation, identify one recommendation, its supporting reason and a limiting word. Explain what a stronger summary would incorrectly add.",
+      "zh-Hans": "In an unfamiliar explanation, identify one recommendation, its supporting reason and a limiting word. Explain what a stronger summary would incorrectly add.",
+      "zh-Hant": "In an unfamiliar explanation, identify one recommendation, its supporting reason and a limiting word. Explain what a stronger summary would incorrectly add."
+    },
+    "materials": [
+      {
+        "id": "b2-voa-methods-reading-7847923",
+        "rootId": "voa-article-7847923",
+        "sourceId": "voa-7847923",
+        "title": "Practice Your Listening",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "There is not one ideal listening exercise. Instead, there are several good ways to improve your listening.\n\nThe repetitions you are doing can be necessary and helpful for you to understand what you hear. And repetitions likely help you remember new words and how to pronounce them. But let’s look at more ways you can practice listening.\n\nListening methods\n\nFirst, try to find listening material that is just a bit above your ability. This will help you learn new words without making it too difficult for you.\n\nIt is best to listen to English material that has words written either in captions or in the body text, such as a VOA Learning English article. This will help check your listening.\n\nYou can test yourself by first listening to parts of the audio without reading the words.\nNote the main ideas and the things you clearly understood.\nThen, listen to it again and try to understand more details. This is when you can do shorter repetitions.\nNext, you can check how much you understood by reading the words as you listen to the audio again.\n\nTranscribing\n\nOne of the best ways to practice listening is by writing every word you hear. This is called transcribing. Even with audio examples as short as one minute, you can learn a lot of English using this method. For example, if you are transcribing an interview, you might notice differences between spoken English and written English.\n\nBy transcribing, you can notice and learn new expressions, grammar rules and spelling. This method also helps make new words stay in your memory when you read them. That is because you are discovering the answer to a problem you have already tried to solve through listening.\n\nOther tips\n\nTry listening to English spoken at different speeds. Over time, you can follow spoken English at a faster speed. Many videos online let you increase or decrease the speed of playback.\n\nPractice listening to English spoken in different foreign accents. This is a useful skill because English is spoken in so many places around the world.\n\nCenter your listening on specific sounds or grammatical points. For example, preposition use in English can be difficult. Try listening for prepositions and the words they connect with. This can help you use them correctly in your speaking and writing.\n\nRemember that, like any skill, you can improve listening by practicing often and having detailed plans for the methods you will use."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-voa-methods-reading-0-1",
+            "blockId": "source",
+            "prompt": "Which summary preserves the author’s position on repetition?",
+            "options": [
+              "Repetition can help understanding, but it is one of several useful methods.",
+              "Repetition never helps learning new words.",
+              "One ideal method requires memorising a single recording."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 108,
+              "end": 281
+            },
+            "hints": [
+              {
+                "en": "Distinguish a useful method from the only possible method.",
+                "zh-Hans": "Distinguish a useful method from the only possible method.",
+                "zh-Hant": "Distinguish a useful method from the only possible method."
+              },
+              {
+                "en": "Compare the opening claim with the qualified benefits of repetition.",
+                "zh-Hans": "Compare the opening claim with the qualified benefits of repetition.",
+                "zh-Hant": "Compare the opening claim with the qualified benefits of repetition."
+              },
+              {
+                "en": "Can and likely state possible benefits; the opening rejects one ideal exercise.",
+                "zh-Hans": "Can and likely state possible benefits; the opening rejects one ideal exercise.",
+                "zh-Hant": "Can and likely state possible benefits; the opening rejects one ideal exercise."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This retains possible benefits without making repetition the only method.",
+                "zh-Hans": "This retains possible benefits without making repetition the only method.",
+                "zh-Hant": "This retains possible benefits without making repetition the only method."
+              },
+              {
+                "en": "The author explicitly says repetitions likely help word memory and pronunciation.",
+                "zh-Hans": "The author explicitly says repetitions likely help word memory and pronunciation.",
+                "zh-Hant": "The author explicitly says repetitions likely help word memory and pronunciation."
+              },
+              {
+                "en": "The opening rejects a single ideal exercise and offers several ways to practise.",
+                "zh-Hans": "The opening rejects a single ideal exercise and offers several ways to practise.",
+                "zh-Hant": "The opening rejects a single ideal exercise and offers several ways to practise."
+              }
+            ]
+          },
+          {
+            "id": "b2-voa-methods-reading-0-2",
+            "blockId": "source",
+            "prompt": "In the proposed listening sequence, when are the written words used to check understanding?",
+            "options": [
+              "Before any listening, replacing the audio.",
+              "After initial listening and a replay focused on details, while listening again.",
+              "Only after the recording has been permanently deleted."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 949,
+              "end": 1047
+            },
+            "hints": [
+              {
+                "en": "Preserve the order and purpose of the recommended steps.",
+                "zh-Hans": "Preserve the order and purpose of the recommended steps.",
+                "zh-Hant": "Preserve the order and purpose of the recommended steps."
+              },
+              {
+                "en": "Find the step beginning “Next” after the replay for details.",
+                "zh-Hans": "Find the step beginning “Next” after the replay for details.",
+                "zh-Hant": "Find the step beginning “Next” after the replay for details."
+              },
+              {
+                "en": "As links checking the written words with listening again, not with avoiding the audio.",
+                "zh-Hans": "As links checking the written words with listening again, not with avoiding the audio.",
+                "zh-Hant": "As links checking the written words with listening again, not with avoiding the audio."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The first step is listening without reading; written words come later for checking.",
+                "zh-Hans": "The first step is listening without reading; written words come later for checking.",
+                "zh-Hant": "The first step is listening without reading; written words come later for checking."
+              },
+              {
+                "en": "This follows the stated order: first listening, details on replay, then text-assisted checking.",
+                "zh-Hans": "This follows the stated order: first listening, details on replay, then text-assisted checking.",
+                "zh-Hant": "This follows the stated order: first listening, details on replay, then text-assisted checking."
+              },
+              {
+                "en": "No deletion is recommended; the check uses another listening.",
+                "zh-Hans": "No deletion is recommended; the check uses another listening.",
+                "zh-Hant": "No deletion is recommended; the check uses another listening."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b2-voa-methods-reading-7759223",
+        "rootId": "voa-article-7759223",
+        "sourceId": "voa-7759223",
+        "title": "Learning English Expressions or Idioms",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "An idiom is an expression formed from two or more words. But an idiom’s meaning often cannot be understood just by knowing each of the words in it.\n\nLet’s look at the following sentence as an example:\n\nWe want our students to think outside the box.\n\nHere, the words outside the box form an idiom. If you only heard this one sentence, you might not be sure what it means. But people use idioms in connection to situations. For that reason, they usually say more than one sentence, and this can help you understand the idiom. For example:\n\nWe want our students to think outside the box. That’s why we push them to find creative ways to solve problems.\n\nBy looking at these two sentences together, it can be easier to understand the meaning of outside the box. It means to think in new or creative ways.\n\nIn addition to considering the situation to help you understand the meaning of idioms, here is some other advice:\n\nDigital translation tools continue to improve, but you should avoid translating the idioms directly, word-for-word, into your native language.\nWhen you hear a short group of words that seem very unrelated to a subject under discussion, those words will often be an idiom.\nBe sure to learn the tone, or feeling, an idiom carries with it. The best way to learn about the tone of idioms is to ask native speakers about them. Native speakers might also be able to tell you if an idiom is commonly or rarely used.\n\nWhen learning English, it will likely be easier for you to understand idioms than to use them in speaking. However, if you can use idioms correctly, that can help deepen your connection to native speakers.\n\nWith thousands of idioms in English, there is a lot to learn. But do not throw in the towel, in other words, do not give up. Instead, knock yourself out, or try hard, and do your best to learn them. And you will feel proud as a peacock!\n\nYou can learn all about idioms by following our Words and Their Stories program or you can download In the Loop, a guide to American English Idioms."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-voa-methods-reading-1-1",
+            "blockId": "source",
+            "prompt": "What is the function of adding the sentence about creative ways to solve problems?",
+            "options": [
+              "It confirms that students must move outside a physical box.",
+              "It proves every idiom has exactly the same meaning.",
+              "It supplies context that helps interpret the idiom as creative thinking."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 651,
+              "end": 800
+            },
+            "hints": [
+              {
+                "en": "Connect the example to the author’s explanation of context.",
+                "zh-Hans": "Connect the example to the author’s explanation of context.",
+                "zh-Hant": "Connect the example to the author’s explanation of context."
+              },
+              {
+                "en": "Find the explanation immediately after the two-sentence example.",
+                "zh-Hans": "Find the explanation immediately after the two-sentence example.",
+                "zh-Hant": "Find the explanation immediately after the two-sentence example."
+              },
+              {
+                "en": "Together signals combined context; the next sentence states the intended meaning.",
+                "zh-Hans": "Together signals combined context; the next sentence states the intended meaning.",
+                "zh-Hant": "Together signals combined context; the next sentence states the intended meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author explains a figurative meaning, rather than physical movement.",
+                "zh-Hans": "The author explains a figurative meaning, rather than physical movement.",
+                "zh-Hant": "The author explains a figurative meaning, rather than physical movement."
+              },
+              {
+                "en": "The passage explains this idiom; it does not generalise its meaning to all idioms.",
+                "zh-Hans": "The passage explains this idiom; it does not generalise its meaning to all idioms.",
+                "zh-Hant": "The passage explains this idiom; it does not generalise its meaning to all idioms."
+              },
+              {
+                "en": "The surrounding problem-solving sentence supports the creative-thinking interpretation.",
+                "zh-Hans": "The surrounding problem-solving sentence supports the creative-thinking interpretation.",
+                "zh-Hant": "The surrounding problem-solving sentence supports the creative-thinking interpretation."
+              }
+            ]
+          },
+          {
+            "id": "b2-voa-methods-reading-1-2",
+            "blockId": "source",
+            "prompt": "Which conclusion keeps the author’s condition about using idioms?",
+            "options": [
+              "Using an idiom can help connection if it is used correctly; comprehension is likely easier than production.",
+              "Any use of an idiom guarantees a closer connection, even when used incorrectly.",
+              "Understanding idioms is always harder than speaking with them."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 1534,
+              "end": 1632
+            },
+            "hints": [
+              {
+                "en": "Keep a conditional benefit separate from a guarantee.",
+                "zh-Hans": "Keep a conditional benefit separate from a guarantee.",
+                "zh-Hant": "Keep a conditional benefit separate from a guarantee."
+              },
+              {
+                "en": "Locate “However, if” after the comparison between understanding and speaking.",
+                "zh-Hans": "Locate “However, if” after the comparison between understanding and speaking.",
+                "zh-Hant": "Locate “However, if” after the comparison between understanding and speaking."
+              },
+              {
+                "en": "If requires correct use; can describes a possible benefit rather than a guaranteed outcome.",
+                "zh-Hans": "If requires correct use; can describes a possible benefit rather than a guaranteed outcome.",
+                "zh-Hant": "If requires correct use; can describes a possible benefit rather than a guaranteed outcome."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This preserves both the comparison and the condition for a possible benefit.",
+                "zh-Hans": "This preserves both the comparison and the condition for a possible benefit.",
+                "zh-Hant": "This preserves both the comparison and the condition for a possible benefit."
+              },
+              {
+                "en": "The condition is correct use, and can does not guarantee connection.",
+                "zh-Hans": "The condition is correct use, and can does not guarantee connection.",
+                "zh-Hant": "The condition is correct use, and can does not guarantee connection."
+              },
+              {
+                "en": "This reverses the author’s comparison and replaces likely with always.",
+                "zh-Hans": "This reverses the author’s comparison and replaces likely with always.",
+                "zh-Hant": "This reverses the author’s comparison and replaces likely with always."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b2-voa-methods-listening",
+    "targetLevel": "B2",
+    "skill": "listening",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Hear advice and its limits",
+      "zh-Hans": "Hear advice and its limits",
+      "zh-Hant": "Hear advice and its limits"
+    },
+    "goalId": "evaluate-advice-and-context-listening",
+    "goal": {
+      "en": "Connect recommendations to their reasons, preserve their conditions, and use examples to infer intended meaning.",
+      "zh-Hans": "Connect recommendations to their reasons, preserve their conditions, and use examples to infer intended meaning.",
+      "zh-Hant": "Connect recommendations to their reasons, preserve their conditions, and use examples to infer intended meaning."
+    },
+    "sourceId": "voa-7847923",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Read or listen for the overall recommendation before examining its support. A useful method is not necessarily the only method. Track the order of suggested actions, and distinguish a conditional benefit from a guarantee. In the next source, use the surrounding situation to interpret an idiom.",
+      "zh-Hans": "Read or listen for the overall recommendation before examining its support. A useful method is not necessarily the only method. Track the order of suggested actions, and distinguish a conditional benefit from a guarantee. In the next source, use the surrounding situation to interpret an idiom.",
+      "zh-Hant": "Read or listen for the overall recommendation before examining its support. A useful method is not necessarily the only method. Track the order of suggested actions, and distinguish a conditional benefit from a guarantee. In the next source, use the surrounding situation to interpret an idiom."
+    },
+    "workedExample": {
+      "en": "“This can help if used correctly” does not support “This always works.” The condition limits when the benefit applies, and can leaves the outcome uncertain.",
+      "zh-Hans": "“This can help if used correctly” does not support “This always works.” The condition limits when the benefit applies, and can leaves the outcome uncertain.",
+      "zh-Hant": "“This can help if used correctly” does not support “This always works.” The condition limits when the benefit applies, and can leaves the outcome uncertain."
+    },
+    "nextStep": {
+      "en": "In an unfamiliar explanation, identify one recommendation, its supporting reason and a limiting word. Explain what a stronger summary would incorrectly add.",
+      "zh-Hans": "In an unfamiliar explanation, identify one recommendation, its supporting reason and a limiting word. Explain what a stronger summary would incorrectly add.",
+      "zh-Hant": "In an unfamiliar explanation, identify one recommendation, its supporting reason and a limiting word. Explain what a stronger summary would incorrectly add."
+    },
+    "materials": [
+      {
+        "id": "b2-voa-methods-listening-7847923",
+        "rootId": "voa-article-7847923",
+        "sourceId": "voa-7847923",
+        "title": "Practice Your Listening",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "There is not one ideal listening exercise. Instead, there are several good ways to improve your listening.\n\nThe repetitions you are doing can be necessary and helpful for you to understand what you hear. And repetitions likely help you remember new words and how to pronounce them. But let’s look at more ways you can practice listening.\n\nListening methods\n\nFirst, try to find listening material that is just a bit above your ability. This will help you learn new words without making it too difficult for you.\n\nIt is best to listen to English material that has words written either in captions or in the body text, such as a VOA Learning English article. This will help check your listening.\n\nYou can test yourself by first listening to parts of the audio without reading the words.\nNote the main ideas and the things you clearly understood.\nThen, listen to it again and try to understand more details. This is when you can do shorter repetitions.\nNext, you can check how much you understood by reading the words as you listen to the audio again.\n\nTranscribing\n\nOne of the best ways to practice listening is by writing every word you hear. This is called transcribing. Even with audio examples as short as one minute, you can learn a lot of English using this method. For example, if you are transcribing an interview, you might notice differences between spoken English and written English.\n\nBy transcribing, you can notice and learn new expressions, grammar rules and spelling. This method also helps make new words stay in your memory when you read them. That is because you are discovering the answer to a problem you have already tried to solve through listening.\n\nOther tips\n\nTry listening to English spoken at different speeds. Over time, you can follow spoken English at a faster speed. Many videos online let you increase or decrease the speed of playback.\n\nPractice listening to English spoken in different foreign accents. This is a useful skill because English is spoken in so many places around the world.\n\nCenter your listening on specific sounds or grammatical points. For example, preposition use in English can be difficult. Try listening for prepositions and the words they connect with. This can help you use them correctly in your speaking and writing.\n\nRemember that, like any skill, you can improve listening by practicing often and having detailed plans for the methods you will use."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-voa-methods-listening-0-1",
+            "blockId": "source",
+            "prompt": "Which summary preserves the author’s position on repetition?",
+            "options": [
+              "Repetition can help understanding, but it is one of several useful methods.",
+              "Repetition never helps learning new words.",
+              "One ideal method requires memorising a single recording."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 108,
+              "end": 281,
+              "audioStart": 11.52,
+              "audioEnd": 27.6
+            },
+            "hints": [
+              {
+                "en": "Distinguish a useful method from the only possible method.",
+                "zh-Hans": "Distinguish a useful method from the only possible method.",
+                "zh-Hant": "Distinguish a useful method from the only possible method."
+              },
+              {
+                "en": "Compare the opening claim with the qualified benefits of repetition.",
+                "zh-Hans": "Compare the opening claim with the qualified benefits of repetition.",
+                "zh-Hant": "Compare the opening claim with the qualified benefits of repetition."
+              },
+              {
+                "en": "Can and likely state possible benefits; the opening rejects one ideal exercise.",
+                "zh-Hans": "Can and likely state possible benefits; the opening rejects one ideal exercise.",
+                "zh-Hant": "Can and likely state possible benefits; the opening rejects one ideal exercise."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This retains possible benefits without making repetition the only method.",
+                "zh-Hans": "This retains possible benefits without making repetition the only method.",
+                "zh-Hant": "This retains possible benefits without making repetition the only method."
+              },
+              {
+                "en": "The author explicitly says repetitions likely help word memory and pronunciation.",
+                "zh-Hans": "The author explicitly says repetitions likely help word memory and pronunciation.",
+                "zh-Hant": "The author explicitly says repetitions likely help word memory and pronunciation."
+              },
+              {
+                "en": "The opening rejects a single ideal exercise and offers several ways to practise.",
+                "zh-Hans": "The opening rejects a single ideal exercise and offers several ways to practise.",
+                "zh-Hant": "The opening rejects a single ideal exercise and offers several ways to practise."
+              }
+            ]
+          },
+          {
+            "id": "b2-voa-methods-listening-0-2",
+            "blockId": "source",
+            "prompt": "In the proposed listening sequence, when are the written words used to check understanding?",
+            "options": [
+              "Before any listening, replacing the audio.",
+              "After initial listening and a replay focused on details, while listening again.",
+              "Only after the recording has been permanently deleted."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 949,
+              "end": 1047,
+              "audioStart": 94.12,
+              "audioEnd": 101.86
+            },
+            "hints": [
+              {
+                "en": "Preserve the order and purpose of the recommended steps.",
+                "zh-Hans": "Preserve the order and purpose of the recommended steps.",
+                "zh-Hant": "Preserve the order and purpose of the recommended steps."
+              },
+              {
+                "en": "Find the step beginning “Next” after the replay for details.",
+                "zh-Hans": "Find the step beginning “Next” after the replay for details.",
+                "zh-Hant": "Find the step beginning “Next” after the replay for details."
+              },
+              {
+                "en": "As links checking the written words with listening again, not with avoiding the audio.",
+                "zh-Hans": "As links checking the written words with listening again, not with avoiding the audio.",
+                "zh-Hant": "As links checking the written words with listening again, not with avoiding the audio."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The first step is listening without reading; written words come later for checking.",
+                "zh-Hans": "The first step is listening without reading; written words come later for checking.",
+                "zh-Hant": "The first step is listening without reading; written words come later for checking."
+              },
+              {
+                "en": "This follows the stated order: first listening, details on replay, then text-assisted checking.",
+                "zh-Hans": "This follows the stated order: first listening, details on replay, then text-assisted checking.",
+                "zh-Hant": "This follows the stated order: first listening, details on replay, then text-assisted checking."
+              },
+              {
+                "en": "No deletion is recommended; the check uses another listening.",
+                "zh-Hans": "No deletion is recommended; the check uses another listening.",
+                "zh-Hant": "No deletion is recommended; the check uses another listening."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b2-speech/voa-listening-methods.mp3",
+          "sha256": "12eccd22cee24be30b05a196b11d8c64623fa69d82829ee77466c93867c11167",
+          "duration": 226.56,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/practice-your-listening/7847923.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        }
+      },
+      {
+        "id": "b2-voa-methods-listening-7759223",
+        "rootId": "voa-article-7759223",
+        "sourceId": "voa-7759223",
+        "title": "Learning English Expressions or Idioms",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "An idiom is an expression formed from two or more words. But an idiom’s meaning often cannot be understood just by knowing each of the words in it.\n\nLet’s look at the following sentence as an example:\n\nWe want our students to think outside the box.\n\nHere, the words outside the box form an idiom. If you only heard this one sentence, you might not be sure what it means. But people use idioms in connection to situations. For that reason, they usually say more than one sentence, and this can help you understand the idiom. For example:\n\nWe want our students to think outside the box. That’s why we push them to find creative ways to solve problems.\n\nBy looking at these two sentences together, it can be easier to understand the meaning of outside the box. It means to think in new or creative ways.\n\nIn addition to considering the situation to help you understand the meaning of idioms, here is some other advice:\n\nDigital translation tools continue to improve, but you should avoid translating the idioms directly, word-for-word, into your native language.\nWhen you hear a short group of words that seem very unrelated to a subject under discussion, those words will often be an idiom.\nBe sure to learn the tone, or feeling, an idiom carries with it. The best way to learn about the tone of idioms is to ask native speakers about them. Native speakers might also be able to tell you if an idiom is commonly or rarely used.\n\nWhen learning English, it will likely be easier for you to understand idioms than to use them in speaking. However, if you can use idioms correctly, that can help deepen your connection to native speakers.\n\nWith thousands of idioms in English, there is a lot to learn. But do not throw in the towel, in other words, do not give up. Instead, knock yourself out, or try hard, and do your best to learn them. And you will feel proud as a peacock!\n\nYou can learn all about idioms by following our Words and Their Stories program or you can download In the Loop, a guide to American English Idioms."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-voa-methods-listening-1-1",
+            "blockId": "source",
+            "prompt": "What is the function of adding the sentence about creative ways to solve problems?",
+            "options": [
+              "It confirms that students must move outside a physical box.",
+              "It proves every idiom has exactly the same meaning.",
+              "It supplies context that helps interpret the idiom as creative thinking."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 651,
+              "end": 800,
+              "audioStart": 62.6,
+              "audioEnd": 79.64
+            },
+            "hints": [
+              {
+                "en": "Connect the example to the author’s explanation of context.",
+                "zh-Hans": "Connect the example to the author’s explanation of context.",
+                "zh-Hant": "Connect the example to the author’s explanation of context."
+              },
+              {
+                "en": "Find the explanation immediately after the two-sentence example.",
+                "zh-Hans": "Find the explanation immediately after the two-sentence example.",
+                "zh-Hant": "Find the explanation immediately after the two-sentence example."
+              },
+              {
+                "en": "Together signals combined context; the next sentence states the intended meaning.",
+                "zh-Hans": "Together signals combined context; the next sentence states the intended meaning.",
+                "zh-Hant": "Together signals combined context; the next sentence states the intended meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author explains a figurative meaning, rather than physical movement.",
+                "zh-Hans": "The author explains a figurative meaning, rather than physical movement.",
+                "zh-Hant": "The author explains a figurative meaning, rather than physical movement."
+              },
+              {
+                "en": "The passage explains this idiom; it does not generalise its meaning to all idioms.",
+                "zh-Hans": "The passage explains this idiom; it does not generalise its meaning to all idioms.",
+                "zh-Hant": "The passage explains this idiom; it does not generalise its meaning to all idioms."
+              },
+              {
+                "en": "The surrounding problem-solving sentence supports the creative-thinking interpretation.",
+                "zh-Hans": "The surrounding problem-solving sentence supports the creative-thinking interpretation.",
+                "zh-Hant": "The surrounding problem-solving sentence supports the creative-thinking interpretation."
+              }
+            ]
+          },
+          {
+            "id": "b2-voa-methods-listening-1-2",
+            "blockId": "source",
+            "prompt": "Which conclusion keeps the author’s condition about using idioms?",
+            "options": [
+              "Using an idiom can help connection if it is used correctly; comprehension is likely easier than production.",
+              "Any use of an idiom guarantees a closer connection, even when used incorrectly.",
+              "Understanding idioms is always harder than speaking with them."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 1534,
+              "end": 1632,
+              "audioStart": 151.72,
+              "audioEnd": 159.8
+            },
+            "hints": [
+              {
+                "en": "Keep a conditional benefit separate from a guarantee.",
+                "zh-Hans": "Keep a conditional benefit separate from a guarantee.",
+                "zh-Hant": "Keep a conditional benefit separate from a guarantee."
+              },
+              {
+                "en": "Locate “However, if” after the comparison between understanding and speaking.",
+                "zh-Hans": "Locate “However, if” after the comparison between understanding and speaking.",
+                "zh-Hant": "Locate “However, if” after the comparison between understanding and speaking."
+              },
+              {
+                "en": "If requires correct use; can describes a possible benefit rather than a guaranteed outcome.",
+                "zh-Hans": "If requires correct use; can describes a possible benefit rather than a guaranteed outcome.",
+                "zh-Hant": "If requires correct use; can describes a possible benefit rather than a guaranteed outcome."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This preserves both the comparison and the condition for a possible benefit.",
+                "zh-Hans": "This preserves both the comparison and the condition for a possible benefit.",
+                "zh-Hant": "This preserves both the comparison and the condition for a possible benefit."
+              },
+              {
+                "en": "The condition is correct use, and can does not guarantee connection.",
+                "zh-Hans": "The condition is correct use, and can does not guarantee connection.",
+                "zh-Hant": "The condition is correct use, and can does not guarantee connection."
+              },
+              {
+                "en": "This reverses the author’s comparison and replaces likely with always.",
+                "zh-Hans": "This reverses the author’s comparison and replaces likely with always.",
+                "zh-Hant": "This reverses the author’s comparison and replaces likely with always."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b2-speech/voa-idiom-context.mp3",
+          "sha256": "63e99fdb5c739d722802f90f97842a1179e4493a9caec6afec38f7dcb07dd4af",
+          "duration": 199.48,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/learning-english-expressions-or-idioms/7759223.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        }
+      }
+    ]
+  }
+]

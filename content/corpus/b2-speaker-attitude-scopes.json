@@ -1,0 +1,738 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-1342",
+      "sourceHash": "3f6bb9d6f78e0293b56acd4714dd68cb7d6d1d293402031ce9d5a216bcaf9d75",
+      "passageId": "35b073858f8990325e190e22556b31dc9d27a0ef7898c8bae7267ffa36744580",
+      "textSha256": "35b073858f8990325e190e22556b31dc9d27a0ef7898c8bae7267ffa36744580",
+      "text": "“Is he married or single?”\n\n“Oh, single, my dear, to be sure! A single man of large fortune; four or five thousand a year. What a fine thing for our girls!”\n\n“How so? how can it affect them?”\n\n“My dear Mr. Bennet,” replied his wife, “how can you be so tiresome? You must know that I am thinking of his marrying one of them.”\n\n“Is that his design in settling here?”\n\n“Design? Nonsense, how can you talk so! But it is very likely that he _may_ fall in love with one of them, and therefore you must visit him as soon as he comes.”\n\n“I see no occasion for that. You and the girls may go--or you may send them by themselves, which perhaps will be still better; for as you are as handsome as any of them, Mr. Bingley might like you the best of the party.”\n\n“My dear, you flatter me. I certainly _have_ had my share of beauty, but I do not pretend to be anything extraordinary now. When a woman has five grown-up daughters, she ought to give over thinking of her own beauty.”\n\n“In such cases, a woman has not often much beauty to think of.”\n\n“But, my dear, you must indeed go and see Mr. Bingley when he comes into the neighbourhood.”\n\n“It is more than I engage for, I assure you.”\n\n“But consider your daughters. Only think what an establishment it would be for one of them. Sir William and Lady Lucas are determined to go, merely on that account; for in general, you know, they visit no new comers. Indeed you must go, for it will be impossible for _us_ to visit him, if you do not.”",
+      "credit": {
+        "attribution": "Pride and Prejudice — Austen, Jane, 1775-1817. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/1342).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1342"
+      }
+    },
+    {
+      "rootId": "gutenberg-book-514",
+      "sourceHash": "36831477b339dbcd7e7206119d77e9e58b9727ef3c299d1a1dc4446e1db97850",
+      "passageId": "dfd3f97a360ed47c90350204dd05a704c411f921c4a708efbb49b2c1d5090277",
+      "textSha256": "dfd3f97a360ed47c90350204dd05a704c411f921c4a708efbb49b2c1d5090277",
+      "text": "“Christmas won’t be Christmas without any presents,” grumbled Jo, lying on the rug.\n\n“It’s so dreadful to be poor!” sighed Meg, looking down at her old dress.\n\n“I don’t think it’s fair for some girls to have plenty of pretty things, and other girls nothing at all,” added little Amy, with an injured sniff.\n\n“We’ve got Father and Mother, and each other,” said Beth contentedly from her corner.\n\nThe four young faces on which the firelight shone brightened at the cheerful words, but darkened again as Jo said sadly, “We haven’t got Father, and shall not have him for a long time.” She didn’t say “perhaps never,” but each silently added it, thinking of Father far away, where the fighting was.\n\nNobody spoke for a minute; then Meg said in an altered tone, “You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone; and she thinks we ought not to spend money for pleasure, when our men are suffering so in the army. We can’t do much, but we can make our little sacrifices, and ought to do it gladly. But I am afraid I don’t,” and Meg shook her head, as she thought regretfully of all the pretty things she wanted.\n\n“But I don’t think the little we should spend would do any good. We’ve each got a dollar, and the army wouldn’t be much helped by our giving that. I agree not to expect anything from Mother or you, but I do want to buy _Undine and Sintran_ for myself. I’ve wanted it so long,” said Jo, who was a bookworm.",
+      "credit": {
+        "attribution": "Little Women — Alcott, Louisa May, 1832-1888. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/514).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/514"
+      }
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "gutenberg-book-10371",
+      "sourceHash": "5948f920a0e4aaae0f017a67579f49ce391ee8648dc53549ee42b95b55fa0531",
+      "clipId": "94c09df7efb21c81a2c7ae7b215716a4cd674b2687e0cd0ec473baa0cb732bb3",
+      "textSha256": "e47d8bf8dde69e214ba1a47ccdc41f231946405c492c4647960677912a1d02fd",
+      "text": "I have discovered a new dramatist, and I am going to produce a play of his within three months, I hope. I shan't tell you his name and I shan't tell you anything about the play, except that I find more promise in it than anything I have seen or read for months.",
+      "sourceCredit": {
+        "attribution": "E. Phillips Oppenheim. The Cinema Murder. Project Gutenberg edition 10371. Plain prose only; embedded Project Gutenberg licence retained.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/10371"
+      },
+      "credit": {
+        "attribution": "E. Phillips Oppenheim. The Cinema Murder. Project Gutenberg edition 10371. Plain prose only; embedded Project Gutenberg licence retained. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Hoosemon (LibriVox reader 2473). Independently re-encoded from the whole original FLAC; unchanged source words.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/10371"
+      },
+      "audio": {
+        "src": "media/librispeech-2473-157861-0007.mp3",
+        "sha256": "958cb288096d029e025b20c2d487e116257b30e800a9e95374ae3310ab6bffac",
+        "duration": 15.72,
+        "author": "Hoosemon",
+        "sourceUrl": "https://www.openslr.org/12/",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 2,
+          "text": "I ",
+          "audioStart": 0,
+          "audioEnd": 0.3
+        },
+        {
+          "start": 2,
+          "end": 7,
+          "text": "have ",
+          "audioStart": 0.3,
+          "audioEnd": 0.52
+        },
+        {
+          "start": 7,
+          "end": 18,
+          "text": "discovered ",
+          "audioStart": 0.52,
+          "audioEnd": 1.06
+        },
+        {
+          "start": 18,
+          "end": 20,
+          "text": "a ",
+          "audioStart": 1.06,
+          "audioEnd": 1.32
+        },
+        {
+          "start": 20,
+          "end": 24,
+          "text": "new ",
+          "audioStart": 1.32,
+          "audioEnd": 1.48
+        },
+        {
+          "start": 24,
+          "end": 35,
+          "text": "dramatist, ",
+          "audioStart": 1.48,
+          "audioEnd": 2.12
+        },
+        {
+          "start": 35,
+          "end": 39,
+          "text": "and ",
+          "audioStart": 2.12,
+          "audioEnd": 2.58
+        },
+        {
+          "start": 39,
+          "end": 41,
+          "text": "I ",
+          "audioStart": 2.58,
+          "audioEnd": 2.7
+        },
+        {
+          "start": 41,
+          "end": 44,
+          "text": "am ",
+          "audioStart": 2.7,
+          "audioEnd": 2.82
+        },
+        {
+          "start": 44,
+          "end": 50,
+          "text": "going ",
+          "audioStart": 2.82,
+          "audioEnd": 3.14
+        },
+        {
+          "start": 50,
+          "end": 53,
+          "text": "to ",
+          "audioStart": 3.14,
+          "audioEnd": 3.4
+        },
+        {
+          "start": 53,
+          "end": 61,
+          "text": "produce ",
+          "audioStart": 3.4,
+          "audioEnd": 3.72
+        },
+        {
+          "start": 61,
+          "end": 63,
+          "text": "a ",
+          "audioStart": 3.72,
+          "audioEnd": 3.92
+        },
+        {
+          "start": 63,
+          "end": 68,
+          "text": "play ",
+          "audioStart": 3.92,
+          "audioEnd": 4.2
+        },
+        {
+          "start": 68,
+          "end": 71,
+          "text": "of ",
+          "audioStart": 4.2,
+          "audioEnd": 4.42
+        },
+        {
+          "start": 71,
+          "end": 75,
+          "text": "his ",
+          "audioStart": 4.42,
+          "audioEnd": 4.62
+        },
+        {
+          "start": 75,
+          "end": 82,
+          "text": "within ",
+          "audioStart": 4.62,
+          "audioEnd": 5.16
+        },
+        {
+          "start": 82,
+          "end": 88,
+          "text": "three ",
+          "audioStart": 5.16,
+          "audioEnd": 5.56
+        },
+        {
+          "start": 88,
+          "end": 96,
+          "text": "months, ",
+          "audioStart": 5.56,
+          "audioEnd": 5.94
+        },
+        {
+          "start": 96,
+          "end": 98,
+          "text": "I ",
+          "audioStart": 5.94,
+          "audioEnd": 6.36
+        },
+        {
+          "start": 98,
+          "end": 104,
+          "text": "hope. ",
+          "audioStart": 6.36,
+          "audioEnd": 6.64
+        },
+        {
+          "start": 104,
+          "end": 106,
+          "text": "I ",
+          "audioStart": 7.2,
+          "audioEnd": 7.24
+        },
+        {
+          "start": 106,
+          "end": 113,
+          "text": "shan't ",
+          "audioStart": 7.24,
+          "audioEnd": 7.6
+        },
+        {
+          "start": 113,
+          "end": 118,
+          "text": "tell ",
+          "audioStart": 7.6,
+          "audioEnd": 7.82
+        },
+        {
+          "start": 118,
+          "end": 122,
+          "text": "you ",
+          "audioStart": 7.82,
+          "audioEnd": 8
+        },
+        {
+          "start": 122,
+          "end": 126,
+          "text": "his ",
+          "audioStart": 8,
+          "audioEnd": 8.16
+        },
+        {
+          "start": 126,
+          "end": 131,
+          "text": "name ",
+          "audioStart": 8.16,
+          "audioEnd": 8.42
+        },
+        {
+          "start": 131,
+          "end": 135,
+          "text": "and ",
+          "audioStart": 8.42,
+          "audioEnd": 8.9
+        },
+        {
+          "start": 135,
+          "end": 137,
+          "text": "I ",
+          "audioStart": 8.9,
+          "audioEnd": 9.04
+        },
+        {
+          "start": 137,
+          "end": 144,
+          "text": "shan't ",
+          "audioStart": 9.04,
+          "audioEnd": 9.4
+        },
+        {
+          "start": 144,
+          "end": 149,
+          "text": "tell ",
+          "audioStart": 9.4,
+          "audioEnd": 9.6
+        },
+        {
+          "start": 149,
+          "end": 153,
+          "text": "you ",
+          "audioStart": 9.6,
+          "audioEnd": 9.72
+        },
+        {
+          "start": 153,
+          "end": 162,
+          "text": "anything ",
+          "audioStart": 9.72,
+          "audioEnd": 10
+        },
+        {
+          "start": 162,
+          "end": 168,
+          "text": "about ",
+          "audioStart": 10,
+          "audioEnd": 10.36
+        },
+        {
+          "start": 168,
+          "end": 172,
+          "text": "the ",
+          "audioStart": 10.36,
+          "audioEnd": 10.54
+        },
+        {
+          "start": 172,
+          "end": 178,
+          "text": "play, ",
+          "audioStart": 10.54,
+          "audioEnd": 10.82
+        },
+        {
+          "start": 178,
+          "end": 185,
+          "text": "except ",
+          "audioStart": 10.82,
+          "audioEnd": 11.5
+        },
+        {
+          "start": 185,
+          "end": 190,
+          "text": "that ",
+          "audioStart": 11.5,
+          "audioEnd": 11.76
+        },
+        {
+          "start": 190,
+          "end": 192,
+          "text": "I ",
+          "audioStart": 11.76,
+          "audioEnd": 11.86
+        },
+        {
+          "start": 192,
+          "end": 197,
+          "text": "find ",
+          "audioStart": 11.86,
+          "audioEnd": 12.04
+        },
+        {
+          "start": 197,
+          "end": 202,
+          "text": "more ",
+          "audioStart": 12.04,
+          "audioEnd": 12.38
+        },
+        {
+          "start": 202,
+          "end": 210,
+          "text": "promise ",
+          "audioStart": 12.38,
+          "audioEnd": 12.8
+        },
+        {
+          "start": 210,
+          "end": 213,
+          "text": "in ",
+          "audioStart": 12.8,
+          "audioEnd": 13.08
+        },
+        {
+          "start": 213,
+          "end": 216,
+          "text": "it ",
+          "audioStart": 13.08,
+          "audioEnd": 13.18
+        },
+        {
+          "start": 216,
+          "end": 221,
+          "text": "than ",
+          "audioStart": 13.18,
+          "audioEnd": 13.34
+        },
+        {
+          "start": 221,
+          "end": 230,
+          "text": "anything ",
+          "audioStart": 13.34,
+          "audioEnd": 13.68
+        },
+        {
+          "start": 230,
+          "end": 232,
+          "text": "I ",
+          "audioStart": 13.68,
+          "audioEnd": 13.98
+        },
+        {
+          "start": 232,
+          "end": 237,
+          "text": "have ",
+          "audioStart": 13.98,
+          "audioEnd": 14.1
+        },
+        {
+          "start": 237,
+          "end": 242,
+          "text": "seen ",
+          "audioStart": 14.1,
+          "audioEnd": 14.3
+        },
+        {
+          "start": 242,
+          "end": 245,
+          "text": "or ",
+          "audioStart": 14.3,
+          "audioEnd": 14.48
+        },
+        {
+          "start": 245,
+          "end": 250,
+          "text": "read ",
+          "audioStart": 14.48,
+          "audioEnd": 14.66
+        },
+        {
+          "start": 250,
+          "end": 254,
+          "text": "for ",
+          "audioStart": 14.66,
+          "audioEnd": 14.9
+        },
+        {
+          "start": 254,
+          "end": 261,
+          "text": "months.",
+          "audioStart": 14.9,
+          "audioEnd": 15.22
+        }
+      ]
+    },
+    {
+      "rootId": "gutenberg-book-6093",
+      "sourceHash": "f6e9d146c0056bde220f42397babf4cee31e812afc337740b2a8406def92a945",
+      "clipId": "c7ec72502073b90927ba0f6ba591cc9e9aa816aaaa2770c9f254bce6dd495bc3",
+      "textSha256": "f0014bc48911e201c19b2e56d3889301a7d1d20e417aadd7c79437bc8d2d89e8",
+      "text": "Probably if I had these compositions before me now in manuscript they would strike me as dreadfully crude stuff; nevertheless I am sorry I did not write some of them down and that I can only recall a few lines.",
+      "sourceCredit": {
+        "attribution": "W. H. Hudson. Far Away and Long Ago: A History of My Early Life. Project Gutenberg edition 6093. Plain prose only; embedded Project Gutenberg licence retained.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/6093"
+      },
+      "credit": {
+        "attribution": "W. H. Hudson. Far Away and Long Ago: A History of My Early Life. Project Gutenberg edition 6093. Plain prose only; embedded Project Gutenberg licence retained. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; stepheather (LibriVox reader 1668). Independently re-encoded from the whole original FLAC; unchanged source words.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/6093"
+      },
+      "audio": {
+        "src": "media/librispeech-1668-136271-0033.mp3",
+        "sha256": "b2ae9c10958209a05fb3282c8b17e46ffddc3021d23bd76ec003c662740ba546",
+        "duration": 12.47501133786848,
+        "author": "stepheather",
+        "sourceUrl": "https://www.openslr.org/12/",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 9,
+          "text": "Probably ",
+          "audioStart": 0,
+          "audioEnd": 0.76
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "text": "if ",
+          "audioStart": 0.76,
+          "audioEnd": 1.2
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "text": "I ",
+          "audioStart": 1.2,
+          "audioEnd": 1.34
+        },
+        {
+          "start": 14,
+          "end": 18,
+          "text": "had ",
+          "audioStart": 1.34,
+          "audioEnd": 1.54
+        },
+        {
+          "start": 18,
+          "end": 24,
+          "text": "these ",
+          "audioStart": 1.54,
+          "audioEnd": 1.72
+        },
+        {
+          "start": 24,
+          "end": 37,
+          "text": "compositions ",
+          "audioStart": 1.72,
+          "audioEnd": 2.22
+        },
+        {
+          "start": 37,
+          "end": 44,
+          "text": "before ",
+          "audioStart": 2.22,
+          "audioEnd": 2.7
+        },
+        {
+          "start": 44,
+          "end": 47,
+          "text": "me ",
+          "audioStart": 2.7,
+          "audioEnd": 2.94
+        },
+        {
+          "start": 47,
+          "end": 51,
+          "text": "now ",
+          "audioStart": 2.94,
+          "audioEnd": 3.2
+        },
+        {
+          "start": 51,
+          "end": 54,
+          "text": "in ",
+          "audioStart": 3.2,
+          "audioEnd": 3.4
+        },
+        {
+          "start": 54,
+          "end": 65,
+          "text": "manuscript ",
+          "audioStart": 3.4,
+          "audioEnd": 3.76
+        },
+        {
+          "start": 65,
+          "end": 70,
+          "text": "they ",
+          "audioStart": 4.22,
+          "audioEnd": 4.24
+        },
+        {
+          "start": 70,
+          "end": 76,
+          "text": "would ",
+          "audioStart": 4.24,
+          "audioEnd": 4.36
+        },
+        {
+          "start": 76,
+          "end": 83,
+          "text": "strike ",
+          "audioStart": 4.36,
+          "audioEnd": 4.6
+        },
+        {
+          "start": 83,
+          "end": 86,
+          "text": "me ",
+          "audioStart": 4.6,
+          "audioEnd": 4.9
+        },
+        {
+          "start": 86,
+          "end": 89,
+          "text": "as ",
+          "audioStart": 4.9,
+          "audioEnd": 5.08
+        },
+        {
+          "start": 89,
+          "end": 100,
+          "text": "dreadfully ",
+          "audioStart": 5.08,
+          "audioEnd": 5.68
+        },
+        {
+          "start": 100,
+          "end": 106,
+          "text": "crude ",
+          "audioStart": 5.68,
+          "audioEnd": 5.96
+        },
+        {
+          "start": 106,
+          "end": 113,
+          "text": "stuff; ",
+          "audioStart": 5.96,
+          "audioEnd": 6.4
+        },
+        {
+          "start": 113,
+          "end": 126,
+          "text": "nevertheless ",
+          "audioStart": 6.98,
+          "audioEnd": 7.22
+        },
+        {
+          "start": 126,
+          "end": 128,
+          "text": "I ",
+          "audioStart": 7.76,
+          "audioEnd": 7.84
+        },
+        {
+          "start": 128,
+          "end": 131,
+          "text": "am ",
+          "audioStart": 7.84,
+          "audioEnd": 7.94
+        },
+        {
+          "start": 131,
+          "end": 137,
+          "text": "sorry ",
+          "audioStart": 7.94,
+          "audioEnd": 8.22
+        },
+        {
+          "start": 137,
+          "end": 139,
+          "text": "I ",
+          "audioStart": 8.22,
+          "audioEnd": 8.4
+        },
+        {
+          "start": 139,
+          "end": 143,
+          "text": "did ",
+          "audioStart": 8.4,
+          "audioEnd": 8.58
+        },
+        {
+          "start": 143,
+          "end": 147,
+          "text": "not ",
+          "audioStart": 8.58,
+          "audioEnd": 8.72
+        },
+        {
+          "start": 147,
+          "end": 153,
+          "text": "write ",
+          "audioStart": 8.72,
+          "audioEnd": 8.92
+        },
+        {
+          "start": 153,
+          "end": 158,
+          "text": "some ",
+          "audioStart": 8.92,
+          "audioEnd": 9.14
+        },
+        {
+          "start": 158,
+          "end": 161,
+          "text": "of ",
+          "audioStart": 9.14,
+          "audioEnd": 9.24
+        },
+        {
+          "start": 161,
+          "end": 166,
+          "text": "them ",
+          "audioStart": 9.24,
+          "audioEnd": 9.44
+        },
+        {
+          "start": 166,
+          "end": 171,
+          "text": "down ",
+          "audioStart": 9.44,
+          "audioEnd": 9.68
+        },
+        {
+          "start": 171,
+          "end": 175,
+          "text": "and ",
+          "audioStart": 9.68,
+          "audioEnd": 9.96
+        },
+        {
+          "start": 175,
+          "end": 180,
+          "text": "that ",
+          "audioStart": 9.96,
+          "audioEnd": 10.08
+        },
+        {
+          "start": 180,
+          "end": 182,
+          "text": "I ",
+          "audioStart": 10.08,
+          "audioEnd": 10.18
+        },
+        {
+          "start": 182,
+          "end": 186,
+          "text": "can ",
+          "audioStart": 10.18,
+          "audioEnd": 10.32
+        },
+        {
+          "start": 186,
+          "end": 191,
+          "text": "only ",
+          "audioStart": 10.32,
+          "audioEnd": 10.58
+        },
+        {
+          "start": 191,
+          "end": 198,
+          "text": "recall ",
+          "audioStart": 10.58,
+          "audioEnd": 10.94
+        },
+        {
+          "start": 198,
+          "end": 200,
+          "text": "a ",
+          "audioStart": 10.94,
+          "audioEnd": 11.22
+        },
+        {
+          "start": 200,
+          "end": 204,
+          "text": "few ",
+          "audioStart": 11.22,
+          "audioEnd": 11.38
+        },
+        {
+          "start": 204,
+          "end": 210,
+          "text": "lines.",
+          "audioStart": 11.38,
+          "audioEnd": 11.68
+        }
+      ]
+    }
+  ]
+}

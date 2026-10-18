@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "dictionary",
+      "version": "8d7421aa2675bb92",
+      "path": "/packs/dictionary-8d7421aa2675bb92.zip",
+      "bytes": 7522856,
+      "sha256": "0761ba6970e25a19106bf584ffe81eb6e2bbf82dc25e1af6737f34be53e2162e"
+    },
+    {
+      "id": "ipa",
+      "version": "11cfd9551afa688e",
+      "path": "/packs/ipa-11cfd9551afa688e.zip",
+      "bytes": 3347222,
+      "sha256": "e0f0c261707ec4c30af586fba21656beb5aac01414a643953d79248e37b780ac"
+    },
+    {
+      "id": "grammar",
+      "version": "6c021fbd1dfd485b",
+      "path": "/packs/grammar-6c021fbd1dfd485b.zip",
+      "bytes": 58352,
+      "sha256": "4269dc54ba293e17bc2b47695e2f9cecda951d9aa56792bd059380b299cfc255"
+    },
+    {
+      "id": "corpus",
+      "version": "80e3b25445598253",
+      "path": "/packs/corpus-80e3b25445598253.zip",
+      "bytes": 10451862,
+      "sha256": "e8b7665f107351b882061cb5b3763216bdeac12b814e50d5f88d421940eeb2da"
+    },
+    {
+      "id": "corpus-open-reading",
+      "version": "66449e4c168f26a4",
+      "path": "/packs/corpus-open-reading-66449e4c168f26a4.zip",
+      "bytes": 4986805,
+      "sha256": "9421e6deb242aec9033ec029e90950cfa101193208c8e7d41ba259d6aad328c6"
+    },
+    {
+      "id": "audio-beginner",
+      "version": "b35fd1fce06337a5",
+      "path": "/packs/audio-beginner-b35fd1fce06337a5.zip",
+      "bytes": 829554,
+      "sha256": "cf0776615eeabaececfaf7d587e2d3e48b251ee0dd5af3acc9dba868e7f23177"
+    },
+    {
+      "id": "audio-a1",
+      "version": "23cd5b5b338d2596",
+      "path": "/packs/audio-a1-23cd5b5b338d2596.zip",
+      "bytes": 1273964,
+      "sha256": "d0edb9929f7aa0a28ee5d21c1aedad170af00c6e569744447cf664cde4fc255f"
+    },
+    {
+      "id": "audio-a2",
+      "version": "5d0a0b448f729af6",
+      "path": "/packs/audio-a2-5d0a0b448f729af6.zip",
+      "bytes": 3929300,
+      "sha256": "f77ef7293b6120268d042de5ed64193d72f2b1b127c31ecadfef6be4638ed66a"
+    },
+    {
+      "id": "audio-b1",
+      "version": "65d27730dc4b06e0",
+      "path": "/packs/audio-b1-65d27730dc4b06e0.zip",
+      "bytes": 6952323,
+      "sha256": "373510312fa53d7f59e55e1d92265c9055117987b1afe30af040d28ab2d5d953"
+    },
+    {
+      "id": "audio-b2",
+      "version": "f6fea14389358c37",
+      "path": "/packs/audio-b2-f6fea14389358c37.zip",
+      "bytes": 5635362,
+      "sha256": "b636ef10cbc41f8816aaef0a60cc2305eef2224729e4ba9132f385a0022befbb"
+    },
+    {
+      "id": "audio-c1",
+      "version": "e873fba44623be6e",
+      "path": "/packs/audio-c1-e873fba44623be6e.zip",
+      "bytes": 8067699,
+      "sha256": "3aa2e0f4c18458855b7d5fac67c3f13ee92dac696c5ce5e4b77d2dbe279b2dc4"
+    },
+    {
+      "id": "audio-c2",
+      "version": "26f42300d7e3304a",
+      "path": "/packs/audio-c2-26f42300d7e3304a.zip",
+      "bytes": 13046456,
+      "sha256": "de298f85ee97ba14d1b128c7e3caeab4cbb7f11d397e63ce857064b61dfa2995"
+    }
+  ]
+}

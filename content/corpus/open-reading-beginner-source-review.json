@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "decision": "supported-beginner-text",
+  "inputDirectory": "private/corpus/bc-reader1-20261010/cloud-results-complete",
+  "manifestSha256": "70d199bdf18f6d7551a05adf35ac3c55de18f648555f961d120b2fd16bc74c5a",
+  "archiveSha256": "7667e666d4dcace3b2aab18e165bc690311fec5e7eb308879bd8fd2e0777406e",
+  "title": "BC Reads: Adult Literacy Fundamental English – Reader 1",
+  "authors": [
+    "Shantel Ivits"
+  ],
+  "sourceHash": "825a59e388141e6d508122346d19f25f4f8a454bf31c96428c50b865e7e8baab",
+  "topic": "nature",
+  "attribution": "BC Reads: Adult Literacy Fundamental English – Reader 1 by Shantel Ivits, BCcampus (2015). CC BY 4.0. Download for free from the B.C. Open Collection: https://opentextbc.ca/abealfreader1/",
+  "reviewScope": "Seven exact complete-paragraph source windows from five complete stories; original prose only, text stands without images or audio. Canonical whitespace and native paragraph boundaries retained. Home and nine original chapter author/licence footers inspected, no text exception found. No image, video, audio or caption admitted.",
+  "supportReview": [
+    "A New Flower: complete 145-word story A2; travel/flowers and Grandma/Dave references are explicit in prose; no image-dependent inference. Present-perfect never been is retained, not assigned to A1.",
+    "Val first paragraph: 30 words A1/A2; short present-tense first-person statements introduce the neighbour and vegetables without requiring later death inference. First two paragraphs85 A2 keep She/ them antecedents and maybe uncertainty with their complete context. No later death inference is part of the scopes.",
+    "Tree first three paragraphs103 A2 retain Randy, tree-search/mapping, reported height and logger threat. Hunt trees is clarified by immediately stated looking for big/old trees and making maps. Passive/reported wording remains intact; no task claims the reported tallest-tree status is verified current fact.",
+    "Arctic third paragraph16 A1/A2 is three complete simple sentences about summer/ice/plants; no backward pronoun or image dependency. First five paragraphs112 A2 retain opening topic and cold/summer/moss/grouping context; idiomatic framing is not scored as a scientific fact.",
+    "Existing beginner local hints, exact-source completion examples and source-order instruction are reused. Completion is word restoration; sequence is textual order, not semantic/chronological comprehension or calibrated CEFR.",
+    "Grow Your Own Tomatoes: complete156-word A2 procedural article retains all four native list items,50cm pot depth, soil/window, planting,watering,light and ripeness. Full text does not require pictures. Exact-source word restoration/textual-order tasks retain imperative wording and do not assert horticultural or medical expertise."
+  ],
+  "conservation": {
+    "sourceStories": 9,
+    "releasedStoryRoots": 1,
+    "releasedStoriesRepresented": 5,
+    "releasedSourceScopes": 7,
+    "processedButUnreleasedStories": [
+      "the-sack-garden"
+    ],
+    "heldStories": [
+      "sweetgrass",
+      "gm-food",
+      "164"
+    ],
+    "audioAccepted": 0,
+    "policyDateHold": "The Sack Garden164 words: 2015 unqualified SouthAfrican land ownership/cost assertions plus longer than initialA2 bound; parser repair is not source acceptance."
+  },
+  "scopes": [
+    {
+      "id": "00f937ea25b9ea1585163de0e57fe9f0c397ae5ac3046b91852844136c1e16fd",
+      "wordCount": 145,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "A New Flower",
+        "locator": "chapter-1",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/chapter-1/",
+        "rawSha256": "c76a133d21add87d42855824b382c468d6ebd801bdf763d1b0f7669840272a49",
+        "canonicalSha256": "cbd93c34aaf591d2768ddbb8707ec37aadc3b8aeb62a38f95bab303123c49bb9",
+        "paragraphIndex": 3,
+        "codePointStart": 88,
+        "codePointEnd": 819,
+        "sourceStart": 88,
+        "sourceEnd": 819,
+        "textSha256": "404d080d8728bdefacc76a89e2bfba267ea2ee307c6ee6c5e21e1761620f5bb0"
+      }
+    },
+    {
+      "id": "f974ad3c2e4c45ef6430feedce11c9a7d5c7d8b104dd6f571f40fec802e721c4",
+      "wordCount": 30,
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "Val's Garden",
+        "locator": "vals-garden",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/vals-garden/",
+        "rawSha256": "7242cc7040359b4862f296e0b95d90ae7f8c5d6cd8dd2fff9237e20e00cc697e",
+        "canonicalSha256": "ae655e0100e43f0cb3cdc87e95e586f2734da91c85dd2f0c7e4462e7f7aa7984",
+        "paragraphIndex": 3,
+        "codePointStart": 88,
+        "codePointEnd": 220,
+        "sourceStart": 88,
+        "sourceEnd": 220,
+        "textSha256": "4c464cc79152bea6c91b9545fa8fe5e9ffb720c94c97f10ceb5d2fe4b3172710"
+      }
+    },
+    {
+      "id": "7fb0cc40f70ad46aa6199efb7122f757fffc7221f82a4d896ed9bc1d6a819314",
+      "wordCount": 85,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "Val's Garden",
+        "locator": "vals-garden",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/vals-garden/",
+        "rawSha256": "7242cc7040359b4862f296e0b95d90ae7f8c5d6cd8dd2fff9237e20e00cc697e",
+        "canonicalSha256": "ae655e0100e43f0cb3cdc87e95e586f2734da91c85dd2f0c7e4462e7f7aa7984",
+        "paragraphIndex": 3,
+        "codePointStart": 88,
+        "codePointEnd": 514,
+        "sourceStart": 88,
+        "sourceEnd": 514,
+        "textSha256": "c4217f55a3ce30c61cb3fd53bfbb561b09ff61d3e26f6afdc5ed2e6d0ca98c7a"
+      }
+    },
+    {
+      "id": "750f704118032d6634b174e371bd6aefca73d3d4fe30881bdb20f33994b6a6e9",
+      "wordCount": 103,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "Canada's Tallest Tree",
+        "locator": "canadas-tallest-tree",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/canadas-tallest-tree/",
+        "rawSha256": "f77af2651f59a7ba439690c2597acfedb66fac6e8b0c350054c312d806dbb83a",
+        "canonicalSha256": "a7e98d87337c8fa18e210baed977c27ad86eb6f62d1c1afdc168d10df3c05e88",
+        "paragraphIndex": 2,
+        "codePointStart": 86,
+        "codePointEnd": 598,
+        "sourceStart": 86,
+        "sourceEnd": 598,
+        "textSha256": "a6e52f09ea7aa2382ecda47443a68af8d35dd1f08dc62f1324a1f8e41e9f1af6"
+      }
+    },
+    {
+      "id": "9a6f601f8da4a5caff7b4e2960e8b98167efc99c32e7e3a915001ad060a8d500",
+      "wordCount": 16,
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "Arctic Plants",
+        "locator": "arctic-plants",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/arctic-plants/",
+        "rawSha256": "c300a7458cfd282da00347f57ed9cb0b1d76bcfaa1abd9cb68481f940fb6dd97",
+        "canonicalSha256": "c6c03dfe567d20d5bf6c0a849153e0a2ae058f0bd218f8164bbbbf840f0d26a4",
+        "paragraphIndex": 7,
+        "codePointStart": 402,
+        "codePointEnd": 482,
+        "sourceStart": 402,
+        "sourceEnd": 482,
+        "textSha256": "1849ea81b992f456afd559253d21b96549a89f36f50dbdf99004d4ba8037803e"
+      }
+    },
+    {
+      "id": "06eb55e230c5c0856cc88f669fc299a0c68f8e0b09dae3e927ccf644c30142eb",
+      "wordCount": 112,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "Arctic Plants",
+        "locator": "arctic-plants",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/arctic-plants/",
+        "rawSha256": "c300a7458cfd282da00347f57ed9cb0b1d76bcfaa1abd9cb68481f940fb6dd97",
+        "canonicalSha256": "c6c03dfe567d20d5bf6c0a849153e0a2ae058f0bd218f8164bbbbf840f0d26a4",
+        "paragraphIndex": 3,
+        "codePointStart": 88,
+        "codePointEnd": 662,
+        "sourceStart": 88,
+        "sourceEnd": 662,
+        "textSha256": "32a337ac94fcfd8fc810172a7ea6276c1c288200f0972f123c670c8783f40530"
+      }
+    },
+    {
+      "id": "70c293b4d6a8d2a9ef50d4a29703f331adc4e8a3bf21501a9ff8a25486805267",
+      "wordCount": 156,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader1",
+        "chapter": "Grow Your Own Tomatoes",
+        "locator": "grow-your-own-tomatoes",
+        "sourceUrl": "https://opentextbc.ca/abealfreader1/chapter/grow-your-own-tomatoes/",
+        "rawSha256": "5ceea1a97a3c410cc1f025eed4836ee5c86f31c13bdb7c3d6901b1ea2631d2f8",
+        "canonicalSha256": "b2e75a55f4b0d1ded105ade6ed35bbc0d2f0b9c5662067ca1745a57b0dce98ed",
+        "paragraphIndex": 2,
+        "codePointStart": 86,
+        "codePointEnd": 840,
+        "sourceStart": 86,
+        "sourceEnd": 840,
+        "textSha256": "bcbffaccc0b4f31bb1c3c8d2313eb16d8861155536c9c810f856bed26c3926c0"
+      }
+    }
+  ]
+}

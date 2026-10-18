@@ -1,0 +1,292 @@
+{
+  "id": "a1-matching-reading",
+  "targetLevel": "A1",
+  "skill": "reading",
+  "title": {
+    "en": "Match the plans",
+    "zh-Hans": "配对活动安排",
+    "zh-Hant": "配對活動安排"
+  },
+  "goal": {
+    "en": "Match each message to a place and an item.",
+    "zh-Hans": "为每条消息配对地点和需要携带的物品。",
+    "zh-Hant": "為每條訊息配對地點和需要攜帶的物品。"
+  },
+  "goalId": "place-and-item",
+  "sourceId": "lingfern-original-matching-plans",
+  "reviewStatus": "draft",
+  "teaching": {
+    "en": "Read one message. Find the place. Then find what to bring. Do the same for the next message.",
+    "zh-Hans": "先读一条消息，找地点和要带的物品，再读下一条。",
+    "zh-Hant": "先讀一條訊息，找地點和要帶的物品，再讀下一條。"
+  },
+  "workedExample": {
+    "en": "Example (not scored): Sam: Come to the school. Bring a book. → Sam: school; book.",
+    "zh-Hans": "示范（不计分）：Sam: Come to the school. Bring a book. → Sam：school；book。",
+    "zh-Hant": "示範（不計分）：Sam: Come to the school. Bring a book. → Sam：school；book。"
+  },
+  "materials": [
+    {
+      "id": "after-class-plans",
+      "rootId": "original-after-class-plans",
+      "title": "After class",
+      "blocks": [
+        {
+          "id": "mia-message",
+          "title": "Mia",
+          "text": "Hi! I am at the library after class. Please come at four. Bring your student card. We can read together. You do not need a notebook."
+        },
+        {
+          "id": "ben-message",
+          "title": "Ben",
+          "text": "Hello! I am at the park after class. Please come at five. Bring some water. We can walk together. You do not need a student card."
+        }
+      ],
+      "questions": [
+        {
+          "kind": "matching",
+          "id": "after-class-plans-places",
+          "blockId": "mia-message",
+          "prompt": "Match each message to a place.",
+          "choices": [
+            "park",
+            "café",
+            "library"
+          ],
+          "pairs": [
+            {
+              "label": "Mia",
+              "answer": "library"
+            },
+            {
+              "label": "Ben",
+              "answer": "park"
+            }
+          ],
+          "evidence": {
+            "start": 9,
+            "end": 23
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "ben-message",
+              "start": 12,
+              "end": 23
+            }
+          ],
+          "hints": [
+            {
+              "en": "Find each place.",
+              "zh-Hans": "找出各自的地点。",
+              "zh-Hant": "找出各自的地點。"
+            },
+            {
+              "en": "Look after “at” or “in”.",
+              "zh-Hans": "留意 at 或 in 后面的地点。",
+              "zh-Hant": "留意 at 或 in 後面的地點。"
+            },
+            {
+              "en": "Mia: library. Ben: park.",
+              "zh-Hans": "Mia 对应 library；Ben 对应 park。",
+              "zh-Hant": "Mia 對應 library；Ben 對應 park。"
+            }
+          ],
+          "explanation": {
+            "en": "Mia says “at the library”. Ben says “at the park”. Match each place to its own message.",
+            "zh-Hans": "Mia 写的是“at the library”，Ben 写的是“at the park”。地点要与各自的消息对应。",
+            "zh-Hant": "Mia 寫的是「at the library」，Ben 寫的是「at the park」。地點要與各自的訊息對應。"
+          }
+        },
+        {
+          "kind": "matching",
+          "id": "after-class-plans-items",
+          "blockId": "mia-message",
+          "prompt": "Match each message to what you bring.",
+          "choices": [
+            "water",
+            "notebook",
+            "student card"
+          ],
+          "pairs": [
+            {
+              "label": "Mia",
+              "answer": "student card"
+            },
+            {
+              "label": "Ben",
+              "answer": "water"
+            }
+          ],
+          "evidence": {
+            "start": 58,
+            "end": 82
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "ben-message",
+              "start": 58,
+              "end": 75
+            }
+          ],
+          "hints": [
+            {
+              "en": "Find what to bring.",
+              "zh-Hans": "找出各自要带的物品。",
+              "zh-Hant": "找出各自要帶的物品。"
+            },
+            {
+              "en": "Read the sentence with “Bring”.",
+              "zh-Hans": "看以 Bring 开头的句子。",
+              "zh-Hant": "看以 Bring 開頭的句子。"
+            },
+            {
+              "en": "Mia: student card. Ben: water.",
+              "zh-Hans": "Mia 对应 student card；Ben 对应 water。",
+              "zh-Hant": "Mia 對應 student card；Ben 對應 water。"
+            }
+          ],
+          "explanation": {
+            "en": "Mia says “Bring your student card.” Ben says “Bring some water.” “Do not need” means you do not have to bring it.",
+            "zh-Hans": "Mia 要带 student card，Ben 要带 water。do not need 表示不需要携带。",
+            "zh-Hant": "Mia 要帶 student card，Ben 要帶 water。do not need 表示不需要攜帶。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "saturday-clubs",
+      "rootId": "original-saturday-clubs",
+      "title": "Saturday clubs",
+      "blocks": [
+        {
+          "id": "art-notice",
+          "title": "Art club",
+          "text": "Art club: Saturday at ten, in the café. Bring a pencil. Paper is on the table. New students are welcome. You do not need a student card."
+        },
+        {
+          "id": "swim-notice",
+          "title": "Swim club",
+          "text": "Swim club: Saturday at eleven, at the pool. Bring a towel. There is water at the pool. New students are welcome. You do not need a water bottle."
+        }
+      ],
+      "questions": [
+        {
+          "kind": "matching",
+          "id": "saturday-clubs-places",
+          "blockId": "art-notice",
+          "prompt": "Match each message to a place.",
+          "choices": [
+            "pool",
+            "library",
+            "café"
+          ],
+          "pairs": [
+            {
+              "label": "Art club",
+              "answer": "café"
+            },
+            {
+              "label": "Swim club",
+              "answer": "pool"
+            }
+          ],
+          "evidence": {
+            "start": 27,
+            "end": 38
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "swim-notice",
+              "start": 31,
+              "end": 42
+            }
+          ],
+          "hints": [
+            {
+              "en": "Find each place.",
+              "zh-Hans": "找出各自的地点。",
+              "zh-Hant": "找出各自的地點。"
+            },
+            {
+              "en": "Look after “at” or “in”.",
+              "zh-Hans": "留意 at 或 in 后面的地点。",
+              "zh-Hant": "留意 at 或 in 後面的地點。"
+            },
+            {
+              "en": "Art club: café. Swim club: pool.",
+              "zh-Hans": "Art club 对应 café；Swim club 对应 pool。",
+              "zh-Hant": "Art club 對應 café；Swim club 對應 pool。"
+            }
+          ],
+          "explanation": {
+            "en": "Art club says “in the café”. Swim club says “at the pool”. Match each place to its own message.",
+            "zh-Hans": "Art club 写的是“in the café”，Swim club 写的是“at the pool”。地点要与各自的消息对应。",
+            "zh-Hant": "Art club 寫的是「in the café」，Swim club 寫的是「at the pool」。地點要與各自的訊息對應。"
+          }
+        },
+        {
+          "kind": "matching",
+          "id": "saturday-clubs-items",
+          "blockId": "art-notice",
+          "prompt": "Match each message to what you bring.",
+          "choices": [
+            "towel",
+            "water bottle",
+            "pencil"
+          ],
+          "pairs": [
+            {
+              "label": "Art club",
+              "answer": "pencil"
+            },
+            {
+              "label": "Swim club",
+              "answer": "towel"
+            }
+          ],
+          "evidence": {
+            "start": 40,
+            "end": 55
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "swim-notice",
+              "start": 44,
+              "end": 58
+            }
+          ],
+          "hints": [
+            {
+              "en": "Find what to bring.",
+              "zh-Hans": "找出各自要带的物品。",
+              "zh-Hant": "找出各自要帶的物品。"
+            },
+            {
+              "en": "Read the sentence with “Bring”.",
+              "zh-Hans": "看以 Bring 开头的句子。",
+              "zh-Hant": "看以 Bring 開頭的句子。"
+            },
+            {
+              "en": "Art club: pencil. Swim club: towel.",
+              "zh-Hans": "Art club 对应 pencil；Swim club 对应 towel。",
+              "zh-Hant": "Art club 對應 pencil；Swim club 對應 towel。"
+            }
+          ],
+          "explanation": {
+            "en": "Art club says “Bring a pencil.” Swim club says “Bring a towel.” “Do not need” means you do not have to bring it.",
+            "zh-Hans": "Art club 要带 pencil，Swim club 要带 towel。do not need 表示不需要携带。",
+            "zh-Hant": "Art club 要帶 pencil，Swim club 要帶 towel。do not need 表示不需要攜帶。"
+          }
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "daily-life"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次先找地点，再看需要携带什么。",
+    "zh-Hant": "下次先找地點，再看需要攜帶什麼。",
+    "en": "Next time, find the place first. Then read what to bring."
+  }
+}

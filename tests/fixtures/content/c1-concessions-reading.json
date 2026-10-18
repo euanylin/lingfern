@@ -1,0 +1,316 @@
+{
+  "id": "c1-concession-recommendation-reading",
+  "targetLevel": "C1",
+  "skill": "reading",
+  "themes": [
+    "culture",
+    "daily-life"
+  ],
+  "title": {
+    "zh-Hans": "读懂让步与有条件的建议",
+    "zh-Hant": "讀懂讓步與有條件的建議",
+    "en": "Read concessions and conditional recommendations"
+  },
+  "goal": {
+    "zh-Hans": "跨段落区分承认优点、反对对象与支持条件，保留建议的范围和责任。",
+    "zh-Hant": "跨段落區分承認優點、反對對象與支持條件，保留建議的範圍和責任。",
+    "en": "Distinguish acknowledged advantages, the object of an objection and conditions of support across paragraphs; preserve scope and responsibility."
+  },
+  "goalId": "concession-and-recommendation",
+  "sourceId": "lingfern-original-c1-concessions",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先问作者承认什么，再找真正反对的对象，最后保留支持所附的条件。承认优点不等于接受整套方案，指出限制也不等于拒绝项目。",
+    "zh-Hant": "先問作者承認甚麼，再找真正反對的對象，最後保留支持所附的條件。承認優點不等於接受整套方案，指出限制也不等於拒絕專案。",
+    "en": "Identify what the writer concedes, what the objection targets and what conditions attach to support. Recognising benefits does not endorse the entire proposal; identifying limits does not reject the project."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“预约能减少等候，但只接受网上预约会排除一些访客；若保留电话预约，我支持试行。”→ 承认效率，反对单一入口，有条件支持试行。",
+    "zh-Hant": "示範（不計分）：「預約能減少等候，但只接受網上預約會排除一些訪客；若保留電話預約，我支持試行。」→ 承認效率，反對單一入口，有條件支持試行。",
+    "en": "Unscored example: “Appointments shorten waits, but online-only booking excludes some visitors; I support a trial if telephone booking remains.” The writer concedes efficiency, objects to exclusive access and supports a conditional trial."
+  },
+  "materials": [
+    {
+      "id": "repair-access-editorial",
+      "rootId": "original-repair-access-editorial",
+      "title": "Appointments and access at a repair centre",
+      "blocks": [
+        {
+          "id": "repair-editor",
+          "title": "Editorial proposal",
+          "text": "The neighbourhood repair centre has become a familiar place to bring a lamp with a loose connection or a jacket with a broken zip. Its volunteers are now considering a booking-only system. Supporters argue that appointments would reduce the long Saturday queue and allow the coordinator to match each repair with an appropriate volunteer. The proposal deserves a serious hearing: waiting is tiring, and a crowded reception desk makes it harder to explain that a volunteer cannot guarantee a successful repair. A scheduled conversation may be a better conversation. None of those advantages, however, settles who would lose access if every visit had to be arranged online.\n\nAn informal count at the desk found that many visitors already used the centre's website. That is useful information about people who currently reach the desk, not a census of everyone who might need a repair. It also tells us little about whether a person can choose an appointment several days ahead. Some visitors bring an item on the way home from work; others ask a neighbour to help carry it when that neighbour happens to be free. We should not turn a preference expressed by regular website users into permission to exclude less predictable visits. Nor should we assume that every unbooked arrival reflects unwillingness to plan. The difficulty may lie in the available timetable rather than in the visitor.\n\nI would support a trial of appointments for specialist repairs, provided a staffed walk-in period remains and the centre checks who is turned away. This is not a request to preserve the present queue unchanged. The reception team could display likely waiting times, explain which repairs require a specialist, and suggest a later visit where appropriate. My objection concerns an exclusive route into the service, not the use of appointments alongside another route. If the trial merely counts the number of completed repairs, it could look efficient while quietly shifting the inconvenience to people who no longer arrive. A shorter queue is a welcome result, but it is not by itself evidence of broader access."
+        },
+        {
+          "id": "repair-coordinator",
+          "title": "Coordinator response",
+          "text": "The volunteers need a workable schedule, and the editor is right that access cannot be read from the queue alone. For the trial, we can offer appointments on Wednesday evenings and retain Saturday morning walk-ins. Staff will record unsuccessful booking requests as well as completed repairs, while reception volunteers will note the reasons given when someone leaves without receiving help. Those notes will be anonymous and optional; a visitor should not have to explain personal circumstances to earn a repair. We will also ask the nearby library whether it can display the telephone booking number. That would support visitors who do not use the website, although it would not solve every problem caused by fixed appointment times.\n\nWe should judge the two routes together rather than declare one successful by comparing unlike totals. Wednesday specialists may repair fewer items because their work takes longer; Saturday volunteers may complete many small repairs. A larger total on one day would not establish that its access arrangements are better. After six weeks, the coordinator will compare waiting, unsuccessful requests and volunteer workload across both routes. The committee will then decide whether to adjust the balance. It has not authorised the replacement of walk-ins, and the trial notice should not suggest otherwise."
+        },
+        {
+          "id": "repair-notice",
+          "title": "Proposed public notice",
+          "text": "The notice should describe a six-week trial with specialist appointments on Wednesdays and a continuing Saturday walk-in period. It can promise that the centre will review both access and workload; it cannot promise that every item will be repaired or that online booking will remove all waiting. Visitors will be able to contact reception by telephone to discuss the available route. If the committee later proposes removing walk-ins, that decision will require a separate discussion of the trial evidence and of people the centre may not have reached."
+        }
+      ],
+      "questions": [
+        {
+          "id": "repair-position",
+          "blockId": "repair-editor",
+          "prompt": "Which account preserves the editor's position?",
+          "options": [
+            "The editor opposes appointments because any schedule would exclude visitors.",
+            "The editor supports a limited appointment trial alongside staffed walk-ins, with evidence about people who fail to get help.",
+            "The editor accepts booking-only access once regular website users express a preference for it."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 1390,
+            "end": 1537
+          },
+          "hints": [
+            {
+              "zh-Hans": "区分承认优点与接受完整方案。",
+              "zh-Hant": "區分承認優點與接受完整方案。",
+              "en": "Separate acknowledging advantages from accepting the whole proposal."
+            },
+            {
+              "zh-Hans": "找第三段的 provided，再看反对意见针对什么。",
+              "zh-Hant": "找第三段的 provided，再看反對意見針對甚麼。",
+              "en": "Locate “provided” in the third paragraph and identify the object of the objection."
+            },
+            {
+              "zh-Hans": "支持预约试行，但保留人工接待，并观察未获帮助者。",
+              "zh-Hant": "支持預約試行，但保留人工接待，並觀察未獲協助者。",
+              "en": "Support is conditional on retaining staffed walk-ins and checking unsuccessful access."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：作者明确支持有条件的预约试行，并非反对所有安排。",
+              "zh-Hant": "不對：作者明確支持有條件的預約試行，並非反對所有安排。",
+              "en": "The editor explicitly supports a conditional trial, rather than rejecting every schedule."
+            },
+            {
+              "zh-Hans": "正确：这个概括保留支持对象、替代入口和证据条件。",
+              "zh-Hant": "正確：此概括保留支持對象、替代入口和證據條件。",
+              "en": "Correct: this preserves the limited support, alternative route and evidence condition."
+            },
+            {
+              "zh-Hans": "不对：现有网站使用者的偏好不代表所有潜在访客。",
+              "zh-Hant": "不對：現有網站使用者的偏好不代表所有潛在訪客。",
+              "en": "Existing website users do not represent everyone who may need access."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "repair-editor",
+              "start": 1745,
+              "end": 1856
+            }
+          ]
+        },
+        {
+          "id": "repair-review",
+          "blockId": "repair-coordinator",
+          "prompt": "Which review would address the concern shared by the editor and coordinator?",
+          "options": [
+            "Compare total repairs on the two days and remove whichever route has the smaller total.",
+            "Count the shorter Saturday queue as proof that all potential visitors now have better access.",
+            "Examine waiting, unsuccessful requests and workload across both routes before deciding whether to change their balance."
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 1058,
+            "end": 1177
+          },
+          "hints": [
+            {
+              "zh-Hans": "追踪他们认为单一数字会遗漏的人。",
+              "zh-Hant": "追蹤他們認為單一數字會遺漏的人。",
+              "en": "Track who would be missed by a single count."
+            },
+            {
+              "zh-Hans": "联系未获帮助者与两天维修工作不相同的说明。",
+              "zh-Hant": "聯繫未獲協助者與兩天維修工作不相同的說明。",
+              "en": "Connect unsuccessful access with the warning about different repairs on the two days."
+            },
+            {
+              "zh-Hans": "不能仅凭队伍长度或总数判断；应共同检查可及性与工作负担。",
+              "zh-Hant": "不能僅憑隊伍長度或總數判斷；應共同檢查可及性與工作負擔。",
+              "en": "Queue length or totals alone are insufficient; inspect access and workload together."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：两天工作的复杂程度不同，不能直接按总数删除一种入口。",
+              "zh-Hant": "不對：兩天工作的複雜程度不同，不能直接按總數刪除一種入口。",
+              "en": "The work differs across days; raw totals do not justify removing an access route."
+            },
+            {
+              "zh-Hans": "不对：队伍变短可能是一些人无法到场，而非可及性提高。",
+              "zh-Hant": "不對：隊伍變短可能是一些人無法到場，而非可及性提高。",
+              "en": "A shorter queue may hide people who no longer reach the service."
+            },
+            {
+              "zh-Hans": "正确：兼顾未满足的需求与实际工作条件，且不预设最终决定。",
+              "zh-Hant": "正確：兼顧未滿足的需求與實際工作條件，且不預設最終決定。",
+              "en": "Correct: the review includes unmet access and practical workload without prejudging the decision."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "repair-editor",
+              "start": 2014,
+              "end": 2102
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "archive-index-editorial",
+      "rootId": "original-archive-index-editorial",
+      "title": "Publishing an index without erasing uncertainty",
+      "blocks": [
+        {
+          "id": "archive-editor",
+          "title": "Review of a proposed archive index",
+          "text": "The local archive plans to publish a searchable index of its recorded oral histories. At present, visitors must ask a member of staff to locate an interview by topic. A public index would let a teacher prepare a visit without waiting for a reply and could draw attention to speakers who rarely appear in the archive's exhibitions. These are substantial advantages, and I do not think the archive should abandon the project because some interviews are difficult to describe. The question is what the index would invite a reader to infer from a short description.\n\nMany recordings were catalogued years after the interviews took place. The old notes sometimes describe a speaker only as a factory worker or a shop owner, without recording whether that description was current at the time of the interview. A search result that simply repeats the note can make an uncertain label look like a settled biographical fact. Leaving the label blank would avoid that particular impression, but could also make a recording harder to find. The archive therefore faces a choice about how uncertainty is represented, not merely a choice between an accurate index and no index. A useful record may be incomplete, provided its limits are visible and the archive accepts responsibility for correcting it.\n\nI would support publishing the index in stages if uncertain labels are marked and a named team handles corrections. The qualification matters: inviting members of the public to send suggestions is not a substitute for assigning someone to assess them. Readers may offer excellent information, conflicting memories or guesses. The archive needs to distinguish a submitted suggestion from an accepted correction and to retain a note of what changed. Otherwise an open invitation to contribute could create the impression that responsibility has been distributed to the crowd, while no one is actually accountable for the resulting description. My concern is with unsupported certainty and unclear responsibility, not with public participation itself."
+        },
+        {
+          "id": "archive-manager",
+          "title": "Manager response",
+          "text": "A staged index is feasible. We will begin with recordings for which the speaker has permitted public catalogue information, even where access to the recording itself remains restricted. An index entry will therefore not be a promise that the complete interview can be played online. Each uncertain occupational label will carry a note explaining that it comes from an older catalogue and may not describe the speaker's circumstances at the interview date. The catalogue team will review correction requests once a month and publish accepted changes with their dates. We can acknowledge a suggestion promptly without treating that acknowledgement as agreement with it.\n\nWe will not use the number of search results as a measure of the index's reliability. One interview may appear under several subjects, and an easily found entry can still contain a misleading description. Staff will inspect a sample of entries and ask visitors whether the uncertainty notes are understandable. Those checks will not prove that every description is correct, but they will show where revision is needed. Before moving to the next group of interviews, we will report unresolved corrections and explain why they remain open. The project should make material easier to discover without making its limitations disappear."
+        },
+        {
+          "id": "archive-release",
+          "title": "Release wording",
+          "text": "Our first announcement can say that the archive is releasing a staged index with marked uncertainties and a monthly correction process. It should also distinguish catalogue access from access to the underlying interviews. We must not advertise the index as a complete, verified account of every speaker's life. If a description is challenged, the catalogue team will record the concern, check the available evidence and explain any decision to retain or alter the wording. Public suggestions will inform that work, while responsibility for the published description remains with the archive."
+        }
+      ],
+      "questions": [
+        {
+          "id": "archive-position",
+          "blockId": "archive-editor",
+          "prompt": "What is the reviewer's qualification of support for the index?",
+          "options": [
+            "Publish in stages if uncertainty is visible and a named archive team takes responsibility for corrections.",
+            "Publish only when no description can possibly require a future correction.",
+            "Publish all old descriptions as verified facts once the public can submit suggestions."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 1289,
+            "end": 1404
+          },
+          "hints": [
+            {
+              "zh-Hans": "把项目本身与发布方式的条件分开。",
+              "zh-Hant": "把專案本身與發布方式的條件分開。",
+              "en": "Separate support for the project from conditions on publication."
+            },
+            {
+              "zh-Hans": "找第三段的 if 和关于公众建议的下一句。",
+              "zh-Hant": "找第三段的 if 和關於公眾建議的下一句。",
+              "en": "Find “if” in the third paragraph and the next sentence about public suggestions."
+            },
+            {
+              "zh-Hans": "不要求完全消除不确定性；要求标明它，并明确纠错责任。",
+              "zh-Hant": "不要求完全消除不確定性；要求標明它，並明確更正責任。",
+              "en": "Uncertainty need not disappear, but it must be marked and correction responsibility assigned."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：保留分阶段发布、可见的不确定性与明确责任。",
+              "zh-Hant": "正確：保留分階段發布、可見的不確定性與明確責任。",
+              "en": "Correct: staged publication retains visible uncertainty and assigned responsibility."
+            },
+            {
+              "zh-Hans": "不对：作者允许有明确限制的不完整记录，而非要求绝无后续更正。",
+              "zh-Hant": "不對：作者允許有明確限制的不完整紀錄，而非要求絕無後續更正。",
+              "en": "The reviewer permits incomplete records with visible limits, not impossible certainty."
+            },
+            {
+              "zh-Hans": "不对：征集建议不能替代负责审核更正的团队。",
+              "zh-Hant": "不對：徵集建議不能替代負責審核更正的團隊。",
+              "en": "An invitation for suggestions does not replace an accountable reviewing team."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "archive-editor",
+              "start": 1432,
+              "end": 1540
+            }
+          ]
+        },
+        {
+          "id": "archive-announcement",
+          "blockId": "archive-release",
+          "prompt": "Which announcement accurately reflects both the review and the manager's response?",
+          "options": [
+            "Every indexed recording is now available online, and all catalogue biographies have been verified.",
+            "The public will decide which descriptions are correct, so the archive no longer owns the published wording.",
+            "A staged index will mark uncertainty and use an archive-run correction process; an entry does not guarantee access to its recording."
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 0,
+            "end": 135
+          },
+          "hints": [
+            {
+              "zh-Hans": "概括时保留责任归属与访问范围。",
+              "zh-Hant": "概括時保留責任歸屬與存取範圍。",
+              "en": "Preserve responsibility and the scope of access in a summary."
+            },
+            {
+              "zh-Hans": "对照经理第一段的 index entry 与最后公告的责任说明。",
+              "zh-Hant": "對照經理第一段的 index entry 與最後公告的責任說明。",
+              "en": "Connect the manager's “index entry” distinction with responsibility in the announcement."
+            },
+            {
+              "zh-Hans": "索引可公开但录音可能受限；公众提供建议，档案馆负责发布内容。",
+              "zh-Hant": "索引可公開但錄音可能受限；公眾提供建議，檔案館負責發布內容。",
+              "en": "The index may be public while audio is restricted; suggestions inform archive-owned wording."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：可搜索的条目不保证录音可播放，也不代表传记均已核实。",
+              "zh-Hant": "不對：可搜尋的條目不保證錄音可播放，也不代表傳記均已核實。",
+              "en": "A searchable entry promises neither playable audio nor complete biographical verification."
+            },
+            {
+              "zh-Hans": "不对：公众建议只是输入，发布描述仍由档案馆负责。",
+              "zh-Hant": "不對：公眾建議只是輸入，發布描述仍由檔案館負責。",
+              "en": "Public suggestions inform the process; the archive retains responsibility."
+            },
+            {
+              "zh-Hans": "正确：概括保留不确定性、更正程序和录音访问限制。",
+              "zh-Hant": "正確：概括保留不確定性、更正程序和錄音存取限制。",
+              "en": "Correct: this retains uncertainty, the correction process and the audio-access limitation."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "archive-manager",
+              "start": 186,
+              "end": 282
+            },
+            {
+              "blockId": "archive-release",
+              "start": 473,
+              "end": 591
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nextStep": {
+    "zh-Hans": "下次分别标出让步、真正的反对对象和支持条件，再检查责任是否仍由原文指定的人承担。",
+    "zh-Hant": "下次分別標出讓步、真正的反對對象和支持條件，再檢查責任是否仍由原文指定的人承擔。",
+    "en": "Next time, mark the concession, the object of the objection and the conditions of support, then check who retains responsibility."
+  }
+}

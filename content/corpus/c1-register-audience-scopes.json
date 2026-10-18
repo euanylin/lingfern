@@ -1,0 +1,502 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-345",
+      "sourceHash": "96cd16eacdbfebae8fdda5591f66e0cc8ee76be18e0cd1aca02bc00615782d28",
+      "passageId": "f9c02acddd2304bf3aff3beae5a052ba6370e64088b5c81397ede4b8476c4069",
+      "textSha256": "f9c02acddd2304bf3aff3beae5a052ba6370e64088b5c81397ede4b8476c4069",
+      "text": "_Letter, Mina Harker to Lucy Westenra._\n\n(Unopened by her.)\n\n“_17 September._\n\n“My dearest Lucy,--\n\n“It seems _an age_ since I heard from you, or indeed since I wrote. You will pardon me, I know, for all my faults when you have read all my budget of news. Well, I got my husband back all right; when we arrived at Exeter there was a carriage waiting for us, and in it, though he had an attack of gout, Mr. Hawkins. He took us to his house, where there were rooms for us all nice and comfortable, and we dined together. After dinner Mr. Hawkins said:--\n\n“‘My dears, I want to drink your health and prosperity; and may every blessing attend you both. I know you both from children, and have, with love and pride, seen you grow up. Now I want you to make your home here with me. I have left to me neither chick nor child; all are gone, and in my will I have left you everything.’ I cried, Lucy dear, as Jonathan and the old man clasped hands. Our evening was a very, very happy one.\n\n“So here we are, installed in this beautiful old house, and from both my bedroom and the drawing-room I can see the great elms of the cathedral close, with their great black stems standing out against the old yellow stone of the cathedral and I can hear the rooks overhead cawing and cawing and chattering and gossiping all day, after the manner of rooks--and humans. I am busy, I need not tell you, arranging things and housekeeping. Jonathan and Mr. Hawkins are busy all day; for, now that Jonathan is a partner, Mr. Hawkins wants to tell him all about the clients.\n\n“How is your dear mother getting on? I wish I could run up to town for a day or two to see you, dear, but I dare not go yet, with so much on my shoulders; and Jonathan wants looking after still. He is beginning to put some flesh on his bones again, but he was terribly weakened by the long illness; even now he sometimes starts out of his sleep in a sudden way and awakes all trembling until I can coax him back to his usual placidity. However, thank God, these occasions grow less frequent as the days go on, and they will in time pass away altogether, I trust. And now I have told you my news, let me ask yours. When are you to be married, and where, and who is to perform the ceremony, and what are you to wear, and is it to be a public or a private wedding? Tell me all about it, dear; tell me all about everything, for there is nothing which interests you which will not be dear to me. Jonathan asks me to send his ‘respectful duty,’ but I do not think that is good enough from the junior partner of the important firm Hawkins & Harker; and so, as you love me, and he loves me, and I love you with all the moods and tenses of the verb, I send you simply his ‘love’ instead. Good-bye, my dearest Lucy, and all blessings on you.\n\n“Yours,\n\n“MINA HARKER.”",
+      "credit": {
+        "attribution": "Dracula — Stoker, Bram, 1847-1912. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/345).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/345"
+      },
+      "nativeScope": {
+        "start": 339619,
+        "end": 342425,
+        "canonicalSha256": "96c5e1a46e352671bcbcd916bbb2836875b64fd30ced0f7a5b32a7242bded8d8",
+        "rawSha256": "96cd16eacdbfebae8fdda5591f66e0cc8ee76be18e0cd1aca02bc00615782d28",
+        "metadataSha256": "4d393ba522b0e7a2dff2d6ccba8ed9d56268c32c67f0223bcced69de457ffb11",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "label": "Passage 1: My dearest Lucy,--",
+          "start": 80,
+          "end": 98
+        },
+        {
+          "label": "Passage 2: Jonathan asks me to send his ‘respectful duty,’ but I do not thin…",
+          "start": 2441,
+          "end": 2728
+        },
+        {
+          "label": "Passage 3: My dears, I want to drink your health and prosperity; and may eve…",
+          "start": 555,
+          "end": 875
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; short replies omitted by old processBook are retained from the raw source. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-161",
+      "sourceHash": "22272ec4d4da2f50cda51edf34ab8486b325c4a99580120db565fb8917228a22",
+      "passageId": "afd53681c9342fd9d3bb71dd2ab8cdaf4c50634a7b3c9cfb7054961a2cfaf7dc",
+      "textSha256": "afd53681c9342fd9d3bb71dd2ab8cdaf4c50634a7b3c9cfb7054961a2cfaf7dc",
+      "text": "Mrs. Jennings laughed again, but Elinor had not spirits to say more, and eager at all events to know what Willoughby had written, hurried away to their room, where, on opening the door, she saw Marianne stretched on the bed, almost choked by grief, one letter in her hand, and two or three others lying by her. Elinor drew near, but without saying a word; and seating herself on the bed, took her hand, kissed her affectionately several times, and then gave way to a burst of tears, which at first was scarcely less violent than Marianne’s. The latter, though unable to speak, seemed to feel all the tenderness of this behaviour, and after some time thus spent in joint affliction, she put all the letters into Elinor’s hands; and then covering her face with her handkerchief, almost screamed with agony. Elinor, who knew that such grief, shocking as it was to witness it, must have its course, watched by her till this excess of suffering had somewhat spent itself, and then turning eagerly to Willoughby’s letter, read as follows:\n\n“Bond Street, January.\n\nMY DEAR MADAM, “I have just had the honour of receiving your letter, for which I beg to return my sincere acknowledgments. I am much concerned to find there was anything in my behaviour last night that did not meet your approbation; and though I am quite at a loss to discover in what point I could be so unfortunate as to offend you, I entreat your forgiveness of what I can assure you to have been perfectly unintentional. I shall never reflect on my former acquaintance with your family in Devonshire without the most grateful pleasure, and flatter myself it will not be broken by any mistake or misapprehension of my actions. My esteem for your whole family is very sincere; but if I have been so unfortunate as to give rise to a belief of more than I felt, or meant to express, I shall reproach myself for not having been more guarded in my professions of that esteem. That I should ever have meant more you will allow to be impossible, when you understand that my affections have been long engaged elsewhere, and it will not be many weeks, I believe, before this engagement is fulfilled. It is with great regret that I obey your commands in returning the letters with which I have been honoured from you, and the lock of hair, which you so obligingly bestowed on me.\n\n“I am, dear Madam, “Your most obedient “humble servant, “JOHN WILLOUGHBY.”\n\nWith what indignation such a letter as this must be read by Miss Dashwood, may be imagined. Though aware, before she began it, that it must bring a confession of his inconstancy, and confirm their separation for ever, she was not aware that such language could be suffered to announce it; nor could she have supposed Willoughby capable of departing so far from the appearance of every honourable and delicate feeling—so far from the common decorum of a gentleman, as to send a letter so impudently cruel: a letter which, instead of bringing with his desire of a release any professions of regret, acknowledged no breach of faith, denied all peculiar affection whatever—a letter of which every line was an insult, and which proclaimed its writer to be deep in hardened villainy.\n\nShe paused over it for some time with indignant astonishment; then read it again and again; but every perusal only served to increase her abhorrence of the man, and so bitter were her feelings against him, that she dared not trust herself to speak, lest she might wound Marianne still deeper by treating their disengagement, not as a loss to her of any possible good but as an escape from the worst and most irremediable of all evils, a connection, for life, with an unprincipled man, as a deliverance the most real, a blessing the most important.",
+      "credit": {
+        "attribution": "Sense and Sensibility — Austen, Jane, 1775-1817. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/161).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/161"
+      },
+      "nativeScope": {
+        "start": 310193,
+        "end": 313927,
+        "canonicalSha256": "6caf6c12b844b3f61dfba408c7b0cb030ede54e40623793b911dcc880b8f3a75",
+        "rawSha256": "22272ec4d4da2f50cda51edf34ab8486b325c4a99580120db565fb8917228a22",
+        "metadataSha256": "3d0a4a82d6c6537ce07b95fead042c1a2a026aebf6d082b63cafdf10f5e9b555",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "label": "Passage 1: My esteem for your whole family is very sincere; but if I have be…",
+          "start": 1688,
+          "end": 2151
+        },
+        {
+          "label": "Passage 2: Your most obedient “humble servant,",
+          "start": 2352,
+          "end": 2387
+        },
+        {
+          "label": "Passage 3: With what indignation such a letter as this must be read by Miss …",
+          "start": 2408,
+          "end": 3120
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; short replies omitted by old processBook are retained from the raw source. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "jfk-speech-19630920-united-nations",
+      "sourceHash": "a5853cdd96074ed14f6cb9e4601a8667a317e2b81b77ca644e5010df0c050a51",
+      "clipId": "932df087ffdfecab875d9c956805202491b7740d30c55945f45a54d8304c6c2b",
+      "textSha256": "8e7bd09c10ba0fc0d08583ba1827668e457cb5ebf2d46310b04baca312676b4c",
+      "text": "Mr. President--as one who has taken some interest in the election of Presidents, I want to congratulate you on your election to this high office--Mr. Secretary General, delegates to the United Nations, ladies and gentlemen:\n\nWe meet again in the quest for peace.\n\nTwenty-four months ago, when I last had the honor of addressing this body, the shadow of fear lay darkly across the world. The freedom of West Berlin was in immediate peril. Agreement on a neutral Laos seemed remote. The mandate of the United Nations in the Congo was under fire. The financial outlook for this organization was in doubt. Dag Hammarskjold was dead. The doctrine of troika was being pressed in his place, and atmospheric nuclear tests had been resumed by the Soviet Union.\n\nThose were anxious days for mankind-and some men wondered aloud whether this organization could survive. But the 16th and 17th General Assemblies achieved not only survival but progress. Rising to its responsibility, the United Nations helped reduce the tensions and helped to hold back the darkness.",
+      "sourceCredit": {
+        "attribution": "John F. Kennedy. Address before the United Nations, 20 September 1963. https://www.presidency.ucsb.edu/documents/address-before-the-18th-general-assembly-the-united-nations",
+        "license": "Public domain — original US federal-government address",
+        "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-before-the-18th-general-assembly-the-united-nations"
+      },
+      "credit": {
+        "attribution": "John F. Kennedy. Address before the United Nations, 20 September 1963. https://www.presidency.ucsb.edu/documents/address-before-the-18th-general-assembly-the-united-nations Recording: John F. Kennedy. Original human recording.",
+        "license": "Public domain — original US federal-government address; recording: Public domain — original US federal-government address",
+        "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-before-the-18th-general-assembly-the-united-nations"
+      },
+      "audio": {
+        "src": "media/932df087ffdfecab875d9c956805202491b7740d30c55945f45a54d8304c6c2b.mp3",
+        "sha256": "a0d4404c8679c8b5885aa72d0e6f15f571b6177953fb995ad14010706860d68c",
+        "duration": 93.6,
+        "author": "John F. Kennedy",
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/91/John_F._Kennedy_speaks_before_the_UN_General_Assembly%2C_September_20%2C_1963.ogg",
+        "license": "Public domain — original US federal-government address",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 146,
+          "text": "Mr. President--as one who has taken some interest in the election of Presidents, I want to congratulate you on your election to this high office--",
+          "audioStart": 0.0,
+          "audioEnd": 11.96
+        },
+        {
+          "start": 146,
+          "end": 264,
+          "text": "Mr. Secretary General, delegates to the United Nations, ladies and gentlemen:\n\nWe meet again in the quest for peace.\n\n",
+          "audioStart": 13.28,
+          "audioEnd": 22.48
+        },
+        {
+          "start": 264,
+          "end": 288,
+          "text": "Twenty-four months ago, ",
+          "audioStart": 22.48,
+          "audioEnd": 24.84
+        },
+        {
+          "start": 288,
+          "end": 339,
+          "text": "when I last had the honor of addressing this body, ",
+          "audioStart": 24.84,
+          "audioEnd": 28.44
+        },
+        {
+          "start": 339,
+          "end": 358,
+          "text": "the shadow of fear ",
+          "audioStart": 28.44,
+          "audioEnd": 30.46
+        },
+        {
+          "start": 358,
+          "end": 387,
+          "text": "lay darkly across the world. ",
+          "audioStart": 30.46,
+          "audioEnd": 32.76
+        },
+        {
+          "start": 387,
+          "end": 414,
+          "text": "The freedom of West Berlin ",
+          "audioStart": 32.76,
+          "audioEnd": 35.5
+        },
+        {
+          "start": 414,
+          "end": 438,
+          "text": "was in immediate peril. ",
+          "audioStart": 35.5,
+          "audioEnd": 38.1
+        },
+        {
+          "start": 438,
+          "end": 466,
+          "text": "Agreement on a neutral Laos ",
+          "audioStart": 38.1,
+          "audioEnd": 41.16
+        },
+        {
+          "start": 466,
+          "end": 481,
+          "text": "seemed remote. ",
+          "audioStart": 41.16,
+          "audioEnd": 42.48
+        },
+        {
+          "start": 481,
+          "end": 528,
+          "text": "The mandate of the United Nations in the Congo ",
+          "audioStart": 42.48,
+          "audioEnd": 45.86
+        },
+        {
+          "start": 528,
+          "end": 544,
+          "text": "was under fire. ",
+          "audioStart": 45.86,
+          "audioEnd": 47.56
+        },
+        {
+          "start": 544,
+          "end": 588,
+          "text": "The financial outlook for this organization ",
+          "audioStart": 47.56,
+          "audioEnd": 50.98
+        },
+        {
+          "start": 588,
+          "end": 602,
+          "text": "was in doubt. ",
+          "audioStart": 50.98,
+          "audioEnd": 52.22
+        },
+        {
+          "start": 602,
+          "end": 753,
+          "text": "Dag Hammarskjold was dead. The doctrine of troika was being pressed in his place, and atmospheric nuclear tests had been resumed by the Soviet Union.\n\n",
+          "audioStart": 52.22,
+          "audioEnd": 65.22
+        },
+        {
+          "start": 753,
+          "end": 858,
+          "text": "Those were anxious days for mankind-and some men wondered aloud whether this organization could survive. ",
+          "audioStart": 65.22,
+          "audioEnd": 75.22
+        },
+        {
+          "start": 858,
+          "end": 940,
+          "text": "But the 16th and 17th General Assemblies achieved not only survival but progress. ",
+          "audioStart": 75.22,
+          "audioEnd": 83.5
+        },
+        {
+          "start": 940,
+          "end": 1053,
+          "text": "Rising to its responsibility, the United Nations helped reduce the tensions and helped to hold back the darkness.",
+          "audioStart": 84.38,
+          "audioEnd": 93.6
+        }
+      ],
+      "parts": [
+        {
+          "label": "Passage 1: Mr. President--as one who has taken some interest in the election…",
+          "start": 0,
+          "end": 146
+        },
+        {
+          "label": "Passage 2: Mr. Secretary General, delegates to the United Nations, ladies an…",
+          "start": 146,
+          "end": 223
+        },
+        {
+          "label": "Passage 3: Rising to its responsibility, the United Nations helped reduce th…",
+          "start": 940,
+          "end": 1053
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-5668393",
+      "sourceHash": "3c0cef73d781509121b8bbeb182d9d4a7a9e5a83b95a1fc871acb296fed11eb2",
+      "clipId": "4554d732918c7babcf6ac8c7910ed642ad267f71a8826859a6a25d5bfea810bb",
+      "textSha256": "55c6b515b91d32eeed02b12837b026a34748f0750e0bd14c218fe3d99a4866c3",
+      "text": "Recently, someone asked us, Can you please tell me who is the highest authority or is the most respected resource regarding writing rules?\n\nThere are several excellent sources on writing rules. However, the rules are different for different fields, such as business, technology, government, or academic writing.\n\nFull-time writers often turn to a handbook such as Strunk and White's The Elements of Style. This book, published in 1959, combined the earlier work of William Strunk, Jr. and E.B. White, the writer of several popular children's books. The Elements of Style has simple rules for good writing. You can get the 1920 version of the book free on Project Gutenberg. More recent versions deal with issues of gender and changes in punctuation.\n\nStudents writing a report for school may use a book like The Chicago Manual of Style from the University of Chicago. The Chicago Manual deals with English grammar and how to prepare an academic paper. It was first published in 1906. Kate L. Turabian's Manual for Writers of Research Papers, Theses, and Dissertations is based on the Chicago Manual. Her work is especially helpful for high school and college students. It is available free online.\n\nAn excellent place to look for help with writing is Purdue University's Online Writing Lab, or OWL for short. As noted earlier, technical and professional writing is different from what teachers expect of writing in school. So Purdue OWL has a guide for writing business letters and technical materials.\n\nThe OWL has helpful resources for writing teachers who are working remotely, too. Teachers can download presentations on many subjects related to writing.",
+      "sourceCredit": {
+        "attribution": "Jill Robbins, VOA Learning English. How to Inspect Your Own Writing (2020). https://learningenglish.voanews.com/a/how-to-inspect-your-own-writing/5668393.html",
+        "license": "Public domain — VOA Learning English original production",
+        "sourceUrl": "https://learningenglish.voanews.com/a/how-to-inspect-your-own-writing/5668393.html"
+      },
+      "credit": {
+        "attribution": "Jill Robbins, VOA Learning English. How to Inspect Your Own Writing (2020). https://learningenglish.voanews.com/a/how-to-inspect-your-own-writing/5668393.html Recording: Jill Robbins, VOA Learning English. Original human recording.",
+        "license": "Public domain — VOA Learning English original production; recording: Public domain — VOA Learning English original production",
+        "sourceUrl": "https://learningenglish.voanews.com/a/how-to-inspect-your-own-writing/5668393.html"
+      },
+      "audio": {
+        "src": "media/4554d732918c7babcf6ac8c7910ed642ad267f71a8826859a6a25d5bfea810bb.mp3",
+        "sha256": "fc6291a28a3bff1d01b85cff4e0652b63092feeab9ca70b18f178f2af1452aad",
+        "duration": 141.0,
+        "author": "Jill Robbins, VOA Learning English",
+        "sourceUrl": "https://voa-audio.voanews.eu/vle/2020/11/19/e9ceb084-ea78-401b-88a4-a5c8ec4a777e_hq.mp3?download=1",
+        "license": "Public domain — VOA Learning English original production",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 27,
+          "text": "Recently, someone asked us,",
+          "audioStart": 0.0,
+          "audioEnd": 1.9
+        },
+        {
+          "start": 28,
+          "end": 79,
+          "text": "Can you please tell me who is the highest authority",
+          "audioStart": 2.34,
+          "audioEnd": 5.44
+        },
+        {
+          "start": 80,
+          "end": 138,
+          "text": "or is the most respected resource regarding writing rules?",
+          "audioStart": 5.44,
+          "audioEnd": 10.32
+        },
+        {
+          "start": 140,
+          "end": 193,
+          "text": "There are several excellent sources on writing rules.",
+          "audioStart": 11.28,
+          "audioEnd": 14.98
+        },
+        {
+          "start": 194,
+          "end": 248,
+          "text": "However, the rules are different for different fields,",
+          "audioStart": 15.82,
+          "audioEnd": 19.0
+        },
+        {
+          "start": 249,
+          "end": 311,
+          "text": "such as business, technology, government, or academic writing.",
+          "audioStart": 19.52,
+          "audioEnd": 25.16
+        },
+        {
+          "start": 313,
+          "end": 355,
+          "text": "Full-time writers often turn to a handbook",
+          "audioStart": 26.82,
+          "audioEnd": 29.78
+        },
+        {
+          "start": 356,
+          "end": 405,
+          "text": "such as Strunk and White's The Elements of Style.",
+          "audioStart": 29.78,
+          "audioEnd": 34.02
+        },
+        {
+          "start": 406,
+          "end": 435,
+          "text": "This book, published in 1959,",
+          "audioStart": 35.02,
+          "audioEnd": 37.84
+        },
+        {
+          "start": 436,
+          "end": 484,
+          "text": "combined the earlier work of William Strunk, Jr.",
+          "audioStart": 38.82,
+          "audioEnd": 41.82
+        },
+        {
+          "start": 485,
+          "end": 500,
+          "text": "and E.B. White,",
+          "audioStart": 42.34,
+          "audioEnd": 43.76
+        },
+        {
+          "start": 501,
+          "end": 548,
+          "text": "the writer of several popular children's books.",
+          "audioStart": 44.42,
+          "audioEnd": 46.94
+        },
+        {
+          "start": 549,
+          "end": 605,
+          "text": "The Elements of Style has simple rules for good writing.",
+          "audioStart": 48.54,
+          "audioEnd": 52.12
+        },
+        {
+          "start": 606,
+          "end": 673,
+          "text": "You can get the 1920 version of the book free on Project Gutenberg.",
+          "audioStart": 53.66,
+          "audioEnd": 57.8
+        },
+        {
+          "start": 674,
+          "end": 749,
+          "text": "More recent versions deal with issues of gender and changes in punctuation.",
+          "audioStart": 57.8,
+          "audioEnd": 64.34
+        },
+        {
+          "start": 751,
+          "end": 807,
+          "text": "Students writing a report for school may use a book like",
+          "audioStart": 66.0,
+          "audioEnd": 69.52
+        },
+        {
+          "start": 808,
+          "end": 867,
+          "text": "The Chicago Manual of Style from the University of Chicago.",
+          "audioStart": 69.52,
+          "audioEnd": 73.94
+        },
+        {
+          "start": 868,
+          "end": 951,
+          "text": "The Chicago Manual deals with English grammar and how to prepare an academic paper.",
+          "audioStart": 75.46,
+          "audioEnd": 81.22
+        },
+        {
+          "start": 952,
+          "end": 983,
+          "text": "It was first published in 1906.",
+          "audioStart": 82.44,
+          "audioEnd": 84.84
+        },
+        {
+          "start": 984,
+          "end": 1067,
+          "text": "Kate L. Turabian's Manual for Writers of Research Papers, Theses, and Dissertations",
+          "audioStart": 84.84,
+          "audioEnd": 93.36
+        },
+        {
+          "start": 1068,
+          "end": 1099,
+          "text": "is based on the Chicago Manual.",
+          "audioStart": 93.36,
+          "audioEnd": 95.9
+        },
+        {
+          "start": 1100,
+          "end": 1168,
+          "text": "Her work is especially helpful for high school and college students.",
+          "audioStart": 97.4,
+          "audioEnd": 101.24
+        },
+        {
+          "start": 1169,
+          "end": 1197,
+          "text": "It is available free online.",
+          "audioStart": 102.24,
+          "audioEnd": 104.56
+        },
+        {
+          "start": 1199,
+          "end": 1247,
+          "text": "An excellent place to look for help with writing",
+          "audioStart": 105.56,
+          "audioEnd": 108.66
+        },
+        {
+          "start": 1248,
+          "end": 1308,
+          "text": "is Purdue University's Online Writing Lab, or OWL for short.",
+          "audioStart": 108.66,
+          "audioEnd": 113.78
+        },
+        {
+          "start": 1309,
+          "end": 1422,
+          "text": "As noted earlier, technical and professional writing is different from what teachers expect of writing in school.",
+          "audioStart": 114.84,
+          "audioEnd": 121.82
+        },
+        {
+          "start": 1423,
+          "end": 1502,
+          "text": "So Purdue OWL has a guide for writing business letters and technical materials.",
+          "audioStart": 123.34,
+          "audioEnd": 128.34
+        },
+        {
+          "start": 1504,
+          "end": 1585,
+          "text": "The OWL has helpful resources for writing teachers who are working remotely, too.",
+          "audioStart": 129.9,
+          "audioEnd": 134.84
+        },
+        {
+          "start": 1586,
+          "end": 1658,
+          "text": "Teachers can download presentations on many subjects related to writing.",
+          "audioStart": 136.28,
+          "audioEnd": 141.0
+        }
+      ],
+      "parts": [
+        {
+          "label": "Passage 1: However, the rules are different for different fields, such as bu…",
+          "start": 194,
+          "end": 311
+        },
+        {
+          "label": "Passage 2: Purdue University's Online Writing Lab, or OWL for short.",
+          "start": 1251,
+          "end": 1308
+        },
+        {
+          "label": "Passage 3: The OWL has helpful resources for writing teachers who are workin…",
+          "start": 1504,
+          "end": 1658
+        }
+      ]
+    }
+  ]
+}

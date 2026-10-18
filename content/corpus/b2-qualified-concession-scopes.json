@@ -1,0 +1,143 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00025",
+      "sourceHash": "948edc9aa5b595444592b970855e29b16f64308974ce4f711c2d7b0259fbbaf9",
+      "passageId": "95037dd6c5634c1836ae244be3e1b182ab363df01bcfdb5797ef08a79f7ff74a",
+      "textSha256": "95037dd6c5634c1836ae244be3e1b182ab363df01bcfdb5797ef08a79f7ff74a",
+      "text": "A unique human characteristic is our ability to mind wander—these are periods of time when our attention drifts away from the task-at-hand to focus on thoughts that are unrelated to the task. Mind wandering has some benefits, such as increased creativity, but it also has some negative consequences, such as mistakes in the task we are supposed to be performing. Interestingly, we spend up to half of our waking hours mind wandering. How does the brain help us accomplish that? Research suggests that when we mind wander, our responses to information from the external world around us are disrupted. In other words, our brain’s resources are shifted away from processing information from the external environment and redirected to our internal world, which allows us to mentally wander off to another time and place. Even though we pay less attention to the external world during mind wandering, our ability to detect unexpected events in our surrounding environment is preserved. This suggests that we are quite clever about what we ignore or pay attention to in the external environment, even when we mind wander.",
+      "credit": {
+        "attribution": "The Wandering Mind: How the Brain Allows Us to Mentally Wander Off to Another Time and Place — Julia W. Y. Kam. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00025"
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00067",
+      "sourceHash": "af074cf944782f99fc8cca3812b1a50c7e27ded2f2c071dd479b85986c7187da",
+      "passageId": "4f95e587487dd4752b3177fc79308c98ecacdebf60f7b6856a0cb7dd6e6e0f2b",
+      "textSha256": "4f95e587487dd4752b3177fc79308c98ecacdebf60f7b6856a0cb7dd6e6e0f2b",
+      "text": "Have you ever been playing outside and noticed a face popping out at you from the tree bark? Starting from birth, babies are immediately attracted to faces. Scientists were able to show this by having babies look at two simple images, one that looks more like a face than the other. By measuring where the babies looked, scientists found that the babies looked at the face-like image more than they looked at the non-face image [2]. Even though babies have poor eyesight, they prefer to look at faces. But why? One reason babies might like faces is because of something called evolution. Evolution involves changes to the structures of an organism (such as the brain) that occur over many generations. These changes help the organisms to survive. Some scientists, such as Carl Sagan, believe that face pareidolia helped humans survive because it made them alert to sneaky enemies [3]. By being able to recognize faces from afar or in the dark, humans were able to know someone was coming and protect themselves from danger.",
+      "credit": {
+        "attribution": "A Face Scavenger Hunt: Why We See Faces in Objects without Faces — Mary Nevins; Ashleigh Maxcey; Isabel Gauthier. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00067"
+      }
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-54410",
+      "sourceHash": "6f0c512603ba37727ddfeafbf360dbf7d273af5393193e2e477335f44be3ebdb",
+      "clipId": "e5d0227ea893f321eeb85ce6be7a2411b0173a5856d402582e2a7600cc168836",
+      "textSha256": "bbbddac1a476ef51249788cc8ad30de9b19c89c1b2ae99f831fffa0361be01c9",
+      "text": "Triceratops species possessed a sturdy build, with robust limbs, and short five-hoofed hands and four-hoofed feet. Although certainly quadrupedal, the posture of these dinosaurs has long been the subject of some debate. Originally, it was believed that the front legs of the animal had to be sprawling at angles from the thorax, in order to better bear the weight of the head.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Triceratops, recorded revision 116522325.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Triceratops?oldid=116522325"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Triceratops, recorded revision 116522325. Recording: Speaker: SpeakThings:Mellerbeck Authors of the article. Original recording of Triceratops.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Triceratops?oldid=116522325"
+      },
+      "audio": {
+        "src": "media/e5d0227ea893f321eeb85ce6be7a2411b0173a5856d402582e2a7600cc168836.mp3",
+        "sha256": "b3a764ac54af144d2ffc7ac75709577e8c0555fb13bede4d77c39d95ef9e86e9",
+        "duration": 21.870023,
+        "author": "Speaker: SpeakThings:Mellerbeck Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Triceratops-article.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 113,
+          "text": "Triceratops species possessed a sturdy build, with robust limbs, and short five-hoofed hands and four-hoofed feet",
+          "audioStart": 0.15000000000000568,
+          "audioEnd": 7.3700000000000045
+        },
+        {
+          "start": 115,
+          "end": 218,
+          "text": "Although certainly quadrupedal, the posture of these dinosaurs has long been the subject of some debate",
+          "audioStart": 8.050000000000011,
+          "audioEnd": 13.490000000000009
+        },
+        {
+          "start": 220,
+          "end": 327,
+          "text": "Originally, it was believed that the front legs of the animal had to be sprawling at angles from the thorax",
+          "audioStart": 14.129999999999995,
+          "audioEnd": 19.77000000000001
+        },
+        {
+          "start": 329,
+          "end": 375,
+          "text": "in order to better bear the weight of the head",
+          "audioStart": 19.77000000000001,
+          "audioEnd": 21.670000000000016
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-10461516",
+      "sourceHash": "ec0df1b826aeae44d2ca07f347f774a0332fd800b57ee504d46dd4b2b2bf1f87",
+      "clipId": "2609cdccbdc4d19940cfe3b489f4c8a8cc32a70570ef00e4e1bae2799cc06670",
+      "textSha256": "cbc72f7389c3a6696d600f6c81e8aa7dab78231a2fb46960c55ddf709ae2b609",
+      "text": "Clam dip is a dipping sauce and condiment prepared with clams, sour cream or cream cheese, and seasonings as primary ingredients. Various additional ingredients can be used. It is usually served chilled, although it is sometimes served hot or at room temperature. It is used as a dip for potato chips, crackers, bread, and crudités.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Clam dip, recorded revision 995559281.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Clam_dip?oldid=995559281"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Clam dip, recorded revision 995559281. Recording: Speaker: Peppage Authors of the article. Original recording of Clam dip.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Clam_dip?oldid=995559281"
+      },
+      "audio": {
+        "src": "media/2609cdccbdc4d19940cfe3b489f4c8a8cc32a70570ef00e4e1bae2799cc06670.mp3",
+        "sha256": "33db819748d73f0fcf8e366c37c69ba4df9c389630abddb6b75ec94d89d057b2",
+        "duration": 23.030023,
+        "author": "Speaker: Peppage Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Clam-Dip-article.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 89,
+          "text": "Clam dip is a dipping sauce and condiment prepared with clams, sour cream or cream cheese",
+          "audioStart": 0.14999999999999858,
+          "audioEnd": 6.969999999999999
+        },
+        {
+          "start": 91,
+          "end": 172,
+          "text": "and seasonings as primary ingredients. Various additional ingredients can be used",
+          "audioStart": 7.27,
+          "audioEnd": 12.370000000000001
+        },
+        {
+          "start": 174,
+          "end": 262,
+          "text": "It is usually served chilled, although it is sometimes served hot or at room temperature",
+          "audioStart": 12.95,
+          "audioEnd": 17.49
+        },
+        {
+          "start": 264,
+          "end": 331,
+          "text": "It is used as a dip for potato chips, crackers, bread, and crudités",
+          "audioStart": 18.149999999999995,
+          "audioEnd": 22.830000000000002
+        }
+      ]
+    }
+  ]
+}

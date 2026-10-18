@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lingfern",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-27",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_metrics": false,
+  "triggers": { "crons": ["0 3 * * *"] },
+  "env": {
+    "local": {
+      "name": "lingfern-local",
+      "vars": { "LOCAL_AUTH": "true" },
+      "kv_namespaces": [{ "binding": "OAUTH_KV", "id": "00000000000000000000000000000000" }],
+      "d1_databases": [{ "binding": "AUTH_DB", "database_name": "lingfern-identity-local", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "worker/migrations" }]
+    }
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api", "/api/*", "/mcp", "/mcp/*", "/oauth", "/oauth/*", "/.well-known/*", "/start", "/today", "/progress", "/library", "/library/*", "/settings", "/settings/*", "/learn/*"]
+  }
+}

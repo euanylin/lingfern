@@ -1,0 +1,428 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-35",
+      "sourceHash": "2892e919000e17c83e1dac51b30f4675db50536b644d7579fe8a89bb399a9bdc",
+      "passageId": "76c1dc4b53650d25d8a157bef56505cb4f49b9331ddfbdbf69de175bef2bac11",
+      "textSha256": "76c1dc4b53650d25d8a157bef56505cb4f49b9331ddfbdbf69de175bef2bac11",
+      "text": "“It is simply this. That Space, as our mathematicians have it, is spoken of as having three dimensions, which one may call Length, Breadth, and Thickness, and is always definable by reference to three planes, each at right angles to the others. But some philosophical people have been asking why _three_ dimensions particularly—why not another direction at right angles to the other three?—and have even tried to construct a Four-Dimensional geometry. Professor Simon Newcomb was expounding this to the New York Mathematical Society only a month or so ago. You know how on a flat surface, which has only two dimensions, we can represent a figure of a three-dimensional solid, and similarly they think that by models of three dimensions they could represent one of four—if they could master the perspective of the thing. See?”\n\n“I think so,” murmured the Provincial Mayor; and, knitting his brows, he lapsed into an introspective state, his lips moving as one who repeats mystic words. “Yes, I think I see it now,” he said after some time, brightening in a quite transitory manner.\n\n“Well, I do not mind telling you I have been at work upon this geometry of Four Dimensions for some time. Some of my results are curious. For instance, here is a portrait of a man at eight years old, another at fifteen, another at seventeen, another at twenty-three, and so on. All these are evidently sections, as it were, Three-Dimensional representations of his Four-Dimensioned being, which is a fixed and unalterable thing.”\n\n“Scientific people,” proceeded the Time Traveller, after the pause required for the proper assimilation of this, “know very well that Time is only a kind of Space. Here is a popular scientific diagram, a weather record. This line I trace with my finger shows the movement of the barometer. Yesterday it was so high, yesterday night it fell, then this morning it rose again, and so gently upward to here. Surely the mercury did not trace this line in any of the dimensions of Space generally recognised? But certainly it traced such a line, and that line, therefore, we must conclude, was along the Time-Dimension.”\n\n“But,” said the Medical Man, staring hard at a coal in the fire, “if Time is really only a fourth dimension of Space, why is it, and why has it always been, regarded as something different? And why cannot we move about in Time as we move about in the other dimensions of Space?”\n\nThe Time Traveller smiled. “Are you so sure we can move freely in Space? Right and left we can go, backward and forward freely enough, and men always have done so. I admit we move freely in two dimensions. But how about up and down? Gravitation limits us there.”\n\n“Not exactly,” said the Medical Man. “There are balloons.”\n\n“But before the balloons, save for spasmodic jumping and the inequalities of the surface, man had no freedom of vertical movement.”\n\n“Still they could move a little up and down,” said the Medical Man.\n\n“Easier, far easier down than up.”\n\n“And you cannot move at all in Time, you cannot get away from the present moment.”\n\n“My dear sir, that is just where you are wrong. That is just where the whole world has gone wrong. We are always getting away from the present moment. Our mental existences, which are immaterial and have no dimensions, are passing along the Time-Dimension with a uniform velocity from the cradle to the grave. Just as we should travel _down_ if we began our existence fifty miles above the earth’s surface.”\n\n“But the great difficulty is this,” interrupted the Psychologist. “You _can_ move about in all directions of Space, but you cannot move about in Time.”\n\n“That is the germ of my great discovery. But you are wrong to say that we cannot move about in Time. For instance, if I am recalling an incident very vividly I go back to the instant of its occurrence: I become absent-minded, as you say. I jump back for a moment. Of course we have no means of staying back for any length of Time, any more than a savage or an animal has of staying six feet above the ground. But a civilised man is better off than the savage in this respect. He can go up against gravitation in a balloon, and why should he not hope that ultimately he may be able to stop or accelerate his drift along the Time-Dimension, or even turn about and travel the other way?”\n\n“Oh, _this_,” began Filby, “is all—”\n\n“Why not?” said the Time Traveller.\n\n“It’s against reason,” said Filby.\n\n“What reason?” said the Time Traveller.\n\n“You can show black is white by argument,” said Filby, “but you will never convince me.”\n\n“Possibly not,” said the Time Traveller. “But now you begin to see the object of my investigations into the geometry of Four Dimensions. Long ago I had a vague inkling of a machine—”\n\n“To travel through Time!” exclaimed the Very Young Man.\n\n“That shall travel indifferently in any direction of Space and Time, as the driver determines.”\n\nFilby contented himself with laughter.\n\n“But I have experimental verification,” said the Time Traveller.",
+      "credit": {
+        "attribution": "The Time Machine — Wells, H. G. (Herbert George), 1866-1946. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/35).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/35"
+      },
+      "nativeScope": {
+        "start": 3625,
+        "end": 8612,
+        "paragraphs": [
+          20,
+          44
+        ],
+        "rawSha256": "2892e919000e17c83e1dac51b30f4675db50536b644d7579fe8a89bb399a9bdc",
+        "canonicalSha256": "0baabbfd58cb24a7fb0d6133df77f5fdb24e93aedb24707612f06976ae54ea57",
+        "metadataSha256": "76b0c68ac5f71d67f7a7c397258f8cc36401335e21005d5023d3c589a027be5d",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "start": 736,
+          "end": 819,
+          "contextEvidence": [
+            {
+              "start": 557,
+              "end": 819
+            },
+            {
+              "start": 827,
+              "end": 984
+            },
+            {
+              "start": 4923,
+              "end": 4987
+            }
+          ]
+        },
+        {
+          "start": 827,
+          "end": 840,
+          "contextEvidence": [
+            {
+              "start": 827,
+              "end": 984
+            },
+            {
+              "start": 985,
+              "end": 1080
+            }
+          ]
+        },
+        {
+          "start": 2734,
+          "end": 2863,
+          "contextEvidence": [
+            {
+              "start": 2673,
+              "end": 2731
+            },
+            {
+              "start": 2866,
+              "end": 2933
+            },
+            {
+              "start": 2935,
+              "end": 2969
+            }
+          ]
+        },
+        {
+          "start": 4144,
+          "end": 4300,
+          "contextEvidence": [
+            {
+              "start": 4923,
+              "end": 4987
+            },
+            {
+              "start": 3881,
+              "end": 4025
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-36",
+      "sourceHash": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+      "passageId": "46de01ffd1fe2580cf3b2565c9d62d934b4d24445d7ff66efe0a674c63fae775",
+      "textSha256": "46de01ffd1fe2580cf3b2565c9d62d934b4d24445d7ff66efe0a674c63fae775",
+      "text": "The storm burst upon us six years ago now. As Mars approached opposition, Lavelle of Java set the wires of the astronomical exchange palpitating with the amazing intelligence of a huge outbreak of incandescent gas upon the planet. It had occurred towards midnight of the twelfth; and the spectroscope, to which he had at once resorted, indicated a mass of flaming gas, chiefly hydrogen, moving with an enormous velocity towards this earth. This jet of fire had become invisible about a quarter past twelve. He compared it to a colossal puff of flame suddenly and violently squirted out of the planet, “as flaming gases rushed out of a gun.”\n\nA singularly appropriate phrase it proved. Yet the next day there was nothing of this in the papers except a little note in the _Daily Telegraph_, and the world went in ignorance of one of the gravest dangers that ever threatened the human race. I might not have heard of the eruption at all had I not met Ogilvy, the well-known astronomer, at Ottershaw. He was immensely excited at the news, and in the excess of his feelings invited me up to take a turn with him that night in a scrutiny of the red planet.\n\nIn spite of all that has happened since, I still remember that vigil very distinctly: the black and silent observatory, the shadowed lantern throwing a feeble glow upon the floor in the corner, the steady ticking of the clockwork of the telescope, the little slit in the roof—an oblong profundity with the stardust streaked across it. Ogilvy moved about, invisible but audible. Looking through the telescope, one saw a circle of deep blue and the little round planet swimming in the field. It seemed such a little thing, so bright and small and still, faintly marked with transverse stripes, and slightly flattened from the perfect round. But so little it was, so silvery warm—a pin’s head of light! It was as if it quivered, but really this was the telescope vibrating with the activity of the clockwork that kept the planet in view.\n\nAs I watched, the planet seemed to grow larger and smaller and to advance and recede, but that was simply that my eye was tired. Forty millions of miles it was from us—more than forty millions of miles of void. Few people realise the immensity of vacancy in which the dust of the material universe swims.\n\nNear it in the field, I remember, were three faint points of light, three telescopic stars infinitely remote, and all around it was the unfathomable darkness of empty space. You know how that blackness looks on a frosty starlight night. In a telescope it seems far profounder. And invisible to me because it was so remote and small, flying swiftly and steadily towards me across that incredible distance, drawing nearer every minute by so many thousands of miles, came the Thing they were sending us, the Thing that was to bring so much struggle and calamity and death to the earth. I never dreamed of it then as I watched; no one on earth dreamed of that unerring missile.\n\nThat night, too, there was another jetting out of gas from the distant planet. I saw it. A reddish flash at the edge, the slightest projection of the outline just as the chronometer struck midnight; and at that I told Ogilvy and he took my place. The night was warm and I was thirsty, and I went stretching my legs clumsily and feeling my way in the darkness, to the little table where the siphon stood, while Ogilvy exclaimed at the streamer of gas that came out towards us.\n\nThat night another invisible missile started on its way to the earth from Mars, just a second or so under twenty-four hours after the first one. I remember how I sat on the table there in the blackness, with patches of green and crimson swimming before my eyes. I wished I had a light to smoke by, little suspecting the meaning of the minute gleam I had seen and all that it would presently bring me. Ogilvy watched till one, and then gave it up; and we lit the lantern and walked over to his house. Down below in the darkness were Ottershaw and Chertsey and all their hundreds of people, sleeping in peace.\n\nHe was full of speculation that night about the condition of Mars, and scoffed at the vulgar idea of its having inhabitants who were signalling us. His idea was that meteorites might be falling in a heavy shower upon the planet, or that a huge volcanic explosion was in progress. He pointed out to me how unlikely it was that organic evolution had taken the same direction in the two adjacent planets.\n\n“The chances against anything manlike on Mars are a million to one,” he said.\n\nHundreds of observers saw the flame that night and the night after about midnight, and again the night after; and so for ten nights, a flame each night. Why the shots ceased after the tenth no one on earth has attempted to explain. It may be the gases of the firing caused the Martians inconvenience. Dense clouds of smoke or dust, visible through a powerful telescope on earth as little grey, fluctuating patches, spread through the clearness of the planet’s atmosphere and obscured its more familiar features.",
+      "credit": {
+        "attribution": "The war of the worlds — Wells, H. G. (Herbert George), 1866-1946. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/36).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/36"
+      },
+      "nativeScope": {
+        "start": 6880,
+        "end": 11928,
+        "paragraphs": [
+          19,
+          29
+        ],
+        "rawSha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+        "canonicalSha256": "d2cbda325932c93900d49121aaef031c5e888ea53f6581843df27a29e12e4a8e",
+        "metadataSha256": "100f7ff09821c4d065f27ab2608af7e0d88b4904190983aa94dcaa0cfbda1727",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "start": 1852,
+          "end": 1986,
+          "contextEvidence": [
+            {
+              "start": 1988,
+              "end": 2116
+            }
+          ]
+        },
+        {
+          "start": 2877,
+          "end": 2917,
+          "contextEvidence": [
+            {
+              "start": 2571,
+              "end": 2876
+            },
+            {
+              "start": 3708,
+              "end": 3846
+            },
+            {
+              "start": 4055,
+              "end": 4202
+            },
+            {
+              "start": 4203,
+              "end": 4334
+            }
+          ]
+        },
+        {
+          "start": 4459,
+          "end": 4524,
+          "contextEvidence": [
+            {
+              "start": 4335,
+              "end": 4456
+            },
+            {
+              "start": 4055,
+              "end": 4202
+            },
+            {
+              "start": 4203,
+              "end": 4334
+            }
+          ]
+        },
+        {
+          "start": 4769,
+          "end": 4837,
+          "contextEvidence": [
+            {
+              "start": 4690,
+              "end": 4768
+            },
+            {
+              "start": 4838,
+              "end": 5048
+            },
+            {
+              "start": 4203,
+              "end": 4334
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-46426065",
+      "sourceHash": "678be2d42d13f644b672e9d68e9355e96f22635b974ab0a516bcf6f98f091d6e",
+      "clipId": "370c2a9b8095119ec4ee1163b245bd336b47647081c511d551dbf53295d8c972",
+      "textSha256": "a18f0132a682b720b1c7f26d46e512915a05db1458714827f3b84fabff392b01",
+      "text": "Ampliative\n\nAmpliative arguments are arguments whose conclusions contain additional information not found in their premises. In this regard, they are more interesting since they contain information on the depth level and the thinker may learn something genuinely new. But this feature comes with a certain cost: the premises support the conclusion in the sense that they make its truth more likely but they do not ensure its truth. This means that the conclusion of an ampliative argument may be false even though all its premises are true. This characteristic is closely related to non-monotonicity and defeasibility: it may be necessary to retract an earlier conclusion upon receiving new information or in the light of new inferences drawn. Ampliative reasoning plays a central role for many arguments found in everyday discourse and the sciences. Ampliative arguments are not automatically incorrect. Instead, they just follow different standards of correctness. The support they provide for their conclusion usually comes in degrees. This means that strong ampliative arguments make their conclusion very likely while weak ones are less certain. As a consequence, the line between correct and incorrect arguments is blurry in some cases, as when the premises offer weak but non-negligible support. This contrasts with deductive arguments, which are either valid or invalid with nothing in-between.\n\nThe terminology used to categorize ampliative arguments is inconsistent. Some authors, like James Hawthorne, use the term \"induction\" to cover all forms of non-deductive arguments. But in a more narrow sense, induction is only one type of ampliative argument alongside abductive arguments. Some philosophers, like Leo Groarke, also allow conductive arguments as one more type. In this narrow sense, induction is often defined as a form of statistical generalization. In this case, the premises of an inductive argument are many individual observations that all show a certain pattern. The conclusion then is a general law that this pattern always obtains. In this sense, one may infer that \"all elephants are gray\" based on one's past observations of the color of elephants. A closely related form of inductive inference has as its conclusion not a general law but one more specific instance, as when it is inferred that an elephant one has not seen yet is also gray. Some theorists, like Igor Douven, stipulate that inductive inferences rest only on statistical considerations. This way, they can be distinguished from abductive inference.\n\nAbductive inference may or may not take statistical observations into consideration. In either case, the premises offer support for the conclusion because the conclusion is the best explanation of why the premises are true. In this sense, abduction is also called the inference to the best explanation. For example, given the premise that there is a plate with breadcrumbs in the kitchen in the early morning, one may infer the conclusion that one's house-mate had a midnight snack and was too tired to clean the table. This conclusion is justified because it is the best explanation of the current state of the kitchen. For abduction, it is not sufficient that the conclusion explains the premises. For example, the conclusion that a burglar broke into the house last night, got hungry on the job, and had a midnight snack, would also explain the state of the kitchen. But this conclusion is not justified because it is not the best or most likely explanation.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Logic, recorded revision 1183235996. Excerpt: reviewed printed ranges [(20232, 21634), (21636, 22776), (22778, 23739)]; original recording 1486.6–1705.66 seconds. Continuous recording cropped and encoded by Lingfern. Reader order/omissions differ from the printed source in False memory; exact ranges and review retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Logic?oldid=1183235996"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Logic, recorded revision 1183235996. Excerpt: reviewed printed ranges [(20232, 21634), (21636, 22776), (22778, 23739)]; original recording 1486.6–1705.66 seconds. Continuous recording cropped and encoded by Lingfern. Reader order/omissions differ from the printed source in False memory; exact ranges and review retained. No synthesis or endorsement. Recording: Speaker: Thrownfootfalls Authors of the article. Original recording of Logic.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Logic?oldid=1183235996"
+      },
+      "audio": {
+        "src": "media/370c2a9b8095119ec4ee1163b245bd336b47647081c511d551dbf53295d8c972.mp3",
+        "sha256": "ff28baf17689b04fd0c64a24e1083290d2e0645fca81e8865a94855e2c50d4e3",
+        "duration": 219.06,
+        "author": "Speaker: Thrownfootfalls Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Logic-article.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 1402,
+          "text": "Ampliative\n\nAmpliative arguments are arguments whose conclusions contain additional information not found in their premises. In this regard, they are more interesting since they contain information on the depth level and the thinker may learn something genuinely new. But this feature comes with a certain cost: the premises support the conclusion in the sense that they make its truth more likely but they do not ensure its truth. This means that the conclusion of an ampliative argument may be false even though all its premises are true. This characteristic is closely related to non-monotonicity and defeasibility: it may be necessary to retract an earlier conclusion upon receiving new information or in the light of new inferences drawn. Ampliative reasoning plays a central role for many arguments found in everyday discourse and the sciences. Ampliative arguments are not automatically incorrect. Instead, they just follow different standards of correctness. The support they provide for their conclusion usually comes in degrees. This means that strong ampliative arguments make their conclusion very likely while weak ones are less certain. As a consequence, the line between correct and incorrect arguments is blurry in some cases, as when the premises offer weak but non-negligible support. This contrasts with deductive arguments, which are either valid or invalid with nothing in-between.",
+          "audioStart": 0.0,
+          "audioEnd": 88.7
+        },
+        {
+          "start": 1404,
+          "end": 2544,
+          "text": "The terminology used to categorize ampliative arguments is inconsistent. Some authors, like James Hawthorne, use the term \"induction\" to cover all forms of non-deductive arguments. But in a more narrow sense, induction is only one type of ampliative argument alongside abductive arguments. Some philosophers, like Leo Groarke, also allow conductive arguments as one more type. In this narrow sense, induction is often defined as a form of statistical generalization. In this case, the premises of an inductive argument are many individual observations that all show a certain pattern. The conclusion then is a general law that this pattern always obtains. In this sense, one may infer that \"all elephants are gray\" based on one's past observations of the color of elephants. A closely related form of inductive inference has as its conclusion not a general law but one more specific instance, as when it is inferred that an elephant one has not seen yet is also gray. Some theorists, like Igor Douven, stipulate that inductive inferences rest only on statistical considerations. This way, they can be distinguished from abductive inference.",
+          "audioStart": 88.7,
+          "audioEnd": 163.5
+        },
+        {
+          "start": 2546,
+          "end": 3507,
+          "text": "Abductive inference may or may not take statistical observations into consideration. In either case, the premises offer support for the conclusion because the conclusion is the best explanation of why the premises are true. In this sense, abduction is also called the inference to the best explanation. For example, given the premise that there is a plate with breadcrumbs in the kitchen in the early morning, one may infer the conclusion that one's house-mate had a midnight snack and was too tired to clean the table. This conclusion is justified because it is the best explanation of the current state of the kitchen. For abduction, it is not sufficient that the conclusion explains the premises. For example, the conclusion that a burglar broke into the house last night, got hungry on the job, and had a midnight snack, would also explain the state of the kitchen. But this conclusion is not justified because it is not the best or most likely explanation.",
+          "audioStart": 163.5,
+          "audioEnd": 219.06
+        }
+      ],
+      "readerNotes": "Complete exact continuous selected narration, printed source ranges/reader order and scoped differences reviewed; natural quiet paragraph-level audio spans, not inferred word/phoneme times. First False-memory heading+sentence are merged because their coarse ASR boundary is voiced. False-memory clock paragraph follows Mandela discussion in audio, while current collected text puts it before; retain both source order and actual reader order. Reader omits shared false memory phenomenon and short clock-introduction words. Proper-name spelling, a/the movie, plural observation/conclusion variants remain ASR uncertainty and are not scored cues. No audition, new ASR, source-wide or CEFR approval.",
+      "parts": [
+        {
+          "start": 851,
+          "end": 904,
+          "contextEvidence": [
+            {
+              "start": 905,
+              "end": 966
+            },
+            {
+              "start": 432,
+              "end": 540
+            }
+          ]
+        },
+        {
+          "start": 619,
+          "end": 743,
+          "contextEvidence": [
+            {
+              "start": 432,
+              "end": 540
+            },
+            {
+              "start": 744,
+              "end": 850
+            },
+            {
+              "start": 851,
+              "end": 904
+            }
+          ]
+        },
+        {
+          "start": 1477,
+          "end": 1584,
+          "contextEvidence": [
+            {
+              "start": 1585,
+              "end": 1693
+            },
+            {
+              "start": 2372,
+              "end": 2482
+            },
+            {
+              "start": 2546,
+              "end": 2630
+            },
+            {
+              "start": 432,
+              "end": 540
+            }
+          ]
+        },
+        {
+          "start": 3167,
+          "end": 3245,
+          "contextEvidence": [
+            {
+              "start": 3246,
+              "end": 3415
+            },
+            {
+              "start": 3416,
+              "end": 3507
+            },
+            {
+              "start": 2849,
+              "end": 3065
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-14983819",
+      "sourceHash": "130fc0db703f236def57d3ff00b7dbf51f67a276ecb3a1ac3bdd3a1e9b0dc169",
+      "clipId": "00c687f967ae603470e9e4c0b87bce52c1a6fbb07722227b8a769748f76a38c3",
+      "textSha256": "2871d8d65418434b4050a74438b5041af79820645341e3190a10f34da7239048",
+      "text": "Commonly held false memories\n\nFalse memories can sometimes be shared by multiple people.\n\nIn 2010, this was dubbed the \"Mandela Effect\" by self-described \"paranormal consultant\" Fiona Broome, in reference to a false memory she reported of the death of South African leader Nelson Mandela in the 1980s (who was at the time still alive), which she claimed was shared by \"perhaps thousands\" of other people. Other such examples include memories of the Berenstain Bears' name previously being spelled as Berenstein, and of a 1990s movie titled Shazaam starring comedian Sinbad as a genie.\n\nPseudoscience commentators such as Broome have speculated about alternate realities as an explanation for such shared false memories. However, most science researchers and commentators suggest that these are instead examples of false memories shaped by similar cognitive factors affecting multiple people, such as social and cognitive reinforcement of incorrect memories, or false news reports and misleading photographs influencing the formation of memories based on them. For example, the false memories of Shazaam have been explained as a conflation of memories of the comedian wearing a genie costume during a TV presentation of Sinbad the Sailor movies in 1994, and a similarly named 1996 film, Kazaam, featuring a genie played by Shaquille O'Neal.\n\nA 2010 study examined people who were familiar with the clock at Bologna Centrale railway station, which had been damaged in the Bologna massacre bombing in August 1980. In the study, 92% falsely remembered that the clock had remained stopped since the bombing, when in fact, the clock was repaired shortly after the attack. Years later the clock was again stopped and was then set to the time of the bombing in observation and commemoration of the bombing.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, False memory, recorded revision 907961283. Excerpt: reviewed printed ranges [(21075, 21103), (21105, 21163), (21674, 22199), (22201, 22954), (21164, 21652)]; original recording 1160.1–1261.62 seconds. Continuous recording cropped and encoded by Lingfern. Reader order/omissions differ from the printed source in False memory; exact ranges and review retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/False_memory?oldid=907961283"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, False memory, recorded revision 907961283. Excerpt: reviewed printed ranges [(21075, 21103), (21105, 21163), (21674, 22199), (22201, 22954), (21164, 21652)]; original recording 1160.1–1261.62 seconds. Continuous recording cropped and encoded by Lingfern. Reader order/omissions differ from the printed source in False memory; exact ranges and review retained. No synthesis or endorsement. Recording: Speaker: JohnAnkerBow Authors of the article. Original recording of False memory.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 4.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/False_memory?oldid=907961283"
+      },
+      "audio": {
+        "src": "media/00c687f967ae603470e9e4c0b87bce52c1a6fbb07722227b8a769748f76a38c3.mp3",
+        "sha256": "87ce8a7cb07e7d009cc444d5c185a27b18e8213855c76ac0dc8a9e4a99e5046f",
+        "duration": 101.52,
+        "author": "Speaker: JohnAnkerBow Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:False_memory.ogg",
+        "license": "CC BY-SA 4.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 88,
+          "text": "Commonly held false memories\n\nFalse memories can sometimes be shared by multiple people.",
+          "audioStart": 0.0,
+          "audioEnd": 6.0
+        },
+        {
+          "start": 90,
+          "end": 584,
+          "text": "In 2010, this was dubbed the \"Mandela Effect\" by self-described \"paranormal consultant\" Fiona Broome, in reference to a false memory she reported of the death of South African leader Nelson Mandela in the 1980s (who was at the time still alive), which she claimed was shared by \"perhaps thousands\" of other people. Other such examples include memories of the Berenstain Bears' name previously being spelled as Berenstein, and of a 1990s movie titled Shazaam starring comedian Sinbad as a genie.",
+          "audioStart": 6.0,
+          "audioEnd": 35.3
+        },
+        {
+          "start": 586,
+          "end": 1339,
+          "text": "Pseudoscience commentators such as Broome have speculated about alternate realities as an explanation for such shared false memories. However, most science researchers and commentators suggest that these are instead examples of false memories shaped by similar cognitive factors affecting multiple people, such as social and cognitive reinforcement of incorrect memories, or false news reports and misleading photographs influencing the formation of memories based on them. For example, the false memories of Shazaam have been explained as a conflation of memories of the comedian wearing a genie costume during a TV presentation of Sinbad the Sailor movies in 1994, and a similarly named 1996 film, Kazaam, featuring a genie played by Shaquille O'Neal.",
+          "audioStart": 35.3,
+          "audioEnd": 78.2
+        },
+        {
+          "start": 1341,
+          "end": 1798,
+          "text": "A 2010 study examined people who were familiar with the clock at Bologna Centrale railway station, which had been damaged in the Bologna massacre bombing in August 1980. In the study, 92% falsely remembered that the clock had remained stopped since the bombing, when in fact, the clock was repaired shortly after the attack. Years later the clock was again stopped and was then set to the time of the bombing in observation and commemoration of the bombing.",
+          "audioStart": 78.2,
+          "audioEnd": 101.52
+        }
+      ],
+      "readerNotes": "Complete exact continuous selected narration, printed source ranges/reader order and scoped differences reviewed; natural quiet paragraph-level audio spans, not inferred word/phoneme times. First False-memory heading+sentence are merged because their coarse ASR boundary is voiced. False-memory clock paragraph follows Mandela discussion in audio, while current collected text puts it before; retain both source order and actual reader order. Reader omits shared false memory phenomenon and short clock-introduction words. Proper-name spelling, a/the movie, plural observation/conclusion variants remain ASR uncertainty and are not scored cues. No audition, new ASR, source-wide or CEFR approval.",
+      "parts": [
+        {
+          "start": 368,
+          "end": 387,
+          "contextEvidence": [
+            {
+              "start": 302,
+              "end": 404
+            }
+          ]
+        },
+        {
+          "start": 1563,
+          "end": 1601,
+          "contextEvidence": [
+            {
+              "start": 1603,
+              "end": 1665
+            },
+            {
+              "start": 1666,
+              "end": 1798
+            },
+            {
+              "start": 1511,
+              "end": 1665
+            }
+          ]
+        },
+        {
+          "start": 729,
+          "end": 778,
+          "contextEvidence": [
+            {
+              "start": 586,
+              "end": 719
+            },
+            {
+              "start": 720,
+              "end": 1059
+            }
+          ]
+        },
+        {
+          "start": 628,
+          "end": 719,
+          "contextEvidence": [
+            {
+              "start": 720,
+              "end": 1059
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

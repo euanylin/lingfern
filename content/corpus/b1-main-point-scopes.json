@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "rootId": "openstax-book-college-success",
+      "sourceHash": "4c7124b939373d006b7897e1fbbc5b96318d7cfd5b6b76eded6bb6ec2ec62d28",
+      "passageId": "f271abe87195ffa44388d715cf36673a4d2ea98c02427590615ae76efeb22623",
+      "textSha256": "9ab2ebc3148efd5feb83a97a00ae8c94b49d689321d8bf974ad22166b5f788c2",
+      "text": "Goals can be big or small. A goal can range from I am going to write one extra page tonight, to I am going to work to get an A in this course, all the way to I am going to graduate in the top of my class so I can start my career with a really good position. The great thing about goals is that they can include and influence a number of other things that all work toward a much bigger picture. For example, if your goal is to get an A in a certain course, all the reading, studying, and every assignment you do for that course contributes to the larger goal. You have motivation to do each of those things and to do them well.",
+      "credit": {
+        "attribution": "College Success — Amy Baldwin; Lisa August; James Bennett; Larry Buland; Sabrina Mathues; Susan Monroe; MJ O’Leary; Ann Pearson; Joshua Troesh; Margit Misangyi Watts. OpenStax, Rice University. Frozen 964da1b4e0343a4607b8af1b49470a35faf55f96 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded. — Goal Setting and Motivation",
+        "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); original prose only, excluding third-party material and media.",
+        "sourceUrl": "https://github.com/openstax/osbooks-college-success-bundle/blob/964da1b4e0343a4607b8af1b49470a35faf55f96/modules/m79859/index.cnxml"
+      }
+    },
+    {
+      "rootId": "openstax-book-writing-guide",
+      "sourceHash": "cf91dccde6d02bf840add41ae7d1ba1da916c6d746af491ac220133e40a42092",
+      "passageId": "dd46b9ae2de57135e0e30bca6994e67ec86f798a8272600c9afbdf9208e31953",
+      "textSha256": "3075cb1d1540bb5032672666fa1bb734abf42b6cd9db73a316fd22a3d31710f5",
+      "text": "To begin to read, write, and think critically, it is helpful to look at something familiar such as social media and the way it is used. Interactions on social media, as in all types of conversation, present rhetorical situations that form the basis of communication. In the most basic terms, a rhetorical situation has two elements: agents and conditions. Agents are the originators (initiators) and the audience of the communication. The originator may have a real audience or an anticipated audience. A real audience is made up of people the originator may know personally or know of. For example, if you are the originator, your real audience could be a group of your peers to whom you present your ideas in class. Or it could be a person to whom you send a text message. You know the members of the class and know something about them. Similarly, you know the person to whom you send the text. An anticipated audience is one you hope to reach or one you expect will engage with your communication. When you post on social media platforms, for instance, your audience is probably anticipated. While you might have followers, you may not know them personally, but you anticipate who they are and how they might react.",
+      "credit": {
+        "attribution": "Writing Guide with Handbook — Michelle Bachelor Robinson; Maria Jerskey; Toby Fulwiler. OpenStax, Rice University. CC BY 4.0; frozen commit aa32f33d8a271aaca990eaaf9c28e050b0a25a67; complete native paragraphs, whitespace normalised; third-party and media excluded. — \"Reading\" to Understand and Respond",
+        "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); original prose only, excluding third-party material and media.",
+        "sourceUrl": "https://github.com/openstax/osbooks-writing-guide/blob/aa32f33d8a271aaca990eaaf9c28e050b0a25a67/modules/m00011/index.cnxml"
+      }
+    }
+  ]
+}

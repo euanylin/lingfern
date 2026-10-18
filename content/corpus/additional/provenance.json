@@ -1,0 +1,1473 @@
+{
+  "version": 1,
+  "acquiredAt": "2026-10-08T13:58:19.759Z",
+  "policies": [
+    {
+      "family": "nasa",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "content/corpus/additional/policies/nasa.html",
+      "sha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50"
+    },
+    {
+      "family": "noaa",
+      "url": "https://oceanservice.noaa.gov/about/faq.html",
+      "path": "content/corpus/additional/policies/noaa.html",
+      "sha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd"
+    },
+    {
+      "family": "noaa",
+      "url": "https://oceanservice.noaa.gov/disclaimer.html",
+      "sha256": "df2867bd3508733d78a2f7db85f44ae985ec66029d0eb4ba954088fc197fd532"
+    }
+  ],
+  "records": [
+    {
+      "rootId": "nasa-article-194222171056800",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/dynamic-pressure/",
+      "rawPath": "content/corpus/additional/raw/nasa-194222171056800.html",
+      "rawSha256": "1cbd60913eb6ff986b9309b3623bc71de56eca8a73ea3bb02a6517cfc3efa859",
+      "textPath": "content/corpus/additional/raw/nasa-194222171056800.txt",
+      "textSha256": "45a61b715b2ef49bb21676318402c5743e8d11e2048b5ddbad0286e543199ae3",
+      "title": "Dynamic Pressure",
+      "paragraphs": 2,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 3,
+          "text": "There are two ways to look at pressure: (1) the small-scale action of individual air molecules or (2) the large-scale action of a large number of molecules. On the small scale, from the kinetic theory of gases, a gas is composed of a large number of molecules that are very small relative to the distance between molecules. The molecules of a gas are in constant, random motion and frequently collide with each other and with the walls of any container. During collisions with the walls, there is a change in velocity and therefore a change in the momentum of the molecules. The change in momentum produces a force on the walls which is related to the gas pressure. The pressure of a gas is a measure of the average linear momentum of the moving molecules of a gas.\n\nOn the large scale, the pressure of a gas is a state variable, like the temperature and the density. The change in pressure during any process is governed by the laws of thermodynamics. Although pressure itself is a scalar quantity, we can define a pressure force to be equal to the pressure (force/area) times the surface area in a direction perpendicular to the surface. If gas is static and not flowing, the measured pressure is the same in all directions. But if the gas is moving, the measured pressure depends on the direction of motion. This leads to the definition of dynamic pressure.",
+          "textSha256": "45a61b715b2ef49bb21676318402c5743e8d11e2048b5ddbad0286e543199ae3"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 241,
+      "modifiedMetadata": "2024-06-28T13:41:26+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.790Z",
+        "pageUpdatedMarkers": [
+          "June 28, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-45884341552500",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/center-of-pressure/",
+      "rawPath": "content/corpus/additional/raw/nasa-45884341552500.html",
+      "rawSha256": "4353f8a295f20986a09a651f61202b42254adbaf931cd819015f193154b782e9",
+      "textPath": "content/corpus/additional/raw/nasa-45884341552500.txt",
+      "textSha256": "8a71e6df339c66ab430671dfb1dda84a3e32834822d4e928838abb14e612151b",
+      "title": "Center of Pressure",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 3,
+          "text": "Determining the center of pressure is very important for any flying object. To trim an airplane, or to provide stability for a model rocket or a kite, it is necessary to know the location of the center of pressure of the entire aircraft. How do engineers determine the location of the center of pressure for an aircraft which they are designing?",
+          "textSha256": "a1bde56060d9d8fa6f4f10245403f0b57cf2b19ea053dac6aa1f7ddf91d8fc74"
+        },
+        {
+          "startParagraph": 5,
+          "endParagraph": 6,
+          "text": "There are several important problems to consider when determining the center of pressure for an airfoil. As we change angle of attack, the pressure at every point on the airfoil changes. And, therefore, the location of the center of pressure changes as well. The movement of the center of pressure caused a major problem for early airfoil designers because the amount (and sometimes the direction) of the movement was different for different designs. In general, the pressure variation around the airfoil also imparts a torque, or “twisting force”, to the airfoil. If a flying airfoil is not restrained in some way it will flip as it moves through the air. (As a further complication, the center of pressure also moves because of viscosity and compressibility effects on the flow field. But let’s save that discussion for another page.)",
+          "textSha256": "388a28581a9ceef57eb20dad936749cd175fb2bbd69c17f7a5a8019e0572c19d"
+        },
+        {
+          "startParagraph": 7,
+          "endParagraph": 8,
+          "text": "When computing the trim of an aircraft, model rocket, or kite, we usually apply the aerodynamic forces at the aerodynamic center of airfoils and compute the center of pressure of the vehicle as an area-weighted average of the centers of the components.",
+          "textSha256": "a79b1f74f1e7f4d414e64b2fffefd205e27fab4f1dfc2f1c5b610c9d92f46c6f"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 241,
+      "modifiedMetadata": "2024-07-17T14:07:49+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.809Z",
+        "pageUpdatedMarkers": [
+          "July 17, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-93431278601612",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aerodynamic-center/",
+      "rawPath": "content/corpus/additional/raw/nasa-93431278601612.html",
+      "rawSha256": "7e2996709e5c139a05b2a4a916e2820cfdd89e56325698e9e5d458bd57223cc8",
+      "textPath": "content/corpus/additional/raw/nasa-93431278601612.txt",
+      "textSha256": "afbca3238fc03c704800ced51bbf16b2b9bfe0a6adc4656863ef938ad46e975a",
+      "title": "Aerodynamic Center",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 4,
+          "text": "As an object moves through a fluid, the velocity of the fluid varies around the surface of the object. The variation of velocity produces a variation of pressure on the surface of the object. Integrating the pressure times the surface area around the body determines the aerodynamic force on the object. We can consider this force to act through the average location of the pressure on the surface of the object. We call the average location of the pressure variation the center of pressure in the same way that we call the average location of the weight of an object the center of gravity. In general, the pressure distribution around the object also imparts a torque, or moment, on the object. If a flying airfoil is not controlled in some way it will tumble as it moves through the air.\n\nIf we consider an airfoil at angle of attack, we can (theoretically) determine the pressure variation around the airfoil, and calculate the aerodynamic force and the center of pressure. But if we change the angle of attack, the pressure distribution changes and therefore the aerodynamic force and the location of the center of pressure and the moment all change. So determining the aerodynamic behavior of an airfoil is very complicated if we use the center of pressure to analyze the forces. We can compute the moment about any point on the airfoil if we know the pressure distribution. The aerodynamic force will be the same, but the value of the moment depends on the point where that force is applied. It has been found both experimentally and theoretically that, if the aerodynamic force is applied at a location 1/4 chord back from the leading edge on most low speed airfoils, the magnitude of the aerodynamic moment remains nearly constant with angle of attack. Engineers call the location where the aerodynamic moment remains constant the aerodynamic center (ac) of the airfoil. Using the aerodynamic center as the location where the aerodynamic force is applied eliminates the problem of the movement of the center of pressure with angle of attack in aerodynamic analysis. (For supersonic airfoils, the aerodynamic center is nearer the 1/2 chord location.)\n\nFor symmetric airfoils, the aerodynamic moment about the ac is zero for all angles of attack. With camber, the moment is non-zero and constant for thin airfoils. For a positive cambered airfoil, the moment is negative and results in a counterclockwise rotation of the airfoil. With camber, an angle of attack can be determined for which the airfoil produces no lift, but the moment is still present. For rectangular wings, the wing ac is the same as the airfoil ac. But for wings with some other planform (triangular, trapezoidal, compound, etc.) we have to find a mean aerodynamic center (mac) which is the average for the whole wing. The computation of the mac depends on the shape of the planform.",
+          "textSha256": "afbca3238fc03c704800ced51bbf16b2b9bfe0a6adc4656863ef938ad46e975a"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 483,
+      "modifiedMetadata": "2023-07-27T21:15:28+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.826Z",
+        "pageUpdatedMarkers": [
+          "July 27, 2023"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-100561297644122",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/spcal/",
+      "rawPath": "content/corpus/additional/raw/nasa-100561297644122.html",
+      "rawSha256": "9b4dca9776cecff514613e20d2621eb270da2837c2b119180337f3157486d806",
+      "textPath": "content/corpus/additional/raw/nasa-100561297644122.txt",
+      "textSha256": "cff3d47164948f5fcd2d42d1f40f81aef98bcf6019b9bf9a010fb680c10fea10",
+      "title": "Reynolds Number Interactive Simulator",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 4,
+          "text": "As an object moves through the atmosphere, the gas molecules of the atmosphere near the object are disturbed and move around the object. Aerodynamic forces are generated between the gas and the object. The magnitude of these forces depends on the shape of the object, the speed of the object, the mass of the gas going by the object, and on two other important properties of the gas, the viscosity, or stickiness, of the gas and the compressibility, or springiness, of the gas.\n\nTo properly model these effects, aerodynamicists use similarity parameters which are ratios of these effects to other forces present in the problem. If two experiments have the same values for the similarity parameters, then the relative importance of the forces are being correctly modeled. Representative values for the properties of air are given on another page, but the actual value of the parameter depends on the state of the gas and the altitude.\n\nAerodynamic forces depend in a complex way on the viscosity of the gas. As an object moves through a gas, the gas molecules stick to the surface. This creates a layer of gas near the surface, called a boundary layer, which, in effect, changes the shape of the object. The flow of gas reacts to the edge of the boundary layer as if it was the physical surface of the object. To make things more confusing, the boundary layer may separate from the body and create an effective shape much different from the physical shape. And to make it even more confusing, the flow conditions in and near the boundary layer are often unsteady (changing in time). The boundary layer is very important in determining the drag of an object. To determine and predict these conditions, aerodynamicists rely on wind tunnel testing and very sophisticated computer analysis.",
+          "textSha256": "cff3d47164948f5fcd2d42d1f40f81aef98bcf6019b9bf9a010fb680c10fea10"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 303,
+      "modifiedMetadata": "2024-07-17T14:14:14+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.853Z",
+        "pageUpdatedMarkers": [
+          "July 17, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-26167861256850",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/boundary-layer/",
+      "rawPath": "content/corpus/additional/raw/nasa-26167861256850.html",
+      "rawSha256": "aa0137058533402414b2f1c4948897e69e3d120d20e35adf180bfa263f268896",
+      "textPath": "content/corpus/additional/raw/nasa-26167861256850.txt",
+      "textSha256": "96b72b622ea1e72a177210aebbd3cecf72003981f319c3e039276c19c0dc44f7",
+      "title": "Boundary Layer",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 2,
+          "text": "As an object moves through a fluid, or as a fluid moves past an object, the molecules of the fluid near the object are disturbed and move around the object. Aerodynamic forces are generated between the fluid and the object. The magnitude of these forces depends on the shape of the object, the speed of the object, the mass of the fluid going by the object and on two other important properties of the fluid: the viscosity, or stickiness, and the compressibility, or springiness, of the fluid. To properly model these effects, aerospace engineers use similarity parameters which are ratios of these effects to other forces present in the problem. If two experiments have the same values for the similarity parameters, then the relative importance of the forces are being correctly modeled.",
+          "textSha256": "f5ea77f64e966ba5a778f7f786008325fa19c137dc1fdec18505b9c59f70054e"
+        },
+        {
+          "startParagraph": 3,
+          "endParagraph": 4,
+          "text": "The details of the flow within the boundary layer are very important for many problems in aerodynamics, including wing stall, the skin friction drag on an object, and the heat transfer that occurs in high-speed flight. Unfortunately, the physical and mathematical details of boundary layer theory are beyond the scope of this beginner’s guide and are usually studied in late undergraduate or graduate school in college. We will only present some of the effects of the boundary layer at this time.",
+          "textSha256": "dfd98c892f370f03dd1529bc19889930cd48bb81665fab7fc134300aae07931a"
+        },
+        {
+          "startParagraph": 8,
+          "endParagraph": 9,
+          "text": "So, the boundary layer gives any object an “effective” shape which is usually slightly different from the physical shape. To make things more confusing, the boundary layer may lift off or “separate” from the body and create an effective shape much different from the physical shape. This happens because the flow in the boundary has very low energy (relative to the free stream) and is more easily driven by changes in pressure. Flow separation is the reason for wing stall at high angle of attack. The effects of the boundary layer on lift are contained in the lift coefficient and the effects on drag are contained in the drag coefficient.",
+          "textSha256": "38213c6cfaddb9874ff321b6e6255cc5e5ee4734a9c626a2c1c0bacc1a089aa9"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 323,
+      "modifiedMetadata": "2024-07-17T14:27:56+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.868Z",
+        "pageUpdatedMarkers": [
+          "July 17, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-236866828826798",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/definition-of-streamlines/",
+      "rawPath": "content/corpus/additional/raw/nasa-236866828826798.html",
+      "rawSha256": "d0b16fd9f33a67e804282b5d32b384b7b6e8e1c8e4e687c41686e1f401f4646f",
+      "textPath": "content/corpus/additional/raw/nasa-236866828826798.txt",
+      "textSha256": "9825ff3f9e6509c7445bbe44eeb26cb216a102336efd0a3d6ad30eaa4b375a76",
+      "title": "Definition of Streamlines",
+      "paragraphs": 2,
+      "continuousBlocks": [
+        {
+          "startParagraph": 3,
+          "endParagraph": 5,
+          "text": "Airplanes fly by moving through almost still air, yet we design and test them using wind tunnels, where the airplane model is fixed, and the air is made to move past the model. This idea of keeping the airfoil fixed and having the air stream past the airfoil can be a bit confusing. Yet you experience the same kind of thing every day! When you stand on the corner and watch a car go by, the air around you is relatively still. As the car moves through the air there are aerodynamic forces present.\n\nNow if you were in the car and put your hand out the window, you could feel the aerodynamic force pushing on your hand. It feels like the air is moving past your hand as fast as the car is moving. The forces on the car are the same, whether you are standing on the corner or riding in the car. Well, this same thing is true of airplanes. Whether the airplane moves through the air, or the air is pushed past the airplane, the forces are exactly the same. It’s usually easier, less expensive, and (in some cases) less dangerous to test airplanes in a wind tunnel before trying to fly them.",
+          "textSha256": "9825ff3f9e6509c7445bbe44eeb26cb216a102336efd0a3d6ad30eaa4b375a76"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 207,
+      "modifiedMetadata": "2023-08-03T13:16:12+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.906Z",
+        "pageUpdatedMarkers": [
+          "August 3, 2023"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-162502910101253",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/basic-object-motion/",
+      "rawPath": "content/corpus/additional/raw/nasa-162502910101253.html",
+      "rawSha256": "b8bf3c4c5f655fe5bfde7523ec6efc7730edf325e769e8db50db62f2e2d37722",
+      "textPath": "content/corpus/additional/raw/nasa-162502910101253.txt",
+      "textSha256": "8ff1197f60f2c08b2705c79dbbf1140f40bf51763accc264c528e2ed24b53d55",
+      "title": "Basic Object Motion",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 0,
+          "endParagraph": 3,
+          "text": "We live in a world that is defined by three spatial dimensions and one time dimension. Objects move within this domain in two ways. An object translates, or changes location, from one point to another. And an object rotates, or changes its attitude. In general, the motion of any object involves both translation and rotation. The translations are in direct response to external forces. The rotations are in direct response to external torques or moments (twisting forces).\n\nThe motion of an aircraft is particularly complex because the rotations and translations are coupled together; a rotation affects the magnitude and direction of the aerodynamic forces which affects the translation. To understand and describe the motion of an aircraft, we usually try to break down the complex problem into a series of easier problems. We can, for instance, assume that the aircraft translates from one point to another as if all the mass of the aircraft were collected into a single point called the center of gravity.\n\nWe can describe the motion of the center of gravity by using Newton’s laws of motion. There are four forces acting on the aircraft; the lift, drag, thrust, and weight. Depending on the relative magnitudes and directions of these forces, the aircraft climbs (increases in altitude), dives (decreases in altitude), or banks (rolls to one side and turns). The magnitude of the aerodynamic forces depends on the attitude of the aircraft during the translations. The attitude depends on the rotations about the center of gravity. A rotation is caused by a force being applied, at some distance from the center of gravity. When the aircraft is trimmed, rotations caused by several forces are balanced and the aircraft does not rotate.",
+          "textSha256": "8ff1197f60f2c08b2705c79dbbf1140f40bf51763accc264c528e2ed24b53d55"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 285,
+      "modifiedMetadata": "2022-07-21T20:11:47+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:18.941Z",
+        "pageUpdatedMarkers": [
+          "July 21, 2022"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-277274607832246",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/motion-of-free-falling-object/",
+      "rawPath": "content/corpus/additional/raw/nasa-277274607832246.html",
+      "rawSha256": "22446477576384320446d8aa0777306ecf2591f79fcd0827e9abb3d2029666dd",
+      "textPath": "content/corpus/additional/raw/nasa-277274607832246.txt",
+      "textSha256": "309882edce57a328a72150b10fcb8134d0524a34823a34fa8398ce602afb550b",
+      "title": "Motion of Free Falling Object",
+      "paragraphs": 1,
+      "continuousBlocks": [
+        {
+          "startParagraph": 7,
+          "endParagraph": 8,
+          "text": "The remarkable observation that all free falling objects fall at the same rate was first proposed by Galileo, nearly 400 years ago. Galileo conducted experiments using a ball on an inclined plane to determine the relationship between the time and distance traveled. He found that the distance depended on the square of the time and that the velocity increased as the ball moved down the incline. The relationship was the same regardless of the mass of the ball used in the experiment. The story that Galileo demonstrated his findings by dropping two cannon balls off the Leaning Tower of Pisa is just a legend. However, if the experiment had been attempted, he would have observed that one ball hit before the other! Falling cannon balls are not actually free falling – they are subject to air resistance and would fall at different terminal velocities.",
+          "textSha256": "309882edce57a328a72150b10fcb8134d0524a34823a34fa8398ce602afb550b"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 144,
+      "modifiedMetadata": "2025-07-03T16:10:11+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.046Z",
+        "pageUpdatedMarkers": [
+          "July 3, 2025"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-61959881763910",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/free-fall-without-air-resistance/",
+      "rawPath": "content/corpus/additional/raw/nasa-61959881763910.html",
+      "rawSha256": "7d8705852f9359279d4c76110c460db80025d8e60c9d87aa3d2b208c9bde9a18",
+      "textPath": "content/corpus/additional/raw/nasa-61959881763910.txt",
+      "textSha256": "d03b61ca40852d2c14b5ca24787b167f724fe580085d0b6872309485b43ca29e",
+      "title": "Free Fall without Air Resistance",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 4,
+          "endParagraph": 5,
+          "text": "the value of g is 9.8 meters per square second on the surface of the earth. The gravitational acceleration g decreases with the square of the distance from the center of the earth. But for many practical problems, we can assume this factor to be a constant. An object that moves because of the action of gravity alone is said to be free falling. If the object falls through the atmosphere, there is an additional drag force acting on the object and the physics involved with the motion of the object is more complex.",
+          "textSha256": "560752538ccd01c07f2bdca92b67a80b84eb5913a381ba0eca756ee76ab0616f"
+        },
+        {
+          "startParagraph": 14,
+          "endParagraph": 16,
+          "text": "The acceleration of the object equals the gravitational acceleration. The mass, size, and shape of the object are not a factor in describing the motion of the object. So all objects, regardless of size or shape or weight, free fall with the same acceleration. In a vacuum, a beach ball falls at the same rate as an airliner. Knowing the acceleration, we can determine the velocity and location of any free falling object at any time.\n\nThe remarkable observation that all free falling objects fall with the same acceleration was first proposed by Galileo Galilei nearly 400 years ago. Galileo conducted experiments using a ball on an inclined plane to determine the relationship between the time and distance traveled. He found that the distance depended on the square of the time and that the velocity increased as the ball moved down the incline. The relationship was the same regardless of the mass of the ball used in the experiment. The experiment was successful because he was using a ball for the falling object and the friction between the ball and the plane was much smaller than the gravitational force. He also used a very shallow incline, so the velocity was small and the drag on the ball was very small compared to the gravitational force. (The story that Galileo demonstrated his findings by dropping two cannon balls off the Leaning Tower of Pisa is just a legend.).",
+          "textSha256": "b6a83343e8c389b7017d81c4bf88c9fbc909967bbfac007192b74fcd3e02b343"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 331,
+      "modifiedMetadata": "2024-07-18T14:08:56+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.066Z",
+        "pageUpdatedMarkers": [
+          "July 18, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-171508993044565",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/simplified-aircraft-motion/",
+      "rawPath": "content/corpus/additional/raw/nasa-171508993044565.html",
+      "rawSha256": "efd43473ff319c161a51892ae8fe1fb6cb3f9962dc5598c618a0444758fa38b5",
+      "textPath": "content/corpus/additional/raw/nasa-171508993044565.txt",
+      "textSha256": "e35506db3fb3b241813f16c090c4f3fca60b68278dcf342ed9649b3b09384708",
+      "title": "Simplified Aircraft Motion",
+      "paragraphs": 2,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 3,
+          "text": "This page shows some rules for the simplified motion of an aircraft. By simplified motion we mean that some of the four forces acting on the aircraft are balanced by other forces and that we are looking at only one force and one direction at a time. In reality, this simplified motion doesn’t occur because all of the forces are interrelated to the aircraft’s speed, altitude, orientation, etc. But looking at the forces ideally and individually does give us some insight and is much easier to understand.\n\nIn an ideal situation, an airplane could sustain a constant speed and level flight in which the weight would be balanced by the lift and the drag would be balanced by the thrust. The closest example of this condition is a cruising airliner. While the weight decreases due to fuel burned, the change is very small relative to the total aircraft weight. In this situation, the aircraft will maintain at a constant cruise velocity as described by Newton’s first law of motion.",
+          "textSha256": "e35506db3fb3b241813f16c090c4f3fca60b68278dcf342ed9649b3b09384708"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 169,
+      "modifiedMetadata": "2024-06-21T15:47:42+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.151Z",
+        "pageUpdatedMarkers": [
+          "June 21, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-69087738819102",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-motion-newtons-first-law/",
+      "rawPath": "content/corpus/additional/raw/nasa-69087738819102.html",
+      "rawSha256": "268cc8fe01f3c14cc5f14eaf48f14302997eebcc2437f232a57628381e57e2d0",
+      "textPath": "content/corpus/additional/raw/nasa-69087738819102.txt",
+      "textSha256": "9c24d45729f7e5895b4e8106678e05f2df59aaa96e7ec339456900105bb8897e",
+      "title": "Aircraft Motion – Newton’s First Law",
+      "paragraphs": 5,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 6,
+          "text": "Sir Isaac Newton first presented his three laws of motion in the “Principia Mathematica Philosophiae Naturalis” in 1686. His first law states that every object remains at rest or in uniform motion in a straight line unless compelled to change its state by the action of an external force. This is normally taken as the definition of inertia. The key point here is that if there is no net force resulting from unbalanced forces acting on an object (if all the external forces cancel each other out), then the object maintains a constant velocity. If that velocity is zero, then the object remains at rest. And if an additional external force is applied, the velocity changes because of the force.\n\nAn aircraft in flight is a particularly good example of the first law of motion. There are four major forces acting on an aircraft; lift, weight, thrust, and drag. If we consider the motion of an aircraft at a constant altitude, we can neglect the lift and weight. A cruising aircraft flies at a constant airspeed and the thrust exactly balances the drag of the aircraft. This is the first part sited in Newton’s first law; there is no net force on the airplane and it travels at a constant velocity in a straight line.\n\nNow if the pilot changes the thrust of the engine, the thrust and drag are no longer in balance. If the thrust is increased, the aircraft accelerates and the velocity increases. This is the second part sited in Newton’s first law; a net external force changes the velocity of the object. The drag of the aircraft depends on the square of the velocity. So the drag increases with increased velocity. Eventually, the new drag equals the new thrust level and at that point, the forces again balance out, and the acceleration stops. The airplane continues to fly at a new constant velocity that is higher than the initial velocity. We are again back to the first part of the law with the aircraft traveling at a constant velocity.\n\nRemember, in this simple example, that we are only considering the motion of the aircraft in a horizontal direction; we are neglecting any effects of the thrust on weight or on lift. On real aircraft, increasing the throttle setting increases the fuel usage and decreases the weight, and the increase in velocity increases the lift as well as the drag. Each of these changes affect the vertical motion of the aircraft, but to simplify our understanding of Newton’s laws, we are neglecting these effects in this example.\n\nIt’s important to point out the role of engine thrust in this example. Thrust is used to accelerate the aircraft, to change its velocity, and thrust is used to balance the drag when the aircraft is cruising at a constant velocity. We normally think of only the first role – acceleration. For fighter planes high thrust is desirable. But some aircraft, like jet airliners, spend most of their existence in cruising flight balancing the drag. In that role engine efficiency (low fuel usage) is desirable. Depending on the mission of the aircraft, different types of engines are designed to provide high thrust or high efficiency.",
+          "textSha256": "9c24d45729f7e5895b4e8106678e05f2df59aaa96e7ec339456900105bb8897e"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 535,
+      "modifiedMetadata": "2022-07-21T21:48:18+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.174Z",
+        "pageUpdatedMarkers": [
+          "July 21, 2022"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-157371962253964",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-rotations/",
+      "rawPath": "content/corpus/additional/raw/nasa-157371962253964.html",
+      "rawSha256": "efd1ed57ef353ffb65770b756e63bef55e5cf0c9004ca7776d829eccde1ba122",
+      "textPath": "content/corpus/additional/raw/nasa-157371962253964.txt",
+      "textSha256": "ac7b49fbb974925c37587200ff1979b19515ac95514c10a80bd1158400153b08",
+      "title": "Aircraft Rotations",
+      "paragraphs": 6,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 7,
+          "text": "Since we live in a three dimensional world, it is necessary to control the attitude or orientation of a flying aircraft in all three dimensions. In flight, any aircraft will rotate about its center of gravity, a point which is the average location of the mass of the aircraft. We can define a three dimensional coordinate system through the center of gravity with each axis of this coordinate system perpendicular to the other two axes. We can then define the orientation of the aircraft by the amount of rotation of the parts of the aircraft along these principal axes.\n\nThe yaw axis is defined to be perpendicular to the plane of the wings with its origin at the center of gravity and directed towards the bottom of the aircraft. A yaw motion is a movement of the nose of the aircraft from side to side.\n\nThe pitch axis is perpendicular to the yaw axis and is parallel to the plane of the wings with its origin at the center of gravity and directed towards the right wing tip. A pitch motion is an up or down movement of the nose of the aircraft.\n\nThe roll axis is perpendicular to the other two axes with its origin at the center of gravity, and is directed towards the nose of the aircraft. A rolling motion is an up and down movement of the wing tips of the aircraft.\n\nIn flight, the control surfaces of an aircraft produce aerodynamic forces. These forces are applied at the center of pressure of the control surfaces which are some distance from the aircraft cg and produce torques (or moments) about the principal axes. The torques cause the aircraft to rotate. The elevators produce a pitching moment, the rudder produces a yawing moment, and the ailerons produce a rolling moment. The ability to vary the amount of the force and the moment allows the pilot to maneuver or to trim the aircraft.\n\nThe first aircraft to demonstrate active control about all three axes was the Wright brothers’ 1902 glider.",
+          "textSha256": "ac7b49fbb974925c37587200ff1979b19515ac95514c10a80bd1158400153b08"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 342,
+      "modifiedMetadata": "2022-07-21T21:50:10+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.210Z",
+        "pageUpdatedMarkers": [
+          "July 21, 2022"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-95436225647134",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/banking-turns/",
+      "rawPath": "content/corpus/additional/raw/nasa-95436225647134.html",
+      "rawSha256": "2144ced95f05a6d3b37bfd809959f50ae7a8bd1ff30fc9db1dccf36f9a528812",
+      "textPath": "content/corpus/additional/raw/nasa-95436225647134.txt",
+      "textSha256": "9f5bbfbceb3bc019a45217d5c4c8f3ed491e7e4a344a3e5532ce8f9a996784e3",
+      "title": "Banking Turns",
+      "paragraphs": 2,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 4,
+          "text": "As long as the aircraft is banked, the side force is a constant unopposed force on the aircraft. The resulting motion of the center of gravity of the aircraft is a circular arc. When the wings are brought level by removing the warp, the side force is eliminated and the aircraft continues to fly in a straight line along a new heading. Notice that the rudder is not used to turn the aircraft. The aircraft is turned through the action of the side component of the lift force. The rudder is used during the turn to coordinate the turn, i.e. to keep the nose of the aircraft pointed along the flight path. If the rudder is not used, one can encounter an adverse yaw in which the drag on the outer wing pulls the aircraft nose away from the flight path.\n\nThe Wright brothers first encountered adverse yaw on their 1901 aircraft, which had no rudder. During the winter of 1901, as they designed their 1902 aircraft, they decided to include a fixed rudder. But they found during early flight tests that the fixed rudder actually made the adverse yaw worse. Orville decided that the rudder should move to keep the nose pointed along the flight path. Wilbur suggested connecting the controls of the rudder to the wing warping to make the pilot’s job easier.",
+          "textSha256": "9f5bbfbceb3bc019a45217d5c4c8f3ed491e7e4a344a3e5532ce8f9a996784e3"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 225,
+      "modifiedMetadata": "2023-01-21T13:19:51+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.232Z",
+        "pageUpdatedMarkers": [
+          "January 21, 2023"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-242874790355678",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/range-constant-velocity/",
+      "rawPath": "content/corpus/additional/raw/nasa-242874790355678.html",
+      "rawSha256": "87cf93ae198d55f939846782080eb4f207b2ffed26429b8af7108fc3500bcb79",
+      "textPath": "content/corpus/additional/raw/nasa-242874790355678.txt",
+      "textSha256": "7491724f00c3d9ea59dd2e520522e13643a8e2f2faac744ffd875ec8b899a549",
+      "title": "Range – Constant Velocity",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 5,
+          "endParagraph": 6,
+          "text": "Airplanes, unfortunately, cannot stay in the air forever. There is a time limit, or maximum time, that an airplane can stay aloft, which is usually determined by the fuel load. When the airplane runs out of fuel, the engine stops. The drag then slows the airplane, which decreases the lift and, eventually, the airplane comes back to Earth. The maximum distance that the aircraft can fly is then equal to the ground speed times the maximum time (tmax). We call this distance the maximum range (R) of the aircraft.",
+          "textSha256": "241c4668a61daea884289d3e2c8e6695c6ebee238d7651e90bb533f81fe38b80"
+        },
+        {
+          "startParagraph": 7,
+          "endParagraph": 10,
+          "text": "The maximum flight time depends on how much fuel is carried by the aircraft and how fast the fuel is burned. A summary of information needed to determine the range is given on a separate page.\n\nSome care must be used when specifying range. On this page, we are assuming that the mission of the aircraft is one-way, such as an airliner flying from city A to city B, where the aircraft can be re-fueled. The range of a military aircraft is often specified for a round trip (since you don’t normally want to land in enemy territory to be re-fueled!). To avoid confusion about the “range” of a military aircraft, the military often specifies the combat radius of the aircraft. The combat radius would be half of the range as specified here.\n\nOn this page, we have taken a very simple view of aircraft range–for academic purposes. In reality, calculating the range is a complex problem because of the number of variables. An aircraft’s flight is not conducted at a single ground speed but varies from zero at takeoff, to cruise conditions, and back to zero at landing. Extra fuel is expended in climbing to altitude and in maneuvering the aircraft. The weight constantly changes as fuel is burned. So, the lift, drag, thrust, and fuel consumption rate also continually change. On real aircraft, as with your automobile, there is usually a fuel reserve; and the pilot makes sure to land the plane with fuel still on board.",
+          "textSha256": "ecdd625339ec462dc73d661b0890fd0fa7af1aa04c89e7d8b3635e92b32d57b3"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 338,
+      "modifiedMetadata": "2025-07-02T18:27:59+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.251Z",
+        "pageUpdatedMarkers": [
+          "July 2, 2025"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-119665421965562",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/maximum-flight-time/",
+      "rawPath": "content/corpus/additional/raw/nasa-119665421965562.html",
+      "rawSha256": "28481490adb0839545cc50bee87fb2a9b18c135550ad187e336d2935e997dff0",
+      "textPath": "content/corpus/additional/raw/nasa-119665421965562.txt",
+      "textSha256": "a5b749a475b90fe8e4f2240650ceffb939a053e57866ab91592ba4adb18fc7f6",
+      "title": "Maximum Flight Time",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 3,
+          "endParagraph": 5,
+          "text": "The max time for an aircraft equals the amount of fuel that we have divided by the rate that the fuel is being burned. The amount of fuel is called the fuel load and is denoted by M (given in units of kilograms or pounds mass). The rate at which the fuel is being burned is the fuel mass flow rate (given in kilograms per hour or pounds mass per hour and denoted by mf). The maximum flight time (t max) is then equal to the fuel load divided by the fuel mass flow rate\n\nThe fuel mass flow rate depends on the type of engine used and the throttle setting chosen by the pilot. The fuel mass flow rate is related to the thrust F by a factor called the specific fuel consumption (TSFC). The specific fuel consumption equals the fuel mass flow rate divided by the thrust.",
+          "textSha256": "1eeb42829d48077e8963a7af1f0d10900b37aa2d909e141d232afbce9500a495"
+        },
+        {
+          "startParagraph": 8,
+          "endParagraph": 9,
+          "text": "On this page, we have taken a very simple view of aircraft range – for academic purposes. In reality, calculating the range is a complex problem because of the number of variables. An aircraft’s flight is not conducted at a single ground speed but varies from zero at takeoff, to cruise conditions, and back to zero at landing. Extra fuel is expended in climbing to altitude and in maneuvering the aircraft. The weight constantly changes as fuel is burned; so, the lift, drag, and thrust (fuel consumption rate) also continually change. On real aircraft, just like with your automobile, there is usually a fuel reserve. The pilot makes sure to land the plane with fuel still on board.",
+          "textSha256": "07a24c201cca0bbfa265fc7bf2661ec71e24944d7b0e625d39aa89f09224ab9b"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 267,
+      "modifiedMetadata": "2025-09-10T00:51:05+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.269Z",
+        "pageUpdatedMarkers": [
+          "September 9, 2025"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-142332168092614",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/range-summary/",
+      "rawPath": "content/corpus/additional/raw/nasa-142332168092614.html",
+      "rawSha256": "b292b1a6dad1c0a582c7ff0620bf960e362ac77cc5047a1608f20958fbef4a4d",
+      "textPath": "content/corpus/additional/raw/nasa-142332168092614.txt",
+      "textSha256": "9215e7bd50b187ca14152c26ce2a5c0ce8b30f8350007005edfc7b43491eb557",
+      "title": "Range Summary",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 2,
+          "text": "Let’s summarize the information necessary to do a preliminary calculation of an aircraft’s range under cruise conditions. We are taking a very simple view of aircraft range – for academic purposes. In reality, calculating the range is a complex problem because of the large number of variables. An aircraft’s flight is not conducted at a single ground speed but varies from zero at take-off, to cruise conditions, and back to zero at landing. Extra fuel is expended in climbing to altitude and in maneuvering the aircraft. The weight is constantly changing as fuel is burned, so the lift, drag, and thrust and fuel consumption rate are also continually changing. On real aircraft, just like with your automobile, there is usually a fuel reserve, and the pilot makes sure to land the plane with fuel still on board. We are going to neglect all of these effects.",
+          "textSha256": "2cde213a3da991f2c44681386e0368a9c6b590892abbc83739497a0bd5f6a5a1"
+        },
+        {
+          "startParagraph": 9,
+          "endParagraph": 10,
+          "text": "Using the L/D ratio, we can solve for the drag of the aircraft which is equal to the thrust.",
+          "textSha256": "31db0d7b62fa94beb7f7eeb011ebd9b0cd71b6fb608ddc60ee03fcb919552dae"
+        },
+        {
+          "startParagraph": 12,
+          "endParagraph": 13,
+          "text": "The thrust, specific fuel consumption, and fuel load determine the maximum flight time available to the aircraft.",
+          "textSha256": "af6393b99e64e295494ff5043c05d8c80164db4c24931940ee1cc4acd2a89850"
+        },
+        {
+          "startParagraph": 15,
+          "endParagraph": 16,
+          "text": "This flight time multiplied by the aircraft velocity determines the range (R).",
+          "textSha256": "11afacc6867a43e83e040c3ba838a757e35b216e1abd1d9e0e17cb5f30c0671c"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 194,
+      "modifiedMetadata": "2025-07-07T17:14:08+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.282Z",
+        "pageUpdatedMarkers": [
+          "July 7, 2025"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-10702250177615",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/airplane-parts-function/",
+      "rawPath": "content/corpus/additional/raw/nasa-10702250177615.html",
+      "rawSha256": "2d914289acbf053ec2dff324c3cdd53fa46fdd3844e46f8274a438532c1ea745",
+      "textPath": "content/corpus/additional/raw/nasa-10702250177615.txt",
+      "textSha256": "127d989c516402db55460441193919eeeb824318e665af282411081263c4c978",
+      "title": "Airplane Parts and Function",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 4,
+          "text": "For any airplane to fly, one must lift the weight of the airplane itself, the fuel, the passengers, and the cargo. The wings generate most of the lift to hold the plane in the air. To generate lift, the airplane must be pushed through the air. The air resists the motion in the form of aerodynamic drag. Modern airliners use winglets on the tips of the wings to reduce drag. The turbine engines, which are located beneath the wings, provide the thrust to overcome drag and push the airplane forward through the air. Smaller, low-speed airplanes use propellers for the propulsion system instead of turbine engines.\n\nTo control and maneuver the aircraft, smaller wings are located at the tail of the plane. The tail usually has a fixed horizontal piece, called the horizontal stabilizer, and a fixed vertical piece, called the vertical stabilizer. The stabilizers’ job is to provide stability for the aircraft, to keep it flying straight. The vertical stabilizer keeps the nose of the plane from swinging from side to side, which is called yaw. The horizontal stabilizer prevents an up-and-down motion of the nose, which is called pitch. (On the Wright brother’s first aircraft, the horizontal stabilizer was placed in front of the wings. Such a configuration is called a canard after the French word for “duck”).",
+          "textSha256": "23db41dafebd66c8551164c361e9c6997f5774db358dd23d28c9732b502e00b9"
+        },
+        {
+          "startParagraph": 5,
+          "endParagraph": 7,
+          "text": "The wings have additional hinged, rear sections near the body that are called flaps. Flaps are deployed downward on takeoff and landing to increase the amount of force produced by the wing. On some aircraft, the front part of the wing will also deflect. Slats are used at takeoff and landing to produce additional force. The spoilers are also used during landing to slow the plane down and to counteract the flaps when the aircraft is on the ground. The next time you fly on an airplane, notice how the wing shape changes during takeoff and landing.\n\nThe fuselage or body of the airplane, holds all the pieces together. The pilots sit in the cockpit at the front of the fuselage. Passengers and cargo are carried in the rear of the fuselage. Some aircraft carry fuel in the fuselage; others carry the fuel in the wings.",
+          "textSha256": "243037f5da26af811b82faf79c1ff5f1187bed0c18beb8064c9904906ab9d9b6"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 366,
+      "modifiedMetadata": "2022-10-04T13:47:04+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.298Z",
+        "pageUpdatedMarkers": [
+          "October 4, 2022"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-269667200623591",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/fuselage/",
+      "rawPath": "content/corpus/additional/raw/nasa-269667200623591.html",
+      "rawSha256": "6cbd8df07043bf31b13afb601e3bf2640a509837c4235db59a276c0a7009284a",
+      "textPath": "content/corpus/additional/raw/nasa-269667200623591.txt",
+      "textSha256": "82f1b4926a8d508bb54b27500696985603ab26ed6ada2497751fdf3cb8a159d1",
+      "title": "Fuselage",
+      "paragraphs": 2,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 4,
+          "text": "The fuselage, or body of the airplane, is a long hollow tube which holds all the pieces of an airplane together. The fuselage is hollow to reduce weight. As with most other parts of the airplane, the shape of the fuselage is normally determined by the mission of the aircraft. A supersonic fighter plane has a very slender, streamlined fuselage to reduce the drag associated with high speed flight. An airliner has a wider fuselage to carry the maximum number of passengers. On an airliner, the pilots sit in a cockpit at the front of the fuselage. Passengers and cargo are carried in the rear of the fuselage and the fuel is usually stored in the wings. For a fighter plane, the cockpit is normally on top of the fuselage, weapons are carried on the wings, and the engines and fuel are placed at the rear of the fuselage.\n\nThe weight of an aircraft is distributed all along the aircraft. The fuselage, along with the passengers and cargo, contribute a significant portion of the weight of an aircraft. The center of gravity of the aircraft is the average location of the weight and it is usually located inside the fuselage. In flight, the aircraft rotates around the center of gravity because of torques generated by the elevator, rudder, and ailerons. The fuselage must be designed with enough strength to withstand these torques.",
+          "textSha256": "82f1b4926a8d508bb54b27500696985603ab26ed6ada2497751fdf3cb8a159d1"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 232,
+      "modifiedMetadata": "2022-07-21T22:07:24+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.310Z",
+        "pageUpdatedMarkers": [
+          "July 21, 2022"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-159257851217500",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/turbine-engines/",
+      "rawPath": "content/corpus/additional/raw/nasa-159257851217500.html",
+      "rawSha256": "ffed54bd8451daa5539a64c1bf2e73c0e53adb7c7372d23cecfa3ef0026c2777",
+      "textPath": "content/corpus/additional/raw/nasa-159257851217500.txt",
+      "textSha256": "b1cd8134f8807b2155d3772918cec15021026f9d7d69cda0415bb908d17ccfd8",
+      "title": "Gas Turbine Propulsion",
+      "paragraphs": 1,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 2,
+          "text": "During World War II, a new type of airplane engine was developed independently in Germany and in England. This engine was called a gas turbine engine. We sometimes call this engine a jet engine. Early gas turbine engines worked much like a rocket engine creating a hot exhaust gas which was passed through a nozzle to produce thrust. But unlike the rocket engine which must carry its oxygen for combustion, the turbine engine gets its oxygen from the surrounding air. A turbine engine does not work in outer space because there is no surrounding air. For a gas turbine engine, the accelerated gas, or working fluid, is the jet exhaust. Most of the mass of the jet exhaust comes from the surrounding atmosphere. Most modern, high-speed passenger and military aircraft are powered by gas turbine engines. Because gas turbine engines are so important for modern life, we will be providing a lot of information about turbine engines and their operation.",
+          "textSha256": "b1cd8134f8807b2155d3772918cec15021026f9d7d69cda0415bb908d17ccfd8"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 160,
+      "modifiedMetadata": "2025-02-26T18:59:57+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.324Z",
+        "pageUpdatedMarkers": [
+          "February 26, 2025"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "nasa-article-227186238321592",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry-interactive/",
+      "rawPath": "content/corpus/additional/raw/nasa-227186238321592.html",
+      "rawSha256": "a464c28da4db7568e0f3793c61abb34fe4d45fe025129f93267e1483466ac578",
+      "textPath": "content/corpus/additional/raw/nasa-227186238321592.txt",
+      "textSha256": "1c7a80468c518afce80dd196d651a3b12ea7635ab4b1045c37a4bee748039926",
+      "title": "Wing Geometry Definitions Interactive",
+      "paragraphs": 5,
+      "continuousBlocks": [
+        {
+          "startParagraph": 3,
+          "endParagraph": 4,
+          "text": "Note: The wing area is NOT the total surface area of the wing. The total surface area includes both upper and lower surfaces. The wing area is a projected area and is almost half of the total surface area.",
+          "textSha256": "bdf6c9a22752c24afba5ede6ab6f75c6565da96fc803776e98a0d5fc972c7e9b"
+        },
+        {
+          "startParagraph": 5,
+          "endParagraph": 6,
+          "text": "High aspect ratio wings have long spans (like high performance gliders), while low aspect ratio wings have either short spans (like the F-16 fighter) or thick chords (like the Space Shuttle). There is a component of the drag of an aircraft called induced drag which depends inversely on the aspect ratio. A higher aspect ratio wing has a lower drag and a slightly higher lift than a lower aspect ratio wing. Because the glide angle of a glider depends on the ratio of the lift to the drag, a glider is usually designed with a very high aspect ratio. The Space Shuttle has a low aspect ratio because of high-speed effects, and therefore is a very poor glider. The F-14 and F-111 have the best of both worlds. They can change the aspect ratio in flight by pivoting the wings: large span for low speed, small span for high speed.",
+          "textSha256": "f5ab7af427da7c7dadbb1b07026253fd09e151f8ada3f0fb4253b55757a60cfc"
+        },
+        {
+          "startParagraph": 7,
+          "endParagraph": 8,
+          "text": "Historical Note: The Wright brothers designed their 1903 flyer with a slight anhedral to enhance the aircraft roll performance.",
+          "textSha256": "fd26c59407dd3cb0fdf9e0b91425cd2a49cc05d12128a8570bcfad7ec25ed000"
+        },
+        {
+          "startParagraph": 9,
+          "endParagraph": 11,
+          "text": "For a symmetric airfoil (upper surface the same shape as the lower surface) the mean camber line will fall on top of the chord line. But in most cases, these are two separate lines. The maximum distance between the two lines is called the camber, which is a measure of the curvature of the airfoil (high camber means high curvature). The maximum distance between the upper and lower surfaces is called the thickness. Often you will see these values divided by the chord length to produce a non-dimensional or “percent” type of number. Airfoils can come with all kinds of combinations of camber and thickness distributions.\n\nNACA (the precursor of NASA) established a method of designating classes of airfoils and then wind tunnel tested the airfoils to provide lift coefficients and drag coefficients for designers.",
+          "textSha256": "9160957deb1a605185af0d9011517244e915bd7d986ec5b2b060ce910ae1c91c"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 343,
+      "modifiedMetadata": "2024-07-17T14:10:09+00:00",
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.353Z",
+        "pageUpdatedMarkers": [
+          "July 17, 2024"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NASA Glenn Research Center",
+      "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "policySha256": "462145950e3a69545cecdf64361191c6490ae46f29fdeae1dfb95795bb026b50",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-217121916223523",
+      "url": "https://oceanservice.noaa.gov/facts/amoc.html",
+      "rawPath": "content/corpus/additional/raw/noaa-217121916223523.html",
+      "rawSha256": "d681dff663302b16f895f803ae6458d42e43e4b035c3ae75115a8835db060a16",
+      "textPath": "content/corpus/additional/raw/noaa-217121916223523.txt",
+      "textSha256": "a9b856732b0b85861746e3b34f0e462af704690880ff450d3c7745e080aa743c",
+      "title": "What is the Atlantic Meridional Overturning Circulation (AMOC)?",
+      "paragraphs": 5,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 6,
+          "text": "The ocean’s water is constantly circulated by currents. Tidal currents occur close to shore and are influenced by the sun and moon. Surface currents are influenced by the wind. However, other, much slower currents that occur from the surface to the seafloor are driven by changes in the saltiness and ocean temperature, a process called thermohaline circulation. These currents are carried in a large \"global conveyor belt,\" which includes the AMOC.\n\nAMOC stands for Atlantic Meridional Overturning Circulation. The AMOC circulates water from north to south and back in a long cycle within the Atlantic Ocean. This circulation brings warmth to various parts of the globe and also carries nutrients necessary to sustain ocean life.\n\nThe circulation process begins as warm water near the surface moves toward the poles (such as the Gulf Stream in the North Atlantic), where it cools and forms sea ice. As this ice forms, salt is left behind in the ocean water. Due to the large amount of salt in the water, it becomes denser, sinks down, and is carried southwards in the depths below. Eventually, the water gets pulled back up towards the surface and warms up in a process called upwelling, completing the cycle.\n\nThe entire circulation cycle of the AMOC, and the global conveyor belt, is quite slow. It takes an estimated 1,000 years for a parcel (any given cubic meter) of water to complete its journey along the belt. Even though the whole process is slow on its own, there is some evidence that the AMOC is slowing down further. NOAA funds research to better understand this potential slowing, as well as to investigate the AMOC’s role in coastal sea level changes and its relationship to extreme events.\n\nAs our climate continues to change, is there a possibility that the AMOC will slow down, or come to a complete stop? While research shows it is weakening over the past century, whether or not it will continue to slow or stop circulating completely remains uncertain. If the AMOC does continue to slow down, however, it could have far-reaching climate impacts. For example, if the planet continues to warm, freshwater from melting ice at the poles would shift the rain belt in South Africa, causing droughts for millions of people. It would also cause sea level rise across the U.S. East Coast.",
+          "textSha256": "a9b856732b0b85861746e3b34f0e462af704690880ff450d3c7745e080aa743c"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 389,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.381Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-80619814715992",
+      "url": "https://oceanservice.noaa.gov/facts/longitude.html",
+      "rawPath": "content/corpus/additional/raw/noaa-80619814715992.html",
+      "rawSha256": "cf9f9da2e8f296b1993bdf51cf0c5caa839fe9291ae17255d306fa7a98ef645e",
+      "textPath": "content/corpus/additional/raw/noaa-80619814715992.txt",
+      "textSha256": "45a822516ff0dd8c22f9314a77ac40524fae6a185e1d89c609db2a499cc7e22e",
+      "title": "What is longitude?",
+      "paragraphs": 8,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 10,
+          "text": "Lines of longitude, also called meridians, are imaginary lines that divide the Earth. They run north to south from pole to pole, but they measure the distance east or west.\n\nThe prime meridian, which runs through Greenwich, England, has a longitude of 0 degrees. It divides the Earth into the eastern and western hemispheres. The antimeridian is on the opposite side of the Earth, at 180 degrees longitude. Though the antimeridian is the basis for the international date line, actual date and time zone boundaries are dependent on local laws. The international date line zigzags around borders near the antimeridian.\n\nLike latitude, longitude is measured in degrees, minutes, and seconds. Although latitude lines are always equally spaced, longitude lines are furthest from each other at the equator and meet at the poles. At the equator, longitude lines are the same distance apart as latitude lines — one degree covers about 111 kilometers (69 miles). But, by 60 degrees north or south, that distance is down to 56 kilometers (35 miles). By 90 degrees north or south (at the poles), it reaches zero.\n\nNavigators and mariners have been able to measure latitude with basic tools for thousands of years. Longitude, however, required more advanced tools and calculations. Starting in the 16th century, European governments began offering huge rewards if anyone could solve “the longitude problem.” Several methods were tried, but the best and simplest way to measure longitude from a ship was with an accurate clock.\n\nA navigator would compare the time at local noon (when the sun is at its highest point in the sky) to an onboard clock that was set to Greenwich Mean Time (the time at the prime meridian). Each hour of difference between local noon and the time in Greenwich equals 15 degrees of longitude. Why? Because the Earth rotates 360 degrees in 24 hours, or 15 degrees per hour. If the sun’s position tells the navigator it’s local noon, and the clock says back in Greenwich, England, it’s 2 p.m., the two-hour difference means the ship’s longitude is 30 degrees west.\n\nBut aboard a swaying ship in varying temperatures and salty air, even the most accurate clocks of the age did a poor job of keeping time. It wasn’t until marine chronometers were invented in the 18th century that longitude could be accurately measured at sea.\n\nAccurate clocks are still critical to determining longitude, but now they’re found in GPS satellites and stations. Each GPS satellite is equipped with one or more atomic clocks that provide incredibly precise time measurements, accurate to within 40 nanoseconds (or 40 billionths of a second). The satellites broadcast radio signals with precise timestamps. The radio signals travel at a constant speed (the speed of light), so we can easily calculate the distance between a satellite and GPS receiver if we know precisely how long it took for the signal to travel between them.\n\nOn the ground, NOAA’s National Geodetic Survey manages the Continuously Operating Reference Stations Network, which comprises 1,800 stationary, permanently operating GPS stations. These CORS continuously receive GPS radio signals and incorporate that data into the National Spatial Reference System. The GPS position on a smartphone is accurate to within about 5 meters (16 feet), but processed CORS data can provide longitude accurate to within a few centimeters, along with latitude and height positions.",
+          "textSha256": "45a822516ff0dd8c22f9314a77ac40524fae6a185e1d89c609db2a499cc7e22e"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 557,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.393Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-180620006749967",
+      "url": "https://oceanservice.noaa.gov/facts/latitude.html",
+      "rawPath": "content/corpus/additional/raw/noaa-180620006749967.html",
+      "rawSha256": "18cb1c2e208c4395272062ea726c0d7d48dcc77e57de0d23cdc9c1764b277ed5",
+      "textPath": "content/corpus/additional/raw/noaa-180620006749967.txt",
+      "textSha256": "de10a4f8b075721f671a856e7ba26e6aec17958dbb55708c650e3abfbc2f9aae",
+      "title": "What is latitude?",
+      "paragraphs": 6,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 2,
+          "text": "Lines of latitude, also called parallels, are imaginary lines that divide the Earth. They run east to west, but measure your distance north or south. The equator is the most well known parallel. At 0 degrees latitude, it equally divides the Earth into the Northern and Southern hemispheres. From the equator, latitude increases as you travel north or south, reaching 90 degrees at each pole.",
+          "textSha256": "f83580da1cb1e0ae3dafd4ef83a1a7ebe83edca692afe47ae13419ddba0d816e"
+        },
+        {
+          "startParagraph": 3,
+          "endParagraph": 7,
+          "text": "There are other named lines of latitude. They’re based on the sun’s position during Earth’s orbit, and they help us understand climate, weather, and ocean currents. The Tropic of Cancer, at roughly 23 degrees north, and the Tropic of Capricorn, at roughly 23 degrees south, are the boundaries of what we consider the tropics. The Arctic Circle and the Antarctic Circle are at roughly 66 degrees north and south, respectively. They mark the boundaries of the Arctic and Antarctic regions.\n\nEach degree of latitude covers about 111 kilometers on the Earth’s surface. One degree of latitude can be further divided into 60 minutes, and one minute can be further divided into 60 seconds. A second of latitude covers only about 30.7 meters. Unlike longitude lines, which get closer to each other at the poles, latitude lines are parallel. No matter where you are on Earth, latitude lines are the same distance apart.\n\nLatitude and longitude have been used in astronomy and navigation since ancient times. By calculating the angle between the horizon and a celestial object (usually the sun or the North Star), navigators could determine their approximate latitude using basic tools. The calculations were simple, so measuring latitude at sea was reliable hundreds of years before accurate longitude measurements could be calculated during a voyage. If the North Star was 60 degrees above the horizon, the observer was at 60 degrees latitude (north). This process was more complex in the southern hemisphere, where the North Star is not visible.\n\nWe still look to the sky to determine our position, but the equipment is a bit more sophisticated. A constellation of over 30 global positioning satellites orbit the Earth, transmitting signals to receivers on land. NOS’s National Geodetic Survey manages a network of stationary global positioning satellite receivers called Continuously Operating Reference Stations (CORS). When combined with other positioning data in the National Spatial Reference System, processed CORS data can provide latitude, longitude, and height positions accurate to within a few centimeters.",
+          "textSha256": "58449fbf02315449d8abed77f1776fed117c318a3f94502973163d66e36687f6"
+        },
+        {
+          "startParagraph": 8,
+          "endParagraph": 9,
+          "text": "If we assume the Earth is a perfect sphere, lines of latitude are relatively simple to calculate. The latitude of a certain point on the surface of the Earth is the angle between two lines: a line from that location to the center of the Earth and a line from the center of the Earth to the Equator. This method of calculation gives us geocentric lines of latitude. However, this method is not accurate enough for astronomy, global positioning, and other real-world applications. Instead, we use what is known as geodetic latitude. This method of calculating latitude for any point on Earth accounts for the fact that the Earth is actually squished at the poles due to the centrifugal force created by the planet's rotation. Measuring latitude lines with high degrees of accuracy is but one component of geodesy, the science of accurately measuring and understanding the Earth's geometric shape, orientation in space, and gravity field.",
+          "textSha256": "4e64ae15a2430ca81193019d15916e9caed04ba2c8da657362d4ec840638d3ce"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 553,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.409Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-79852449220319",
+      "url": "https://oceanservice.noaa.gov/facts/ocean-oxygen.html",
+      "rawPath": "content/corpus/additional/raw/noaa-79852449220319.html",
+      "rawSha256": "beb025d64c71184d2b6730c2a62c22843e7df375986dc94653f84b5bcca1c915",
+      "textPath": "content/corpus/additional/raw/noaa-79852449220319.txt",
+      "textSha256": "1f20824f13c2958bf9565ee01f96f0f7c7dc8faccb536b9142ebefe0719653f7",
+      "title": "How much oxygen comes from the ocean?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 5,
+          "text": "Scientists estimate that roughly half of the oxygen production on Earth comes from the ocean. The majority of this production is from oceanic plankton — drifting plants, algae, and some bacteria that can photosynthesize. One particular species, Prochlorococcus, is the smallest photosynthetic organism on Earth. But this little bacteria produces up to 20% of the oxygen in our entire biosphere. That’s a higher percentage than all of the tropical rainforests on land combined.\n\nCalculating the exact percentage of oxygen produced in the ocean is difficult because the amounts are constantly changing. Scientists can use satellite imagery to track photosynthesizing plankton and estimate the amount of photosynthesis occurring in the ocean, but satellite imagery cannot tell the whole story. The amount of plankton changes seasonally and in response to changes in the water’s nutrient load, temperature, and other factors. Studies have shown that the amount of oxygen in specific locations varies with time of day and with the tides.\n\nIt’s important to remember that although the ocean produces at least 50% of the oxygen on Earth, roughly the same amount is consumed by marine life. Like animals on land, marine animals use oxygen to breathe, and both plants and animals use oxygen for cellular respiration. Oxygen is also consumed when dead plants and animals decay in the ocean. There is also oxygen in the atmosphere which has accumulated over hundreds of millions of years. As land animals, most of the oxygen humans breathe comes from this source.\n\nThis is particularly problematic when algal blooms die and the decomposition process uses oxygen faster than it can be replenished. This can create areas of extremely low oxygen concentrations, or hypoxia. These areas are often called dead zones, because the oxygen levels are too low to support most marine life. NOAA’s National Centers for Coastal Ocean Science conducts extensive research and forecasting on algal blooms and hypoxia to lessen the harm done to the ocean ecosystem and human environment.",
+          "textSha256": "1f20824f13c2958bf9565ee01f96f0f7c7dc8faccb536b9142ebefe0719653f7"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 325,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.416Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-43476822299437",
+      "url": "https://oceanservice.noaa.gov/facts/carbon-cycle.html",
+      "rawPath": "content/corpus/additional/raw/noaa-43476822299437.html",
+      "rawSha256": "c4fbc7562aa10e44f5764be10b18b397159fafa994e8f014cc35206347a1e981",
+      "textPath": "content/corpus/additional/raw/noaa-43476822299437.txt",
+      "textSha256": "a0c8e5998ba8259ce1ae4ebc1d8cd689624923812cc3cccaa184d8b650e12d4b",
+      "title": "What is the carbon cycle?",
+      "paragraphs": 6,
+      "continuousBlocks": [
+        {
+          "startParagraph": 3,
+          "endParagraph": 9,
+          "text": "Carbon is the foundation of all life on Earth, required to form complex molecules like proteins and DNA. This element is also found in our atmosphere in the form of carbon dioxide (CO2). Carbon helps to regulate the Earth’s temperature, makes all life possible, is a key ingredient in the food that sustains us, and provides a major source of the energy to fuel our global economy.\n\nThe carbon cycle describes the process in which carbon atoms continually travel from the atmosphere to the Earth and then back into the atmosphere. Since our planet and its atmosphere form a closed environment, the amount of carbon in this system does not change. Where the carbon is located — in the atmosphere or on Earth — is constantly in flux.\n\nOn Earth, most carbon is stored in rocks and sediments, while the rest is located in the ocean, atmosphere, and in living organisms. These are the reservoirs, or sinks, through which carbon cycles.\n\nCarbon is released back into the atmosphere when organisms die, volcanoes erupt, fires blaze, fossil fuels are burned, and through a variety of other mechanisms.\n\nIn the case of the ocean, carbon is continually exchanged between the ocean’s surface waters and the atmosphere, or is stored for long periods of time in the ocean depths.\n\nHumans play a major role in the carbon cycle through activities such as the burning of fossil fuels or land development. As a result, the amount of carbon dioxide in the atmosphere is rapidly rising; it is already considerably greater than at any time in the last 3.6 million years.",
+          "textSha256": "a0c8e5998ba8259ce1ae4ebc1d8cd689624923812cc3cccaa184d8b650e12d4b"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 266,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.438Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-46181646325799",
+      "url": "https://oceanservice.noaa.gov/facts/sponge.html",
+      "rawPath": "content/corpus/additional/raw/noaa-46181646325799.html",
+      "rawSha256": "1bf3348a9a484b7a1a64033993f64f7bd2c161e74ad36ce40dfd71448384235c",
+      "textPath": "content/corpus/additional/raw/noaa-46181646325799.txt",
+      "textSha256": "3022f5bb1a835d33e24deb8fb7fec7f16b706e70de6d8b26276aedaf1815cfef",
+      "title": "What is a sponge?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 3,
+          "text": "Sponges have been around for a very long time, with certain species having a fossil record that dates back approximately 600 million years to the earliest (Precambrian) period of Earth’s history. The approximately 8,550 living sponge species are scientifically classified in the phylum Porifera, which is comprised of four distinct classes: the Demospongiae (the most diverse, containing 90 percent of all living sponges), Hexactinellida (the rare glass sponges), Calcarea (calcareous sponges), and Homoscleromorpha (the rarest and simplest class, only recently recognized, with approximately 117 species).",
+          "textSha256": "bb08b7054add59afe0e2f3561e88282b1a0edfed7b7e78e081f29920fe3ceb6b"
+        },
+        {
+          "startParagraph": 4,
+          "endParagraph": 7,
+          "text": "Regardless of these differences, sponges are important inhabitants of coral reef ecosystems. A diverse sponge population can affect water quality on the reef as the sponges filter water, collect bacteria, and process carbon, nitrogen, and phosphorus. In nutrient-depleted coral reefs, some sponge species are thought to make carbon biologically available by excreting a form of “sponge poop” that other organisms feed on, thereby fueling productivity throughout the ecosystem. In this way, sponges protect the reef against extreme fluctuations in nutrient density, temperature, and light, benefiting the survival of other reef organisms.\n\nA sponge’s skeletal type adapts well to its particular habitat, allowing it to live on hard, rocky surfaces or soft sediments such as sand and mud. Some sponges even attach themselves to floating debris! Rarely are they found completely free-floating.\n\nAs water filters through a sponge’s porous exterior, the sponge gains some motion, receives food and oxygen, and dispels waste. Inside the sponge, tiny hairlike structures called flagella create currents to filter bacteria out of the sponge’s cells and trap food within them. Their strong skeletal structures help sponges withstand the high volume of water that flows through them each day.",
+          "textSha256": "ddff5936421724fe48d9f8a75b6958edd36902d6bd0f04c84d846882a9e01879"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 277,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.448Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-62650998814814",
+      "url": "https://oceanservice.noaa.gov/facts/tide-pool.html",
+      "rawPath": "content/corpus/additional/raw/noaa-62650998814814.html",
+      "rawSha256": "c3841790fa5758119d59f5fb61bde9860aaf58e9e71ec96bddf98ae13a0dda30",
+      "textPath": "content/corpus/additional/raw/noaa-62650998814814.txt",
+      "textSha256": "ad9732a24245e6103e523a937a2f8dbd7f3f3d080af656d097919d8621eb19d0",
+      "title": "What is a tide pool?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 5,
+          "text": "Formed in depressions along the shoreline of rocky coasts, tide pools are filled with seawater that gets trapped as the tide recedes. While these small basins at the ocean’s edge typically range from mere inches to a few feet deep and a few feet across, they are packed with sturdy sea life such as snails, barnacles, mussels, anemones, urchins, sea stars, crustaceans, seaweed, and small fish.\n\nAs ocean water retreats outside the tide pool during low tide, the resident marine life must endure hours exposed to the sun, low oxygen, increasing water temperature, and predators such as wading birds that specialize in dining in these shallow pools. At high tide, the pool’s plants and animals are bathed in fresh seawater, but must endure the pounding of crashing waves and foraging fish with temporary access to the shoreline.\n\nTo survive in this rugged environment, tide pool inhabitants often cling very tightly to any rock to which they can adhere. Barnacles, for example, produce a fast-curing cement that lets them stay put. This natural substance is among the most powerful glues known to exist. In fact, researchers are trying to figure out if and how it can be harvested or reproduced for commercial use.\n\nThe space in a tide pool may be limited, but the food there is plentiful. Every wave at every high tide delivers fresh nutrients and microscopic organisms, such as plankton, to support and replenish the pool’s intricate food chain. Washed in by the waves, these organisms nourish the smallest animals, which, in turn, sustain the larger ones.",
+          "textSha256": "ad9732a24245e6103e523a937a2f8dbd7f3f3d080af656d097919d8621eb19d0"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 259,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.456Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-82046535983884",
+      "url": "https://oceanservice.noaa.gov/facts/lighthouse.html",
+      "rawPath": "content/corpus/additional/raw/noaa-82046535983884.html",
+      "rawSha256": "01890ff2802a381f8cb86d5e5767bf15b7e20e18eef7c2625dcc4fb404790d07",
+      "textPath": "content/corpus/additional/raw/noaa-82046535983884.txt",
+      "textSha256": "d65a99140224d7f9c03dcf9e6e2ff580ec801a5b7f0dd4844b2b2b4e4a0febf9",
+      "title": "Do We Still Need Lighthouses?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 5,
+          "text": "Lighthouses and beacons are towers with bright lights and fog horns located at important or dangerous locations. They can be found on rocky cliffs or sandy shoals on land, on wave-swept reefs in the sea, and at entrances to harbors and bays. They serve to warn mariners of dangerous shallows and perilous rocky coasts, and they help guide vessels safely into and out of harbors. The messages of these long-trusted aids to navigation are simple: either STAY AWAY, DANGER, BEWARE! or COME THIS WAY!\n\nWhile lighthouses still guide seafarers, nowadays, the Global Positioning System (GPS), NOAA’s nautical charts, lighted navigational aids, buoys, radar beacons, and other aids to navigation effectively warn mariners of dangerous areas and guide them to safe harbors. Some 48,000 federal buoys, beacons, and electronic aids of the marine transportation system mark more than 25,000 miles of waterways, harbor channels, and inland, intracoastal and coastal waterways, and serve more than 300 ports.\n\nOn August 7, 1789, Congress approved the Lighthouse Act—the first public works program undertaken by the new federal government—which established and supported lighthouses, beacons, buoys, and public piers. Members of Congress thought the bill was so important that they passed the measure even before they established pay for themselves!\n\nAugust 7 Is recognized as National Lighthouse Day. Even with the advent of advanced navigation technology, many lighthouses still sparkle for seafarers.",
+          "textSha256": "d65a99140224d7f9c03dcf9e6e2ff580ec801a5b7f0dd4844b2b2b4e4a0febf9"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 226,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.502Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-99040419551248",
+      "url": "https://oceanservice.noaa.gov/facts/canal.html",
+      "rawPath": "content/corpus/additional/raw/noaa-99040419551248.html",
+      "rawSha256": "27a7b7d280d5d98ffe49af780bf7d19df0ad9f391b8acc073414b60d71640b35",
+      "textPath": "content/corpus/additional/raw/noaa-99040419551248.txt",
+      "textSha256": "e530e2a8a42c54786ff9830b4bffb37a661fe887b1e27a1a1fd3ad3fb606714a",
+      "title": "What is a canal?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 5,
+          "text": "A canal is a human-made waterway that allows boats and ships to pass from one body of water to another. Canals are also used to transport water for irrigation and other human uses. While the advent of more efficient forms of transportation has reduced the need for canals, they still play a vital role as conduits for transportation and fostering global commerce.\n\nThere are two types of canals: waterways and aqueducts. Waterways are the navigable parts of a body of water, and can be located within a bay or open sea, can connect two or more waterbodies, or may even form networks within a city. Aqueducts are used exclusively to transport water for drinking, agriculture, and hydroelectric power.\n\nThe word \"canal\" derives from the Old French word chanel, which means “channel.” The oldest known canals are aqueducts built in Mesopotamia thousands of years ago. Since then, canals have played an important role in connecting cultures and facilitating commerce.\n\nThe Panama Canal, which connects the Atlantic and Pacific Oceans, was expanded in 2016 to accommodate modern large-scale cargo ships. NOAA played a role in ensuring that the shipment of goods through the larger canal would remain safe and efficient. NOAA’s Navigation Response Teams assisted the Panama Canal Authority by participating in exercises to ensure that evacuation plans and safety precautions were operational in the event of an emergency. NOAA also installed its Physical Oceanographic Real-Time System (PORTS®) system at PortMiami, allowing super-sized ships that pass through the Panama Canal to safely and efficiently enter the busy U.S. seaport.",
+          "textSha256": "e530e2a8a42c54786ff9830b4bffb37a661fe887b1e27a1a1fd3ad3fb606714a"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 257,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.519Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-147125538880559",
+      "url": "https://oceanservice.noaa.gov/facts/windward-leeward.html",
+      "rawPath": "content/corpus/additional/raw/noaa-147125538880559.html",
+      "rawSha256": "e6edb493fc27fd189ef99662314aa55e92b11cfa20321b2c47256a99583849d2",
+      "textPath": "content/corpus/additional/raw/noaa-147125538880559.txt",
+      "textSha256": "93a82712f979dfd2167afb9763b879066d868c730f3a3f99479e73ca2f059bab",
+      "title": "What do leeward and windward mean?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 5,
+          "text": "An island’s windward side faces the prevailing, or trade, winds, whereas the island’s leeward side faces away from the wind, sheltered from prevailing winds by hills and mountains. As trade winds blow across the ocean, they pick up moist air from the water.\n\nOnce the damp air makes landfall on an island, it ascends hills and mountains to form condensation, clouds, and precipitation. As the air moves to the other side of the island, it warms up and dries out. Thus, an island’s windward side is wetter and more verdant than its drier leeward side. Meteorologists call this contrast the orographic effect.\n\nAs an example, the Hawaiian Islands have damp windward sides and drier leeward sides most of the time as a result of the Pacific Ocean’s northeasterly trade winds. Windward locations are generally lush and green. Famously sunny beaches like Oahu’s Waikiki and Maui’s Wailea are found on the islands’ more sheltered leeward sides.",
+          "textSha256": "93a82712f979dfd2167afb9763b879066d868c730f3a3f99479e73ca2f059bab"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 155,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.529Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-171632898588510",
+      "url": "https://oceanservice.noaa.gov/facts/high-tide.html",
+      "rawPath": "content/corpus/additional/raw/noaa-171632898588510.html",
+      "rawSha256": "aa3a5b542d4d6dd46a344d9006b80c4371f22a0e3f5e1c9a4068444f68974a56",
+      "textPath": "content/corpus/additional/raw/noaa-171632898588510.txt",
+      "textSha256": "ef7a4e06c06c1bcb0ef2789316d9acc784a3f57cfbb77f8bd55a51a13f684193",
+      "title": "How many high tides are there per day?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 5,
+          "text": "While some places have one high tide and one low tide per day, most coastal locations have two high tides and two low tides a day. These highs and lows typically aren't equal. This is why, in most places, using the phrase \"high tide\" might be unclear. There's actually high tide and higher high tide (and low and lower low tide).\n\nIf the Earth were a perfect sphere without large continents, and if the earth-moon-sun system were in perfect alignment, every place would get two equal high and low tides every day. However, the alignment of the moon and sun relative to Earth, the presence of the continents, regional geography, and features on the seafloor, among other factors, make tidal patterns more complex.\n\nAround the world, there are three basic tidal patterns: semidiurnal, mixed, and diurnal. When both high tides are about equal to each other, and the low tides are also roughly equal, the pattern is called a semidiurnal tide. If the two highs and lows differ substantially, the pattern is called a mixed tide. Where there's only one high and one low tide a day, it's called a diurnal tide. One location can experience different tide patterns throughout the month.",
+          "textSha256": "ef7a4e06c06c1bcb0ef2789316d9acc784a3f57cfbb77f8bd55a51a13f684193"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 202,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.538Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-252122065106123",
+      "url": "https://oceanservice.noaa.gov/facts/hurricanes-sea-life.html",
+      "rawPath": "content/corpus/additional/raw/noaa-252122065106123.html",
+      "rawSha256": "dc6314520eb8f8acc1efcfbbc53cfba5d737d9dde978d5d03ca20003a0315369",
+      "textPath": "content/corpus/additional/raw/noaa-252122065106123.txt",
+      "textSha256": "bcc9c0603494ca538e186a20b7fad73a5ae90569b1b87e82b9ae6f32af35de10",
+      "title": "How do hurricanes affect sea life?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 4,
+          "text": "When a storm churns across the ocean, the warm surface waters provide additional moisture and can fuel the storm into a hurricane. As the hurricane grows larger and more potent, it can generate waves as high as 18.3 meters (60 feet), tossing and mixing warmer surface waters with the colder, saltier water below. The resulting currents can extend as far as 91.5 meters (300 feet) below the surface, wreaking deadly havoc on marine life.\n\nIf the wild currents fail to break up coral reefs in their path, the rain-infused water they bring reduces salt levels and otherwise stresses corals. As the hurricane moves toward shore, the underwater tumult can cause shifting sands and muddy shallow waters, blocking the essential sunlight on which corals and other sea creatures rely.\n\nSlow-moving fish and turtles and shellfish beds are often decimated by the rough undercurrents and rapid changes in water temperature and salinity wrought by a hurricane. Sharks, whales, and other large animals swiftly move to calmer waters, however, and, generally speaking, are not overly affected by hurricanes.",
+          "textSha256": "bcc9c0603494ca538e186a20b7fad73a5ae90569b1b87e82b9ae6f32af35de10"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 175,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.572Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-14112975739839",
+      "url": "https://oceanservice.noaa.gov/facts/glass-sponge.html",
+      "rawPath": "content/corpus/additional/raw/noaa-14112975739839.html",
+      "rawSha256": "d24aee292458e3b5c536d766c27efbc13998c8db09abb556aedb015346b5d365",
+      "textPath": "content/corpus/additional/raw/noaa-14112975739839.txt",
+      "textSha256": "c58e8735d236d1c28d264342ee5bbdd7fd42be2bf35df87f2a38e4f3d15c4d90",
+      "title": "What is a glass sponge?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 5,
+          "text": "Glass sponges in the class Hexactinellida are animals commonly found in the deep ocean. Their tissues contain glass-like structural particles, called spicules, that are made of silica (hence their name). Some species of glass sponges produce extremely large spicules that fuse together in beautiful patterns to form a “glass house”—a complex skeleton that often remains intact even after the sponge itself dies. The skeleton of the glass sponge, together with various chemicals, provides defense against many predators. Nonetheless, some starfish are known to feed on these rare creatures of the deep.\n\nMost glass sponges live attached to hard surfaces and consume small bacteria and plankton that they filter from the surrounding water. Their intricate skeletons provide many other animals with a home.\n\nThe most famous glass sponge is a species of Euplectella, known as the “Venus flower basket,” which builds its skeleton in a way that entraps a certain species of crustacean inside for life. This sponge often houses two small, shrimp-like Stenopodidea, a male and a female, who live out their lives inside the sponge. The crustaceans breed, and when their offspring are tiny, they escape to find a new Venus flower basket of their own. The pair inside the basket clean it and, in return, the basket provides food for the crustaceans through its waste. The animals eventually grow too large to escape the sponge, so they are forced to \"stay put\" for the rest of their lives.",
+          "textSha256": "c58e8735d236d1c28d264342ee5bbdd7fd42be2bf35df87f2a38e4f3d15c4d90"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 240,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.588Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-249253526704139",
+      "url": "https://oceanservice.noaa.gov/facts/how-hurricanes-form.html",
+      "rawPath": "content/corpus/additional/raw/noaa-249253526704139.html",
+      "rawSha256": "e5a135380b418f88829d5886c9ae1758acf70152f2bc124f0998b4a1c6962885",
+      "textPath": "content/corpus/additional/raw/noaa-249253526704139.txt",
+      "textSha256": "d61c90eecde95254429aa29d15519dfac79b6d7ebca1a64310812bb739aa7037",
+      "title": "How do hurricanes form?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 4,
+          "endParagraph": 8,
+          "text": "Hurricanes are powerhouse weather events that suck heat from tropical waters to fuel their fury. These violent storms form over the ocean, often beginning as a tropical wave—a low pressure area that moves through the moisture-rich tropics, possibly enhancing shower and thunderstorm activity.\n\nAs this weather system moves westward across the tropics, warm ocean air rises into the storm, forming an area of low pressure underneath. This causes more air to rush in. The air then rises and cools, forming clouds and thunderstorms. Up in the clouds, water condenses and forms droplets, releasing even more heat to power the storm.\n\nWhen wind speeds within such a storm reach 74 mph, it’s classified as a hurricane. The terms “hurricane” and “tropical cyclone” refer to the same kind of storm: a rotating, organized system of clouds and thunderstorms that originates over tropical or subtropical waters and has closed, low-level circulation.\n\nDuring just one hurricane, raging winds can churn out about half as much energy as the electrical generating capacity of the entire world, while cloud and rain formation from the same storm might release a staggering 400 times that amount.",
+          "textSha256": "d61c90eecde95254429aa29d15519dfac79b6d7ebca1a64310812bb739aa7037"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 188,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.598Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-149820501482793",
+      "url": "https://oceanservice.noaa.gov/facts/ecoforecasting.html",
+      "rawPath": "content/corpus/additional/raw/noaa-149820501482793.html",
+      "rawSha256": "9ad061b99708e320bd91315b5832363e6befc4fdc096d14e9b63f6e1c2db5d85",
+      "textPath": "content/corpus/additional/raw/noaa-149820501482793.txt",
+      "textSha256": "858f4a920d5e672a7c04c5bfdb688ed51ab6558d70805c99ca52db6b7702aa6d",
+      "title": "What is ecoforecasting?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 3,
+          "text": "Ecoforecasts detail how interactions between organisms and their environment may affect economies and communities that depend on ecosystem services, human health, and the health of waterbodies.",
+          "textSha256": "78dbe3b94b51a920bf836e6f79af8c9ace0979a3914d7d5bc8548db6de5905ce"
+        },
+        {
+          "startParagraph": 4,
+          "endParagraph": 6,
+          "text": "Predicting the amount of oxygen depletion in water (hypoxia) is just one example of ecoforecasting. Certain fertilizers used in farming operations can seep into neighboring waters, causing nutrient overabundance. Excess nutrients can reduce the amount of oxygen in the water, creating a hypoxic environment, which can, in turn, harm marine life. By integrating such factors as historical data about seasonal fertilizer usage, water temperature, sea level rise, and the affected waterbody’s natural hypoxic cycle, scientists produce ecoforecasts that help inform strategies for controlling nutrient pollution.\n\nNOAA scientists continue to develop a suite of ecological forecasts to support more effective ecosystem management. The forecasts bring together wide-ranging research and observations to allow coastal resource managers to answer \"What if?\" questions about the numerous factors that affect coastal resources, including harmful algal blooms, pathogens, and coral bleaching.",
+          "textSha256": "05f05963ba0dcefcb2946a1159fa5ffd9740cdf5239cb8a025c450a08bfba193"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 161,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.613Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-215039592644680",
+      "url": "https://oceanservice.noaa.gov/facts/ocean-species.html",
+      "rawPath": "content/corpus/additional/raw/noaa-215039592644680.html",
+      "rawSha256": "a2cddc4ec066c1cc7fc994ae5dc1dc54165cff7ceae20bd887363b99950714ad",
+      "textPath": "content/corpus/additional/raw/noaa-215039592644680.txt",
+      "textSha256": "33977c8d5553d7e8f3570ed44bd29d0cff6493de5a454dfb478d7308bf26b46e",
+      "title": "How Many Species Live in the Ocean?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 5,
+          "text": "Given the vast size of the ocean, it is impossible to know the exact number of species that live there. Research suggests, however, that the number of species in the ocean is decreasing. The continued decline in the health of many ecosystems, coupled with rising extinction rates, are likely outpacing species’ ability to evolve to tolerate the conditions of our rapidly changing planet. It is not all bad news, though. Researchers around the world continue to study marine life and habitats to help develop new strategies to preserve vital ocean ecosystems.\n\nScientists estimate that 91 percent of ocean species have yet to be classified, and that more than eighty percent of our ocean is unmapped, unobserved, and unexplored.. While these statistics may sound daunting, they have not stopped the global scientific community from striving to amass as much knowledge as possible about ocean life.\n\nOne recent effort—the Census of Marine Life—was an international project spanning 10 years that recorded the diversity, distribution, and abundance of life in the ocean. More than 2,700 scientists from 80 nations contributed to the Census. The results of their research, which included 540 marine expeditions, were reported at The Royal Society of London in October 2010. The Ocean Biogeographic Information System contains the Census data. NOAA Fisheries is responsible for the protection, conservation, and recovery of endangered and threatened marine and estuarine species in the United States under the Endangered Species Act.",
+          "textSha256": "33977c8d5553d7e8f3570ed44bd29d0cff6493de5a454dfb478d7308bf26b46e"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 237,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.646Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-182932362344554",
+      "url": "https://oceanservice.noaa.gov/facts/watershed.html",
+      "rawPath": "content/corpus/additional/raw/noaa-182932362344554.html",
+      "rawSha256": "02bb735fd8db4f53a54533dfb357a4f062ce1a0880a1a4ef914f038621f4a988",
+      "textPath": "content/corpus/additional/raw/noaa-182932362344554.txt",
+      "textSha256": "a45a39512966b71373ab512a92d71fc2629c13a2b36c30e275c356e1807b0391",
+      "title": "What is a watershed?",
+      "paragraphs": 5,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 2,
+          "text": "The size of a watershed (also called a drainage basin or catchment) is defined on several scales—referred to as its Hydrologic Unit Codes (HUC)—based on the geography that is most relevant to its specific area. A watershed can be small, such as a modest inland lake or a single county.",
+          "textSha256": "1e2b422fdf7ca45d4897a24fadda6e38bf92c4de88e2831f7309204008767d8c"
+        },
+        {
+          "startParagraph": 4,
+          "endParagraph": 8,
+          "text": "Conversely, some watersheds encompass thousands of square miles and may contain streams, rivers, lakes, reservoirs, and underlying groundwater that are hundreds of miles inland. The largest watershed in the United States is the Mississippi River Watershed, which drains 1.15 million square miles (2,981,076 square kilometers) from all or parts of 31 U.S. states and two Canadian provinces stretching from the Rockies to the Appalachians!\n\nWater from hundreds, and often thousands, of creeks and streams flow from higher ground to rivers that eventually wind up in a larger waterbody. As the water flows, it often picks up pollutants, which may have sinister effects on the ecology of the watershed and, ultimately, on the reservoir, bay, or ocean where it ends up.\n\nNot all water flows directly to the sea, however. When rain falls on dry ground, it can soak into, or infiltrate, the ground. This groundwater remains in the soil, where it will eventually seep into the nearest stream. Some water infiltrates much deeper, into underground reservoirs called aquifers. In other areas, where the soil contains a lot of hard clay, very little water may infiltrate. Instead, it quickly runs off to lower ground.\n\nRain and snowmelt from watersheds travel via many routes to the sea. During periods of heavy rain and snowfall, water may run onto and off of impervious surfaces such as parking lots, roads, buildings, and other structures because it has nowhere else to go. These surfaces act as \"fast lanes\" that transport the water directly into storm drains. The excess water volume can quickly overwhelm streams and rivers, causing them to overflow and possibly result in floods.",
+          "textSha256": "e6619d1bc9670675b3d34ef303b415a3530c70cefcb8017419858a8bf13f0c0f"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 320,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.664Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-127621287525041",
+      "url": "https://oceanservice.noaa.gov/facts/eutrophication.html",
+      "rawPath": "content/corpus/additional/raw/noaa-127621287525041.html",
+      "rawSha256": "fb596487f7a4cdd8a31124c14a7eb89b4413a402a2526d285435e19059be0c39",
+      "textPath": "content/corpus/additional/raw/noaa-127621287525041.txt",
+      "textSha256": "ef1def5e4d9dc384f1a1266b52cdd5ee03e2bfecd94ea528d9c37e9584742280",
+      "title": "What is eutrophication?",
+      "paragraphs": 6,
+      "continuousBlocks": [
+        {
+          "startParagraph": 2,
+          "endParagraph": 5,
+          "text": "Eutrophication is a big word that describes a big problem in the nation's estuaries. Harmful algal blooms, dead zones, and fish kills are the results of a process called eutrophication — which occurs when the environment becomes enriched with nutrients, increasing the amount of plant and algae growth to estuaries and coastal waters.\n\nSixty-five percent of the estuaries and coastal waters in the contiguous U.S. that have been studied by researchers are moderately to severely degraded by excessive nutrient inputs. Excessive nutrients lead to algal blooms and low-oxygen (hypoxic) waters that can kill fish and seagrass and reduce essential fish habitats. Many of these estuaries also support bivalve mollusk populations (e.g., oysters, clams, scallops), which naturally reduce nutrients through their filter-feeding activities.\n\nEutrophication sets off a chain reaction in the ecosystem, starting with an overabundance of algae and plants. The excess algae and plant matter eventually decompose, producing large amounts of carbon dioxide. This lowers the pH of seawater, a process known as ocean acidification. Acidification slows the growth of fish and shellfish and can prevent shell formation in bivalve mollusks. This leads to a reduced catch for commercial and recreational fisheries, meaning smaller harvests and more expensive seafood.",
+          "textSha256": "9e3f871662af2c535ec0728dad95ea77021184ea49d9cfc0a51498346fa841b0"
+        },
+        {
+          "startParagraph": 6,
+          "endParagraph": 9,
+          "text": "In recent years, NOAA's National Centers for Coastal Ocean Science (NCCOS), in collaboration with NOAA's Northeast Fisheries Science Center, has enlisted estuaries' indigenous residents, namely, bivalve mollusks, to help slow and, in some cases, reverse the process of eutrophication, since they efficiently remove nutrients from the water as they feed on phytoplankton and detritus.\n\nA groundbreaking modeling project in Long Island Sound showed that the oyster aquaculture industry in Connecticut provides $8.5 – $23 million annually in nutrient reduction benefits. The project also showed that reasonable expansion of oyster aquaculture could provide as much nutrient reduction as the comparable investment of $470 million in traditional nutrient-reduction measures, such as wastewater treatment improvements and agricultural best management practices.\n\nThe NOAA scientists used aquaculture modeling tools to demonstrate that shellfish aquaculture compares favorably to existing nutrient management strategies in terms of efficiency of nutrient removal and implementation cost. Documenting the water quality benefits provided by shellfish aquaculture has increased both communities' and regulators' acceptance of shellfish farming, not only in Connecticut but across the nation. In Chesapeake Bay, for example, nutrient removal policies include the harvesting of oyster tissue as an approved method, and in Mashpee Bay, Massachusetts, cultivation and harvest of oysters and clams are part of the official nutrient management plan.",
+          "textSha256": "9f26475b108accaf375db87223453e8982c3724ed78194af0c65081652ceca10"
+        }
+      ],
+      "originalTextProvided": false,
+      "words": 410,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.681Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-187286440379195",
+      "url": "https://oceanservice.noaa.gov/facts/high-tide-flooding.html",
+      "rawPath": "content/corpus/additional/raw/noaa-187286440379195.html",
+      "rawSha256": "28f714b9b546ec5280f96b86bcd60834220996f5af4d80762b4429fa46df2670",
+      "textPath": "content/corpus/additional/raw/noaa-187286440379195.txt",
+      "textSha256": "fe7501d494489508899fa61de196e728516393df2e89e55b0e495d76627b2e96",
+      "title": "What is high tide flooding?",
+      "paragraphs": 3,
+      "continuousBlocks": [
+        {
+          "startParagraph": 3,
+          "endParagraph": 6,
+          "text": "As relative sea level rises, it no longer takes a strong storm or a hurricane to cause coastal flooding. High tide flooding occurs when sea level rise combines with local factors to push water levels above the normal high tide mark. Changes in prevailing winds, shifts in ocean currents, and strong tidal forces (which occur during full or new moon) can all cause high tide flooding, inundating streets even on sunny days.\n\nHigh tide flooding falls into three levels of severity: minor, moderate, and major. The classifications measure how much water levels exceed average high tide for that location.\n\nBecause of rising seas, land subsidence, and the loss of natural barriers, high tide flooding is now twice as frequent in U.S. coastal communities as it was 20 years ago. Predictions from the latest interagency Sea Level Rise Technical Report show that high tide flooding will become more common and more severe over the coming decades. As sea levels continue to rise, conditions that cause minor and moderate high tide flooding today will cause moderate and major high tide flooding by 2050.",
+          "textSha256": "fe7501d494489508899fa61de196e728516393df2e89e55b0e495d76627b2e96"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 181,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.697Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    },
+    {
+      "rootId": "noaa-article-194863603758272",
+      "url": "https://oceanservice.noaa.gov/facts/rossby-wave.html",
+      "rawPath": "content/corpus/additional/raw/noaa-194863603758272.html",
+      "rawSha256": "204e65c8368ea534c31ac0ad866568da5cba6e8ff061f405a7f4f0ca252056d8",
+      "textPath": "content/corpus/additional/raw/noaa-194863603758272.txt",
+      "textSha256": "5ac6120b63c49c50f67e4abb7f9fcd60ce919c3dbb2a4632ceeadd6fa36a440d",
+      "title": "What is a Rossby wave?",
+      "paragraphs": 4,
+      "continuousBlocks": [
+        {
+          "startParagraph": 1,
+          "endParagraph": 5,
+          "text": "Oceanic and atmospheric Rossby waves — also known as planetary waves — naturally occur largely due to the Earth's rotation. These waves affect the planet's weather and climate.\n\nWaves in the ocean come in many different shapes and sizes. Slow-moving oceanic Rossby waves are fundamentally different from ocean surface waves. Unlike waves that break along the shore, Rossby waves are huge, undulating movements of the ocean that stretch horizontally across the planet for hundreds of kilometers in a westward direction. They are so large and massive that they can change Earth's climate conditions. Along with rising sea levels, King Tides, and the effects of El Niño, oceanic Rossby waves contribute to high tides and coastal flooding in some regions of the world.\n\nRossby wave movement is complex. The horizontal wave speed of a Rossby (the amount of time it takes the wave to travel across an ocean basin) is dependent upon the latitude of the wave. In the Pacific, for instance, waves at lower latitudes (closer to the equator) may take months to a year to cross the ocean. Waves that form farther away from the equator (at mid-latitudes) of the Pacific may take closer to 10 to 20 years to make the journey. The vertical motion of Rossby waves is small along the ocean's surface and large along the deeper thermocline — the transition area between the ocean's warm upper layer and colder depths. This variation in vertical motion of the water's surface can be quite dramatic: the typical vertical movement of the water's surface is generally about 10 centimeters, while the vertical movement of the thermocline for the same wave is approximately 1,000 times greater. In other words, for a 10 centimeter or less surface displacement along the ocean surface, there may be more than 91.4 meters of corresponding vertical movement in the thermocline far below the surface! Due to the small vertical movement along the ocean surface, oceanic Rossby waves are undetectable by the human eye. Scientists typically rely on satellite radar altimetry to detect the massive waves.\n\nAccording to the National Weather Service, atmospheric Rossby waves form primarily as a result of the Earth's geography. Rossby waves help transfer heat from the tropics toward the poles and cold air toward the tropics in an attempt to return atmosphere to balance. They also help locate the jet stream and mark out the track of surface low pressure systems. The slow motion of these waves often results in fairly long, persistent weather patterns.",
+          "textSha256": "5ac6120b63c49c50f67e4abb7f9fcd60ce919c3dbb2a4632ceeadd6fa36a440d"
+        }
+      ],
+      "originalTextProvided": true,
+      "words": 415,
+      "modifiedMetadata": null,
+      "sourceVersion": {
+        "acquiredAt": "2026-10-08T13:58:19.758Z",
+        "pageUpdatedMarkers": [
+          "09/23/26"
+        ],
+        "immutableArchive": "rawSha256; official current HTML copy at acquisition, not permanent publisher revision URL"
+      },
+      "sourceAuthor": "NOAA National Ocean Service",
+      "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+      "policySha256": "fc463ed03a8393ca60d56aa269b1c5139eb946cc6e1aea30b38fb909f6c641cd",
+      "decision": "pending-exact-text-inspection",
+      "excludedMedia": true
+    }
+  ],
+  "uncollected": [
+    {
+      "family": "usgs",
+      "url": "https://www.usgs.gov/water-science-school/science/evaporation-and-water-cycle",
+      "reason": "Actual official response403CloudFront; not collected or accepted"
+    }
+  ],
+  "audioAcquired": 0
+}

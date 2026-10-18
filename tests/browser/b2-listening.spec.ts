@@ -1,0 +1,51 @@
+import { confirmTask } from './task-start';
+import { expect, test } from '@playwright/test';
+
+test('B2 listening saves revised claims across two local discussions', async ({ page, context }) => {
+  const external: string[] = [];
+  await context.route('**/*', route => {
+    const url = route.request().url();
+    if (!url.startsWith('http://127.0.0.1:5173/')) { external.push(url); return route.abort(); }
+    return route.continue();
+  });
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/today');
+  const task = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '听出论证如何改变' }) });
+  await task.getByRole('button', { name: '开始听力' }).click();
+  await confirmTask(page);
+  await expect(page.locator('.passage')).toHaveCount(0);
+  await page.locator('input[type=radio]').nth(1).check();
+  await expect(page.getByRole('button', { name: '保存答案' })).toBeDisabled();
+  await page.getByRole('button', { name: '播放 / 重听' }).click();
+  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => Number.isFinite(audio.duration) && audio.duration >= 90)).toBe(true);
+  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.playbackRate = 16; audio.currentTime = 0; });
+  await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible({ timeout: 20_000 });
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.locator('.audio-times span')).toHaveText(['1:59', '1:59']);
+  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
+  await expect(page.locator('.evidence-source')).toContainText(['Mira again', 'Mira']);
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.screenshot({ path: 'output/playwright/b2-listening-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
+  await page.getByRole('button', { name: '下一题' }).click();
+  await page.locator('input[type=radio]').nth(2).check();
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.getByText('播放请求次数: 0', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '下一题' }).click();
+  await page.locator('input[type=radio]').nth(0).check();
+  await expect(page.getByRole('button', { name: '保存答案' })).toBeDisabled();
+  await page.getByRole('button', { name: '播放 / 重听' }).click();
+  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => Number.isFinite(audio.duration) && audio.duration >= 90)).toBe(true);
+  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.playbackRate = 16; audio.currentTime = 0; });
+  await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible({ timeout: 20_000 });
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
+  await page.setViewportSize({ width: 375, height: 812 });
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.screenshot({ path: 'output/playwright/b2-listening-375x812-light-zh-Hans-three-answers.png', fullPage: true });
+  await page.getByRole('button', { name: '下一题' }).click();
+  await page.locator('input[type=radio]').nth(1).check();
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.getByText('听力任务已保存')).toBeVisible();
+  expect(external).toEqual([]);
+});

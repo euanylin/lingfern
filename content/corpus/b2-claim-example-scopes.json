@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-16",
+  "scope": "Two complete native existing Frontiers paragraphs inspected for examples and their local framing claims. Raw source/hash/credit only; no authored exercise bank, source-rights expansion or CEFR/effect approval.",
+  "records": [
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00026",
+      "sourceHash": "56995ff6299074b0f3ddec119e19aec33f779a3961484b5d29cf7b29f78193ca",
+      "passageId": "27435b3eb7123799e44c33a0c1cd72bdbede3bc488e8a212920480b0b73d7970",
+      "textSha256": "27435b3eb7123799e44c33a0c1cd72bdbede3bc488e8a212920480b0b73d7970",
+      "text": "We live in a changing world, where we can travel over great distances more easily and quickly than ever before. Humans have accidentally, or intentionally, transported lots of species out of their natural homes, or native ranges, for centuries. However, the frequency of such events has drastically increased in recent decades. Many species end up being released into new environments where they can survive, reproduce successfully, and become invasive, which means they begin to outcompete native species [1]. Invasive alien species can cause severe problems for the environment, the economy, and human well-being. For example, the accumulation of zebra mussel (Dreissena polymorpha) shells in water intake pipes used for irrigation of fields can block the pipes and cause the farmers to lose large amounts of money. As another example, the digging activity of a fish called the common carp (Cyprinus carpio) increases the cloudiness of the water, which can reduce the ability of aquatic plants to perform photosynthesis by decreasing the amount of light that reaches them. Given their serious impacts, invasive alien species are considered one of the greatest threats to biodiversity, ecosystem services and human well-being.",
+      "credit": {
+        "attribution": "Conquering the World: The Invasion of the Red Swamp Crayfish — Francisco Javier Oficialdegui. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00026"
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.598169",
+      "sourceHash": "5bd2d53b5881c179a9a96091426c191463fb5abf458d97cf06a0312ab2b42526",
+      "passageId": "cf1ba808b9b6f62a285fe10c3e038dc81980b4befacaf56e7064131c8ab3fa14",
+      "textSha256": "cf1ba808b9b6f62a285fe10c3e038dc81980b4befacaf56e7064131c8ab3fa14",
+      "text": "Interpreting echograms takes a lot of experience and sometimes scientists make mistakes. For example, echograms were used to make ocean maps to help prevent ships from running aground on the seafloor. Sometimes an echogram would show that a part of the sea was shallow enough to be dangerous for boats. These shallow areas were marked on a map so that other boats could avoid them. However, another captain returning to the same area would find that the water was much deeper than the map showed. Scientists later learned that some areas that were mapped as having shallow sea floors actually contained dense layers of sea life, made up of fish and jellyfish [2]. There was so much marine life in the water that the echo from all the animals together sounded the same as the echo from the sea floor! While scientists knew that they could use sound to locate fish in the water [3], they did not expect to find so many animals so close together. Luckily, mistakes in science can lead to new discoveries. In this case, scientists learned that what they thought was the sea floor was actually dense clusters of marine animals!",
+      "credit": {
+        "attribution": "How do Scientists Use Sound to Count Fish in The Deep Sea? — Alina M. Wieczorek; Amanda Schadeberg; David G. Reid. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.598169"
+      }
+    }
+  ]
+}

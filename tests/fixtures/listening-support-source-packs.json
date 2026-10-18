@@ -1,0 +1,17 @@
+[
+  {
+    "path": "tests/fixtures/source-packs/listening-history-88ddbeeb9643.zip",
+    "hash": "dca4df0fc38f755acb19866004d0f9d6f7d9c9b17c0c64fb084432ce2c6bed96",
+    "spokenSha256": "40712cea23cab029c9f32c3129569c9045646e8d4bdd58c71c07deea1dc20983"
+  },
+  {
+    "path": "tests/fixtures/source-packs/listening-science-031f621b8ae2.zip",
+    "hash": "29d8acd679067800e905d84849f551c4cd7d5600673a8a367d62d7c1c7fcadc1",
+    "spokenSha256": "21b2ffdfffa53a7cea7637b85d858b1cc3366232914a7fd753c3ee7d00c781a7"
+  },
+  {
+    "path": "tests/fixtures/source-packs/listening-science-9052947f38f6.zip",
+    "hash": "a7cf1485163e6fcab0f4b852b413e682ead92747bb7559a7572ea96b6d4bfdcd",
+    "spokenSha256": "a782d2e89d4593421a5bae75e5337fb4c037863ad62c59aec6aee036cae1f036"
+  }
+]

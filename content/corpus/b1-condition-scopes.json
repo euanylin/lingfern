@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "rootId": "bccampus-book-physical-geology-2e",
+      "sourceHash": "bac292c654f85b96e17831f8db7b5ce9181e0d062f0f3a133aefc298a7fd4f71",
+      "passageId": "6f0d397b004587596ce003971f3b5f2a5388de411818f3aebd5397afcec76547",
+      "textSha256": "117156be7abb56f844db018411fc12d272115b102639cece05dccd5f8ef6ecc1",
+      "text": "Most of the minerals that make up tehe rocks around us formed through the cooling of molten rock, known as magma. At the high temperatures that exist deep within Earth, some geological materials are liquid. As magma rises up through the crust, either by volcanic eruption or by more gradual processes, it cools and minerals crystallize. If the cooling process is rapid (minutes, hours, days, or years), the components of the minerals will not have time to become ordered and only small crystals can form before the rock becomes solid. The resulting rock will be fine-grained (i.e., with crystals less than 1 mm). If the cooling is slow (from decades to millions of years), the degree of ordering will be higher and relatively large crystals will form. In some cases, the cooling will be so fast (seconds) that the texture will be glassy, which means that no crystals at all form. Volcanic glass is not composed of minerals because the magma has cooled too rapidly for crystals to grow, although over time (millions of years) the volcanic glass may crystallize into various silicate minerals.",
+      "credit": {
+        "attribution": "Physical Geology - 2nd Edition — Copyright 2019 Steven Earle; chapter 22 Karla Panchuk. BCcampus. CC BY 4.0; original prose only; whitespace normalised. — 2.5 Formation of Minerals – Physical Geology – 2nd Edition",
+        "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); original prose only, excluding third-party material and media.",
+        "sourceUrl": "https://opentextbc.ca/physicalgeology2ed/chapter/2-5-formation-of-minerals/"
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-sociology-3e",
+      "sourceHash": "93918f53e902eeab76e526924bf6807e3b3f04e1127f4bdb03b7b2b2d87d2a0b",
+      "passageId": "39cb13a3fec1a785d2d5e2557d98f218b677ddef00ce6671bbf7c8f486ff050f",
+      "textSha256": "f6c10cc7c00d76bfc4f5aad94ff1b835366db3951e9b11c23cecc64066555bfb",
+      "text": "Researchers design studies to maximize reliability, which refers to how likely research results are to be replicated if the study is reproduced. Reliability increases the likelihood that what happens to one person will happen to all people in a group or what will happen in one situation will happen in another. Cooking is a science. When you follow a recipe and measure ingredients with a cooking tool, such as a measuring cup, the same results is obtained as long as the cook follows the same recipe and uses the same type of tool. The measuring cup introduces accuracy into the process. If a person uses a less accurate tool, such as their hand, to measure ingredients rather than a cup, the same result may not be replicated. Accurate tools and methods increase reliability.",
+      "credit": {
+        "attribution": "Introduction to Sociology 3e — Tonja R. Conerly; Kathleen Holmes; Asha Lal Tamang. OpenStax, Rice University. CC BY 4.0; fixed source edition; whitespace normalised, separate paragraphs. — Approaches to Sociological Research",
+        "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); original prose only, excluding third-party material and media.",
+        "sourceUrl": "https://github.com/openstax/osbooks-introduction-sociology/blob/d35d5f3bdac40f93607d600134865d4f13ce1f9b/modules/m90147/index.cnxml"
+      }
+    }
+  ]
+}

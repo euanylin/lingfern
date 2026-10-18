@@ -1,0 +1,421 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-98",
+      "sourceHash": "d54c2b80d40a40b982cd88852c6180bb944d95acdb028af3d0e01a1750681784",
+      "passageId": "d87f8ed119703e52b92488c2fd8b1a04d4d9c14b588b37ce1b69fee615f53c65",
+      "textSha256": "d87f8ed119703e52b92488c2fd8b1a04d4d9c14b588b37ce1b69fee615f53c65",
+      "text": "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way--in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.\n\nThere were a king with a large jaw and a queen with a plain face, on the throne of England; there were a king with a large jaw and a queen with a fair face, on the throne of France. In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes, that things in general were settled for ever.\n\nIt was the year of Our Lord one thousand seven hundred and seventy-five. Spiritual revelations were conceded to England at that favoured period, as at this. Mrs. Southcott had recently attained her five-and-twentieth blessed birthday, of whom a prophetic private in the Life Guards had heralded the sublime appearance by announcing that arrangements were made for the swallowing up of London and Westminster. Even the Cock-lane ghost had been laid only a round dozen of years, after rapping out its messages, as the spirits of this very year last past (supernaturally deficient in originality) rapped out theirs. Mere messages in the earthly order of events had lately come to the English Crown and People, from a congress of British subjects in America: which, strange to relate, have proved more important to the human race than any communications yet received through any of the chickens of the Cock-lane brood.\n\nFrance, less favoured on the whole as to matters spiritual than her sister of the shield and trident, rolled with exceeding smoothness down hill, making paper money and spending it. Under the guidance of her Christian pastors, she entertained herself, besides, with such humane achievements as sentencing a youth to have his hands cut off, his tongue torn out with pincers, and his body burned alive, because he had not kneeled down in the rain to do honour to a dirty procession of monks which passed within his view, at a distance of some fifty or sixty yards. It is likely enough that, rooted in the woods of France and Norway, there were growing trees, when that sufferer was put to death, already marked by the Woodman, Fate, to come down and be sawn into boards, to make a certain movable framework with a sack and a knife in it, terrible in history. It is likely enough that in the rough outhouses of some tillers of the heavy lands adjacent to Paris, there were sheltered from the weather that very day, rude carts, bespattered with rustic mire, snuffed about by pigs, and roosted in by poultry, which the Farmer, Death, had already set apart to be his tumbrils of the Revolution. But that Woodman and that Farmer, though they work unceasingly, work silently, and no one heard them as they went about with muffled tread: the rather, forasmuch as to entertain any suspicion that they were awake, was to be atheistical and traitorous.\n\nIn England, there was scarcely an amount of order and protection to justify much national boasting. Daring burglaries by armed men, and highway robberies, took place in the capital itself every night; families were publicly cautioned not to go out of town without removing their furniture to upholsterers’ warehouses for security; the highwayman in the dark was a City tradesman in the light, and, being recognised and challenged by his fellow-tradesman whom he stopped in his character of “the Captain,” gallantly shot him through the head and rode away; the mail was waylaid by seven robbers, and the guard shot three dead, and then got shot dead himself by the other four, “in consequence of the failure of his ammunition:” after which the mail was robbed in peace; that magnificent potentate, the Lord Mayor of London, was made to stand and deliver on Turnham Green, by one highwayman, who despoiled the illustrious creature in sight of all his retinue; prisoners in London gaols fought battles with their turnkeys, and the majesty of the law fired blunderbusses in among them, loaded with rounds of shot and ball; thieves snipped off diamond crosses from the necks of noble lords at Court drawing-rooms; musketeers went into St. Giles’s, to search for contraband goods, and the mob fired on the musketeers, and the musketeers fired on the mob, and nobody thought any of these occurrences much out of the common way. In the midst of them, the hangman, ever busy and ever worse than useless, was in constant requisition; now, stringing up long rows of miscellaneous criminals; now, hanging a housebreaker on Saturday who had been taken on Tuesday; now, burning people in the hand at Newgate by the dozen, and now burning pamphlets at the door of Westminster Hall; to-day, taking the life of an atrocious murderer, and to-morrow of a wretched pilferer who had robbed a farmer’s boy of sixpence.\n\nAll these things, and a thousand like them, came to pass in and close upon the dear old year one thousand seven hundred and seventy-five. Environed by them, while the Woodman and the Farmer worked unheeded, those two of the large jaws, and those other two of the plain and the fair faces, trod with stir enough, and carried their divine rights with a high hand. Thus did the year one thousand seven hundred and seventy-five conduct their Greatnesses, and myriads of small creatures--the creatures of this chronicle among the rest--along the roads that lay before them.",
+      "credit": {
+        "attribution": "A Tale of Two Cities — Dickens, Charles, 1812-1870. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/98).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/98"
+      },
+      "nativeScope": {
+        "start": 1474,
+        "end": 7245,
+        "paragraphs": [
+          12,
+          18
+        ],
+        "rawSha256": "d54c2b80d40a40b982cd88852c6180bb944d95acdb028af3d0e01a1750681784",
+        "canonicalSha256": "7890f5bfc0511a6932d2230faa9ae5588d3b5b9aa51c4cbc1b6cb10be01534f4",
+        "metadataPath": "content/corpus/raw/pg98-metadata.html",
+        "metadataSha256": "27067423870e89df23413f5d9207aef26c8a53a20624caf181c380c1573d5152",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 0,
+          "end": 51,
+          "contextEvidence": [
+            {
+              "start": 0,
+              "end": 612
+            }
+          ]
+        },
+        {
+          "start": 905,
+          "end": 945,
+          "contextEvidence": [
+            {
+              "start": 614,
+              "end": 945
+            },
+            {
+              "start": 5203,
+              "end": 5771
+            }
+          ]
+        },
+        {
+          "start": 2129,
+          "end": 2153,
+          "contextEvidence": [
+            {
+              "start": 1863,
+              "end": 2425
+            },
+            {
+              "start": 3305,
+              "end": 3404
+            }
+          ]
+        },
+        {
+          "start": 3052,
+          "end": 3129,
+          "contextEvidence": [
+            {
+              "start": 2426,
+              "end": 3051
+            },
+            {
+              "start": 5203,
+              "end": 5771
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-209",
+      "sourceHash": "171afa184a54b6004194e02047f5d01cf216d8bc519ddfb671a1e41d80bbdf65",
+      "passageId": "28c7468d39c825db1bffc3b1719f2dcbd7474aa879616c5a8b3ad908027c0fca",
+      "textSha256": "28c7468d39c825db1bffc3b1719f2dcbd7474aa879616c5a8b3ad908027c0fca",
+      "text": "The story had held us, round the fire, sufficiently breathless, but except the obvious remark that it was gruesome, as, on Christmas Eve in an old house, a strange tale should essentially be, I remember no comment uttered till somebody happened to say that it was the only case he had met in which such a visitation had fallen on a child. The case, I may mention, was that of an apparition in just such an old house as had gathered us for the occasion—an appearance, of a dreadful kind, to a little boy sleeping in the room with his mother and waking her up in the terror of it; waking her not to dissipate his dread and soothe him to sleep again, but to encounter also, herself, before she had succeeded in doing so, the same sight that had shaken him. It was this observation that drew from Douglas—not immediately, but later in the evening—a reply that had the interesting consequence to which I call attention. Someone else told a story not particularly effective, which I saw he was not following. This I took for a sign that he had himself something to produce and that we should only have to wait. We waited in fact till two nights later; but that same evening, before we scattered, he brought out what was in his mind.\n\n“I quite agree—in regard to Griffin’s ghost, or whatever it was—that its appearing first to the little boy, at so tender an age, adds a particular touch. But it’s not the first occurrence of its charming kind that I know to have involved a child. If the child gives the effect another turn of the screw, what do you say to _two_ children—?”\n\n“We say, of course,” somebody exclaimed, “that they give two turns! Also that we want to hear about them.”\n\nI can see Douglas there before the fire, to which he had got up to present his back, looking down at his interlocutor with his hands in his pockets. “Nobody but me, till now, has ever heard. It’s quite too horrible.” This, naturally, was declared by several voices to give the thing the utmost price, and our friend, with quiet art, prepared his triumph by turning his eyes over the rest of us and going on: “It’s beyond everything. Nothing at all that I know touches it.”\n\n“For sheer terror?” I remember asking.\n\nHe seemed to say it was not so simple as that; to be really at a loss how to qualify it. He passed his hand over his eyes, made a little wincing grimace. “For dreadful—dreadfulness!”\n\n“Oh, how delicious!” cried one of the women.\n\nHe took no notice of her; he looked at me, but as if, instead of me, he saw what he spoke of. “For general uncanny ugliness and horror and pain.”\n\n“Well then,” I said, “just sit right down and begin.”\n\nHe turned round to the fire, gave a kick to a log, watched it an instant. Then as he faced us again: “I can’t begin. I shall have to send to town.” There was a unanimous groan at this, and much reproach; after which, in his preoccupied way, he explained. “The story’s written. It’s in a locked drawer—it has not been out for years. I could write to my man and enclose the key; he could send down the packet as he finds it.” It was to me in particular that he appeared to propound this—appeared almost to appeal for aid not to hesitate. He had broken a thickness of ice, the formation of many a winter; had had his reasons for a long silence. The others resented postponement, but it was just his scruples that charmed me. I adjured him to write by the first post and to agree with us for an early hearing; then I asked him if the experience in question had been his own. To this his answer was prompt. “Oh, thank God, no!”\n\n“And is the record yours? You took the thing down?”\n\n“Nothing but the impression. I took that _here_”—he tapped his heart. “I’ve never lost it.”\n\n“Then your manuscript—?”\n\n“Is in old, faded ink, and in the most beautiful hand.” He hung fire again. “A woman’s. She has been dead these twenty years. She sent me the pages in question before she died.” They were all listening now, and of course there was somebody to be arch, or at any rate to draw the inference. But if he put the inference by without a smile it was also without irritation. “She was a most charming person, but she was ten years older than I. She was my sister’s governess,” he quietly said. “She was the most agreeable woman I’ve ever known in her position; she would have been worthy of any whatever. It was long ago, and this episode was long before. I was at Trinity, and I found her at home on my coming down the second summer. I was much there that year—it was a beautiful one; and we had, in her off-hours, some strolls and talks in the garden—talks in which she struck me as awfully clever and nice. Oh yes; don’t grin: I liked her extremely and am glad to this day to think she liked me, too. If she hadn’t she wouldn’t have told me. She had never told anyone. It wasn’t simply that she said so, but that I knew she hadn’t. I was sure; I could see. You’ll easily judge why when you hear.”\n\n“Because the thing had been such a scare?”\n\nHe continued to fix me. “You’ll easily judge,” he repeated: “_you_ will.”\n\nI fixed him, too. “I see. She was in love.”\n\nHe laughed for the first time. “You _are_ acute. Yes, she was in love. That is, she had been. That came out—she couldn’t tell her story without its coming out. I saw it, and she saw I saw it; but neither of us spoke of it. I remember the time and the place—the corner of the lawn, the shade of the great beeches and the long, hot summer afternoon. It wasn’t a scene for a shudder; but oh—!” He quitted the fire and dropped back into his chair.",
+      "credit": {
+        "attribution": "The Turn of the Screw — James, Henry, 1843-1916. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/209).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/209"
+      },
+      "nativeScope": {
+        "start": 187,
+        "end": 5708,
+        "paragraphs": [
+          5,
+          23
+        ],
+        "rawSha256": "171afa184a54b6004194e02047f5d01cf216d8bc519ddfb671a1e41d80bbdf65",
+        "canonicalSha256": "263d459202324d8464ab1076fbbb4092ba77dd5c3427431b861efe9394555927",
+        "metadataPath": "content/corpus/raw/pg209-metadata.html",
+        "metadataSha256": "aba9d3eb35903030dcacfaf39832fc974450207dbbab5d920880f3effafe3837",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 1475,
+          "end": 1567,
+          "contextEvidence": [
+            {
+              "start": 0,
+              "end": 1226
+            },
+            {
+              "start": 1228,
+              "end": 1568
+            },
+            {
+              "start": 1570,
+              "end": 1676
+            }
+          ]
+        },
+        {
+          "start": 1995,
+          "end": 2031,
+          "contextEvidence": [
+            {
+              "start": 1678,
+              "end": 2150
+            },
+            {
+              "start": 2192,
+              "end": 2374
+            },
+            {
+              "start": 2376,
+              "end": 2420
+            },
+            {
+              "start": 2422,
+              "end": 2567
+            }
+          ]
+        },
+        {
+          "start": 3160,
+          "end": 3265,
+          "contextEvidence": [
+            {
+              "start": 2880,
+              "end": 2955
+            },
+            {
+              "start": 3266,
+              "end": 3345
+            }
+          ]
+        },
+        {
+          "start": 3601,
+          "end": 3692,
+          "contextEvidence": [
+            {
+              "start": 3548,
+              "end": 3599
+            },
+            {
+              "start": 3346,
+              "end": 3546
+            },
+            {
+              "start": 3720,
+              "end": 3896
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "jfk-speech-19610120-inaugural",
+      "sourceHash": "aaa0f45ac51c0ad1094136a5a598e0bfab54519fa95e5aba10d9b34af5abe069",
+      "clipId": "817e220ffbaf6993bec505377eb3c42f0560355874a073e30cac4db766b31c3b",
+      "textSha256": "1f9ea3043d30e5d128248469ce040db29f0d097e689c7430137b8857f362ba69",
+      "text": "To those old allies whose cultural and spiritual origins we share, we pledge the loyalty of faithful friends. United there is little we cannot do in a host of cooperative ventures. Divided there is little we can do–for we dare not meet a powerful challenge at odds and split asunder.\n\nTo those new states whom we welcome to the ranks of the free, we pledge our word that one form of colonial control shall not have passed away merely to be replaced by a far more iron tyranny. We shall not always expect to find them supporting our view. But we shall always hope to find them strongly supporting their own freedom–and to remember that, in the past, those who foolishly sought power by riding the back of the tiger ended up inside.\n\nTo those people in the huts and villages of half the globe struggling to break the bonds of mass misery, we pledge our best efforts to help them help themselves, for whatever period is required–not because the communists may be doing it, not because we seek their votes, but because it is right. If a free society cannot help the many who are poor, it cannot save the few who are rich.\n\nTo our sister republics south of our border, we offer a special pledge–to convert our good words into good deeds–in a new alliance for progress–to assist free men and free governments in casting off the chains of poverty. But this peaceful revolution of hope cannot become the prey of hostile powers. Let all our neighbors know that we shall join with them to oppose aggression or subversion anywhere in the Americas. And let every other power know that this Hemisphere intends to remain the master of its own house.\n\nTo that world assembly of sovereign states, the United Nations, our last best hope in an age where the instruments of war have far outpaced the instruments of peace, we renew our pledge of support–to prevent it from becoming merely a forum for invective–to strengthen its shield of the new and the weak–and to enlarge the area in which its writ may run.",
+      "parts": [
+        {
+          "start": 110,
+          "end": 214,
+          "contextEvidence": [
+            {
+              "start": 0,
+              "end": 283
+            }
+          ]
+        },
+        {
+          "start": 685,
+          "end": 730,
+          "contextEvidence": [
+            {
+              "start": 285,
+              "end": 730
+            }
+          ]
+        },
+        {
+          "start": 926,
+          "end": 1027,
+          "contextEvidence": [
+            {
+              "start": 732,
+              "end": 1117
+            }
+          ]
+        },
+        {
+          "start": 1891,
+          "end": 1990,
+          "contextEvidence": [
+            {
+              "start": 1637,
+              "end": 1990
+            }
+          ]
+        }
+      ],
+      "sourceCredit": {
+        "attribution": "John F. Kennedy. Inaugural address, 20 January 1961. https://voicesofdemocracy.umd.edu/kennedy-inaugural-address-speech-text/",
+        "license": "Public domain — original US federal-government address",
+        "sourceUrl": "https://voicesofdemocracy.umd.edu/kennedy-inaugural-address-speech-text/"
+      },
+      "credit": {
+        "attribution": "John F. Kennedy. Inaugural address, 20 January 1961. https://voicesofdemocracy.umd.edu/kennedy-inaugural-address-speech-text/ Recording: John F. Kennedy; original archival recording; https://www.jfklibrary.org/asset-viewer/archives/jfkwha-001",
+        "license": "Public domain — original US federal-government address; recording: Public domain — original US federal-government address",
+        "sourceUrl": "https://voicesofdemocracy.umd.edu/kennedy-inaugural-address-speech-text/"
+      },
+      "audio": {
+        "src": "media/817e220ffbaf6993bec505377eb3c42f0560355874a073e30cac4db766b31c3b.mp3",
+        "sha256": "52113fe6ce865f9d693ea019cf3373e6a1142c0accdb6a8d18d7aa52194f7e0e",
+        "duration": 209.74,
+        "author": "John F. Kennedy",
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/JFK_inaugural_address.ogg",
+        "license": "Public domain — original US federal-government address",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 283,
+          "text": "To those old allies whose cultural and spiritual origins we share, we pledge the loyalty of faithful friends. United there is little we cannot do in a host of cooperative ventures. Divided there is little we can do–for we dare not meet a powerful challenge at odds and split asunder.",
+          "audioStart": 0.0,
+          "audioEnd": 28.76
+        },
+        {
+          "start": 285,
+          "end": 730,
+          "text": "To those new states whom we welcome to the ranks of the free, we pledge our word that one form of colonial control shall not have passed away merely to be replaced by a far more iron tyranny. We shall not always expect to find them supporting our view. But we shall always hope to find them strongly supporting their own freedom–and to remember that, in the past, those who foolishly sought power by riding the back of the tiger ended up inside.",
+          "audioStart": 28.76,
+          "audioEnd": 76.76
+        },
+        {
+          "start": 732,
+          "end": 1117,
+          "text": "To those people in the huts and villages of half the globe struggling to break the bonds of mass misery, we pledge our best efforts to help them help themselves, for whatever period is required–not because the communists may be doing it, not because we seek their votes, but because it is right. If a free society cannot help the many who are poor, it cannot save the few who are rich.",
+          "audioStart": 76.76,
+          "audioEnd": 118.72
+        },
+        {
+          "start": 1119,
+          "end": 1635,
+          "text": "To our sister republics south of our border, we offer a special pledge–to convert our good words into good deeds–in a new alliance for progress–to assist free men and free governments in casting off the chains of poverty. But this peaceful revolution of hope cannot become the prey of hostile powers. Let all our neighbors know that we shall join with them to oppose aggression or subversion anywhere in the Americas. And let every other power know that this Hemisphere intends to remain the master of its own house.",
+          "audioStart": 118.72,
+          "audioEnd": 176.3
+        },
+        {
+          "start": 1637,
+          "end": 1990,
+          "text": "To that world assembly of sovereign states, the United Nations, our last best hope in an age where the instruments of war have far outpaced the instruments of peace, we renew our pledge of support–to prevent it from becoming merely a forum for invective–to strengthen its shield of the new and the weak–and to enlarge the area in which its writ may run.",
+          "audioStart": 176.3,
+          "audioEnd": 209.74
+        }
+      ]
+    },
+    {
+      "rootId": "eisenhower-speech-19610117-farewell",
+      "sourceHash": "26ead479355fd8de5bbd8254b24f68a7ea59ac0a87354235f8e0dd9a1d55db75",
+      "clipId": "85ae44852d293b0b4908786081283db5c97a36100a14baed0f6b0ef7441ac015",
+      "textSha256": "a9e28059266328b99a5d77ef4ae70e129c4d2b0692b4eb498e2d0f07ebd58de3",
+      "text": "Akin to, and largely responsible for the sweeping changes in our industrial-military posture, has been the technological revolution during recent decades.\n\nIn this revolution, research has become central; it also becomes more formalized, complex, and costly. A steadily increasing share is conducted for, by, or at the direction of, the Federal government.\n\nToday, the solitary inventor, tinkering in his shop, has been overshadowed by task forces of scientists in laboratories and testing fields. In the same fashion, the free university, historically the fountainhead of free ideas and scientific discovery, has experienced a revolution in the conduct of research. Partly because of the huge costs involved, a government contract becomes virtually a substitute for intellectual curiosity. For every old blackboard there are now hundreds of new electronic computers.\n\nThe prospect of domination of the nation's scholars by Federal employment, project allocations, and the power of money is ever present--and is gravely to be regarded.\n\nYet, in holding scientific research and discovery in respect, as we should, we must also be alert to the equal and opposite danger that public policy could itself become the captive of a scientific-technological elite.\n\nIt is the task of statesmanship to mold, to balance, and to integrate these and other forces, new and old, within the principles of our democratic system--ever aiming toward the supreme goals of our free society.\n\nAnother factor in maintaining balance involves the element of time. As we peer into society's future, we--you and I, and our government-must avoid the impulse to live only for today, plundering, for our own ease and convenience, the precious resources of tomorrow. We cannot mortgage the material assets of our grandchildren without risking the loss also of their political and spiritual heritage. We want democracy to survive for all generations to come, not to become the insolvent phantom of tomorrow.",
+      "parts": [
+        {
+          "start": 519,
+          "end": 608,
+          "contextEvidence": [
+            {
+              "start": 358,
+              "end": 867
+            }
+          ]
+        },
+        {
+          "start": 1173,
+          "end": 1255,
+          "contextEvidence": [
+            {
+              "start": 869,
+              "end": 1035
+            },
+            {
+              "start": 1037,
+              "end": 1255
+            }
+          ]
+        },
+        {
+          "start": 1289,
+          "end": 1362,
+          "contextEvidence": [
+            {
+              "start": 1037,
+              "end": 1255
+            },
+            {
+              "start": 1257,
+              "end": 1469
+            }
+          ]
+        },
+        {
+          "start": 1927,
+          "end": 1975,
+          "contextEvidence": [
+            {
+              "start": 1471,
+              "end": 1975
+            }
+          ]
+        }
+      ],
+      "sourceCredit": {
+        "attribution": "Dwight D. Eisenhower. Farewell radio and television address to the American people, 17 January 1961. https://www.presidency.ucsb.edu/documents/farewell-radio-and-television-address-the-american-people",
+        "license": "Public domain — original US federal-government address",
+        "sourceUrl": "https://www.presidency.ucsb.edu/documents/farewell-radio-and-television-address-the-american-people"
+      },
+      "credit": {
+        "attribution": "Dwight D. Eisenhower. Farewell radio and television address to the American people, 17 January 1961. https://www.presidency.ucsb.edu/documents/farewell-radio-and-television-address-the-american-people Recording: Dwight D. Eisenhower; original archival recording; https://www.archives.gov/global-pages/privacy.html",
+        "license": "Public domain — original US federal-government address; recording: Public domain — original US federal-government address",
+        "sourceUrl": "https://www.presidency.ucsb.edu/documents/farewell-radio-and-television-address-the-american-people"
+      },
+      "audio": {
+        "src": "media/85ae44852d293b0b4908786081283db5c97a36100a14baed0f6b0ef7441ac015.mp3",
+        "sha256": "b1242d6e52b426fd22897b5748d1392ae6be2561b9750d0aa5463f6520e7a73e",
+        "duration": 161.48,
+        "author": "Dwight D. Eisenhower",
+        "sourceUrl": "https://www.eisenhowerlibrary.gov/sites/default/files/all-about-ike/speeches/wav-files/farewell-address.mp3",
+        "license": "Public domain — original US federal-government address",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 154,
+          "text": "Akin to, and largely responsible for the sweeping changes in our industrial-military posture, has been the technological revolution during recent decades.",
+          "audioStart": 0.0,
+          "audioEnd": 11.54
+        },
+        {
+          "start": 156,
+          "end": 356,
+          "text": "In this revolution, research has become central; it also becomes more formalized, complex, and costly. A steadily increasing share is conducted for, by, or at the direction of, the Federal government.",
+          "audioStart": 11.54,
+          "audioEnd": 28.44
+        },
+        {
+          "start": 358,
+          "end": 867,
+          "text": "Today, the solitary inventor, tinkering in his shop, has been overshadowed by task forces of scientists in laboratories and testing fields. In the same fashion, the free university, historically the fountainhead of free ideas and scientific discovery, has experienced a revolution in the conduct of research. Partly because of the huge costs involved, a government contract becomes virtually a substitute for intellectual curiosity. For every old blackboard there are now hundreds of new electronic computers.",
+          "audioStart": 28.44,
+          "audioEnd": 72.34
+        },
+        {
+          "start": 869,
+          "end": 1035,
+          "text": "The prospect of domination of the nation's scholars by Federal employment, project allocations, and the power of money is ever present--and is gravely to be regarded.",
+          "audioStart": 72.34,
+          "audioEnd": 84.64
+        },
+        {
+          "start": 1037,
+          "end": 1255,
+          "text": "Yet, in holding scientific research and discovery in respect, as we should, we must also be alert to the equal and opposite danger that public policy could itself become the captive of a scientific-technological elite.",
+          "audioStart": 84.64,
+          "audioEnd": 103.92
+        },
+        {
+          "start": 1257,
+          "end": 1469,
+          "text": "It is the task of statesmanship to mold, to balance, and to integrate these and other forces, new and old, within the principles of our democratic system--ever aiming toward the supreme goals of our free society.",
+          "audioStart": 103.92,
+          "audioEnd": 120.44
+        },
+        {
+          "start": 1471,
+          "end": 1975,
+          "text": "Another factor in maintaining balance involves the element of time. As we peer into society's future, we--you and I, and our government-must avoid the impulse to live only for today, plundering, for our own ease and convenience, the precious resources of tomorrow. We cannot mortgage the material assets of our grandchildren without risking the loss also of their political and spiritual heritage. We want democracy to survive for all generations to come, not to become the insolvent phantom of tomorrow.",
+          "audioStart": 120.44,
+          "audioEnd": 161.48
+        }
+      ]
+    }
+  ]
+}

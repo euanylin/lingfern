@@ -1,0 +1,441 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-11",
+      "sourceHash": "01b38ea4c710a84bc18d0bd41271a5a1a92b94e97b2812f4dece97d4a694725e",
+      "passageId": "7ad1ce0db5f8eef0096ca380d347825c0f5298ed20b6b1581b8267c1ff8270d5",
+      "textSha256": "7ad1ce0db5f8eef0096ca380d347825c0f5298ed20b6b1581b8267c1ff8270d5",
+      "text": "There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. “Very uncomfortable for the Dormouse,” thought Alice; “only, as it’s asleep, I suppose it doesn’t mind.”\n\nThe table was a large one, but the three were all crowded together at one corner of it: “No room! No room!” they cried out when they saw Alice coming. “There’s _plenty_ of room!” said Alice indignantly, and she sat down in a large arm-chair at one end of the table.\n\n“Have some wine,” the March Hare said in an encouraging tone.\n\nAlice looked all round the table, but there was nothing on it but tea. “I don’t see any wine,” she remarked.\n\n“There isn’t any,” said the March Hare.\n\n“Then it wasn’t very civil of you to offer it,” said Alice angrily.\n\n“It wasn’t very civil of you to sit down without being invited,” said the March Hare.\n\n“I didn’t know it was _your_ table,” said Alice; “it’s laid for a great many more than three.”\n\n“Your hair wants cutting,” said the Hatter. He had been looking at Alice for some time with great curiosity, and this was his first speech.\n\n“You should learn not to make personal remarks,” Alice said with some severity; “it’s very rude.”\n\nThe Hatter opened his eyes very wide on hearing this; but all he _said_ was, “Why is a raven like a writing-desk?”\n\n“Come, we shall have some fun now!” thought Alice. “I’m glad they’ve begun asking riddles.—I believe I can guess that,” she added aloud.\n\n“Do you mean that you think you can find out the answer to it?” said the March Hare.\n\n“Exactly so,” said Alice.\n\n“Then you should say what you mean,” the March Hare went on.\n\n“I do,” Alice hastily replied; “at least—at least I mean what I say—that’s the same thing, you know.”\n\n“Not the same thing a bit!” said the Hatter. “You might just as well say that ‘I see what I eat’ is the same thing as ‘I eat what I see’!”\n\n“You might just as well say,” added the March Hare, “that ‘I like what I get’ is the same thing as ‘I get what I like’!”\n\n“You might just as well say,” added the Dormouse, who seemed to be talking in his sleep, “that ‘I breathe when I sleep’ is the same thing as ‘I sleep when I breathe’!”\n\n“It _is_ the same thing with you,” said the Hatter, and here the conversation dropped, and the party sat silent for a minute, while Alice thought over all she could remember about ravens and writing-desks, which wasn’t much.\n\nThe Hatter was the first to break the silence. “What day of the month is it?” he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking it every now and then, and holding it to his ear.\n\nAlice considered a little, and then said “The fourth.”\n\n“Two days wrong!” sighed the Hatter. “I told you butter wouldn’t suit the works!” he added looking angrily at the March Hare.\n\n“It was the _best_ butter,” the March Hare meekly replied.\n\n“Yes, but some crumbs must have got in as well,” the Hatter grumbled: “you shouldn’t have put it in with the bread-knife.”\n\nThe March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, “It was the _best_ butter, you know.”\n\nAlice had been looking over his shoulder with some curiosity. “What a funny watch!” she remarked. “It tells the day of the month, and doesn’t tell what o’clock it is!”\n\n“Why should it?” muttered the Hatter. “Does _your_ watch tell you what year it is?”\n\n“Of course not,” Alice replied very readily: “but that’s because it stays the same year for such a long time together.”\n\n“Which is just the case with _mine_,” said the Hatter.\n\nAlice felt dreadfully puzzled, The Hatter’s remark seemed to have no sort of meaning in it, and yet it was certainly English. “I don’t quite understand you,” she said, as politely as she could.\n\n“The Dormouse is asleep again,” said the Hatter, and he poured a little hot tea upon its nose.\n\nThe Dormouse shook its head impatiently, and said, without opening its eyes, “Of course, of course; just what I was going to remark myself.”\n\n“Have you guessed the riddle yet?” the Hatter said, turning to Alice again.\n\n“No, I give it up,” Alice replied: “what’s the answer?”\n\n“I haven’t the slightest idea,” said the Hatter.\n\n“Nor I,” said the March Hare.",
+      "credit": {
+        "attribution": "Alice's Adventures in Wonderland — Carroll, Lewis, 1832-1898. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/11).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/11"
+      },
+      "nativeScope": {
+        "start": 71626,
+        "end": 76072,
+        "paragraphs": [
+          317,
+          354
+        ],
+        "rawSha256": "01b38ea4c710a84bc18d0bd41271a5a1a92b94e97b2812f4dece97d4a694725e",
+        "canonicalSha256": "dbba12a8b14c02e6b1425d8fd9c087b020a9651f83d4a8a4aad9d94bceb90b26",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 1556,
+          "end": 1582,
+          "contextEvidence": [
+            {
+              "start": 1604,
+              "end": 1665
+            },
+            {
+              "start": 1690,
+              "end": 1700
+            },
+            {
+              "start": 4311,
+              "end": 4327
+            }
+          ]
+        },
+        {
+          "start": 1810,
+          "end": 1845,
+          "contextEvidence": [
+            {
+              "start": 1717,
+              "end": 1750
+            },
+            {
+              "start": 1882,
+              "end": 1907
+            },
+            {
+              "start": 1960,
+              "end": 1976
+            }
+          ]
+        },
+        {
+          "start": 2959,
+          "end": 3017,
+          "contextEvidence": [
+            {
+              "start": 2870,
+              "end": 2912
+            },
+            {
+              "start": 3029,
+              "end": 3065
+            },
+            {
+              "start": 3090,
+              "end": 3139
+            }
+          ]
+        },
+        {
+          "start": 4368,
+          "end": 4396,
+          "contextEvidence": [
+            {
+              "start": 4346,
+              "end": 4364
+            },
+            {
+              "start": 4418,
+              "end": 4423
+            },
+            {
+              "start": 1556,
+              "end": 1582
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-215",
+      "sourceHash": "30f569c5671bba7bbc4a92ab6d8ee01a0d3be00f994819c77da62c28041eb8a2",
+      "passageId": "18c5d67c0894a43679c39fe7484cb318656e6499361a0965012cdab1cf5e4101",
+      "textSha256": "18c5d67c0894a43679c39fe7484cb318656e6499361a0965012cdab1cf5e4101",
+      "text": "That winter, at Dawson, Buck performed another exploit, not so heroic, perhaps, but one that put his name many notches higher on the totem-pole of Alaskan fame. This exploit was particularly gratifying to the three men; for they stood in need of the outfit which it furnished, and were enabled to make a long-desired trip into the virgin East, where miners had not yet appeared. It was brought about by a conversation in the Eldorado Saloon, in which men waxed boastful of their favorite dogs. Buck, because of his record, was the target for these men, and Thornton was driven stoutly to defend him. At the end of half an hour one man stated that his dog could start a sled with five hundred pounds and walk off with it; a second bragged six hundred for his dog; and a third, seven hundred.\n\n“Pooh! pooh!” said John Thornton; “Buck can start a thousand pounds.”\n\n“And break it out? and walk off with it for a hundred yards?” demanded Matthewson, a Bonanza King, he of the seven hundred vaunt.\n\n“And break it out, and walk off with it for a hundred yards,” John Thornton said coolly.\n\n“Well,” Matthewson said, slowly and deliberately, so that all could hear, “I’ve got a thousand dollars that says he can’t. And there it is.” So saying, he slammed a sack of gold dust of the size of a bologna sausage down upon the bar.\n\nNobody spoke. Thornton’s bluff, if bluff it was, had been called. He could feel a flush of warm blood creeping up his face. His tongue had tricked him. He did not know whether Buck could start a thousand pounds. Half a ton! The enormousness of it appalled him. He had great faith in Buck’s strength and had often thought him capable of starting such a load; but never, as now, had he faced the possibility of it, the eyes of a dozen men fixed upon him, silent and waiting. Further, he had no thousand dollars; nor had Hans or Pete.\n\n“I’ve got a sled standing outside now, with twenty fiftypound sacks of flour on it,” Matthewson went on with brutal directness; “so don’t let that hinder you.”\n\nThornton did not reply. He did not know what to say. He glanced from face to face in the absent way of a man who has lost the power of thought and is seeking somewhere to find the thing that will start it going again. The face of Jim O’Brien, a Mastodon King and old-time comrade, caught his eyes. It was as a cue to him, seeming to rouse him to do what he would never have dreamed of doing.\n\n“Can you lend me a thousand?” he asked, almost in a whisper.\n\n“Sure,” answered O’Brien, thumping down a plethoric sack by the side of Matthewson’s. “Though it’s little faith I’m having, John, that the beast can do the trick.”\n\nThe Eldorado emptied its occupants into the street to see the test. The tables were deserted, and the dealers and gamekeepers came forth to see the outcome of the wager and to lay odds. Several hundred men, furred and mittened, banked around the sled within easy distance. Matthewson’s sled, loaded with a thousand pounds of flour, had been standing for a couple of hours, and in the intense cold (it was sixty below zero) the runners had frozen fast to the hard-packed snow. Men offered odds of two to one that Buck could not budge the sled. A quibble arose concerning the phrase “break out.” O’Brien contended it was Thornton’s privilege to knock the runners loose, leaving Buck to “break it out” from a dead standstill. Matthewson insisted that the phrase included breaking the runners from the frozen grip of the snow. A majority of the men who had witnessed the making of the bet decided in his favor, whereat the odds went up to three to one against Buck.\n\nThere were no takers. Not a man believed him capable of the feat. Thornton had been hurried into the wager, heavy with doubt; and now that he looked at the sled itself, the concrete fact, with the regular team of ten dogs curled up in the snow before it, the more impossible the task appeared. Matthewson waxed jubilant.\n\n“Three to one!” he proclaimed. “I’ll lay you another thousand at that figure, Thornton. What d’ye say?”\n\nThornton’s doubt was strong in his face, but his fighting spirit was aroused—the fighting spirit that soars above odds, fails to recognize the impossible, and is deaf to all save the clamor for battle. He called Hans and Pete to him. Their sacks were slim, and with his own the three partners could rake together only two hundred dollars. In the ebb of their fortunes, this sum was their total capital; yet they laid it unhesitatingly against Matthewson’s six hundred.\n\nThe team of ten dogs was unhitched, and Buck, with his own harness, was put into the sled. He had caught the contagion of the excitement, and he felt that in some way he must do a great thing for John Thornton. Murmurs of admiration at his splendid appearance went up. He was in perfect condition, without an ounce of superfluous flesh, and the one hundred and fifty pounds that he weighed were so many pounds of grit and virility. His furry coat shone with the sheen of silk. Down the neck and across the shoulders, his mane, in repose as it was, half bristled and seemed to lift with every movement, as though excess of vigor made each particular hair alive and active. The great breast and heavy fore legs were no more than in proportion with the rest of the body, where the muscles showed in tight rolls underneath the skin. Men felt these muscles and proclaimed them hard as iron, and the odds went down to two to one.\n\n“Gad, sir! Gad, sir!” stuttered a member of the latest dynasty, a king of the Skookum Benches. “I offer you eight hundred for him, sir, before the test, sir; eight hundred just as he stands.”\n\nThornton shook his head and stepped to Buck’s side.\n\n“You must stand off from him,” Matthewson protested. “Free play and plenty of room.”\n\nThe crowd fell silent; only could be heard the voices of the gamblers vainly offering two to one. Everybody acknowledged Buck a magnificent animal, but twenty fifty-pound sacks of flour bulked too large in their eyes for them to loosen their pouch-strings.\n\nThornton knelt down by Buck’s side. He took his head in his two hands and rested cheek on cheek. He did not playfully shake him, as was his wont, or murmur soft love curses; but he whispered in his ear. “As you love me, Buck. As you love me,” was what he whispered. Buck whined with suppressed eagerness.\n\nThe crowd was watching curiously. The affair was growing mysterious. It seemed like a conjuration. As Thornton got to his feet, Buck seized his mittened hand between his jaws, pressing in with his teeth and releasing slowly, half-reluctantly. It was the answer, in terms, not of speech, but of love. Thornton stepped well back.\n\n“Now, Buck,” he said.\n\nBuck tightened the traces, then slacked them for a matter of several inches. It was the way he had learned.\n\n“Gee!” Thornton’s voice rang out, sharp in the tense silence.\n\nBuck swung to the right, ending the movement in a plunge that took up the slack and with a sudden jerk arrested his one hundred and fifty pounds. The load quivered, and from under the runners arose a crisp crackling.\n\n“Haw!” Thornton commanded.\n\nBuck duplicated the manœuvre, this time to the left. The crackling turned into a snapping, the sled pivoting and the runners slipping and grating several inches to the side. The sled was broken out. Men were holding their breaths, intensely unconscious of the fact.\n\n“Now, MUSH!”\n\nThornton’s command cracked out like a pistol-shot. Buck threw himself forward, tightening the traces with a jarring lunge. His whole body was gathered compactly together in the tremendous effort, the muscles writhing and knotting like live things under the silky fur. His great chest was low to the ground, his head forward and down, while his feet were flying like mad, the claws scarring the hard-packed snow in parallel grooves. The sled swayed and trembled, half-started forward. One of his feet slipped, and one man groaned aloud. Then the sled lurched ahead in what appeared a rapid succession of jerks, though it never really came to a dead stop again...half an inch...an inch... two inches... The jerks perceptibly diminished; as the sled gained momentum, he caught them up, till it was moving steadily along.\n\nMen gasped and began to breathe again, unaware that for a moment they had ceased to breathe. Thornton was running behind, encouraging Buck with short, cheery words. The distance had been measured off, and as he neared the pile of firewood which marked the end of the hundred yards, a cheer began to grow and grow, which burst into a roar as he passed the firewood and halted at command. Every man was tearing himself loose, even Matthewson. Hats and mittens were flying in the air. Men were shaking hands, it did not matter with whom, and bubbling over in a general incoherent babel.\n\nBut Thornton fell on his knees beside Buck. Head was against head, and he was shaking him back and forth. Those who hurried up heard him cursing Buck, and he cursed him long and fervently, and softly and lovingly.\n\n“Gad, sir! Gad, sir!” spluttered the Skookum Bench king. “I’ll give you a thousand for him, sir, a thousand, sir—twelve hundred, sir.”\n\nThornton rose to his feet. His eyes were wet. The tears were streaming frankly down his cheeks. “Sir,” he said to the Skookum Bench king, “no, sir. You can go to hell, sir. It’s the best I can do for you, sir.”\n\nBuck seized Thornton’s hand in his teeth. Thornton shook him back and forth. As though animated by a common impulse, the onlookers drew back to a respectful distance; nor were they again indiscreet enough to interrupt.",
+      "credit": {
+        "attribution": "The call of the wild — London, Jack, 1876-1916. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/215).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/215"
+      },
+      "nativeScope": {
+        "start": 131678,
+        "end": 141229,
+        "paragraphs": [
+          258,
+          292
+        ],
+        "rawSha256": "30f569c5671bba7bbc4a92ab6d8ee01a0d3be00f994819c77da62c28041eb8a2",
+        "canonicalSha256": "1fba910f756277d0acf066ec043d8410703caaf09c96b01a66c382e0c792b9ec",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 1334,
+          "end": 1385,
+          "contextEvidence": [
+            {
+              "start": 1472,
+              "end": 1531
+            },
+            {
+              "start": 1581,
+              "end": 1618
+            },
+            {
+              "start": 1682,
+              "end": 1731
+            }
+          ]
+        },
+        {
+          "start": 2556,
+          "end": 2631,
+          "contextEvidence": [
+            {
+              "start": 2408,
+              "end": 2435
+            },
+            {
+              "start": 2470,
+              "end": 2474
+            },
+            {
+              "start": 2495,
+              "end": 2553
+            }
+          ]
+        },
+        {
+          "start": 3457,
+          "end": 3539,
+          "contextEvidence": [
+            {
+              "start": 3228,
+              "end": 3300
+            },
+            {
+              "start": 3357,
+              "end": 3455
+            },
+            {
+              "start": 7259,
+              "end": 7283
+            }
+          ]
+        },
+        {
+          "start": 7976,
+          "end": 8024,
+          "contextEvidence": [
+            {
+              "start": 7798,
+              "end": 7849
+            },
+            {
+              "start": 8067,
+              "end": 8099
+            },
+            {
+              "start": 8149,
+              "end": 8182
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-54245",
+      "sourceHash": "1828a3320426a49ef4668b5fc5245d82890a2ee9f293b4bba68d0a625102aa70",
+      "clipId": "e4f5a52d36d58f8b39ee2c80b61f91c60d88cac0a2438cef78c04aebb6bdef3f",
+      "textSha256": "9e26b890c09de1a6670280fcc7aaf4766e60ea8eb507a02bae3e5e4acf59a64a",
+      "text": "In 1982, Vernor Vinge proposed that the creation of smarter-than-human intelligence represented a breakdown in humans' ability to model their future. The argument was that authors cannot write realistic characters who are smarter than humans: if humans could visualize smarter-than-human intelligence, we would be that smart ourselves. Vinge named this event \"the Singularity\". He compared it to the breakdown of the then-current model of physics when it was used to model the gravitational singularity beyond the event horizon of a black hole. In 1993, Vernor Vinge associated the Singularity more explicitly with I. J. Good's intelligence explosion, and tried to project the arrival time of artificial intelligence (AI) using Moore's law, which thereafter came to be associated with the \"Singularity\" concept.\n\nFuturist Ray Kurzweil generalizes singularity to apply to the sudden growth of any technology, not just intelligence; and argues that singularity in the sense of sharply accelerating technological change is inevitably implied by a long-term pattern of accelerating change that generalizes Moore's law to technologies predating the integrated circuit, and includes material technology (especially as applied to nanotechnology), medical technology, and others. Aubrey de Grey has applied the term the \"Methuselarity\" to the point at which medical technology improves so fast that expected human lifespan increases by more than one year per year.\n\nRobin Hanson, taking \"singularity\" to refer to sharp increases in the exponent of economic growth, lists the agricultural and industrial revolutions as past \"singularities\". Extrapolating from such past events, Hanson proposes that the next economic singularity should increase economic growth between 60 and 250 times. An innovation that allowed for the replacement of virtually all human labor could trigger this event.\n\nEliezer Yudkowsky has suggested that many of the different definitions that have been assigned to Singularity are mutually incompatible rather than mutually supporting. For example, Kurzweil extrapolates current technological trajectories past the arrival of self-improving AI or smarter-than-human intelligence, which Yudkowsky argues represents a tension with both I. J. Good's proposed discontinuous upswing in intelligence and Vinge's thesis on unpredictability.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Technological singularity, recorded revision 353310242. Excerpt: reviewed printed ranges [(3180, 5527)]; original recording 166.38–291.87 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Technological_singularity?oldid=353310242"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Technological singularity, recorded revision 353310242. Excerpt: reviewed printed ranges [(3180, 5527)]; original recording 166.38–291.87 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement. Recording: Speaker: Caninedoubletake Authors of the article. Original recording of Technological singularity.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Technological_singularity?oldid=353310242"
+      },
+      "audio": {
+        "src": "media/e4f5a52d36d58f8b39ee2c80b61f91c60d88cac0a2438cef78c04aebb6bdef3f.mp3",
+        "sha256": "5eda1b03e0a5ac3708d36eeaa991cc3309f2dc11d79692db0fa8e42eaa35d6ef",
+        "duration": 125.49,
+        "author": "Speaker: Caninedoubletake Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:TechSingularity.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 811,
+          "text": "In 1982, Vernor Vinge proposed that the creation of smarter-than-human intelligence represented a breakdown in humans' ability to model their future. The argument was that authors cannot write realistic characters who are smarter than humans: if humans could visualize smarter-than-human intelligence, we would be that smart ourselves. Vinge named this event \"the Singularity\". He compared it to the breakdown of the then-current model of physics when it was used to model the gravitational singularity beyond the event horizon of a black hole. In 1993, Vernor Vinge associated the Singularity more explicitly with I. J. Good's intelligence explosion, and tried to project the arrival time of artificial intelligence (AI) using Moore's law, which thereafter came to be associated with the \"Singularity\" concept.",
+          "audioStart": 0.0,
+          "audioEnd": 43.94
+        },
+        {
+          "start": 813,
+          "end": 1456,
+          "text": "Futurist Ray Kurzweil generalizes singularity to apply to the sudden growth of any technology, not just intelligence; and argues that singularity in the sense of sharply accelerating technological change is inevitably implied by a long-term pattern of accelerating change that generalizes Moore's law to technologies predating the integrated circuit, and includes material technology (especially as applied to nanotechnology), medical technology, and others. Aubrey de Grey has applied the term the \"Methuselarity\" to the point at which medical technology improves so fast that expected human lifespan increases by more than one year per year.",
+          "audioStart": 43.94,
+          "audioEnd": 77.77
+        },
+        {
+          "start": 1458,
+          "end": 1879,
+          "text": "Robin Hanson, taking \"singularity\" to refer to sharp increases in the exponent of economic growth, lists the agricultural and industrial revolutions as past \"singularities\". Extrapolating from such past events, Hanson proposes that the next economic singularity should increase economic growth between 60 and 250 times. An innovation that allowed for the replacement of virtually all human labor could trigger this event.",
+          "audioStart": 77.77,
+          "audioEnd": 100.85
+        },
+        {
+          "start": 1881,
+          "end": 2347,
+          "text": "Eliezer Yudkowsky has suggested that many of the different definitions that have been assigned to Singularity are mutually incompatible rather than mutually supporting. For example, Kurzweil extrapolates current technological trajectories past the arrival of self-improving AI or smarter-than-human intelligence, which Yudkowsky argues represents a tension with both I. J. Good's proposed discontinuous upswing in intelligence and Vinge's thesis on unpredictability.",
+          "audioStart": 100.85,
+          "audioEnd": 125.49
+        }
+      ],
+      "readerNotes": "Printed Vernor/Vinge/Hanson versus cached Werner/Venge/Hansen are proper-name recognition differences; printed collected spellings retained, no name-spelling score. Printed applied/Methuselarity versus cached implied/methicolarity, has/had suggested, duplicate Singularity, smarter-than-human/inhuman, I.J./IJ remain exact scoped diagnostic uncertainty. No deletion, concealment or bulk auditory approval; these uncertain tokens are excluded as scoring clues. The four scored meaning relations use separate exact continuous matched phrases.",
+      "parts": [
+        {
+          "start": 84,
+          "end": 148,
+          "contextEvidence": [
+            {
+              "start": 0,
+              "end": 30
+            },
+            {
+              "start": 378,
+              "end": 446
+            },
+            {
+              "start": 656,
+              "end": 689
+            }
+          ]
+        },
+        {
+          "start": 835,
+          "end": 929,
+          "contextEvidence": [
+            {
+              "start": 813,
+              "end": 834
+            },
+            {
+              "start": 935,
+              "end": 1038
+            },
+            {
+              "start": 1240,
+              "end": 1270
+            }
+          ]
+        },
+        {
+          "start": 1778,
+          "end": 1879,
+          "contextEvidence": [
+            {
+              "start": 1458,
+              "end": 1555
+            },
+            {
+              "start": 1669,
+              "end": 1776
+            }
+          ]
+        },
+        {
+          "start": 1995,
+          "end": 2048,
+          "contextEvidence": [
+            {
+              "start": 1881,
+              "end": 1898
+            },
+            {
+              "start": 2063,
+              "end": 2136
+            },
+            {
+              "start": 2312,
+              "end": 2346
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-46182131",
+      "sourceHash": "f852c3d72fda906fb98be5eaa5f13d50e92b7684590673eb403fcda7ee205a92",
+      "clipId": "f3c97796b3aa9ea3606cc1cbf29b1e9dd52619e76775aea07d65ca4c0bebb3bb",
+      "textSha256": "dba5643a87d260f04af1796eaac4470387df5e5577ea2c700f946d38534d3a0e",
+      "text": "Section 2. Phonology\n\nWhen asked, many signers in the South gave anecdotal accounts of differences between the signing of Black and White signers. These differences turned out to be aspects of the differing phonology of BASL. Among these accounts were claims that Black signers had a larger signing space and used more two-handed signs. Investigation into these anecdotes has found correlations.\n\nWhen compared, Black signers were more likely than were White signers to produce signs outside of the typical signing space and to use two-handed signs. Adverbs are more likely to use a larger signing space. Less marked forms, such as pronouns, determiners, plain verbs, and nouns, tend to be less likely to be produced outside the typical signing space. The selection of two-handed signs over one-handed signs was found to have systematic constraints on their production. When the sign could be produced with one or two hands, Black signers often produced the variant that matched the handedness of the following sign; if the following sign was two-handed, they were more likely to produce a two-handed variant, while if the following sign was one-handed, they were more likely to produce the one-handed variant. The use of innovative one-handed forms, though, even in environments which favored them, did not exceed 50 percent.\n\nBASL signers further tend to favor lowered variants of side-of-forehead signs resulting in contact at the cheek. The sign Know, K-N-O-W, is usually produced by placing the fingers of a flat hand on the temple, but when lowered the fingers make contact with the cheek. Early research showed that BASL signers use these lowered forms at a rate of 53 percent, with grammatical category being the strongest constraint. Other conditioning environments for lowered signs depend on preceding location; for instance, signs produced in front of the body lead to lowered sign variants, while signs produced at the head cause signers to favor non-lowered forms.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Black American Sign Language, recorded revision 784175204. Excerpt: reviewed printed ranges [(5099, 7055)]; original recording 486.0–633.19 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Black_American_Sign_Language?oldid=784175204"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Black American Sign Language, recorded revision 784175204. Excerpt: reviewed printed ranges [(5099, 7055)]; original recording 486.0–633.19 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement. Recording: Speaker: PopularOutcast Authors of the article. Original recording of Black American Sign Language.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Black_American_Sign_Language?oldid=784175204"
+      },
+      "audio": {
+        "src": "media/f3c97796b3aa9ea3606cc1cbf29b1e9dd52619e76775aea07d65ca4c0bebb3bb.mp3",
+        "sha256": "b01dca38418f6a3f56cdba41b5e3bd5484b5967968f27b47fddb8f7fb937ade3",
+        "duration": 147.19,
+        "author": "Speaker: PopularOutcast Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Black_American_Sign_Language-article.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 395,
+          "text": "Section 2. Phonology\n\nWhen asked, many signers in the South gave anecdotal accounts of differences between the signing of Black and White signers. These differences turned out to be aspects of the differing phonology of BASL. Among these accounts were claims that Black signers had a larger signing space and used more two-handed signs. Investigation into these anecdotes has found correlations.",
+          "audioStart": 0.0,
+          "audioEnd": 32.91
+        },
+        {
+          "start": 397,
+          "end": 1978,
+          "text": "When compared, Black signers were more likely than were White signers to produce signs outside of the typical signing space and to use two-handed signs. Adverbs are more likely to use a larger signing space. Less marked forms, such as pronouns, determiners, plain verbs, and nouns, tend to be less likely to be produced outside the typical signing space. The selection of two-handed signs over one-handed signs was found to have systematic constraints on their production. When the sign could be produced with one or two hands, Black signers often produced the variant that matched the handedness of the following sign; if the following sign was two-handed, they were more likely to produce a two-handed variant, while if the following sign was one-handed, they were more likely to produce the one-handed variant. The use of innovative one-handed forms, though, even in environments which favored them, did not exceed 50 percent.\n\nBASL signers further tend to favor lowered variants of side-of-forehead signs resulting in contact at the cheek. The sign Know, K-N-O-W, is usually produced by placing the fingers of a flat hand on the temple, but when lowered the fingers make contact with the cheek. Early research showed that BASL signers use these lowered forms at a rate of 53 percent, with grammatical category being the strongest constraint. Other conditioning environments for lowered signs depend on preceding location; for instance, signs produced in front of the body lead to lowered sign variants, while signs produced at the head cause signers to favor non-lowered forms.",
+          "audioStart": 32.91,
+          "audioEnd": 147.19
+        }
+      ],
+      "readerNotes": "Reader announces Section2.Phonology; the spoken heading is retained. Full original source title/body remains in source ranges. More rather than printed most, explicit K-N-O-W spelling, with rather than at the cheek, and use rather than used follow the cached continuous narration; printed source preserved. These changes are not scored clues. Percent signs in ASR are notation for spoken percentages. Printed final variants versus cached variance is retained as a non-target recognition uncertainty, not silently adjudicated. Two final printed paragraphs share one coarse audio block because a discrete quiet boundary at their join is not established. First paragraph ends in a measured native quiet interval; no cut, splice or fabricated word alignment at the internal join.",
+      "parts": [
+        {
+          "start": 337,
+          "end": 395,
+          "contextEvidence": [
+            {
+              "start": 34,
+              "end": 83
+            },
+            {
+              "start": 397,
+              "end": 466
+            }
+          ]
+        },
+        {
+          "start": 954,
+          "end": 1015,
+          "contextEvidence": [
+            {
+              "start": 870,
+              "end": 923
+            },
+            {
+              "start": 925,
+              "end": 953
+            },
+            {
+              "start": 1110,
+              "end": 1152
+            }
+          ]
+        },
+        {
+          "start": 1300,
+          "end": 1325,
+          "contextEvidence": [
+            {
+              "start": 1211,
+              "end": 1249
+            },
+            {
+              "start": 1259,
+              "end": 1298
+            }
+          ]
+        },
+        {
+          "start": 1660,
+          "end": 1741,
+          "contextEvidence": [
+            {
+              "start": 1596,
+              "end": 1617
+            },
+            {
+              "start": 1743,
+              "end": 1821
+            },
+            {
+              "start": 1910,
+              "end": 1977
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-158",
+      "sourceHash": "532b122b4e6a76cc556d6fdcd729b5892f5c4ce4a1b7060b9f832adfad8680dc",
+      "passageId": "6283729fc5d211941433c5054c215d863604286b4ea5bd225ccb938456cd79f9",
+      "textSha256": "6283729fc5d211941433c5054c215d863604286b4ea5bd225ccb938456cd79f9",
+      "text": "“Dear Emma bears every thing so well,” said her father. “But, Mr. Knightley, she is really very sorry to lose poor Miss Taylor, and I am sure she _will_ miss her more than she thinks for.”\n\nEmma turned away her head, divided between tears and smiles. “It is impossible that Emma should not miss such a companion,” said Mr. Knightley. “We should not like her so well as we do, sir, if we could suppose it; but she knows how much the marriage is to Miss Taylor’s advantage; she knows how very acceptable it must be, at Miss Taylor’s time of life, to be settled in a home of her own, and how important to her to be secure of a comfortable provision, and therefore cannot allow herself to feel so much pain as pleasure. Every friend of Miss Taylor must be glad to have her so happily married.”\n\n“And you have forgotten one matter of joy to me,” said Emma, “and a very considerable one—that I made the match myself. I made the match, you know, four years ago; and to have it take place, and be proved in the right, when so many people said Mr. Weston would never marry again, may comfort me for any thing.”\n\nMr. Knightley shook his head at her. Her father fondly replied, “Ah! my dear, I wish you would not make matches and foretell things, for whatever you say always comes to pass. Pray do not make any more matches.”\n\n“I promise you to make none for myself, papa; but I must, indeed, for other people. It is the greatest amusement in the world! And after such success, you know!—Every body said that Mr. Weston would never marry again. Oh dear, no! Mr. Weston, who had been a widower so long, and who seemed so perfectly comfortable without a wife, so constantly occupied either in his business in town or among his friends here, always acceptable wherever he went, always cheerful—Mr. Weston need not spend a single evening in the year alone if he did not like it. Oh no! Mr. Weston certainly would never marry again. Some people even talked of a promise to his wife on her deathbed, and others of the son and the uncle not letting him. All manner of solemn nonsense was talked on the subject, but I believed none of it.\n\n“Ever since the day—about four years ago—that Miss Taylor and I met with him in Broadway Lane, when, because it began to drizzle, he darted away with so much gallantry, and borrowed two umbrellas for us from Farmer Mitchell’s, I made up my mind on the subject. I planned the match from that hour; and when such success has blessed me in this instance, dear papa, you cannot think that I shall leave off match-making.”\n\n“I do not understand what you mean by ‘success,’” said Mr. Knightley. “Success supposes endeavour. Your time has been properly and delicately spent, if you have been endeavouring for the last four years to bring about this marriage. A worthy employment for a young lady’s mind! But if, which I rather imagine, your making the match, as you call it, means only your planning it, your saying to yourself one idle day, ‘I think it would be a very good thing for Miss Taylor if Mr. Weston were to marry her,’ and saying it again to yourself every now and then afterwards, why do you talk of success? Where is your merit? What are you proud of? You made a lucky guess; and _that_ is all that can be said.”\n\n“And have you never known the pleasure and triumph of a lucky guess?—I pity you.—I thought you cleverer—for, depend upon it a lucky guess is never merely luck. There is always some talent in it. And as to my poor word ‘success,’ which you quarrel with, I do not know that I am so entirely without any claim to it. You have drawn two pretty pictures; but I think there may be a third—a something between the do-nothing and the do-all. If I had not promoted Mr. Weston’s visits here, and given many little encouragements, and smoothed many little matters, it might not have come to any thing after all. I think you must know Hartfield enough to comprehend that.”\n\n“A straightforward, open-hearted man like Weston, and a rational, unaffected woman like Miss Taylor, may be safely left to manage their own concerns. You are more likely to have done harm to yourself, than good to them, by interference.”\n\n“Emma never thinks of herself, if she can do good to others,” rejoined Mr. Woodhouse, understanding but in part. “But, my dear, pray do not make any more matches; they are silly things, and break up one’s family circle grievously.”\n\n“Only one more, papa; only for Mr. Elton. Poor Mr. Elton! You like Mr. Elton, papa,—I must look about for a wife for him. There is nobody in Highbury who deserves him—and he has been here a whole year, and has fitted up his house so comfortably, that it would be a shame to have him single any longer—and I thought when he was joining their hands to-day, he looked so very much as if he would like to have the same kind office done for him! I think very well of Mr. Elton, and this is the only way I have of doing him a service.”\n\n“Mr. Elton is a very pretty young man, to be sure, and a very good young man, and I have a great regard for him. But if you want to shew him any attention, my dear, ask him to come and dine with us some day. That will be a much better thing. I dare say Mr. Knightley will be so kind as to meet him.”\n\n“With a great deal of pleasure, sir, at any time,” said Mr. Knightley, laughing, “and I agree with you entirely, that it will be a much better thing. Invite him to dinner, Emma, and help him to the best of the fish and the chicken, but leave him to chuse his own wife. Depend upon it, a man of six or seven-and-twenty can take care of himself.”",
+      "credit": {
+        "attribution": "Emma — Austen, Jane, 1775-1817. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/158).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/158"
+      },
+      "nativeScope": {
+        "start": 13067,
+        "end": 18619,
+        "paragraphs": [
+          42,
+          55
+        ],
+        "rawSha256": "532b122b4e6a76cc556d6fdcd729b5892f5c4ce4a1b7060b9f832adfad8680dc",
+        "canonicalSha256": "18170ba5c6dfeb44cdc0d21e6b505259a5a3c8b9c2709ef4d14af3202ecb5569",
+        "metadataPath": "content/corpus/raw/pg158-metadata.html",
+        "metadataSha256": "8bd1aac476faac93d8df1039ddc9ec8484f479334949356e28eaadf9ce98f1c1",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 2093,
+          "end": 2119,
+          "contextEvidence": [
+            {
+              "start": 1477,
+              "end": 1533
+            },
+            {
+              "start": 2036,
+              "end": 2091
+            }
+          ]
+        },
+        {
+          "start": 2611,
+          "end": 2638,
+          "contextEvidence": [
+            {
+              "start": 2818,
+              "end": 2849
+            },
+            {
+              "start": 3180,
+              "end": 3203
+            }
+          ]
+        },
+        {
+          "start": 3625,
+          "end": 3675,
+          "contextEvidence": [
+            {
+              "start": 3676,
+              "end": 3723
+            },
+            {
+              "start": 3796,
+              "end": 3842
+            }
+          ]
+        },
+        {
+          "start": 4229,
+          "end": 4255,
+          "contextEvidence": [
+            {
+              "start": 4144,
+              "end": 4203
+            },
+            {
+              "start": 4333,
+              "end": 4373
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-1400",
+      "sourceHash": "9a637118af8e953e9764ec603d9b0a032883384d465acac2e27966a80cf1c6f8",
+      "passageId": "d05eb0a5f22445f08c6be1eed8470de1a36be57115a6f0e1a61d69fb97aa6eb5",
+      "textSha256": "d05eb0a5f22445f08c6be1eed8470de1a36be57115a6f0e1a61d69fb97aa6eb5",
+      "text": "After Mr. Pumblechook had driven off, and when my sister was washing up, I stole into the forge to Joe, and remained by him until he had done for the night. Then I said, “Before the fire goes out, Joe, I should like to tell you something.”\n\n“Should you, Pip?” said Joe, drawing his shoeing-stool near the forge. “Then tell us. What is it, Pip?”\n\n“Joe,” said I, taking hold of his rolled-up shirt sleeve, and twisting it between my finger and thumb, “you remember all that about Miss Havisham’s?”\n\n“Remember?” said Joe. “I believe you! Wonderful!”\n\n“It’s a terrible thing, Joe; it ain’t true.”\n\n“What are you telling of, Pip?” cried Joe, falling back in the greatest amazement. “You don’t mean to say it’s—”\n\n“Yes I do; it’s lies, Joe.”\n\n“But not all of it? Why sure you don’t mean to say, Pip, that there was no black welwet co—eh?” For, I stood shaking my head. “But at least there was dogs, Pip? Come, Pip,” said Joe, persuasively, “if there warn’t no weal-cutlets, at least there was dogs?”\n\n“No, Joe.”\n\n“A dog?” said Joe. “A puppy? Come?”\n\n“No, Joe, there was nothing at all of the kind.”\n\nAs I fixed my eyes hopelessly on Joe, Joe contemplated me in dismay. “Pip, old chap! This won’t do, old fellow! I say! Where do you expect to go to?”\n\n“It’s terrible, Joe; ain’t it?”\n\n“Terrible?” cried Joe. “Awful! What possessed you?”\n\n“I don’t know what possessed me, Joe,” I replied, letting his shirt sleeve go, and sitting down in the ashes at his feet, hanging my head; “but I wish you hadn’t taught me to call Knaves at cards Jacks; and I wish my boots weren’t so thick nor my hands so coarse.”\n\nAnd then I told Joe that I felt very miserable, and that I hadn’t been able to explain myself to Mrs. Joe and Pumblechook, who were so rude to me, and that there had been a beautiful young lady at Miss Havisham’s who was dreadfully proud, and that she had said I was common, and that I knew I was common, and that I wished I was not common, and that the lies had come of it somehow, though I didn’t know how.\n\nThis was a case of metaphysics, at least as difficult for Joe to deal with as for me. But Joe took the case altogether out of the region of metaphysics, and by that means vanquished it.\n\n“There’s one thing you may be sure of, Pip,” said Joe, after some rumination, “namely, that lies is lies. Howsever they come, they didn’t ought to come, and they come from the father of lies, and work round to the same. Don’t you tell no more of ’em, Pip. _That_ ain’t the way to get out of being common, old chap. And as to being common, I don’t make it out at all clear. You are oncommon in some things. You’re oncommon small. Likewise you’re a oncommon scholar.”\n\n“No, I am ignorant and backward, Joe.”\n\n“Why, see what a letter you wrote last night! Wrote in print even! I’ve seen letters—Ah! and from gentlefolks!—that I’ll swear weren’t wrote in print,” said Joe.\n\n“I have learnt next to nothing, Joe. You think much of me. It’s only that.”\n\n“Well, Pip,” said Joe, “be it so or be it son’t, you must be a common scholar afore you can be a oncommon one, I should hope! The king upon his throne, with his crown upon his ed, can’t sit and write his acts of Parliament in print, without having begun, when he were a unpromoted Prince, with the alphabet.—Ah!” added Joe, with a shake of the head that was full of meaning, “and begun at A too, and worked his way to Z. And _I_ know what that is to do, though I can’t say I’ve exactly done it.”\n\nThere was some hope in this piece of wisdom, and it rather encouraged me.\n\n“Whether common ones as to callings and earnings,” pursued Joe, reflectively, “mightn’t be the better of continuing for to keep company with common ones, instead of going out to play with oncommon ones,—which reminds me to hope that there were a flag, perhaps?”\n\n“No, Joe.”\n\n“(I’m sorry there weren’t a flag, Pip). Whether that might be or mightn’t be, is a thing as can’t be looked into now, without putting your sister on the Rampage; and that’s a thing not to be thought of as being done intentional. Lookee here, Pip, at what is said to you by a true friend. Which this to you the true friend say. If you can’t get to be oncommon through going straight, you’ll never get to do it through going crooked. So don’t tell no more on ’em, Pip, and live well and die happy.”\n\n“You are not angry with me, Joe?”\n\n“No, old chap. But bearing in mind that them were which I meantersay of a stunning and outdacious sort,—alluding to them which bordered on weal-cutlets and dog-fighting,—a sincere well-wisher would adwise, Pip, their being dropped into your meditations, when you go upstairs to bed. That’s all, old chap, and don’t never do it no more.”\n\nWhen I got up to my little room and said my prayers, I did not forget Joe’s recommendation, and yet my young mind was in that disturbed and unthankful state, that I thought long after I laid me down, how common Estella would consider Joe, a mere blacksmith; how thick his boots, and how coarse his hands. I thought how Joe and my sister were then sitting in the kitchen, and how I had come up to bed from the kitchen, and how Miss Havisham and Estella never sat in a kitchen, but were far above the level of such common doings. I fell asleep recalling what I “used to do” when I was at Miss Havisham’s; as though I had been there weeks or months, instead of hours; and as though it were quite an old subject of remembrance, instead of one that had arisen only that day.\n\nThat was a memorable day to me, for it made great changes in me. But it is the same with any life. Imagine one selected day struck out of it, and think how different its course would have been. Pause you who read this, and think for a moment of the long chain of iron or gold, of thorns or flowers, that would never have bound you, but for the formation of the first link on one memorable day.",
+      "credit": {
+        "attribution": "Great Expectations — Dickens, Charles, 1812-1870. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/1400).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1400"
+      },
+      "nativeScope": {
+        "start": 139028,
+        "end": 144851,
+        "paragraphs": [
+          547,
+          577
+        ],
+        "rawSha256": "9a637118af8e953e9764ec603d9b0a032883384d465acac2e27966a80cf1c6f8",
+        "canonicalSha256": "855e19b36878431a583839256512ac174a3f45ff43a6da4d6d3d347709f08620",
+        "metadataPath": "content/corpus/raw/pg1400-metadata.html",
+        "metadataSha256": "a00990aa5eae170e029105d7e8a089ba6b3e83877bf5650c7c6dcf8c622c95ea",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 1947,
+          "end": 2005,
+          "contextEvidence": [
+            {
+              "start": 1845,
+              "end": 1901
+            },
+            {
+              "start": 1597,
+              "end": 1644
+            }
+          ]
+        },
+        {
+          "start": 2901,
+          "end": 2938,
+          "contextEvidence": [
+            {
+              "start": 2623,
+              "end": 2658
+            },
+            {
+              "start": 2662,
+              "end": 2698
+            }
+          ]
+        },
+        {
+          "start": 4115,
+          "end": 4219,
+          "contextEvidence": [
+            {
+              "start": 4287,
+              "end": 4318
+            },
+            {
+              "start": 4322,
+              "end": 4355
+            }
+          ]
+        },
+        {
+          "start": 4859,
+          "end": 4916,
+          "contextEvidence": [
+            {
+              "start": 4759,
+              "end": 4816
+            },
+            {
+              "start": 4964,
+              "end": 5029
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-5664",
+      "sourceHash": "c9dd8ee0cfe19a2d2cdd428aff095b94ba590d6fe8acefdc3fb9c9cf8ada9f27",
+      "clipId": "d8ad00f4e7c273b4b14c9645b585d12a5840c238a60a3f828475f19b7fe70433",
+      "textSha256": "592ddb48d7f945195cde7cf0142928edbeed1339b0123f0b12fe852e26ea1f50",
+      "text": "Section 7.3. In artificial intelligence\n\nThe idea of an artifact made conscious is an ancient theme of mythology, appearing for example in the Greek myth of Pygmalion, who carved a statue that was magically brought to life, and in medieval Jewish stories of the Golem, a magically animated homunculus built of clay. However, the possibility of actually constructing a conscious machine was probably first discussed by Ada Lovelace, in a set of notes written in 1842 about the Analytical Engine invented by Charles Babbage, a precursor (never built) to modern electronic computers. Lovelace was essentially dismissive of the idea that a machine such as the Analytical Engine could think in a humanlike way. She wrote, quote:\n\nIt is desirable to guard against the possibility of exaggerated ideas that might arise as to the powers of the Analytical Engine. The Analytical Engine has no pretensions whatever to originate anything. It can do whatever we know how to order it to perform. It can follow analysis; but it has no power of anticipating any analytical relations or truths. Its province is to assist us in making available what we are already acquainted with.\n\nUnquote.\n\nOne of the most influential contributions to this question was an essay written in 1950 by pioneering computer scientist Alan Turing, titled Computing Machinery and Intelligence. Turing disavowed any interest in terminology, saying that even \"Can machines think?\" is too loaded with spurious connotations to be meaningful; but he proposed to replace all such questions with a specific operational test, which has become known as the Turing test. To pass the test, a computer must be able to imitate a human well enough to fool interrogators. In his essay Turing discussed a variety of possible objections, and presented a counterargument to each of them. The Turing test is commonly cited in discussions of artificial intelligence as a proposed criterion for machine consciousness; it has provoked a great deal of philosophical debate. Daniel Dennett and Douglas Hofstadter argue that anything capable of passing the Turing test is necessarily conscious, while David Chalmers argues that a philosophical zombie could pass the test, yet fail to be conscious. A third group of scholars have argued that with the technological growth once machines begin to display any substantial signs of human-like behavior then the dichotomy (of human consciousness compared to human-like consciousness) becomes passé and issues of machine autonomy begin to prevail even as observed in its nascent form within contemporary industry and technology. Jürgen Schmidhuber argues that consciousness is the result of compression. As an agent sees representation of itself recurring in the environment, the compression of this representation can be called consciousness.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Consciousness, recorded revision 1167920244. Excerpt: reviewed printed ranges [(59673, 62478)]; original recording 3928.4–4097.3 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Consciousness?oldid=1167920244"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Consciousness, recorded revision 1167920244. Excerpt: reviewed printed ranges [(59673, 62478)]; original recording 3928.4–4097.3 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement. Recording: Speaker: Indochina2 Authors of the article. Original recording of Consciousness.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 4.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Consciousness?oldid=1167920244"
+      },
+      "audio": {
+        "src": "media/d8ad00f4e7c273b4b14c9645b585d12a5840c238a60a3f828475f19b7fe70433.mp3",
+        "sha256": "e944bee442b4c9a9548128ebdfe447fafb4c179494316917337fab5d7dfd670a",
+        "duration": 168.9,
+        "author": "Speaker: Indochina2 Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Consciousness-article.ogg",
+        "license": "CC BY-SA 4.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 1174,
+          "text": "Section 7.3. In artificial intelligence\n\nThe idea of an artifact made conscious is an ancient theme of mythology, appearing for example in the Greek myth of Pygmalion, who carved a statue that was magically brought to life, and in medieval Jewish stories of the Golem, a magically animated homunculus built of clay. However, the possibility of actually constructing a conscious machine was probably first discussed by Ada Lovelace, in a set of notes written in 1842 about the Analytical Engine invented by Charles Babbage, a precursor (never built) to modern electronic computers. Lovelace was essentially dismissive of the idea that a machine such as the Analytical Engine could think in a humanlike way. She wrote, quote:\n\nIt is desirable to guard against the possibility of exaggerated ideas that might arise as to the powers of the Analytical Engine. The Analytical Engine has no pretensions whatever to originate anything. It can do whatever we know how to order it to perform. It can follow analysis; but it has no power of anticipating any analytical relations or truths. Its province is to assist us in making available what we are already acquainted with.\n\nUnquote.",
+          "audioStart": 0.0,
+          "audioEnd": 72.96
+        },
+        {
+          "start": 1176,
+          "end": 2822,
+          "text": "One of the most influential contributions to this question was an essay written in 1950 by pioneering computer scientist Alan Turing, titled Computing Machinery and Intelligence. Turing disavowed any interest in terminology, saying that even \"Can machines think?\" is too loaded with spurious connotations to be meaningful; but he proposed to replace all such questions with a specific operational test, which has become known as the Turing test. To pass the test, a computer must be able to imitate a human well enough to fool interrogators. In his essay Turing discussed a variety of possible objections, and presented a counterargument to each of them. The Turing test is commonly cited in discussions of artificial intelligence as a proposed criterion for machine consciousness; it has provoked a great deal of philosophical debate. Daniel Dennett and Douglas Hofstadter argue that anything capable of passing the Turing test is necessarily conscious, while David Chalmers argues that a philosophical zombie could pass the test, yet fail to be conscious. A third group of scholars have argued that with the technological growth once machines begin to display any substantial signs of human-like behavior then the dichotomy (of human consciousness compared to human-like consciousness) becomes passé and issues of machine autonomy begin to prevail even as observed in its nascent form within contemporary industry and technology. Jürgen Schmidhuber argues that consciousness is the result of compression. As an agent sees representation of itself recurring in the environment, the compression of this representation can be called consciousness.",
+          "audioStart": 72.96,
+          "audioEnd": 168.9
+        }
+      ],
+      "readerNotes": "Exact continuous complete selected source context and cached ASR segments inspected. Reader explicitly announces Section7.3 and quote/unquote; these spoken markers are included in the transcript. Written ellipsis is punctuation, not invented spoken text. Reader does not say For example before Dennett; article the before technological follows the cached narration. No audio splice. Collected In artificial intelligence vs cached An artificial intelligence; heading not a scored target. Pygmalion/Golem and and/as, pretensions/pretension to, analysis/analyses, within/with and agent sees/agency’s remain scoped ASR lexical/preposition uncertainty, not scored. No native audition/phoneme claim. Later unselected110:112 make[un]conscious and intentional/attentional mismatch is retained and excluded from this selected complete106:110 scope; not silently corrected or approved. Exact frame slicing uses hash-verified full native sequential CPU PCM, not seek priming. Paragraph-level times only, not phoneme/audition or source-wide/CEFR approval.",
+      "parts": [
+        {
+          "start": 928,
+          "end": 982,
+          "contextEvidence": [
+            {
+              "start": 581,
+              "end": 705
+            },
+            {
+              "start": 1079,
+              "end": 1164
+            }
+          ]
+        },
+        {
+          "start": 1355,
+          "end": 1400,
+          "contextEvidence": [
+            {
+              "start": 1499,
+              "end": 1578
+            },
+            {
+              "start": 1907,
+              "end": 1957
+            }
+          ]
+        },
+        {
+          "start": 2108,
+          "end": 2233,
+          "contextEvidence": [
+            {
+              "start": 2012,
+              "end": 2107
+            },
+            {
+              "start": 1958,
+              "end": 2011
+            }
+          ]
+        },
+        {
+          "start": 2388,
+          "end": 2477,
+          "contextEvidence": [
+            {
+              "start": 2234,
+              "end": 2382
+            },
+            {
+              "start": 2478,
+              "end": 2525
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-271430",
+      "sourceHash": "7110a8647bd018166f5e96f23c122511fabaf20c2df82d93fbee5eced7cc1816",
+      "clipId": "3cb92cee34772a04f0efa7a7ba96b4b4ba876f6ce729983616c110655aff0aac",
+      "textSha256": "e58ffd77eeb5e861a36e24cddf08d539c298790bbbcf304cc76659fcac7c05ff",
+      "text": "Biological neurons are connected to each other in a complex, recurrent fashion. These connections are, unlike most artificial neural networks, sparse and most likely, specific. It is not known how information is transmitted through such sparsely connected networks. It is also unknown what the computational functions, if any, of these specific connectivity patterns are.\n\nThe interactions of neurons in a small network can be often reduced to simple models such as the Ising model. The statistical mechanics of such simple systems are well-characterized theoretically. There has been some recent evidence that suggests that dynamics of arbitrary neuronal networks can be reduced to pairwise interactions. It's unknown, however, whether such descriptive dynamics impart any important computational function. With the emergence of two-photon microscopy and calcium imaging, we now have powerful experimental methods with which to test the new theories regarding neuronal networks.\n\nIn some cases the complex interactions between inhibitory and excitatory neurons can be simplified using mean field theory that gives rise to population model of neural networks. While many neuro-theorists prefer such models with reduced complexity, others argue that uncovering structure function relations depends on including as much neuronal and network structure as possible. Models of this type are typically built in large simulations platforms like GENESIS or Neuron. There have been some attempts to provide unified methods that bridge and integrate these levels of complexity.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Computational neuroscience, recorded revision 462044332. Excerpt: reviewed printed ranges [(7615, 9229)]; original recording 553.7–671.3 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Computational_neuroscience?oldid=462044332"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Computational neuroscience, recorded revision 462044332. Excerpt: reviewed printed ranges [(7615, 9229)]; original recording 553.7–671.3 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement. Recording: Speaker: Mangst Authors of the article. Original recording of Computational neuroscience.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Computational_neuroscience?oldid=462044332"
+      },
+      "audio": {
+        "src": "media/3cb92cee34772a04f0efa7a7ba96b4b4ba876f6ce729983616c110655aff0aac.mp3",
+        "sha256": "4b7d2ef54a583d8397c9882bc867e3e32ec9a5eed3fa3f0c6f8fefc472a19a14",
+        "duration": 117.6,
+        "author": "Speaker: Mangst Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Computational_neuroscience.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 371,
+          "text": "Biological neurons are connected to each other in a complex, recurrent fashion. These connections are, unlike most artificial neural networks, sparse and most likely, specific. It is not known how information is transmitted through such sparsely connected networks. It is also unknown what the computational functions, if any, of these specific connectivity patterns are.",
+          "audioStart": 0.0,
+          "audioEnd": 29.1
+        },
+        {
+          "start": 373,
+          "end": 979,
+          "text": "The interactions of neurons in a small network can be often reduced to simple models such as the Ising model. The statistical mechanics of such simple systems are well-characterized theoretically. There has been some recent evidence that suggests that dynamics of arbitrary neuronal networks can be reduced to pairwise interactions. It's unknown, however, whether such descriptive dynamics impart any important computational function. With the emergence of two-photon microscopy and calcium imaging, we now have powerful experimental methods with which to test the new theories regarding neuronal networks.",
+          "audioStart": 29.1,
+          "audioEnd": 73.6
+        },
+        {
+          "start": 981,
+          "end": 1567,
+          "text": "In some cases the complex interactions between inhibitory and excitatory neurons can be simplified using mean field theory that gives rise to population model of neural networks. While many neuro-theorists prefer such models with reduced complexity, others argue that uncovering structure function relations depends on including as much neuronal and network structure as possible. Models of this type are typically built in large simulations platforms like GENESIS or Neuron. There have been some attempts to provide unified methods that bridge and integrate these levels of complexity.",
+          "audioStart": 73.6,
+          "audioEnd": 117.6
+        }
+      ],
+      "readerNotes": "Exact continuous complete selected source context and cached ASR segments inspected. Reader omits the parenthetical author/year citations after pairwise interactions; written original remains intact and ranges retain the complete selected native section. The exact clip transcript omits those unspoken citation tokens; continuous audio unchanged. Clip starts after the spoken section title, in the native quiet before Biological neurons; all three complete body paragraphs retained. Ising/mean-field/proper software names use collected printed spelling; source ASR words and punctuation inspected, no phoneme or audition claim. Exact frame slicing uses hash-verified full native sequential CPU PCM, not seek priming. Paragraph-level times only, not phoneme/audition or source-wide/CEFR approval.",
+      "parts": [
+        {
+          "start": 177,
+          "end": 265,
+          "contextEvidence": [
+            {
+              "start": 266,
+              "end": 371
+            },
+            {
+              "start": 80,
+              "end": 176
+            }
+          ]
+        },
+        {
+          "start": 706,
+          "end": 807,
+          "contextEvidence": [
+            {
+              "start": 570,
+              "end": 705
+            },
+            {
+              "start": 483,
+              "end": 569
+            }
+          ]
+        },
+        {
+          "start": 1160,
+          "end": 1361,
+          "contextEvidence": [
+            {
+              "start": 981,
+              "end": 1103
+            },
+            {
+              "start": 1457,
+              "end": 1513
+            }
+          ]
+        },
+        {
+          "start": 1457,
+          "end": 1567,
+          "contextEvidence": [
+            {
+              "start": 1231,
+              "end": 1361
+            },
+            {
+              "start": 177,
+              "end": 223
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

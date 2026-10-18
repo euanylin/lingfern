@@ -1,0 +1,99 @@
+import { questionSlots } from '../shared/practiceWorkspace';
+import { contentLanguage, contentText, messages } from '../locales';
+import { GutenbergLicence } from './GutenbergLicence';
+import { materialPackageId, practiceLocale } from '../shared/content';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import type { Lesson, Locale } from '../shared/content';
+import { communityPacks } from '../data/db';
+import { communityCacheName } from '../data/communityInstall';
+import sources from '../../content/sources.json';
+
+const labels = messages('taskDetail');
+// ponytail: planning estimate only; replace with reviewed unit timings when available.
+export const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : material.blocks.reduce((words, block) => words + block.text.split(/\s+/).length, 0) / 120) + (lesson.organization ? material.questions.reduce((sum, question) => sum + questionSlots(question), 0) : material.questions.length) * .5, 0)));
+
+export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review' | 'vocabulary'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null), t = labels[locale];
+  const [open, setOpen] = useState(false);
+  const [blurBackground, setBlurBackground] = useState(false);
+  const enterFrame = useRef(0), closeTimer = useRef<number | undefined>(undefined);
+  function finishClose() {
+    clearTimeout(closeTimer.current); closeTimer.current = undefined; dialog.current?.close();
+  }
+  function dismiss() {
+    cancelAnimationFrame(enterFrame.current);
+    if (closeTimer.current !== undefined) return;
+    setOpen(false);
+    const duration = parseFloat(getComputedStyle(dialog.current!, '::backdrop').transitionDuration) * 1000;
+    // Keep the native focus trap and backdrop until the exit transition finishes.
+    if (duration > 0) closeTimer.current = window.setTimeout(finishClose, duration + 50);
+    else finishClose();
+  }
+  useEffect(() => {
+    const previous = window.history.state;
+    window.history.pushState({ ...previous, practicePreview: lesson.id }, '', location.href);
+    window.addEventListener('popstate', dismiss);
+    return () => {
+      window.removeEventListener('popstate', dismiss);
+      if (window.history.state?.practicePreview === lesson.id) window.history.replaceState(previous, '', location.href);
+    };
+  }, [lesson.id]);
+  function close() {
+    if (window.history.state?.practicePreview === lesson.id) window.history.back();
+    else dismiss();
+  }
+
+  const [source, setSource] = useState<{ title: string; author: string; license: string } | undefined>(() => sources.find(item => item.id === lesson.sourceId));
+  const previewLessons = [lesson, ...(additionalLesson ? [additionalLesson] : [])];
+  const paths = [...new Set(previewLessons.flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path))))];
+  const [bytes, setBytes] = useState<number | undefined>(() => paths.length ? undefined : 0);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    dialog.current?.showModal();
+    enterFrame.current = requestAnimationFrame(() => { enterFrame.current = requestAnimationFrame(() => setOpen(true)); });
+    return () => { cancelAnimationFrame(enterFrame.current); clearTimeout(closeTimer.current); };
+  }, []);
+  useEffect(() => {
+    let disposed = false;
+    void (async () => {
+      const pack = lesson.communityPackageId ? await communityPacks.get([profileId, lesson.communityPackageId]) : undefined;
+      const record = pack?.sources.find(item => `community:${pack.hash}:${item.id}` === lesson.sourceId) ?? (pack?.spoken && (lesson.generation?.generator === 'corpus-v1' || lesson.generation?.generator === 'corpus-check-v1') ? { title: lesson.materials.map(material => material.title).join(' · '), author: [...new Set(lesson.materials.map(material => material.audio!.author))].join('; '), license: [...new Set(lesson.materials.map(material => material.credit!.license))].join('; ') } : undefined);
+      if (lesson.communityPackageId && !record) throw new Error('MISSING_SOURCE');
+      const sizes = await Promise.all([lesson, ...(additionalLesson ? [additionalLesson] : [])].flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path).map(async path => {
+        const hash = materialPackageId(preview, material);
+        if (!hash) { const response = await fetch(path); if (!response.ok) throw new Error('MISSING_MEDIA'); return (await response.blob()).size; }
+        const owner = await communityPacks.get([profileId, hash]);
+        const name = communityCacheName(hash);
+        if (!owner || owner.state !== 'ready' || !await caches.has(name)) throw new Error('MISSING_MEDIA');
+        const response = await (await caches.open(name)).match(path);
+        if (!response) throw new Error('MISSING_MEDIA');
+        return (await response.blob()).size;
+      }))));
+      if (!disposed) { if (record) setSource(record); setBytes(sizes.reduce((sum, size) => sum + size, 0)); }
+    })().catch(() => { if (!disposed) setFailed(true); });
+    return () => { disposed = true; };
+  // The keyed dialog receives an immutable lesson snapshot for one opening.
+  }, [lesson, additionalLesson, profileId]);
+  const contentLocale = practiceLocale(lesson, locale);
+  const mediaReady = !failed && bytes !== undefined;
+  const recordings = lesson.materials.flatMap(material => material.audio ? [material.audio] : []);
+  return createPortal(<dialog ref={dialog} className="task-detail" data-open={open} data-blur={blurBackground} onTransitionEnd={event => { if (closeTimer.current !== undefined && event.target === event.currentTarget && !event.nativeEvent.pseudoElement && event.propertyName === 'opacity') finishClose(); }} aria-labelledby="task-detail-title" onClose={onClose} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
+    {/* Native backdrop events target the dialog too; only its visible body counts as hovered. */}
+    <div className="task-detail-body" onPointerEnter={event => { if (event.pointerType === 'mouse') setBlurBackground(true); }} onPointerLeave={event => { if (event.pointerType === 'mouse') setBlurBackground(false); }}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
+      <h2 id="task-detail-title" lang={!heading && contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{heading ?? contentText(lesson.title, locale)}</h2>{heading && <h3 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h3>}<p lang={contentLanguage(lesson.goal, contentLocale)}>{contentText(lesson.goal, contentLocale)}</p>{practiceReason && lesson.generation?.generator === 'corpus-v1' && (practiceReason === 'vocabulary' || lesson.generation.focus) && <p className="muted">{t[practiceReason]}{practiceReason !== 'vocabulary' && lesson.generation.focus && <>: {t.kinds[lesson.generation.focus]}</>}</p>}
+      <dl><dt>{t.duration}</dt><dd>{taskMinutes(lesson)} {t.minutes}</dd>
+        <dt>{t.types}</dt><dd>{[...new Set(lesson.materials.flatMap(material => material.questions.map(question => t.kinds['gaps' in question ? 'completion' : 'kind' in question ? question.kind : 'choice'])))].join(' / ')}</dd>
+        {recordings.length > 0 && <><dt>{t.audio}</dt><dd>{[...new Set(recordings.map(audio => audio.synthetic ? t.synthetic : t.human))].join(' / ')} · {Math.round(recordings.reduce((sum, audio) => sum + audio.duration, 0))} {t.seconds}{lesson.mode === 'check' && <p>{t.check}</p>}</dd></>}
+      </dl>
+      {additionalLesson && <section><p className="eyebrow">{additionalLesson.skill.toUpperCase()}</p><h3 lang={contentText(additionalLesson.title, locale) === additionalLesson.title.en ? 'en' : undefined}>{contentText(additionalLesson.title, locale)}</h3><dl><dt>{t.duration}</dt><dd>{taskMinutes(additionalLesson)} {t.minutes}</dd>{additionalLesson.materials.some(material => material.audio) && <><dt>{t.audio}</dt><dd>{[...new Set(additionalLesson.materials.flatMap(material => material.audio ? [material.audio.synthetic ? t.synthetic : t.human] : []))].join(' / ')} · {Math.round(additionalLesson.materials.reduce((sum, material) => sum + (material.audio?.duration ?? 0), 0))} {t.seconds}</dd></>}</dl></section>}
+      {failed && <p className="error" role="status">{t.unknown}</p>}
+      {startError && <p className="error" role="alert">{startError}</p>}
+      <div className={`task-detail-actions${onCheck && !lesson.mode ? ' practice-actions' : ''}`}>
+        {available ? <button type="button" className="primary" data-mode="practice" disabled={busy || !open || !mediaReady} onClick={() => void onStart(lesson)}>{onCheck && !lesson.mode ? (messages('taskDetail_practice')[locale]) : action}</button> : <a className="button primary" href="/library">{action}</a>}
+        {onCheck && !lesson.mode && <button type="button" className="primary" data-mode="test" disabled={!available || busy || !open || !mediaReady} onClick={() => void onCheck(lesson)}>{(messages('taskDetail_test')[locale])}</button>}
+      </div>
+      <dl className="task-detail-credits"><dt>{t.source}</dt><dd>{(lesson.generation?.generator === 'corpus-v1' || lesson.generation?.generator === 'corpus-check-v1') ? [...lesson.materials, ...(additionalLesson?.materials ?? [])].map(material => <div key={material.id} lang="en"><p>{material.title}</p><p>{material.credit?.attribution}</p><p>{material.credit?.license}</p><GutenbergLicence sourceUrl={material.credit?.sourceUrl} locale={locale}/>{!lesson.mode && material.credit && <a href={material.credit.sourceUrl} target="_blank" rel="noopener noreferrer">{lesson.goalId === 'heard-word-recognition' ? t.source : material.credit.sourceUrl}</a>}</div>) : source ? <><p lang="en">{source.title}</p><p lang="en">{source.author}</p><p lang="en">{source.license}</p></> : lesson.communityPackageId ? '…' : lesson.sourceId}</dd></dl>
+    </div>
+  </dialog>, document.body);
+}

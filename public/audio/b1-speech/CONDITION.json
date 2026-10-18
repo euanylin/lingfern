@@ -1,0 +1,60 @@
+[
+  {
+    "rootId": "gutenberg-book-45",
+    "sourceHash": "89a5e9fb2e0bb44562a969785385366f94e1da736aebee7d9cdf459eb0b5f9f6",
+    "title": "Anne of Green Gables",
+    "text": "It isn’t heavy. I’ve got all my worldly goods in it, but it isn’t heavy. And if it isn’t carried in just a certain way the handle pulls out--so I’d better keep it because I know the exact knack of it. It’s an extremely old carpet-bag. Oh, I’m very glad you’ve come, even if it would have been nice to sleep in a wild cherry-tree.",
+    "audio": {
+      "src": "/audio/b1-speech/anne-bag-condition.mp3",
+      "sha256": "71dd10da1b8055e9ea7a62226d08aa26c4a3abde1fca4db34ca0fbd97e089bcd",
+      "duration": 16.670022675736963,
+      "author": "Karen Savage",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "L. M. Montgomery. Project Gutenberg edition 45. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Karen Savage. Whole original FLAC re-encoded; original words and background floor retained.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/45"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 329,
+        "text": "It isn’t heavy. I’ve got all my worldly goods in it, but it isn’t heavy. And if it isn’t carried in just a certain way the handle pulls out--so I’d better keep it because I know the exact knack of it. It’s an extremely old carpet-bag. Oh, I’m very glad you’ve come, even if it would have been nice to sleep in a wild cherry-tree.",
+        "audioStart": 0,
+        "audioEnd": 16.670022675736963
+      }
+    ]
+  },
+  {
+    "rootId": "gutenberg-book-2833",
+    "sourceHash": "dd0c7685eeca9350b89a110e6f6b5a96917e7548e054d28648e6c26bbbbf7045",
+    "title": "The Portrait of a Lady — Volume 1",
+    "text": "If her good-humour flagged at moments it was not because she thought herself ill-used, but because she suddenly felt sorry for Ralph. It seemed to her he was talking as a blind and had little heart in what he said.",
+    "audio": {
+      "src": "/audio/b1-speech/isabel-reason.mp3",
+      "sha256": "182f414d4d2125a7b91bf6445c2f692b85f02017ffe6355325e0388d8a3d69a9",
+      "duration": 13.59002267573696,
+      "author": "Merryb",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Henry James. Project Gutenberg edition 2833. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Merryb. Whole original FLAC re-encoded; original words and background floor retained.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/2833"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 214,
+        "text": "If her good-humour flagged at moments it was not because she thought herself ill-used, but because she suddenly felt sorry for Ralph. It seemed to her he was talking as a blind and had little heart in what he said.",
+        "audioStart": 0,
+        "audioEnd": 13.59002267573696
+      }
+    ]
+  }
+]

@@ -1,0 +1,314 @@
+{
+  "id": "b1-conditional-confirmation-listening",
+  "targetLevel": "B1",
+  "skill": "listening",
+  "title": {
+    "zh-Hans": "听清条件与确认",
+    "zh-Hant": "聽清條件與確認",
+    "en": "Hear conditions and confirmation"
+  },
+  "goal": {
+    "zh-Hans": "听懂临时安排、确认条件与下一步行动，不把“可以”误听成“已确认”。",
+    "zh-Hant": "聽懂暫時安排、確認條件與下一步行動，不把「可以」誤聽成「已確認」。",
+    "en": "Understand provisional plans, confirmation conditions and next actions."
+  },
+  "goalId": "spoken-conditional-confirmation",
+  "sourceId": "lingfern-synthetic-b1-confirmations",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "听通知时区分暂定和已确认。遇到 if、only if、until，先听条件，再决定现在能做什么。",
+    "zh-Hant": "聽通知時區分暫定和已確認。遇到 if、only if、until，先聽條件，再決定現在能做什麼。",
+    "en": "Separate provisional from confirmed. After “if”, “only if” or “until”, identify the condition before acting."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“We can use the hall if the check finishes today. Wait for my message.” → 现在先等消息，不能通知大家大厅已确认。",
+    "zh-Hant": "示範（不計分）：“We can use the hall if the check finishes today. Wait for my message.” → 現在先等訊息，不能通知大家大廳已確認。",
+    "en": "Unscored example: “We can use the hall if the check finishes today. Wait for my message.” → Wait for the message; the hall is not yet confirmed."
+  },
+  "materials": [
+    {
+      "id": "film-night-room",
+      "rootId": "original-film-night-room",
+      "title": "Film night room update",
+      "questions": [
+        {
+          "id": "film-confirmation",
+          "prompt": "What should Maya do before telling guests which room to use?",
+          "options": [
+            "Wait for the message after the equipment check.",
+            "Announce the large room now because it was offered.",
+            "Cancel the film night before Thursday."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 65,
+            "end": 186,
+            "audioStart": 4.525,
+            "audioEnd": 12.025
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "film-night-room-text",
+              "start": 295,
+              "end": 359,
+              "audioStart": 19.15,
+              "audioEnd": 23.05
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "区分“暂时提供”和“最终确认”。",
+              "zh-Hant": "區分「暫時提供」和「最終確認」。",
+              "en": "Separate a provisional offer from a final confirmation."
+            },
+            {
+              "zh-Hans": "听 equipment check 后的安排。",
+              "zh-Hant": "聽 equipment check 後的安排。",
+              "en": "Listen for what happens after the equipment check."
+            },
+            {
+              "zh-Hans": "在收到检查后的消息前，不要通知客人房间。",
+              "zh-Hant": "在收到檢查後的訊息前，不要通知客人房間。",
+              "en": "Do not tell guests the room until the message arrives."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：大房间只是暂定，须等设备检查后的消息。",
+              "zh-Hant": "正確：大房間只是暫定，須等設備檢查後的訊息。",
+              "en": "Correct: the large room is provisional until the check and message."
+            },
+            {
+              "zh-Hans": "不对：被提供使用不等于已通过设备检查。",
+              "zh-Hant": "不對：獲提供使用不等於已通過設備檢查。",
+              "en": "An offer is not confirmation that the equipment passed."
+            },
+            {
+              "zh-Hans": "不对：即使设备未就绪，活动仍会换房间进行。",
+              "zh-Hant": "不對：即使設備未就緒，活動仍會換房間進行。",
+              "en": "The film still goes ahead in another room if needed."
+            }
+          ],
+          "blockId": "film-night-room-text"
+        },
+        {
+          "id": "film-alternative",
+          "prompt": "If the sound equipment is not ready, what is the plan?",
+          "options": [
+            "Use the large room at six thirty without sound.",
+            "Use the library room and start at seven.",
+            "Move the film to Thursday afternoon."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 458,
+            "end": 566,
+            "audioStart": 29.9,
+            "audioEnd": 36.625
+          },
+          "hints": [
+            {
+              "zh-Hans": "听 if it is not ready 后的安排。",
+              "zh-Hant": "聽 if it is not ready 後的安排。",
+              "en": "Listen for the plan after “if it is not ready”."
+            },
+            {
+              "zh-Hans": "留意地点和开始时间都变了。",
+              "zh-Hant": "留意地點和開始時間都變了。",
+              "en": "Both room and start time change."
+            },
+            {
+              "zh-Hans": "改用较小的图书室，七点开始。",
+              "zh-Hant": "改用較小的圖書室，七點開始。",
+              "en": "Use the smaller library room and begin at seven."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：六点半使用大房间须设备正常。",
+              "zh-Hant": "不對：六點半使用大房間須設備正常。",
+              "en": "The large-room plan depends on working equipment."
+            },
+            {
+              "zh-Hans": "正确：设备未就绪则换到图书室，七点开始。",
+              "zh-Hant": "正確：設備未就緒則換到圖書室，七點開始。",
+              "en": "Correct: use the library room and start at seven."
+            },
+            {
+              "zh-Hans": "不对：通知没有将活动改到周四。",
+              "zh-Hant": "不對：通知沒有將活動改到週四。",
+              "en": "The notice does not move the film to Thursday."
+            }
+          ],
+          "blockId": "film-night-room-text"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "film-night-room-text",
+          "text": "Hi Maya, here is the update about Friday’s community film night. The centre has offered us the large room, but the booking is only provisional until the sound equipment passes its check. The technician will finish that check by five on Thursday, and I will send you a message by half past five. Please wait for that message before you tell guests where to go. If the equipment is working, we can use the large room and begin seating at six thirty on Friday. If it is not ready, the film will still happen, but we will use the smaller library room and start at seven. That room has a screen but fewer chairs, so I will need the final guest count before I set it up. You can collect the printed tickets now, although the room printed on them may change. Please keep the online invitation open for edits and do not announce a final room just because the centre offered one."
+        }
+      ],
+      "audio": {
+        "src": "/audio/b1-speech/film-night-room.mp3",
+        "sha256": "f4fa95abc7ebb9789617ab46619b1eab3e69173da25f792eeb8092ddb36f578b",
+        "duration": 56.55,
+        "author": "Lingfern · Kokoro-82M synthetic voice",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      }
+    },
+    {
+      "id": "tree-walk-gate",
+      "rootId": "original-tree-walk-gate",
+      "title": "Tree walk meeting point",
+      "questions": [
+        {
+          "id": "walk-poster",
+          "prompt": "What should volunteers put on the posters now?",
+          "options": [
+            "The north gate as the confirmed meeting point.",
+            "The visitor centre as the confirmed meeting point.",
+            "Say the walk is planned, but wait for the confirmed meeting point."
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 194,
+            "end": 292,
+            "audioStart": 14.2,
+            "audioEnd": 20.75
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "tree-walk-gate-text",
+              "start": 780,
+              "end": 870,
+              "audioStart": 56.55,
+              "audioEnd": 62.675
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "先确认检查结果是否已收到。",
+              "zh-Hant": "先確認檢查結果是否已收到。",
+              "en": "Check whether the inspection result has arrived."
+            },
+            {
+              "zh-Hans": "听 do not put 后面的内容。",
+              "zh-Hant": "聽 do not put 後面的內容。",
+              "en": "Listen for what must not go on the posters."
+            },
+            {
+              "zh-Hans": "行程已计划，但集合地点还没确认。",
+              "zh-Hant": "行程已計畫，但集合地點還沒確認。",
+              "en": "The walk is planned; the meeting point is not final."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：北门需检查通过，尚未确认。",
+              "zh-Hant": "不對：北門須檢查通過，尚未確認。",
+              "en": "The north gate depends on an inspection and is not confirmed."
+            },
+            {
+              "zh-Hans": "不对：游客中心只是检查不通过时的备选地点。",
+              "zh-Hant": "不對：遊客中心只是檢查不通過時的備選地點。",
+              "en": "The visitor centre is the alternative if the path fails."
+            },
+            {
+              "zh-Hans": "正确：可告知活动已计划，但不能写死集合地点。",
+              "zh-Hant": "正確：可告知活動已計畫，但不能寫定集合地點。",
+              "en": "Correct: the walk is planned, but the meeting point remains unconfirmed."
+            }
+          ],
+          "blockId": "tree-walk-gate-text"
+        },
+        {
+          "id": "walk-alternative",
+          "prompt": "If the north path fails its inspection and there is no storm warning, where and when should people meet?",
+          "options": [
+            "At the north gate at nine.",
+            "At the visitor centre at half past nine.",
+            "At the bus stop at six on Friday."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 466,
+            "end": 567,
+            "audioStart": 33.85,
+            "audioEnd": 40.825
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "tree-walk-gate-text",
+              "start": 667,
+              "end": 779,
+              "audioStart": 48.8,
+              "audioEnd": 56.25
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "先找检查未通过时的备选安排。",
+              "zh-Hant": "先找檢查未通過時的備選安排。",
+              "en": "Find the alternative if the inspection fails."
+            },
+            {
+              "zh-Hans": "再确认没有暴风雨预警时活动是否继续。",
+              "zh-Hant": "再確認沒有暴風雨警報時活動是否繼續。",
+              "en": "Check whether the walk continues without a storm warning."
+            },
+            {
+              "zh-Hans": "在游客中心九点半集合，走南边短路线。",
+              "zh-Hant": "在遊客中心九點半集合，走南邊短路線。",
+              "en": "Meet at the visitor centre at 9:30 for the shorter south route."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：北门九点只适用于北路检查通过。",
+              "zh-Hant": "不對：北門九點只適用於北路檢查通過。",
+              "en": "North gate at nine applies only if the north path passes."
+            },
+            {
+              "zh-Hans": "正确：检查未通过时改在游客中心九点半集合；没有风暴预警就继续活动。",
+              "zh-Hant": "正確：檢查未通過時改在遊客中心九點半集合；沒有風暴警報就繼續活動。",
+              "en": "Correct: meet at the visitor centre at 9:30; without a storm warning, the walk continues."
+            },
+            {
+              "zh-Hans": "不对：周五六点是发送确认消息的时间，不是集合时间。",
+              "zh-Hant": "不對：週五六點是發送確認訊息的時間，不是集合時間。",
+              "en": "Six on Friday is the message time, not the meeting time."
+            }
+          ],
+          "blockId": "tree-walk-gate-text"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "tree-walk-gate-text",
+          "text": "Hello volunteers, I am calling about the Saturday morning tree walk. The park office said we may use the north gate, but only if a safety inspection of the path is finished by Friday afternoon. They have not sent the inspection result yet, so please do not put the north gate on your posters. I will send everyone a message at six on Friday with the confirmed meeting point. If the north path passes, meet outside the north gate at nine and bring a bottle of water. If it does not pass, meet at the visitor centre at half past nine and follow the shorter south route. The visitor centre is beside the bus stop, so people who travel by bus can still join either plan. We will not cancel the walk because of this change, unless the weather service issues a storm warning overnight. Please tell participants that the walk is planned, but the meeting point is not yet final."
+        }
+      ],
+      "audio": {
+        "src": "/audio/b1-speech/tree-walk-gate.mp3",
+        "sha256": "b875bdfcc2bbfa20c8cde76c62248056fd4229d0a005a18efd0a0ca65593c8b9",
+        "duration": 62.975,
+        "author": "Lingfern · Kokoro-82M synthetic voice",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      }
+    }
+  ],
+  "themes": [
+    "culture",
+    "science"
+  ],
+  "nextStep": {
+    "zh-Hans": "重听条件，收到最终消息后再通知参与者。",
+    "zh-Hant": "重聽條件，收到最終訊息後再通知參與者。",
+    "en": "Listen for the condition and wait for the final message before acting."
+  }
+}

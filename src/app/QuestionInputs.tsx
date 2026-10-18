@@ -1,0 +1,28 @@
+import { type Answer, type Question } from '../shared/content';
+import { localeDirection, type Locale } from '../shared/locale';
+import { messages } from '../locales';
+import { copy } from './i18n';
+import { SettingsPicker } from './SettingsPicker';
+
+export default function QuestionInputs({ question, answer, onChange, disabled, locale, instructionLocale = locale, listening = false, start = 1 }: { question: Question; answer?: Answer; onChange: (answer: Answer) => void; disabled: boolean; locale: Locale; instructionLocale?: Locale; listening?: boolean; start?: number }) {
+  const t = copy[locale], instructions = copy[instructionLocale];
+  const setCell = (index: number, value: string, length: number) => {
+    const next = Array.isArray(answer) ? [...answer] : Array.from({ length }, () => '');
+    next[index] = value; onChange(next);
+  };
+  if ('gaps' in question) return <fieldset disabled={disabled} className="gap-passage" lang="en" dir="ltr"><legend className="sr-only">{question.prompt}</legend>{question.passage.split(/(\{\{g\d+\}\})/).map((part, index) => {
+    const gapIndex = question.gaps.findIndex(gap => `{{${gap.id}}}` === part);
+    return gapIndex < 0 ? <span key={index}>{part}</span> : <label className="inline-gap" key={part}><span>{start + gapIndex}</span><input id={`answer-${question.id}-${gapIndex}`} aria-label={`${start + gapIndex}. ${question.prompt}`} maxLength={80} autoComplete="off" autoCapitalize="off" value={Array.isArray(answer) ? answer[gapIndex] ?? '' : ''} onChange={event => setCell(gapIndex, event.target.value, question.gaps.length)}/></label>;
+  })}</fieldset>;
+  if ('criteria' in question) return <fieldset disabled={disabled}><label className="response-answer"><span lang={instructionLocale} dir={localeDirection(instructionLocale)}>{instructions.responseInstruction}</span><textarea id={`answer-${question.id}-0`} lang="en" dir="ltr" rows={5} maxLength={4000} value={typeof answer === 'string' ? answer : ''} onChange={event => onChange(event.target.value)}/></label></fieldset>;
+  if ('pairs' in question) return <fieldset disabled={disabled} className="matching-answers" lang="en" dir="ltr"><legend lang={instructionLocale} dir={localeDirection(instructionLocale)}>{instructions.matchingInstruction}</legend>{question.pairs.map((pair, index) => <SettingsPicker key={pair.label} label={`${start + index}. ${pair.label}`} value={Array.isArray(answer) ? answer[index] ?? '' : ''} options={[{ value: '', label: t.matchingChoose, lang: locale }, ...question.choices.map(value => ({ value, label: value, lang: 'en' }))]} disabled={disabled} onChange={value => setCell(index, value, question.pairs.length)}/>)}</fieldset>;
+  if ('rows' in question) return <fieldset disabled={disabled}><legend lang={instructionLocale} dir={localeDirection(instructionLocale)}>{instructions.tableInstruction}</legend><div className="answer-table">{question.rows.map((row, index) => <label key={row.label}><span lang="en">{start + index}. {row.label}</span><input id={`answer-${question.id}-${index}`} lang="en" dir="ltr" inputMode={/^\d{4}$/.test(row.answer) ? 'numeric' : 'text'} maxLength={60} autoComplete="off" value={Array.isArray(answer) ? answer[index] ?? '' : ''} onChange={event => setCell(index, event.target.value, question.rows.length)}/></label>)}</div></fieldset>;
+  if ('steps' in question) {
+    const selected = Array.isArray(answer) ? answer : [];
+    const move = (index: number, offset: number) => { const next = [...selected]; [next[index], next[index + offset]] = [next[index + offset], next[index]]; onChange(next); };
+    return <fieldset disabled={disabled}><legend lang={instructionLocale} dir={localeDirection(instructionLocale)}>{instructions.sequenceInstruction}</legend><ol className="sequence-order">{selected.map((step, index) => <li key={step}><span lang="en">{step}</span><div className="sequence-controls"><button type="button" aria-label={`${t.moveUp}: ${step}`} disabled={disabled || !index} onClick={() => move(index, -1)}>↑</button><button type="button" aria-label={`${t.moveDown}: ${step}`} disabled={disabled || index === selected.length - 1} onClick={() => move(index, 1)}>↓</button><button type="button" aria-label={`${t.removeStep}: ${step}`} onClick={() => onChange(selected.filter(item => item !== step))}>×</button></div></li>)}</ol><div className="sequence-choices">{question.steps.filter(step => !selected.includes(step)).map(step => <button type="button" key={step} lang="en" onClick={() => onChange([...selected, step])}>{step} ＋</button>)}</div></fieldset>;
+  }
+  if ('kind' in question && question.kind === 'completion') return <fieldset disabled={disabled}><label className="completion-answer"><span lang={instructionLocale} dir={localeDirection(instructionLocale)}>{listening ? instructions.completionInstruction : messages('app_type_the_missing_word_from')[instructionLocale]}</span><input id={`answer-${question.id}-0`} lang="en" dir="ltr" maxLength={80} autoComplete="off" autoCapitalize="off" value={typeof answer === 'string' ? answer : ''} onChange={event => onChange(event.target.value)}/></label></fieldset>;
+  const options = 'spans' in question ? question.spans.map(span => span.text) : question.options;
+  return <fieldset disabled={disabled}><legend className="sr-only">{question.prompt}</legend>{options.map((option, index) => <label className={`option${answer === index ? ' selected' : ''}`} key={index}><input type="radio" name={`answer-${question.id}`} checked={answer === index} onChange={() => onChange(index)}/><span className="option-text" lang="en" dir="ltr">{option}</span></label>)}</fieldset>;
+}

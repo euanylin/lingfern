@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "scope": "Exact inspected native source overlaps and gain predecessor; snapshot bytes/source identities unchanged. Seen only, not original-work or recording count.",
+  "records": [
+    {
+      "rootId": "wikipedia-article-1620586",
+      "sourceHash": "47c8deaa397b73dc0640b4580d30b6baeb11a8fb001d0e51af6789b1eddabe04",
+      "id": "b4288fe3e245e16f93ce07b6d5284d45514a708d9292ed183c3626398a2ffa65",
+      "overlappingIds": [],
+      "sourceSpan": {
+        "start": 7150,
+        "end": 7556
+      }
+    },
+    {
+      "rootId": "wikipedia-article-14018",
+      "sourceHash": "e4cb8750959ed79518a6b3b07933e05e63e9692ab00c5050a43dee966699ba61",
+      "id": "c3b601b275b9af35c57f39a684c19438098864878ae2266fcddfa130d119bc8c",
+      "overlappingIds": [
+        "ab135bb41ed7c29e558a3da027df74053ccf0e0833f33bc9b68315c39f959340"
+      ],
+      "sourceSpan": {
+        "start": 5258,
+        "end": 5567
+      }
+    },
+    {
+      "rootId": "wikipedia-article-24495502",
+      "sourceHash": "b41e674965db31896fc5dfd8e0c9444d0a4e4cc55a5e97b1a4be56e8d7bdafdd",
+      "id": "0b6b27a185c252601537f20d44d23f03c2137ceb35116bf2b6e17df3eef35624",
+      "overlappingIds": [
+        "289dac8499604a19adfe98286c9a2b1287027fb69862681c4901ab7f60321fe0",
+        "5d3b62beeccc937d58bb5a618fe25a33a4c3699eb782be0466371515e0d967f6"
+      ],
+      "sourceSpan": {
+        "start": 5256,
+        "end": 5637
+      }
+    },
+    {
+      "rootId": "wikipedia-article-9228",
+      "sourceHash": "4c2951c9734f8c7f93cca86d6d6eb8d20dced544c34bafcacf15316bae84e67f",
+      "id": "4d605f7bded0640303b6b048ee74eadbc91fe8642c1a82bfe193e205ba1561e1",
+      "overlappingIds": [
+        "2ca3c3f46f94fb45e625aaee2a7edcfecd4a51ca06a468e2af1ab56d1a1a0cfc"
+      ],
+      "sourceSpan": {
+        "start": 1792,
+        "end": 2099
+      }
+    },
+    {
+      "rootId": "wikipedia-article-5042951",
+      "sourceHash": "7e8beccda98b03bd5fc3491181bb136932842506121769c34e5a7a508890f6bd",
+      "id": "94acbe7fbcc1c31a9d2dc733e1a42fe2e1c3dc25f5fa0cb9c21ca10d90599381",
+      "overlappingIds": [],
+      "sourceSpan": {
+        "start": 53124,
+        "end": 53998
+      }
+    },
+    {
+      "rootId": "wikipedia-article-18855029",
+      "sourceHash": "1419628963e7c55cd6171acd60bb89e39613d30d88c6bc2e5558effa22d17e85",
+      "id": "b7ebddc9c6e679b45415e87010c3ef4fd80f88cad39617aefc69b91706ff3665",
+      "overlappingIds": [
+        "6722154a8bbcd422813b468976c9552cb65b252d61130f9eba2347174470ca16",
+        "dea3c4cad36eabd94543aa2c09712a43ad08eadc0778c40e8f0f4729f4a8db25"
+      ],
+      "sourceSpan": {
+        "start": 163,
+        "end": 523
+      }
+    },
+    {
+      "rootId": "wikipedia-article-18855029",
+      "sourceHash": "1419628963e7c55cd6171acd60bb89e39613d30d88c6bc2e5558effa22d17e85",
+      "id": "6722154a8bbcd422813b468976c9552cb65b252d61130f9eba2347174470ca16",
+      "overlappingIds": [
+        "b7ebddc9c6e679b45415e87010c3ef4fd80f88cad39617aefc69b91706ff3665",
+        "dea3c4cad36eabd94543aa2c09712a43ad08eadc0778c40e8f0f4729f4a8db25"
+      ],
+      "sourceSpan": {
+        "start": 320,
+        "end": 523
+      }
+    },
+    {
+      "rootId": "wikipedia-article-244511",
+      "sourceHash": "553e721842312f7e0c39ece273460185a300b43cd1982d26e33011f313cd9e71",
+      "id": "ed7825f5d8b1af5f0255d4137f34511e6a8340839f862c74f923fdbea1756b3e",
+      "overlappingIds": [],
+      "sourceSpan": {
+        "start": 15476,
+        "end": 15664
+      }
+    },
+    {
+      "rootId": "wikipedia-article-24495502",
+      "sourceHash": "b41e674965db31896fc5dfd8e0c9444d0a4e4cc55a5e97b1a4be56e8d7bdafdd",
+      "id": "289dac8499604a19adfe98286c9a2b1287027fb69862681c4901ab7f60321fe0",
+      "overlappingIds": [
+        "0b6b27a185c252601537f20d44d23f03c2137ceb35116bf2b6e17df3eef35624",
+        "5d3b62beeccc937d58bb5a618fe25a33a4c3699eb782be0466371515e0d967f6"
+      ],
+      "sourceSpan": {
+        "start": 5256,
+        "end": 5563
+      }
+    }
+  ]
+}

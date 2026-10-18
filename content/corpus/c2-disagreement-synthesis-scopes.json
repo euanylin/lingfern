@@ -1,0 +1,471 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-2147",
+      "sourceHash": "c8d5fec040f1dc29be8d4e9cb7d3279b65bf894adea50544d99d400b2d587386",
+      "passageId": "c1d4566110fff589fa2a5abd32f17cc7d74a5048006fe75e53ba3000190c0df0",
+      "textSha256": "c1d4566110fff589fa2a5abd32f17cc7d74a5048006fe75e53ba3000190c0df0",
+      "text": "The mental features discoursed of as the analytical, are, in themselves, but little susceptible of analysis. We appreciate them only in their effects. We know of them, among other things, that they are always to their possessor, when inordinately possessed, a source of the liveliest enjoyment. As the strong man exults in his physical ability, delighting in such exercises as call his muscles into action, so glories the analyst in that moral activity which _disentangles._ He derives pleasure from even the most trivial occupations bringing his talent into play. He is fond of enigmas, of conundrums, of hieroglyphics; exhibiting in his solutions of each a degree of _acumen_ which appears to the ordinary apprehension præternatural. His results, brought about by the very soul and essence of method, have, in truth, the whole air of intuition.\n\nThe faculty of re-solution is possibly much invigorated by mathematical study, and especially by that highest branch of it which, unjustly, and merely on account of its retrograde operations, has been called, as if _par excellence_, analysis. Yet to calculate is not in itself to analyse. A chess-player, for example, does the one without effort at the other. It follows that the game of chess, in its effects upon mental character, is greatly misunderstood. I am not now writing a treatise, but simply prefacing a somewhat peculiar narrative by observations very much at random; I will, therefore, take occasion to assert that the higher powers of the reflective intellect are more decidedly and more usefully tasked by the unostentatious game of draughts than by all the elaborate frivolity of chess. In this latter, where the pieces have different and _bizarre_ motions, with various and variable values, what is only complex is mistaken (a not unusual error) for what is profound. The _attention_ is here called powerfully into play. If it flag for an instant, an oversight is committed resulting in injury or defeat. The possible moves being not only manifold but involute, the chances of such oversights are multiplied; and in nine cases out of ten it is the more concentrative rather than the more acute player who conquers. In draughts, on the contrary, where the moves are _unique_ and have but little variation, the probabilities of inadvertence are diminished, and the mere attention being left comparatively unemployed, what advantages are obtained by either party are obtained by superior _acumen_. To be less abstract, let us suppose a game of draughts where the pieces are reduced to four kings, and where, of course, no oversight is to be expected. It is obvious that here the victory can be decided (the players being at all equal) only by some _recherché_ movement, the result of some strong exertion of the intellect. Deprived of ordinary resources, the analyst throws himself into the spirit of his opponent, identifies himself therewith, and not unfrequently sees thus, at a glance, the sole methods (sometime indeed absurdly simple ones) by which he may seduce into error or hurry into miscalculation.\n\nWhist has long been noted for its influence upon what is termed the calculating power; and men of the highest order of intellect have been known to take an apparently unaccountable delight in it, while eschewing chess as frivolous. Beyond doubt there is nothing of a similar nature so greatly tasking the faculty of analysis. The best chess-player in Christendom _may_ be little more than the best player of chess; but proficiency in whist implies capacity for success in all those more important undertakings where mind struggles with mind. When I say proficiency, I mean that perfection in the game which includes a comprehension of _all_ the sources whence legitimate advantage may be derived. These are not only manifold but multiform, and lie frequently among recesses of thought altogether inaccessible to the ordinary understanding. To observe attentively is to remember distinctly; and, so far, the concentrative chess-player will do very well at whist; while the rules of Hoyle (themselves based upon the mere mechanism of the game) are sufficiently and generally comprehensible. Thus to have a retentive memory, and to proceed by “the book,” are points commonly regarded as the sum total of good playing. But it is in matters beyond the limits of mere rule that the skill of the analyst is evinced. He makes, in silence, a host of observations and inferences. So, perhaps, do his companions; and the difference in the extent of the information obtained, lies not so much in the validity of the inference as in the quality of the observation. The necessary knowledge is that of _what_ to observe. Our player confines himself not at all; nor, because the game is the object, does he reject deductions from things external to the game. He examines the countenance of his partner, comparing it carefully with that of each of his opponents. He considers the mode of assorting the cards in each hand; often counting trump by trump, and honor by honor, through the glances bestowed by their holders upon each. He notes every variation of face as the play progresses, gathering a fund of thought from the differences in the expression of certainty, of surprise, of triumph, or of chagrin. From the manner of gathering up a trick he judges whether the person taking it can make another in the suit. He recognises what is played through feint, by the manner with which it is thrown upon the table. A casual or inadvertent word; the accidental dropping or turning of a card, with the accompanying anxiety or carelessness in regard to its concealment; the counting of the tricks, with the order of their arrangement; embarrassment, hesitation, eagerness or trepidation—all afford, to his apparently intuitive perception, indications of the true state of affairs. The first two or three rounds having been played, he is in full possession of the contents of each hand, and thenceforward puts down his cards with as absolute a precision of purpose as if the rest of the party had turned outward the faces of their own.",
+      "credit": {
+        "attribution": "The Works of Edgar Allan Poe — Volume 1 — Poe, Edgar Allan, 1809-1849; Lowell, James Russell, 1819-1891; Willis, Nathaniel Parker, 1806-1867. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/2147).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2147"
+      },
+      "nativeScope": {
+        "start": 263723,
+        "end": 269810,
+        "paragraphs": [
+          504,
+          507
+        ],
+        "rawSha256": "c8d5fec040f1dc29be8d4e9cb7d3279b65bf894adea50544d99d400b2d587386",
+        "canonicalSha256": "d0f9a6f9b181de75515b2a5e715794ef51b35867858bf4e6022edee9d27db34f",
+        "metadataPath": "content/corpus/raw/pg2147-metadata.html",
+        "metadataSha256": "281ebe7b093ccd70ae748396bf6f15abdd895dcbe1567c0ce4f7d29a0c2e2ba8",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 1091,
+          "end": 1136,
+          "contextEvidence": [
+            {
+              "start": 878,
+              "end": 925
+            },
+            {
+              "start": 1040,
+              "end": 1089
+            },
+            {
+              "start": 978,
+              "end": 1038
+            }
+          ]
+        },
+        {
+          "start": 1756,
+          "end": 1831,
+          "contextEvidence": [
+            {
+              "start": 1224,
+              "end": 1305
+            },
+            {
+              "start": 2109,
+              "end": 2178
+            },
+            {
+              "start": 2324,
+              "end": 2378
+            }
+          ]
+        },
+        {
+          "start": 4229,
+          "end": 4286,
+          "contextEvidence": [
+            {
+              "start": 4167,
+              "end": 4224
+            },
+            {
+              "start": 4288,
+              "end": 4381
+            },
+            {
+              "start": 3976,
+              "end": 4033
+            }
+          ]
+        },
+        {
+          "start": 4542,
+          "end": 4623,
+          "contextEvidence": [
+            {
+              "start": 4382,
+              "end": 4442
+            },
+            {
+              "start": 4443,
+              "end": 4473
+            },
+            {
+              "start": 4625,
+              "end": 4678
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-2530",
+      "sourceHash": "d4b343bde8af87ea34810f86d64743f0d75de78617ab12fe95e04157a7efa206",
+      "passageId": "232a031f9e1f60ec24c983d7b28641cbdbb897d560c2bc6e2394282f3d9c4057",
+      "textSha256": "232a031f9e1f60ec24c983d7b28641cbdbb897d560c2bc6e2394282f3d9c4057",
+      "text": "The Mammalia of Timor as well as those of the other islands of the group are exceedingly scanty, with the exception of bats. These last are tolerably abundant, and no doubt many more remain to be discovered. Out of fifteen species known from Timor, nine are found also in Java, or the islands west of it; three are Moluccan species, most of which are also found in Australia, and the rest are peculiar to Timor.\n\nThe land mammals are only seven in number, as follows: 1. The common monkey, Macacus cynomolgus, which is found in all the Indo-Malayan islands, and has spread from Java through Bali and Lombock to Timor. This species is very frequent on the banks of rivers, and may have been conveyed from island to island on trees carried down by floods. 2. Paradoxurus fasciatus; a civet cat, very common over a large part of the Archipelago. 3. Felis megalotis; a tiger cat, said to be peculiar to Timor, where it exists only in the interior, and is very rare. Its nearest allies are in Java. 4. Cervus timoriensis; a deer, closely allied to the Javan and Moluccan species, if distinct. 5. A wild pig, Sus timoriensis; perhaps the same as some of the Moluccan species. 6. A shrew mouse, Sorex tenuis; supposed to be peculiar to Timor. 7. An Eastern opossum, Cuscus orientalis; found also in the Moluccas, if not a distinct species.\n\nThe fact that not one of these species is Australian or nearly allied to any Australian form, is strongly corroborative of the opinion that Timor has never formed a part of that country; as in that case some kangaroo or other marsupial animal would almost certainly be found there. It is no doubt very difficult to account for the presence of some of the few mammals that do exist in Timor, especially the tiger cat and the deer. We must consider, however, that during thousands, and perhaps hundreds of thousands of years, these islands and the seas between them have been subjected to volcanic action. The land has been raised and has sunk again; the straits have been narrowed or widened; many of the islands may have been joined and dissevered again; violent floods have again and again devastated the mountains and plains, carrying out to sea hundreds of forest trees, as has often happened during volcanic eruptions in Java; and it does not seem improbable that once in a thousand, or ten thousand years, there should have occurred such a favourable combination of circumstances as would lead to the migration of two or three land animals from one island to another. This is all that we need ask to account for the very scanty and fragmentary group of Mammalia which now inhabit the large island of Timor. The deer may very probably have been introduced by man, for the Malays often keep tame fawns; and it may not require a thousand, or even five hundred years, to establish new characters in an animal removed to a country so different in climate and vegetation as is Timor from the Moluccas. I have not mentioned horses, which are often thought to be wild in Timor, because there are no grounds whatever for such a belief. The Timor ponies have every one an owner, and are quite as much domesticated animals as the cattle on a South American hacienda.\n\nI have dwelt at some length upon the origin of the Timorese fauna because it appears to be a most interesting and instructive problem. It is very seldom that we can trace the animals of a district so clearly as we can in this case to two definite sources, and still more rarely that they furnish such decisive evidence of the time, the manner, and the proportions of their introduction. We have here a group of Oceanic Islands in miniature--islands which have never formed part of the adjacent lands, although so closely approaching them; and their productions have the characteristics of true Oceanic Islands slightly modified. These characteristics are: the absence all Mammalia except bats; and the occurrence of peculiar species of birds, insects, and land shells, which, though found nowhere else, are plainly related to those of the nearest land. Thus, we have an entire absence of all Australian mammals, and the presence of only a few stragglers from the west which can be accounted for in the manner already indicated. Bats are tolerably abundant.\n\nBirds have many peculiar species, with a decided relationship to those of the two nearest masses of land. The insects have similar relations with the birds. As an example, four species of the Papilionidae are peculiar to Timor, three others are also found in Java, and one in Australia. Of the four peculiar species two are decided modifications of Javanese forms, while the others seem allied to those of the Moluccas and Celebes. The very few land shells known are all, curiously enough, allied to or identical with Moluccan or Celebes forms. The Pieridae (white and yellow butterflies) which wander more, and from frequenting open grounds, are more liable to be blown out to sea, seem about equally related to those of Java, Australia, and the Moluccas.\n\nIt has been objected to in Mr. Darwin's theory, of Oceanic Islands having never been connected with the mainland, that this would imply that their animal population was a matter of chance; it has been termed the \"flotsam and jetsam theory,\" and it has been maintained that nature does not work by the \"CHAPTER of accidents.\" But in the case which I have here described, we have the most positive evidence that such has been the mode of peopling the islands. Their productions are of that miscellaneous character which we should expect from such an origin; and to suppose that they have been portions of Australia or of Java will introduce perfectly gratuitous difficulties, and render it quite impossible to explain those curious relations which the best known group of animals (the birds) have been shown to exhibit. On the other hand, the depth of the surrounding seas, the form of the submerged banks, and the volcanic character of most of the islands, all point to an independent origin.\n\nBefore concluding, I must make one remark to avoid misapprehension. When I say that Timor has never formed part of Australia, I refer only to recent geological epochs. In Secondary or even Eocene or Miocene times, Timor and Australia may have been connected; but if so, all record of such a union has been lost by subsequent submergence, and in accounting for the present land-inhabitants of any country we have only to consider those changes which have occurred since its last elevation above the waters. Since such last elevation, I feel confident that Timor has not formed part of Australia.",
+      "credit": {
+        "attribution": "The Malay Archipelago, Volume 1 — Alfred Russel Wallace (1869). Project Gutenberg eBook 2530; produced by Martin Adamson, David Widger and Colin Choat.",
+        "license": "Public domain in the USA; Project Gutenberg redistribution terms apply. Original historical text term-expiry reviewed for UK and Mainland China; other territories unverified.",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/2530"
+      },
+      "nativeScope": {
+        "start": 440690,
+        "end": 447289,
+        "paragraphs": [
+          446,
+          453
+        ],
+        "rawSha256": "d4b343bde8af87ea34810f86d64743f0d75de78617ab12fe95e04157a7efa206",
+        "canonicalSha256": "036ed3d18d56ceb520a3c466a45b3c99a934b7be49e8116eb3dfea0dccb442b9",
+        "metadataPath": "content/corpus/raw/pg2530-metadata.html",
+        "metadataSha256": "ba3e0070a9b9d16272e15a53b6e6c43fe458368298f4d9c836753980e7a46d39",
+        "policyPath": "content/corpus/gutenberg.json",
+        "policySha256": "04b21f1ecc3877543b35c5b54a6c94d164acbf9655c4271362cb47a7ccb2d8ee"
+      },
+      "parts": [
+        {
+          "start": 5201,
+          "end": 5252,
+          "contextEvidence": [
+            {
+              "start": 5153,
+              "end": 5199
+            },
+            {
+              "start": 5285,
+              "end": 5336
+            },
+            {
+              "start": 5422,
+              "end": 5468
+            }
+          ]
+        },
+        {
+          "start": 1616,
+          "end": 1700,
+          "contextEvidence": [
+            {
+              "start": 2345,
+              "end": 2418
+            },
+            {
+              "start": 2507,
+              "end": 2535
+            },
+            {
+              "start": 5422,
+              "end": 5468
+            }
+          ]
+        },
+        {
+          "start": 5968,
+          "end": 6002,
+          "contextEvidence": [
+            {
+              "start": 5849,
+              "end": 5943
+            },
+            {
+              "start": 5690,
+              "end": 5751
+            },
+            {
+              "start": 6131,
+              "end": 6172
+            }
+          ]
+        },
+        {
+          "start": 6131,
+          "end": 6172,
+          "contextEvidence": [
+            {
+              "start": 6219,
+              "end": 6262
+            },
+            {
+              "start": 6275,
+              "end": 6341
+            },
+            {
+              "start": 6511,
+              "end": 6554
+            }
+          ]
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-361239",
+      "sourceHash": "d4c3732bfdc6aa1bc04576d0f060320fa01dc8a04b98f2b61ed6a8e944690cdf",
+      "clipId": "12d24c7d467d576502041e712b7b23ba7ef1128efaf4d51a470df0e2838a6d33",
+      "textSha256": "75fe46f141900ab6485fc1805668f23cac89c51404f4a702110dc60e2352b74b",
+      "text": "A movement of techno-utopianism began to flourish again in the dot-com culture of the 1990s, particularly in the West Coast of the United States, especially based around Silicon Valley. The Californian Ideology was a set of beliefs combining bohemian and anti-authoritarian attitudes from the counterculture of the 1960s with techno-utopianism and support for libertarian economic policies. It was reflected in, reported on, and even actively promoted in the pages of Wired magazine, which was founded in San Francisco in 1993 and served for a number of years as the \"bible\" of its adherents.\n\nThis form of techno-utopianism reflected a belief that technological change revolutionizes human affairs, and that digital technology in particular – of which the Internet was but a modest harbinger – would increase personal freedom by freeing the individual from the rigid embrace of bureaucratic big government. \"Self-empowered knowledge workers\" would render traditional hierarchies redundant; digital communications would allow them to escape the modern city, an \"obsolete remnant of the industrial age\".\n\nSimilar forms of \"digital utopianism\" have often entered in the political messages of party and social movements that point to the Web or more broadly to new media as harbingers of political and social change. Its adherents claim it transcended conventional \"right/left\" distinctions in politics by rendering politics obsolete. However, techno-utopianism disproportionately attracted adherents from the libertarian right end of the political spectrum. Therefore, techno-utopians often have a hostility toward government regulation and a belief in the superiority of the free market system. Prominent \"oracles\" of techno-utopianism included George Gilder and Kevin Kelly, an editor of Wired who also published several books.\n\nDuring the late 1990s dot-com boom, when the speculative bubble gave rise to claims that an era of \"permanent prosperity\" had arrived, techno-utopianism flourished, typically among the small percentage of the population who were employees of Internet startups and/or owned large quantities of high-tech stocks. With the subsequent crash, many of these dot-com techno-utopians had to rein in some of their beliefs in the face of the clear return of traditional economic reality.\n\nIn the late 1990s and especially during the first decade of the 21st century, technorealism and techno-progressivism are stances that have arisen among advocates of technological change as critical alternatives to techno-utopianism. However, technological utopianism persists in the 21st century as a result of new technological developments and their impact on society. For example, several technical journalists and social commentators, such as Mark Pesce, have interpreted the WikiLeaks phenomenon and the United States diplomatic cables leak in early December 2010 as a precursor to, or an incentive for, the creation of a techno-utopian transparent society. Cyber-utopianism, first coined by Evgeny Morozov, is another manifestation of this, in particular in relation to the Internet and social networking.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Technological utopianism, recorded revision 866906289. Excerpt: reviewed printed ranges [(4885, 7999)]; original recording 363.0–569.8 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Technological_utopianism?oldid=866906289"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Technological utopianism, recorded revision 866906289. Excerpt: reviewed printed ranges [(4885, 7999)]; original recording 363.0–569.8 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement. Recording: The Modeler. Original recording of Technological utopianism.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 4.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Technological_utopianism?oldid=866906289"
+      },
+      "audio": {
+        "src": "media/12d24c7d467d576502041e712b7b23ba7ef1128efaf4d51a470df0e2838a6d33.mp3",
+        "sha256": "08051582764243f3314d269ec9f9fc687a52506e88c6698b8734aa927789d1af",
+        "duration": 206.8,
+        "author": "The Modeler",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Technological_utopianism-article.opus",
+        "license": "CC BY-SA 4.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 592,
+          "text": "A movement of techno-utopianism began to flourish again in the dot-com culture of the 1990s, particularly in the West Coast of the United States, especially based around Silicon Valley. The Californian Ideology was a set of beliefs combining bohemian and anti-authoritarian attitudes from the counterculture of the 1960s with techno-utopianism and support for libertarian economic policies. It was reflected in, reported on, and even actively promoted in the pages of Wired magazine, which was founded in San Francisco in 1993 and served for a number of years as the \"bible\" of its adherents.",
+          "audioStart": 0.0,
+          "audioEnd": 40.0
+        },
+        {
+          "start": 594,
+          "end": 1827,
+          "text": "This form of techno-utopianism reflected a belief that technological change revolutionizes human affairs, and that digital technology in particular – of which the Internet was but a modest harbinger – would increase personal freedom by freeing the individual from the rigid embrace of bureaucratic big government. \"Self-empowered knowledge workers\" would render traditional hierarchies redundant; digital communications would allow them to escape the modern city, an \"obsolete remnant of the industrial age\".\n\nSimilar forms of \"digital utopianism\" have often entered in the political messages of party and social movements that point to the Web or more broadly to new media as harbingers of political and social change. Its adherents claim it transcended conventional \"right/left\" distinctions in politics by rendering politics obsolete. However, techno-utopianism disproportionately attracted adherents from the libertarian right end of the political spectrum. Therefore, techno-utopians often have a hostility toward government regulation and a belief in the superiority of the free market system. Prominent \"oracles\" of techno-utopianism included George Gilder and Kevin Kelly, an editor of Wired who also published several books.",
+          "audioStart": 40.0,
+          "audioEnd": 120.44
+        },
+        {
+          "start": 1829,
+          "end": 2306,
+          "text": "During the late 1990s dot-com boom, when the speculative bubble gave rise to claims that an era of \"permanent prosperity\" had arrived, techno-utopianism flourished, typically among the small percentage of the population who were employees of Internet startups and/or owned large quantities of high-tech stocks. With the subsequent crash, many of these dot-com techno-utopians had to rein in some of their beliefs in the face of the clear return of traditional economic reality.",
+          "audioStart": 120.44,
+          "audioEnd": 150.87
+        },
+        {
+          "start": 2308,
+          "end": 3119,
+          "text": "In the late 1990s and especially during the first decade of the 21st century, technorealism and techno-progressivism are stances that have arisen among advocates of technological change as critical alternatives to techno-utopianism. However, technological utopianism persists in the 21st century as a result of new technological developments and their impact on society. For example, several technical journalists and social commentators, such as Mark Pesce, have interpreted the WikiLeaks phenomenon and the United States diplomatic cables leak in early December 2010 as a precursor to, or an incentive for, the creation of a techno-utopian transparent society. Cyber-utopianism, first coined by Evgeny Morozov, is another manifestation of this, in particular in relation to the Internet and social networking.",
+          "audioStart": 150.87,
+          "audioEnd": 206.8
+        }
+      ],
+      "readerNotes": "Reader supplies of in for a number of years; have rather than printed has after Similar forms; arisen rather than risen follows the cached narration. Printed source preserved in complete original range. These are not scored clues. Two middle printed paragraphs share one coarse audio block; no invented word-level alignment or audio splice. The whole five-paragraph context stays continuous. Collected harbinger/obsolete versus cached abuser/absolute, it transcended/its transcendent, end/and of spectrum, Kevin Kelly/Calvin Kelly, Wired/Wyatt, Mark Pesce/Pesky and for/4 retain exact non-target recognition/wording uncertainty; no silent source-wide or phoneme approval. Printed During the late1990s dot-com boom versus cached added a/punctuation, With the/a subsequent crash, has/have and hyphenation/and-or/number forms are recorded diagnostic variants. Four scored focus phrases separately match unique contiguous tokens. Native ambient noise is retained without filters/gain/limiter. Start is within the original362.44–364.22low-energy pause after preceding attribution; end within568.84–570.58pause after social networking and before Section2. Noise-run locators are not phoneme or auditory claims.",
+      "parts": [
+        {
+          "start": 1400,
+          "end": 1430,
+          "contextEvidence": [
+            {
+              "start": 1314,
+              "end": 1399
+            },
+            {
+              "start": 1432,
+              "end": 1497
+            },
+            {
+              "start": 1498,
+              "end": 1554
+            }
+          ]
+        },
+        {
+          "start": 2205,
+          "end": 2241,
+          "contextEvidence": [
+            {
+              "start": 1906,
+              "end": 1962
+            },
+            {
+              "start": 1994,
+              "end": 2048
+            },
+            {
+              "start": 2140,
+              "end": 2204
+            }
+          ]
+        },
+        {
+          "start": 2494,
+          "end": 2539,
+          "contextEvidence": [
+            {
+              "start": 2454,
+              "end": 2493
+            },
+            {
+              "start": 2386,
+              "end": 2424
+            },
+            {
+              "start": 2541,
+              "end": 2583
+            }
+          ]
+        },
+        {
+          "start": 2767,
+          "end": 2808,
+          "contextEvidence": [
+            {
+              "start": 2877,
+              "end": 2929
+            },
+            {
+              "start": 2933,
+              "end": 2969
+            },
+            {
+              "start": 2494,
+              "end": 2539
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-344149",
+      "sourceHash": "f33ef1955777817d695ca737892857c469ae9ce71cbd04b23966ce679cdb9206",
+      "clipId": "5e939d51d02b6815b071d341eb18e768e778f6bf0a4668b70972cbaa47e49823",
+      "textSha256": "b7adb79604d500fca8904ad30dc55a0e0412a84f069fe95f926ccbf406123327",
+      "text": "Subsection 3. From affirmation to irony\n\nThe degree to which Tennyson identifies with Ulysses has provided one of the great debates among scholars of the poem. Critics who find that Tennyson identifies with the speaker read Ulysses' speech \"affirmatively\", or without irony. Many other interpretations of the poem have developed from the argument that Tennyson does not identify with Ulysses, and further criticism has suggested that the purported inconsistencies in Ulysses' character are the fault of the poet himself.\n\nKey to the affirmative reading of \"Ulysses\" is the biographical context of the poem. Such a reading takes into account Tennyson's statements about writing the poem—\"the need of going forward\"—and considers that he would not undermine Ulysses' determination with irony when he needed a similar stalwartness to face life after Hallam's death. Ulysses is thus seen as an heroic character whose determination to seek \"some work of noble note\" (52) is courageous in the face of a \"still hearth\" (2) and old age. The passion and conviction of Tennyson's language—and even his own comments on the poem—signify that the poet, as was typical in the Victorian age, admired courage and persistence. Read straightforwardly, \"Ulysses\" promotes the questing spirit of youth, even in old age, and a refusal to resign and face life passively.\n\nUntil the early twentieth century, readers reacted to \"Ulysses\" sympathetically. The meaning of the poem was increasingly debated as Tennyson's stature rose. After Paull F. Baum criticized Ulysses' inconsistencies and Tennyson's conception of the poem in 1948, the ironic interpretation became dominant. Baum finds in Ulysses echoes of Lord Byron's flawed heroes, who similarly display conflicting emotions, self-critical introspection, and a rejection of social responsibility. Even Ulysses' resolute final utterance—\"To strive, to seek, to find, and not to yield\"—is undercut by irony, when Baum and later critics compare this line to Satan's \"courage never to submit or yield\" in John Milton's Paradise Lost (1667).\n\nUlysses' apparent disdain for those around him is another facet of the ironic perspective. He declares that he is \"matched with an aged wife\" (3), indicates his weariness in governing a \"savage race\" (4), and suggests his philosophical distance from his son Telemachus. A skeptical reading of the second paragraph finds it a condescending tribute to Telemachus and a rejection of his \"slow prudence\" (36). However, the adjectives used to describe Telemachus—\"blameless\", \"discerning\", and \"decent\"—are words with positive connotations in other of Tennyson's poetry and within the classical tradition, where \"blameless\" is an attribute of gods and heroes.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Ulysses (poem), recorded revision 728711702. Excerpt: reviewed printed ranges [(13323, 16033)]; original recording 959.98–1154.01 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Ulysses_(poem)?oldid=728711702"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Ulysses (poem), recorded revision 728711702. Excerpt: reviewed printed ranges [(13323, 16033)]; original recording 959.98–1154.01 seconds. Continuous recording cropped and encoded by Lingfern. Reader section/quotation announcements and omitted words/citations are recorded against exact printed ranges; originals and uncertainty retained. No synthesis or endorsement. Recording: User:Shayday~enwiki. Original recording of Ulysses (poem).",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Ulysses_(poem)?oldid=728711702"
+      },
+      "audio": {
+        "src": "media/5e939d51d02b6815b071d341eb18e768e778f6bf0a4668b70972cbaa47e49823.mp3",
+        "sha256": "5886fc36550b08c857a145948ea863f2cc8061d91835b1d405ff8eb7609bfd93",
+        "duration": 194.03,
+        "author": "User:Shayday~enwiki",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Ulysses_(poem)-article.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 520,
+          "text": "Subsection 3. From affirmation to irony\n\nThe degree to which Tennyson identifies with Ulysses has provided one of the great debates among scholars of the poem. Critics who find that Tennyson identifies with the speaker read Ulysses' speech \"affirmatively\", or without irony. Many other interpretations of the poem have developed from the argument that Tennyson does not identify with Ulysses, and further criticism has suggested that the purported inconsistencies in Ulysses' character are the fault of the poet himself.",
+          "audioStart": 0.0,
+          "audioEnd": 33.75
+        },
+        {
+          "start": 522,
+          "end": 1348,
+          "text": "Key to the affirmative reading of \"Ulysses\" is the biographical context of the poem. Such a reading takes into account Tennyson's statements about writing the poem—\"the need of going forward\"—and considers that he would not undermine Ulysses' determination with irony when he needed a similar stalwartness to face life after Hallam's death. Ulysses is thus seen as an heroic character whose determination to seek \"some work of noble note\" (52) is courageous in the face of a \"still hearth\" (2) and old age. The passion and conviction of Tennyson's language—and even his own comments on the poem—signify that the poet, as was typical in the Victorian age, admired courage and persistence. Read straightforwardly, \"Ulysses\" promotes the questing spirit of youth, even in old age, and a refusal to resign and face life passively.",
+          "audioStart": 33.75,
+          "audioEnd": 92.34
+        },
+        {
+          "start": 1350,
+          "end": 2068,
+          "text": "Until the early twentieth century, readers reacted to \"Ulysses\" sympathetically. The meaning of the poem was increasingly debated as Tennyson's stature rose. After Paull F. Baum criticized Ulysses' inconsistencies and Tennyson's conception of the poem in 1948, the ironic interpretation became dominant. Baum finds in Ulysses echoes of Lord Byron's flawed heroes, who similarly display conflicting emotions, self-critical introspection, and a rejection of social responsibility. Even Ulysses' resolute final utterance—\"To strive, to seek, to find, and not to yield\"—is undercut by irony, when Baum and later critics compare this line to Satan's \"courage never to submit or yield\" in John Milton's Paradise Lost (1667).",
+          "audioStart": 92.34,
+          "audioEnd": 145.24
+        },
+        {
+          "start": 2070,
+          "end": 2724,
+          "text": "Ulysses' apparent disdain for those around him is another facet of the ironic perspective. He declares that he is \"matched with an aged wife\" (3), indicates his weariness in governing a \"savage race\" (4), and suggests his philosophical distance from his son Telemachus. A skeptical reading of the second paragraph finds it a condescending tribute to Telemachus and a rejection of his \"slow prudence\" (36). However, the adjectives used to describe Telemachus—\"blameless\", \"discerning\", and \"decent\"—are words with positive connotations in other of Tennyson's poetry and within the classical tradition, where \"blameless\" is an attribute of gods and heroes.",
+          "audioStart": 145.24,
+          "audioEnd": 194.03
+        }
+      ],
+      "readerNotes": "Reader announces Subsection3 before the existing From affirmation to irony heading. Spoken title retained, original printed range and line-number parentheses preserved. Poem line numbers and years are spoken as numbers, not evidence of alternative poem wording. They are not scored clues. Still hearth/half, Paull F.Baum/Paul F.Baume, blameless/blamelessness and case/apostrophe/number/quotation punctuation variants remain scoped and unscored. No audition or claim that the historical recorded source is verbatim throughout. The exact selected literary debate stops before the next paragraph advocating an interpretation about religious faith; that paragraph and previous Dante/hell context remain outside the learner window. Contextual Tennyson/Milton literary comparisons within the selected prose are neither religious instruction nor endorsement.",
+      "parts": [
+        {
+          "start": 219,
+          "end": 273,
+          "contextEvidence": [
+            {
+              "start": 182,
+              "end": 218
+            },
+            {
+              "start": 352,
+              "end": 391
+            },
+            {
+              "start": 434,
+              "end": 519
+            }
+          ]
+        },
+        {
+          "start": 522,
+          "end": 606,
+          "contextEvidence": [
+            {
+              "start": 687,
+              "end": 712
+            },
+            {
+              "start": 1508,
+              "end": 1538
+            },
+            {
+              "start": 1676,
+              "end": 1712
+            }
+          ]
+        },
+        {
+          "start": 1916,
+          "end": 1983,
+          "contextEvidence": [
+            {
+              "start": 1869,
+              "end": 1914
+            },
+            {
+              "start": 1996,
+              "end": 2028
+            },
+            {
+              "start": 1210,
+              "end": 1272
+            }
+          ]
+        },
+        {
+          "start": 2476,
+          "end": 2527,
+          "contextEvidence": [
+            {
+              "start": 2393,
+              "end": 2430
+            },
+            {
+              "start": 2435,
+              "end": 2469
+            },
+            {
+              "start": 2572,
+              "end": 2634
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

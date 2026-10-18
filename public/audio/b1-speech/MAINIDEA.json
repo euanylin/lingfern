@@ -1,0 +1,60 @@
+[
+  {
+    "rootId": "voa-article-7985917",
+    "sourceHash": "ede4dc77d50c8fd09eb9c45548a0e09783a67f815d64eb968be348eba86efae0",
+    "title": "Appeal",
+    "text": "Generally, we do not use “appeal” for normal, everyday requests. For example, we would not say:\n\nI appeal for you to get some milk at the store.\n\nBut we would say something like:\n\nThe earthquake victims appealed to the government for more aid.",
+    "audio": {
+      "src": "/audio/b1-speech/voa-appeal-main-point.mp3",
+      "sha256": "feea5950de84c05be635fcbecdd8809b5e75f022f04266e57beb48c6edcd338c",
+      "duration": 24.6,
+      "author": "VOA Learning English; article by Andrew Smith",
+      "sourceUrl": "https://learningenglish.voanews.com/a/appeal/7985917.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "VOA Learning English — Andrew Smith, Appeal. Continuous author-only excerpt; original words retained; mono MP3 encoding. https://learningenglish.voanews.com/a/appeal/7985917.html",
+      "license": "VOA Learning English original production (public domain)",
+      "sourceUrl": "https://learningenglish.voanews.com/a/appeal/7985917.html"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 243,
+        "text": "Generally, we do not use “appeal” for normal, everyday requests. For example, we would not say:\n\nI appeal for you to get some milk at the store.\n\nBut we would say something like:\n\nThe earthquake victims appealed to the government for more aid.",
+        "audioStart": 0,
+        "audioEnd": 24.6
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-7920108",
+    "sourceHash": "81a5ae310ddb4ca0ac932d0fdbdb78395cbd8cccc2123f93d16f173d2b64ff29",
+    "title": "How to Summon Others",
+    "text": "Could you come here, please?\n\nWe might also be more exact about the meeting place. For example, a supervisor or principal might say:\n\nCould you come to my office, please?\n\nYou might also be more exact with what you would like to do. For example, you might ask:\n\nCould I talk to you for a moment?\n\nThese questions are very general, polite, and useful in a lot of situations.",
+    "audio": {
+      "src": "/audio/b1-speech/voa-summon-main-point.mp3",
+      "sha256": "1ae8bdc6e1cde9d8212844d5e5129bf15e769d13d42a72b0b82caf7fbf2bf8b3",
+      "duration": 32.32,
+      "author": "VOA Learning English; article by John Russell",
+      "sourceUrl": "https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "VOA Learning English — John Russell, How to Summon Others. Continuous author-only excerpt; original words retained; mono MP3 encoding. https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html",
+      "license": "VOA Learning English original production (public domain)",
+      "sourceUrl": "https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 373,
+        "text": "Could you come here, please?\n\nWe might also be more exact about the meeting place. For example, a supervisor or principal might say:\n\nCould you come to my office, please?\n\nYou might also be more exact with what you would like to do. For example, you might ask:\n\nCould I talk to you for a moment?\n\nThese questions are very general, polite, and useful in a lot of situations.",
+        "audioStart": 0,
+        "audioEnd": 32.32
+      }
+    ]
+  }
+]

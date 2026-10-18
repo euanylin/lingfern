@@ -1,0 +1,253 @@
+{
+  "roots": 1014,
+  "clips": 1931,
+  "seconds": 48274.53071799994,
+  "independentlyReviewed": 0,
+  "approvedChecks": 0,
+  "published": false,
+  "packs": [
+    {
+      "id": "wikipedia-listening-001",
+      "bytes": 12028074,
+      "sha256": "e82d30655b30a3614535f4a19c7f41d71b9c7b71b124727c3f3fe63328dd9356",
+      "roots": 30,
+      "clips": 59
+    },
+    {
+      "id": "wikipedia-listening-002",
+      "bytes": 11437433,
+      "sha256": "61a617c989b11d620b4c9db12992d6dd1f18c3a79fbe3a3a78242ee7b19f9bc2",
+      "roots": 30,
+      "clips": 59
+    },
+    {
+      "id": "wikipedia-listening-003",
+      "bytes": 13516760,
+      "sha256": "e236013d3232f8169dc52ee6c1c8245a273304439b3e5d65cdfef37abfa60d70",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-004",
+      "bytes": 11125334,
+      "sha256": "0c7363693f359c901577a0f4ba6434d4fda395463c5baf380ece0d001ceb711e",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-005",
+      "bytes": 11783948,
+      "sha256": "52e078ead9fb8ac5b7e3ea097387157d3ba0b2a67c8c1d0c67e2cb0e1da55b34",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-006",
+      "bytes": 11076779,
+      "sha256": "129a8ab20544bd05c603886fdecb3dcf53d1187eda12edfd92c4b05d4522e313",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-007",
+      "bytes": 12690001,
+      "sha256": "f78ae40912ad7e8b7028d61d6219bbe903722a91bd4650613eb6631b96035ffa",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-008",
+      "bytes": 10717661,
+      "sha256": "9b10e6e21c50d8313ee88b91d60701dc674c327d8857b048e0597e9b8f8901dd",
+      "roots": 30,
+      "clips": 55
+    },
+    {
+      "id": "wikipedia-listening-009",
+      "bytes": 11323177,
+      "sha256": "b90ac6adfac71695e401121fb46453e3f46c257590b0a6f98de968a82da79d8b",
+      "roots": 30,
+      "clips": 59
+    },
+    {
+      "id": "wikipedia-listening-010",
+      "bytes": 12238152,
+      "sha256": "40ab35368452c0cb5f9e4a6d67a5890a952131c632dfc1ba16ee8fe78e83f813",
+      "roots": 30,
+      "clips": 58
+    },
+    {
+      "id": "wikipedia-listening-011",
+      "bytes": 10374222,
+      "sha256": "29a9214dab16c8ae98be9a41af4117da53390fcd4c4d2a4dcf887d886ffe6bfb",
+      "roots": 30,
+      "clips": 55
+    },
+    {
+      "id": "wikipedia-listening-012",
+      "bytes": 10547245,
+      "sha256": "f3353fddf14d8e16f9028cee49d002e0a5f677f27f0cc1b7ae291b752db9f23e",
+      "roots": 30,
+      "clips": 56
+    },
+    {
+      "id": "wikipedia-listening-013",
+      "bytes": 12291282,
+      "sha256": "141f6148da7062ddb1e18da699e76eff6da56dc53607fe6e0414bae76e79c453",
+      "roots": 30,
+      "clips": 56
+    },
+    {
+      "id": "wikipedia-listening-014",
+      "bytes": 10524016,
+      "sha256": "1fdd69e20b9247ef08c4a21af4c5d30e8ca9b90e47c296d3bd0e35ea0ec6664d",
+      "roots": 30,
+      "clips": 55
+    },
+    {
+      "id": "wikipedia-listening-015",
+      "bytes": 10193799,
+      "sha256": "a257ceaae9f4fc7267ae597d797338ef645b096a125c91f81ed06c45c1a814f3",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-016",
+      "bytes": 12546751,
+      "sha256": "3e7c994b5ae482c898d2f5923a750f26741d468808b3b7dbd8cf382f183ced0e",
+      "roots": 30,
+      "clips": 59
+    },
+    {
+      "id": "wikipedia-listening-017",
+      "bytes": 10828414,
+      "sha256": "5818126b12cd1e15741c1558c06b9a99266818a2ecdd759c8a5166c4f230b559",
+      "roots": 30,
+      "clips": 59
+    },
+    {
+      "id": "wikipedia-listening-018",
+      "bytes": 12322996,
+      "sha256": "3cb1df07cb517523d868f57f4e1c6547e8a340d32a358978021da2e6b0dc152d",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-019",
+      "bytes": 11700350,
+      "sha256": "f651423fb6311d22f4ee85d68663683e9f2a9e21eca462612930b3ef609dc6b8",
+      "roots": 30,
+      "clips": 58
+    },
+    {
+      "id": "wikipedia-listening-020",
+      "bytes": 10432837,
+      "sha256": "54807aa5072ed14e83b6d35afd0b1de5cb80c30a4a92d61b2df36ca04bd75fcc",
+      "roots": 30,
+      "clips": 56
+    },
+    {
+      "id": "wikipedia-listening-021",
+      "bytes": 10119193,
+      "sha256": "c0b2d02c6abfcf3dfdc5dd3ad23e488076a2335048977379f41c78eee54f9e07",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-022",
+      "bytes": 10444999,
+      "sha256": "c104476a3e6c28b4098da4f2f2a2bac4159cccc0d9f8db8666f3e59b2af669f6",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-023",
+      "bytes": 12184593,
+      "sha256": "1e9f724ba1625ee5657f6f1015067d47e4e2bc78069f69dfcb6c634f0a620207",
+      "roots": 30,
+      "clips": 56
+    },
+    {
+      "id": "wikipedia-listening-024",
+      "bytes": 10644116,
+      "sha256": "b63ef4417c6fab64f5842c81622090c96faf043727f3c4f74a3ecc8ad6e6a12e",
+      "roots": 30,
+      "clips": 55
+    },
+    {
+      "id": "wikipedia-listening-025",
+      "bytes": 11145442,
+      "sha256": "ca2494b70a609439b2287eb4c84c843c3d604a470367b9d93419099bb98216a0",
+      "roots": 30,
+      "clips": 60
+    },
+    {
+      "id": "wikipedia-listening-026",
+      "bytes": 10954221,
+      "sha256": "622d819478f2d875c3bbf38a4c0e6479f3bbf3cf73f54dd0302a19bc5b7c8acd",
+      "roots": 30,
+      "clips": 58
+    },
+    {
+      "id": "wikipedia-listening-027",
+      "bytes": 10744669,
+      "sha256": "5d9e8c562e911f701be6b2ebd6141d5b278897d49d47396ae8cde3b1706b5de0",
+      "roots": 30,
+      "clips": 58
+    },
+    {
+      "id": "wikipedia-listening-028",
+      "bytes": 10430321,
+      "sha256": "c480e9cc61065a9b31d9c9dbc2c79ea05c4350af4ecd4427fe6a7058be8f5bdd",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-029",
+      "bytes": 12422890,
+      "sha256": "95c58a4ec6df11bb741377393c08ec8bd9f144312110d35d4ff6078be1d46002",
+      "roots": 30,
+      "clips": 57
+    },
+    {
+      "id": "wikipedia-listening-030",
+      "bytes": 10669105,
+      "sha256": "8e578a9381a610ccd8aa65bdc91e5df43635ab7f69e2f83ed10444fef9661f21",
+      "roots": 30,
+      "clips": 59
+    },
+    {
+      "id": "wikipedia-listening-031",
+      "bytes": 12469235,
+      "sha256": "ce3f656870ac47b4a4d3a52834f2ad79611b39602d9566cdc895f85995e8590f",
+      "roots": 30,
+      "clips": 58
+    },
+    {
+      "id": "wikipedia-listening-032",
+      "bytes": 10441847,
+      "sha256": "233cb03cd420c9239f0bd105f40f20384c883c9a828cb2f044824f1757989470",
+      "roots": 30,
+      "clips": 56
+    },
+    {
+      "id": "wikipedia-listening-033",
+      "bytes": 10901198,
+      "sha256": "2c48db3eadb99e48b3ca4f645331a50a247998d3e8128abc03d6e794795f80ec",
+      "roots": 30,
+      "clips": 56
+    },
+    {
+      "id": "wikipedia-listening-034",
+      "bytes": 8420116,
+      "sha256": "57ae1a04219dec8d3474e851302c4ee49b22903de4bbbbff10945bc3eed4eca6",
+      "roots": 24,
+      "clips": 44
+    }
+  ],
+  "annotationGenerator": "spacy-3.8.16/en_core_web_sm-3.8.0",
+  "modelSha256": "5f7701300a1a25bbbec7861933e9aadfa7e5de254b290201fd1f8975b07862f3",
+  "annotationReview": "pending",
+  "browserImportAndLocalGeneration": "verified offline, isolated Chrome",
+  "packageBytes": 381691176
+}

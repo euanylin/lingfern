@@ -1,0 +1,60 @@
+{
+  "id": "a1-zoo-bus-check-draft",
+  "mode": "check",
+  "targetLevel": "A1",
+  "skill": "reading",
+  "title": { "zh-Hans": "动物园巴士通知 · 检测草稿", "zh-Hant": "動物園巴士通知 · 檢測草稿", "en": "Zoo bus notice · check draft" },
+  "goal": { "zh-Hans": "从简短通知中找到出发地点、时间、物品和返程集合点。", "zh-Hant": "從簡短通知中找到出發地點、時間、物品和回程集合點。", "en": "Find the departure place, time, item, and return meeting point in a short notice." },
+  "goalId": "place-and-item",
+  "sourceId": "lingfern-original-a1-zoo-bus-check",
+  "reviewStatus": "draft",
+  "expectedMinutes": 4,
+  "materials": [{
+    "id": "zoo-bus-notice",
+    "rootId": "original-zoo-bus-check",
+    "title": "Zoo bus",
+    "blocks": [{ "id": "notice", "text": "The zoo bus leaves from the school gate at nine on Saturday. Bring your lunch. The bus home leaves the zoo at three. Meet by the red sign." }],
+    "questions": [
+      {
+        "id": "departure-place", "blockId": "notice", "prompt": "Where does the bus leave from in the morning?",
+        "options": ["The zoo", "The school gate", "The red sign"], "answer": 1,
+        "evidence": { "start": 28, "end": 39 },
+        "explanations": [
+          { "zh-Hans": "动物园是返程巴士出发的地方。", "zh-Hant": "動物園是回程巴士出發的地方。", "en": "The bus home leaves the zoo." },
+          { "zh-Hans": "早上的巴士从学校门口出发。", "zh-Hant": "早上的巴士從學校門口出發。", "en": "The morning bus leaves from the school gate." },
+          { "zh-Hans": "红色标志是返程集合点。", "zh-Hant": "紅色標誌是回程集合點。", "en": "The red sign is the return meeting point." }
+        ]
+      },
+      {
+        "id": "departure-time", "blockId": "notice", "prompt": "When does the bus leave the school?",
+        "options": ["At nine", "At three", "At ten"], "answer": 0,
+        "evidence": { "start": 40, "end": 47 },
+        "explanations": [
+          { "zh-Hans": "学校门口的出发时间是九点。", "zh-Hant": "學校門口的出發時間是九點。", "en": "The bus leaves the school at nine." },
+          { "zh-Hans": "三点是返程巴士的时间。", "zh-Hant": "三點是回程巴士的時間。", "en": "Three is the time for the bus home." },
+          { "zh-Hans": "通知中没有提到十点。", "zh-Hant": "通知中沒有提到十點。", "en": "The notice does not mention ten." }
+        ]
+      },
+      {
+        "id": "bring-lunch", "blockId": "notice", "prompt": "What should you bring?",
+        "options": ["A book", "A ticket", "Your lunch"], "answer": 2,
+        "evidence": { "start": 67, "end": 77 },
+        "explanations": [
+          { "zh-Hans": "通知中没有要求带书。", "zh-Hant": "通知中沒有要求帶書。", "en": "The notice does not ask for a book." },
+          { "zh-Hans": "通知中没有要求带票。", "zh-Hant": "通知中沒有要求帶票。", "en": "The notice does not ask for a ticket." },
+          { "zh-Hans": "通知要求带午餐。", "zh-Hant": "通知要求帶午餐。", "en": "The notice says to bring your lunch." }
+        ]
+      },
+      {
+        "id": "return-meeting-point", "blockId": "notice", "prompt": "Where should you meet for the bus home?",
+        "options": ["By the red sign", "At the school gate", "In Room 4"], "answer": 0,
+        "evidence": { "start": 129, "end": 137 },
+        "explanations": [
+          { "zh-Hans": "返程前在红色标志旁集合。", "zh-Hant": "回程前在紅色標誌旁集合。", "en": "Meet by the red sign for the bus home." },
+          { "zh-Hans": "学校门口是早上的出发地点。", "zh-Hant": "學校門口是早上的出發地點。", "en": "The school gate is the morning departure place." },
+          { "zh-Hans": "通知中没有提到 4 号教室。", "zh-Hant": "通知中沒有提到 4 號教室。", "en": "The notice does not mention Room 4." }
+        ]
+      }
+    ]
+  }]
+}

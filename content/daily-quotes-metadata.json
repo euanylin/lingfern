@@ -1,0 +1,53 @@
+{
+  "source": {
+    "title": "English Wikiquote",
+    "url": "https://en.wikiquote.org/",
+    "license": "CC BY-SA 4.0 editorial arrangement; original quotation rights retained.",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "snapshotDate": "2026-10-01",
+    "dumpSha256": "aa9a98e1a6e4a7e65fe478ec174acaac7d41e3fef8a3220e1f6ac07fa6c10627",
+    "preparedSha256": "5bd056fd3854c08a7ad8e15ad79bfe3147755329d5735a994af7d5fd52386060"
+  },
+  "quoteCount": 3208,
+  "pageCount": 774,
+  "sourceSnapshot": {
+    "allPages": 149034,
+    "mainspacePages": 107928,
+    "revisionSha1Verified": 107927,
+    "nonredirects": 73058,
+    "nonredirectNondisambiguationPages": 70501,
+    "mainspacePagesWithTemplates": 71796,
+    "topLevelBulletBlocks": 1195087,
+    "blocksWithDoubleStarContext": 624552,
+    "blocksWithNestedLines": 625075,
+    "blocksWithComplexMarkup": 105225,
+    "blocksWithoutNestedLines": 570012,
+    "blocksUnderUncertainOrNonquoteSection": 155531,
+    "redirects": 34870,
+    "revisionSha1Mismatch": 1,
+    "disambiguationTemplatePages": 416,
+    "disambiguationPropertyPages": 2557
+  },
+  "preparationCounts": {
+    "candidateBlocks": 1195087,
+    "preparedRows": 3376,
+    "eligibleRows": 1094,
+    "excludedOrHeldRows": 97,
+    "existingSourceRows": 1111,
+    "newSourceRows": 80,
+    "newEligibleRows": 37,
+    "newHeldRows": 43,
+    "newDuplicateRows": 3
+  },
+  "admissionScreen": {
+    "excluded": 6,
+    "uncertain": 91
+  },
+  "admissionOverrides": {
+    "excluded": 71,
+    "ids": [
+      "wikiquote-f8b1575a8e7c864e859f441b8b0c0e565929f2afab50074f7c1fae694a5fd0c6"
+    ]
+  },
+  "fullPublicCoverage": false
+}

@@ -1,0 +1,454 @@
+{
+  "version": 1,
+  "inputDirectory": "private/corpus/reading-expansion-20261010/cloud-books-final-results",
+  "manifestSha256": "88398a5004f7aa9a0c586546d0ac5595681a0f311636f3f97d7fe64f7877556c",
+  "preparedSha256": "f8672312dc4013d4be8ffc4264a33a6e0d146bd7ac6332a7d139d4189de09c56",
+  "sourceLedgerSha256": "b3ced80696b67172cb71976c070902143339f34d6fc3688888aaf7b9094a0b01",
+  "reviewer": "Codex/AI",
+  "scope": "All 2,526 cloud archive members and all 33,945 native CNXML paragraphs independently hash/offset/conservation/rights/structural verified. Exact semantic sample scope is in books-final-source-review.json; not full-book semantic review or calibrated CEFR approval. 11 frozen CC BY 4.0 books, original book roots, College Success standard edition only. Exact additional excluded paragraph IDs below.",
+  "books": [
+    {
+      "id": "openstax-introduction-business",
+      "title": "Introduction to Business",
+      "authors": [
+        "Lawrence J. Gitman",
+        "Carl McDaniel",
+        "Amit Shah",
+        "Monique Reece",
+        "Linda Koffel",
+        "Bethann Talsma",
+        "James C. Hyatt"
+      ],
+      "attribution": "Introduction to Business — Lawrence J. Gitman; Carl McDaniel; Amit Shah; Monique Reece; Linda Koffel; Bethann Talsma; James C. Hyatt. OpenStax, Rice University. Frozen 9d3b8c44e4567d207424bc92d4f7ceffb1a9dcd5 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "db6b2facf57ecf362c66d13e19a1d6dd03e7cd020687fdc73d9c69862dc9d033",
+      "topic": "business",
+      "paragraphCount": 179,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introduction-business-collection.xml",
+          "sha256": "db6b2facf57ecf362c66d13e19a1d6dd03e7cd020687fdc73d9c69862dc9d033"
+        },
+        {
+          "rawPath": "raw/openstax-introduction-business-m68486.cnxml",
+          "sha256": "91791371762ce8899027981095889da3c9281c02003de4d5061220dd80cdf7c5"
+        }
+      ],
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+    },
+    {
+      "id": "openstax-organizational-behavior",
+      "title": "Organizational Behavior",
+      "authors": [
+        "J. Stewart Black",
+        "David S. Bright",
+        "Donald G. Gardner",
+        "Eva Hartmann",
+        "Jason Lambert",
+        "Laura M. Leduc",
+        "Joy Leopold",
+        "James S. O’Rourke",
+        "Jon L. Pierce",
+        "Richard M. Steers",
+        "Siri Terjesen",
+        "Joseph Weiss"
+      ],
+      "attribution": "Organizational Behavior — J. Stewart Black; David S. Bright; Donald G. Gardner; Eva Hartmann; Jason Lambert; Laura M. Leduc; Joy Leopold; James S. O’Rourke; Jon L. Pierce; Richard M. Steers; Siri Terjesen; Joseph Weiss. OpenStax, Rice University. Frozen 54660e7c5d6b4495a796032457a70a94708f3eeb source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "b8483e2ce6031dae70beafcab4193e8a67b950c9b1697d4cc0cf157a3acdf7b7",
+      "topic": "business",
+      "paragraphCount": 182,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-organizational-behavior-collection.xml",
+          "sha256": "b8483e2ce6031dae70beafcab4193e8a67b950c9b1697d4cc0cf157a3acdf7b7"
+        },
+        {
+          "rawPath": "raw/openstax-organizational-behavior-m73739.cnxml",
+          "sha256": "92af6ac7ad0aafe56f5bcbe7c031a6093df6db1ad2fc69e11568d593e5f0b405"
+        }
+      ],
+      "licenseSha256": "a706f01f512dcf99caf5367fc60902258ff03aa77b76b13a1f69c5fce788b739"
+    },
+    {
+      "id": "openstax-principles-management",
+      "title": "Principles of Management",
+      "authors": [
+        "David S. Bright",
+        "Anastasia H. Cortes",
+        "Eva Hartmann",
+        "K. Praveen Parboteeah",
+        "Jon L. Pierce",
+        "Monique Reece",
+        "Amit Shah",
+        "Siri Terjesen",
+        "Joseph Weiss",
+        "Margaret A. White",
+        "Donald G. Gardner",
+        "Jason Lambert",
+        "Laura M. Leduc",
+        "Joy Leopold",
+        "Jeffrey Muldoon",
+        "James S. O’Rourke"
+      ],
+      "attribution": "Principles of Management — David S. Bright; Anastasia H. Cortes; Eva Hartmann; K. Praveen Parboteeah; Jon L. Pierce; Monique Reece; Amit Shah; Siri Terjesen; Joseph Weiss; Margaret A. White; Donald G. Gardner; Jason Lambert; Laura M. Leduc; Joy Leopold; Jeffrey Muldoon; James S. O’Rourke. OpenStax, Rice University. Frozen 54660e7c5d6b4495a796032457a70a94708f3eeb source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "efa6b362e2a9e29c4173ccf7e940b5648bf203f7bc6ca26f6eaa6c595f732afb",
+      "topic": "business",
+      "paragraphCount": 79,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-principles-management-collection.xml",
+          "sha256": "efa6b362e2a9e29c4173ccf7e940b5648bf203f7bc6ca26f6eaa6c595f732afb"
+        },
+        {
+          "rawPath": "raw/openstax-principles-management-m70738.cnxml",
+          "sha256": "2e601dccf8f12ad5563b94023260492f5fb454ce99c551b125a7cebe85436561"
+        }
+      ],
+      "licenseSha256": "a706f01f512dcf99caf5367fc60902258ff03aa77b76b13a1f69c5fce788b739"
+    },
+    {
+      "id": "openstax-principles-marketing",
+      "title": "Principles of Marketing",
+      "authors": [
+        "Maria Gomez Albrecht",
+        "Mark Green",
+        "Linda Hoffman",
+        "Jacqueline Babb",
+        "Lauren M. Donovan",
+        "Debra Ellerbrook",
+        "Lisa S. Goolsby",
+        "Jaciel Keltgen",
+        "Sarah M. Shepler",
+        "Deborah Toomey"
+      ],
+      "attribution": "Principles of Marketing — Maria Gomez Albrecht; Mark Green; Linda Hoffman; Jacqueline Babb; Lauren M. Donovan; Debra Ellerbrook; Lisa S. Goolsby; Jaciel Keltgen; Sarah M. Shepler; Deborah Toomey. OpenStax, Rice University. Frozen deb6e19777dc40f3c8861fad1a3fa319d91a940a source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "0abfdd153d8f8434c4bfec55594e5cdc0ed6e8e388f5aae79e499b3d2e0d24e7",
+      "topic": "business",
+      "paragraphCount": 75,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-principles-marketing-collection.xml",
+          "sha256": "0abfdd153d8f8434c4bfec55594e5cdc0ed6e8e388f5aae79e499b3d2e0d24e7"
+        },
+        {
+          "rawPath": "raw/openstax-principles-marketing-m00139.cnxml",
+          "sha256": "b56178985e809784b5a6e4c63db3060223a8581d321f180aa49d9d053ab677a6"
+        }
+      ],
+      "licenseSha256": "38a27c0f017da132e9a04ec8be91ead41cf8a55d85018c2de50c2b831dcfac38"
+    },
+    {
+      "id": "openstax-introduction-anthropology",
+      "title": "Introduction to Anthropology",
+      "authors": [
+        "Jennifer Hasty",
+        "David G. Lewis",
+        "Marjorie M. Snipes",
+        "Todd A. Barnhardt",
+        "M. Anne Basham",
+        "Sharon Gursky",
+        "Laura Jarvis-Seibert",
+        "Saira A. Mehmood",
+        "Sydney Yeager"
+      ],
+      "attribution": "Introduction to Anthropology — Jennifer Hasty; David G. Lewis; Marjorie M. Snipes; Todd A. Barnhardt; M. Anne Basham; Sharon Gursky; Laura Jarvis-Seibert; Saira A. Mehmood; Sydney Yeager. OpenStax, Rice University. CC BY 4.0 frozen source edition; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "3faac5a77d333f57d6d23c4fbc885db6e37fa5dcec8640ecc5e5de850b3d2e5a",
+      "topic": "culture",
+      "paragraphCount": 762,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introduction-anthropology-collection.xml",
+          "sha256": "3faac5a77d333f57d6d23c4fbc885db6e37fa5dcec8640ecc5e5de850b3d2e5a"
+        },
+        {
+          "rawPath": "raw/openstax-introduction-anthropology-m00120.cnxml",
+          "sha256": "d810b662d00bc2d239c253dfe4a129d3b45dc06ff543f8ab0026cf3e01d87109"
+        }
+      ],
+      "licenseSha256": "38a27c0f017da132e9a04ec8be91ead41cf8a55d85018c2de50c2b831dcfac38"
+    },
+    {
+      "id": "openstax-introduction-philosophy",
+      "title": "Introduction to Philosophy",
+      "authors": [
+        "Nathan Smith",
+        "Gregory Browne",
+        "Parish Conkling",
+        "Naomi Friedman",
+        "Allison Fritz",
+        "Daniel Garro",
+        "Jeremy Gallegos",
+        "Jon Gill",
+        "Gayle Horton",
+        "Maryellen Lo Bosco",
+        "Rebecca A. Longtin",
+        "Corey McCall",
+        "Kurt Stuke"
+      ],
+      "attribution": "Introduction to Philosophy — Nathan Smith; Gregory Browne; Parish Conkling; Naomi Friedman; Allison Fritz; Daniel Garro; Jeremy Gallegos; Jon Gill; Gayle Horton; Maryellen Lo Bosco; Rebecca A. Longtin; Corey McCall; Kurt Stuke. OpenStax, Rice University. Frozen ec2804507cf93609bcdd72cc2f2f5aea054a8ae5 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "2271f2fdc8e2cf9473870ee30db97b6e36c412a4844af6ab875c87cf39aeae63",
+      "topic": "society",
+      "paragraphCount": 404,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introduction-philosophy-collection.xml",
+          "sha256": "2271f2fdc8e2cf9473870ee30db97b6e36c412a4844af6ab875c87cf39aeae63"
+        },
+        {
+          "rawPath": "raw/openstax-introduction-philosophy-m00077.cnxml",
+          "sha256": "004a783bbf8d7f013e747edbd97db8794257015ee0017e972c68e8f6bc43daf1"
+        }
+      ],
+      "licenseSha256": "38a27c0f017da132e9a04ec8be91ead41cf8a55d85018c2de50c2b831dcfac38"
+    },
+    {
+      "id": "openstax-world-history-volume-1",
+      "title": "World History Volume 1, to 1500",
+      "authors": [
+        "Ann Kordas",
+        "Ryan J. Lynch",
+        "Brooke Nelson",
+        "Julie Tatlock",
+        "Chris Bingley",
+        "Celeste Chamberland",
+        "Scott Corbett",
+        "Rick Gianni",
+        "Jennifer Lawrence",
+        "Jamie McCandless",
+        "Cristina Mehrtens",
+        "Anthony Miller",
+        "Abigail Owen",
+        "David Price",
+        "Kim Richardson",
+        "Christopher S Rose",
+        "Joseph Snyder",
+        "Christopher Thrasher",
+        "David Toye",
+        "Alexander Wathen",
+        "Grace Hunt Watkinson",
+        "Joel Webb"
+      ],
+      "attribution": "World History Volume 1, to 1500 — Ann Kordas; Ryan J. Lynch; Brooke Nelson; Julie Tatlock; Chris Bingley; Celeste Chamberland; Scott Corbett; Rick Gianni; Jennifer Lawrence; Jamie McCandless; Cristina Mehrtens; Anthony Miller; Abigail Owen; David Price; Kim Richardson; Christopher S Rose; Joseph Snyder; Christopher Thrasher; David Toye; Alexander Wathen; Grace Hunt Watkinson; Joel Webb. OpenStax, Rice University. Frozen dbe4cb6de157b506f07fab8c52ffe80704578f69 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "02866b629aa340e44e86d0d9e333c285c7626e06b7c1dce227f9cc22c99bb8ad",
+      "topic": "history",
+      "paragraphCount": 618,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-world-history-volume-1-collection.xml",
+          "sha256": "02866b629aa340e44e86d0d9e333c285c7626e06b7c1dce227f9cc22c99bb8ad"
+        },
+        {
+          "rawPath": "raw/openstax-world-history-volume-1-m00086.cnxml",
+          "sha256": "1e6e2d93b2ca44b07e76b6ea60e4ea1fb07d6c40bf786d42fa90c1d3892da54c"
+        }
+      ],
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+    },
+    {
+      "id": "openstax-world-history-volume-2",
+      "title": "World History Volume 2, from 1400",
+      "authors": [
+        "Ann Kordas",
+        "Ryan J. Lynch",
+        "Brooke Nelson",
+        "Julie Tatlock",
+        "Chris Bingley",
+        "Celeste Chamberland",
+        "Scott Corbett",
+        "Rick Gianni",
+        "Jennifer Lawrence",
+        "Jamie McCandless",
+        "Cristina Mehrtens",
+        "Anthony Miller",
+        "Abigail Owen",
+        "David Price",
+        "Kim Richardson",
+        "Christopher S Rose",
+        "Joseph Snyder",
+        "Christopher Thrasher",
+        "David Toye",
+        "Alexander Wathen",
+        "Grace Hunt Watkinson",
+        "Joel Webb"
+      ],
+      "attribution": "World History Volume 2, from 1400 — Ann Kordas; Ryan J. Lynch; Brooke Nelson; Julie Tatlock; Chris Bingley; Celeste Chamberland; Scott Corbett; Rick Gianni; Jennifer Lawrence; Jamie McCandless; Cristina Mehrtens; Anthony Miller; Abigail Owen; David Price; Kim Richardson; Christopher S Rose; Joseph Snyder; Christopher Thrasher; David Toye; Alexander Wathen; Grace Hunt Watkinson; Joel Webb. OpenStax, Rice University. Frozen dbe4cb6de157b506f07fab8c52ffe80704578f69 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "a0324290e568ffa3e95935a0e29ee6881ee8745aaef315d10857955d6eaa52ee",
+      "topic": "history",
+      "paragraphCount": 592,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-world-history-volume-2-collection.xml",
+          "sha256": "a0324290e568ffa3e95935a0e29ee6881ee8745aaef315d10857955d6eaa52ee"
+        },
+        {
+          "rawPath": "raw/openstax-world-history-volume-2-m00086.cnxml",
+          "sha256": "1e6e2d93b2ca44b07e76b6ea60e4ea1fb07d6c40bf786d42fa90c1d3892da54c"
+        }
+      ],
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+    },
+    {
+      "id": "openstax-introduction-political-science",
+      "title": "Introduction to Political Science",
+      "authors": [
+        "Mark Carl Rom",
+        "Masaki Hidaka",
+        "Rachel Bzostek Walker",
+        "Emilia B. Carvalho",
+        "Rebecca Eissler",
+        "Terri Susan Fine",
+        "Cassandra Khatri",
+        "Timothy Lim",
+        "Brenda Norton",
+        "Robert Postic",
+        "Joseph Prud’homme",
+        "Shyam Krishnan Sriram",
+        "Victoria Williams"
+      ],
+      "attribution": "Introduction to Political Science — Mark Carl Rom; Masaki Hidaka; Rachel Bzostek Walker; Emilia B. Carvalho; Rebecca Eissler; Terri Susan Fine; Cassandra Khatri; Timothy Lim; Brenda Norton; Robert Postic; Joseph Prud’homme; Shyam Krishnan Sriram; Victoria Williams. OpenStax, Rice University. CC BY 4.0 frozen source edition; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "202054d5e7230bd8d95aab6b66b178b4c059345923acd11608a27f6d06c76ea8",
+      "topic": "society",
+      "paragraphCount": 198,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introduction-political-science-collection.xml",
+          "sha256": "202054d5e7230bd8d95aab6b66b178b4c059345923acd11608a27f6d06c76ea8"
+        },
+        {
+          "rawPath": "raw/openstax-introduction-political-science-m00097.cnxml",
+          "sha256": "caac589db5ee5c07b440d66ffe743b55c44e562969a9c4e455e8940337a92cb6"
+        }
+      ],
+      "licenseSha256": "38a27c0f017da132e9a04ec8be91ead41cf8a55d85018c2de50c2b831dcfac38"
+    },
+    {
+      "id": "openstax-college-success",
+      "title": "College Success",
+      "authors": [
+        "Amy Baldwin",
+        "Lisa August",
+        "James Bennett",
+        "Larry Buland",
+        "Sabrina Mathues",
+        "Susan Monroe",
+        "MJ O’Leary",
+        "Ann Pearson",
+        "Joshua Troesh",
+        "Margit Misangyi Watts"
+      ],
+      "attribution": "College Success — Amy Baldwin; Lisa August; James Bennett; Larry Buland; Sabrina Mathues; Susan Monroe; MJ O’Leary; Ann Pearson; Joshua Troesh; Margit Misangyi Watts. OpenStax, Rice University. Frozen 964da1b4e0343a4607b8af1b49470a35faf55f96 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "4c7124b939373d006b7897e1fbbc5b96318d7cfd5b6b76eded6bb6ec2ec62d28",
+      "topic": "campus",
+      "paragraphCount": 254,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-college-success-collection.xml",
+          "sha256": "4c7124b939373d006b7897e1fbbc5b96318d7cfd5b6b76eded6bb6ec2ec62d28"
+        },
+        {
+          "rawPath": "raw/openstax-college-success-m79844.cnxml",
+          "sha256": "d402425dbc93d911b3491fe5b432d0e87b2ab39c1eb4f4035dc7eee6fb39a34a"
+        }
+      ],
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+    },
+    {
+      "id": "openstax-entrepreneurship",
+      "title": "Entrepreneurship",
+      "authors": [
+        "Michael Laverty",
+        "Chris Littel"
+      ],
+      "attribution": "Entrepreneurship — Michael Laverty; Chris Littel. OpenStax, Rice University. Frozen 9c67d18c5faaa4cdb4cd087ce684c742e14f4005 source edition, CC BY 4.0; complete native paragraphs, whitespace normalised; third-party/media excluded.",
+      "sourceHash": "399d315f08e6dc7d311591e4b4357e1fafe92fb859d3184e91f3e9e1ec571aee",
+      "topic": "business",
+      "paragraphCount": 323,
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-entrepreneurship-collection.xml",
+          "sha256": "399d315f08e6dc7d311591e4b4357e1fafe92fb859d3184e91f3e9e1ec571aee"
+        },
+        {
+          "rawPath": "raw/openstax-entrepreneurship-m71112.cnxml",
+          "sha256": "519e367d6d234b9e3b2a7ffdee4ff1e2f0c0179f27112c5b6fd88f2e9defd8eb"
+        }
+      ],
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+    }
+  ],
+  "excludedPassageIds": [
+    "064bdec6234003ffedb4fce00130d2d2cba9e9ba00784083341f2c6869bce8a1",
+    "072c22af7fed3c61066ab5971b8729714d18ec5ad91cea386bc2a3a835312e9a",
+    "109f82b98a0cdd57f5356279ec2d2f87366c332626aaf8a50d89dd88d8368d60",
+    "114436d7f7f7a549af811a0f4c22d85d451dddc85a58ea3adf20a6d7dacfcc87",
+    "11a4745bffdae860bec16cdcb8189bad97e37031b09eb04990c53912944c0d00",
+    "13a49a115eba6978e864badb700620347a98f922abab595463ca963214efdd0a",
+    "17e269a2f1281ec23ba22e97855ca56f5b3b0a7bfff8c37add9e10e756b003b0",
+    "1cb1da5d01a03923ff208be11a847b9448a09b16e104cb274fae1992b99925f3",
+    "1d9102b381e7c32f68131edad3b0ed534ec718f2a0905b6a464c76a806a8223c",
+    "1e84812bb34900cc63c8949d19e9c037fb5eaa58c3fda9c104ddbe38eb597632",
+    "21c799e414ec08368faa637f70249abc9850aeb2643aba32f62e9f82a6fc6e79",
+    "23ea56f65365440a3c04ba7bd6a35e397eb22d07e178b32d27a8aac3f66008aa",
+    "260c346399a3bdf539692509d2297fc15aac3097ab92bec72120670ef6a713cb",
+    "2716d9fc2b2439dc737c8747bac29a816a493f6380a7254726e9a2c35c9b6223",
+    "28a51c833201855df4958179094dc2cd06894105259d6e4e916981d6a393d78e",
+    "2d14f3ceb01b472ce7c6db38396083018f9ac5f77b813241ce496c76c14d358b",
+    "2d2069d2f8341d2dd64ae3f4de87b56710d72cdd86834f39f9812b0da5e9a57b",
+    "306261d2ebdae8f414388dcbd17dff9f08010fa2210423c13b42b5365efbd951",
+    "31d1bd435d3ddf8384f8639f91de552081fa3a479da3d047f5be354b1da5fc13",
+    "330cb2b9789164f643d1d7a486aa776292c0562b016ce1d0d141cffcebcfc094",
+    "384a333648d4583eda29a801033d32095eae153b83cb06573a09f33d317c9a5b",
+    "39938e4a1662b14d9878e2d5f793f8ccbbc81180d3da9ac94c339dd390a06aff",
+    "3c5836dec69871b3ca31110447533bdb039c00ac667ebdc0ba12c6dbd7851497",
+    "3d548f1f837108beac4f67cc272f6f1298cf7145927371fa8dd88f40e9b30653",
+    "4290fcbfa8c9e32e18982f26626daa036e23e8855f8628e6b156041378ba7209",
+    "45c65c9cae89450e5d7e9c8c76cd4e3de4f9f363ed4f2e874baaa0fd786969e1",
+    "47709e50557c292a1b6b8e20a979996ffe85a4d8690e87dba66707045ea51f2f",
+    "4b6d585c05b0a3dd3f0f11e7fcb86868b97617d4a1101d80584b09db4a13dcf6",
+    "549ebf3d1f8a3eb9487389b3630fe37db6a805cdd2323a9cc5247ba7923d0573",
+    "5517e1848e16ca668a66352218439f67e5817b2e5167c8269f5d4388447a2190",
+    "5a480e3ee95b0a1e57bcb6690d1ac716c57c4061829f418a234becba937a3a75",
+    "5a4bacfd27fcf9f2dec2fefec5e26f4e27a078acf56c923bf624b4f97a9c7c18",
+    "5ae89fe69a43c3f22420d236651f10ec5169247df710b62220bff064c78e93ed",
+    "61ceff4f484010e260fdfe7d883aec484646ab843bcfe6de1951f536bb916d64",
+    "684ae21d29e8bce88d89308828f467c7ce31d5893e2be1c97f9c1ab8bbe9f448",
+    "693f3f2e1247c31fdeb6e34a8ef6e4e2c0ec179e3f357aa5c373c91810aaadde",
+    "71a93dd626632a16604c7aa7e9eb32f511db5a58e49727a886d458c00a498bae",
+    "72986f2450b5d3e5fc8bfeb323b51249dbd7c887ab61c35b3c346f61e32c1a10",
+    "74ce9d6edf93eb2315410fa328ddf3de338ead4ba8bd9b30a67f9503da54df90",
+    "7bfe13d48fd89eee3925f97c24649bac2cefa541028db5457e80e164736e0852",
+    "80d464286365c75e335c80e7e90304a32fbf746b63ae3a5c9138e816fba576d2",
+    "89d29ddb092211a38849b8205e3cf5d913cd4a542ba6f0a60bdc817ccbe2a274",
+    "8d233a04df473dbcd3284c4dbe53381c59ea867cc241d7906e93829878143a2d",
+    "9175551ac3a2675909ad5184b2e2c62bcb0cce40014b0e2a9f02fa3bb38f9ca7",
+    "9890866afadcbc16890c200d50158cec4f8c5133e4c314ac3e1201f2ec3c81a4",
+    "9bd29d7f24a1d80a5d20ede7d397f4e127575e36f8b236b078940c75738acd43",
+    "a1615f6e2cd0d409cc09ad41330259a55b006b4f75cae62e9e89fd31f8b38ea2",
+    "af448ffcbcd1f362d4510b6ac4487a9d20ff00938df8b7d82887b54bd0f4e1e8",
+    "afb3c5a3e335ef951efcff103a4b0f7e418d0b02723f409f5982b3e12223afb6",
+    "b407bea6a8aeb34b2845c4f286b6bdf1a34676ef9bd5b0f18e0af7b43e284c0c",
+    "bb7d440cb350aca31c2b6d0f3981e937e28aa45d87d8b85b239e6e8145933657",
+    "c513a890b7f43b998d9692cada144a77ee8a2c5472aa474837e6d6aff7e5f838",
+    "c5eef96998b89b0896ab9ad2dcb175dd91e356d5774d23b26a892c0c49a7a1fe",
+    "c6c7cde885f9d56276591bff7a63b20621cb1525d679596d2b86fe6baaa90862",
+    "c7c24a169e3f90058f12be87d0205a6ece2b13c7ec4e8de1425f9b6a5fc14c8c",
+    "ca90c516b29584169c6526536b14c4a4ac1e3f3419ef10919fb92d99ed713a93",
+    "cc075bb80fc92be508c75f0b35640a26fc64ffd3a5209266354e543decf05d26",
+    "d15c5210bea24eff92fbee8823b01028c475301e08142733463a6f323acf920d",
+    "d604bd08effd4e3d77e42c903f66a9e1a7cc70e403ba23a1511f4e7f78001f55",
+    "e30ca5304652b64faa08b66ce129f7e8707744896c99452a655adcd5915dbe0a",
+    "e3826d840760b4c4d871b7fcac445724f6c0181909b1ed3da8a642d62d391110",
+    "e8bf2cc10dc18db86e21642871bbf9f60e08b198889bcc2ea1b22329b496e885",
+    "ea975eedb79ae2a960399291957b4ade926b37933fc9e1b0afdfe3558ae951ad",
+    "eaab317221835cbb14eb8095e47226704942a25ff341d31ecae9b68d02749139",
+    "eb099f5680b5f1c79892f5782bd93d5ada5586790f6ba71e2882a695aa5af4c8",
+    "ed93bfe7c2adf0d2d91559a6c02d9d9155ef254ebbb3571cc144c724033e26b7",
+    "ee1fc262b71fc86286105bc98f9a64e0718448e0450e72c09987dc0cb48cb156",
+    "eec12438f1e4e6294024e924a48393541ee33a88f0e542cdbf3cc58400aacd53",
+    "f3aaf5afbb1f15d6437834fddc28abb0f6e0de65a6ad2d65af078ba4443ef561",
+    "f82f9863624f45d708a7e6696fd10c29b59c76a7288a13caf3d78bcb14600167",
+    "f89e18910adf0e3fbbe42a303d7fa8d644833afda401bc4fa7c9930169eb1715",
+    "f8c0e06f3824d4533091104605be684931cf359474d5384098b51f1085c15b0e"
+  ],
+  "independentReviewPath": "private/verification/books-final-source-review.json",
+  "independentReviewSha256": "e3251eba959d67944c2c105238ed11c87f595084794fdc27166ed60211759955"
+}

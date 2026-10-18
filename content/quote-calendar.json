@@ -1,0 +1,610 @@
+[
+  {
+    "date": "01-01",
+    "labels": {
+      "zh-Hans": "新年",
+      "zh-Hant": "新年",
+      "en": "New Year"
+    },
+    "url": "https://en.wikiquote.org/wiki/Hope",
+    "pages": [
+      "Hope",
+      "Time"
+    ]
+  },
+  {
+    "date": "01-14",
+    "labels": {
+      "zh-Hans": "世界逻辑日",
+      "zh-Hant": "世界邏輯日",
+      "en": "World Logic Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading",
+      "Thought",
+      "Wisdom"
+    ]
+  },
+  {
+    "date": "01-24",
+    "labels": {
+      "zh-Hans": "国际教育日",
+      "zh-Hant": "國際教育日",
+      "en": "International Day of Education"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "02-21",
+    "labels": {
+      "zh-Hans": "国际母语日",
+      "zh-Hant": "國際母語日",
+      "en": "International Mother Language Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "03-14",
+    "labels": {
+      "zh-Hans": "国际数学日",
+      "zh-Hant": "國際數學日",
+      "en": "International Day of Mathematics"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "03-19",
+    "labels": {
+      "zh-Hans": "国际数字学习日",
+      "zh-Hant": "國際數位學習日",
+      "en": "International Day for Digital Learning"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "03-21",
+    "labels": {
+      "zh-Hans": "世界诗歌日",
+      "zh-Hant": "世界詩歌日",
+      "en": "World Poetry Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Art",
+    "pages": [
+      "Art",
+      "Poetry"
+    ]
+  },
+  {
+    "date": "03-22",
+    "labels": {
+      "zh-Hans": "世界水日",
+      "zh-Hant": "世界水日",
+      "en": "World Water Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature"
+    ]
+  },
+  {
+    "date": "04-05",
+    "labels": {
+      "zh-Hans": "国际良心日",
+      "zh-Hant": "國際良心日",
+      "en": "International Day of Conscience"
+    },
+    "url": "https://en.wikiquote.org/wiki/Kindness",
+    "pages": [
+      "Kindness",
+      "Thought",
+      "Wisdom"
+    ]
+  },
+  {
+    "date": "04-15",
+    "labels": {
+      "zh-Hans": "世界艺术日",
+      "zh-Hant": "世界藝術日",
+      "en": "World Art Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Art",
+    "pages": [
+      "Art",
+      "Poetry"
+    ]
+  },
+  {
+    "date": "04-23",
+    "labels": {
+      "zh-Hans": "世界读书与版权日",
+      "zh-Hant": "世界讀書與版權日",
+      "en": "World Book and Copyright Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading",
+      "Art",
+      "Poetry"
+    ]
+  },
+  {
+    "date": "04-30",
+    "labels": {
+      "zh-Hans": "国际爵士乐日",
+      "zh-Hant": "國際爵士樂日",
+      "en": "International Jazz Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Art",
+    "pages": [
+      "Art",
+      "Poetry"
+    ]
+  },
+  {
+    "date": "05-16",
+    "labels": {
+      "zh-Hans": "国际和平共处日",
+      "zh-Hant": "國際和平共處日",
+      "en": "International Day of Living Together in Peace"
+    },
+    "url": "https://en.wikiquote.org/wiki/Peace",
+    "pages": [
+      "Peace"
+    ]
+  },
+  {
+    "date": "05-21",
+    "labels": {
+      "zh-Hans": "世界文化多样性促进对话和发展日",
+      "zh-Hant": "世界文化多樣性促進對話和發展日",
+      "en": "World Day for Cultural Diversity for Dialogue and Development"
+    },
+    "url": "https://en.wikiquote.org/wiki/Art",
+    "pages": [
+      "Art",
+      "Poetry",
+      "Friendship"
+    ]
+  },
+  {
+    "date": "05-22",
+    "labels": {
+      "zh-Hans": "国际生物多样性日",
+      "zh-Hant": "國際生物多樣性日",
+      "en": "International Day for Biological Diversity"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature"
+    ]
+  },
+  {
+    "date": "06-05",
+    "labels": {
+      "zh-Hans": "世界环境日",
+      "zh-Hant": "世界環境日",
+      "en": "World Environment Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature"
+    ]
+  },
+  {
+    "date": "06-08",
+    "labels": {
+      "zh-Hans": "世界海洋日",
+      "zh-Hant": "世界海洋日",
+      "en": "World Oceans Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature"
+    ]
+  },
+  {
+    "date": "07-07",
+    "labels": {
+      "zh-Hans": "世界斯瓦希里语日",
+      "zh-Hant": "世界斯瓦希里語日",
+      "en": "Kiswahili Language Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "07-18",
+    "labels": {
+      "zh-Hans": "纳尔逊·曼德拉国际日",
+      "zh-Hant": "納爾遜·曼德拉國際日",
+      "en": "Nelson Mandela International Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Freedom",
+    "pages": [
+      "Freedom",
+      "Kindness"
+    ]
+  },
+  {
+    "date": "07-26",
+    "labels": {
+      "zh-Hans": "保护红树林生态系统国际日",
+      "zh-Hant": "保護紅樹林生態系統國際日",
+      "en": "International Day for the Conservation of the Mangrove Ecosystem"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature"
+    ]
+  },
+  {
+    "date": "08-12",
+    "labels": {
+      "zh-Hans": "国际青年日",
+      "zh-Hant": "國際青年日",
+      "en": "International Youth Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Hope",
+    "pages": [
+      "Hope",
+      "Courage"
+    ]
+  },
+  {
+    "date": "09-08",
+    "labels": {
+      "zh-Hans": "国际扫盲日",
+      "zh-Hant": "國際掃盲日",
+      "en": "International Literacy Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "09-15",
+    "labels": {
+      "zh-Hans": "国际民主日",
+      "zh-Hant": "國際民主日",
+      "en": "International Day of Democracy"
+    },
+    "url": "https://en.wikiquote.org/wiki/Freedom",
+    "pages": [
+      "Freedom"
+    ]
+  },
+  {
+    "date": "09-21",
+    "labels": {
+      "zh-Hans": "国际和平日",
+      "zh-Hant": "國際和平日",
+      "en": "International Day of Peace"
+    },
+    "url": "https://en.wikiquote.org/wiki/Peace",
+    "pages": [
+      "Peace"
+    ]
+  },
+  {
+    "date": "09-28",
+    "labels": {
+      "zh-Hans": "国际普遍获取信息日",
+      "zh-Hant": "國際普遍獲取資訊日",
+      "en": "International Day for Universal Access to Information"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "10-05",
+    "labels": {
+      "zh-Hans": "世界教师日",
+      "zh-Hant": "世界教師日",
+      "en": "World Teachers’ Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "10-17",
+    "labels": {
+      "zh-Hans": "消除贫困国际日",
+      "zh-Hant": "消除貧困國際日",
+      "en": "International Day for the Eradication of Poverty"
+    },
+    "url": "https://en.wikiquote.org/wiki/Kindness",
+    "pages": [
+      "Kindness"
+    ]
+  },
+  {
+    "date": "10-27",
+    "labels": {
+      "zh-Hans": "世界音像遗产日",
+      "zh-Hant": "世界影音遺產日",
+      "en": "World Day for Audiovisual Heritage"
+    },
+    "url": "https://en.wikiquote.org/wiki/Art",
+    "pages": [
+      "Art",
+      "Poetry"
+    ]
+  },
+  {
+    "date": "11-03",
+    "labels": {
+      "zh-Hans": "国际生物圈保护区日",
+      "zh-Hant": "國際生物圈保護區日",
+      "en": "International Day for Biosphere Reserves"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature"
+    ]
+  },
+  {
+    "date": "11-10",
+    "labels": {
+      "zh-Hans": "世界科学促进和平与发展日",
+      "zh-Hant": "世界科學促進和平與發展日",
+      "en": "World Science Day for Peace and Development"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading",
+      "Peace"
+    ]
+  },
+  {
+    "date": "11-16",
+    "labels": {
+      "zh-Hans": "国际宽容日",
+      "zh-Hant": "國際寬容日",
+      "en": "International Day for Tolerance"
+    },
+    "url": "https://en.wikiquote.org/wiki/Kindness",
+    "pages": [
+      "Kindness",
+      "Peace"
+    ]
+  },
+  {
+    "date": "11-26",
+    "labels": {
+      "zh-Hans": "世界橄榄树日",
+      "zh-Hant": "世界橄欖樹日",
+      "en": "World Olive Tree Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Nature",
+    "pages": [
+      "Nature",
+      "Peace"
+    ]
+  },
+  {
+    "date": "12-02",
+    "labels": {
+      "zh-Hans": "世界未来日",
+      "zh-Hant": "世界未來日",
+      "en": "World Futures Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Hope",
+    "pages": [
+      "Hope",
+      "Time"
+    ]
+  },
+  {
+    "date": "12-10",
+    "labels": {
+      "zh-Hans": "人权日",
+      "zh-Hant": "人權日",
+      "en": "Human Rights Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Freedom",
+    "pages": [
+      "Freedom",
+      "Kindness"
+    ]
+  },
+  {
+    "date": "12-18",
+    "labels": {
+      "zh-Hans": "世界阿拉伯语日",
+      "zh-Hant": "世界阿拉伯語日",
+      "en": "World Arabic Language Day"
+    },
+    "url": "https://en.wikiquote.org/wiki/Learning",
+    "pages": [
+      "Learning",
+      "Education",
+      "Knowledge",
+      "Reading"
+    ]
+  },
+  {
+    "date": "01-06",
+    "labels": {
+      "zh-Hans": "纪伯伦诞辰",
+      "zh-Hant": "紀伯倫誕辰",
+      "en": "Kahlil Gibran’s birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/Kahlil_Gibran",
+    "pages": [
+      "Kahlil Gibran"
+    ]
+  },
+  {
+    "date": "04-10",
+    "labels": {
+      "zh-Hans": "纪伯伦逝世纪念日",
+      "zh-Hant": "紀伯倫逝世紀念日",
+      "en": "Remembering Kahlil Gibran"
+    },
+    "url": "https://en.wikiquote.org/wiki/Kahlil_Gibran",
+    "pages": [
+      "Kahlil Gibran"
+    ]
+  },
+  {
+    "date": "01-19",
+    "labels": {
+      "zh-Hans": "爱伦·坡诞辰",
+      "zh-Hant": "愛倫·坡誕辰",
+      "en": "Edgar Allan Poe’s birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/Edgar_Allan_Poe",
+    "pages": [
+      "Edgar Allan Poe"
+    ]
+  },
+  {
+    "date": "10-07",
+    "labels": {
+      "zh-Hans": "爱伦·坡逝世纪念日",
+      "zh-Hant": "愛倫·坡逝世紀念日",
+      "en": "Remembering Edgar Allan Poe"
+    },
+    "url": "https://en.wikiquote.org/wiki/Edgar_Allan_Poe",
+    "pages": [
+      "Edgar Allan Poe"
+    ]
+  },
+  {
+    "date": "09-15",
+    "labels": {
+      "zh-Hans": "拉罗什富科诞辰",
+      "zh-Hant": "拉羅什富科誕辰",
+      "en": "La Rochefoucauld’s birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/François_de_La_Rochefoucauld",
+    "pages": [
+      "François de La Rochefoucauld"
+    ]
+  },
+  {
+    "date": "03-17",
+    "labels": {
+      "zh-Hans": "拉罗什富科逝世纪念日",
+      "zh-Hant": "拉羅什富科逝世紀念日",
+      "en": "Remembering La Rochefoucauld"
+    },
+    "url": "https://en.wikiquote.org/wiki/François_de_La_Rochefoucauld",
+    "pages": [
+      "François de La Rochefoucauld"
+    ]
+  },
+  {
+    "date": "04-07",
+    "labels": {
+      "zh-Hans": "华兹华斯诞辰",
+      "zh-Hant": "華兹華斯誕辰",
+      "en": "William Wordsworth birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/William_Wordsworth",
+    "pages": [
+      "William Wordsworth"
+    ]
+  },
+  {
+    "date": "05-25",
+    "labels": {
+      "zh-Hans": "爱默生诞辰",
+      "zh-Hant": "爱默生誕辰",
+      "en": "Ralph Waldo Emerson birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/Ralph_Waldo_Emerson",
+    "pages": [
+      "Ralph Waldo Emerson"
+    ]
+  },
+  {
+    "date": "10-21",
+    "labels": {
+      "zh-Hans": "柯勒律治诞辰",
+      "zh-Hant": "柯勒律治誕辰",
+      "en": "Samuel Taylor Coleridge birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/Samuel_Taylor_Coleridge",
+    "pages": [
+      "Samuel Taylor Coleridge"
+    ]
+  },
+  {
+    "date": "07-25",
+    "labels": {
+      "zh-Hans": "柯勒律治逝世纪念日",
+      "zh-Hant": "柯勒律治逝世紀念日",
+      "en": "Samuel Taylor Coleridge anniversary"
+    },
+    "url": "https://en.wikiquote.org/wiki/Samuel_Taylor_Coleridge",
+    "pages": [
+      "Samuel Taylor Coleridge"
+    ]
+  },
+  {
+    "date": "08-06",
+    "labels": {
+      "zh-Hans": "丁尼生诞辰",
+      "zh-Hant": "丁尼生誕辰",
+      "en": "Alfred Tennyson birthday"
+    },
+    "url": "https://en.wikiquote.org/wiki/Alfred_Tennyson",
+    "pages": [
+      "Alfred Tennyson"
+    ]
+  }
+]

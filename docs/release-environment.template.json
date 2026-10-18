@@ -1,0 +1,12 @@
+{
+  "status": "UNCONFIGURED_REVIEW_ONLY",
+  "origin": "https://lingfern.com",
+  "githubApp": {"owner": "REQUIRES_APPROVAL", "clientId": "REQUIRES_APPROVAL", "slug": "REQUIRES_APPROVAL", "permissions": {"metadata": "read", "contents": "write"}, "repositorySelection": "selected", "tokenExpiry": true, "events": ["github_app_authorization", "installation", "installation_repositories", "repository"], "callback": "/api/auth/callback", "setup": "/api/auth/setup", "webhook": "/api/auth/webhook"},
+  "testIdentities": [{"name": "test-a", "approvedLogin": null, "privateRepository": null}, {"name": "test-b", "approvedLogin": null, "privateRepository": null}],
+  "bindings": {"AUTH_DB": {"database_id": null, "database_name": null, "migrations_dir": "worker/migrations"}, "OAUTH_KV": {"id": null, "separateNamespaceRequired": true}},
+  "variables": {"GITHUB_CLIENT_ID": null, "GITHUB_APP_SLUG": null, "SYNC_ENABLED": "false"},
+  "secretNamesOnly": ["GITHUB_CLIENT_SECRET", "GITHUB_WEBHOOK_SECRET", "TOKEN_ENCRYPTION_KEY", "SHARE_ENCRYPTION_KEY"],
+  "ci": {"repository": null, "branch": "main", "environment": "production", "requiredReviewers": null, "allowSelfApproval": false, "secretNamesOnly": ["CLOUDFLARE_API_TOKEN", "CLOUDFLARE_ACCOUNT_ID"]},
+  "mcpClients": [{"client": null, "version": null, "accountEntitlement": null, "redirectUri": null, "endpoint": "https://lingfern.com/mcp", "accepted": false}],
+  "approvals": {"resourcesAndSecretEntry": false, "controlledIntegrationDeployment": false, "publicLaunch": false}
+}

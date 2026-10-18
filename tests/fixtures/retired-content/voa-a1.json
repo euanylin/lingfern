@@ -1,0 +1,1100 @@
+[
+  {
+    "id": "a1-voa-introductions-reading",
+    "targetLevel": "A1",
+    "skill": "reading",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Meeting Anna and Pete",
+      "zh-Hans": "认识 Anna 与 Pete",
+      "zh-Hant": "認識 Anna 與 Pete"
+    },
+    "goal": {
+      "en": "Find names and places in a short conversation.",
+      "zh-Hans": "在简短对话中找出姓名与地点。",
+      "zh-Hant": "在簡短對話中找出姓名與地點。"
+    },
+    "goalId": "follow-introductions-reading",
+    "sourceId": "voa-course-1",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "“I am Pete” gives a name. “I am in apartment C2” gives a place. I’m means I am.",
+      "zh-Hans": "“I am Pete” 介绍姓名；“I am in apartment C2” 说明住处。I’m 是 I am 的缩写。",
+      "zh-Hant": "「I am Pete」介紹姓名；「I am in apartment C2」說明住處。I’m 是 I am 的縮寫。"
+    },
+    "workedExample": {
+      "en": "Anna says, “Nice to meet you.” We say this when we meet someone for the first time.",
+      "zh-Hans": "Anna 说“Nice to meet you”，意思是“很高兴认识你”，初次见面时可以这样说。",
+      "zh-Hant": "Anna 說「Nice to meet you」，意思是「很高興認識你」，初次見面時可以這樣說。"
+    },
+    "nextStep": {
+      "en": "Say your name. Then introduce a friend.",
+      "zh-Hans": "说出你的姓名，再介绍一位朋友。",
+      "zh-Hant": "說出你的姓名，再介紹一位朋友。"
+    },
+    "materials": [
+      {
+        "id": "voa-1",
+        "rootId": "voa-article-3111026",
+        "sourceId": "voa-course-1",
+        "title": "Welcome!",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Pete: Hi! Are you Anna?\nAnna: Yes! Hi there! Are you Pete?\nPete: I am Pete.\nAnna: Nice to meet you.\nAnna: Let's try that again. I'm Anna. Nice to meet you.\nPete: I'm Pete. \"Anna\" Is that A-N-A?\nAnna: No. A-N-N-A\nPete: Well, Anna with two \"n's\" ... Welcome to ... 1400 Irving Street!\nAnna: My new apartment! Yes!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "reading-1-1",
+            "blockId": "dialogue",
+            "prompt": "Who says ‘I am Pete’?",
+            "options": [
+              "Anna",
+              "Pete",
+              "Jonathan"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 65,
+              "end": 75
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Look for: I am Pete.",
+                "zh-Hans": "看这句话：I am Pete.",
+                "zh-Hant": "看這句話：I am Pete."
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Check the speaker: I am Pete.",
+                "zh-Hans": "注意说话的人：I am Pete.",
+                "zh-Hant": "注意說話的人：I am Pete."
+              },
+              {
+                "en": "I am Pete. The answer is Pete.",
+                "zh-Hans": "I am Pete. 答案是 Pete。",
+                "zh-Hant": "I am Pete. 答案是 Pete。"
+              },
+              {
+                "en": "Check the speaker: I am Pete.",
+                "zh-Hans": "注意说话的人：I am Pete.",
+                "zh-Hant": "注意說話的人：I am Pete."
+              }
+            ]
+          },
+          {
+            "id": "reading-1-2",
+            "blockId": "dialogue",
+            "prompt": "How does Anna spell her name?",
+            "options": [
+              "A-N-A",
+              "A-N-N-A",
+              "A-N-N"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 200,
+              "end": 211
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Look for: No. A-N-N-A",
+                "zh-Hans": "看这句话：No. A-N-N-A",
+                "zh-Hant": "看這句話：No. A-N-N-A"
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Check the speaker: No. A-N-N-A",
+                "zh-Hans": "注意说话的人：No. A-N-N-A",
+                "zh-Hant": "注意說話的人：No. A-N-N-A"
+              },
+              {
+                "en": "No. A-N-N-A The answer is A-N-N-A.",
+                "zh-Hans": "No. A-N-N-A 答案是 A-N-N-A。",
+                "zh-Hant": "No. A-N-N-A 答案是 A-N-N-A。"
+              },
+              {
+                "en": "Check the speaker: No. A-N-N-A",
+                "zh-Hans": "注意说话的人：No. A-N-N-A",
+                "zh-Hant": "注意說話的人：No. A-N-N-A"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voa-2",
+        "rootId": "voa-article-3113733",
+        "sourceId": "voa-course-2",
+        "title": "Hello, I’m Anna!",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Jonathan: Hey, Pete! Who’s your friend?\nPete: She is Anna. She is new to D.C.\nJonathan: Where are you from?\nAnna: I am from a small town.\nJonathan: Well, welcome to D.C.\nAnna: Thank you.\nJonathan: I am Jonathan. I am in apartment B4.\nAnna: I am in apartment C2. Marsha is my roommate.\nJonathan: I know Marsha. She is nice.\nPete: And I am in Apartment D7. I have to go now.\nAnna: Oh!\nPete: Remember to call Marsha at work. Tell her you’re here.\nAnna: Right, thanks, Pete. Nice to meet you!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "reading-2-1",
+            "blockId": "dialogue",
+            "prompt": "What is Anna’s apartment?",
+            "options": [
+              "B4",
+              "D7",
+              "C2"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 240,
+              "end": 261
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Look for: I am in apartment C2.",
+                "zh-Hans": "看这句话：I am in apartment C2.",
+                "zh-Hant": "看這句話：I am in apartment C2."
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Check the speaker: I am in apartment C2.",
+                "zh-Hans": "注意说话的人：I am in apartment C2.",
+                "zh-Hant": "注意說話的人：I am in apartment C2."
+              },
+              {
+                "en": "Check the speaker: I am in apartment C2.",
+                "zh-Hans": "注意说话的人：I am in apartment C2.",
+                "zh-Hant": "注意說話的人：I am in apartment C2."
+              },
+              {
+                "en": "I am in apartment C2. The answer is C2.",
+                "zh-Hans": "I am in apartment C2. 答案是 C2。",
+                "zh-Hant": "I am in apartment C2. 答案是 C2。"
+              }
+            ]
+          },
+          {
+            "id": "reading-2-2",
+            "blockId": "dialogue",
+            "prompt": "Where is Anna from?",
+            "options": [
+              "A small town",
+              "D.C.",
+              "Irving Street"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 114,
+              "end": 137
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Look for: I am from a small town.",
+                "zh-Hans": "看这句话：I am from a small town.",
+                "zh-Hant": "看這句話：I am from a small town."
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "I am from a small town. The answer is A small town.",
+                "zh-Hans": "I am from a small town. 答案是 A small town。",
+                "zh-Hant": "I am from a small town. 答案是 A small town。"
+              },
+              {
+                "en": "Check the speaker: I am from a small town.",
+                "zh-Hans": "注意说话的人：I am from a small town.",
+                "zh-Hant": "注意說話的人：I am from a small town."
+              },
+              {
+                "en": "Check the speaker: I am from a small town.",
+                "zh-Hans": "注意说话的人：I am from a small town.",
+                "zh-Hant": "注意說話的人：I am from a small town."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a1-voa-introductions-listening",
+    "targetLevel": "A1",
+    "skill": "listening",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Meeting Anna and Pete",
+      "zh-Hans": "认识 Anna 与 Pete",
+      "zh-Hant": "認識 Anna 與 Pete"
+    },
+    "goal": {
+      "en": "Find names and places in a short conversation.",
+      "zh-Hans": "在简短对话中找出姓名与地点。",
+      "zh-Hant": "在簡短對話中找出姓名與地點。"
+    },
+    "goalId": "follow-introductions-listening",
+    "sourceId": "voa-course-1",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "“I am Pete” gives a name. “I am in apartment C2” gives a place. I’m means I am.",
+      "zh-Hans": "“I am Pete” 介绍姓名；“I am in apartment C2” 说明住处。I’m 是 I am 的缩写。",
+      "zh-Hant": "「I am Pete」介紹姓名；「I am in apartment C2」說明住處。I’m 是 I am 的縮寫。"
+    },
+    "workedExample": {
+      "en": "Anna says, “Nice to meet you.” We say this when we meet someone for the first time.",
+      "zh-Hans": "Anna 说“Nice to meet you”，意思是“很高兴认识你”，初次见面时可以这样说。",
+      "zh-Hant": "Anna 說「Nice to meet you」，意思是「很高興認識你」，初次見面時可以這樣說。"
+    },
+    "nextStep": {
+      "en": "Say your name. Then introduce a friend.",
+      "zh-Hans": "说出你的姓名，再介绍一位朋友。",
+      "zh-Hant": "說出你的姓名，再介紹一位朋友。"
+    },
+    "materials": [
+      {
+        "id": "voa-1",
+        "rootId": "voa-article-3111026",
+        "sourceId": "voa-course-1",
+        "title": "Welcome!",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Pete: Hi! Are you Anna?\nAnna: Yes! Hi there! Are you Pete?\nPete: I am Pete.\nAnna: Nice to meet you.\nAnna: Let's try that again. I'm Anna. Nice to meet you.\nPete: I'm Pete. \"Anna\" Is that A-N-A?\nAnna: No. A-N-N-A\nPete: Well, Anna with two \"n's\" ... Welcome to ... 1400 Irving Street!\nAnna: My new apartment! Yes!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "listening-1-1",
+            "blockId": "dialogue",
+            "prompt": "Who says ‘I am Pete’?",
+            "options": [
+              "Anna",
+              "Pete",
+              "Jonathan"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 65,
+              "end": 75,
+              "audioStart": 4.46,
+              "audioEnd": 5.34
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Listen from 4.5 seconds.",
+                "zh-Hans": "从 4.5 秒开始听。",
+                "zh-Hant": "從 4.5 秒開始聽。"
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Check the speaker: I am Pete.",
+                "zh-Hans": "注意说话的人：I am Pete.",
+                "zh-Hant": "注意說話的人：I am Pete."
+              },
+              {
+                "en": "I am Pete. The answer is Pete.",
+                "zh-Hans": "I am Pete. 答案是 Pete。",
+                "zh-Hant": "I am Pete. 答案是 Pete。"
+              },
+              {
+                "en": "Check the speaker: I am Pete.",
+                "zh-Hans": "注意说话的人：I am Pete.",
+                "zh-Hant": "注意說話的人：I am Pete."
+              }
+            ]
+          },
+          {
+            "id": "listening-1-2",
+            "blockId": "dialogue",
+            "prompt": "How does Anna spell her name?",
+            "options": [
+              "A-N-A",
+              "A-N-N-A",
+              "A-N-N"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 200,
+              "end": 211,
+              "audioStart": 17.24,
+              "audioEnd": 19.44
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Listen from 17.2 seconds.",
+                "zh-Hans": "从 17.2 秒开始听。",
+                "zh-Hant": "從 17.2 秒開始聽。"
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Check the speaker: No. A-N-N-A",
+                "zh-Hans": "注意说话的人：No. A-N-N-A",
+                "zh-Hant": "注意說話的人：No. A-N-N-A"
+              },
+              {
+                "en": "No. A-N-N-A The answer is A-N-N-A.",
+                "zh-Hans": "No. A-N-N-A 答案是 A-N-N-A。",
+                "zh-Hant": "No. A-N-N-A 答案是 A-N-N-A。"
+              },
+              {
+                "en": "Check the speaker: No. A-N-N-A",
+                "zh-Hans": "注意说话的人：No. A-N-N-A",
+                "zh-Hant": "注意說話的人：No. A-N-N-A"
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/a1-words/voa-welcome.mp3",
+          "sha256": "f9bd90edddbb8736f64fb5cb3a34ab5a27aecd6e99510977e7b820caf47c5cf7",
+          "duration": 29.557551,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      },
+      {
+        "id": "voa-2",
+        "rootId": "voa-article-3113733",
+        "sourceId": "voa-course-2",
+        "title": "Hello, I’m Anna!",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Jonathan: Hey, Pete! Who’s your friend?\nPete: She is Anna. She is new to D.C.\nJonathan: Where are you from?\nAnna: I am from a small town.\nJonathan: Well, welcome to D.C.\nAnna: Thank you.\nJonathan: I am Jonathan. I am in apartment B4.\nAnna: I am in apartment C2. Marsha is my roommate.\nJonathan: I know Marsha. She is nice.\nPete: And I am in Apartment D7. I have to go now.\nAnna: Oh!\nPete: Remember to call Marsha at work. Tell her you’re here.\nAnna: Right, thanks, Pete. Nice to meet you!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "listening-2-1",
+            "blockId": "dialogue",
+            "prompt": "What is Anna’s apartment?",
+            "options": [
+              "B4",
+              "D7",
+              "C2"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 240,
+              "end": 261,
+              "audioStart": 16.3,
+              "audioEnd": 18.56
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Listen from 16.3 seconds.",
+                "zh-Hans": "从 16.3 秒开始听。",
+                "zh-Hant": "從 16.3 秒開始聽。"
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Check the speaker: I am in apartment C2.",
+                "zh-Hans": "注意说话的人：I am in apartment C2.",
+                "zh-Hant": "注意說話的人：I am in apartment C2."
+              },
+              {
+                "en": "Check the speaker: I am in apartment C2.",
+                "zh-Hans": "注意说话的人：I am in apartment C2.",
+                "zh-Hant": "注意說話的人：I am in apartment C2."
+              },
+              {
+                "en": "I am in apartment C2. The answer is C2.",
+                "zh-Hans": "I am in apartment C2. 答案是 C2。",
+                "zh-Hant": "I am in apartment C2. 答案是 C2。"
+              }
+            ]
+          },
+          {
+            "id": "listening-2-2",
+            "blockId": "dialogue",
+            "prompt": "Where is Anna from?",
+            "options": [
+              "A small town",
+              "D.C.",
+              "Irving Street"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 114,
+              "end": 137,
+              "audioStart": 8.08,
+              "audioEnd": 9.82
+            },
+            "hints": [
+              {
+                "en": "Find the name or place.",
+                "zh-Hans": "找出姓名或地点。",
+                "zh-Hant": "找出姓名或地點。"
+              },
+              {
+                "en": "Listen from 8.1 seconds.",
+                "zh-Hans": "从 8.1 秒开始听。",
+                "zh-Hant": "從 8.1 秒開始聽。"
+              },
+              {
+                "en": "“I am” tells you who the speaker is, or where they are.",
+                "zh-Hans": "“I am” 可以介绍自己，也可以说明自己在哪里。",
+                "zh-Hant": "「I am」可以介紹自己，也可以說明自己在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "I am from a small town. The answer is A small town.",
+                "zh-Hans": "I am from a small town. 答案是 A small town。",
+                "zh-Hant": "I am from a small town. 答案是 A small town。"
+              },
+              {
+                "en": "Check the speaker: I am from a small town.",
+                "zh-Hans": "注意说话的人：I am from a small town.",
+                "zh-Hant": "注意說話的人：I am from a small town."
+              },
+              {
+                "en": "Check the speaker: I am from a small town.",
+                "zh-Hans": "注意说话的人：I am from a small town.",
+                "zh-Hant": "注意說話的人：I am from a small town."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/a1-words/voa-hello.mp3",
+          "sha256": "67dc4541834bd1c4d9b60461af751b8f75953e0abc89af15267c03fae4a565e5",
+          "duration": 38,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a1-voa-rooms-reading",
+    "targetLevel": "A1",
+    "skill": "reading",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Finding the right room",
+      "zh-Hans": "找到正确的房间",
+      "zh-Hant": "找到正確的房間"
+    },
+    "goal": {
+      "en": "Find where someone is and what they do there.",
+      "zh-Hans": "找出人物所在的房间和他们在做什么。",
+      "zh-Hant": "找出人物所在的房間和他們在做什麼。"
+    },
+    "goalId": "locate-people-and-rooms-reading",
+    "sourceId": "voa-course-5",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "I am in the bathroom tells you where I am now. We cook in the kitchen tells you what we do there. Look at the speaker’s name.",
+      "zh-Hans": "I am in the bathroom 说明现在在浴室；We cook in the kitchen 说明在厨房做饭。先看说话人的姓名。",
+      "zh-Hant": "I am in the bathroom 說明現在在浴室；We cook in the kitchen 說明在廚房做飯。先看說話人的姓名。"
+    },
+    "workedExample": {
+      "en": "Marsha says, “I am in the bedroom.” The person is Marsha. The room is the bedroom.",
+      "zh-Hans": "Marsha 说“I am in the bedroom”。人物是 Marsha，房间是卧室。",
+      "zh-Hant": "Marsha 說「I am in the bedroom」。人物是 Marsha，房間是臥室。"
+    },
+    "nextStep": {
+      "en": "In a new conversation, find the room someone wants and the room they actually enter.",
+      "zh-Hans": "在下一段新对话中，分别找出人物想去的房间和实际进入的房间。",
+      "zh-Hant": "在下一段新對話中，分別找出人物想去的房間和實際進入的房間。"
+    },
+    "materials": [
+      {
+        "id": "voa-rooms-5",
+        "rootId": "voa-article-3168971",
+        "sourceId": "voa-course-5",
+        "title": "Where Are You?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Marsha, I am in the kitchen! It is a beautiful kitchen!\nMarsha: It is beautiful. We cook in the kitchen.\nAnna: I eat in the kitchen.\nMarsha: We relax in the living room.\nAnna: I relax in the living room. Marsha, let’s go upstairs!\nMarsha: Anna? Where are you?\nAnna: Marsha, I am in the bathroom! I wash in the bathroom.\nMarsha: I am in the bedroom. We sleep in the bedroom.\nAnna: I sleep in the bedroom!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "a1-rooms-5-1",
+            "blockId": "dialogue",
+            "prompt": "Where does Marsha say they cook?",
+            "options": [
+              "In the bedroom.",
+              "In the kitchen.",
+              "In the bathroom."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 87,
+              "end": 110
+            },
+            "hints": [
+              {
+                "en": "Find the person and the room.",
+                "zh-Hans": "先找说话的人，再找房间。",
+                "zh-Hant": "先找說話的人，再找房間。"
+              },
+              {
+                "en": "Look for: We cook in the kitchen.",
+                "zh-Hans": "看这句话：We cook in the kitchen.",
+                "zh-Hant": "看這句話：We cook in the kitchen."
+              },
+              {
+                "en": "Cook means make food. In the kitchen tells you where.",
+                "zh-Hans": "cook 是做饭；in the kitchen 说明在厨房。",
+                "zh-Hant": "cook 是做飯；in the kitchen 說明在廚房。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "They sleep in the bedroom. Marsha says they cook in the kitchen.",
+                "zh-Hans": "卧室用于睡觉；Marsha 说在厨房做饭。",
+                "zh-Hant": "臥室用於睡覺；Marsha 說在廚房做飯。"
+              },
+              {
+                "en": "Marsha says, “We cook in the kitchen.”",
+                "zh-Hans": "Marsha 说“We cook in the kitchen”，即在厨房做饭。",
+                "zh-Hant": "Marsha 說「We cook in the kitchen」，即在廚房做飯。"
+              },
+              {
+                "en": "Anna washes in the bathroom. Cooking is in the kitchen.",
+                "zh-Hans": "Anna 在浴室洗漱，做饭在厨房。",
+                "zh-Hant": "Anna 在浴室洗漱，做飯在廚房。"
+              }
+            ]
+          },
+          {
+            "id": "a1-rooms-5-2",
+            "blockId": "dialogue",
+            "prompt": "When Marsha asks “Where are you?”, where is Anna?",
+            "options": [
+              "In the living room.",
+              "In the bedroom.",
+              "In the bathroom."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 272,
+              "end": 325
+            },
+            "hints": [
+              {
+                "en": "Find the person and the room.",
+                "zh-Hans": "先找说话的人，再找房间。",
+                "zh-Hant": "先找說話的人，再找房間。"
+              },
+              {
+                "en": "Look for: Marsha, I am in the bathroom! I wash in the bathroom.",
+                "zh-Hans": "看这句话：Marsha, I am in the bathroom! I wash in the bathroom.",
+                "zh-Hant": "看這句話：Marsha, I am in the bathroom! I wash in the bathroom."
+              },
+              {
+                "en": "Follow Anna’s answer after the question. I am in tells you her place now.",
+                "zh-Hans": "看 Anna 在问题后的回答；I am in 说明她现在的位置。",
+                "zh-Hant": "看 Anna 在問題後的回答；I am in 說明她現在的位置。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Anna was in the living room earlier. Now she says she is in the bathroom.",
+                "zh-Hans": "Anna 之前在客厅，但此时回答自己在浴室。",
+                "zh-Hant": "Anna 之前在客廳，但此時回答自己在浴室。"
+              },
+              {
+                "en": "Marsha says she is in the bedroom. Anna answers from the bathroom.",
+                "zh-Hans": "在卧室的是 Marsha；Anna 回答自己在浴室。",
+                "zh-Hant": "在臥室的是 Marsha；Anna 回答自己在浴室。"
+              },
+              {
+                "en": "Anna answers, “I am in the bathroom!”",
+                "zh-Hans": "Anna 回答“I am in the bathroom”，即我在浴室。",
+                "zh-Hant": "Anna 回答「I am in the bathroom」，即我在浴室。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voa-rooms-6",
+        "rootId": "voa-article-3225958",
+        "sourceId": "voa-course-6",
+        "title": "Where Is the Gym?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Things are awesome! Pete, I want to work out. Where is the gym?\nPete: The gym is across from the lounge. It’s next to the mailroom. Go that way.\nAnna: Thanks, Pete!\n\n(Anna walks away)\nPete: No, Anna! Not that way! Go that way!\n\n(In the mailroom)\nAnna: Oh, Pete. This is not the gym.\nPete: That’s right, Anna. This is the mailroom."
+          }
+        ],
+        "questions": [
+          {
+            "id": "a1-rooms-6-1",
+            "blockId": "dialogue",
+            "prompt": "What does Anna want to find?",
+            "options": [
+              "The gym.",
+              "The mailroom.",
+              "The kitchen."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 26,
+              "end": 69
+            },
+            "hints": [
+              {
+                "en": "Find the person and the room.",
+                "zh-Hans": "先找说话的人，再找房间。",
+                "zh-Hant": "先找說話的人，再找房間。"
+              },
+              {
+                "en": "Look for: Pete, I want to work out. Where is the gym?",
+                "zh-Hans": "看这句话：Pete, I want to work out. Where is the gym?",
+                "zh-Hant": "看這句話：Pete, I want to work out. Where is the gym?"
+              },
+              {
+                "en": "Work out means exercise. Where is the gym asks for the exercise room.",
+                "zh-Hans": "work out 是锻炼；Where is the gym 问健身房在哪里。",
+                "zh-Hant": "work out 是鍛鍊；Where is the gym 問健身房在哪裡。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Anna wants to exercise and asks where the gym is.",
+                "zh-Hans": "Anna 想锻炼，所以问健身房在哪里。",
+                "zh-Hant": "Anna 想鍛鍊，所以問健身房在哪裡。"
+              },
+              {
+                "en": "The mailroom is next to the gym. It is not the place Anna wants.",
+                "zh-Hans": "收发室在健身房旁边，但不是 Anna 想找的地方。",
+                "zh-Hant": "收發室在健身房旁邊，但不是 Anna 想找的地方。"
+              },
+              {
+                "en": "The kitchen is in the first conversation. Anna asks Pete about the gym.",
+                "zh-Hans": "厨房出现在第一段对话；Anna 问 Pete 的是健身房。",
+                "zh-Hant": "廚房出現在第一段對話；Anna 問 Pete 的是健身房。"
+              }
+            ]
+          },
+          {
+            "id": "a1-rooms-6-2",
+            "blockId": "dialogue",
+            "prompt": "Anna goes the wrong way. Which room does she enter?",
+            "options": [
+              "The lounge.",
+              "The gym.",
+              "The mailroom."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 295,
+              "end": 336
+            },
+            "hints": [
+              {
+                "en": "Find the person and the room.",
+                "zh-Hans": "先找说话的人，再找房间。",
+                "zh-Hant": "先找說話的人，再找房間。"
+              },
+              {
+                "en": "Look for: That’s right, Anna. This is the mailroom.",
+                "zh-Hans": "看这句话：That’s right, Anna. This is the mailroom.",
+                "zh-Hant": "看這句話：That’s right, Anna. This is the mailroom."
+              },
+              {
+                "en": "This is names the room they are in. Not the gym tells you she has not found the gym yet.",
+                "zh-Hans": "This is 说明所在房间；not the gym 表示还没找到健身房。",
+                "zh-Hant": "This is 說明所在房間；not the gym 表示還沒找到健身房。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Pete mentions the lounge when giving directions. Here he identifies the mailroom.",
+                "zh-Hans": "Pete 指路时提到休息室，但此时明确说这里是收发室。",
+                "zh-Hant": "Pete 指路時提到休息室，但此時明確說這裡是收發室。"
+              },
+              {
+                "en": "Anna says this is not the gym. Pete agrees.",
+                "zh-Hans": "Anna 说这不是健身房，Pete 也确认了。",
+                "zh-Hant": "Anna 說這不是健身房，Pete 也確認了。"
+              },
+              {
+                "en": "Pete confirms, “This is the mailroom.”",
+                "zh-Hans": "Pete 确认“This is the mailroom”，即这里是收发室。",
+                "zh-Hant": "Pete 確認「This is the mailroom」，即這裡是收發室。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a1-voa-rooms-listening",
+    "targetLevel": "A1",
+    "skill": "listening",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Rooms and simple actions",
+      "zh-Hans": "听出房间和活动",
+      "zh-Hant": "聽出房間和活動"
+    },
+    "goal": {
+      "en": "Hear a room word and a simple action in short sentences.",
+      "zh-Hans": "在短句中听出房间名称和简单动作。",
+      "zh-Hant": "在短句中聽出房間名稱和簡單動作。"
+    },
+    "goalId": "hear-rooms-and-actions-listening",
+    "sourceId": "voa-course-5",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Listen for an action and a room. Relax means rest. Work out means exercise. In tells you where. Next to means at the side.",
+      "zh-Hans": "注意动作词和房间名称。relax 是放松，work out 是锻炼；in 说明在哪里，next to 表示紧挨着。",
+      "zh-Hant": "注意動作詞和房間名稱。relax 是放鬆，work out 是鍛鍊；in 說明在哪裡，next to 表示緊挨著。"
+    },
+    "workedExample": {
+      "en": "In “I wash in the bathroom”, wash is the action and bathroom is the room.",
+      "zh-Hans": "在“I wash in the bathroom”中，wash 是动作，bathroom 是房间。",
+      "zh-Hant": "在「I wash in the bathroom」中，wash 是動作，bathroom 是房間。"
+    },
+    "nextStep": {
+      "en": "In the next recording, listen for a new action and a place word.",
+      "zh-Hans": "在下一段录音中，听出新的动作词和地点词。",
+      "zh-Hant": "在下一段錄音中，聽出新的動作詞和地點詞。"
+    },
+    "materials": [
+      {
+        "id": "voa-listening-rooms-5",
+        "rootId": "voa-article-3168971",
+        "sourceId": "voa-course-5",
+        "title": "Where Are You? — short sentences",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Marsha: We relax in the living room.\nAnna: I relax in the living room."
+          }
+        ],
+        "audio": {
+          "src": "/audio/a1-words/voa-rooms.mp3",
+          "sha256": "5056bde92f5d1bb60a0d09418b53bbd1d1b3b02e5c21da3e9072a36302d6d96b",
+          "duration": 6.94,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        },
+        "questions": [
+          {
+            "id": "a1-rooms-listening-5-1",
+            "blockId": "dialogue",
+            "prompt": "In which room do the speakers relax?",
+            "options": [
+              "The bedroom.",
+              "The living room.",
+              "The kitchen."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 8,
+              "end": 36,
+              "audioStart": 0.2,
+              "audioEnd": 2.92
+            },
+            "hints": [
+              {
+                "en": "Listen for the room word.",
+                "zh-Hans": "先听房间名称。",
+                "zh-Hant": "先聽房間名稱。"
+              },
+              {
+                "en": "Replay the first short sentence.",
+                "zh-Hans": "重听第一句短句。",
+                "zh-Hant": "重聽第一句短句。"
+              },
+              {
+                "en": "Living room is the room where people sit and relax.",
+                "zh-Hans": "living room 是人们坐着休息的客厅。",
+                "zh-Hant": "living room 是人們坐著休息的客廳。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The recording says living room, not bedroom.",
+                "zh-Hans": "录音说的是 living room（客厅），不是卧室。",
+                "zh-Hant": "錄音說的是 living room（客廳），不是臥室。"
+              },
+              {
+                "en": "The first speaker says, “We relax in the living room.”",
+                "zh-Hans": "第一位说话者说“We relax in the living room”，即在客厅休息。",
+                "zh-Hant": "第一位說話者說「We relax in the living room」，即在客廳休息。"
+              },
+              {
+                "en": "The recording says living room. The kitchen is where people cook.",
+                "zh-Hans": "录音说的是客厅；厨房是做饭的房间。",
+                "zh-Hant": "錄音說的是客廳；廚房是做飯的房間。"
+              }
+            ]
+          },
+          {
+            "id": "a1-rooms-listening-5-2",
+            "blockId": "dialogue",
+            "prompt": "Which action does the second speaker say?",
+            "options": [
+              "Relax.",
+              "Wash.",
+              "Cook."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 43,
+              "end": 70,
+              "audioStart": 3.94,
+              "audioEnd": 6.74
+            },
+            "hints": [
+              {
+                "en": "Listen for the action after I.",
+                "zh-Hans": "听 I 后面的动作词。",
+                "zh-Hant": "聽 I 後面的動作詞。"
+              },
+              {
+                "en": "Replay the second sentence.",
+                "zh-Hans": "重听第二句。",
+                "zh-Hant": "重聽第二句。"
+              },
+              {
+                "en": "Relax means rest and feel calm.",
+                "zh-Hans": "relax 表示休息、放松。",
+                "zh-Hant": "relax 表示休息、放鬆。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The second speaker says, “I relax in the living room.”",
+                "zh-Hans": "第二位说话者说“I relax in the living room”，动作是 relax（放松）。",
+                "zh-Hant": "第二位說話者說「I relax in the living room」，動作是 relax（放鬆）。"
+              },
+              {
+                "en": "Wash means clean with water. The speaker says relax.",
+                "zh-Hans": "wash 是用水清洗；说话者说的是 relax。",
+                "zh-Hant": "wash 是用水清洗；說話者說的是 relax。"
+              },
+              {
+                "en": "Cook means prepare food. The speaker says relax.",
+                "zh-Hans": "cook 是做饭；说话者说的是 relax。",
+                "zh-Hant": "cook 是做飯；說話者說的是 relax。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voa-listening-rooms-6",
+        "rootId": "voa-article-3225958",
+        "sourceId": "voa-course-6",
+        "title": "Where Is the Gym? — short conversation",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Pete, I want to work out. Where is the gym?\nPete: The gym is across from the lounge. It’s next to the mailroom. Go that way."
+          }
+        ],
+        "audio": {
+          "src": "/audio/a1-words/voa-gym.mp3",
+          "sha256": "6fd386245c769916766c2ce62d2114ff93557dca0e2a14f3b3ed46e84b4546c7",
+          "duration": 12.44,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        },
+        "questions": [
+          {
+            "id": "a1-rooms-listening-6-1",
+            "blockId": "dialogue",
+            "prompt": "What does the first speaker want to do?",
+            "options": [
+              "Sleep.",
+              "Cook.",
+              "Work out."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 12,
+              "end": 31,
+              "audioStart": 0.2,
+              "audioEnd": 2.5
+            },
+            "hints": [
+              {
+                "en": "Listen for the action after want to.",
+                "zh-Hans": "听 want to 后面的动作。",
+                "zh-Hant": "聽 want to 後面的動作。"
+              },
+              {
+                "en": "Replay the start of the recording.",
+                "zh-Hans": "重听录音开头。",
+                "zh-Hant": "重聽錄音開頭。"
+              },
+              {
+                "en": "Work out means exercise.",
+                "zh-Hans": "work out 表示锻炼。",
+                "zh-Hant": "work out 表示鍛鍊。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The speaker asks for the gym to work out, not to sleep.",
+                "zh-Hans": "说话者想去健身房锻炼，不是睡觉。",
+                "zh-Hant": "說話者想去健身房鍛鍊，不是睡覺。"
+              },
+              {
+                "en": "The speaker says work out, not cook.",
+                "zh-Hans": "说话者说的是 work out（锻炼），不是 cook（做饭）。",
+                "zh-Hant": "說話者說的是 work out（鍛鍊），不是 cook（做飯）。"
+              },
+              {
+                "en": "The speaker says, “I want to work out.”",
+                "zh-Hans": "说话者说“I want to work out”，即我想锻炼。",
+                "zh-Hant": "說話者說「I want to work out」，即我想鍛鍊。"
+              }
+            ]
+          },
+          {
+            "id": "a1-rooms-listening-6-2",
+            "blockId": "dialogue",
+            "prompt": "Which room is next to the gym?",
+            "options": [
+              "The lounge.",
+              "The mailroom.",
+              "The kitchen."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 91,
+              "end": 117,
+              "audioStart": 4.82,
+              "audioEnd": 12.24
+            },
+            "hints": [
+              {
+                "en": "Listen for the place after next to.",
+                "zh-Hans": "听 next to 后面的地点。",
+                "zh-Hant": "聽 next to 後面的地點。"
+              },
+              {
+                "en": "Replay the second speaker’s directions.",
+                "zh-Hans": "重听第二位说话者的指路。",
+                "zh-Hant": "重聽第二位說話者的指路。"
+              },
+              {
+                "en": "Next to means close at the side. Across from means on the other side.",
+                "zh-Hans": "next to 是紧挨着；across from 是在对面。",
+                "zh-Hant": "next to 是緊挨著；across from 是在對面。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The gym is across from the lounge. It is next to the mailroom.",
+                "zh-Hans": "健身房在休息室对面，但紧挨着的是收发室。",
+                "zh-Hant": "健身房在休息室對面，但緊挨著的是收發室。"
+              },
+              {
+                "en": "The second speaker says, “It’s next to the mailroom.”",
+                "zh-Hans": "第二位说话者说“It’s next to the mailroom”，即紧挨着收发室。",
+                "zh-Hant": "第二位說話者說「It’s next to the mailroom」，即緊挨著收發室。"
+              },
+              {
+                "en": "The kitchen is not named in this recording. The room is the mailroom.",
+                "zh-Hans": "这段录音没有提到厨房，紧挨着的是收发室。",
+                "zh-Hant": "這段錄音沒有提到廚房，緊挨著的是收發室。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

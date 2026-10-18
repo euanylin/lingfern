@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "inputDirectory": "private/corpus/reading-bulk-20261010/cloud-authors",
+  "manifestSha256": "0de689e0b60e636f3d318fd125a11b668de3c171a0c75ea54c0c53db4b16fb06",
+  "preparedSha256": "976d9a22ed2898df5360627c7647199f9769cccad351919e38301dfb2ebbf519",
+  "sourceLedgerSha256": "68a02600c41374f4893f7c6e5b8ca0216078b971ec511487a485ac3024a168d1",
+  "independentReviewPath": "private/verification/reading-bulk-20261010-source-review.json",
+  "independentReviewSha256": "9aacd1bb0a220e73001b12cd1ac979151a375864062bd841dae1a9d6c8ab82e5",
+  "preparedCount": 1356,
+  "excludedPassageIds": [],
+  "books": [
+    {
+      "id": "openstax-american-government-3e",
+      "title": "American Government 3e",
+      "authors": [
+        "Glen Krutz",
+        "Sylvie Waskiewicz"
+      ],
+      "attribution": "American Government 3e \u2014 Glen Krutz; Sylvie Waskiewicz. OpenStax, Rice University. CC BY 4.0; frozen commit dd9a37728e80d377f2be83c2a0085d3c6ef6854c; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "e368a9cdecb601e48b55a5966eb74ec657e892d9c8c4ef34bc10ce932f587e3e",
+      "topic": "society",
+      "paragraphCount": 326,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorSource": "preface-senior-authors:m90376",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-american-government-3e-m90376.cnxml",
+          "sha256": "3d696d477d6d0de905608e5ce6abc306e195c4048fe285fe1211506f00557de6"
+        }
+      ]
+    },
+    {
+      "id": "openstax-anatomy-and-physiology-2e",
+      "title": "Anatomy and Physiology 2e",
+      "authors": [
+        "J. Gordon Betts",
+        "Peter Desaix",
+        "Eddie Johnson",
+        "Jody E. Johnson",
+        "Oksana Korol",
+        "Dean Kruse",
+        "Brandon Poe",
+        "James A. Wise",
+        "Mark Womble",
+        "Kelly A. Young"
+      ],
+      "attribution": "Anatomy and Physiology 2e \u2014 J. Gordon Betts; Peter Desaix; Eddie Johnson; Jody E. Johnson; Oksana Korol; Dean Kruse; Brandon Poe; James A. Wise; Mark Womble; Kelly A. Young. OpenStax, Rice University. CC BY 4.0; frozen commit 3f855aef2941c1da9c01db904d45b129e26106f2; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "5a564a7e28abffaabc2563be429b044fe71406782a8486ca360a450108ec81bf",
+      "topic": "health",
+      "paragraphCount": 598,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorSource": "preface-senior-authors:m46844",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-anatomy-and-physiology-2e-m46844.cnxml",
+          "sha256": "6ee7764cc12a9614604c307a54255cf2b83bd72a87c08b0585bfe07725d432c1"
+        }
+      ]
+    },
+    {
+      "id": "openstax-astronomy-2e",
+      "title": "Astronomy 2e",
+      "authors": [
+        "Andrew Fraknoi",
+        "David Morrison",
+        "Sidney C. Wolff"
+      ],
+      "attribution": "Astronomy 2e \u2014 Andrew Fraknoi; David Morrison; Sidney C. Wolff. OpenStax, Rice University. CC BY 4.0; frozen commit 9d7e69a2e0c9a651ad42254b9a93b701a6b08c10; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "42d62def6d8d415025b07dad2d59a861ba665358f725607b0b565a92e6b0e976",
+      "topic": "science",
+      "paragraphCount": 432,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorSource": "preface-senior-authors:m63293",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-astronomy-2e-m63293.cnxml",
+          "sha256": "fd474c9141f3789ef872684a5368decaad3d5c5dfdc5703c894b3fe75ffcd73a"
+        }
+      ]
+    }
+  ],
+  "scope": "Three frozen 2024-or-earlier OpenStax CC BY 4.0 books acquired on an owned Colab CPU, then re-prepared from those same CNXML bytes after senior authors were read from each preface. 1,356 paragraphs of 120\u2013700 words. Sample review only; not a full-book semantic or CEFR review."
+}

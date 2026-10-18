@@ -1,0 +1,336 @@
+{
+  "id": "b2-argument-scope-listening",
+  "targetLevel": "B2",
+  "skill": "listening",
+  "title": {
+    "zh-Hans": "听出论证如何改变",
+    "zh-Hant": "聽出論證如何改變",
+    "en": "Hear an argument change"
+  },
+  "goal": {
+    "zh-Hans": "听懂调查数字的适用范围，以及说话者因证据限制而修正的主张。",
+    "zh-Hant": "聽懂調查數字的適用範圍，以及說話者因證據限制而修正的主張。",
+    "en": "Track the scope of survey figures and how speakers revise a claim when evidence is limited."
+  },
+  "goalId": "spoken-argument-scope",
+  "sourceId": "lingfern-synthetic-b2-discussions",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先抓双方的原主张，再听 but、cannot、instead 后的限制和修正。区分“同时发生”与“造成”。",
+    "zh-Hant": "先抓雙方的原主張，再聽 but、cannot、instead 後的限制和修正。區分「同時發生」與「造成」。",
+    "en": "Identify the original claim, then listen for limits and revisions after “but”, “cannot” and “instead”. A change alongside another is not necessarily its cause."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“访问量上升时我们换了海报；也许有关，但还不能断定海报造成增长。”→ 观察到同时变化，没有证实因果。",
+    "zh-Hant": "示範（不計分）：「訪問量上升時我們換了海報；也許有關，但還不能斷定海報造成增長。」→ 觀察到同時變化，沒有證實因果。",
+    "en": "Unscored example: “Visits rose when we changed the poster; it may be related, but we cannot say the poster caused the rise.” → The changes coincide; causation is not established."
+  },
+  "materials": [
+    {
+      "id": "library-hours-discussion",
+      "rootId": "original-library-hours-discussion",
+      "title": "A discussion about evening library hours",
+      "questions": [
+        {
+          "id": "library-final-position",
+          "prompt": "What is Mira’s final position on extending library hours?",
+          "options": [
+            "She withdraws every proposal to extend hours.",
+            "She supports a two-night pilot and wider evidence before a permanent decision.",
+            "She still claims the survey proves all students want seven late nights."
+          ],
+          "answer": 1,
+          "hints": [
+            {
+              "zh-Hans": "比较 Mira 一开始和最后的主张。",
+              "zh-Hant": "比較 Mira 一開始和最後的主張。",
+              "en": "Compare Mira’s first and final proposals."
+            },
+            {
+              "zh-Hans": "注意 rather than 后面的长期方案。",
+              "zh-Hant": "注意 rather than 後面的長期方案。",
+              "en": "Notice the permanent plan after “rather than”."
+            },
+            {
+              "zh-Hans": "她从每晚延长改为每周两晚试行，并继续收集证据。",
+              "zh-Hant": "她從每晚延長改為每週兩晚試行，並繼續蒐集證據。",
+              "en": "She moves from seven late nights to a two-night pilot with further evidence."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：她仍希望回应晚间使用者的需求。",
+              "zh-Hant": "不對：她仍希望回應晚間使用者的需求。",
+              "en": "She still wants to respond to late visitors."
+            },
+            {
+              "zh-Hans": "正确：她修正了永久扩展的主张，但支持有限试行。",
+              "zh-Hant": "正確：她修正了永久擴展的主張，但支持有限試行。",
+              "en": "Correct: she revises the permanent proposal and supports a bounded trial."
+            },
+            {
+              "zh-Hans": "不对：她承认原主张超出证据，也没有声称全体学生都同意。",
+              "zh-Hant": "不對：她承認原主張超出證據，也沒有聲稱全體學生都同意。",
+              "en": "She acknowledges the evidence limit and does not claim all students agree."
+            }
+          ],
+          "blockId": "library-hours-discussion-mira-again",
+          "evidence": {
+            "start": 76,
+            "end": 207,
+            "audioStart": 98.325,
+            "audioEnd": 106.275
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "library-hours-discussion-mira",
+              "start": 144,
+              "end": 232,
+              "audioStart": 8.9,
+              "audioEnd": 14.9
+            }
+          ]
+        },
+        {
+          "id": "library-survey-scope",
+          "prompt": "What does Jonah say the seventy-percent figure describes?",
+          "options": [
+            "All students who need a quiet place.",
+            "Every person who entered the library after eight.",
+            "Late visitors who chose to answer this survey."
+          ],
+          "answer": 2,
+          "hints": [
+            {
+              "zh-Hans": "找数字的分母是谁。",
+              "zh-Hant": "找數字的分母是誰。",
+              "en": "Identify the group behind the percentage."
+            },
+            {
+              "zh-Hans": "留意 chose to reply 的限定。",
+              "zh-Hant": "留意 chose to reply 的限定。",
+              "en": "Notice “chose to reply”."
+            },
+            {
+              "zh-Hans": "数字只描述作答的晚间访客。",
+              "zh-Hant": "數字只描述作答的晚間訪客。",
+              "en": "The figure describes responding late visitors."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：问卷没有覆盖所有学生。",
+              "zh-Hant": "不對：問卷沒有涵蓋所有學生。",
+              "en": "The survey did not cover all students."
+            },
+            {
+              "zh-Hans": "不对：并非每个晚间访客都回答了问卷。",
+              "zh-Hant": "不對：並非每個晚間訪客都回答了問卷。",
+              "en": "Not every late visitor answered."
+            },
+            {
+              "zh-Hans": "正确：Jonah 将结论限定在自行作答的晚间访客。",
+              "zh-Hant": "正確：Jonah 將結論限定在自行作答的晚間訪客。",
+              "en": "Correct: Jonah limits the figure to late visitors who replied."
+            }
+          ],
+          "blockId": "library-hours-discussion-jonah",
+          "evidence": {
+            "start": 0,
+            "end": 119,
+            "audioStart": 37.975,
+            "audioEnd": 46.5
+          }
+        }
+      ],
+      "blocks": [
+        {
+          "id": "library-hours-discussion-mira",
+          "title": "Mira",
+          "text": "I read the survey of people using the library after eight, and seventy percent of the eighty respondents said they wanted longer evening hours. My first reaction was to recommend keeping the building open late every night next term. There is a real problem here: some students finish classes at six and need a quiet place later. But the survey link was displayed only at the late desks, so it did not reach students who use the library earlier or have stopped coming at night. I also assumed that a popular suggestion would be easy to staff, although I have not seen the staffing figures."
+        },
+        {
+          "id": "library-hours-discussion-jonah",
+          "title": "Jonah",
+          "text": "The late visitors’ answers are useful, but they describe late visitors who chose to reply, not every student on campus. We should not turn seventy percent of those respondents into a claim that seventy percent of students need later hours. There is also a practical difference between one extra evening and seven: the security and desk teams would need different schedules. I would test two additional late evenings for six weeks, record actual use by hour, and ask both early users and people who rarely visit why they do or do not need that time. If the pilot is busy, we can compare its benefits with the staffing cost before deciding on a regular schedule. A trial is a way to learn, not proof that the permanent extension is already justified."
+        },
+        {
+          "id": "library-hours-discussion-mira-again",
+          "title": "Mira again",
+          "text": "I agree that my first recommendation went further than the evidence allows. I still want to respond to the late visitors, so I will propose Jonah’s two-night pilot rather than a permanent seven-night change. The announcement should say who answered the original survey and what the trial will measure. Then students can judge the next decision from the new evidence instead of from a headline about all students."
+        }
+      ],
+      "audio": {
+        "src": "/audio/b2-speech/library-hours-discussion.mp3",
+        "sha256": "f18cdc3bee05e514f6d673ced8b077c9f5c7e193c2ea35b984bb65c6e5268327",
+        "duration": 119.15,
+        "author": "Lingfern · Kokoro-82M synthetic voices",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      }
+    },
+    {
+      "id": "shuttle-discussion",
+      "rootId": "original-shuttle-discussion",
+      "title": "A discussion about a campus shuttle trial",
+      "questions": [
+        {
+          "id": "shuttle-causal-limit",
+          "prompt": "Why does Sam question the claim that the app redesign caused the passenger increase?",
+          "options": [
+            "Several other conditions changed, so the app’s effect cannot be isolated from these figures.",
+            "The survey proves riders disliked the new map.",
+            "Passenger numbers did not rise during the trial."
+          ],
+          "answer": 0,
+          "hints": [
+            {
+              "zh-Hans": "找同一时期还有什么变化。",
+              "zh-Hant": "找同一時期還有什麼變化。",
+              "en": "Find what else changed during the trial."
+            },
+            {
+              "zh-Hans": "区分人数同时上升与某个变化造成上升。",
+              "zh-Hant": "區分人數同時上升與某個變化造成上升。",
+              "en": "Separate an increase alongside the redesign from one caused by it."
+            },
+            {
+              "zh-Hans": "免费车票、天气和路线都可能影响人数。",
+              "zh-Hant": "免費車票、天氣和路線都可能影響人數。",
+              "en": "Free tickets, weather and route changes could affect passenger numbers."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：多个条件同时变化，现有数据不能单独归因于应用。",
+              "zh-Hant": "正確：多個條件同時變化，現有資料不能單獨歸因於應用程式。",
+              "en": "Correct: concurrent changes prevent isolating the app’s effect here."
+            },
+            {
+              "zh-Hans": "不对：多名作答者喜欢新地图，Sam 并未否认这一点。",
+              "zh-Hant": "不對：多名作答者喜歡新地圖，Sam 並未否認這一點。",
+              "en": "Many respondents liked the map; Sam does not deny that."
+            },
+            {
+              "zh-Hans": "不对：乘车人数确实上升，争议在于原因。",
+              "zh-Hant": "不對：乘車人數確實上升，爭議在於原因。",
+              "en": "Passenger numbers rose; the disputed point is the cause."
+            }
+          ],
+          "blockId": "shuttle-discussion-sam",
+          "evidence": {
+            "start": 263,
+            "end": 381,
+            "audioStart": 52.225,
+            "audioEnd": 60
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "shuttle-discussion-sam",
+              "start": 0,
+              "end": 146,
+              "audioStart": 33.7,
+              "audioEnd": 43.925
+            }
+          ]
+        },
+        {
+          "id": "shuttle-revised-report",
+          "prompt": "How will Ada revise the report and next trial?",
+          "options": [
+            "Keep the causal claim and survey only app users again.",
+            "Describe the rise as accompanying the redesign, name the sixty in-app respondents, and gather wider feedback.",
+            "Remove every positive comment about the app because causation was not proved."
+          ],
+          "answer": 1,
+          "hints": [
+            {
+              "zh-Hans": "听 Ada 修改哪一句结论。",
+              "zh-Hant": "聽 Ada 修改哪一句結論。",
+              "en": "Listen for the sentence Ada will change."
+            },
+            {
+              "zh-Hans": "再找她计划从哪些人那里收集反馈。",
+              "zh-Hant": "再找她計畫從哪些人收集回饋。",
+              "en": "Then find whose feedback she will gather."
+            },
+            {
+              "zh-Hans": "她保留观察结果，删去因果说法，并扩大反馈来源。",
+              "zh-Hant": "她保留觀察結果，刪去因果說法，並擴大回饋來源。",
+              "en": "She keeps the observation, removes causation and broadens feedback."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：她明确说会删去因果句，并收集纸本与应用反馈。",
+              "zh-Hant": "不對：她明確說會刪去因果句，並收集紙本與應用程式回饋。",
+              "en": "She removes the causal sentence and gathers paper and app feedback."
+            },
+            {
+              "zh-Hans": "正确：既保留受访者的积极回答，也准确交代样本与因果界限。",
+              "zh-Hant": "正確：既保留受訪者的正面回答，也準確交代樣本與因果界限。",
+              "en": "Correct: it keeps favourable responses while naming the sample and causal limits."
+            },
+            {
+              "zh-Hans": "不对：不能证明因果关系不等于积极评论必须删除。",
+              "zh-Hant": "不對：不能證明因果關係不等於正面評論必須刪除。",
+              "en": "Lack of causal proof does not erase positive comments."
+            }
+          ],
+          "blockId": "shuttle-discussion-ada-again",
+          "evidence": {
+            "start": 100,
+            "end": 208,
+            "audioStart": 92.45,
+            "audioEnd": 99.525
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "shuttle-discussion-ada-again",
+              "start": 209,
+              "end": 326,
+              "audioStart": 99.775,
+              "audioEnd": 107.025
+            }
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "id": "shuttle-discussion-ada",
+          "title": "Ada",
+          "text": "The campus shuttle carried more passengers during last month’s trial than it did in the previous month. We also changed the route-planning app just before the trial, and sixty riders who answered an in-app survey said the new map was easier to use. I was going to write that the app redesign caused the rise in passengers. That would make a strong opening sentence for the transport report, and the app team has worked hard on it. Still, I want the report to be accurate enough to guide the next timetable rather than simply praise a team."
+        },
+        {
+          "id": "shuttle-discussion-sam",
+          "title": "Sam",
+          "text": "The riders’ comments tell us that many respondents liked the new map, but the trial also offered free return tickets and ran during a rainy month. Both of those changes could affect passenger numbers, and the in-app survey missed riders who never opened the app. We cannot separate the app’s effect from the ticket offer, the weather, or the change in route on these figures alone. For the next trial, I would count boardings on a route without free tickets as well, and ask at the stops why people chose the shuttle. We should make that question available on paper, since riders who rely on signs rather than the app are part of the service. If the map really helps, a broader study should give us evidence without asking us to assume the answer first."
+        },
+        {
+          "id": "shuttle-discussion-ada-again",
+          "title": "Ada again",
+          "text": "You are right that the present figures show a rise alongside the redesign, not a rise caused by it. I will describe the positive answers as coming from sixty in-app respondents and remove the causal sentence. I will also support a small test of clearer stop signs while we collect paper and app feedback from different riders. The app team deserves credit for improving the map, but that is a different claim from saying the map alone increased ridership."
+        }
+      ],
+      "audio": {
+        "src": "/audio/b2-speech/shuttle-discussion.mp3",
+        "sha256": "6b91e9800e924549fc14762be81e409615795386cfb08893d75f6f90a27a5aaa",
+        "duration": 115.675,
+        "author": "Lingfern · Kokoro-82M synthetic voices",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      }
+    }
+  ],
+  "themes": [
+    "daily-life",
+    "travel"
+  ],
+  "nextStep": {
+    "zh-Hans": "重听证据的界限和说话者修正后的主张。",
+    "zh-Hant": "重聽證據的界限和說話者修正後的主張。",
+    "en": "Listen again for the evidence limit and the speaker’s revised claim."
+  }
+}

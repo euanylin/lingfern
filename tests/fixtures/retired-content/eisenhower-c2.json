@@ -1,0 +1,564 @@
+[
+  {
+    "id": "c2-archival-balance-reading",
+    "targetLevel": "C2",
+    "skill": "reading",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Concessions, safeguards and commitments",
+      "zh-Hans": "Concessions, safeguards and commitments",
+      "zh-Hant": "Concessions, safeguards and commitments"
+    },
+    "goalId": "preserve-concessions-and-proposal-status-reading",
+    "goal": {
+      "en": "Interpret concessions, reciprocal risks and prospective commitments without turning them into absolute claims or completed acts.",
+      "zh-Hans": "Interpret concessions, reciprocal risks and prospective commitments without turning them into absolute claims or completed acts.",
+      "zh-Hant": "Interpret concessions, reciprocal risks and prospective commitments without turning them into absolute claims or completed acts."
+    },
+    "sourceId": "eisenhower-farewell",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "These are historical addresses from 1961 and 1953, not descriptions of current policy. Track the direction of influence and the status of each commitment. Yet preserves a concession while limiting its implications; would, prepared to and expectation describe proposed functions and future decisions rather than completed events.",
+      "zh-Hans": "These are historical addresses from 1961 and 1953, not descriptions of current policy. Track the direction of influence and the status of each commitment. Yet preserves a concession while limiting its implications; would, prepared to and expectation describe proposed functions and future decisions rather than completed events.",
+      "zh-Hant": "These are historical addresses from 1961 and 1953, not descriptions of current policy. Track the direction of influence and the status of each commitment. Yet preserves a concession while limiting its implications; would, prepared to and expectation describe proposed functions and future decisions rather than completed events."
+    },
+    "workedExample": {
+      "en": "A statement that a programme is necessary can coexist with a warning about its influence. Likewise, an expectation that a proposal will be approved does not mean approval has already occurred. An accurate summary retains both the positive claim and its limit.",
+      "zh-Hans": "A statement that a programme is necessary can coexist with a warning about its influence. Likewise, an expectation that a proposal will be approved does not mean approval has already occurred. An accurate summary retains both the positive claim and its limit.",
+      "zh-Hant": "A statement that a programme is necessary can coexist with a warning about its influence. Likewise, an expectation that a proposal will be approved does not mean approval has already occurred. An accurate summary retains both the positive claim and its limit."
+    },
+    "nextStep": {
+      "en": "Compare an unfamiliar institutional proposal with an existing safeguard. Identify one concession, one prospective act and a conclusion neither source establishes.",
+      "zh-Hans": "Compare an unfamiliar institutional proposal with an existing safeguard. Identify one concession, one prospective act and a conclusion neither source establishes.",
+      "zh-Hant": "Compare an unfamiliar institutional proposal with an existing safeguard. Identify one concession, one prospective act and a conclusion neither source establishes."
+    },
+    "materials": [
+      {
+        "id": "c2-archival-balance-reading-eisenhower-farewell",
+        "rootId": "eisenhower-farewell",
+        "sourceId": "eisenhower-farewell",
+        "title": "Farewell address: balance and democratic accountability (1961)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Crises there will continue to be. In meeting them, whether foreign or domestic, great or small, there is a recurring temptation to feel that some spectacular and costly action could become the miraculous solution to all current difficulties. A huge increase in newer elements of our defense; development of unrealistic programs to cure every ill in agriculture; a dramatic expansion in basic and applied research--these and many other possibilities, each possibly promising in itself, may be suggested as the only way to the road we wish to travel.\n\nBut each proposal must be weighed in the light of a broader consideration: the need to maintain balance in and among national programs-balance between the private and the public economy, balance between cost and hoped for advantage--balance between the clearly necessary and the comfortably desirable; balance between our essential requirements as a nation and the duties imposed by the nation upon the individual; balance between actions of the moment and the national welfare of the future. Good judgment seeks balance and progress; lack of it eventually finds imbalance and frustration.\n\nThe record of many decades stands as proof that our people and their government have, in the main, understood these truths and have responded to them well, in the face of stress and threat. But threats, new in kind or degree, constantly arise. I mention two only.\n\nA vital element in keeping the peace is our military establishment. Our arms must be mighty, ready for instant action, so that no potential aggressor may be tempted to risk his own destruction.\n\nOur military organization today bears little relation to that known by any of my predecessors in peacetime, or indeed by the fighting men of World War II or Korea.\n\nUntil the latest of our world conflicts, the United States had no armaments industry. American makers of plowshares could, with time and as required, make swords as well. But now we can no longer risk emergency improvisation of national defense; we have been compelled to create a permanent armaments industry of vast proportions. Added to this, three and a half million men and women are directly engaged in the defense establishment. We annually spend on military security more than the net income of all United States corporations.\n\nThis conjunction of an immense military establishment and a large arms industry is new in the American experience. The total influence-economic, political, even spiritual--is felt in every city, every State house, every office of the Federal government. We recognize the imperative need for this development. Yet we must not fail to comprehend its grave implications. Our toil, resources and livelihood are all involved; so is the very structure of our society.\n\nIn the councils of government, we must guard against the acquisition of unwarranted influence, whether sought or unsought, by the military-industrial complex. The potential for the disastrous rise of misplaced power exists and will persist.\n\nWe must never let the weight of this combination endanger our liberties or democratic processes. We should take nothing for granted. Only an alert and knowledgeable citizenry can compel the proper meshing of the huge industrial and military machinery of defense with our peaceful methods and goals, so that security and liberty may prosper together.\n\nAkin to, and largely responsible for the sweeping changes in our industrial-military posture, has been the technological revolution during recent decades.\n\nIn this revolution, research has become central; it also becomes more formalized, complex, and costly. A steadily increasing share is conducted for, by, or at the direction of, the Federal government.\n\nToday, the solitary inventor, tinkering in his shop, has been overshadowed by task forces of scientists in laboratories and testing fields. In the same fashion, the free university, historically the fountainhead of free ideas and scientific discovery, has experienced a revolution in the conduct of research. Partly because of the huge costs involved, a government contract becomes virtually a substitute for intellectual curiosity. For every old blackboard there are now hundreds of new electronic computers.\n\nThe prospect of domination of the nation's scholars by Federal employment, project allocations, and the power of money is ever present--and is gravely to be regarded.\n\nYet, in holding scientific research and discovery in respect, as we should, we must also be alert to the equal and opposite danger that public policy could itself become the captive of a scientific-technological elite.\n\nIt is the task of statesmanship to mold, to balance, and to integrate these and other forces, new and old, within the principles of our democratic system--ever aiming toward the supreme goals of our free society."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-archival-balance-reading-0-choice",
+            "blockId": "source",
+            "prompt": "Which account preserves the relationship between acknowledged necessity and the warning about influence?",
+            "options": [
+              "The address accepts the need for the establishment while warning that its influence must remain compatible with democratic liberty.",
+              "The address treats the acknowledged need as sufficient assurance that democratic safeguards are unnecessary.",
+              "The address says any military establishment is incompatible with keeping peace."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 2556,
+              "end": 2669
+            },
+            "hints": [
+              {
+                "en": "Preserve both sides of the speaker’s concession.",
+                "zh-Hans": "Preserve both sides of the speaker’s concession.",
+                "zh-Hant": "Preserve both sides of the speaker’s concession."
+              },
+              {
+                "en": "Connect recognize the imperative need with the contrast introduced by Yet.",
+                "zh-Hans": "Connect recognize the imperative need with the contrast introduced by Yet.",
+                "zh-Hant": "Connect recognize the imperative need with the contrast introduced by Yet."
+              },
+              {
+                "en": "Acknowledging a need does not remove its implications or the later demand for safeguards.",
+                "zh-Hans": "Acknowledging a need does not remove its implications or the later demand for safeguards.",
+                "zh-Hant": "Acknowledging a need does not remove its implications or the later demand for safeguards."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This keeps the concession and the warning, rather than turning either into an absolute position.",
+                "zh-Hans": "This keeps the concession and the warning, rather than turning either into an absolute position.",
+                "zh-Hant": "This keeps the concession and the warning, rather than turning either into an absolute position."
+              },
+              {
+                "en": "Yet explicitly prevents the concession from becoming an assurance of safety.",
+                "zh-Hans": "Yet explicitly prevents the concession from becoming an assurance of safety.",
+                "zh-Hant": "Yet explicitly prevents the concession from becoming an assurance of safety."
+              },
+              {
+                "en": "The excerpt opens by describing the military establishment as a vital element in keeping peace.",
+                "zh-Hans": "The excerpt opens by describing the military establishment as a vital element in keeping peace.",
+                "zh-Hant": "The excerpt opens by describing the military establishment as a vital element in keeping peace."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c2-archival-balance-reading-0-interpretation",
+            "blockId": "source",
+            "prompt": "Explain the two directions of influence described in the research discussion. Why would reducing the warning to opposition to scientific research misrepresent the argument?",
+            "criteria": [
+              {
+                "en": "Distinguish the risk of funding dominating scholars from the opposite risk of an elite dominating public policy.",
+                "zh-Hans": "Distinguish the risk of funding dominating scholars from the opposite risk of an elite dominating public policy.",
+                "zh-Hant": "Distinguish the risk of funding dominating scholars from the opposite risk of an elite dominating public policy."
+              },
+              {
+                "en": "Preserve respect for research and the stated task of balancing forces within democratic principles; use both passages.",
+                "zh-Hans": "Preserve respect for research and the stated task of balancing forces within democratic principles; use both passages.",
+                "zh-Hant": "Preserve respect for research and the stated task of balancing forces within democratic principles; use both passages."
+              }
+            ],
+            "evidence": {
+              "start": 4227,
+              "end": 4393
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "source",
+                "start": 4395,
+                "end": 4613
+              }
+            ],
+            "hints": [
+              {
+                "en": "Trace who could influence whom in each warning.",
+                "zh-Hans": "Trace who could influence whom in each warning.",
+                "zh-Hant": "Trace who could influence whom in each warning."
+              },
+              {
+                "en": "Compare domination of scholars with public policy becoming captive.",
+                "zh-Hans": "Compare domination of scholars with public policy becoming captive.",
+                "zh-Hant": "Compare domination of scholars with public policy becoming captive."
+              },
+              {
+                "en": "Equal and opposite reverses the direction of control; holding research in respect rules out a blanket rejection.",
+                "zh-Hans": "Equal and opposite reverses the direction of control; holding research in respect rules out a blanket rejection.",
+                "zh-Hant": "Equal and opposite reverses the direction of control; holding research in respect rules out a blanket rejection."
+              }
+            ],
+            "explanation": {
+              "en": "The first warning concerns government employment and money shaping scholarship. The opposite warning concerns scientific elites controlling public policy. The speaker explicitly respects research and calls for democratic balance, so neither warning is a wholesale rejection of science. Check your attribution and both quotations yourself; no automatic score is assigned.",
+              "zh-Hans": "The first warning concerns government employment and money shaping scholarship. The opposite warning concerns scientific elites controlling public policy. The speaker explicitly respects research and calls for democratic balance, so neither warning is a wholesale rejection of science. Check your attribution and both quotations yourself; no automatic score is assigned.",
+              "zh-Hant": "The first warning concerns government employment and money shaping scholarship. The opposite warning concerns scientific elites controlling public policy. The speaker explicitly respects research and calls for democratic balance, so neither warning is a wholesale rejection of science. Check your attribution and both quotations yourself; no automatic score is assigned."
+            }
+          }
+        ]
+      },
+      {
+        "id": "c2-archival-balance-reading-eisenhower-atoms",
+        "rootId": "eisenhower-atoms",
+        "sourceId": "eisenhower-atoms",
+        "title": "Atoms for Peace: purposes and qualified proposals (1953)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "But I do not wish to rest either upon the reiteration of past proposals or the restatement of past deeds. The gravity of the time is such that every new avenue of peace, no matter how dimly discernible, should be explored.\n\nThere is at least one new avenue of peace which has not yet been well explored--an avenue now laid out by the General Assembly of the United Nations.\n\nIn its resolution of November 18th, 1953, this General Assembly suggested--and I quote--\"that the Disarmament Commission study the desirability of establishing a sub-committee consisting of representatives of the Powers principally involved, which should seek in private an acceptable solution . . . and report on such a solution to the General Assembly and to the Security Council not later than 1 September 1954.\"\n\nThe United States, heeding the suggestion of the General Assembly of the United Nations, is instantly prepared to meet privately with such other countries as may be \"principally involved,\" to seek \"an acceptable solution\" to the atomic armaments race which overshadows not only the peace, but the very life, of the world.\n\nWe shall carry into these private or diplomatic talks a new conception.\n\nThe United States would seek more than the mere reduction or elimination of atomic materials for military purposes.\n\nIt is not enough to take this weapon out of the hands of the soldiers. It must be put into the hands of those who will know how to strip its military casing and adapt it to the arts of peace.\n\nThe United States knows that if the fearful trend of atomic military buildup can be reversed, this greatest of destructive forces can be developed into a great boon, for the benefit of all mankind.\n\nThe United States knows that peaceful power from atomic energy is no dream of the future. That capability, already proved, is here--now--today. Who can doubt, if the entire body of the world's scientists and engineers had adequate amounts of fissionable material with which to test and develop their ideas, that this capability would rapidly be transformed into universal, efficient, and economic usage.\n\nTo hasten the day when fear of the atom will begin to disappear from the minds of people, and the governments of the East and West, there are certain steps that can be taken now.\n\nI therefore make the following proposals:\n\nThe Governments principally involved, to the extent permitted by elementary prudence, to begin now and continue to make joint contributions from their stockpiles of normal uranium and fissionable materials to an International Atomic Energy Agency. We would expect that such an agency would be set up under the aegis of the United Nations.\n\nThe ratios of contributions, the procedures and other details would properly be within the scope of the \"private conversations\" I have referred to earlier.\n\nThe United States is prepared to undertake these explorations in good faith. Any partner of the United States acting in the same good faith will find the United States a not unreasonable or ungenerous associate.\n\nUndoubtedly initial and early contributions to this plan would be small in quantity. However, the proposal has the great virtue that it can be undertaken without the irritations and mutual suspicions incident to any attempt to set up a completely acceptable system of world-wide inspection and control.\n\nThe Atomic Energy Agency could be made responsible for the impounding, storage, and protection of the contributed fissionable and other materials. The ingenuity of our scientists will provide special safe conditions under which such a bank of fissionable material can be made essentially immune to surprise seizure.\n\nThe more important responsibility of this Atomic Energy Agency would be to devise methods whereby this fissionable material would be allocated to serve the peaceful pursuits of mankind. Experts would be mobilized to apply atomic energy to the needs of agriculture, medicine, and other peaceful activities. A special purpose would be to provide abundant electrical energy in the power-starved areas of the world. Thus the contributing powers would be dedicating some of their strength to serve the needs rather than the fears of mankind.\n\nThe United States would be more than willing--it would be proud to take up with others \"principally involved\" the development of plans whereby such peaceful use of atomic energy would be expedited.\n\nOf those \"principally involved\" the Soviet Union must, of course, be one.\n\nI would be prepared to submit to the Congress of the United States, and with every expectation of approval, any such plan that would:\n\nFirst--encourage world-wide investigation into the most effective peacetime uses of fissionable material, and with the certainty that they had all the material needed for the conduct of all experiments that were appropriate;\n\nSecond--begin to diminish the potential destructive power of the world's atomic stockpiles;\n\nThird--allow all peoples of all nations to see that, in this enlightened age, the great powers of the earth, both of the East and of the West, are interested in human aspirations first, rather than in building up the armaments of war;\n\nFourth--open up a new channel for peaceful discussion, and initiate at least a new approach to the many difficult problems that must be solved in both private and public conversations, if the world is to shake off the inertia imposed by fear, and is to make positive progress toward peace."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-archival-balance-reading-1-choice",
+            "blockId": "source",
+            "prompt": "Which interpretation preserves the status and limits of the proposed contributions?",
+            "options": [
+              "All states are reported to have already transferred their complete stockpiles to an operating agency.",
+              "The speaker proposes prudent contributions, expects early amounts to be small, and leaves details to diplomatic discussion.",
+              "The proposal is conditional on first establishing a completely acceptable worldwide inspection system."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 3035,
+              "end": 3119
+            },
+            "hints": [
+              {
+                "en": "Keep a proposed first step distinct from a completed worldwide arrangement.",
+                "zh-Hans": "Keep a proposed first step distinct from a completed worldwide arrangement.",
+                "zh-Hant": "Keep a proposed first step distinct from a completed worldwide arrangement."
+              },
+              {
+                "en": "Connect small early contributions with the following However.",
+                "zh-Hans": "Connect small early contributions with the following However.",
+                "zh-Hant": "Connect small early contributions with the following However."
+              },
+              {
+                "en": "Without the irritations of establishing a complete inspection system describes a feature of the proposed route, not a prerequisite.",
+                "zh-Hans": "Without the irritations of establishing a complete inspection system describes a feature of the proposed route, not a prerequisite.",
+                "zh-Hant": "Without the irritations of establishing a complete inspection system describes a feature of the proposed route, not a prerequisite."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The excerpt makes proposals and anticipates small early contributions; it does not report completed universal transfer.",
+                "zh-Hans": "The excerpt makes proposals and anticipates small early contributions; it does not report completed universal transfer.",
+                "zh-Hant": "The excerpt makes proposals and anticipates small early contributions; it does not report completed universal transfer."
+              },
+              {
+                "en": "This preserves scale, proposal status and the explicitly unresolved procedures.",
+                "zh-Hans": "This preserves scale, proposal status and the explicitly unresolved procedures.",
+                "zh-Hant": "This preserves scale, proposal status and the explicitly unresolved procedures."
+              },
+              {
+                "en": "The contrast describes a way to begin without the difficulties of a complete inspection system.",
+                "zh-Hans": "The contrast describes a way to begin without the difficulties of a complete inspection system.",
+                "zh-Hant": "The contrast describes a way to begin without the difficulties of a complete inspection system."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c2-archival-balance-reading-1-interpretation",
+            "blockId": "source",
+            "prompt": "Distinguish storage from the agency’s stated more important responsibility. Then explain why prepared to submit, even with an expectation of approval, does not report completed congressional approval.",
+            "criteria": [
+              {
+                "en": "Identify the contrast between protecting contributed material and allocating it to peaceful pursuits.",
+                "zh-Hans": "Identify the contrast between protecting contributed material and allocating it to peaceful pursuits.",
+                "zh-Hant": "Identify the contrast between protecting contributed material and allocating it to peaceful pursuits."
+              },
+              {
+                "en": "Keep willingness to submit and expectation of approval distinct from an enacted plan; support the distinction with both passages.",
+                "zh-Hans": "Keep willingness to submit and expectation of approval distinct from an enacted plan; support the distinction with both passages.",
+                "zh-Hant": "Keep willingness to submit and expectation of approval distinct from an enacted plan; support the distinction with both passages."
+              }
+            ],
+            "evidence": {
+              "start": 3656,
+              "end": 3841
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "source",
+                "start": 4468,
+                "end": 4601
+              }
+            ],
+            "hints": [
+              {
+                "en": "Separate a proposed function from a completed institutional act.",
+                "zh-Hans": "Separate a proposed function from a completed institutional act.",
+                "zh-Hant": "Separate a proposed function from a completed institutional act."
+              },
+              {
+                "en": "Compare more important responsibility with would be prepared to submit.",
+                "zh-Hans": "Compare more important responsibility with would be prepared to submit.",
+                "zh-Hant": "Compare more important responsibility with would be prepared to submit."
+              },
+              {
+                "en": "Would frames a prospective function; expectation is confidence about a future decision, not a report of its completion.",
+                "zh-Hans": "Would frames a prospective function; expectation is confidence about a future decision, not a report of its completion.",
+                "zh-Hant": "Would frames a prospective function; expectation is confidence about a future decision, not a report of its completion."
+              }
+            ],
+            "explanation": {
+              "en": "The proposed agency would protect material, but its more important role is allocating it for peaceful uses such as agriculture, medicine and electricity. The speaker offers to submit a qualifying plan and expects approval; he does not announce an already approved plan. Review your distinction and both evidence passages; the response is self-assessed.",
+              "zh-Hans": "The proposed agency would protect material, but its more important role is allocating it for peaceful uses such as agriculture, medicine and electricity. The speaker offers to submit a qualifying plan and expects approval; he does not announce an already approved plan. Review your distinction and both evidence passages; the response is self-assessed.",
+              "zh-Hant": "The proposed agency would protect material, but its more important role is allocating it for peaceful uses such as agriculture, medicine and electricity. The speaker offers to submit a qualifying plan and expects approval; he does not announce an already approved plan. Review your distinction and both evidence passages; the response is self-assessed."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c2-archival-balance-listening",
+    "targetLevel": "C2",
+    "skill": "listening",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Hear concessions and prospective commitments",
+      "zh-Hans": "Hear concessions and prospective commitments",
+      "zh-Hant": "Hear concessions and prospective commitments"
+    },
+    "goalId": "preserve-concessions-and-proposal-status-listening",
+    "goal": {
+      "en": "Interpret concessions, reciprocal risks and prospective commitments without turning them into absolute claims or completed acts.",
+      "zh-Hans": "Interpret concessions, reciprocal risks and prospective commitments without turning them into absolute claims or completed acts.",
+      "zh-Hant": "Interpret concessions, reciprocal risks and prospective commitments without turning them into absolute claims or completed acts."
+    },
+    "sourceId": "eisenhower-farewell",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "These are historical addresses from 1961 and 1953, not descriptions of current policy. Track the direction of influence and the status of each commitment. Yet preserves a concession while limiting its implications; would, prepared to and expectation describe proposed functions and future decisions rather than completed events.",
+      "zh-Hans": "These are historical addresses from 1961 and 1953, not descriptions of current policy. Track the direction of influence and the status of each commitment. Yet preserves a concession while limiting its implications; would, prepared to and expectation describe proposed functions and future decisions rather than completed events.",
+      "zh-Hant": "These are historical addresses from 1961 and 1953, not descriptions of current policy. Track the direction of influence and the status of each commitment. Yet preserves a concession while limiting its implications; would, prepared to and expectation describe proposed functions and future decisions rather than completed events."
+    },
+    "workedExample": {
+      "en": "A statement that a programme is necessary can coexist with a warning about its influence. Likewise, an expectation that a proposal will be approved does not mean approval has already occurred. An accurate summary retains both the positive claim and its limit.",
+      "zh-Hans": "A statement that a programme is necessary can coexist with a warning about its influence. Likewise, an expectation that a proposal will be approved does not mean approval has already occurred. An accurate summary retains both the positive claim and its limit.",
+      "zh-Hant": "A statement that a programme is necessary can coexist with a warning about its influence. Likewise, an expectation that a proposal will be approved does not mean approval has already occurred. An accurate summary retains both the positive claim and its limit."
+    },
+    "nextStep": {
+      "en": "Compare an unfamiliar institutional proposal with an existing safeguard. Identify one concession, one prospective act and a conclusion neither source establishes.",
+      "zh-Hans": "Compare an unfamiliar institutional proposal with an existing safeguard. Identify one concession, one prospective act and a conclusion neither source establishes.",
+      "zh-Hant": "Compare an unfamiliar institutional proposal with an existing safeguard. Identify one concession, one prospective act and a conclusion neither source establishes."
+    },
+    "materials": [
+      {
+        "id": "c2-archival-balance-listening-eisenhower-farewell",
+        "rootId": "eisenhower-farewell",
+        "sourceId": "eisenhower-farewell",
+        "title": "Farewell address: balance and democratic accountability (1961)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Crises there will continue to be. In meeting them, whether foreign or domestic, great or small, there is a recurring temptation to feel that some spectacular and costly action could become the miraculous solution to all current difficulties. A huge increase in newer elements of our defense; development of unrealistic programs to cure every ill in agriculture; a dramatic expansion in basic and applied research--these and many other possibilities, each possibly promising in itself, may be suggested as the only way to the road we wish to travel.\n\nBut each proposal must be weighed in the light of a broader consideration: the need to maintain balance in and among national programs-balance between the private and the public economy, balance between cost and hoped for advantage--balance between the clearly necessary and the comfortably desirable; balance between our essential requirements as a nation and the duties imposed by the nation upon the individual; balance between actions of the moment and the national welfare of the future. Good judgment seeks balance and progress; lack of it eventually finds imbalance and frustration.\n\nThe record of many decades stands as proof that our people and their government have, in the main, understood these truths and have responded to them well, in the face of stress and threat. But threats, new in kind or degree, constantly arise. I mention two only.\n\nA vital element in keeping the peace is our military establishment. Our arms must be mighty, ready for instant action, so that no potential aggressor may be tempted to risk his own destruction.\n\nOur military organization today bears little relation to that known by any of my predecessors in peacetime, or indeed by the fighting men of World War II or Korea.\n\nUntil the latest of our world conflicts, the United States had no armaments industry. American makers of plowshares could, with time and as required, make swords as well. But now we can no longer risk emergency improvisation of national defense; we have been compelled to create a permanent armaments industry of vast proportions. Added to this, three and a half million men and women are directly engaged in the defense establishment. We annually spend on military security more than the net income of all United States corporations.\n\nThis conjunction of an immense military establishment and a large arms industry is new in the American experience. The total influence-economic, political, even spiritual--is felt in every city, every State house, every office of the Federal government. We recognize the imperative need for this development. Yet we must not fail to comprehend its grave implications. Our toil, resources and livelihood are all involved; so is the very structure of our society.\n\nIn the councils of government, we must guard against the acquisition of unwarranted influence, whether sought or unsought, by the military-industrial complex. The potential for the disastrous rise of misplaced power exists and will persist.\n\nWe must never let the weight of this combination endanger our liberties or democratic processes. We should take nothing for granted. Only an alert and knowledgeable citizenry can compel the proper meshing of the huge industrial and military machinery of defense with our peaceful methods and goals, so that security and liberty may prosper together.\n\nAkin to, and largely responsible for the sweeping changes in our industrial-military posture, has been the technological revolution during recent decades.\n\nIn this revolution, research has become central; it also becomes more formalized, complex, and costly. A steadily increasing share is conducted for, by, or at the direction of, the Federal government.\n\nToday, the solitary inventor, tinkering in his shop, has been overshadowed by task forces of scientists in laboratories and testing fields. In the same fashion, the free university, historically the fountainhead of free ideas and scientific discovery, has experienced a revolution in the conduct of research. Partly because of the huge costs involved, a government contract becomes virtually a substitute for intellectual curiosity. For every old blackboard there are now hundreds of new electronic computers.\n\nThe prospect of domination of the nation's scholars by Federal employment, project allocations, and the power of money is ever present--and is gravely to be regarded.\n\nYet, in holding scientific research and discovery in respect, as we should, we must also be alert to the equal and opposite danger that public policy could itself become the captive of a scientific-technological elite.\n\nIt is the task of statesmanship to mold, to balance, and to integrate these and other forces, new and old, within the principles of our democratic system--ever aiming toward the supreme goals of our free society."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-archival-balance-listening-0-choice",
+            "blockId": "source",
+            "prompt": "Which account preserves the relationship between acknowledged necessity and the warning about influence?",
+            "options": [
+              "The address accepts the need for the establishment while warning that its influence must remain compatible with democratic liberty.",
+              "The address treats the acknowledged need as sufficient assurance that democratic safeguards are unnecessary.",
+              "The address says any military establishment is incompatible with keeping peace."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 2556,
+              "end": 2669,
+              "audioStart": 205.88,
+              "audioEnd": 214.94
+            },
+            "hints": [
+              {
+                "en": "Preserve both sides of the speaker’s concession.",
+                "zh-Hans": "Preserve both sides of the speaker’s concession.",
+                "zh-Hant": "Preserve both sides of the speaker’s concession."
+              },
+              {
+                "en": "Connect recognize the imperative need with the contrast introduced by Yet.",
+                "zh-Hans": "Connect recognize the imperative need with the contrast introduced by Yet.",
+                "zh-Hant": "Connect recognize the imperative need with the contrast introduced by Yet."
+              },
+              {
+                "en": "Acknowledging a need does not remove its implications or the later demand for safeguards.",
+                "zh-Hans": "Acknowledging a need does not remove its implications or the later demand for safeguards.",
+                "zh-Hant": "Acknowledging a need does not remove its implications or the later demand for safeguards."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This keeps the concession and the warning, rather than turning either into an absolute position.",
+                "zh-Hans": "This keeps the concession and the warning, rather than turning either into an absolute position.",
+                "zh-Hant": "This keeps the concession and the warning, rather than turning either into an absolute position."
+              },
+              {
+                "en": "Yet explicitly prevents the concession from becoming an assurance of safety.",
+                "zh-Hans": "Yet explicitly prevents the concession from becoming an assurance of safety.",
+                "zh-Hant": "Yet explicitly prevents the concession from becoming an assurance of safety."
+              },
+              {
+                "en": "The excerpt opens by describing the military establishment as a vital element in keeping peace.",
+                "zh-Hans": "The excerpt opens by describing the military establishment as a vital element in keeping peace.",
+                "zh-Hant": "The excerpt opens by describing the military establishment as a vital element in keeping peace."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c2-archival-balance-listening-0-interpretation",
+            "blockId": "source",
+            "prompt": "Explain the two directions of influence described in the research discussion. Why would reducing the warning to opposition to scientific research misrepresent the argument?",
+            "criteria": [
+              {
+                "en": "Distinguish the risk of funding dominating scholars from the opposite risk of an elite dominating public policy.",
+                "zh-Hans": "Distinguish the risk of funding dominating scholars from the opposite risk of an elite dominating public policy.",
+                "zh-Hant": "Distinguish the risk of funding dominating scholars from the opposite risk of an elite dominating public policy."
+              },
+              {
+                "en": "Preserve respect for research and the stated task of balancing forces within democratic principles; use both passages.",
+                "zh-Hans": "Preserve respect for research and the stated task of balancing forces within democratic principles; use both passages.",
+                "zh-Hant": "Preserve respect for research and the stated task of balancing forces within democratic principles; use both passages."
+              }
+            ],
+            "evidence": {
+              "start": 4227,
+              "end": 4393,
+              "audioStart": 340.82,
+              "audioEnd": 352.52
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "source",
+                "start": 4395,
+                "end": 4613,
+                "audioStart": 353.26,
+                "audioEnd": 371.68
+              }
+            ],
+            "hints": [
+              {
+                "en": "Trace who could influence whom in each warning.",
+                "zh-Hans": "Trace who could influence whom in each warning.",
+                "zh-Hant": "Trace who could influence whom in each warning."
+              },
+              {
+                "en": "Compare domination of scholars with public policy becoming captive.",
+                "zh-Hans": "Compare domination of scholars with public policy becoming captive.",
+                "zh-Hant": "Compare domination of scholars with public policy becoming captive."
+              },
+              {
+                "en": "Equal and opposite reverses the direction of control; holding research in respect rules out a blanket rejection.",
+                "zh-Hans": "Equal and opposite reverses the direction of control; holding research in respect rules out a blanket rejection.",
+                "zh-Hant": "Equal and opposite reverses the direction of control; holding research in respect rules out a blanket rejection."
+              }
+            ],
+            "explanation": {
+              "en": "The first warning concerns government employment and money shaping scholarship. The opposite warning concerns scientific elites controlling public policy. The speaker explicitly respects research and calls for democratic balance, so neither warning is a wholesale rejection of science. Check your attribution and both quotations yourself; no automatic score is assigned.",
+              "zh-Hans": "The first warning concerns government employment and money shaping scholarship. The opposite warning concerns scientific elites controlling public policy. The speaker explicitly respects research and calls for democratic balance, so neither warning is a wholesale rejection of science. Check your attribution and both quotations yourself; no automatic score is assigned.",
+              "zh-Hant": "The first warning concerns government employment and money shaping scholarship. The opposite warning concerns scientific elites controlling public policy. The speaker explicitly respects research and calls for democratic balance, so neither warning is a wholesale rejection of science. Check your attribution and both quotations yourself; no automatic score is assigned."
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/c2-speech/eisenhower-farewell.mp3",
+          "sha256": "9623170993abd4aa3e2b869fc0946dfed6384779d0b946a15ef3d41ae72b8c7e",
+          "duration": 387.44,
+          "author": "Dwight D. Eisenhower; original presidential recording, Eisenhower Presidential Library/NARA",
+          "sourceUrl": "https://www.eisenhowerlibrary.gov/research/online-documents/farewell-address",
+          "license": "Original United States federal-government address; public domain in the United States",
+          "synthetic": false
+        }
+      },
+      {
+        "id": "c2-archival-balance-listening-eisenhower-atoms",
+        "rootId": "eisenhower-atoms",
+        "sourceId": "eisenhower-atoms",
+        "title": "Atoms for Peace: purposes and qualified proposals (1953)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "But I do not wish to rest either upon the reiteration of past proposals or the restatement of past deeds. The gravity of the time is such that every new avenue of peace, no matter how dimly discernible, should be explored.\n\nThere is at least one new avenue of peace which has not yet been well explored--an avenue now laid out by the General Assembly of the United Nations.\n\nIn its resolution of November 18th, 1953, this General Assembly suggested--and I quote--\"that the Disarmament Commission study the desirability of establishing a sub-committee consisting of representatives of the Powers principally involved, which should seek in private an acceptable solution . . . and report on such a solution to the General Assembly and to the Security Council not later than 1 September 1954.\"\n\nThe United States, heeding the suggestion of the General Assembly of the United Nations, is instantly prepared to meet privately with such other countries as may be \"principally involved,\" to seek \"an acceptable solution\" to the atomic armaments race which overshadows not only the peace, but the very life, of the world.\n\nWe shall carry into these private or diplomatic talks a new conception.\n\nThe United States would seek more than the mere reduction or elimination of atomic materials for military purposes.\n\nIt is not enough to take this weapon out of the hands of the soldiers. It must be put into the hands of those who will know how to strip its military casing and adapt it to the arts of peace.\n\nThe United States knows that if the fearful trend of atomic military buildup can be reversed, this greatest of destructive forces can be developed into a great boon, for the benefit of all mankind.\n\nThe United States knows that peaceful power from atomic energy is no dream of the future. That capability, already proved, is here--now--today. Who can doubt, if the entire body of the world's scientists and engineers had adequate amounts of fissionable material with which to test and develop their ideas, that this capability would rapidly be transformed into universal, efficient, and economic usage.\n\nTo hasten the day when fear of the atom will begin to disappear from the minds of people, and the governments of the East and West, there are certain steps that can be taken now.\n\nI therefore make the following proposals:\n\nThe Governments principally involved, to the extent permitted by elementary prudence, to begin now and continue to make joint contributions from their stockpiles of normal uranium and fissionable materials to an International Atomic Energy Agency. We would expect that such an agency would be set up under the aegis of the United Nations.\n\nThe ratios of contributions, the procedures and other details would properly be within the scope of the \"private conversations\" I have referred to earlier.\n\nThe United States is prepared to undertake these explorations in good faith. Any partner of the United States acting in the same good faith will find the United States a not unreasonable or ungenerous associate.\n\nUndoubtedly initial and early contributions to this plan would be small in quantity. However, the proposal has the great virtue that it can be undertaken without the irritations and mutual suspicions incident to any attempt to set up a completely acceptable system of world-wide inspection and control.\n\nThe Atomic Energy Agency could be made responsible for the impounding, storage, and protection of the contributed fissionable and other materials. The ingenuity of our scientists will provide special safe conditions under which such a bank of fissionable material can be made essentially immune to surprise seizure.\n\nThe more important responsibility of this Atomic Energy Agency would be to devise methods whereby this fissionable material would be allocated to serve the peaceful pursuits of mankind. Experts would be mobilized to apply atomic energy to the needs of agriculture, medicine, and other peaceful activities. A special purpose would be to provide abundant electrical energy in the power-starved areas of the world. Thus the contributing powers would be dedicating some of their strength to serve the needs rather than the fears of mankind.\n\nThe United States would be more than willing--it would be proud to take up with others \"principally involved\" the development of plans whereby such peaceful use of atomic energy would be expedited.\n\nOf those \"principally involved\" the Soviet Union must, of course, be one.\n\nI would be prepared to submit to the Congress of the United States, and with every expectation of approval, any such plan that would:\n\nFirst--encourage world-wide investigation into the most effective peacetime uses of fissionable material, and with the certainty that they had all the material needed for the conduct of all experiments that were appropriate;\n\nSecond--begin to diminish the potential destructive power of the world's atomic stockpiles;\n\nThird--allow all peoples of all nations to see that, in this enlightened age, the great powers of the earth, both of the East and of the West, are interested in human aspirations first, rather than in building up the armaments of war;\n\nFourth--open up a new channel for peaceful discussion, and initiate at least a new approach to the many difficult problems that must be solved in both private and public conversations, if the world is to shake off the inertia imposed by fear, and is to make positive progress toward peace."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-archival-balance-listening-1-choice",
+            "blockId": "source",
+            "prompt": "Which interpretation preserves the status and limits of the proposed contributions?",
+            "options": [
+              "All states are reported to have already transferred their complete stockpiles to an operating agency.",
+              "The speaker proposes prudent contributions, expects early amounts to be small, and leaves details to diplomatic discussion.",
+              "The proposal is conditional on first establishing a completely acceptable worldwide inspection system."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 3035,
+              "end": 3119,
+              "audioStart": 240.34,
+              "audioEnd": 245.8
+            },
+            "hints": [
+              {
+                "en": "Keep a proposed first step distinct from a completed worldwide arrangement.",
+                "zh-Hans": "Keep a proposed first step distinct from a completed worldwide arrangement.",
+                "zh-Hant": "Keep a proposed first step distinct from a completed worldwide arrangement."
+              },
+              {
+                "en": "Connect small early contributions with the following However.",
+                "zh-Hans": "Connect small early contributions with the following However.",
+                "zh-Hant": "Connect small early contributions with the following However."
+              },
+              {
+                "en": "Without the irritations of establishing a complete inspection system describes a feature of the proposed route, not a prerequisite.",
+                "zh-Hans": "Without the irritations of establishing a complete inspection system describes a feature of the proposed route, not a prerequisite.",
+                "zh-Hant": "Without the irritations of establishing a complete inspection system describes a feature of the proposed route, not a prerequisite."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The excerpt makes proposals and anticipates small early contributions; it does not report completed universal transfer.",
+                "zh-Hans": "The excerpt makes proposals and anticipates small early contributions; it does not report completed universal transfer.",
+                "zh-Hant": "The excerpt makes proposals and anticipates small early contributions; it does not report completed universal transfer."
+              },
+              {
+                "en": "This preserves scale, proposal status and the explicitly unresolved procedures.",
+                "zh-Hans": "This preserves scale, proposal status and the explicitly unresolved procedures.",
+                "zh-Hant": "This preserves scale, proposal status and the explicitly unresolved procedures."
+              },
+              {
+                "en": "The contrast describes a way to begin without the difficulties of a complete inspection system.",
+                "zh-Hans": "The contrast describes a way to begin without the difficulties of a complete inspection system.",
+                "zh-Hant": "The contrast describes a way to begin without the difficulties of a complete inspection system."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c2-archival-balance-listening-1-interpretation",
+            "blockId": "source",
+            "prompt": "Distinguish storage from the agency’s stated more important responsibility. Then explain why prepared to submit, even with an expectation of approval, does not report completed congressional approval.",
+            "criteria": [
+              {
+                "en": "Identify the contrast between protecting contributed material and allocating it to peaceful pursuits.",
+                "zh-Hans": "Identify the contrast between protecting contributed material and allocating it to peaceful pursuits.",
+                "zh-Hant": "Identify the contrast between protecting contributed material and allocating it to peaceful pursuits."
+              },
+              {
+                "en": "Keep willingness to submit and expectation of approval distinct from an enacted plan; support the distinction with both passages.",
+                "zh-Hans": "Keep willingness to submit and expectation of approval distinct from an enacted plan; support the distinction with both passages.",
+                "zh-Hant": "Keep willingness to submit and expectation of approval distinct from an enacted plan; support the distinction with both passages."
+              }
+            ],
+            "evidence": {
+              "start": 3656,
+              "end": 3841,
+              "audioStart": 287.42,
+              "audioEnd": 301.9
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "source",
+                "start": 4468,
+                "end": 4601,
+                "audioStart": 347.4,
+                "audioEnd": 361.42
+              }
+            ],
+            "hints": [
+              {
+                "en": "Separate a proposed function from a completed institutional act.",
+                "zh-Hans": "Separate a proposed function from a completed institutional act.",
+                "zh-Hant": "Separate a proposed function from a completed institutional act."
+              },
+              {
+                "en": "Compare more important responsibility with would be prepared to submit.",
+                "zh-Hans": "Compare more important responsibility with would be prepared to submit.",
+                "zh-Hant": "Compare more important responsibility with would be prepared to submit."
+              },
+              {
+                "en": "Would frames a prospective function; expectation is confidence about a future decision, not a report of its completion.",
+                "zh-Hans": "Would frames a prospective function; expectation is confidence about a future decision, not a report of its completion.",
+                "zh-Hant": "Would frames a prospective function; expectation is confidence about a future decision, not a report of its completion."
+              }
+            ],
+            "explanation": {
+              "en": "The proposed agency would protect material, but its more important role is allocating it for peaceful uses such as agriculture, medicine and electricity. The speaker offers to submit a qualifying plan and expects approval; he does not announce an already approved plan. Review your distinction and both evidence passages; the response is self-assessed.",
+              "zh-Hans": "The proposed agency would protect material, but its more important role is allocating it for peaceful uses such as agriculture, medicine and electricity. The speaker offers to submit a qualifying plan and expects approval; he does not announce an already approved plan. Review your distinction and both evidence passages; the response is self-assessed.",
+              "zh-Hant": "The proposed agency would protect material, but its more important role is allocating it for peaceful uses such as agriculture, medicine and electricity. The speaker offers to submit a qualifying plan and expects approval; he does not announce an already approved plan. Review your distinction and both evidence passages; the response is self-assessed."
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/c2-speech/eisenhower-atoms.mp3",
+          "sha256": "fd3454968e05a3fc9937d94b6a36e8f4f4f8a581908cfbcffc464e4f74af825d",
+          "duration": 426.94,
+          "author": "Dwight D. Eisenhower; original presidential recording, Eisenhower Presidential Library/NARA",
+          "sourceUrl": "https://www.eisenhowerlibrary.gov/research/online-documents/atoms-peace",
+          "license": "Original United States federal-government address; public domain in the United States",
+          "synthetic": false
+        }
+      }
+    ]
+  }
+]

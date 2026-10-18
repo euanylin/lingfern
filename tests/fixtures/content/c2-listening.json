@@ -1,0 +1,317 @@
+{
+  "id": "c2-qualification-listening",
+  "targetLevel": "C2",
+  "skill": "listening",
+  "title": {
+    "zh-Hans": "听出限定与责任",
+    "zh-Hant": "聽出限定與責任",
+    "en": "Hear qualifications and responsibility"
+  },
+  "goal": {
+    "zh-Hans": "比较两位说话者的共同目标、行动条件与责任归属。",
+    "zh-Hant": "比較兩位說話者的共同目標、行動條件與責任歸屬。",
+    "en": "Compare speakers’ shared aim, conditions for action and allocation of responsibility."
+  },
+  "goalId": "spoken-qualification-responsibility",
+  "sourceId": "lingfern-synthetic-c2-discussions",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先听出双方同意的问题，再听“但、如果、先”等转折或条件。说话者允许试行，不等于宣称结果已获证实。",
+    "zh-Hant": "先聽出雙方同意的問題，再聽「但、如果、先」等轉折或條件。說話者允許試行，不等於宣稱結果已獲證實。",
+    "en": "First identify the problem both speakers accept. Then listen for contrast and conditions. Allowing a trial is not claiming its result has been proved."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“可以先试，但不能称为已证实。”→ 支持试行，不支持把试行当作证据。",
+    "zh-Hant": "示範（不計分）：「可以先試，但不能稱為已證實。」→ 支持試行，不支持把試行當作證據。",
+    "en": "Unscored example: “We may try it, but cannot call it proved.” → A trial is permitted; a claim of proof is not."
+  },
+  "materials": [
+    {
+      "id": "flood-discussion",
+      "rootId": "original-flood-map-discussion",
+      "title": "A discussion about a flood forecast",
+      "blocks": [
+        {
+          "id": "flood-discussion-priya",
+          "title": "Priya",
+          "text": "I want the flood map online before the next storm, but only as a dated forecast, not a promise about which streets will stay dry. During the last warning, residents searched a map that was technically precise and already out of date. If we wait for a perfect survey, people will plan with old screenshots instead. A visible uncertainty band and a link to the staffed hotline would make this provisional version useful without presenting it as settled. I would measure whether people changed their route in time, while recording when the forecast was later corrected. The city must own those corrections; publishing a warning does not transfer responsibility to the person who reads it."
+        },
+        {
+          "id": "flood-discussion-omar",
+          "title": "Omar",
+          "text": "I share Priya’s wish to replace old screenshots, yet the uncertainty band cannot be a tiny note under a confidently coloured street. The map’s legend currently turns a probability into a binary safe-or-unsafe signal, even when two neighbouring streets have almost the same estimate. I would release the forecast after the legend is tested with residents who must use it under pressure. That test could be done quickly, but it has to ask what action the colours suggest, not just whether the labels are readable. If the test fails, I would publish a text alert and the hotline first, then add the map once its visual claim matches the evidence. A faster map is not more timely if it invites people to treat uncertainty as an assurance."
+        }
+      ],
+      "audio": {
+        "src": "/audio/c2-speech/flood-discussion.mp3",
+        "sha256": "d53de1ab54a65c2ce5be484102cf571b4206a2cba452e06de83d63ddb8297478",
+        "duration": 96.9,
+        "author": "Lingfern · Kokoro-82M synthetic voices",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      },
+      "questions": [
+        {
+          "id": "flood-synthesis",
+          "blockId": "flood-discussion-priya",
+          "prompt": "Which account preserves both speakers’ position on releasing the map?",
+          "options": [
+            "Priya would issue a dated, explicitly uncertain map before the storm; Omar shares her concern about stale information but would test the legend first and use a text alert if the map still misleads.",
+            "Priya calls the map safe to use without qualification; Omar rejects any public warning until a perfect survey is complete.",
+            "Both think that adding an uncertainty label is enough, whether or not residents understand the colour legend."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 314,
+            "end": 451,
+            "audioStart": 19.98,
+            "audioEnd": 28.46
+          },
+          "hints": [
+            {
+              "zh-Hans": "比较两人对及时发布的共识和发布条件。",
+              "zh-Hant": "比較兩人對及時發布的共識和發布條件。",
+              "en": "Compare the shared need for timely information and each release condition."
+            },
+            {
+              "zh-Hans": "看 Priya 对临时版本的要求，再看 Omar 对图例测试的要求。",
+              "zh-Hant": "看 Priya 對暫時版本的要求，再看 Omar 對圖例測試的要求。",
+              "en": "Find Priya’s provisional conditions and Omar’s legend test."
+            },
+            {
+              "zh-Hans": "Omar 不排斥预警；图若误导，他先发布文字预警。",
+              "zh-Hant": "Omar 不排斥預警；地圖若誤導，他先發布文字警示。",
+              "en": "Omar does not oppose warning people; he would use a text alert first if the map misleads."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：保留双方对旧信息的担忧，也保留发布顺序和图例测试上的分歧。",
+              "zh-Hant": "正確：保留雙方對舊資訊的擔憂，也保留發布順序和圖例測試上的分歧。",
+              "en": "Correct: it keeps their shared concern and their different conditions for the map."
+            },
+            {
+              "zh-Hans": "不正确：Priya 强调不确定性；Omar 也主张必要时先发布文字预警。",
+              "zh-Hant": "不正確：Priya 強調不確定性；Omar 也主張必要時先發布文字警示。",
+              "en": "Priya insists on uncertainty; Omar would still issue a text alert when needed."
+            },
+            {
+              "zh-Hans": "不正确：Omar 明确要求测试颜色暗示的行动，标签本身并不足够。",
+              "zh-Hant": "不正確：Omar 明確要求測試顏色暗示的行動，標籤本身並不足夠。",
+              "en": "Omar explicitly wants to test the action suggested by the colours, not rely on a label alone."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "flood-discussion-omar",
+              "start": 512,
+              "end": 643,
+              "audioStart": 79.65,
+              "audioEnd": 89.18
+            }
+          ]
+        },
+        {
+          "id": "flood-timeliness",
+          "blockId": "flood-discussion-omar",
+          "prompt": "What is Omar implying by “A faster map is not more timely”?",
+          "options": [
+            "Publishing earlier may still fail the urgent purpose if the visual presentation makes uncertain estimates look like assurances.",
+            "A forecast should be delayed until it predicts each street with complete certainty.",
+            "Readers should be blamed if they mistake a colour for a guarantee."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 644,
+            "end": 734,
+            "audioStart": 89.4,
+            "audioEnd": 96.25
+          },
+          "hints": [
+            {
+              "zh-Hans": "这里的“及时”指信息能否安全地指导行动。",
+              "zh-Hant": "這裡的「及時」指資訊能否安全地指導行動。",
+              "en": "Here “timely” concerns whether the information can guide action safely."
+            },
+            {
+              "zh-Hans": "把最后一句与前面的颜色图例问题连起来。",
+              "zh-Hant": "把最後一句與前面的顏色圖例問題連起來。",
+              "en": "Connect the last sentence to the earlier problem with the colour legend."
+            },
+            {
+              "zh-Hans": "更早上传不等于更早传达正确的风险程度。",
+              "zh-Hant": "更早上傳不等於更早傳達正確的風險程度。",
+              "en": "Earlier posting is not earlier communication of the right degree of risk."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：误导性的图示可能削弱时效带来的好处。",
+              "zh-Hant": "正確：誤導性的圖示可能削弱時效帶來的好處。",
+              "en": "Correct: a misleading graphic can defeat the benefit of early publication."
+            },
+            {
+              "zh-Hans": "不正确：Omar 要求可理解的图例，并未要求确定性达到百分之百。",
+              "zh-Hant": "不正確：Omar 要求可理解的圖例，並未要求百分之百的確定性。",
+              "en": "Omar asks for an understandable legend, not perfect certainty."
+            },
+            {
+              "zh-Hans": "不正确：Omar 批评设计造成的暗示，并没有把责任推给读者。",
+              "zh-Hant": "不正確：Omar 批評設計造成的暗示，並沒有把責任推給讀者。",
+              "en": "Omar criticises the design’s implication; he does not blame readers."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bus-discussion",
+      "rootId": "original-bus-stop-discussion",
+      "title": "A discussion about a bus-stop trial",
+      "blocks": [
+        {
+          "id": "bus-discussion-june",
+          "title": "June",
+          "text": "The council’s survey says ninety percent support flexible bus stops, but it reached people who already use the travel app. That number tells us something about those respondents; it cannot by itself establish what the whole city wants. Before we call the trial inclusive, I would ask shift workers and people who pay cash how a changed stop affects their journey. A phone line and notices at the existing stops would let them answer without downloading anything. I am not asking us to discard the survey or to wait for unanimous support. I am asking us to distinguish an encouraging response from a mandate we have not yet measured."
+        },
+        {
+          "id": "bus-discussion-rowan",
+          "title": "Rowan",
+          "text": "I agree that the app survey cannot prove citywide consent. My concern is that treating every unrepresented group as silent opposition could postpone a route that some of those riders would welcome. I would start a limited weekend trial with signs at the old stops, a staffed number, and a clearly published end date. We should judge it by missed connections and travel time for different riders, not by how many people tap a survey link. If a detour is unannounced, the operators must explain and correct it; a passenger’s failure to find a hidden app notice is not the cause. June wants wider evidence before claiming consensus, while I want wider access during a trial that makes no such claim."
+        }
+      ],
+      "audio": {
+        "src": "/audio/c2-speech/bus-discussion.mp3",
+        "sha256": "e1c401924167417652574b9e2c4f29d1f6107fe1c36d79b994c4fa235d14b631",
+        "duration": 91.975,
+        "author": "Lingfern · Kokoro-82M synthetic voices",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      },
+      "questions": [
+        {
+          "id": "bus-synthesis",
+          "blockId": "bus-discussion-june",
+          "prompt": "Which summary accurately preserves June and Rowan’s difference?",
+          "options": [
+            "Both reject the app survey as proof of citywide consent; June wants broader evidence before making an inclusive claim, while Rowan favours a limited accessible trial without making that claim.",
+            "June regards the app survey as worthless, while Rowan treats it as a mandate from the whole city.",
+            "Both require unanimous support before any temporary trial can begin."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 123,
+            "end": 235,
+            "audioStart": 7.69,
+            "audioEnd": 14.45
+          },
+          "hints": [
+            {
+              "zh-Hans": "找两人都承认的证据局限，再看行动顺序。",
+              "zh-Hant": "找兩人都承認的證據局限，再看行動順序。",
+              "en": "Find the limitation both accept, then compare their proposed sequence."
+            },
+            {
+              "zh-Hans": "June 说不能凭应用调查宣称全市支持；Rowan 说可以有限试行但不做这种宣称。",
+              "zh-Hant": "June 說不能憑應用程式調查宣稱全市支持；Rowan 說可以有限試行但不做這種宣稱。",
+              "en": "June rejects a citywide claim from the app survey; Rowan proposes a limited trial without that claim."
+            },
+            {
+              "zh-Hans": "两人都不要求一致同意，也都没把调查视为毫无价值。",
+              "zh-Hant": "兩人都不要求一致同意，也都沒有把調查視為毫無價值。",
+              "en": "Neither demands unanimity or calls the survey worthless."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：区分“不能宣称全市共识”与“不能进行有限试行”。",
+              "zh-Hant": "正確：區分「不能宣稱全市共識」與「不能有限試行」。",
+              "en": "Correct: it distinguishes an unjustified citywide claim from a bounded trial."
+            },
+            {
+              "zh-Hans": "不正确：June 不主张丢弃调查，Rowan 也否认它能证明全市同意。",
+              "zh-Hant": "不正確：June 不主張丟棄調查，Rowan 也否認它能證明全市同意。",
+              "en": "June does not discard the survey; Rowan also rejects it as proof of citywide consent."
+            },
+            {
+              "zh-Hans": "不正确：June 明确说不必等待全体一致；Rowan 提出有限的周末试行。",
+              "zh-Hant": "不正確：June 明確說不必等待全體一致；Rowan 提出有限的週末試行。",
+              "en": "June says unanimity is unnecessary; Rowan proposes a limited weekend trial."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "bus-discussion-rowan",
+              "start": 198,
+              "end": 316,
+              "audioStart": 55.41,
+              "audioEnd": 63.84
+            }
+          ]
+        },
+        {
+          "id": "bus-responsibility",
+          "blockId": "bus-discussion-rowan",
+          "prompt": "Which paraphrase keeps Rowan’s assignment of responsibility for an unannounced detour?",
+          "options": [
+            "The operators must explain and correct the detour; passengers are not at fault for missing a notice hidden in an app.",
+            "Passengers are responsible for checking the app, so operators need not explain an unannounced detour.",
+            "June alone must correct the detour because she questioned the survey."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 438,
+            "end": 576,
+            "audioStart": 72.15,
+            "audioEnd": 82.38
+          },
+          "hints": [
+            {
+              "zh-Hans": "找出谁控制线路变更和通知。",
+              "zh-Hant": "找出誰控制路線變更和通知。",
+              "en": "Identify who controls a route change and its notice."
+            },
+            {
+              "zh-Hans": "看 Rowan 关于未公告绕行的完整句子。",
+              "zh-Hant": "看 Rowan 關於未公告繞行的完整句子。",
+              "en": "Listen to Rowan’s complete sentence about an unannounced detour."
+            },
+            {
+              "zh-Hans": "operators must explain and correct it；乘客没找到隐藏通知不是原因。",
+              "zh-Hant": "operators must explain and correct it；乘客沒找到隱藏通知不是原因。",
+              "en": "The operators must explain and correct it; missing a hidden notice does not make the passenger responsible."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：保留了运营方的纠正责任和对乘客的限定。",
+              "zh-Hant": "正確：保留了營運方的修正責任與對乘客的限定。",
+              "en": "Correct: it keeps the operators’ duty and the qualification about passengers."
+            },
+            {
+              "zh-Hans": "不正确：把运营方的责任转给乘客，颠倒原意。",
+              "zh-Hant": "不正確：把營運方的責任轉給乘客，顛倒原意。",
+              "en": "It reverses the point by shifting the operators’ duty to passengers."
+            },
+            {
+              "zh-Hans": "不正确：质疑调查的人不是线路绕行的执行或纠正责任方。",
+              "zh-Hant": "不正確：質疑調查的人不是路線繞行的執行或修正責任方。",
+              "en": "Questioning a survey does not make June responsible for an operational detour."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "science",
+    "travel"
+  ],
+  "nextStep": {
+    "zh-Hans": "重听转折和条件，再核对责任归属。",
+    "zh-Hant": "重聽轉折和條件，再核對責任歸屬。",
+    "en": "Listen again for the contrast and for who retains responsibility."
+  }
+}

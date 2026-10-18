@@ -1,0 +1,438 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-16",
+  "scope": "Four exact existing source contexts inspected for substantive comparison. Raw source/text/audio identity and unchanged terms only; no authored lesson bank, broader source approval, worldwide rights or CEFR/effects claim.",
+  "reading": [
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1205267",
+      "sourceHash": "0c35c632ce39eeaa9a2c23b069c1e126377f520038457af0eaab892dfd3d6410",
+      "passageId": "28552cfc6183e67f485736b3dc8f6846dce445bafb25650c54ceffe53fe8316b",
+      "textSha256": "28552cfc6183e67f485736b3dc8f6846dce445bafb25650c54ceffe53fe8316b",
+      "text": "Previous studies suggest that being immersed in or witnessing anything novel activates brain areas important in the production of dopamine. Dopamine is one of the chemical messengers that neurons use to talk to one another. The main task of dopamine is to anticipate the value of things in our environment. For example, dopamine helps us to evaluate how rewarding certain objects, people, or experiences are, and helps us better remember the things that are important or rewarding. You could picture dopamine as a ranger deciding which paths in the forest (memories) are especially important and then making these paths more walkable (easier to remember). The brain areas responsible for producing dopamine mature throughout childhood and adolescence, leading to more dopamine rangers working in our brain during that time in our lives. In contrast, as we become older, these areas begin to retire and—just like humans do—lose some of their productivity, resulting in less dopamine in the brain [2].",
+      "credit": {
+        "attribution": "Explore More! How New Environments May Boost Your Memory — Kreeta I. L. Kerkkänen; Marit F. L. Ruitenberg; Judith Schomaker. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1205267"
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.467994",
+      "sourceHash": "27cd91ba4d9e0ffc1aa0405c3769f1c4befd7a62fc2335d8a68920e4d6001f69",
+      "passageId": "2c4f878e1b1f74d7c11e6613a59a15f5ccac7f8c5433e9154196e4c0c441a0f9",
+      "textSha256": "2c4f878e1b1f74d7c11e6613a59a15f5ccac7f8c5433e9154196e4c0c441a0f9",
+      "text": "The entropy in a physical system is a measure of the amount of messiness or arbitrariness characterizing the system. Systems in very special states—almost any hunk of normal matter at very low temperatures, or a very clean bedroom, for instance—have low entropy. In both cases this is because the constituents of the system have no choice about where to be. At low temperature, in a chunk of material, every atom sits at a place that minimizes the energy of the system. In a very clean room, every piece of clothing is folded and stacked in a drawer. In contrast, matter at high temperature, or a messy room, has high entropy. The atoms can be flying about every which way in hot matter. In a messy bedroom, shirts and shorts can be flung about the room willy nilly. The entropy of a system is defined as the logarithm of the number of possible configurations of its constituents (atoms for matter; shirts and shorts for the messy room) that would look roughly the same, to a casual observer.",
+      "credit": {
+        "attribution": "How Many Ways Are There to Make a Black Hole? — Shamit Kachru. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.467994"
+      }
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "gutenberg-book-10123",
+      "sourceHash": "667ede8a3767cda310ee3d8d15cdf374ac8f4ad20eaf5f28dfec5c85ce864e29",
+      "clipId": "76f5439a53548b5b3b33b1fa1b007bba2c4ed7c1ea9e4a1cb334c21ae53c552c",
+      "textSha256": "d611b71ad688b8fafaecafa0673b5f696c97dc907de068e7924b2d0a24d7734a",
+      "text": "I'm going home today,\" said Beth, angrily drying her eyes.\r\n\r\n\"We'll all go home,\" said Patsy, cheerfully.\r\n\r\n\"For my part,\" remarked Uncle John, in a grave voice, \"I have no\r\nhome.\"",
+      "sourceCredit": {
+        "attribution": "L. Frank Baum. Project Gutenberg edition 10123.",
+        "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/10123"
+      },
+      "audio": {
+        "sha256": "5cf49be51de2a0fd4f5e8733a052f72b7545b393eec1c614a3aaf99fb23adf6c",
+        "duration": 10.2,
+        "author": "bj",
+        "sourceUrl": "https://www.openslr.org/12/",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "L. Frank Baum. Project Gutenberg edition 10123. Recording: bj; LibriSpeech, Vassil Panayotov and Daniel Povey. FLAC converted to MP3.",
+        "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/10123"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 63,
+          "text": "I'm going home today,\" said Beth, angrily drying her eyes.\r\n\r\n\"",
+          "audioStart": 0,
+          "audioEnd": 3.16
+        },
+        {
+          "start": 63,
+          "end": 111,
+          "text": "We'll all go home,\" said Patsy, cheerfully.\r\n\r\n\"",
+          "audioStart": 3.46,
+          "audioEnd": 5.32
+        },
+        {
+          "start": 111,
+          "end": 165,
+          "text": "For my part,\" remarked Uncle John, in a grave voice, \"",
+          "audioStart": 6.34,
+          "audioEnd": 8.36
+        },
+        {
+          "start": 165,
+          "end": 182,
+          "text": "I have no\r\nhome.\"",
+          "audioStart": 8.72,
+          "audioEnd": 9.9
+        }
+      ]
+    },
+    {
+      "rootId": "gutenberg-book-9745",
+      "sourceHash": "2748053aa7012f20798ec97d8add743d9d7f8b404afb9ea666781727fe6029f9",
+      "clipId": "947c953b6370f2683f0272bc633e4f96df9a2aec8eb7b48b6df1b1763126e9d6",
+      "textSha256": "9b583356c63ee53efb5bf7d2bd4f970246e5878bcbaf2b01cf0834772ee4a32f",
+      "text": "The attack has failed and the South has won a victory!” “But Grant will come again,” said Dick, speaking his opinion for the first time. “No doubt of it,” said Colonel Woodville, “but likely he will come to the same fate.” He spoke wholly without animosity.",
+      "sourceCredit": {
+        "attribution": "Joseph A. Altsheler. The Rock of Chickamauga: A Story of the Western Crisis. Project Gutenberg edition 9745. Plain prose only; embedded Project Gutenberg licence retained.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/9745"
+      },
+      "audio": {
+        "sha256": "eeec142bf1741d636339c47fec19015e48c77c697b12d1a94d77c9bccea30441",
+        "duration": 15.06,
+        "author": "Jeff K.",
+        "sourceUrl": "https://www.openslr.org/12/",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "Joseph A. Altsheler. The Rock of Chickamauga: A Story of the Western Crisis. Project Gutenberg edition 9745. Plain prose only; embedded Project Gutenberg licence retained. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Jeff K. (LibriVox reader 8266). Independently re-encoded from the whole original FLAC; unchanged source words.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/9745"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 4,
+          "text": "The ",
+          "audioStart": 0,
+          "audioEnd": 0.46
+        },
+        {
+          "start": 4,
+          "end": 11,
+          "text": "attack ",
+          "audioStart": 0.46,
+          "audioEnd": 0.66
+        },
+        {
+          "start": 11,
+          "end": 15,
+          "text": "has ",
+          "audioStart": 0.66,
+          "audioEnd": 0.92
+        },
+        {
+          "start": 15,
+          "end": 22,
+          "text": "failed ",
+          "audioStart": 0.92,
+          "audioEnd": 1.18
+        },
+        {
+          "start": 22,
+          "end": 26,
+          "text": "and ",
+          "audioStart": 1.54,
+          "audioEnd": 1.58
+        },
+        {
+          "start": 26,
+          "end": 30,
+          "text": "the ",
+          "audioStart": 1.58,
+          "audioEnd": 1.68
+        },
+        {
+          "start": 30,
+          "end": 36,
+          "text": "South ",
+          "audioStart": 1.68,
+          "audioEnd": 1.9
+        },
+        {
+          "start": 36,
+          "end": 40,
+          "text": "has ",
+          "audioStart": 1.9,
+          "audioEnd": 2.1
+        },
+        {
+          "start": 40,
+          "end": 44,
+          "text": "won ",
+          "audioStart": 2.1,
+          "audioEnd": 2.28
+        },
+        {
+          "start": 44,
+          "end": 46,
+          "text": "a ",
+          "audioStart": 2.28,
+          "audioEnd": 2.4
+        },
+        {
+          "start": 46,
+          "end": 57,
+          "text": "victory!” “",
+          "audioStart": 2.4,
+          "audioEnd": 2.7
+        },
+        {
+          "start": 57,
+          "end": 61,
+          "text": "But ",
+          "audioStart": 3.44,
+          "audioEnd": 3.74
+        },
+        {
+          "start": 61,
+          "end": 67,
+          "text": "Grant ",
+          "audioStart": 3.74,
+          "audioEnd": 3.88
+        },
+        {
+          "start": 67,
+          "end": 72,
+          "text": "will ",
+          "audioStart": 3.88,
+          "audioEnd": 4.14
+        },
+        {
+          "start": 72,
+          "end": 77,
+          "text": "come ",
+          "audioStart": 4.14,
+          "audioEnd": 4.3
+        },
+        {
+          "start": 77,
+          "end": 85,
+          "text": "again,” ",
+          "audioStart": 4.3,
+          "audioEnd": 4.98
+        },
+        {
+          "start": 85,
+          "end": 90,
+          "text": "said ",
+          "audioStart": 4.98,
+          "audioEnd": 5.32
+        },
+        {
+          "start": 90,
+          "end": 96,
+          "text": "Dick, ",
+          "audioStart": 5.32,
+          "audioEnd": 5.5
+        },
+        {
+          "start": 96,
+          "end": 105,
+          "text": "speaking ",
+          "audioStart": 5.9,
+          "audioEnd": 6.12
+        },
+        {
+          "start": 105,
+          "end": 109,
+          "text": "his ",
+          "audioStart": 6.12,
+          "audioEnd": 6.32
+        },
+        {
+          "start": 109,
+          "end": 117,
+          "text": "opinion ",
+          "audioStart": 6.32,
+          "audioEnd": 6.58
+        },
+        {
+          "start": 117,
+          "end": 121,
+          "text": "for ",
+          "audioStart": 6.58,
+          "audioEnd": 6.82
+        },
+        {
+          "start": 121,
+          "end": 125,
+          "text": "the ",
+          "audioStart": 6.82,
+          "audioEnd": 6.92
+        },
+        {
+          "start": 125,
+          "end": 131,
+          "text": "first ",
+          "audioStart": 6.92,
+          "audioEnd": 7.08
+        },
+        {
+          "start": 131,
+          "end": 138,
+          "text": "time. “",
+          "audioStart": 7.08,
+          "audioEnd": 7.34
+        },
+        {
+          "start": 138,
+          "end": 141,
+          "text": "No ",
+          "audioStart": 7.94,
+          "audioEnd": 8.24
+        },
+        {
+          "start": 141,
+          "end": 147,
+          "text": "doubt ",
+          "audioStart": 8.24,
+          "audioEnd": 8.42
+        },
+        {
+          "start": 147,
+          "end": 150,
+          "text": "of ",
+          "audioStart": 8.42,
+          "audioEnd": 8.6
+        },
+        {
+          "start": 150,
+          "end": 155,
+          "text": "it,” ",
+          "audioStart": 8.6,
+          "audioEnd": 8.7
+        },
+        {
+          "start": 155,
+          "end": 160,
+          "text": "said ",
+          "audioStart": 8.7,
+          "audioEnd": 9.12
+        },
+        {
+          "start": 160,
+          "end": 168,
+          "text": "Colonel ",
+          "audioStart": 9.12,
+          "audioEnd": 9.34
+        },
+        {
+          "start": 168,
+          "end": 180,
+          "text": "Woodville, “",
+          "audioStart": 9.34,
+          "audioEnd": 9.74
+        },
+        {
+          "start": 180,
+          "end": 184,
+          "text": "but ",
+          "audioStart": 10.46,
+          "audioEnd": 10.58
+        },
+        {
+          "start": 184,
+          "end": 191,
+          "text": "likely ",
+          "audioStart": 10.58,
+          "audioEnd": 10.74
+        },
+        {
+          "start": 191,
+          "end": 194,
+          "text": "he ",
+          "audioStart": 10.74,
+          "audioEnd": 11.02
+        },
+        {
+          "start": 194,
+          "end": 199,
+          "text": "will ",
+          "audioStart": 11.02,
+          "audioEnd": 11.14
+        },
+        {
+          "start": 199,
+          "end": 204,
+          "text": "come ",
+          "audioStart": 11.14,
+          "audioEnd": 11.34
+        },
+        {
+          "start": 204,
+          "end": 207,
+          "text": "to ",
+          "audioStart": 11.34,
+          "audioEnd": 11.46
+        },
+        {
+          "start": 207,
+          "end": 211,
+          "text": "the ",
+          "audioStart": 11.46,
+          "audioEnd": 11.58
+        },
+        {
+          "start": 211,
+          "end": 216,
+          "text": "same ",
+          "audioStart": 11.58,
+          "audioEnd": 11.74
+        },
+        {
+          "start": 216,
+          "end": 223,
+          "text": "fate.” ",
+          "audioStart": 11.74,
+          "audioEnd": 12.04
+        },
+        {
+          "start": 223,
+          "end": 226,
+          "text": "He ",
+          "audioStart": 12.74,
+          "audioEnd": 13.06
+        },
+        {
+          "start": 226,
+          "end": 232,
+          "text": "spoke ",
+          "audioStart": 13.06,
+          "audioEnd": 13.24
+        },
+        {
+          "start": 232,
+          "end": 239,
+          "text": "wholly ",
+          "audioStart": 13.24,
+          "audioEnd": 13.62
+        },
+        {
+          "start": 239,
+          "end": 247,
+          "text": "without ",
+          "audioStart": 13.62,
+          "audioEnd": 13.9
+        },
+        {
+          "start": 247,
+          "end": 257,
+          "text": "animosity.",
+          "audioStart": 13.9,
+          "audioEnd": 14.92
+        }
+      ]
+    }
+  ]
+}

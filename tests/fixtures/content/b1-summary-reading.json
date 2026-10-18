@@ -1,0 +1,183 @@
+{
+  "id": "b1-summary-reading",
+  "targetLevel": "B1",
+  "skill": "reading",
+  "title": {
+    "en": "Pass on plans and limits",
+    "zh-Hans": "转述计划与限制",
+    "zh-Hant": "轉述計劃與限制"
+  },
+  "goal": {
+    "en": "Write a short message that keeps the important conditions and next action.",
+    "zh-Hans": "写一段简短转述，保留重要条件与下一步行动。",
+    "zh-Hant": "寫一段簡短轉述，保留重要條件與下一步行動。"
+  },
+  "goalId": "summarize-conditions",
+  "sourceId": "lingfern-original-b1-summaries",
+  "reviewStatus": "draft",
+  "teaching": {
+    "en": "Choose the information your reader needs to act. Keep words such as “if” and “only”. A possible plan is not a confirmed plan. Use your own sentences.",
+    "zh-Hans": "挑出读者采取行动所需的信息，保留 if、only 等条件，不把可能的安排写成已确定的安排。用自己的句子转述。",
+    "zh-Hant": "挑出讀者採取行動所需的資訊，保留 if、only 等條件，不把可能的安排寫成已確定的安排。用自己的句子轉述。"
+  },
+  "workedExample": {
+    "en": "Example (not scored): “The garden opens if the path is dry. Check our message at nine.” → The garden may open, but we need to check the message at nine first.",
+    "zh-Hans": "示范（不计分）：“The garden opens if the path is dry. Check our message at nine.” → The garden may open, but we need to check the message at nine first.",
+    "zh-Hant": "示範（不計分）：「The garden opens if the path is dry. Check our message at nine.」→ The garden may open, but we need to check the message at nine first."
+  },
+  "materials": [
+    {
+      "id": "repair-workshop-plan",
+      "rootId": "original-repair-workshop-plan",
+      "title": "Repair workshop update",
+      "blocks": [
+        {
+          "id": "repair-workshop-plan",
+          "text": "Our repair workshop is planned for Saturday afternoon. We normally meet in the school hall, but the lights there are being repaired this week. The library has offered us its meeting room. However, the room can only be used if a safety inspection is completed on Friday morning. The librarian has not confirmed that result yet.\n\nPlease keep Saturday afternoon free, but do not tell other participants that the library booking is certain. I will email everyone by one o'clock on Friday with the final plan. Wait for that email before travelling or inviting a friend. If the room is unavailable, we will run a short online demonstration at the same time. The email will include a link in that case.\n\nFor an in-person workshop, bring one small broken item and a bag to take it home. We cannot accept large electrical equipment. You do not need to pay anything now. If you cannot attend the online option, let me know after you receive Friday's email; I will send you the demonstration notes."
+        }
+      ],
+      "questions": [
+        {
+          "kind": "response",
+          "id": "repair-workshop-plan-summary",
+          "blockId": "repair-workshop-plan",
+          "prompt": "Write two or three sentences to a friend who wants to attend. Say what is uncertain, what to do next and what happens if the room is unavailable.",
+          "modelAnswer": "The library workshop is not confirmed yet because the room needs to pass an inspection. Wait for the email by one on Friday before travelling or inviting anyone. If the room is unavailable, there will be an online demonstration at the same time.",
+          "criteria": [
+            {
+              "en": "I kept the inspection condition and did not describe the room as confirmed.",
+              "zh-Hans": "我保留了检查条件，没有把会议室写成已确认。",
+              "zh-Hant": "我保留了檢查條件，沒有把會議室寫成已確認。"
+            },
+            {
+              "en": "I included the Friday one o’clock email and the instruction to wait.",
+              "zh-Hans": "我写出了周五一点前的邮件通知与先等待的要求。",
+              "zh-Hant": "我寫出了週五一點前的郵件通知與先等待的要求。"
+            },
+            {
+              "en": "I included the online alternative only if the room is unavailable.",
+              "zh-Hans": "我说明只有会议室不可用时才改为线上演示。",
+              "zh-Hant": "我說明只有會議室不可用時才改為線上示範。"
+            }
+          ],
+          "evidence": {
+            "start": 188,
+            "end": 326
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "repair-workshop-plan",
+              "start": 437,
+              "end": 651
+            }
+          ],
+          "hints": [
+            {
+              "en": "Think about what your reader needs to do next.",
+              "zh-Hans": "先想读者接下来需要做什么。",
+              "zh-Hant": "先想讀者接下來需要做甚麼。"
+            },
+            {
+              "en": "Find the condition, the time and the alternative.",
+              "zh-Hans": "找出条件、时间和备用办法。",
+              "zh-Hant": "找出條件、時間和備用辦法。"
+            },
+            {
+              "en": "Keep the condition in your message. Do not turn “if” into a promise.",
+              "zh-Hans": "转述时保留条件，不把 if 变成无条件承诺。",
+              "zh-Hant": "轉述時保留條件，不把 if 變成無條件承諾。"
+            }
+          ],
+          "explanation": {
+            "en": "The room is offered, not confirmed. The inspection controls that decision. The Friday email tells participants which plan to follow; online attendance is a fallback, not an additional confirmed event. Other wording is valid if it preserves these points.",
+            "zh-Hans": "会议室只是被提供作为可能场地，是否可用取决于检查。周五邮件才说明执行哪个安排；线上演示是备用方案，不是额外确定的活动。保留这些要点的其他表达也可以。",
+            "zh-Hant": "會議室只是被提供作為可能場地，是否可用取決於檢查。週五郵件才說明執行哪個安排；線上示範是備用方案，不是額外確定的活動。保留這些要點的其他表達也可以。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "food-collection-arrangements",
+      "rootId": "original-food-collection-arrangements",
+      "title": "Food collection notice",
+      "blocks": [
+        {
+          "id": "food-collection-arrangements",
+          "text": "Thank you for joining the community food collection on Sunday. The collection point is beside the sports centre, not inside it. Volunteers should arrive at nine to sort the boxes. Local families can collect their boxes from ten until twelve. Please do not invite families to come at nine: the first hour is for preparation, and some deliveries may still be arriving.\n\nEvery registered family has a box reserved. They do not need to arrive first to receive one. If a family cannot come before twelve, ask them to call the organiser before eleven on Sunday. We can keep their box at the centre's reception desk until three. This later collection must be arranged by phone; we cannot leave uncollected food there without agreement.\n\nIf you are passing on this notice, include the collection times and the phone arrangement. Do not promise home delivery, because we have no drivers this week. Families may ask a friend to collect for them, but that friend should bring the registration name. The organiser will be at the outdoor collection point throughout the morning."
+        }
+      ],
+      "questions": [
+        {
+          "kind": "response",
+          "id": "food-collection-arrangements-summary",
+          "blockId": "food-collection-arrangements",
+          "prompt": "Write two or three sentences for a family that may arrive late. Include normal collection times, the arrangement needed for later collection and a limit on the service.",
+          "modelAnswer": "Families normally collect from ten until twelve. If you cannot get there by twelve, call before eleven to arrange collection from reception by three. Home delivery is not available, but a friend can collect using your registration name.",
+          "criteria": [
+            {
+              "en": "I used the family collection times, ten to twelve, rather than the volunteer start time.",
+              "zh-Hans": "我写的是家庭领取时间十点至十二点，没有混用志愿者的到场时间。",
+              "zh-Hant": "我寫的是家庭領取時間十點至十二點，沒有混用志願者的到場時間。"
+            },
+            {
+              "en": "I included calling before eleven to arrange collection by three.",
+              "zh-Hans": "我保留了十一点前电话预约、三点前领取的条件。",
+              "zh-Hant": "我保留了十一點前電話預約、三點前領取的條件。"
+            },
+            {
+              "en": "I did not promise home delivery; a friend needs the registration name.",
+              "zh-Hans": "我没有承诺送货上门；如果提到朋友代领，我写明需要登记姓名。",
+              "zh-Hant": "我沒有承諾送貨上門；如果提到朋友代領，我寫明需要登記姓名。"
+            }
+          ],
+          "evidence": {
+            "start": 180,
+            "end": 241
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "food-collection-arrangements",
+              "start": 461,
+              "end": 728
+            },
+            {
+              "blockId": "food-collection-arrangements",
+              "start": 821,
+              "end": 987
+            }
+          ],
+          "hints": [
+            {
+              "en": "Think about what your reader needs to do next.",
+              "zh-Hans": "先想读者接下来需要做什么。",
+              "zh-Hant": "先想讀者接下來需要做甚麼。"
+            },
+            {
+              "en": "Find the condition, the time and the alternative.",
+              "zh-Hans": "找出条件、时间和备用办法。",
+              "zh-Hant": "找出條件、時間和備用辦法。"
+            },
+            {
+              "en": "Keep the condition in your message. Do not turn “if” into a promise.",
+              "zh-Hans": "转述时保留条件，不把 if 变成无条件承诺。",
+              "zh-Hant": "轉述時保留條件，不把 if 變成無條件承諾。"
+            }
+          ],
+          "explanation": {
+            "en": "Nine is the volunteer preparation time. Later collection is conditional on a phone arrangement, so simply saying “come before three” would lose an important condition. The notice rules out home delivery and gives a separate option for collection by a friend. Equivalent summaries are welcome.",
+            "zh-Hans": "九点是志愿者准备时间。延后领取须事先电话安排，直接写“三点前来就行”会遗漏条件。通知明确没有送货上门，并另外提供了朋友代领的办法。可以用其他等义表达。",
+            "zh-Hant": "九點是志願者準備時間。延後領取須事先電話安排，直接寫「三點前來就行」會遺漏條件。通知明確沒有送貨上門，並另外提供了朋友代領的辦法。可以用其他等義表達。"
+          }
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "daily-life"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次写摘要前，列出已确定的事项、仍需确认的条件与谁会回复。",
+    "zh-Hant": "下次寫摘要前，列出已確定的事項、仍需確認的條件與誰會回覆。",
+    "en": "Before your next summary, list what is settled, what still needs confirmation and who will reply."
+  }
+}

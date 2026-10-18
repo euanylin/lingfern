@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "purpose": "Next explicit historical primary edition and anthology evidence collection. EnglishWikiquote remains sole displayed quote source; no quote admission or compiler-as-author inference.",
+  "rightsPolicy": "Official PG USA public-domain labels only; regional/underlyingauthor/translator/editor scope must be independently verified; collected English anthology includes non-English original works and is not an English-original author ledger.",
+  "records": [
+    {
+      "bookId": 27889,
+      "title": "Familiar Quotations A Collection of Passages, Phrases, and Proverbs Traced to Their Sources in Ancient and Modern Literature",
+      "titleAliases": [
+        "Familiar Quotations A Collection of Passages, Phrases, and Proverbs Traced to Their Sources in Ancient and Modern Literature",
+        "Familiar Quotations",
+        "Bartlett's Familiar Quotations"
+      ],
+      "expectedAuthor": "Bartlett, John",
+      "expectedContributorRole": "Compiler",
+      "originalPublicationYear": 1905,
+      "originalLanguage": "en",
+      "editionReview": "Ninth edition,1905printing/1891preface. Compiler is not original author. Only exact author/work/translator scoped evidence; no anthology-root transfer.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/27889",
+      "textUrl": "https://www.gutenberg.org/cache/epub/27889/pg27889.txt"
+    },
+    {
+      "bookId": 16732,
+      "title": "Familiar Quotations",
+      "titleAliases": [
+        "Familiar Quotations",
+        "Bartlett's Familiar Quotations"
+      ],
+      "expectedAuthor": "Bartlett, John",
+      "expectedContributorRole": "Compiler",
+      "originalPublicationYear": null,
+      "originalLanguage": "en",
+      "editionReview": "Hurst earlyedition publication year not established; originalPublicationYear is selectionhint only. Compiler role; exact old scan/context inspection required.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/16732",
+      "textUrl": "https://www.gutenberg.org/cache/epub/16732/pg16732.txt"
+    },
+    {
+      "bookId": 8918,
+      "title": "Life of Johnson, Volume 1 1709-1765",
+      "titleAliases": [
+        "Life of Johnson, Volume 1 1709-1765",
+        "Life of Johnson, Volume 1",
+        "Life of Johnson",
+        "Life of Samuel Johnson",
+        "The Life of Samuel Johnson"
+      ],
+      "expectedAuthor": "Boswell, James",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1791,
+      "originalLanguage": "en",
+      "editionReview": "1887Hill edition where explicit; metadata/editor introduction and notes separately reviewed. All volumes are ONE original LifeofJohnson, no distinct roots pervolume. Spoken Johnson words retain speaker/recordingauthor distinction.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/8918",
+      "textUrl": "https://www.gutenberg.org/cache/epub/8918/pg8918.txt"
+    },
+    {
+      "bookId": 9072,
+      "title": "Life of Johnson, Volume 2 1765-1776",
+      "titleAliases": [
+        "Life of Johnson, Volume 2 1765-1776",
+        "Life of Johnson, Volume 2",
+        "Life of Johnson",
+        "Life of Samuel Johnson",
+        "The Life of Samuel Johnson"
+      ],
+      "expectedAuthor": "Boswell, James",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1791,
+      "originalLanguage": "en",
+      "editionReview": "1887Hill edition where explicit; metadata/editor introduction and notes separately reviewed. All volumes are ONE original LifeofJohnson, no distinct roots pervolume. Spoken Johnson words retain speaker/recordingauthor distinction.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/9072",
+      "textUrl": "https://www.gutenberg.org/cache/epub/9072/pg9072.txt"
+    },
+    {
+      "bookId": 9180,
+      "title": "Life of Johnson, Volume 3 1776-1780",
+      "titleAliases": [
+        "Life of Johnson, Volume 3 1776-1780",
+        "Life of Johnson, Volume 3",
+        "Life of Johnson",
+        "Life of Samuel Johnson",
+        "The Life of Samuel Johnson"
+      ],
+      "expectedAuthor": "Boswell, James",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1791,
+      "originalLanguage": "en",
+      "editionReview": "1887Hill edition where explicit; metadata/editor introduction and notes separately reviewed. All volumes are ONE original LifeofJohnson, no distinct roots pervolume. Spoken Johnson words retain speaker/recordingauthor distinction.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/9180",
+      "textUrl": "https://www.gutenberg.org/cache/epub/9180/pg9180.txt"
+    },
+    {
+      "bookId": 10357,
+      "title": "Life of Johnson, Volume 4 1780-1784",
+      "titleAliases": [
+        "Life of Johnson, Volume 4 1780-1784",
+        "Life of Johnson, Volume 4",
+        "Life of Johnson",
+        "Life of Samuel Johnson",
+        "The Life of Samuel Johnson"
+      ],
+      "expectedAuthor": "Boswell, James",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1791,
+      "originalLanguage": "en",
+      "editionReview": "1887Hill edition where explicit; metadata/editor introduction and notes separately reviewed. All volumes are ONE original LifeofJohnson, no distinct roots pervolume. Spoken Johnson words retain speaker/recordingauthor distinction.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/10357",
+      "textUrl": "https://www.gutenberg.org/cache/epub/10357/pg10357.txt"
+    },
+    {
+      "bookId": 10451,
+      "title": "Life of Johnson, Volume 5 Tour to the Hebrides (1773) and Journey into North Wales (1774)",
+      "titleAliases": [
+        "Life of Johnson, Volume 5 Tour to the Hebrides (1773) and Journey into North Wales (1774)",
+        "Life of Johnson, Volume 5",
+        "Life of Johnson",
+        "Life of Samuel Johnson",
+        "The Life of Samuel Johnson"
+      ],
+      "expectedAuthor": "Boswell, James",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1791,
+      "originalLanguage": "en",
+      "editionReview": "1887Hill edition where explicit; metadata/editor introduction and notes separately reviewed. All volumes are ONE original LifeofJohnson, no distinct roots pervolume. Spoken Johnson words retain speaker/recordingauthor distinction.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/10451",
+      "textUrl": "https://www.gutenberg.org/cache/epub/10451/pg10451.txt"
+    },
+    {
+      "bookId": 69258,
+      "title": "Society and solitude: Twelve chapters",
+      "titleAliases": [
+        "Society and solitude: Twelve chapters",
+        "Society and Solitude",
+        "Society and solitude"
+      ],
+      "expectedAuthor": "Emerson, Ralph Waldo",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1870,
+      "originalLanguage": "en",
+      "editionReview": "Official metadata originalpublication FieldsOsgood1870; body/subwork citations separately bound.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/69258",
+      "textUrl": "https://www.gutenberg.org/cache/epub/69258/pg69258.txt"
+    },
+    {
+      "bookId": 1091,
+      "title": "On Heroes, Hero-Worship, and the Heroic in History",
+      "titleAliases": [
+        "On Heroes, Hero-Worship, and the Heroic in History",
+        "Heroes and Hero Worship",
+        "Heroes and Hero-Worship"
+      ],
+      "expectedAuthor": "Carlyle, Thomas",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1841,
+      "originalLanguage": "en",
+      "editionReview": "Original English lectures; Odin/Mahomet/devotional sections not automatically admitted; religion screen allappearances.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/1091",
+      "textUrl": "https://www.gutenberg.org/cache/epub/1091/pg1091.txt"
+    },
+    {
+      "bookId": 3207,
+      "title": "Leviathan",
+      "titleAliases": [
+        "Leviathan",
+        "Leviathan, The Matter, Forme and Power of a Common Wealth Ecclesiasticall and Civil"
+      ],
+      "expectedAuthor": "Hobbes, Thomas",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1651,
+      "originalLanguage": "en",
+      "editionReview": "Original English1651work; third/fourth Christiancommonwealth chapters religion scope held unless actual secular context evidence.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/3207",
+      "textUrl": "https://www.gutenberg.org/cache/epub/3207/pg3207.txt"
+    },
+    {
+      "bookId": 9413,
+      "title": "The Poetical Works of Alexander Pope, Volume 1",
+      "titleAliases": [
+        "The Poetical Works of Alexander Pope, Volume 1",
+        "An Essay on Criticism",
+        "The Rape of the Lock",
+        "Eloisa to Abelard",
+        "Windsor-Forest"
+      ],
+      "expectedAuthor": "Pope, Alexander",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": null,
+      "originalLanguage": "en",
+      "editionReview": "Collected English authorpoetry; year is first-work selectionhint. GeorgeGilfillan1813-1878commentary/biography and translations require separate actualscope; no anthology compiler authorship.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/9413",
+      "textUrl": "https://www.gutenberg.org/cache/epub/9413/pg9413.txt"
+    },
+    {
+      "bookId": 386,
+      "title": "Virginibus Puerisque, and Other Papers",
+      "titleAliases": [
+        "Virginibus Puerisque, and Other Papers",
+        "Virginibus Puerisque",
+        "Crabbed Age and Youth",
+        "An Apology for Idlers",
+        "Walking Tours"
+      ],
+      "expectedAuthor": "Stevenson, Robert Louis",
+      "expectedContributorRole": "Author",
+      "originalPublicationYear": 1881,
+      "originalLanguage": "en",
+      "editionReview": "Actual1897ChattoWindus transcription of author English essays. Each essay alias must have actualsource header/range evidence before matching; no blanket aliases acrossbook.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/386",
+      "textUrl": "https://www.gutenberg.org/cache/epub/386/pg386.txt"
+    }
+  ],
+  "held": [
+    {
+      "source": "Hoyt New Cyclopedia1922",
+      "reason": "Official scan located IAcu31924027665557; actual rights/edition/OCR/author/translator evidence pending. Do not accept catalogue or compiler as original quote ownership."
+    }
+  ]
+}

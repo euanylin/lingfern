@@ -1,0 +1,28 @@
+import { readFileSync, readdirSync, unlinkSync } from 'node:fs';
+import { join } from 'node:path';
+import { createHash } from 'node:crypto';
+import { defineConfig } from 'vitest/config';
+import { VitePWA } from 'vite-plugin-pwa';
+
+const fixtureRoot = process.env.LINGFERN_OFFLINE_FIXTURES === '1' ? '/tmp/lingfern-offline-fixtures-resources' : '/tmp/lingfern-test-fixtures-resources';
+
+export default defineConfig(({ mode }) => ({
+  publicDir: mode === 'test-fixtures' ? `${fixtureRoot}/public` : 'public',
+  define: {
+    __LINGFERN_IPA_WORD_SOURCES__: readFileSync('public/ipa/SOURCES.json', 'utf8'),
+    __LINGFERN_IPA_SOUND_SOURCES__: readFileSync('public/ipa/PHONEME_SOURCES.json', 'utf8'),
+    __LINGFERN_RULE_HASHES__: JSON.stringify({ scoring: createHash('sha256').update(readFileSync('src/shared/content.ts')).digest('hex'), generator: createHash('sha256').update(readFileSync('src/core/corpus.ts')).update(readFileSync('src/core/practiceOrganization.ts')).update(readFileSync('src/core/spokenCorpus.ts')).update(readFileSync('src/core/spokenCondition.ts')).update(readFileSync('src/core/spokenAttribution.ts')).update(readFileSync('src/core/corpusPractice.ts')).update(readFileSync('src/core/corpusSegments.ts')).update(readFileSync('src/core/corpusRhetoricalFunction.ts')).update(readFileSync('content/corpus/c2-rhetorical-function-scopes.json')).update(readFileSync('src/core/corpusDisagreementSynthesis.ts')).update(readFileSync('content/corpus/c2-disagreement-synthesis-scopes.json')).update(readFileSync('src/core/corpusFaithfulParaphrase.ts')).update(readFileSync('content/corpus/c2-faithful-paraphrase-scopes.json')).update(readFileSync('src/core/corpusComplexPragmatics.ts')).update(readFileSync('content/corpus/c2-complex-pragmatics-scopes.json')).update(readFileSync('src/core/corpusLayeredPosition.ts')).update(readFileSync('content/corpus/c2-layered-position-scopes.json')).update(readFileSync('src/core/corpusNuancedMeaning.ts')).update(readFileSync('content/corpus/c2-nuanced-meaning-scopes.json')).update(readFileSync('src/core/corpusInformationDensity.ts')).update(readFileSync('content/corpus/c1-information-density-scopes.json')).update(readFileSync('src/core/corpusIndirectStance.ts')).update(readFileSync('content/corpus/c1-indirect-stance-scopes.json')).update(readFileSync('src/core/corpusArgumentBoundaries.ts')).update(readFileSync('content/corpus/c1-argument-boundaries-scopes.json')).update(readFileSync('src/core/corpusRegisterAudience.ts')).update(readFileSync('content/corpus/c1-register-audience-scopes.json')).update(readFileSync('src/core/corpusDiscourseOrganization.ts')).update(readFileSync('content/corpus/c1-discourse-organization-scopes.json')).update(readFileSync('src/core/corpusReference.ts')).update(readFileSync('src/core/spokenLongAdmission.ts')).update(readFileSync('content/corpus/long-listening-admission.json')).update(readFileSync('src/core/wordListening.ts')).update(readFileSync('src/core/beginnerListening.ts')).digest('hex') }) },
+  plugins: [{ name: 'omit-finder-metadata', writeBundle(options) {
+    if (!options.dir) return;
+    for (const file of readdirSync(options.dir, { recursive: true, withFileTypes: true }))
+      if (file.isFile() && file.name === '.DS_Store') unlinkSync(join(file.parentPath, file.name));
+  } }, VitePWA({
+    strategies: 'injectManifest', srcDir: 'src', filename: 'sw.ts', registerType: 'prompt', injectRegister: null,
+    manifest: { id: '/', name: 'Lingfern', short_name: 'Lingfern', description: 'Read, listen, and grow into English.', start_url: '/', scope: '/', display: 'standalone', background_color: '#F7F6F2', theme_color: '#536F5B', icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }, { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }] },
+    // The complete quote catalogue, including source evidence, must remain available offline.
+    injectManifest: { maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, globPatterns: ['**/*.{html,js,css,svg,png,webmanifest}', 'audio/a1-words/word-*.mp3', 'daily-quotes/*.{md,txt,json}', 'THIRD_PARTY_NOTICES.md', 'ipa/CC-BY-SA-*.txt', 'licenses/**/*', 'corpus/*.{md,txt}', 'dictionary/oewn-2025/{README.md,LICENSE.md,WNDB_License.txt}'] },
+  })],
+  build: { rolldownOptions: { output: { codeSplitting: { groups: [{ name: 'daily-quotes', test: /content[\\/]daily-quotes-runtime\.json$/ }, { name: 'text-review', test: /content[\\/]corpus[\\/]text-review-rules\.json$/ }] } } } },
+  server: { proxy: Object.fromEntries(['/api', '/mcp', '/oauth', '/.well-known'].map(route => [route, 'http://127.0.0.1:8787'])) },
+  test: { include: ['tests/*.test.ts'], setupFiles: ['fake-indexeddb/auto', 'tests/runtime-resources-setup.ts'], maxWorkers: 1 },
+}));

@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "listening-campus-b1a39ab53ad5",
+      "topic": "campus",
+      "title": {
+        "zh-Hans": "听力 · 校园与教育 · Address at Rice University on the space effort, 12 September 1962 / Commencement address at American University, 10 June",
+        "zh-Hant": "聽力 · 校園與教育 · Address at Rice University on the space effort, 12 September 1962 / Commencement address at American University, 10 June",
+        "en": "Listening · Campus and education · Address at Rice University on the space effort, 12 September 1962 / Commencement address at American University, 10 June"
+      },
+      "skill": "listening",
+      "bytes": 2481464,
+      "sha256": "46fb65fd3c2e4f16995d4bc810e1c1987135ccca8029f293b56a7494c4ec4b94",
+      "roots": 2,
+      "expandedBytes": 2582347,
+      "mediaBytes": 2527866,
+      "metadataBytes": 54481,
+      "audioSeconds": 315.74,
+      "clips": 2,
+      "sourceFamilies": [
+        "jfk"
+      ],
+      "path": "/source-packs/listening-campus-b1a39ab53ad5.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-film-a940fa340efb",
+      "topic": "film",
+      "title": {
+        "zh-Hans": "听力 · 影视与戏剧 · Farewell radio and television address to the American people, 17 January 1961 / Andy Kaufman",
+        "zh-Hant": "聽力 · 影視與戲劇 · Farewell radio and television address to the American people, 17 January 1961 / Andy Kaufman",
+        "en": "Listening · Film and theatre · Farewell radio and television address to the American people, 17 January 1961 / Andy Kaufman"
+      },
+      "skill": "listening",
+      "bytes": 2011182,
+      "sha256": "d02021d98bd3ed5af71db6e112aeee0c398526a9e177c52a864de854756de248",
+      "roots": 2,
+      "expandedBytes": 2127027,
+      "mediaBytes": 2023009,
+      "metadataBytes": 104018,
+      "audioSeconds": 252.68,
+      "clips": 2,
+      "sourceFamilies": [
+        "eisenhower",
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-film-a940fa340efb.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-history-6b0fa3788ac4",
+      "topic": "history",
+      "title": {
+        "zh-Hans": "听力 · 历史 · History / Antikythera mechanism",
+        "zh-Hant": "聽力 · 歷史 · History / Antikythera mechanism",
+        "en": "Listening · History · History / Antikythera mechanism"
+      },
+      "skill": "listening",
+      "bytes": 2426882,
+      "sha256": "90d3a2beac3840de76afda3a27303d073df673682035c2e21957a76c3cf83fef",
+      "roots": 2,
+      "expandedBytes": 2571800,
+      "mediaBytes": 2398654,
+      "metadataBytes": 173146,
+      "audioSeconds": 299.610023,
+      "clips": 2,
+      "sourceFamilies": [
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-history-6b0fa3788ac4.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-language-b325c97ada49",
+      "topic": "language",
+      "title": {
+        "zh-Hans": "听力 · 语言 · Black American Sign Language / Logic",
+        "zh-Hant": "聽力 · 語言 · Black American Sign Language / Logic",
+        "en": "Listening · Language · Black American Sign Language / Logic"
+      },
+      "skill": "listening",
+      "bytes": 2939837,
+      "sha256": "dccc5a25dc0babf3a8573c9449da6adc4fce1e9c17e8388148f8938644f1118c",
+      "roots": 2,
+      "expandedBytes": 3068010,
+      "mediaBytes": 2931234,
+      "metadataBytes": 136776,
+      "audioSeconds": 366.25,
+      "clips": 2,
+      "sourceFamilies": [
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-language-b325c97ada49.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-literature-926658800457",
+      "topic": "literature",
+      "title": {
+        "zh-Hans": "听力 · 文学 · The Four Million / Ulysses (poem)",
+        "zh-Hant": "聽力 · 文學 · The Four Million / Ulysses (poem)",
+        "en": "Listening · Literature · The Four Million / Ulysses (poem)"
+      },
+      "skill": "listening",
+      "bytes": 3616413,
+      "sha256": "93506c16ca9a532ff4c5c5d52cbaab67dba553d82fa5003b8c92f0bd9d17ed80",
+      "roots": 2,
+      "expandedBytes": 3935722,
+      "mediaBytes": 3479807,
+      "metadataBytes": 455915,
+      "audioSeconds": 337.780022675737,
+      "clips": 2,
+      "sourceFamilies": [
+        "gutenberg",
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-literature-926658800457.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-nature-60c39287faa6",
+      "topic": "nature",
+      "title": {
+        "zh-Hans": "听力 · 自然 · Sustainable energy / Geography and ecology of the Everglades",
+        "zh-Hant": "聽力 · 自然 · Sustainable energy / Geography and ecology of the Everglades",
+        "en": "Listening · Nature · Sustainable energy / Geography and ecology of the Everglades"
+      },
+      "skill": "listening",
+      "bytes": 2676833,
+      "sha256": "5103c49a1e467d54f57cb96a616e6a789da54402e703f8a5c7edae7f6b5564a3",
+      "roots": 3,
+      "expandedBytes": 2819862,
+      "mediaBytes": 2647902,
+      "metadataBytes": 171960,
+      "audioSeconds": 330.710022675737,
+      "clips": 3,
+      "sourceFamilies": [
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-nature-60c39287faa6.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-science-3c02e66d8517",
+      "topic": "science",
+      "title": {
+        "zh-Hans": "听力 · 科学 · Oort cloud / Computational neuroscience",
+        "zh-Hant": "聽力 · 科學 · Oort cloud / Computational neuroscience",
+        "en": "Listening · Science · Oort cloud / Computational neuroscience"
+      },
+      "skill": "listening",
+      "bytes": 3285075,
+      "sha256": "213ad2944b6577fabafea8de087a44dfe7de56f17e3a88b90f70b21d65bc8af7",
+      "roots": 3,
+      "expandedBytes": 3440863,
+      "mediaBytes": 3264899,
+      "metadataBytes": 175964,
+      "audioSeconds": 407.79999999999995,
+      "clips": 3,
+      "sourceFamilies": [
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-science-3c02e66d8517.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-society-16bf1cdc4d38",
+      "topic": "society",
+      "title": {
+        "zh-Hans": "听力 · 社会 · The Paradise Mystery / Inaugural address, 20 January 1961",
+        "zh-Hant": "聽力 · 社會 · The Paradise Mystery / Inaugural address, 20 January 1961",
+        "en": "Listening · Society · The Paradise Mystery / Inaugural address, 20 January 1961"
+      },
+      "skill": "listening",
+      "bytes": 9200524,
+      "sha256": "dca02ee57e131eb670994a2d16f759cc0e0730fe8f0bf5a54ee68ce10cc7c180",
+      "roots": 6,
+      "expandedBytes": 9790503,
+      "mediaBytes": 9088990,
+      "metadataBytes": 701513,
+      "audioSeconds": 1030.290022675737,
+      "clips": 6,
+      "sourceFamilies": [
+        "gutenberg",
+        "jfk",
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-society-16bf1cdc4d38.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "listening-technology-10b5209b03fe",
+      "topic": "technology",
+      "title": {
+        "zh-Hans": "听力 · 技术 · How to Inspect Your Own Writing (2020) / Search engine optimization",
+        "zh-Hant": "聽力 · 技術 · How to Inspect Your Own Writing (2020) / Search engine optimization",
+        "en": "Listening · Technology · How to Inspect Your Own Writing (2020) / Search engine optimization"
+      },
+      "skill": "listening",
+      "bytes": 4479757,
+      "sha256": "9d71f83a61cda437dfba717ce2cc52efdf58ee309cb048da7d05f513cf198565",
+      "roots": 4,
+      "expandedBytes": 4655708,
+      "mediaBytes": 4477407,
+      "metadataBytes": 178301,
+      "audioSeconds": 496.520023,
+      "clips": 4,
+      "sourceFamilies": [
+        "voa",
+        "wikipedia"
+      ],
+      "path": "/source-packs/listening-technology-10b5209b03fe.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "reading-business-0fbfc0909733",
+      "topic": "business",
+      "title": {
+        "zh-Hans": "阅读 · 商业 · An Inquiry into the Nature and Causes of the Wealth of Nations",
+        "zh-Hant": "閱讀 · 商業 · An Inquiry into the Nature and Causes of the Wealth of Nations",
+        "en": "Reading · Business · An Inquiry into the Nature and Causes of the Wealth of Nations"
+      },
+      "skill": "reading",
+      "bytes": 9776,
+      "sha256": "6449027a9f8a244ab2c628f12dc2558c9200e41f23502a681b6929077570fd05",
+      "roots": 1,
+      "expandedBytes": 24780,
+      "mediaBytes": 0,
+      "metadataBytes": 24780,
+      "audioSeconds": 0,
+      "passages": 1,
+      "sourceFamilies": [
+        "gutenberg"
+      ],
+      "path": "/source-packs/reading-business-0fbfc0909733.zip",
+      "minWords": null,
+      "minSeconds": null
+    },
+    {
+      "id": "reading-literature-c12e9a886a90",
+      "topic": "literature",
+      "title": {
+        "zh-Hans": "阅读 · 文学 · Alice's Adventures in Wonderland / Treasure Island",
+        "zh-Hant": "閱讀 · 文學 · Alice's Adventures in Wonderland / Treasure Island",
+        "en": "Reading · Literature · Alice's Adventures in Wonderland / Treasure Island"
+      },
+      "skill": "reading",
+      "bytes": 49361,
+      "sha256": "8412e9c753d2562e7e6a75d1c6e7f12dc0fb1d343a2b42319890f1fbf14a55fb",
+      "roots": 17,
+      "expandedBytes": 133733,
+      "mediaBytes": 0,
+      "metadataBytes": 133733,
+      "audioSeconds": 0,
+      "passages": 17,
+      "sourceFamilies": [
+        "gutenberg"
+      ],
+      "path": "/source-packs/reading-literature-c12e9a886a90.zip",
+      "minWords": 700,
+      "minSeconds": null
+    },
+    {
+      "id": "reading-nature-989df204140d",
+      "topic": "nature",
+      "title": {
+        "zh-Hans": "阅读 · 自然 · The Natural History of Selborne / Walden, and On The Duty Of Civil Disobedience",
+        "zh-Hant": "閱讀 · 自然 · The Natural History of Selborne / Walden, and On The Duty Of Civil Disobedience",
+        "en": "Reading · Nature · The Natural History of Selborne / Walden, and On The Duty Of Civil Disobedience"
+      },
+      "skill": "reading",
+      "bytes": 15129,
+      "sha256": "015966fc78088ae35d719bdcd84d08951e14c8fdad3cbd4b26d3df768e4e936b",
+      "roots": 3,
+      "expandedBytes": 38151,
+      "mediaBytes": 0,
+      "metadataBytes": 38151,
+      "audioSeconds": 0,
+      "passages": 3,
+      "sourceFamilies": [
+        "gutenberg"
+      ],
+      "path": "/source-packs/reading-nature-989df204140d.zip",
+      "minWords": 1200,
+      "minSeconds": null
+    },
+    {
+      "id": "reading-science-59961221a191",
+      "topic": "science",
+      "title": {
+        "zh-Hans": "阅读 · 科学 · The Chemical History of a Candle",
+        "zh-Hant": "閱讀 · 科學 · The Chemical History of a Candle",
+        "en": "Reading · Science · The Chemical History of a Candle"
+      },
+      "skill": "reading",
+      "bytes": 9712,
+      "sha256": "ecb13379bca0345a5f6ada69067a1a308535bb7f5eb42155276d379f43b1eb86",
+      "roots": 1,
+      "expandedBytes": 24036,
+      "mediaBytes": 0,
+      "metadataBytes": 24036,
+      "audioSeconds": 0,
+      "passages": 1,
+      "sourceFamilies": [
+        "gutenberg"
+      ],
+      "path": "/source-packs/reading-science-59961221a191.zip",
+      "minWords": null,
+      "minSeconds": null
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+Historical speech recordings — public domain originals
+John F. Kennedy / White House Audio Collection, JFK Presidential Library.
+Specific archival records marked Public Domain (checked during acquisition):
+https://www.jfklibrary.org/asset-viewer/archives/jfkwha-127-002
+https://www.jfklibrary.org/asset-viewer/archives/jfkwha-001
+Public copies:
+https://commons.wikimedia.org/wiki/File:Jfk_rice_university_we_choose_to_go_to_the_moon.ogg
+https://commons.wikimedia.org/wiki/File:JFK_inaugural_address.ogg
+Primary text editions:
+https://www.rice.edu/kennedy
+https://voicesofdemocracy.umd.edu/kennedy-inaugural-address-speech-text/
+Only the original presidential speech is used, not modern editorial essays,
+images or other performances from the inaugural ceremony.
+Rice excerpt: 409.04–557.6 seconds. Inaugural excerpt: 465.14–604.3 seconds.
+Decoded and trimmed, converted to 96 kbps MP3 with sample timestamps reset.
+No pitch or playback-speed changes. Hashes/transcripts: content/audio-sources.json.
+Independent text/audio editorial review remains pending. C1 is a draft teaching
+target, not an official source classification or a learner proficiency result.
+Original draft task release terms remain pending maintainer decision.

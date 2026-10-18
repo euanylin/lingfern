@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "scope": {
+    "regions": [
+      "mainland-China",
+      "USA"
+    ],
+    "use": "local",
+    "published": false
+  },
+  "sources": [
+    {
+      "bookId": "11579",
+      "canonicalBookId": "11579",
+      "rootId": "gutenberg-book-11579",
+      "sourcePath": "private/verification/listening360-public-originals-recovery-cli-20261011/original-books/11579.txt",
+      "sourceHash": "bc9bb5a64d71b657d5aae200bccbf3446aa42919b440684258171645e80514d1",
+      "sourceUrl": "https://www.gutenberg.org/cache/epub/11579/pg11579.txt",
+      "title": "The Journals of Robert Falcon Scott, Volume I",
+      "authors": [
+        "Robert Falcon Scott"
+      ],
+      "licence": "Public domain text in the United States; selected Scott diary text locally reviewed for mainland China; Project Gutenberg terms retained; other regions unverified",
+      "attribution": "Robert Falcon Scott. The Journals of Robert Falcon Scott, Volume I (1913), arranged by Leonard Huxley. Project Gutenberg edition 11579; electronic edition produced by Jeroen Hellingman and the Distributed Proofreaders Team.",
+      "permissionReview": "Codex AI inspected the exact selected two-sentence diary window, source edition, author/editor distinction and adjacent context. Local mainland-China/USA text use only; no whole-book or worldwide clearance. Separate LibriSpeech CC BY 4.0 recording rights and actual reader attribution retained. Automatic original-chapter boundary and full decode checked; no performed-audition, calibrated level, mobile-device or production acceptance claim.",
+      "topic": "history",
+      "acquiredAt": "2026-10-11T00:00:00.000Z",
+      "clips": [
+        {
+          "id": "2299-6524-0025",
+          "text": "Evans is in charge of the\r\nroad and periodically goes along searching for bad places and bridging\r\ncracks with boards and snow.\r\n\r\nBowers checks every case as it comes on shore and dashes off to the\r\nship to arrange the precedence of different classes of goods.",
+          "sourceSpan": {
+            "start": 193349,
+            "end": 193610,
+            "offsetUnit": "utf16-code-units"
+          },
+          "rawResultPath": "private/verification/listening360-four-local-mlx-word-times-20261011-111515/2299-6524-0025-raw-result.json",
+          "rawResultSha256": "e4838af07e818573b63fed51daaf058cae39910ce354a68f28f71b907983e687",
+          "originalAudioPath": "private/verification/listening360-decoded-originals-recovery-20261011-101300/restored/decoded-input/LibriSpeech/train-clean-360/2299/6524/2299-6524-0025.flac",
+          "originalAudioSha256": "830ed2ed6fa4a2c64ea0026018580a2ecce268da568cc2c68e2d41ce7a851a74",
+          "transcriptPath": "private/verification/listening360-decoded-originals-recovery-20261011-101300/restored/decoded-input/LibriSpeech/train-clean-360/2299/6524/2299-6524.trans.txt",
+          "transcriptSha256": "9657ab39e3109b35c0179d895d407f7a28426fc36f420d8d02111bb1d91f19f3",
+          "audioPath": "private/verification/listening360-scott-processing-20261012/media/librispeech-2299-6524-0025.mp3",
+          "audioSha256": "b08986178abfcbfbab88d92f0027c9dfd1a0fd941ec28459a288430ba7ae19e3",
+          "duration": 14.9069375,
+          "gates": {
+            "sourceRights": true,
+            "sourceRoot": true,
+            "sourceContext": true,
+            "transcript": true,
+            "fullDecode": true,
+            "wordTiming": true,
+            "continuousWindow": true,
+            "acousticBoundary": true,
+            "mediaHash": true
+          },
+          "evidence": [
+            {
+              "kind": "rights-context",
+              "path": "private/verification/listening360-scott-rights-closure-20261012/two-selected-window-approval.json",
+              "sha256": "9550ec2faee7ee3d4fdd74a40e0546a4b7280ef555b5fec0dca06df90ff0aa91"
+            },
+            {
+              "kind": "boundary",
+              "path": "private/verification/listening360-scott-original-chapter-boundary-20261012/two-selected-window-boundary-approval.json",
+              "sha256": "ba8cb60a54ceda9afb2d2551b8df916980d31e7112063703e25d49558532cc72"
+            },
+            {
+              "kind": "processing",
+              "path": "private/verification/listening360-scott-processing-20261012/verification.json",
+              "sha256": "6ecf62603b64f86660e737aed8a84175e8cb4c9933b98a5d9a549e8744509536"
+            },
+            {
+              "kind": "media-validation",
+              "path": "private/verification/listening360-scott-processing-20261012/two-mp3-full-decode-verification.json",
+              "sha256": "25df8c89768892f84ed70c33013621cd9fa14e319d100c2ac8d614648f231a2e"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

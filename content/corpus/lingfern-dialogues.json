@@ -1,0 +1,506 @@
+{
+  "version": 1,
+  "note": "Maintainer-authorised original dialogues. Questions come from the existing parsers.",
+  "records": [
+    {
+      "id": "lingfern-dialogue-neighbors",
+      "rootId": "lingfern-dialogue-neighbors",
+      "title": "Neighbors",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Lena: I am your neighbor, Lena Brooks. But, please call me Lena.\nLena: I am in apartment A2.\nOmar: I am in apartment B5.\nNora: I am in apartment C6.\nLena: I cook in the kitchen.\nOmar: We sleep in the bedroom.\nOmar's work number is 555-0142.\nLena: Hello. Is this Omar?\nOmar: You have the wrong number.\nOmar: No. This is 555-2401."
+    },
+    {
+      "id": "lingfern-dialogue-ada",
+      "rootId": "lingfern-dialogue-ada",
+      "title": "Ada at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Ada: I am your neighbor, Ada Adler. But, please call me Ada.\nAda: I am in apartment A1.\nColin: I am in apartment B1.\nCora: I am in apartment C1.\nAda: I cook in the kitchen.\nColin: We sleep in the bedroom.\nColin's work number is 555-3000.\nAda: Hello. Is this Colin?\nColin: You have the wrong number.\nColin: No. This is 555-3001."
+    },
+    {
+      "id": "lingfern-dialogue-ben",
+      "rootId": "lingfern-dialogue-ben",
+      "title": "Ben at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Ben: I am your classmate, Ben Baker. But, please call me Ben.\nBen: I am in apartment A2.\nDiana: I am in apartment B2.\nDerek: I am in apartment C2.\nBen: I eat in the kitchen.\nDiana: We relax in the living room.\nDiana's work number is 555-3002.\nBen: Hello. Is this Diana?\nDiana: You have the wrong number.\nDiana: No. This is 555-3003."
+    },
+    {
+      "id": "lingfern-dialogue-cara",
+      "rootId": "lingfern-dialogue-cara",
+      "title": "Cara at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Cara: I am your coworker, Cara Cole. But, please call me Cara.\nCara: I am in apartment A3.\nEthan: I am in apartment B3.\nEsther: I am in apartment C3.\nCara: I wash in the bathroom.\nEthan: We sleep in the bedroom.\nEthan's work number is 555-3004.\nCara: Hello. Is this Ethan?\nEthan: You have the wrong number.\nEthan: No. This is 555-3005."
+    },
+    {
+      "id": "lingfern-dialogue-drew",
+      "rootId": "lingfern-dialogue-drew",
+      "title": "Drew at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Drew: I am your roommate, Drew Diaz. But, please call me Drew.\nDrew: I am in apartment A4.\nFiona: I am in apartment B4.\nFarid: I am in apartment C4.\nDrew: I cook in the kitchen.\nFiona: We relax in the living room.\nFiona's work number is 555-3006.\nDrew: Hello. Is this Fiona?\nFiona: You have the wrong number.\nFiona: No. This is 555-3007."
+    },
+    {
+      "id": "lingfern-dialogue-elsa",
+      "rootId": "lingfern-dialogue-elsa",
+      "title": "Elsa at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Elsa: I am your partner, Elsa Ellis. But, please call me Elsa.\nElsa: I am in apartment A5.\nGavin: I am in apartment B5.\nGloria: I am in apartment C5.\nElsa: I eat in the kitchen.\nGavin: We wash in the bathroom.\nGavin's work number is 555-3008.\nElsa: Hello. Is this Gavin?\nGavin: You have the wrong number.\nGavin: No. This is 555-3009."
+    },
+    {
+      "id": "lingfern-dialogue-finn",
+      "rootId": "lingfern-dialogue-finn",
+      "title": "Finn at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Finn: I am your teacher, Finn Frost. But, please call me Finn.\nFinn: I am in apartment A6.\nHelen: I am in apartment B6.\nHank: I am in apartment C6.\nFinn: I sleep in the bedroom.\nHelen: We relax in the living room.\nHelen's work number is 555-3010.\nFinn: Hello. Is this Helen?\nHelen: You have the wrong number.\nHelen: No. This is 555-3011."
+    },
+    {
+      "id": "lingfern-dialogue-gina",
+      "rootId": "lingfern-dialogue-gina",
+      "title": "Gina at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Gina: I am your friend, Gina Grant. But, please call me Gina.\nGina: I am in apartment A7.\nIsaac: I am in apartment B7.\nIrene: I am in apartment C7.\nGina: I cook in the kitchen.\nIsaac: We sleep in the bedroom.\nIsaac's work number is 555-3012.\nGina: Hello. Is this Isaac?\nIsaac: You have the wrong number.\nIsaac: No. This is 555-3013."
+    },
+    {
+      "id": "lingfern-dialogue-hugo",
+      "rootId": "lingfern-dialogue-hugo",
+      "title": "Hugo at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Hugo: I am your cousin, Hugo Hayes. But, please call me Hugo.\nHugo: I am in apartment A8.\nJulia: I am in apartment B8.\nJasper: I am in apartment C8.\nHugo: I eat in the kitchen.\nJulia: We relax in the living room.\nJulia's work number is 555-3014.\nHugo: Hello. Is this Julia?\nJulia: You have the wrong number.\nJulia: No. This is 555-3015."
+    },
+    {
+      "id": "lingfern-dialogue-iris",
+      "rootId": "lingfern-dialogue-iris",
+      "title": "Iris at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Iris: I am your visitor, Iris Ingram. But, please call me Iris.\nIris: I am in apartment A9.\nKevin: I am in apartment B9.\nKelsey: I am in apartment C9.\nIris: I wash in the bathroom.\nKevin: We sleep in the bedroom.\nKevin's work number is 555-3016.\nIris: Hello. Is this Kevin?\nKevin: You have the wrong number.\nKevin: No. This is 555-3017."
+    },
+    {
+      "id": "lingfern-dialogue-joel",
+      "rootId": "lingfern-dialogue-joel",
+      "title": "Joel at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Joel: I am your manager, Joel Jensen. But, please call me Joel.\nJoel: I am in apartment A10.\nLara: I am in apartment B10.\nLandon: I am in apartment C10.\nJoel: I cook in the kitchen.\nLara: We relax in the living room.\nLara's work number is 555-3018.\nJoel: Hello. Is this Lara?\nLara: You have the wrong number.\nLara: No. This is 555-3019."
+    },
+    {
+      "id": "lingfern-dialogue-kira",
+      "rootId": "lingfern-dialogue-kira",
+      "title": "Kira at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Kira: I am your helper, Kira Klein. But, please call me Kira.\nKira: I am in apartment A11.\nMarco: I am in apartment B11.\nMonica: I am in apartment C11.\nKira: I eat in the kitchen.\nMarco: We wash in the bathroom.\nMarco's work number is 555-3020.\nKira: Hello. Is this Marco?\nMarco: You have the wrong number.\nMarco: No. This is 555-3021."
+    },
+    {
+      "id": "lingfern-dialogue-leo",
+      "rootId": "lingfern-dialogue-leo",
+      "title": "Leo at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Leo: I am your tenant, Leo Lopez. But, please call me Leo.\nLeo: I am in apartment A12.\nNadia: I am in apartment B12.\nNeil: I am in apartment C12.\nLeo: I sleep in the bedroom.\nNadia: We relax in the living room.\nNadia's work number is 555-3022.\nLeo: Hello. Is this Nadia?\nNadia: You have the wrong number.\nNadia: No. This is 555-3023."
+    },
+    {
+      "id": "lingfern-dialogue-mina",
+      "rootId": "lingfern-dialogue-mina",
+      "title": "Mina at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Mina: I am your guest, Mina Mayer. But, please call me Mina.\nMina: I am in apartment A13.\nOscar: I am in apartment B13.\nOrla: I am in apartment C13.\nMina: I cook in the kitchen.\nOscar: We sleep in the bedroom.\nOscar's work number is 555-3024.\nMina: Hello. Is this Oscar?\nOscar: You have the wrong number.\nOscar: No. This is 555-3025."
+    },
+    {
+      "id": "lingfern-dialogue-nico",
+      "rootId": "lingfern-dialogue-nico",
+      "title": "Nico at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Nico: I am your tutor, Nico Nash. But, please call me Nico.\nNico: I am in apartment A14.\nPriya: I am in apartment B14.\nPavel: I am in apartment C14.\nNico: I eat in the kitchen.\nPriya: We relax in the living room.\nPriya's work number is 555-3026.\nNico: Hello. Is this Priya?\nPriya: You have the wrong number.\nPriya: No. This is 555-3027."
+    },
+    {
+      "id": "lingfern-dialogue-olga",
+      "rootId": "lingfern-dialogue-olga",
+      "title": "Olga at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Olga: I am your host, Olga Ortiz. But, please call me Olga.\nOlga: I am in apartment A15.\nRuben: I am in apartment B15.\nRenata: I am in apartment C15.\nOlga: I wash in the bathroom.\nRuben: We sleep in the bedroom.\nRuben's work number is 555-3028.\nOlga: Hello. Is this Ruben?\nRuben: You have the wrong number.\nRuben: No. This is 555-3029."
+    },
+    {
+      "id": "lingfern-dialogue-paul",
+      "rootId": "lingfern-dialogue-paul",
+      "title": "Paul at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Paul: I am your clerk, Paul Patel. But, please call me Paul.\nPaul: I am in apartment A16.\nSelma: I am in apartment B16.\nSilvio: I am in apartment C16.\nPaul: I cook in the kitchen.\nSelma: We relax in the living room.\nSelma's work number is 555-3030.\nPaul: Hello. Is this Selma?\nSelma: You have the wrong number.\nSelma: No. This is 555-3031."
+    },
+    {
+      "id": "lingfern-dialogue-quinn",
+      "rootId": "lingfern-dialogue-quinn",
+      "title": "Quinn at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Quinn: I am your driver, Quinn Reed. But, please call me Quinn.\nQuinn: I am in apartment A17.\nTomas: I am in apartment B17.\nTessa: I am in apartment C17.\nQuinn: I eat in the kitchen.\nTomas: We wash in the bathroom.\nTomas's work number is 555-3032.\nQuinn: Hello. Is this Tomas?\nTomas: You have the wrong number.\nTomas: No. This is 555-3033."
+    },
+    {
+      "id": "lingfern-dialogue-rosa",
+      "rootId": "lingfern-dialogue-rosa",
+      "title": "Rosa at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Rosa: I am your guide, Rosa Shah. But, please call me Rosa.\nRosa: I am in apartment A18.\nUnity: I am in apartment B18.\nUmar: I am in apartment C18.\nRosa: I sleep in the bedroom.\nUnity: We relax in the living room.\nUnity's work number is 555-3034.\nRosa: Hello. Is this Unity?\nUnity: You have the wrong number.\nUnity: No. This is 555-3035."
+    },
+    {
+      "id": "lingfern-dialogue-seth",
+      "rootId": "lingfern-dialogue-seth",
+      "title": "Seth at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Seth: I am your nurse, Seth Tran. But, please call me Seth.\nSeth: I am in apartment A19.\nVictor: I am in apartment B19.\nViolet: I am in apartment C19.\nSeth: I cook in the kitchen.\nVictor: We sleep in the bedroom.\nVictor's work number is 555-3036.\nSeth: Hello. Is this Victor?\nVictor: You have the wrong number.\nVictor: No. This is 555-3037."
+    },
+    {
+      "id": "lingfern-dialogue-tara",
+      "rootId": "lingfern-dialogue-tara",
+      "title": "Tara at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Tara: I am your tailor, Tara Unger. But, please call me Tara.\nTara: I am in apartment A20.\nWendy: I am in apartment B20.\nWalter: I am in apartment C20.\nTara: I eat in the kitchen.\nWendy: We relax in the living room.\nWendy's work number is 555-3038.\nTara: Hello. Is this Wendy?\nWendy: You have the wrong number.\nWendy: No. This is 555-3039."
+    },
+    {
+      "id": "lingfern-dialogue-uma",
+      "rootId": "lingfern-dialogue-uma",
+      "title": "Uma at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Uma: I am your neighbor, Uma Vega. But, please call me Uma.\nUma: I am in apartment A21.\nXavier: I am in apartment B21.\nXimena: I am in apartment C21.\nUma: I wash in the bathroom.\nXavier: We sleep in the bedroom.\nXavier's work number is 555-3040.\nUma: Hello. Is this Xavier?\nXavier: You have the wrong number.\nXavier: No. This is 555-3041."
+    },
+    {
+      "id": "lingfern-dialogue-vera",
+      "rootId": "lingfern-dialogue-vera",
+      "title": "Vera at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Vera: I am your classmate, Vera Walsh. But, please call me Vera.\nVera: I am in apartment A22.\nYusuf: I am in apartment B22.\nYasmin: I am in apartment C22.\nVera: I cook in the kitchen.\nYusuf: We relax in the living room.\nYusuf's work number is 555-3042.\nVera: Hello. Is this Yusuf?\nYusuf: You have the wrong number.\nYusuf: No. This is 555-3043."
+    },
+    {
+      "id": "lingfern-dialogue-will",
+      "rootId": "lingfern-dialogue-will",
+      "title": "Will at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Will: I am your coworker, Will Young. But, please call me Will.\nWill: I am in apartment A23.\nZelda: I am in apartment B23.\nZora: I am in apartment C23.\nWill: I eat in the kitchen.\nZelda: We wash in the bathroom.\nZelda's work number is 555-3044.\nWill: Hello. Is this Zelda?\nZelda: You have the wrong number.\nZelda: No. This is 555-3045."
+    },
+    {
+      "id": "lingfern-dialogue-zara",
+      "rootId": "lingfern-dialogue-zara",
+      "title": "Zara at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Zara: I am your roommate, Zara Abbott. But, please call me Zara.\nZara: I am in apartment A24.\nAnita: I am in apartment B24.\nAlma: I am in apartment C24.\nZara: I sleep in the bedroom.\nAnita: We relax in the living room.\nAnita's work number is 555-3046.\nZara: Hello. Is this Anita?\nAnita: You have the wrong number.\nAnita: No. This is 555-3047."
+    },
+    {
+      "id": "lingfern-dialogue-amy",
+      "rootId": "lingfern-dialogue-amy",
+      "title": "Amy at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Amy: I am your partner, Amy Barrett. But, please call me Amy.\nAmy: I am in apartment A25.\nBruno: I am in apartment B25.\nByron: I am in apartment C25.\nAmy: I cook in the kitchen.\nBruno: We sleep in the bedroom.\nBruno's work number is 555-3048.\nAmy: Hello. Is this Bruno?\nBruno: You have the wrong number.\nBruno: No. This is 555-3049."
+    },
+    {
+      "id": "lingfern-dialogue-blake",
+      "rootId": "lingfern-dialogue-blake",
+      "title": "Blake at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Blake: I am your teacher, Blake Cameron. But, please call me Blake.\nBlake: I am in apartment A26.\nCelia: I am in apartment B26.\nClara: I am in apartment C26.\nBlake: I eat in the kitchen.\nCelia: We relax in the living room.\nCelia's work number is 555-3050.\nBlake: Hello. Is this Celia?\nCelia: You have the wrong number.\nCelia: No. This is 555-3051."
+    },
+    {
+      "id": "lingfern-dialogue-chloe",
+      "rootId": "lingfern-dialogue-chloe",
+      "title": "Chloe at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Chloe: I am your friend, Chloe Dalton. But, please call me Chloe.\nChloe: I am in apartment A27.\nDamon: I am in apartment B27.\nDarius: I am in apartment C27.\nChloe: I wash in the bathroom.\nDamon: We sleep in the bedroom.\nDamon's work number is 555-3052.\nChloe: Hello. Is this Damon?\nDamon: You have the wrong number.\nDamon: No. This is 555-3053."
+    },
+    {
+      "id": "lingfern-dialogue-dylan",
+      "rootId": "lingfern-dialogue-dylan",
+      "title": "Dylan at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Dylan: I am your cousin, Dylan Ellison. But, please call me Dylan.\nDylan: I am in apartment A28.\nElena: I am in apartment B28.\nEdith: I am in apartment C28.\nDylan: I cook in the kitchen.\nElena: We relax in the living room.\nElena's work number is 555-3054.\nDylan: Hello. Is this Elena?\nElena: You have the wrong number.\nElena: No. This is 555-3055."
+    },
+    {
+      "id": "lingfern-dialogue-eden",
+      "rootId": "lingfern-dialogue-eden",
+      "title": "Eden at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Eden: I am your visitor, Eden Farrell. But, please call me Eden.\nEden: I am in apartment A29.\nFelix: I am in apartment B29.\nFlora: I am in apartment C29.\nEden: I eat in the kitchen.\nFelix: We wash in the bathroom.\nFelix's work number is 555-3056.\nEden: Hello. Is this Felix?\nFelix: You have the wrong number.\nFelix: No. This is 555-3057."
+    },
+    {
+      "id": "lingfern-dialogue-faith",
+      "rootId": "lingfern-dialogue-faith",
+      "title": "Faith at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Faith: I am your manager, Faith Gibson. But, please call me Faith.\nFaith: I am in apartment A30.\nGreta: I am in apartment B30.\nGordon: I am in apartment C30.\nFaith: I sleep in the bedroom.\nGreta: We relax in the living room.\nGreta's work number is 555-3058.\nFaith: Hello. Is this Greta?\nGreta: You have the wrong number.\nGreta: No. This is 555-3059."
+    },
+    {
+      "id": "lingfern-dialogue-graham",
+      "rootId": "lingfern-dialogue-graham",
+      "title": "Graham at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Graham: I am your helper, Graham Hanson. But, please call me Graham.\nGraham: I am in apartment A31.\nHarvey: I am in apartment B31.\nHana: I am in apartment C31.\nGraham: I cook in the kitchen.\nHarvey: We sleep in the bedroom.\nHarvey's work number is 555-3060.\nGraham: Hello. Is this Harvey?\nHarvey: You have the wrong number.\nHarvey: No. This is 555-3061."
+    },
+    {
+      "id": "lingfern-dialogue-holly",
+      "rootId": "lingfern-dialogue-holly",
+      "title": "Holly at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Holly: I am your tenant, Holly Ibarra. But, please call me Holly.\nHolly: I am in apartment A32.\nInes: I am in apartment B32.\nIdris: I am in apartment C32.\nHolly: I eat in the kitchen.\nInes: We relax in the living room.\nInes's work number is 555-3062.\nHolly: Hello. Is this Ines?\nInes: You have the wrong number.\nInes: No. This is 555-3063."
+    },
+    {
+      "id": "lingfern-dialogue-ivan",
+      "rootId": "lingfern-dialogue-ivan",
+      "title": "Ivan at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Ivan: I am your guest, Ivan Keller. But, please call me Ivan.\nIvan: I am in apartment A33.\nJonah: I am in apartment B33.\nJenna: I am in apartment C33.\nIvan: I wash in the bathroom.\nJonah: We sleep in the bedroom.\nJonah's work number is 555-3064.\nIvan: Hello. Is this Jonah?\nJonah: You have the wrong number.\nJonah: No. This is 555-3065."
+    },
+    {
+      "id": "lingfern-dialogue-jade",
+      "rootId": "lingfern-dialogue-jade",
+      "title": "Jade at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Jade: I am your tutor, Jade Lambert. But, please call me Jade.\nJade: I am in apartment A34.\nKeira: I am in apartment B34.\nKurt: I am in apartment C34.\nJade: I cook in the kitchen.\nKeira: We relax in the living room.\nKeira's work number is 555-3066.\nJade: Hello. Is this Keira?\nKeira: You have the wrong number.\nKeira: No. This is 555-3067."
+    },
+    {
+      "id": "lingfern-dialogue-karl",
+      "rootId": "lingfern-dialogue-karl",
+      "title": "Karl at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Karl: I am your host, Karl Mercer. But, please call me Karl.\nKarl: I am in apartment A35.\nLouis: I am in apartment B35.\nLeila: I am in apartment C35.\nKarl: I eat in the kitchen.\nLouis: We wash in the bathroom.\nLouis's work number is 555-3068.\nKarl: Hello. Is this Louis?\nLouis: You have the wrong number.\nLouis: No. This is 555-3069."
+    },
+    {
+      "id": "lingfern-dialogue-lila",
+      "rootId": "lingfern-dialogue-lila",
+      "title": "Lila at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Lila: I am your clerk, Lila Nguyen. But, please call me Lila.\nLila: I am in apartment A36.\nMarta: I am in apartment B36.\nMalik: I am in apartment C36.\nLila: I sleep in the bedroom.\nMarta: We relax in the living room.\nMarta's work number is 555-3070.\nLila: Hello. Is this Marta?\nMarta: You have the wrong number.\nMarta: No. This is 555-3071."
+    },
+    {
+      "id": "lingfern-dialogue-miles",
+      "rootId": "lingfern-dialogue-miles",
+      "title": "Miles at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Miles: I am your driver, Miles Osborne. But, please call me Miles.\nMiles: I am in apartment A37.\nNolan: I am in apartment B37.\nNoelle: I am in apartment C37.\nMiles: I cook in the kitchen.\nNolan: We sleep in the bedroom.\nNolan's work number is 555-3072.\nMiles: Hello. Is this Nolan?\nNolan: You have the wrong number.\nNolan: No. This is 555-3073."
+    },
+    {
+      "id": "lingfern-dialogue-owen",
+      "rootId": "lingfern-dialogue-owen",
+      "title": "Owen at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Owen: I am your guide, Owen Palmer. But, please call me Owen.\nOwen: I am in apartment A38.\nOpal: I am in apartment B38.\nOtis: I am in apartment C38.\nOwen: I eat in the kitchen.\nOpal: We relax in the living room.\nOpal's work number is 555-3074.\nOwen: Hello. Is this Opal?\nOpal: You have the wrong number.\nOpal: No. This is 555-3075."
+    },
+    {
+      "id": "lingfern-dialogue-pia",
+      "rootId": "lingfern-dialogue-pia",
+      "title": "Pia at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Pia: I am your nurse, Pia Quincy. But, please call me Pia.\nPia: I am in apartment A39.\nPedro: I am in apartment B39.\nPaula: I am in apartment C39.\nPia: I wash in the bathroom.\nPedro: We sleep in the bedroom.\nPedro's work number is 555-3076.\nPia: Hello. Is this Pedro?\nPedro: You have the wrong number.\nPedro: No. This is 555-3077."
+    },
+    {
+      "id": "lingfern-dialogue-rory",
+      "rootId": "lingfern-dialogue-rory",
+      "title": "Rory at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Rory: I am your tailor, Rory Ramsey. But, please call me Rory.\nRory: I am in apartment A40.\nRita: I am in apartment B40.\nRafael: I am in apartment C40.\nRory: I cook in the kitchen.\nRita: We relax in the living room.\nRita's work number is 555-3078.\nRory: Hello. Is this Rita?\nRita: You have the wrong number.\nRita: No. This is 555-3079."
+    },
+    {
+      "id": "lingfern-dialogue-sage",
+      "rootId": "lingfern-dialogue-sage",
+      "title": "Sage at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Sage: I am your neighbor, Sage Sutton. But, please call me Sage.\nSage: I am in apartment A41.\nSimon: I am in apartment B41.\nSonia: I am in apartment C41.\nSage: I eat in the kitchen.\nSimon: We wash in the bathroom.\nSimon's work number is 555-3080.\nSage: Hello. Is this Simon?\nSimon: You have the wrong number.\nSimon: No. This is 555-3081."
+    },
+    {
+      "id": "lingfern-dialogue-toby",
+      "rootId": "lingfern-dialogue-toby",
+      "title": "Toby at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Toby: I am your classmate, Toby Tanner. But, please call me Toby.\nToby: I am in apartment A42.\nThea: I am in apartment B42.\nTrent: I am in apartment C42.\nToby: I sleep in the bedroom.\nThea: We relax in the living room.\nThea's work number is 555-3082.\nToby: Hello. Is this Thea?\nThea: You have the wrong number.\nThea: No. This is 555-3083."
+    },
+    {
+      "id": "lingfern-dialogue-ursa",
+      "rootId": "lingfern-dialogue-ursa",
+      "title": "Ursa at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Ursa: I am your coworker, Ursa Underwood. But, please call me Ursa.\nUrsa: I am in apartment A43.\nUlrich: I am in apartment B43.\nUrsula: I am in apartment C43.\nUrsa: I cook in the kitchen.\nUlrich: We sleep in the bedroom.\nUlrich's work number is 555-3084.\nUrsa: Hello. Is this Ulrich?\nUlrich: You have the wrong number.\nUlrich: No. This is 555-3085."
+    },
+    {
+      "id": "lingfern-dialogue-vince",
+      "rootId": "lingfern-dialogue-vince",
+      "title": "Vince at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Vince: I am your roommate, Vince Vaughn. But, please call me Vince.\nVince: I am in apartment A44.\nVal: I am in apartment B44.\nVernon: I am in apartment C44.\nVince: I eat in the kitchen.\nVal: We relax in the living room.\nVal's work number is 555-3086.\nVince: Hello. Is this Val?\nVal: You have the wrong number.\nVal: No. This is 555-3087."
+    },
+    {
+      "id": "lingfern-dialogue-willa",
+      "rootId": "lingfern-dialogue-willa",
+      "title": "Willa at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Willa: I am your partner, Willa Whitman. But, please call me Willa.\nWilla: I am in apartment A45.\nWanda: I am in apartment B45.\nWinona: I am in apartment C45.\nWilla: I wash in the bathroom.\nWanda: We sleep in the bedroom.\nWanda's work number is 555-3088.\nWilla: Hello. Is this Wanda?\nWanda: You have the wrong number.\nWanda: No. This is 555-3089."
+    },
+    {
+      "id": "lingfern-dialogue-yara",
+      "rootId": "lingfern-dialogue-yara",
+      "title": "Yara at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Yara: I am your teacher, Yara York. But, please call me Yara.\nYara: I am in apartment A46.\nYosef: I am in apartment B46.\nYolanda: I am in apartment C46.\nYara: I cook in the kitchen.\nYosef: We relax in the living room.\nYosef's work number is 555-3090.\nYara: Hello. Is this Yosef?\nYosef: You have the wrong number.\nYosef: No. This is 555-3091."
+    },
+    {
+      "id": "lingfern-dialogue-zoe",
+      "rootId": "lingfern-dialogue-zoe",
+      "title": "Zoe at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Zoe: I am your friend, Zoe Zimmer. But, please call me Zoe.\nZoe: I am in apartment A47.\nZane: I am in apartment B47.\nZeke: I am in apartment C47.\nZoe: I eat in the kitchen.\nZane: We wash in the bathroom.\nZane's work number is 555-3092.\nZoe: Hello. Is this Zane?\nZane: You have the wrong number.\nZane: No. This is 555-3093."
+    },
+    {
+      "id": "lingfern-dialogue-aaron",
+      "rootId": "lingfern-dialogue-aaron",
+      "title": "Aaron at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Aaron: I am your cousin, Aaron Archer. But, please call me Aaron.\nAaron: I am in apartment A48.\nAlicia: I am in apartment B48.\nAndre: I am in apartment C48.\nAaron: I sleep in the bedroom.\nAlicia: We relax in the living room.\nAlicia's work number is 555-3094.\nAaron: Hello. Is this Alicia?\nAlicia: You have the wrong number.\nAlicia: No. This is 555-3095."
+    },
+    {
+      "id": "lingfern-dialogue-bella",
+      "rootId": "lingfern-dialogue-bella",
+      "title": "Bella at home",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "text": "Bella: I am your visitor, Bella Bennett. But, please call me Bella.\nBella: I am in apartment A49.\nBoris: I am in apartment B49.\nBridget: I am in apartment C49.\nBella: I cook in the kitchen.\nBoris: We sleep in the bedroom.\nBoris's work number is 555-3096.\nBella: Hello. Is this Boris?\nBoris: You have the wrong number.\nBoris: No. This is 555-3097."
+    }
+  ]
+}

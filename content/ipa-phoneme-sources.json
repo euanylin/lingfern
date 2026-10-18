@@ -1,0 +1,2298 @@
+[
+  {
+    "ipa": [
+      "i"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close_front_unrounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/91/Close_front_unrounded_vowel.ogg",
+    "originalSha1": "b474c0a364f4d3f7830df7cab1887ef3b9205d6e",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-01.mp3",
+    "sha256": "2aa159bdd24b741bcb620e83559422ec3a3b02a73e23ba61062a03080937d2a0",
+    "duration": 0.602,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɪ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Near-close_near-front_unrounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Near-close_near-front_unrounded_vowel.ogg",
+    "originalSha1": "90b0522dcb269043398b5c841cad38cc83083621",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-02.mp3",
+    "sha256": "0085a593280f155d3f0ecc717815ce2795d83e69396f9330a3bd3f50ee2b52ef",
+    "duration": 0.572,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɛ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:PR-open-mid_front_unrounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/PR-open-mid_front_unrounded_vowel.ogg",
+    "originalSha1": "42d2a30c1d35b23d501ab2a6be3e958168ff240d",
+    "mp3Source": null,
+    "author": "RoachPeter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "path": "/ipa/phonemes/sound-03.mp3",
+    "sha256": "850668a170f5c8248fa699ed727d5d73ec7622ece08541a0dd62a4703a26cffc",
+    "duration": 0.72,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "æ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Near-open_front_unrounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Near-open_front_unrounded_vowel.ogg",
+    "originalSha1": "2c06253db9212940ea231f4f7fd135e3c551f02f",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-04.mp3",
+    "sha256": "0598a98652f2bde896c2ed097f3499571ee49379646abe94fb05a6e4398117c8",
+    "duration": 0.706,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɑ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Open_back_unrounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Open_back_unrounded_vowel.ogg",
+    "originalSha1": "2092f4fb872817eaa00a6df73cb0828038dd5462",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-05.mp3",
+    "sha256": "4435d735b2c628a7145e3aaf1b75f1622fab4b223eaffd472a2f2a118a562132",
+    "duration": 0.587,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɔ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:PR-open-mid_back_rounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/PR-open-mid_back_rounded_vowel.ogg",
+    "originalSha1": "676b373dcc591ac97d2faa934b77706f4608b561",
+    "mp3Source": null,
+    "author": "RoachPeter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "path": "/ipa/phonemes/sound-06.mp3",
+    "sha256": "18fed5359a42ec8e38984e6c52ffed3ab60b99a1692d5c1964dbcfb35183153b",
+    "duration": 0.759,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ʊ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Near-close_near-back_rounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Near-close_near-back_rounded_vowel.ogg",
+    "originalSha1": "a13e1766302a657f906d31104975c87e0b5a3587",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-07.mp3",
+    "sha256": "87dba39705d3bbbcef352847b21e37ef983b2bf8037be808951c8b6141f414c5",
+    "duration": 0.607,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "u"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close_back_rounded_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Close_back_rounded_vowel.ogg",
+    "originalSha1": "ec885fb9088c69e0ceed6c41cec7deb86dce4275",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-08.mp3",
+    "sha256": "48bde37192e42e158e2ea2648e3c5cc798a713ce6c1a6853839db7e5275d4dd7",
+    "duration": 0.67,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ʌ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:PR-open-mid_back_unrounded_vowel2.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/PR-open-mid_back_unrounded_vowel2.ogg",
+    "originalSha1": "d6d6a53ca3a347ea58578cf07b96385660e4f69e",
+    "mp3Source": null,
+    "author": "RoachPeter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "path": "/ipa/phonemes/sound-09.mp3",
+    "sha256": "a9e077fe5958a278f251f1563d0ec4e83e89afd0c071d91c374f1d3c0c68c157",
+    "duration": 0.743,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ə"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Mid-central_vowel.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Mid-central_vowel.ogg",
+    "originalSha1": "b46666835bad941e68d73fbf59a6134f9bf1a244",
+    "mp3Source": null,
+    "author": "Denelson83 and file-history contributors (see source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-10.mp3",
+    "sha256": "34c973de03329bafba6b7e011e6318acf158402bc6413e2d0dc2214efe23e41b",
+    "duration": 0.601,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɝ",
+      "ɚ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:En-us-er.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/En-us-er.ogg",
+    "originalSha1": "3a86a7280d6dfd28e6d123fff0be61134010c972",
+    "mp3Source": null,
+    "author": "Dvortygirl",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-11.mp3",
+    "sha256": "65583f7ddd7b5261a742fa66a5e3223dcaeb2b8dcebf5b3f9c0a5af413a3bdc6",
+    "duration": 0.569,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "eɪ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:En-us-A.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/En-us-A.ogg",
+    "originalSha1": "313de458b379ebc820d35f611e544e3ab8faf19c",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/4/42/En-us-A.ogg/En-us-A.ogg.mp3",
+    "author": "Muke Tever",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "path": "/ipa/phonemes/sound-12.mp3",
+    "sha256": "c68c19c8b9a3fb6e062b65855c2d6098601595be83a9a351fb5e2071c8e23d57",
+    "duration": 1.177,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "aɪ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:En-us-I.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/En-us-I.ogg",
+    "originalSha1": "5157123c7eab72ffbe1bd4524aa7347746e2eb81",
+    "mp3Source": null,
+    "author": "Muke Tever",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "path": "/ipa/phonemes/sound-13.mp3",
+    "sha256": "489c4f9acb337aa3f8d66d7cacc6ef9d0956d19a3918c2240fe7ed6c77aee869",
+    "duration": 0.488,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɔɪ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:LL-Q1860_%28eng%29-Arlo_Barnes-oy.wav",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/LL-Q1860_%28eng%29-Arlo_Barnes-oy.wav",
+    "originalSha1": "ad396031f43ac9f07ba523beeffc01d5dc282880",
+    "mp3Source": null,
+    "author": "Speaker: Arlo Barnes\nRecorder: Arlo Barnes",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "path": "/ipa/phonemes/sound-14.mp3",
+    "sha256": "9a646301bc9edd813fdf0946f559bb7f8c891ae0e9b19777792b013de3e8221b",
+    "duration": 0.85,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "aʊ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:LL-Q1860_%28eng%29-Pvanp7-a%CA%8A_%28diphthong%29.wav",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/LL-Q1860_%28eng%29-Pvanp7-a%CA%8A_%28diphthong%29.wav",
+    "originalSha1": "27a4777659842cae3b94aa65e5f4e455ab3996b0",
+    "mp3Source": null,
+    "author": "Speaker: Pvanp7\nRecorder: Pvanp7",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "path": "/ipa/phonemes/sound-15.mp3",
+    "sha256": "344b47cab88f41a6b9da529da87a9a1250e5671ffd0be824a59bc2179b6d84ce",
+    "duration": 0.899,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "oʊ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:En-us-O.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/En-us-O.ogg",
+    "originalSha1": "d77f4337bb5539ec542a8df93264001fb6a05148",
+    "mp3Source": null,
+    "author": "DroEsperanto",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "path": "/ipa/phonemes/sound-16.mp3",
+    "sha256": "80ca1ba7259ef8b26eb4fdb068e665f425cf255cc713f9a2547d658c346ebc9d",
+    "duration": 0.627,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "p"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_bilabial_plosive.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Voiceless_bilabial_plosive.ogg",
+    "originalSha1": "d130da4673b9eca7f038cdb43ea9db83145a08e9",
+    "mp3Source": null,
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-17.mp3",
+    "sha256": "c63067a41306de37e9a178432b29a1a0e07c4bd88857da0f240be41114531ed3",
+    "duration": 1.52,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "b"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_bilabial_plosive.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Voiced_bilabial_plosive.ogg",
+    "originalSha1": "67978441b5165b5ea3663d0090822509c8399489",
+    "mp3Source": null,
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-18.mp3",
+    "sha256": "fecf2a269a7275d16b3f78e994f5dae48e6f00e9f2adc39807043aec0875a950",
+    "duration": 2.061,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "t"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_alveolar_plosive.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Voiceless_alveolar_plosive.ogg",
+    "originalSha1": "1c4c92df805583d5584ac4b92ace40f32cca675b",
+    "mp3Source": null,
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-19.mp3",
+    "sha256": "e0aa4f2c7eaa6c960068d6c7d5b7ec3444e16a177c17307ba3f43c7a14b974c0",
+    "duration": 1.933,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "d"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_plosive.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Voiced_alveolar_plosive.ogg",
+    "originalSha1": "1064d586cd6b2cba715833eabf933784e8e7b668",
+    "mp3Source": null,
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-20.mp3",
+    "sha256": "16a97c9814bcf37a3d1730859d8bcb64f7c71478fe35b5fcf83e1ace94361e68",
+    "duration": 1.931,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "k"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_velar_plosive.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Voiceless_velar_plosive.ogg",
+    "originalSha1": "7bf30f4f53de17f555289d4d099fcc7b7da71392",
+    "mp3Source": null,
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-21.mp3",
+    "sha256": "3b44db402ecc9bb8ce4e7b211e23d7607c21673f84e395ad1fe6ed48b3c719dc",
+    "duration": 1.984,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɡ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_velar_plosive_02.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Voiced_velar_plosive_02.ogg",
+    "originalSha1": "9d2f233d4c383d4ce4367738f77e4e3fb87dc140",
+    "mp3Source": null,
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-22.mp3",
+    "sha256": "71831e30b2d6dd0e64e7a90d8a1b53b0a2e286ff5eb5dc70ac65fc478a69c3d4",
+    "duration": 1.893,
+    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "f"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_labio-dental_fricative.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Voiceless_labio-dental_fricative.ogg",
+    "originalSha1": "b8499e54f8f0e7b68262facbc720b2d3973a0b7e",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c7/Voiceless_labio-dental_fricative.ogg/Voiceless_labio-dental_fricative.ogg.mp3",
+    "author": "Nixinova",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "path": "/ipa/phonemes/sound-23.mp3",
+    "sha256": "0e7c568f644b5f18f6ae192e01d3e72f2e6bfccc4a2dab870e4496b4bd2fead5",
+    "duration": 1.91,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "v"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_labio-dental_fricative.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Voiced_labio-dental_fricative.ogg",
+    "originalSha1": "4360102943b65003100a7e87f213a3117cb6d2d6",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/4/42/Voiced_labio-dental_fricative.ogg/Voiced_labio-dental_fricative.ogg.mp3",
+    "author": "Nixinova",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "path": "/ipa/phonemes/sound-24.mp3",
+    "sha256": "593b2fe24e854fe34ea0d543e47ae9af75da1afbd67a6396ade0dae652a8e2b7",
+    "duration": 1.738,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "θ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_dental_fricative.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/Voiceless_dental_fricative.ogg",
+    "originalSha1": "e051a6c6a050e6a1b9741f1e53ea92a421d0374a",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/8/80/Voiceless_dental_fricative.ogg/Voiceless_dental_fricative.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-25.mp3",
+    "sha256": "8619be16ad7fde2747f3026faece605855ce1b0cf119cc33def3783bc56977a8",
+    "duration": 2.277,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ð"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_dental_fricative.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Voiced_dental_fricative.ogg",
+    "originalSha1": "7c897f55a3b92c8fb4edcc7946c51c7f5ae787e9",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6a/Voiced_dental_fricative.ogg/Voiced_dental_fricative.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-26.mp3",
+    "sha256": "a6ad10137537f6c2537a8a5a9fac0b006fe0f97f9d1ca5c65ecff2c636a5e2b3",
+    "duration": 2.399,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "s"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_alveolar_sibilant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Voiceless_alveolar_sibilant.ogg",
+    "originalSha1": "92d215b4003a0184eded8b5ce8b96083a546386d",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ac/Voiceless_alveolar_sibilant.ogg/Voiceless_alveolar_sibilant.ogg.mp3",
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-27.mp3",
+    "sha256": "dd0cdaedc8f1f091c397ca7efdd5170a800ed9a496796fdb7f2e2f3fbdd30016",
+    "duration": 2.608,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "z"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_sibilant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Voiced_alveolar_sibilant.ogg",
+    "originalSha1": "aa501c317e153a943b6bba1c41e3e7fd92edc956",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Voiced_alveolar_sibilant.ogg/Voiced_alveolar_sibilant.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-28.mp3",
+    "sha256": "ee96171516ef9b132a843901fae46d29eca36919dddfd7e2c19c626dfe2db32f",
+    "duration": 2.184,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ʃ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_palato-alveolar_sibilant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Voiceless_palato-alveolar_sibilant.ogg",
+    "originalSha1": "5c23db9bb769b91ba24fb952bbbb01bc338ac206",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/cc/Voiceless_palato-alveolar_sibilant.ogg/Voiceless_palato-alveolar_sibilant.ogg.mp3",
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-29.mp3",
+    "sha256": "98a63452390b1b4bc0779247eadb8cd9f28cf72d3c1e78cc6c95f8d4f0fe8925",
+    "duration": 2.44,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ʒ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_palato-alveolar_sibilant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Voiced_palato-alveolar_sibilant.ogg",
+    "originalSha1": "090fe11e36c6d1380d8a7fb5d88c2df4c4af708c",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/30/Voiced_palato-alveolar_sibilant.ogg/Voiced_palato-alveolar_sibilant.ogg.mp3",
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-30.mp3",
+    "sha256": "744b75cdeeec396f977fb84991442a1c2e7698ec2bf4acb2b7d694c9410e4d86",
+    "duration": 2.585,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "h"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_glottal_fricative.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Voiceless_glottal_fricative.ogg",
+    "originalSha1": "82a56b02f8411629dcee4a61b5b2fb88cf41dc75",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/d/da/Voiceless_glottal_fricative.ogg/Voiceless_glottal_fricative.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-31.mp3",
+    "sha256": "5bac241058d03115535afae411d34d8d895599975fab6e90922333fc383ae3ed",
+    "duration": 2.199,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "tʃ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_palato-alveolar_affricate.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/97/Voiceless_palato-alveolar_affricate.ogg",
+    "originalSha1": "d6d7ff4b51d6de90994dd1fe0e50c6af7c7e7c54",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/97/Voiceless_palato-alveolar_affricate.ogg/Voiceless_palato-alveolar_affricate.ogg.mp3",
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-32.mp3",
+    "sha256": "71a5420aba9acabf55b085923ed33d21d3ed65752660eddc08441158f90930dd",
+    "duration": 2.085,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "dʒ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_palato-alveolar_affricate.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Voiced_palato-alveolar_affricate.ogg",
+    "originalSha1": "d2e571840ad18da9f297915a2de9dc26c4d4da56",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e6/Voiced_palato-alveolar_affricate.ogg/Voiced_palato-alveolar_affricate.ogg.mp3",
+    "author": "The original uploader was Octane at English Wikipedia.",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "path": "/ipa/phonemes/sound-33.mp3",
+    "sha256": "e3bc35a8d5feb59dc51cbc31f55866da1775b0d68e8307637203852384dac72a",
+    "duration": 1.34,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "m"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Bilabial_nasal.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Bilabial_nasal.ogg",
+    "originalSha1": "9aa284e454f590dd1cce25dbd4da61faef2f1af7",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/a9/Bilabial_nasal.ogg/Bilabial_nasal.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-34.mp3",
+    "sha256": "244c1440b9a5efa534754dc8c8464bf20ea8b83bc6eebb8db87b83a88049a660",
+    "duration": 2.03,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "n"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_nasal.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/Alveolar_nasal.ogg",
+    "originalSha1": "086d166308ec025f1c92de3021f54bc2d80562fc",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/2/29/Alveolar_nasal.ogg/Alveolar_nasal.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-35.mp3",
+    "sha256": "432cee078afe5141f9dec78517d60efa322fd17aa63bc69f3ecffe63058f0c81",
+    "duration": 2.312,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ŋ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Velar_nasal.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Velar_nasal.ogg",
+    "originalSha1": "2a61afbbfddff3ee4c9caf9827bd0829dd7b44de",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/3/39/Velar_nasal.ogg/Velar_nasal.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-36.mp3",
+    "sha256": "e925f2127bb699bb411031c58464eecbe1939c77f6fa49f39fb7d6e184a039a1",
+    "duration": 1.926,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "l"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_lateral_approximant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Alveolar_lateral_approximant.ogg",
+    "originalSha1": "c72c45678fbca0aca52b98fed9b1977b648de3b9",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/bc/Alveolar_lateral_approximant.ogg/Alveolar_lateral_approximant.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-37.mp3",
+    "sha256": "25e6116dcc4b0a40c0a2ca48b138b45c4eb78cf3e90f58e391e04ae42d986e60",
+    "duration": 2.207,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "ɹ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_approximant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Alveolar_approximant.ogg",
+    "originalSha1": "32a0dff953ab25959354dc97a853b4fe359fb905",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/1f/Alveolar_approximant.ogg/Alveolar_approximant.ogg.mp3",
+    "author": "Erutuon",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-38.mp3",
+    "sha256": "848225fec48fe4f8d851186cc7071638f6bec90f0b6cd41b3928a8a17301318a",
+    "duration": 1.961,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "j"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Palatal_approximant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Palatal_approximant.ogg",
+    "originalSha1": "f9a1154118babeb39f1bd63785b5259a11431b0b",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e8/Palatal_approximant.ogg/Palatal_approximant.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-39.mp3",
+    "sha256": "6a894fc9ebbbb4cecadf7615ac50ad3674299ec9042b65a29f1fa305890fce7f",
+    "duration": 2.103,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "w"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_labio-velar_approximant.ogg",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Voiced_labio-velar_approximant.ogg",
+    "originalSha1": "fc084012c3a164140f17149502fde6badc2a026c",
+    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f2/Voiced_labio-velar_approximant.ogg/Voiced_labio-velar_approximant.ogg.mp3",
+    "author": "Peter Isotalo (recording credited on source page)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-40.mp3",
+    "sha256": "81ce5d93b08e06ecd728d19f3f907424f3b15989b3e744c9b9b821c4b4e0a8eb",
+    "duration": 1.804,
+    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
+    "reviewStatus": "source and licence checked; independent listening review pending"
+  },
+  {
+    "ipa": [
+      "y"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close_front_rounded_vowel.ogg",
+    "sourceRevision": 862346504,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=862346504",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Close_front_rounded_vowel.ogg",
+    "originalSha1": "1be48b361894a9e7a5524c8d25102dc26468ff3e",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-41.mp3",
+    "sha256": "2cda09a4e78f5037dcf6dadb895b44cd9edc1cd417412e210c07c3575a520c53",
+    "duration": 0.654125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɨ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close_central_unrounded_vowel.ogg",
+    "sourceRevision": 1127595092,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1127595092",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Close_central_unrounded_vowel.ogg",
+    "originalSha1": "5e23853e720b111185a855b5a72275e97144986d",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-42.mp3",
+    "sha256": "9e8ec6bdca7e0d4b43da8984b06b0b14dca40254d282ef23893da13ec72eb3c2",
+    "duration": 0.5468125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʉ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close_central_rounded_vowel.ogg",
+    "sourceRevision": 862345874,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=862345874",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/Close_central_rounded_vowel.ogg",
+    "originalSha1": "5f7d757b2f35cbd1fef91c75faf69e7a722c2650",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-43.mp3",
+    "sha256": "3a903dc53859824d3182d3b472015ca6a832d51b44c6bb3eea6dc823038a6a63",
+    "duration": 0.7885,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɯ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close_back_unrounded_vowel.ogg",
+    "sourceRevision": 862345731,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=862345731",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Close_back_unrounded_vowel.ogg",
+    "originalSha1": "fd21d4e105075953cd5e897f38152753cfd47d70",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-44.mp3",
+    "sha256": "d59e940184ef622323836e54be1314791177201819175f65c31d74f90e03dceb",
+    "duration": 0.562,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʏ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Near-close_near-front_rounded_vowel.ogg",
+    "sourceRevision": 729153070,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=729153070",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Near-close_near-front_rounded_vowel.ogg",
+    "originalSha1": "1083060fc3433784c18c3b9a8a8553ca6dd40d7a",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-45.mp3",
+    "sha256": "cdf4b39107aed53151d1b1095532e7276485c4833b9b733f54ab1145427215e3",
+    "duration": 0.61825,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "e"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close-mid_front_unrounded_vowel.ogg",
+    "sourceRevision": 1224439352,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1224439352",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Close-mid_front_unrounded_vowel.ogg",
+    "originalSha1": "a7d6ea1cac2b7886ea2b4f103cb5ba1833df940c",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-46.mp3",
+    "sha256": "cf7eb0cad8d8a50cb2a48696fcc6176a2c1eb7bca077d955aabb3df1b088f985",
+    "duration": 0.7169375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ø"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close-mid_front_rounded_vowel.ogg",
+    "sourceRevision": 862297408,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=862297408",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Close-mid_front_rounded_vowel.ogg",
+    "originalSha1": "6fc5342f0de9e3458d1ee777396c47e5f7d92cba",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-47.mp3",
+    "sha256": "35a94079617c67c87cc3020bbf72e84263c0c727cabeadbcc57aa6f5f9442ebd",
+    "duration": 0.6626875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɘ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close-mid_central_unrounded_vowel.ogg",
+    "sourceRevision": 1106506602,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1106506602",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Close-mid_central_unrounded_vowel.ogg",
+    "originalSha1": "a549ba0654ef652d89628be190d073eaa42a7acc",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-48.mp3",
+    "sha256": "a7bef53c4dfa3b9350dbeb4ace6664b709039a0f933575f7fd28c6fef79f3842",
+    "duration": 0.59075,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɵ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close-mid_central_rounded_vowel.ogg",
+    "sourceRevision": 1177718950,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1177718950",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Close-mid_central_rounded_vowel.ogg",
+    "originalSha1": "c1e29f357588c5b8619c01e7ff53490837ba373d",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-49.mp3",
+    "sha256": "e6906b817c16695c28e1d957424470cc9e5df21fe029878feb4038678f4b5208",
+    "duration": 0.5946875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɤ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close-mid_back_unrounded_vowel.ogg",
+    "sourceRevision": 1199062348,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1199062348",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/Close-mid_back_unrounded_vowel.ogg",
+    "originalSha1": "aba8561b2e66e357f8a7e6c323b73eed2014ce2d",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-50.mp3",
+    "sha256": "a11b4b82b438c08480c4fe67f15c3376207619d1bc2dd262aa051bd8c86f827f",
+    "duration": 0.7824375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "o"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Close-mid_back_rounded_vowel.ogg",
+    "sourceRevision": 1199062503,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1199062503",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/Close-mid_back_rounded_vowel.ogg",
+    "originalSha1": "6e648d7e4aaa94eb9332d5b92e2e9f802213c494",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-51.mp3",
+    "sha256": "cc77c28d1d716961886fb2372b6162d2a4a1e97d3487d974476342c4863c8dc6",
+    "duration": 0.5843125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "œ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_front_rounded_vowel.ogg",
+    "sourceRevision": 1267414044,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1267414044",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Open-mid_front_rounded_vowel.ogg",
+    "originalSha1": "2ec2bb7ad1e0d1f7ef41cc383ae0c346f1e84de3",
+    "mp3Source": null,
+    "author": "JøMa",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-52.mp3",
+    "sha256": "cf438c49eb731639149eb9df0842fe8a67dba818639adbf92f7ad11040360dd7",
+    "duration": 1.152,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. Gain reduced by3dB to keep decoded peaks below full scale. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɜ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_central_unrounded_vowel.ogg",
+    "sourceRevision": 1237610689,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1237610689",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Open-mid_central_unrounded_vowel.ogg",
+    "originalSha1": "05536b10548e13bca862e9789380ed9cc439a16b",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-53.mp3",
+    "sha256": "029e9ce393e107ccac1bf048ba6ae2cf6c4cb7ea879aa63eb21442d337e58462",
+    "duration": 0.5686875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɞ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_central_rounded_vowel.ogg",
+    "sourceRevision": 1068550701,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1068550701",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Open-mid_central_rounded_vowel.ogg",
+    "originalSha1": "f3dc150417b217d92989d310948d9b551bc489d4",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-54.mp3",
+    "sha256": "aa067cf6ec8e24f3d3929c6fe7b841ed4acbde6957fc88b05e91d5809f5e498c",
+    "duration": 1.208875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɐ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:PR-near-open_central_unrounded_vowel.ogg",
+    "sourceRevision": 729153383,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=729153383",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/PR-near-open_central_unrounded_vowel.ogg",
+    "originalSha1": "9858e40c13f8b2605e599b0fb491017b738f92da",
+    "mp3Source": null,
+    "author": "RoachPeter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "path": "/ipa/phonemes/sound-55.mp3",
+    "sha256": "37b0a594af30f06fadd1cdb48041d27936cc1579ea610d93be18529790981ed4",
+    "duration": 0.7183125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "a"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:PR-open_front_unrounded_vowel.ogg",
+    "sourceRevision": 935790569,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=935790569",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/PR-open_front_unrounded_vowel.ogg",
+    "originalSha1": "86b3c51da882b0426c18058eb4322ba024c032c1",
+    "mp3Source": null,
+    "author": "RoachPeter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "path": "/ipa/phonemes/sound-56.mp3",
+    "sha256": "839e3ef629848cb603c9ca0496597618a48d39b94a558064361dd2e4219e2589",
+    "duration": 0.6661875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɶ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Open_front_rounded_vowel.ogg",
+    "sourceRevision": 997442999,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=997442999",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Open_front_rounded_vowel.ogg",
+    "originalSha1": "626eb2ffb8250241a5da43fae0aa532883bc8fce",
+    "mp3Source": null,
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-57.mp3",
+    "sha256": "19e3da1f1606e6b14860e6713ed0641bdc09f4abebd7e86a3b9dd9610a39b976",
+    "duration": 0.6020625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɒ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:PR-open_back_rounded_vowel.ogg",
+    "sourceRevision": 1177828254,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1177828254",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/PR-open_back_rounded_vowel.ogg",
+    "originalSha1": "4b5316047a580b5ca9dabfd7130c574d9ba2d35a",
+    "mp3Source": null,
+    "author": "RoachPeter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "path": "/ipa/phonemes/sound-58.mp3",
+    "sha256": "22c2fbe115b052a74ecac7e4ef05269e6a98c7c9632af8686092ecf1c6397b21",
+    "duration": 0.70225,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʈ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_retroflex_stop.oga",
+    "sourceRevision": 1090309306,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090309306",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Voiceless_retroflex_stop.oga",
+    "originalSha1": "a8435c4df6ca0cde15dd724e2df78402f6f2dc38",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-59.mp3",
+    "sha256": "744b9e7642930745066c78de3f61f1fc1bef2857d3fcd2771e5fa1bde72b159e",
+    "duration": 1.7401875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɖ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_retroflex_stop.oga",
+    "sourceRevision": 1055746862,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1055746862",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Voiced_retroflex_stop.oga",
+    "originalSha1": "5022e0247faaef007f059435379cc53cdb47c854",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-60.mp3",
+    "sha256": "5a27adc4e37b4c732d413f89e9d76f8078247e461f260328907919693b103179",
+    "duration": 1.95725,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "c"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_palatal_plosive.ogg",
+    "sourceRevision": 981895970,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=981895970",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Voiceless_palatal_plosive.ogg",
+    "originalSha1": "e392811ad55db4dc20960432822f5619c4204a99",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-61.mp3",
+    "sha256": "ac9f0842761e94c9aeb9750d3ef7b29d15b5bc9b8ec837ff0668b84addca3091",
+    "duration": 1.8011875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɟ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_palatal_plosive.ogg",
+    "sourceRevision": 1143923071,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1143923071",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Voiced_palatal_plosive.ogg",
+    "originalSha1": "d9b1f8901da98f6c210733cef9de3febc12df3db",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-62.mp3",
+    "sha256": "29cd5efe17716876638b8bb3bb2c42f1e95e3c8e2882795fa45e2f95a03ce7f0",
+    "duration": 1.962125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "q"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_uvular_plosive.ogg",
+    "sourceRevision": 1082899137,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1082899137",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Voiceless_uvular_plosive.ogg",
+    "originalSha1": "ba4efa2b876b27bd27ff24d07a4e17b1d0a66890",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-63.mp3",
+    "sha256": "f9898f083e5e564e5079aa1b92e54c42e7667aeada0d1a0e32d6a9d31dcaaa7f",
+    "duration": 1.8831875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɢ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_uvular_stop.oga",
+    "sourceRevision": 956049758,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=956049758",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Voiced_uvular_stop.oga",
+    "originalSha1": "e553b15c3bbeb7f94dc25dd878f3335123126704",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-64.mp3",
+    "sha256": "2841f196850de0a26d66e60fe3f1ee431f3971c7ead60dd6f530b553c6bcb9a0",
+    "duration": 1.81925,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʔ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Glottal_stop.ogg",
+    "sourceRevision": 1274734856,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1274734856",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Glottal_stop.ogg",
+    "originalSha1": "7bbefb6081d43fae430bf932419a72d10b96f172",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-65.mp3",
+    "sha256": "4f812a9cc6834675669f29e036e41e01c30a8792efa0537fdf53fca358ab949e",
+    "duration": 1.9894375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɱ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Labiodental_nasal.ogg",
+    "sourceRevision": 925133793,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=925133793",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Labiodental_nasal.ogg",
+    "originalSha1": "6cd702f3b58ca12d68dd1eb2351221caf845a6ec",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-66.mp3",
+    "sha256": "8d93e4ed118c96171e63f4d1aa4b65915d15eb0fecf1f2bd964ccc374904e1f5",
+    "duration": 2.15325,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɳ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Retroflex_nasal.ogg",
+    "sourceRevision": 869022147,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=869022147",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Retroflex_nasal.ogg",
+    "originalSha1": "d5ac1bf4c0d168904f524902ee8641dffc6b0ae6",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-67.mp3",
+    "sha256": "ee0c4f4d2bd6cfd81ca6a95893068f1689abd8de94be5aca6487aef205063c64",
+    "duration": 2.17975,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɲ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Palatal_nasal.ogg",
+    "sourceRevision": 830399627,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=830399627",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Palatal_nasal.ogg",
+    "originalSha1": "53434daa0dbf23cb2fa830c058bfa7270be41e52",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-68.mp3",
+    "sha256": "2c779e03ca2e55b4056f3ce17065069bebab820d4b9c71f96c074357fd5eeef7",
+    "duration": 2.067875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɴ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Uvular_nasal.ogg",
+    "sourceRevision": 812645660,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=812645660",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Uvular_nasal.ogg",
+    "originalSha1": "d64f2d10263f05a8a9804ec3ccc5896e4f35cdef",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-69.mp3",
+    "sha256": "0ff3ad0bf5dd7f16061e4378182e3d0033523d6ef6ad7658ce555eaac10be3c2",
+    "duration": 2.0175625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʙ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Bilabial_trill.ogg",
+    "sourceRevision": 1090308342,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090308342",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Bilabial_trill.ogg",
+    "originalSha1": "61e8fa3c191b8a8e4c45c8841d8ee26b6714033b",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-70.mp3",
+    "sha256": "749cda1ad02b8ff081e0f5eccf6f0c8b865d98310da22b9a826d15d7b77f9786",
+    "duration": 1.86675,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "r"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_trill.ogg",
+    "sourceRevision": 1090306308,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090306308",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Alveolar_trill.ogg",
+    "originalSha1": "3bce8f650d55733a8b4513847742fe5309f6a59b",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-71.mp3",
+    "sha256": "e63000dc60c8821096775ec2202f8f97a1c05a76ec2ebe42d283c45a96ac0769",
+    "duration": 1.9284375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʀ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Denelson83%27s_uvular_trill.ogg",
+    "sourceRevision": 1200916081,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1200916081",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Denelson83%27s_uvular_trill.ogg",
+    "originalSha1": "83e29e6f18a4f44aa89def36ab40da2fb28458d1",
+    "mp3Source": null,
+    "author": "Denelson83 (talk) (Uploads)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-72.mp3",
+    "sha256": "a60063845361adaff8807e6965342f312ff4e1ffb3380e0cc1fdc2ff26a6e9ad",
+    "duration": 2.3340625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ⱱ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Labiodental_flap.ogg",
+    "sourceRevision": 1285423663,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1285423663",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Labiodental_flap.ogg",
+    "originalSha1": "13e3e3a4e18f760d70840a02b878d7e239778c98",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-73.mp3",
+    "sha256": "20df2a95dad22dd40f415801dff14ea8e06b5cdf06a087283142272f090b79df",
+    "duration": 1.648625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɾ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_tap.ogg",
+    "sourceRevision": 1055153791,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1055153791",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Alveolar_tap.ogg",
+    "originalSha1": "b53f766d393be631c431af64aef226a2fce6209e",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-74.mp3",
+    "sha256": "5f772d82dc74532d69cd86fee29ca11c45578a87e0923d898855892584b87d68",
+    "duration": 2.0709375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɽ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Retroflex_flap.ogg",
+    "sourceRevision": 812645666,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=812645666",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Retroflex_flap.ogg",
+    "originalSha1": "614f67d88605c9de1a15627eed039ee6cb653c5f",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-75.mp3",
+    "sha256": "7d8294de5b85b92dc379341250896151c79c057938468846cfceda8772b43e1b",
+    "duration": 1.787375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɸ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_bilabial_fricative.ogg",
+    "sourceRevision": 945963511,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=945963511",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Voiceless_bilabial_fricative.ogg",
+    "originalSha1": "26e5276c065347f5e4d84df6e3f5fd896636426d",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-76.mp3",
+    "sha256": "58992f44227da76ffcf8ef22219eb64fc37e6f39d3b7e1b2aace8ff2a02884ba",
+    "duration": 2.2873125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "β"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_bilabial_fricative.ogg",
+    "sourceRevision": 1090269538,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090269538",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Voiced_bilabial_fricative.ogg",
+    "originalSha1": "8b94c8ebd36d6301f1eb26a8699cce0c6f082283",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-77.mp3",
+    "sha256": "bb5bf216c29dda38bf456a7c8800ff3ab430826e7543f87e2556ca3980a71fdb",
+    "duration": 2.2175,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʂ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_retroflex_sibilant.ogg",
+    "sourceRevision": 1090310040,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090310040",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Voiceless_retroflex_sibilant.ogg",
+    "originalSha1": "8b775fdd4978f26e7432967796470ab5d18867ed",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-78.mp3",
+    "sha256": "c5593e10217956e6f494e906ca1048b0e4fcbdf45f9c3aafa1cf72e21dbdf60b",
+    "duration": 2.34525,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʐ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_retroflex_sibilant.ogg",
+    "sourceRevision": 1153823490,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1153823490",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Voiced_retroflex_sibilant.ogg",
+    "originalSha1": "700a92685e0987f31485411e5781da0e23172e77",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-79.mp3",
+    "sha256": "66f5b5d72335bc7709ab9fac7ca9c146728b7a2652bec9ff0a041cd2c232060f",
+    "duration": 2.531,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ç"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_palatal_fricative.ogg",
+    "sourceRevision": 1105741906,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1105741906",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Voiceless_palatal_fricative.ogg",
+    "originalSha1": "a02ccfcd373caf0f5e41595e8d7c2c73cae84e26",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-80.mp3",
+    "sha256": "dfe11ad8c31c2303a1c197b75acb7e6aa62a2a7daa5e6587f269ae9224580910",
+    "duration": 2.6935,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. Gain reduced by3dB to keep decoded peaks below full scale. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʝ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_palatal_fricative.ogg",
+    "sourceRevision": 812645654,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=812645654",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Voiced_palatal_fricative.ogg",
+    "originalSha1": "f665881d5d1f2c45e052e57dcd614f04733fc384",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-81.mp3",
+    "sha256": "6fe29a020f2698e85fa8bdecceb78edcb0457603ee91bf3561470f8473b3d7b6",
+    "duration": 2.1996875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "x"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_velar_fricative.ogg",
+    "sourceRevision": 1224520375,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1224520375",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Voiceless_velar_fricative.ogg",
+    "originalSha1": "b03bd6116613b536f386fb53d51491a72d38db28",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-82.mp3",
+    "sha256": "331b25464048e462cc75bb0522d2fa195ab24c37dcd108cf3590620c1186101a",
+    "duration": 2.1014375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɣ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_velar_fricative.ogg",
+    "sourceRevision": 1142652157,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1142652157",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Voiced_velar_fricative.ogg",
+    "originalSha1": "9627b26b9b1df9705c33124f803b337d8864ec3f",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-83.mp3",
+    "sha256": "23304a3f9ac49d9734a6dde476e68df056903a9e6fed8cc581f62b31e5247f6c",
+    "duration": 2.1059375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "χ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_uvular_fricative.ogg",
+    "sourceRevision": 1090308670,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090308670",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Voiceless_uvular_fricative.ogg",
+    "originalSha1": "0f215661b3f08c4836a872ab93386c292f2f10d8",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-84.mp3",
+    "sha256": "074244e4a4400213ec90325392aa2fb86c13a2e0fbcc80fc4a7f18354875d7e3",
+    "duration": 2.0898125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʁ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_uvular_fricative.ogg",
+    "sourceRevision": 1256469714,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1256469714",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Voiced_uvular_fricative.ogg",
+    "originalSha1": "31d014e861e78c2c7b95352c15ef6b877d49dfda",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-85.mp3",
+    "sha256": "8afb696570d7f80cadb989f2d3d5ac3e05c1f11ab2f8b5c91475cd0fbe3ecd11",
+    "duration": 2.1410625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ħ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_pharyngeal_fricative.ogg",
+    "sourceRevision": 461123083,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=461123083",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Voiceless_pharyngeal_fricative.ogg",
+    "originalSha1": "beecd2cce4cfe6bb06fa2e7250c3d37282c8800e",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-86.mp3",
+    "sha256": "7d7af0e5098e164ec63ea258d9e6318580cf25998222ddfbbfcd7435ddec31b7",
+    "duration": 2.313375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʕ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_pharyngeal_fricative.ogg",
+    "sourceRevision": 1217340583,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1217340583",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Voiced_pharyngeal_fricative.ogg",
+    "originalSha1": "745ae737c9a8adb95d9f7386e181f6cd12e44328",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-87.mp3",
+    "sha256": "cc6e73e7c13b200aef4aa16360000febc147e45b65bb94e681d75380f42d1a96",
+    "duration": 1.857625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɦ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_glottal_fricative.ogg",
+    "sourceRevision": 1096796534,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1096796534",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Voiced_glottal_fricative.ogg",
+    "originalSha1": "26c650a7dd4835d4912cf54efc03299f326e224b",
+    "mp3Source": null,
+    "author": "Karmosin",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-88.mp3",
+    "sha256": "126833a81282b450632b7e103cf8d9f27e8c3faf86b90b291ce8a8d75dd7e084",
+    "duration": 2.3216875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɬ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_lateral_fricative.ogg",
+    "sourceRevision": 868931170,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=868931170",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Voiceless_lateral_fricative.ogg",
+    "originalSha1": "d2614ba0ad9b01b140b8c938326f8e18fd9424c5",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-89.mp3",
+    "sha256": "bcb3779365c093cbefd19bb2d2ae5527eb8ad5966c8cc7402fad87d47777e33b",
+    "duration": 2.1465625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɮ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_lateral_fricative.ogg",
+    "sourceRevision": 1105741445,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1105741445",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Voiced_alveolar_lateral_fricative.ogg",
+    "originalSha1": "5eae05c4aec3753fe9fa78ccdffdcf6aa9e2765b",
+    "mp3Source": null,
+    "author": "Adamsa123",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-90.mp3",
+    "sha256": "eaf93c136d5b870994dca7537cec2f57803eb423a7d8e1a5639852b0dc921cf6",
+    "duration": 1.648625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʋ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Labiodental_approximant.ogg",
+    "sourceRevision": 958266599,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=958266599",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Labiodental_approximant.ogg",
+    "originalSha1": "e9b7f26732d223d619d3d2576cb9ca6ee51f16b9",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-91.mp3",
+    "sha256": "ffce6e5a4c65d6a739cfabc334fcf9dcd95fdd9e01d1639eb3b1522bb379d953",
+    "duration": 2.23475,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɻ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Retroflex_approximant.ogg",
+    "sourceRevision": 717588564,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=717588564",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Retroflex_approximant.ogg",
+    "originalSha1": "ff5a3ac7231aa747f8f880ced074b4abf7f5a84d",
+    "mp3Source": null,
+    "author": "Karmosin",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-92.mp3",
+    "sha256": "656b9dd1d58b70e8ceb9b787b362fddb256602041b9d03a18e0cfe1d046f349e",
+    "duration": 2.117875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɰ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_velar_approximant.ogg",
+    "sourceRevision": 812645625,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=812645625",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Voiced_velar_approximant.ogg",
+    "originalSha1": "aded63a4e18cd9de3c302a456ab7fca999cb12ed",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-93.mp3",
+    "sha256": "3001381b879c17c8ae99cb7c00b786dd7efa23555503ab9175ceeef441addf0c",
+    "duration": 2.016,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɭ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Retroflex_lateral_approximant.ogg",
+    "sourceRevision": 812645664,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=812645664",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Retroflex_lateral_approximant.ogg",
+    "originalSha1": "6f3fb60a4161d7b0c7e25edb6d85aa18174e6725",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-94.mp3",
+    "sha256": "36b8b1e254badb1d30a785464071cfb4fffc82dcba96d385fda21225d81827ea",
+    "duration": 2.1985,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʎ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Palatal_lateral_approximant.ogg",
+    "sourceRevision": 1090268692,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090268692",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Palatal_lateral_approximant.ogg",
+    "originalSha1": "ba5194757af3b2ebf8878a8acbf9e94e73a04d36",
+    "mp3Source": null,
+    "author": "Peter Isotalo (original source revision380892; file-history contributors credited at source)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-95.mp3",
+    "sha256": "8f5d2d6123cdcae026159319b93bce4de9d4823c450c1c71dccf0d65051d256e",
+    "duration": 3.59075,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʟ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Velar_lateral_approximant.ogg",
+    "sourceRevision": 1142810796,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1142810796",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Velar_lateral_approximant.ogg",
+    "originalSha1": "ce820cfce278444c6a9f16ae59c3c51899059b5b",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-96.mp3",
+    "sha256": "970f10339450a71b487f2cedb01a2bd49ee715b8dde9ebce788b2034d3b881b0",
+    "duration": 2.2215625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʘ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Bilabial_click.ogg",
+    "sourceRevision": 1090269159,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090269159",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Bilabial_click.ogg",
+    "originalSha1": "fb6dccbb5bcae8a24f5747a1f3ccd9e3311fd59b",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-97.mp3",
+    "sha256": "bf9033391fafb0aea82a98c4ff4d99d267bd58616bc9b33b9cc9c87c3b9149b0",
+    "duration": 2.0710625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɓ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_bilabial_implosive.ogg",
+    "sourceRevision": 1175700637,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1175700637",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Voiced_bilabial_implosive.ogg",
+    "originalSha1": "c40f1e92f9afc03f5e0564699789ae546387fe9d",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-98.mp3",
+    "sha256": "ae638c954122f5955bd33a3fea06e27bfe8b218400d99cce32fcad550ceef66a",
+    "duration": 1.462875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "pʼ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Bilabial_ejective_plosive.ogg",
+    "sourceRevision": 823624327,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=823624327",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Bilabial_ejective_plosive.ogg",
+    "originalSha1": "a1625e208a38653f420becf8869f24efdcade5f2",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-99.mp3",
+    "sha256": "0be50e23e3345ef5c771dea6e24cbdc2b1a3b2f26fbb92b6c697268b60577697",
+    "duration": 1.9605625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ǀ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Dental_click.ogg",
+    "sourceRevision": 1201053467,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1201053467",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Dental_click.ogg",
+    "originalSha1": "ece79dd87966fa4900e44c8e0aad553e341bf870",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-100.mp3",
+    "sha256": "d6825fcf8d3e683c6958c904496b8ea18ddde4deabdaaf22fd51df3bd456092c",
+    "duration": 2.189375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ǃ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Postalveolar_click.ogg",
+    "sourceRevision": 1062039560,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1062039560",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Postalveolar_click.ogg",
+    "originalSha1": "85603065465595f8f3d98abfe80d1d02e8620b5b",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-101.mp3",
+    "sha256": "b84ef28fa6af88fd17cbb688e1311292ee9cf3f791c83796578d387c21e08a08",
+    "duration": 1.62225,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɗ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_implosive.ogg",
+    "sourceRevision": 1175700833,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1175700833",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Voiced_alveolar_implosive.ogg",
+    "originalSha1": "5174bd72514197d4763139776c555ce0b614c322",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-102.mp3",
+    "sha256": "2f14b8b4af1db73a8282a9f0f093314ec294f68c5ead55a9acc0e69c214c1677",
+    "duration": 1.63325,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "tʼ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_ejective_plosive.ogg",
+    "sourceRevision": 812645623,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=812645623",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Alveolar_ejective_plosive.ogg",
+    "originalSha1": "9538cb87ea8778f821271a50817e86262d291630",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-103.mp3",
+    "sha256": "25a5ff17add77cc351b049ccac7441fe7f47e95e65a13a836e5a88d2f8a937af",
+    "duration": 1.7880625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ǂ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Palatoalveolar_click.ogg",
+    "sourceRevision": 1090307046,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090307046",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Palatoalveolar_click.ogg",
+    "originalSha1": "0da4aab0de56e18c90bb10dab87538693e6d7b1d",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-104.mp3",
+    "sha256": "5029d5a827b45411052687dbf41530c0adb609d6d86edb20fff90a07ee3d91d1",
+    "duration": 1.761125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʄ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_palatal_implosive.ogg",
+    "sourceRevision": 1166392823,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1166392823",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Voiced_palatal_implosive.ogg",
+    "originalSha1": "10620d97d6d83183fbda8333a3186ebca25ebf1f",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-105.mp3",
+    "sha256": "46a14655553ad48a90be5cd5d1b227e913132bdc13e4ea554434a562f91d96b5",
+    "duration": 1.7080625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɠ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_velar_implosive.ogg",
+    "sourceRevision": 1100287213,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1100287213",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Voiced_velar_implosive.ogg",
+    "originalSha1": "1e4eacc88462a2437b13ba966e68539f4d329be8",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-106.mp3",
+    "sha256": "a6f84c0d6e9a3530c8e4b33b8f22050b1a21699eb5913f8d24cad5800956f5c7",
+    "duration": 1.6168125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "kʼ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Velar_ejective_plosive.ogg",
+    "sourceRevision": 1127140856,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1127140856",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Velar_ejective_plosive.ogg",
+    "originalSha1": "b7df79e14daae1070c049b5602dc1b4046ed858d",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-107.mp3",
+    "sha256": "2a313d6951eaf55c159757809f3527ed5176c00b67ebce85be7ef71e4ae37b53",
+    "duration": 1.859125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʛ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_uvular_implosive.ogg",
+    "sourceRevision": 1026381232,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1026381232",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Voiced_uvular_implosive.ogg",
+    "originalSha1": "f34b2f87eaaf8e916102a2269424bfb0ed16850f",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-108.mp3",
+    "sha256": "158e0bb2c7275ff5fa68dcb3a44e1a23cd5b07e15dbf397fee6d25442ad806b4",
+    "duration": 1.6993125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ǁ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_lateral_click.ogg",
+    "sourceRevision": 1090268988,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090268988",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Alveolar_lateral_click.ogg",
+    "originalSha1": "d33059f37959f0cc1b6a285838b56cdf8ff0526f",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-109.mp3",
+    "sha256": "3973f77866b8439776ae5459cceb9dfb8d15dfa49384433e71440d4c43055035",
+    "duration": 1.7918125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "sʼ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Alveolar_ejective_fricative.ogg",
+    "sourceRevision": 1090267740,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1090267740",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Alveolar_ejective_fricative.ogg",
+    "originalSha1": "bebbff4937cb83d47e7e8e035e8d8dc9534eda53",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-110.mp3",
+    "sha256": "004cc4cc490b97790e7c8dcf5a7a194229cc9e0cbff131a4435ee2b4bc49ecbf",
+    "duration": 1.889875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʍ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_labio-velar_fricative.ogg",
+    "sourceRevision": 1108522586,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1108522586",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Voiceless_labio-velar_fricative.ogg",
+    "originalSha1": "e70bde490086e553921c9afa19e05932fd7a5356",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-111.mp3",
+    "sha256": "f1dd833afebf96e1ba56860f9753380b717c8b22194b9f6fb08283557f364edf",
+    "duration": 2.0630625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɥ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:LL-Q150_(fra)-WikiLucas00-IPA_%C9%A5.wav",
+    "sourceRevision": 756919828,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=756919828",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/LL-Q150_%28fra%29-WikiLucas00-IPA_%C9%A5.wav",
+    "originalSha1": "466e3cf59b9c344ac09e1f122fc10c06d5b159e2",
+    "mp3Source": null,
+    "author": "Speaker: WikiLucas00\nRecorder: WikiLucas00",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "path": "/ipa/phonemes/sound-112.mp3",
+    "sha256": "7b1996bc1e7adad29d611ae2b2e7672fda9ad0851bd7f85e8454bac122dd6807",
+    "duration": 1.6860625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʜ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_epiglottal_trill.ogg",
+    "sourceRevision": 1208026977,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1208026977",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Voiceless_epiglottal_trill.ogg",
+    "originalSha1": "c7ce08928da85f574c60b97de73700cad0c1ea58",
+    "mp3Source": null,
+    "author": "Adamsa123",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "path": "/ipa/phonemes/sound-113.mp3",
+    "sha256": "e760a9181a5db087bb59284fee97106d348b8da5979fc325abef3044eb01f76d",
+    "duration": 3.3843125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. Gain reduced by3dB to keep decoded peaks below full scale. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʢ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_epiglottal_trill_2.ogg",
+    "sourceRevision": 1217354100,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1217354100",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Voiced_epiglottal_trill_2.ogg",
+    "originalSha1": "826b9a084429c9c9c6fee973ba6b8e9d3500fbf8",
+    "mp3Source": null,
+    "author": "Adamsa123",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "path": "/ipa/phonemes/sound-114.mp3",
+    "sha256": "dd47d8f0a8c6b42882301c3d6ba43cc03eb4aec4e6899dca9bc5f72045d73ee4",
+    "duration": 2.5473125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʡ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Epiglottal_stop.ogg",
+    "sourceRevision": 1231488104,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1231488104",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Epiglottal_stop.ogg",
+    "originalSha1": "21ce5bbb1093529413ca5a483db7092030776326",
+    "mp3Source": null,
+    "author": "Adamsa123",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "path": "/ipa/phonemes/sound-115.mp3",
+    "sha256": "ef402b6cd1211fdb52a5afa7bc6245dfb8d47c03a0027cbd68a3b588abbc52ce",
+    "duration": 2.5336875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɕ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_alveolo-palatal_sibilant.ogg",
+    "sourceRevision": 1255312848,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1255312848",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Voiceless_alveolo-palatal_sibilant.ogg",
+    "originalSha1": "db0e8775424140acdaf201ff5553c0288b44c5d0",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-116.mp3",
+    "sha256": "7421b94c37ba1097e670b90cd55c98a44dbd1c63d91f7270e0eb88f762863fb5",
+    "duration": 2.252375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʑ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolo-palatal_sibilant.ogg",
+    "sourceRevision": 1254620950,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1254620950",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Voiced_alveolo-palatal_sibilant.ogg",
+    "originalSha1": "ab81bd8286426d585689bff63ce674ce4ff7f1fb",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-117.mp3",
+    "sha256": "43d630cfa9c948ffa11ba3cb7946a01b73df0934aca7eff9da876d3054b52ec6",
+    "duration": 2.2916875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɺ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_lateral_flap.wav",
+    "sourceRevision": 1149488816,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1149488816",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Voiced_alveolar_lateral_flap.wav",
+    "originalSha1": "f6c4c4e149bc3f6175919a2b41f2354483ef4515",
+    "mp3Source": null,
+    "author": "Eshaan011",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "path": "/ipa/phonemes/sound-118.mp3",
+    "sha256": "4ac62a119b58c9333c962b0089f7b9afd6f1f58e986530eafe404d2179f904d7",
+    "duration": 1.56,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɧ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_dorso-palatal_velar_fricative.ogg",
+    "sourceRevision": 1126567159,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1126567159",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Voiceless_dorso-palatal_velar_fricative.ogg",
+    "originalSha1": "86404227b62593aa4b58bcf154172629fffbb5d7",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-119.mp3",
+    "sha256": "33126cb15cc7e305fb7dc1af3f2ce58ffcb261b9781b6aacdb864fc77e54daa6",
+    "duration": 2.3800625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "t͡s"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_alveolar_sibilant_affricate.oga",
+    "sourceRevision": 1225574243,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1225574243",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Voiceless_alveolar_sibilant_affricate.oga",
+    "originalSha1": "a68c6f601d29c736f010acb187643e23758b2eb2",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-120.mp3",
+    "sha256": "970800ebac52d9a1154e07340365312733114dfde7b64539d292be14c190d2d2",
+    "duration": 0.6646875,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "t͡ɕ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_alveolo-palatal_affricate.ogg",
+    "sourceRevision": 1161758681,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1161758681",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Voiceless_alveolo-palatal_affricate.ogg",
+    "originalSha1": "63a07df892f0520319bee431676b699dc530afc9",
+    "mp3Source": null,
+    "author": "Halibutt",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-121.mp3",
+    "sha256": "9b12b5163d31c6282c8a949916847b1593cdaf2e08ffeae68985de895030dc4f",
+    "duration": 1.439625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. Gain reduced by3dB to keep decoded peaks below full scale. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ʈ͡ʂ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_retroflex_affricate.ogg",
+    "sourceRevision": 722682281,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=722682281",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Voiceless_retroflex_affricate.ogg",
+    "originalSha1": "c48c97321b16f296f407f771fdaf94f74230e1ae",
+    "mp3Source": null,
+    "author": "Halibutt",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-122.mp3",
+    "sha256": "826c14aaccd80ac2b5ecffe3256c884a004438313932e781cbbf1de81aa569ce",
+    "duration": 1.45125,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. Gain reduced by3dB to keep decoded peaks below full scale. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "d͡z"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_sibilant_affricate.oga",
+    "sourceRevision": 1225574229,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1225574229",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Voiced_alveolar_sibilant_affricate.oga",
+    "originalSha1": "0fd1e73033eb7fa0a271dec28e4c1406ca331bf4",
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-123.mp3",
+    "sha256": "bd6517b761632d88707c30a467f8764003b020a5b7d72a3047138e7c8a739003",
+    "duration": 2.286375,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "d͡ʑ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolo-palatal_affricate.ogg",
+    "sourceRevision": 1190022578,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1190022578",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Voiced_alveolo-palatal_affricate.ogg",
+    "originalSha1": "8e97474c1ba7dfbcbed3d649e11569225c1d0afa",
+    "mp3Source": null,
+    "author": "Halibutt",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-124.mp3",
+    "sha256": "70083e4450a1e7854e7152c646d0d1446bf7691e9e7f3d0284e56dac5d1befee",
+    "duration": 1.5905625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  },
+  {
+    "ipa": [
+      "ɖ͡ʐ"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_retroflex_affricate.ogg",
+    "sourceRevision": 1006190048,
+    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1006190048",
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Voiced_retroflex_affricate.ogg",
+    "originalSha1": "c4adef3719a9276c8ad5ec26c1c6fe7cdb128a04",
+    "mp3Source": null,
+    "author": "Halibutt",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "path": "/ipa/phonemes/sound-125.mp3",
+    "sha256": "29a1d18277ff0498e73c731606a0e8b3192844729ee2913e510b15e4d95c6524",
+    "duration": 1.648625,
+    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
+    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+  }
+]

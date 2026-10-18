@@ -1,0 +1,11 @@
+# Source-bound requirements and preferences
+
+These continuous source views support client-side local generation. They are source transcripts and recording metadata, not a pre-authored exercise catalogue or CEFR calibration.
+
+- VOA Learning English, **Hello, I’m Anna!** (Lesson2) and **What Are You Doing?** (Lesson7): original VOA production, public domain with attribution under the retained VOA terms. Complete utterance views taken from the retained original MP3s. The Lesson7 requirement view uses6dB less gain before MP3 encoding to retain headroom. Original words, recordings, transcripts and collection-time evidence are preserved separately. See the local VOA-LICENSE.txt.
+- Charles M. Sheldon, **In His Steps**, Project Gutenberg edition4540; recording Amy Benton, LibriSpeech4116-13265-0010. This view ends after the complete attributed Felicia reply, before the following Rose utterance. It is one continuous excerpt re-encoded from the retained recording. The original full MP3 remains in its source package.
+- Lafcadio Hearn, **Kwaidan: Stories and Studies of Strange Things**, Project Gutenberg edition1210; recording Scott Carpenter, LibriSpeech2952-410-0008. The whole original MP3 is reused byte for byte. The speaker’s reported liking does not establish an exclusive preference.
+
+The two book texts retain their original **public domain in the United States / other regions unverified** conditions and Project Gutenberg terms. This does not grant worldwide clearance or remove any source restriction. See PERSONAL-GUTENBERG-LICENSE.txt. The recordings are separately **CC BY4.0**; see PERSONAL-LIBRISPEECH-CC-BY-4.0.txt. LibriSpeech (c)2014 Vassil Panayotov, with assistance of Daniel Povey. Dataset: https://www.openslr.org/12/ . Individual original-work links, authors, readers, recording terms and modifications are included in PERSONAL.json.
+
+Only the four exact inspected views are admitted as local development source views. Technical/source inspection is Codex/AI review; it is not actual audition, physical-device, proficiency or learning-effect acceptance. The unselected VOA7 I-like/I-would-like transcript disagreement remains held. Original media, old packages and rejected candidate outputs are preserved.

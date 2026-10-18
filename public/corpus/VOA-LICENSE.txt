@@ -1,0 +1,2 @@
+Source: https://learningenglish.voanews.com/p/6861.html
+VOA Learning English original texts may be reprinted for educational and commercial purposes with credit. Agency content is excluded. This package contains credited own-author prose and conversations, with no images, reader letters, third-party song lyrics or audio. Codex source text inspection is recorded in content/corpus/voa-review.json, content/corpus/voa-beginner-review.json and content/corpus/voa-additional-sources.json; no audio included.

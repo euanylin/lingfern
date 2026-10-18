@@ -1,0 +1,594 @@
+--- a/.github/workflows/checks.yml
++++ b/.github/workflows/checks.yml
+@@ -22,6 +22,7 @@
+       - run: npm ci
+       - run: npm run lint
+       - run: npm test
++      - run: npm run release:files -- /tmp/lingfern-source-export
+       - run: npm run build
+       - name: Inspect public build
+         run: |
+@@ -30,6 +31,7 @@
+           du -sh dist
+       - run: npm run deploy:check
+       - run: npx playwright install --with-deps chromium
++      - run: npm run test:sync
+       - run: npm run test:mcp
+       - run: npm run test:e2e
+       - run: npm run test:offline
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -31,6 +31,7 @@
+       - run: npm ci
+       - run: npm run lint
+       - run: npm test
++      - run: npm run release:files -- /tmp/lingfern-source-export
+       - run: npm run build
+       - name: Inspect public build
+         run: |
+@@ -39,6 +40,7 @@
+           du -sh dist
+       - run: npm run deploy:check
+       - run: npx playwright install --with-deps chromium
++      - run: npm run test:sync
+       - run: npm run test:mcp
+       - run: npm run test:e2e
+       - run: npm run test:offline
+@@ -58,8 +60,10 @@
+           done
+           cat /tmp/lingfern-preview.log
+           exit 1
++      - name: Require configured first-launch integrations
++        run: node scripts/release-config.mjs
+       - name: Deploy the checked source and assets
+-        run: npx wrangler deploy
++        run: npx wrangler deploy --env=""
+         env:
+           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+--- a/.gitignore
++++ b/.gitignore
+@@ -31,3 +31,7 @@
+ .playwright-cli/
+ __pycache__/
+ *.pyc
++
++# Original acquisitions stay local; release exports use scripts/release-files.mjs.
++content/corpus/raw/
++content/corpus/additional/raw/
+--- a/AGENT_WORKFLOW.md
++++ b/AGENT_WORKFLOW.md
+@@ -68,8 +68,8 @@
+ | Types / lint | `npm run typecheck` / `npm run lint` | No product rewrite |
+ | Focused TypeScript tests | `npm exec -- vitest run tests/<name>.test.ts` | Replace the placeholder with the actual affected test |
+ | Focused Node tests | `node --test tests/<name>.test.mjs` | Use actual test files; some other `.mjs` files are standalone runners |
+-| Portable unit suite / CI | `npm test` | Portable Node guards, additional-corpus self-test and Vitest; works from protected backup without private evidence |
+-| Local source-evidence suite | `npm run test:source-evidence` | Existing private corpus/source/cloud verification inputs required; all original source/hash/hold assertions remain; missing inputs fail explicitly |
++| Portable unit suite / CI | `npm test` | Portable Node guards, additional-corpus self-test and Vitest; raw-source checks run separately through test:source-evidence |
++| Local source-evidence suite | `npm run test:source-evidence` | Existing retained raw/private corpus/source/cloud verification inputs required; all original source/hash/hold assertions remain; missing inputs fail explicitly |
+ | Production build | `npm run build` | Types/content/dictionary/offline/ZIP/notices/resource checks, then Vite; notices/build output can be written |
+ | Production-like local preview | `npm run preview` | Existing `dist/`; Worker + Static Assets on 8787 |
+ | Vite development | `npm run dev` | 5173; proxy APIs to `npm run worker:dev` on 8787 when needed |
+--- a/package.json
++++ b/package.json
+@@ -9,8 +9,8 @@
+   "scripts": {
+     "dev": "vite --host 127.0.0.1",
+     "typecheck": "tsc --noEmit",
+-    "test": "node --test tests/corpus-review.test.mjs tests/corpus-shards.test.mjs tests/backup.test.mjs tests/resource-packs.test.mjs tests/corpus.test.mjs tests/gutenberg-long-reading.test.mjs tests/spoken-corpus.test.mjs tests/cloud-listening.test.mjs tests/spoken-process-batch.test.mjs tests/spoken-listening-clips.test.mjs tests/topic-packs.test.mjs tests/reading-availability.test.mjs tests/runtime-resources.test.mjs tests/source-preparation.test.mjs && node scripts/additional-corpus.mjs --test && vitest run",
+-    "test:source-evidence": "node --test tests/bccampus-reading-corpus.test.mjs tests/gutenberg-expansion.test.mjs tests/recovered-listening.test.mjs tests/continued-listening.test.mjs tests/open-reading-corpus.test.mjs",
++    "test": "node --test tests/release-files.test.mjs tests/corpus-review.test.mjs tests/corpus-shards.test.mjs tests/backup.test.mjs tests/resource-packs.test.mjs tests/spoken-corpus.test.mjs tests/cloud-listening.test.mjs tests/spoken-process-batch.test.mjs tests/spoken-listening-clips.test.mjs tests/topic-packs.test.mjs tests/reading-availability.test.mjs tests/runtime-resources.test.mjs tests/source-preparation.test.mjs && node scripts/additional-corpus.mjs --test && vitest run --exclude tests/approximateDuration.test.ts --exclude tests/concessiveRelation.test.ts --exclude tests/condition.test.ts --exclude tests/corpus-complex-pragmatics.test.ts --exclude tests/corpus-disagreement-synthesis.test.ts --exclude tests/corpus-faithful-paraphrase.test.ts --exclude tests/corpus-implicit-intention.test.ts --exclude tests/corpus-information-density.test.ts --exclude tests/corpus-layered-position.test.ts --exclude tests/corpus-load.test.ts --exclude tests/corpus-nuanced-meaning.test.ts --exclude tests/corpus-rhetorical-function.test.ts --exclude tests/dialogueViewpoints.test.ts --exclude tests/gutenberg-long-concession.test.ts --exclude tests/politeContext.test.ts --exclude tests/politeRequest.test.ts --exclude tests/qualifiedTiming.test.ts --exclude tests/scopedCalendar.test.ts --exclude tests/negatedNecessity.test.ts --exclude tests/necessaryPurpose.test.ts",
++    "test:source-evidence": "node --test tests/bccampus-reading-corpus.test.mjs tests/gutenberg-expansion.test.mjs tests/recovered-listening.test.mjs tests/continued-listening.test.mjs tests/open-reading-corpus.test.mjs tests/corpus.test.mjs tests/gutenberg-long-reading.test.mjs && vitest run tests/approximateDuration.test.ts tests/concessiveRelation.test.ts tests/condition.test.ts tests/corpus-complex-pragmatics.test.ts tests/corpus-disagreement-synthesis.test.ts tests/corpus-faithful-paraphrase.test.ts tests/corpus-implicit-intention.test.ts tests/corpus-information-density.test.ts tests/corpus-layered-position.test.ts tests/corpus-load.test.ts tests/corpus-nuanced-meaning.test.ts tests/corpus-rhetorical-function.test.ts tests/dialogueViewpoints.test.ts tests/gutenberg-long-concession.test.ts tests/politeContext.test.ts tests/politeRequest.test.ts tests/qualifiedTiming.test.ts tests/scopedCalendar.test.ts tests/negatedNecessity.test.ts tests/necessaryPurpose.test.ts",
+     "test:e2e": "playwright test",
+     "test:offline": "npm run build:fixtures && playwright test -c playwright.offline.config.ts",
+     "test:update": "npm run build && node tests/sw-update.mjs",
+@@ -47,7 +47,9 @@
+     "resources:catalogue": "node scripts/runtime-resources.mjs",
+     "resources:check": "node scripts/runtime-resources.mjs --check",
+     "quotes:runtime": "node scripts/daily-quote-runtime.mjs",
+-    "quotes:check": "node scripts/daily-quote-runtime.mjs --check"
++    "quotes:check": "node scripts/daily-quote-runtime.mjs --check",
++    "test:sync": "node tests/sync-worker.mjs",
++    "release:files": "node scripts/release-files.mjs"
+   },
+   "dependencies": {
+     "@cloudflare/workers-oauth-provider": "1.2.1",
+--- /dev/null
++++ b/scripts/release-config.mjs
+@@ -0,0 +1,21 @@
++import assert from 'node:assert/strict';
++import { readFile } from 'node:fs/promises';
++import path from 'node:path';
++
++export function checkReleaseConfig(config) {
++  assert.equal(config.name, 'lingfern');
++  assert.equal(config.workers_dev, false); assert.equal(config.preview_urls, false);
++  assert(!config.vars?.LOCAL_AUTH, 'LOCAL_AUTH must never reach production');
++  assert.equal(config.vars?.SYNC_ENABLED, 'true', 'First launch requires accepted and enabled sync');
++  assert(/^(?!REQUIRES_APPROVAL$)[A-Za-z0-9_.-]{3,100}$/.test(config.vars?.GITHUB_CLIENT_ID ?? ''), 'Actual App client ID required');
++  assert(!Object.keys(config.vars ?? {}).some(name => /SECRET|ENCRYPTION_KEY|TOKEN/.test(name)), 'Secrets must use protected Worker secrets');
++  const db=config.d1_databases?.find(item=>item.binding==='AUTH_DB'), kv=config.kv_namespaces?.find(item=>item.binding==='OAUTH_KV');
++  assert(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(db?.database_id ?? '') && /[1-9a-f]/.test(db.database_id), 'Actual D1 ID required');
++  assert.equal(db.migrations_dir,'worker/migrations');
++  assert(/^[a-f0-9]{32}$/.test(kv?.id ?? '') && /[1-9a-f]/.test(kv.id), 'Separate actual OAuth KV required');
++  assert.equal(config.assets?.not_found_handling,'none'); assert(Array.isArray(config.assets.run_worker_first) && !config.assets.run_worker_first.includes('/*'));
++}
++if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
++  checkReleaseConfig(JSON.parse(await readFile('wrangler.jsonc','utf8')));
++  console.log('Production configuration guard passed; real acceptance and deployment approval remain separate.');
++}
+--- /dev/null
++++ b/scripts/release-files.mjs
+@@ -0,0 +1,39 @@
++import { readdir, readFile, lstat, mkdir, copyFile, writeFile } from 'node:fs/promises';
++import { createHash } from 'node:crypto';
++import path from 'node:path';
++import assert from 'node:assert/strict';
++
++// Export only reviewed source/build inputs; local originals and evidence are never upload inputs.
++const roots = ['src', 'worker', 'scripts', 'tests', 'public', 'content', 'logo', 'docs', '.github'];
++const files = ['Signature/04_Forest_Green.svg', '.gitignore', '.nvmrc', 'AGENTS.md', 'AGENT_WORKFLOW.md', 'DEVELOPMENT_GOAL.md', 'DEVELOPMENT_HANDOFF.md', 'IMPLEMENTATION_STATUS.md', 'Issues.md', 'Product_Plan.md', 'Interface_Design.md', 'README.md', 'Dependency_Notices.md', 'community-content.md', 'design-qa.md', 'UI_Consistency_Audit.md', 'package.json', 'package-lock.json', 'tsconfig.json', 'eslint.config.mjs', 'index.html', 'vite.config.ts', 'playwright.config.ts', 'playwright.offline.config.ts', 'worker-configuration.d.ts', 'wrangler.jsonc'];
++export function allowed(name) {
++  const parts = name.split('/');
++  return !path.isAbsolute(name) && !name.includes('\\') && parts.every(part => part && !['.', '..', 'raw', 'private', 'backup', 'node_modules', 'dist', 'output', 'test-results', 'playwright-report', '.git', '.wrangler', '__pycache__', '.DS_Store'].includes(part) && !/^(\.env|\.dev\.vars)(\.|$)/.test(part) && !/\.(pem|key|p12|pfx|log|tsbuildinfo|m4a|rds|csv|har|zip\.bak)$/i.test(part)) && (files.includes(name) || roots.includes(parts[0])) && !name.startsWith('docs/history/');
++}
++export async function inventory(base) {
++  const entries = [];
++  async function visit(name) {
++    if (!allowed(name)) return;
++    const info = await lstat(path.join(base, name));
++    assert(!info.isSymbolicLink(), `Refusing symlink: ${name}`);
++    if (info.isDirectory()) for (const child of (await readdir(path.join(base, name))).sort()) await visit(`${name}/${child}`);
++    else {
++      assert(info.isFile(), `Refusing nonfile: ${name}`);
++      const bytes = await readFile(path.join(base, name));
++      // Do not print matching content. Synthetic tokens in tests are allowed; real credential signatures are not.
++      assert(!/(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|sk-proj-[A-Za-z0-9_-]{30,})/.test(bytes.toString('utf8')), `Credential signature: ${name}`);
++      entries.push({ path: name, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') });
++    }
++  }
++  for (const name of [...files, ...roots]) await visit(name);
++  return entries.sort((a,b) => a.path.localeCompare(b.path));
++}
++if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
++  const target = process.argv[2];
++  assert(target && path.isAbsolute(target), 'Provide a new absolute local export directory');
++  const entries = await inventory(process.cwd());
++  await mkdir(target); // Never overwrite an export or source directory.
++  for (const entry of entries) { const to=path.join(target,entry.path); await mkdir(path.dirname(to),{recursive:true}); await copyFile(entry.path,to); assert.equal(createHash('sha256').update(await readFile(to)).digest('hex'),entry.sha256); }
++  await writeFile(path.join(target,'release-files.json'),JSON.stringify({version:1,scope:'Source/build/portable tests only. Raw sources/private evidence excluded; run the separate source-evidence suite in its retained local environment. No upload or deployment.',files:entries},null,2)+'\n');
++  console.log(`Verified ${entries.length} source files in ${target}`);
++}
+--- a/src/app/SyncAccountChoice.tsx
++++ b/src/app/SyncAccountChoice.tsx
+@@ -33,7 +33,7 @@
+     } catch { setMessage(t.failed); }
+     finally { setBusy(false); }
+   }
+-  if (!ready) return <p role="status">{t.loading}</p>;
++  if (!ready && !matched) return <p role="status">{t.loading}</p>;
+   if (matched) return <>{children}</>;
+   return <section className="sync-account-choice"><h3>{t.title}</h3><p>{t.choose}</p>
+     {choices.length > 1 && <SettingsPicker label={t.target} value={target} disabled={busy} options={choices} onChange={setTarget}/>}
+--- a/src/app/SyncControls.tsx
++++ b/src/app/SyncControls.tsx
+@@ -48,7 +48,7 @@
+       if (code === 'SYNC_CURSOR_INVALID') {
+         try { setExpiredCursor((await readSyncDownload(profileId, scope))?.cursor); setMessage('expired'); } catch { setMessage('failed'); }
+       }
+-      else setMessage(['SYNC_RETRY_LATER', 'RATE_LIMITED', 'SYNC_RATE_LIMITED', 'SYNC_HTTP_429'].includes(code) ? 'limited' : code === 'SYNC_BUSY' ? 'locked' : code === 'SYNC_BATCH_CONFLICT' ? 'conflict' : ['SYNC_SCOPE_CHANGED', 'SYNC_CONSENT_CHANGED', 'AUTHORISATION_CHANGED', 'UNAUTHENTICATED'].includes(code) ? 'changed' : 'failed');
++      else setMessage(['SYNC_RETRY_LATER', 'RATE_LIMITED', 'SYNC_RATE_LIMITED', 'SYNC_HTTP_429'].includes(code) ? 'limited' : code === 'SYNC_BUSY' ? 'locked' : code === 'SYNC_BATCH_CONFLICT' ? 'conflict' : ['SYNC_UNAVAILABLE', 'SYNC_SCOPE_CHANGED', 'SYNC_CONSENT_CHANGED', 'AUTHORISATION_CHANGED', 'UNAUTHENTICATED'].includes(code) ? 'changed' : 'failed');
+     } finally { if (!abort.signal.aborted) setBusy(false); }
+   }
+   async function stop() {
+--- a/src/locales/ar/messages.json
++++ b/src/locales/ar/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "تابع بالملف الحالي دون ربط هذا الحساب.",
+     "switch": "التبديل لملف الحساب",
+     "copy": "نسخ الملف الحالي لهذا الحساب",
+-    "copyNote": "يبقى الملف الأصلي سليمًا. السجلات محلية؛ المزامنة المجمعة غير متاحة بعد.",
++    "copyNote": "يبقى الملف الأصلي محفوظًا. يتطلب رفع السجلات إذنًا منفصلًا.",
+     "target": "ملف الحساب",
+     "loading": "جارٍ قراءة الملفات…",
+     "busy": "جارٍ تبديل الملف…",
+--- a/src/locales/de/messages.json
++++ b/src/locales/de/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Mit aktuellem Profil ohne Kontoverknüpfung fortfahren.",
+     "switch": "Zum Kontoprofil wechseln",
+     "copy": "Aktuelles Profil für dieses Konto kopieren",
+-    "copyNote": "Originalprofil bleibt erhalten. Aufzeichnungen bleiben lokal; Stapelsync noch nicht verfügbar.",
++    "copyNote": "Das ursprüngliche Profil bleibt erhalten. Das Hochladen von Einträgen erfordert eine gesonderte Zustimmung.",
+     "target": "Kontoprofil",
+     "loading": "Profile lesen…",
+     "busy": "Profil wechseln…",
+--- a/src/locales/en/messages.json
++++ b/src/locales/en/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Continue with the current profile without associating this account.",
+     "switch": "Switch to the account profile",
+     "copy": "Copy the current profile for this account",
+-    "copyNote": "The original profile stays intact. Records remain local; batch sync is not yet available.",
++    "copyNote": "The original profile is kept. Uploading records requires separate permission.",
+     "target": "Account profile",
+     "loading": "Reading profiles…",
+     "busy": "Switching profiles…",
+--- a/src/locales/es/messages.json
++++ b/src/locales/es/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Continuar con el perfil actual sin asociarlo a esta cuenta.",
+     "switch": "Cambiar al perfil de la cuenta",
+     "copy": "Copiar el perfil actual para esta cuenta",
+-    "copyNote": "El perfil original se conserva. Los registros siguen siendo locales; la sincronización por lotes aún no está disponible.",
++    "copyNote": "Se conserva el perfil original. Subir registros requiere un permiso aparte.",
+     "target": "Perfil de la cuenta",
+     "loading": "Leyendo perfiles…",
+     "busy": "Cambiando perfiles…",
+--- a/src/locales/fr/messages.json
++++ b/src/locales/fr/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Continuer avec le profil actuel sans l’associer à ce compte.",
+     "switch": "Passer au profil du compte",
+     "copy": "Copier le profil actuel pour ce compte",
+-    "copyNote": "Le profil d’origine reste intact. Les données restent locales ; la synchronisation par lots n’est pas encore disponible.",
++    "copyNote": "Le profil d’origine est conservé. L’envoi des données nécessite une autorisation distincte.",
+     "target": "Profil du compte",
+     "loading": "Lecture des profils…",
+     "busy": "Changement de profil…",
+--- a/src/locales/hi/messages.json
++++ b/src/locales/hi/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "खाता जोड़े बिना वर्तमान प्रोफ़ाइल से जारी रखें।",
+     "switch": "खाते की प्रोफ़ाइल पर जाएँ",
+     "copy": "खाते के लिए वर्तमान प्रोफ़ाइल कॉपी करें",
+-    "copyNote": "मूल प्रोफ़ाइल सुरक्षित रहेगी। अभिलेख स्थानीय हैं; बैच सिंक अभी उपलब्ध नहीं।",
++    "copyNote": "मूल प्रोफ़ाइल बनी रहेगी। रिकॉर्ड अपलोड करने के लिए अलग अनुमति चाहिए।",
+     "target": "खाते की प्रोफ़ाइल",
+     "loading": "प्रोफ़ाइल पढ़ रहे हैं…",
+     "busy": "प्रोफ़ाइल बदल रहे हैं…",
+--- a/src/locales/id/messages.json
++++ b/src/locales/id/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Lanjutkan dengan profil saat ini tanpa menautkan akun.",
+     "switch": "Beralih ke profil akun",
+     "copy": "Salin profil saat ini untuk akun",
+-    "copyNote": "Profil asli tetap utuh. Catatan tetap lokal; sinkronisasi kelompok belum tersedia.",
++    "copyNote": "Profil asli tetap disimpan. Pengunggahan catatan memerlukan izin terpisah.",
+     "target": "Profil akun",
+     "loading": "Membaca profil…",
+     "busy": "Beralih profil…",
+--- a/src/locales/it/messages.json
++++ b/src/locales/it/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Continua col profilo attuale senza associarlo all’account.",
+     "switch": "Passa al profilo dell’account",
+     "copy": "Copia profilo attuale per l’account",
+-    "copyNote": "Profilo originale intatto. Record locali; sincronizzazione in blocco non ancora disponibile.",
++    "copyNote": "Il profilo originale viene conservato. Il caricamento dei dati richiede un’autorizzazione separata.",
+     "target": "Profilo account",
+     "loading": "Lettura profili…",
+     "busy": "Cambio profilo…",
+--- a/src/locales/ja/messages.json
++++ b/src/locales/ja/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "このアカウントと関連付けず、現在のプロフィールで続けます。",
+     "switch": "アカウントのプロフィールに切り替える",
+     "copy": "このアカウント用に現在のプロフィールをコピー",
+-    "copyNote": "元のプロフィールは保持されます。記録はローカルのままです。バッチ同期はまだ利用できません。",
++    "copyNote": "元のプロフィールは保持されます。記録のアップロードには別途許可が必要です。",
+     "target": "アカウントのプロフィール",
+     "loading": "プロフィールを読み込み中…",
+     "busy": "プロフィールを切り替え中…",
+--- a/src/locales/ko/messages.json
++++ b/src/locales/ko/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "이 계정에 연결하지 않고 현재 프로필로 계속합니다.",
+     "switch": "계정 프로필로 전환",
+     "copy": "이 계정용으로 현재 프로필 복사",
+-    "copyNote": "원래 프로필은 유지됩니다. 기록은 로컬에 남으며 일괄 동기화는 아직 사용할 수 없습니다.",
++    "copyNote": "원래 프로필은 유지됩니다. 기록을 업로드하려면 별도의 허용이 필요합니다.",
+     "target": "계정 프로필",
+     "loading": "프로필 불러오는 중…",
+     "busy": "프로필 전환 중…",
+--- a/src/locales/pt/messages.json
++++ b/src/locales/pt/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Continue com perfil atual sem associar esta conta.",
+     "switch": "Mudar para perfil da conta",
+     "copy": "Copiar perfil atual para esta conta",
+-    "copyNote": "Perfil original preservado. Registros ficam locais; sincronização em lote ainda indisponível.",
++    "copyNote": "O perfil original é mantido. O envio de registos requer uma autorização separada.",
+     "target": "Perfil da conta",
+     "loading": "Lendo perfis…",
+     "busy": "Mudando perfil…",
+--- a/src/locales/ru/messages.json
++++ b/src/locales/ru/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "Продолжить с текущим профилем без связи с аккаунтом.",
+     "switch": "Перейти к профилю аккаунта",
+     "copy": "Скопировать профиль для аккаунта",
+-    "copyNote": "Исходный профиль сохранится. Записи локальные; пакетная синхронизация пока недоступна.",
++    "copyNote": "Исходный профиль сохраняется. Для загрузки записей требуется отдельное разрешение.",
+     "target": "Профиль аккаунта",
+     "loading": "Чтение профилей…",
+     "busy": "Смена профиля…",
+--- a/src/locales/zh-Hans/messages.json
++++ b/src/locales/zh-Hans/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "继续使用当前档案，不关联此账号。",
+     "switch": "切换到账号档案",
+     "copy": "复制当前档案用于此账号",
+-    "copyNote": "复制会保留原档案；学习记录仍在本机，批次同步尚未开放。",
++    "copyNote": "原档案会保留。上传记录需要另外授权。",
+     "target": "账号档案",
+     "loading": "正在读取档案…",
+     "busy": "正在切换档案…",
+--- a/src/locales/zh-Hant/messages.json
++++ b/src/locales/zh-Hant/messages.json
+@@ -597,7 +597,7 @@
+     "kept": "繼續使用目前檔案，不關聯此帳號。",
+     "switch": "切換至帳號檔案",
+     "copy": "複製目前檔案供此帳號使用",
+-    "copyNote": "複製會保留原檔案；學習紀錄仍在本機，批次同步尚未開放。",
++    "copyNote": "原檔案會保留。上傳紀錄需要另外授權。",
+     "target": "帳號檔案",
+     "loading": "正在讀取檔案…",
+     "busy": "正在切換檔案…",
+--- a/tests/auth.test.ts
++++ b/tests/auth.test.ts
+@@ -1,3 +1,5 @@
++import { sessionSummarySchema } from '../src/shared/auth';
++import { repositoryBindingSchema } from '../src/shared/repository';
+ import { syncChangesSchema, validateSyncBatch } from '../src/shared/sync';
+ import { repositoryRoute } from '../worker/repository';
+ import { webhookRoute } from '../worker/webhook';
+@@ -350,7 +352,7 @@
+ 
+ async function repositoryEnvironment() {
+   const { env, sqlite } = environment();
+-  env.GITHUB_WEBHOOK_SECRET = 'test-webhook'; env.GITHUB_APP_SLUG = 'lingfern-test';
++  env.SYNC_ENABLED = 'true'; env.GITHUB_WEBHOOK_SECRET = 'test-webhook'; env.GITHUB_APP_SLUG = 'lingfern-test';
+   await tokenAccount(env, sqlite, 1, false);
+   const credential = randomSecret(), csrf = randomSecret();
+   const hash = await digest(credential);
+@@ -831,3 +833,39 @@
+   expect((await invoke('/api/sync/batches', value)).status).toBe(409);
+   expect(fixture.batchWrites).toBe(0);
+ });
++
++
++test('sync availability is explicit, fails closed at transport, and never grants identity or binding', async () => {
++  const { env, sqlite, invoke, upstream, verify, headers } = await repositoryEnvironment();
++  for (const flag of [undefined, 'false', 'TRUE', '1', 'true']) {
++    env.SYNC_ENABLED = flag;
++    const session = sessionSummarySchema.parse(await (await authRoute(request('/api/session', { headers }), env))!.json());
++    expect(session.syncAvailable).toBe(flag === 'true');
++    expect(session.bindings).toEqual([]);
++    const before = upstream.mock.calls.length;
++    const response = await invoke('/api/sync/changes?profileId=local-guest');
++    expect(response.status).toBe(flag === 'true' ? 409 : 503);
++    if (flag !== 'true') {
++      expect(await response.json()).toEqual({ error: 'SYNC_UNAVAILABLE' });
++      expect((await invoke('/api/sync/batches', {})).status).toBe(503);
++      expect(upstream.mock.calls.length).toBe(before);
++    }
++  }
++  env.SYNC_ENABLED = 'true'; delete env.GITHUB_WEBHOOK_SECRET;
++  expect(sessionSummarySchema.parse(await (await authRoute(request('/api/session', { headers }), env))!.json()).syncAvailable).toBe(false);
++  expect((await invoke('/api/sync/changes?profileId=local-guest')).status).toBe(503);
++  env.GITHUB_WEBHOOK_SECRET = 'synthetic';
++  const intent = await verify();
++  const bound = await (await invoke('/api/sync/bind', { ...intent, confirm: true })).json() as { syncAvailable: boolean; binding: unknown };
++  const binding = repositoryBindingSchema.parse(bound.binding);
++  expect(bound.syncAvailable).toBe(true);
++  expect(binding.bindingVersion).toMatch(/^[\w-]{43}$/);
++  expect(binding.bindingVersion).toBe(sqlite.prepare('SELECT binding_version FROM repository_bindings').get()!.binding_version);
++  env.SYNC_ENABLED = 'false';
++  expect((await invoke('/api/sync/changes?profileId=local-guest')).status).toBe(503);
++  expect((await invoke('/api/sync/batches', {}, { 'X-CSRF-Token': 'wrong' })).status).toBe(403);
++  expect((await invoke('/api/sync/disconnect', { profileId: 'local-guest', confirm: true })).status).toBe(200);
++  env.SYNC_ENABLED = 'true'; sqlite.exec('UPDATE accounts SET revoked=1');
++  expect((await invoke('/api/sync/changes?profileId=local-guest')).status).toBe(401);
++  expect(sessionSummarySchema.parse(await (await authRoute(request('/api/session', { headers }), env))!.json()).syncAvailable).toBe(false);
++});
+--- a/tests/browser/sync-client.spec.ts
++++ b/tests/browser/sync-client.spec.ts
+@@ -107,8 +107,11 @@
+   }, { scope, consent });
+   expect(result).toBe('SYNC_BUSY'); expect(requests).toBe(0);
+   await other.close();
+-  expect(await page.evaluate(async ({ scope, consent }) => {
++  // WebKit may finish closing the page before its native lock has been released.
++  await expect.poll(() => page.evaluate(async ({ scope, consent }) => {
+     const { uploadSyncBatch } = await import('/src/data/syncClient.ts' as string);
+-    return uploadSyncBatch(scope.profileId, consent);
++    try { return await uploadSyncBatch(scope.profileId, consent); }
++    catch (error) { if ((error as Error).message === 'SYNC_BUSY') return 'SYNC_BUSY'; throw error; }
+   }, { scope, consent })).toBe('idle');
++  expect(requests).toBe(0);
+ });
+--- a/tests/browser/sync-controls.spec.ts
++++ b/tests/browser/sync-controls.spec.ts
+@@ -52,10 +52,12 @@
+   await expect(controls).toContainText('已停止上传');
+   await expect(controls.getByRole('button', { name: '上传一批记录', exact: true })).toBeDisabled();
+   expect(sent).toHaveLength(2);
++  const controlsNode = await controls.elementHandle();
+   for (const [locale, name, width] of [['zh-Hans', '语言', 375], ['zh-Hant', '语言', 320], ['en', '語言', 320]] as const) {
+     await page.setViewportSize({ width, height: 812 });
+     await selectPicker(page, name, locale);
+     await expect(controls.getByRole('heading', { name: locale === 'en' ? 'Batch sync' : '批次同步', exact: true })).toBeVisible();
++    expect(await controls.evaluate((element, original) => element === original, controlsNode)).toBe(true);
+     await controls.scrollIntoViewIfNeeded();
+     await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+     await expect(controls).toBeVisible();
+@@ -65,3 +67,33 @@
+     await page.screenshot({ path: `output/playwright/sync-controls-${width}-${locale}-dark.png`, animations: 'disabled' });
+   }
+ });
++
++
++test('server availability withdrawal preserves consent and shows refresh without acknowledging upload', async ({ page }) => {
++  const scope = { accountId: 1, profileId: 'local-guest', bindingVersion: 'a'.repeat(43) };
++  let available = true, attempts = 0;
++  const summary = () => ({ account: { id: 1, login: 'synthetic' }, csrfToken: 't'.repeat(43), syncAvailable: available, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: scope.profileId, disabled: false, bindingVersion: scope.bindingVersion }] });
++  await page.route('**/api/session', route => route.fulfill({ json: summary() }));
++  await page.route('**/api/sync/batches', route => { attempts++; available = false; return route.fulfill({ status: 503, json: { error: 'SYNC_UNAVAILABLE' } }); });
++  await page.goto('/today');
++  await page.evaluate(async () => {
++    const { settings } = await import('/src/data/db.ts' as string);
++    const { appendSyncEvent } = await import('/src/data/sync.ts' as string);
++    await settings.put({ key: 'profile:local-guest:syncAccount', value: JSON.stringify({ accountId: 1, profileId: 'local-guest' }) });
++    await appendSyncEvent('local-guest', { type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true, reviewEnabled: false } });
++  });
++  await page.goto('/settings');
++  const controls = page.locator('.sync-controls');
++  await controls.getByRole('button', { name: '允许上传到此资料库' }).click();
++  await controls.getByRole('button', { name: '上传一批记录', exact: true }).click();
++  await expect(controls.getByRole('button', { name: '重新检查连接' })).toBeVisible();
++  expect(attempts).toBe(1);
++  await controls.getByRole('button', { name: '重新检查连接' }).click();
++  await expect(controls).toHaveCount(0);
++  await expect(page.locator('.repository-binding')).toContainText('批次同步尚未开放');
++  const retained = await page.evaluate(async () => {
++    const { db, settings } = await import('/src/data/db.ts' as string);
++    return { events: await db.table('syncEvents').count(), uploads: await db.table('syncUploads').count(), consent: Boolean(await settings.get('profile:local-guest:syncConsent')) };
++  });
++  expect(retained.events).toBeGreaterThan(0); expect(retained.uploads).toBe(0); expect(retained.consent).toBe(true);
++});
+--- /dev/null
++++ b/tests/release-files.test.mjs
+@@ -0,0 +1,15 @@
++import { test } from 'node:test';
++import assert from 'node:assert/strict';
++import { allowed } from '../scripts/release-files.mjs';
++
++test('publication allowlist excludes original/private/credential/diagnostic paths without deleting them', () => {
++  for (const file of ['private/a.json', 'backup/a.json', 'content/corpus/raw/pg1.txt', 'content/corpus/additional/raw/a.html', '.env', '.dev.vars.local', 'worker/key.pem', 'public/a.log', 'public/../private/a', '/src/a', 'src\\a', 'docs/history/a.md', 'node_modules/a', 'output/a.png', 'Signature/01_Pure_Black.svg']) assert.equal(allowed(file),false,file);
++  for (const file of ['Signature/04_Forest_Green.svg', 'src/app/App.tsx', 'worker/auth.ts', 'worker/migrations/0008_mcp_login.sql', 'public/resources/catalogue.json', 'public/source-packs/accepted.zip', 'content/corpus/text-review-rules.json', 'package-lock.json', '.github/workflows/checks.yml']) assert.equal(allowed(file),true,file);
++});
++
++test('release guard refuses unconfigured and local-only settings before any real deployment', async () => {
++  const { checkReleaseConfig } = await import('../scripts/release-config.mjs');
++  const config={name:'lingfern',workers_dev:false,preview_urls:false,vars:{GITHUB_CLIENT_ID:'synthetic-app',SYNC_ENABLED:'true'},d1_databases:[{binding:'AUTH_DB',database_id:'11111111-1111-1111-1111-111111111111',migrations_dir:'worker/migrations'}],kv_namespaces:[{binding:'OAUTH_KV',id:'1'.repeat(32)}],assets:{not_found_handling:'none',run_worker_first:['/api/*','/mcp']}};
++  assert.doesNotThrow(()=>checkReleaseConfig(config));
++  for(const change of [c=>{c.vars.SYNC_ENABLED='false';},c=>{c.vars.LOCAL_AUTH='true';},c=>{c.vars.TOKEN_ENCRYPTION_KEY='synthetic';},c=>{c.d1_databases[0].database_id='00000000-0000-0000-0000-000000000000';},c=>{c.kv_namespaces=[];},c=>{c.assets.run_worker_first=['/*'];}]){const bad=structuredClone(config);change(bad);assert.throws(()=>checkReleaseConfig(bad));}
++});
+--- a/tests/sync-worker.mjs
++++ b/tests/sync-worker.mjs
+@@ -9,7 +9,7 @@
+ import { createServer as createHttpServer } from 'node:http';
+ 
+ // Real browser/client -> isolated HTTP workerd/D1 -> synthetic GitHub fixture.
+-// The shipped availability gate remains false. Only this test transport changes it.
++// Explicit server configuration enables this isolated synthetic candidate only.
+ const root = process.cwd(), directory = await mkdtemp(path.join(tmpdir(), 'lingfern-sync-test-'));
+ const origin = 'http://127.0.0.1:8787', address = 'http://127.0.0.1:8791', browserOrigin = 'http://127.0.0.1:5191';
+ const state = path.join(directory, 'state'), entry = path.join(directory, 'worker.ts'), configPath = path.join(directory, 'wrangler.json');
+@@ -17,7 +17,7 @@
+ const hash = value => createHash('sha256').update(value).digest('base64url');
+ const cli = ['wrangler', '--config', configPath];
+ await writeFile(entry, `import worker from ${JSON.stringify(path.join(root, 'worker/index.ts'))};import {installProvider,fixtureControl} from ${JSON.stringify(path.join(root, 'tests/fixtures/sync-provider.ts'))};export default {async fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/__fixture')return fixtureControl(request,env);installProvider(env);url.port='8787';const headers=new Headers(request.headers);if(headers.get('Origin')==='${browserOrigin}')headers.set('Origin','${origin}');return worker.fetch(new Request(url,{method:request.method,headers,body:['GET','HEAD'].includes(request.method)?undefined:request.body}),env,ctx)}};`);
+-await writeFile(configPath, JSON.stringify({ name: 'lingfern-sync-test', main: entry, compatibility_date: '2026-09-27', compatibility_flags: ['nodejs_compat'], d1_databases: [{ binding: 'AUTH_DB', database_name: 'sync-test', database_id: '00000000-0000-0000-0000-000000000002', migrations_dir: path.join(root, 'worker/migrations') }], vars: { LOCAL_AUTH: 'true', GITHUB_CLIENT_ID: 'synthetic-app', GITHUB_CLIENT_SECRET: 'synthetic-secret', TOKEN_ENCRYPTION_KEY: btoa('k'.repeat(32)), GITHUB_APP_SLUG: 'synthetic', GITHUB_WEBHOOK_SECRET: 'synthetic-webhook' } }));
++await writeFile(configPath, JSON.stringify({ name: 'lingfern-sync-test', main: entry, compatibility_date: '2026-09-27', compatibility_flags: ['nodejs_compat'], d1_databases: [{ binding: 'AUTH_DB', database_name: 'sync-test', database_id: '00000000-0000-0000-0000-000000000002', migrations_dir: path.join(root, 'worker/migrations') }], vars: { SYNC_ENABLED: 'true', LOCAL_AUTH: 'true', GITHUB_CLIENT_ID: 'synthetic-app', GITHUB_CLIENT_SECRET: 'synthetic-secret', TOKEN_ENCRYPTION_KEY: btoa('k'.repeat(32)), GITHUB_APP_SLUG: 'synthetic', GITHUB_WEBHOOK_SECRET: 'synthetic-webhook' } }));
+ function sql(command) { execFileSync('npx', [...cli, 'd1', 'execute', 'sync-test', '--local', '--persist-to', state, '--command', command], { stdio: 'pipe' }); }
+ execFileSync('npx', [...cli, 'd1', 'migrations', 'apply', 'sync-test', '--local', '--persist-to', state], { stdio: 'pipe' });
+ const time = Math.floor(Date.now() / 1000), key = await webcrypto.subtle.importKey('raw', new TextEncoder().encode('k'.repeat(32)), 'AES-GCM', false, ['encrypt']);
+@@ -29,7 +29,7 @@
+ }
+ const server = spawn('npx', [...cli, 'dev', '--local', '--ip', '127.0.0.1', '--port', '8791', '--persist-to', state], { stdio: 'ignore', detached: true });
+ let vite, browser, secondOrigin, secondRequests = 0;
+-const evidence = { scope: 'Synthetic GitHub, isolated local workerd/D1, two learning profiles within one isolated Chrome context/database; no real provider/two-device/website availability acceptance', gateAdapter: 'Assert original /api/session syncAvailable false, then test transport changes only that flag for verified signed-in account. Production source/config unchanged.', operations: [] };
++const evidence = { scope: 'Synthetic GitHub, isolated local workerd/D1, two learning profiles within one isolated Chrome context/database; no real provider/two-device/website availability acceptance', availability: 'Real server SYNC_ENABLED=true with synthetic App/credentials in isolated config; no response flag rewriting. Default preview/production config remains disabled.', operations: [] };
+ try { const prior = JSON.parse(await readFile('private/verification/sync-worker-integration.json', 'utf8')); evidence.previousRuns = [...(prior.previousRuns ?? []), { status: prior.status, failure: prior.failure, diagnostic: prior.diagnostic }]; } catch { /* First local run. */ }
+ async function request(route, body) { return fetch(address + route, { method: body ? 'POST' : 'GET', headers: { Cookie: `lingfern_local_session=${cookie}`, Origin: origin, 'X-CSRF-Token': csrf, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); }
+ async function control(mode) { const response = await request('/__fixture?mode=' + mode); assert.equal(response.status, 200); return response.json(); }
+@@ -37,12 +37,12 @@
+   for (let i = 0; i < 120; i++) { try { if ((await request('/__fixture?mode=stats')).status === 200) break; } catch { /* Isolated child startup. */ } await new Promise(resolve => setTimeout(resolve, 250)); }
+   const original = await (await request('/api/session')).json();
+   if (original.error) evidence.diagnostic = { ...await control('diagnostic'), ...await control('native-redirect') };
+-  assert.equal(original.syncAvailable, false, JSON.stringify({ original, diagnostic: evidence.diagnostic })); assert.equal(original.account.id, 1);
++  assert.equal(original.syncAvailable, true, JSON.stringify({ original, diagnostic: evidence.diagnostic })); assert.equal(original.account.id, 1);
+   const choice = { installationId: 31, repositoryId: 21, name: 'lingfern-data', profileId: logical };
+   const inspected = await request('/api/sync/inspect', choice); assert.equal(inspected.status, 200);
+   const intent = (await inspected.json()).intent;
+-  const bound = await request('/api/sync/bind', { intent, confirm: true }); assert.equal(bound.status, 200); assert.equal((await bound.json()).syncAvailable, false);
+-  const summary = await (await request('/api/session')).json(); assert.equal(summary.syncAvailable, false);
++  const bound = await request('/api/sync/bind', { intent, confirm: true }); assert.equal(bound.status, 200); assert.equal((await bound.json()).syncAvailable, true);
++  const summary = await (await request('/api/session')).json(); assert.equal(summary.syncAvailable, true);
+   const scope = { accountId: 1, profileId: logical, bindingVersion: summary.bindings[0].bindingVersion };
+   secondOrigin = createHttpServer((_request, response) => { secondRequests++; response.end('forbidden synthetic second origin'); });
+   await new Promise(resolve => secondOrigin.listen(8792, '127.0.0.1', resolve));
+@@ -63,7 +63,6 @@
+     const r = route.request(), url = new URL(r.url());
+     const response = await fetch(address + url.pathname + url.search, { method: r.method(), headers: r.headers(), ...(r.postData() ? { body: r.postData() } : {}) });
+     if (url.pathname === '/api/sync/batches') sent.push(r.postDataJSON().batch.batchId);
+-    if (url.pathname === '/api/session' && response.ok) { const value = await response.json(); assert.equal(value.syncAvailable, false); return route.fulfill({ status: response.status, json: { ...value, syncAvailable: Boolean(value.account) } }); }
+     const headers = Object.fromEntries(response.headers); delete headers['content-encoding']; delete headers['content-length'];
+     await route.fulfill({ status: response.status, headers, body: Buffer.from(await response.arrayBuffer()) });
+     } catch (error) { evidence.bridgeFailure = String(error); await route.abort('failed'); }
+@@ -77,7 +76,7 @@
+       await db.table('profiles').put({ id, name: 'Synthetic local profile', createdAt: new Date().toISOString() });
+       await db.table('syncClocks').put({ profileId: id, logicalProfileId: scope.profileId, deviceId: crypto.randomUUID(), counter: 0 });
+       await db.table('settings').bulkPut([{ key: 'activeProfile', value: id }, { key: `profile:${id}:syncAccount`, value: JSON.stringify({ accountId: 1, profileId: scope.profileId }) }]);
+-      globalThis.integration.consents[id] = await allowSyncUpload(id, scope, { ...summary, syncAvailable: true });
++      globalThis.integration.consents[id] = await allowSyncUpload(id, scope, summary);
+     }
+     await db.table('settings').put({ key: 'activeProfile', value: 'local-a' });
+     await appendSyncEvent('local-a', { type: 'completion', payload: { recordId: 'synthetic-record', sessionId: 'synthetic-session', questionId: 'synthetic-question', rootId: 'synthetic-root', goalId: 'synthetic-goal', skill: 'reading', level: 'A1', mode: 'practice', contentHash: 'a'.repeat(64), correct: true, assistance: { hintLevel: 0, dictionaryUsed: false, audioCompleted: false, playbackRequests: 0 } } });
+--- a/worker/auth.ts
++++ b/worker/auth.ts
+@@ -6,9 +6,12 @@
+   GITHUB_CLIENT_SECRET?: string;
+   TOKEN_ENCRYPTION_KEY?: string;
+   LOCAL_AUTH?: string;
++  SYNC_ENABLED?: string;
+   GITHUB_WEBHOOK_SECRET?: string;
+   GITHUB_APP_SLUG?: string;
+ }
++// Missing or malformed configuration never enables remote exchange.
++export const syncEnabled = (env: AuthEnv) => env.SYNC_ENABLED === 'true' && Boolean(env.AUTH_DB && env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET && env.TOKEN_ENCRYPTION_KEY && env.GITHUB_WEBHOOK_SECRET);
+ export type WebSession = { hash: string; csrf: string; id: number; login: string };
+ export class ApiError extends Error {
+   constructor(public code: string, public status: number) { super(code); }
+@@ -216,7 +219,7 @@
+       const finalAt = Math.floor(Date.now() / 1000);
+       const current = await db.prepare('SELECT accounts.login FROM sessions JOIN accounts ON accounts.id=sessions.account_id WHERE sessions.hash=? AND sessions.account_id=? AND sessions.csrf=? AND sessions.expires_at>? AND sessions.absolute_expires_at>? AND accounts.revoked=0 AND accounts.encrypted_tokens=?').bind(session.hash, session.id, session.csrf, finalAt, finalAt, checkedTokens).first<{ login: string }>();
+       if (!current) return privateJson({ account: null, syncAvailable: false });
+-      return privateJson({ account: { id: session.id, login: current.login }, csrfToken: session.csrf, syncAvailable: false, bindings: bindings.results.map(binding => ({ name: binding.name, owner: binding.owner, profileId: binding.profileId, disabled: Boolean(binding.disabled), ...(/^[\w-]{43}$/.test(binding.bindingVersion) ? { bindingVersion: binding.bindingVersion } : {}) })) });
++      return privateJson({ account: { id: session.id, login: current.login }, csrfToken: session.csrf, syncAvailable: syncEnabled(env), bindings: bindings.results.map(binding => ({ name: binding.name, owner: binding.owner, profileId: binding.profileId, disabled: Boolean(binding.disabled), ...(/^[\w-]{43}$/.test(binding.bindingVersion) ? { bindingVersion: binding.bindingVersion } : {}) })) });
+     }
+     if (!session) return privateJson({ error: 'UNAUTHENTICATED' }, 401);
+     if (!validOrigin || request.headers.get('X-CSRF-Token') !== session.csrf) return privateJson({ error: 'CSRF' }, 403);
+--- a/worker/repository.ts
++++ b/worker/repository.ts
+@@ -1,6 +1,6 @@
+ import { z } from 'zod';
+ import { bindRepositorySchema, inspectRepositorySchema, profileIdSchema, repositoryMarkerSchema, repositoryNameSchema } from '../src/shared/repository';
+-import { ApiError, boundedBody, digest, githubCredential, privateJson, randomSecret, requireSession, revokeAccount, type AuthEnv, type WebSession } from './auth';
++import { ApiError, boundedBody, digest, githubCredential, privateJson, randomSecret, requireSession, revokeAccount, syncEnabled, type AuthEnv, type WebSession } from './auth';
+ import { github } from './github';
+ import { syncUploadSchema, syncKnownFilesSchema, syncByteLimit, validateSyncBatch } from '../src/shared/sync';
+ 
+@@ -106,6 +106,7 @@
+   let generation: { accountId: number; encrypted: string } | undefined;
+   try {
+     const session = await requireSession(request, env, write), db = env.AUTH_DB!, now = Math.floor(Date.now() / 1000);
++    if (['/api/sync/changes', '/api/sync/batches'].includes(url.pathname) && !syncEnabled(env)) throw new ApiError('SYNC_UNAVAILABLE', 503);
+     const key = await digest(`repository:${session.id}:${Math.floor(now / 60)}`);
+     await db.prepare('DELETE FROM auth_limits WHERE expires_at<?').bind(now).run();
+     const limit = await db.prepare('INSERT INTO auth_limits(key,count,expires_at) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count').bind(key, now + 120).first<{ count: number }>();
+@@ -268,9 +269,10 @@
+       // No sha is supplied: an existing marker is never overwritten, including a race.
+       await inspect(api, session.id, { installationId: intent.installation_id, repositoryId: intent.repository_id, name: intent.repository_name, profileId: intent.profile_id });
+     }
+-    const saved = await db.prepare('INSERT INTO repository_bindings(account_id,profile_id,repository_id,installation_id,owner_login,repository_name,branch,updated_at,binding_version) SELECT ?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM installation_states WHERE id=? AND version=? AND disabled=0) AND EXISTS(SELECT 1 FROM sessions JOIN accounts ON accounts.id=sessions.account_id WHERE sessions.hash=? AND accounts.revoked=0 AND sessions.expires_at>unixepoch() AND sessions.absolute_expires_at>unixepoch()) AND EXISTS(SELECT 1 FROM binding_intents WHERE hash=? AND consumed=1 AND expires_at>unixepoch()) AND EXISTS(SELECT 1 FROM repository_states WHERE id=? AND version=?) ON CONFLICT(account_id,profile_id) DO UPDATE SET repository_id=excluded.repository_id,installation_id=excluded.installation_id,owner_login=excluded.owner_login,repository_name=excluded.repository_name,branch=excluded.branch,disabled=0,updated_at=excluded.updated_at,binding_version=excluded.binding_version RETURNING profile_id').bind(session.id, intent.profile_id, intent.repository_id, intent.installation_id, checked.repository.owner.login, checked.repository.name, checked.repository.default_branch, now, randomSecret(), intent.installation_id, intent.installation_version, session.hash, intent.hash, intent.repository_id, intent.repository_version).first();
++    const bindingVersion = randomSecret();
++    const saved = await db.prepare('INSERT INTO repository_bindings(account_id,profile_id,repository_id,installation_id,owner_login,repository_name,branch,updated_at,binding_version) SELECT ?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM installation_states WHERE id=? AND version=? AND disabled=0) AND EXISTS(SELECT 1 FROM sessions JOIN accounts ON accounts.id=sessions.account_id WHERE sessions.hash=? AND accounts.revoked=0 AND sessions.expires_at>unixepoch() AND sessions.absolute_expires_at>unixepoch()) AND EXISTS(SELECT 1 FROM binding_intents WHERE hash=? AND consumed=1 AND expires_at>unixepoch()) AND EXISTS(SELECT 1 FROM repository_states WHERE id=? AND version=?) ON CONFLICT(account_id,profile_id) DO UPDATE SET repository_id=excluded.repository_id,installation_id=excluded.installation_id,owner_login=excluded.owner_login,repository_name=excluded.repository_name,branch=excluded.branch,disabled=0,updated_at=excluded.updated_at,binding_version=excluded.binding_version RETURNING profile_id').bind(session.id, intent.profile_id, intent.repository_id, intent.installation_id, checked.repository.owner.login, checked.repository.name, checked.repository.default_branch, now, bindingVersion, intent.installation_id, intent.installation_version, session.hash, intent.hash, intent.repository_id, intent.repository_version).first();
+     if (!saved) throw new ApiError('AUTHORISATION_CHANGED', 409);
+-    return privateJson({ binding: { name: checked.repository.name, owner: checked.repository.owner.login, profileId: intent.profile_id, disabled: false }, syncAvailable: false });
++    return privateJson({ binding: { name: checked.repository.name, owner: checked.repository.owner.login, profileId: intent.profile_id, disabled: false, bindingVersion }, syncAvailable: syncEnabled(env) });
+   } catch (error) {
+     if (error instanceof ApiError) return privateJson({ error: error.code }, error.status);
+     if (error instanceof z.ZodError || error instanceof SyntaxError) return privateJson({ error: 'GITHUB_RESPONSE' }, 502);

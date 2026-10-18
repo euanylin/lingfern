@@ -1,0 +1,319 @@
+{
+  "software": [
+    {
+      "name": "React and React DOM",
+      "license": "MIT",
+      "url": "https://react.dev/",
+      "packages": [
+        "react",
+        "react-dom"
+      ]
+    },
+    {
+      "name": "Dexie",
+      "license": "Apache-2.0",
+      "url": "https://dexie.org/",
+      "packages": [
+        "dexie"
+      ]
+    },
+    {
+      "name": "Workbox",
+      "license": "MIT",
+      "url": "https://developer.chrome.com/docs/workbox/",
+      "packages": [
+        "workbox-precaching",
+        "workbox-range-requests",
+        "workbox-routing"
+      ]
+    },
+    {
+      "name": "ts-fsrs",
+      "license": "MIT",
+      "url": "https://github.com/open-spaced-repetition/ts-fsrs",
+      "packages": [
+        "ts-fsrs"
+      ]
+    },
+    {
+      "name": "fflate",
+      "license": "MIT",
+      "url": "https://github.com/101arrowz/fflate",
+      "packages": [
+        "fflate"
+      ]
+    },
+    {
+      "name": "Zod",
+      "license": "MIT",
+      "url": "https://zod.dev/",
+      "packages": [
+        "zod"
+      ]
+    },
+    {
+      "name": "Workers OAuth Provider",
+      "license": "MIT",
+      "url": "https://github.com/cloudflare/workers-oauth-provider",
+      "packages": [
+        "@cloudflare/workers-oauth-provider"
+      ]
+    },
+    {
+      "name": "Model Context Protocol TypeScript SDK",
+      "license": "MIT",
+      "url": "https://github.com/modelcontextprotocol/typescript-sdk",
+      "packages": [
+        "@modelcontextprotocol/server"
+      ]
+    },
+    {
+      "name": "Octokit request",
+      "license": "MIT",
+      "url": "https://github.com/octokit/request.js",
+      "packages": [
+        "@octokit/request"
+      ]
+    },
+    {
+      "name": "Octicons",
+      "license": "MIT",
+      "url": "https://github.com/primer/octicons",
+      "packages": []
+    }
+  ],
+  "development": [
+    {
+      "name": "fast-check",
+      "license": "MIT",
+      "url": "https://fast-check.dev/",
+      "packages": [
+        "fast-check"
+      ]
+    },
+    {
+      "name": "Vite",
+      "license": "MIT",
+      "url": "https://vite.dev/",
+      "packages": [
+        "vite"
+      ]
+    },
+    {
+      "name": "vite-plugin-pwa",
+      "license": "MIT",
+      "url": "https://vite-pwa-org.netlify.app/",
+      "packages": [
+        "vite-plugin-pwa"
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "license": "Apache-2.0",
+      "url": "https://www.typescriptlang.org/",
+      "packages": [
+        "typescript"
+      ]
+    },
+    {
+      "name": "Vitest",
+      "license": "MIT",
+      "url": "https://vitest.dev/",
+      "packages": [
+        "vitest"
+      ]
+    },
+    {
+      "name": "Playwright",
+      "license": "Apache-2.0",
+      "url": "https://playwright.dev/",
+      "packages": [
+        "@playwright/test"
+      ]
+    },
+    {
+      "name": "ESLint",
+      "license": "MIT",
+      "url": "https://eslint.org/",
+      "packages": [
+        "eslint"
+      ]
+    },
+    {
+      "name": "typescript-eslint",
+      "license": "MIT",
+      "url": "https://typescript-eslint.io/",
+      "packages": [
+        "typescript-eslint"
+      ]
+    },
+    {
+      "name": "Wrangler",
+      "license": "MIT OR Apache-2.0",
+      "url": "https://developers.cloudflare.com/workers/wrangler/",
+      "packages": [
+        "wrangler"
+      ]
+    },
+    {
+      "name": "fake-indexeddb",
+      "license": "Apache-2.0",
+      "url": "https://github.com/dumbmatter/fakeIndexedDB",
+      "packages": [
+        "fake-indexeddb"
+      ]
+    },
+    {
+      "name": "@types/node, @types/react, @types/react-dom",
+      "license": "MIT",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "packages": [
+        "@types/node",
+        "@types/react",
+        "@types/react-dom"
+      ]
+    }
+  ],
+  "corpora": [
+    {
+      "name": "Project Gutenberg",
+      "terms": "U.S. public-domain text; Project Gutenberg terms and regional limits apply",
+      "url": "https://www.gutenberg.org/",
+      "families": [
+        "gutenberg"
+      ]
+    },
+    {
+      "name": "OpenStax",
+      "terms": "CC BY 4.0 for the retained source editions and original prose",
+      "url": "https://openstax.org/",
+      "families": [
+        "openstax"
+      ]
+    },
+    {
+      "name": "BCcampus Open Education",
+      "terms": "CC BY 4.0 for the retained original prose; third-party exceptions excluded",
+      "url": "https://open.bccampus.ca/",
+      "families": [
+        "bccampus"
+      ]
+    },
+    {
+      "name": "PLOS",
+      "terms": "Article-specific CC BY 4.0 original prose",
+      "url": "https://plos.org/",
+      "families": [
+        "plos"
+      ]
+    },
+    {
+      "name": "Frontiers",
+      "terms": "Article-specific CC BY 4.0 original prose",
+      "url": "https://www.frontiersin.org/",
+      "families": [
+        "frontiers"
+      ]
+    },
+    {
+      "name": "Wikipedia",
+      "terms": "CC BY-SA 4.0 text, with source-specific exceptions",
+      "url": "https://en.wikipedia.org/",
+      "families": [
+        "wikipedia"
+      ]
+    },
+    {
+      "name": "English Wikiquote",
+      "terms": "CC BY-SA 4.0 editorial arrangement; quoted works keep separate rights",
+      "url": "https://en.wikiquote.org/",
+      "families": [
+        "wikiquote"
+      ]
+    },
+    {
+      "name": "Wikimedia Commons / Spoken Wikipedia",
+      "terms": "Individual recording licences, including CC BY, CC BY-SA, CC0 and public domain",
+      "url": "https://commons.wikimedia.org/",
+      "families": []
+    },
+    {
+      "name": "LibriSpeech / LibriVox readers",
+      "terms": "LibriSpeech recordings: CC BY 4.0; source books have separate text rights",
+      "url": "https://www.openslr.org/12/",
+      "families": []
+    },
+    {
+      "name": "FLEURS / FLORES-200 / Wikinews",
+      "terms": "FLEURS recordings: CC BY 4.0; FLORES transcripts: CC BY-SA 4.0, retaining original article terms",
+      "url": "https://huggingface.co/datasets/google/fleurs",
+      "families": [
+        "fleurs"
+      ]
+    },
+    {
+      "name": "VOA Learning English",
+      "terms": "Credited original VOA productions; third-party material has separate rights",
+      "url": "https://learningenglish.voanews.com/p/6021.html",
+      "families": [
+        "voa"
+      ]
+    },
+    {
+      "name": "NOAA",
+      "terms": "Selected NOAA public information; retained exceptions, credit and no-endorsement terms",
+      "url": "https://www.noaa.gov/",
+      "families": [
+        "noaa"
+      ]
+    },
+    {
+      "name": "USGS",
+      "terms": "Selected USGS-authored text: U.S. public domain; regional limits retained",
+      "url": "https://www.usgs.gov/",
+      "families": [
+        "usgs"
+      ]
+    },
+    {
+      "name": "NASA",
+      "terms": "Selected factual/editorial text under NASA reuse guidelines; no endorsement",
+      "url": "https://www.nasa.gov/",
+      "families": [
+        "nasa"
+      ]
+    },
+    {
+      "name": "John F. Kennedy Presidential Library",
+      "terms": "Selected original federal-duty speech text and recordings; individual source terms apply",
+      "url": "https://www.jfklibrary.org/",
+      "families": [
+        "jfk"
+      ]
+    },
+    {
+      "name": "Eisenhower Presidential Library / NARA",
+      "terms": "Selected original federal-duty speeches; U.S. public domain and regional limits retained",
+      "url": "https://www.eisenhowerlibrary.gov/",
+      "families": [
+        "eisenhower"
+      ]
+    },
+    {
+      "name": "Lingfern original dialogues",
+      "terms": "CC BY 4.0 for original dialogue text",
+      "url": "https://github.com/euanylin/lingfern",
+      "families": [
+        "lingfern"
+      ]
+    }
+  ],
+  "ipaClassification": {
+    "name": "International Phonetic Association",
+    "url": "https://www.internationalphoneticassociation.org/content/ipa-chart",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "copyright": "Copyright © 2026 International Phonetic Association.",
+    "changes": "IPA chart classification adapted by Lingfern; the adaptation retains CC BY-SA 4.0. Application code and recordings have separate terms."
+  }
+}

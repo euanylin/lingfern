@@ -1,0 +1,1100 @@
+[
+  {
+    "id": "b1-voa-requests-reading",
+    "targetLevel": "B1",
+    "skill": "reading",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Requests and the situation",
+      "zh-Hans": "Requests and the situation",
+      "zh-Hant": "Requests and the situation"
+    },
+    "goal": {
+      "en": "Choose request language that fits the relationship and situation.",
+      "zh-Hans": "Choose request language that fits the relationship and situation.",
+      "zh-Hant": "Choose request language that fits the relationship and situation."
+    },
+    "goalId": "request-register-reading",
+    "sourceId": "voa-article-7920108",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Look at who is speaking, where they want to meet and how important the request is. The author’s examples explain choices in context; avoid treating one expression as suitable everywhere.",
+      "zh-Hans": "Look at who is speaking, where they want to meet and how important the request is. The author’s examples explain choices in context; avoid treating one expression as suitable everywhere.",
+      "zh-Hant": "Look at who is speaking, where they want to meet and how important the request is. The author’s examples explain choices in context; avoid treating one expression as suitable everywhere."
+    },
+    "workedExample": {
+      "en": "“Could I talk to you for a moment?” asks for a brief conversation politely. It states the purpose, whereas “Could you come to my office, please?” states a meeting place.",
+      "zh-Hans": "“Could I talk to you for a moment?” asks for a brief conversation politely. It states the purpose, whereas “Could you come to my office, please?” states a meeting place.",
+      "zh-Hant": "“Could I talk to you for a moment?” asks for a brief conversation politely. It states the purpose, whereas “Could you come to my office, please?” states a meeting place."
+    },
+    "nextStep": {
+      "en": "Write two requests: one to a colleague for a short conversation and one for urgent help. Explain which source example supports each wording.",
+      "zh-Hans": "Write two requests: one to a colleague for a short conversation and one for urgent help. Explain which source example supports each wording.",
+      "zh-Hant": "Write two requests: one to a colleague for a short conversation and one for urgent help. Explain which source example supports each wording."
+    },
+    "materials": [
+      {
+        "id": "voa-summon",
+        "rootId": "voa-article-7920108",
+        "sourceId": "voa-article-7920108",
+        "title": "How to Summon Others",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "To summon means to call for a person or persons to be present, often for an important meeting.\n\nPlease note that there are many ways to summon others. In this lesson, we will present a few general ways.\n\nSummoning others directly\n\nWhen we speak to others directly, we can summon them with the following:\n\nCould you come here, please?\n\nWe might also be more exact about the meeting place. For example, a supervisor or principal might say:\n\nCould you come to my office, please?\n\nYou might also be more exact with what you would like to do. For example, you might ask:\n\nCould I talk to you for a moment?\n\nThese questions are very general, polite, and useful in a lot of situations.\n\nBut the way in which we summon others can differ depending on the situation, how familiar people are with each other, and the rank or status the speakers have."
+          }
+        ],
+        "questions": [
+          {
+            "id": "summon-1",
+            "blockId": "source",
+            "prompt": "Which request politely names the meeting place?",
+            "options": [
+              "Come over here!",
+              "Could you come to my office, please?",
+              "The office is closed."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 439,
+              "end": 475
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The excerpt gives a question using “could”, “please” and the office as the place.",
+                "zh-Hans": "The excerpt gives a question using “could”, “please” and the office as the place.",
+                "zh-Hant": "The excerpt gives a question using “could”, “please” and the office as the place."
+              },
+              {
+                "en": "This politely asks the listener to come to the office.",
+                "zh-Hans": "This politely asks the listener to come to the office.",
+                "zh-Hant": "This politely asks the listener to come to the office."
+              },
+              {
+                "en": "The quoted statement provides information but does not ask anyone to come.",
+                "zh-Hans": "The quoted statement provides information but does not ask anyone to come.",
+                "zh-Hant": "The quoted statement provides information but does not ask anyone to come."
+              }
+            ]
+          },
+          {
+            "id": "summon-2",
+            "blockId": "source",
+            "prompt": "What can change the way people summon others?",
+            "options": [
+              "The same wording fits every relationship.",
+              "Only the spelling of a person’s name.",
+              "The situation, familiarity and speakers’ status."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 680,
+              "end": 839
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author says the wording can differ, rather than always being identical.",
+                "zh-Hans": "The author says the wording can differ, rather than always being identical.",
+                "zh-Hant": "The author says the wording can differ, rather than always being identical."
+              },
+              {
+                "en": "The author names situation, familiarity and rank or status; spelling is not listed.",
+                "zh-Hans": "The author names situation, familiarity and rank or status; spelling is not listed.",
+                "zh-Hant": "The author names situation, familiarity and rank or status; spelling is not listed."
+              },
+              {
+                "en": "The final sentence explicitly lists these three contextual factors.",
+                "zh-Hans": "The final sentence explicitly lists these three contextual factors.",
+                "zh-Hant": "The final sentence explicitly lists these three contextual factors."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voa-appeal",
+        "rootId": "voa-article-7985917",
+        "sourceId": "voa-article-7985917",
+        "title": "Appeal",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Like many words in English, “appeal” has more than one meaning. It can also be more than one part of speech. A part of speech means the grammatical function a word has, such as a noun, verb, adverb or adjective. Let’s look at the many ways we can use the word “appeal.”\n\nAs a verb, “appeal” means to make a request, often in official situations or involving important things. Generally, we do not use “appeal” for normal, everyday requests. For example, we would not say:\n\nI appeal for you to get some milk at the store.\n\nBut we would say something like:\n\nThe earthquake victims appealed to the government for more aid.\n\nAppealing\n\nWe can change the meaning of “appeal” by making it an adjective. One way to do this is to use the -ing ending. This forms the word “appealing,” which describes something that has a pleasing quality. Consider the following examples:\n\nThat job is really appealing to me."
+          }
+        ],
+        "questions": [
+          {
+            "id": "appeal-1",
+            "blockId": "source",
+            "prompt": "Which request fits the author’s explanation of “appeal” as a verb?",
+            "options": [
+              "Ask a friend to buy milk.",
+              "Ask someone to pass a pencil.",
+              "Ask the government for urgently needed aid."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 556,
+              "end": 619
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Buying milk is the everyday request the author explicitly contrasts with “appeal”.",
+                "zh-Hans": "Buying milk is the everyday request the author explicitly contrasts with “appeal”.",
+                "zh-Hant": "Buying milk is the everyday request the author explicitly contrasts with “appeal”."
+              },
+              {
+                "en": "This is an ordinary everyday request; the author describes more important or official requests.",
+                "zh-Hans": "This is an ordinary everyday request; the author describes more important or official requests.",
+                "zh-Hant": "This is an ordinary everyday request; the author describes more important or official requests."
+              },
+              {
+                "en": "The author’s example uses earthquake victims requesting government aid.",
+                "zh-Hans": "The author’s example uses earthquake victims requesting government aid.",
+                "zh-Hant": "The author’s example uses earthquake victims requesting government aid."
+              }
+            ]
+          },
+          {
+            "id": "appeal-2",
+            "blockId": "source",
+            "prompt": "What does “appealing” mean in the example about a job?",
+            "options": [
+              "Having a pleasing quality.",
+              "Making an official request.",
+              "Being a part of speech called a verb."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 743,
+              "end": 830
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author defines the adjective as describing a pleasing quality.",
+                "zh-Hans": "The author defines the adjective as describing a pleasing quality.",
+                "zh-Hant": "The author defines the adjective as describing a pleasing quality."
+              },
+              {
+                "en": "That is the request meaning of the verb “appeal”, not the adjective in this example.",
+                "zh-Hans": "That is the request meaning of the verb “appeal”, not the adjective in this example.",
+                "zh-Hant": "That is the request meaning of the verb “appeal”, not the adjective in this example."
+              },
+              {
+                "en": "The author says “appealing” is an adjective here, not a verb.",
+                "zh-Hans": "The author says “appealing” is an adjective here, not a verb.",
+                "zh-Hant": "The author says “appealing” is an adjective here, not a verb."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b1-voa-requests-listening",
+    "targetLevel": "B1",
+    "skill": "listening",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Requests and the situation",
+      "zh-Hans": "Requests and the situation",
+      "zh-Hant": "Requests and the situation"
+    },
+    "goal": {
+      "en": "Choose request language that fits the relationship and situation.",
+      "zh-Hans": "Choose request language that fits the relationship and situation.",
+      "zh-Hant": "Choose request language that fits the relationship and situation."
+    },
+    "goalId": "request-register-listening",
+    "sourceId": "voa-article-7920108",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Look at who is speaking, where they want to meet and how important the request is. The author’s examples explain choices in context; avoid treating one expression as suitable everywhere.",
+      "zh-Hans": "Look at who is speaking, where they want to meet and how important the request is. The author’s examples explain choices in context; avoid treating one expression as suitable everywhere.",
+      "zh-Hant": "Look at who is speaking, where they want to meet and how important the request is. The author’s examples explain choices in context; avoid treating one expression as suitable everywhere."
+    },
+    "workedExample": {
+      "en": "“Could I talk to you for a moment?” asks for a brief conversation politely. It states the purpose, whereas “Could you come to my office, please?” states a meeting place.",
+      "zh-Hans": "“Could I talk to you for a moment?” asks for a brief conversation politely. It states the purpose, whereas “Could you come to my office, please?” states a meeting place.",
+      "zh-Hant": "“Could I talk to you for a moment?” asks for a brief conversation politely. It states the purpose, whereas “Could you come to my office, please?” states a meeting place."
+    },
+    "nextStep": {
+      "en": "Write two requests: one to a colleague for a short conversation and one for urgent help. Explain which source example supports each wording.",
+      "zh-Hans": "Write two requests: one to a colleague for a short conversation and one for urgent help. Explain which source example supports each wording.",
+      "zh-Hant": "Write two requests: one to a colleague for a short conversation and one for urgent help. Explain which source example supports each wording."
+    },
+    "materials": [
+      {
+        "id": "voa-summon",
+        "rootId": "voa-article-7920108",
+        "sourceId": "voa-article-7920108",
+        "title": "How to Summon Others",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "To summon means to call for a person or persons to be present, often for an important meeting.\n\nPlease note that there are many ways to summon others. In this lesson, we will present a few general ways.\n\nSummoning others directly\n\nWhen we speak to others directly, we can summon them with the following:\n\nCould you come here, please?\n\nWe might also be more exact about the meeting place. For example, a supervisor or principal might say:\n\nCould you come to my office, please?\n\nYou might also be more exact with what you would like to do. For example, you might ask:\n\nCould I talk to you for a moment?\n\nThese questions are very general, polite, and useful in a lot of situations.\n\nBut the way in which we summon others can differ depending on the situation, how familiar people are with each other, and the rank or status the speakers have."
+          }
+        ],
+        "questions": [
+          {
+            "id": "summon-1",
+            "blockId": "source",
+            "prompt": "Which request politely names the meeting place?",
+            "options": [
+              "Come over here!",
+              "Could you come to my office, please?",
+              "The office is closed."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 439,
+              "end": 475,
+              "audioStart": 35.86,
+              "audioEnd": 38.62
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The excerpt gives a question using “could”, “please” and the office as the place.",
+                "zh-Hans": "The excerpt gives a question using “could”, “please” and the office as the place.",
+                "zh-Hant": "The excerpt gives a question using “could”, “please” and the office as the place."
+              },
+              {
+                "en": "This politely asks the listener to come to the office.",
+                "zh-Hans": "This politely asks the listener to come to the office.",
+                "zh-Hant": "This politely asks the listener to come to the office."
+              },
+              {
+                "en": "The quoted statement provides information but does not ask anyone to come.",
+                "zh-Hans": "The quoted statement provides information but does not ask anyone to come.",
+                "zh-Hant": "The quoted statement provides information but does not ask anyone to come."
+              }
+            ]
+          },
+          {
+            "id": "summon-2",
+            "blockId": "source",
+            "prompt": "What can change the way people summon others?",
+            "options": [
+              "The same wording fits every relationship.",
+              "Only the spelling of a person’s name.",
+              "The situation, familiarity and speakers’ status."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 680,
+              "end": 839,
+              "audioStart": 56.36,
+              "audioEnd": 68.76
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author says the wording can differ, rather than always being identical.",
+                "zh-Hans": "The author says the wording can differ, rather than always being identical.",
+                "zh-Hant": "The author says the wording can differ, rather than always being identical."
+              },
+              {
+                "en": "The author names situation, familiarity and rank or status; spelling is not listed.",
+                "zh-Hans": "The author names situation, familiarity and rank or status; spelling is not listed.",
+                "zh-Hant": "The author names situation, familiarity and rank or status; spelling is not listed."
+              },
+              {
+                "en": "The final sentence explicitly lists these three contextual factors.",
+                "zh-Hans": "The final sentence explicitly lists these three contextual factors.",
+                "zh-Hant": "The final sentence explicitly lists these three contextual factors."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b1-speech/voa-summon.mp3",
+          "sha256": "f94a95d59f4053f977faa189bbf0dc83489d95bd7c554da3783bb3c5ca8047a0",
+          "duration": 69.041633,
+          "author": "John Russell",
+          "sourceUrl": "https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      },
+      {
+        "id": "voa-appeal",
+        "rootId": "voa-article-7985917",
+        "sourceId": "voa-article-7985917",
+        "title": "Appeal",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Like many words in English, “appeal” has more than one meaning. It can also be more than one part of speech. A part of speech means the grammatical function a word has, such as a noun, verb, adverb or adjective. Let’s look at the many ways we can use the word “appeal.”\n\nAs a verb, “appeal” means to make a request, often in official situations or involving important things. Generally, we do not use “appeal” for normal, everyday requests. For example, we would not say:\n\nI appeal for you to get some milk at the store.\n\nBut we would say something like:\n\nThe earthquake victims appealed to the government for more aid.\n\nAppealing\n\nWe can change the meaning of “appeal” by making it an adjective. One way to do this is to use the -ing ending. This forms the word “appealing,” which describes something that has a pleasing quality. Consider the following examples:\n\nThat job is really appealing to me."
+          }
+        ],
+        "questions": [
+          {
+            "id": "appeal-1",
+            "blockId": "source",
+            "prompt": "Which request fits the author’s explanation of “appeal” as a verb?",
+            "options": [
+              "Ask a friend to buy milk.",
+              "Ask someone to pass a pencil.",
+              "Ask the government for urgently needed aid."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 556,
+              "end": 619,
+              "audioStart": 61.98,
+              "audioEnd": 67.06
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Buying milk is the everyday request the author explicitly contrasts with “appeal”.",
+                "zh-Hans": "Buying milk is the everyday request the author explicitly contrasts with “appeal”.",
+                "zh-Hant": "Buying milk is the everyday request the author explicitly contrasts with “appeal”."
+              },
+              {
+                "en": "This is an ordinary everyday request; the author describes more important or official requests.",
+                "zh-Hans": "This is an ordinary everyday request; the author describes more important or official requests.",
+                "zh-Hant": "This is an ordinary everyday request; the author describes more important or official requests."
+              },
+              {
+                "en": "The author’s example uses earthquake victims requesting government aid.",
+                "zh-Hans": "The author’s example uses earthquake victims requesting government aid.",
+                "zh-Hant": "The author’s example uses earthquake victims requesting government aid."
+              }
+            ]
+          },
+          {
+            "id": "appeal-2",
+            "blockId": "source",
+            "prompt": "What does “appealing” mean in the example about a job?",
+            "options": [
+              "Having a pleasing quality.",
+              "Making an official request.",
+              "Being a part of speech called a verb."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 743,
+              "end": 830,
+              "audioStart": 82.3,
+              "audioEnd": 92.1
+            },
+            "hints": [
+              {
+                "en": "Choose language that fits the situation described by the author.",
+                "zh-Hans": "Choose language that fits the situation described by the author.",
+                "zh-Hant": "Choose language that fits the situation described by the author."
+              },
+              {
+                "en": "Find the author’s example or the explanation beside it.",
+                "zh-Hans": "Find the author’s example or the explanation beside it.",
+                "zh-Hant": "Find the author’s example or the explanation beside it."
+              },
+              {
+                "en": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hans": "“Could” softens a request; the -ing ending can form an adjective with a different meaning.",
+                "zh-Hant": "“Could” softens a request; the -ing ending can form an adjective with a different meaning."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author defines the adjective as describing a pleasing quality.",
+                "zh-Hans": "The author defines the adjective as describing a pleasing quality.",
+                "zh-Hant": "The author defines the adjective as describing a pleasing quality."
+              },
+              {
+                "en": "That is the request meaning of the verb “appeal”, not the adjective in this example.",
+                "zh-Hans": "That is the request meaning of the verb “appeal”, not the adjective in this example.",
+                "zh-Hant": "That is the request meaning of the verb “appeal”, not the adjective in this example."
+              },
+              {
+                "en": "The author says “appealing” is an adjective here, not a verb.",
+                "zh-Hans": "The author says “appealing” is an adjective here, not a verb.",
+                "zh-Hant": "The author says “appealing” is an adjective here, not a verb."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b1-speech/voa-appeal.mp3",
+          "sha256": "bf46e33ed049dbe3dade282e8e30bc63fd330284f6f32b809eb3bc5b540439e3",
+          "duration": 99.813878,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/appeal/7985917.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b1-voa-explanations-reading",
+    "targetLevel": "B1",
+    "skill": "reading",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Follow definitions and examples",
+      "zh-Hans": "Follow definitions and examples",
+      "zh-Hant": "Follow definitions and examples"
+    },
+    "goal": {
+      "en": "Follow an author’s explanation and preserve the meaning of its examples and qualifications.",
+      "zh-Hans": "Follow an author’s explanation and preserve the meaning of its examples and qualifications.",
+      "zh-Hant": "Follow an author’s explanation and preserve the meaning of its examples and qualifications."
+    },
+    "goalId": "follow-explanations-and-examples-reading",
+    "sourceId": "voa-7897823",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Connect a definition to its example. Keep sounds separate from spelling, and a general description separate from a momentary feeling. Words such as can, some and however limit what you can conclude.",
+      "zh-Hans": "Connect a definition to its example. Keep sounds separate from spelling, and a general description separate from a momentary feeling. Words such as can, some and however limit what you can conclude.",
+      "zh-Hant": "Connect a definition to its example. Keep sounds separate from spelling, and a general description separate from a momentary feeling. Words such as can, some and however limit what you can conclude."
+    },
+    "workedExample": {
+      "en": "If a passage says a tool can help some people, “the tool always helps everyone” is too strong. Preserve the original scope when explaining the passage.",
+      "zh-Hans": "If a passage says a tool can help some people, “the tool always helps everyone” is too strong. Preserve the original scope when explaining the passage.",
+      "zh-Hant": "If a passage says a tool can help some people, “the tool always helps everyone” is too strong. Preserve the original scope when explaining the passage."
+    },
+    "nextStep": {
+      "en": "In the next unfamiliar explanation, identify the definition, one example and a word that limits the claim.",
+      "zh-Hans": "In the next unfamiliar explanation, identify the definition, one example and a word that limits the claim.",
+      "zh-Hant": "In the next unfamiliar explanation, identify the definition, one example and a word that limits the claim."
+    },
+    "materials": [
+      {
+        "id": "b1-voa-explanations-reading-7897823",
+        "rootId": "voa-article-7897823",
+        "sourceId": "voa-7897823",
+        "title": "Using the Phonetic Alphabet",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "You can use the phonetic alphabet to help you know each sound of American English. Let's start by looking at what the phonetic alphabet is.\n\nEach separate sound we make when we talk is called a phoneme. For example, the word “cat” has three phonemes: /k/, /æ/, /t/ --“cat.”\n\nFor every phoneme we say, in any language, we can show that phoneme by using a special symbol, or sign. Those symbols are what make The International Phonetic Alphabet, or IPA. Notice that in the example with “cat,” only the phonetic symbol for the letter “t” looks the same as the English letter for that sound.\n\nFor many phonemes, the phonetic symbol does not look the same as the letters of the English alphabet that make the sound of the phonemes. Consider the word “need,” for example. It is spelled N-E-E-D but the phonetic symbol signifying the vowel looks like the English letter “i.”\n\nHow can you use the phonetic alphabet? Try to identify the phonemes that are difficult for you. For example, small differences between some vowel sounds in American English may be difficult for some non-native speakers to hear."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b1-voa-explanations-reading-0-1",
+            "blockId": "source",
+            "prompt": "What does the author say a special IPA symbol represents?",
+            "options": [
+              "A spoken sound.",
+              "The number of letters in a word.",
+              "Only the name of an English letter."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 275,
+              "end": 378
+            },
+            "hints": [
+              {
+                "en": "Distinguish a spoken sound from its written representation.",
+                "zh-Hans": "Distinguish a spoken sound from its written representation.",
+                "zh-Hant": "Distinguish a spoken sound from its written representation."
+              },
+              {
+                "en": "Locate the sentence explaining what a symbol shows.",
+                "zh-Hans": "Locate the sentence explaining what a symbol shows.",
+                "zh-Hant": "Locate the sentence explaining what a symbol shows."
+              },
+              {
+                "en": "A phoneme is a separate speech sound; a symbol is the written sign used to show it.",
+                "zh-Hans": "A phoneme is a separate speech sound; a symbol is the written sign used to show it.",
+                "zh-Hant": "A phoneme is a separate speech sound; a symbol is the written sign used to show it."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author explicitly says a special symbol can show a phoneme.",
+                "zh-Hans": "The author explicitly says a special symbol can show a phoneme.",
+                "zh-Hant": "The author explicitly says a special symbol can show a phoneme."
+              },
+              {
+                "en": "The symbol represents a sound, not a count of spelling letters.",
+                "zh-Hans": "The symbol represents a sound, not a count of spelling letters.",
+                "zh-Hant": "The symbol represents a sound, not a count of spelling letters."
+              },
+              {
+                "en": "The explanation applies to phonemes in any language, not only English letter names.",
+                "zh-Hans": "The explanation applies to phonemes in any language, not only English letter names.",
+                "zh-Hant": "The explanation applies to phonemes in any language, not only English letter names."
+              }
+            ]
+          },
+          {
+            "id": "b1-voa-explanations-reading-0-2",
+            "blockId": "source",
+            "prompt": "Which practice plan follows the author’s advice?",
+            "options": [
+              "Ignore sounds and practise only spelling.",
+              "Identify sounds that are difficult for you before practising them.",
+              "Assume every learner has difficulty with every vowel."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 908,
+              "end": 964
+            },
+            "hints": [
+              {
+                "en": "Use the author’s advice to choose a practical next step.",
+                "zh-Hans": "Use the author’s advice to choose a practical next step.",
+                "zh-Hant": "Use the author’s advice to choose a practical next step."
+              },
+              {
+                "en": "Find the instruction after “How can you use the phonetic alphabet?”",
+                "zh-Hans": "Find the instruction after “How can you use the phonetic alphabet?”",
+                "zh-Hant": "Find the instruction after “How can you use the phonetic alphabet?”"
+              },
+              {
+                "en": "Identify means find out which ones; for you refers to the individual learner.",
+                "zh-Hans": "Identify means find out which ones; for you refers to the individual learner.",
+                "zh-Hant": "Identify means find out which ones; for you refers to the individual learner."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author asks learners to identify difficult sounds, rather than ignore hearing.",
+                "zh-Hans": "The author asks learners to identify difficult sounds, rather than ignore hearing.",
+                "zh-Hant": "The author asks learners to identify difficult sounds, rather than ignore hearing."
+              },
+              {
+                "en": "The instruction is to identify phonemes that are difficult for you.",
+                "zh-Hans": "The instruction is to identify phonemes that are difficult for you.",
+                "zh-Hant": "The instruction is to identify phonemes that are difficult for you."
+              },
+              {
+                "en": "The author says some vowel differences may be difficult for some learners; this does not mean all vowels are difficult for everyone.",
+                "zh-Hans": "The author says some vowel differences may be difficult for some learners; this does not mean all vowels are difficult for everyone.",
+                "zh-Hant": "The author says some vowel differences may be difficult for some learners; this does not mean all vowels are difficult for everyone."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b1-voa-explanations-reading-7886124",
+        "rootId": "voa-article-7886124",
+        "sourceId": "voa-7886124",
+        "title": "Notes about ‘Being’",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Let’s start by considering a basic way we use the verb “be” in English. We commonly use this verb to link, or join, a subject with its description. The description will often be a noun or an adjective. The following two examples show this:\n\nThat man is a farmer.\n\nThat man is rich.\n\nExpanding on this use of the verb “be,” we can call a description of how a person feels and experiences his or her life as a “state of being.” A state of being can last for a short or a long time. However, a state of being is longer than a momentary feeling. The following examples show this usage:\n\nIn retirement, her state of being became more relaxed.\n\nHis state of being has not been good in recent months.\n\nWe can also use the word “being” to begin a description. This can help us describe something or someone in one sentence instead of two. For example, we could use two sentences to describe a man who does not speak very much with other people:\n\nMr. Jones was someone who spoke very little. He sat quietly while others did the talking.\n\nBut if we use the word “being,” we can express this idea in one sentence, as in the following example:\nBeing a man of few words, Mr. Jones sat quietly while others did the talking."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b1-voa-explanations-reading-1-1",
+            "blockId": "source",
+            "prompt": "Which statement keeps both parts of the explanation of a “state of being”?",
+            "options": [
+              "It is always a brief momentary feeling.",
+              "It must last forever and can never change.",
+              "Its duration can vary, but it lasts longer than a momentary feeling."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 426,
+              "end": 541
+            },
+            "hints": [
+              {
+                "en": "Keep the duration statement and the contrast together.",
+                "zh-Hans": "Keep the duration statement and the contrast together.",
+                "zh-Hant": "Keep the duration statement and the contrast together."
+              },
+              {
+                "en": "Read or replay the two sentences joined by “However”.",
+                "zh-Hans": "Read or replay the two sentences joined by “However”.",
+                "zh-Hant": "Read or replay the two sentences joined by “However”."
+              },
+              {
+                "en": "Can allows different durations; however introduces a qualification or contrast.",
+                "zh-Hans": "Can allows different durations; however introduces a qualification or contrast.",
+                "zh-Hant": "Can allows different durations; however introduces a qualification or contrast."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The explanation says a state of being is longer than a momentary feeling.",
+                "zh-Hans": "The explanation says a state of being is longer than a momentary feeling.",
+                "zh-Hant": "The explanation says a state of being is longer than a momentary feeling."
+              },
+              {
+                "en": "The author permits short or long durations, so forever is an unsupported restriction.",
+                "zh-Hans": "The author permits short or long durations, so forever is an unsupported restriction.",
+                "zh-Hant": "The author permits short or long durations, so forever is an unsupported restriction."
+              },
+              {
+                "en": "This preserves both variable duration and the explicit contrast with a momentary feeling.",
+                "zh-Hans": "This preserves both variable duration and the explicit contrast with a momentary feeling.",
+                "zh-Hant": "This preserves both variable duration and the explicit contrast with a momentary feeling."
+              }
+            ]
+          },
+          {
+            "id": "b1-voa-explanations-reading-1-2",
+            "blockId": "source",
+            "prompt": "Which paraphrase preserves the example about Mr. Jones?",
+            "options": [
+              "Mr. Jones said little and sat quietly while other people talked.",
+              "Mr. Jones was alone, so no one could talk to him.",
+              "Mr. Jones spoke throughout the conversation while everyone else was silent."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 1132,
+              "end": 1209
+            },
+            "hints": [
+              {
+                "en": "Preserve who speaks and who stays quiet.",
+                "zh-Hans": "Preserve who speaks and who stays quiet.",
+                "zh-Hant": "Preserve who speaks and who stays quiet."
+              },
+              {
+                "en": "Compare the two-sentence description with the version beginning “Being”.",
+                "zh-Hans": "Compare the two-sentence description with the version beginning “Being”.",
+                "zh-Hant": "Compare the two-sentence description with the version beginning “Being”."
+              },
+              {
+                "en": "A man of few words is someone who does not speak much; while marks what others do at the same time.",
+                "zh-Hans": "A man of few words is someone who does not speak much; while marks what others do at the same time.",
+                "zh-Hant": "A man of few words is someone who does not speak much; while marks what others do at the same time."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This keeps Mr. Jones’s quiet character and the fact that others were talking.",
+                "zh-Hans": "This keeps Mr. Jones’s quiet character and the fact that others were talking.",
+                "zh-Hant": "This keeps Mr. Jones’s quiet character and the fact that others were talking."
+              },
+              {
+                "en": "Others were talking in the example, so Mr. Jones was not described as alone.",
+                "zh-Hans": "Others were talking in the example, so Mr. Jones was not described as alone.",
+                "zh-Hant": "Others were talking in the example, so Mr. Jones was not described as alone."
+              },
+              {
+                "en": "This reverses the roles: the example says Mr. Jones sat quietly while others talked.",
+                "zh-Hans": "This reverses the roles: the example says Mr. Jones sat quietly while others talked.",
+                "zh-Hant": "This reverses the roles: the example says Mr. Jones sat quietly while others talked."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b1-voa-explanations-listening",
+    "targetLevel": "B1",
+    "skill": "listening",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Hear definitions and examples",
+      "zh-Hans": "Hear definitions and examples",
+      "zh-Hant": "Hear definitions and examples"
+    },
+    "goal": {
+      "en": "Follow an author’s explanation and preserve the meaning of its examples and qualifications.",
+      "zh-Hans": "Follow an author’s explanation and preserve the meaning of its examples and qualifications.",
+      "zh-Hant": "Follow an author’s explanation and preserve the meaning of its examples and qualifications."
+    },
+    "goalId": "follow-explanations-and-examples-listening",
+    "sourceId": "voa-7897823",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Connect a definition to its example. Keep sounds separate from spelling, and a general description separate from a momentary feeling. Words such as can, some and however limit what you can conclude.",
+      "zh-Hans": "Connect a definition to its example. Keep sounds separate from spelling, and a general description separate from a momentary feeling. Words such as can, some and however limit what you can conclude.",
+      "zh-Hant": "Connect a definition to its example. Keep sounds separate from spelling, and a general description separate from a momentary feeling. Words such as can, some and however limit what you can conclude."
+    },
+    "workedExample": {
+      "en": "If a passage says a tool can help some people, “the tool always helps everyone” is too strong. Preserve the original scope when explaining the passage.",
+      "zh-Hans": "If a passage says a tool can help some people, “the tool always helps everyone” is too strong. Preserve the original scope when explaining the passage.",
+      "zh-Hant": "If a passage says a tool can help some people, “the tool always helps everyone” is too strong. Preserve the original scope when explaining the passage."
+    },
+    "nextStep": {
+      "en": "In the next unfamiliar explanation, identify the definition, one example and a word that limits the claim.",
+      "zh-Hans": "In the next unfamiliar explanation, identify the definition, one example and a word that limits the claim.",
+      "zh-Hant": "In the next unfamiliar explanation, identify the definition, one example and a word that limits the claim."
+    },
+    "materials": [
+      {
+        "id": "b1-voa-explanations-listening-7897823",
+        "rootId": "voa-article-7897823",
+        "sourceId": "voa-7897823",
+        "title": "Using the Phonetic Alphabet",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "You can use the phonetic alphabet to help you know each sound of American English. Let's start by looking at what the phonetic alphabet is.\n\nEach separate sound we make when we talk is called a phoneme. For example, the word “cat” has three phonemes: /k/, /æ/, /t/ --“cat.”\n\nFor every phoneme we say, in any language, we can show that phoneme by using a special symbol, or sign. Those symbols are what make The International Phonetic Alphabet, or IPA. Notice that in the example with “cat,” only the phonetic symbol for the letter “t” looks the same as the English letter for that sound.\n\nFor many phonemes, the phonetic symbol does not look the same as the letters of the English alphabet that make the sound of the phonemes. Consider the word “need,” for example. It is spelled N-E-E-D but the phonetic symbol signifying the vowel looks like the English letter “i.”\n\nHow can you use the phonetic alphabet? Try to identify the phonemes that are difficult for you. For example, small differences between some vowel sounds in American English may be difficult for some non-native speakers to hear."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b1-voa-explanations-listening-0-1",
+            "blockId": "source",
+            "prompt": "What does the author say a special IPA symbol represents?",
+            "options": [
+              "A spoken sound.",
+              "The number of letters in a word.",
+              "Only the name of an English letter."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 275,
+              "end": 378,
+              "audioStart": 31.88,
+              "audioEnd": 42.88
+            },
+            "hints": [
+              {
+                "en": "Distinguish a spoken sound from its written representation.",
+                "zh-Hans": "Distinguish a spoken sound from its written representation.",
+                "zh-Hant": "Distinguish a spoken sound from its written representation."
+              },
+              {
+                "en": "Locate the sentence explaining what a symbol shows.",
+                "zh-Hans": "Locate the sentence explaining what a symbol shows.",
+                "zh-Hant": "Locate the sentence explaining what a symbol shows."
+              },
+              {
+                "en": "A phoneme is a separate speech sound; a symbol is the written sign used to show it.",
+                "zh-Hans": "A phoneme is a separate speech sound; a symbol is the written sign used to show it.",
+                "zh-Hant": "A phoneme is a separate speech sound; a symbol is the written sign used to show it."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author explicitly says a special symbol can show a phoneme.",
+                "zh-Hans": "The author explicitly says a special symbol can show a phoneme.",
+                "zh-Hant": "The author explicitly says a special symbol can show a phoneme."
+              },
+              {
+                "en": "The symbol represents a sound, not a count of spelling letters.",
+                "zh-Hans": "The symbol represents a sound, not a count of spelling letters.",
+                "zh-Hant": "The symbol represents a sound, not a count of spelling letters."
+              },
+              {
+                "en": "The explanation applies to phonemes in any language, not only English letter names.",
+                "zh-Hans": "The explanation applies to phonemes in any language, not only English letter names.",
+                "zh-Hant": "The explanation applies to phonemes in any language, not only English letter names."
+              }
+            ]
+          },
+          {
+            "id": "b1-voa-explanations-listening-0-2",
+            "blockId": "source",
+            "prompt": "Which practice plan follows the author’s advice?",
+            "options": [
+              "Ignore sounds and practise only spelling.",
+              "Identify sounds that are difficult for you before practising them.",
+              "Assume every learner has difficulty with every vowel."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 908,
+              "end": 964,
+              "audioStart": 98.34,
+              "audioEnd": 103.86
+            },
+            "hints": [
+              {
+                "en": "Use the author’s advice to choose a practical next step.",
+                "zh-Hans": "Use the author’s advice to choose a practical next step.",
+                "zh-Hant": "Use the author’s advice to choose a practical next step."
+              },
+              {
+                "en": "Find the instruction after “How can you use the phonetic alphabet?”",
+                "zh-Hans": "Find the instruction after “How can you use the phonetic alphabet?”",
+                "zh-Hant": "Find the instruction after “How can you use the phonetic alphabet?”"
+              },
+              {
+                "en": "Identify means find out which ones; for you refers to the individual learner.",
+                "zh-Hans": "Identify means find out which ones; for you refers to the individual learner.",
+                "zh-Hant": "Identify means find out which ones; for you refers to the individual learner."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author asks learners to identify difficult sounds, rather than ignore hearing.",
+                "zh-Hans": "The author asks learners to identify difficult sounds, rather than ignore hearing.",
+                "zh-Hant": "The author asks learners to identify difficult sounds, rather than ignore hearing."
+              },
+              {
+                "en": "The instruction is to identify phonemes that are difficult for you.",
+                "zh-Hans": "The instruction is to identify phonemes that are difficult for you.",
+                "zh-Hant": "The instruction is to identify phonemes that are difficult for you."
+              },
+              {
+                "en": "The author says some vowel differences may be difficult for some learners; this does not mean all vowels are difficult for everyone.",
+                "zh-Hans": "The author says some vowel differences may be difficult for some learners; this does not mean all vowels are difficult for everyone.",
+                "zh-Hant": "The author says some vowel differences may be difficult for some learners; this does not mean all vowels are difficult for everyone."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b1-speech/voa-phonemes.mp3",
+          "sha256": "abed8cb9332154f73a4b35e7206c70c888d4982af23e33b96ed65eda608a80c0",
+          "duration": 116.88,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/using-the-phonetic-alphabet/7897823.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        }
+      },
+      {
+        "id": "b1-voa-explanations-listening-7886124",
+        "rootId": "voa-article-7886124",
+        "sourceId": "voa-7886124",
+        "title": "Notes about ‘Being’",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Let’s start by considering a basic way we use the verb “be” in English. We commonly use this verb to link, or join, a subject with its description. The description will often be a noun or an adjective. The following two examples show this:\n\nThat man is a farmer.\n\nThat man is rich.\n\nExpanding on this use of the verb “be,” we can call a description of how a person feels and experiences his or her life as a “state of being.” A state of being can last for a short or a long time. However, a state of being is longer than a momentary feeling. The following examples show this usage:\n\nIn retirement, her state of being became more relaxed.\n\nHis state of being has not been good in recent months.\n\nWe can also use the word “being” to begin a description. This can help us describe something or someone in one sentence instead of two. For example, we could use two sentences to describe a man who does not speak very much with other people:\n\nMr. Jones was someone who spoke very little. He sat quietly while others did the talking.\n\nBut if we use the word “being,” we can express this idea in one sentence, as in the following example:\nBeing a man of few words, Mr. Jones sat quietly while others did the talking."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b1-voa-explanations-listening-1-1",
+            "blockId": "source",
+            "prompt": "Which statement keeps both parts of the explanation of a “state of being”?",
+            "options": [
+              "It is always a brief momentary feeling.",
+              "It must last forever and can never change.",
+              "Its duration can vary, but it lasts longer than a momentary feeling."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 426,
+              "end": 541,
+              "audioStart": 44.54,
+              "audioEnd": 55.88
+            },
+            "hints": [
+              {
+                "en": "Keep the duration statement and the contrast together.",
+                "zh-Hans": "Keep the duration statement and the contrast together.",
+                "zh-Hant": "Keep the duration statement and the contrast together."
+              },
+              {
+                "en": "Read or replay the two sentences joined by “However”.",
+                "zh-Hans": "Read or replay the two sentences joined by “However”.",
+                "zh-Hant": "Read or replay the two sentences joined by “However”."
+              },
+              {
+                "en": "Can allows different durations; however introduces a qualification or contrast.",
+                "zh-Hans": "Can allows different durations; however introduces a qualification or contrast.",
+                "zh-Hant": "Can allows different durations; however introduces a qualification or contrast."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The explanation says a state of being is longer than a momentary feeling.",
+                "zh-Hans": "The explanation says a state of being is longer than a momentary feeling.",
+                "zh-Hant": "The explanation says a state of being is longer than a momentary feeling."
+              },
+              {
+                "en": "The author permits short or long durations, so forever is an unsupported restriction.",
+                "zh-Hans": "The author permits short or long durations, so forever is an unsupported restriction.",
+                "zh-Hant": "The author permits short or long durations, so forever is an unsupported restriction."
+              },
+              {
+                "en": "This preserves both variable duration and the explicit contrast with a momentary feeling.",
+                "zh-Hans": "This preserves both variable duration and the explicit contrast with a momentary feeling.",
+                "zh-Hant": "This preserves both variable duration and the explicit contrast with a momentary feeling."
+              }
+            ]
+          },
+          {
+            "id": "b1-voa-explanations-listening-1-2",
+            "blockId": "source",
+            "prompt": "Which paraphrase preserves the example about Mr. Jones?",
+            "options": [
+              "Mr. Jones said little and sat quietly while other people talked.",
+              "Mr. Jones was alone, so no one could talk to him.",
+              "Mr. Jones spoke throughout the conversation while everyone else was silent."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 1132,
+              "end": 1209,
+              "audioStart": 113.66,
+              "audioEnd": 119.42
+            },
+            "hints": [
+              {
+                "en": "Preserve who speaks and who stays quiet.",
+                "zh-Hans": "Preserve who speaks and who stays quiet.",
+                "zh-Hant": "Preserve who speaks and who stays quiet."
+              },
+              {
+                "en": "Compare the two-sentence description with the version beginning “Being”.",
+                "zh-Hans": "Compare the two-sentence description with the version beginning “Being”.",
+                "zh-Hant": "Compare the two-sentence description with the version beginning “Being”."
+              },
+              {
+                "en": "A man of few words is someone who does not speak much; while marks what others do at the same time.",
+                "zh-Hans": "A man of few words is someone who does not speak much; while marks what others do at the same time.",
+                "zh-Hant": "A man of few words is someone who does not speak much; while marks what others do at the same time."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This keeps Mr. Jones’s quiet character and the fact that others were talking.",
+                "zh-Hans": "This keeps Mr. Jones’s quiet character and the fact that others were talking.",
+                "zh-Hant": "This keeps Mr. Jones’s quiet character and the fact that others were talking."
+              },
+              {
+                "en": "Others were talking in the example, so Mr. Jones was not described as alone.",
+                "zh-Hans": "Others were talking in the example, so Mr. Jones was not described as alone.",
+                "zh-Hant": "Others were talking in the example, so Mr. Jones was not described as alone."
+              },
+              {
+                "en": "This reverses the roles: the example says Mr. Jones sat quietly while others talked.",
+                "zh-Hans": "This reverses the roles: the example says Mr. Jones sat quietly while others talked.",
+                "zh-Hant": "This reverses the roles: the example says Mr. Jones sat quietly while others talked."
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/b1-speech/voa-being-explanation.mp3",
+          "sha256": "83cfae7cb6652583c5736296f76386dd2d07ac44f6e5f0f953c45658df0783be",
+          "duration": 119.62,
+          "author": "Andrew Smith",
+          "sourceUrl": "https://learningenglish.voanews.com/a/notes-about-being-/7886124.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        }
+      }
+    ]
+  }
+]

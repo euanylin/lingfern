@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "scopeId": "lingfern-listening-diverse-20261011",
+  "status": "preparation-authorized; acceptance-pending",
+  "purpose": "Prepare lawful public listening sources for A1-C2 teaching goals under the current user-authorized qualification gates without relaxing source, evidence, scoring, technical audio or device rules.",
+  "target": {
+    "metric": "uniqueFullyAcceptedListeningWindows",
+    "comparison": "at-least",
+    "value": 5000,
+    "minimumIntegerCount": 5000,
+    "perLevelNumericQuota": null,
+    "perLevelQuotaNote": "No numerical allocation has been approved. Maintain separate A1-C2 inventories and verify usable teaching, task and transfer coverage at each goal before claiming six-level completion.",
+    "attainment": "not-established"
+  },
+  "publicInputAllowlist": [
+    {
+      "id": "openslr12-train-clean-360",
+      "family": "librispeech",
+      "partition": "train-clean-360",
+      "acquisitionStatus": "allowed-not-acquired-by-this-scope",
+      "archiveUrl": "https://www.openslr.org/resources/12/train-clean-360.tar.gz",
+      "expectedMd5": "c0e676e450a7ff2f54aeade5171606fa",
+      "sourcePage": "https://www.openslr.org/12",
+      "officialChecksumUrl": "https://www.openslr.org/resources/12/md5sum.txt",
+      "officialMetadataCheckedOn": "2026-10-11",
+      "declaredRecordingLicence": "CC BY 4.0",
+      "rightsBoundary": "The corpus licence does not replace exact original-edition text rights, applicable-region review, attribution or third-party audio checks.",
+      "processing": "Reuse the existing explicit-partition scale pipeline and frozen ASR parameters. Retain complete original recordings, transcripts, metadata, editions, exclusions, phase manifests and archive/member hashes.",
+      "initialAcceptance": "pending",
+      "longWindowBoundary": "Segmented utterances do not establish continuous long listening. No stitching, padding or reconstructed continuity. Longer source audio requires a separately allowlisted acquisition and exact continuous-window review."
+    }
+  ],
+  "plannedSources": [
+    {
+      "id": "voa-existing-rights-metadata",
+      "family": "voa",
+      "status": "planned-not-acquired-by-this-scope",
+      "metadataReferences": [
+        "content/corpus/voa-review.json",
+        "private/corpus/voa-course/short-sentences/approved-clips.json"
+      ],
+      "boundary": "Reuse existing audited metadata only within its recorded scope. Do not treat an agency label or historical rights review as approval for a new programme, music, third-party voice, window or territory. Exact public input URLs and rights evidence must be reviewed before adding another acquisition to the allowlist."
+    },
+    {
+      "id": "fleurs",
+      "family": "fleurs",
+      "status": "awaiting-rights-review-not-allowlisted",
+      "boundary": "No acquisition, redistribution or acceptance is authorised by this entry. Verify the exact dataset version, speech and transcript rights, notices and applicable-region restrictions before proposing public input URLs."
+    }
+  ],
+  "inventoryContract": {
+    "levels": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2"
+    ],
+    "levelMeaning": "Teaching goal and supported task route; not calibrated material difficulty or a learner proficiency classification.",
+    "separatePerLevelFields": [
+      "candidate",
+      "held",
+      "sourceEligible",
+      "technicalAudioValidated",
+      "installedDeviceAccepted",
+      "fullyAccepted",
+      "distinctRoots",
+      "sourceFamilies",
+      "taskOperations",
+      "continuousWindowDurations"
+    ],
+    "initialMeasuredCounts": null,
+    "unmeasuredRule": "Unknown counts remain null, never assumed zero or passed. Every count must reference a dated manifest and exact inspected scope.",
+    "globalCountRule": "Deduplicate windows across packages, levels, routes, exports and repeated runs before counting towards 5000. A window routed to several goals counts once globally.",
+    "identityFields": [
+      "canonicalRootId",
+      "originalAudioSha256",
+      "sourceStart",
+      "sourceEnd",
+      "clipAudioSha256",
+      "transcriptSha256",
+      "sourceTextSha256",
+      "sourceTextSpan"
+    ],
+    "overlapRule": "Repeated packaging, transcoding, clipping the same assessed evidence or producing overlapping variants must not inflate the qualified total. Retain overlap provenance and count only independently accepted distinct windows; never count duplicate source/evidence windows.",
+    "notCountable": [
+      "raw utterance totals",
+      "ASR rows",
+      "decoded recordings",
+      "prepared candidates",
+      "held windows",
+      "package root slots",
+      "synthetic learner records",
+      "generated question counts",
+      "the same window under another level"
+    ]
+  },
+  "qualification": {
+    "defaultGateStatus": "pending",
+    "allowedGateStatuses": [
+      "pending",
+      "passed",
+      "failed",
+      "held"
+    ],
+    "passRule": "Every gate requires dated evidence tied to the exact current bytes and window. Missing evidence remains pending. A failed or held gate excludes the window from fullyAccepted.",
+    "gates": [
+      {
+        "id": "source-integrity",
+        "requiredEvidence": "Official source identity, complete acquired originals, archive/member hashes, safe extraction, original transcript and edition bindings."
+      },
+      {
+        "id": "source-and-audio-rights",
+        "requiredEvidence": "Separate text and recording redistribution terms, attribution and notices, applicable-region scope, and music/third-party speaker restrictions."
+      },
+      {
+        "id": "source-exclusions",
+        "requiredEvidence": "Exact source/context review retaining religious, uncertain-context, copyright and quality holds; no automatic clearing of historical exclusions."
+      },
+      {
+        "id": "continuous-window",
+        "requiredEvidence": "Exact start/end in one original recording, complete transcript/evidence spans and boundary margins; no omitted or spliced audio, stitching or padding."
+      },
+      {
+        "id": "technical-audio-validation",
+        "requiredEvidence": "Exact complete current audio/transcript/evidence binding, full-frame decode, sample/time continuity and technical boundaries/margins with retained diagnostics and context. Record actual checks; ASR or decoding alone does not pass the other source, rights, teaching/scoring or device gates."
+      },
+      {
+        "id": "teaching-and-scoring",
+        "requiredEvidence": "Appropriate three-language instructional support, exact-source questions/options/answers/scoring and failure cases, and same-operation application from a different root, without widening parsers or evidence rules."
+      },
+      {
+        "id": "installed-offline-device",
+        "requiredEvidence": "Actual installed package playback, seeking/replay and evidence boundaries offline on the recorded device, including audio/resource failure handling; identify viewport, device and environment."
+      },
+      {
+        "id": "transaction-and-recovery",
+        "requiredEvidence": "Actual answer-save transactions and completed-status ordering, backup/recovery and retained source/media hashes; preserve Practice/Test snapshot equivalence and assistance restrictions."
+      }
+    ],
+    "fullyAcceptedRule": "All listed gates must pass for the same unique current-byte window. Local preparation, green tests, ASR agreement, a licence label or GPU use cannot substitute for a missing gate.",
+    "externalProductGates": "Real provider/client, two-device conflicts, physical-device/screen-reader, carrier-network and production acceptance remain separately recorded. Qualified-window totals alone do not establish complete product or release acceptance.",
+    "capabilityClaims": "Do not claim CEFR calibration, learner proficiency, examination scores, theta, standard errors or learning effects from source counts, routing, synthetic data or successful generation.",
+    "auditoryReviewPolicy": {
+      "mandatory": false,
+      "authority": "Explicit user instruction 2026-10-11: all listening audio no longer requires auditory review.",
+      "historyBoundary": "Keep actual historical no-audition records and frozen code/evidence unchanged. The waiver does not imply listening was performed and does not bulk-approve or clear any other hold."
+    }
+  },
+  "executionBoundary": {
+    "cloud": "Configured Colab CLI on a task-owned runtime; A100 use is authorised for measured acceleration. Upload only this explicitly allowed public input and processing code, never credentials or private learner/research data.",
+    "retrieval": "Verify complete raw archive or source parts and all manifest/member hashes locally before advancing acceptance. Preserve failed/interrupted jobs and exact holds; data-only exports are incomplete.",
+    "existingInventory": "Keep prior batches, actual no-audition records and cancelled rereview evidence unchanged. Auditory review is no longer mandatory under the current user instruction; historical inventory or approval names do not pass remaining rights, evidence, technical audio, context, teaching/scoring or device gates.",
+    "publication": "No commit, push, public release, deployment, real repository or critical configuration change is authorised by this scope file."
+  }
+}

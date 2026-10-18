@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "need": [
+    {
+      "rootId": "voa-article-3113733",
+      "sourceHash": "ff86504eb9df9df9d07e74827f3deb48638a15d303a82db42ea2f7f50f74c674",
+      "title": "Hello, I’m Anna!",
+      "text": "And I am in apartment D7. I have to go now. Oh.",
+      "audio": {
+        "src": "/audio/a2-speech/voa-needed-departure-complete.mp3",
+        "sha256": "24a20829f3eff48c0d15b8509c53165443efc02c63f264f23e38315f51a3ff17",
+        "duration": 7.4,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "VOA Learning English. Hello, I’m Anna!. Continuous recording excerpt transcoded to MP3.",
+        "license": "VOA Learning English original production (public domain)",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 25,
+          "text": "And I am in apartment D7.",
+          "audioStart": 0.54,
+          "audioEnd": 3.24
+        },
+        {
+          "start": 26,
+          "end": 43,
+          "text": "I have to go now.",
+          "audioStart": 3.24,
+          "audioEnd": 5.42
+        },
+        {
+          "start": 44,
+          "end": 47,
+          "text": "Oh.",
+          "audioStart": 5.6,
+          "audioEnd": 7.4
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-3240468",
+      "sourceHash": "116a988d3d1859cb52bb33594018bfe7d923b6964f82bbbf28f0708e30ca9d69",
+      "title": "What Are You Doing?",
+      "text": "Oh, sorry. Are you recording? Yes, and now I have to record again.",
+      "audio": {
+        "src": "/audio/a2-speech/voa-needed-rerecording-headroom.mp3",
+        "sha256": "e00d98b36b98fd04e2c37cb807dbc4a583e9b61779e04502dc2043539ae10b00",
+        "duration": 6.820091,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "VOA Learning English. What Are You Doing?. Continuous recording excerpt transcoded to MP3. Encoding gain reduced by6dB before MP3 encoding to retain headroom.",
+        "license": "VOA Learning English original production (public domain)",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 10,
+          "text": "Oh, sorry.",
+          "audioStart": 0.42,
+          "audioEnd": 1.42
+        },
+        {
+          "start": 11,
+          "end": 29,
+          "text": "Are you recording?",
+          "audioStart": 1.42,
+          "audioEnd": 2.78
+        },
+        {
+          "start": 30,
+          "end": 66,
+          "text": "Yes, and now I have to record again.",
+          "audioStart": 3.42,
+          "audioEnd": 6.72
+        }
+      ]
+    }
+  ],
+  "preference": [
+    {
+      "rootId": "gutenberg-book-4540",
+      "sourceHash": "8e293f9e03312766bf00afaabb54ddea93ac25c562e6404f1a072c1d28fff139",
+      "title": "In His Steps",
+      "text": "The concert was stupid and the violinist was simply a bore. I don't see how you could sit so still through it all,\" Rose exclaimed a little impatiently. \"I liked the music,\" answered Felicia quietly.",
+      "audio": {
+        "src": "/audio/a2-speech/librispeech-felicia-music.mp3",
+        "sha256": "c41b70b9b2d0bada6702cc74899451b66a5cb05a15964684c5940c8c07051d52",
+        "duration": 12.9,
+        "author": "Amy Benton",
+        "sourceUrl": "https://www.openslr.org/12/",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "Charles M. Sheldon. In His Steps. Project Gutenberg edition 4540. Plain prose only; embedded Project Gutenberg licence retained. LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Amy Benton (LibriVox reader 4116). Independently re-encoded from the whole original FLAC; unchanged source words. This view ends after the complete attributed Felicia reply, before the next Rose utterance; same continuous original, newly encoded.",
+        "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording CC BY 4.0",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/4540"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 4,
+          "text": "The ",
+          "audioStart": 0,
+          "audioEnd": 0.42
+        },
+        {
+          "start": 4,
+          "end": 12,
+          "text": "concert ",
+          "audioStart": 0.42,
+          "audioEnd": 0.66
+        },
+        {
+          "start": 12,
+          "end": 16,
+          "text": "was ",
+          "audioStart": 0.66,
+          "audioEnd": 0.98
+        },
+        {
+          "start": 16,
+          "end": 23,
+          "text": "stupid ",
+          "audioStart": 0.98,
+          "audioEnd": 1.34
+        },
+        {
+          "start": 23,
+          "end": 27,
+          "text": "and ",
+          "audioStart": 1.94,
+          "audioEnd": 1.98
+        },
+        {
+          "start": 27,
+          "end": 31,
+          "text": "the ",
+          "audioStart": 1.98,
+          "audioEnd": 2.1
+        },
+        {
+          "start": 31,
+          "end": 41,
+          "text": "violinist ",
+          "audioStart": 2.1,
+          "audioEnd": 2.76
+        },
+        {
+          "start": 41,
+          "end": 45,
+          "text": "was ",
+          "audioStart": 2.76,
+          "audioEnd": 2.92
+        },
+        {
+          "start": 45,
+          "end": 52,
+          "text": "simply ",
+          "audioStart": 2.92,
+          "audioEnd": 3.24
+        },
+        {
+          "start": 52,
+          "end": 54,
+          "text": "a ",
+          "audioStart": 3.24,
+          "audioEnd": 3.38
+        },
+        {
+          "start": 54,
+          "end": 60,
+          "text": "bore. ",
+          "audioStart": 3.38,
+          "audioEnd": 3.78
+        },
+        {
+          "start": 60,
+          "end": 62,
+          "text": "I ",
+          "audioStart": 4.34,
+          "audioEnd": 4.6
+        },
+        {
+          "start": 62,
+          "end": 68,
+          "text": "don't ",
+          "audioStart": 4.6,
+          "audioEnd": 4.88
+        },
+        {
+          "start": 68,
+          "end": 72,
+          "text": "see ",
+          "audioStart": 4.88,
+          "audioEnd": 5.04
+        },
+        {
+          "start": 72,
+          "end": 76,
+          "text": "how ",
+          "audioStart": 5.04,
+          "audioEnd": 5.22
+        },
+        {
+          "start": 76,
+          "end": 80,
+          "text": "you ",
+          "audioStart": 5.22,
+          "audioEnd": 5.4
+        },
+        {
+          "start": 80,
+          "end": 86,
+          "text": "could ",
+          "audioStart": 5.4,
+          "audioEnd": 5.54
+        },
+        {
+          "start": 86,
+          "end": 90,
+          "text": "sit ",
+          "audioStart": 5.54,
+          "audioEnd": 5.72
+        },
+        {
+          "start": 90,
+          "end": 93,
+          "text": "so ",
+          "audioStart": 5.72,
+          "audioEnd": 5.92
+        },
+        {
+          "start": 93,
+          "end": 99,
+          "text": "still ",
+          "audioStart": 5.92,
+          "audioEnd": 6.24
+        },
+        {
+          "start": 99,
+          "end": 107,
+          "text": "through ",
+          "audioStart": 6.24,
+          "audioEnd": 6.52
+        },
+        {
+          "start": 107,
+          "end": 110,
+          "text": "it ",
+          "audioStart": 6.52,
+          "audioEnd": 6.68
+        },
+        {
+          "start": 110,
+          "end": 116,
+          "text": "all,\" ",
+          "audioStart": 6.68,
+          "audioEnd": 7.16
+        },
+        {
+          "start": 116,
+          "end": 121,
+          "text": "Rose ",
+          "audioStart": 7.16,
+          "audioEnd": 7.4
+        },
+        {
+          "start": 121,
+          "end": 131,
+          "text": "exclaimed ",
+          "audioStart": 7.4,
+          "audioEnd": 7.78
+        },
+        {
+          "start": 131,
+          "end": 133,
+          "text": "a ",
+          "audioStart": 7.78,
+          "audioEnd": 8.14
+        },
+        {
+          "start": 133,
+          "end": 140,
+          "text": "little ",
+          "audioStart": 8.14,
+          "audioEnd": 8.3
+        },
+        {
+          "start": 140,
+          "end": 154,
+          "text": "impatiently. \"",
+          "audioStart": 8.3,
+          "audioEnd": 8.96
+        },
+        {
+          "start": 154,
+          "end": 156,
+          "text": "I ",
+          "audioStart": 8.96,
+          "audioEnd": 9.88
+        },
+        {
+          "start": 156,
+          "end": 162,
+          "text": "liked ",
+          "audioStart": 9.88,
+          "audioEnd": 10.1
+        },
+        {
+          "start": 162,
+          "end": 166,
+          "text": "the ",
+          "audioStart": 10.1,
+          "audioEnd": 10.5
+        },
+        {
+          "start": 166,
+          "end": 174,
+          "text": "music,\" ",
+          "audioStart": 10.5,
+          "audioEnd": 10.84
+        },
+        {
+          "start": 174,
+          "end": 183,
+          "text": "answered ",
+          "audioStart": 11.32,
+          "audioEnd": 11.68
+        },
+        {
+          "start": 183,
+          "end": 191,
+          "text": "Felicia ",
+          "audioStart": 11.68,
+          "audioEnd": 12.02
+        },
+        {
+          "start": 191,
+          "end": 199,
+          "text": "quietly.",
+          "audioStart": 12.02,
+          "audioEnd": 12.42
+        }
+      ]
+    },
+    {
+      "rootId": "gutenberg-book-1210",
+      "sourceHash": "7a65d208d24f0cae80afb1b8ae2787df7f40b331d6d28f4c3eb5166a70928fb2",
+      "title": "Kwaidan: Stories and Studies of Strange Things",
+      "text": "As for lonesome places, I like them: they are suitable\r\nfor meditation. I am accustomed to sleeping in the open air: and I have\r\nlearned never to be anxious about my life.”",
+      "audio": {
+        "src": "/audio/a2-speech/librispeech-quiet-places.mp3",
+        "sha256": "7f4dc76b6752cc8723035745996ce35c329970cf5302f4252345de95efa08ada",
+        "duration": 9.645034,
+        "author": "Scott Carpenter",
+        "sourceUrl": "https://www.openslr.org/12/",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "Lafcadio Hearn. Project Gutenberg edition 1210. Recording: Scott Carpenter; LibriSpeech, Vassil Panayotov and Daniel Povey. FLAC converted to MP3. Whole original MP3 reused byte for byte.",
+        "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1210"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 72,
+          "text": "As for lonesome places, I like them: they are suitable\r\nfor meditation. ",
+          "audioStart": 0,
+          "audioEnd": 3.76
+        },
+        {
+          "start": 72,
+          "end": 163,
+          "text": "I am accustomed to sleeping in the open air: and I have\r\nlearned never to be anxious about ",
+          "audioStart": 4.48,
+          "audioEnd": 8.54
+        },
+        {
+          "start": 163,
+          "end": 172,
+          "text": "my life.”",
+          "audioStart": 8.54,
+          "audioEnd": 9.08
+        }
+      ]
+    }
+  ]
+}

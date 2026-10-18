@@ -1,0 +1,1264 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-08T18:37:50.504Z",
+  "scope": "Six literal comma+leading-to/resulting-in hits from the current 814 packed listening clips. Portable actual source subset; no authored learner bank or instance approval. All bytes asserted against current public ZIP members.",
+  "positive": [
+    {
+      "rootId": "wikipedia-article-58296",
+      "title": "California gold rush",
+      "sourceHash": "a24c3f9ba1a6a55a059f2dbe580adf03fa67bcb46d3fea53707b042443a97c89",
+      "sourceTextSha256": "a429a72129defcdd71d041a766a15bfa92c8c7b0d3a9bf8671f9422e8232be3a",
+      "sourceUrl": "https://en.wikipedia.org/wiki/California_Gold_Rush?oldid=204347893",
+      "revision": 204347893,
+      "completeClip": {
+        "id": "cc6bb012e1f8ac6c75d407deffcd79da6f6fd5eff9009563d38987a5827c789e",
+        "text": "News of the discovery soon spread, resulting in 300,000 people coming to California from the rest of the United States and abroad.\n\nThese early gold-seekers, called \"forty-niners,\" traveled to California by sailing ship and in covered wagons across the continent, often facing substantial hardship. While most of the newly-arrived were Americans, the Gold Rush attracted tens of thousands from Latin America, Europe, Australia and Asia. At first, the prospectors retrieved the gold from streams and riverbeds using simple techniques, such as panning, and later developed more sophisticated methods that were adopted around the world.",
+        "textSha256": "a7d00ab6fb77e27d6f3912da9663cc01c8ac8d040d00cf4f5293461a008b2eb4",
+        "wordCount": 94,
+        "segments": [
+          {
+            "start": 0,
+            "end": 129,
+            "text": "News of the discovery soon spread, resulting in 300,000 people coming to California from the rest of the United States and abroad",
+            "audioStart": 0.14999999999999858,
+            "audioEnd": 11.690000000000001
+          },
+          {
+            "start": 132,
+            "end": 297,
+            "text": "These early gold-seekers, called \"forty-niners,\" traveled to California by sailing ship and in covered wagons across the continent, often facing substantial hardship",
+            "audioStart": 12.73,
+            "audioEnd": 26.13
+          },
+          {
+            "start": 299,
+            "end": 435,
+            "text": "While most of the newly-arrived were Americans, the Gold Rush attracted tens of thousands from Latin America, Europe, Australia and Asia",
+            "audioStart": 26.13,
+            "audioEnd": 38.489999999999995
+          },
+          {
+            "start": 437,
+            "end": 632,
+            "text": "At first, the prospectors retrieved the gold from streams and riverbeds using simple techniques, such as panning, and later developed more sophisticated methods that were adopted around the world",
+            "audioStart": 38.489999999999995,
+            "audioEnd": 55.230000000000004
+          }
+        ],
+        "sourceStart": 129,
+        "sourceEnd": 762,
+        "audio": {
+          "src": "media/cc6bb012e1f8ac6c75d407deffcd79da6f6fd5eff9009563d38987a5827c789e.mp3",
+          "sha256": "6d6164291a664189fa1bb243d7e2edb161940c1fa437edbdd0b6acba2691a786",
+          "duration": 55.430023,
+          "author": "Speaker: Persian Poet Gal Authors of the article",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-California_Gold_Rush_Part_1.ogg",
+          "license": "CC BY-SA 3.0",
+          "synthetic": false
+        },
+        "reviewStatus": "pending",
+        "qualityFlags": [],
+        "audioSourceId": "recording-3851436",
+        "credit": {
+          "attribution": "Wikipedia contributors, California gold rush, recorded revision 204347893. Recording: Speaker: Persian Poet Gal Authors of the article. Original recording of California gold rush.",
+          "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+          "sourceUrl": "https://en.wikipedia.org/wiki/California_gold_rush?oldid=204347893"
+        }
+      },
+      "package": {
+        "id": "listening-history-150464f0324c",
+        "path": "/source-packs/listening-history-150464f0324c.zip",
+        "sha256": "bbe019187cfeef2e2eb753d889c6e96570aace4bdccd40a2bcfef06a2baf04ee",
+        "spokenMember": {
+          "bytes": 946157,
+          "sha256": "d74222e165c2c2bfcb7aebafb554dc2b7c6dd98c960d521df1a47159646897b8"
+        },
+        "audioMember": {
+          "name": "media/cc6bb012e1f8ac6c75d407deffcd79da6f6fd5eff9009563d38987a5827c789e.mp3",
+          "bytes": 444125,
+          "sha256": "6d6164291a664189fa1bb243d7e2edb161940c1fa437edbdd0b6acba2691a786"
+        }
+      },
+      "sourceMetadata": {
+        "id": "wikipedia-58296",
+        "rootId": "wikipedia-article-58296",
+        "title": "California gold rush",
+        "authors": [
+          "Wikipedia contributors"
+        ],
+        "originalUrl": "https://en.wikipedia.org/wiki/California_gold_rush?oldid=204347893",
+        "downloadUrl": "https://en.wikipedia.org/wiki/California_gold_rush?oldid=204347893",
+        "acquiredAt": "2026-09-30T17:34:38.303Z",
+        "language": "en",
+        "licence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "licenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "attribution": "Wikipedia contributors, California gold rush, recorded revision 204347893.",
+        "sourceHash": "a24c3f9ba1a6a55a059f2dbe580adf03fa67bcb46d3fea53707b042443a97c89",
+        "reviewStatus": "draft",
+        "permissionReview": "Recorded revision and general source terms retained; source-specific exceptions and regional permission review pending. Local explicit import only.",
+        "editorialReview": "pending",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript. Practice excerpts reuse the bounded paragraph splitter; full extracted article retained separately. No audio in this reading package. Automatically matched original-recording excerpts; Codex audio/transcript and suitability review pending.",
+        "originalTextSha256": "a429a72129defcdd71d041a766a15bfa92c8c7b0d3a9bf8671f9422e8232be3a"
+      },
+      "adjacentOriginalContext": {
+        "start": 0,
+        "end": 922,
+        "text": "The California Gold Rush (1848–1855) began on January 24, 1848, when gold was discovered at Sutter's Mill in Coloma, California. News of the discovery soon spread, resulting in 300,000 people coming to California from the rest of the United States and abroad.\n\nThese early gold-seekers, called \"forty-niners,\" traveled to California by sailing ship and in covered wagons across the continent, often facing substantial hardship. While most of the newly-arrived were Americans, the Gold Rush attracted tens of thousands from Latin America, Europe, Australia and Asia. At first, the prospectors retrieved the gold from streams and riverbeds using simple techniques, such as panning, and later developed more sophisticated methods that were adopted around the world. Gold, worth billions of today's dollars was recovered, leading to great wealth for a few; many, however, returned home with little more than they started with.",
+        "sha256": "f6bd4fb73e0ec639e4c04fc264ab57fb946aaf36762fcc94660fa463d31279dc",
+        "scope": "Complete paragraph(s) intersecting full clip; context only, not approval to add excluded or outside-clip text/audio.",
+        "excludedSpansOverlappingContext": [
+          {
+            "start": 763,
+            "end": 924,
+            "text": "Gold, worth billions of today's dollars was recovered, leading to great wealth for a few; many, however, returned home with little more than they started with.\n\n"
+          }
+        ]
+      },
+      "target": {
+        "sentence": "News of the discovery soon spread, resulting in 300,000 people coming to California from the rest of the United States and abroad.",
+        "start": 0,
+        "end": 130,
+        "main": {
+          "text": "News of the discovery soon spread",
+          "start": 0,
+          "end": 33
+        },
+        "marker": "resulting in",
+        "result": {
+          "text": "300,000 people coming to California from the rest of the United States and abroad",
+          "start": 48,
+          "end": 129
+        },
+        "evidencePolicy": "The complete exact sentence is the evidence. Preserve the whole MAIN and RESULT; no extra implied cause, exact year, named referent or sole cause."
+      },
+      "designDecision": {
+        "classification": "textual asserted-past explicit result candidate; audio acceptance pending",
+        "main": "News of the discovery soon spread",
+        "result": "300,000 people coming to California from the rest of the United States and abroad",
+        "cautions": [
+          "Keep “the discovery” literal if using only this current clip; its Sutter’s Mill/1848 antecedent is outside current audio clip. Do not add that antecedent to a learner audio evidence span.",
+          "Retain 300,000 as the recorded source’s historical assertion; do not make a verified demographic claim.",
+          "Do not infer that every entrant came only for gold or that all became wealthy; adjacent paragraph says many returned with little."
+        ]
+      },
+      "existingRuntimeAudit": {
+        "checkedAt": "2026-10-08T16:11:34.584Z",
+        "generates": true,
+        "reason": "generated",
+        "rootFlags": []
+      },
+      "recordedAudioReview": {
+        "rawClipStatus": "pending",
+        "rawAlignmentStatus": "automatic exact-token candidate",
+        "sourceTextReviewer": "Codex/AI",
+        "textDecision": "accepted-text",
+        "permissionReview": "pending",
+        "audioReview": "not-inspected",
+        "exactClipHolds": 0,
+        "otherRootClipHolds": [],
+        "claim": "Current exact-clip generation eligibility only. No new perceptual/device/rights acceptance."
+      }
+    },
+    {
+      "rootId": "wikipedia-article-352339",
+      "title": "1755 Lisbon earthquake",
+      "sourceHash": "6fc4a4ab6942f87ba83fdc3472764ccafdaecae63a925f0ff358a610a038b77f",
+      "sourceTextSha256": "7d3b3026de8eb9a6a58f5bf9eeb3375b8062a4ba4bc5b1156f2a05825dc43398",
+      "sourceUrl": "https://en.wikipedia.org/wiki/1755_Lisbon_earthquake?oldid=13057362",
+      "revision": 13057362,
+      "completeClip": {
+        "id": "33e5cdf2aa8069f1ba434b0ec5738fff2b09f3bc9fb85b396a397381f04577c0",
+        "text": "The quake was followed by a tsunami and fire, resulting in the near total destruction of Lisbon. The earthquake accelerated political tensions in Portugal and profoundly disrupted the country's 18th century colonial ambitions. The event was widely discussed by European Enlightenment philosophers, and inspired major developments in theodicy and in the philosophy of the sublime.",
+        "textSha256": "0800ce43e191509a8e81b8de3a0f7d19635bd95032e24f01fba6aa71c25116b6",
+        "wordCount": 55,
+        "segments": [
+          {
+            "start": 0,
+            "end": 95,
+            "text": "The quake was followed by a tsunami and fire, resulting in the near total destruction of Lisbon",
+            "audioStart": 0.14999999999999858,
+            "audioEnd": 5.25
+          },
+          {
+            "start": 97,
+            "end": 225,
+            "text": "The earthquake accelerated political tensions in Portugal and profoundly disrupted the country's 18th century colonial ambitions",
+            "audioStart": 5.969999999999999,
+            "audioEnd": 12.989999999999998
+          },
+          {
+            "start": 227,
+            "end": 378,
+            "text": "The event was widely discussed by European Enlightenment philosophers, and inspired major developments in theodicy and in the philosophy of the sublime",
+            "audioStart": 13.41,
+            "audioEnd": 22.470000000000002
+          }
+        ],
+        "sourceStart": 187,
+        "sourceEnd": 566,
+        "audio": {
+          "src": "media/33e5cdf2aa8069f1ba434b0ec5738fff2b09f3bc9fb85b396a397381f04577c0.mp3",
+          "sha256": "9addfe8602ba4720e94682f8332ed77276fb00afec4e3152c71fd192e6334002",
+          "duration": 22.670023,
+          "author": "Speaker: Willmcw Authors of the article",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-1755_Lisbon_earthquake-article.oga",
+          "license": "CC BY-SA 3.0",
+          "synthetic": false
+        },
+        "reviewStatus": "pending",
+        "qualityFlags": [],
+        "audioSourceId": "recording-2750201",
+        "credit": {
+          "attribution": "Wikipedia contributors, 1755 Lisbon earthquake, recorded revision 13057362. Recording: Speaker: Willmcw Authors of the article. Original recording of 1755 Lisbon earthquake.",
+          "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+          "sourceUrl": "https://en.wikipedia.org/wiki/1755_Lisbon_earthquake?oldid=13057362"
+        }
+      },
+      "package": {
+        "id": "listening-science-2e27b079b079",
+        "path": "/source-packs/listening-science-2e27b079b079.zip",
+        "sha256": "a9a47d5390e18988566db1e0acdebca1c0e029b553cfdbbb187e1c74f8d34591",
+        "spokenMember": {
+          "bytes": 326862,
+          "sha256": "44458c1db3df1f839cc30361cc4d4acafa134f8da86ba8c05f883cef14335cc1"
+        },
+        "audioMember": {
+          "name": "media/33e5cdf2aa8069f1ba434b0ec5738fff2b09f3bc9fb85b396a397381f04577c0.mp3",
+          "bytes": 182065,
+          "sha256": "9addfe8602ba4720e94682f8332ed77276fb00afec4e3152c71fd192e6334002"
+        }
+      },
+      "sourceMetadata": {
+        "id": "wikipedia-352339",
+        "rootId": "wikipedia-article-352339",
+        "title": "1755 Lisbon earthquake",
+        "authors": [
+          "Wikipedia contributors"
+        ],
+        "originalUrl": "https://en.wikipedia.org/wiki/1755_Lisbon_earthquake?oldid=13057362",
+        "downloadUrl": "https://en.wikipedia.org/wiki/1755_Lisbon_earthquake?oldid=13057362",
+        "acquiredAt": "2026-09-30T14:08:00.713Z",
+        "language": "en",
+        "licence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "licenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "attribution": "Wikipedia contributors, 1755 Lisbon earthquake, recorded revision 13057362.",
+        "sourceHash": "6fc4a4ab6942f87ba83fdc3472764ccafdaecae63a925f0ff358a610a038b77f",
+        "reviewStatus": "draft",
+        "permissionReview": "Recorded revision and general source terms retained; source-specific exceptions and regional permission review pending. Local explicit import only.",
+        "editorialReview": "pending",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript. Practice excerpts reuse the bounded paragraph splitter; full extracted article retained separately. No audio in this reading package. Automatically matched original-recording excerpts; Codex audio/transcript and suitability review pending.",
+        "originalTextSha256": "7d3b3026de8eb9a6a58f5bf9eeb3375b8062a4ba4bc5b1156f2a05825dc43398"
+      },
+      "adjacentOriginalContext": {
+        "start": 0,
+        "end": 874,
+        "text": "The 1755 Lisbon earthquake took place on November 1, 1755, at 9:20 in the morning. It was one of the most destructive and deadly earthquakes in history, killing well over 100,000 people. The quake was followed by a tsunami and fire, resulting in the near total destruction of Lisbon. The earthquake accelerated political tensions in Portugal and profoundly disrupted the country's 18th century colonial ambitions. The event was widely discussed by European Enlightenment philosophers, and inspired major developments in theodicy and in the philosophy of the sublime. The first to be studied scientifically for its effects over a large area, the quake signalled the birth of modern seismology. Geologists today estimate the Lisbon earthquake approached magnitude 9 on the Richter scale, with an epicenter in the Atlantic Ocean about 200 km west-southwest of Cape St. Vincent.",
+        "sha256": "2ceaee5f4d34480406c36fc3bb2fcd681ddb5ff1ef25b6caa25063a9ed19cb8c",
+        "scope": "Complete paragraph(s) intersecting full clip; context only, not approval to add excluded or outside-clip text/audio.",
+        "excludedSpansOverlappingContext": [
+          {
+            "start": 83,
+            "end": 187,
+            "text": "It was one of the most destructive and deadly earthquakes in history, killing well over 100,000 people. "
+          },
+          {
+            "start": 567,
+            "end": 874,
+            "text": "The first to be studied scientifically for its effects over a large area, the quake signalled the birth of modern seismology. Geologists today estimate the Lisbon earthquake approached magnitude 9 on the Richter scale, with an epicenter in the Atlantic Ocean about 200 km west-southwest of Cape St. Vincent."
+          }
+        ]
+      },
+      "target": {
+        "sentence": "The quake was followed by a tsunami and fire, resulting in the near total destruction of Lisbon.",
+        "start": 0,
+        "end": 96,
+        "main": {
+          "text": "The quake was followed by a tsunami and fire",
+          "start": 0,
+          "end": 44
+        },
+        "marker": "resulting in",
+        "result": {
+          "text": "the near total destruction of Lisbon",
+          "start": 59,
+          "end": 95
+        },
+        "evidencePolicy": "The complete exact sentence is the evidence. Preserve the whole MAIN and RESULT; no extra implied cause, exact year, named referent or sole cause."
+      },
+      "designDecision": {
+        "classification": "textual asserted-past explicit result candidate; audio acceptance pending",
+        "main": "The quake was followed by a tsunami and fire",
+        "result": "the near total destruction of Lisbon",
+        "cautions": [
+          "Treat the whole asserted quake-followed-by-tsunami-and-fire sequence as MAIN. “Was followed by” alone is temporal, not proof quake caused tsunami/fire.",
+          "The named/date opening is outside current audio clip; retain “the quake” rather than injecting event/time into exact audio evidence.",
+          "Preserve near total, never replace with total/all buildings. Political tensions and colonial ambitions are separate later assertions, not this result."
+        ]
+      },
+      "existingRuntimeAudit": {
+        "checkedAt": "2026-10-08T16:11:34.584Z",
+        "generates": true,
+        "reason": "generated",
+        "rootFlags": [
+          "Codex/AI clip review hold: Source as far as Finland recognized as far as in Finland (additional in); shockwaves becomes shock waves. No major proposition change established, but exact word recovery not approved without audition."
+        ]
+      },
+      "recordedAudioReview": {
+        "rawClipStatus": "pending",
+        "rawAlignmentStatus": "automatic exact-token candidate",
+        "sourceTextReviewer": "Codex/AI",
+        "textDecision": "accepted-text",
+        "permissionReview": "pending",
+        "audioReview": "not-inspected",
+        "exactClipHolds": 0,
+        "otherRootClipHolds": [
+          {
+            "id": "94eac4a9b7f5a992afd81def3789904ffc9331279e2aca4ee9b215c34cab2fcd",
+            "clipSha256": "c2f0cb690b01f0c93fc6217f7665cef09a11c4fb12111878a39559f2f67ec2c8",
+            "reason": "Source as far as Finland recognized as far as in Finland (additional in); shockwaves becomes shock waves. No major proposition change established, but exact word recovery not approved without audition."
+          }
+        ],
+        "claim": "Current exact-clip generation eligibility only. No new perceptual/device/rights acceptance."
+      }
+    },
+    {
+      "rootId": "wikipedia-article-9228",
+      "title": "Earth",
+      "sourceHash": "4c2951c9734f8c7f93cca86d6d6eb8d20dced544c34bafcacf15316bae84e67f",
+      "sourceTextSha256": "a6eaa292705a9d8246afe5a7a3211575ccbd3a8f199612adc4177f0f448d8732",
+      "sourceUrl": "https://en.wikipedia.org/w/index.php?title=Earth&oldid=1018498515",
+      "revision": 1018498515,
+      "completeClip": {
+        "id": "2ca3c3f46f94fb45e625aaee2a7edcfecd4a51ca06a468e2af1ab56d1a1a0cfc",
+        "text": "According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago. Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms. Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago. Since then, the combination of Earth's distance from the Sun, physical properties and geological history have allowed life to evolve and thrive. In the history of life on Earth, biodiversity has gone through long periods of expansion, occasionally punctuated by mass extinctions.",
+        "textSha256": "73e6fb2b0bcaabdf00eb1f14a97c502a449214da334f6bc11621e74f310fe0c8",
+        "wordCount": 104,
+        "segments": [
+          {
+            "start": 0,
+            "end": 102,
+            "text": "According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago",
+            "audioStart": 0.15000000000000568,
+            "audioEnd": 7.310000000000002
+          },
+          {
+            "start": 104,
+            "end": 233,
+            "text": "Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface",
+            "audioStart": 7.310000000000002,
+            "audioEnd": 15.27000000000001
+          },
+          {
+            "start": 235,
+            "end": 306,
+            "text": "leading to the proliferation of anaerobic and, later, aerobic organisms",
+            "audioStart": 15.849999999999994,
+            "audioEnd": 19.72999999999999
+          },
+          {
+            "start": 308,
+            "end": 402,
+            "text": "Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago",
+            "audioStart": 20.650000000000006,
+            "audioEnd": 26.569999999999993
+          },
+          {
+            "start": 404,
+            "end": 547,
+            "text": "Since then, the combination of Earth's distance from the Sun, physical properties and geological history have allowed life to evolve and thrive",
+            "audioStart": 27.409999999999997,
+            "audioEnd": 35.650000000000006
+          },
+          {
+            "start": 549,
+            "end": 637,
+            "text": "In the history of life on Earth, biodiversity has gone through long periods of expansion",
+            "audioStart": 35.650000000000006,
+            "audioEnd": 41.43000000000001
+          },
+          {
+            "start": 639,
+            "end": 682,
+            "text": "occasionally punctuated by mass extinctions",
+            "audioStart": 42.03,
+            "audioEnd": 44.390000000000015
+          }
+        ],
+        "sourceStart": 1792,
+        "sourceEnd": 2475,
+        "audio": {
+          "src": "media/2ca3c3f46f94fb45e625aaee2a7edcfecd4a51ca06a468e2af1ab56d1a1a0cfc.mp3",
+          "sha256": "a555bf50843b4da8414fa0d5e65b20b62627846a9aca71094afc3dd437cabcf5",
+          "duration": 44.590023,
+          "author": "Speaker: Thrownfootfalls Authors of the article",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Earth-article.ogg",
+          "license": "CC BY-SA 3.0",
+          "synthetic": false
+        },
+        "reviewStatus": "pending",
+        "qualityFlags": [],
+        "audioSourceId": "recording-104099762",
+        "credit": {
+          "attribution": "Wikipedia contributors, Earth, recorded revision 1018498515. Recording: Speaker: Thrownfootfalls Authors of the article. Original recording of Earth.",
+          "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Earth?oldid=1018498515"
+        }
+      },
+      "package": {
+        "id": "listening-science-4f2c69736385",
+        "path": "/source-packs/listening-science-4f2c69736385.zip",
+        "sha256": "ce9117e52280ab4f387e20e3fa029d9cd94248f728b9f7b45b8cd267936a46a4",
+        "spokenMember": {
+          "bytes": 562003,
+          "sha256": "53ece8e999b7728ddffa484c7e6da1358523b988c8488c6a33d526ea3f075bd9"
+        },
+        "audioMember": {
+          "name": "media/2ca3c3f46f94fb45e625aaee2a7edcfecd4a51ca06a468e2af1ab56d1a1a0cfc.mp3",
+          "bytes": 357399,
+          "sha256": "a555bf50843b4da8414fa0d5e65b20b62627846a9aca71094afc3dd437cabcf5"
+        }
+      },
+      "sourceMetadata": {
+        "id": "wikipedia-9228",
+        "rootId": "wikipedia-article-9228",
+        "title": "Earth",
+        "authors": [
+          "Wikipedia contributors"
+        ],
+        "originalUrl": "https://en.wikipedia.org/wiki/Earth?oldid=1018498515",
+        "downloadUrl": "https://en.wikipedia.org/wiki/Earth?oldid=1018498515",
+        "acquiredAt": "2026-09-30T18:07:46.215Z",
+        "language": "en",
+        "licence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "licenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "attribution": "Wikipedia contributors, Earth, recorded revision 1018498515.",
+        "sourceHash": "4c2951c9734f8c7f93cca86d6d6eb8d20dced544c34bafcacf15316bae84e67f",
+        "reviewStatus": "draft",
+        "permissionReview": "Recorded revision and general source terms retained; source-specific exceptions and regional permission review pending. Local explicit import only.",
+        "editorialReview": "pending",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript. Practice excerpts reuse the bounded paragraph splitter; full extracted article retained separately. No audio in this reading package. Automatically matched original-recording excerpts; Codex audio/transcript and suitability review pending.",
+        "originalTextSha256": "a6eaa292705a9d8246afe5a7a3211575ccbd3a8f199612adc4177f0f448d8732"
+      },
+      "adjacentOriginalContext": {
+        "start": 1792,
+        "end": 2738,
+        "text": "According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago. Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms. Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago. Since then, the combination of Earth's distance from the Sun, physical properties and geological history have allowed life to evolve and thrive. In the history of life on Earth, biodiversity has gone through long periods of expansion, occasionally punctuated by mass extinctions. Over 99% of all species that ever lived on Earth are extinct. Almost 8 billion humans live on Earth and depend on its biosphere and natural resources for their survival. Humans increasingly impact Earth's surface, hydrology, atmospheric processes and other life.",
+        "sha256": "865cf4270a07e54f5fe20903c2f199ea197f8c663cb8c07f2de8fe33bf8d1a58",
+        "scope": "Complete paragraph(s) intersecting full clip; context only, not approval to add excluded or outside-clip text/audio.",
+        "excludedSpansOverlappingContext": [
+          {
+            "start": 2538,
+            "end": 2646,
+            "text": "Almost 8 billion humans live on Earth and depend on its biosphere and natural resources for their survival. "
+          }
+        ]
+      },
+      "target": {
+        "sentence": "Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms.",
+        "start": 104,
+        "end": 307,
+        "main": {
+          "text": "Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface",
+          "start": 104,
+          "end": 233
+        },
+        "marker": "leading to",
+        "result": {
+          "text": "the proliferation of anaerobic and, later, aerobic organisms",
+          "start": 246,
+          "end": 306
+        },
+        "evidencePolicy": "The complete exact sentence is the evidence. Preserve the whole MAIN and RESULT; no extra implied cause, exact year, named referent or sole cause."
+      },
+      "designDecision": {
+        "classification": "textual asserted-past explicit result candidate; audio acceptance pending",
+        "main": "Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface",
+        "result": "the proliferation of anaerobic and, later, aerobic organisms",
+        "cautions": [
+          "Preserve within-first-billion-years and later. Do not convert relative period to exact year.",
+          "Separate may-have-arisen-as-early-as-4.1-billion estimate is qualified, not a second asserted exact event.",
+          "Later allowed-life-to-evolve sentence is not the participial outcome target."
+        ]
+      },
+      "existingRuntimeAudit": {
+        "checkedAt": "2026-10-08T16:11:34.584Z",
+        "generates": true,
+        "reason": "generated",
+        "rootFlags": []
+      },
+      "recordedAudioReview": {
+        "rawClipStatus": "pending",
+        "rawAlignmentStatus": "automatic exact-token candidate",
+        "sourceTextReviewer": "Codex/AI",
+        "textDecision": "accepted-text",
+        "permissionReview": "pending",
+        "audioReview": "not-inspected",
+        "exactClipHolds": 0,
+        "otherRootClipHolds": [],
+        "claim": "Current exact-clip generation eligibility only. No new perceptual/device/rights acceptance."
+      }
+    }
+  ],
+  "negative": [
+    {
+      "rootId": "wikipedia-article-51375509",
+      "title": "Wisconsin Territorial Centennial half dollar",
+      "sourceHash": "96f5104922eb7d2e95a89f11e854289f6f0a86b4306af04056b1faf8c9b85f23",
+      "sourceTextSha256": "834c46d601362e484ad4196aa3e93369ca030781a9137c32e851717502e9ea27",
+      "sourceUrl": "https://en.wikipedia.org/w/index.php?title=Wisconsin_Territorial_Centennial_half_dollar&oldid=1254443902",
+      "revision": 1254443902,
+      "completeClip": {
+        "id": "e29975288d8c497c822cac3c27bebb790971bdb9483487191fc6b6aee8b3436d",
+        "text": "The state of Wisconsin, before its admission to the Union in 1848, was a territory. Much of the Wisconsin Territory had been part of the Northwest Territory, ceded by Great Britain in 1783 as part of the Treaty of Paris. The area then became part of the Michigan Territory, and gained importance during the 1820s, when large deposits of lead (commemorated on the obverse of the coin) were discovered in southwestern Wisconsin. Many of these early miners chose to live in their shafts, rather than building a separate house, leading to the nickname \"badgers\" for Wisconsinites.",
+        "textSha256": "3db5f5432c5b9ce1231f54630c86ea016b99e219a371ba43e82e964dd9f727cc",
+        "wordCount": 96,
+        "segments": [
+          {
+            "start": 0,
+            "end": 82,
+            "text": "The state of Wisconsin, before its admission to the Union in 1848, was a territory",
+            "audioStart": 0.15000000000000568,
+            "audioEnd": 5.710000000000008
+          },
+          {
+            "start": 84,
+            "end": 156,
+            "text": "Much of the Wisconsin Territory had been part of the Northwest Territory",
+            "audioStart": 5.969999999999999,
+            "audioEnd": 9.990000000000009
+          },
+          {
+            "start": 158,
+            "end": 219,
+            "text": "ceded by Great Britain in 1783 as part of the Treaty of Paris",
+            "audioStart": 10.170000000000002,
+            "audioEnd": 14.469999999999999
+          },
+          {
+            "start": 221,
+            "end": 312,
+            "text": "The area then became part of the Michigan Territory, and gained importance during the 1820s",
+            "audioStart": 15.129999999999995,
+            "audioEnd": 20.129999999999995
+          },
+          {
+            "start": 314,
+            "end": 382,
+            "text": "when large deposits of lead (commemorated on the obverse of the coin",
+            "audioStart": 20.409999999999997,
+            "audioEnd": 23.790000000000006
+          },
+          {
+            "start": 384,
+            "end": 425,
+            "text": "were discovered in southwestern Wisconsin",
+            "audioStart": 24.289999999999992,
+            "audioEnd": 26.090000000000003
+          },
+          {
+            "start": 427,
+            "end": 483,
+            "text": "Many of these early miners chose to live in their shafts",
+            "audioStart": 26.710000000000008,
+            "audioEnd": 29.590000000000003
+          },
+          {
+            "start": 485,
+            "end": 575,
+            "text": "rather than building a separate house, leading to the nickname \"badgers\" for Wisconsinites",
+            "audioStart": 29.670000000000016,
+            "audioEnd": 33.94999999999999
+          }
+        ],
+        "sourceStart": 1225,
+        "sourceEnd": 1801,
+        "audio": {
+          "src": "media/e29975288d8c497c822cac3c27bebb790971bdb9483487191fc6b6aee8b3436d.mp3",
+          "sha256": "153c900cceb3049c860cf92d7bd3a375892cdaf604f8fc93585a6b5611ad0b75",
+          "duration": 34.160136,
+          "author": "Speaker: M4V3R1CK32 Authors of the article",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Wisconsin_Territorial_Centennial_half_dollar.ogg",
+          "license": "CC BY-SA 4.0",
+          "synthetic": false
+        },
+        "reviewStatus": "pending",
+        "qualityFlags": [
+          "residual source markup: editorial cleanup required"
+        ],
+        "audioSourceId": "recording-154685594",
+        "credit": {
+          "attribution": "Wikipedia contributors, Wisconsin Territorial Centennial half dollar, recorded revision 1254443902. Recording: Speaker: M4V3R1CK32 Authors of the article. Original recording of Wisconsin Territorial Centennial half dollar.",
+          "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 4.0",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Wisconsin_Territorial_Centennial_half_dollar?oldid=1254443902"
+        }
+      },
+      "sourceMetadata": {
+        "id": "wikipedia-51375509",
+        "rootId": "wikipedia-article-51375509",
+        "title": "Wisconsin Territorial Centennial half dollar",
+        "authors": [
+          "Wikipedia contributors"
+        ],
+        "originalUrl": "https://en.wikipedia.org/wiki/Wisconsin_Territorial_Centennial_half_dollar?oldid=1254443902",
+        "downloadUrl": "https://en.wikipedia.org/wiki/Wisconsin_Territorial_Centennial_half_dollar?oldid=1254443902",
+        "acquiredAt": "2026-09-30T15:45:10.091Z",
+        "language": "en",
+        "licence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "licenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "attribution": "Wikipedia contributors, Wisconsin Territorial Centennial half dollar, recorded revision 1254443902.",
+        "sourceHash": "96f5104922eb7d2e95a89f11e854289f6f0a86b4306af04056b1faf8c9b85f23",
+        "reviewStatus": "draft",
+        "permissionReview": "Recorded revision and general source terms retained; source-specific exceptions and regional permission review pending. Local explicit import only.",
+        "editorialReview": "pending",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript. Practice excerpts reuse the bounded paragraph splitter; full extracted article retained separately. No audio in this reading package. Automatically matched original-recording excerpts; Codex audio/transcript and suitability review pending.",
+        "originalTextSha256": "834c46d601362e484ad4196aa3e93369ca030781a9137c32e851717502e9ea27"
+      },
+      "adjacentOriginalContext": {
+        "start": 1225,
+        "end": 1965,
+        "text": "The state of Wisconsin, before its admission to the Union in 1848, was a territory. Much of the Wisconsin Territory had been part of the Northwest Territory, ceded by Great Britain in 1783 as part of the Treaty of Paris. The area then became part of the Michigan Territory, and gained importance during the 1820s, when large deposits of lead (commemorated on the obverse of the coin) were discovered in southwestern Wisconsin. Many of these early miners chose to live in their shafts, rather than building a separate house, leading to the nickname \"badgers\" for Wisconsinites. As more Americans moved in, the area became important enough to become a separate territory in 1836. Its first governor, Henry Dodge, was sworn in on July 4, 1836.",
+        "sha256": "9309227a2e7bec6ba854f52e963a706dd93bad98530dad59dcf413a9aa864bc5",
+        "scope": "Complete paragraph(s) intersecting full clip; context only, not approval to add excluded or outside-clip text/audio.",
+        "excludedSpansOverlappingContext": []
+      },
+      "target": null,
+      "designDecision": {
+        "classification": "current generation blocked by root quality flags",
+        "cautions": [
+          "Past choice→nickname wording is present but cannot supply a runtime-generatable second root while residual markup flag blocks it. Do not clear flag."
+        ]
+      },
+      "existingRuntimeAudit": {
+        "checkedAt": "2026-10-08T16:11:34.584Z",
+        "generates": false,
+        "reason": "quality flags",
+        "rootFlags": [
+          "residual source markup: editorial cleanup required"
+        ]
+      },
+      "recordedAudioReview": {
+        "rawClipStatus": "pending",
+        "rawAlignmentStatus": "automatic exact-token candidate",
+        "sourceTextReviewer": "Codex/AI",
+        "textDecision": "accepted-text",
+        "permissionReview": "pending",
+        "audioReview": "not-inspected",
+        "exactClipHolds": 0,
+        "otherRootClipHolds": [],
+        "claim": "Current exact-clip generation eligibility only. No new perceptual/device/rights acceptance."
+      }
+    },
+    {
+      "rootId": "wikipedia-article-27856",
+      "title": "Schrödinger's cat",
+      "sourceHash": "dfb95ac5e441a62a323dbde470893fe9cc0ca7358975f857083e66b90c83e78b",
+      "sourceTextSha256": "8faa4847d7db59b2b461fc96649f3043eed17e2a4a59ce320370974cfb48f947",
+      "sourceUrl": "https://en.wikipedia.org/w/index.php?title=Schr%C3%B6dinger%27s_cat&oldid=568189833",
+      "revision": 568189833,
+      "completeClip": {
+        "id": "dc0043a6017ea875d21da0faa79857efcc13f1e824ca213cfae774303c7af1de",
+        "text": "It illustrates what he saw as the problem of the Copenhagen interpretation of quantum mechanics applied to everyday objects, resulting in a contradiction with common sense. The scenario presents a cat that may be both alive and dead, depending on an earlier random event. Although the original \"experiment\" was imaginary, similar principles have been researched and used in practical applications. The thought experiment is also often featured in theoretical discussions of the interpretations of quantum mechanics.",
+        "textSha256": "a62eb9a842de39afb25f98fad8074d190ce54db11324b38e6420c681c671ec5f",
+        "wordCount": 76,
+        "segments": [
+          {
+            "start": 0,
+            "end": 171,
+            "text": "It illustrates what he saw as the problem of the Copenhagen interpretation of quantum mechanics applied to everyday objects, resulting in a contradiction with common sense",
+            "audioStart": 0.15000000000000568,
+            "audioEnd": 11.490000000000009
+          },
+          {
+            "start": 173,
+            "end": 270,
+            "text": "The scenario presents a cat that may be both alive and dead, depending on an earlier random event",
+            "audioStart": 11.490000000000009,
+            "audioEnd": 17.99000000000001
+          },
+          {
+            "start": 272,
+            "end": 396,
+            "text": "Although the original \"experiment\" was imaginary, similar principles have been researched and used in practical applications",
+            "audioStart": 18.55000000000001,
+            "audioEnd": 25.310000000000002
+          },
+          {
+            "start": 398,
+            "end": 514,
+            "text": "The thought experiment is also often featured in theoretical discussions of the interpretations of quantum mechanics",
+            "audioStart": 26.070000000000007,
+            "audioEnd": 33.07000000000001
+          }
+        ],
+        "sourceStart": 134,
+        "sourceEnd": 649,
+        "audio": {
+          "src": "media/dc0043a6017ea875d21da0faa79857efcc13f1e824ca213cfae774303c7af1de.mp3",
+          "sha256": "749a9590f029cbbc361cce509a60c2760108b3812689a072b5b52837963238c2",
+          "duration": 33.270023,
+          "author": "Speaker: Silas S. Brown Authors of the article",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Schrodingers-cat.ogg",
+          "license": "CC BY-SA 3.0",
+          "synthetic": false
+        },
+        "reviewStatus": "pending",
+        "qualityFlags": [
+          "residual source markup: editorial cleanup required"
+        ],
+        "audioSourceId": "recording-76765580",
+        "credit": {
+          "attribution": "Wikipedia contributors, Schrödinger's cat, recorded revision 568189833. Recording: Speaker: Silas S. Brown Authors of the article. Original recording of Schrödinger's cat.",
+          "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Schr%C3%B6dinger's_cat?oldid=568189833"
+        }
+      },
+      "sourceMetadata": {
+        "id": "wikipedia-27856",
+        "rootId": "wikipedia-article-27856",
+        "title": "Schrödinger's cat",
+        "authors": [
+          "Wikipedia contributors"
+        ],
+        "originalUrl": "https://en.wikipedia.org/wiki/Schr%C3%B6dinger's_cat?oldid=568189833",
+        "downloadUrl": "https://en.wikipedia.org/wiki/Schr%C3%B6dinger's_cat?oldid=568189833",
+        "acquiredAt": "2026-09-30T15:55:36.808Z",
+        "language": "en",
+        "licence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "licenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "attribution": "Wikipedia contributors, Schrödinger's cat, recorded revision 568189833.",
+        "sourceHash": "dfb95ac5e441a62a323dbde470893fe9cc0ca7358975f857083e66b90c83e78b",
+        "reviewStatus": "draft",
+        "permissionReview": "Recorded revision and general source terms retained; source-specific exceptions and regional permission review pending. Local explicit import only.",
+        "editorialReview": "pending",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript. Practice excerpts reuse the bounded paragraph splitter; full extracted article retained separately. No audio in this reading package. Automatically matched original-recording excerpts; Codex audio/transcript and suitability review pending.",
+        "originalTextSha256": "8faa4847d7db59b2b461fc96649f3043eed17e2a4a59ce320370974cfb48f947"
+      },
+      "adjacentOriginalContext": {
+        "start": 0,
+        "end": 752,
+        "text": "Schrödinger's cat is a thought experiment, sometimes described as a paradox, devised by Austrian physicist Erwin Schrödinger in 1935. It illustrates what he saw as the problem of the Copenhagen interpretation of quantum mechanics applied to everyday objects, resulting in a contradiction with common sense. The scenario presents a cat that may be both alive and dead, depending on an earlier random event. Although the original \"experiment\" was imaginary, similar principles have been researched and used in practical applications. The thought experiment is also often featured in theoretical discussions of the interpretations of quantum mechanics. In the course of developing this experiment, Schrödinger coined the term Verschränkung (entanglement).",
+        "sha256": "a7ada1e8b2c7a3f3b4662d3e59ae3265febbed604afd5a3436c7163d47e6113c",
+        "scope": "Complete paragraph(s) intersecting full clip; context only, not approval to add excluded or outside-clip text/audio.",
+        "excludedSpansOverlappingContext": []
+      },
+      "target": null,
+      "designDecision": {
+        "classification": "current generation blocked; semantic negative for asserted past event",
+        "cautions": [
+          "Present illustrates plus he/it references and explicitly imaginary thought experiment are not an asserted past actual MAIN→RESULT event.",
+          "Root residual source markup flag blocks existing generation; do not clear it."
+        ]
+      },
+      "existingRuntimeAudit": {
+        "checkedAt": "2026-10-08T16:11:34.584Z",
+        "generates": false,
+        "reason": "quality flags",
+        "rootFlags": [
+          "residual source markup: editorial cleanup required"
+        ]
+      },
+      "recordedAudioReview": {
+        "rawClipStatus": "pending",
+        "rawAlignmentStatus": "automatic exact-token candidate",
+        "sourceTextReviewer": "Codex/AI",
+        "textDecision": "accepted-text",
+        "permissionReview": "pending",
+        "audioReview": "not-inspected",
+        "exactClipHolds": 0,
+        "otherRootClipHolds": [],
+        "claim": "Current exact-clip generation eligibility only. No new perceptual/device/rights acceptance."
+      }
+    },
+    {
+      "rootId": "wikipedia-article-47000",
+      "title": "Colocation centre",
+      "sourceHash": "4b0e18d0aa204c19e82ad06242ab6885d44261b2b041ad545f4abd0b0f5126fb",
+      "sourceTextSha256": "ef1edd432143d723cc9d807cb42da983c44792d2c210733a2a987581054c8d26",
+      "sourceUrl": "https://en.wikipedia.org/w/index.php?title=Colocation_centre&oldid=1044543010",
+      "revision": 1044543010,
+      "completeClip": {
+        "id": "f4ea8af8818ca0f5883754cab7aa82675a7381f1dd421709452b0155e86edde9",
+        "text": "Unless the heat is removed, the ambient temperature will rise, resulting in electronic equipment malfunction. By controlling the space air temperature, the server components at the board level are kept within the manufacturer's specified temperature and humidity range. Air conditioning systems help keep equipment space humidity within acceptable parameters by cooling the return space air below the dew point. Too much humidity and water may begin to condense on internal components.",
+        "textSha256": "4debf04fcbfe9851f41c99c103f912ccbcd4ef5da436342741917e9708261dd0",
+        "wordCount": 71,
+        "segments": [
+          {
+            "start": 0,
+            "end": 108,
+            "text": "Unless the heat is removed, the ambient temperature will rise, resulting in electronic equipment malfunction",
+            "audioStart": 0.14999999999997726,
+            "audioEnd": 7.149999999999977
+          },
+          {
+            "start": 110,
+            "end": 268,
+            "text": "By controlling the space air temperature, the server components at the board level are kept within the manufacturer's specified temperature and humidity range",
+            "audioStart": 7.149999999999977,
+            "audioEnd": 17.149999999999977
+          },
+          {
+            "start": 270,
+            "end": 410,
+            "text": "Air conditioning systems help keep equipment space humidity within acceptable parameters by cooling the return space air below the dew point",
+            "audioStart": 17.149999999999977,
+            "audioEnd": 26.149999999999977
+          },
+          {
+            "start": 412,
+            "end": 484,
+            "text": "Too much humidity and water may begin to condense on internal components",
+            "audioStart": 26.149999999999977,
+            "audioEnd": 31.149999999999977
+          }
+        ],
+        "sourceStart": 4201,
+        "sourceEnd": 4686,
+        "audio": {
+          "src": "media/f4ea8af8818ca0f5883754cab7aa82675a7381f1dd421709452b0155e86edde9.mp3",
+          "sha256": "76906fca47304696c2fd86e4d6f795e5169e514f73ec47242ed185cf230e46ed",
+          "duration": 31.349977,
+          "author": "Speaker: Omeoe Authors of the article",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Colocation_center.ogg",
+          "license": "CC BY-SA 3.0",
+          "synthetic": false
+        },
+        "reviewStatus": "pending",
+        "qualityFlags": [],
+        "audioSourceId": "recording-129455833",
+        "credit": {
+          "attribution": "Wikipedia contributors, Colocation centre, recorded revision 1044543010. Recording: Speaker: Omeoe Authors of the article. Original recording of Colocation centre.",
+          "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Colocation_centre?oldid=1044543010"
+        }
+      },
+      "sourceMetadata": {
+        "id": "wikipedia-47000",
+        "rootId": "wikipedia-article-47000",
+        "title": "Colocation centre",
+        "authors": [
+          "Wikipedia contributors"
+        ],
+        "originalUrl": "https://en.wikipedia.org/wiki/Colocation_centre?oldid=1044543010",
+        "downloadUrl": "https://en.wikipedia.org/wiki/Colocation_centre?oldid=1044543010",
+        "acquiredAt": "2026-09-30T15:18:54.764Z",
+        "language": "en",
+        "licence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "licenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "attribution": "Wikipedia contributors, Colocation centre, recorded revision 1044543010.",
+        "sourceHash": "4b0e18d0aa204c19e82ad06242ab6885d44261b2b041ad545f4abd0b0f5126fb",
+        "reviewStatus": "draft",
+        "permissionReview": "Recorded revision and general source terms retained; source-specific exceptions and regional permission review pending. Local explicit import only.",
+        "editorialReview": "pending",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript. Practice excerpts reuse the bounded paragraph splitter; full extracted article retained separately. No audio in this reading package. Automatically matched original-recording excerpts; Codex audio/transcript and suitability review pending.",
+        "originalTextSha256": "ef1edd432143d723cc9d807cb42da983c44792d2c210733a2a987581054c8d26"
+      },
+      "adjacentOriginalContext": {
+        "start": 3853,
+        "end": 4886,
+        "text": "Air conditioning is used to control the temperature and humidity in the space. ASHRAE recommends a temperature range and humidity range for optimal electronic equipment conditions versus environmental issues. The electrical power used by the electronic equipment is converted to heat, which is rejected to the ambient air in the data centre space. Unless the heat is removed, the ambient temperature will rise, resulting in electronic equipment malfunction. By controlling the space air temperature, the server components at the board level are kept within the manufacturer's specified temperature and humidity range. Air conditioning systems help keep equipment space humidity within acceptable parameters by cooling the return space air below the dew point. Too much humidity and water may begin to condense on internal components. In case of a dry atmosphere, ancillary humidification systems may add water vapour to the space if the humidity is too low, to avoid static electricity discharge problems which may damage components.",
+        "sha256": "c1fcd1b476be514736a92b17c75bab8a1a499b844e36ba50aa0cc82c9b3dd203",
+        "scope": "Complete paragraph(s) intersecting full clip; context only, not approval to add excluded or outside-clip text/audio.",
+        "excludedSpansOverlappingContext": []
+      },
+      "target": null,
+      "designDecision": {
+        "classification": "runtime-generatable real negative; conditional prospective outcome",
+        "cautions": [
+          "Unless / will rise makes prospective conditional result, not asserted past occurrence. “Resulting in” alone is insufficient.",
+          "Following may begin condensation sentence remains modal; never turn capability/condition into occurred event."
+        ]
+      },
+      "existingRuntimeAudit": {
+        "checkedAt": "2026-10-08T16:11:34.584Z",
+        "generates": true,
+        "reason": "generated",
+        "rootFlags": [
+          "Codex/AI clip review hold: Source Clean agent recognized Clean-age and; lexical coverage unresolved."
+        ]
+      },
+      "recordedAudioReview": {
+        "rawClipStatus": "pending",
+        "rawAlignmentStatus": "automatic exact-token candidate",
+        "sourceTextReviewer": "Codex/AI",
+        "textDecision": "accepted-text",
+        "permissionReview": "pending",
+        "audioReview": "not-inspected",
+        "exactClipHolds": 0,
+        "otherRootClipHolds": [
+          {
+            "id": "19a62433a5a9b6284a1a6f639347e7c903285958c1dc4600f8c5c4d8d9de2f7c",
+            "clipSha256": "fab8c1625c9a755bf014a539a0b99d38b205e2a2abd3ad79c4362a6e5a411d6e",
+            "reason": "Source Clean agent recognized Clean-age and; lexical coverage unresolved."
+          }
+        ],
+        "claim": "Current exact-clip generation eligibility only. No new perceptual/device/rights acceptance."
+      }
+    }
+  ],
+  "limits": [
+    "No new audio, cleared holds or source edits. All root permissionReview pending and audioReview not-inspected.",
+    "Earth, Gold Rush and Lisbon current clips are individually runtime-generatable according to existing generator audit, not already generated outcome items.",
+    "History prospective window excluded; rejected long clip guards unchanged.",
+    "Lisbon whole MAIN is quake followed by tsunami and fire; do not state sole earthquake cause.",
+    "Gold Rush discovery and Lisbon quake antecedents exist outside the current exact audio clips; keep literal referring expressions.",
+    "Colocation conditional Unless/will is rejected despite current runtime-generatable clip."
+  ],
+  "sourceAudit": {
+    "catalogueSha256": "ffcecb61802dfff43ceed10906852aa5bc2d43e2f13723ade0aa4040ec0cd58b",
+    "runtimeAuditSha256": "ff5bd674fadca2300701d4d0aeaa4f5c90ae029b2fe0da8047ed1bc268f6ff07",
+    "scope": "Source-only private report retained separately; portable fixture depends only on public ZIPs and these catalogue/runtime snapshot hashes."
+  },
+  "historyProspective": {
+    "rootId": "wikipedia-article-10772350",
+    "title": "History",
+    "revision": 1300067617,
+    "sourceHash": "baf80bf4d810447c5ad0d6b41f6c69ae7be02c260dcc2c67e1c54c124a2b7c42",
+    "sourceTextSha256": "69c38a9f00222206c55bc4d944258fea43d11dd5471c665d3dc7c03fa853ad63",
+    "sourceUrl": "https://en.wikipedia.org/w/index.php?title=History&oldid=1300067617",
+    "sourceRights": {
+      "title": "History",
+      "articleUrl": "https://en.wikipedia.org/w/index.php?title=History&oldid=1300067617",
+      "authorHistoryUrl": "https://en.wikipedia.org/w/index.php?curid=10772350&action=history",
+      "textLicence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+      "textLicenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+      "textAttribution": "Wikipedia contributors, History, recorded revision 1300067617. https://en.wikipedia.org/w/index.php?title=History&oldid=1300067617",
+      "audioSourceUrl": "https://commons.wikimedia.org/wiki/File:En-History-article.ogg",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "artistHtml": "<p><b>Speaker:</b> <a href=\"https://en.wikipedia.org/wiki/User:Cardboard_Moose\" class=\"extiw\" title=\"en:User:Cardboard Moose\">Cardboard Moose</a><br>\n</p>\n<b><a href=\"https://en.wikipedia.org/wiki/en:History\" class=\"extiw\" title=\"wikipedia:en:History\">History</a></b>",
+      "creditHtml": "<ul><li>Own recording by the speaker</li>\n<li>Derivative of <span class=\"plainlinks\"><a class=\"external text\" href=\"https://en.wikipedia.org/wiki/History?oldid=\">History</a></span></li></ul>",
+      "audioRightsEvidenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript."
+    },
+    "originalAudioSha256": "b05c2ca4fea35e93f442ec61a07c5777e7a658835fdfbaa1ad609ebfa8c32d6c",
+    "sourceReview": {
+      "decision": "accepted-text",
+      "notes": "Complete 51,579 UTF-16-unit source read in four contiguous bounded outputs. Retain distinctions between past/events and interpretation, primary/secondary-source role dependence, external/internal source criticism, synthesis/periodization/silences, explicitly described schools and disputed disciplinary positions, dated regional/disciplinary history and historiography/philosophy/education links. The prose regularly identifies theories as theories rather than requiring the learner to endorse them; denialism examples and colonialism/slavery are contextual historical discussion, without graphic prescription. Exclude the overly compressed and outdated anatomy-origin timeline sentence, and the unsupported undifferentiated statement equating named states with twentieth-century authoritarian narrative manipulation. These are precise sentence exclusions; surrounding historiographic discussion remains. Source-only Codex review; rights, audio alignment and generated questions pending.",
+      "permissionReview": "pending",
+      "audioReview": "not-inspected",
+      "questionReview": "not-inspected",
+      "excludedSpans": [
+        {
+          "start": 16140,
+          "end": 16335,
+          "text": "The study of prehistory includes the examination of the evolution of human-like species several million years ago, leading to the emergence of anatomically modern humans about 200,000 years ago. "
+        },
+        {
+          "start": 38739,
+          "end": 38870,
+          "text": "Authoritarian regimes, like Nazi Germany, the Soviet Union, and China, manipulated historical narratives for ideological purposes. "
+        }
+      ]
+    },
+    "preparedScope": {
+      "purpose": "Complete named civilization context plus exact agriculture/surplus-food/leading-to sentence for causal-direction design;73words/4segments.",
+      "sourceStart": 16924,
+      "sourceEnd": 17455,
+      "text": "Historians studying the ancient period examine the emergence of the first major civilizations in regions such as Mesopotamia, Egypt, the Indus Valley, China, and Peru, beginning approximately 3500 BCE in some regions. The new social, economic, and political complexities necessitated the development of writing systems. Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations, leading to urbanization, the establishment of trade networks, and the emergence of regional empires.",
+      "textSha256": "d74c1067121bd55d6f28858d15e39fe23d2acaae3dc8c9c06b18d1f6d089aaf5",
+      "wordCount": 73,
+      "segments": [
+        {
+          "start": 0,
+          "end": 216,
+          "text": "Historians studying the ancient period examine the emergence of the first major civilizations in regions such as Mesopotamia, Egypt, the Indus Valley, China, and Peru, beginning approximately 3500 BCE in some regions",
+          "audioStart": 0.15000000000009095,
+          "audioEnd": 15.790000000000191
+        },
+        {
+          "start": 218,
+          "end": 318,
+          "text": "The new social, economic, and political complexities necessitated the development of writing systems",
+          "audioStart": 16.590000000000146,
+          "audioEnd": 22.590000000000146
+        },
+        {
+          "start": 320,
+          "end": 429,
+          "text": "Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations",
+          "audioStart": 23.3900000000001,
+          "audioEnd": 29.310000000000173
+        },
+        {
+          "start": 431,
+          "end": 530,
+          "text": "leading to urbanization, the establishment of trade networks, and the emergence of regional empires",
+          "audioStart": 29.8900000000001,
+          "audioEnd": 35.49000000000024
+        }
+      ],
+      "originalAudioStart": 1258.0299999999997,
+      "proposedOriginalAudioEnd": 1293.72,
+      "proposedDuration": 35.69000000000024,
+      "existingGuards": {
+        "wordCount": "within30..180",
+        "duration": "within8..91"
+      },
+      "preparedAudioCreated": false,
+      "clipIdMinted": false,
+      "auditoryAcceptance": false,
+      "gate": "Source-only precise prospective scope. Original audio hash is known; no new audio admitted, generated, packaged, listened to or device-tested."
+    },
+    "longExistingCandidate": {
+      "id": "00f706505859be5518c0681ad040b2a7e0ac4e6c0dd8308f5979042cad258b29",
+      "text": "Historians studying the ancient period examine the emergence of the first major civilizations in regions such as Mesopotamia, Egypt, the Indus Valley, China, and Peru, beginning approximately 3500 BCE in some regions. The new social, economic, and political complexities necessitated the development of writing systems. Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations, leading to urbanization, the establishment of trade networks, and the emergence of regional empires. In the later part of the ancient period, sometimes termed the classical period, societies in China, India, Persia, and the Mediterranean expanded further, reaching new cultural, scientific, and political heights. Meanwhile, influential religious systems and philosophical ideas were first formulated, such as Hinduism, Buddhism, Confucianism, Judaism, and Greek philosophy.\n\nIn the study of post-classical or medieval history, which began around 500 CE, historians note the growing influence of major religions. Missionary religions, like Buddhism, Christianity, and Islam, spread rapidly and established themselves as world religions, marking a cultural shift as they gradually replaced other belief systems. Meanwhile, inter-regional trade networks flourished, leading to increased technological and cultural exchange. Conquering many territories in Asia and Europe, the Mongol Empire became a dominant force during the 13th and 14th centuries.\n\nHistorians focused on early modern history, which started roughly in 1500 CE, commonly highlight how European states rose to global power. As gunpowder empires, they explored and colonized large parts of the world. As a result, the Americas were integrated into the global network, triggering a vast biological exchange of plants, animals, people, and diseases. The Scientific Revolution prompted major discoveries and accelerated technological progress. It was accompanied by other intellectual developments, such as humanism and the Enlightenment, which ushered in secularization.\n\nIn the study of modern history, which began at the end of the 18th century, historians are interested in how the Industrial Revolution transformed economies by introducing more efficient modes of production. Western powers established vast colonial empires, gaining superiority through industrialized military technology. The increased international exchange of goods, ideas, and people marked the beginning of globalization. Various social revolutions challenged autocratic and colonial regimes, paving the way for democracies. Many developments in fields like science, technology, economy, living standards, and human population accelerated at unprecedented rates. This happened despite the widespread destruction caused by two world wars, which rebalanced international power relations by undermining European dominance.",
+      "textSha256": "f3aa5a132287506cf1491e1770572f0d48b7bfe1ecfa517fcbcc4433d46cb4a0",
+      "sourceStart": 16924,
+      "sourceEnd": 19811,
+      "wordCount": 391,
+      "duration": 195.910023,
+      "mp3Sha256": "f5fe082e56c70c28655b2926910972c7c0f8eae9eaf888a13485cbf1addaae57",
+      "segments": [
+        {
+          "start": 0,
+          "end": 216,
+          "text": "Historians studying the ancient period examine the emergence of the first major civilizations in regions such as Mesopotamia, Egypt, the Indus Valley, China, and Peru, beginning approximately 3500 BCE in some regions",
+          "audioStart": 0.15000000000009095,
+          "audioEnd": 15.790000000000191
+        },
+        {
+          "start": 218,
+          "end": 318,
+          "text": "The new social, economic, and political complexities necessitated the development of writing systems",
+          "audioStart": 16.590000000000146,
+          "audioEnd": 22.590000000000146
+        },
+        {
+          "start": 320,
+          "end": 429,
+          "text": "Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations",
+          "audioStart": 23.3900000000001,
+          "audioEnd": 29.310000000000173
+        },
+        {
+          "start": 431,
+          "end": 530,
+          "text": "leading to urbanization, the establishment of trade networks, and the emergence of regional empires",
+          "audioStart": 29.8900000000001,
+          "audioEnd": 35.49000000000024
+        },
+        {
+          "start": 532,
+          "end": 610,
+          "text": "In the later part of the ancient period, sometimes termed the classical period",
+          "audioStart": 35.93000000000029,
+          "audioEnd": 40.45000000000027
+        },
+        {
+          "start": 612,
+          "end": 699,
+          "text": "societies in China, India, Persia, and the Mediterranean expanded further, reaching new",
+          "audioStart": 40.45000000000027,
+          "audioEnd": 46.970000000000255
+        },
+        {
+          "start": 700,
+          "end": 789,
+          "text": "cultural, scientific, and political heights. Meanwhile, influential religious systems and",
+          "audioStart": 46.970000000000255,
+          "audioEnd": 52.570000000000164
+        },
+        {
+          "start": 790,
+          "end": 873,
+          "text": "philosophical ideas were first formulated, such as Hinduism, Buddhism, Confucianism",
+          "audioStart": 52.570000000000164,
+          "audioEnd": 58.29000000000019
+        },
+        {
+          "start": 875,
+          "end": 957,
+          "text": "Judaism, and Greek philosophy.\n\nIn the study of post-classical or medieval history",
+          "audioStart": 58.77000000000021,
+          "audioEnd": 65.29000000000019
+        },
+        {
+          "start": 959,
+          "end": 1042,
+          "text": "which began around 500 CE, historians note the growing influence of major religions",
+          "audioStart": 65.29000000000019,
+          "audioEnd": 71.21000000000026
+        },
+        {
+          "start": 1044,
+          "end": 1136,
+          "text": "Missionary religions, like Buddhism, Christianity, and Islam, spread rapidly and established",
+          "audioStart": 72.13000000000011,
+          "audioEnd": 78.05000000000018
+        },
+        {
+          "start": 1137,
+          "end": 1232,
+          "text": "themselves as world religions, marking a cultural shift as they gradually replaced other belief",
+          "audioStart": 78.05000000000018,
+          "audioEnd": 83.43000000000029
+        },
+        {
+          "start": 1233,
+          "end": 1329,
+          "text": "systems. Meanwhile, inter-regional trade networks flourished, leading to increased technological",
+          "audioStart": 83.43000000000029,
+          "audioEnd": 89.65000000000009
+        },
+        {
+          "start": 1330,
+          "end": 1427,
+          "text": "and cultural exchange. Conquering many territories in Asia and Europe, the Mongol Empire became a",
+          "audioStart": 89.65000000000032,
+          "audioEnd": 96.43000000000029
+        },
+        {
+          "start": 1428,
+          "end": 1522,
+          "text": "dominant force during the 13th and 14th centuries.\n\nHistorians focused on early modern history",
+          "audioStart": 96.43000000000029,
+          "audioEnd": 103.93000000000029
+        },
+        {
+          "start": 1524,
+          "end": 1611,
+          "text": "which started roughly in 1500 CE, commonly highlight how European states rose to global",
+          "audioStart": 103.93000000000029,
+          "audioEnd": 110.11000000000035
+        },
+        {
+          "start": 1612,
+          "end": 1693,
+          "text": "power. As gunpowder empires, they explored and colonized large parts of the world",
+          "audioStart": 110.11000000000035,
+          "audioEnd": 115.71000000000026
+        },
+        {
+          "start": 1695,
+          "end": 1779,
+          "text": "As a result, the Americas were integrated into the global network, triggering a vast",
+          "audioStart": 115.71000000000026,
+          "audioEnd": 121.71000000000026
+        },
+        {
+          "start": 1780,
+          "end": 1840,
+          "text": "biological exchange of plants, animals, people, and diseases",
+          "audioStart": 121.71000000000026,
+          "audioEnd": 127.35000000000036
+        },
+        {
+          "start": 1842,
+          "end": 1933,
+          "text": "The Scientific Revolution prompted major discoveries and accelerated technological progress",
+          "audioStart": 128.31000000000017,
+          "audioEnd": 133.4300000000003
+        },
+        {
+          "start": 1935,
+          "end": 2028,
+          "text": "It was accompanied by other intellectual developments, such as humanism and the Enlightenment",
+          "audioStart": 134.19000000000028,
+          "audioEnd": 139.23000000000025
+        },
+        {
+          "start": 2030,
+          "end": 2154,
+          "text": "which ushered in secularization.\n\nIn the study of modern history, which began at the end of the 18th century, historians are",
+          "audioStart": 139.59000000000037,
+          "audioEnd": 148.73000000000025
+        },
+        {
+          "start": 2155,
+          "end": 2240,
+          "text": "interested in how the Industrial Revolution transformed economies by introducing more",
+          "audioStart": 148.73000000000025,
+          "audioEnd": 153.4300000000003
+        },
+        {
+          "start": 2241,
+          "end": 2329,
+          "text": "efficient modes of production. Western powers established vast colonial empires, gaining",
+          "audioStart": 153.4300000000003,
+          "audioEnd": 159.39000000000033
+        },
+        {
+          "start": 2330,
+          "end": 2422,
+          "text": "superiority through industrialized military technology. The increased international exchange",
+          "audioStart": 159.39000000000033,
+          "audioEnd": 164.99000000000024
+        },
+        {
+          "start": 2423,
+          "end": 2516,
+          "text": "of goods, ideas, and people marked the beginning of globalization. Various social revolutions",
+          "audioStart": 164.99000000000024,
+          "audioEnd": 171.85000000000014
+        },
+        {
+          "start": 2517,
+          "end": 2610,
+          "text": "challenged autocratic and colonial regimes, paving the way for democracies. Many developments",
+          "audioStart": 171.85000000000014,
+          "audioEnd": 178.31000000000017
+        },
+        {
+          "start": 2611,
+          "end": 2706,
+          "text": "in fields like science, technology, economy, living standards, and human population accelerated",
+          "audioStart": 178.31000000000017,
+          "audioEnd": 184.83000000000015
+        },
+        {
+          "start": 2707,
+          "end": 2804,
+          "text": "at unprecedented rates. This happened despite the widespread destruction caused by two world wars",
+          "audioStart": 184.83000000000015,
+          "audioEnd": 190.97000000000025
+        },
+        {
+          "start": 2806,
+          "end": 2886,
+          "text": "which rebalanced international power relations by undermining European dominance",
+          "audioStart": 190.97000000000025,
+          "audioEnd": 195.71000000000026
+        }
+      ],
+      "reviewStatus": "pending",
+      "alignmentStatus": "automatic exact-token adjacent-ASR candidate",
+      "guardStatus": "Rejected unchanged current 180-word/91-second spoken guards; never count as current runtime-generatable packed material."
+    },
+    "target": {
+      "sentence": "Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations, leading to urbanization, the establishment of trade networks, and the emergence of regional empires.",
+      "start": 320,
+      "end": 531,
+      "main": {
+        "text": "Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations",
+        "start": 320,
+        "end": 429
+      },
+      "marker": "leading to",
+      "result": {
+        "text": "urbanization, the establishment of trade networks, and the emergence of regional empires",
+        "start": 442,
+        "end": 530
+      },
+      "additionalEvidence": {
+        "start": 0,
+        "end": 319,
+        "quote": "Historians studying the ancient period examine the emergence of the first major civilizations in regions such as Mesopotamia, Egypt, the Indus Valley, China, and Peru, beginning approximately 3500 BCE in some regions. The new social, economic, and political complexities necessitated the development of writing systems.",
+        "sourceStart": 16924,
+        "sourceEnd": 17243,
+        "sha256": "d182722b24024dab08275aace072f211b073a84c0843ca6b7121a28d54812edc",
+        "purpose": "Full preceding two sentences preserve first-major-civilizations antecedent and approximately/in-some-regions limits. these civilizations does not denote every civilization everywhere."
+      }
+    },
+    "admission": {
+      "current814PackedClip": false,
+      "preparedAudioCreated": false,
+      "clipIdMinted": false,
+      "auditoryAcceptance": false,
+      "deviceAcceptance": false,
+      "existingHoldEntries": [],
+      "currentSourceFlags": [],
+      "note": "Source/type design regression only. Do not add this prospective scope to public assets or test routing; no new audio and no changed guards."
+    }
+  }
+}

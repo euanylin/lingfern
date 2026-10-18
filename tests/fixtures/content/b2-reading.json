@@ -1,0 +1,301 @@
+{
+  "id": "b2-survey-claims-reading",
+  "targetLevel": "B2",
+  "skill": "reading",
+  "title": {
+    "zh-Hans": "读懂调查能支持什么",
+    "zh-Hant": "讀懂調查能支持什麼",
+    "en": "Read what a survey supports"
+  },
+  "goal": {
+    "zh-Hans": "区分调查对象、受访者结论、扩大推论与未经验证的因果解释。",
+    "zh-Hant": "區分調查對象、受訪者結論、擴大推論與未經驗證的因果解釋。",
+    "en": "Separate respondents’ reports, broader claims and unsupported causal explanations."
+  },
+  "goalId": "survey-claim-scope",
+  "sourceId": "lingfern-original-b2-surveys",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "读调查结论时，先找谁回答、谁没回答，再看作者说的是观察到的结果，还是对全体或原因的推断。",
+    "zh-Hant": "讀調查結論時，先找誰回答、誰沒回答，再看作者說的是觀察到的結果，還是對全體或原因的推論。",
+    "en": "Identify respondents and nonrespondents, then separate observed answers from claims about everyone or about causes."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“十位到场者中八位喜欢活动。”→ 可说受访到场者多数喜欢；不能说全校都喜欢，更不能说海报导致喜欢。",
+    "zh-Hant": "示範（不計分）：「十位到場者中八位喜歡活動。」→ 可說受訪到場者多數喜歡；不能說全校都喜歡，更不能說海報導致喜歡。",
+    "en": "Unscored example: “Eight of ten attending respondents liked it.” → Most respondents liked it; this says nothing about all students or what caused the result."
+  },
+  "materials": [
+    {
+      "id": "film-survey",
+      "rootId": "original-film-night-survey",
+      "title": "Film night survey and planning note",
+      "blocks": [
+        {
+          "id": "film-survey-report",
+          "title": "Survey brief",
+          "text": "After April’s student film night, the arts committee sent a short online survey to the volunteers who had helped run the event. Thirty-two volunteers replied. Twenty-six said they were satisfied with the evening overall, while several of those same respondents also reported long queues at the entrance. The committee did not invite ordinary audience members to this survey, and it did not ask students who decided not to attend. The answers therefore describe the experience of responding volunteers, not the views of every student on campus. The film night attracted more visitors than a similar event last autumn. Some members suggested that the free snacks brought in the extra visitors, but the two evenings differed in other ways: the April event started earlier, used a larger room, and received more publicity. The survey did not ask why anyone attended, and the committee has no comparison that isolates the effect of snacks. The brief recommends keeping the helpful volunteer comments, recording the queues, and gathering feedback from a wider range of people before making claims about the whole student body."
+        },
+        {
+          "id": "film-survey-response",
+          "title": "Planning response",
+          "text": "At the next meeting, Amira supported another film night, but she wanted the proposal to state exactly what the survey showed. In her view, positive responses from most of the thirty-two volunteers are a useful reason to try a revised event. They are not evidence that all students liked the evening, or that snacks caused the higher attendance. She proposed a small repeat with a separate audience survey and a count of people who leave the entrance queue. Ben agreed that the queues need attention, yet he wanted to advertise the pilot immediately as a proven campus-wide success. Amira replied that a pilot can be worth running without a campus-wide claim: the committee can explain what it hopes to learn and report the results afterwards. If the next event also receives favourable feedback, the committee will still need to identify who answered before generalising beyond them."
+        }
+      ],
+      "questions": [
+        {
+          "id": "film-supported-conclusion",
+          "blockId": "film-survey-report",
+          "prompt": "Which conclusion is supported by the survey as conducted?",
+          "options": [
+            "Most responding volunteers reported overall satisfaction, but the survey does not establish what all students thought.",
+            "All students were satisfied because twenty-six volunteers gave positive answers.",
+            "Free snacks caused the increase in attendance."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 128,
+            "end": 303
+          },
+          "hints": [
+            {
+              "zh-Hans": "先找谁收到问卷。",
+              "zh-Hant": "先找誰收到問卷。",
+              "en": "Identify who received the survey."
+            },
+            {
+              "zh-Hans": "区分 volunteers 和 every student。",
+              "zh-Hant": "區分 volunteers 和 every student。",
+              "en": "Separate volunteers from every student."
+            },
+            {
+              "zh-Hans": "大多数作答志愿者满意；不能据此说所有学生满意。",
+              "zh-Hant": "多數作答志工滿意；不能據此說所有學生滿意。",
+              "en": "Most responding volunteers were satisfied; this cannot establish all students’ views."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：保留了调查对象和结论范围。",
+              "zh-Hant": "正確：保留了調查對象和結論範圍。",
+              "en": "Correct: it keeps the respondent group and the conclusion’s scope."
+            },
+            {
+              "zh-Hans": "不对：志愿者样本不能代表所有学生。",
+              "zh-Hant": "不對：志工樣本不能代表所有學生。",
+              "en": "Volunteers’ answers do not establish every student’s view."
+            },
+            {
+              "zh-Hans": "不对：活动还有时间、场地和宣传变化，调查未问到场原因。",
+              "zh-Hant": "不對：活動的時間、場地及宣傳也改變了，調查未問到場原因。",
+              "en": "Other features changed, and the survey did not ask why people attended."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "film-survey-report",
+              "start": 430,
+              "end": 543
+            }
+          ]
+        },
+        {
+          "id": "film-planning-claim",
+          "blockId": "film-survey-response",
+          "prompt": "How does Amira’s proposal differ from Ben’s?",
+          "options": [
+            "She rejects any repeat until every student has answered a survey.",
+            "She supports a revised pilot with broader feedback, without calling the first event a proven campus-wide success.",
+            "She believes the queue complaints prove the event failed for all students."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 345,
+            "end": 456
+          },
+          "hints": [
+            {
+              "zh-Hans": "找两人都愿意做什么。",
+              "zh-Hant": "找兩人都願意做什麼。",
+              "en": "Find what both are willing to do."
+            },
+            {
+              "zh-Hans": "比较试行和“已证实全校成功”的说法。",
+              "zh-Hant": "比較試行和「已證實全校成功」的說法。",
+              "en": "Compare a pilot with a claim of proven campus-wide success."
+            },
+            {
+              "zh-Hans": "Amira 支持试行，但要求更广的反馈和准确表述。",
+              "zh-Hant": "Amira 支持試行，但要求更廣的回饋和準確表述。",
+              "en": "Amira supports a pilot while seeking broader feedback and careful wording."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：Amira 提议再次小规模试行。",
+              "zh-Hant": "不對：Amira 提議再次小規模試行。",
+              "en": "Amira proposes a small repeat."
+            },
+            {
+              "zh-Hans": "正确：两人都想继续，但 Amira 不把有限样本宣传为全校结论。",
+              "zh-Hant": "正確：兩人都想繼續，但 Amira 不把有限樣本宣傳為全校結論。",
+              "en": "Correct: both want to continue, but Amira does not market a limited sample as a campus-wide result."
+            },
+            {
+              "zh-Hans": "不对：她记录排队问题，但没有说所有学生都认为活动失败。",
+              "zh-Hant": "不對：她記錄排隊問題，但沒有說所有學生都認為活動失敗。",
+              "en": "She records the queue problem; she does not claim every student found the event a failure."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "film-survey-response",
+              "start": 457,
+              "end": 581
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repair-survey",
+      "rootId": "original-repair-cafe-survey",
+      "title": "Repair café survey and extension proposal",
+      "blocks": [
+        {
+          "id": "repair-survey-report",
+          "title": "Pilot report",
+          "text": "The campus repair café held a Saturday pilot where students could bring small items and ask volunteers for help. Forty visitors completed a form before leaving; thirty-four said the advice had been useful. Nine of the forty did not finish a repair during the visit, although some still valued learning what was wrong. The organisers saw at least twenty more visitors leave before receiving a form, often because the queue was long. They did not collect responses from those visitors, and the form did not reach students who never came to the café. The report therefore describes the people who completed it, not the needs of every residence hall. Attendance was higher than at a small repair table held the previous month. A new poster campaign may have helped, but this pilot also ran for longer hours, offered more kinds of tools, and took place on a rainy weekend. The report does not separate these possible influences, so it cannot show that posters alone produced the higher attendance. The organisers recommend a second pilot with a shorter queue and a simple way for early leavers to comment."
+        },
+        {
+          "id": "repair-survey-response",
+          "title": "Extension proposal",
+          "text": "Nia, who manages the volunteer rota, thinks the positive forms are enough to justify testing the café in one more residence area. She wants to keep the claim narrow: many people who filled in the form found the advice useful, and the pilot exposed a queue problem worth fixing. She would invite early leavers and students who have never visited to explain what hours and services might help them. Leo agrees that another trial could be useful, but his draft poster says the pilot proved that students in every residence hall need a repair café and that the new posters doubled demand. Nia asks him to remove both statements. The form reached neither every hall nor everyone who visited, and the two events differed in hours, tools, weather and publicity. Nia is not saying the café lacks value; she is asking the team to distinguish a sensible next experiment from a conclusion the current evidence cannot support."
+        }
+      ],
+      "questions": [
+        {
+          "id": "repair-supported-conclusion",
+          "blockId": "repair-survey-report",
+          "prompt": "What can the team say about the form results?",
+          "options": [
+            "Thirty-four of the forty people who completed the form found the advice useful; the forms do not represent all visitors or residences.",
+            "Every student who visited finished a repair and found the advice useful.",
+            "The poster campaign alone caused the higher attendance."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 113,
+            "end": 205
+          },
+          "hints": [
+            {
+              "zh-Hans": "看填表人数与谁没填表。",
+              "zh-Hant": "看填表人數與誰沒填表。",
+              "en": "Find the number of completed forms and who did not complete one."
+            },
+            {
+              "zh-Hans": "区分“觉得建议有用”和“完成维修”。",
+              "zh-Hant": "區分「覺得建議有用」和「完成維修」。",
+              "en": "Separate useful advice from a completed repair."
+            },
+            {
+              "zh-Hans": "34/40 是填表者的回答，不能推广到未填表者和所有宿舍。",
+              "zh-Hant": "34/40 是填表者的回答，不能推廣到未填表者和所有宿舍。",
+              "en": "The 34/40 result applies to respondents, not nonrespondents or all halls."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：报告了实际人数并保留样本边界。",
+              "zh-Hant": "正確：報告了實際人數並保留樣本邊界。",
+              "en": "Correct: it reports the observed count and preserves the sample boundary."
+            },
+            {
+              "zh-Hans": "不对：有人没有完成维修，也有人未填写表格。",
+              "zh-Hant": "不對：有人沒有完成維修，也有人未填表。",
+              "en": "Some did not finish a repair, and some did not complete a form."
+            },
+            {
+              "zh-Hans": "不对：开放时间、工具、天气也变化了，不能单独归因于海报。",
+              "zh-Hant": "不對：開放時間、工具和天氣也有變，不能單獨歸因於海報。",
+              "en": "Hours, tools and weather also changed; the posters’ effect was not isolated."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "repair-survey-report",
+              "start": 432,
+              "end": 547
+            }
+          ]
+        },
+        {
+          "id": "repair-proposal",
+          "blockId": "repair-survey-response",
+          "prompt": "Which statement best captures Nia’s response to Leo’s poster?",
+          "options": [
+            "She opposes another trial because the first survey was useless.",
+            "She agrees that the survey proved demand in every residence hall but wants a shorter queue.",
+            "She supports another trial while rejecting a campus-wide demand claim and a causal claim about posters."
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 585,
+            "end": 754
+          },
+          "hints": [
+            {
+              "zh-Hans": "找 Nia 支持的下一步。",
+              "zh-Hant": "找 Nia 支持的下一步。",
+              "en": "Find the next step Nia supports."
+            },
+            {
+              "zh-Hans": "再找她要求删去的两项说法。",
+              "zh-Hant": "再找她要求刪去的兩項說法。",
+              "en": "Then find the two claims she wants removed."
+            },
+            {
+              "zh-Hans": "她支持再试，但反对扩大样本结论及单一因果归因。",
+              "zh-Hant": "她支持再試，但反對擴大樣本結論及單一因果歸因。",
+              "en": "She supports a trial, not a broad sample claim or isolated causal claim."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：Nia 明确支持在另一宿舍区域试行。",
+              "zh-Hant": "不對：Nia 明確支持在另一宿舍區域試行。",
+              "en": "Nia supports testing in another residence area."
+            },
+            {
+              "zh-Hans": "不对：她反对将表格结果推广到所有宿舍。",
+              "zh-Hant": "不對：她反對將表格結果推廣到所有宿舍。",
+              "en": "She rejects extending the form results to every hall."
+            },
+            {
+              "zh-Hans": "正确：她保留试行价值，同时删去证据不支持的推广和因果说法。",
+              "zh-Hant": "正確：她保留試行價值，同時刪去證據不支持的推廣和因果說法。",
+              "en": "Correct: she keeps the trial while removing unsupported generalisation and causation."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "repair-survey-response",
+              "start": 0,
+              "end": 129
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "daily-life",
+    "travel"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次先确认谁回答了调查，再判断结论覆盖谁。",
+    "zh-Hant": "下次先確認誰回答了調查，再判斷結論涵蓋誰。",
+    "en": "Next time, identify who answered before judging what a claim covers."
+  }
+}

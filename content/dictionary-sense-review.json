@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-07T11:50:17.976309+00:00",
+  "scope": "Exact course-definition/example to installed OEWN2025 sense correspondence for the listed records only. No automatic sense disambiguation of arbitrary corpus passages, human review, CEFR or corpus/audio/rights approval. Remaining null mappings unresolved. Book physical-page meaning corrected; pool equivalence withheld. Two further exact course mappings personally inspected: upper-floor upstairs adverb and formal-message request noun, with request definition clarified.49 mapped/15 null among64 entries; no arbitrary corpus WSD or corpus/rights/audio approval. Inspected café course definition/example and installed cafe noun: exact restaurant/drinks/snacks meaning, spelling alias only.50 mapped/14 null among64; no global accent equivalence or arbitrary context disambiguation. Thirteen previously unrecorded null course definitions/examples and exact installed headword buckets personally inspected. Mapped discourse concession act and audience show noun;11 mappings explicitly withheld. All64 course entries now have exact decisions,52 mapped/12 null. No arbitrary corpus WSD, semantic-equivalence expansion or automatic rating. Inspected call me naming/telephone construction against exact call address and telephone senses; phrase mapping withheld because the construction can have either sense.65 entries,52 mapped/13 null; no automatic corpus disambiguation or human/CEFR approval.",
+  "previousCourseSha256": "dc90e530aeee47cd781c5e109c90f206e462f2827086d8c7c34f78bb674c0cda",
+  "courseSha256": "245925f995b8f7c4c18a9dd413b78146a5ff52e5c050f48bf93e071b6b500258",
+  "records": [
+    {
+      "term": "book",
+      "entrySha256": "880cf4193935ef84ce3ddbacb554a7e8f0a220e457e442a3807067b1bd152700",
+      "senseId": "book%1:06:00::",
+      "senseSha256": "8604cce77f8f0bd205a3aa620ac2bb8d0575da4c4811a23e21f3904cf2fa6528",
+      "bucketSha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "pen",
+      "entrySha256": "96f1ba620ff433de3e7e2376f704246333288a14b2d010f75b120e0d241c5afb",
+      "senseId": "pen%1:06:00::",
+      "senseSha256": "34ac936ad0cd7ed1d2ad57f96e5992dc5a9133d1f71f92dd3c96cffcf3b25d83",
+      "bucketSha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "bag",
+      "entrySha256": "428c0c6c70912c30a61476f60b73ecf4e5977de0f04da7c601b20ccb56380cc5",
+      "senseId": "bag%1:06:00::",
+      "senseSha256": "9fc23cb88aadbf94f60ebd28651844cec0476c36af560f14d482f829bb1ace53",
+      "bucketSha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "cup",
+      "entrySha256": "bd564847fe3f03987f3c9d56ba253e1094f5befaa10ed1bdebf3add4d1cbf582",
+      "senseId": "cup%1:06:00::",
+      "senseSha256": "49618bee41da8a7111a61c95b85ed5758492860f40072835c1f9433c9ec4488a",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "library",
+      "entrySha256": "6f7d195b6d910c18f200ee2a30064195eaf745e847ce562aa834c898af12c42e",
+      "senseId": "library%1:06:00::",
+      "senseSha256": "126c21a5168dfc431783d6f7146d615a78b77253834ea7beda78c90b324311a6",
+      "bucketSha256": "4a42617ecd7a757dca093d5df0d9102b2c36cbebcf8a38314c79747549edc843",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "bring",
+      "entrySha256": "259735652bbb8dca01fd881b36fe728d23510d9a122e1c87a91e15c68af49b84",
+      "senseId": "bring%2:38:00::",
+      "senseSha256": "a618fe35986bb64a63c70ff34f025ac3ba521437c38b16e67507b8823c6c61f0",
+      "bucketSha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "notebook",
+      "entrySha256": "93a9f2b65886ee4f17713eb86873e7badc03c7d78e86562c95b214fe5a41d043",
+      "senseId": "notebook%1:10:00::",
+      "senseSha256": "dc3b533ff3a22597a95d2e7ed7d978e71e006b737dde41f15bc13ca3a180d5c5",
+      "bucketSha256": "e57c9d6c6a0cb8db87a2335c47c34a562b52cf5b8b420a4d50178da507dc9eb4",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "pencil",
+      "entrySha256": "aa56b4a1ef8c873da4d5ba14689e9559db2427925630e7b87c3bfe03419d96f6",
+      "senseId": "pencil%1:06:00::",
+      "senseSha256": "09bdf8a0244b404fe96ed2ee767d12c834c5f3ac3dfb73e1d18c2c3d13ecff58",
+      "bucketSha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "paper",
+      "entrySha256": "8fd86e7638fe71311703b7e02aca56691dcf97749f2082c876153ddac8b168b2",
+      "senseId": "paper%1:27:00::",
+      "senseSha256": "efed601c56845e6e6358a6833fb83dba678888c85469747720ad07cb3c4ed447",
+      "bucketSha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "table",
+      "entrySha256": "ee03efe55d2d36c743b37b1f5af8f59fcf1a0a0b0fa6f1d730042d6f4fdb4bb2",
+      "senseId": "table%1:06:01::",
+      "senseSha256": "811fd2d153d9f76816a9a59a126551119d87cd10975c40e5d781cb0eb477380d",
+      "bucketSha256": "a266e83f178385f0cc7e881cda33be1897375d32f2c13d62c6300e60217feeb1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "museum",
+      "entrySha256": "2e6327af928364b415425e709e90e469fb4a022d9b1970d5e13002bfa0c38d47",
+      "senseId": "museum%1:06:00::",
+      "senseSha256": "c558948da890465598380a22c14f23617838c1bb9b28f9653d5e8507e594334b",
+      "bucketSha256": "8d6dbf5a92cb9adf3e14aedc3d8d16808bf86a42c6f53e6c4cdb3320310ac8d7",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "ticket",
+      "entrySha256": "1687aca1296d15eb6e5a360fb0aa08af605f9fea5fa8ce96a70c1e536b7ac7fc",
+      "senseId": "ticket%1:10:01::",
+      "senseSha256": "9d73c3d67c703f4813177d12bab9e37648a43aee6c88e988e003e47265299581",
+      "bucketSha256": "a266e83f178385f0cc7e881cda33be1897375d32f2c13d62c6300e60217feeb1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "arrive",
+      "entrySha256": "87f336648806071e1efc4e74ee044e88990ecea046f6a27e0ca49f0b3dc0b53b",
+      "senseId": "arrive%2:38:00::",
+      "senseSha256": "4a6433167ff7f18b452ab71d0c9e46543b28b70a4b0030b5a33d7d85e463f7e7",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "open",
+      "entrySha256": "a660cc4d160ee192b4964088f33ed81b0ba9a05c4a61eca7c0182f7044b19d24",
+      "senseId": "open%2:41:00::",
+      "senseSha256": "2be863224e87cfe5286e2d32615cb099a53bd708fcc387f8b9bfe4c85c8a645e",
+      "bucketSha256": "af87110dc5c71c775ea3201e0c6a944dbc338748dc1cefe2b51103227d7d6230",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "close",
+      "entrySha256": "0d61eb0eb2cabe130b1db4ae3f02d02cfd36355d2c0e7bcd1cdbc262df1deba7",
+      "senseId": "close%2:41:00::",
+      "senseSha256": "30b2e649e514ad751fab6878165cd772b474509e6a211756ae71a9aaf9361ae1",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "room",
+      "entrySha256": "e7bdb6a1fc54f88bcb06ddd689d7390e5d20b05c4618b818f5bb1bd4fff47d2a",
+      "senseId": "room%1:06:00::",
+      "senseSha256": "c7094018a1bdbf12e3a33653a6a2e1ba0a70bae639c9e3ff9cb3c212660661f4",
+      "bucketSha256": "26ff3f1074727949fa485eb633c03fbbc71e331341fc2b437c164e4e2f123759",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "meeting",
+      "entrySha256": "953a486dd444da822df9212d84b469bb034f04dfd3243b529752579b335977b8",
+      "senseId": "meeting%1:14:00::",
+      "senseSha256": "4d3e59b7c26a69dced9f4d50a5caaece95068af0a0c58c6538b0505bc3f8645c",
+      "bucketSha256": "8d6dbf5a92cb9adf3e14aedc3d8d16808bf86a42c6f53e6c4cdb3320310ac8d7",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "gallery",
+      "entrySha256": "d5c6e6d1094c9febc90f11403de8704ab1b4d2f5317a733e530ad2c4395d9fd3",
+      "senseId": "gallery%1:06:04::",
+      "senseSha256": "2a4697018778c44b6f09e84f0777b8bb75943b1d858229306ebccd0a4e963313",
+      "bucketSha256": "bc01eb5f7c2897b5b0918cdcd5ae2400f041fdaa74de53eac645abd8378b0c53",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "class",
+      "entrySha256": "421a654c8df657906999650264fe911dc1b358a3fa4576b165cd91f0174fef1a",
+      "senseId": "class%1:14:03::",
+      "senseSha256": "0f9c73279396b1eb7c0dfb383438de10cb6676b214c8b506961d1239e69fc5e0",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "pool",
+      "entrySha256": "9a44ab978747600ea439567a5580e51c9d81c94eb85b87fb002de4a78c7eca77",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "The previous pool%1:06:00:: gloss describes an excavation usually filled with water, not specifically a swimming facility. Course sense remains separate; do not invent exact equivalence."
+    },
+    {
+      "term": "accountable",
+      "entrySha256": "2d0e3a05ed2bfe6adaf1f9a719dce1fda1f1b621356cbf332683f779d68c3e01",
+      "senseId": "accountable%5:00:00:responsible:00",
+      "senseSha256": "7e486d2d8c047c86b05bf1248329ba05bb4a5449cc59548d048d920263cf338a",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "exclusive",
+      "entrySha256": "59c788c9149bd2a232bf14fd71033e4b4f96d51a49e4ceb5913e4e827d7ebdad",
+      "senseId": "exclusive%3:00:00::",
+      "senseSha256": "34309caafcd04247f366448751a6ab5a079c8e01d5b273b51a59a465952a1300",
+      "bucketSha256": "b5816299d8daa09bade9fc94ac6ad30306701c136e370bb0e1f5f8f7f0622530",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "ready",
+      "entrySha256": "245d3eb1e5dd0578016f481fdf7445e96c6969b7e552a2102a9a98b0c72870d6",
+      "senseId": "ready%3:00:00::",
+      "senseSha256": "d03b4415594d78a72ed5eb452dee2aa3542a662291582c31bd8b8809c5481725",
+      "bucketSha256": "26ff3f1074727949fa485eb633c03fbbc71e331341fc2b437c164e4e2f123759",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "kitchen",
+      "entrySha256": "138d2a20670ba293542231b1e4c6fc11bdedbf99ecf21c9cca17bc862e3b50ef",
+      "senseId": "kitchen%1:06:00::",
+      "senseSha256": "42900f0e153201aa682721a3a08a7324fcc2ff047257f6e135404e7433663422",
+      "bucketSha256": "25977a3dfec432cd2803b0148c9b57aaeca5004bfd480cc89093c540671fd4be",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "bedroom",
+      "entrySha256": "b683d3fe6f4f510445c20c027f361d08cd001e23848fb68d1ed6ce16c78b5484",
+      "senseId": "bedroom%1:06:00::",
+      "senseSha256": "8ef9530a694c94306d4dcf95dd8361c54f6ddf1b91707e044a942b2180990171",
+      "bucketSha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "bathroom",
+      "entrySha256": "6d689e6a68a3055165a149a39a9a83845eed5e668f94c45fa7d6f852beffefc1",
+      "senseId": "bathroom%1:06:00::",
+      "senseSha256": "fa08f6d7ed0c540d5d4e59f87893ddecc2df72d947f89be9500ed06dd76833c0",
+      "bucketSha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "living room",
+      "entrySha256": "70862e8d21982db054adfff67c565a1579b98c7e1a8744cd167a2d8ad000d3bb",
+      "senseId": "living_room%1:06:00::",
+      "senseSha256": "51e67f2dd4bf706e061674fcea79031bb7505903fb19e49ed68b100112275bf7",
+      "bucketSha256": "4a42617ecd7a757dca093d5df0d9102b2c36cbebcf8a38314c79747549edc843",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "relax",
+      "entrySha256": "abb25534df6572a3bb3e6f2dc3c2b7aa5d285f8a238b43e2a2f9b685a8074dc2",
+      "senseId": "relax%2:29:00::",
+      "senseSha256": "ed9efb953a9ef4b2d537ff374405dfb68a7e0378e1efc733d99915e6fed18c58",
+      "bucketSha256": "26ff3f1074727949fa485eb633c03fbbc71e331341fc2b437c164e4e2f123759",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "cook",
+      "entrySha256": "ab3c4d00a3f36f7afcba714a33ed20a9e83b463ef14045dedadd3f9dbb37e13e",
+      "senseId": "cook%2:36:00::",
+      "senseSha256": "31e2e9bc056d49ea430c956af899099d5ba7876ad41085460505feabfb6e8881",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "gym",
+      "entrySha256": "efdf94b9636bbcf9a306efb007e29d2053f95540dcac1c91c7787f83fe9f4e2b",
+      "senseId": "gym%1:06:00::",
+      "senseSha256": "eb8642b92ab720fc670970f17fbe45952179f7c8c572a7d1e7435684248f90b8",
+      "bucketSha256": "bc01eb5f7c2897b5b0918cdcd5ae2400f041fdaa74de53eac645abd8378b0c53",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "lounge",
+      "entrySha256": "c34662f58de503ef5592fcd4701e6682b6ddd08b3190f353eaf9348ce73f374b",
+      "senseId": "lounge%1:06:00::",
+      "senseSha256": "2c4cfb14dec0ea07f12b0da059c7477509704522abf3af67d8466981f9d8fcaa",
+      "bucketSha256": "4a42617ecd7a757dca093d5df0d9102b2c36cbebcf8a38314c79747549edc843",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "work out",
+      "entrySha256": "7ec414f5c6f272684782277a9519fa054a1e40e7e80cb8d440c49e73f923e3b0",
+      "senseId": "work_out%2:29:00::",
+      "senseSha256": "e3512a3c8f2ef44f9b1706cba1fc3be6baa8d7cd700cab67fef8923fef649856",
+      "bucketSha256": "a794da89b057f4edc82f37029422dad170e9e9c9303dad54144ed7de4c712226",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "busy",
+      "entrySha256": "f5ec75bd2b9eab2b99995130a291f66d75cbd7c58fdca32966c88c3513f277de",
+      "senseId": "busy%3:00:00::",
+      "senseSha256": "c98a7b2c6625f9f47a21fc1d0db02b2bfe738082a6be58633868d7dd7f1063d7",
+      "bucketSha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "record",
+      "entrySha256": "c3d3d02f645defd7735532db6e4f84583af21d338ca1c40b699a1c0f63414f08",
+      "senseId": "record%2:32:01::",
+      "senseSha256": "345e3335083335ed2244cbe98b0c67f8cbc6653483f6b7e906a03c556f7a7910",
+      "bucketSha256": "26ff3f1074727949fa485eb633c03fbbc71e331341fc2b437c164e4e2f123759",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "again",
+      "entrySha256": "489e7ecf3380b806e80d21b4491eaadc1a69b4af3997a9aad0ffb2e165f585ce",
+      "senseId": "again%4:02:00::",
+      "senseSha256": "7ed39a189cdf09135f8708abf9e0705f4e7224f27bdca48bd98412f2df5968d7",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "co-worker",
+      "entrySha256": "d177c5eb39958f2b7c476c00efe6457f70fdfeb0c021e2854b46c88168923fc2",
+      "senseId": "co-worker%1:18:00::",
+      "senseSha256": "5b5d69c3eee25ab12260e0dc531587bf7cc8caaebea4e86278abf4fb8bc19517",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "studio",
+      "entrySha256": "85038c36d8c198f97694d4c3ce834c4562b9065ae37dac05b1e3430d48f7f4b3",
+      "senseId": "studio%1:06:02::",
+      "senseSha256": "7fd694f97ad145f8e7eb7b9abae406c4c51ba1fab0f034a654edc055b9f40fd0",
+      "bucketSha256": "2488f9d7f523cbd32f98b73439efd98c2f63f2513437f8fb8304b2187c362256",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "afternoon",
+      "entrySha256": "87d7cbd336aa06647dfbd540a4cfc1dca180d13d312b96f4894f317e64e0118e",
+      "senseId": "afternoon%1:28:00::",
+      "senseSha256": "a7cc1744fb8eb55f865b3553985d4420e12a36578c08699c754de1f5c4adb77c",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "apologize",
+      "entrySha256": "d0bc818ec2c92fc937efb6c5f71603aaad8c76051692af7e043ae52a5fa714bb",
+      "senseId": "apologize%2:32:00::",
+      "senseSha256": "bb1ef961949d976b7e06dd1c1f11df47e15484ebec022f5b68b3ae3bd624582c",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "phoneme",
+      "entrySha256": "f64da3ecde322572d9456c54ba45557366dfdd17a279a66857e4d03d4168ad87",
+      "senseId": "phoneme%1:10:00::",
+      "senseSha256": "63a774233465f40a46ecc6ebf341a4de835fd35687c15c3ec9aacac8d3e11aad",
+      "bucketSha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "phonetic",
+      "entrySha256": "8556161beff7637d11f8a1cbe20833e595f6e2a294ff5d035d08e2b69ccf9268",
+      "senseId": "phonetic%3:01:01::",
+      "senseSha256": "54f8f1034da075e5639791f0d245695482ac1eb2c072a39ba42350bae1f5f112",
+      "bucketSha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "symbol",
+      "entrySha256": "766cbe189b02543065a57dfe799122b5a54c78c8926254729d297007cb699c0a",
+      "senseId": "symbol%1:10:00::",
+      "senseSha256": "30b558c6f4693e682c24ede0f68d67f238f01310c5f54cc014def0696453538d",
+      "bucketSha256": "2488f9d7f523cbd32f98b73439efd98c2f63f2513437f8fb8304b2187c362256",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "momentary",
+      "entrySha256": "1d96653a72b6b008add8e444d9f7374de26888e6746b2ca664bb030da9b421c4",
+      "senseId": "momentary%5:00:00:short:02",
+      "senseSha256": "cff852d0839b2f121d538fc909e99a3aaf2f48c816f8d52b09f5b64204801021",
+      "bucketSha256": "8d6dbf5a92cb9adf3e14aedc3d8d16808bf86a42c6f53e6c4cdb3320310ac8d7",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "noun",
+      "entrySha256": "558a3ff0a24c4cd413262622e13df76792a21f4dbaf65c79f857434c1cefc482",
+      "senseId": "noun%1:10:00::",
+      "senseSha256": "8552cdd377b5d1166d87f37827e09bb07516404461fbf5d1809e3c8951345b32",
+      "bucketSha256": "e57c9d6c6a0cb8db87a2335c47c34a562b52cf5b8b420a4d50178da507dc9eb4",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "adjective",
+      "entrySha256": "abb56e5a0ec835fba2bc7aa9e6cb8bd00d7882b19fcfad442245d608b4591585",
+      "senseId": "adjective%1:10:00::",
+      "senseSha256": "b78df453a9e17425cec71be4b21bc2a0f018cfd8087a6d8be9e67166557cb958",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "apartment",
+      "entrySha256": "4ced55cae286a650b65f6de38383d77bb5ba99255d724fa405049b6c0648df65",
+      "senseId": "apartment%1:06:00::",
+      "senseSha256": "774f0664046e6afbb4b4f88f319625e2c8ca594cecb1e3a658b4d42fe2d13fc7",
+      "bucketSha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "supermarket",
+      "entrySha256": "8f8a116a0e95fd400d9a0fad39bcd1592357e927f48d7430e8e547f21e7d9527",
+      "senseId": "supermarket%1:06:00::",
+      "senseSha256": "2ce280987d231ec4a90c54f726495d89d98d0578dfea30585ca42be2691d944c",
+      "bucketSha256": "2488f9d7f523cbd32f98b73439efd98c2f63f2513437f8fb8304b2187c362256",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "dinner",
+      "entrySha256": "1dac378de175e58645b2d182985f306d3962604acdf02d54a1a94798b1700802",
+      "senseId": "dinner%1:13:00::",
+      "senseSha256": "eeb3e0eebb689a15363be8101c6fe02160429c6a3117c4a6145b26d82fed449a",
+      "bucketSha256": "8d979df7cc223ccf6b9de1ed2e74813d704f2a2501c2301fd8b1c265852f4909",
+      "decision": "mapped",
+      "notes": "Inspected the complete course definition/example and this exact OEWN gloss/available example. Related alternatives are not merged; this is a course-example mapping, not arbitrary passage disambiguation."
+    },
+    {
+      "term": "upstairs",
+      "entrySha256": "c1dcc34f53a1a2b692eb7bb96c471092d3152f22f843ce2aea9d67c80a4c4ee8",
+      "senseId": "upstairs%4:02:00::",
+      "senseSha256": "4360dfd788c4533374dbcfe81e18d839cb8b3f0df692657d7526331b6989cdb1",
+      "bucketSha256": "47d83830e14f60ac316d391802e2a7ff68e9366a624b2bcfd78f30ce1981e1b3",
+      "decision": "mapped",
+      "notes": "Personally inspected all four installed upstairs senses and complete course definition/example. Let us go upstairs selects the literal upper-floor adverb; not the upper-floor adjective/noun or figurative mind sense. No arbitrary-passage disambiguation."
+    },
+    {
+      "term": "request",
+      "entrySha256": "cf8532ae58a3db3487cb8abb7d7f6b8005eae307838e4ab1dfd32aff1fbf697c",
+      "senseId": "request%1:10:01::",
+      "senseSha256": "df77f4b5387b119ae7e8c516e57fc9be909bd549fc027e52d9768d6e4ce6720c",
+      "bucketSha256": "26ff3f1074727949fa485eb633c03fbbc71e331341fc2b437c164e4e2f123759",
+      "decision": "mapped",
+      "notes": "Personally inspected both installed noun senses and three verb senses and the complete course definition/example. Send a request for the library book describes a formal submitted message; course definition clarified accordingly. Not the verbal-act noun or any requesting verb. No arbitrary-passage disambiguation."
+    },
+    {
+      "term": "café",
+      "entrySha256": "bc63343ee8f18a87e131ca716cfe671a7d8443a8ae8795b56eaee3533beb8efc",
+      "senseId": "cafe%1:06:00::",
+      "senseSha256": "ad5303b7e8ba5355ba1df77a74a80280675b9e79efe6964359f53bdaac708911",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140",
+      "decision": "mapped",
+      "notes": "Complete course definition and art-club café example personally inspected against installed cafe small restaurant/drinks/snacks noun. Exact reviewed spelling alias; preserve accented query and use existing canonical sense ID. No global accent stripping or unrelated sense association."
+    },
+    {
+      "term": "student card",
+      "entrySha256": "f10dc87e92020a46d27168d8260634d874deaff71077ccd02a10bcb486eaecd6",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete course definition/desk example inspected; installed student card headword absent. Do not substitute generic card or student person sense for this identification phrase."
+    },
+    {
+      "term": "front desk",
+      "entrySha256": "16908b2bbbb57914f1432c3920d9cf2dd1d650790e6ac96456b0cab65d19c310",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete entrance/staff-help definition and RoomTwelve example inspected; exact installed front desk headword absent. No uninspected reception/desk alias invented."
+    },
+    {
+      "term": "provided",
+      "entrySha256": "f2e45abbeb4839c1443124a8861e301dcbf3fc71fac06f66ab68e8b3d6761938",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete conditional-support definition and staffed walk-in trial example inspected; exact provided headword absent. Do not map the conjunction only-if condition to a provide verb form."
+    },
+    {
+      "term": "concession",
+      "entrySha256": "abc14eedb47238e5f24239ec139928cc910627e27dad5c6a8b708fa5bed2b9e1",
+      "senseId": "concession%1:10:02::",
+      "decision": "mapped",
+      "notes": "Complete acknowledging-an-opposing-point definition and writer concedes appointments-but-objects example inspected against all three installed noun senses. Select the act of conceding/yielding, not business contract or a conceded outcome. Course narrows the general act to discourse acknowledgment; does not assign arbitrary passage WSD.",
+      "senseSha256": "49a99e5b48d52573d9fad40edf9367a30f2005d28ba0ed2125e3f191fb7783a8",
+      "bucketSha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140"
+    },
+    {
+      "term": "mailroom",
+      "entrySha256": "bb799606297ec61bb8842c0f57c2b9b4eefa2b4c368fef2a7fed006f17388782",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete collect/sort letters room definition and This is the mailroom example inspected; exact installed mailroom headword absent. No mail noun or arbitrary room equivalence."
+    },
+    {
+      "term": "next to",
+      "entrySha256": "346d96964508f180fdc454cfb7a9c530180a2ec8f77687cda369acf1c7c1ae57",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete close-to-side relation definition and gym/mailroom example inspected; exact installed next to headword absent. Do not substitute next ordinal/temporal sense."
+    },
+    {
+      "term": "across from",
+      "entrySha256": "0a549a1433a7b8406dc346be373b148590ffdca3cd590183e6a5126adb8eb894",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete opposite-side-facing definition and gym/lounge example inspected; exact installed across from headword absent. No uninspected across directional alias."
+    },
+    {
+      "term": "awesome",
+      "entrySha256": "044f7f75e7c9274161a99024b6d05f54e69b224256ed32f381337a8ee3d681b8",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete informal very-good/exciting definition and Things are awesome example inspected against installed inspiring awe/admiration/wonder adjective. Register/intensity contrast remains unresolved; do not force colloquial praise into awe semantics."
+    },
+    {
+      "term": "show",
+      "entrySha256": "2bf6c0d660e1c7a0874ba29ccc3480f85b13f8b983fbd740dca1b05c5d0de2da",
+      "senseId": "show%1:04:00::",
+      "decision": "mapped",
+      "notes": "Complete audience-programme definition and I am doing my show example inspected against all installed show nouns/verbs. Audience entertainment programme is an instance of the public-performance/entertainment act noun; exclude impression/pretense and all verbs. No assignment of arbitrary show occurrences to this course sense.",
+      "senseSha256": "e44032c78a2685ea5b90fc0463acbca7deceef621e711238d6af03823aa59201",
+      "bucketSha256": "2488f9d7f523cbd32f98b73439efd98c2f63f2513437f8fb8304b2187c362256"
+    },
+    {
+      "term": "state of being",
+      "entrySha256": "ec096b69bbf3574f6a98542f94bb56eee64dad8bc006ab7b7a1ab2af2e1a9f50",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete condition/experience-over-time definition and retirement-relaxation example inspected; exact installed state of being headword absent. No arbitrary generic state noun identity."
+    },
+    {
+      "term": "link",
+      "entrySha256": "c2f437fed9f01d4b5ac6f11cbdbd320227271753a745d11608158eab4d817ca0",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete connect definition and grammatical subject/description example inspected against all installed link senses. Logical/causal connection, physical fastening, joining and yoking do not establish an exact grammatical copular relation in this course example. Leave unmapped."
+    },
+    {
+      "term": "roommate",
+      "entrySha256": "c3e5e06763e28f774165e15b830e489b8d024479a9b3d15cf0b6f96f501fcba2",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete shared-room-or-apartment definition and Anna/Marsha example inspected against installed associate-who-shares-a-room noun. Course explicitly includes apartment-only sharing, wider than the installed gloss; do not silently narrow the course definition to force equivalence."
+    },
+    {
+      "term": "wrong number",
+      "entrySha256": "5593bf46542dc4b4faeb61cff566fc8ae8f3306cd6325ace266dbf783db225dd",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Complete unintended telephone-number definition and You have the wrong number example inspected; exact installed wrong number headword absent. Do not substitute a wrong adjective or generic number."
+    },
+    {
+      "term": "call me",
+      "entrySha256": "862bfb8948075bc03bb83402a0c9a32a8614ce866a6c5986e947ba673d987fd0",
+      "senseId": null,
+      "decision": "withheld-mapping",
+      "notes": "Inspected complete phrase definition and both examples, VOA Caty request context, and installed call%2:41:14:: address / call%2:32:01:: telephone meanings. Context decides the sense; a phrase-wide single mapping would be false. Keep unmapped, without changing existing call senses or automatic review ratings."
+    }
+  ]
+}

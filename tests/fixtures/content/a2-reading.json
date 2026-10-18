@@ -1,0 +1,317 @@
+{
+  "id": "a2-opening-times-reading",
+  "targetLevel": "A2",
+  "skill": "reading",
+  "title": {
+    "zh-Hans": "核对开放时间的例外",
+    "zh-Hant": "核對開放時間的例外",
+    "en": "Check opening-time exceptions"
+  },
+  "goal": {
+    "zh-Hans": "先找通常规则，再用例外更新当天的到达计划。",
+    "zh-Hant": "先找通常規則，再用例外更新當天的到達計畫。",
+    "en": "Use an exception to update an arrival plan."
+  },
+  "goalId": "schedule-exceptions",
+  "sourceId": "lingfern-original-a2-hours",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "读开放时间时，先看通常规则，再找只适用于某一天的变化。不要把关门时间当作开门时间。",
+    "zh-Hant": "讀開放時間時，先看通常規則，再找只適用於某一天的變化。不要把關門時間當作開門時間。",
+    "en": "Find the usual hours, then check whether one day is different. Opening and closing times are different."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：The shop opens at eight on weekdays. On Saturday it opens at ten. → 星期六：10:00；星期一：8:00。",
+    "zh-Hant": "示範（不計分）：The shop opens at eight on weekdays. On Saturday it opens at ten. → 星期六：10:00；星期一：8:00。",
+    "en": "Example (not scored): The shop opens at eight on weekdays. On Saturday it opens at ten. → Saturday: 10:00; Monday: 8:00."
+  },
+  "materials": [
+    {
+      "id": "museum-hours",
+      "rootId": "original-museum-hours",
+      "title": "Museum opening notice",
+      "blocks": [
+        {
+          "id": "museum-hours-text",
+          "text": "From Tuesday to Thursday, the museum opens at nine and closes at five. On Friday, it opens at eleven, but it still closes at five. The front desk can issue same-day tickets after opening. A group planning a Friday visit should not arrive at nine expecting to enter."
+        }
+      ],
+      "questions": [
+        {
+          "kind": "table",
+          "id": "museum-hours-table",
+          "blockId": "museum-hours-text",
+          "prompt": "Complete the opening-time table. Write the time for each day.",
+          "rows": [
+            {
+              "label": "Friday",
+              "answer": "11:00",
+              "accepted": [
+                "11:00",
+                "11",
+                "eleven",
+                "11 a.m."
+              ]
+            },
+            {
+              "label": "Wednesday",
+              "answer": "9:00",
+              "accepted": [
+                "9:00",
+                "9",
+                "nine",
+                "9 a.m."
+              ]
+            }
+          ],
+          "evidence": {
+            "start": 0,
+            "end": 50
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "museum-hours-text",
+              "start": 71,
+              "end": 100
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "先填写两天各自的开门时间。",
+              "zh-Hant": "先填寫兩天各自的開門時間。",
+              "en": "Find when each day opens."
+            },
+            {
+              "zh-Hans": "第一句说通常规则；第二句以 On Friday 开头。",
+              "zh-Hant": "第一句說通常規則；第二句以 On Friday 開頭。",
+              "en": "The first sentence gives the usual rule; the next starts “On Friday”."
+            },
+            {
+              "zh-Hans": "opens 表示开门；closes 表示关门。例外只改变周五开门时间。",
+              "zh-Hant": "opens 表示開門；closes 表示關門。例外只改變週五開門時間。",
+              "en": "“Opens” is when entry begins. The exception changes Friday only."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "周二至周四九点开放；周五的例外把开放时间改为十一点。关门时间仍是五点，但题目问的是开门。",
+            "zh-Hant": "週二至週四九點開放；週五的例外把開放時間改為十一點。關門時間仍是五點，但題目問的是開門。",
+            "en": "Tuesday to Thursday open at nine; the Friday exception changes opening to eleven. Closing remains five, but the table asks for opening."
+          }
+        },
+        {
+          "kind": "evidence",
+          "id": "museum-friday-evidence",
+          "blockId": "museum-hours-text",
+          "prompt": "Which excerpt shows that visitors cannot enter at nine on Friday? More than one excerpt is acceptable.",
+          "spans": [
+            {
+              "blockId": "museum-hours-text",
+              "start": 0,
+              "end": 70,
+              "text": "From Tuesday to Thursday, the museum opens at nine and closes at five."
+            },
+            {
+              "blockId": "museum-hours-text",
+              "start": 71,
+              "end": 130,
+              "text": "On Friday, it opens at eleven, but it still closes at five."
+            },
+            {
+              "blockId": "museum-hours-text",
+              "start": 131,
+              "end": 187,
+              "text": "The front desk can issue same-day tickets after opening."
+            },
+            {
+              "blockId": "museum-hours-text",
+              "start": 188,
+              "end": 265,
+              "text": "A group planning a Friday visit should not arrive at nine expecting to enter."
+            }
+          ],
+          "accepted": [
+            1,
+            3
+          ],
+          "evidence": {
+            "start": 71,
+            "end": 130
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "museum-hours-text",
+              "start": 188,
+              "end": 265
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "注意题目问的是周五九点能否进入。",
+              "zh-Hant": "注意題目問的是週五九點能否進入。",
+              "en": "Focus on Friday at nine, not the usual days."
+            },
+            {
+              "zh-Hans": "寻找周五改变的开门时间，或最后一句的警告。",
+              "zh-Hant": "尋找週五改變的開門時間，或最後一句的警告。",
+              "en": "Find either the Friday opening time or the final warning."
+            },
+            {
+              "zh-Hans": "“On Friday” 那句和最后一句都能支持答案。",
+              "zh-Hant": "「On Friday」那句和最後一句都能支持答案。",
+              "en": "Both the “On Friday” sentence and the last sentence support the answer."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "周五十一点才开门；最后一句也明确提醒周五访客不要九点来。通常九点开门的规则只适用于周二至周四，售票规则没有改变周五开门时间。",
+            "zh-Hant": "週五十一點才開門；最後一句也明確提醒週五訪客不要九點來。通常九點開門的規則只適用於週二至週四，售票規則沒有改變週五開門時間。",
+            "en": "Friday opens at eleven, and the final sentence directly warns Friday visitors not to expect entry at nine. The nine o’clock rule covers Tuesday to Thursday; the ticket rule does not change Friday opening."
+          }
+        }
+      ]
+    },
+    {
+      "id": "studio-hours",
+      "rootId": "original-studio-hours",
+      "title": "Art studio opening notice",
+      "blocks": [
+        {
+          "id": "studio-hours-text",
+          "text": "From Monday to Wednesday, the art studio opens at ten and closes at six. On Thursday, it opens at noon because staff prepare the gallery in the morning. Visitors may collect their reserved materials only after the doors open. The closing time is still six."
+        }
+      ],
+      "questions": [
+        {
+          "kind": "table",
+          "id": "studio-hours-table",
+          "blockId": "studio-hours-text",
+          "prompt": "Complete the opening-time table. Write the time for each day.",
+          "rows": [
+            {
+              "label": "Thursday",
+              "answer": "12:00",
+              "accepted": [
+                "12:00",
+                "12",
+                "noon",
+                "12 p.m."
+              ]
+            },
+            {
+              "label": "Tuesday",
+              "answer": "10:00",
+              "accepted": [
+                "10:00",
+                "10",
+                "ten",
+                "10 a.m."
+              ]
+            }
+          ],
+          "evidence": {
+            "start": 0,
+            "end": 53
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "studio-hours-text",
+              "start": 73,
+              "end": 102
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "按日期分别找开门时间。",
+              "zh-Hant": "按日期分別找開門時間。",
+              "en": "Find the opening time for each day."
+            },
+            {
+              "zh-Hans": "比较第一句的 Monday to Wednesday 和第二句的 Thursday。",
+              "zh-Hant": "比較第一句的 Monday to Wednesday 和第二句的 Thursday。",
+              "en": "Compare “Monday to Wednesday” with “Thursday”."
+            },
+            {
+              "zh-Hans": "noon 是中午十二点。周二属于周一至周三。",
+              "zh-Hant": "noon 是中午十二點。週二屬於週一至週三。",
+              "en": "“Noon” is 12:00. Tuesday is in Monday to Wednesday."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "周一至周三十点开放；周四因布展改为中午开放。领取材料也要等开门之后。",
+            "zh-Hant": "週一至週三十點開放；週四因布展改為中午開放。領取材料也要等開門之後。",
+            "en": "Monday to Wednesday open at ten. On Thursday the studio opens at noon; collecting materials also waits until the doors open."
+          }
+        },
+        {
+          "kind": "sequence",
+          "id": "studio-thursday-plan",
+          "blockId": "studio-hours-text",
+          "prompt": "Put the checks in a sensible order for a Thursday visit. Either rule-checking order is acceptable.",
+          "steps": [
+            "Plan to collect reserved materials after the doors open.",
+            "Check the usual opening days and times.",
+            "Check Thursday's changed opening time."
+          ],
+          "acceptedOrders": [
+            [
+              "Check the usual opening days and times.",
+              "Check Thursday's changed opening time.",
+              "Plan to collect reserved materials after the doors open."
+            ],
+            [
+              "Check Thursday's changed opening time.",
+              "Check the usual opening days and times.",
+              "Plan to collect reserved materials after the doors open."
+            ]
+          ],
+          "evidence": {
+            "start": 0,
+            "end": 53
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "studio-hours-text",
+              "start": 73,
+              "end": 102
+            },
+            {
+              "blockId": "studio-hours-text",
+              "start": 153,
+              "end": 224
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "先找通常时间和周四的变化。",
+              "zh-Hant": "先找通常時間和週四的變化。",
+              "en": "Find the usual hours and the Thursday change."
+            },
+            {
+              "zh-Hans": "领取材料有条件：开门之后才能领取。",
+              "zh-Hant": "領取材料有條件：開門之後才能領取。",
+              "en": "Collecting materials depends on the doors being open."
+            },
+            {
+              "zh-Hans": "先后核对通常规则与例外都可以，但领取材料的计划要放在最后。",
+              "zh-Hant": "先後核對通常規則與例外都可以，但領取材料的計畫要放在最後。",
+              "en": "Either rule-checking order works, but the collection plan comes last."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "通常十点开门只适用于周一至周三；周四中午才开门。两条时间信息可以先后核对，但必须在确认周四开门时间后，才能安排开门后领取材料。",
+            "zh-Hant": "通常十點開門只適用於週一至週三；週四中午才開門。兩條時間資訊可以先後核對，但必須在確認週四開門時間後，才能安排開門後領取材料。",
+            "en": "Ten o’clock applies Monday to Wednesday; Thursday opens at noon. You can check those two rules in either order, but plan collection only after confirming when Thursday’s doors open."
+          }
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "culture",
+    "daily-life"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次先核对通常开放时间，再看当天是否有例外，最后安排到达时间。",
+    "zh-Hant": "下次先核對通常開放時間，再看當天是否有例外，最後安排抵達時間。",
+    "en": "Next time, compare the usual hours with the day-specific exception before planning an arrival."
+  }
+}

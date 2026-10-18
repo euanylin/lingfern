@@ -1,0 +1,19 @@
+{
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-15",
+  "scope": "Exact two continuous text scopes inspected for explicit planned action order; no pre-authored questions or ability calibration.",
+  "records": [
+    {
+      "rootId": "voa-article-3406732",
+      "sourceHash": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+      "passageId": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+      "textSha256": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226"
+    },
+    {
+      "rootId": "voa-article-3293986",
+      "sourceHash": "e702a04e96228a2288ce55492cce8e775f8aef5dd90adac796e405806cb0d3d2",
+      "passageId": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "textSha256": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227"
+    }
+  ]
+}

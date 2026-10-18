@@ -1,0 +1,286 @@
+{
+  "id": "a2-short-notices-listening",
+  "targetLevel": "A2",
+  "skill": "listening",
+  "title": {
+    "zh-Hans": "听懂临时变动",
+    "zh-Hant": "聽懂臨時變動",
+    "en": "Hear a change of plan"
+  },
+  "goal": {
+    "zh-Hans": "从简短通知中找出这次的时间、地点与行动要求。",
+    "zh-Hant": "從簡短通知中找出這次的時間、地點與行動要求。",
+    "en": "Find this occasion’s time, place and action in a short notice."
+  },
+  "goalId": "spoken-plan-changes",
+  "sourceId": "lingfern-synthetic-a2-notices",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先听通常安排，再留意 this week 或 this Saturday 后的变化。",
+    "zh-Hant": "先聽通常安排，再留意 this week 或 this Saturday 後的變化。",
+    "en": "Hear the usual plan, then listen for a change after “this week” or “this Saturday”."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“We usually meet at three. Today, come at four.” → 今天四点。",
+    "zh-Hant": "示範（不計分）：“We usually meet at three. Today, come at four.” → 今天四點。",
+    "en": "Unscored example: “We usually meet at three. Today, come at four.” → Today: four."
+  },
+  "materials": [
+    {
+      "id": "library-room-change",
+      "rootId": "original-library-room-change",
+      "title": "Library room change",
+      "questions": [
+        {
+          "id": "library-room",
+          "kind": "completion",
+          "blockId": "library-room-change-text",
+          "prompt": "Complete the room you hear: This week, please go to ____, not Room Six.",
+          "answer": "Room Twelve",
+          "accepted": [
+            "Room Twelve",
+            "Room 12",
+            "Twelve",
+            "12"
+          ],
+          "evidence": {
+            "start": 66,
+            "end": 116,
+            "audioStart": 4.625,
+            "audioEnd": 8.05
+          },
+          "hints": [
+            {
+              "zh-Hans": "先找这周的地点。",
+              "zh-Hant": "先找這週的地點。",
+              "en": "Find the place for this week."
+            },
+            {
+              "zh-Hans": "听 not 前后两个房间号码。",
+              "zh-Hant": "聽 not 前後兩個房間號碼。",
+              "en": "Listen for the room numbers around “not”."
+            },
+            {
+              "zh-Hans": "Room Six 关闭；这周去 Room Twelve。",
+              "zh-Hant": "Room Six 關閉；這週去 Room Twelve。",
+              "en": "Room Six is closed; go to Room Twelve."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "Room Six 这周关闭；通知要求去 Room Twelve。填写房间号 12 也可以。",
+            "zh-Hant": "Room Six 這週關閉；通知要求去 Room Twelve。填寫房間號 12 也可以。",
+            "en": "Room Six is closed this week; the notice directs you to Room Twelve. The room number 12 is also accepted."
+          }
+        },
+        {
+          "id": "library-bring",
+          "blockId": "library-room-change-text",
+          "prompt": "What do you need to bring?",
+          "options": [
+            "A notebook",
+            "A book",
+            "Paint"
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 150,
+            "end": 207,
+            "audioStart": 11.15,
+            "audioEnd": 14.4
+          },
+          "hints": [
+            {
+              "zh-Hans": "听清需要带的东西。",
+              "zh-Hant": "聽清需要帶的東西。",
+              "en": "Listen for what to bring."
+            },
+            {
+              "zh-Hans": "注意 but 后的 do not need。",
+              "zh-Hant": "注意 but 後的 do not need。",
+              "en": "Notice “do not need” after “but”."
+            },
+            {
+              "zh-Hans": "要带 notebook，不必带 book。",
+              "zh-Hant": "要帶 notebook，不必帶 book。",
+              "en": "Bring a notebook; a book is not needed."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：通知要求带笔记本。",
+              "zh-Hant": "正確：通知要求帶筆記本。",
+              "en": "Correct: bring a notebook."
+            },
+            {
+              "zh-Hans": "不对：通知明确说不必带书。",
+              "zh-Hant": "不對：通知明確說不必帶書。",
+              "en": "The notice says you do not need a book."
+            },
+            {
+              "zh-Hans": "不对：绘画是房间关闭的原因，不是要带的物品。",
+              "zh-Hant": "不對：粉刷是房間關閉的原因，不是要帶的物品。",
+              "en": "Painting explains the closure; it is not something to bring."
+            }
+          ]
+        }
+      ],
+      "audio": {
+        "src": "/audio/a2-speech/library-room-change.mp3",
+        "sha256": "53804253c588abc9a8ed16c636a56812d29d29a66d5ec88fbaf7081ac3d6082e",
+        "duration": 21.5,
+        "author": "Lingfern · Kokoro-82M synthetic voice",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      },
+      "blocks": [
+        {
+          "id": "library-room-change-text",
+          "text": "The English conversation group meets on Thursday at four o’clock. This week, please go to Room Twelve, not Room Six. Room Six is closed for painting. Bring your notebook, but you do not need to bring a book. If you arrive late, ask at the front desk for Room Twelve. The group finishes at five o’clock."
+        }
+      ]
+    },
+    {
+      "id": "pool-time-change",
+      "rootId": "original-pool-time-change",
+      "title": "Swimming pool time change",
+      "questions": [
+        {
+          "id": "pool-opening",
+          "blockId": "pool-time-change-text",
+          "prompt": "When does the pool open this Saturday?",
+          "options": [
+            "At eight",
+            "At ten",
+            "At half past ten"
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 62,
+            "end": 126,
+            "audioStart": 4.95,
+            "audioEnd": 9.625
+          },
+          "hints": [
+            {
+              "zh-Hans": "听 this Saturday 后的时间。",
+              "zh-Hant": "聽 this Saturday 後的時間。",
+              "en": "Listen for the time after “this Saturday”."
+            },
+            {
+              "zh-Hans": "通常时间和这周时间不同。",
+              "zh-Hant": "通常時間和這週時間不同。",
+              "en": "The usual time and this week’s time differ."
+            },
+            {
+              "zh-Hans": "eight 是通常时间；this Saturday opens at ten。",
+              "zh-Hant": "eight 是通常時間；this Saturday opens at ten。",
+              "en": "Eight is usual; this Saturday it opens at ten."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：八点是通常的周六开放时间。",
+              "zh-Hant": "不對：八點是通常的週六開放時間。",
+              "en": "Eight is the usual Saturday opening time."
+            },
+            {
+              "zh-Hans": "正确：这周六十点开放。",
+              "zh-Hant": "正確：這週六十點開放。",
+              "en": "Correct: it opens at ten this Saturday."
+            },
+            {
+              "zh-Hans": "不对：十点半是初学者课程开始时间。",
+              "zh-Hant": "不對：十點半是初學者課程開始時間。",
+              "en": "Half past ten is when the beginners’ class starts."
+            }
+          ]
+        },
+        {
+          "id": "pool-arrival",
+          "blockId": "pool-time-change-text",
+          "prompt": "When should you arrive for the beginners’ class?",
+          "options": [
+            "At ten",
+            "At quarter past ten",
+            "At half past ten"
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 127,
+            "end": 172,
+            "audioStart": 9.925,
+            "audioEnd": 13.175
+          },
+          "hints": [
+            {
+              "zh-Hans": "找课程时间和提前到达的分钟数。",
+              "zh-Hant": "找課程時間和提前到達的分鐘數。",
+              "en": "Find the class time and how many minutes early to arrive."
+            },
+            {
+              "zh-Hans": "half past ten 是十点半；提前十五分钟。",
+              "zh-Hant": "half past ten 是十點半；提前十五分鐘。",
+              "en": "Half past ten is 10:30; arrive fifteen minutes early."
+            },
+            {
+              "zh-Hans": "10:30 减去十五分钟是 10:15。",
+              "zh-Hant": "10:30 減去十五分鐘是 10:15。",
+              "en": "10:30 minus fifteen minutes is 10:15."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：十点是泳池开放时间，课程要求提前十五分钟到。",
+              "zh-Hant": "不對：十點是泳池開放時間，課程要求提前十五分鐘到。",
+              "en": "Ten is opening time; the class asks you to arrive fifteen minutes early."
+            },
+            {
+              "zh-Hans": "正确：课程十点半开始，提前十五分钟是十点一刻。",
+              "zh-Hant": "正確：課程十點半開始，提前十五分鐘是十點一刻。",
+              "en": "Correct: fifteen minutes before 10:30 is 10:15."
+            },
+            {
+              "zh-Hans": "不对：十点半是课程开始时间，应该提前到。",
+              "zh-Hant": "不對：十點半是課程開始時間，應該提前到。",
+              "en": "The class begins at 10:30; you should arrive earlier."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "pool-time-change-text",
+              "start": 173,
+              "end": 241,
+              "audioStart": 13.475,
+              "audioEnd": 18.125
+            }
+          ]
+        }
+      ],
+      "audio": {
+        "src": "/audio/a2-speech/pool-time-change.mp3",
+        "sha256": "1f4c33410ddd92d66d44f81fe1c44d10f78bce51efdd9df462027190505dd169",
+        "duration": 22.775,
+        "author": "Lingfern · Kokoro-82M synthetic voice",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      },
+      "blocks": [
+        {
+          "id": "pool-time-change-text",
+          "text": "The swimming pool usually opens at eight on Saturday morning. This Saturday, it opens at ten because the staff have a meeting. The beginners’ class starts at half past ten. Please come fifteen minutes before the class to change your clothes. The pool closes at six in the evening, as usual."
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "campus",
+    "daily-life"
+  ],
+  "nextStep": {
+    "zh-Hans": "重听通常安排与这次的变化，再核对该怎么做。",
+    "zh-Hant": "重聽通常安排與這次的變化，再核對該怎麼做。",
+    "en": "Listen for the change from the usual plan, then check what to do."
+  }
+}

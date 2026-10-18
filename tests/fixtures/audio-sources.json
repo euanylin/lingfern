@@ -1,0 +1,188 @@
+[
+  {
+    "title": "A discussion about a flood forecast",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voices",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart",
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/c2-speech/flood-discussion.mp3",
+    "sha256": "d53de1ab54a65c2ce5be484102cf571b4206a2cba452e06de83d63ddb8297478",
+    "duration": 96.9,
+    "transcriptFile": "content/c2-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.22 s sentence pauses and 0.65 s speaker pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "A discussion about a bus-stop trial",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voices",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart",
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/c2-speech/bus-discussion.mp3",
+    "sha256": "e1c401924167417652574b9e2c4f29d1f6107fe1c36d79b994c4fa235d14b631",
+    "duration": 91.975,
+    "transcriptFile": "content/c2-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.22 s sentence pauses and 0.65 s speaker pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "Library room change",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voice",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/a2-speech/library-room-change.mp3",
+    "sha256": "53804253c588abc9a8ed16c636a56812d29d29a66d5ec88fbaf7081ac3d6082e",
+    "duration": 21.5,
+    "transcriptFile": "content/a2-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.3 s pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "Swimming pool time change",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voice",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/a2-speech/pool-time-change.mp3",
+    "sha256": "1f4c33410ddd92d66d44f81fe1c44d10f78bce51efdd9df462027190505dd169",
+    "duration": 22.775,
+    "transcriptFile": "content/a2-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.3 s pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "Film night room update",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voice",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/b1-speech/film-night-room.mp3",
+    "sha256": "f4fa95abc7ebb9789617ab46619b1eab3e69173da25f792eeb8092ddb36f578b",
+    "duration": 56.55,
+    "transcriptFile": "content/b1-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.3 s pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "Tree walk meeting point",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voice",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/b1-speech/tree-walk-gate.mp3",
+    "sha256": "b875bdfcc2bbfa20c8cde76c62248056fd4229d0a005a18efd0a0ca65593c8b9",
+    "duration": 62.975,
+    "transcriptFile": "content/b1-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.3 s pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "A discussion about evening library hours",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voices",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart",
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/b2-speech/library-hours-discussion.mp3",
+    "sha256": "f18cdc3bee05e514f6d673ced8b077c9f5c7e193c2ea35b984bb65c6e5268327",
+    "duration": 119.15,
+    "transcriptFile": "content/b2-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.25 s sentence pauses and 0.55 s speaker pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "A discussion about a campus shuttle trial",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voices",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart",
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/b2-speech/shuttle-discussion.mp3",
+    "sha256": "6b91e9800e924549fc14762be81e409615795386cfb08893d75f6f90a27a5aaa",
+    "duration": 115.675,
+    "transcriptFile": "content/b2-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.25 s sentence pauses and 0.55 s speaker pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "A discussion about opening a roof garden",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voices",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart",
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/c1-speech/roof-garden-discussion.mp3",
+    "sha256": "0db3de2b84fdfc850f002d994d889512b3aa1438c980ffa616e58f7a638cb094",
+    "duration": 147.35,
+    "transcriptFile": "content/c1-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.25 s sentence pauses and 0.55 s speaker pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  },
+  {
+    "title": "A discussion about a research digest",
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "author": "Lingfern \u00b7 Kokoro-82M synthetic voices",
+    "modelRevision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "modelLicense": "Apache-2.0",
+    "voices": [
+      "af_heart",
+      "am_michael"
+    ],
+    "outputLicense": "Pending project release decision",
+    "generatedAt": "2026-09-27",
+    "path": "/audio/c1-speech/research-digest-discussion.mp3",
+    "sha256": "0201779e676482cf15a490cb7cb76811ece9c7de9b6e1fd6f590f19ba20dade0",
+    "duration": 174.975,
+    "transcriptFile": "content/c1-listening.json",
+    "changes": "Original sentences synthesized locally with Kokoro 0.9.4 at 24 kHz; 0.25 s sentence pauses and 0.55 s speaker pauses; WAV transcoded to MP3 with FFmpeg qscale 4.",
+    "reviewStatus": "synthetic; transcript and pronunciation require independent listening review"
+  }
+]

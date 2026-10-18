@@ -1,0 +1,101 @@
+{
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-15",
+  "scope": "Reviewed complete continuous beginner meaning scopes; source admission only, no question bank or CEFR calibration.",
+  "people": [
+    {
+      "rootId": "voa-article-3113733",
+      "passageId": "8858c6053176039a6b5d9d7cec0933944e2004d4b37a4a7a4285fe0795faf414",
+      "textSha256": "8858c6053176039a6b5d9d7cec0933944e2004d4b37a4a7a4285fe0795faf414",
+      "sourceHash": "ff86504eb9df9df9d07e74827f3deb48638a15d303a82db42ea2f7f50f74c674"
+    },
+    {
+      "rootId": "voa-article-3168920",
+      "passageId": "cb33644478ff1e5f1b43875c2834fcdf43b8cbc42d2dfddfe626f0f94a6d720a",
+      "textSha256": "cb33644478ff1e5f1b43875c2834fcdf43b8cbc42d2dfddfe626f0f94a6d720a",
+      "sourceHash": "159f95f719e7107fa9fa682a94149cfcfd86eff740383e40de85d6e9efd0591c"
+    }
+  ],
+  "location": [
+    {
+      "rootId": "voa-article-3225958",
+      "sourceHash": "ec9576b120750006e326a7eb8e08319ca62ebcca9e73abfb62db545b25e4151b",
+      "passageId": "ec9576b120750006e326a7eb8e08319ca62ebcca9e73abfb62db545b25e4151b",
+      "textSha256": "ec9576b120750006e326a7eb8e08319ca62ebcca9e73abfb62db545b25e4151b"
+    },
+    {
+      "rootId": "voa-article-3285228",
+      "sourceHash": "8fc500fba98f6ce6ce8579abbe729c94f799cf826029911f1364577a590a4375",
+      "passageId": "2605f2e17912c00577d4beea6aad8c3310621e7a3899c69dbdd6b6187e251795",
+      "textSha256": "2605f2e17912c00577d4beea6aad8c3310621e7a3899c69dbdd6b6187e251795"
+    }
+  ],
+  "instruction": [
+    {
+      "rootId": "voa-article-3240468",
+      "sourceHash": "116a988d3d1859cb52bb33594018bfe7d923b6964f82bbbf28f0708e30ca9d69",
+      "passageId": "547445ff26aca9916597aaa9ac74464ef70c749b01d411e655b9f33997cf9a4f",
+      "textSha256": "547445ff26aca9916597aaa9ac74464ef70c749b01d411e655b9f33997cf9a4f"
+    },
+    {
+      "rootId": "voa-article-3285228",
+      "sourceHash": "8fc500fba98f6ce6ce8579abbe729c94f799cf826029911f1364577a590a4375",
+      "passageId": "2605f2e17912c00577d4beea6aad8c3310621e7a3899c69dbdd6b6187e251795",
+      "textSha256": "2605f2e17912c00577d4beea6aad8c3310621e7a3899c69dbdd6b6187e251795"
+    }
+  ],
+  "quantity": [
+    {
+      "rootId": "voa-article-3111026",
+      "sourceHash": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b",
+      "passageId": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b",
+      "textSha256": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b"
+    },
+    {
+      "rootId": "voa-article-3293986",
+      "sourceHash": "e702a04e96228a2288ce55492cce8e775f8aef5dd90adac796e405806cb0d3d2",
+      "passageId": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "textSha256": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "end": 304,
+      "materialSha256": "c781064f19ee9d9328a995e917cb2c36eaad3765cd01d3848d59998492166a78"
+    }
+  ],
+  "verification": [
+    {
+      "rootId": "voa-article-3111026",
+      "sourceHash": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b",
+      "passageId": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b",
+      "textSha256": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b"
+    },
+    {
+      "rootId": "voa-article-3126527",
+      "sourceHash": "0b6b1056fe15c91946cdead7eeac4c3cc6a7845695de2bdede4260cfa421e18f",
+      "passageId": "c815ef0a15cda7177e05eadb882105317896cb135818516fef18afa4f6cb454e",
+      "textSha256": "c815ef0a15cda7177e05eadb882105317896cb135818516fef18afa4f6cb454e"
+    }
+  ],
+  "time": [
+    {
+      "rootId": "voa-article-3253185",
+      "sourceHash": "e395b9c4f10df3d097c541fa2b79445982bac0960874c15bba8ff3ec643df858",
+      "parentId": "76ef70ccbafa0bd538bb5a8eb03c9f75d76d2a999ed152f12b68465318bdaed2",
+      "parentSha256": "76ef70ccbafa0bd538bb5a8eb03c9f75d76d2a999ed152f12b68465318bdaed2",
+      "start": 186,
+      "end": 366,
+      "passageId": "f1a24acb72b0b94f300eb2bfb1086f918f2395d1cb739b55bb26bf6b70899c71",
+      "textSha256": "f1a24acb72b0b94f300eb2bfb1086f918f2395d1cb739b55bb26bf6b70899c71",
+      "words": 36
+    },
+    {
+      "rootId": "voa-article-3413753",
+      "sourceHash": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "parentId": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "parentSha256": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "start": 222,
+      "end": 413,
+      "passageId": "b2adf5f686048077aaf8f460513fd045d57ab78e6bf68d29c598b8a9f91d7cb8",
+      "textSha256": "b2adf5f686048077aaf8f460513fd045d57ab78e6bf68d29c598b8a9f91d7cb8",
+      "words": 34
+    }
+  ]
+}

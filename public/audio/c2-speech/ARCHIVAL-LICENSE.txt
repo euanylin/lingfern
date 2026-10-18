@@ -1,0 +1,21 @@
+Original John F. Kennedy historical official speech recordings — public domain
+Specific archival records explicitly marked Public Domain, checked 2026-10-01:
+https://www.jfklibrary.org/asset-viewer/archives/jfkwha-190-002
+https://www.jfklibrary.org/asset-viewer/archives/jfkwha-218
+Original public audio copies:
+https://commons.wikimedia.org/wiki/File:Jfk_American_University_4654_06-10-63.ogg
+https://commons.wikimedia.org/wiki/File:John_F._Kennedy_speaks_before_the_UN_General_Assembly,_September_20,_1963.ogg
+Primary original-speech text editions:
+https://www.presidency.ucsb.edu/documents/commencement-address-american-university-washington
+https://www.presidency.ucsb.edu/documents/address-before-the-18th-general-assembly-the-united-nations
+Only original official speech excerpts are used; no modern commentary, images,
+editorial notes or unrelated broadcast/performance copies. UCSB edition typos
+highlevel/respresentatives/ado ministrations corrected against the JFK edition;
+raw source HTML and all original/converted hashes retained.
+Original Ogg decoded to mono 16 kHz PCM and sample timestamps reset, then trimmed
+and converted to 96 kbps MP3. No pitch or playback-speed change.
+Sample-time excerpts: American University 1230.64–1596.48 seconds;
+United Nations 736.8–942.32 seconds.
+Independent editorial and listening review remain pending. C2 is a draft
+teaching target, not an official source level or learner proficiency result.
+Original task release terms remain pending maintainer decision.

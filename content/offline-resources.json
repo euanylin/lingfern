@@ -1,0 +1,1829 @@
+{
+  "version": "9328bacd23e729e2",
+  "groups": [
+    {
+      "id": "dictionary",
+      "version": "8d7421aa2675bb92",
+      "bytes": 29456853,
+      "files": [
+        {
+          "path": "/dictionary/oewn-2025/0.json",
+          "bytes": 44538,
+          "sha256": "9eeec9c96301bb457f6a4d26d696534abb036817d84a6ca9b10fe606a1f59a85"
+        },
+        {
+          "path": "/dictionary/oewn-2025/a.json",
+          "bytes": 1814383,
+          "sha256": "ac0ebe86029520275a23cfff216ca0466790c48eb47e38ecaec7d286339023df"
+        },
+        {
+          "path": "/dictionary/oewn-2025/b.json",
+          "bytes": 1626430,
+          "sha256": "f2b0506d5a3137ac6f8cb0db207d9ba8c7a57d43abd5ca8712a2b01d603546f1"
+        },
+        {
+          "path": "/dictionary/oewn-2025/c.json",
+          "bytes": 2793540,
+          "sha256": "b2f6b33b5fe3694d5d32655f2d3ad95bf569830ee1e681c0704c04a0c3dd2140"
+        },
+        {
+          "path": "/dictionary/oewn-2025/d.json",
+          "bytes": 1448203,
+          "sha256": "8d979df7cc223ccf6b9de1ed2e74813d704f2a2501c2301fd8b1c265852f4909"
+        },
+        {
+          "path": "/dictionary/oewn-2025/e.json",
+          "bytes": 1018055,
+          "sha256": "b5816299d8daa09bade9fc94ac6ad30306701c136e370bb0e1f5f8f7f0622530"
+        },
+        {
+          "path": "/dictionary/oewn-2025/f.json",
+          "bytes": 1220237,
+          "sha256": "24c8b164a0553ba07d8094c98271663c45512cbaa7e19fec6181e56040d59207"
+        },
+        {
+          "path": "/dictionary/oewn-2025/forms.json",
+          "bytes": 97040,
+          "sha256": "dd84e4143b3735af50db8776fafc12fda8a907761c9df8a726f6069393e1a075"
+        },
+        {
+          "path": "/dictionary/oewn-2025/g.json",
+          "bytes": 916483,
+          "sha256": "bc01eb5f7c2897b5b0918cdcd5ae2400f041fdaa74de53eac645abd8378b0c53"
+        },
+        {
+          "path": "/dictionary/oewn-2025/h.json",
+          "bytes": 1042206,
+          "sha256": "ee7f7cbf57107935efe2e0c42a7efac15136d2046dc4939d8b1c8fffda7aae68"
+        },
+        {
+          "path": "/dictionary/oewn-2025/headwords.json",
+          "bytes": 1858825,
+          "sha256": "49161ac7fa6a556754c4def1c281146635f5b41c28016608caeb6a25d0da3543"
+        },
+        {
+          "path": "/dictionary/oewn-2025/i.json",
+          "bytes": 967620,
+          "sha256": "409c8d991c354ad910e61eed8c74ff7d4813b1667472b2bad43e6f63614615f7"
+        },
+        {
+          "path": "/dictionary/oewn-2025/j.json",
+          "bytes": 224699,
+          "sha256": "bde328ee4c7d7b61a6a48cf18ee1e2bbad5695809887a8172d7b923d79569f17"
+        },
+        {
+          "path": "/dictionary/oewn-2025/k.json",
+          "bytes": 251032,
+          "sha256": "25977a3dfec432cd2803b0148c9b57aaeca5004bfd480cc89093c540671fd4be"
+        },
+        {
+          "path": "/dictionary/oewn-2025/l.json",
+          "bytes": 1009899,
+          "sha256": "4a42617ecd7a757dca093d5df0d9102b2c36cbebcf8a38314c79747549edc843"
+        },
+        {
+          "path": "/dictionary/oewn-2025/LICENSE.md",
+          "bytes": 19863,
+          "sha256": "672cc8b5663e8dc74c4b07a9dcf477193853575b119908fd3dc0aeeb60a9dbbb"
+        },
+        {
+          "path": "/dictionary/oewn-2025/m.json",
+          "bytes": 1444980,
+          "sha256": "8d6dbf5a92cb9adf3e14aedc3d8d16808bf86a42c6f53e6c4cdb3320310ac8d7"
+        },
+        {
+          "path": "/dictionary/oewn-2025/manifest.json",
+          "bytes": 439,
+          "sha256": "216c7ef9721a71c73f5b5a6eb4c8492d811d1741c2cc50df198c07f5665e139a"
+        },
+        {
+          "path": "/dictionary/oewn-2025/n.json",
+          "bytes": 622964,
+          "sha256": "e57c9d6c6a0cb8db87a2335c47c34a562b52cf5b8b420a4d50178da507dc9eb4"
+        },
+        {
+          "path": "/dictionary/oewn-2025/o.json",
+          "bytes": 641584,
+          "sha256": "af87110dc5c71c775ea3201e0c6a944dbc338748dc1cefe2b51103227d7d6230"
+        },
+        {
+          "path": "/dictionary/oewn-2025/p.json",
+          "bytes": 2243564,
+          "sha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8"
+        },
+        {
+          "path": "/dictionary/oewn-2025/q.json",
+          "bytes": 124928,
+          "sha256": "b7f6cead9d72f46b96287fcae259cde330b2f96a3568ca0e7c8215afc5ed7b7f"
+        },
+        {
+          "path": "/dictionary/oewn-2025/r.json",
+          "bytes": 1342305,
+          "sha256": "26ff3f1074727949fa485eb633c03fbbc71e331341fc2b437c164e4e2f123759"
+        },
+        {
+          "path": "/dictionary/oewn-2025/README.md",
+          "bytes": 1296,
+          "sha256": "37919a883ea83e0fce081e66951683532a5dfbd8ca71e97e7a17e81e7171429b"
+        },
+        {
+          "path": "/dictionary/oewn-2025/s.json",
+          "bytes": 3253436,
+          "sha256": "2488f9d7f523cbd32f98b73439efd98c2f63f2513437f8fb8304b2187c362256"
+        },
+        {
+          "path": "/dictionary/oewn-2025/t.json",
+          "bytes": 1443720,
+          "sha256": "a266e83f178385f0cc7e881cda33be1897375d32f2c13d62c6300e60217feeb1"
+        },
+        {
+          "path": "/dictionary/oewn-2025/u.json",
+          "bytes": 639415,
+          "sha256": "47d83830e14f60ac316d391802e2a7ff68e9366a624b2bcfd78f30ce1981e1b3"
+        },
+        {
+          "path": "/dictionary/oewn-2025/v.json",
+          "bytes": 429036,
+          "sha256": "22418eb1ebc84d11ce789c4d249be82bad45803fe97b3d62db56abb97f6d5e41"
+        },
+        {
+          "path": "/dictionary/oewn-2025/w.json",
+          "bytes": 731884,
+          "sha256": "a794da89b057f4edc82f37029422dad170e9e9c9303dad54144ed7de4c712226"
+        },
+        {
+          "path": "/dictionary/oewn-2025/WNDB_License.txt",
+          "bytes": 1740,
+          "sha256": "df30ec18fbabcdaf031b79ea026d3e6b959010cffe6dd7be9ac137822175b904"
+        },
+        {
+          "path": "/dictionary/oewn-2025/x.json",
+          "bytes": 29078,
+          "sha256": "b1304075fa91e46c4226f76f748e624e924ea166922a4ca2d36c77ba9d95ada0"
+        },
+        {
+          "path": "/dictionary/oewn-2025/y.json",
+          "bytes": 90274,
+          "sha256": "e56988fdc70cb47c07fb07ba1f37ad191bfdd326b4bcb26478d1239292e4758a"
+        },
+        {
+          "path": "/dictionary/oewn-2025/z.json",
+          "bytes": 63157,
+          "sha256": "ab54c55ff1eaa7bcc1448e999a66b5dded29822c05b1b9eb849323e36684ade9"
+        }
+      ]
+    },
+    {
+      "id": "ipa",
+      "version": "11cfd9551afa688e",
+      "bytes": 3631076,
+      "files": [
+        {
+          "path": "/ipa/audio/about.mp3",
+          "bytes": 7947,
+          "sha256": "0d5db4f6e7d84db233980680a4e6afb0ebd0574f24e411d033a8cbf407811157"
+        },
+        {
+          "path": "/ipa/audio/bag.mp3",
+          "bytes": 19044,
+          "sha256": "35b4b6098e22b5e0f68fb6dcfe1a7a99c3acbf54cd6006fb37a50dcd4749f9d6"
+        },
+        {
+          "path": "/ipa/audio/bed.mp3",
+          "bytes": 11728,
+          "sha256": "d8d284385fdc0bd0cf7d9f82a97223b1f1d1a2ba3cb58704fd968298835d464f"
+        },
+        {
+          "path": "/ipa/audio/bird.mp3",
+          "bytes": 8598,
+          "sha256": "adbbf9213b791cc9a6c29f5dcc214c3238ab22941b6d43d4fa887f804b41b88b"
+        },
+        {
+          "path": "/ipa/audio/blue.mp3",
+          "bytes": 9797,
+          "sha256": "7bf11ad6d7c6e49a3eb47dedf5e21187a99b461c5078cdca6e940917510f2c86"
+        },
+        {
+          "path": "/ipa/audio/book.mp3",
+          "bytes": 7530,
+          "sha256": "0f601ae11b4848cdc2e63be6343eed656236dfb8d337e741d9aa93df1311dc04"
+        },
+        {
+          "path": "/ipa/audio/boy.mp3",
+          "bytes": 8545,
+          "sha256": "e037970ecca509157492b32494e2edc399af987d7f10ddcc672acbfceb409182"
+        },
+        {
+          "path": "/ipa/audio/cat.mp3",
+          "bytes": 6434,
+          "sha256": "41c6892794695e032a72642dc0886438027af262ea769a5d4ef567be4028758d"
+        },
+        {
+          "path": "/ipa/audio/chair.mp3",
+          "bytes": 11881,
+          "sha256": "8e2c3607ac13c59a6d3873d994caa190c5462f202c087bf13b115c83769a8265"
+        },
+        {
+          "path": "/ipa/audio/cup.mp3",
+          "bytes": 12303,
+          "sha256": "52a3c7de782f9fc69c871caa774ea35ee8b8db2ffed444f03ea10ae12bf9804c"
+        },
+        {
+          "path": "/ipa/audio/dog.mp3",
+          "bytes": 16745,
+          "sha256": "79992d2c9da403fc85ebcd14a1f71befb3366dc55fb0687fa17f0560cf3dcf91"
+        },
+        {
+          "path": "/ipa/audio/father.mp3",
+          "bytes": 7895,
+          "sha256": "f5212124ed44b7e1f7cadf6850025c0456ddb1d637e93c4b7b461669f1db6d34"
+        },
+        {
+          "path": "/ipa/audio/fine.mp3",
+          "bytes": 12663,
+          "sha256": "6e2ee875369a856480e0ac01efa3ea141154894dd229f4d52a36667bae4d1150"
+        },
+        {
+          "path": "/ipa/audio/go.mp3",
+          "bytes": 14554,
+          "sha256": "acdaa062d397ae7c262ebc0986940bfba7f728c565093e8808a16ab35cc14f6f"
+        },
+        {
+          "path": "/ipa/audio/hat.mp3",
+          "bytes": 17162,
+          "sha256": "6385345914519f8ea1d94c7d296ba31c2092ae9fd34495fc3e01a8a66aff31f7"
+        },
+        {
+          "path": "/ipa/audio/jam.mp3",
+          "bytes": 16207,
+          "sha256": "a8f5d9c540ad939aa85e8b6d27e0c54883178cfd90f790683f249f130a4ad051"
+        },
+        {
+          "path": "/ipa/audio/key.mp3",
+          "bytes": 12700,
+          "sha256": "71434ba25a5badedc924307f33d9b4236be89495be659162d7eaa296e7b4fa8d"
+        },
+        {
+          "path": "/ipa/audio/late.mp3",
+          "bytes": 9276,
+          "sha256": "0fa8e572fb1c91cfb94f96471a2310041c134a8a038ab6e2f580eb4f7b7a85ad"
+        },
+        {
+          "path": "/ipa/audio/law.mp3",
+          "bytes": 11258,
+          "sha256": "f28dd2b6309dba08d7090e11606948f6cc5f45b23f71aedfe04da293ce454248"
+        },
+        {
+          "path": "/ipa/audio/leg.mp3",
+          "bytes": 14450,
+          "sha256": "1b7145764db785fbf82cfbd622efde96c50dcd18cfe7dc31a6b776aaed9e899b"
+        },
+        {
+          "path": "/ipa/audio/man.mp3",
+          "bytes": 14161,
+          "sha256": "37b6245c46ac05fcf4777da89c595529b9146569b9db8395a3b0e83ea28005d7"
+        },
+        {
+          "path": "/ipa/audio/my.mp3",
+          "bytes": 10423,
+          "sha256": "fba6c6dc99c04420508062c3c81485aaa6cc19ef62efc713f1f281bb6b7fd4c5"
+        },
+        {
+          "path": "/ipa/audio/no.mp3",
+          "bytes": 15703,
+          "sha256": "43f00db240a40bb24234c43b91120f327eafb0fdcd0a814731ee5e1c2f11c2ca"
+        },
+        {
+          "path": "/ipa/audio/now.mp3",
+          "bytes": 5548,
+          "sha256": "cfacad4540e0097442b3c7a3ee697a8a900a6cfd6c58123adb1b31804e4ad7dd"
+        },
+        {
+          "path": "/ipa/audio/pen.mp3",
+          "bytes": 8494,
+          "sha256": "2fd8d64d4f1a32da05e79b2c7fdb3cb0e2c227b47edb0b4cf5a77f85205e7f7c"
+        },
+        {
+          "path": "/ipa/audio/red.mp3",
+          "bytes": 10681,
+          "sha256": "7165b7abd40260ebea1aa1767ffe6087fece4b21050a82e1e458d5cb155108b8"
+        },
+        {
+          "path": "/ipa/audio/see.mp3",
+          "bytes": 9511,
+          "sha256": "fa38e3605874338aae703149d5354fe8377a16fc93766c690bc241ef83cf9449"
+        },
+        {
+          "path": "/ipa/audio/ship.mp3",
+          "bytes": 15857,
+          "sha256": "b4d6dcd9f06e8b61105b7d49d0c0724a5a1504cc1bb9a42f872bf861edb42767"
+        },
+        {
+          "path": "/ipa/audio/sing.mp3",
+          "bytes": 15075,
+          "sha256": "11f54fc344f72e52513b8b3467abd3e68e1428d99e4e590b369d916a2fa7cd9f"
+        },
+        {
+          "path": "/ipa/audio/sit.mp3",
+          "bytes": 7842,
+          "sha256": "4e6fcae818f58d5229eb8ccf163ed608338f1dfc4c50c0764605082706cdf7ec"
+        },
+        {
+          "path": "/ipa/audio/sun.mp3",
+          "bytes": 18869,
+          "sha256": "2e94640fbff3f6be6341f1bdae84b37676c9d6403e7da359bd2c59d095806819"
+        },
+        {
+          "path": "/ipa/audio/tea.mp3",
+          "bytes": 15060,
+          "sha256": "c799d59e9b5d9b9705b851a854516a555198ed1bf6ba52726f345038f8c12de8"
+        },
+        {
+          "path": "/ipa/audio/them.mp3",
+          "bytes": 12870,
+          "sha256": "641edd2710582dae7a643e4fade7e8af6aaf1ec9171e1f9c1b30a6e2855c0ebf"
+        },
+        {
+          "path": "/ipa/audio/think.mp3",
+          "bytes": 15335,
+          "sha256": "c01184cf213b040e0a9bd898cbb2cceed842f633046cfc8b409dbd0561a964e2"
+        },
+        {
+          "path": "/ipa/audio/van.mp3",
+          "bytes": 17406,
+          "sha256": "0e5e3053aa12a208b4b1be514c1c7ef1830edeb927fd84b616bf92ed65ffca1b"
+        },
+        {
+          "path": "/ipa/audio/vision.mp3",
+          "bytes": 17407,
+          "sha256": "16e28b480ffa13a1c7a6e858b52af14749b0ee4721299d0d3a7fbd438ca0eb52"
+        },
+        {
+          "path": "/ipa/audio/wet.mp3",
+          "bytes": 12507,
+          "sha256": "38a7e5d70125e6ba3dbe72c3bb7ef3709ce134805daceb917378e83089651bc4"
+        },
+        {
+          "path": "/ipa/audio/yes.mp3",
+          "bytes": 19458,
+          "sha256": "599efee3cd4167ad952c78649574c3525dddeac63c850cba91b4101854052e84"
+        },
+        {
+          "path": "/ipa/audio/zip.mp3",
+          "bytes": 11101,
+          "sha256": "8f6a5c1ad4f5b57849772a3388f2143933b8e38ecf7c5785589f4395ecc0a171"
+        },
+        {
+          "path": "/ipa/CC-BY-SA-3.0.txt",
+          "bytes": 22240,
+          "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f"
+        },
+        {
+          "path": "/ipa/CC-BY-SA-4.0.txt",
+          "bytes": 20138,
+          "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+        },
+        {
+          "path": "/ipa/entries.json",
+          "bytes": 13323,
+          "sha256": "b9ef4b5d84bb9deb8348c02b47b374c2bbfc76e6c452ff28b96c378e0ff16229"
+        },
+        {
+          "path": "/ipa/full-sounds.json",
+          "bytes": 10276,
+          "sha256": "5ed7237726e59e8a74da1f70d0cd9d12eed3b621904093c1442fa16ebc149b6a"
+        },
+        {
+          "path": "/ipa/PHONEME_SOURCES.json",
+          "bytes": 121168,
+          "sha256": "a8a7dff0d3e7dbe1b64c1f08e61f7a352e4382f1ca612ebbb83909d5cddb428e"
+        },
+        {
+          "path": "/ipa/phonemes/sound-01.mp3",
+          "bytes": 9355,
+          "sha256": "2aa159bdd24b741bcb620e83559422ec3a3b02a73e23ba61062a03080937d2a0"
+        },
+        {
+          "path": "/ipa/phonemes/sound-02.mp3",
+          "bytes": 9092,
+          "sha256": "0085a593280f155d3f0ecc717815ce2795d83e69396f9330a3bd3f50ee2b52ef"
+        },
+        {
+          "path": "/ipa/phonemes/sound-03.mp3",
+          "bytes": 8468,
+          "sha256": "850668a170f5c8248fa699ed727d5d73ec7622ece08541a0dd62a4703a26cffc"
+        },
+        {
+          "path": "/ipa/phonemes/sound-04.mp3",
+          "bytes": 11445,
+          "sha256": "0598a98652f2bde896c2ed097f3499571ee49379646abe94fb05a6e4398117c8"
+        },
+        {
+          "path": "/ipa/phonemes/sound-05.mp3",
+          "bytes": 7687,
+          "sha256": "4435d735b2c628a7145e3aaf1b75f1622fab4b223eaffd472a2f2a118a562132"
+        },
+        {
+          "path": "/ipa/phonemes/sound-06.mp3",
+          "bytes": 9824,
+          "sha256": "18fed5359a42ec8e38984e6c52ffed3ab60b99a1692d5c1964dbcfb35183153b"
+        },
+        {
+          "path": "/ipa/phonemes/sound-07.mp3",
+          "bytes": 8101,
+          "sha256": "87dba39705d3bbbcef352847b21e37ef983b2bf8037be808951c8b6141f414c5"
+        },
+        {
+          "path": "/ipa/phonemes/sound-08.mp3",
+          "bytes": 7636,
+          "sha256": "48bde37192e42e158e2ea2648e3c5cc798a713ce6c1a6853839db7e5275d4dd7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-09.mp3",
+          "bytes": 8258,
+          "sha256": "a9e077fe5958a278f251f1563d0ec4e83e89afd0c071d91c374f1d3c0c68c157"
+        },
+        {
+          "path": "/ipa/phonemes/sound-10.mp3",
+          "bytes": 8728,
+          "sha256": "34c973de03329bafba6b7e011e6318acf158402bc6413e2d0dc2214efe23e41b"
+        },
+        {
+          "path": "/ipa/phonemes/sound-100.mp3",
+          "bytes": 28724,
+          "sha256": "d6825fcf8d3e683c6958c904496b8ea18ddde4deabdaaf22fd51df3bd456092c"
+        },
+        {
+          "path": "/ipa/phonemes/sound-101.mp3",
+          "bytes": 19986,
+          "sha256": "b84ef28fa6af88fd17cbb688e1311292ee9cf3f791c83796578d387c21e08a08"
+        },
+        {
+          "path": "/ipa/phonemes/sound-102.mp3",
+          "bytes": 19176,
+          "sha256": "2f14b8b4af1db73a8282a9f0f093314ec294f68c5ead55a9acc0e69c214c1677"
+        },
+        {
+          "path": "/ipa/phonemes/sound-103.mp3",
+          "bytes": 22022,
+          "sha256": "25a5ff17add77cc351b049ccac7441fe7f47e95e65a13a836e5a88d2f8a937af"
+        },
+        {
+          "path": "/ipa/phonemes/sound-104.mp3",
+          "bytes": 20979,
+          "sha256": "5029d5a827b45411052687dbf41530c0adb609d6d86edb20fff90a07ee3d91d1"
+        },
+        {
+          "path": "/ipa/phonemes/sound-105.mp3",
+          "bytes": 19778,
+          "sha256": "46a14655553ad48a90be5cd5d1b227e913132bdc13e4ea554434a562f91d96b5"
+        },
+        {
+          "path": "/ipa/phonemes/sound-106.mp3",
+          "bytes": 17587,
+          "sha256": "a6f84c0d6e9a3530c8e4b33b8f22050b1a21699eb5913f8d24cad5800956f5c7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-107.mp3",
+          "bytes": 24055,
+          "sha256": "2a313d6951eaf55c159757809f3527ed5176c00b67ebce85be7ef71e4ae37b53"
+        },
+        {
+          "path": "/ipa/phonemes/sound-108.mp3",
+          "bytes": 17739,
+          "sha256": "158e0bb2c7275ff5fa68dcb3a44e1a23cd5b07e15dbf397fee6d25442ad806b4"
+        },
+        {
+          "path": "/ipa/phonemes/sound-109.mp3",
+          "bytes": 21029,
+          "sha256": "3973f77866b8439776ae5459cceb9dfb8d15dfa49384433e71440d4c43055035"
+        },
+        {
+          "path": "/ipa/phonemes/sound-11.mp3",
+          "bytes": 6538,
+          "sha256": "65583f7ddd7b5261a742fa66a5e3223dcaeb2b8dcebf5b3f9c0a5af413a3bdc6"
+        },
+        {
+          "path": "/ipa/phonemes/sound-110.mp3",
+          "bytes": 21291,
+          "sha256": "004cc4cc490b97790e7c8dcf5a7a194229cc9e0cbff131a4435ee2b4bc49ecbf"
+        },
+        {
+          "path": "/ipa/phonemes/sound-111.mp3",
+          "bytes": 23854,
+          "sha256": "f1dd833afebf96e1ba56860f9753380b717c8b22194b9f6fb08283557f364edf"
+        },
+        {
+          "path": "/ipa/phonemes/sound-112.mp3",
+          "bytes": 21707,
+          "sha256": "7b1996bc1e7adad29d611ae2b2e7672fda9ad0851bd7f85e8454bac122dd6807"
+        },
+        {
+          "path": "/ipa/phonemes/sound-113.mp3",
+          "bytes": 65037,
+          "sha256": "e760a9181a5db087bb59284fee97106d348b8da5979fc325abef3044eb01f76d"
+        },
+        {
+          "path": "/ipa/phonemes/sound-114.mp3",
+          "bytes": 44683,
+          "sha256": "dd47d8f0a8c6b42882301c3d6ba43cc03eb4aec4e6899dca9bc5f72045d73ee4"
+        },
+        {
+          "path": "/ipa/phonemes/sound-115.mp3",
+          "bytes": 45311,
+          "sha256": "ef402b6cd1211fdb52a5afa7bc6245dfb8d47c03a0027cbd68a3b588abbc52ce"
+        },
+        {
+          "path": "/ipa/phonemes/sound-116.mp3",
+          "bytes": 26309,
+          "sha256": "7421b94c37ba1097e670b90cd55c98a44dbd1c63d91f7270e0eb88f762863fb5"
+        },
+        {
+          "path": "/ipa/phonemes/sound-117.mp3",
+          "bytes": 28886,
+          "sha256": "43d630cfa9c948ffa11ba3cb7946a01b73df0934aca7eff9da876d3054b52ec6"
+        },
+        {
+          "path": "/ipa/phonemes/sound-118.mp3",
+          "bytes": 14734,
+          "sha256": "4ac62a119b58c9333c962b0089f7b9afd6f1f58e986530eafe404d2179f904d7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-119.mp3",
+          "bytes": 31176,
+          "sha256": "33126cb15cc7e305fb7dc1af3f2ce58ffcb261b9781b6aacdb864fc77e54daa6"
+        },
+        {
+          "path": "/ipa/phonemes/sound-12.mp3",
+          "bytes": 33605,
+          "sha256": "c68c19c8b9a3fb6e062b65855c2d6098601595be83a9a351fb5e2071c8e23d57"
+        },
+        {
+          "path": "/ipa/phonemes/sound-120.mp3",
+          "bytes": 8885,
+          "sha256": "970800ebac52d9a1154e07340365312733114dfde7b64539d292be14c190d2d2"
+        },
+        {
+          "path": "/ipa/phonemes/sound-121.mp3",
+          "bytes": 30772,
+          "sha256": "9b12b5163d31c6282c8a949916847b1593cdaf2e08ffeae68985de895030dc4f"
+        },
+        {
+          "path": "/ipa/phonemes/sound-122.mp3",
+          "bytes": 33122,
+          "sha256": "826c14aaccd80ac2b5ecffe3256c884a004438313932e781cbbf1de81aa569ce"
+        },
+        {
+          "path": "/ipa/phonemes/sound-123.mp3",
+          "bytes": 25064,
+          "sha256": "bd6517b761632d88707c30a467f8764003b020a5b7d72a3047138e7c8a739003"
+        },
+        {
+          "path": "/ipa/phonemes/sound-124.mp3",
+          "bytes": 33168,
+          "sha256": "70083e4450a1e7854e7152c646d0d1446bf7691e9e7f3d0284e56dac5d1befee"
+        },
+        {
+          "path": "/ipa/phonemes/sound-125.mp3",
+          "bytes": 32229,
+          "sha256": "29a1d18277ff0498e73c731606a0e8b3192844729ee2913e510b15e4d95c6524"
+        },
+        {
+          "path": "/ipa/phonemes/sound-13.mp3",
+          "bytes": 6853,
+          "sha256": "489c4f9acb337aa3f8d66d7cacc6ef9d0956d19a3918c2240fe7ed6c77aee869"
+        },
+        {
+          "path": "/ipa/phonemes/sound-14.mp3",
+          "bytes": 8924,
+          "sha256": "9a646301bc9edd813fdf0946f559bb7f8c891ae0e9b19777792b013de3e8221b"
+        },
+        {
+          "path": "/ipa/phonemes/sound-15.mp3",
+          "bytes": 8757,
+          "sha256": "344b47cab88f41a6b9da529da87a9a1250e5671ffd0be824a59bc2179b6d84ce"
+        },
+        {
+          "path": "/ipa/phonemes/sound-16.mp3",
+          "bytes": 7289,
+          "sha256": "80ca1ba7259ef8b26eb4fdb068e665f425cf255cc713f9a2547d658c346ebc9d"
+        },
+        {
+          "path": "/ipa/phonemes/sound-17.mp3",
+          "bytes": 16286,
+          "sha256": "c63067a41306de37e9a178432b29a1a0e07c4bd88857da0f240be41114531ed3"
+        },
+        {
+          "path": "/ipa/phonemes/sound-18.mp3",
+          "bytes": 23170,
+          "sha256": "fecf2a269a7275d16b3f78e994f5dae48e6f00e9f2adc39807043aec0875a950"
+        },
+        {
+          "path": "/ipa/phonemes/sound-19.mp3",
+          "bytes": 25967,
+          "sha256": "e0aa4f2c7eaa6c960068d6c7d5b7ec3444e16a177c17307ba3f43c7a14b974c0"
+        },
+        {
+          "path": "/ipa/phonemes/sound-20.mp3",
+          "bytes": 27083,
+          "sha256": "16a97c9814bcf37a3d1730859d8bcb64f7c71478fe35b5fcf83e1ace94361e68"
+        },
+        {
+          "path": "/ipa/phonemes/sound-21.mp3",
+          "bytes": 24402,
+          "sha256": "3b44db402ecc9bb8ce4e7b211e23d7607c21673f84e395ad1fe6ed48b3c719dc"
+        },
+        {
+          "path": "/ipa/phonemes/sound-22.mp3",
+          "bytes": 22578,
+          "sha256": "71831e30b2d6dd0e64e7a90d8a1b53b0a2e286ff5eb5dc70ac65fc478a69c3d4"
+        },
+        {
+          "path": "/ipa/phonemes/sound-23.mp3",
+          "bytes": 35650,
+          "sha256": "0e7c568f644b5f18f6ae192e01d3e72f2e6bfccc4a2dab870e4496b4bd2fead5"
+        },
+        {
+          "path": "/ipa/phonemes/sound-24.mp3",
+          "bytes": 31757,
+          "sha256": "593b2fe24e854fe34ea0d543e47ae9af75da1afbd67a6396ade0dae652a8e2b7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-25.mp3",
+          "bytes": 41611,
+          "sha256": "8619be16ad7fde2747f3026faece605855ce1b0cf119cc33def3783bc56977a8"
+        },
+        {
+          "path": "/ipa/phonemes/sound-26.mp3",
+          "bytes": 43932,
+          "sha256": "a6ad10137537f6c2537a8a5a9fac0b006fe0f97f9d1ca5c65ecff2c636a5e2b3"
+        },
+        {
+          "path": "/ipa/phonemes/sound-27.mp3",
+          "bytes": 55872,
+          "sha256": "dd0cdaedc8f1f091c397ca7efdd5170a800ed9a496796fdb7f2e2f3fbdd30016"
+        },
+        {
+          "path": "/ipa/phonemes/sound-28.mp3",
+          "bytes": 44333,
+          "sha256": "ee96171516ef9b132a843901fae46d29eca36919dddfd7e2c19c626dfe2db32f"
+        },
+        {
+          "path": "/ipa/phonemes/sound-29.mp3",
+          "bytes": 53474,
+          "sha256": "98a63452390b1b4bc0779247eadb8cd9f28cf72d3c1e78cc6c95f8d4f0fe8925"
+        },
+        {
+          "path": "/ipa/phonemes/sound-30.mp3",
+          "bytes": 56758,
+          "sha256": "744b75cdeeec396f977fb84991442a1c2e7698ec2bf4acb2b7d694c9410e4d86"
+        },
+        {
+          "path": "/ipa/phonemes/sound-31.mp3",
+          "bytes": 48936,
+          "sha256": "5bac241058d03115535afae411d34d8d895599975fab6e90922333fc383ae3ed"
+        },
+        {
+          "path": "/ipa/phonemes/sound-32.mp3",
+          "bytes": 35960,
+          "sha256": "71a5420aba9acabf55b085923ed33d21d3ed65752660eddc08441158f90930dd"
+        },
+        {
+          "path": "/ipa/phonemes/sound-33.mp3",
+          "bytes": 25969,
+          "sha256": "e3bc35a8d5feb59dc51cbc31f55866da1775b0d68e8307637203852384dac72a"
+        },
+        {
+          "path": "/ipa/phonemes/sound-34.mp3",
+          "bytes": 41099,
+          "sha256": "244c1440b9a5efa534754dc8c8464bf20ea8b83bc6eebb8db87b83a88049a660"
+        },
+        {
+          "path": "/ipa/phonemes/sound-35.mp3",
+          "bytes": 46420,
+          "sha256": "432cee078afe5141f9dec78517d60efa322fd17aa63bc69f3ecffe63058f0c81"
+        },
+        {
+          "path": "/ipa/phonemes/sound-36.mp3",
+          "bytes": 38593,
+          "sha256": "e925f2127bb699bb411031c58464eecbe1939c77f6fa49f39fb7d6e184a039a1"
+        },
+        {
+          "path": "/ipa/phonemes/sound-37.mp3",
+          "bytes": 44123,
+          "sha256": "25e6116dcc4b0a40c0a2ca48b138b45c4eb78cf3e90f58e391e04ae42d986e60"
+        },
+        {
+          "path": "/ipa/phonemes/sound-38.mp3",
+          "bytes": 41207,
+          "sha256": "848225fec48fe4f8d851186cc7071638f6bec90f0b6cd41b3928a8a17301318a"
+        },
+        {
+          "path": "/ipa/phonemes/sound-39.mp3",
+          "bytes": 46404,
+          "sha256": "6a894fc9ebbbb4cecadf7615ac50ad3674299ec9042b65a29f1fa305890fce7f"
+        },
+        {
+          "path": "/ipa/phonemes/sound-40.mp3",
+          "bytes": 35566,
+          "sha256": "81ce5d93b08e06ecd728d19f3f907424f3b15989b3e744c9b9b821c4b4e0a8eb"
+        },
+        {
+          "path": "/ipa/phonemes/sound-41.mp3",
+          "bytes": 8315,
+          "sha256": "2cda09a4e78f5037dcf6dadb895b44cd9edc1cd417412e210c07c3575a520c53"
+        },
+        {
+          "path": "/ipa/phonemes/sound-42.mp3",
+          "bytes": 7373,
+          "sha256": "9e8ec6bdca7e0d4b43da8984b06b0b14dca40254d282ef23893da13ec72eb3c2"
+        },
+        {
+          "path": "/ipa/phonemes/sound-43.mp3",
+          "bytes": 9516,
+          "sha256": "3a903dc53859824d3182d3b472015ca6a832d51b44c6bb3eea6dc823038a6a63"
+        },
+        {
+          "path": "/ipa/phonemes/sound-44.mp3",
+          "bytes": 6826,
+          "sha256": "d59e940184ef622323836e54be1314791177201819175f65c31d74f90e03dceb"
+        },
+        {
+          "path": "/ipa/phonemes/sound-45.mp3",
+          "bytes": 8572,
+          "sha256": "cdf4b39107aed53151d1b1095532e7276485c4833b9b733f54ab1145427215e3"
+        },
+        {
+          "path": "/ipa/phonemes/sound-46.mp3",
+          "bytes": 11442,
+          "sha256": "cf7eb0cad8d8a50cb2a48696fcc6176a2c1eb7bca077d955aabb3df1b088f985"
+        },
+        {
+          "path": "/ipa/phonemes/sound-47.mp3",
+          "bytes": 7948,
+          "sha256": "35a94079617c67c87cc3020bbf72e84263c0c727cabeadbcc57aa6f5f9442ebd"
+        },
+        {
+          "path": "/ipa/phonemes/sound-48.mp3",
+          "bytes": 7505,
+          "sha256": "a7bef53c4dfa3b9350dbeb4ace6664b709039a0f933575f7fd28c6fef79f3842"
+        },
+        {
+          "path": "/ipa/phonemes/sound-49.mp3",
+          "bytes": 7084,
+          "sha256": "e6906b817c16695c28e1d957424470cc9e5df21fe029878feb4038678f4b5208"
+        },
+        {
+          "path": "/ipa/phonemes/sound-50.mp3",
+          "bytes": 8885,
+          "sha256": "a11b4b82b438c08480c4fe67f15c3376207619d1bc2dd262aa051bd8c86f827f"
+        },
+        {
+          "path": "/ipa/phonemes/sound-51.mp3",
+          "bytes": 7055,
+          "sha256": "cc77c28d1d716961886fb2372b6162d2a4a1e97d3487d974476342c4863c8dc6"
+        },
+        {
+          "path": "/ipa/phonemes/sound-52.mp3",
+          "bytes": 10845,
+          "sha256": "cf438c49eb731639149eb9df0842fe8a67dba818639adbf92f7ad11040360dd7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-53.mp3",
+          "bytes": 7765,
+          "sha256": "029e9ce393e107ccac1bf048ba6ae2cf6c4cb7ea879aa63eb21442d337e58462"
+        },
+        {
+          "path": "/ipa/phonemes/sound-54.mp3",
+          "bytes": 13549,
+          "sha256": "aa067cf6ec8e24f3d3929c6fe7b841ed4acbde6957fc88b05e91d5809f5e498c"
+        },
+        {
+          "path": "/ipa/phonemes/sound-55.mp3",
+          "bytes": 8491,
+          "sha256": "37b0a594af30f06fadd1cdb48041d27936cc1579ea610d93be18529790981ed4"
+        },
+        {
+          "path": "/ipa/phonemes/sound-56.mp3",
+          "bytes": 8651,
+          "sha256": "839e3ef629848cb603c9ca0496597618a48d39b94a558064361dd2e4219e2589"
+        },
+        {
+          "path": "/ipa/phonemes/sound-57.mp3",
+          "bytes": 7709,
+          "sha256": "19e3da1f1606e6b14860e6713ed0641bdc09f4abebd7e86a3b9dd9610a39b976"
+        },
+        {
+          "path": "/ipa/phonemes/sound-58.mp3",
+          "bytes": 8546,
+          "sha256": "22c2fbe115b052a74ecac7e4ef05269e6a98c7c9632af8686092ecf1c6397b21"
+        },
+        {
+          "path": "/ipa/phonemes/sound-59.mp3",
+          "bytes": 19787,
+          "sha256": "744b9e7642930745066c78de3f61f1fc1bef2857d3fcd2771e5fa1bde72b159e"
+        },
+        {
+          "path": "/ipa/phonemes/sound-60.mp3",
+          "bytes": 24479,
+          "sha256": "5a27adc4e37b4c732d413f89e9d76f8078247e461f260328907919693b103179"
+        },
+        {
+          "path": "/ipa/phonemes/sound-61.mp3",
+          "bytes": 21507,
+          "sha256": "ac9f0842761e94c9aeb9750d3ef7b29d15b5bc9b8ec837ff0668b84addca3091"
+        },
+        {
+          "path": "/ipa/phonemes/sound-62.mp3",
+          "bytes": 23802,
+          "sha256": "29cd5efe17716876638b8bb3bb2c42f1e95e3c8e2882795fa45e2f95a03ce7f0"
+        },
+        {
+          "path": "/ipa/phonemes/sound-63.mp3",
+          "bytes": 22395,
+          "sha256": "f9898f083e5e564e5079aa1b92e54c42e7667aeada0d1a0e32d6a9d31dcaaa7f"
+        },
+        {
+          "path": "/ipa/phonemes/sound-64.mp3",
+          "bytes": 23201,
+          "sha256": "2841f196850de0a26d66e60fe3f1ee431f3971c7ead60dd6f530b553c6bcb9a0"
+        },
+        {
+          "path": "/ipa/phonemes/sound-65.mp3",
+          "bytes": 26406,
+          "sha256": "4f812a9cc6834675669f29e036e41e01c30a8792efa0537fdf53fca358ab949e"
+        },
+        {
+          "path": "/ipa/phonemes/sound-66.mp3",
+          "bytes": 25256,
+          "sha256": "8d93e4ed118c96171e63f4d1aa4b65915d15eb0fecf1f2bd964ccc374904e1f5"
+        },
+        {
+          "path": "/ipa/phonemes/sound-67.mp3",
+          "bytes": 27448,
+          "sha256": "ee0c4f4d2bd6cfd81ca6a95893068f1689abd8de94be5aca6487aef205063c64"
+        },
+        {
+          "path": "/ipa/phonemes/sound-68.mp3",
+          "bytes": 26351,
+          "sha256": "2c779e03ca2e55b4056f3ce17065069bebab820d4b9c71f96c074357fd5eeef7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-69.mp3",
+          "bytes": 23957,
+          "sha256": "0ff3ad0bf5dd7f16061e4378182e3d0033523d6ef6ad7658ce555eaac10be3c2"
+        },
+        {
+          "path": "/ipa/phonemes/sound-70.mp3",
+          "bytes": 21974,
+          "sha256": "749cda1ad02b8ff081e0f5eccf6f0c8b865d98310da22b9a826d15d7b77f9786"
+        },
+        {
+          "path": "/ipa/phonemes/sound-71.mp3",
+          "bytes": 24242,
+          "sha256": "e63000dc60c8821096775ec2202f8f97a1c05a76ec2ebe42d283c45a96ac0769"
+        },
+        {
+          "path": "/ipa/phonemes/sound-72.mp3",
+          "bytes": 25580,
+          "sha256": "a60063845361adaff8807e6965342f312ff4e1ffb3380e0cc1fdc2ff26a6e9ad"
+        },
+        {
+          "path": "/ipa/phonemes/sound-73.mp3",
+          "bytes": 18520,
+          "sha256": "20df2a95dad22dd40f415801dff14ea8e06b5cdf06a087283142272f090b79df"
+        },
+        {
+          "path": "/ipa/phonemes/sound-74.mp3",
+          "bytes": 25260,
+          "sha256": "5f772d82dc74532d69cd86fee29ca11c45578a87e0923d898855892584b87d68"
+        },
+        {
+          "path": "/ipa/phonemes/sound-75.mp3",
+          "bytes": 24165,
+          "sha256": "7d8294de5b85b92dc379341250896151c79c057938468846cfceda8772b43e1b"
+        },
+        {
+          "path": "/ipa/phonemes/sound-76.mp3",
+          "bytes": 24583,
+          "sha256": "58992f44227da76ffcf8ef22219eb64fc37e6f39d3b7e1b2aace8ff2a02884ba"
+        },
+        {
+          "path": "/ipa/phonemes/sound-77.mp3",
+          "bytes": 22875,
+          "sha256": "bb5bf216c29dda38bf456a7c8800ff3ab430826e7543f87e2556ca3980a71fdb"
+        },
+        {
+          "path": "/ipa/phonemes/sound-78.mp3",
+          "bytes": 35010,
+          "sha256": "c5593e10217956e6f494e906ca1048b0e4fcbdf45f9c3aafa1cf72e21dbdf60b"
+        },
+        {
+          "path": "/ipa/phonemes/sound-79.mp3",
+          "bytes": 36002,
+          "sha256": "66f5b5d72335bc7709ab9fac7ca9c146728b7a2652bec9ff0a041cd2c232060f"
+        },
+        {
+          "path": "/ipa/phonemes/sound-80.mp3",
+          "bytes": 22375,
+          "sha256": "dfe11ad8c31c2303a1c197b75acb7e6aa62a2a7daa5e6587f269ae9224580910"
+        },
+        {
+          "path": "/ipa/phonemes/sound-81.mp3",
+          "bytes": 26252,
+          "sha256": "6fe29a020f2698e85fa8bdecceb78edcb0457603ee91bf3561470f8473b3d7b6"
+        },
+        {
+          "path": "/ipa/phonemes/sound-82.mp3",
+          "bytes": 23384,
+          "sha256": "331b25464048e462cc75bb0522d2fa195ab24c37dcd108cf3590620c1186101a"
+        },
+        {
+          "path": "/ipa/phonemes/sound-83.mp3",
+          "bytes": 23843,
+          "sha256": "23304a3f9ac49d9734a6dde476e68df056903a9e6fed8cc581f62b31e5247f6c"
+        },
+        {
+          "path": "/ipa/phonemes/sound-84.mp3",
+          "bytes": 22808,
+          "sha256": "074244e4a4400213ec90325392aa2fb86c13a2e0fbcc80fc4a7f18354875d7e3"
+        },
+        {
+          "path": "/ipa/phonemes/sound-85.mp3",
+          "bytes": 23900,
+          "sha256": "8afb696570d7f80cadb989f2d3d5ac3e05c1f11ab2f8b5c91475cd0fbe3ecd11"
+        },
+        {
+          "path": "/ipa/phonemes/sound-86.mp3",
+          "bytes": 24061,
+          "sha256": "7d7af0e5098e164ec63ea258d9e6318580cf25998222ddfbbfcd7435ddec31b7"
+        },
+        {
+          "path": "/ipa/phonemes/sound-87.mp3",
+          "bytes": 17997,
+          "sha256": "cc6e73e7c13b200aef4aa16360000febc147e45b65bb94e681d75380f42d1a96"
+        },
+        {
+          "path": "/ipa/phonemes/sound-88.mp3",
+          "bytes": 30427,
+          "sha256": "126833a81282b450632b7e103cf8d9f27e8c3faf86b90b291ce8a8d75dd7e084"
+        },
+        {
+          "path": "/ipa/phonemes/sound-89.mp3",
+          "bytes": 25730,
+          "sha256": "bcb3779365c093cbefd19bb2d2ae5527eb8ad5966c8cc7402fad87d47777e33b"
+        },
+        {
+          "path": "/ipa/phonemes/sound-90.mp3",
+          "bytes": 18446,
+          "sha256": "eaf93c136d5b870994dca7537cec2f57803eb423a7d8e1a5639852b0dc921cf6"
+        },
+        {
+          "path": "/ipa/phonemes/sound-91.mp3",
+          "bytes": 28025,
+          "sha256": "ffce6e5a4c65d6a739cfabc334fcf9dcd95fdd9e01d1639eb3b1522bb379d953"
+        },
+        {
+          "path": "/ipa/phonemes/sound-92.mp3",
+          "bytes": 23588,
+          "sha256": "656b9dd1d58b70e8ceb9b787b362fddb256602041b9d03a18e0cfe1d046f349e"
+        },
+        {
+          "path": "/ipa/phonemes/sound-93.mp3",
+          "bytes": 24530,
+          "sha256": "3001381b879c17c8ae99cb7c00b786dd7efa23555503ab9175ceeef441addf0c"
+        },
+        {
+          "path": "/ipa/phonemes/sound-94.mp3",
+          "bytes": 24104,
+          "sha256": "36b8b1e254badb1d30a785464071cfb4fffc82dcba96d385fda21225d81827ea"
+        },
+        {
+          "path": "/ipa/phonemes/sound-95.mp3",
+          "bytes": 32616,
+          "sha256": "8f5d2d6123cdcae026159319b93bce4de9d4823c450c1c71dccf0d65051d256e"
+        },
+        {
+          "path": "/ipa/phonemes/sound-96.mp3",
+          "bytes": 23422,
+          "sha256": "970f10339450a71b487f2cedb01a2bd49ee715b8dde9ebce788b2034d3b881b0"
+        },
+        {
+          "path": "/ipa/phonemes/sound-97.mp3",
+          "bytes": 22643,
+          "sha256": "bf9033391fafb0aea82a98c4ff4d99d267bd58616bc9b33b9cc9c87c3b9149b0"
+        },
+        {
+          "path": "/ipa/phonemes/sound-98.mp3",
+          "bytes": 15241,
+          "sha256": "ae638c954122f5955bd33a3fea06e27bfe8b218400d99cce32fcad550ceef66a"
+        },
+        {
+          "path": "/ipa/phonemes/sound-99.mp3",
+          "bytes": 23375,
+          "sha256": "0be50e23e3345ef5c771dea6e24cbdc2b1a3b2f26fbb92b6c697268b60577697"
+        },
+        {
+          "path": "/ipa/README.md",
+          "bytes": 2117,
+          "sha256": "0e5288432f015ece146dd1823e0ccfd3e0725ac725deff01f3ec0ca4e36f0c6a"
+        },
+        {
+          "path": "/ipa/SOURCES.json",
+          "bytes": 31132,
+          "sha256": "c6def66a3833d8d029c1e52c855679db159ac1ad1a51d24b26b87d5740691741"
+        }
+      ]
+    },
+    {
+      "id": "grammar",
+      "version": "6c021fbd1dfd485b",
+      "bytes": 195600,
+      "files": [
+        {
+          "path": "/grammar/entries.json",
+          "bytes": 192148,
+          "sha256": "7ae83568cf846c7970a0fc1d5350ed642ea3f7f2d93075087dc165431ebc441f"
+        },
+        {
+          "path": "/grammar/README.md",
+          "bytes": 3452,
+          "sha256": "649d95fc16e99367dc48c8503dd3c7fd579d4757a0e3d00dfb57627aefc0e16f"
+        }
+      ]
+    },
+    {
+      "id": "corpus",
+      "version": "80e3b25445598253",
+      "bytes": 30474601,
+      "files": [
+        {
+          "path": "/corpus/additional-2.json",
+          "bytes": 537583,
+          "sha256": "8eaf39cb418e58864a2d6cf71a789fe2810777bf069f289b691f0da68b9c66cc"
+        },
+        {
+          "path": "/corpus/additional-3.json",
+          "bytes": 535888,
+          "sha256": "6ef6ce51af6e3e9c442fef69ad0e5822591265a6e5233d04d4a0e0f73214b103"
+        },
+        {
+          "path": "/corpus/additional-4.json",
+          "bytes": 858680,
+          "sha256": "e83b8afb835964b21bafa4c536b945bd1c932042440290dcff5db3f57dd61cc8"
+        },
+        {
+          "path": "/corpus/additional.json",
+          "bytes": 548524,
+          "sha256": "a3b1515de5f694dbcec672e7e21d6c374d2a0a12403ca123fc6dcd7826e1732c"
+        },
+        {
+          "path": "/corpus/gutenberg-2.json",
+          "bytes": 1344579,
+          "sha256": "dfc9618aaf5c8aed18027f7cf28c14feecc8d0daad28aff5a280c1572aad0395"
+        },
+        {
+          "path": "/corpus/gutenberg-license.txt",
+          "bytes": 17848,
+          "sha256": "7e9a03763ce51f08672a349e486e3db91cecd840eb94daf6c2dbb7b8e60c1a31"
+        },
+        {
+          "path": "/corpus/gutenberg.json",
+          "bytes": 20899162,
+          "sha256": "62e3f51b59ff215736e1f664fecad651cede8fa5c13075f5c27a17e56205c697"
+        },
+        {
+          "path": "/corpus/librispeech-NOTICE.md",
+          "bytes": 1611,
+          "sha256": "8f5f9323dd88c5710b33d8a6143401a54ffc5112ab4c3570942bbabd0edb8150"
+        },
+        {
+          "path": "/corpus/LICENSE.txt",
+          "bytes": 24296,
+          "sha256": "4982b20c52197e3d963722f12fc6e824590386d4f256f8d8aa9a71077f4d7732"
+        },
+        {
+          "path": "/corpus/open-reading-CC-BY-4.0.txt",
+          "bytes": 19104,
+          "sha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+        },
+        {
+          "path": "/corpus/open-reading-NOTICE.md",
+          "bytes": 12662,
+          "sha256": "a8c5286ce30be4cf9fc58b6c96b871c52417fdb0e1809347440b66c9d0052e35"
+        },
+        {
+          "path": "/corpus/reading-expansion-NOTICE.md",
+          "bytes": 133267,
+          "sha256": "94e670903bc9ef8acb07024c7cc7b0fbf453c5543643f522dfef836019f818cb"
+        },
+        {
+          "path": "/corpus/VOA-LICENSE.txt",
+          "bytes": 506,
+          "sha256": "f73222978ed5a5cb4896ef335a4c2933665823a3460307dd7058a978cf70c5f6"
+        },
+        {
+          "path": "/corpus/voa.json",
+          "bytes": 270869,
+          "sha256": "d6ee2ce177e1c0037f6f7b0f533af12547f163e02082253d5053bfd5f8026af0"
+        },
+        {
+          "path": "/corpus/wikiquote-2.json",
+          "bytes": 352200,
+          "sha256": "ee8eceaab3b4ba10eb23a22f59dda9cda57acd071f8ffcfcc2bfae2760d09f25"
+        },
+        {
+          "path": "/corpus/wikiquote-3.json",
+          "bytes": 439749,
+          "sha256": "a32dc432c0e2add2588b49b9b2ccc93a3b0607d487de6e37e3516cd139deba6a"
+        },
+        {
+          "path": "/corpus/wikiquote-4.json",
+          "bytes": 298655,
+          "sha256": "1d5304214f7ddbedff5334653089af4e7009b86814d3c9fdbd736cac2201ba43"
+        },
+        {
+          "path": "/corpus/wikiquote-5.json",
+          "bytes": 597284,
+          "sha256": "0e3e81fa3f79cd7a337a8a07d0aec78cbe9b5c50d4b21dc9ed5a25835d949a21"
+        },
+        {
+          "path": "/corpus/wikiquote-6.json",
+          "bytes": 1344588,
+          "sha256": "500c383b85812024c4a0a9123b883ce80f6fc575616ba9c4cf7c6770b666ad84"
+        },
+        {
+          "path": "/corpus/wikiquote-7.json",
+          "bytes": 791134,
+          "sha256": "12404fa8769dba9ed306187e98ff5059ede68657f8d4ca354249645279978104"
+        },
+        {
+          "path": "/corpus/wikiquote-8.json",
+          "bytes": 763887,
+          "sha256": "dba8745608836354cdb28fa2f526ffdcf36594139bb6cbfb820e0db51e93c8e3"
+        },
+        {
+          "path": "/corpus/wikiquote.json",
+          "bytes": 682525,
+          "sha256": "222050f1a16e86aa468ce5d4872ee87f916405b96052081390e019293dc48e1f"
+        }
+      ]
+    },
+    {
+      "id": "corpus-open-reading",
+      "version": "66449e4c168f26a4",
+      "bytes": 15991023,
+      "files": [
+        {
+          "path": "/corpus/open-reading.json",
+          "bytes": 15991023,
+          "sha256": "94c229d29d5f4fecd1be013ce1fdfa075319f800e4e789bcea2d4f7194e1c359"
+        }
+      ]
+    },
+    {
+      "id": "audio-beginner",
+      "version": "b35fd1fce06337a5",
+      "bytes": 917537,
+      "files": [
+        {
+          "path": "/audio/a1-sentences/FLEURS-CC-BY-4.0.txt",
+          "bytes": 19104,
+          "sha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+        },
+        {
+          "path": "/audio/a1-sentences/fleurs-helicopter-count.mp3",
+          "bytes": 57513,
+          "sha256": "ba7588268b643ea750eb74e15c628d6da3dce94bb66de2ecf5a02229fb034133"
+        },
+        {
+          "path": "/audio/a1-sentences/fleurs-montana-clock.mp3",
+          "bytes": 47900,
+          "sha256": "4534cd59289d6b0788dd0453faaf043dde792883f45449fdfa958cbd7b86a068"
+        },
+        {
+          "path": "/audio/a1-sentences/FLORES-CC-BY-SA.txt",
+          "bytes": 65471,
+          "sha256": "fe38377ee0e52dc6c9c78554055a4e5e78781d73022df4508c9cf284e0f462e9"
+        },
+        {
+          "path": "/audio/a1-sentences/MEANING-NOTICE.md",
+          "bytes": 1928,
+          "sha256": "2778e1006111b0895a7e907ad9638a05c7553af3ae9055365ccf5825d9484310"
+        },
+        {
+          "path": "/audio/a1-sentences/MEANING.json",
+          "bytes": 6006,
+          "sha256": "9aca617d1c6f6d18ca0c2df2667e0d0c86484b8454b216fb5fd7aff5f1526b29"
+        },
+        {
+          "path": "/audio/a1-sentences/NUMERIC-NOTICE.md",
+          "bytes": 2605,
+          "sha256": "04f8aa726fd492d4fc31f20ba51ff49178d095383291c9a443f54b538a70b7b7"
+        },
+        {
+          "path": "/audio/a1-sentences/NUMERIC.json",
+          "bytes": 5432,
+          "sha256": "32cda2a108bf46ac75d834dc6f1dfe84261f4dca6f1c37831c8881838753711c"
+        },
+        {
+          "path": "/audio/a1-sentences/SENTENCES.json",
+          "bytes": 6900,
+          "sha256": "ca93de528c56316e3353245fb2c723956cfc54e7d34a4a463bfb7561bfccfa83"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-coworker-request.mp3",
+          "bytes": 47273,
+          "sha256": "42d0a5c822d3e2c0c289e517f83d3fdf1f461ddcd624d7e80842aa33983d57ce"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-greeting-short.mp3",
+          "bytes": 38287,
+          "sha256": "fc79bdf2fcadb7a4fe060dc3b124324ae1c1dead3c825842c7cb93ce081ad8c0"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-gym-location-headroom.mp3",
+          "bytes": 63364,
+          "sha256": "971802afcfabd1478b8565a2ca8c53260eb074082b18475001d397deb4748a13"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-gym-short.mp3",
+          "bytes": 69634,
+          "sha256": "c9f615fcedf9e8defde33aad333131ebf0b39c5f1a5ecf86c43f0c7fbe254526"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-introductions-short.mp3",
+          "bytes": 49990,
+          "sha256": "c12c5c6dcc0d89a3e5da966fe6bf6d4e9c6f7d09a31b2b3055d6c247f11d64d1"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-kitchen-short.mp3",
+          "bytes": 64200,
+          "sha256": "c011e32699458496d486e7e31c0fabb734583dd05c318a4e05d3dd1e6e3ed3dd"
+        },
+        {
+          "path": "/audio/a1-sentences/VOA-LICENSE.txt",
+          "bytes": 1105,
+          "sha256": "a6e75679b83a524b5187870b6049dec2f600ecb5b926bcf0ad6a9d2f3282162d"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-number-correction.mp3",
+          "bytes": 68798,
+          "sha256": "b069fc895e10a14df339cab98bd2236928b5d253b412255e893f4a81a6ec6942"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-objects-short.mp3",
+          "bytes": 49572,
+          "sha256": "5aca2bd0ff0dad12bff43c14e66f6e788d67aa867e407b08486bf86d9f7b86dc"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-office-time-headroom.mp3",
+          "bytes": 43929,
+          "sha256": "6dd86695a36be57da5c2cd66fdb33f346c950168ccd1456eabac687c59e15513"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-reading-short.mp3",
+          "bytes": 47273,
+          "sha256": "61212a088ac0835097ff5454775c49bcbd711ff3b7111389d05d32d0de62bdea"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-room-activity.mp3",
+          "bytes": 56259,
+          "sha256": "5056bde92f5d1bb60a0d09418b53bbd1d1b3b02e5c21da3e9072a36302d6d96b"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-spelling-correction.mp3",
+          "bytes": 62528,
+          "sha256": "838761efefe4a0826e88a55c1674e40727c02f37f8a5ba5760b1e0e77dc6f3b1"
+        },
+        {
+          "path": "/audio/a1-sentences/voa-supermarket-short.mp3",
+          "bytes": 42466,
+          "sha256": "ffaf775d2fde66b8994a9f225b8c6464c4d1fee465c62e06dc0b12d6c634461f"
+        }
+      ]
+    },
+    {
+      "id": "audio-a1",
+      "version": "23cd5b5b338d2596",
+      "bytes": 1306992,
+      "files": [
+        {
+          "path": "/audio/a1-words/CC-BY-SA-3.0.txt",
+          "bytes": 22240,
+          "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f"
+        },
+        {
+          "path": "/audio/a1-words/README.md",
+          "bytes": 1377,
+          "sha256": "e4b1f45c96139a00392ad56735290c1d28fe4ce361a33ce5f5ca515425c4aa7c"
+        },
+        {
+          "path": "/audio/a1-words/voa-commute-check.mp3",
+          "bytes": 228976,
+          "sha256": "4304f77cb7860d0e954d1ae5711d868724b3e0a04359d69997af5dfda8861d4f"
+        },
+        {
+          "path": "/audio/a1-words/voa-gym.mp3",
+          "bytes": 100354,
+          "sha256": "6fd386245c769916766c2ce62d2114ff93557dca0e2a14f3b3ed46e84b4546c7"
+        },
+        {
+          "path": "/audio/a1-words/voa-hello.mp3",
+          "bytes": 609047,
+          "sha256": "67dc4541834bd1c4d9b60461af751b8f75953e0abc89af15267c03fae4a565e5"
+        },
+        {
+          "path": "/audio/a1-words/VOA-LICENSE.txt",
+          "bytes": 1612,
+          "sha256": "4ec17170e1482707aacf7dfef48dcb88a4766255d7b65c07b01ba867e4241f1a"
+        },
+        {
+          "path": "/audio/a1-words/voa-rooms.mp3",
+          "bytes": 56259,
+          "sha256": "5056bde92f5d1bb60a0d09418b53bbd1d1b3b02e5c21da3e9072a36302d6d96b"
+        },
+        {
+          "path": "/audio/a1-words/voa-welcome.mp3",
+          "bytes": 236944,
+          "sha256": "f9bd90edddbb8736f64fb5cb3a34ab5a27aecd6e99510977e7b820caf47c5cf7"
+        },
+        {
+          "path": "/audio/a1-words/word-1.mp3",
+          "bytes": 8835,
+          "sha256": "0f5341994e833aa79868c1e33fb342d99e74585ae084bd17224d60f23ba59f55"
+        },
+        {
+          "path": "/audio/a1-words/word-2.mp3",
+          "bytes": 9905,
+          "sha256": "3ee3914c80d835c226c23b0036cb769997d5cf63e1189c7b52cc4c7af87803b9"
+        },
+        {
+          "path": "/audio/a1-words/word-3.mp3",
+          "bytes": 16323,
+          "sha256": "4f7092326a22d260364aeec50b1191b78e1ae7094c602a7608b16810ba3fe185"
+        },
+        {
+          "path": "/audio/a1-words/word-4.mp3",
+          "bytes": 15120,
+          "sha256": "ffedd9eb65d37aeac46d4d104e84ac52918832c90bf73cd854042ac693daf1c5"
+        }
+      ]
+    },
+    {
+      "id": "audio-a2",
+      "version": "5d0a0b448f729af6",
+      "bytes": 4104644,
+      "files": [
+        {
+          "path": "/audio/a2-speech/cities-required-class.mp3",
+          "bytes": 106623,
+          "sha256": "1c4a6c8417290da5bc423eb3e6bd35ecb0b461fca643651f02d893d6e5b7ad29"
+        },
+        {
+          "path": "/audio/a2-speech/fleurs-incandescent-status-headroom.mp3",
+          "bytes": 75694,
+          "sha256": "6a0366ee0d6b2805d9d18ccd1c9e01ecc77b21c69298519097d473f6b0746bee"
+        },
+        {
+          "path": "/audio/a2-speech/fleurs-removed-riches.mp3",
+          "bytes": 53960,
+          "sha256": "8d3de45a26c61da217c014aba2da55b313554e011b0fa3e408978aa5fca29483"
+        },
+        {
+          "path": "/audio/a2-speech/librispeech-felicia-music.mp3",
+          "bytes": 103906,
+          "sha256": "c41b70b9b2d0bada6702cc74899451b66a5cb05a15964684c5940c8c07051d52"
+        },
+        {
+          "path": "/audio/a2-speech/librispeech-peter-silence.mp3",
+          "bytes": 108922,
+          "sha256": "a59af96110e0188c71bb1b469e0e920fca73c3cb8f6152aa99166f7ce3887537"
+        },
+        {
+          "path": "/audio/a2-speech/librispeech-quiet-places.mp3",
+          "bytes": 77993,
+          "sha256": "7f4dc76b6752cc8723035745996ce35c329970cf5302f4252345de95efa08ada"
+        },
+        {
+          "path": "/audio/a2-speech/librispeech-silky-name.mp3",
+          "bytes": 125222,
+          "sha256": "73b6f1176596ff7db4b11ab080321d40737fd5de8a0173d284112ae7f8d5f67b"
+        },
+        {
+          "path": "/audio/a2-speech/mario-allowed-choice.mp3",
+          "bytes": 95129,
+          "sha256": "6ab2a4d9baab1e0e528cc57af37b845a3bd576d962b45776b70c85d55b46b6f0"
+        },
+        {
+          "path": "/audio/a2-speech/ORDER-NOTICE.md",
+          "bytes": 754,
+          "sha256": "704b862db6c470bb537e7b87008b101135e70641d2782effd72308eda06c2f8e"
+        },
+        {
+          "path": "/audio/a2-speech/ORDER.json",
+          "bytes": 11746,
+          "sha256": "573cfb49a9dddea599b92ebfcdb1561c6d8033f35c5e5b0bdbf1135a8082d5a8"
+        },
+        {
+          "path": "/audio/a2-speech/PERSONAL-GUTENBERG-LICENSE.txt",
+          "bytes": 18292,
+          "sha256": "e0443fdc637bcd237d8e864fcc3dc55b3c45458dfb2fa741852a4d413b1fa304"
+        },
+        {
+          "path": "/audio/a2-speech/PERSONAL-LIBRISPEECH-CC-BY-4.0.txt",
+          "bytes": 19104,
+          "sha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+        },
+        {
+          "path": "/audio/a2-speech/PERSONAL-NOTICE.md",
+          "bytes": 2242,
+          "sha256": "9f77e40b2000e9580250c04c710d362917e2da6203ac1291fb57f8a1be8979c4"
+        },
+        {
+          "path": "/audio/a2-speech/PERSONAL.json",
+          "bytes": 11835,
+          "sha256": "a6f8b60a60dc01b30134f2815cd1f2e4f92345ac4ea44021716b0aad54bf9534"
+        },
+        {
+          "path": "/audio/a2-speech/philip-before-station.mp3",
+          "bytes": 63991,
+          "sha256": "917d668955b27a421c3c7164b36adc3797fe839dc58fd568674cfdac830d0ce5"
+        },
+        {
+          "path": "/audio/a2-speech/REASON-LIBRISPEECH-NOTICE.md",
+          "bytes": 1611,
+          "sha256": "8f5f9323dd88c5710b33d8a6143401a54ffc5112ab4c3570942bbabd0edb8150"
+        },
+        {
+          "path": "/audio/a2-speech/REASON-NOTICE.md",
+          "bytes": 1090,
+          "sha256": "bca5738b9d2f70e991140b74bcd16c8b6fbcb11bc6be2b8e547a879fbd202a66"
+        },
+        {
+          "path": "/audio/a2-speech/REASON.json",
+          "bytes": 12582,
+          "sha256": "75c0ef944d744035f52427c51ebeb87fced4d23eb02cbf0352e2118fbddcc79f"
+        },
+        {
+          "path": "/audio/a2-speech/RULE-CC-BY-SA-3.0.txt",
+          "bytes": 22240,
+          "sha256": "3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f"
+        },
+        {
+          "path": "/audio/a2-speech/RULE-CC-BY-SA-4.0.txt",
+          "bytes": 20138,
+          "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+        },
+        {
+          "path": "/audio/a2-speech/RULE-NOTICE.md",
+          "bytes": 1643,
+          "sha256": "40268b09b469a4c05302f6458d4bcb87354c7c07facc2082c2d010f0792d2ee0"
+        },
+        {
+          "path": "/audio/a2-speech/RULE.json",
+          "bytes": 3170,
+          "sha256": "68dc005ecb2b4e099e263f767d34ab8c54137db240f5c0ec2b33249c30b61612"
+        },
+        {
+          "path": "/audio/a2-speech/scrooge-before-knocking.mp3",
+          "bytes": 122506,
+          "sha256": "bfa72e4d011c268222e4cb4eb19260d622c50935be761cc648b2d21c9da39059"
+        },
+        {
+          "path": "/audio/a2-speech/UPDATE-CC-BY-4.0.txt",
+          "bytes": 19104,
+          "sha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+        },
+        {
+          "path": "/audio/a2-speech/UPDATE-CC-BY-SA-4.0.txt",
+          "bytes": 20138,
+          "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+        },
+        {
+          "path": "/audio/a2-speech/UPDATE-FLEURS-NOTICE.md",
+          "bytes": 478,
+          "sha256": "e1897eaced4f4582b0e2e3cf380a6946b2c05450fe7cf1b9b04944c80b8259b8"
+        },
+        {
+          "path": "/audio/a2-speech/UPDATE-NOTICE.md",
+          "bytes": 1551,
+          "sha256": "acdb6f574401f35302341001d4e12f63eb7b2673ceea682ae6ac3b1d8f5329fc"
+        },
+        {
+          "path": "/audio/a2-speech/UPDATE.json",
+          "bytes": 8983,
+          "sha256": "901584a92e8fac91dd112cc99a001ce81356b2e82688573597b6d39f85c87573"
+        },
+        {
+          "path": "/audio/a2-speech/voa-here.mp3",
+          "bytes": 815719,
+          "sha256": "737a81e0a7a6cea1dd6f646c207450a3697319c3f94e1a7bf53a7349f3588923"
+        },
+        {
+          "path": "/audio/a2-speech/VOA-LICENSE.txt",
+          "bytes": 1649,
+          "sha256": "af7d241e3e825773face24e17ff6f1fbe28e6e384736aa6346882eef0c0f9162"
+        },
+        {
+          "path": "/audio/a2-speech/voa-needed-departure-complete.mp3",
+          "bytes": 60021,
+          "sha256": "24a20829f3eff48c0d15b8509c53165443efc02c63f264f23e38315f51a3ff17"
+        },
+        {
+          "path": "/audio/a2-speech/voa-needed-rerecording-headroom.mp3",
+          "bytes": 55423,
+          "sha256": "e00d98b36b98fd04e2c37cb807dbc4a583e9b61779e04502dc2043539ae10b00"
+        },
+        {
+          "path": "/audio/a2-speech/voa-objects.mp3",
+          "bytes": 1428935,
+          "sha256": "367bf49cd0bce99226bcbbcb3cad7a3f8b9a5d1b9b829dfe8486d71533ad299d"
+        },
+        {
+          "path": "/audio/a2-speech/voa-visit-times.mp3",
+          "bytes": 394179,
+          "sha256": "a64d2250efea1c28fa820db13a608dfb0d2b12e1b907b166361906632cd6c781"
+        },
+        {
+          "path": "/audio/a2-speech/voa-working.mp3",
+          "bytes": 238071,
+          "sha256": "85acd9aded04a3bb7433e6688453d4aec0385a26e31c1027b66cdc60ffca5c20"
+        }
+      ]
+    },
+    {
+      "id": "audio-b1",
+      "version": "65d27730dc4b06e0",
+      "bytes": 7082077,
+      "files": [
+        {
+          "path": "/audio/b1-speech/anne-bag-condition.mp3",
+          "bytes": 201292,
+          "sha256": "71dd10da1b8055e9ea7a62226d08aa26c4a3abde1fca4db34ca0fbd97e089bcd"
+        },
+        {
+          "path": "/audio/b1-speech/beagle-early-walk.mp3",
+          "bytes": 156861,
+          "sha256": "c87c55340315e63c380917b5829ab9a8b57d18180188a6147e554f968c66b9d6"
+        },
+        {
+          "path": "/audio/b1-speech/brownie-new-house.mp3",
+          "bytes": 191421,
+          "sha256": "035f5fd5eff5499f7b9f38b8f9e87854ff17d893e2d6eb7f4afe638e8bff0ceb"
+        },
+        {
+          "path": "/audio/b1-speech/CONDITION-GUTENBERG-LICENSE.txt",
+          "bytes": 18292,
+          "sha256": "e0443fdc637bcd237d8e864fcc3dc55b3c45458dfb2fa741852a4d413b1fa304"
+        },
+        {
+          "path": "/audio/b1-speech/CONDITION-LIBRISPEECH-CC-BY-4.0.txt",
+          "bytes": 19104,
+          "sha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868"
+        },
+        {
+          "path": "/audio/b1-speech/CONDITION-LIBRISPEECH-NOTICE.md",
+          "bytes": 1611,
+          "sha256": "8f5f9323dd88c5710b33d8a6143401a54ffc5112ab4c3570942bbabd0edb8150"
+        },
+        {
+          "path": "/audio/b1-speech/CONDITION-NOTICE.md",
+          "bytes": 1160,
+          "sha256": "9e316cec51a6ab9e9d7613a42f34daa72f5891cf7fc580940847636af427c62e"
+        },
+        {
+          "path": "/audio/b1-speech/CONDITION.json",
+          "bytes": 3413,
+          "sha256": "0df33603182cc64030d75ceda18ada9ca9a77469aded96fb076fffc97794bd11"
+        },
+        {
+          "path": "/audio/b1-speech/fish-layer-finish.mp3",
+          "bytes": 146493,
+          "sha256": "87caf6aa6785cbaa6828229922f853553c825e70c8d77c71ced433ee9ca28995"
+        },
+        {
+          "path": "/audio/b1-speech/forest-retain.mp3",
+          "bytes": 149517,
+          "sha256": "fe38716009063300f3e3fe8ae342be96586ad10a08e6e69e2583f5e96e731b21"
+        },
+        {
+          "path": "/audio/b1-speech/fowl-rice-parallel.mp3",
+          "bytes": 194013,
+          "sha256": "2f17768754129a14d4daaa82bfe8f97208860a43d560d8c2f62f4846fa547cea"
+        },
+        {
+          "path": "/audio/b1-speech/INTENTION-NOTICE.md",
+          "bytes": 1421,
+          "sha256": "440e1a5a2f314c28d0976b13df05246e2ec4aedac9a41c06c5c18af6efe93a2e"
+        },
+        {
+          "path": "/audio/b1-speech/INTENTION.json",
+          "bytes": 3152,
+          "sha256": "58e18749b5313d043e1c2e9cd3f834a147311b398a2efe27a293ae1b9016c2f4"
+        },
+        {
+          "path": "/audio/b1-speech/isabel-reason.mp3",
+          "bytes": 164303,
+          "sha256": "182f414d4d2125a7b91bf6445c2f692b85f02017ffe6355325e0388d8a3d69a9"
+        },
+        {
+          "path": "/audio/b1-speech/jimmy-reference.mp3",
+          "bytes": 170885,
+          "sha256": "d8b8ac4340d2779fac84ee12bc093acbbd6fac200fb658afb48d7dc45bc9023a"
+        },
+        {
+          "path": "/audio/b1-speech/MAINIDEA-NOTICE.md",
+          "bytes": 2634,
+          "sha256": "acc181898281b32b1a3531d3cbe7a01ad19e465cee16631a5215bd86cf18af1e"
+        },
+        {
+          "path": "/audio/b1-speech/MAINIDEA.json",
+          "bytes": 3632,
+          "sha256": "31c85ccd645efb9540d5b0d8249bd21f279761e13625ff4efecdaa0aa0ed83ad"
+        },
+        {
+          "path": "/audio/b1-speech/mill-suggestion.mp3",
+          "bytes": 163773,
+          "sha256": "3e1e6415159a1c14183f7ea9872ccdc9897d5d792246a24d77aad3ffcde391e9"
+        },
+        {
+          "path": "/audio/b1-speech/MOTIVE-NOTICE.md",
+          "bytes": 1187,
+          "sha256": "d1be8790fc8450cb39a8db30f34d176bddf72ded226230c238f85c92e966a055"
+        },
+        {
+          "path": "/audio/b1-speech/MOTIVE.json",
+          "bytes": 3231,
+          "sha256": "85bf168bd96b7ebfe8a862bf51793cdbdb2c977afc010fcafbe18f5d92510582"
+        },
+        {
+          "path": "/audio/b1-speech/PROCEDURE-NOTICE.md",
+          "bytes": 1362,
+          "sha256": "e38f0588ff645069195f4e233dcfeb54c9691af25efc6664e7d7bd21c0a8e3af"
+        },
+        {
+          "path": "/audio/b1-speech/PROCEDURE.json",
+          "bytes": 3208,
+          "sha256": "319a7bbaf8a6f6ef54a63b0accb7b1ff493fb3881cad881e5184e0a7eb3f52ef"
+        },
+        {
+          "path": "/audio/b1-speech/REFERENCE-NOTICE.md",
+          "bytes": 1174,
+          "sha256": "f1c09e3ab4d6cd6bcb32d75ed724ec00cc48419fd3fd61018705c017a193a191"
+        },
+        {
+          "path": "/audio/b1-speech/REFERENCE.json",
+          "bytes": 3193,
+          "sha256": "94b9365ad7b294832876a536ec93d347545fae5250bed0a1e20ef4bfe9233287"
+        },
+        {
+          "path": "/audio/b1-speech/unseen-voice-reference.mp3",
+          "bytes": 192515,
+          "sha256": "0fc7eb760c7d2418d28b58c95490a16fc300827687cc510669d6a968c85e62f3"
+        },
+        {
+          "path": "/audio/b1-speech/voa-appeal-main-point.mp3",
+          "bytes": 296273,
+          "sha256": "feea5950de84c05be635fcbecdd8809b5e75f022f04266e57beb48c6edcd338c"
+        },
+        {
+          "path": "/audio/b1-speech/voa-appeal.mp3",
+          "bytes": 1597522,
+          "sha256": "bf46e33ed049dbe3dade282e8e30bc63fd330284f6f32b809eb3bc5b540439e3"
+        },
+        {
+          "path": "/audio/b1-speech/voa-being-explanation.mp3",
+          "bytes": 957797,
+          "sha256": "83cfae7cb6652583c5736296f76386dd2d07ac44f6e5f0f953c45658df0783be"
+        },
+        {
+          "path": "/audio/b1-speech/VOA-LICENSE.txt",
+          "bytes": 1559,
+          "sha256": "be05c146adcda1f2898cd5ab07330fddf0ad31d9a746bf891adbfc86eff864ba"
+        },
+        {
+          "path": "/audio/b1-speech/voa-phonemes.mp3",
+          "bytes": 935854,
+          "sha256": "abed8cb9332154f73a4b35e7206c70c888d4982af23e33b96ed65eda608a80c0"
+        },
+        {
+          "path": "/audio/b1-speech/voa-summon-main-point.mp3",
+          "bytes": 389060,
+          "sha256": "1ae8bdc6e1cde9d8212844d5e5129bf15e769d13d42a72b0b82caf7fbf2bf8b3"
+        },
+        {
+          "path": "/audio/b1-speech/voa-summon.mp3",
+          "bytes": 1105165,
+          "sha256": "f94a95d59f4053f977faa189bbf0dc83489d95bd7c554da3783bb3c5ca8047a0"
+        }
+      ]
+    },
+    {
+      "id": "audio-b2",
+      "version": "f6fea14389358c37",
+      "bytes": 5695955,
+      "files": [
+        {
+          "path": "/audio/b2-speech/voa-idiom-context.mp3",
+          "bytes": 1596648,
+          "sha256": "63e99fdb5c739d722802f90f97842a1179e4493a9caec6afec38f7dcb07dd4af"
+        },
+        {
+          "path": "/audio/b2-speech/VOA-LICENSE.txt",
+          "bytes": 1504,
+          "sha256": "0aa41203eb30ab8c791e871445f663e6ec99c4ad13cf99c00a7f0c652c557b4f"
+        },
+        {
+          "path": "/audio/b2-speech/voa-listening-methods.mp3",
+          "bytes": 1813150,
+          "sha256": "12eccd22cee24be30b05a196b11d8c64623fa69d82829ee77466c93867c11167"
+        },
+        {
+          "path": "/audio/b2-speech/voa-types.mp3",
+          "bytes": 1416926,
+          "sha256": "51ec7c99cceae184732929810413ac72a33b8d7300bdec73376e3f96f3d150c9"
+        },
+        {
+          "path": "/audio/b2-speech/voa-usage.mp3",
+          "bytes": 867727,
+          "sha256": "ab550b8a23be7a58f900be61a5e4dc27a64266c48d745d3c17e713bc9cc83528"
+        }
+      ]
+    },
+    {
+      "id": "audio-c1",
+      "version": "e873fba44623be6e",
+      "bytes": 8573146,
+      "files": [
+        {
+          "path": "/audio/c1-speech/ARCHIVAL-LICENSE.txt",
+          "bytes": 1234,
+          "sha256": "3e3cbc852b508ae9b497a24ae61f7eb2a9fe4fd5ee223132192a0f159a0bea01"
+        },
+        {
+          "path": "/audio/c1-speech/kennedy-inaugural.mp3",
+          "bytes": 1670836,
+          "sha256": "839b7da5f0fdec352c062e9b496d23495eb0e2b626260e19808caf497169df07"
+        },
+        {
+          "path": "/audio/c1-speech/kennedy-rice.mp3",
+          "bytes": 1783685,
+          "sha256": "6a205c3bda0ef4ac47f80ae8f26360f05bc9e160e904ca2914d85a55f6e6fb3e"
+        },
+        {
+          "path": "/audio/c1-speech/VOA-LICENSE.txt",
+          "bytes": 1065,
+          "sha256": "017320ac29912c70dbf667da2d08b8bdc62f0f3f618a3e8a7d1dbe72031cc03e"
+        },
+        {
+          "path": "/audio/c1-speech/voa-safaliba-literacy.mp3",
+          "bytes": 2783652,
+          "sha256": "d61616dd6503cfa526c76737bb2f8f8942818813a0ac823f989d86103aa0427d"
+        },
+        {
+          "path": "/audio/c1-speech/voa-writing-sources.mp3",
+          "bytes": 2332674,
+          "sha256": "ee6257e28fb81d9fa41a188c91cf773e7b9c892d8a830470fcf73810830038dc"
+        }
+      ]
+    },
+    {
+      "id": "audio-c2",
+      "version": "26f42300d7e3304a",
+      "bytes": 13378470,
+      "files": [
+        {
+          "path": "/audio/c2-speech/ARCHIVAL-LICENSE.txt",
+          "bytes": 1515,
+          "sha256": "5a6e8d076c89822a8c8f03b6962c25e2da2d0512c5d71eadb00580d3d5ccda47"
+        },
+        {
+          "path": "/audio/c2-speech/eisenhower-atoms.mp3",
+          "bytes": 3416233,
+          "sha256": "fd3454968e05a3fc9937d94b6a36e8f4f4f8a581908cfbcffc464e4f74af825d"
+        },
+        {
+          "path": "/audio/c2-speech/eisenhower-farewell.mp3",
+          "bytes": 3100256,
+          "sha256": "9623170993abd4aa3e2b869fc0946dfed6384779d0b946a15ef3d41ae72b8c7e"
+        },
+        {
+          "path": "/audio/c2-speech/EISENHOWER-LICENSE.txt",
+          "bytes": 1080,
+          "sha256": "d12e94bb199ea143e5fc7bd54505173897789f85870809081a75ce15197a2542"
+        },
+        {
+          "path": "/audio/c2-speech/kennedy-american-university.mp3",
+          "bytes": 4391757,
+          "sha256": "3f47c0035c5fb48bcdf9e9dbd7679db4aa711c67f83d3e6e2f06cdb002f8c0ee"
+        },
+        {
+          "path": "/audio/c2-speech/kennedy-united-nations.mp3",
+          "bytes": 2467629,
+          "sha256": "c17515c9a2e42d3801a6f6e64989773a8279a510e4435383c72de80c8b3babe5"
+        }
+      ]
+    }
+  ]
+}

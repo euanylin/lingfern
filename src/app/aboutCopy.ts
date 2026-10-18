@@ -1,0 +1,22 @@
+// About is English-only and deliberately independent of display-language packages.
+export const aboutCopy = {
+  "title": "About",
+  "settings": "Settings",
+  "openSource": "Open-source projects",
+  "buildTools": "Build and test tools",
+  "licences": "Third-party licences",
+  "contentSources": "Content sources and licences",
+  "ipaClassification": "IPA chart classification",
+  "ipaAdaptation": "Adapted by Lingfern under the same licence; recordings have separate terms.",
+  "corpora": "Reading and listening sources",
+  "corpusNotice": "Each work and recording keeps its own terms. Individual authors, editions, changes and source credits are listed with the material and in each downloaded source package. Source-specific exceptions and regional restrictions still apply.",
+  "quotes": "Daily quotes",
+  "reuseNotes": "Source and reuse notes",
+  "audioSources": "Audio sources and licences",
+  "audioNotice": "Recordings retain their credited speakers and source-specific licences. Conversion, excerpting and timing changes are listed below and with each material.",
+  "originalRecordings": "Lesson word and speech recordings",
+  "ipaWords": "IPA example words",
+  "ipaSounds": "IPA sound recordings",
+  "blog": "Blog",
+  "email": "Email"
+} as const;

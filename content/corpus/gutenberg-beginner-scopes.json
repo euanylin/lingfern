@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "scope": "Exact unchanged source text and A2 support only; no authored tasks, whole-book or calibrated level acceptance.",
+  "records": [
+    {
+      "bookId": 45,
+      "reviewer": "Codex/AI",
+      "decision": "supported-beginner-text",
+      "startingPoints": [
+        "A2"
+      ],
+      "rawSha256": "89a5e9fb2e0bb44562a969785385366f94e1da736aebee7d9cdf459eb0b5f9f6",
+      "metadataSha256": "74919352fc0f7bb487a1237a1cc1e59694089bad79f56848be8b395335a0d742",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "32327d50e2a6ca1fbe1e0d1a5c0e9c942cf8fbb55fe09233d8df246e1efe4bba",
+      "canonicalChars": 560086,
+      "parentId": "d64fb628313d2dd4f1c3cc2439d1267a0b849562dee3ded1b507a37ec4e98510",
+      "parentWords": 273,
+      "parentCanonicalStart": 45122,
+      "parentScopeStart": 811,
+      "parentScopeEnd": 1531,
+      "start": 45933,
+      "end": 46653,
+      "textSha256": "bc77a5ca5399ab1e53d269112af8031141ac764308588b0b3b1c87de0fbee873",
+      "words": 129,
+      "text": "“Well, don’t cry any more. We’re not going to turn you out-of-doors tonight. You’ll have to stay here until we investigate this affair. What’s your name?”\n\nThe child hesitated for a moment.\n\n“Will you please call me Cordelia?” she said eagerly.\n\n“_Call_ you Cordelia? Is that your name?”\n\n“No-o-o, it’s not exactly my name, but I would love to be called Cordelia. It’s such a perfectly elegant name.”\n\n“I don’t know what on earth you mean. If Cordelia isn’t your name, what is?”\n\n“Anne Shirley,” reluctantly faltered forth the owner of that name, “but, oh, please do call me Cordelia. It can’t matter much to you what you call me if I’m only going to be here a little while, can it? And Anne is such an unromantic name.”",
+      "context": {
+        "beforeStart": 45133,
+        "beforeSha256": "05bb3fdd819ba7d520cf6f34c6f6dd03c47b8ada907d719e2cd380c22d5a3fe7",
+        "afterEnd": 47853,
+        "afterSha256": "25263d45eb0cae23ccf1b3d9b4ab095d6f139c641f40da73a1ce5f09dc4e88ec"
+      },
+      "assessment": "Anne explicitly requests Cordelia while stating Anne Shirley. Complete continuous source paragraphs preserve narrative and request; later conditional Anne-with-E fallback is outside scope. Codex/AI source scope review only.",
+      "limits": [
+        "USA public-domain label and regional review pending retained.",
+        "No audio, image or whole-book acceptance.",
+        "A2 teaching starting point, not validated CEFR."
+      ]
+    }
+  ]
+}

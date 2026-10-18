@@ -1,0 +1,150 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00038",
+      "sourceHash": "b312cf7921100e85c6e3bc0a1df18eaa57b865c0a249b4c489e29e89ef4f3675",
+      "passageId": "0efa6fd3ed96d377fe75629ff5cb24342a869a3a3d4ddc6f9e62fb5cb41bfd59",
+      "textSha256": "0efa6fd3ed96d377fe75629ff5cb24342a869a3a3d4ddc6f9e62fb5cb41bfd59",
+      "text": "When a turtle is found stranded, it is impossible to know where it came from unless you retrace the path taken by its body since its death. When a sea turtle carcass floats, it drifts with currents and winds, just like a floating piece of plastic or wood would do, until it lands on the beach. Therefore, to predict this floating pathway, we must look at how the currents and winds transported the carcass as it floated on the sea surface. Other researchers had already made measurements to determine the effect of ocean currents on the trajectory of sea turtle carcasses. However, sea turtles have big shells that stick out of the water, meaning their movements are influenced by winds as well. No measurements had previously been taken regarding the effect of winds on sea turtle carcasses. We therefore conducted an experiment to determine the role played by winds in the trajectory of sea turtle carcasses.",
+      "credit": {
+        "attribution": "Virginia Beached Sea Turtle Survey — Elyse Boudin; Bianca Santos; Frederique Carcaillet; David Kaplan. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00038"
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.660425",
+      "sourceHash": "ab80dbd5d6d3a8fb7e954ee513dc60e36870bb4ac21e97a757a08e66fbf97f06",
+      "passageId": "41ded5e6f6431b4d56f3bf5813f1466ee27de6de95f672f146aaed9cb66b83fd",
+      "textSha256": "41ded5e6f6431b4d56f3bf5813f1466ee27de6de95f672f146aaed9cb66b83fd",
+      "text": "Although modern agriculture provides us with much of the food that we need, researchers have found that agriculture has a negative impact on our planet. The production of fertilizers releases greenhouse gasses, which enhance global warming. But at the same time, fertilizers help us to produce enough plants to satisfy the global demand for food, so we must balance the greenhouse gas emissions with the benefits that fertilizers provide to crops. Nitrogen-fixing bacteria in plant nodules can help us because they provide nitrogen to plants and decrease the need for fertilizers. One way that farmers already make use of this symbiosis is to plant legumes in their fields in rotation with other crops. The legumes naturally increase the amount of nitrogen that is available in the soil. Some researchers are trying to modify the genes of crop plants so they have their own tools to fix nitrogen, without the need for bacteria. Other researchers are trying to understand why many plants lost the ability to form symbiotic relationships with bacteria and whether it is possible to re-introduce this ability into certain crop plants. By harnessing or improving the natural abilities of crop plants to obtain their own nutrients, hopefully we can decrease the negative impacts of agriculture on the environment and so many wild species while still growing enough food to feed the human population.",
+      "credit": {
+        "attribution": "What Are the Small Lumps I See on Some Plant Roots? — Fede Berckx; Katharina Pawlowski. Frontiers for Young Minds. CC BY 4.0; complete original native paragraphs, whitespace normalised; media and third-party quotations excluded.",
+        "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Article-specific original grant; images, quoted third-party text and excluded material omitted.",
+        "sourceUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.660425"
+      }
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-19179592",
+      "sourceHash": "dd5879d05712becf71457499a6e5d6c84d9b299cbcdc42f712083284015ebd82",
+      "clipId": "309f0a800c582e85072dcb1dace7760c284570e53296a30af06a047fcd586d5e",
+      "textSha256": "81cf62ced44e3aa064af2e9feb75dedc669cdb05b5daad801d077be7ebed2f82",
+      "text": "Extreme halophilic and hyperthermophilic microbes were also included in Archaea. For a long time, archaea were seen as extremophiles that exist only in extreme habitats such as hot springs and salt lakes, but by the end of the 20th century, archaea had been identified in non-extreme environments as well. Today, they are known to be a large and diverse group of organisms abundantly distributed throughout nature. This new appreciation of the importance and ubiquity of archaea came from using polymerase chain reaction (PCR) to detect prokaryotes from environmental samples (such as water or soil) by multiplying their ribosomal genes. This allows the detection and identification of organisms that have not been cultured in the laboratory.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Archaea, recorded revision 958364938.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Archaea?oldid=958364938"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Archaea, recorded revision 958364938. Recording: Speaker: Ovinus Real Authors of the article. Original recording of Archaea.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Archaea?oldid=958364938"
+      },
+      "audio": {
+        "src": "media/309f0a800c582e85072dcb1dace7760c284570e53296a30af06a047fcd586d5e.mp3",
+        "sha256": "e652550184be468c05b4e00f5d626027cd73b06877d21cac5f7550c1635b241c",
+        "duration": 49.349977,
+        "author": "Speaker: Ovinus Real Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Archaea-article.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 79,
+          "text": "Extreme halophilic and hyperthermophilic microbes were also included in Archaea",
+          "audioStart": 0.14999999999997726,
+          "audioEnd": 5.430000000000007
+        },
+        {
+          "start": 81,
+          "end": 304,
+          "text": "For a long time, archaea were seen as extremophiles that exist only in extreme habitats such as hot springs and salt lakes, but by the end of the 20th century, archaea had been identified in non-extreme environments as well",
+          "audioStart": 5.430000000000007,
+          "audioEnd": 20.25
+        },
+        {
+          "start": 306,
+          "end": 413,
+          "text": "Today, they are known to be a large and diverse group of organisms abundantly distributed throughout nature",
+          "audioStart": 21.20999999999998,
+          "audioEnd": 26.810000000000002
+        },
+        {
+          "start": 415,
+          "end": 636,
+          "text": "This new appreciation of the importance and ubiquity of archaea came from using polymerase chain reaction (PCR) to detect prokaryotes from environmental samples (such as water or soil) by multiplying their ribosomal genes",
+          "audioStart": 26.810000000000002,
+          "audioEnd": 42.47000000000003
+        },
+        {
+          "start": 638,
+          "end": 741,
+          "text": "This allows the detection and identification of organisms that have not been cultured in the laboratory",
+          "audioStart": 43.31,
+          "audioEnd": 49.14999999999998
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-319522",
+      "sourceHash": "3d1ebd807c8fd124a56780b18430b1aced04626f16991a35388df9d2eca39034",
+      "clipId": "5133777600a82298647c8d9fa04b82c33fbc595ab70eb249821f60a3d0312719",
+      "textSha256": "d85800a871c00c598a550bb6305aabffc65313ad442c651cbfa8836fae6a35e3",
+      "text": "The nest is a platform of sticks in trees or shrubs. Unlike most other herons, it feeds in relatively dry grassy habitats, often accompanying cattle or other large mammals, since it catches insect and small vertebrate prey disturbed by these animals. Some populations of the Cattle Egret are migratory and others show post-breeding dispersal.\n\nThe adult Cattle Egret has few predators, but birds or mammals may raid its nests, and chicks may be lost to starvation, calcium deficiency or disturbance from other large birds. This species removes ticks and flies from cattle, but it can be a safety hazard at airfields, and has been implicated in the spread of tick-borne animal diseases.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Cattle egret, recorded revision 284500560.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Cattle_egret?oldid=284500560"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Cattle egret, recorded revision 284500560. Recording: Speaker: PopularOutcast Authors of the article. Original recording of Cattle egret.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Cattle_egret?oldid=284500560"
+      },
+      "audio": {
+        "src": "media/5133777600a82298647c8d9fa04b82c33fbc595ab70eb249821f60a3d0312719.mp3",
+        "sha256": "078fc92aa62b48f7e79f2a35b63dc5e4bb138d92c67dbf1c888720cedd2e771f",
+        "duration": 52.629977,
+        "author": "Speaker: PopularOutcast Authors of the article",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cattle_Egret.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 249,
+          "text": "The nest is a platform of sticks in trees or shrubs. Unlike most other herons, it feeds in relatively dry grassy habitats, often accompanying cattle or other large mammals, since it catches insect and small vertebrate prey disturbed by these animals",
+          "audioStart": 0.15000000000000568,
+          "audioEnd": 18.590000000000003
+        },
+        {
+          "start": 251,
+          "end": 341,
+          "text": "Some populations of the Cattle Egret are migratory and others show post-breeding dispersal",
+          "audioStart": 18.590000000000003,
+          "audioEnd": 26.39
+        },
+        {
+          "start": 344,
+          "end": 521,
+          "text": "The adult Cattle Egret has few predators, but birds or mammals may raid its nests, and chicks may be lost to starvation, calcium deficiency or disturbance from other large birds",
+          "audioStart": 26.39,
+          "audioEnd": 40.67
+        },
+        {
+          "start": 523,
+          "end": 684,
+          "text": "This species removes ticks and flies from cattle, but it can be a safety hazard at airfields, and has been implicated in the spread of tick-borne animal diseases",
+          "audioStart": 40.67,
+          "audioEnd": 52.42999999999999
+        }
+      ]
+    }
+  ]
+}

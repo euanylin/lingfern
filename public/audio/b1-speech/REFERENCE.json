@@ -1,0 +1,60 @@
+[
+  {
+    "rootId": "gutenberg-book-2814",
+    "sourceHash": "6be7d8400ac2549459307d1c1a20a25c86a736984269d3e9d989c817814be60c",
+    "title": "Dubliners",
+    "text": "Rapid motion through space elates one; so does notoriety; so does the possession of money. These were three good reasons for Jimmy’s excitement. He had been seen by many of his friends that day in the company of these Continentals.",
+    "audio": {
+      "src": "/audio/b1-speech/jimmy-reference.mp3",
+      "sha256": "d8b8ac4340d2779fac84ee12bc093acbbd6fac200fb658afb48d7dc45bc9023a",
+      "duration": 14.145034013605443,
+      "author": "Richard Wallis",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "James Joyce. Project Gutenberg edition 2814. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Richard Wallis. Whole original FLAC re-encoded; original words and background floor retained.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/2814"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 231,
+        "text": "Rapid motion through space elates one; so does notoriety; so does the possession of money. These were three good reasons for Jimmy’s excitement. He had been seen by many of his friends that day in the company of these Continentals.",
+        "audioStart": 0,
+        "audioEnd": 14.145034013605443
+      }
+    ]
+  },
+  {
+    "rootId": "gutenberg-book-640",
+    "sourceHash": "9798deb35b080878dd81fe7a030e1667f55abdadfb052e507439c9bae9881021",
+    "title": "The Yellow Fairy Book",
+    "text": "The voice was that of a young man, and its sweetness of tone and the agreeable things it uttered, led one to infer that its owner must be equally charming; but this had to be a mere matter of fancy, for no one was visible.",
+    "audio": {
+      "src": "/audio/b1-speech/unseen-voice-reference.mp3",
+      "sha256": "0fc7eb760c7d2418d28b58c95490a16fc300827687cc510669d6a968c85e62f3",
+      "duration": 15.95501133786848,
+      "author": "Jennifer",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Andrew Lang. Project Gutenberg edition 640. Recording: LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Jennifer. Whole original FLAC re-encoded; original words and background floor retained.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/640"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 222,
+        "text": "The voice was that of a young man, and its sweetness of tone and the agreeable things it uttered, led one to infer that its owner must be equally charming; but this had to be a mere matter of fancy, for no one was visible.",
+        "audioStart": 0,
+        "audioEnd": 15.95501133786848
+      }
+    ]
+  }
+]

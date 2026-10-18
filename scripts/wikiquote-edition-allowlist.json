@@ -1,0 +1,333 @@
+{
+  "version": 1,
+  "purpose": "Explicit official public source edition collection for expanding source evidence over the complete EnglishWikiquote universe. Collection does not admit quotes or assign rights/levels.",
+  "rightsPolicy": "USA PG label only at collection; regional rights, original work/translator/editor and quotation exactness remain pending. No universal copyright licence inferred.",
+  "records": [
+    {
+      "bookId": 972,
+      "title": "The Devil's Dictionary",
+      "titleAliases": [
+        "The Devil's Dictionary"
+      ],
+      "expectedAuthor": "Bierce, Ambrose",
+      "originalPublicationYear": 1911,
+      "originalLanguage": "en",
+      "editionReview": "First complete author-lifetime edition; presumed death1914? requires separate regional check.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/972",
+      "textUrl": "https://www.gutenberg.org/cache/epub/972/pg972.txt"
+    },
+    {
+      "bookId": 575,
+      "title": "The Essays or Counsels, Civil and Moral",
+      "titleAliases": [
+        "The Essays or Counsels, Civil and Moral"
+      ],
+      "expectedAuthor": "Bacon, Francis",
+      "originalPublicationYear": 1625,
+      "originalLanguage": "en",
+      "editionReview": "Original English essays; Latin quotations/modern notes not original English authorship.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/575",
+      "textUrl": "https://www.gutenberg.org/cache/epub/575/pg575.txt"
+    },
+    {
+      "bookId": 2945,
+      "title": "Essays — Second Series",
+      "titleAliases": [
+        "Essays — Second Series",
+        "Essays, Second Series"
+      ],
+      "expectedAuthor": "Emerson, Ralph Waldo",
+      "originalPublicationYear": 1844,
+      "originalLanguage": "en",
+      "editionReview": "Keep each essay separate; Nature within this series is not1836Nature.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/2945",
+      "textUrl": "https://www.gutenberg.org/cache/epub/2945/pg2945.txt"
+    },
+    {
+      "bookId": 29433,
+      "title": "Nature",
+      "titleAliases": [
+        "Nature"
+      ],
+      "expectedAuthor": "Emerson, Ralph Waldo",
+      "originalPublicationYear": 1836,
+      "originalLanguage": "en",
+      "editionReview": "Religion-sensitive work; all quote rows require religion screen.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/29433",
+      "textUrl": "https://www.gutenberg.org/cache/epub/29433/pg29433.txt"
+    },
+    {
+      "bookId": 6312,
+      "title": "Representative Men: Seven Lectures",
+      "titleAliases": [
+        "Representative Men: Seven Lectures"
+      ],
+      "expectedAuthor": "Emerson, Ralph Waldo",
+      "originalPublicationYear": 1850,
+      "originalLanguage": "en",
+      "editionReview": "Quoted writings of represented authors are separate underlying works.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/6312",
+      "textUrl": "https://www.gutenberg.org/cache/epub/6312/pg6312.txt"
+    },
+    {
+      "bookId": 39862,
+      "title": "English Traits",
+      "titleAliases": [
+        "English Traits"
+      ],
+      "expectedAuthor": "Emerson, Ralph Waldo",
+      "originalPublicationYear": 1856,
+      "originalLanguage": "en",
+      "editionReview": "Official1876revised edition cover verified; distinguish quoted others.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/39862",
+      "textUrl": "https://www.gutenberg.org/cache/epub/39862/pg39862.txt"
+    },
+    {
+      "bookId": 39827,
+      "title": "The Conduct of Life",
+      "titleAliases": [
+        "The Conduct of Life"
+      ],
+      "expectedAuthor": "Emerson, Ralph Waldo",
+      "originalPublicationYear": 1860,
+      "originalLanguage": "en",
+      "editionReview": "Separate essays/subwork bounds needed.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/39827",
+      "textUrl": "https://www.gutenberg.org/cache/epub/39827/pg39827.txt"
+    },
+    {
+      "bookId": 887,
+      "title": "Intentions",
+      "titleAliases": [
+        "Intentions"
+      ],
+      "expectedAuthor": "Wilde, Oscar",
+      "originalPublicationYear": 1891,
+      "originalLanguage": "en",
+      "editionReview": "PG transcription1913Methuen; first-lifetime essays. Explicit full source/context/subwork bounds required.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/887",
+      "textUrl": "https://www.gutenberg.org/cache/epub/887/pg887.txt"
+    },
+    {
+      "bookId": 1017,
+      "title": "The Soul of Man under Socialism",
+      "titleAliases": [
+        "The Soul of Man under Socialism"
+      ],
+      "expectedAuthor": "Wilde, Oscar",
+      "originalPublicationYear": 1891,
+      "originalLanguage": "en",
+      "editionReview": "PG transcription1909Humphreys; original1891essay; religion content still screened.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/1017",
+      "textUrl": "https://www.gutenberg.org/cache/epub/1017/pg1017.txt"
+    },
+    {
+      "bookId": 790,
+      "title": "Lady Windermere's Fan",
+      "titleAliases": [
+        "Lady Windermere's Fan"
+      ],
+      "expectedAuthor": "Wilde, Oscar",
+      "originalPublicationYear": 1892,
+      "originalLanguage": "en",
+      "editionReview": "Drama exact speaker/act context preserved.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/790",
+      "textUrl": "https://www.gutenberg.org/cache/epub/790/pg790.txt"
+    },
+    {
+      "bookId": 885,
+      "title": "An ideal husband",
+      "titleAliases": [
+        "An ideal husband",
+        "An Ideal Husband"
+      ],
+      "expectedAuthor": "Wilde, Oscar",
+      "originalPublicationYear": 1895,
+      "originalLanguage": "en",
+      "editionReview": "Drama exact speaker/act context preserved.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/885",
+      "textUrl": "https://www.gutenberg.org/cache/epub/885/pg885.txt"
+    },
+    {
+      "bookId": 1022,
+      "title": "Walking",
+      "titleAliases": [
+        "Walking"
+      ],
+      "expectedAuthor": "Thoreau, Henry David",
+      "originalPublicationYear": 1862,
+      "originalLanguage": "en",
+      "editionReview": "Published June1862 shortly after May1862death; exact old edition inspection required, no unpublishedlate material approval.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/1022",
+      "textUrl": "https://www.gutenberg.org/cache/epub/1022/pg1022.txt"
+    },
+    {
+      "bookId": 4232,
+      "title": "A Week on the Concord and Merrimack Rivers",
+      "titleAliases": [
+        "A Week on the Concord and Merrimack Rivers"
+      ],
+      "expectedAuthor": "Thoreau, Henry David",
+      "originalPublicationYear": 1849,
+      "originalLanguage": "en",
+      "editionReview": "Author-lifetime English text; embedded quotations require distinct authorship.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/4232",
+      "textUrl": "https://www.gutenberg.org/cache/epub/4232/pg4232.txt"
+    },
+    {
+      "bookId": 7370,
+      "title": "Second Treatise of Government",
+      "titleAliases": [
+        "Second Treatise of Government"
+      ],
+      "expectedAuthor": "Locke, John",
+      "originalPublicationYear": 1689,
+      "originalLanguage": "en",
+      "editionReview": "Original English work, metadata lastupdated2026-10-07: fetch hash-current actualtext.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/7370",
+      "textUrl": "https://www.gutenberg.org/cache/epub/7370/pg7370.txt"
+    },
+    {
+      "bookId": 9662,
+      "title": "An Enquiry Concerning Human Understanding",
+      "titleAliases": [
+        "An Enquiry Concerning Human Understanding"
+      ],
+      "expectedAuthor": "Hume, David",
+      "originalPublicationYear": 1748,
+      "originalLanguage": "en",
+      "editionReview": "EditorL.A.Selby-Bigge died1951; exclude editorintro/notes; exact Hume body scope required.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/9662",
+      "textUrl": "https://www.gutenberg.org/cache/epub/9662/pg9662.txt"
+    },
+    {
+      "bookId": 34901,
+      "title": "On Liberty",
+      "titleAliases": [
+        "On Liberty"
+      ],
+      "expectedAuthor": "Mill, John Stuart",
+      "originalPublicationYear": 1859,
+      "originalLanguage": "en",
+      "editionReview": "Exclude latereditor/introduction; acknowledge HarrietTaylorMill collaboration, originalbody only.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/34901",
+      "textUrl": "https://www.gutenberg.org/cache/epub/34901/pg34901.txt"
+    },
+    {
+      "bookId": 147,
+      "title": "Common Sense",
+      "titleAliases": [
+        "Common Sense"
+      ],
+      "expectedAuthor": "Paine, Thomas",
+      "originalPublicationYear": 1776,
+      "originalLanguage": "en",
+      "editionReview": "Original Englishpoliticalpamphlet; religiousquote rows excluded independently.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/147",
+      "textUrl": "https://www.gutenberg.org/cache/epub/147/pg147.txt"
+    },
+    {
+      "bookId": 5116,
+      "title": "Pragmatism: A New Name for Some Old Ways of Thinking",
+      "titleAliases": [
+        "Pragmatism: A New Name for Some Old Ways of Thinking",
+        "Pragmatism"
+      ],
+      "expectedAuthor": "James, William",
+      "originalPublicationYear": 1907,
+      "originalLanguage": "en",
+      "editionReview": "Original Englishlectures1907; originalauthor death1910not universalrights proof.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/5116",
+      "textUrl": "https://www.gutenberg.org/cache/epub/5116/pg5116.txt"
+    },
+    {
+      "bookId": 2895,
+      "title": "Following the Equator: A Journey Around the World",
+      "titleAliases": [
+        "Following the Equator: A Journey Around the World",
+        "Following the Equator, Complete"
+      ],
+      "expectedAuthor": "Twain, Mark",
+      "originalPublicationYear": 1897,
+      "originalLanguage": "en",
+      "editionReview": "Keep PuddnheadWilsonNewCalendar headings/quotes with actualchapter context; no notebook/posthumous material.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/2895",
+      "textUrl": "https://www.gutenberg.org/cache/epub/2895/pg2895.txt"
+    },
+    {
+      "bookId": 3020,
+      "title": "Table Talk: Essays on Men and Manners",
+      "titleAliases": [
+        "Table Talk: Essays on Men and Manners",
+        "Table-Talk"
+      ],
+      "expectedAuthor": "Hazlitt, William",
+      "originalPublicationYear": 1821,
+      "originalLanguage": "en",
+      "editionReview": "Specific originalessay titles need header/range evidence.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/3020",
+      "textUrl": "https://www.gutenberg.org/cache/epub/3020/pg3020.txt"
+    },
+    {
+      "bookId": 3420,
+      "title": "A Vindication of the Rights of Woman",
+      "titleAliases": [
+        "A Vindication of the Rights of Woman",
+        "A Vindication of the Rights of Woman With Strictures on Political and Moral Subjects"
+      ],
+      "expectedAuthor": "Wollstonecraft, Mary",
+      "originalPublicationYear": 1792,
+      "originalLanguage": "en",
+      "editionReview": "Original English social/political work; religiousparts still screened.",
+      "collectionDecision": "collect-for-exact-edition-review",
+      "metadataUrl": "https://www.gutenberg.org/ebooks/3420",
+      "textUrl": "https://www.gutenberg.org/cache/epub/3420/pg3420.txt"
+    }
+  ],
+  "held": [
+    {
+      "bookId": 1564,
+      "reason": "ModernabridgementeditorOsgooddied1964; sourcecollection not globalpermitted edition."
+    },
+    {
+      "source": "Bacon NovumOrganum moderntranslations",
+      "reason": "OriginalLatin; translationrightsandfirstpublicationnot verified."
+    },
+    {
+      "source": "Bierce The Unabridged DevilsDictionary",
+      "reason": "Modernextension differsfrom author-lifetime1911edition."
+    },
+    {
+      "source": "Twain notebooks/autobiography/lateposthumous editions",
+      "reason": "Latereditorial material/firstpublication rightsrequireseparateevidence."
+    },
+    {
+      "source": "Bartlett/Hoyt/quotationdictionaries",
+      "reason": "Compilerdeath/copyright ofarrangement doesnotclear eachunderlyingquote or translation."
+    },
+    {
+      "source": "Bible/religiousfounders/moderntranslatorworks",
+      "reason": "Userreligion/rights exclusion; notcollectpriority."
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "inputDirectory": "private/corpus/reading-scale-20261010/cloud-input",
+  "manifestSha256": "628d73f8fb5d35f524577f97cb4e36caac71011f62866dbfe317c754a2b9eef5",
+  "preparedSha256": "03c9852ca30f47ed0e7db68b5d9c720c79af6bd4ebd7acfc1284453eb472933f",
+  "sourceLedgerSha256": "bbb5c7a18cbd85457b0b9003ea62e464b089db82d6648416d072639a954f92cc",
+  "independentReviewPath": "private/verification/reading-scale-20261010-source-review.json",
+  "independentReviewSha256": "4975d0fe2e3c270d342be52597ed1c90fd3473de06b3ba7dfb78a87a1f2279bf",
+  "preparedCount": 1861,
+  "excludedPassageIds": [],
+  "books": [
+    {
+      "id": "openstax-business-ethics",
+      "title": "Business Ethics",
+      "authors": [
+        "Stephen M. Byars",
+        "Kurt Stanberry"
+      ],
+      "attribution": "Business Ethics \u2014 Stephen M. Byars; Kurt Stanberry. OpenStax, Rice University. CC BY 4.0; frozen commit 21122d7c873e27ef0f2f1bf0c395bd175b32d7be; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "a999b0c4e28f88af6307584f01861dc53c07a272d6d9c6875ff144f9d93a6d20",
+      "topic": "business",
+      "paragraphCount": 161,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-business-ethics-collection.xml",
+          "sha256": "a999b0c4e28f88af6307584f01861dc53c07a272d6d9c6875ff144f9d93a6d20"
+        }
+      ]
+    },
+    {
+      "id": "openstax-principles-economics-3e",
+      "title": "Principles of Economics 3e",
+      "authors": [
+        "David Shapiro",
+        "Daniel MacDonald",
+        "Steven A. Greenlaw"
+      ],
+      "attribution": "Principles of Economics 3e \u2014 David Shapiro; Daniel MacDonald; Steven A. Greenlaw. OpenStax, Rice University. CC BY 4.0; frozen commit d0e5fcf6df9363727b71970378671fb7a804fce3; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "0d3cad09e5a511c3a404e0bc56a6b2710e29757f5c959ab84bbdabef26235325",
+      "topic": "business",
+      "paragraphCount": 554,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-principles-economics-3e-m64268.cnxml",
+          "sha256": "51e371bae17fec93c4eac4cca25bf17c3bb8bc12259e292464a71aad03828849"
+        }
+      ]
+    },
+    {
+      "id": "openstax-microbiology",
+      "title": "Microbiology",
+      "authors": [
+        "Nina Parker",
+        "Mark Schneegurt",
+        "Anh-Hue Thi Tu",
+        "Brian M. Forster",
+        "Philip Lister"
+      ],
+      "attribution": "Microbiology \u2014 Nina Parker; Mark Schneegurt; Anh-Hue Thi Tu; Brian M. Forster; Philip Lister. OpenStax, Rice University. CC BY 4.0; frozen commit 3f4edff55fe6935eed59579a1dc2f7479b6ffc7d; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "6d086899ad71e3fd516d161acdfc1b9d1689b73bd25f37ce7b63adbbc3a31b03",
+      "topic": "science",
+      "paragraphCount": 285,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-microbiology-collection.xml",
+          "sha256": "6d086899ad71e3fd516d161acdfc1b9d1689b73bd25f37ce7b63adbbc3a31b03"
+        }
+      ]
+    },
+    {
+      "id": "openstax-chemistry-2e",
+      "title": "Chemistry 2e",
+      "authors": [
+        "Paul Flowers",
+        "Klaus Theopold",
+        "Richard Langley",
+        "William R. Robinson"
+      ],
+      "attribution": "Chemistry 2e \u2014 Paul Flowers; Klaus Theopold; Richard Langley; William R. Robinson. OpenStax, Rice University. CC BY 4.0; frozen commit 9928441ef0badc3ff024c6a1fe2842c0048ea858; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "a1014005920277478a0e8a0ebbdd3bb9ec3ec9884fd61570a69c9866661d7651",
+      "topic": "science",
+      "paragraphCount": 92,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-chemistry-2e-m68662.cnxml",
+          "sha256": "851d704346958827c5d5500591276cda936bd9ad35d52dc8d7b5084190fdab15"
+        }
+      ]
+    },
+    {
+      "id": "openstax-introduction-intellectual-property",
+      "title": "Introduction to Intellectual Property",
+      "authors": [
+        "David Kline"
+      ],
+      "attribution": "Introduction to Intellectual Property \u2014 David Kline. OpenStax, Rice University. CC BY 4.0; frozen commit 55411cd2253d9d71104c7fe44c14ded7006585a8; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "67ec994b99140a1602e9e2d74446409e4f75e4cdece216b047fd27a89163c587",
+      "topic": "business",
+      "paragraphCount": 38,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introduction-intellectual-property-collection.xml",
+          "sha256": "67ec994b99140a1602e9e2d74446409e4f75e4cdece216b047fd27a89163c587"
+        }
+      ]
+    },
+    {
+      "id": "openstax-college-physics-2e",
+      "title": "College Physics 2e",
+      "authors": [
+        "Paul Peter Urone",
+        "Roger Hinrichs"
+      ],
+      "attribution": "College Physics 2e \u2014 Paul Peter Urone; Roger Hinrichs. OpenStax, Rice University. CC BY 4.0; frozen commit 84147e8ddbb1a7d2689e235630b230e6b4f20480; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "3d3cf2c93dddb3d55c61a1dcd09d6bae31e6ca7033b5e50081c818e28b4134b6",
+      "topic": "science",
+      "paragraphCount": 202,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-college-physics-2e-m42955.cnxml",
+          "sha256": "40583762c99c1469b2771d7f042f6ceaa3e75609d3ae2b0e391a2afd286e3253"
+        }
+      ]
+    },
+    {
+      "id": "openstax-introductory-statistics-2e",
+      "title": "Introductory Statistics 2e",
+      "authors": [
+        "Barbara Illowsky",
+        "Susan Dean"
+      ],
+      "attribution": "Introductory Statistics 2e \u2014 Barbara Illowsky; Susan Dean. OpenStax, Rice University. CC BY 4.0; frozen commit fc004a462a69bb1b64ac327c6dd1847899476e06; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "8b9dde8c3c4ad1cd3c35f59a7e5c664e3834284f975300fa8e653b72f82ade35",
+      "topic": "science",
+      "paragraphCount": 27,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introductory-statistics-2e-m47830.cnxml",
+          "sha256": "bb6688e502632835fa447d4797b4659867584f1e78586ad44f35be58011b1cc1"
+        }
+      ]
+    },
+    {
+      "id": "openstax-introductory-business-statistics-2e",
+      "title": "Introductory Business Statistics 2e",
+      "authors": [
+        "Alexander Holmes",
+        "Barbara Illowsky",
+        "Susan Dean"
+      ],
+      "attribution": "Introductory Business Statistics 2e \u2014 Alexander Holmes; Barbara Illowsky; Susan Dean. OpenStax, Rice University. CC BY 4.0; frozen commit fc004a462a69bb1b64ac327c6dd1847899476e06; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "fc36801ff752b04986601d130becb50997edf0b5f5d0f5aa4511e0efbe411631",
+      "topic": "business",
+      "paragraphCount": 63,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-introductory-business-statistics-2e-m53808.cnxml",
+          "sha256": "23baa1f78b892b23fc0a078dc2805d692cc247058385c12d38f46c9aee3d0566"
+        }
+      ]
+    },
+    {
+      "id": "openstax-intermediate-algebra-2e",
+      "title": "Intermediate Algebra 2e",
+      "authors": [
+        "Lynn Marecek",
+        "Andrea Honeycutt Mathis"
+      ],
+      "attribution": "Intermediate Algebra 2e \u2014 Lynn Marecek; Andrea Honeycutt Mathis. OpenStax, Rice University. CC BY 4.0; frozen commit bba5f5244066884797f730149d918e33f2beefd1; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "e82e3d36f8146695e3d78d0288bb7c4107420ee027b0f6856fee091810d53963",
+      "topic": "science",
+      "paragraphCount": 4,
+      "licenseSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-intermediate-algebra-2e-m81357.cnxml",
+          "sha256": "ec04bbbc853278b6d0c974be9c964d26756ea23bf297e499667ec9c099683c82"
+        }
+      ]
+    },
+    {
+      "id": "openstax-principles-finance",
+      "title": "Principles of Finance",
+      "authors": [
+        "Julie Dahlquist",
+        "Rainford Knight"
+      ],
+      "attribution": "Principles of Finance \u2014 Julie Dahlquist; Rainford Knight. OpenStax, Rice University. CC BY 4.0; frozen commit e1283a2ffc060e7eef593151de3642ed79e12466; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "fafccd0fd0fe6876604d72542b13fac288883dd60c24da2a8d87c91d38fdd695",
+      "topic": "business",
+      "paragraphCount": 147,
+      "licenseSha256": "38a27c0f017da132e9a04ec8be91ead41cf8a55d85018c2de50c2b831dcfac38",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-principles-finance-collection.xml",
+          "sha256": "fafccd0fd0fe6876604d72542b13fac288883dd60c24da2a8d87c91d38fdd695"
+        }
+      ]
+    },
+    {
+      "id": "openstax-writing-guide",
+      "title": "Writing Guide with Handbook",
+      "authors": [
+        "Michelle Bachelor Robinson",
+        "Maria Jerskey",
+        "Toby Fulwiler"
+      ],
+      "attribution": "Writing Guide with Handbook \u2014 Michelle Bachelor Robinson; Maria Jerskey; Toby Fulwiler. OpenStax, Rice University. CC BY 4.0; frozen commit aa32f33d8a271aaca990eaaf9c28e050b0a25a67; complete native paragraphs, whitespace normalised; third-party and media excluded.",
+      "sourceHash": "cf91dccde6d02bf840add41ae7d1ba1da916c6d746af491ac220133e40a42092",
+      "topic": "campus",
+      "paragraphCount": 288,
+      "licenseSha256": "38a27c0f017da132e9a04ec8be91ead41cf8a55d85018c2de50c2b831dcfac38",
+      "authorEvidence": [
+        {
+          "rawPath": "raw/openstax-writing-guide-collection.xml",
+          "sha256": "cf91dccde6d02bf840add41ae7d1ba1da916c6d746af491ac220133e40a42092"
+        }
+      ]
+    }
+  ],
+  "scope": "Eleven frozen 2024-or-earlier OpenStax CC BY 4.0 books prepared in one owned Colab CPU batch. 122,510 plus 17,551 native paragraphs were classified; 1,861 eligible paragraphs remain after removing three preface biographies. Sample review only."
+}

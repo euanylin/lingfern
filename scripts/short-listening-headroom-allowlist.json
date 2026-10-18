@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "scope": "One source-identical continuous window, original float signal retained;0.85gain before MP3 encoding prevents integer clipping, no speech/time/text edit, not a new original recording. Colab A100 preparation before retrieval.",
+  "gain": 0.85,
+  "record": {
+    "rootId": "wikipedia-article-14018",
+    "fileId": 2750653,
+    "title": "Helen Gandy",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Helen_Gandy.ogg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "originalAudioSha256": "b1deccdbc4ad21a0489b6482e76e8c25b631edd852e3aee4123a5edd0d745610",
+    "originalAudioBytes": 10741346,
+    "audioLicence": "CC BY-SA 3.0",
+    "audioLicenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "audioSourceUrl": "https://commons.wikimedia.org/wiki/File:Helen_Gandy.ogg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Helen_Gandy?oldid=20624899",
+    "sourceHash": "e4cb8750959ed79518a6b3b07933e05e63e9692ab00c5050a43dee966699ba61",
+    "sourceTextSha256": "fe2d7f2c361501e5d563ab93e3b80ca8ec9d5bd253e2f44f95eae8ede83d76a2",
+    "sourceSpan": {
+      "start": 5258,
+      "end": 5567
+    },
+    "text": "Gandy stated Gray flipped through a few files and approved her work, but Gray was to deny he looked at any papers. Gandy also told Gray it would be a week before she could clear Hoover's effects out so he could move into the suite.\n\nGray reported to Nixon that he had secured Hoover's office and its contents.",
+    "originalAudioStart": 390.57000000000005,
+    "originalAudioEnd": 410.4,
+    "localPreparedAudioSha256": "296ca706652cf50e62fe84b42c02756cd9d87472ca72d5c954ce081ef6f0c911",
+    "localPreparedDuration": 19.829977,
+    "localPreparedId": "ab135bb41ed7c29e558a3da027df74053ccf0e0833f33bc9b68315c39f959340",
+    "originalText": "Part 2\n\nHelen W. Gandy (April 8, 1897–July 7, 1988) was an American civil servant. Gandy, who at age twenty-one left her native New Jersey for Washington, D.C., was for fifty-four years the secretary to Federal Bureau of Investigation director J. Edgar Hoover. Hoover called her \"indispensable\" and she exercised great behind-the-scenes influence on Hoover and the workings of the Bureau. Following Hoover's death in 1972, she spent weeks destroying his \"Personal File,\" thought to be where the most incriminating material he used to manipulate and control the most powerful figures in Washington was kept.\n\nJoins the Bureau\n\nGandy, \"a wraith-like, grim-faced spinster from New Jersey\" (in Athan Theoharis and John Cox's phrase), was born in Rockville, one of three children (two daughters and a son) of Franklin Dallas and Annie (Williams) Gandy. She grew up in Fairton or Port Norris (sources differ) and graduated from Bridgeton High School. In 1918, aged twenty-one, she moved to Washington, D.C., where she later took classes at Strayer Business College and George Washington University's law school.\n\nGandy briefly worked in a department store in Washington before she found a job as a file clerk at the Justice Department in 1918. Within weeks, she went to work as a typist for Hoover, effective March 25, 1918, having told Hoover in her interview she had \"no immediate plans to marry.\" She, like Hoover, would never marry, both being completely devoted to the Bureau.\n\nWhen Hoover went to the Bureau of Investigation (as it was then known) as its assistant director on August 22, 1921, he specifically requested Miss Gandy return from vacation to help him in the new post. Hoover became director of the Bureau in 1924 and Gandy continued in his service. She was promoted to \"office assistant\" on August 23, 1937, and \"executive assistant\" on October 1, 1939. Though she would receive promotions in her civil service grade subsequently, she would retain her title as executive assistant to her retirement on May 2, 1972, the day Hoover died. Hoover said of her \"if there is anyone in this Bureau whose services are indispensable I consider Miss Gandy to be that person.\" Despite this, Curt Gentry reported:\n\nTheirs was a rigidly formal relationship. He'd always called her 'Miss Gandy' (when angry, barking it out as one word). In all those fifty-four years he had never once called her by her first name.\n\nTheoharis and Cox would say \"her stern face recalled Cerberus at the gate,\" a view echoed by Anthony Summers in his life of Hoover, who also pictured Gandy as Hoover's first line of defense against the outside world. When Attorney General Robert F. Kennedy, Hoover's nominal boss, had a direct telephone line installed between their offices, Hoover refused to answer the phone. \"Put that damn thing on Miss Gandy's desk where it belongs,\" Hoover would declare.\n\nCurt Gentry would describe her influence:\n\nHer genteel manner and pleasant voice contrasted sharply with this domineering presence. Yet behind the politeness was a resolute firmness not unlike his, and no small amount of influence. Many a career in the Bureau had been quietly manipulated by her.\n\nEven those who disliked him, praised her, most often commenting on her remarkable ability to get along with all kinds of people. That she had held her position for fifty-four years was the best evidence of this, for it was a Bureau tradition that the closer you were to him, the more demanding he was.\n\nWilliam C. Sullivan, an agent with the Bureau for three decades, reported in his memoir when he worked in the public relations section answering mail from the public, he gave a correspondent the wrong measurements for Hoover's personal popover recipe, relying on memory rather than the files. Gandy, ever protective of her boss, caught the error and brought it to Hoover's attention. The director then placed an official letter of reprimand in Sullivan's file for the lapse. W. Mark Felt, deputy associate director of the Bureau, wrote in his memoir that Gandy \"was bright and alert and quick-tempered—and completely dedicated to her boss.\"\n\nThe Files\n\nJ. Edgar Hoover died during the night of May 1-May 2, 1972. When his housekeeper, Annie Fields, discovered the body on the morning of the second, her second call (after telephoning acting director Clyde A. Tolson) was to Gandy, who learned the news at 8:40 A.M. Within an hour, the \"D List\", \"d\" standing for destruction, was being distributed and the destruction of files began. However, The New York Times quoted an anonymous F.B.I. source in the spring of 1975 that \"Gandy had begun almost a year before Mr. Hoover's death and was instructed to purge the files that were then in his office.\"\n\nAnthony Summers reported that G. Gordon Liddy stated his sources in the F.B.I. said \"by the time Gray went in to get the files, Miss Gandy had already got rid of them.\" The day after Hoover died, L. Patrick Gray, who had been named acting director by President Richard Nixon upon Tolson's resignation from that position, went to Hoover's office. Gandy paused from her work to give Gray a tour. He found file cabinets open and packing boxes being filled with papers. She informed him the boxes contained personal papers of Hoover's. Gandy stated Gray flipped through a few files and approved her work, but Gray was to deny he looked at any papers. Gandy also told Gray it would be a week before she could clear Hoover's effects out so he could move into the suite.\n\nGray reported to Nixon that he had secured Hoover's office and its contents. However, he had sealed only Hoover's personal inner office, where no files were stored, not the entire suite of offices. Since 1957, Hoover's \"Official/Confidential\" files, containing material too sensitive to include in the Bureau's central files, had been kept in the outer office, where Gandy sat. Curt Gentry reported that Gray would not have known where to look in Gandy's office for the files, as her office was lined floor to ceiling with filing cabinets. And without her index to the files, he would not have been able to locate incriminating material for files were deliberately mislabeled, e.g. President Nixon's file was labeled \"Obscene Matters\".\n\nThe next day, May 4, she turned over twelve boxes of the \"Official/Confidential\" containing 167 files and 17,750 pages to Mark Felt. Many of them contained derogatory information. Gray told the press that afternoon that \"there are no dossiers or secret files. There are just general files and I took steps to preserve their integrity.\" Gandy retained the \"Personal File\".\n\nGandy worked on going through Hoover's \"Personal File\" in the office until May 12. She then transferred at least thirty-two file drawers of material to the basement rec room of Hoover's Washington home at 4936 Thirtieth Place, Northwest, where she would continue her work from May 13 to July 17. Gandy later testified nothing official had been removed from the Bureau's offices, \"not even his badge.\" There the destruction was overseen by John Mohr, the number three man in the Bureau after Hoover and Tolson. They were aided by James Jesus Angleton, the Central Intelligence Agency's counterintelligence chief, who Hoover's neighbors saw removing boxes from Hoover's home. Mohr would claim the boxes Angleton removed were cases of spoiled wine.\n\nWhen the House Committee on Government Oversight investigated the F.B.I.'s spying on and harassment of Martin Luther King, Jr. and others in 1975, Gandy was called to testify. \"I tore them up, put them in boxes, and they were taken away to be shredded,\" she told the congressmen about the papers. The Bureau's Washington field office had F.B.I. drivers transport the material to Hoover's home, then once Gandy had gone through the material, the drivers transported it back to the field office in the Old Post Office Building on Pennsylvania Avenue where it was shredded and burned.\n\nGandy stated that Hoover had left standing instructions to destroy his personal papers upon his death and that this instruction was confirmed by Tolson and Gray. Gandy stated that she destroyed no official papers, that everything was personal papers of Hoover. The staff of the subcommittee did not believe her, but she told the committee \"I have no reason to lie.\" Representative Gene Andrew Maguire (D-New Jersey), a freshman member of the 94th Congress, said \"I find your testimony very difficult to believe.\" Gandy held her ground: \"That is your privilege.\"\n\n\"I can give you my word. I know what there was—letters to and from friends, personal friends, a lot of letters,\" she testified. Gandy also said the files she took to his home also included his financial papers, such as tax returns and investment statements, the deed to his home, and papers relating to his dogs' pedigrees.\n\nCurt Gentry wrote\n\nHelen Gandy must have felt quite safe in testifying as she did for who could contradict her? Only one other person knew exactly what the files contained and he was dead.\n\nLater years\n\nWhile she officially retired the day Hoover died, she spent the next few weeks destroying his papers and Hoover left her $5,000 in his will. In 1961, she and her sister, Lucy G. Rodman, donated a portrait of their mother by Thomas Eakins to the Smithsonian Museum of American Art . Gandy lived in Washington, D.C., until 1986, when she moved to DeLand, Florida, where a niece lived. An avid trout fisherman (according to her Washington Post obituary), she died of a heart attack in 1988, either in DeLand (says her New York Times obituary) or in Orange City, Florida (says her Post obituary).",
+    "sourceReview": {
+      "rootId": "wikipedia-article-14018",
+      "articleSha256": "e4cb8750959ed79518a6b3b07933e05e63e9692ab00c5050a43dee966699ba61",
+      "textSha256": "fe2d7f2c361501e5d563ab93e3b80ca8ec9d5bd253e2f44f95eae8ede83d76a2",
+      "decision": "accepted-text",
+      "excludedTargets": [],
+      "excludedSpans": [
+        {
+          "start": 0,
+          "end": 8,
+          "sha256": "ce679b3b16b324d8b9ac43c65f4c60becf40f57c3653391577dc6b00854e62f7"
+        },
+        {
+          "start": 626,
+          "end": 848,
+          "sha256": "f552176d0f8048b545497eb0a14d1e4ff8cbdedc331a15aaa285991e3f74a96c"
+        },
+        {
+          "start": 1394,
+          "end": 1477,
+          "sha256": "08f869fa302a8e72219ed9413a17f0fc6cc9db23c9cd5fc5ce045637b7a2ae46"
+        },
+        {
+          "start": 7002,
+          "end": 7348,
+          "sha256": "27a70e7f2efe3428d0b8df6f0832aa10c2b2ddf11997dbda0ad7448016298667"
+        }
+      ]
+    }
+  },
+  "model": {
+    "model": "Systran/faster-whisper-large-v3",
+    "revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+    "officialFiles": {
+      "README.md": {
+        "size": 2052,
+        "lfsSha256": null
+      },
+      "config.json": {
+        "size": 2394,
+        "lfsSha256": null
+      },
+      "model.bin": {
+        "size": 3087284237,
+        "lfsSha256": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1"
+      },
+      "preprocessor_config.json": {
+        "size": 340,
+        "lfsSha256": null
+      },
+      "tokenizer.json": {
+        "size": 2480617,
+        "lfsSha256": null
+      },
+      "vocabulary.json": {
+        "size": 1068114,
+        "lfsSha256": null
+      }
+    },
+    "downloadedSha256": {
+      "README.md": "39e96252229f5a3d0141dc81afb65a36fd205461ac21e5b70f2cd1248ef0082c",
+      "config.json": "a9306624f5ec14270a014b647e5c316b6e03a662c369758d1b90697a7b0655b9",
+      "model.bin": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1",
+      "preprocessor_config.json": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+      "tokenizer.json": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+      "vocabulary.json": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1"
+    }
+  },
+  "options": {
+    "language": "en",
+    "beam_size": 1,
+    "temperature": 0,
+    "condition_on_previous_text": false,
+    "vad_filter": false,
+    "word_timestamps": true
+  }
+}

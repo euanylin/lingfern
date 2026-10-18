@@ -1,0 +1,21 @@
+{
+  "records": 1076,
+  "tokens": 2721786,
+  "sentences": 101300,
+  "utf16Ranges": "verified",
+  "sourceHashes": "verified",
+  "model": {
+    "version": 1,
+    "spacy": "3.8.16",
+    "model": "core_web_sm",
+    "modelVersion": "3.8.0",
+    "modelLicence": "MIT",
+    "modelFilesSha256": "5f7701300a1a25bbbec7861933e9aadfa7e5de254b290201fd1f8975b07862f3",
+    "inputSha256": "85587b1e68a92075cf61ccf00404491c5b2e7593bb6eeb191b38523ba2e2ad45",
+    "reviewStatus": "pending",
+    "indexUnits": "UTF-16"
+  },
+  "annotationBytes": 256901288,
+  "editorialReview": "pending",
+  "frontendIntegrated": false
+}

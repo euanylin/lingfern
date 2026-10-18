@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-09-30T22:48:47.622476+00:00",
+  "requestedLimit": 1100,
+  "availableSourcePairs": 1076,
+  "audited": 1076,
+  "complete": true,
+  "transcriptionFailures": 0,
+  "qualityFlagged": 272,
+  "model": "mlx-community/whisper-large-v3-turbo",
+  "modelRevision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+  "humanReviewed": 0,
+  "approvedListeningTasks": 0,
+  "note": "Automatic source/audio matching diagnostics, not validated transcripts, language-ability estimates or editorial approval."
+}

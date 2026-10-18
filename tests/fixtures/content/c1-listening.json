@@ -1,0 +1,345 @@
+{
+  "id": "c1-indirect-intention-listening",
+  "targetLevel": "C1",
+  "skill": "listening",
+  "title": {
+    "zh-Hans": "听懂言外之意与修正",
+    "zh-Hant": "聽懂言外之意與修正",
+    "en": "Hear indirect intentions and revisions"
+  },
+  "goal": {
+    "zh-Hans": "从完整讨论中听出委婉请求、尚未确认的安排及说话者的自我修正。",
+    "zh-Hant": "從完整討論中聽出委婉請求、尚未確認的安排及說話者的自我修正。",
+    "en": "Track indirect requests, unconfirmed arrangements and speakers’ self-corrections across a discussion."
+  },
+  "goalId": "spoken-indirect-intention",
+  "sourceId": "lingfern-synthetic-c1-discussions",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先听双方共同重视什么，再捕捉“不是要取消”“准确地说”等修正。把内部计划与对外承诺分开。",
+    "zh-Hant": "先聽雙方共同重視甚麼，再捕捉「不是要取消」「準確地說」等修正。把內部計畫與對外承諾分開。",
+    "en": "First hear the shared concern, then track repairs such as “not a request to cancel” or “to be precise”. Separate internal planning from public commitment."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“或许可以列入计划；但请先别发邀请。”→ 同意内部筹备，不等于确认活动。",
+    "zh-Hant": "示範（不計分）：「或許可以列入計畫；但請先別發邀請。」→ 同意內部籌備，不等於確認活動。",
+    "en": "Unscored example: “We could put it in the plan, but please do not invite anyone yet.” → Planning is allowed; the event is not confirmed."
+  },
+  "materials": [
+    {
+      "id": "roof-garden-discussion",
+      "rootId": "original-roof-garden-discussion",
+      "title": "A discussion about opening a roof garden",
+      "questions": [
+        {
+          "id": "roof-indirect-request",
+          "prompt": "What does Theo mean by putting Saturday in the “planning column”, not the visitor calendar?",
+          "options": [
+            "The date can guide internal preparation, but visitors must not be invited before access is cleared.",
+            "The garden opening is cancelled and cannot be discussed again.",
+            "The date is confirmed, but the visitors should find the booking link themselves."
+          ],
+          "answer": 0,
+          "hints": [
+            {
+              "zh-Hans": "先分清内部计划与对外邀请。",
+              "zh-Hant": "先分清內部計畫與對外邀請。",
+              "en": "Separate internal planning from a public invitation."
+            },
+            {
+              "zh-Hans": "他明确说并非取消活动。",
+              "zh-Hant": "他明確說並非取消活動。",
+              "en": "He explicitly says this is not a cancellation."
+            },
+            {
+              "zh-Hans": "日期可供团队准备，但开放路线尚未获准。",
+              "zh-Hant": "日期可供團隊準備，但開放路線尚未獲准。",
+              "en": "The team may plan around the date, but access is not cleared."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：这是内部暂定安排，不能当作访客预约。",
+              "zh-Hant": "正確：這是內部暫定安排，不能當作訪客預約。",
+              "en": "Correct: the date is for planning, not visitor booking."
+            },
+            {
+              "zh-Hans": "不对：Theo 说没有要求取消。",
+              "zh-Hant": "不對：Theo 說沒有要求取消。",
+              "en": "Theo explicitly says he is not cancelling."
+            },
+            {
+              "zh-Hans": "不对：没有确认日期，也没有报名链接。",
+              "zh-Hant": "不對：尚未確認日期，也沒有報名連結。",
+              "en": "The date and booking link are not confirmed."
+            }
+          ],
+          "blockId": "roof-garden-discussion-theo",
+          "evidence": {
+            "start": 307,
+            "end": 383,
+            "audioStart": 59.45,
+            "audioEnd": 64.825
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "roof-garden-discussion-theo",
+              "start": 384,
+              "end": 494,
+              "audioStart": 65.075,
+              "audioEnd": 72.775
+            }
+          ]
+        },
+        {
+          "id": "roof-self-correction",
+          "prompt": "Why does Mira reject the word “postponed” in her final response?",
+          "options": [
+            "She has decided to hold the opening next Saturday after all.",
+            "The event never had a confirmed public date, so there is no confirmed opening to postpone.",
+            "She wants to hide the inspection from the volunteers."
+          ],
+          "answer": 1,
+          "hints": [
+            {
+              "zh-Hans": "听她如何修正自己的词。",
+              "zh-Hant": "聽她如何修正自己的詞。",
+              "en": "Listen for how she repairs her own wording."
+            },
+            {
+              "zh-Hans": "“延期”通常预设先有已确定的安排。",
+              "zh-Hant": "「延期」通常預設先有已確定的安排。",
+              "en": "“Postponed” would imply there was a confirmed date."
+            },
+            {
+              "zh-Hans": "周六只是内部可能性，原本没有已确认的公开开放。",
+              "zh-Hant": "週六只是內部可能性，原本沒有已確認的公開開放。",
+              "en": "Saturday was only an internal possibility, never a confirmed opening."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：她删掉了公开草稿中的周六日期。",
+              "zh-Hant": "不對：她刪掉了公開草稿中的週六日期。",
+              "en": "She removes Saturday from the public draft."
+            },
+            {
+              "zh-Hans": "正确：她修正了“延期”暗含的已确定承诺。",
+              "zh-Hant": "正確：她修正了「延期」暗含的已確認承諾。",
+              "en": "Correct: she avoids implying that a confirmed date existed."
+            },
+            {
+              "zh-Hans": "不对：她准备在公告中说明等待检查决定。",
+              "zh-Hant": "不對：她準備在公告中說明等待檢查決定。",
+              "en": "She plans to mention the pending access decision."
+            }
+          ],
+          "blockId": "roof-garden-discussion-mira-again",
+          "evidence": {
+            "start": 206,
+            "end": 320,
+            "audioStart": 114.35,
+            "audioEnd": 121.725
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "roof-garden-discussion-mira-again",
+              "start": 111,
+              "end": 205,
+              "audioStart": 107.95,
+              "audioEnd": 114.1
+            }
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "id": "roof-garden-discussion-mira",
+          "title": "Mira",
+          "text": "The volunteers have finished planting the roof garden, and the photographs make it look ready for visitors. I was going to put next Saturday on the public calendar so that people could join the first guided walk. The planting team has done everything we asked, and several neighbours have offered to help with the opening. I know the building inspection was planned for this week, but I have not seen its report. If we miss the community newsletter deadline tomorrow, the garden may not get much attention this month. I would rather avoid a vague notice, though, because people need to know whether they can actually come."
+        },
+        {
+          "id": "roof-garden-discussion-theo",
+          "title": "Theo",
+          "text": "The work looks excellent, and I would be happy to help explain the planting choices at an opening. But the photographs cannot tell us whether the new handrail meets the building team’s requirements. The inspection visit happened yesterday, but the team has not issued its decision or a date for any repair. I can put next Saturday in our planning column, not in the visitor calendar. That is not a request to cancel the opening; it is a request not to invite people before the route is cleared. We can still use the newsletter to show what the volunteers built, with a line saying that access details will follow after the inspection decision. If the handrail passes, I will ask the guide team which Saturday they can staff, and then we can announce a real booking link. If it needs work, the photographs and the planting story are still worth sharing without implying that the roof is open."
+        },
+        {
+          "id": "roof-garden-discussion-mira-again",
+          "title": "Mira again",
+          "text": "I see the difference: we can celebrate completed planting without presenting an unapproved route as available. I will remove next Saturday from the public draft and keep it only as an internal possibility. Actually, I should correct my earlier wording: the opening has not been postponed, because it was never confirmed. The newsletter can describe the garden project and say that a visit date will be shared after the access decision and guide staffing are known. I will not add a registration button yet, and I will tell the volunteers that offers to help are welcome but no visitor shift has been assigned. Once the inspection report arrives, I will ask you to check the exact public wording before we send it."
+        }
+      ],
+      "audio": {
+        "src": "/audio/c1-speech/roof-garden-discussion.mp3",
+        "sha256": "0db3de2b84fdfc850f002d994d889512b3aa1438c980ffa616e58f7a638cb094",
+        "duration": 147.35,
+        "author": "Lingfern · Kokoro-82M synthetic voices",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      }
+    },
+    {
+      "id": "research-digest-discussion",
+      "rootId": "original-research-digest-discussion",
+      "title": "A discussion about a research digest",
+      "questions": [
+        {
+          "id": "digest-editor-intention",
+          "prompt": "What is Ravi asking Lena to change in the opening?",
+          "options": [
+            "Remove every positive response and delay all reporting indefinitely.",
+            "Put the observational limit in the main claim and check the revised wording with the report authors.",
+            "Keep the causal headline and add a small caveat only at the end."
+          ],
+          "answer": 1,
+          "hints": [
+            {
+              "zh-Hans": "注意他接受积极回应，但反对哪种断言。",
+              "zh-Hant": "注意他接受正面回應，但反對哪種斷言。",
+              "en": "Notice what he accepts and which claim he rejects."
+            },
+            {
+              "zh-Hans": "限制应放在主句还是脚注？",
+              "zh-Hant": "限制應放在主句還是註腳？",
+              "en": "Should the limit be in the claim or a footnote?"
+            },
+            {
+              "zh-Hans": "保留观察到的下降，删除未证实的因果，并请作者核对。",
+              "zh-Hant": "保留觀察到的下降，刪除未證實的因果，並請作者核對。",
+              "en": "Keep the observed decline, avoid unsupported causation and ask the authors to review."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：他不要求掩盖积极回应，也未永久搁置报告。",
+              "zh-Hant": "不對：他不要求掩蓋正面回應，亦未永久擱置報告。",
+              "en": "He does not ask to hide positive responses or stop reporting forever."
+            },
+            {
+              "zh-Hans": "正确：限定必须随主要结论出现，并经原报告作者核对。",
+              "zh-Hant": "正確：限定必須與主要結論一同出現，並經原報告作者核對。",
+              "en": "Correct: put the limit in the main claim and consult the report authors."
+            },
+            {
+              "zh-Hans": "不对：他明确说脚注会被忽略。",
+              "zh-Hant": "不對：他明確說註腳可能被忽略。",
+              "en": "He explicitly rejects burying the limit in a footnote."
+            }
+          ],
+          "blockId": "research-digest-discussion-ravi",
+          "evidence": {
+            "start": 524,
+            "end": 646,
+            "audioStart": 81.55,
+            "audioEnd": 89.7
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "research-digest-discussion-ravi",
+              "start": 647,
+              "end": 771,
+              "audioStart": 89.95,
+              "audioEnd": 98.1
+            }
+          ]
+        },
+        {
+          "id": "digest-revised-position",
+          "prompt": "What is Lena’s final publication position?",
+          "options": [
+            "Publish the causal digest before the meeting regardless of the authors’ reply.",
+            "Abandon the digest and withhold the already published report.",
+            "Hold the digest decision until the summary is checked; if time runs out, share the existing report link instead."
+          ],
+          "answer": 2,
+          "hints": [
+            {
+              "zh-Hans": "区分暂缓发布与放弃摘要。",
+              "zh-Hant": "區分暫緩發布與放棄摘要。",
+              "en": "Distinguish holding a decision from abandoning the digest."
+            },
+            {
+              "zh-Hans": "找会议前无法核实时的备选方案。",
+              "zh-Hant": "找會議前無法核實時的替代方案。",
+              "en": "Find the fallback if verification is not ready before the meeting."
+            },
+            {
+              "zh-Hans": "先等摘要核对；来不及就分享已经发表的报告。",
+              "zh-Hant": "先等摘要核對；來不及就分享已發表的報告。",
+              "en": "Wait for alignment; if time runs out, share the existing report."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：她明确不再使用未经证实的因果标题。",
+              "zh-Hant": "不對：她明確不再使用未經證實的因果標題。",
+              "en": "She will not circulate the unsupported causal headline."
+            },
+            {
+              "zh-Hans": "不对：她没有放弃摘要，也愿意分享原报告。",
+              "zh-Hant": "不對：她沒有放棄摘要，亦願意分享原報告。",
+              "en": "She does not abandon the digest or withhold the report."
+            },
+            {
+              "zh-Hans": "正确：她等待核对，并有不夸大结论的备选做法。",
+              "zh-Hant": "正確：她等待核對，並有不誇大結論的替代做法。",
+              "en": "Correct: she waits for review and has a non-overstated fallback."
+            }
+          ],
+          "blockId": "research-digest-discussion-lena-again",
+          "evidence": {
+            "start": 624,
+            "end": 770,
+            "audioStart": 156.85,
+            "audioEnd": 165.8
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "research-digest-discussion-lena-again",
+              "start": 490,
+              "end": 623,
+              "audioStart": 147.6,
+              "audioEnd": 156.6
+            }
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "id": "research-digest-discussion-lena",
+          "title": "Lena",
+          "text": "I have drafted a short digest of our transport survey for residents who will not read the full report. The opening says that the new evening bus route reduced missed appointments by a third. That sentence came from comparing reports before and after the route changed, and it gives readers a clear reason to care. The survey also asked people who used the bus whether the trip felt easier, and most respondents said yes. I want a headline that acknowledges a real improvement without making readers work through every table. Could we publish the digest this week, before the council meeting? The report authors have already checked the figures, although they have not reviewed my summary wording."
+        },
+        {
+          "id": "research-digest-discussion-ravi",
+          "title": "Ravi",
+          "text": "The digest should be readable, and the positive comments deserve space, but I cannot sign off on that opening as it stands. The before-and-after reports came from different clinics, and appointment hours changed during the same period. Those figures show fewer missed appointments in the later reports; they do not isolate what the new route caused. The bus survey also reached riders who chose to reply, not everyone who missed an appointment. I am not asking you to bury the encouraging responses under a wall of caveats. I am asking you to make the comparison visible in the sentence that carries the claim, not in a footnote readers may miss. Could you ask the report authors whether they accept a headline about an observed decline, then send me the revised opening? If they reply in time, I can review it before the council meeting; that is a possible route to publication, not a guarantee of it. If the reply comes later, a brief note on what was measured would be more responsible than a causal headline."
+        },
+        {
+          "id": "research-digest-discussion-lena-again",
+          "title": "Lena again",
+          "text": "I had treated “after the route changed” as if it meant “because the route changed”, and those are different claims. I will propose “Later clinic reports recorded fewer missed appointments” and say which clinics and periods were compared. The rider comments can be described as responses from bus users who answered the survey, without claiming that they represent every patient. I will send that wording to the authors today and wait for their reply before using it as the digest headline. To be precise, I am not shelving the digest; I am holding the publication decision until the summary and the underlying report agree. If we cannot verify the wording before the council meeting, I will share the already published report link rather than circulate a stronger claim. That still gives councillors useful information without asking them to mistake a readable summary for a settled causal finding."
+        }
+      ],
+      "audio": {
+        "src": "/audio/c1-speech/research-digest-discussion.mp3",
+        "sha256": "0201779e676482cf15a490cb7cb76811ece9c7de9b6e1fd6f590f19ba20dade0",
+        "duration": 174.975,
+        "author": "Lingfern · Kokoro-82M synthetic voices",
+        "sourceUrl": "https://huggingface.co/hexgrad/Kokoro-82M",
+        "license": "Pending project release decision",
+        "synthetic": true
+      }
+    }
+  ],
+  "themes": [
+    "science",
+    "campus"
+  ],
+  "nextStep": {
+    "zh-Hans": "重听委婉请求和说话者的自我修正。",
+    "zh-Hant": "重聽委婉請求和說話者的自我修正。",
+    "en": "Listen again for the indirect request and the speaker’s self-correction."
+  }
+}

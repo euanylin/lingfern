@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-16",
+  "scope": "Two exact coherent retained source passages reviewed for specific speech-act intention, not an exercise bank or whole-book/CEFR approval. Original rights unchanged. Holmes uses an existing verified contiguous short-reading scope, no new cut or raised bound.",
+  "records": [
+    {
+      "rootId": "voa-article-3397314",
+      "sourceHash": "53ffca418d2b5a088b3f83d2b40a613d6cb0befdec5c9f4fa7cf181f4fe10194",
+      "passageId": "c44a99f5fab1f9cefd1a9288b40c749d99b15849adb6535b733032ebf471c168",
+      "textSha256": "c44a99f5fab1f9cefd1a9288b40c749d99b15849adb6535b733032ebf471c168",
+      "text": "Anna: Hi there! And welcome to … Amelia, we don’t have a name for the show.\n\nAmelia: We’ll think of a name later. For now, we'll call it “The Show.”\n\nAnna: Great. Hi there! And welcome to “The Show.”\n\nAnna: Today we are going to take you on a summer vacation! You will see popular things to do on vacation!\n\nAnna: One is camping. When you go camping, you cook, sleep and play outdoors!\n\nAmelia: When I go camping, Anna, I like to go hiking and fishing.\n\nAnna: Me, too. Those are fun things to do when you go camping!\n\nAnna: These people are hiking.\n\nAmelia: Okay, let’s talk about the next vacation.\n\nAnna: Another popular summer vacation is going to an amusement park. At an amusement park, you go on rides and eat lots of fun food!\n\nAmelia: I love cotton candy … !\n\nAnna & Amelia: and rollercoasters!\n\nAmelia: This show is going to be a lot of fun.",
+      "credit": {
+        "attribution": "Lesson 22: Next Summer... — VOA Learning English. VOA Learning English (https://learningenglish.voanews.com/a/lets-learn-english-lesson-22/3397314.html).",
+        "license": "Original VOA Learning English text: public domain with attribution. No agency content or media included.",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-22/3397314.html"
+      }
+    },
+    {
+      "rootId": "gutenberg-book-1661",
+      "sourceHash": "922e2a12ccb43a4c9544c260b2166c6ad2097aeb5957faeee113f173bb857cd0",
+      "passageId": "1dd00615b06014d6523b5773edac01b5e70d509a7801e706779f4be3deca93d7",
+      "textSha256": "1dd00615b06014d6523b5773edac01b5e70d509a7801e706779f4be3deca93d7",
+      "text": "“And your father? Did you tell him?”\n\n“Yes; and he seemed to think, with me, that something had happened, and that I should hear of Hosmer again. As he said, what interest could anyone have in bringing me to the doors of the church, and then leaving me? Now, if he had borrowed my money, or if he had married me and got my money settled on him, there might be some reason, but Hosmer was very independent about money and never would look at a shilling of mine. And yet, what could have happened? And why could he not write? Oh, it drives me half-mad to think of it, and I can’t sleep a wink at night.” She pulled a little handkerchief out of her muff and began to sob heavily into it.\n\n“I shall glance into the case for you,” said Holmes, rising, “and I have no doubt that we shall reach some definite result. Let the weight of the matter rest upon me now, and do not let your mind dwell upon it further. Above all, try to let Mr. Hosmer Angel vanish from your memory, as he has done from your life.”",
+      "credit": {
+        "attribution": "The Adventures of Sherlock Holmes — Doyle, Arthur Conan, 1859-1930. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/1661).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/1661"
+      }
+    }
+  ]
+}

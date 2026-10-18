@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "reviewer": "Codex/AI",
+  "decision": "supported-beginner-text",
+  "scope": "Four exact complete original-author native paragraphs with A2 instruction/source support only, no CEFR or semantic transfer calibration. No Hughes poetic text, concatenation or ordinary120word exemption.",
+  "scopes": [
+    {
+      "id": "0403e7452e3144fbcfa03271314056bf411f5b9d51125eea1fda4dd06b2cf609",
+      "wordCount": 53,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader2",
+        "chapter": "Chapter 1 – BC Reads: Adult Literacy Fundamental English – Reader 2",
+        "locator": "chapter/chapter-1",
+        "sourceUrl": "https://opentextbc.ca/abealfreader2/chapter/chapter-1/",
+        "rawSha256": "643dadb49d732a6ac66fcb44d9e33b20f6820093406c85157d8339d11ca37aa2",
+        "canonicalSha256": "2644de616c0b51ed304ea7987db900c2fc803dbb74a62ec820d771e51fefc3dc",
+        "paragraphIndex": 2,
+        "codePointStart": 86,
+        "codePointEnd": 325,
+        "sourceStart": 86,
+        "sourceEnd": 325,
+        "textSha256": "1a79c0c7ca0b71cd300b842cc30f51da5da7488fbd745b43d8d5374439a950e3"
+      }
+    },
+    {
+      "id": "f935e15ab3dfec7f400b6a5b334ed84f26ee3140ff2279dc077aa9570b6be198",
+      "wordCount": 60,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader2",
+        "chapter": "Chapter 1 – BC Reads: Adult Literacy Fundamental English – Reader 2",
+        "locator": "chapter/chapter-1",
+        "sourceUrl": "https://opentextbc.ca/abealfreader2/chapter/chapter-1/",
+        "rawSha256": "643dadb49d732a6ac66fcb44d9e33b20f6820093406c85157d8339d11ca37aa2",
+        "canonicalSha256": "2644de616c0b51ed304ea7987db900c2fc803dbb74a62ec820d771e51fefc3dc",
+        "paragraphIndex": 3,
+        "codePointStart": 327,
+        "codePointEnd": 640,
+        "sourceStart": 327,
+        "sourceEnd": 640,
+        "textSha256": "4501571a7ba51c0938425f2c860e810cea926bd70696cb1be3fed7b605c10b55"
+      }
+    },
+    {
+      "id": "8145eccba24d5c2117ccfc7b4f65fc5fcc2374fcb426299d01b1c0f855648d84",
+      "wordCount": 58,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader3",
+        "chapter": "The Gentleman Bandit – BC Reads: Adult Literacy Fundamental English – Reader 3",
+        "locator": "chapter/the-gentleman-bandit",
+        "sourceUrl": "https://opentextbc.ca/abealfreader3/chapter/the-gentleman-bandit/",
+        "rawSha256": "2dcbc02d98ba7dee1b8c649121c4c61bb3d49106f4125ab1c9e7f0e3562ac17d",
+        "canonicalSha256": "888222c0209352d1ec63ca9cf20eb8c658690e5f5dd362dce059b50bc6e3d85a",
+        "paragraphIndex": 2,
+        "codePointStart": 86,
+        "codePointEnd": 396,
+        "sourceStart": 86,
+        "sourceEnd": 396,
+        "textSha256": "36106f0102400eba32e7577496b326a9db11ab6b7d91f7d5955b43ff077ff75e"
+      }
+    },
+    {
+      "id": "b1806777d78c6d829397833f80272a7287ff2a4c39c0d255586a34ce6e2270ea",
+      "wordCount": 86,
+      "startingPoints": [
+        "A2"
+      ],
+      "sourceProvenance": {
+        "workId": "bccampus-abealfreader3",
+        "chapter": "The Gentleman Bandit – BC Reads: Adult Literacy Fundamental English – Reader 3",
+        "locator": "chapter/the-gentleman-bandit",
+        "sourceUrl": "https://opentextbc.ca/abealfreader3/chapter/the-gentleman-bandit/",
+        "rawSha256": "2dcbc02d98ba7dee1b8c649121c4c61bb3d49106f4125ab1c9e7f0e3562ac17d",
+        "canonicalSha256": "888222c0209352d1ec63ca9cf20eb8c658690e5f5dd362dce059b50bc6e3d85a",
+        "paragraphIndex": 3,
+        "codePointStart": 398,
+        "codePointEnd": 851,
+        "sourceStart": 398,
+        "sourceEnd": 851,
+        "textSha256": "a107ff8bc0b996ae18cd1958fa86c78ecdcfedff64ebd5300369247a8b2667da"
+      }
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "id": "corpus-a207303e8239bd8efd5ba2675423ce8a99591edbd0987cb6f29246a5644b8891",
+    "rootId": "gutenberg-book-5978",
+    "title": "An Autobiography of Anthony Trollope",
+    "sourceId": "gutenberg-5978",
+    "credit": {
+      "attribution": "Anthony Trollope. Project Gutenberg edition 5978. Recording: Jessica Louise; LibriSpeech, Vassil Panayotov and Daniel Povey. FLAC converted to MP3.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/5978"
+    },
+    "audio": {
+      "src": "/audio/community-dca4df0fc38f755acb19866004d0f9d6f7d9c9b17c0c64fb084432ce2c6bed96/librispeech-3112-9555-0076.mp3",
+      "sha256": "3f7e0d18103b1802960953efe0b26a1ebb198b2ba316138c53b70125d4a363c0",
+      "duration": 13.825034013605443,
+      "author": "Jessica Louise",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "blocks": [
+      {
+        "id": "corpus-a207303e8239bd8efd5ba2675423ce8a99591edbd0987cb6f29246a5644b8891",
+        "text": "In the old house were\r\nthe two first volumes of Cooper's novel, called _The Prairie_, a\r\nrelic--probably a dishonest relic--of some subscription to Hookham's\r\nlibrary. Other books of the kind there was none."
+      }
+    ],
+    "questions": [
+      {
+        "kind": "completion",
+        "id": "corpus-a207303e8239bd8efd5ba2675423ce8a99591edbd0987cb6f29246a5644b8891-restore",
+        "blockId": "corpus-a207303e8239bd8efd5ba2675423ce8a99591edbd0987cb6f29246a5644b8891",
+        "prompt": "Listen and complete the sentence:\na\r\nrelic--probably a dishonest relic--of some subscription to Hookham's\r\n________. ",
+        "answer": "library",
+        "accepted": [
+          "library"
+        ],
+        "evidence": {
+          "start": 86,
+          "end": 168,
+          "audioStart": 5.38,
+          "audioEnd": 9.98
+        },
+        "hints": [
+          {
+            "zh-Hans": "Listen for the missing word in the quoted phrase.",
+            "zh-Hant": "Listen for the missing word in the quoted phrase.",
+            "en": "Listen for the missing word in the quoted phrase."
+          },
+          {
+            "zh-Hans": "Use the words before and after the gap to locate it.",
+            "zh-Hant": "Use the words before and after the gap to locate it.",
+            "en": "Use the words before and after the gap to locate it."
+          },
+          {
+            "zh-Hans": "Replay the phrase and check the spelling of the word you heard.",
+            "zh-Hant": "Replay the phrase and check the spelling of the word you heard.",
+            "en": "Replay the phrase and check the spelling of the word you heard."
+          }
+        ],
+        "explanation": {
+          "zh-Hans": "The speaker uses “library”.",
+          "zh-Hant": "The speaker uses “library”.",
+          "en": "The speaker uses “library”."
+        }
+      },
+      {
+        "kind": "response",
+        "id": "corpus-a207303e8239bd8efd5ba2675423ce8a99591edbd0987cb6f29246a5644b8891-response",
+        "blockId": "corpus-a207303e8239bd8efd5ba2675423ce8a99591edbd0987cb6f29246a5644b8891",
+        "prompt": "Summarize what the speaker says in two sentences. Quote a few words you heard to support your interpretation.",
+        "criteria": [
+          {
+            "zh-Hans": "My summary agrees with what the speaker says.",
+            "zh-Hant": "My summary agrees with what the speaker says.",
+            "en": "My summary agrees with what the speaker says."
+          },
+          {
+            "zh-Hans": "I cite words I heard and avoid inventing missing context.",
+            "zh-Hant": "I cite words I heard and avoid inventing missing context.",
+            "en": "I cite words I heard and avoid inventing missing context."
+          }
+        ],
+        "evidence": {
+          "start": 0,
+          "end": 207,
+          "audioStart": 0,
+          "audioEnd": 13.04
+        },
+        "hints": [
+          {
+            "zh-Hans": "Identify the main situation or event.",
+            "zh-Hant": "Identify the main situation or event.",
+            "en": "Identify the main situation or event."
+          },
+          {
+            "zh-Hans": "Listen for one supporting detail.",
+            "zh-Hant": "Listen for one supporting detail.",
+            "en": "Listen for one supporting detail."
+          },
+          {
+            "zh-Hans": "Separate the speaker’s words from your interpretation.",
+            "zh-Hant": "Separate the speaker’s words from your interpretation.",
+            "en": "Separate the speaker’s words from your interpretation."
+          }
+        ],
+        "explanation": {
+          "zh-Hans": "Compare your interpretation with the recording and assess it using the points below.",
+          "zh-Hant": "Compare your interpretation with the recording and assess it using the points below.",
+          "en": "Compare your interpretation with the recording and assess it using the points below."
+        }
+      }
+    ]
+  },
+  {
+    "id": "corpus-906709ced5abb61d0bc63cb8eb709748a825ed800e352743af8bfb856fe02f96",
+    "rootId": "gutenberg-book-73",
+    "title": "The Red Badge of Courage: An Episode of the American Civil War",
+    "sourceId": "gutenberg-73",
+    "credit": {
+      "attribution": "Stephen Crane. Project Gutenberg edition 73. Recording: Sandra in Wales, United Kingdom; LibriSpeech, Vassil Panayotov and Daniel Povey. FLAC converted to MP3.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/73"
+    },
+    "audio": {
+      "src": "/audio/community-dca4df0fc38f755acb19866004d0f9d6f7d9c9b17c0c64fb084432ce2c6bed96/librispeech-441-130108-0023.mp3",
+      "sha256": "589187d5d345d7436a957bb1ce47b1d6c2078ee21c5f74492b0c1ce11356e439",
+      "duration": 12.72,
+      "author": "Sandra in Wales, United Kingdom",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "blocks": [
+      {
+        "id": "corpus-906709ced5abb61d0bc63cb8eb709748a825ed800e352743af8bfb856fe02f96",
+        "text": "The troops, sifting through the forest, were sullen. In the youth’s\r\ncompany once a man’s laugh rang out. A dozen soldiers turned their\r\nfaces quickly toward him and frowned with vague displeasure."
+      }
+    ],
+    "questions": [
+      {
+        "kind": "completion",
+        "id": "corpus-906709ced5abb61d0bc63cb8eb709748a825ed800e352743af8bfb856fe02f96-restore",
+        "blockId": "corpus-906709ced5abb61d0bc63cb8eb709748a825ed800e352743af8bfb856fe02f96",
+        "prompt": "Listen and complete the sentence:\nA dozen soldiers turned their\r\nfaces quickly toward him and ________ with vague displeasure.",
+        "answer": "frowned",
+        "accepted": [
+          "frowned"
+        ],
+        "evidence": {
+          "start": 106,
+          "end": 197,
+          "audioStart": 7.8,
+          "audioEnd": 11.88
+        },
+        "hints": [
+          {
+            "zh-Hans": "Listen for the missing word in the quoted phrase.",
+            "zh-Hant": "Listen for the missing word in the quoted phrase.",
+            "en": "Listen for the missing word in the quoted phrase."
+          },
+          {
+            "zh-Hans": "Use the words before and after the gap to locate it.",
+            "zh-Hant": "Use the words before and after the gap to locate it.",
+            "en": "Use the words before and after the gap to locate it."
+          },
+          {
+            "zh-Hans": "Replay the phrase and check the spelling of the word you heard.",
+            "zh-Hant": "Replay the phrase and check the spelling of the word you heard.",
+            "en": "Replay the phrase and check the spelling of the word you heard."
+          }
+        ],
+        "explanation": {
+          "zh-Hans": "The speaker uses “frowned”.",
+          "zh-Hant": "The speaker uses “frowned”.",
+          "en": "The speaker uses “frowned”."
+        }
+      },
+      {
+        "kind": "response",
+        "id": "corpus-906709ced5abb61d0bc63cb8eb709748a825ed800e352743af8bfb856fe02f96-response",
+        "blockId": "corpus-906709ced5abb61d0bc63cb8eb709748a825ed800e352743af8bfb856fe02f96",
+        "prompt": "Summarize what the speaker says in two sentences. Quote a few words you heard to support your interpretation.",
+        "criteria": [
+          {
+            "zh-Hans": "My summary agrees with what the speaker says.",
+            "zh-Hant": "My summary agrees with what the speaker says.",
+            "en": "My summary agrees with what the speaker says."
+          },
+          {
+            "zh-Hans": "I cite words I heard and avoid inventing missing context.",
+            "zh-Hant": "I cite words I heard and avoid inventing missing context.",
+            "en": "I cite words I heard and avoid inventing missing context."
+          }
+        ],
+        "evidence": {
+          "start": 0,
+          "end": 197,
+          "audioStart": 0,
+          "audioEnd": 11.88
+        },
+        "hints": [
+          {
+            "zh-Hans": "Identify the main situation or event.",
+            "zh-Hant": "Identify the main situation or event.",
+            "en": "Identify the main situation or event."
+          },
+          {
+            "zh-Hans": "Listen for one supporting detail.",
+            "zh-Hant": "Listen for one supporting detail.",
+            "en": "Listen for one supporting detail."
+          },
+          {
+            "zh-Hans": "Separate the speaker’s words from your interpretation.",
+            "zh-Hant": "Separate the speaker’s words from your interpretation.",
+            "en": "Separate the speaker’s words from your interpretation."
+          }
+        ],
+        "explanation": {
+          "zh-Hans": "Compare your interpretation with the recording and assess it using the points below.",
+          "zh-Hant": "Compare your interpretation with the recording and assess it using the points below.",
+          "en": "Compare your interpretation with the recording and assess it using the points below."
+        }
+      }
+    ]
+  }
+]

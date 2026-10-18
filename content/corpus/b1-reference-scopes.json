@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "rootId": "openstax-book-psychology-2e",
+      "sourceHash": "6be60580c7d640091e5406bf3c28ca9c5aa84b8de717cd5110ce11ba104c5435",
+      "passageId": "96d05b93162c0d735e995b313143607d1ec54c61d727cc0f6414d020aaf22988",
+      "textSha256": "bbb6d13de50d2dc42e2d4616c14ea3f065dc05ff32be4cd73477706549d835f1",
+      "text": "Surveys allow researchers to gather data from larger samples than may be afforded by other research methods. A sample is a subset of individuals selected from a population, which is the overall group of individuals that the researchers are interested in. Researchers study the sample and seek to generalize their findings to the population. Generally, researchers will begin this process by calculating various measures of central tendency from the data they have collected. These measures provide an overall summary of what a typical response looks like. There are three measures of central tendency: mode, median, and mean. The mode is the most frequently occurring response, the median lies at the middle of a given data set, and the mean is the arithmetic average of all data points. Means tend to be most useful in conducting additional analyses like those described below; however, means are very sensitive to the effects of outliers, and so one must be aware of those effects when making assessments of what measures of central tendency tell us about a data set in question.",
+      "credit": {
+        "attribution": "Psychology 2e — Rose M. Spielman; William J. Jenkins; Marilyn D. Lovett. OpenStax, Rice University. CC BY 4.0; fixed source edition; whitespace normalised, separate paragraphs. — Approaches to Research",
+        "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); original prose only, excluding third-party material and media.",
+        "sourceUrl": "https://github.com/openstax/osbooks-psychology/blob/e061043bf2f9e86ace51c4e8dc9555160f60a99d/modules/m82168/index.cnxml"
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-anthropology",
+      "sourceHash": "3faac5a77d333f57d6d23c4fbc885db6e37fa5dcec8640ecc5e5de850b3d2e5a",
+      "passageId": "4a02da5d3a9f63bec8b65c016ca64b13eefadc5b4e718d45dd3aee7b193a9984",
+      "textSha256": "fadd0232014030188610f965cba807caf0d9a6f03661e48e2e9f106c582bf4ed",
+      "text": "The first step in archival research is typically to review a list or similar finding aid that indexes and describes the resources available in a collection. These descriptive aids can help researchers determine whether a collection contains resources that fit their needs and can make a visit to a selected archive more efficient and worthwhile. Finding aids have become so well constructed that they may provide researchers with enough information to enable the researcher to request copies of specific materials and avoid the effort and expense of traveling to the archive in person. Most archives offer downloadable finding aids of their most important collections on their websites, and there may be additional printed finding aids available on request. Most archives will make requested copies for a moderate fee and will mail or email researchers a packet of the reproduced materials. The cost of procuring such copies is almost always much less than the cost of traveling to an archive site and paying for housing and meals. However, if a collection is potentially full of material important to a research project, it may be better to visit in person.",
+      "credit": {
+        "attribution": "Introduction to Anthropology — Jennifer Hasty; David G. Lewis; Marjorie M. Snipes; Todd A. Barnhardt; M. Anne Basham; Sharon Gursky; Laura Jarvis-Seibert; Saira A. Mehmood; Sydney Yeager. OpenStax, Rice University. CC BY 4.0 frozen source edition; complete native paragraphs, whitespace normalised; third-party/media excluded. — Collections",
+        "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); original prose only, excluding third-party material and media.",
+        "sourceUrl": "https://github.com/openstax/osbooks-introduction-anthropology/blob/6cb07defded1d0d8d246aa2f592a044e2e19136e/modules/m00015/index.cnxml"
+      }
+    }
+  ]
+}

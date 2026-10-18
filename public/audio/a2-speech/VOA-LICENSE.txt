@@ -1,0 +1,9 @@
+VOA Learning English original production. Permission: https://learningenglish.voanews.com/p/6861.html
+Original texts and MP3s may be reused with credit. Agency content, third-party images and video/music are excluded.
+https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html
+https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html
+voa-here.mp3: original recording clipped at 101.9 seconds, no re-encoding; original source retained privately.
+voa-objects.mp3: original recording unchanged.
+Conversation text extracted from official teaching PDFs; whitespace normalized. Independent editorial and listening review pending. Lingfern task release terms remain pending maintainer decision.
+voa-working.mp3: VOA Learning English — What Are You Doing?, https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html; original recording excerpt 64.7–94.36s, mono22050Hz/64kbps MP3. No synthetic voice or word-level time inference. Original transcript/filler diagnostics and model provenance retained privately; independent editorial review pending. Rights policy: https://learningenglish.voanews.com/p/6861.html
+voa-visit-times.mp3: VOA Learning English — Are You Busy?, https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html; original recording excerpt 38.04–87.22s, mono22050Hz/64kbps MP3. No synthetic voice or word-level time inference. Original transcript/filler diagnostics and model provenance retained privately; independent editorial review pending. Rights policy: https://learningenglish.voanews.com/p/6861.html

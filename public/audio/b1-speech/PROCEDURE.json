@@ -1,0 +1,60 @@
+[
+  {
+    "rootId": "gutenberg-book-18542",
+    "sourceHash": "f383ae86b81d3646f081b25f763fd45bd22442dca927547a65de763b9947973d",
+    "title": "How to Cook Fish",
+    "text": "Butter a baking-dish, put in a layer of fish, cover with sauce, season with grated nutmeg, and repeat until the dish is full. Cover with crumbs, dot with butter, and brown in the oven.",
+    "audio": {
+      "src": "/audio/b1-speech/fish-layer-finish.mp3",
+      "sha256": "87caf6aa6785cbaa6828229922f853553c825e70c8d77c71ced433ee9ca28995",
+      "duration": 12.095,
+      "author": "Mary aka Breadchick",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Myrtle Reed. How to Cook Fish. Project Gutenberg edition 18542. Plain prose only; embedded Project Gutenberg licence retained. Recording: LibriSpeech (c)2014 Vassil Panayotov, with assistance of Daniel Povey; Mary aka Breadchick. Whole original FLAC re-encoded at native16000Hz; words unchanged.",
+      "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/18542"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 184,
+        "text": "Butter a baking-dish, put in a layer of fish, cover with sauce, season with grated nutmeg, and repeat until the dish is full. Cover with crumbs, dot with butter, and brown in the oven.",
+        "audioStart": 0,
+        "audioEnd": 12.095
+      }
+    ]
+  },
+  {
+    "rootId": "gutenberg-book-25914",
+    "sourceHash": "d8f03b5df1febbf74b4ea27d484494236c0f85faf7beb1892568cc4b35066637",
+    "title": "The khaki kook book",
+    "text": "Put a little bag of mixed spices, such as are used in making pickles, on to cook with the fowl. While the fowl is cooking take about a pound of rice and fry it with a few sliced onions and a little butter or crisco.",
+    "audio": {
+      "src": "/audio/b1-speech/fowl-rice-parallel.mp3",
+      "sha256": "2f17768754129a14d4daaa82bfe8f97208860a43d560d8c2f62f4846fa547cea",
+      "duration": 16.03,
+      "author": "Clarica",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Mary Kennedy Core. The khaki kook book. Project Gutenberg edition 25914. Plain prose only; embedded Project Gutenberg licence retained. Recording: LibriSpeech (c)2014 Vassil Panayotov, with assistance of Daniel Povey; Clarica. Whole original FLAC re-encoded at native16000Hz; words unchanged.",
+      "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/25914"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 215,
+        "text": "Put a little bag of mixed spices, such as are used in making pickles, on to cook with the fowl. While the fowl is cooking take about a pound of rice and fry it with a few sliced onions and a little butter or crisco.",
+        "audioStart": 0,
+        "audioEnd": 16.03
+      }
+    ]
+  }
+]

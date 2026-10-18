@@ -1,0 +1,268 @@
+{
+  "id": "b1-connected-information-reading",
+  "targetLevel": "B1",
+  "skill": "reading",
+  "title": {
+    "zh-Hans": "读懂变化的原因与条件",
+    "zh-Hant": "讀懂變化的原因與條件",
+    "en": "Read reasons and conditions"
+  },
+  "goal": {
+    "zh-Hans": "在连贯通知中区分原安排、变更原因与实际可选行动。",
+    "zh-Hant": "在連貫通知中區分原安排、變更原因與實際可選行動。",
+    "en": "Separate the original plan, reason for change and available actions in connected notices."
+  },
+  "goalId": "connected-plan-reasons-conditions",
+  "sourceId": "lingfern-original-b1-updates",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "长一点的通知常先交代原安排，再说明原因，最后给出可行办法。注意 however、instead、if 后的信息。",
+    "zh-Hant": "較長的通知常先交代原安排，再說明原因，最後給出可行辦法。注意 however、instead、if 後的資訊。",
+    "en": "A longer notice may give the original plan, a reason, then an action. Track “however”, “instead” and “if”."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：“The hall is closed, so we will meet in the garden if it stays dry.” → 地点变化的原因是大厅关闭；花园聚会有天气条件。",
+    "zh-Hant": "示範（不計分）：“The hall is closed, so we will meet in the garden if it stays dry.” → 地點變化的原因是大廳關閉；花園聚會有天氣條件。",
+    "en": "Unscored example: “The hall is closed, so we will meet in the garden if it stays dry.” → The hall closure causes the move; the garden plan depends on weather."
+  },
+  "materials": [
+    {
+      "id": "garden-volunteers",
+      "rootId": "original-garden-volunteers",
+      "title": "Community garden volunteer update",
+      "questions": [
+        {
+          "id": "garden-why",
+          "prompt": "Why did the organisers move planting to Sunday?",
+          "options": [
+            "The wet paths would make carrying trays unsafe and could be damaged.",
+            "The seed labels were not ready.",
+            "The garden cannot open on Saturday in any weather."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 165,
+            "end": 282
+          },
+          "hints": [
+            {
+              "zh-Hans": "找改变计划的原因。",
+              "zh-Hant": "找改變計畫的原因。",
+              "en": "Find the reason for the changed plan."
+            },
+            {
+              "zh-Hans": "注意 forecast、soft paths 和 rather than。",
+              "zh-Hant": "注意 forecast、soft paths 和 rather than。",
+              "en": "Notice the forecast, soft paths and “rather than”."
+            },
+            {
+              "zh-Hans": "主办方避免在湿地上搬运苗盘。",
+              "zh-Hant": "主辦方避免在濕地上搬運苗盤。",
+              "en": "The organisers avoid carrying trays across wet paths."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：雨后的湿地使搬运不安全，还可能损坏小路。",
+              "zh-Hant": "正確：雨後的濕地使搬運不安全，還可能損壞小路。",
+              "en": "Correct: wet paths make the work less safe and risk damage."
+            },
+            {
+              "zh-Hans": "不对：修标签是周六改做的室内工作，不是延期种植的原因。",
+              "zh-Hant": "不對：修標籤是週六改做的室內工作，不是延期種植的原因。",
+              "en": "Repairing labels is the replacement indoor task, not the reason for postponement."
+            },
+            {
+              "zh-Hans": "不对：花园周六仍有安排，延期是因为天气和路况。",
+              "zh-Hant": "不對：花園週六仍有安排，延期是因為天氣和路況。",
+              "en": "There is still a Saturday activity; weather and paths caused the change."
+            }
+          ],
+          "blockId": "garden-volunteers-text"
+        },
+        {
+          "id": "garden-action",
+          "prompt": "You signed up to plant but can only come on Saturday. What can you do?",
+          "options": [
+            "Plant outdoors at nine on Saturday.",
+            "Help with seeds and labels indoors, or collect a seed kit next week.",
+            "Come on Sunday at ten even though you are unavailable."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 283,
+            "end": 388
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "garden-volunteers-text",
+              "start": 698,
+              "end": 780
+            }
+          ],
+          "hints": [
+            {
+              "zh-Hans": "找周六还提供什么安排。",
+              "zh-Hant": "找週六還提供什麼安排。",
+              "en": "Find what is still available on Saturday."
+            },
+            {
+              "zh-Hans": "再找不能周日参加的人可以做什么。",
+              "zh-Hant": "再找不能週日參加的人可以做什麼。",
+              "en": "Then find the alternative for people who cannot come Sunday."
+            },
+            {
+              "zh-Hans": "周六可以室内帮忙；下周也可领种子包。",
+              "zh-Hant": "週六可以室內幫忙；下週也可領種子包。",
+              "en": "Saturday indoor help and next-week seed kits are both options."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：户外种植已改到周日。",
+              "zh-Hant": "不對：戶外種植已改到週日。",
+              "en": "Outdoor planting moved to Sunday."
+            },
+            {
+              "zh-Hans": "正确：周六可做室内工作，不能周日来的人下周可领种子包。",
+              "zh-Hant": "正確：週六可做室內工作，不能週日來的人下週可領種子包。",
+              "en": "Correct: the indoor task remains Saturday, and a seed kit is available next week."
+            },
+            {
+              "zh-Hans": "不对：题设说你周日无法前来。",
+              "zh-Hant": "不對：題目說你週日無法前來。",
+              "en": "The question says you cannot come Sunday."
+            }
+          ],
+          "blockId": "garden-volunteers-text"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "garden-volunteers-text",
+          "text": "The neighbourhood garden planned to plant new vegetables on Saturday morning. By Thursday, however, the forecast showed heavy rain, and the paths were already soft. The organisers decided to postpone planting until Sunday rather than ask volunteers to carry trays across wet ground. Saturday is still useful: a small indoor group will sort seeds and repair labels in the community centre. People who signed up for planting do not need to come on Saturday unless they want to help indoors. On Sunday, the garden opens at nine, but the planting team will begin at ten so that staff can check the paths first. Volunteers should bring gloves if they have them; the organisers will provide spare pairs. Anyone who cannot come on Sunday can collect a seed kit from the centre next week. The change means fewer seedlings may be planted this weekend, but it should prevent damage to the paths and make the work safer for everyone."
+        }
+      ]
+    },
+    {
+      "id": "library-workshop",
+      "rootId": "original-library-workshop",
+      "title": "Library workshop update",
+      "questions": [
+        {
+          "id": "workshop-change",
+          "prompt": "What changed about the practice session?",
+          "options": [
+            "It was cancelled because nobody booked.",
+            "It moved from the computer room at two to the reading room at three.",
+            "It became the unbooked introductory session at eleven."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 183,
+            "end": 367
+          },
+          "hints": [
+            {
+              "zh-Hans": "找 second session 原来的安排。",
+              "zh-Hant": "找 second session 原來的安排。",
+              "en": "Find the original plan for the second session."
+            },
+            {
+              "zh-Hans": "Instead 后面是新安排。",
+              "zh-Hant": "Instead 後面是新安排。",
+              "en": "The new plan follows “Instead”."
+            },
+            {
+              "zh-Hans": "时间从两点改为三点，地点改为阅览室。",
+              "zh-Hant": "時間從兩點改為三點，地點改為閱覽室。",
+              "en": "It changes from two to three and from computer room to reading room."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：练习课缩短并换了地点时间，没有取消。",
+              "zh-Hant": "不對：練習課縮短並改了地點時間，沒有取消。",
+              "en": "The practice session is shorter and moved; it was not cancelled."
+            },
+            {
+              "zh-Hans": "正确：原定两点在电脑室，改为三点在阅览室。",
+              "zh-Hant": "正確：原定兩點在電腦室，改為三點在閱覽室。",
+              "en": "Correct: it moves from two in the computer room to three in the reading room."
+            },
+            {
+              "zh-Hans": "不对：十一点是第一节介绍课。",
+              "zh-Hant": "不對：十一點是第一節介紹課。",
+              "en": "Eleven is the introductory session."
+            }
+          ],
+          "blockId": "library-workshop-text"
+        },
+        {
+          "id": "workshop-booking",
+          "prompt": "You want to attend the smaller practice session. What must you do?",
+          "options": [
+            "Email the library by Friday evening.",
+            "Register on an outside website.",
+            "Bring your own tablet and arrive at eleven."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 546,
+            "end": 678
+          },
+          "hints": [
+            {
+              "zh-Hans": "区分两节课的报名要求。",
+              "zh-Hant": "區分兩節課的報名要求。",
+              "en": "Separate the booking rules for the two sessions."
+            },
+            {
+              "zh-Hans": "找 If you want a place 后的条件。",
+              "zh-Hant": "找 If you want a place 後的條件。",
+              "en": "Find the condition after “If you want a place”."
+            },
+            {
+              "zh-Hans": "小班练习课需在周五晚前发邮件。",
+              "zh-Hant": "小班練習課需在週五晚前發郵件。",
+              "en": "Email before Friday evening for the smaller session."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：小班练习课需要周五晚前发邮件报名。",
+              "zh-Hant": "正確：小班練習課需要週五晚前發郵件報名。",
+              "en": "Correct: email by Friday evening for the practice session."
+            },
+            {
+              "zh-Hans": "不对：馆员明确说不要求在外站注册。",
+              "zh-Hant": "不對：館員明確說不要求在外站註冊。",
+              "en": "The librarian does not require registration on an outside site."
+            },
+            {
+              "zh-Hans": "不对：设备可选；十一点是介绍课。",
+              "zh-Hant": "不對：裝置可選；十一點是介紹課。",
+              "en": "A device is optional, and eleven is the introductory session."
+            }
+          ],
+          "blockId": "library-workshop-text"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "library-workshop-text",
+          "text": "The library is offering a weekend workshop on finding reliable local information. The first session starts at eleven on Saturday and introduces ways to check when a page was updated. The second session was going to use the computer room at two, but that room is being repaired. Instead, the librarian will hold a shorter practice session at three in the reading room. Participants can bring a phone or tablet, although printed examples will be available for anyone without a device. You may attend the first session without attending the second. If you want a place in the smaller practice session, email the library by Friday evening; the introductory session needs no booking. The librarian will not ask people to register for any outside website. After the workshop, a printed checklist will be kept at the information desk. People who miss the practice session can use it, but the checklist does not replace the chance to discuss examples with the librarian."
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "daily-life",
+    "culture"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次把变更原因与仍然可行的行动连起来。",
+    "zh-Hant": "下次把變更原因與仍然可行的行動連起來。",
+    "en": "Next time, link the reason for a change to the action that remains possible."
+  }
+}

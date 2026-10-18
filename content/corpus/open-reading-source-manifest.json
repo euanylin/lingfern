@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "sourceReview": "Codex/AI",
+  "unjoinedParagraphs": true,
+  "inputDirectory": "private/corpus/reading-expansion/publication-reviewed",
+  "manifestSha256": "afaf7b31ed669e4d86cfbbe3310925b7a7ab6b9b495fa0ca4338ae05d3dd4f82",
+  "preparedSha256": "75671825fd56c550cb4446a34e0629419750d0c123f8247531d7f6a0eaeb1534",
+  "sourceLedgerSha256": "44867bd468f4c1c110daf9a6c0ad2a2ea937b41ba575070420af998eb9973be5",
+  "ledgerMetadataSha256": "1fbc327171757040173dc5a60f8805727637c2e6b38894996011e36566b86f6a",
+  "independentReviewPath": "private/verification/i132-final-open-reading-source-review.json",
+  "independentReviewSha256": "16346af59a6c263a725179e32dbc9b405b9b35dde0ba6b6b18160bc0a8ecdd60",
+  "paragraphCount": 2423,
+  "books": [
+    {
+      "id": "openstax-psychology-2e",
+      "title": "Psychology 2e",
+      "authors": [
+        "Rose M. Spielman",
+        "William J. Jenkins",
+        "Marilyn D. Lovett"
+      ],
+      "sourceHash": "6be60580c7d640091e5406bf3c28ca9c5aa84b8de717cd5110ce11ba104c5435",
+      "paragraphCount": 514,
+      "attribution": "Psychology 2e — Rose M. Spielman; William J. Jenkins; Marilyn D. Lovett. OpenStax, Rice University. CC BY 4.0; fixed source edition; whitespace normalised, separate paragraphs.",
+      "topic": "health"
+    },
+    {
+      "id": "openstax-biology-2e",
+      "title": "Biology 2e",
+      "authors": [
+        "Mary Ann Clark",
+        "Jung Choi",
+        "Matthew Douglas"
+      ],
+      "sourceHash": "ad36c39c255b4b369765e8d7db8f0f41cc23074555e07649e13cf295ca79253e",
+      "paragraphCount": 619,
+      "attribution": "Biology 2e — Mary Ann Clark; Jung Choi; Matthew Douglas. OpenStax, Rice University. CC BY 4.0; fixed source edition; whitespace normalised, separate paragraphs.",
+      "topic": "science"
+    },
+    {
+      "id": "bccampus-physical-geology-2e",
+      "title": "Physical Geology - 2nd Edition",
+      "authors": [
+        "Steven Earle",
+        "Karla Panchuk"
+      ],
+      "sourceHash": "bac292c654f85b96e17831f8db7b5ce9181e0d062f0f3a133aefc298a7fd4f71",
+      "paragraphCount": 63,
+      "attribution": "Physical Geology - 2nd Edition — Copyright 2019 Steven Earle; chapter 22 Karla Panchuk. BCcampus. CC BY 4.0; original prose only; whitespace normalised.",
+      "topic": "science"
+    },
+    {
+      "id": "openstax-introduction-sociology-3e",
+      "title": "Introduction to Sociology 3e",
+      "authors": [
+        "Tonja R. Conerly",
+        "Kathleen Holmes",
+        "Asha Lal Tamang"
+      ],
+      "sourceHash": "93918f53e902eeab76e526924bf6807e3b3f04e1127f4bdb03b7b2b2d87d2a0b",
+      "paragraphCount": 390,
+      "attribution": "Introduction to Sociology 3e — Tonja R. Conerly; Kathleen Holmes; Asha Lal Tamang. OpenStax, Rice University. CC BY 4.0; fixed source edition; whitespace normalised, separate paragraphs.",
+      "topic": "society"
+    },
+    {
+      "id": "openstax-us-history",
+      "title": "U.S. History",
+      "authors": [
+        "P. Scott Corbett",
+        "Jay Precht",
+        "Volker Janssen",
+        "John M. Lund",
+        "Todd Pfannestiel",
+        "Paul Vickery",
+        "Sylvie Waskiewicz"
+      ],
+      "sourceHash": "522791e9ee96f31b4146759bdf6c54377222d1356816108431270d94f02b0dbb",
+      "paragraphCount": 837,
+      "attribution": "U.S. History — P. Scott Corbett; Jay Precht; Volker Janssen; John M. Lund; Todd Pfannestiel; Paul Vickery; Sylvie Waskiewicz. OpenStax, Rice University. CC BY 4.0; fixed source edition; whitespace normalised, separate paragraphs.",
+      "topic": "history"
+    }
+  ],
+  "licencePath": "raw/openstax-psychology-2e-LICENSE",
+  "licenceSha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+  "permissionReview": "Codex/AI exact fixed source licence and exceptions review; only licensed original prose, with third-party/media scopes excluded. No blanket body semantic/level or media acceptance.",
+  "notice": "# Open reading source attribution\n\nThese are separate complete paragraphs, with whitespace normalised, from the fixed editions below. CC BY 4.0 applies to the licensed original prose only. No source media, table, exercise, footnote, borrowed quotation container or excluded third-party content is included. All records remain draft; this is not CEFR calibration.\n\n- Psychology 2e: Rose M. Spielman; William J. Jenkins; Marilyn D. Lovett. OpenStax, Rice University. Source: https://github.com/openstax/osbooks-psychology/blob/e061043bf2f9e86ace51c4e8dc9555160f60a99d/collections/psychology-2e.collection.xml. Archive/home SHA256: 6be60580c7d640091e5406bf3c28ca9c5aa84b8de717cd5110ce11ba104c5435.\n- Biology 2e: Mary Ann Clark; Jung Choi; Matthew Douglas. OpenStax, Rice University. Source: https://github.com/openstax/osbooks-biology-bundle/blob/d2779c2edfb435e75047325434fe2fe93d5aa120/collections/biology-2e.collection.xml. Archive/home SHA256: ad36c39c255b4b369765e8d7db8f0f41cc23074555e07649e13cf295ca79253e.\n- Physical Geology - 2nd Edition: Steven Earle; Karla Panchuk. BCcampus. Source: https://opentextbc.ca/physicalgeology2ed/. Archive/home SHA256: bac292c654f85b96e17831f8db7b5ce9181e0d062f0f3a133aefc298a7fd4f71.\n- Introduction to Sociology 3e: Tonja R. Conerly; Kathleen Holmes; Asha Lal Tamang. OpenStax, Rice University. Source: https://github.com/openstax/osbooks-introduction-sociology/blob/d35d5f3bdac40f93607d600134865d4f13ce1f9b/collections/introduction-sociology-3e.collection.xml. Archive/home SHA256: 93918f53e902eeab76e526924bf6807e3b3f04e1127f4bdb03b7b2b2d87d2a0b.\n- U.S. History: P. Scott Corbett; Jay Precht; Volker Janssen; John M. Lund; Todd Pfannestiel; Paul Vickery; Sylvie Waskiewicz. OpenStax, Rice University. Source: https://github.com/openstax/osbooks-us-history/blob/046331cfcea0ac1b1a8fd461b3e6aae638845af3/collections/us-history.collection.xml. Archive/home SHA256: 522791e9ee96f31b4146759bdf6c54377222d1356816108431270d94f02b0dbb.\n\nPhysical Geology copyright 2019 Steven Earle, chapter 22 Karla Panchuk. Original exception policy: https://opentextbc.ca/physicalgeology2ed/front-matter/exceptions-to-the-cc-by-licence/ . All listed media exceptions are excluded.\n\nLicence: https://creativecommons.org/licenses/by/4.0/ ; the complete unchanged legal code accompanies this package. OpenStax current-main editions are not admitted by these old-edition grants. Retain author/institution/source attribution and indicate changes on reuse. No endorsement is implied.\n"
+}

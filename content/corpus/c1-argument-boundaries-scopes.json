@@ -1,0 +1,502 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-3300",
+      "sourceHash": "e91d52dca43fd0fd69baf7776b00a5d8e74b69675b6b608ca8a0378aaf3ae58d",
+      "passageId": "2e256df6b7400852a8f5da4e3661dcdf96f6cc60967517e477bba42e79db04e2",
+      "textSha256": "2e256df6b7400852a8f5da4e3661dcdf96f6cc60967517e477bba42e79db04e2",
+      "text": "Thirdly, and lastly, everybody must be sensible how much labour is facilitated and abridged by the application of proper machinery. It is unnecessary to give any example. I shall only observe, therefore, that the invention of all those machines by which labour is so much facilitated and abridged, seems to have been originally owing to the division of labour. Men are much more likely to discover easier and readier methods of attaining any object, when the whole attention of their minds is directed towards that single object, than when it is dissipated among a great variety of things. But, in consequence of the division of labour, the whole of every man’s attention comes naturally to be directed towards some one very simple object. It is naturally to be expected, therefore, that some one or other of those who are employed in each particular branch of labour should soon find out easier and readier methods of performing their own particular work, whenever the nature of it admits of such improvement. A great part of the machines made use of in those manufactures in which labour is most subdivided, were originally the invention of common workmen, who, being each of them employed in some very simple operation, naturally turned their thoughts towards finding out easier and readier methods of performing it. Whoever has been much accustomed to visit such manufactures, must frequently have been shewn very pretty machines, which were the inventions of such workmen, in order to facilitate and quicken their own particular part of the work. In the first fire engines {this was the current designation for steam engines}, a boy was constantly employed to open and shut alternately the communication between the boiler and the cylinder, according as the piston either ascended or descended. One of those boys, who loved to play with his companions, observed that, by tying a string from the handle of the valve which opened this communication to another part of the machine, the valve would open and shut without his assistance, and leave him at liberty to divert himself with his play-fellows. One of the greatest improvements that has been made upon this machine, since it was first invented, was in this manner the discovery of a boy who wanted to save his own labour.\n\nAll the improvements in machinery, however, have by no means been the inventions of those who had occasion to use the machines. Many improvements have been made by the ingenuity of the makers of the machines, when to make them became the business of a peculiar trade; and some by that of those who are called philosophers, or men of speculation, whose trade it is not to do any thing, but to observe every thing, and who, upon that account, are often capable of combining together the powers of the most distant and dissimilar objects in the progress of society, philosophy or speculation becomes, like every other employment, the principal or sole trade and occupation of a particular class of citizens. Like every other employment, too, it is subdivided into a great number of different branches, each of which affords occupation to a peculiar tribe or class of philosophers; and this subdivision of employment in philosophy, as well as in every other business, improves dexterity, and saves time. Each individual becomes more expert in his own peculiar branch, more work is done upon the whole, and the quantity of science is considerably increased by it.\n\nIt is the great multiplication of the productions of all the different arts, in consequence of the division of labour, which occasions, in a well-governed society, that universal opulence which extends itself to the lowest ranks of the people. Every workman has a great quantity of his own work to dispose of beyond what he himself has occasion for; and every other workman being exactly in the same situation, he is enabled to exchange a great quantity of his own goods for a great quantity or, what comes to the same thing, for the price of a great quantity of theirs. He supplies them abundantly with what they have occasion for, and they accommodate him as amply with what he has occasion for, and a general plenty diffuses itself through all the different ranks of the society.",
+      "credit": {
+        "attribution": "An Inquiry into the Nature and Causes of the Wealth of Nations — Smith, Adam, 1723-1790. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/3300).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/3300"
+      },
+      "nativeScope": {
+        "start": 21483,
+        "end": 25707,
+        "canonicalSha256": "17c96b8ba859f6fddc8081dc3c032e091c1c8cb60dc2b75749e2d65f83e78422",
+        "rawSha256": "e91d52dca43fd0fd69baf7776b00a5d8e74b69675b6b608ca8a0378aaf3ae58d",
+        "metadataSha256": "2d924873486de7246296dd153498809b49a8ccd072c910149d191bf566e88fc5",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "label": "Part 1: I shall only observe, therefore, that the invention of…",
+          "start": 171,
+          "end": 2282
+        },
+        {
+          "label": "Part 2: All the improvements in machinery, however, have by no…",
+          "start": 2282,
+          "end": 3442
+        },
+        {
+          "label": "Part 3: It is the great multiplication of the productions of all…",
+          "start": 3442,
+          "end": 4224
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original arguments remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-205",
+      "sourceHash": "2d9a76a2e3e8195c69430516ebd33c4d0757a53ad432ff6186b7b794e6fe99f9",
+      "passageId": "0e603fa47e3b5936bfe055a6fba6751065a39af43fe92598b036b29c9a2c3a29",
+      "textSha256": "0e603fa47e3b5936bfe055a6fba6751065a39af43fe92598b036b29c9a2c3a29",
+      "text": "When a man is warmed by the several modes which I have described, what does he want next? Surely not more warmth of the same kind, as more and richer food, larger and more splendid houses, finer and more abundant clothing, more numerous incessant and hotter fires, and the like. When he has obtained those things which are necessary to life, there is another alternative than to obtain the superfluities; and that is, to adventure on life now, his vacation from humbler toil having commenced. The soil, it appears, is suited to the seed, for it has sent its radicle downward, and it may now send its shoot upward also with confidence. Why has man rooted himself thus firmly in the earth, but that he may rise in the same proportion into the heavens above?—for the nobler plants are valued for the fruit they bear at last in the air and light, far from the ground, and are not treated like the humbler esculents, which, though they may be biennials, are cultivated only till they have perfected their root, and often cut down at top for this purpose, so that most would not know them in their flowering season.\n\nI do not mean to prescribe rules to strong and valiant natures, who will mind their own affairs whether in heaven or hell, and perchance build more magnificently and spend more lavishly than the richest, without ever impoverishing themselves, not knowing how they live,—if, indeed, there are any such, as has been dreamed; nor to those who find their encouragement and inspiration in precisely the present condition of things, and cherish it with the fondness and enthusiasm of lovers,—and, to some extent, I reckon myself in this number; I do not speak to those who are well employed, in whatever circumstances, and they know whether they are well employed or not;—but mainly to the mass of men who are discontented, and idly complaining of the hardness of their lot or of the times, when they might improve them. There are some who complain most energetically and inconsolably of any, because they are, as they say, doing their duty. I also have in my mind that seemingly wealthy, but most terribly impoverished class of all, who have accumulated dross, but know not how to use it, or get rid of it, and thus have forged their own golden or silver fetters.",
+      "credit": {
+        "attribution": "Walden, and On The Duty Of Civil Disobedience — Thoreau, Henry David, 1817-1862. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/205).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/205"
+      },
+      "nativeScope": {
+        "start": 23268,
+        "end": 25537,
+        "canonicalSha256": "f8e5b90d61365749817473d36af634733a5bf5565d3640d60599d14c8af9e0b0",
+        "rawSha256": "2d9a76a2e3e8195c69430516ebd33c4d0757a53ad432ff6186b7b794e6fe99f9",
+        "metadataSha256": "f8ddd6c6c23c519649e9b7e441d76cacc7641d241d3dbbe59e434737a5bcb688",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "label": "Part 1: When he has obtained those things which are necessary to…",
+          "start": 279,
+          "end": 1111
+        },
+        {
+          "label": "Part 2: I do not mean to prescribe rules to strong and valiant…",
+          "start": 1111,
+          "end": 2047
+        },
+        {
+          "label": "Part 3: I also have in my mind that seemingly wealthy, but most…",
+          "start": 2047,
+          "end": 2269
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original arguments remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "wikipedia-article-89732",
+      "sourceHash": "ae313a8e57940bfcab71f82e0a0636d75c2708ea7d3dac1aaa46ea3105840eee",
+      "clipId": "e5da2b795533eca0860d71b7d22610f2080444b00296c378b43dc14434f08d62",
+      "textSha256": "ea44d377a889372436917775fe20da6582a49bbbeb369d3ae01b163b3ed5962e",
+      "text": "Origin\n\nThe Antikythera mechanism is generally referred to as the first known analogue computer. The quality and complexity of the mechanism's manufacture suggests that it must have had undiscovered predecessors made during the Hellenistic period. Its construction relied on theories of astronomy and mathematics developed by Greek astronomers during the second century BC, and it is estimated to have been built in the late second century BC or the early first century BC.\n\nIn 1974, Derek de Solla Price concluded from gear settings and inscriptions on the mechanism's faces that it was made about 87 BC and lost only a few years later. Jacques Cousteau and associates visited the wreck in 1976 and recovered coins dated between 76 and 67 BC. The mechanism's advanced state of corrosion has made it impossible to perform an accurate compositional analysis, but it is believed that the device was made of a low-tin bronze alloy (of approximately 95% copper, 5% tin). Its instructions were composed in Koine Greek.\n\nIn 2008, continued research by the Antikythera Mechanism Research Project suggested that the concept for the mechanism may have originated in the colonies of Corinth, since they identified the calendar on the Metonic Spiral as coming from Corinth or one of its colonies in Northwest Greece or Sicily. Syracuse was a colony of Corinth and the home of Archimedes, and the Antikythera Mechanism Research project argued in 2008 that it might imply a connection with the school of Archimedes. However, it has recently been demonstrated that the calendar on the Metonic Spiral is indeed of the Corinthian type but cannot be that of Syracuse. Another theory suggests that coins found by Jacques Cousteau at the wreck site in the 1970s date to the time of the device's construction, and posits that its origin may have been from the ancient Greek city of Pergamon, home of the Library of Pergamum. With its many scrolls of art and science, it was second in importance only to the Library of Alexandria during the Hellenistic period.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Antikythera mechanism, recorded revision 908177125. Excerpt: source characters 5129–7168; original recording 273.8–377.5 seconds. Cropped and encoded by Lingfern; no synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Antikythera_mechanism?oldid=908177125"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Antikythera mechanism, recorded revision 908177125. Excerpt: source characters 5129–7168; original recording 273.8–377.5 seconds. Cropped and encoded by Lingfern; no synthesis or endorsement. Recording: JohnAnkerBow. Original recording of Antikythera mechanism.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 4.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Antikythera_mechanism?oldid=908177125"
+      },
+      "audio": {
+        "src": "media/e5da2b795533eca0860d71b7d22610f2080444b00296c378b43dc14434f08d62.mp3",
+        "sha256": "fb042c125edab632bd4bea104c314033923cd790c965b327dc15cb52631208f0",
+        "duration": 103.7,
+        "author": "JohnAnkerBow",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Antikythera_mechanism.ogg",
+        "license": "CC BY-SA 4.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 8,
+          "text": "Origin\n\n",
+          "audioStart": 0.34,
+          "audioEnd": 0.68
+        },
+        {
+          "start": 8,
+          "end": 97,
+          "text": "The Antikythera mechanism is generally referred to as the first known analogue computer. ",
+          "audioStart": 0.68,
+          "audioEnd": 5.64
+        },
+        {
+          "start": 97,
+          "end": 164,
+          "text": "The quality and complexity of the mechanism's manufacture suggests ",
+          "audioStart": 5.98,
+          "audioEnd": 9.14
+        },
+        {
+          "start": 164,
+          "end": 248,
+          "text": "that it must have had undiscovered predecessors made during the Hellenistic period. ",
+          "audioStart": 9.14,
+          "audioEnd": 12.58
+        },
+        {
+          "start": 248,
+          "end": 313,
+          "text": "Its construction relied on theories of astronomy and mathematics ",
+          "audioStart": 12.96,
+          "audioEnd": 15.98
+        },
+        {
+          "start": 313,
+          "end": 374,
+          "text": "developed by Greek astronomers during the second century BC, ",
+          "audioStart": 15.98,
+          "audioEnd": 18.8
+        },
+        {
+          "start": 374,
+          "end": 475,
+          "text": "and it is estimated to have been built in the late second century BC or the early first century BC.\n\n",
+          "audioStart": 19.2,
+          "audioEnd": 24.02
+        },
+        {
+          "start": 475,
+          "end": 576,
+          "text": "In 1974, Derek de Solla Price concluded from gear settings and inscriptions on the mechanism's faces ",
+          "audioStart": 24.02,
+          "audioEnd": 29.82
+        },
+        {
+          "start": 576,
+          "end": 638,
+          "text": "that it was made about 87 BC and lost only a few years later. ",
+          "audioStart": 29.82,
+          "audioEnd": 33.46
+        },
+        {
+          "start": 638,
+          "end": 744,
+          "text": "Jacques Cousteau and associates visited the wreck in 1976 and recovered coins dated between 76 and 67 BC. ",
+          "audioStart": 33.82,
+          "audioEnd": 40.5
+        },
+        {
+          "start": 744,
+          "end": 858,
+          "text": "The mechanism's advanced state of corrosion has made it impossible to perform an accurate compositional analysis, ",
+          "audioStart": 40.9,
+          "audioEnd": 45.8
+        },
+        {
+          "start": 858,
+          "end": 967,
+          "text": "but it is believed that the device was made of a low-tin bronze alloy (of approximately 95% copper, 5% tin). ",
+          "audioStart": 46.1,
+          "audioEnd": 52.32
+        },
+        {
+          "start": 967,
+          "end": 1015,
+          "text": "Its instructions were composed in Koine Greek.\n\n",
+          "audioStart": 52.32,
+          "audioEnd": 54.86
+        },
+        {
+          "start": 1015,
+          "end": 1182,
+          "text": "In 2008, continued research by the Antikythera Mechanism Research Project suggested that the concept for the mechanism may have originated in the colonies of Corinth, ",
+          "audioStart": 55.44,
+          "audioEnd": 62.84
+        },
+        {
+          "start": 1182,
+          "end": 1316,
+          "text": "since they identified the calendar on the Metonic Spiral as coming from Corinth or one of its colonies in Northwest Greece or Sicily. ",
+          "audioStart": 63.12,
+          "audioEnd": 69.54
+        },
+        {
+          "start": 1316,
+          "end": 1377,
+          "text": "Syracuse was a colony of Corinth and the home of Archimedes, ",
+          "audioStart": 69.88,
+          "audioEnd": 72.68
+        },
+        {
+          "start": 1377,
+          "end": 1503,
+          "text": "and the Antikythera Mechanism Research project argued in 2008 that it might imply a connection with the school of Archimedes. ",
+          "audioStart": 72.88,
+          "audioEnd": 78.1
+        },
+        {
+          "start": 1503,
+          "end": 1651,
+          "text": "However, it has recently been demonstrated that the calendar on the Metonic Spiral is indeed of the Corinthian type but cannot be that of Syracuse. ",
+          "audioStart": 78.1,
+          "audioEnd": 85.04
+        },
+        {
+          "start": 1651,
+          "end": 1790,
+          "text": "Another theory suggests that coins found by Jacques Cousteau at the wreck site in the 1970s date to the time of the device's construction, ",
+          "audioStart": 85.34,
+          "audioEnd": 91.56
+        },
+        {
+          "start": 1790,
+          "end": 1905,
+          "text": "and posits that its origin may have been from the ancient Greek city of Pergamon, home of the Library of Pergamum. ",
+          "audioStart": 91.84,
+          "audioEnd": 97.1
+        },
+        {
+          "start": 1905,
+          "end": 2039,
+          "text": "With its many scrolls of art and science, it was second in importance only to the Library of Alexandria during the Hellenistic period.",
+          "audioStart": 97.38,
+          "audioEnd": 103.42
+        }
+      ],
+      "parts": [
+        {
+          "label": "Part 1: The quality and complexity of the mechanism's manufacture…",
+          "start": 97,
+          "end": 248
+        },
+        {
+          "label": "Part 2: The mechanism's advanced state of corrosion has made it…",
+          "start": 744,
+          "end": 967
+        },
+        {
+          "label": "Part 3: In 2008, continued research by the Antikythera Mechanism…",
+          "start": 1015,
+          "end": 2039
+        }
+      ]
+    },
+    {
+      "rootId": "wikipedia-article-22385",
+      "sourceHash": "c5ee7dc5f0658cff554c2d092b09410c0e78601bcd8d660f6cc596999d8f970b",
+      "clipId": "45ecfd301140feec5dfeea154dc21e07040df28b38e8e49a4d206b30f0536ecc",
+      "textSha256": "d84721f6f50f2517a497a9bf20a9f38d922eb38284c11ec6e36106e03d2678ad",
+      "text": "In 1932, Estonian astronomer Ernst Öpik postulated that long-period comets originated in an orbiting cloud at the outermost edge of the solar system. In 1950, the idea was independently reviewed by the Dutch astronomer Jan Hendrik Oort as a means to resolve a paradox. Over the course of the solar system's existence, the orbits of comets are unstable. Eventually, dynamics dictate that a comet must either collide with the Sun or a planet, or else be ejected from the solar system by planetary perturbations. Moreover, their volatile composition means that as they repeatedly approach the Sun, radiation gradually boils the volatiles off until the comet splits or develops an insulating crust that prevents further outgassing. Thus, reasoned Oort, a comet could not have formed while in its current orbit, and must have had an outer reservoir for almost all of its existence.\n\nThere are two main classes of comet, short-period comets, also called ecliptic comets, and long-period comets, also called nearly isotropic comets. Ecliptic comets have relatively small orbits, below 10 AU, and follow the ecliptic plane, the same plane in which the planets lie. Nearly all isotropic comets have very large orbits, on the order of thousands of astronomical units, and appear from every corner of the sky. Oort noted that there was a peak in numbers of nearly isotropic comets with Aphelia, their farthest distance from the Sun, of roughly 20,000 AU, which suggested a reservoir at that distance with a spherical isotropic distribution. Those relatively rare comets with orbits of about 10,000 AU have probably gone through one or more orbits through the solar system and have had their orbits drawn inward by the gravity of the planets.",
+      "sourceCredit": {
+        "attribution": "Wikipedia contributors, Oort cloud, recorded revision 483939592. Excerpt: source characters 1978–3696; original recording 169.5–290.8 seconds. Cropped and encoded by Lingfern; no synthesis or endorsement.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Oort_cloud?oldid=483939592"
+      },
+      "credit": {
+        "attribution": "Wikipedia contributors, Oort cloud, recorded revision 483939592. Excerpt: source characters 1978–3696; original recording 169.5–290.8 seconds. Cropped and encoded by Lingfern; no synthesis or endorsement. Recording: S Whistler. Original recording of Oort cloud.",
+        "license": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review; recording: CC BY-SA 3.0",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Oort_cloud?oldid=483939592"
+      },
+      "audio": {
+        "src": "media/45ecfd301140feec5dfeea154dc21e07040df28b38e8e49a4d206b30f0536ecc.mp3",
+        "sha256": "393fa26236758a925cbf3516e28a221e442ac51d34aead2a0c89bc181452167b",
+        "duration": 121.3,
+        "author": "S Whistler",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Oort_Cloud.ogg",
+        "license": "CC BY-SA 3.0",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 39,
+          "text": "In 1932, Estonian astronomer Ernst Öpik",
+          "audioStart": 0.88,
+          "audioEnd": 5
+        },
+        {
+          "start": 40,
+          "end": 106,
+          "text": "postulated that long-period comets originated in an orbiting cloud",
+          "audioStart": 5,
+          "audioEnd": 9.52
+        },
+        {
+          "start": 107,
+          "end": 149,
+          "text": "at the outermost edge of the solar system.",
+          "audioStart": 9.52,
+          "audioEnd": 11.62
+        },
+        {
+          "start": 150,
+          "end": 194,
+          "text": "In 1950, the idea was independently reviewed",
+          "audioStart": 12.16,
+          "audioEnd": 15.14
+        },
+        {
+          "start": 195,
+          "end": 235,
+          "text": "by the Dutch astronomer Jan Hendrik Oort",
+          "audioStart": 15.14,
+          "audioEnd": 18.22
+        },
+        {
+          "start": 236,
+          "end": 268,
+          "text": "as a means to resolve a paradox.",
+          "audioStart": 18.22,
+          "audioEnd": 20.6
+        },
+        {
+          "start": 269,
+          "end": 317,
+          "text": "Over the course of the solar system's existence,",
+          "audioStart": 21.46,
+          "audioEnd": 23.58
+        },
+        {
+          "start": 318,
+          "end": 352,
+          "text": "the orbits of comets are unstable.",
+          "audioStart": 24.1,
+          "audioEnd": 26.22
+        },
+        {
+          "start": 353,
+          "end": 440,
+          "text": "Eventually, dynamics dictate that a comet must either collide with the Sun or a planet,",
+          "audioStart": 26.22,
+          "audioEnd": 31.72
+        },
+        {
+          "start": 441,
+          "end": 509,
+          "text": "or else be ejected from the solar system by planetary perturbations.",
+          "audioStart": 32.16,
+          "audioEnd": 36.04
+        },
+        {
+          "start": 510,
+          "end": 594,
+          "text": "Moreover, their volatile composition means that as they repeatedly approach the Sun,",
+          "audioStart": 36.88,
+          "audioEnd": 41.68
+        },
+        {
+          "start": 595,
+          "end": 661,
+          "text": "radiation gradually boils the volatiles off until the comet splits",
+          "audioStart": 42.12,
+          "audioEnd": 46.44
+        },
+        {
+          "start": 662,
+          "end": 727,
+          "text": "or develops an insulating crust that prevents further outgassing.",
+          "audioStart": 46.44,
+          "audioEnd": 50.72
+        },
+        {
+          "start": 728,
+          "end": 806,
+          "text": "Thus, reasoned Oort, a comet could not have formed while in its current orbit,",
+          "audioStart": 50.94,
+          "audioEnd": 55.88
+        },
+        {
+          "start": 807,
+          "end": 876,
+          "text": "and must have had an outer reservoir for almost all of its existence.",
+          "audioStart": 56.22,
+          "audioEnd": 60.34
+        },
+        {
+          "start": 878,
+          "end": 964,
+          "text": "There are two main classes of comet, short-period comets, also called ecliptic comets,",
+          "audioStart": 61.1,
+          "audioEnd": 67.34
+        },
+        {
+          "start": 965,
+          "end": 1025,
+          "text": "and long-period comets, also called nearly isotropic comets.",
+          "audioStart": 67.34,
+          "audioEnd": 72.2
+        },
+        {
+          "start": 1026,
+          "end": 1115,
+          "text": "Ecliptic comets have relatively small orbits, below 10 AU, and follow the ecliptic plane,",
+          "audioStart": 72.9,
+          "audioEnd": 79.16
+        },
+        {
+          "start": 1116,
+          "end": 1156,
+          "text": "the same plane in which the planets lie.",
+          "audioStart": 79.58,
+          "audioEnd": 81.8
+        },
+        {
+          "start": 1157,
+          "end": 1208,
+          "text": "Nearly all isotropic comets have very large orbits,",
+          "audioStart": 82.6,
+          "audioEnd": 86.1
+        },
+        {
+          "start": 1209,
+          "end": 1257,
+          "text": "on the order of thousands of astronomical units,",
+          "audioStart": 86.48,
+          "audioEnd": 89.14
+        },
+        {
+          "start": 1258,
+          "end": 1298,
+          "text": "and appear from every corner of the sky.",
+          "audioStart": 89.52,
+          "audioEnd": 91.84
+        },
+        {
+          "start": 1299,
+          "end": 1383,
+          "text": "Oort noted that there was a peak in numbers of nearly isotropic comets with Aphelia,",
+          "audioStart": 92.58,
+          "audioEnd": 97.12
+        },
+        {
+          "start": 1384,
+          "end": 1443,
+          "text": "their farthest distance from the Sun, of roughly 20,000 AU,",
+          "audioStart": 97.12,
+          "audioEnd": 101.18
+        },
+        {
+          "start": 1444,
+          "end": 1529,
+          "text": "which suggested a reservoir at that distance with a spherical isotropic distribution.",
+          "audioStart": 101.68,
+          "audioEnd": 107.16
+        },
+        {
+          "start": 1530,
+          "end": 1730,
+          "text": "Those relatively rare comets with orbits of about 10,000 AU have probably gone through one or more orbits through the solar system and have had their orbits drawn inward by the gravity of the planets.",
+          "audioStart": 107.16,
+          "audioEnd": 120.08
+        }
+      ],
+      "parts": [
+        {
+          "label": "Part 1: Over the course of the solar system's existence, the…",
+          "start": 269,
+          "end": 728
+        },
+        {
+          "label": "Part 2: Oort noted that there was a peak in numbers of nearly…",
+          "start": 1299,
+          "end": 1530
+        },
+        {
+          "label": "Part 3: Those relatively rare comets with orbits of about 10,000…",
+          "start": 1530,
+          "end": 1730
+        }
+      ]
+    }
+  ]
+}

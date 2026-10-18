@@ -1,0 +1,645 @@
+{
+  "version": 1,
+  "acquiredAt": "2026-10-08T13:36:18.857340Z",
+  "permissionUrl": "https://learningenglish.voanews.com/p/6861.html",
+  "records": [
+    {
+      "id": 3312239,
+      "title": "Lesson 13: Happy Birthday, William Shakespeare!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-13-happy-birthday-william-shakespeare/3312239.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! In Washington D.C. there are many things to do on a Sunday afternoon. I like to exercise. I like to shop. I like to garden. But today I feel bored. When I feel bored I always look for something unusual to do! I hear music. Let’s go see! What is going on here?\n\nRebecca: It’s a big birthday party for the writer William Shakespeare.\n\nAnna: This is a party for William Shakespeare?\n\nRebecca: Yes!\n\nAnna: Awesome!\n\nRebecca: Awesome!\n\nAnna: This is a drum band. I never listen to a drum band. But today I am listening to a drum band because it’s Shakespeare’s birthday!\n\nAnna: This is a puppet show. I never watch puppet shows. But today I am watching a puppet show because it’s Shakespeare’s birthday!\n\nAnna: My clothes are usual. His clothes are unusual.\n\nAnna: In Washington, D.C. seeing a politician or even the President is usual. Seeing the Queen of England is very unusual! Your majesty!\n\nAnna: This is sword fighting. I never sword fight. But today I am sword fighting because it’s Shakespeare’s birthday!\n\nAnna: There are many things to do in Washington, D.C. -- some usual, some unusual.\n\nAnna: Today, I am not bored because … it is William Shakespeare’s birthday!",
+      "sha256": "c05d4483345ff94707936f930dcd7499f0b7504521eb177091cc1c7475afcf08",
+      "capture": "private/corpus/voa-beginners/discovery-link-27.txt",
+      "captureSha256": "9b094af27ada07ac621eea1373d8e80c90cf208fe361737c7551bbbaac111af8",
+      "sourceLines": {
+        "webLineStart": 182,
+        "webLineEnd": 204
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "arts-culture",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "c7c269c51d1c58f8e110a91f348d0f147fed1c1c13ea6d554cd155c2a62b8753"
+    },
+    {
+      "id": 3323771,
+      "title": "Lesson 14: How About This?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-14-how-about-this/3323771.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hi, there! In Washington, D.C. people do many things in the evening. They go listen to music. They eat at a restaurant. They go to the theater.\n\nAnna: Tonight I am going to the theater with my friends. But I don’t know what clothes to wear. Maybe this magazine can help.\n\nAnna: Her clothes are beautiful! I really want a friend like her to help me.\n\nAnna: Who are you?\n\nGenie: I am Genie! You want help. I am here to help you find the right clothes!\n\nAnna: Awesome! How about jeans and a t-shirt?\n\nGenie: No! Jeans and a t-shirt are too casual. How about something more formal?\n\nAnna: Sure!\n\nAnna: Wow! Genie, this dress is beautiful. But it’s not the right size. It’s too small.\n\nGenie: Yes, it is too small. But green looks great on you.\n\nAnna: Thanks.\n\nGenie: Take off the green dress. Let’s try a green shirt and a skirt.\n\nAnna: Oh, Genie! This green shirt is too large and this orange skirt is too orange.\n\nGenie: Yes, the right size for you is medium. Let’s try again.\n\nAnna: Oh, I don’t like this outfit.\n\nGenie: No. That does not match.\n\nAnna: Nothing.\n\nAnna: These clothes are formal: a suit jacket, a dress shirt and a tie! They look great!\n\nGenie: Those clothes look great … for a man! Something is wrong.\n\nAnna: Let me see.\n\nAnna: There. Now try.\n\nGenie: Oh. Thanks! Now these clothes look great on you!\n\nAnna: They do! Um, Genie, can you put on a gold belt?\n\nGenie: Sure!\n\nGenie: That looks great.\n\nAnna: Can you put on a jacket?\n\nGenie: Why not?\n\nAnna: I love the jacket! How about a hat?\n\nGenie: Why not?\n\nGenie: Mm, take off the hat. That’s better.\n\nAnna: Genie, these clothes look and feel great! Let’s go to the theater!\n\nGenie: Sorry, Anna. I have to help other friends. Go to the magazine if you want me to help again.\n\nAnna: Thanks, Genie. Sure thing. Goodbye!\n\nGenie: Goodbye!\n\nAnna: There are many places in DC to go for a great evening out! And it’s nice to have a friend to help me look my best. Until next time! Bye!",
+      "sha256": "6407cf77a9eed731e76fc0cbf62fb8edf477099d83da38816e227e63ecdedac8",
+      "capture": "private/corpus/voa-beginners/discovery-link-28.txt",
+      "captureSha256": "37e4f837c45b36c668d3e2c989aafad87ddf08bf6306682ca3eb5eda7d7d2bf2",
+      "sourceLines": {
+        "webLineStart": 181,
+        "webLineEnd": 245
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "daily-life",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "0a95870dfc8068dec0922a48f081daeb448df4cb20534d147dc4697df2e44d3a"
+    },
+    {
+      "id": 3343720,
+      "title": "Lesson 15: I Love People-Watching!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-15-i-love-people-watching/3343720.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! People from all over the world come to Washington, D.C. When I’m at work, I love eating lunch outside. I like to watch people walking by. They all look very different. Today, my friend Ashley is eating lunch with me.\n\nAnna: Ashley, today the weather is beautiful, isn’t it?\n\nAshley: Yes, it is. Ahh. Ooh, we have to return to work!\n\nAnna: No, we have time! Let’s people-watch a little more.\n\nAshley: Okay.\n\nAnna: Oh, I know her. She works in my office! Keyana, hi! Come and join us!\n\nKeyana: Hi Anna, how are you?\n\nAnna: I’m doing great! Keyana, this is my friend Ashley.\n\nKeyana: Hi, Ashley!\n\nAnna: We need to return to work. But the weather is beautiful and people-watching is fun!\n\nKeyana: I love people-watching too!\n\nAnna: Well, have a seat! It is fun to see how people are different or the same.\n\nKeyana: It is. For example, Anna, you are tall. But Ashley and I are short.\n\nAnna: And Keyana, you and Ashley have brown eyes; I have blue eyes.\n\nKeyana: You two have light skin and I have dark skin.\n\nAnna: Ashley, you have straight hair. Keyana and I have curly hair.\n\nAshley: You have very curly hair, Anna.\n\nKeyana: I need to return to work. See you, Anna! Nice to meet you Ashley!\n\nAshley: Bye, Keyana!\n\nAshley: Anna, I have to go, too. Are you returning to work?\n\nAnna: I still have time. And this sun feels so good!\n\nAshley: Um, Anna, what does your boss look like?\n\nAnna: She is short. She has straight, light hair.\n\nAshley: Does she wear glasses?\n\nAnna: Yes. Yes, she does.\n\nAshley: Is she wearing a blue sweater today?\n\nAnna: How do you know that?\n\nAshley: She’s coming this way.\n\nAnna: Oh no! Hide me!\n\nAshley: Um, bye, Anna. Call me later.\n\nAnna: Bye, Ashley! Talk to you later!\n\nCaty: Anna? Is that you?\n\nAnna: Ms. Weaver! Hi!\n\nCaty: What are you doing behind that bench?\n\nAnna: I am looking for my, my … stick. Here it is.\n\nAnna: I am people-watching. Oh! But it’s time to return to work!\n\nCaty: No need to hurry. I love people-watching too! Let’s sit!\n\nAnna: Sure! Ahh.\n\nCaty: It’s a beautiful day, isn’t it?\n\nAnna: Yes. Yes, it is, Ms. Weaver.\n\nAnna: People-watching in D.C. is fun. It makes me forget the time!\n\nAnna: Until next time! Ahh.",
+      "sha256": "90436ece8c85e903528af70472e8acfe92d21a34870be379936917be1f240271",
+      "capture": "private/corpus/voa-beginners/discovery-link-29.txt",
+      "captureSha256": "7aea52ccd6eef481f6d254c796e835d7ab87940930d56bbf9d34899cec67ff3c",
+      "sourceLines": {
+        "webLineStart": 180,
+        "webLineEnd": 258
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "daily-life",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "e658d85fabbc109abb4080de04f625161e3137c1528817c0dc527150dbd0ea4d"
+    },
+    {
+      "id": 3355849,
+      "title": "Lesson 16: Where Are You From?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-16-where-are-you-from/3355849.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! Washington, D.C. has many tourists! People from different countries come here. Today, my job is to interview tourists. I have to learn why they come here. This is very exciting! Excuse me. I’m Anna Matteo from The News. Do you have time for an interview?\n\nSabrina: Sure, I have time.\n\nAnna: What is your name?\n\nSabrina: My name is Sabrina.\n\nAnna: What country are you from?\n\nSabrina: I’m from Bangladesh.\n\nAnna: So, you are Bangladeshi.\n\nSabrina: That’s right! My nationality is Bangladeshi.\n\nAnna: Do you like Washington, D.C.?\n\nSabrina: Yes! The city is very beautiful!\n\nAnna: What do you like to do in Washington D.C.?\n\nSabrina: I like history. So, I like walking around and looking at all the monuments and memorials. They make history come alive!\n\nAnna: Washington has many monuments and memorials. The Washington Monument is behind us! Which is your favorite?\n\nSabrina: I really like Lincoln Memorial. It is very beautiful. And it feels like Abraham Lincoln is still alive.\n\nAnna: Awesome. Thank you for your time, Sabrina!\n\nSabrina: You’re welcome.\n\nAnna: Let’s find another tourist.\n\nAnna: Oh! Excuse me. I am Anna Matteo from The News. Do you have time for a couple of questions?\n\nLouis: Sure!\n\nAnna: Are you from Washington, D.C.?\n\nLouis: No, I’m not.\n\nAnna: What is your name and where are you from?\n\nLouis: My name is Louis. And I’m from China.\n\nAnna: What languages do you speak?\n\nLouis: I speak Chinese and English.\n\nAnna: What do you like about Washington DC?\n\nLouis: I like the museums. I really like the art museums.\n\nAnna: Many of the museums are free.\n\nLouis: I like that too!\n\nAnna: Awesome! Thanks for your time, Louis.\n\nLouis: You’re very welcome. Bye!\n\nAnna: Now, let’s find another tourist!\n\nAnna: Hello! I am Anna Matteo from The News. Do you have time to answer a couple of questions?\n\nMehrnoush: Sure!\n\nAnna: What is your name and where’re you from?\n\nMehrnoush: My name is Mehrnoush. I am from Iran. I’m Iranian.\n\nAnna: What language do they speak in Iran? Is it Persian?\n\nMehrnoush: They speak Farsi.\n\nAnna: What do you like to do in Washington DC?\n\nMehrnoush: Well, I like learning about government and politics.\n\nAnna: Washington has many politicians!\n\nMehrnoush: It does! I want to see the U.S. Capitol.\n\nAnna: Look, you are very near.\n\nMehrnoush: I am!\n\nAnna: Have fun!\n\nMehrnoush: Thanks!\n\nAnna: There you have it. Tourists from all over the world come to Washington, D.C. They all like doing and seeing different things in the city. This is Anna Matteo reporting for The News. Until next time!\n\nAnna: Is that okay? Awesome! Now, I want to do my favorite thing in the city … ride the carousel!",
+      "sha256": "317bfeff62417449628e966842986edef1be43d924ed691b89a832fc378ec2aa",
+      "capture": "private/corpus/voa-beginners/discovery-link-30.txt",
+      "captureSha256": "04179f4b962eb1aa764bf3fd995476d457295bef7bc7c3fd68aca41c482cffd3",
+      "sourceLines": {
+        "webLineStart": 180,
+        "webLineEnd": 269
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "travel-places",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "9432f2b41ee0de2500930dd770665a78e774e71e020fb9bddcf35969538c1a3b",
+      "supportedExcerpts": [
+        {
+          "start": 1105,
+          "end": 1687,
+          "sourceHash": "317bfeff62417449628e966842986edef1be43d924ed691b89a832fc378ec2aa",
+          "sha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+          "startingPoints": [
+            "A2"
+          ],
+          "reviewer": "Codex/AI",
+          "reviewedAt": "2026-10-08",
+          "decision": "supported-beginner-text",
+          "notes": "Complete unchanged Louis interview inspected with its preceding and following tourist transitions. Direct name/country/languages/likes and museum-cost exchange, explicit Anna/Louis labels and closing. Existing simple museum definition and localized speaker/completion support remain available. Only106word source scope admitted for self-chosen A2 support; no A1, whole454word dialogue, audio or calibrated CEFR approval. Speaker matching records who says each sentence, not semantic mastery."
+        }
+      ]
+    },
+    {
+      "id": 3355785,
+      "title": "Lesson 17: Are You Free on Friday?",
+      "url": "https://learningenglish.voanews.com/a/are-you-free-on-friday-lets-learn-english/3355785.html",
+      "author": "VOA Learning English",
+      "text": "Anna: This city is very interesting, I really like my job, and I have some good friends! Speaking of friends … I see one now! Marsha! Hi!\n\nMarsha: Hi, Anna. What’s going on?\n\nAnna: Not much. How about you?\n\nMarsha: Busy as usual. Hey, do you wanna see a movie with me?\n\nAnna: Sure! I never have time to see a movie. When?\n\nMarsha: Are you busy this Thursday at 6pm?\n\nAnna: Let’s see …. I’m busy. I am going to tap dance with my friends Thursday night.\n\nMarsha: Tap dancing? That sounds fun!\n\nAnna: I’m still learning. But it is fun!\n\nAnna: Are you busy on Friday night?\n\nMarsha: Yes. Friday nights are when I visit my parents.\n\nAnna: What do you and your family do together?\n\nMarsha: We always eat dinner together and sometimes we play board games.\n\nAnna: Playing board games is fun, too! The word game Scrabble is my favorite.\n\nMarsha: I like Connect Four!\n\nAnna: I’m not busy Monday night. Are you?\n\nMarsha: I am busy on Monday night. I’m going to jog in the park with my friend. Do you jog?\n\nAnna: Oh! I always jog. Well, sometimes I jog. Okay, I never jog. But I will try because it is good for you.\n\nMarsha: I always feel great after I jog.\n\nMarsha: How about on Wednesday night?\n\nAnna: Wednesday night I am not busy. Oh, no, wait. This Wednesday night I will be busy.\n\nMarsha: What are you doing?\n\nAnna: I’m going to teach children how to play the ukulele.\n\nAnna: Now, children, play “C.” Good. I like your “C.”\n\nMarsha: The world does need more ukulele players.\n\nAnna: Marsha, it looks like we’ll never have time to see a movie.\n\nAnna: Wait a minute. Are you busy now?\n\nMarsha: It’s Saturday afternoon. This is always when I do my errands.\n\nAnna: Okay, but the new Star Wars movie is gonna start in 30 minutes.\n\nMarsha: I’ll do my errands on Sunday. Let’s go!\n\nAnna: Most days of the week, people are really busy. But it’s important to find time to be with your friends!\n\nAnna: Until next time!\n\n* Connect Four is a two-player connection game using colored discs.",
+      "sha256": "94f7e4f0bb7bc2e2af013349c148d391b599d6c40b395eda8d1279b389d05514",
+      "capture": "private/corpus/voa-beginners/discovery-link-31.txt",
+      "captureSha256": "478017ec7a28e95f742945adb9d82a98a390b214062a77c3aaa066f8b44c969d",
+      "sourceLines": {
+        "webLineStart": 183,
+        "webLineEnd": 243
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "daily-life",
+      "excludedSpans": [
+        {
+          "start": 1901,
+          "end": 1970,
+          "reason": "Footnote outside conversation"
+        }
+      ],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "51e8815c265b62a7970137def917abca5ad08fc63de6f80290e80b8c5cc7f2ad"
+    },
+    {
+      "id": 3357748,
+      "title": "Lesson 18: She Always Does That",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-18-she-always-does-that/3357748.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello, from Washington, D.C.! Today at work I am reading the news for the first time. I am really nervous. But my boss, Ms. Weaver, is here to help me.\n\nCaty: Now, Anna, remember. When we read the news we are always reading facts. We never show our feelings.\n\nAnna: Sure thing, Ms. Weaver.\n\nCaty: Great. Are you ready?\n\nAnna: Yes.\n\nCaty: Okay, let’s try the first story!\n\nAnna: Hello, and welcome to The News.\n\nAnna: A new book is very popular with children and families. This is it.\n\nAnna: It is about a lost duckling. The duck's mother cannot find him.\n\nCaty: Stop! Anna, when you say the words “duck” and “duckling” you look really sad.\n\nAnna: I do?\n\nCaty: Yes. Sad is a feeling.\n\nAnna: Sad is not a fact. Sorry. Let me try again.\n\nCaty: Okay, she’s trying again! And go.\n\nAnna: Hello, and welcome to The News. A new book is very popular with children and families. This is it.\n\nAnna: It is about a lost duckling. The duck’s mother can not find ‘im. But a family gives him a home.\n\nCaty: Stop! Anna, you are doing it again.\n\nAnna: This story is very sad.\n\nCaty: I have an idea. Let’s read the second story. She’s reading the second story. And … go!\n\nAnna: Hello , and welcome to The News. In Indiana, a grandmother is the first 80-year-old woman to win The Race Car 500.\n\nAnna: That is awesome!\n\nCaty: Stop! Stop! Anna, please -- no feelings.\n\nAnna: Right. But it is awesome that an 80-year-old grandmother wins a car race.\n\nCaty: Just the facts, Anna.\n\nAnna: Right.\n\nAnna: Hello, and welcome to The News. In Indiana, a grandmother is the first 80-year-old woman to win The Race Car 500.\n\nAnna: She rarely talks to reporters. But when she does, she often says, “Nothing can stop me now!”\n\nAnna: I am very happy for her!\n\nCaty: Stop, stop, stop!! Anna, you cannot say you are happy.\n\nAnna: But I am happy.\n\nCaty: But you can’t say it.\n\nAnna: Why?\n\nCaty: This is the News. Happy and sad are feelings. You can’t have them in The News.\n\nAnna: Okay. I got it.\n\nCaty: Okay. Let’s try the third story. She’s reading the third story!\n\nAnna: Hello and welcome to The News.\n\nCity politicians in Big Town are using city money to have a big party on a cruise ship. They are taking the money for the party from the children’s library.\n\nAnna: What?! That makes me very angry.\n\nCaty: No, no, no! Anna, you cannot say you are angry! This is The News!!!\n\nAnna: What can I do, Ms. Weaver? Take out my feelings and put them here … on the news desk?\n\nCaty: Yes. Yes. That’s right! Now you’ve got it!\n\nCaty: Let’s repeat the first story.\n\nAnna: This is going to be a very long day.\n\nAnna: Until next time!",
+      "sha256": "fc53fe1e1003f78ad12625c8ca8221e496b88cce9c31a8fd4c7cbdeaa2eb2160",
+      "capture": "private/corpus/voa-beginners/discovery-link-32.txt",
+      "captureSha256": "fe353cdae30a905957a84c07cfecf96bc6dee6148a1548634069b5e1f5c8fdf2",
+      "sourceLines": {
+        "webLineStart": 181,
+        "webLineEnd": 261
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "7379915e3cc8ce6ec9b3f13cc38b2bd9e3bd9c09ce165639da02c97846fd8839"
+    },
+    {
+      "id": 3384429,
+      "title": "Lesson 20: What Can You Do?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-20-what-can-you-do/3384429.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hi, there! Washington, D.C. is a great place to work. Many people here work in government and politics. But there are many other jobs. You can work at a hospital; a university. You can work in a coffee shop. Wait a minute, I think I see a friend of mine. Pete? Is that you?\n\nPete: Hi, Anna.\n\nAnna: You look different. Your beard … is really big.\n\nPete: You don’t like it, do you?\n\nAnna: No, no. You just look … different.\n\n(To server) Thank you. So, what’s wrong? You look sad.\n\nPete: I don’t have a job.\n\nAnna: Sorry, I can’t hear you.\n\nPete: I do not have a job!\n\nAnna: Oh. I’m sorry to hear that, Pete.\n\nPete: I don’t have a skill.\n\nAnna: Everyone has a skill. You need to find yours.\n\nPete: I don’t know, Anna.\n\nAnna: Pete, I am good at asking questions. Let me ask you some.\n\nPete: Really, Anna? Can you help me?\n\nAnna: Yes, I can. Let me help.\n\nPete: Sure, Anna. Maybe you can help.\n\nAnna: Can you write code?\n\nPete: Sure, c-o-l-d. How is this going to help?\n\nAnna: No, not “cold.” Code; you know, for making phone apps, or websites. You can make tons of money writing code.\n\nPete: Tons of money? But I can’t code.\n\nAnna: Next question. Can you drive?\n\nPete: Do you mean drive a race car? It’s really hard to be a race car driver. First, you need a race car ...\n\nAnna: No, I mean drive a taxi or drive a bus.\n\nPete: No, I always fall asleep when I drive.\n\nAnna: Oh, that’s not good. Next question. Can you teach? You can be a teacher in a school.\n\nPete: No, I cannot teach.\n\nAnna: Can you cook? You can be a chef in a restaurant.\n\nPete: No, I can’t code! I can’t teach! I can’t cook! Anna, I can’t do anything. This is sad. I’m gonna write about my feelings in my blog.\n\nAnna: You write a blog?\n\nPete: Yeah, I write a blog.\n\nAnna: How many followers do you have?\n\nPete: I don’t know … 59,538.\n\nAnna: Pete, that's a lot of followers! You can make money writing!\n\nPete: Writing is easy. Everyone can write.\n\nAnna: Not everyone can write well. You can be a writer!\n\nPete: I can be a writer. I can be a writer! I can be a writer! Thanks, Anna.\n\nMarsha: Hi, Pete. Hi, Anna.\n\nPete: Hi, Marsha. Excuse me, I have to go.\n\nMarsha: Where are you going?\n\nPete: I’m going to be a writer!\n\nMarsha: Good luck, Pete!\n\n(To Anna) He does know that it’s not easy to be a writer, doesn’t he?\n\nAnna: There are many different jobs you can have in Washington, D.C. Pete wants to be a writer. I wish him luck. Lots of luck. Until next time!",
+      "sha256": "0d534d994695073862690d4b255a74b7baa53742c8658914326e5600544d9242",
+      "capture": "private/corpus/voa-beginners/discovery-link-34.txt",
+      "captureSha256": "9eefecaa4124e5440d76371c58a1856005fb4c9f061228e9b0a87360968a4460",
+      "sourceLines": {
+        "webLineStart": 179,
+        "webLineEnd": 260
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "0234500b916cae01aa11b0fb4558f80bc1e959c983e3f2006b1f608a8ebdf4ec"
+    },
+    {
+      "id": 3397314,
+      "title": "Lesson 22: Next Summer...",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-22/3397314.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Washington, D.C. has four seasons: winter, spring, summer and autumn or fall. My favorite season is summer because of summer vacation!Hey, that will be a great subject for my new work assignment -- the children’s show. I can teach what families in the U.S. do during summer vacation.Today, I’m planning the show with Amelia. This is the first time we are working together. I hope we can work well together. Hi, Amelia!\n\nAmelia: Hi, Anna! So, what are we going to talk about on the first show?\n\nAnna: I want to talk about summer vacation.\n\nAmelia: That will be fun! Are you going on vacation this summer?\n\nAnna: No. This summer I am too busy.\n\nAmelia: That’s too bad.\n\nAnna: It’s okay. I can go on vacation next summer. This show will be a lot of fun too!\n\nAmelia: So, Anna, what’s the plan for the show?\n\nAnna: First, we’re going to introduce the subject. Then we can show pictures and video.\n\nAmelia: We can show tons of video!\n\nAnna: Right! We can interview children and have guests, too.\n\nAmelia: Kids can ask us questions.\n\nAnna: Great idea! Finally, we can read the questions and tell them where to learn more.\n\nAmelia: Okay, let’s try it!\n\nAnna: Let’s do it!\n\nAnna: Hi there! And welcome to … Amelia, we don’t have a name for the show.\n\nAmelia: We’ll think of a name later. For now, we'll call it “The Show.”\n\nAnna: Great. Hi there! And welcome to “The Show.”\n\nAnna: Today we are going to take you on a summer vacation! You will see popular things to do on vacation!\n\nAnna: One is camping. When you go camping, you cook, sleep and play outdoors!\n\nAmelia: When I go camping, Anna, I like to go hiking and fishing.\n\nAnna: Me, too. Those are fun things to do when you go camping!\n\nAnna: These people are hiking.\n\nAmelia: Okay, let’s talk about the next vacation.\n\nAnna: Another popular summer vacation is going to an amusement park. At an amusement park, you go on rides and eat lots of fun food!\n\nAmelia: I love cotton candy … !\n\nAnna & Amelia: and rollercoasters!\n\nAmelia: This show is going to be a lot of fun.\n\nAnna: I know!\n\nAnna: This is riding a rollercoaster!\n\nAmelia: Whoooo! What is the last vacation?\n\nAnna: One of the most popular vacations is … going to the beach!\n\nAnna & Amelia: I love the beach!\n\nAnna: When I see that blue ocean, I want to leave Washington, D.C. immediately and go to the beach!\n\nAnna: Maybe next summer.\n\nAmelia: But right now, it’s time to work!\n\nAnna: Right. Until next time ...",
+      "sha256": "53ffca418d2b5a088b3f83d2b40a613d6cb0befdec5c9f4fa7cf181f4fe10194",
+      "capture": "private/corpus/voa-beginners/discovery-link-36.txt",
+      "captureSha256": "0c581c56bfa5f8917544001774d1c38ab8ee14bcf0e633371991b507ac31f0fd",
+      "sourceLines": {
+        "webLineStart": 178,
+        "webLineEnd": 246
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "travel-places",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "81c7708b6190f302122a67354f645eebb65c0dc9144481bea50826df7af0449b"
+    },
+    {
+      "id": 3413753,
+      "title": "Lesson 23: What Do You Want?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-23-what-do-you-want/3413753.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Washington, D.C. has great food from all over the world.\n\nAnna: Today I’m having lunch with my boss. Ms. Weaver says we’re going on a trip around the world. But she knows I only have an hour for lunch! Silly woman.\n\nJonathan: Hi, Anna!\n\nAnna: Hi Jonathan! Hey, we are meeting Ms. Weaver for lunch at noon, aren’t we?\n\nJonathan: Yes.\n\nAnna: What time is it now?\n\nJonathan: 11:50.\n\nAnna: 11:50! We have to go!\n\nAnna: So, where is this world food restaurant?\n\nCaty: We’re not eating at a restaurant.\n\nAnna: Where are we eating?\n\nCaty: We are eating at ... food trucks!\n\nAnna: Food trucks … awesome! What’s a food truck?\n\nCaty: These are food trucks!\n\nAnna: Wow!\n\nJonathan: Whoa!\n\nCaty: Okay, Jonathan, you will buy the first dish. Here is $10. Surprise us!\n\nJonathan: Okay, I’ll be back in 15 minutes.\n\nAnna: What country do I want to visit?\n\nCaty: Anna, you pick the second country. Here is $10.\n\nAnna: I want chicken.\n\nCaty: The food truck, over there, has great chicken.\n\nAnna: Awesome!\n\nCaty: After you buy your food, meet me here.\n\nJonathan: Excuse me, I’ll have the shrimp.\n\nJonathan: Oh, you’re out of shrimp. Okay, I’ll have the beef then.\n\nAnna: Hello. I want the chicken dish.\n\nTruck worker: We're out of chicken.\n\nAnna: You're out of chicken.\n\nWorker: Yep.\n\nAnna: I’ll try another food truck. Thanks!\n\nWorker: You're welcome.\n\nJonathan: Okay, here is your change. The dish is $7. So, here is 1, 2, 3 dollars back from your 10.\n\nCaty: Great.\n\nJonathan: Where’s Anna? Is she dancing by that food truck?\n\nCaty: Yes. Yes, she is.\n\nAnna: Ms. Weaver, here is your change. The dish costs $5. So - $5 back.\n\nCaty: Thanks, Anna. But where is the food?\n\nAnna: I’m eating it. The Peruvian chicken is delicious! Try some!\n\n(Caty and Jonathan shake their heads “no”)\n\nCaty: Well, we still have $8! What do you want now?\n\nAnna: We can buy dessert!\n\nCaty: I’ll buy dessert.\n\nAnna: In Washington, D.C., you can travel around the world … with food trucks! And it does not cost a lot.\n\nAnna: Until next time!",
+      "sha256": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "capture": "private/corpus/voa-beginners/discovery-link-37.txt",
+      "captureSha256": "c9f0eacbad50f02d74a10fb303a74785226b0fd9f1bad5772db7f390a5c34fe0",
+      "sourceLines": {
+        "webLineStart": 181,
+        "webLineEnd": 265
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "food-health",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "67bd85d9c9f67097340ae6121b53e5507c49f99450db4f59308f5b3cbf44292b"
+    },
+    {
+      "id": 3439164,
+      "title": "Lesson 24: Yesterday Was Amazing!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-24-yesterday-was-amazing/3439164.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Yesterday was the most amazing day. I want to tell my friend back home about it. So, I am writing her a letter!\n\nAnna: Dear Penelope,\n\nLife in Washington, D.C. is interesting. I see something new every day -- like yesterday. Yesterday started like a usual work day.\n\nAnna: I said, \"Yesterday started like a usual work day.\"\n\nAnna's voice: I was at work. And I wanted a break. So, I walked and walked … and walked. Then, I saw something! It was a festival -- a big festival!\n\nAnna: It is the Smithsonian Folklife Festival.\n\nAnna's voice: Yes. It was the Smithsonian Folklife Festival. Every year the festival shows different cultures. This year one of the cultures was the Basque culture.\n\nThere was dancing and food and games!”\n\nAnna: I am dancing a traditional Basque dance.\n\nAnna's voice: At the festival, I danced a traditional Basque dance!\n\nAnna: They are cooking traditional Basque food.\n\nAnna's voice: They cooked a lot of traditional Basque food.\n\nAnna: They are playing a game. It’s a kind of handball. What do they call it? They call it pilota!\n\nAnna's voice: They played a game with their hands and a small ball. It’s a kind of handball. But this game is called pilota.\n\nAnna: This is beautiful! This is traditional Basque art.\n\nAnna: They are making a traditional Basque ship. This festival is a lot of fun!\n\nAnna's voice: The whole day was a lot of fun!\n\nAnna: Who said that? I want to write my friends and tell them about my day!\n\nAnna: … So, I wanted to tell you about my day! Please, my friend, come visit Washington, D.C. soon. There is a lot to do! Until next time … Anna.",
+      "sha256": "ba5557e30153a0665010d5b7174aba61844747c3bc8f600682f8d397a83c55e1",
+      "capture": "private/corpus/voa-beginners/discovery-link-38.txt",
+      "captureSha256": "3e8a0147127383a86788ecedf9643a91c24cf524291a896f46463906d4c73310",
+      "sourceLines": {
+        "webLineStart": 181,
+        "webLineEnd": 213
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "arts-culture",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "e22689e56417a411ce92ebe53e118cb2c62325307643612995ef7ad2c24b0a6c"
+    },
+    {
+      "id": 3457316,
+      "title": "Lesson 27: I Can't Come In",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-27-i-cant-come-in/3457316.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! I am sure that today, in Washington, D.C,. there are a lot of great things to do. But I am not doing any of them. I am sick. Right now, I'm going to call my boss and tell her I cannot come in to work.\n\nCaty: Hello?\n\nAnna: Ms. Weaver, Hi. I can’t come to work today.\n\nCaty: Why not? What is wrong?\n\nAnna: Well, yesterday I felt fine.\n\nAnna: In the morning, I painted for hours. In the afternoon, I cut wood. Then, I built a fire.\n\nCaty: Anna, what do you mean? Why can’t you come to work today?\n\nAnna: I do not feel well. I think I’m sick.\n\nCaty: I’m sorry to hear that. I was sick last week, too. I had the flu.\n\nAnna: (sneezes) What did you do?\n\nCaty: I slept a lot and I drank a lot of water. Do you have a doctor?\n\nAnna: Yes, I do.\n\nCaty: You should call your doctor. And get lots of rest!\n\nAnna: Thanks, Ms. Weaver. I’ll call right now. I'm calling my doctor.\n\nDr. Bennett: (to herself) Now, where does this thing go?\n\nDr. Bennett: Hello. This is Dr. Bennett. How can I help you?\n\nAnna: Hello, Dr. Bennett. This is Anna.\n\nDr. Bennett: Oh, Hi, Anna. How can I help you?\n\nAnna: I think I’m sick.\n\nDr. Bennett: Let me ask you a couple of questions. Do you have a sore throat?\n\nAnna: Yes. I have a sore throat.\n\nDr. Bennett: Do you have a cough?\n\nAnna: Yes. I have a cough.\n\nDr. Bennett: When did you start feeling sick?\n\nAnna: This morning. Yesterday I felt great. In the morning I painted, for hours - in the afternoon I cut wood -\n\nDr. Bennett: Excuse me, Anna. But I don’t need to know all that. Do you have a fever?\n\nAnna: Oh. My thermometer says 125 degrees?! What??\n\nDr. Bennett: Yeah, that’s not right.\n\nAnna: Oh. Wait. The thermometer was in my hot cup of coffee.\n\nDr. Bennett: Please take it again, Anna.\n\nAnna: Okay, the thermometer says 100.5 degrees.\n\nDr. Bennett: 100.5 degrees is not too high. I want you to drink lots of water. Rest in bed and get lots of sleep.\n\nAnna: That is what my boss said to do. Um, Dr. Bennett, when can I go to work?\n\nDr. Bennett: Don’t go to work for a couple of days.\n\nAnna: Yes! I mean, I don’t want to make my co-workers sick.\n\nDr. Bennett: That’s right. Call me back in a couple of days.\n\nAnna: I will, Dr. Bennett. And thanks.\n\nAnna: Well, you heard the doctor – no work for a couple of days. I need water, sleep and um … lots of movies! Well, the doctor didn’t say anything about movies. But it can’t hurt! Until next time!",
+      "sha256": "94ccbf940583a0938b966d08646cd9896af6b0c976e79433b51b1c3f33aa6d82",
+      "capture": "private/corpus/voa-beginners/discovery-link-41.txt",
+      "captureSha256": "d623fbfc568cd7cb15329f13d6f655a55ffd60274e79bb294bcd0e103e4b15a3",
+      "sourceLines": {
+        "webLineStart": 182,
+        "webLineEnd": 252
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "food-health",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "18b15c07e3a0643bb66e0dc2cb6a64d6fa3879b76113f0298f7168fdbf49184e"
+    },
+    {
+      "id": 3547306,
+      "title": "Lesson 32: Welcome to the Treehouse!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-32-welcome-treehouse/3547306.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! Today is a big day. My first children’s show is on television! Woo-hoo! I’m excited and nervous.\n\nMs. Weaver: Hello, Anna.\n\nAnna: Hello, Ms. Weaver!\n\nMs. Weaver: Some people are going to watch your children’s show. After they watch it, they’ll tell me what they liked, and what they didn’t like.\n\nAnna: Oh, dear.\n\nMs. Weaver: They’re in the conference room. They’re in the conference room.\n\nAnna: Hello, everyone. I’m Anna, and thanks for coming!\n\nAnna: Today you are going to watch my new show. I hope you like it\n\nCoworker 2: What is the show about?\n\nAnna: It’s a children’s show.\n\nCoworker 1: But we are not children!\n\nAnna: This children's show is different. I hope.\n\nCoworker 3: I don’t really like children's shows.\n\nAnna: Shhh, please. The show is starting!\n\nAnna: Oh, hi! Just give me one minute ….oops! Oh well. I can fix that later.\n\nAnna: Hello, I’m Anna! Welcome to “The Time Traveling Treehouse!” This is not a usual treehouse. It can time travel! That is why it’s called \"The Time Traveling Treehouse.\"\n\nMINDY: Anna, do not forget me.\n\nAnna: Of course not! This is my partner, MINDY!\n\nMINDY: My name means Massive Information Navigation Device, for You!\n\nAnna: That means we can travel to many places and learn many things. Kids from all over the world ask us questions. We find them answers!\n\nMINDY: Woo-hoo! That is right, Anna.\n\nAnna: MINDY, what is our first question?\n\nMINDY: Layla asks us this question.\n\nLayla: Hello, Anna! Hello, MINDY! I'd like to know -- how do you play baseball?\n\nAnna: That is a great question! MINDY, we need to find her an answer!\n\nMINDY: I know that we can find it, Anna!\n\nAnna: Where am I now? MINDY, now I am on a snowy mountain!\n\nMINDY: That is a good place to learn how to ski.\n\nAnna: Yes, MINDY, but it cannot teach us about baseball! And I don’t know how to ski!\n\nMINDY: Sorry, Anna. Let’s try again.\n\nAnna: Where I am now!? MINDY, I am in the ocean! An ocean cannot teach us about baseball!\n\nMINDY: Please don’t yell, Anna. The ocean can teach us about surfing.\n\nAnna: Yes, MINDY, it can teach us about surfing … and sharks! Ahhh!\n\nMINDY: Anna, please wait. I need to fix my navigation device\n\nAnna: MINDY, please fix it faster. And get me out of here … now!\n\nAnnouncer: Whoa! Is Anna going to be lost forever? Next week, you can watch part two of “The Time Traveling Treehouse!”\n\nCoworker 1: Aw, man! Will the shark eat her?\n\nCoworker 2: Will Anna find the answer?\n\nCoworker 3: Please tell me the ending!\n\nAnna: So, you liked it?\n\nCoworkers: Yes!\n\nAnna: Well, you can watch the ending next week!\n\nCoworkers: Noooooo!\n\nAnna: Don’t forget to watch next week!",
+      "sha256": "e287bbfa240693f768a0a0e88136fd9bc1ddb019e1e24eda7bdd40744bcbf73e",
+      "capture": "private/corpus/voa-beginners/discovery-link-46.txt",
+      "captureSha256": "175c8da089a2ce7196c005f5f2b11caf60dce5dda50111aa7c87b7f6f25a88a0",
+      "sourceLines": {
+        "webLineStart": 183,
+        "webLineEnd": 263
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "9a243c898a9b4bb70b177cd2488caee2326cb37eeffa0b30d0f9fbb679d456db"
+    },
+    {
+      "id": 3571922,
+      "title": "Lesson 35: Let’s Make Dinner!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-35-lets-make-dinner/3571922.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hi there! Washington, D.C. has many fun places to eat. But, sometimes it's more fun to cook. In fact, tonight Marsha and I are cooking for friends. Well, she is cooking. I am doing the shopping.\n\n(phone rings) It’s Marsha. Hi, Marsha.\n\nMarsha: Hi, Anna. Do you have the shopping list?\n\nAnna: Yes, I told you: I have the shopping list. Can you hear it?\n\nMarsha: Okay, good. I hear the list. Anna, please buy all the ingredients on the list.\n\nAnna: Yes, Marsha, I will.\n\nMarsha: And do not spend too much time shopping.\n\nAnna: No, Marsha, I won’t. See you later.\n\nAnna: Sometimes, Marsha worries too much. I love shopping! And, I did not spend too much money. Oh, no! But I did spend too much time! I have to return home now!\n\nMarsha: Anna, what took you so long? Our guests will be here soon!\n\nAnna: Don’t worry, Marsha. I bought everything on the list.\n\nMarsha: Let me see. You bought a bunch of bananas, a box of pancake mix, a bag of coffee … Anna, this is all wrong!\n\nAnna: What do you mean wrong? I bought a jar of peanut butter and a loaf of bread … no, wait … two loaves of bread.\n\nMarsha: Anna, these are the wrong ingredients!\n\nAnna: These ingredients are all on the list! I took this list from the counter.\n\nMarsha: Anna, this is the shopping list for breakfast. I said, take the shopping list - on the refrigerator - for dinner!\n\nAnna: Marsha, there was no shopping list - on the refrigerator - for dinner!\n\nMarsha: Oh no! It’s on the floor!!\n\nAnna/Marsha: Ahh!!! Ahh!!!\n\nMarsha: What are we going to do?\n\nAnna: When do our guests arrive?\n\nMarsha: They arrive in 30 minutes!\n\nAnna: I can fix this. Do you trust me?\n\nMarsha: Do I have to?\n\nAnna: Yes.\n\n(The story continues next week)",
+      "sha256": "d23bd5aeeb9c437e73c6a0bce2da8bbf60044cf302daf246ba7d9a3c2e4ab504",
+      "capture": "private/corpus/voa-beginners/discovery-link-49.txt",
+      "captureSha256": "60ae8cac5455bb41e62dce387237f40741add5b09860f28364c2d2f3acebe7ac",
+      "sourceLines": {
+        "webLineStart": 180,
+        "webLineEnd": 227
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "food-health",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "69df644f6d22b214e0e25395d61b59909c714e3ebd930f5ffb7a552c9aeda0f8"
+    },
+    {
+      "id": 3568962,
+      "title": "Lesson 36: I Can Fix This!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-36-i-can-fix-this/3568962.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Last time on Let’s Learn English, Marsha and I invited friends to a dinner party but I shopped with the wrong list. Guests are coming soon. Marsha is worried but I have a plan. Let’s see what it is.\n\nAnna: I just need a couple of ingredients. Marsha, please hand me the flour.\n\nMarsha: Anna, where is the flour? It's not in the cabinets.\n\nAnna: I put the flour inside the refrigerator.\n\nMarsha: Why?\n\nAnna: It’s cold and dry in the refrigerator. See, it says: “Put in a cold, dry place.” Okay, now, Marsha, please hand me the eggs.\n\nMarsha: Anna, where are the eggs?\n\nAnna: The eggs are inside the cabinet under the sink.\n\nMarsha: Anna, why are the eggs in here?\n\nAnna: On the farm, we always put the eggs there. How else can the chickens see them? Okay. You clean the living room. I will make dinner.\n\nMarsha: What are you going to make with these ingredients?\n\nAnna: I have a plan.\n\nMarsha: Okay, the apartment is clean. The kitchen is not. What are you cooking?\n\nAnna: I made my favorite recipe: peanut-butter-banana pancakes!\n\nMarsha: You made breakfast.\n\nAnna: Yes! I call it let’s-eat-breakfast-for-dinner dinner!\n\nMarsha: Anna! Mmm! Hey, this tastes good! Anna, you made it work!\n\nAnna: That’s our guests!\n\nMarsha: I’ll answer the door.\n\nAnna: I’ll finish here.\n\nAnna: Like I said, sometimes Marsha worries too much. When something goes wrong with your plan, just change the plan! Till next time!",
+      "sha256": "92b0913a8d0f496ce4f2fe57a3447cef268fabe43ee45077233b610e05411267",
+      "capture": "private/corpus/voa-beginners/discovery-link-50.txt",
+      "captureSha256": "4f493de60d40e6d0fa67279dae7cc4fd2a464fa07e6e1b204abb5fa8a03f6a1d",
+      "sourceLines": {
+        "webLineStart": 180,
+        "webLineEnd": 217
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "food-health",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "a58b14cb2e050e1fc783ce3386f0c9167fdedb7a1455f0aba89ed99c97db8444"
+    },
+    {
+      "id": 3574029,
+      "title": "Lesson 37: Let's Agree to Disagree",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-37-lets-agree-to-disagree/3574029.html",
+      "author": "VOA Learning English",
+      "text": "Anna: You know, I am from the country and sometimes I miss it. But I really like life in the city! I love the city. Oh, look. Someone lost a bag. Maybe it's theirs. Excuse me. Is this bag yours?\n\nDr. Jill: No. It's not mine. It might be hers.\n\nAnna: Excuse me. Is this bag yours?\n\nSarah: No. It's not mine. It might be his.\n\nAnna: Thank you. Hello. Is this bag yours?\n\nPhil: Yes, that's mine. These are all my travel things. Thank you, thank you!\n\nAnna: Are you okay? You seem ... nervous.\n\nPhil: Well, this is my first visit to Washington, D.C. I'm from a small town in the country. I feel a little lost.\n\nAnna: I am from the country too! And I understand. When I first came here, I felt lost ... all the time.\n\nPhil: So, do you like living in the country or in the city?\n\nAnna: I like to live in the city.\n\nPhil: Why?\n\nAnna: The city is exciting! It has more culture than the country. There are many museums and restaurants. Every night, there is theater and music. And, there are more jobs. That is why I'm here.\n\nPhil: Well, I agree. There is more culture in the city and there might be more jobs. But the country has more nature! It's peaceful and beautiful. There are more trees and mountains. The air is clean. You can go hiking and camping. The city is not beautiful. It's noisy and dirty.\n\nAnna: I disagree. I think all the different buildings are beautiful. And I like to watch all the different people.\n\nPhil: That's another thing that is different. People in the country are friendly. They always say \"hello!\" Here, no one says \"hello.\" I think city people are rude.\n\nAnna: Well, I agree. Country people are friendly. But I don't think city people are rude. I think they're just busy.\n\nPhil: That's a good point.\n\nAnna: Look at me. I live in the city and I said \"hello\" to you.\n\nPhil: But you are from the country.\n\nAnna: I have an idea. Let's say \"hello!\" to people -- to many people!\n\nPhil: What? Why?\n\nAnna: Well, if we say \"hello,\" maybe they will say \"hello\" to other people ... Hello!\n\nPhil: ... and they will say \"hello\" to more people! That's a great idea! I'm glad you found my bag.\n\nAnna: Come on. Let's go say \"hello\" to people.\n\nAnna: We don't have to agree with people. They have their opinions. We have ours. And as we like to say, you can always agree to disagree! Until next time...! Hello!\n\nListen to short videos and test your listening skills with this quiz.",
+      "sha256": "da7a85ac02378bb2866b49963c9c4ce75422a4af5e4a81665ddfb518b7752462",
+      "capture": "private/corpus/voa-beginners/discovery-link-51.txt",
+      "captureSha256": "f17b0b3925197a2e3d5fc1d330359a6ba8cc862004716c6be172ce19f6b86e11",
+      "sourceLines": {
+        "webLineStart": 179,
+        "webLineEnd": 226
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "daily-life",
+      "excludedSpans": [
+        {
+          "start": 2318,
+          "end": 2389,
+          "reason": "Unrelated quiz instruction outside conversation"
+        }
+      ],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "59d3ec0de3a619c5b05e02087107fc44505ba40dd73ad54d4ab5f8727f7bc87d"
+    },
+    {
+      "id": 3723588,
+      "title": "Lesson 46: May I Borrow That?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-46-may-i-borrow-that/3723588.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Have a nice day at work Marsha!\n\nMarsha: You too, Anna. Oh, wait. Do you have pen and paper I can borrow?\n\nAnna: Of course.\n\nMarsha: We are meeting at this restaurant tonight.\n\nAnna: What is happening tonight?\n\nMarsha: Today is my birthday. We are celebrating at 7pm tonight. Did you forget?\n\nAnna: Sorry, Marsha! I gotta go! See you later!\n\nMarsha: Don't forget! Tonight … 7pm!\n\nAnna: I forgot Marsha’s birthday! And I don’t get my paycheck until next week. I know. I'll make her a gift. I’ll just have to borrow a couple of things.\n\nAnna: Amelia, may I borrow your stapler?\n\nAmelia: Sure. I can lend you my stapler, Anna. But please return it. It’s my favorite stapler.\n\nAnna: You can trust me. I understand. One time, I loaned my stapler to the wrong person.\n\nAnna: Thanks, Amelia.\n\nAmelia: Don’t mention it. Bye, stapler!\n\nAnna: Jonathan! Can I borrow your scissors?\n\nJonathan: Oh! Hi, Anna! What’re you doing?\n\nAnna: Can I borrow your scissors? Sorry to bother you.\n\nJonathan: Yes, I can lend them to you, but you must return them. These scissors -- they are the sharpest scissors in the office. Watch.\n\nAnna: Wow, those are sharp. I will be very careful.\n\nJonathan: Okay.\n\nAnna: And I’ll bring them back tomorrow.\n\nJonathan: Good.\n\nAnna: Thank you.\n\nJonathan: You're welcome.\n\nAnna: Happy Birthday, Marsha! (gives Marsha a gift)\n\nMarsha: Thanks, Anna! I love birthday gifts! Anna, it is … interesting. What is it?\n\nAnna: Well, I know you love hats. And you need office supplies. So, this is your own office supply hat!\n\nMarsha: Wow! That is a lot of office supplies!\n\nAnna: Many people loaned or shared their supplies with me. Some people really love their office supplies. It has paper, pens, tape, erasers, rubber bands, binder clips, paper clips, and a light!\n\nMarsha: What is the balloon for?\n\nAnna: The balloon will help your friends find you. Let’s try it! You get a seat in the restaurant - I will find you!\n\nAnna: Sometimes all the money in the world can’t buy the perfect gift. Until next time!",
+      "sha256": "8f5890b199154fbef55034774d68ba7e358f53bc01787f063604f7644146f7f2",
+      "capture": "private/corpus/voa-beginners/discovery-link-60.txt",
+      "captureSha256": "e47e9d7cfe549ebb8d8abb59bca7348d19866dfe94b027b727b729e479aa6f17",
+      "sourceLines": {
+        "webLineStart": 181,
+        "webLineEnd": 238
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "e6f92fe111728f28596e148e91f4fbb6635dcd52091ef83aa6dbc6e69a6e1edb"
+    },
+    {
+      "id": 3737352,
+      "title": "Lesson 47: How Can I help?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-47-how-can-i-help/3737352.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hi, Pete. What are you doing?\n\nPete: Oh! Hi, Anna. Right now, I am fixing my car.\n\nAnna: How’s it going?\n\nPete: It’s going … not so good.\n\nAnna: How can I help? I was planning to visit some friends. But if you need help, I can help. I like helping.\n\nPete: Anna, I can fix it myself. But thanks.\n\nAnna: Pete, I think I found your problem. These are spark plugs. (holds them up)\n\nAnna: They start the engine.\n\nPete: I know that, Anna. But there were too many spark plugs … in there. So I took out the extra ones.\n\nAnna: There are no extras, Pete. You need all of them. Pete, can you fix a car yourself?\n\nPete: Well, Anna, last night I was watching the online video course, “You CAN Fix a Car Yourself!”\n\nDan: Yes, you CAN fix your car yourself!\n\nPete: And I watched the first 10 lessons. So, I think I know what I’m doing.\n\nAnna: How many lessons are there?\n\nPete: Four hundred and fifty.\n\nAnna: 450! That'll take too long! If I fix your car, I'll have it running in 10 to 15 minutes.\n\nAnna: Where’re your tools?\n\nPete: I have this. (puts a useless tool in her hand). And this. (hands her another useless tool)\n\nAnna: Great. Um, I’ll get my tools. I’ll be back in a flash!\n\nPete: But, Anna, I don’t need your ...\n\n(She goes and quickly comes back with tools.)\n\nPete: … help.\n\nAnna: Pete, when I was a teenager, I was fixing cars -- myself. I learned from a master.\n\nAnna: You can trust me.\n\nPete: Okay.\n\nAnna: Great! But we need teamwork. You sit in the car. When I say “go,” you start the engine.\n\nAnna: Okay, go! ​\n\nAnna: Stop!\n\nAnna: Okay, go! Huh.\n\nPete: It's not starting! It’s not starting!\n\nAnna: What’s wrong?\n\nPete: This car is stupid … stupid, stupid!\n\nAnna: Pete, kicking the tires will not help.\n\nPete: Well, you did not help, Anna. You did not help!!\n\nAnna: Pete, Pete! Pull yourself together, man. Give me the keys. I must feel the key in the ignition and turn it myself.\n\nMaster: Use the key, Anna. Turn the key, Anna. What are you forgetting, Anna?\n\nAnna: Pete. Pete.\n\nPete: What?\n\nAnna: You are out of gas.\n\nPete: I can’t be out of gas. (looks at gauge) I’m out of gas. Sorry, Anna. I’ll go get some.\n\nAnna: Pete. You relax. Clean your face. You can watch the rest of your online video course. It’ll be faster if I go … in a flash. Until next time …\n\nDan (in the online video course): “Lesson 11. Always make sure you have a full tank of gas!”",
+      "sha256": "833b598d4137fff4d968431d0f6fb95ce206ea19de8fab7fa63335429d42d469",
+      "capture": "private/corpus/voa-beginners/discovery-link-61.txt",
+      "captureSha256": "5d284c71bd1a544aa75c49070a9e41decde5ddcc9a8664ccf0424cc7e93d7967",
+      "sourceLines": {
+        "webLineStart": 181,
+        "webLineEnd": 258
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "science-technology",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "6a936140513ef41548266d86d0d1b8b52de42450209cddb5a0fa40dcf493e4b5"
+    },
+    {
+      "id": 3753664,
+      "title": "Lesson 48: Have You Ever ...?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-48-have-you-ever/3753664.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! I have lived in Washington, D.C. for a long time now. And I have done a lot. I feel that I know this city pretty well. (walks off and comes back) That's the wrong way. Where is it again?\n\nAnna: (sees a tourist at a sign) Excuse me, can I help you? Have we met before?\n\nJean: I don’t think so. I’ve just flown in from Boston. My name is Jean.\n\nAnna: Hi, Jean! I'm Anna. I really feel like we’ve met before. Anyway, how can I help?\n\nJean: I want to see an interesting museum but I don’t know which one.\n\nAnna: I can help with that. I’ve lived in Washington, D.C. a long time. I think I’ve seen all the museums.\n\nJean: Wow, thanks. So, tell me, which museums are good?\n\nAnna: Well, they are all good. But they’re all different. There are science museums and history museums and art and culture museums.\n\nJean: I want to see an unusual museum.\n\nAnna: I like the Sculpture Garden. Have you ever seen sculptures in a garden? It is really artistic!\n\nJean: I have never seen a garden of sculptures! I’ll write that on my list!\n\nAnna: Have you been to the Museum of the American Indian? I’ve visited that museum many times. It is very peaceful.\n\nJean: I have always liked American Indian culture.\n\nJean: I’ll put that on my list. (writes on list) Do you have any other suggestions?\n\nAnna: Well, if you like plants, you can visit the U.S. Botanic Gardens. It's very organic.\n\nJean: I have always loved plants. I’ll write that on my list, too! Wow, you know so much about D.C.’s museums.\n\nAnna: Well, I have lived here for over a year.\n\nJean: You’re so lucky to live in such a beautiful city filled with so many museums and a zoo!\n\nAnna: What? D.C. has a zoo?\n\nJean: Yes, and it’s beautiful. You’ve lived here for so long and you haven’t been to the zoo?\n\nAnna: I've never been to D.C.’s zoo. I've never been to any zoos!\n\nJean: You have never seen zoo animals?\n\nAnna: I grew up on a farm, Jean. I've known farm animals my whole life.\n\nJean: But the zoo has lions (makes sound of lion roaring) and elephants (makes sound of elephant trumpeting) and zebras (makes no sound)! If you have never seen a real, live elephant, you must. They are so majestic.\n\nAnna: I will. I will! (writes list) There. I’ve written my own must-see zoo animal list!\n\nJean: Have fun at the zoo and thanks, Anna!\n\nAnna: Have fun at the museums, Jean! And thank YOU!\n\nAnna: This has been awesome! And I have seen every animal on my list! Jean, the tourist, helped me see more of my city. But where have I seen her before?\n\nOh well. Until next time …",
+      "sha256": "d9e8bbafd40f8d2ed9a4e81856883bde3d029a0ab03a0cf0cce44bbcafcf008d",
+      "capture": "private/corpus/voa-beginners/discovery-link-62.txt",
+      "captureSha256": "8148687a22ff89a6960664be4ce0cd6c7eb2bdf37c9ce50f4eb420e89ac22ecc",
+      "sourceLines": {
+        "webLineStart": 180,
+        "webLineEnd": 231
+      },
+      "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+      "topic": "travel-places",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete captured conversation read2026-10-08; ordinary source preparation, no beginner startingPoints or CEFR approval.",
+      "capturedTextSha256": "e76568102023357c9d90e71189bd031adfff4d1b1564374b94665415a26cef12",
+      "supportedExcerpts": [
+        {
+          "start": 623,
+          "end": 1031,
+          "sourceHash": "d9e8bbafd40f8d2ed9a4e81856883bde3d029a0ab03a0cf0cce44bbcafcf008d",
+          "sha256": "60f0fd68abda60479c1d748763f09cccd5bfa10af2c23e1f20aca4f2f118dc85",
+          "startingPoints": [
+            "A2"
+          ],
+          "reviewer": "Codex/AI",
+          "reviewedAt": "2026-10-09",
+          "decision": "supported-beginner-text",
+          "notes": "Complete continuous Jean/Anna museum question, unusual-museum wish, garden suggestion and never-seen response; preceding museum-choice request supplies the plural museums reference. Full retained conversation and adjacent interviews inspected. Explicit Jean label gives a genuine new intention speaker; wanting is not ongoing/completed action. Exact A2 support only, with existing dictionary/hints. No A1, audio, whole-source beginner approval or calibrated CEFR claim. Existing original VOA text rights/credit retained; no third-party media adopted."
+        }
+      ]
+    },
+    {
+      "id": 3714862,
+      "title": "Common Adverbs in Conversation: Amplifiers, Downtoners",
+      "url": "https://learningenglish.voanews.com/a/amplifiers-downtoners/3714862.html",
+      "author": "John Russell",
+      "text": "From VOA Learning English, this is Everyday Grammar.\n\nImagine you are at a business meeting.\n\nYou have just presented a plan to your business partners. They want to give suggestions for how to make your plan better.\n\nThe conversation might sound like this:\n\nA: I really like your plan!\n\nB: Yes, it's pretty good … but it needs a little revising.\n\nA: Of course, you did a very good job. But you might need to consider a few more points.\n\nB: Yes, it will probably be more effective if you highlight the staffing requirements and expand on the budget.\n\nWhether you like business or not, this conversation gives you important grammar information that you can use in just about any situation.\n\nIn particular, the exchange offers examples of some of the most important adverbs that you will hear in everyday speech.\n\nThis week, we will explore special adverbs that increase or decrease the force of a statement. These adverbs are sometimes called amplifiers or downtoners.*\n\nWhat are adverbs? What are amplifiers?\n\nAdverbs are words that modify, or change, the meaning of adjectives, verbs, and sometimes entire sentences. They are often used to show time, a way of doing something, place, or degree – a measure of something.\n\nSome kinds of adverbs act as amplifiers. The word amplify means to make something stronger. So these amplifiers make the meaning of an adjective or sentence stronger.\n\nIn American English, amplifiers have three common uses: increasing intensity, expressing certainty and showing precision. This information comes from Susan Conrad and Douglas Biber, two experts on English grammar.\n\nWords such as really and very are among the most common that increase the intensity of a statement. They usually modify an adjective.\n\nTake the adjective good, for example. Imagine you are trying some food that your friends cooked.\n\nPerhaps you want to tell them, \"This food is good.\"\n\nYou could increase the intensity of your statement by using the word very:\n\n\"This food is very good.\"\n\nYou could express certainty by using an amplifier such as definitely:\n\n\"This is definitely the best food I've ever had.\"\n\nOr you could use an amplifier to show precision:\n\n\"At exactly 5:13 p.m. on February 6^{th}, I ate the best food I've ever had in my life!\"\n\nWhat are downtoners?\n\nOther kinds of adverbs act as downtoners. Downtoners are the opposite of amplifiers. They reduce the force of a statement or express doubt. In other words, they set the tone of a statement. You can remember the term 'downtoner' by thinking about what it does: toning down a statement.\n\nDowntoners have three common functions: reducing intensity, expressing doubt or showing imprecision. Three common downtoners in conversational English are pretty, maybe and probably, say Conrad and Biber.\n\nHow can you use downtoners to change the meaning of the statement?\n\nTake our earlier example: \"This food is good.\"\n\nIf you wanted to reduce the intensity of your statement, you could say:\n\n\"This food is pretty good.\"\n\nYou could show doubt, even raise questions, by saying:\n\n\"This is maybe the best food I've ever had.\"\n\nOr,\n\n\"This is probably the best food I've ever had.\"\n\nThese statements express someone’s opinion about the food. But they are not as strong as the example sentences that use amplifiers. In other words, saying \"This food is pretty good\" is not as forceful as saying, \"This food is really good.\"\n\nAmplifiers and downtoners in a conversation\n\nSo what does this discussion of food have to do with the exchange we heard at the beginning of this report?\n\nLet's think back to the business conversation:\n\nA: I really like your plan!\n\nB: Yes, it's pretty good … but it needs a little revising.\n\nA: Of course, you did a very good job, but you might need to consider a few more points.\n\nB: Yes, it will probably be more effective if you highlight the staffing requirements and expand on the budget.\n\nYou might notice that one of the speakers uses amplifiers such as really and very. She is using these words to give more force to her statement. She is probably more excited about the business plan.\n\nThe second speaker uses downtoners – the words pretty and probably, for example. So you might suspect that he is more guarded about the plan. Maybe he has doubts that the new plan will be better.\n\nThe amplifiers and downtoners they use are also among the most common ones that you will hear in American English. These words are useful in a number of settings. They are polite and acceptable in almost any situation.\n\nAmplifiers and downtoners in writing\n\nRemember this: the amplifiers and downtoners we have discussed today are common in conversation.\n\nDifferent amplifiers and downtoners are more common in writing. For example, you are more likely to read words such as indeed, certainly, or approximately than you are to hear them in everyday conversation.\n\nIf you use these amplifiers and downtoners in conversation, your speech will take on a very official sound. While that might be a good idea in a formal presentation or speech, it might not be the best choice for an everyday conversation.\n\nAmplifiers and downtoners are not always necessary to use in a sentence. But when you see or hear them, you are getting information about the thoughts and feelings of another person. You are learning about how strongly they feel about something.\n\nAnd that's the end of this really long report!",
+      "sha256": "57968cfc5c2d59fd7a3b5d99da328cddc24eb416d1a03423e8f6a91db852471c",
+      "capture": "private/corpus/voa-articles/additional-official-web-capture-2026-10-08.txt",
+      "captureSha256": "38c1f8f13bac46f59e4edd105e98bcdf1111fd8c9cfb8cffdbc665e05ad7ce87",
+      "sourceLines": {
+        "webLineStart": 84,
+        "webLineEnd": 173
+      },
+      "captureMethod": "Official webtool page text; not raw HTTP HTML bytes. Retained complete prose range, image-only markers removed; paragraph boundaries retained.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete published prose body read with author/editor and word-list context; own-author VOA byline verified; no agency text/media/word-list definitions included. No CEFR calibration."
+    },
+    {
+      "id": 3702382,
+      "title": "Adverb and Adjective Choices in Conversation",
+      "url": "https://learningenglish.voanews.com/a/adverbs-and-adjectives/3702382.html",
+      "author": "John Russell",
+      "text": "From VOA Learning English, this is Everyday Grammar.\n\nImagine two American students are talking outside of their school. Let’s listen to the imaginary conversation:\n\nA: Today is going slow.\n\nB: Yeah. I guess we should study for our grammar test.\n\nA: That sounds like a terrible idea.\n\nB: Yeah, but if we don't study, we won't do good on the test.\n\nA: Fine. Let's go study our notes quick. Then we can play video games.\n\nThese bad students may hate grammar, but they just taught you some common grammatical structures in conversational American English.\n\nIn today's report, we will study how conversational grammar differs from written and formal grammatical structures.\n\nWe will show you how some Americans use adjectives and adverbs in casual conversation.\n\nAdjectives and Adverbs\n\nAdjectives are words that give information about nouns. They generally appear before nouns, although they also appear after linking verbs.\n\nHere are two examples:\n\nYou are a good student.\n\nLearning English is fun.\n\nIn the two example sentences, the words \"good\" and \"fun\" are adjectives. They are telling you something about a noun.\n\nAdverbs are often used to modify adjectives or verbs. They give information about reason, manner, time, and so on.\n\nFor example, the adverb loudly appears in this sentence:\n\nWe sang loudly.\n\nThe adverb loudly modifies the past tense verb, sang. It tells about the way in which the subject, we, sang. Adverbs often have an –ly ending, but there are many that do not. You can read more about adverbs in past Everyday Grammar stories.\n\nConversation:\n\nLet's think back to the conversation we heard at the beginning of the story:\n\nA: Today is going slow.\n\nB: Yeah. I guess we should study for our grammar test.\n\nA: That sounds like a terrible idea.\n\nB: Yeah, but if we don't study, we won't do good on the test.\n\nA: Fine. Let's go study our notes quick. Then we can play videogames.\n\nNotice that the words are used differently from what might be taught in an English class.\n\nIn casual conversation, Americans often use adjective forms in place of adverbs. They may use adjective forms to modify verbs.\n\nFor example, the students use good – a word that is normally an adjective - as an adverb. One student says \"we won't do good on the test.\"\n\nIn writing and in formal conversation, Americans generally do not use the word \"good\" this way. Instead, they use the word well. In formal writing or speaking, you would be more likely to see or hear the sentence \"we won't do well on the test.\"\n\nAmericans also may use an adverb but choose not to say an –ly ending.\n\nFor example, the student says \"today is going slow,\" instead of \"today is going slowly.\" You would be more likely to read \"slowly\" in academic writing, write Susan Conrad and Douglas Biber, two English grammar experts.\n\nNot necessarily slang, not necessarily impolite\n\nThese grammatical structures are not necessarily slang. They are not necessarily impolite, either. You might hear some of these structures in a restaurant, at a job fair, or even at work.\n\nFor example, a boss might tell an employee \"We need to do this quick,\" about a project that must be completed quickly.\n\nThis is the same pattern that the students used in their conversation.\n\nConrad and Biber say that in formal speech and writing, adjective forms are almost never used to modify verbs. In addition, adverbs with –ly endings are more common in writing – particularly in academic and news writing.*\n\nWhat can you do?\n\nThe good news is this: we are not asking you to memorize any of the patterns we have talked about today.\n\nWhat we hope to do is show you that the grammatical patterns in conversation do not always match the patterns used in formal writing or speech. There is more flexibility in casual speech.\n\nUnderstanding this idea will help you understand Americans when they speak, and it will help you sound more natural when you speak to Americans.\n\nYou might also be pleased to know that Americans will not judge you severely if you use an adjective in place of an adverb. In fact, they probably would do the same!",
+      "sha256": "f896f685b17a85bdda77f6ae3e59e48887a264a6f25a992519ac91b694353a3f",
+      "capture": "private/corpus/voa-articles/additional-official-web-capture-2026-10-08.txt",
+      "captureSha256": "38c1f8f13bac46f59e4edd105e98bcdf1111fd8c9cfb8cffdbc665e05ad7ce87",
+      "sourceLines": {
+        "webLineStart": 84,
+        "webLineEnd": 158
+      },
+      "captureMethod": "Official webtool page text; not raw HTTP HTML bytes. Retained complete prose range, image-only markers removed; paragraph boundaries retained.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete published prose body read with author/editor and word-list context; own-author VOA byline verified; no agency text/media/word-list definitions included. No CEFR calibration."
+    },
+    {
+      "id": 6904240,
+      "title": "Questions, Answers about Holiday Activities",
+      "url": "https://learningenglish.voanews.com/a/questions-answers-about-holiday-activities/6904240.html",
+      "author": "John Russell",
+      "text": "Imagine you are talking to an American. You are curious to know about what they did during the holidays of Christmas and New Year’s. How can you ask about these or other holidays? How can you build a discussion about the holiday season?\n\nIn this Everyday Grammar, we will explore how you can form common questions and answers about the holidays.\n\nLet’s start with some important terms and ideas.\n\nHolidays\n\nThe Christmas and New Year’s holidays are important in the United States. Common good wishes during the season include “Merry Christmas” and “Happy New Year!”\n\nBut how do you build a discussion around the subject of such holidays?\n\nYou can start with yes or no questions, which involve the helping verb “do.” The structure is generally:\n\nDo+ subject + celebrate + the holiday.\n\nFor example, you might ask\n\nDo you celebrate Christmas?\n\nOr\n\nDo you celebrate New Year’s Eve?\n\nThe person you ask these questions to might answer with a yes or a no.\n\nBoth answers can lead to interesting discussions. But for the sake of today’s report, let’s assume the answer is “yes.”\n\nOpen-ended questions\n\nYou can follow up with more detailed questions about what the person did for Christmas and New Year’s.\n\nYou might need to ask open-ended questions – questions that are not asking for a yes or no answer.\n\nThe word “what” is often commonly used to ask open-ended questions about basic actions. We combine “what” with the helping verb “do” to form the following structure:\n\nWhat + do + subject + do + rest of the sentence\n\nNotice that the verb “do” appears twice in the structure. Here is how one might use this structure to ask about holiday activities:\n\nWhat did you do for Christmas?\n\nor\n\nWhat did you do on New Year’s Eve?\n\nNote that the first example of “do” is in its past tense form – “what did...” This is because we are asking about an event in the past.\n\nAnswers\n\nYou could hear answers that go in a few different directions. One of the most common answers will involve the simple past forms of the verbs go, see, or visit.\n\nFor example, a person might say “I went to my grandparent’s house,” or “We saw our cousins,” or “We visited my brother.”\n\nNote that the person could be speaking for themselves and use the subject pronoun “I,” or they could be speaking for their family and use the subject pronoun “we.”\n\nPractice\n\nNow let’s work with these ideas.\n\nAsk a yes or no question about the holiday Hanukkah. It is a Jewish holiday around the end of the year.\n\nPause the audio to consider your answer.\n\nHere is one possible answer:\n\nDo you celebrate Hanukkah?\n\nFor this next question, imagine that you celebrated New Year’s Eve in New York City’s Times Square. How would you use the verb “see” if someone asked you about what you did?\n\nPause the audio to consider your answer.\n\nHere are a few possible answers:\n\nI saw crowds and decorations.\n\nOr,\n\nI saw the ball drop.\n\nThere are, of course, other answers. What is important is that you use the past form “saw,” as in “I saw...”\n\nThe next time you hear Americans discuss the holiday season, pay careful attention to the kinds of questions and answers that they give. Such questions and answers are not only useful for talking about holidays but for many other activities as well!",
+      "sha256": "89d6e271384318ac2586437efc6e2cd870073f517eda276f8b48ac12c248a693",
+      "capture": "private/corpus/voa-articles/additional-official-web-capture-2026-10-08.txt",
+      "captureSha256": "38c1f8f13bac46f59e4edd105e98bcdf1111fd8c9cfb8cffdbc665e05ad7ce87",
+      "sourceLines": {
+        "webLineStart": 83,
+        "webLineEnd": 158
+      },
+      "captureMethod": "Official webtool page text; not raw HTTP HTML bytes. Retained complete prose range, image-only markers removed; paragraph boundaries retained.",
+      "topic": "arts-culture",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete published prose body read with author/editor and word-list context; own-author VOA byline verified; no agency text/media/word-list definitions included. No CEFR calibration."
+    },
+    {
+      "id": 3988378,
+      "title": "Academic Writing: Common Sentence Patterns, Part One",
+      "url": "https://learningenglish.voanews.com/a/everyday-grammar-common-patterns/3988378.html",
+      "author": "John Russell",
+      "text": "The new school year is beginning in communities across the United States.\n\nMany students are busy at work in their new classes. Some are already thinking about all the homework they will face in the weeks to come.\n\nSchools often require students to read academic articles -- short or long reports about a class-related subject. Teachers also ask students to write book reports and research papers.\n\nToday on Everyday Grammar, we will explore two grammatical structures that you will see often in academic writing.\n\nWe will show you how to use these structures. We also will show you when not to use them.\n\n#1 Evaluating an idea\n\nIf you are writing or reading for academic purposes, you will likely see the following structure: It + is + an adjective + that-clause.\n\nThis is a common way to express an attitude, opinion or position. It is often used when considering an idea, note grammar experts Susan Conrad and Douglas Biber.\n\nHere is an example:\n\n\"It is clear that the evidence is inconsistent.\"\n\nL102: Here is how you can understand the sentence. The subject in our example is the word it. Then comes the verb is. After is, there is an adjective: the word clear.\n\nAfter clear, there is a that-clause. A that-clause is a group of words, beginning with the word that. It has a subject and a predicate. A predicate is the part of a sentence that expresses what is said about the subject.\n\nThe that-clause has the idea that the writer is considering. In the example we gave you, the idea under consideration is the following statement: \"the evidence is inconsistent.\"\n\nThe adjective clear suggests the writer's judgment.\n\nBy saying \"it is clear,\" the writer is saying that he or she agrees the evidence appears to be conflicting with other information.\n\nNote that the writer did not write, \"I think that the evidence is inconsistent,\" even if it has the same meaning as the example sentence. Why? We will explore that issue later in the report.\n\nAcademic writers often use it + is + an adjective + that-clause to raise questions, note possibility, and express importance.\n\nFor example, you might read the following sentence:\n\n\"It is unlikely that the results will be conclusive.\"\n\nOr,\n\n\"It is likely that the information was incomplete.\"\n\nIn the former case, the writer is using the adjective unlikely to raise questions. In the latter one, the writer is using the adjective likely to express possibility.\n\n#2 Evaluating an action\n\nA second common structure, it + is + an adjective + an infinitive phrase, is often used to judge an action. The infinitive phrase describes the action. The adjective shows the writer's evaluation.\n\nConsider this example:\n\n\"It is difficult to define these ideas.\"\n\nL131:\n\nIn this example, the infinitive to define relates to an action, while the adjective difficult shows the writer's evaluation.\n\nWriters often use it + is + an adjective + an infinitive phrase to show possibility, difficulty, importance, and so on.\n\nSo, for example, you might read the following sentences: \"It is hard to understand these effects,\" or \"It is necessary to carry out further research.\"\n\nIn the former example, the writer is expressing difficulty, while in the latter the writer is expressing necessity.\n\nOther ways to express the same ideas\n\nThe two structures we have discussed are common in academic writing.\n\nYou should try using them with your own adjectives, that-clauses, infinitive phrases, and so on.\n\nThere is one point to keep in mind, however. You should know that sometimes you might not want to use these structures – especially if you are writing for business or even artistic reasons.\n\nIn those situations, it might be better to use more direct language.\n\nConsider the first example we gave you, \"It is clear that the evidence is inconsistent.\"\n\nThis is a common, acceptable way to write a sentence for academic purposes. It is grammatically correct.\n\nHowever, the statement uses indirect language to express an evaluation. The writer is expressing an opinion without specifically writing \"I think...,\" for example.\n\nHowever, if you are writing for other purposes other than college professors, you could simplify your language. You could give a very direct evaluation by writing \"I think the evidence is inconsistent,\" or simply \"The evidence is inconsistent.\"\n\nThe structure that you choose to use depends on what kind of writing you are doing.\n\nIt is difficult to improve your writing. But with practice, you can do it!",
+      "sha256": "95eb50267efc62c0499973e3f7b2610c13dc506119d7d896d2210ec186314806",
+      "capture": "private/corpus/voa-articles/academic-official-web-capture-2026-10-08.txt",
+      "captureSha256": "fa8d221325ca37d7156b714d9908eff93f60bd01642aea46b852e096cea981d9",
+      "sourceLines": {
+        "webLineStart": 84,
+        "webLineEnd": 156
+      },
+      "captureMethod": "Official webtool page text; not raw HTTP HTML bytes. Retained complete prose range, image-only markers removed; paragraph boundaries retained.",
+      "topic": "work-education",
+      "excludedSpans": [],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete published prose body read with author/editor and word-list context; own-author VOA byline verified; no agency text/media/word-list definitions included. No CEFR calibration."
+    },
+    {
+      "id": 3406732,
+      "title": "Lesson 21: Can You Come to the Party?",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-21-can-you-come-to-the-party/3406732.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hi there! Washington, D.C. has some great coffee shops. My favorite is this one -- Busboys & Poets.\n\nAnna: Actually it’s more than a coffee shop. It’s also a bookstore, a restaurant and a theater!\n\nAnna: Marsha and I love coming here.\n\nMarsha: Hey, Anna, my friend is having a party on Saturday. Can you come with me?\n\nAnna: Sorry, I can’t come with you. I have to get my driver’s license.\n\nMarsha: Will you be busy all day?\n\nAnna: I don’t know. First, I have to take a test on the computer. Then I have to take a test in the car.\n\nMarsha: But you have to take the test during the day, don't you?\n\nAnna: Yes.\n\nMarsha: The party is at night.\n\nAnna: Oh. Then I can come with you to the party on Saturday night.\n\nMarsha: Great! I have to help my friend with the party. Can you help me?\n\nAnna: Sure. That sounds like fun.\n\nMarsha: Everyone has to bring something or do something. You can bring food, or you can perform.\n\nAnna: Really, I can perform?\n\nMarsha: You can! Can you?\n\nAnna: Yes! I can recite poetry. (Anna is in a club reciting a poem)\n\n- A poem -\n\nLight dark\n\nLight dark\n\nDarkness\n\nDark\n\nMarsha: In this country, nobody recites poetry at parties. Um … can you do anything else?\n\nAnna: Hmm, yes. I can do a card trick. (Anna is doing a card trick)\n\nYour card is the 10 of diamonds! No?\n\nPick a card. Any card.\n\nHere, just pick this one.\n\nGreat!\n\nMarsha: Anna, maybe you can just bring food.\n\nAnna: No, I can’t cook. And I really want to perform. You know, there is one thing I can do. (Anna plays a song on the ukulele and sings)\n\nTrouble in mind. I’m blue... But I won't be blue always The sun's gonna shine in my back door some day.*\n\nMarsha: That’s it! You can sing at the party. Now, I have to go shopping for food.\n\nAnna: Can I help? I’m not busy right now.\n\nMarsha: Sure, let’s go!\n\nAnna: We have to go. I have to help Marsha shop. And I have to practice my song! Trouble in mind. I’m blue...\n\nAnna: Until next time!\n\n*The song Trouble in Mind was written by jazz pianist Richard M. Jones.",
+      "sha256": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+      "acquiredAt": "2026-10-10T00:40:15.330038Z",
+      "capture": "private/corpus/voa-new-20261010/cloud-results-final/raw/3406732.html",
+      "captureSha256": "406d817d5a20352663a8a1e3956dd6367ea40364fba27b567d7c237d5ed057fd",
+      "captureMethod": "Actual owned Colab CPU raw HTML; unchanged complete Conversation body with native paragraph boundaries; original HTML, canonical source and full exclusions retained.",
+      "topic": "daily-life",
+      "excludedSpans": [
+        {
+          "paragraph": 16,
+          "start": 980,
+          "end": 1047,
+          "text": "Anna: Yes! I can recite poetry. (Anna is in a club reciting a poem)",
+          "sha256": "0431b867f63ad961f078d177ada0432f6618caaa7bb4352ab7efe7ea93a1a76d",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 17,
+          "start": 1049,
+          "end": 1059,
+          "text": "- A poem -",
+          "sha256": "7633daa78eda0e8cae29ea354c48fce03a8627c0b61fe20dcde70810be0aae0f",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 18,
+          "start": 1061,
+          "end": 1071,
+          "text": "Light dark",
+          "sha256": "7f552937930ccdf905d11726438c69f4a298913d067fb4bba482e8f6b481b7a6",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 19,
+          "start": 1073,
+          "end": 1083,
+          "text": "Light dark",
+          "sha256": "7f552937930ccdf905d11726438c69f4a298913d067fb4bba482e8f6b481b7a6",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 20,
+          "start": 1085,
+          "end": 1093,
+          "text": "Darkness",
+          "sha256": "9ab31dcb2ffd3b365769d0ac3aaa2ad6ff610028546a1c9b96c43bb35ae84cce",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 21,
+          "start": 1095,
+          "end": 1099,
+          "text": "Dark",
+          "sha256": "60acc53f13a5d1bf115878c4a785e9a43e8286c4139a8402a6ac7d23966f9153",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 29,
+          "start": 1404,
+          "end": 1541,
+          "text": "Anna: No, I can’t cook. And I really want to perform. You know, there is one thing I can do. (Anna plays a song on the ukulele and sings)",
+          "sha256": "4cd0a9456690238a97e466ed31813637b9f747419a5fefab32babf5a6110e581",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 30,
+          "start": 1543,
+          "end": 1647,
+          "text": "Trouble in mind. I’m blue... But I won't be blue always The sun's gonna shine in my back door some day.*",
+          "sha256": "0673458d537fe84e986a8512d7b8f2c0cd1b5cbc06ee9efbcdd0d7527e5879d2",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 34,
+          "start": 1801,
+          "end": 1910,
+          "text": "Anna: We have to go. I have to help Marsha shop. And I have to practice my song! Trouble in mind. I’m blue...",
+          "sha256": "1b5bd9b7f6b992aac6297c67325cc56ec41242582bf649e1c75116cc1df5a9a2",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        },
+        {
+          "paragraph": 36,
+          "start": 1936,
+          "end": 2007,
+          "text": "*The song Trouble in Mind was written by jazz pianist Richard M. Jones.",
+          "sha256": "76c910b0a687fd831b0eb932be061ea75b45a1be8e2d617d42cdfb56d552cd6e",
+          "reason": "third-party-poetry-or-song-complete-paragraph-held"
+        }
+      ],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete Conversation and adjacent captured context inspected2026-10-10; third-party poetry/song whole paragraphs and malformed car.Started paragraph withheld; no span splicing. Existing2026-10-08/09 research roots, first new prepared public scopes, not newly collected roots.",
+      "permissionReview": "Official VOA own-author course text and archived reuse policy checked2026-10-10. Educational/commercial reuse with credit; third-party verse, malformed source paragraph and all media excluded. Full held text is not exported as originalText.",
+      "supportedExcerpts": [
+        {
+          "start": 242,
+          "end": 823,
+          "sourceHash": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+          "sha256": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+          "reviewer": "Codex/AI",
+          "decision": "supported-beginner-text",
+          "startingPoints": [
+            "A2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3487865,
+      "title": "Lesson 28: I Passed It!",
+      "url": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-28-i-passed-it/3487865.html",
+      "author": "VOA Learning English",
+      "text": "Anna: Hello! Guess what this is? This is my driver’s license! I passed my driving test!\n\nToday, I rented a car so I can drive around Washington, D.C. You can see more of the city this way. Marsha!\n\nMarsha: Anna, did you get your driver’s license?\n\nAnna: I did! But it was not easy.\n\nMarsha: Why? What happened?\n\nAnna: Well, you know, I can drive farm equipment really well. But I was really nervous driving in Washington, D.C. traffic!\n\nMarsha: Did you pass the test the first time?\n\nAnna: Well…no. But I did pass the second time.\n\nMarsha: What happened during the first test?\n\nAnna: It started fine.\n\nJohn: Okay … Anna. Is your seatbelt buckled?\n\nAnna: Yes, sir!\n\nJohn: Great. Please start the car.\n\nAnna: (to herself) Okay, Anna, start the car.Started the car. Good job, Anna.\n\nJohn: Why are you talking to yourself?\n\nAnna: I am a little nervous. When I’m nervous, I talk to myself.\n\nJohn: You don't need to be nervous.\n\nAnna: Listen to that engine!\n\nJohn: Please, stop pushing the gas pedal!\n\nAnna: Sorry.\n\nJohn: Okay, when you are ready, turn.\n\nAnna: Great!\n\nJohn: Not now! You almost hit that car!\n\nAnna: You said “turn!”\n\nJohn: Look first! There were cars in the street.\n\nAnna: Please don’t yell at me!\n\nJohn: I’m sorry! I was afraid.\n\nAnna: You were yelling.\n\nJohn: Look out for that car! Brake! Brake!!\n\nAnna and John: Ahhh!\n\nAnna: Why is everyone honking at us?\n\nJohn: You were driving too slow! Anna, stay on the street!\n\nJohn: Hands on the wheel, Anna.\n\nAnna: What’s that sound?\n\nJohn: That, Anna, is the police.\n\nMarsha: That sounds awful.\n\nAnna: Yes, it did not go well. But, I practiced and passed the second time!\n\nMarsha: Do you know where you want to take your first drive in Washington, D.C.?\n\nAnna: Yes! Let’s go!\n\nAnna: There it is … the White House!\n\nMarsha: Anna, you do know you can’t drive up to the White House, don’t you?\n\nAnna: Yes. No. I didn’t know. I guess we walk from here!\n\nAnna: Sometimes you can see more of Washington, D.C. in a car. If you want to see the White House, you need to walk. Until next time … !",
+      "sha256": "4b7112c43c60ada4361a5d39cc4266930e0ce79969ab6c7a7ac6fd6074b47518",
+      "acquiredAt": "2026-10-10T00:40:15.330038Z",
+      "capture": "private/corpus/voa-new-20261010/cloud-results-final/raw/3487865.html",
+      "captureSha256": "b0e5d73eed9305d1be19e232e5e4c85a0879dbe35db4da7bb7cb60a4da3d1161",
+      "captureMethod": "Actual owned Colab CPU raw HTML; unchanged complete Conversation body with native paragraph boundaries; original HTML, canonical source and full exclusions retained.",
+      "topic": "travel",
+      "excludedSpans": [
+        {
+          "paragraph": 13,
+          "start": 701,
+          "end": 778,
+          "text": "Anna: (to herself) Okay, Anna, start the car.Started the car. Good job, Anna.",
+          "sha256": "36da9752cd142a480cc7416d5c36596d49ee1379e400f6e01b0d9234c138242d",
+          "reason": "source-inline-emphasis-sentence-boundary-held-complete-paragraph"
+        }
+      ],
+      "reviewer": "Codex/AI",
+      "inspection": "Complete Conversation and adjacent captured context inspected2026-10-10; third-party poetry/song whole paragraphs and malformed car.Started paragraph withheld; no span splicing. Existing2026-10-08/09 research roots, first new prepared public scopes, not newly collected roots.",
+      "permissionReview": "Official VOA own-author course text and archived reuse policy checked2026-10-10. Educational/commercial reuse with credit; third-party verse, malformed source paragraph and all media excluded. Full held text is not exported as originalText.",
+      "supportedExcerpts": [
+        {
+          "start": 198,
+          "end": 600,
+          "sourceHash": "4b7112c43c60ada4361a5d39cc4266930e0ce79969ab6c7a7ac6fd6074b47518",
+          "sha256": "26d4153262089c6be423ecb50d5fd7ffab629ef0946a5e34393d493335755037",
+          "reviewer": "Codex/AI",
+          "decision": "supported-beginner-text",
+          "startingPoints": [
+            "A2"
+          ]
+        }
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "rootId": "voa-article-3357760",
+      "reason": "Missing official complete conversation"
+    },
+    {
+      "rootId": "voa-article-3406732",
+      "reason": "Third-party song lyrics in captured conversation; no redistribution acceptance"
+    }
+  ]
+}

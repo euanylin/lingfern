@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "location": [
+    {
+      "rootId": "voa-article-3168971",
+      "title": "Where Are You?",
+      "text": "We relax in the living room. I relax in the living room.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-room-activity.mp3",
+        "sha256": "5056bde92f5d1bb60a0d09418b53bbd1d1b3b02e5c21da3e9072a36302d6d96b",
+        "duration": 6.94,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 28,
+          "text": "We relax in the living room.",
+          "audioStart": 0.2,
+          "audioEnd": 2.92
+        },
+        {
+          "start": 29,
+          "end": 56,
+          "text": "I relax in the living room.",
+          "audioStart": 3.94,
+          "audioEnd": 6.74
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-3225958",
+      "title": "Where Is the Gym?",
+      "text": "The gym is across from the lounge. It's next to the mailroom. Go that way.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-gym-location-headroom.mp3",
+        "sha256": "971802afcfabd1478b8565a2ca8c53260eb074082b18475001d397deb4748a13",
+        "duration": 7.82,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 74,
+          "text": "The gym is across from the lounge. It's next to the mailroom. Go that way.",
+          "audioStart": 0.2,
+          "audioEnd": 7.62
+        }
+      ]
+    }
+  ],
+  "instruction": [
+    {
+      "rootId": "voa-article-3111026",
+      "title": "Welcome!",
+      "text": "Nice to meet you. Let's try that again.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-greeting-short.mp3",
+        "sha256": "fc79bdf2fcadb7a4fe060dc3b124324ae1c1dead3c825842c7cb93ce081ad8c0",
+        "duration": 4.7,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 17,
+          "text": "Nice to meet you.",
+          "audioStart": 0.2,
+          "audioEnd": 1.14
+        },
+        {
+          "start": 18,
+          "end": 39,
+          "text": "Let's try that again.",
+          "audioStart": 3.14,
+          "audioEnd": 4.5
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-3240468",
+      "title": "What Are You Doing?",
+      "text": "Please, meet your coworkers. But remember, they are busy working.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-coworker-request.mp3",
+        "sha256": "42d0a5c822d3e2c0c289e517f83d3fdf1f461ddcd624d7e80842aa33983d57ce",
+        "duration": 5.801315,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 28,
+          "text": "Please, meet your coworkers.",
+          "audioStart": 0.2,
+          "audioEnd": 1.9
+        },
+        {
+          "start": 29,
+          "end": 65,
+          "text": "But remember, they are busy working.",
+          "audioStart": 2.62,
+          "audioEnd": 5.6
+        }
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "rootId": "voa-article-3111026",
+      "title": "Welcome!",
+      "text": "Anna, is that A-N-A? No, A-N-N-A. Well, Anna with two N's.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-spelling-correction.mp3",
+        "sha256": "838761efefe4a0826e88a55c1674e40727c02f37f8a5ba5760b1e0e77dc6f3b1",
+        "duration": 7.72,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 20,
+          "text": "Anna, is that A-N-A?",
+          "audioStart": 0.2,
+          "audioEnd": 2.54
+        },
+        {
+          "start": 21,
+          "end": 33,
+          "text": "No, A-N-N-A.",
+          "audioStart": 2.86,
+          "audioEnd": 5.06
+        },
+        {
+          "start": 34,
+          "end": 58,
+          "text": "Well, Anna with two N's.",
+          "audioStart": 5.78,
+          "audioEnd": 7.52
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-3126527",
+      "title": "I'm Here!",
+      "text": "Is this 555-8986? No, this is 555-8689.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-number-correction.mp3",
+        "sha256": "b069fc895e10a14df339cab98bd2236928b5d253b412255e893f4a81a6ec6942",
+        "duration": 8.5,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 17,
+          "text": "Is this 555-8986?",
+          "audioStart": 0.2,
+          "audioEnd": 3.26
+        },
+        {
+          "start": 18,
+          "end": 39,
+          "text": "No, this is 555-8689.",
+          "audioStart": 4.0,
+          "audioEnd": 8.3
+        }
+      ]
+    }
+  ]
+}

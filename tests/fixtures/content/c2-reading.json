@@ -1,0 +1,287 @@
+{
+  "id": "c2-qualification-reading",
+  "targetLevel": "C2",
+  "skill": "reading",
+  "title": {
+    "zh-Hans": "保留分歧与责任",
+    "zh-Hant": "保留分歧與責任",
+    "en": "Preserve disagreement and responsibility"
+  },
+  "goal": {
+    "zh-Hans": "综合两位作者的共同目标与分歧，并识别改变责任归属的改写。",
+    "zh-Hant": "綜合兩位作者的共同目標與分歧，並辨識改變責任歸屬的改寫。",
+    "en": "Synthesize two writers’ shared aim and disagreement, and detect paraphrases that shift responsibility."
+  },
+  "goalId": "nuanced-synthesis-responsibility",
+  "sourceId": "lingfern-original-c2-position-pairs",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "不要只找双方都同意的一句话。比较各自用什么证据判断“有效”，以及临时例外由谁负责收尾。",
+    "zh-Hant": "不要只找雙方都同意的一句話。比較各自用什麼證據判斷「有效」，以及暫時例外由誰負責收尾。",
+    "en": "Do not stop at a shared slogan. Compare what each writer counts as evidence of effectiveness and who must close a provisional exception."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：A 说“现在发布，但标出缺口”；B 说“可以发布，但指定修正人”。忠实概括要保留共同的发布意向和不同的条件。",
+    "zh-Hant": "示範（不計分）：A 說「現在發布，但標出缺口」；B 說「可以發布，但指定修正人」。忠實概括要保留共同的發布意向和不同的條件。",
+    "en": "Unscored example: A says “publish now, but mark the gap”; B says “publish, but name who repairs it.” A faithful summary keeps the shared release aim and the distinct conditions."
+  },
+  "materials": [
+    {
+      "id": "archive-notes",
+      "rootId": "original-archive-access-pair",
+      "title": "Two notes on an archive pilot",
+      "blocks": [
+        {
+          "id": "archive-mara",
+          "title": "Mara · Access lead",
+          "text": "The archive's pilot made thousands of local planning records searchable, but a download is not the same as access. A researcher with a fast connection may retrieve fifty files in an afternoon; a resident using a phone may never open the first one. If we call the pilot effective because downloads rose, we will reward the people whom the old service already served. I would ask whether residents who previously could not consult these records can return, find a relevant document, and use it in a meeting six months later. We should collect that evidence with them, not merely count clicks in a dashboard.\n\nThat does not mean waiting for every scan to be perfect. When a document's rights and origin are established, I would release a lower-resolution image with a visible warning and a public date for replacement. The warning must travel with the file, including when it is shared outside our site. I would not release an image whose ownership is unresolved, and I would not call an indefinite promise to improve it a provisional release. Speed matters because a delayed record can miss the decision it was meant to inform. But speed is a reason to name the unfinished work, not to hide it."
+        },
+        {
+          "id": "archive-elias",
+          "title": "Elias · Collections archivist",
+          "text": "I share Mara's concern about residents who were excluded by the old reading room. Yet a file that opens quickly can still mislead a reader about what it represents. In the pilot, several captions identified a draft as an adopted plan. A count of repeat visitors would not reveal that error; some people might return precisely because they had formed the wrong impression. I would call the service effective when a reader can establish a record's origin, status, and limitations well enough to cite it responsibly. That requires checking the descriptive record as well as the scan.\n\nI am not proposing that we keep every file closed until every caption is polished. An incomplete caption can accompany a provisional release if its limits are conspicuous, the underlying rights and provenance are secure, and a named archive team is responsible for correcting it by a stated date. We should retain the earlier description in the correction log so that a reader can see what changed. I would pause a release where the record's legal status or identity is unknown, even if delay costs us traffic. Mara's proposed use interviews would still be valuable: they would tell us whether our accurate records answer the questions residents actually bring. My disagreement concerns what a rising use figure can establish on its own."
+        }
+      ],
+      "questions": [
+        {
+          "id": "archive-synthesis",
+          "blockId": "archive-mara",
+          "prompt": "Which summary preserves the difference between Mara and Elias?",
+          "options": [
+            "Both favour wider access and bounded provisional releases; Mara tests sustained use by previously excluded residents, while Elias requires trustworthy descriptions and says use figures alone cannot establish that.",
+            "Mara would release files even when ownership is unknown; Elias would keep every imperfect caption closed until it is polished.",
+            "Both treat a rise in downloads as sufficient proof that the service works, although Elias also wants captions corrected later."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 248,
+            "end": 365
+          },
+          "hints": [
+            {
+              "zh-Hans": "先比较两人的共同目标和不同的成功标准。",
+              "zh-Hant": "先比較兩人的共同目標和不同的成功標準。",
+              "en": "Compare their shared aim and different standards of success."
+            },
+            {
+              "zh-Hans": "看 Mara 如何评价下载量，再看 Elias 如何评价可引用性。",
+              "zh-Hant": "看 Mara 如何評價下載量，再看 Elias 如何評價可引用性。",
+              "en": "Find what Mara says downloads miss and what Elias says a reader must establish."
+            },
+            {
+              "zh-Hans": "两人都允许有条件的临时发布；分歧在于单靠使用量能否证明有效。",
+              "zh-Hant": "兩人都允許有條件的暫時發布；分歧在於單靠使用量能否證明有效。",
+              "en": "Both allow bounded provisional release. They disagree about what use figures can prove alone."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：两人都重视开放且允许有条件的临时发布，但衡量有效性的重点不同。",
+              "zh-Hant": "正確：兩人都重視開放且允許有條件的暫時發布，但衡量有效性的重點不同。",
+              "en": "Correct: both value access and bounded provisional release, but they differ over what establishes effectiveness."
+            },
+            {
+              "zh-Hans": "不正确：Mara 明确拒绝权属未明的文件；Elias 也允许有条件发布说明文字未完的文件。",
+              "zh-Hant": "不正確：Mara 明確拒絕權屬未明的文件；Elias 也允許有條件發布說明文字未完成的文件。",
+              "en": "Mara rejects unknown ownership; Elias allows a conditional release with an incomplete caption."
+            },
+            {
+              "zh-Hans": "不正确：Mara 反对以下载量代替真实使用；Elias 也说重复访问无法揭示描述错误。",
+              "zh-Hant": "不正確：Mara 反對以下載量代替真實使用；Elias 也說重複造訪無法揭示描述錯誤。",
+              "en": "Mara rejects download counts as sufficient; Elias says repeat visits can hide a description error."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "archive-elias",
+              "start": 1244,
+              "end": 1319
+            }
+          ]
+        },
+        {
+          "id": "archive-repair",
+          "blockId": "archive-elias",
+          "prompt": "Which paraphrase keeps Elias’s allocation of responsibility?",
+          "options": [
+            "If a caption is incomplete, the archive can publish it provisionally if a named archive team undertakes a dated correction and the limits are clear.",
+            "If a caption is incomplete, readers who use the file take responsibility for correcting it before they cite it.",
+            "If a caption is incomplete, the archive may wait for visitors to identify an error, then decide whether to assign anyone to it."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 807,
+            "end": 877
+          },
+          "hints": [
+            {
+              "zh-Hans": "留意谁承担未完成工作的责任。",
+              "zh-Hant": "留意誰承擔未完成工作的責任。",
+              "en": "Track who owns the unfinished work."
+            },
+            {
+              "zh-Hans": "找 Elias 关于不完整说明文字的条件。",
+              "zh-Hant": "找 Elias 關於不完整說明文字的條件。",
+              "en": "Find Elias’s conditions for an incomplete caption."
+            },
+            {
+              "zh-Hans": "a named archive team is responsible 指明责任方；访问者参与不等于接手修正。",
+              "zh-Hant": "a named archive team is responsible 指明責任方；訪客參與不等於接手修正。",
+              "en": "“A named archive team is responsible” assigns the repair; visitor input does not transfer that duty."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：责任仍在具名的档案团队，且有明确日期。",
+              "zh-Hant": "正確：責任仍在具名的檔案團隊，且有明確日期。",
+              "en": "Correct: a named archive team owns a correction with a stated date."
+            },
+            {
+              "zh-Hans": "不正确：读者需要知道限制，但不承担修正档案说明的职责。",
+              "zh-Hant": "不正確：讀者需要知道限制，但不承擔修正檔案說明的職責。",
+              "en": "Readers must see the limitation, but Elias does not transfer the repair duty to them."
+            },
+            {
+              "zh-Hans": "不正确：Elias 要求发布时已指定负责团队和日期。",
+              "zh-Hant": "不正確：Elias 要求發布時已指定負責團隊和日期。",
+              "en": "Elias requires a named team and date at provisional release, not after a visitor complains."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heat-notes",
+      "rootId": "original-heat-alert-pair",
+      "title": "Two notes on heat alerts",
+      "blocks": [
+        {
+          "id": "heat-nia",
+          "title": "Nia · Community liaison",
+          "text": "The city's heat alerts are translated into six languages, but our success report currently measures how many translations were posted. That figure says little about whether someone understood when to open a cooling centre or could act before the hottest hours. In three neighbourhood meetings, residents described finding the alert after the centre had shut. For the next trial, I would ask whether people receive a usable message in time and whether the instructions lead to the action the city intended. We should test the message with the people who rely on it, including those who share a phone or receive it through a neighbour.\n\nA warning sometimes has to go out before the final wording is approved. If a temperature threshold changes at noon, waiting until evening for a polished translation may be worse than publishing a clearly marked interim version. But the interim label must say which detail is unsettled, show the time of the last update, and direct readers to a staffed number for confirmation. It cannot quietly remain the only version after the emergency. I am asking for a route to timely action, not for volunteers to carry the city's responsibility when wording changes. The city must publish when the interim text will be checked."
+        },
+        {
+          "id": "heat-owen",
+          "title": "Owen · Translation reviewer",
+          "text": "I agree that a perfect alert arriving after a centre closes has failed its purpose. Still, our last trial changed “may open” into “will open” in one language. That is not a stylistic flaw: it turns a possible service into a promise. If we measure success only by whether recipients travel to a centre, that mistranslation might look effective until they arrive at a locked door. A useful test should therefore ask both whether the alert reaches people in time and whether its conditions and degrees of certainty survive translation.\n\nI can support an interim notice when a threshold changes, provided a named municipal reviewer checks every instruction that could change what a resident does. Community volunteers can tell us that a phrase sounds unnatural and can help us test comprehension; they should not be asked to certify the city's operational facts. If the staffing of a centre is unconfirmed, the notice must say so in every language and give the staffed number, rather than treating a convenient translation as confirmation. The municipality retains responsibility for the alert, even when residents help improve its wording. A correction log should record what changed and when, because removing the earlier wording from sight would conceal the very risk we need to learn from."
+        }
+      ],
+      "questions": [
+        {
+          "id": "heat-synthesis",
+          "blockId": "heat-nia",
+          "prompt": "Which summary preserves both writers’ position on interim alerts?",
+          "options": [
+            "Both prefer a timely, usable alert to a late polished one; Nia permits a marked interim text with a confirmation route, while Owen requires municipal review of instructions that could change residents’ actions.",
+            "Nia treats translation speed as enough evidence of success, whereas Owen would delay every alert until every stylistic issue is fixed.",
+            "Both agree that community volunteers should certify operational facts when the municipal reviewer is unavailable."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 751,
+            "end": 861
+          },
+          "hints": [
+            {
+              "zh-Hans": "先找共同的及时性目标，再辨别各自担心的失败。",
+              "zh-Hant": "先找共同的及時性目標，再辨別各自擔心的失敗。",
+              "en": "Find the shared timing goal, then each writer’s distinct concern."
+            },
+            {
+              "zh-Hans": "比较 Nia 的行动时效与 Owen 对条件和确定程度的要求。",
+              "zh-Hant": "比較 Nia 的行動時效與 Owen 對條件和確定程度的要求。",
+              "en": "Compare Nia’s timely action with Owen’s conditions and certainty."
+            },
+            {
+              "zh-Hans": "两人都允许受限的临时通知；Owen 要求关键指令经过市政审核。",
+              "zh-Hant": "兩人都允許受限的暫時通知；Owen 要求關鍵指令經過市政審核。",
+              "en": "Both allow a bounded interim notice; Owen requires municipal review of action-changing instructions."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：保留了双方对时效的共识及 Owen 对关键指令审核的限定。",
+              "zh-Hant": "正確：保留了雙方對時效的共識及 Owen 對關鍵指令審核的限定。",
+              "en": "Correct: it keeps their shared concern about timing and Owen’s condition for action-changing instructions."
+            },
+            {
+              "zh-Hans": "不正确：Nia 反对只数发布量；Owen 也说过晚的完美通知失去作用。",
+              "zh-Hant": "不正確：Nia 反對只計算發布量；Owen 也說過晚的完美通知失去作用。",
+              "en": "Nia rejects post counts as a success measure; Owen says a perfect alert can arrive too late."
+            },
+            {
+              "zh-Hans": "不正确：Owen 明确区分志愿者的表达反馈与市政事实核实。",
+              "zh-Hant": "不正確：Owen 明確區分志工的表達回饋與市政事實核實。",
+              "en": "Owen separates volunteers’ language feedback from municipal certification of facts."
+            }
+          ],
+          "additionalEvidence": [
+            {
+              "blockId": "heat-owen",
+              "start": 592,
+              "end": 691
+            }
+          ]
+        },
+        {
+          "id": "heat-responsibility",
+          "blockId": "heat-owen",
+          "prompt": "Which change would misrepresent Owen’s allocation of responsibility?",
+          "options": [
+            "Community volunteers may comment on natural wording while the municipality remains accountable for the alert’s facts.",
+            "Community volunteers can certify the city’s operational facts when they help test comprehension.",
+            "A correction log should show what changed and when, even after the revised message is published."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 793,
+            "end": 857
+          },
+          "hints": [
+            {
+              "zh-Hans": "区分参与改进与承担事实核实责任。",
+              "zh-Hant": "區分參與改進與承擔事實核實責任。",
+              "en": "Separate participation in improvement from responsibility for factual checks."
+            },
+            {
+              "zh-Hans": "看 Owen 关于志愿者和市政审核人员的句子。",
+              "zh-Hant": "看 Owen 關於志工和市政審核人員的句子。",
+              "en": "Read Owen’s sentences about volunteers and municipal reviewers."
+            },
+            {
+              "zh-Hans": "志愿者可帮助测试表达；市政府仍负责警报事实与修订记录。",
+              "zh-Hant": "志工可協助測試表達；市政府仍負責警報事實與修訂紀錄。",
+              "en": "Volunteers may test wording; the municipality remains responsible for the alert’s facts and correction log."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "这保留了 Owen 的区分，不是错误改写。",
+              "zh-Hant": "這保留了 Owen 的區分，不是錯誤改寫。",
+              "en": "This preserves Owen’s distinction; it is not the misleading change."
+            },
+            {
+              "zh-Hans": "正确：这句把市政府的事实核实责任转给了志愿者，恰好颠倒原文。",
+              "zh-Hant": "正確：這句把市政府的事實核實責任轉給了志工，恰好顛倒原文。",
+              "en": "Correct: it transfers certification of operational facts to volunteers, reversing Owen’s point."
+            },
+            {
+              "zh-Hans": "这符合 Owen 对可追溯修订的要求，不是错误改写。",
+              "zh-Hant": "這符合 Owen 對可追溯修訂的要求，不是錯誤改寫。",
+              "en": "This matches Owen’s requirement for a traceable correction log."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "science",
+    "daily-life"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次先比较双方判断有效性的标准，再核对例外由谁负责。",
+    "zh-Hant": "下次先比較雙方判斷有效性的標準，再核對例外由誰負責。",
+    "en": "Next time, compare both writers’ standards and check who owns each exception."
+  }
+}

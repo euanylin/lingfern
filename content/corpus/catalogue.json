@@ -1,0 +1,4256 @@
+[
+  {
+    "id": "gutenberg-1661",
+    "title": "The Adventures of Sherlock Holmes",
+    "authors": [
+      "Doyle, Arthur Conan, 1859-1930"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1661"
+  },
+  {
+    "id": "gutenberg-1342",
+    "title": "Pride and Prejudice",
+    "authors": [
+      "Austen, Jane, 1775-1817"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1342"
+  },
+  {
+    "id": "gutenberg-11",
+    "title": "Alice's Adventures in Wonderland",
+    "authors": [
+      "Carroll, Lewis, 1832-1898"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/11"
+  },
+  {
+    "id": "gutenberg-84",
+    "title": "Frankenstein; or, the modern prometheus",
+    "authors": [
+      "Shelley, Mary Wollstonecraft, 1797-1851"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/84"
+  },
+  {
+    "id": "gutenberg-2701",
+    "title": "Moby Dick; Or, The Whale",
+    "authors": [
+      "Melville, Herman, 1819-1891"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/2701"
+  },
+  {
+    "id": "gutenberg-98",
+    "title": "A Tale of Two Cities",
+    "authors": [
+      "Dickens, Charles, 1812-1870"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/98"
+  },
+  {
+    "id": "gutenberg-1400",
+    "title": "Great Expectations",
+    "authors": [
+      "Dickens, Charles, 1812-1870"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1400"
+  },
+  {
+    "id": "gutenberg-35",
+    "title": "The Time Machine",
+    "authors": [
+      "Wells, H. G. (Herbert George), 1866-1946"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/35"
+  },
+  {
+    "id": "gutenberg-36",
+    "title": "The war of the worlds",
+    "authors": [
+      "Wells, H. G. (Herbert George), 1866-1946"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/36"
+  },
+  {
+    "id": "gutenberg-76",
+    "title": "Adventures of Huckleberry Finn",
+    "authors": [
+      "Twain, Mark, 1835-1910",
+      "Kemble, E. W. (Edward Windsor), 1861-1933"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/76"
+  },
+  {
+    "id": "gutenberg-74",
+    "title": "The Adventures of Tom Sawyer, Complete",
+    "authors": [
+      "Twain, Mark, 1835-1910"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/74"
+  },
+  {
+    "id": "gutenberg-829",
+    "title": "Gulliver's Travels into Several Remote Nations of the World",
+    "authors": [
+      "Swift, Jonathan, 1667-1745"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/829"
+  },
+  {
+    "id": "gutenberg-1260",
+    "title": "Jane Eyre: An Autobiography",
+    "authors": [
+      "Brontë, Charlotte, 1816-1855",
+      "Townsend, F. H. (Frederick Henry), 1868-1920"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1260"
+  },
+  {
+    "id": "gutenberg-120",
+    "title": "Treasure Island",
+    "authors": [
+      "Stevenson, Robert Louis, 1850-1894",
+      "Rhead, Louis, 1857-1926"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/120"
+  },
+  {
+    "id": "gutenberg-174",
+    "title": "The Picture of Dorian Gray",
+    "authors": [
+      "Wilde, Oscar, 1854-1900"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/174"
+  },
+  {
+    "id": "gutenberg-345",
+    "title": "Dracula",
+    "authors": [
+      "Stoker, Bram, 1847-1912"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/345"
+  },
+  {
+    "id": "gutenberg-161",
+    "title": "Sense and Sensibility",
+    "authors": [
+      "Austen, Jane, 1775-1817"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/161"
+  },
+  {
+    "id": "gutenberg-209",
+    "title": "The Turn of the Screw",
+    "authors": [
+      "James, Henry, 1843-1916"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/209"
+  },
+  {
+    "id": "gutenberg-158",
+    "title": "Emma",
+    "authors": [
+      "Austen, Jane, 1775-1817"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/158"
+  },
+  {
+    "id": "gutenberg-215",
+    "title": "The call of the wild",
+    "authors": [
+      "London, Jack, 1876-1916"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/215"
+  },
+  {
+    "id": "gutenberg-55",
+    "title": "The Wonderful Wizard of Oz",
+    "authors": [
+      "Baum, L. Frank (Lyman Frank), 1856-1919"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/55"
+  },
+  {
+    "id": "gutenberg-45",
+    "title": "Anne of Green Gables",
+    "authors": [
+      "Montgomery, L. M. (Lucy Maud), 1874-1942"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/45"
+  },
+  {
+    "id": "gutenberg-113",
+    "title": "The Secret Garden",
+    "authors": [
+      "Burnett, Frances Hodgson, 1849-1924"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/113"
+  },
+  {
+    "id": "gutenberg-514",
+    "title": "Little Women",
+    "authors": [
+      "Alcott, Louisa May, 1832-1888"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/514"
+  },
+  {
+    "id": "gutenberg-768",
+    "title": "Wuthering Heights",
+    "authors": [
+      "Brontë, Emily, 1818-1848"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/768"
+  },
+  {
+    "id": "gutenberg-64317",
+    "title": "The Great Gatsby",
+    "authors": [
+      "Fitzgerald, F. Scott (Francis Scott), 1896-1940"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/64317"
+  },
+  {
+    "id": "gutenberg-205",
+    "title": "Walden, and On The Duty Of Civil Disobedience",
+    "authors": [
+      "Thoreau, Henry David, 1817-1862"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/205"
+  },
+  {
+    "id": "gutenberg-1228",
+    "title": "On the Origin of Species By Means of Natural Selection",
+    "authors": [
+      "Darwin, Charles, 1809-1882"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1228"
+  },
+  {
+    "id": "gutenberg-2276",
+    "title": "The Private Memoirs and Confessions of a Justified Sinner",
+    "authors": [
+      "Hogg, James, 1770-1835"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/2276"
+  },
+  {
+    "id": "gutenberg-3300",
+    "title": "An Inquiry into the Nature and Causes of the Wealth of Nations",
+    "authors": [
+      "Smith, Adam, 1723-1790"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/3300"
+  },
+  {
+    "id": "gutenberg-1080",
+    "title": "A Modest Proposal",
+    "authors": [
+      "Swift, Jonathan, 1667-1745"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1080"
+  },
+  {
+    "id": "gutenberg-2147",
+    "title": "The Works of Edgar Allan Poe — Volume 1",
+    "authors": [
+      "Poe, Edgar Allan, 1809-1849",
+      "Lowell, James Russell, 1819-1891",
+      "Willis, Nathaniel Parker, 1806-1867"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/2147"
+  },
+  {
+    "id": "gutenberg-521",
+    "title": "The Life and Adventures of Robinson Crusoe",
+    "authors": [
+      "Defoe, Daniel, 1661?-1731"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/521"
+  },
+  {
+    "id": "gutenberg-2814",
+    "title": "Dubliners",
+    "authors": [
+      "Joyce, James, 1882-1941"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/2814"
+  },
+  {
+    "id": "gutenberg-1998",
+    "title": "Thus Spake Zarathustra: A Book for All and None",
+    "authors": [
+      "Nietzsche, Friedrich Wilhelm, 1844-1900",
+      "Common, Thomas, 1850-1919"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1998"
+  },
+  {
+    "id": "gutenberg-2530",
+    "title": "The Malay Archipelago, Volume 1",
+    "authors": [
+      "Alfred Russel Wallace"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/2530"
+  },
+  {
+    "id": "gutenberg-14474",
+    "title": "The Chemical History of a Candle",
+    "authors": [
+      "Michael Faraday",
+      "William Crookes"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/14474"
+  },
+  {
+    "id": "gutenberg-1408",
+    "title": "The Natural History of Selborne",
+    "authors": [
+      "Gilbert White"
+    ],
+    "originalUrl": "https://www.gutenberg.org/ebooks/1408"
+  },
+  {
+    "id": "voa-7920108",
+    "title": "How to Summon Others",
+    "authors": [
+      "John Russell"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html"
+  },
+  {
+    "id": "voa-7985917",
+    "title": "Appeal",
+    "authors": [
+      "Andrew Smith"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/appeal/7985917.html"
+  },
+  {
+    "id": "voa-7908917",
+    "title": "Do People Still Say That?",
+    "authors": [
+      "Andrew Smith"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/do-people-still-say-that-/7908917.html"
+  },
+  {
+    "id": "voa-7902900",
+    "title": "Kinds and Types",
+    "authors": [
+      "Andrew Smith"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/kinds-and-types/7902900.html"
+  },
+  {
+    "id": "voa-7886124",
+    "title": "Notes about ‘Being’",
+    "authors": [
+      "Andrew Smith"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/notes-about-being-/7886124.html"
+  },
+  {
+    "id": "voa-3312239",
+    "title": "Lesson 13: Happy Birthday, William Shakespeare!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-13-happy-birthday-william-shakespeare/3312239.html"
+  },
+  {
+    "id": "voa-3323771",
+    "title": "Lesson 14: How About This?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-14-how-about-this/3323771.html"
+  },
+  {
+    "id": "voa-3343720",
+    "title": "Lesson 15: I Love People-Watching!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-15-i-love-people-watching/3343720.html"
+  },
+  {
+    "id": "voa-3355849",
+    "title": "Lesson 16: Where Are You From?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-16-where-are-you-from/3355849.html"
+  },
+  {
+    "id": "voa-3355785",
+    "title": "Lesson 17: Are You Free on Friday?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/are-you-free-on-friday-lets-learn-english/3355785.html"
+  },
+  {
+    "id": "voa-3357748",
+    "title": "Lesson 18: She Always Does That",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-18-she-always-does-that/3357748.html"
+  },
+  {
+    "id": "voa-3384429",
+    "title": "Lesson 20: What Can You Do?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-20-what-can-you-do/3384429.html"
+  },
+  {
+    "id": "voa-3397314",
+    "title": "Lesson 22: Next Summer...",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-22/3397314.html"
+  },
+  {
+    "id": "voa-3413753",
+    "title": "Lesson 23: What Do You Want?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-23-what-do-you-want/3413753.html"
+  },
+  {
+    "id": "voa-3439164",
+    "title": "Lesson 24: Yesterday Was Amazing!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-24-yesterday-was-amazing/3439164.html"
+  },
+  {
+    "id": "voa-3457316",
+    "title": "Lesson 27: I Can't Come In",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-27-i-cant-come-in/3457316.html"
+  },
+  {
+    "id": "voa-3547306",
+    "title": "Lesson 32: Welcome to the Treehouse!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-32-welcome-treehouse/3547306.html"
+  },
+  {
+    "id": "voa-3571922",
+    "title": "Lesson 35: Let’s Make Dinner!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-35-lets-make-dinner/3571922.html"
+  },
+  {
+    "id": "voa-3568962",
+    "title": "Lesson 36: I Can Fix This!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-36-i-can-fix-this/3568962.html"
+  },
+  {
+    "id": "voa-3574029",
+    "title": "Lesson 37: Let's Agree to Disagree",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-37-lets-agree-to-disagree/3574029.html"
+  },
+  {
+    "id": "voa-3723588",
+    "title": "Lesson 46: May I Borrow That?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-46-may-i-borrow-that/3723588.html"
+  },
+  {
+    "id": "voa-3737352",
+    "title": "Lesson 47: How Can I help?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-47-how-can-i-help/3737352.html"
+  },
+  {
+    "id": "voa-3753664",
+    "title": "Lesson 48: Have You Ever ...?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-48-have-you-ever/3753664.html"
+  },
+  {
+    "id": "voa-3714862",
+    "title": "Common Adverbs in Conversation: Amplifiers, Downtoners",
+    "authors": [
+      "John Russell"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/amplifiers-downtoners/3714862.html"
+  },
+  {
+    "id": "voa-3702382",
+    "title": "Adverb and Adjective Choices in Conversation",
+    "authors": [
+      "John Russell"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/adverbs-and-adjectives/3702382.html"
+  },
+  {
+    "id": "voa-6904240",
+    "title": "Questions, Answers about Holiday Activities",
+    "authors": [
+      "John Russell"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/questions-answers-about-holiday-activities/6904240.html"
+  },
+  {
+    "id": "voa-3988378",
+    "title": "Academic Writing: Common Sentence Patterns, Part One",
+    "authors": [
+      "John Russell"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/everyday-grammar-common-patterns/3988378.html"
+  },
+  {
+    "id": "voa-3406732",
+    "title": "Lesson 21: Can You Come to the Party?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-21-can-you-come-to-the-party/3406732.html"
+  },
+  {
+    "id": "voa-3487865",
+    "title": "Lesson 28: I Passed It!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-28-i-passed-it/3487865.html"
+  },
+  {
+    "id": "voa-3111026",
+    "title": "Welcome!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html"
+  },
+  {
+    "id": "voa-3113733",
+    "title": "Hello, I’m Anna!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html"
+  },
+  {
+    "id": "voa-3168920",
+    "title": "What Is It?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html"
+  },
+  {
+    "id": "voa-3168971",
+    "title": "Where Are You?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html"
+  },
+  {
+    "id": "voa-3225958",
+    "title": "Where Is the Gym?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html"
+  },
+  {
+    "id": "voa-3126527",
+    "title": "I'm Here!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html"
+  },
+  {
+    "id": "voa-3240468",
+    "title": "What Are You Doing?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html"
+  },
+  {
+    "id": "voa-3253185",
+    "title": "Are You Busy?",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html"
+  },
+  {
+    "id": "voa-3285228",
+    "title": "Come Over to My Place",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-10/3285228.html"
+  },
+  {
+    "id": "voa-3293986",
+    "title": "This Is My Neighborhood",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-11-this-is-my-neighborhood/3293986.html"
+  },
+  {
+    "id": "voa-3301733",
+    "title": "Meet My Family",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-12-meet-my-family/3301733.html"
+  },
+  {
+    "id": "voa-3431138",
+    "title": "Lesson 25: Watch Out!",
+    "authors": [
+      "VOA Learning English"
+    ],
+    "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-25-watch-out/3431138.html"
+  },
+  {
+    "id": "nasa-194222171056800",
+    "title": "Dynamic Pressure",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/dynamic-pressure/"
+  },
+  {
+    "id": "nasa-45884341552500",
+    "title": "Center of Pressure",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/center-of-pressure/"
+  },
+  {
+    "id": "nasa-93431278601612",
+    "title": "Aerodynamic Center",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aerodynamic-center/"
+  },
+  {
+    "id": "nasa-100561297644122",
+    "title": "Reynolds Number Interactive Simulator",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/spcal/"
+  },
+  {
+    "id": "nasa-26167861256850",
+    "title": "Boundary Layer",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/boundary-layer/"
+  },
+  {
+    "id": "nasa-236866828826798",
+    "title": "Definition of Streamlines",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/definition-of-streamlines/"
+  },
+  {
+    "id": "nasa-162502910101253",
+    "title": "Basic Object Motion",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/basic-object-motion/"
+  },
+  {
+    "id": "nasa-277274607832246",
+    "title": "Motion of Free Falling Object",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/motion-of-free-falling-object/"
+  },
+  {
+    "id": "nasa-61959881763910",
+    "title": "Free Fall without Air Resistance",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/free-fall-without-air-resistance/"
+  },
+  {
+    "id": "nasa-171508993044565",
+    "title": "Simplified Aircraft Motion",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/simplified-aircraft-motion/"
+  },
+  {
+    "id": "nasa-69087738819102",
+    "title": "Aircraft Motion – Newton’s First Law",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-motion-newtons-first-law/"
+  },
+  {
+    "id": "nasa-157371962253964",
+    "title": "Aircraft Rotations",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-rotations/"
+  },
+  {
+    "id": "nasa-95436225647134",
+    "title": "Banking Turns",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/banking-turns/"
+  },
+  {
+    "id": "nasa-242874790355678",
+    "title": "Range – Constant Velocity",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/range-constant-velocity/"
+  },
+  {
+    "id": "nasa-119665421965562",
+    "title": "Maximum Flight Time",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/maximum-flight-time/"
+  },
+  {
+    "id": "nasa-142332168092614",
+    "title": "Range Summary",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/range-summary/"
+  },
+  {
+    "id": "nasa-10702250177615",
+    "title": "Airplane Parts and Function",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/airplane-parts-function/"
+  },
+  {
+    "id": "nasa-269667200623591",
+    "title": "Fuselage",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/fuselage/"
+  },
+  {
+    "id": "nasa-159257851217500",
+    "title": "Gas Turbine Propulsion",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/turbine-engines/"
+  },
+  {
+    "id": "nasa-227186238321592",
+    "title": "Wing Geometry Definitions Interactive",
+    "authors": [
+      "NASA Glenn Research Center"
+    ],
+    "originalUrl": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry-interactive/"
+  },
+  {
+    "id": "noaa-217121916223523",
+    "title": "What is the Atlantic Meridional Overturning Circulation (AMOC)?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/amoc.html"
+  },
+  {
+    "id": "noaa-80619814715992",
+    "title": "What is longitude?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/longitude.html"
+  },
+  {
+    "id": "noaa-180620006749967",
+    "title": "What is latitude?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/latitude.html"
+  },
+  {
+    "id": "noaa-79852449220319",
+    "title": "How much oxygen comes from the ocean?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/ocean-oxygen.html"
+  },
+  {
+    "id": "noaa-43476822299437",
+    "title": "What is the carbon cycle?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/carbon-cycle.html"
+  },
+  {
+    "id": "noaa-46181646325799",
+    "title": "What is a sponge?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/sponge.html"
+  },
+  {
+    "id": "noaa-62650998814814",
+    "title": "What is a tide pool?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/tide-pool.html"
+  },
+  {
+    "id": "noaa-82046535983884",
+    "title": "Do We Still Need Lighthouses?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/lighthouse.html"
+  },
+  {
+    "id": "noaa-99040419551248",
+    "title": "What is a canal?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/canal.html"
+  },
+  {
+    "id": "noaa-147125538880559",
+    "title": "What do leeward and windward mean?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/windward-leeward.html"
+  },
+  {
+    "id": "noaa-171632898588510",
+    "title": "How many high tides are there per day?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/high-tide.html"
+  },
+  {
+    "id": "noaa-252122065106123",
+    "title": "How do hurricanes affect sea life?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/hurricanes-sea-life.html"
+  },
+  {
+    "id": "noaa-14112975739839",
+    "title": "What is a glass sponge?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/glass-sponge.html"
+  },
+  {
+    "id": "noaa-249253526704139",
+    "title": "How do hurricanes form?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/how-hurricanes-form.html"
+  },
+  {
+    "id": "noaa-149820501482793",
+    "title": "What is ecoforecasting?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/ecoforecasting.html"
+  },
+  {
+    "id": "noaa-215039592644680",
+    "title": "How Many Species Live in the Ocean?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/ocean-species.html"
+  },
+  {
+    "id": "noaa-182932362344554",
+    "title": "What is a watershed?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/watershed.html"
+  },
+  {
+    "id": "noaa-127621287525041",
+    "title": "What is eutrophication?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/eutrophication.html"
+  },
+  {
+    "id": "noaa-187286440379195",
+    "title": "What is high tide flooding?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/high-tide-flooding.html"
+  },
+  {
+    "id": "noaa-194863603758272",
+    "title": "What is a Rossby wave?",
+    "authors": [
+      "NOAA National Ocean Service"
+    ],
+    "originalUrl": "https://oceanservice.noaa.gov/facts/rossby-wave.html"
+  },
+  {
+    "id": "usgs-68924980278435",
+    "title": "Water cycle",
+    "authors": [
+      "U.S. Geological Survey Water Science School"
+    ],
+    "originalUrl": "https://www.usgs.gov/water-science-school/water-cycle"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2013.00001",
+    "title": "Going to School to Sculpt the Brain",
+    "authors": [
+      "Javier DeFelipe"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2013.00001"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2013.00007",
+    "title": "Brain–Machine Interfaces: Your Brain in Action",
+    "authors": [
+      "Jose M. Carmena",
+      "José del R. Millán"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2013.00007"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2013.00013",
+    "title": "Specialization of Functions in the Human Brain",
+    "authors": [
+      "Josef Parvizi"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2013.00013"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2014.00004",
+    "title": "How Ventriloquism Works",
+    "authors": [
+      "Michael S. A. Graziano"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2014.00004"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2014.00016",
+    "title": "Drama in the Teenage Brain",
+    "authors": [
+      "Kathryn L. Mills",
+      "Anne-Lise Goddings",
+      "Sarah-Jayne Blakemore"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2014.00016"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2015.00001",
+    "title": "What is Déjà vu?",
+    "authors": [
+      "Julia C. Teale",
+      "Akira R. O’Connor"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2015.00001"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2015.00007",
+    "title": "Twenty Tips for High-School Students Engaging in Research with Scientists",
+    "authors": [
+      "The Rainbow Investigators",
+      "Timothée Flutre",
+      "Mathilde Bonnefond",
+      "Guillaume Sescousse",
+      "Livio Riboli-Sasco"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2015.00007"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2015.00013",
+    "title": "Oops – That was a Mistake! How Toddler Brains React to Feedback",
+    "authors": [
+      "Marlene Meyer",
+      "Suhas Hassan Vijayakumar",
+      "Harold Bekkering",
+      "Denise J. C. Janssen",
+      "Ellen R. A. de Bruijn",
+      "Sabine Hunnius"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2015.00013"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2016.00001",
+    "title": "Understanding Marine Microbes, the Driving Engines of the Ocean",
+    "authors": [
+      "Anna Kopf",
+      "Julia Schnetzer",
+      "Frank Oliver Glöckner"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2016.00001"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2016.00013",
+    "title": "Can Money Buy You a Better Brain? What Do You Think?",
+    "authors": [
+      "Kristina Uban",
+      "Megan Herting",
+      "Elizabeth R. Sowell"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2016.00013"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2016.00025",
+    "title": "Seeing the Shadow of Rings around a “Super Saturn”",
+    "authors": [
+      "Matthew Kenworthy"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2016.00025"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00001",
+    "title": "“Boiling Water Is Not Too Hot for Us!”—Preferred Living Spaces of Heat-Loving Microbes",
+    "authors": [
+      "Skander Elleuche",
+      "Carola Schröder",
+      "Nadine Stahlberg",
+      "Garabed Antranikian"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00001"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00013",
+    "title": "Getting Out of the Laboratory to Make Experiments Real: Can Sports Fans Influence Muay Thai Judges?",
+    "authors": [
+      "Tony D. Myers"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00013"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00019",
+    "title": "Connecting the Dots: Your Brain and Creativity",
+    "authors": [
+      "Dita Cavdarbasha",
+      "Jake Kurczek"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00019"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00025",
+    "title": "The Wandering Mind: How the Brain Allows Us to Mentally Wander Off to Another Time and Place",
+    "authors": [
+      "Julia W. Y. Kam"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00025"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00031",
+    "title": "Don’t Judge a Plant by Its Flowers",
+    "authors": [
+      "Riva Anne Bruenn",
+      "Valerie Lavenburg",
+      "Shayla Salzman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00031"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00037",
+    "title": "“Where Did My Friends Go?”: How Corn’s Microbe Partners Have Changed Over Time",
+    "authors": [
+      "Jennifer E. Schmidt",
+      "Amélie C. M. Gaudin"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00037"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00043",
+    "title": "Studying the Seeds for Clouds at the CERN Research Labs",
+    "authors": [
+      "Hamish Gordon"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00043"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00049",
+    "title": "Waves of Perception",
+    "authors": [
+      "Bhargavi Ram",
+      "Randolph F. Helfrich"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00049"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00055",
+    "title": "Grateful People Are Happy and Healthy—But Why?",
+    "authors": [
+      "Anna Alkozei",
+      "Ryan Smith",
+      "William D. S. Killgore"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00055"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00061",
+    "title": "The Jump-Roping Brain",
+    "authors": [
+      "Kate R. Zha",
+      "Jennifer Hyman",
+      "James M. Hyman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00061"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2017.00067",
+    "title": "A Face Scavenger Hunt: Why We See Faces in Objects without Faces",
+    "authors": [
+      "Mary Nevins",
+      "Ashleigh Maxcey",
+      "Isabel Gauthier"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00067"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00002",
+    "title": "Secret Gardens Under the Sea: What are Seagrass Meadows and Why are They Important?",
+    "authors": [
+      "Leanne Claire Cullen-Unsworth",
+      "Benjamin Lawrence Jones",
+      "Richard Lilley",
+      "Richard K. F. Unsworth"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00002"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00008",
+    "title": "How Do Birds Cope with Losing Members of Their Group?",
+    "authors": [
+      "Sarah L. Firth",
+      "Josh A. Firth"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00008"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00014",
+    "title": "A Friend Is a Treasure and May Help You to Face Bullying",
+    "authors": [
+      "Raúl Navarro",
+      "Santiago Yubero",
+      "Elisa Larrañaga"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00014"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00026",
+    "title": "Can Brain Training Train Your Brain? Using the Scientific Method to Get the Answer",
+    "authors": [
+      "Celia Goffin",
+      "Daniel Ansari"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00026"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00038",
+    "title": "How Do We Measure Rainfall?",
+    "authors": [
+      "Auguste Gires"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00038"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00044",
+    "title": "The 3Rs: What are Medical Scientists Doing about Animal Testing?",
+    "authors": [
+      "Rachel Tanner"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00044"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00050",
+    "title": "Even Superheroes Need Help Sometimes: Three Incredible Tales of Microbial Symbiosis",
+    "authors": [
+      "Cassie L. Ettinger",
+      "Laetitia G. E. Wilkins",
+      "Katherine E. Dahlhausen",
+      "Sonia L. Ghose",
+      "Daniel Oberbauer",
+      "Jonathan A. Eisen",
+      "David A. Coil"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00050"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00056",
+    "title": "How Do We Understand Sarcasm?",
+    "authors": [
+      "Penny M. Pexman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00056"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00062",
+    "title": "Making Reality Virtual: How VR “Tricks” Your Brain",
+    "authors": [
+      "Rebecca A. Penn",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00062"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00068",
+    "title": "Two Sides to a Wing: A Gene that Makes Butterfly Upper and Bottom Wing Patterns Different",
+    "authors": [
+      "Anupama Prakash"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00068"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2018.00074",
+    "title": "How to Discover a Planet Orbiting a Distant Star",
+    "authors": [
+      "Brett M. Morris"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00074"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00003",
+    "title": "Pupils: A Window Into the Mind",
+    "authors": [
+      "Alexis Torres",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00003"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00009",
+    "title": "Action Recognition Happens Very Quickly in the Human Brain",
+    "authors": [
+      "Andrea Tacchetti",
+      "Leyla Isik"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00009"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00015",
+    "title": "Happy Gut Bacteria, Happy Brain: The Microbiota-Gut-Brain Axis",
+    "authors": [
+      "Juan M. Lima-Ojeda",
+      "Rainer Rupprecht",
+      "Thomas C. Baghai"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00015"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00021",
+    "title": "Recovery After a Stroke—Five Tips for Rehabilitation",
+    "authors": [
+      "Alana B. McCambridge"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00021"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00033",
+    "title": "Staying Safe on a Surf Beach: What Are Rip Currents?",
+    "authors": [
+      "Sebastian J. Pitman",
+      "Shari L. Gallop",
+      "Robert W. Brander"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00033"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00039",
+    "title": "Was Mesosaurus an Aquatic Animal? How Do We Know If an Ancient Species Was Aquatic or Terrestrial?",
+    "authors": [
+      "Pablo Núñez Demarco",
+      "Melitta Meneghel",
+      "Michel Laurin",
+      "Graciela Helena Piñeiro"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00039"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00045",
+    "title": "When Bacteria Go to Sleep",
+    "authors": [
+      "Orit Gefen",
+      "Nathalie Q. Balaban"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00045"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00051",
+    "title": "Trick or Treat? How Artificial Sweeteners Affect the Brain and Body",
+    "authors": [
+      "Hunter Myüz",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00051"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00057",
+    "title": "Food for Thought: The Science Behind Dietary Guidelines",
+    "authors": [
+      "Stephanie R. Partridge",
+      "Rebecca Raeside",
+      "Stella Ruan",
+      "Anna Singleton"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00057"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00063",
+    "title": "Look Out! How Teams of Brain Cells Help Keep Us Safe From Harm",
+    "authors": [
+      "Lindsay R. Halladay"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00063"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00075",
+    "title": "Evolution in a Bottle",
+    "authors": [
+      "César Aguilar"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00075"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00081",
+    "title": "How Can We Help to Prevent Medicines From Polluting the Environment?",
+    "authors": [
+      "Helena de Oliveira Souza",
+      "Rafaela dos Santos Costa",
+      "Gabrielle Rabelo Quadra",
+      "Marcos Antonio Fernandez"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00081"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00087",
+    "title": "Brain-Computer Interface Racing at the Cybathlon 2016",
+    "authors": [
+      "Domen Novak",
+      "Roland Sigrist",
+      "Robert Riener"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00087"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00093",
+    "title": "CTE: The Hidden Risk of Playing Contact Sports",
+    "authors": [
+      "Hamad Yadikar",
+      "Connor Johnson",
+      "Edwin Mouhawasse",
+      "Milin Kurup",
+      "Lynn Nguyen",
+      "Niko Pafundi",
+      "Kevin K. W. Wang"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00093"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00099",
+    "title": "Who Is the Most Important Character in Frozen? What Networks Can Tell Us About the World",
+    "authors": [
+      "Petter Holme",
+      "Mason A. Porter",
+      "Hiroki Sayama"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00099"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00105",
+    "title": "Harnessing the Heat Beneath Our Feet: Geothermal Energy",
+    "authors": [
+      "Susan Hamm",
+      "Elisabet Metcalfe"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00105"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00111",
+    "title": "The Intestinal Universe—Full of Gut Heroes Who Need Sidekicks",
+    "authors": [
+      "Bahtiyar Yilmaz",
+      "Joana C. Carvalho",
+      "Marta Marialva"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00111"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00117",
+    "title": "Telling Someone and Telling on Someone—Is There a Difference?",
+    "authors": [
+      "Michelle Kennedy",
+      "Larisa McLoughlin",
+      "Amanda Clacy"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00117"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00123",
+    "title": "The New Astronomy: Observing Our Universe With Light and Gravity",
+    "authors": [
+      "Joey Shapiro Key",
+      "LIGO Scientific Collaboration"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00123"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00129",
+    "title": "Camouflaging in Autism",
+    "authors": [
+      "Laura Hull",
+      "Will Mandy"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00129"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00135",
+    "title": "The Evolution of Bacteria Can Produce Chimeric Creatures: The Case of Azotobacter vinelandii",
+    "authors": [
+      "Gloria Soberón-Chávez"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00135"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00141",
+    "title": "The Body’s Clock: Timekeeping With Food",
+    "authors": [
+      "Carolina M. Greco",
+      "Kevin B. Koronowski",
+      "Paolo Sassone-Corsi"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00141"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00147",
+    "title": "Drought, Floods, Climate Change, and Forest Loss in the Amazon Region: A Present and Future Danger?",
+    "authors": [
+      "Jose A. Marengo"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00147"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00153",
+    "title": "Stuttering and Its Invisibility: Why Does My Classmate Only Stutter Sometimes?",
+    "authors": [
+      "Hope Gerlach",
+      "Anu Subramanian",
+      "Elizabeth Wislar"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00153"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2019.00159",
+    "title": "Alexander Fleming, The Discoverer of the Antibiotic Effects of Penicillin",
+    "authors": [
+      "Michal Letek"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00159"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00002",
+    "title": "A Long Way From Home—Industrial Chemicals in the Arctic That Really Should Not Be There",
+    "authors": [
+      "Roxana Sühring",
+      "Miriam L. Diamond",
+      "Martin Scheringer",
+      "Liisa M. Jantunen"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00002"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00008",
+    "title": "Flower Power: A Close Look at Plant Reproduction",
+    "authors": [
+      "Katherine E. Dahlhausen",
+      "David A. Coil",
+      "Luca Comai",
+      "Isabelle M. Henry"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00008"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00014",
+    "title": "What Wild Animals Do Kids Care About Most and Why Does It Matter?",
+    "authors": [
+      "M. Nils Peterson",
+      "Hannah G. Shapiro",
+      "Kathryn T. Stevenson",
+      "Kristin F. Mcnair",
+      "Randall Brian Langerhans"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00014"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00020",
+    "title": "Returning to School After a Concussion",
+    "authors": [
+      "Melissa McCart",
+      "Christina Karns",
+      "Meghan Ramirez",
+      "Matthew Dawson",
+      "Ann Glang"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00020"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00026",
+    "title": "Conquering the World: The Invasion of the Red Swamp Crayfish",
+    "authors": [
+      "Francisco Javier Oficialdegui"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00026"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00032",
+    "title": "What Are Embryonic Stem Cells and How Can They Help Us?",
+    "authors": [
+      "Eran Meshorer"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00032"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00038",
+    "title": "Virginia Beached Sea Turtle Survey",
+    "authors": [
+      "Elyse Boudin",
+      "Bianca Santos",
+      "Frederique Carcaillet",
+      "David Kaplan"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00038"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00044",
+    "title": "DVM: The World’s Biggest Game of Hide-and-Seek",
+    "authors": [
+      "Jennifer J. Freer",
+      "Laura Hobbs"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00044"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00050",
+    "title": "Make Space: The Importance of Spatial Thinking for Learning Mathematics",
+    "authors": [
+      "Katie A. Gilligan"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00050"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00056",
+    "title": "Why Do We “Choke” Under Pressure?",
+    "authors": [
+      "Stefania A. Ciurea",
+      "Ashleigh M. Maxcey",
+      "Phillip M. Newman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00056"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00062",
+    "title": "Dangerous Slimes: How Bacterial Biofilms Make You Sick and How to Combat Them",
+    "authors": [
+      "Hervé Poilvache",
+      "Françoise Van Bambeke"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00062"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00068",
+    "title": "How Do We Track Changing Arctic Sea Ice?",
+    "authors": [
+      "Olivia Lee"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00068"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00074",
+    "title": "What Is COVID-19?",
+    "authors": [
+      "Gabriela Gama Freire Alberca",
+      "Iara Grigoletto Fernandes",
+      "Maria Notomi Sato",
+      "Ricardo Wesley Alberca"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00074"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00081",
+    "title": "Music and Learning: Does Music Make You Smarter?",
+    "authors": [
+      "Gabriella Musacchia",
+      "Alexander Khalil"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00081"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00087",
+    "title": "Can Toothache Cause Heartbreak?",
+    "authors": [
+      "Natasha Clark",
+      "Zoe Skinner",
+      "Catrin Sian Rutland"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00087"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00093",
+    "title": "How Nutritious Will the Future Arctic Ocean Be?",
+    "authors": [
+      "Pearse J. Buchanan",
+      "Robyn E. Tuerena",
+      "Alessandro Tagliabue",
+      "Claire Mahaffey"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00093"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00099",
+    "title": "Do You Feel Like You Belong?",
+    "authors": [
+      "Kelly-Ann Allen"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00099"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00105",
+    "title": "The Arctic: An Upside-Down Ocean",
+    "authors": [
+      "Yueng Djern Lenn",
+      "Benjamin Lincoln",
+      "Markus Janout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00105"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00111",
+    "title": "How Melting Arctic Sea Ice Can Lead to Starving Polar Bears",
+    "authors": [
+      "Doreen Kohlbach",
+      "Benjamin A. Lange"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00111"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00117",
+    "title": "Getting Big Cows by Feeding Their Tiny Microbes",
+    "authors": [
+      "Brooke A. Clemmons",
+      "Emma Hernandez-Sanabria"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00117"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.00123",
+    "title": "Following the Journey of Sea Turtles on Their Quest for Food",
+    "authors": [
+      "Aoife Taylor",
+      "Emilie Gerard",
+      "Hannah Haarmann",
+      "Mathilde Giry",
+      "Maike Heidemeyer"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00123"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.467994",
+    "title": "How Many Ways Are There to Make a Black Hole?",
+    "authors": [
+      "Shamit Kachru"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.467994"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.526870",
+    "title": "How Rare Are Rare-Earth Elements in Living Things?",
+    "authors": [
+      "Rocío Bustillos-Cristales",
+      "Yagul Pedraza-Pérez",
+      "Luis Ernesto Fuentes-Ramírez"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.526870"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.534345",
+    "title": "How Introduced Earthworms Alter Ecosystems",
+    "authors": [
+      "Malte Jochum",
+      "Nico Eisenhauer"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.534345"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.539649",
+    "title": "This Will Only Hurt for a Minute: How Our Brains Plan for Pain",
+    "authors": [
+      "Giovanna Del Sordo",
+      "Emma Moyer",
+      "Dre Goode",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.539649"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.543259",
+    "title": "Sharing Electrons: An Extraordinary Friendship Between Bacteria",
+    "authors": [
+      "Julia M. Otte"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.543259"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.547465",
+    "title": "Looking for Earthworms in Deadwood",
+    "authors": [
+      "Frank Ashwood",
+      "Elena I. Vanguelova",
+      "Sue Benham",
+      "Kevin R. Butt"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.547465"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.554380",
+    "title": "Puberty: Your Brain on Hormones",
+    "authors": [
+      "Katherine E. Kabotyanski",
+      "Leah H. Somerville"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.554380"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.560890",
+    "title": "Say Wart???",
+    "authors": [
+      "Meihua Yu",
+      "Janin Chandra"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.560890"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.582971",
+    "title": "COVID-19: The New Immune Challenge",
+    "authors": [
+      "Suleman R. Sabir",
+      "Emma C. Thomson",
+      "Tomasz J. Guzik",
+      "Fulvio D’Acquisto",
+      "Pasquale Maffia"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.582971"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2020.621808",
+    "title": "Non-wetting Materials",
+    "authors": [
+      "Valeri Frumkin",
+      "Moran Bercovici"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2020.621808"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.551557",
+    "title": "Connecting the Dots: Discovering the “Shape” of Data",
+    "authors": [
+      "Michelle Feng",
+      "Abigail Hickok",
+      "Yacoub H. Kureh",
+      "Mason A. Porter",
+      "Chad M. Topaz"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.551557"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.554875",
+    "title": "Double Empathy: Why Autistic People Are Often Misunderstood",
+    "authors": [
+      "Catherine J. Crompton",
+      "Kilee DeBrabander",
+      "Brett Heasman",
+      "Damian Milton",
+      "Noah J. Sasson"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.554875"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.558728",
+    "title": "The Agave Bat and Its Stinky Back Patch",
+    "authors": [
+      "Osiris Gaona",
+      "Carla Ximena Neri Barrios"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.558728"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.562430",
+    "title": "The Way Soil Organisms Look Can Help Us Understand Their Importance",
+    "authors": [
+      "Pierre Ganault",
+      "Léa Beaumelle",
+      "Apolline Auclerc"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.562430"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.566420",
+    "title": "Working Out Your Pain: Why Intense Exercise Is Painful",
+    "authors": [
+      "Marcel Berger",
+      "Daniel Henning",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.566420"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.569850",
+    "title": "Do Smartphones Hurt Our Eyes by Causing Shortsightedness?",
+    "authors": [
+      "Saoirse Mccrann",
+      "James Loughman",
+      "John S. Butler",
+      "Daniel Ian Flitcroft"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.569850"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.572765",
+    "title": "Why Is Grandma Walking Strangely?",
+    "authors": [
+      "Tamaya Van Criekinge",
+      "Ann Hallemans"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.572765"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.575131",
+    "title": "Interactive 3D Brain Helps You Learn How the Brain is Organized",
+    "authors": [
+      "Paul S. Scotti",
+      "Arman P. Kulkarni",
+      "Matan Mazor",
+      "Eduard Klapwijk",
+      "Alexander Huth"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.575131"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.576035",
+    "title": "Flagship Species: Do They Help or Hurt Conservation?",
+    "authors": [
+      "Emily Moynes",
+      "Vishnu Prithiv Bhathe",
+      "Christina Brennan",
+      "Stephanie Ellis",
+      "Joseph R. Bennett",
+      "Sean J. Landsman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.576035"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.578431",
+    "title": "Are Your Muscles or Your Brain Making You Feel Tired After Exercise?",
+    "authors": [
+      "Derek Zhang",
+      "Juana Li",
+      "Ryan Miller",
+      "Marina Batraka",
+      "Sophie Marie Anne Effing",
+      "Fahmida Hossain",
+      "Anne-Catherine Bernard",
+      "Mathieu Marillier",
+      "Nicolle J. Domnik"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.578431"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.581824",
+    "title": "Speaking and Hearing With an Accent",
+    "authors": [
+      "John A. Archibald"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.581824"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.584941",
+    "title": "What is Vitiligo and How Can it Teach Us a Crucial Life Lesson?",
+    "authors": [
+      "Nicholas Leonard",
+      "Jillian M. Richmond"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.584941"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.588455",
+    "title": "Attention: Your Brain’s Superpower",
+    "authors": [
+      "Taissa Lytchenko",
+      "Stanimira Seekins",
+      "Stephanie Huntamer",
+      "Tess White",
+      "Gideon P. Caplovitz",
+      "Ryan E. B. Mruczek"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.588455"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.593935",
+    "title": "The Recycling System in Cells That Helps to Prevent Obesity",
+    "authors": [
+      "Carla Narro",
+      "Patricia Rivera",
+      "Eugenia Morselli"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.593935"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.598169",
+    "title": "How do Scientists Use Sound to Count Fish in The Deep Sea?",
+    "authors": [
+      "Alina M. Wieczorek",
+      "Amanda Schadeberg",
+      "David G. Reid"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.598169"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.604096",
+    "title": "Who Feeds The Plants? Microbes!",
+    "authors": [
+      "Aline Lacaze",
+      "Antoine Zboralski",
+      "David L. Joly"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.604096"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.606902",
+    "title": "Lessons From Lizards: How Scaly Superhealers Can Help Humans",
+    "authors": [
+      "Noeline Subramaniam",
+      "Kathy Jacyniak",
+      "Rebecca P. McDonald",
+      "Matthew K. Vickaryous"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.606902"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.608843",
+    "title": "Racism on the Brain",
+    "authors": [
+      "Claire Weichselbaum",
+      "Kira Hudson Banks"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.608843"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.611282",
+    "title": "Are You a HAB Warrior?",
+    "authors": [
+      "Peggy W. Lehman",
+      "Tomofumi Kurobe",
+      "Timothy G. Otten",
+      "Melissa B. Peacock"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.611282"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.611826",
+    "title": "Small Shorebirds Feast On Green Slime To Fuel Their Long Migration",
+    "authors": [
+      "Laurie A. Hall",
+      "Susan E. W. De La Cruz",
+      "Isa Woo",
+      "Tomohiro Kuwae",
+      "David M. Nelson",
+      "John Y. Takekawa"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.611826"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.612548",
+    "title": "Crime Scene San Francisco: Who Is Responsible for the Disappearance of Delta Smelt?",
+    "authors": [
+      "Mallory E. Bedwell",
+      "Craig Stuart",
+      "Melinda R. Baerwald"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.612548"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.613577",
+    "title": "A Message in a Bottle From the North Pole–How Plastic Pollutes the Arctic Ocean",
+    "authors": [
+      "Lisa W. von Friesen",
+      "Nanna B. Hartmann",
+      "Geir W. Gabrielsen",
+      "Sinja Rist"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.613577"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.622451",
+    "title": "Eating While the Eating’s Good: How Fire Creates a Magnet for Grazing Animals",
+    "authors": [
+      "Sherry A. Leis",
+      "Carol E. Baldwin"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.622451"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.631045",
+    "title": "Finding Your Way: Shortest Paths on Networks",
+    "authors": [
+      "Teresa Rexin",
+      "Mason A. Porter"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.631045"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.648750",
+    "title": "Using Computers to Discover Materials That Generate Non-polluting Fuels",
+    "authors": [
+      "Santu Biswas",
+      "Maytal Caspary Toroker"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.648750"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.660425",
+    "title": "What Are the Small Lumps I See on Some Plant Roots?",
+    "authors": [
+      "Fede Berckx",
+      "Katharina Pawlowski"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.660425"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.678405",
+    "title": "Listen With Your Wrists",
+    "authors": [
+      "Mark D. Fletcher"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.678405"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.682488",
+    "title": "The “Creatures” in Your Head",
+    "authors": [
+      "Lasse Dissing-Olesen"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.682488"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.703592",
+    "title": "Tackling Noise Pollution With Slow Sound",
+    "authors": [
+      "William J. Parnell",
+      "William D. Rowley",
+      "Naomi R. M. Curati"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.703592"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.712082",
+    "title": "How a Star’s Death Can Reveal a Black Hole",
+    "authors": [
+      "Iair Arcavi"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.712082"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2021.751566",
+    "title": "Are Humans More Like Wolves or Dogs?",
+    "authors": [
+      "Mati Breski",
+      "Daniel Dor"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2021.751566"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.1014522",
+    "title": "Human Riddles in Behavioral Economics",
+    "authors": [
+      "Daniel Kahneman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.1014522"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.569350",
+    "title": "Helping Nature in the San Francisco Estuary Cope With Climate Change",
+    "authors": [
+      "Annika T. H. Keeley",
+      "Eva Bush",
+      "Dylan E. Chapple"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.569350"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.612419",
+    "title": "Branchflows: Upside-Down Rivers Clinging to the Bark Above Our Heads",
+    "authors": [
+      "John T. Van Stan II",
+      "Alexandra G. Ponette-González"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.612419"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.615776",
+    "title": "We Make the Delta, and the Delta Makes us",
+    "authors": [
+      "Alejo Kraus-Polk",
+      "Julian Fulton"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.615776"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.625050",
+    "title": "The Smallest Animals in the Water: Tiny but Mighty",
+    "authors": [
+      "Monika Winder",
+      "April Hennessy",
+      "Arthur Barros"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.625050"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.629355",
+    "title": "Microorganisms Floating Through the Air",
+    "authors": [
+      "Romie Tignat-Perrier",
+      "Nathalie Técher",
+      "Timothy M. Vogel",
+      "Catherine Larose",
+      "Aurélien Dommergue"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.629355"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.654148",
+    "title": "Microbial Mats: Primitive Structures That Could Help us Find Life on Other Worlds",
+    "authors": [
+      "Santiago Cadena",
+      "Paula Maza-Márquez",
+      "Sandra I. Ramírez Jiménez",
+      "Sharon L. Grim",
+      "José Q. García Maldonado",
+      "Leslie Prufert-Bebout",
+      "Brad M. Bebout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.654148"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.660110",
+    "title": "Belowground Mountaineers: Critters Living in Mountain Soils",
+    "authors": [
+      "Michael Steinwandter",
+      "Julia Seeber"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.660110"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.662975",
+    "title": "Plant Litter Can Be Important Food for Stream Bugs",
+    "authors": [
+      "Checo Colón-Gaud",
+      "Keysa G. Rosas",
+      "José Sánchez-Ruiz",
+      "Pablo E. Gutiérrez-Fonseca",
+      "Alonso Ramírez"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.662975"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.667792",
+    "title": "Why Are We so Scent-Imental? Studying Odor-Linked Memories",
+    "authors": [
+      "Angela-Faith Thomas",
+      "Megan H. Papesh"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.667792"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.672376",
+    "title": "Using Self-Compassion to Manage Difficult Sport Experiences",
+    "authors": [
+      "Leah J. Ferguson",
+      "Tara-Leigh F. Mchugh"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.672376"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.681496",
+    "title": "How to See Pressure in Sport as a Challenge, Not a Threat",
+    "authors": [
+      "Carla Meijen",
+      "Martin J. Turner",
+      "Marc V. Jones"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.681496"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.683643",
+    "title": "The Forest Graveyard: The Importance of Dead Trees, Bark, and Water",
+    "authors": [
+      "Anna Klamerus-Iwan",
+      "Ewa Błońska",
+      "Jarosław Lasota",
+      "John T. Van Stan"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.683643"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.684710",
+    "title": "Talent Development in Sport: How Do You Make It to the Top?",
+    "authors": [
+      "Camilla J. Knight",
+      "Victoria M. Gottwald"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.684710"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.685862",
+    "title": "How Coaches, Parents, and Peers Influence Motivation in Sport",
+    "authors": [
+      "Richard James Keegan"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.685862"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.687784",
+    "title": "Bacteria Can Unlock an Essential Nutrient for Plants",
+    "authors": [
+      "Jackson R. Hall",
+      "Andrew W. Sher",
+      "Tamas Varga",
+      "Sharon L. Doty"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.687784"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.691255",
+    "title": "Why Should I Learn Music? It Can Be Good for Your Brain!",
+    "authors": [
+      "Bronte Ficek-Tani",
+      "Assal Habibi"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.691255"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.693108",
+    "title": "What Are Medusozoans, and Why Do They Sting?",
+    "authors": [
+      "José Agüero",
+      "Mariae C. Estrada-González",
+      "Leonela Rosales-Catalán",
+      "Ariadne Molina-Alonso",
+      "María A. Mendoza-Becerril"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.693108"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.702690",
+    "title": "How Will Climate Change Affect Where You Live?",
+    "authors": [
+      "Carolina Viceto",
+      "Pat Wongpan",
+      "Alexander D. Fraser"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.702690"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.703524",
+    "title": "I Can’t Hear Myself Think! How the Brain Deals With Talking in Noisy Environments",
+    "authors": [
+      "Sophie Meekings"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.703524"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.704022",
+    "title": "Do Lichens and Mosses Drink From Tree Bark?",
+    "authors": [
+      "Philipp Porada",
+      "Paolo Giordani"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.704022"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.707514",
+    "title": "Can Vitamins Slow Down the Body’s Aging Process?",
+    "authors": [
+      "Chanachai Sae-Lee",
+      "Julien De Biasi",
+      "John C. Mathers"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.707514"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.712036",
+    "title": "What Ice Cores can Tell us About Earth’s Past",
+    "authors": [
+      "Anne L. Myers",
+      "Alison S. Criscitiello"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.712036"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.714834",
+    "title": "The Recovery of the American Peregrine Falcon in Alaska",
+    "authors": [
+      "David C. Payer",
+      "Melanie J. Flamme"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.714834"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.716479",
+    "title": "The Impacts of Climate Change",
+    "authors": [
+      "Andrew J. Hartley",
+      "Ayesha Tandon"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.716479"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.716954",
+    "title": "Mangrove Madness: What Are Mangroves and Why Do We Care About Them?",
+    "authors": [
+      "Kevin R. T. Whelan",
+      "Michelle C. Prats"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.716954"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.718606",
+    "title": "Indicator Species Reveal Environmental Health",
+    "authors": [
+      "Sophie Phillips",
+      "Martha Merson",
+      "Nickolay I. Hristov",
+      "Louise Allen",
+      "Robert Brodman"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.718606"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.719630",
+    "title": "Cracking The Mystery Of Crater Lake’s Unique Newts",
+    "authors": [
+      "Andrew M. Ray",
+      "Stephen F. Spear",
+      "Scott F. Girdner",
+      "David K. Hering"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.719630"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.722958",
+    "title": "How Plants and Bacteria can Clean the Earth",
+    "authors": [
+      "Leila Ordukhani",
+      "Andrea Firrincieli",
+      "John L. Freeman",
+      "Sharon L. Doty"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.722958"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.729784",
+    "title": "Do Parks Help Forests?",
+    "authors": [
+      "John Paul Schmit",
+      "Kathryn Miller",
+      "Elizabeth R. Matthews",
+      "Andrejs Brolis"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.729784"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.734864",
+    "title": "How Does Cultural Burning Impact Biodiversity?",
+    "authors": [
+      "Kira M. Hoffman",
+      "Amy Cardinal Christianson",
+      "Emma L. Davis",
+      "Sara B. Wickham",
+      "Andrew J. Trant"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.734864"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.740838",
+    "title": "An Antarctic Alga That Can Survive The Extreme Cold",
+    "authors": [
+      "David R. Smith",
+      "Arthur Leung",
+      "Xi Zhang",
+      "Marina Cvetkovska",
+      "Rachael Morgan-Kiss",
+      "Norman P. A. Hüner"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.740838"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.743943",
+    "title": "Fluffy Rivers: How Our Clothes Can Harm Rivers and The Oceans",
+    "authors": [
+      "Thomas Stanton",
+      "Matthew Johnson",
+      "Rachel Louise Gomes",
+      "Paul Nathanail",
+      "William Macnaughtan",
+      "Paul Kay"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.743943"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.746593",
+    "title": "The Environmental Impact of Home Deliveries",
+    "authors": [
+      "Lynette Cheah",
+      "Qiuhong Huang"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.746593"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.750301",
+    "title": "The “Little Person” in the Brain Who Helps to Direct Our Movements",
+    "authors": [
+      "Sofia Dall’Orso",
+      "Tiffany Hamstreet",
+      "Silvia Muceli"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.750301"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.758890",
+    "title": "Mr. and Mrs. Crab: How Can We Tell Them Apart?",
+    "authors": [
+      "Meng Hong Cheah",
+      "Hanafiah Fazhan",
+      "Rusydi Rozaimi",
+      "Khor Waiho"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.758890"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.765740",
+    "title": "How Warm Gulf Stream Water Sustains a Cold Underwater Waterfall",
+    "authors": [
+      "Stefanie Semper",
+      "Mirjam S. Glessmer",
+      "Kjetil Våge",
+      "Robert S. Pickart"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.765740"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.772441",
+    "title": "The Origin of Soft-Shell Crabs",
+    "authors": [
+      "Aorta Xian Lin Ling",
+      "Hanafiah Fazhan",
+      "Ghazali Azmie",
+      "Yushinta Fujaya",
+      "Khor Waiho"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.772441"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.781748",
+    "title": "Your Smile Caught My Eye: Why Do Emotional Things Catch and Hold Our Attention?",
+    "authors": [
+      "Andras N. Zsidó",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.781748"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.810556",
+    "title": "When Mediterranean Plant Diversity Profits From Wildfires",
+    "authors": [
+      "Amélie Fauché",
+      "Cécile Fleuriot",
+      "Solène Le Fur",
+      "Louis Ton",
+      "Frédérique Carcaillet",
+      "Christopher Carcaillet"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.810556"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.813910",
+    "title": "How Scientists Forecast Volcanic Eruptions",
+    "authors": [
+      "Valerio Acocella"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.813910"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.857995",
+    "title": "Distant Planets and Big Promises: How to Detect Exoplanets and Whether They Have Life",
+    "authors": [
+      "Michel Mayor"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.857995"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.873610",
+    "title": "Why Is There Iodine in Table Salt?",
+    "authors": [
+      "Ayla Secio-Silva",
+      "Tatienne N. Figueira-Costa",
+      "Felipe Emrich",
+      "Ana F. Abrantes",
+      "Rodrigo A. Peliciari-Garcia",
+      "Paula Bargi-Souza"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.873610"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.903742",
+    "title": "Ocean Noise: The Human Footprint on Underwater Soundscapes",
+    "authors": [
+      "Ellen L. White",
+      "Nikhil Mistry",
+      "Paul R. White"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.903742"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.926624",
+    "title": "Understanding The Odds: Statistics in Public Health",
+    "authors": [
+      "Gabriella Goodwin",
+      "So Young Ryu"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.926624"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2022.982604",
+    "title": "Can Computers Understand Humor?",
+    "authors": [
+      "Chen Shani",
+      "Dafna Shahaf"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2022.982604"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1006057",
+    "title": "On the Hunt for Cancer’s Microbial “Party” in the Animal Kingdom",
+    "authors": [
+      "Gissel Marquez Alcaraz",
+      "Stefania E. Kapsetaki",
+      "Athena Aktipis",
+      "Corrie M. Whisner"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1006057"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1031267",
+    "title": "How Might Climate Change Affect American Lobsters?",
+    "authors": [
+      "Winsor H. Watson",
+      "Steven H. Jury",
+      "Benjamin C. Gutzler",
+      "Thomas C. Lippmann",
+      "Jang-Geun Choi",
+      "Joshua T. Carloni",
+      "Jason S. Goldstein"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1031267"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1037013",
+    "title": "Salt: The Rock That Flows",
+    "authors": [
+      "Oscar Fernandez",
+      "Mark G. Rowan"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1037013"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1045345",
+    "title": "Green Chemistry—Sustainability at the Atom Scale",
+    "authors": [
+      "Jessica Streets",
+      "Amy-Louise Johnston",
+      "Hamza Ali",
+      "Hiba Azim",
+      "Peter Licence"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1045345"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1052144",
+    "title": "What can Evolution Teach us About Being Sick?",
+    "authors": [
+      "Barbara Natterson-Horowitz",
+      "Daniel T. Blumstein"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1052144"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1055909",
+    "title": "Future Food—Can Cultivated Meat Save Our Planet?",
+    "authors": [
+      "Paula Meyer",
+      "Lena Szczepanski",
+      "Milan Büscher",
+      "Julia Schächtele",
+      "Florian Fiebelkorn"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1055909"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1063909",
+    "title": "Resolution Revolution—Seeing the Molecules of Life With Electron Cryomicroscopy",
+    "authors": [
+      "Noa Segev",
+      "Richard Henderson"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1063909"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1065588",
+    "title": "How Can Art Assist Climate Science in Antarctica?",
+    "authors": [
+      "Gabby O’Connor",
+      "Natalie Robinson",
+      "Craig Stevens"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1065588"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1074453",
+    "title": "Seeing Beyond the Limits With Super-Resolution Microscopy",
+    "authors": [
+      "Eric Betzig"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1074453"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1086538",
+    "title": "Big Mama Is Watching You—A Bedtime Story About How Giraffes Sleep",
+    "authors": [
+      "Anna Lena Burger",
+      "Paul W. Dierkes"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1086538"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1093433",
+    "title": "Insects—Nature’s Hidden Gems",
+    "authors": [
+      "Xin Rui Ong",
+      "Tharaka S. Priyadarshana",
+      "Li Si Tay",
+      "Marx Wen-Han Yim",
+      "Alexis Goh",
+      "Louisa May Fung",
+      "Eleanor M. Slade"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1093433"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1114471",
+    "title": "The Rise and Fall of Continents",
+    "authors": [
+      "Donna L. Whitney",
+      "Jonas Vanardois",
+      "Jennifer M. Taylor",
+      "Christian Teyssier"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1114471"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1129218",
+    "title": "Contagious Cancers That Can Spread Between Ocean Organisms",
+    "authors": [
+      "Alicia L. Bruzos",
+      "Seila Diaz"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1129218"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1150335",
+    "title": "What is Culture?",
+    "authors": [
+      "Akshata R. Naik",
+      "Stephanie Baker",
+      "Changiz Mohiyeddini"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1150335"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1155100",
+    "title": "Causality: Using Math to Understand the Science of Cause and Effect",
+    "authors": [
+      "Frank Emmert-Streib",
+      "Matthias Dehmer"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1155100"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1169684",
+    "title": "Digital Tools For Youth Mental Health",
+    "authors": [
+      "Stephen M. Schueller",
+      "Trina Histon"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1169684"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1175170",
+    "title": "Salty, Brackish, Or Fresh—Saltiness Matters for Aquatic Species!",
+    "authors": [
+      "Leena Virta",
+      "Alf Norkko",
+      "Anna Villnäs"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1175170"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1178537",
+    "title": "Geothermal Heat Shapes the Antarctic Ice Sheet From Below",
+    "authors": [
+      "Tobias Stål",
+      "Felicity S. McCormack",
+      "Anya M. Reading",
+      "Niam Askey-Doran",
+      "Jacqueline A. Halpin",
+      "Mareen Lösing"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1178537"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1185513",
+    "title": "Predicting the Future: How Does a Weather Forecast Work?",
+    "authors": [
+      "Emma Holmberg",
+      "Christoffer Hallgren",
+      "Gabriele Messori"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1185513"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1200611",
+    "title": "Wavelets: Mathematical Tools for Image Analysis",
+    "authors": [
+      "Ingrid Daubechies"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1200611"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1215124",
+    "title": "Game Theory—More Than Just Games",
+    "authors": [
+      "Robert Aumann"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1215124"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1224593",
+    "title": "Where Did Nap Time Go? Why Older Kids Do Not Nap at School",
+    "authors": [
+      "Darshini Babu Ganesh",
+      "Meghna Pandey",
+      "Tracy Riggins",
+      "Rebecca M. C. Spencer",
+      "Rhea Tiwari",
+      "Mark Wehland",
+      "Sonya Leikin"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1224593"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1230167",
+    "title": "Improving Healthcare for Pregnant Women",
+    "authors": [
+      "José Belizán"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1230167"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1237281",
+    "title": "Space Radiation May Affect Male and Female Brains Differently",
+    "authors": [
+      "Robert G. Hinshaw",
+      "Cynthia A. Lemere"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1237281"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1253426",
+    "title": "Secrets Beneath Your Feet—The Fascinating World of Scientific Drilling",
+    "authors": [
+      "Aglaja Blanke",
+      "Ulrich Harms"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1253426"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1286330",
+    "title": "The Dilemma of Dividing Five Candies Between Two Children",
+    "authors": [
+      "Shoham Choshen-Hillel",
+      "Yair Nahari"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1286330"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.1329759",
+    "title": "How Looking at a Picture of a Loved One Can Improve Your Hearing",
+    "authors": [
+      "Shir Nagar",
+      "Boaz M. Ben-David",
+      "Mario Mikulincer"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1329759"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.747790",
+    "title": "How Do We Recognize the Same Object From Different Angles?",
+    "authors": [
+      "Brittney Truong",
+      "David Murray",
+      "Anila Kankipati",
+      "Breyanna Collins",
+      "Jay Hegdé"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.747790"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.812844",
+    "title": "Whale Detectives Use Chemistry Clues to Uncover the Secret Lives of Beaked Whales",
+    "authors": [
+      "Kerri J. Smith",
+      "Tarla Rai Peterson",
+      "Markus J. Peterson"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.812844"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.853490",
+    "title": "The Nocebo Effect: The Placebo’s “Evil Twin”",
+    "authors": [
+      "Helena Hartmann",
+      "Jonas Potthoff",
+      "Livia Asan",
+      "Ulrike Bingel"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.853490"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.874305",
+    "title": "Dung Beetles’ Life in Manure Helps Plants Grow",
+    "authors": [
+      "Sandra Milena Gelviz-Gelvez",
+      "Alfredo Ramírez-Hernández",
+      "Felipe Barragán"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.874305"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.901402",
+    "title": "Why Do Marine Mammals Strand on Land and How Can Humans Help?",
+    "authors": [
+      "Rebecca M. Boys",
+      "Karen A. Stockin",
+      "Katharina J. Peters"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.901402"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.920671",
+    "title": "How the Brain and Memory Grow Up Together",
+    "authors": [
+      "Angela Ji",
+      "Mary Lorenz",
+      "Sigalle Bahary",
+      "Tracy Riggins"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.920671"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.947799",
+    "title": "What Can Tapir Poop Teach Us About Healthy Forests?",
+    "authors": [
+      "Alfredo Yanez-Montalvo",
+      "Osiris Gaona",
+      "Arit de León-Lorenzana",
+      "Bernardo Águila",
+      "Luisa I. Falcón",
+      "Carla Ximena Neri-Barrios",
+      "Jonathan Pérez-Flores"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.947799"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.961113",
+    "title": "How the Nose Responds to SARS-CoV-2, Cell by Cell",
+    "authors": [
+      "Faith Taliaferro",
+      "Jaclyn M. Long",
+      "José Ordovás-Montañés"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.961113"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.969254",
+    "title": "What is Sustainability and How Do We Measure It?",
+    "authors": [
+      "Agnès Fargue-Lelièvre",
+      "Paola Clerino"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.969254"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.974853",
+    "title": "On a Scale From “Tom” to “Jerry,” What Is Your Personality Like?",
+    "authors": [
+      "Natacha Henriquez",
+      "Pauline Hochheuser",
+      "Marianna Kotzamani",
+      "Ilaria Romanelli",
+      "Peter Prinzie",
+      "Ruth Van der Hallen"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.974853"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2023.998004",
+    "title": "Kelp in a Changing Arctic Ocean",
+    "authors": [
+      "Megan Shipton",
+      "Anaïs Lebrun",
+      "Steeve Comeau"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2023.998004"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1063878",
+    "title": "The CRISPR Revolution: Can We Change Genes for the Better?",
+    "authors": [
+      "Jennifer A. Doudna"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1063878"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1178387",
+    "title": "Body Image During Puberty: What Happens to How Kids Feel About Their Bodies?",
+    "authors": [
+      "Savannah R. Roberts",
+      "Sasha Gorrell",
+      "Daniel Le Grange"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1178387"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1205267",
+    "title": "Explore More! How New Environments May Boost Your Memory",
+    "authors": [
+      "Kreeta I. L. Kerkkänen",
+      "Marit F. L. Ruitenberg",
+      "Judith Schomaker"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1205267"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1225865",
+    "title": "The Late Pleistocene Megafauna: Huge Animals that Used to Roam the Earth",
+    "authors": [
+      "Luciano Varela",
+      "Martín Batallés",
+      "P. Sebastián Tambusso",
+      "Richard A. Fariña"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1225865"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1232530",
+    "title": "Does the Heart Age Faster in Space?",
+    "authors": [
+      "Emil Rehnberg",
+      "Bjorn Baselet",
+      "Lorenzo Moroni",
+      "Sarah Baatout",
+      "Kevin Tabury"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1232530"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1239117",
+    "title": "What is Similarity and How Can Scientists Measure it?",
+    "authors": [
+      "Eben Daggett",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1239117"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1250122",
+    "title": "Gravitational Wave Detectors—Past, Present, and Future",
+    "authors": [
+      "Kip Stephen Thorne"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1250122"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1254254",
+    "title": "What Makes Villains Evil Yet Fascinating?",
+    "authors": [
+      "Apeksha Srivastava",
+      "Frederick L. Coolidge"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1254254"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1258822",
+    "title": "Teeth can Tell a Story About Childhood!",
+    "authors": [
+      "Julia Biliato Javaroni",
+      "Larissa Sthefani Sales dos Santos",
+      "Juliana de Lima Gonçalves",
+      "Fabrício Kitazono de Carvalho",
+      "Francisco Wanderley Garcia de Paula-Silva"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1258822"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1267709",
+    "title": "Single-Cell Recording: An Inside Look at a Brain Cell’s Work",
+    "authors": [
+      "Cassandra L. Oberhauser",
+      "Michael C. Hout"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1267709"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1272036",
+    "title": "Fact or Fable: Your Guide to Fighting Misinformation",
+    "authors": [
+      "Katinka Dijkstra",
+      "Arwen Sienna Divera Mollenbrok",
+      "Giang Thi Quynh Nguyen",
+      "Guieane Elaiza Cijntje"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1272036"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1274957",
+    "title": "What Can Happen When Brain Cells Communicate Improperly?",
+    "authors": [
+      "Margarita Maltseva",
+      "Kerstin Alexandra Klotz",
+      "Julia Jacobs"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1274957"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1282740",
+    "title": "Why Controlling Ticks is Important",
+    "authors": [
+      "Jéssica Waldman",
+      "Arlex Rodríguez-Durán",
+      "Shafi Ullah",
+      "Muhammad Numan",
+      "Luís Fernando Parizi",
+      "Lucas Tirloni",
+      "Abid Ali",
+      "Carlos Logullo",
+      "Itabajara da Silva Vaz Jr"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1282740"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1288175",
+    "title": "Unveiling the Power of Smart Coatings",
+    "authors": [
+      "Beatriz Fernandes",
+      "Marta Lima",
+      "Carina I. C. Crucho"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1288175"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1295239",
+    "title": "Dealing With Wild Neighbors",
+    "authors": [
+      "Émilie Edelblutte",
+      "Robert Anderson",
+      "John Casellas Connors",
+      "Anne Short Gianotti"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1295239"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1302974",
+    "title": "Solving the Puzzle of Ecosystem Recovery",
+    "authors": [
+      "Helena S. Bayat",
+      "Julian Enß",
+      "Camilo Escobar-Sierra",
+      "Svenja M. Gillmann",
+      "Shaista Khaliq",
+      "Annabel Kuppels",
+      "Graciela M. Madariaga",
+      "Kristin Peters",
+      "Alexandra Schlenker",
+      "Daniel Hering",
+      "Matthijs Vos"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1302974"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1308034",
+    "title": "How the Spread of Young Coral Can Help Save Coral Reefs",
+    "authors": [
+      "Ariel Greiner",
+      "Marco Andrello",
+      "Martin Krkošek",
+      "Marie-Josée Fortin"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1308034"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1320782",
+    "title": "Playing Genetic Puzzles to Discover Unseen Majority of Tiny Ocean Organisms",
+    "authors": [
+      "Xin Sun"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1320782"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1332305",
+    "title": "Birds and Their Extraordinary Sense of Smell",
+    "authors": [
+      "Renee Li",
+      "Nivritti Mantha",
+      "Ichie Ojiro",
+      "Hiroaki Matsunami",
+      "Robert Driver"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1332305"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1337067",
+    "title": "Solar-Powered Life: How Plants And Other Organisms Produce Their Own Food",
+    "authors": [
+      "Lina Aragón",
+      "Kenneth J. Feeley"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1337067"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1343566",
+    "title": "Adventure in the Tropics: Joining Forces to Heal the Brazilian Atlantic Forest",
+    "authors": [
+      "Markus Gastauer",
+      "Angela S. Miazaki",
+      "Paulo A. Tavares",
+      "Eric D. S. M. Lino",
+      "Ricardo R. Rodrigues"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1343566"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1348954",
+    "title": "The Foods We Choose Can Contribute to Climate Change",
+    "authors": [
+      "Adrian Leip",
+      "Göran Berndes",
+      "Diana Ürge-Vorsatz"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1348954"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1355260",
+    "title": "Tick Tock! It Is Time For Bed!",
+    "authors": [
+      "Nicholas John Constantinesco",
+      "Deylon Dianna Harkey",
+      "Lauren A. Fowler"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1355260"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1356411",
+    "title": "Filtration: Making Dirty Water Clean Enough to Drink",
+    "authors": [
+      "Mabore Jerida Raseala",
+      "Meladi Lerato Motloutsi",
+      "Funeka Matebese",
+      "Richard Motlhaletsi Moutloali"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1356411"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1369401",
+    "title": "Wrack N’ Roll: The Ecological Role of Beach Wrack",
+    "authors": [
+      "Shannon Dee",
+      "Leah Beltran",
+      "Jessica Billinghurst",
+      "Paul S. Lavery",
+      "Oscar Serrano Gras",
+      "John W. Whale",
+      "Glenn Hyndes"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1369401"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1372875",
+    "title": "Can Hugging a Soft Robotic Cushion Help When You Feel Worried?",
+    "authors": [
+      "Alice Haynes",
+      "Jessica L. Fielding",
+      "Annie Lywood",
+      "Christopher Kent",
+      "Jonathan Rossiter"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1372875"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1386116",
+    "title": "From Chew to Poo—How a Food’s Structure Changes Digestion",
+    "authors": [
+      "Meinou N. Corstens",
+      "Ciarán Forde"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1386116"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1391572",
+    "title": "Towards SDG 12: Upcycling Biomass and Waste to Valuable Products",
+    "authors": [
+      "Lana Bader",
+      "Gyorgy Szekely"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1391572"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1395710",
+    "title": "Reading the Genes of Microbes to Stop Diseases From Spreading",
+    "authors": [
+      "Marc J. Struelens"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1395710"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1403243",
+    "title": "Flowers You Can Eat",
+    "authors": [
+      "Rey Castañeda-Rodríguez",
+      "Stanislav Mulík",
+      "Amparo Quiles",
+      "César Ozuna"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1403243"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1414155",
+    "title": "Say No to Norovirus: What It Is and Why It Matters",
+    "authors": [
+      "Andrew Marino",
+      "Danica Jekic",
+      "Jagtaj Matharoo",
+      "Siobhán Neville"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1414155"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1419689",
+    "title": "Methane, the Neglected Greenhouse Gas",
+    "authors": [
+      "Drew Shindell"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1419689"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1431909",
+    "title": "What Can Insects Tell Us About Crimes?",
+    "authors": [
+      "Vinícius da Costa-Silva",
+      "Carina Mara de Souza",
+      "Luiz Antonio Lira",
+      "Catherine Sole",
+      "Patricia Jacqueline Thyssen"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1431909"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1439440",
+    "title": "Changing Wobbles Into Wins: Helping Older Adults Stay Upright",
+    "authors": [
+      "Joshua W. Pate",
+      "Cathie Sherrington"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1439440"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1454051",
+    "title": "Growing Up: Making Vertical Farms Even Smarter",
+    "authors": [
+      "Leo F. M. Marcelis",
+      "Elias Kaiser"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1454051"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2024.1482339",
+    "title": "Who Can Donate An Organ?",
+    "authors": [
+      "Micaela Gentile",
+      "Umberto Maggiore"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1482339"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1371506",
+    "title": "Can T-Shirt Color Affect Young Athletes’ Tennis Performance in Hot Conditions?",
+    "authors": [
+      "Nicolas Robin",
+      "Robbin Carien",
+      "Shelly Ruart",
+      "Laurent Dominique"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1371506"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1403564",
+    "title": "Powering Our Lives With the Ocean: From Waves to Electricity",
+    "authors": [
+      "Nicolás Faedo",
+      "Bruno Paduano",
+      "Maria Luisa Celesti"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1403564"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1426118",
+    "title": "Wearables To Help Grandparents Find Their Way in the City",
+    "authors": [
+      "Angélique Montuwy",
+      "Aurélie Dommes"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1426118"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1434271",
+    "title": "Aquatic Parasites: Tiny, Ancient Villains of Fish",
+    "authors": [
+      "Graciela Esmeralda Colunga-Ramírez",
+      "Gabor Cech",
+      "Boglarka Sellyei"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1434271"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1461108",
+    "title": "What Drives Birdsong Evolution?",
+    "authors": [
+      "Eleanor M. Hay",
+      "Michelle E. Afkhami",
+      "Christopher A. Searcy"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1461108"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1468370",
+    "title": "Exploring Antibiotic Resistance in Earth’s Coldest Regions",
+    "authors": [
+      "Daniel Gattinger",
+      "Valentin Schlenz",
+      "Tobias Weil",
+      "Birgit Sattler"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1468370"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1472709",
+    "title": "Do You Know that there are Fungi in the Ocean?",
+    "authors": [
+      "Jennifer Arroyo",
+      "Jason E. Stajich",
+      "Cassie L. Ettinger"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1472709"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1479828",
+    "title": "How Singing Helped the Voices of People Living With Parkinson’s",
+    "authors": [
+      "Tara Raessi",
+      "Arla Good",
+      "Frank A. Russo"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1479828"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1491113",
+    "title": "Meet the Brain’s DJs: Brain Rhythms Help us Understand Language",
+    "authors": [
+      "Lena Henke",
+      "Jule Nabrotzky",
+      "Lorenzo Titone",
+      "Lars Meyer",
+      "Katharina H. Menn"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1491113"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1494421",
+    "title": "Exercise and Nutrition for Building Strong Bones",
+    "authors": [
+      "Melina Christopoulos",
+      "Panagiota Klentrou"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1494421"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1499439",
+    "title": "Understanding Dementia: When Memory Lane is Not a Straight Road",
+    "authors": [
+      "Anastassia M. Mena",
+      "Francesca B. Santos",
+      "Laura Jamieson",
+      "Madeleine P. McKenzie",
+      "Keely Matsusaki",
+      "Antonio P. Strafella"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1499439"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1516184",
+    "title": "Students Team up with Scientists to Investigate Salmon Vitamin Deficiencies",
+    "authors": [
+      "Abigail Ward",
+      "Margaret Harte"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1516184"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1524077",
+    "title": "Helping Crop Plants Adapt to Harsher Environments",
+    "authors": [
+      "Hanh Vo",
+      "Caitlin Dudley",
+      "Vanessa Tonet",
+      "Jazmine Humphreys",
+      "Eloise Foo"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1524077"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1535493",
+    "title": "Can We Keep the Brain Energized as it Ages?",
+    "authors": [
+      "Polina Shichkova",
+      "Jay S. Coggan",
+      "Daniel Keller",
+      "Henry Markram"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1535493"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1546856",
+    "title": "Towards SDG 1: Helping Small Farmers by Saving Crops From Parasitic Weeds",
+    "authors": [
+      "Muhammad Jamil",
+      "Mohamed Salem",
+      "Salim Al-Babili"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1546856"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1557571",
+    "title": "Hi Forest, How are you Doing?",
+    "authors": [
+      "Silvana Munzi",
+      "Mariangela N. Fotelli",
+      "Caitlin R. Lewis",
+      "Mana Gharun",
+      "Rocío Alonso",
+      "Katerina Machacova"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1557571"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1560485",
+    "title": "Mysteries of Repetitive DNA Segments",
+    "authors": [
+      "Eva Šatović-Vukšić",
+      "Miroslav Plohl"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1560485"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1565644",
+    "title": "The Living Meadow: How Mowing Affects Insects and Spiders",
+    "authors": [
+      "Margarita Hartlieb",
+      "Johanna L. Berger",
+      "Sonja N. K. Daum",
+      "Johanna Freudenberg",
+      "Florian Zenglein",
+      "Nina Janich",
+      "Nico Blüthgen"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1565644"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1571049",
+    "title": "The Boiling River: A Hot Spot for Studying Climate Change in the Amazon",
+    "authors": [
+      "Kenneth J. Feeley",
+      "Alyssa T. Kullberg",
+      "Riley P. Fortier"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1571049"
+  },
+  {
+    "id": "frontiers-10.3389-frym.2025.1572275",
+    "title": "Building Better With Virtual Tools",
+    "authors": [
+      "Carlo Ratti",
+      "Landry Signe",
+      "Izuru Takewaki"
+    ],
+    "originalUrl": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1572275"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359439",
+    "title": "Land use change reshaped soil carbon dynamics in Northern China",
+    "authors": [
+      "Yuanyuan Tang",
+      "Yuchun Yang",
+      "Guohong Du",
+      "Yanbing Qi"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359439"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358980",
+    "title": "Investigation of glacier mass balance based on multi-source observation in the Karakoram over the past 25 years",
+    "authors": [
+      "Aijie Yu",
+      "Hongling Shi",
+      "Hubiao Wang",
+      "Zhiping Jiao",
+      "Ping Wang",
+      "Chunchun Gao",
+      "Harald Schuh"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358980"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359791",
+    "title": "Soil aggregate stability and its influencing factors in Picea Schrenkiana var. Tianschanica forests of the Central Tianshan Mountains",
+    "authors": [
+      "Yuwen Chen",
+      "Weixia Wang",
+      "Shanchao Zhao",
+      "Xuansheng Huang",
+      "Haodong Yang",
+      "Yubo Sun",
+      "Xiaoli Ma",
+      "Weiye Du",
+      "DongLin Zhang",
+      "Zhimin Xi"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359791"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0360658",
+    "title": "Cross-platform public judgment in a cultural heritage crisis: A topic modeling study of the Nanjing Museum donated-artifact controversy",
+    "authors": [
+      "Wei Li",
+      "Ming Ma",
+      "Jinyue Lu"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0360658"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359952",
+    "title": "roadDB: An R package for exploring early human prehistory and environments with the ROCEEH Out of Africa Database",
+    "authors": [
+      "Christian Sommer",
+      "Jesper Borre Pedersen",
+      "Zara Kanaeva",
+      "Timo P. Streicher",
+      "Andrew W. Kandel",
+      "Nicholas J. Conard",
+      "Volker Hochschild"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359952"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0360070",
+    "title": "Integrating images, sounds, citizen science and AI to assess the biodiversity of the Atlantic Forest of Brazil",
+    "authors": [
+      "Manoel Luis Costa",
+      "Claudia Mermelstein"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0360070"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359961",
+    "title": "Vegetation cover change and classification-based zonation of Fanjing Mountain using google earth engine",
+    "authors": [
+      "Rongrong Wang",
+      "Wengang Cui",
+      "Suihua Liu",
+      "Ting Yu",
+      "Fei Ning",
+      "Qingsong Xu",
+      "Dan Hu"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359961"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358135",
+    "title": "Social dynamics signals in archaeological time-series: How cultural transmission and production biases shape assemblage diversity",
+    "authors": [
+      "Aleksandr Diachenko",
+      "Detlef Gronenborn"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358135"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358423",
+    "title": "Influence of weather variables on population dynamics of rice insect pests and their natural enemies: A six year light trap study in Gazipur, Bangladesh",
+    "authors": [
+      "Tapon Kumar Roy",
+      "Mir Md Moniruzzaman Kabir",
+      "Md Nazmul Bari",
+      "Md Mosaddeque Hossain",
+      "Anamika Sannal"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358423"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357475",
+    "title": "Parasite hideouts: Preserving native cavity-nesting Hymenoptera through pollinator hotel management",
+    "authors": [
+      "Bailey B. Lankford",
+      "Maria Escobedo",
+      "Sylvia Yoo",
+      "Elsa Youngsteadt",
+      "Denis S. Willett",
+      "Camila C. Filgueiras"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357475"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358045",
+    "title": "Multi-locus genome-wide association analysis of grain yield, plant height, panicle length, and flowering time in the Senegalese pearl millet [Pennisetum glaucum (L.) R. Br.] germplasm",
+    "authors": [
+      "Aliou Ba",
+      "Oumar Diack",
+      "Thomas L. Odong",
+      "Safiétou Tooli Fall",
+      "Richard Edema",
+      "Arfang Badji",
+      "Adama Faye",
+      "Tonny Obua",
+      "Mildred Ochwo-Ssemakula",
+      "Paul Gibson",
+      "Mamadou Mar",
+      "Jessica B. Bacourine",
+      "Yagouba Diao",
+      "Mahoussi K. Arnaud Djanta",
+      "Ndjido A. Kane",
+      "Phinehas Tukamuhabwa"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358045"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359551",
+    "title": "The impact of the estrous cycle on the vaginal microbiota of dairy cows",
+    "authors": [
+      "Anne Kemmer Souza",
+      "Adèle Giroux",
+      "Amanda Fonseca Zangirolamo",
+      "Ricardo Guella Droher",
+      "Francieli Gesleine Capote Bonato",
+      "Amauri Alfieri",
+      "Gustavo Zamberlam",
+      "Marcelo Marcondes Seneda",
+      "Márcio Costa"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359551"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0338998",
+    "title": "Scaling up the global Green Bond market: Integrating global policy frameworks with stakeholder perceptions from Australia and the United Kingdom",
+    "authors": [
+      "Madurika Nanayakkara",
+      "Sisira Colombage"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0338998"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358972",
+    "title": "Statistical patterns in the Ethereum blockchain: Analysis of EOAs and smart contracts in ERC20 token network",
+    "authors": [
+      "Kundan Mukhia",
+      "S. R. Luwang",
+      "Md. Nurujjaman",
+      "Tanujit Chakraborty",
+      "Suman Saha",
+      "Chittaranjan Hens"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358972"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0351518",
+    "title": "Generalism vs. specialization: Does niche breadth influence species responses to anthropogenic land-use change in Neotropical leaf-cutter ants?",
+    "authors": [
+      "Diego Garcia Castillo"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0351518"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359542",
+    "title": "Using GIS, remote-sensing and linear modeling to prioritize spatially explicit action against erosion and sediment transport within Lake Victoria watershed in Kenya",
+    "authors": [
+      "Nickson Erick Otieno"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359542"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357566",
+    "title": "Bird-plant frugivory networks in two secondary Araucaria forests in southern Brazil",
+    "authors": [
+      "Francisco A. Vásquez-Arévalo",
+      "Pamela E. Malmoria",
+      "Carla S. Fontana",
+      "Pedro Maria Abreu Ferreira"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357566"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357798",
+    "title": "Optimization design of car door structure considering aesthetics and safety",
+    "authors": [
+      "Yu’an Ning",
+      "Kiesu Kim"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357798"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0359207",
+    "title": "Genome-wide assessment of genetic diversity and population structure of Capsicum in Southwestern Colombia using DArTseq markers",
+    "authors": [
+      "Ronald Andrés Viáfara-Vega",
+      "Heiber Cárdenas-Henao"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359207"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358076",
+    "title": "Emergy evaluation of ecological sustainability in Cananguchales (Mauritia flexuosa): A biocountable approach in the Amazonian foothills",
+    "authors": [
+      "Víctor Julio Balanta Martínez",
+      "Oscar Fabian Patiño Perdomo",
+      "Faver Álvarez"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358076"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358751",
+    "title": "Genetic diversity and population structure of early-maturing yellow and orange maize inbred lines for improved breeding applications",
+    "authors": [
+      "Neo Jeremiah Mahula",
+      "Idris Ishola Adejumobi",
+      "Julius Akinyemi Fagbayide",
+      "Baffour Badu-Apraku",
+      "John Derera"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358751"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357447",
+    "title": "Benthic communities on recent and historical volcanic lava flows of an oceanic island",
+    "authors": [
+      "Aitor Ugena",
+      "Sara González-Delgado",
+      "Iván Cano",
+      "Marina Aliende-Hernández",
+      "Beatriz Alfonso",
+      "José Carlos Hernández"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357447"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0340539",
+    "title": "Incentives are effective but insufficient to halt smallholder deforestation in the Colombian Amazon",
+    "authors": [
+      "Hugo Charoud",
+      "Esteve Corbera",
+      "Lina Moros",
+      "Sébastien Costedoat",
+      "Santiago Izquierdo-Tort"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0340539"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357031",
+    "title": "Advancing annually resolved oxygen isotope dendrochronology to overcome wood-dating limitations in the Euro-Atlantic region",
+    "authors": [
+      "Clara Rodríguez-Morata",
+      "Darren Davies",
+      "Neil J. Loader",
+      "Danny McCarroll",
+      "Sjoerd Van Daalen",
+      "Kristof Haneca",
+      "Valerie Daux",
+      "Marta Domínguez-Delmás"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357031"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358701",
+    "title": "Impact analysis of institutional framework and policy preferences with Bayesian structural equation",
+    "authors": [
+      "Song Jin",
+      "Liguo Chang",
+      "NanNan Zhang",
+      "Ye Li"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358701"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358769",
+    "title": "Impact of seed node position on network robustness under localized attacks",
+    "authors": [
+      "Masaki Chujyo",
+      "Shu Liu",
+      "Fujio Toriumi"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358769"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0353063",
+    "title": "Habitat suitability assessment of mouflon applying a comparative approach on expert-based and species distribution models",
+    "authors": [
+      "Azita Rezvani",
+      "Shekoufeh Nematollahi",
+      "Davoud Fadakar",
+      "Sedighe Abdollahi",
+      "Sima Fakheran"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0353063"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0356872",
+    "title": "Tree diversity and standing carbon stocks in smallholder forests of Ciamis Regency, Indonesia: Effects of cropping patterns and elevations",
+    "authors": [
+      "Mohamad Siarudin",
+      "San Afri Awang",
+      "Ronggo Sadono",
+      "Priyono Suryanto",
+      "Muhammad Abdul Qirom",
+      "Budi Mulyana",
+      "Antun Puspanti",
+      "Donny Wicaksono",
+      "Fatahul Azwar",
+      "Said Fahmi",
+      "Freddy Jontara Hutapea"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356872"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357009",
+    "title": "Shotgun metagenomic profiling of the fecal microbiome in Lamp2 knockout mice reveals limited genotype-associated differences under standard housing",
+    "authors": [
+      "Maria Emfietzoglou",
+      "Maria Anna Bantounou",
+      "Shewa Osmani",
+      "Toshio Narimatsu",
+      "Konstantinos G. Baroutis",
+      "Alexandra Varsamidaki",
+      "Dimitra Skondra",
+      "Dimitris Papaconstantinou",
+      "Panagiotis Theodossiadis",
+      "Irini Chatziralli",
+      "Joan W. Miller",
+      "Demetrios G. Vavvas"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357009"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358231",
+    "title": "Mitochondrial genome-derived microsatellites reveal genetic diversity and population structure in Callery pear populations",
+    "authors": [
+      "Alina Pokhrel",
+      "Denita Hadziabdic",
+      "Robert N. Trigiano",
+      "William E. Klingeman",
+      "David R. Coyle",
+      "Marcin Nowicki"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358231"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0356777",
+    "title": "The risk of thiamine deficiency in common eider ducklings increases when females consume large prey",
+    "authors": [
+      "Maciej J. Ejsmond",
+      "Anna Ejsmond",
+      "Marc M. Hauber",
+      "Jón Einar Jónsson",
+      "Andreas M. Waser",
+      "Samuel Hylander"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356777"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0351782",
+    "title": "A freshwater resilient and connected network to sustain biodiversity under a changing climate",
+    "authors": [
+      "Mark G. Anderson",
+      "Arlene P. Olivero",
+      "Analie R. Barnett",
+      "Mary L. Khoury",
+      "Erik H. Martin"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0351782"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357098",
+    "title": "Out of sight, hidden into the deep: Marine litter in the Mar del Plata Submarine Canyon (southwestern Atlantic) revealed by ROV survey",
+    "authors": [
+      "Valeria Teso",
+      "Diego Urteaga",
+      "Graziella Bozzano",
+      "Gregorio Bigatti",
+      "Martín I. Brogger",
+      "Francisco Brusa",
+      "Rodrigo Calderón",
+      "Nadia Cerino",
+      "Ignacio L. Chiesa",
+      "María Agustina Conti",
+      "Cristina Damborenea",
+      "María Carla de Aranzamendi",
+      "Brenda L. Doti",
+      "Nahuel Farías",
+      "Jonathan N. Flores",
+      "Santiago Herrera",
+      "Ezequiel Mabragaña",
+      "Mariano Martinez",
+      "Florencia Matusevich",
+      "Adriana Menoret",
+      "Emiliano Ocampo",
+      "Leonel Pacheco",
+      "Guido Pastorino",
+      "Pablo Penchaszadeh",
+      "Emanuel Pereira",
+      "Renata M. Pertossi",
+      "Jessica Risaro",
+      "Noelia C. Sánchez",
+      "Javier H. Signorelli",
+      "Marcos Tatián",
+      "Johanna N. J. Weston",
+      "Daniel Lauretta"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357098"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358229",
+    "title": "Exploring the antecedents of tourist satisfaction: A big data analysis of ice and snow tourism destinations",
+    "authors": [
+      "Shuo Wang",
+      "Shiyang Chen",
+      "Qingyang Guan"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358229"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358469",
+    "title": "Soil organic carbon stocks, litter decomposition, and soil macrofauna diversity across contrasting land uses within a dual-purpose cattle farm in the Colombian Amazonian foothills",
+    "authors": [
+      "Juan Pablo Narváez-Herrera",
+      "Joaquín Angulo-Arizala",
+      "Wilson Andrés Barragán-Hernández",
+      "Henry Mavisoy-Muchavisoy",
+      "Adrian Rolando Riascos-Vallejos",
+      "Liliana Mahecha-Ledesma"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358469"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0358232",
+    "title": "Diversity at the HYP1 locus in potato cyst nematodes does not result from developmentally-programmed somatic mutations",
+    "authors": [
+      "Vincent C. T. Hanlon",
+      "Unnati Sonawala",
+      "Cian A. A. Raza",
+      "Luisa Kalkert",
+      "George Harpum",
+      "Lukas A. Burkhardt",
+      "Johannes Helder",
+      "Sebastian Eves-van den Akker"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358232"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0345687",
+    "title": "Automated and quantitative characterization of benthic habitat and associated biological communities of an unknown southeast Pacific seamount",
+    "authors": [
+      "Yakufu Niyazi",
+      "Denise J. B. Swanborn",
+      "Jan M. Tapia-Guerra",
+      "Javier Sellanes",
+      "Erin E. Easton",
+      "Germán Zapata-Hernández",
+      "Heather A. Stewart",
+      "Alan J. Jamieson"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0345687"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357346",
+    "title": "Mapping coastal forest retreat using convolutional neural networks and different satellite imagery",
+    "authors": [
+      "Titilayo T. Tajudeen",
+      "Marcelo Ardon",
+      "Mirela Tulbure",
+      "Katherine L. Martin"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357346"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357011",
+    "title": "Ideologically biased evaluation of evidence - A signal-detection approach to measure individual differences",
+    "authors": [
+      "Arne Stolp",
+      "Christine Finn",
+      "Carolin-Theresa Ziemer",
+      "Christian Thiel",
+      "Tobias Rothmund"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357011"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357404",
+    "title": "Lessons learned from two applied approaches for treatment of aged DDT-contaminated soil with white-rot fungi",
+    "authors": [
+      "Stephanie Casey",
+      "Karin Wiberg",
+      "Anna-Karin Dahlberg",
+      "Malin Hultberg",
+      "Anja Enell",
+      "Yevheniya Volchko"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357404"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357919",
+    "title": "Evaluation of photoinhibition and development of stress tolerance index to identify photosynthetically adapted and stress tolerant germplasm accessions of tepary bean",
+    "authors": [
+      "Juan Carlos Suárez",
+      "Amara Tatiana Contreras",
+      "Idupulapati M. Rao"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357919"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357315",
+    "title": "Two regions, two lineages: Untangling two centuries of confusion between Machilus glaucescens and M. macranthus (Lauraceae) through integrative taxonomy",
+    "authors": [
+      "Nabasmita Malakar",
+      "Ravikanth Gudasalamani",
+      "Ganesan Rengaian"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357315"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0354096",
+    "title": "Beyond Gir: Barda wildlife sanctuary as a potential stronghold for Asiatic lions",
+    "authors": [
+      "Mohan Ram",
+      "Aradhana Sahu",
+      "Nityanand Srivastava",
+      "Rohit Chaudhary",
+      "Lahar Jhala",
+      "Yashpal Zala"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0354096"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357598",
+    "title": "Ecological sensitivity and sustainable spatial planning in a highly urbanized plain: An AHP-GIS and geodetector approach in the Yangtze River Delta Plain",
+    "authors": [
+      "Tiantian Yao",
+      "Qian Liu",
+      "Huiqin Zeng",
+      "Jiabin Tang"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357598"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357710",
+    "title": "Existing racial and ethnic representation on top management teams predicts subsequent top management team appointments that preserve the demographic status quo",
+    "authors": [
+      "Christopher W. Bauman",
+      "John Morton",
+      "Ben Lourie",
+      "Philip Bromiley"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357710"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357099",
+    "title": "Virus-host interactions in iron-oxidizing mats of the East Pacific Rise",
+    "authors": [
+      "Kathryn L. Campbell",
+      "Jason B. Sylvan",
+      "Craig L. Moyer",
+      "Heather Fullerton",
+      "Jessica M. Labonté"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357099"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357442",
+    "title": "Recovery of a New England salt marsh six years after a natural sediment deposition event",
+    "authors": [
+      "Gregg E. Moore",
+      "Jennifer L. Gibson",
+      "David M. Burdick",
+      "Alondra Ortiz-Franco",
+      "Ashley N. Bulseco"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357442"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357774",
+    "title": "Curvularia lunata drives biodeterioration of PVC secondary cable insulation involving surface colonization, moisture retention and chemical deterioration",
+    "authors": [
+      "Yimeng Liu",
+      "Shiying Yan",
+      "Jian Zhang",
+      "Yiping Chen",
+      "Yue Zhou",
+      "Changyi Huang",
+      "Tianlan Jiang",
+      "Yu Gao",
+      "Hansheng Zhu",
+      "Hao Shi",
+      "Chaoyi Han",
+      "Fosheng Li",
+      "Jie Zhang",
+      "Jian Zhao",
+      "Mei Cao"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357774"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0357446",
+    "title": "Agricultural expansion and mining drive forest loss in Ghana despite declining deforestation rates: Evidence from a national-scale assessment",
+    "authors": [
+      "Patrick Addo-Fordjour",
+      "Francis Emmanuel Awortwi",
+      "Caleb Ezekiel Obodai",
+      "Francis Boakye Aboagye",
+      "Christine Naa Lamiley France",
+      "Nana Serwaa Boakye Kusi-Appiah",
+      "Derrick Oppong"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357446"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0335578",
+    "title": "Allometric equations for estimating tree volume and aboveground biomass of Acacia mangium Willd. on the Batéké Plateau, Republic of the Congo",
+    "authors": [
+      "Chelton Desarmes",
+      "Grace Jopaul Loubota Panzou",
+      "Flore Hirsch",
+      "Paul Bertaux",
+      "Nicolas Bayol"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0335578"
+  },
+  {
+    "id": "plos-10.1371-journal.pone.0329429",
+    "title": "Arbuscular mycorrhizal fungi spore density and species diversity varied within plants species and between dry Afromontane forests in northwestern Ethiopia",
+    "authors": [
+      "Belay Berza Beyene",
+      "Workie Nibret Alamirew",
+      "Belayneh Asfaw Atnaf",
+      "Jemal Yimer Kebede",
+      "Marcela Claudia Pagano",
+      "Fassil Assefa Tuji"
+    ],
+    "originalUrl": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0329429"
+  }
+]

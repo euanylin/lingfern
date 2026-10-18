@@ -1,0 +1,647 @@
+{
+  "updatedAt": "2026-09-30T18:18:21.066Z",
+  "targetArticles": 1100,
+  "targetAudio": 1100,
+  "candidates": 1218,
+  "distinctArticles": 1218,
+  "downloadedAudio": 1218,
+  "downloadedArticleRevisions": 1087,
+  "downloadedPairs": 1087,
+  "reviewedUsablePairs": 0,
+  "published": false,
+  "exclusions": 1461,
+  "discoveredFiles": 2679,
+  "failures": [
+    {
+      "fileId": 2755794,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750117,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 4216904,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 17160723,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752850,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752851,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 76303728,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752573,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750510,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752830,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706589,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2609976,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 121425238,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752551,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706629,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 81372035,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 82813740,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 37003713,
+      "stage": "article",
+      "error": "ARTICLE_VERSION"
+    },
+    {
+      "fileId": 2752684,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750522,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750502,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 76765385,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 80796409,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 3183003,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706723,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 500101,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755756,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 4273391,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 108075268,
+      "stage": "article",
+      "error": "ARTICLE_VERSION"
+    },
+    {
+      "fileId": 2752828,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706741,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 46030919,
+      "stage": "article",
+      "error": "ARTICLE_INTEGRITY"
+    },
+    {
+      "fileId": 2750534,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706768,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 80009259,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 92065730,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750519,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706773,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 90502806,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 147257720,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752759,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 120938111,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755745,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 76765240,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752511,
+      "stage": "article",
+      "error": "ARTICLE_VERSION"
+    },
+    {
+      "fileId": 46110615,
+      "stage": "article",
+      "error": "HTTP_403"
+    },
+    {
+      "fileId": 145027238,
+      "stage": "article",
+      "error": "ARTICLE_VERSION"
+    },
+    {
+      "fileId": 17371550,
+      "stage": "article",
+      "error": "HTTP_404"
+    },
+    {
+      "fileId": 79818937,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 14647282,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 52518288,
+      "stage": "article",
+      "error": "ARTICLE_VERSION"
+    },
+    {
+      "fileId": 2752395,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 3006320,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755803,
+      "stage": "article",
+      "error": "ARTICLE_VERSION"
+    },
+    {
+      "fileId": 92280467,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 76765576,
+      "stage": "article",
+      "error": "HTTP_404"
+    },
+    {
+      "fileId": 86848613,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752849,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706748,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755871,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 40974055,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752920,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 79818025,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 32907312,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706636,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755834,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706687,
+      "stage": "article",
+      "error": "HTTP_404"
+    },
+    {
+      "fileId": 2750131,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 10875350,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 32908312,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706843,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 146470615,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752449,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 81898325,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 80796393,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750675,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 6639439,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752825,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750299,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750759,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 76768660,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 19842844,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 1318854,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752758,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706555,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 17372106,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706619,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750480,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 74092647,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 9781564,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 18706850,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752928,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 21909788,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755685,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755754,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 127146369,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 30894148,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 12265352,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 81694533,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 15383506,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 6218740,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752879,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750942,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750744,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755723,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 76765190,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 3684918,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755621,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 1735880,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2756129,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 87652700,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2750680,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 32908396,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 17502111,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 1709444,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 17652960,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 9961687,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 3702281,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 27688611,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2752820,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2755711,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 10541055,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 149049824,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 2756074,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 5183673,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    },
+    {
+      "fileId": 712034,
+      "stage": "article",
+      "error": "ARTICLE_TITLE_MISMATCH"
+    }
+  ],
+  "note": "Downloaded recordings remain in private/ quarantine. No level assignment, transcription alignment, editorial approval or public distribution is claimed. Category files and article revisions are counted separately; fragments and repeated articles are not independent materials."
+}

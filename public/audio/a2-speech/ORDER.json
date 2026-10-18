@@ -1,0 +1,515 @@
+[
+  {
+    "rootId": "gutenberg-book-46",
+    "sourceHash": "8c36b93723d454982df045ec0efdf2664e5a48e6b5e2f670e883575f75ad0cc8",
+    "title": "A Christmas Carol in Prose; Being a Ghost Story of Christmas",
+    "text": "He passed the door a dozen times, before he had the courage to go up and knock. But he made a dash, and did it: \"Is your master at home, my dear?\" said Scrooge to the girl. Nice girl! Very.",
+    "audio": {
+      "src": "/audio/a2-speech/scrooge-before-knocking.mp3",
+      "sha256": "bfa72e4d011c268222e4cb4eb19260d622c50935be761cc648b2d21c9da39059",
+      "duration": 15.225034013605443,
+      "author": "Kyle M.",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Charles Dickens. A Christmas Carol in Prose; Being a Ghost Story of Christmas. Project Gutenberg edition 46. Plain prose only; embedded Project Gutenberg licence retained. LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Kyle M. (LibriVox reader 1638). Independently re-encoded from the whole original FLAC; unchanged source words.",
+      "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/46"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 3,
+        "text": "He ",
+        "audioStart": 0,
+        "audioEnd": 0.46
+      },
+      {
+        "start": 3,
+        "end": 10,
+        "text": "passed ",
+        "audioStart": 0.46,
+        "audioEnd": 0.62
+      },
+      {
+        "start": 10,
+        "end": 14,
+        "text": "the ",
+        "audioStart": 0.62,
+        "audioEnd": 0.92
+      },
+      {
+        "start": 14,
+        "end": 19,
+        "text": "door ",
+        "audioStart": 0.92,
+        "audioEnd": 1.26
+      },
+      {
+        "start": 19,
+        "end": 21,
+        "text": "a ",
+        "audioStart": 1.26,
+        "audioEnd": 1.56
+      },
+      {
+        "start": 21,
+        "end": 27,
+        "text": "dozen ",
+        "audioStart": 1.56,
+        "audioEnd": 1.9
+      },
+      {
+        "start": 27,
+        "end": 34,
+        "text": "times, ",
+        "audioStart": 1.9,
+        "audioEnd": 2.44
+      },
+      {
+        "start": 34,
+        "end": 41,
+        "text": "before ",
+        "audioStart": 2.44,
+        "audioEnd": 2.88
+      },
+      {
+        "start": 41,
+        "end": 44,
+        "text": "he ",
+        "audioStart": 2.88,
+        "audioEnd": 3.1
+      },
+      {
+        "start": 44,
+        "end": 48,
+        "text": "had ",
+        "audioStart": 3.1,
+        "audioEnd": 3.22
+      },
+      {
+        "start": 48,
+        "end": 52,
+        "text": "the ",
+        "audioStart": 3.22,
+        "audioEnd": 3.34
+      },
+      {
+        "start": 52,
+        "end": 60,
+        "text": "courage ",
+        "audioStart": 3.34,
+        "audioEnd": 3.64
+      },
+      {
+        "start": 60,
+        "end": 63,
+        "text": "to ",
+        "audioStart": 3.64,
+        "audioEnd": 3.88
+      },
+      {
+        "start": 63,
+        "end": 66,
+        "text": "go ",
+        "audioStart": 3.88,
+        "audioEnd": 4.06
+      },
+      {
+        "start": 66,
+        "end": 69,
+        "text": "up ",
+        "audioStart": 4.06,
+        "audioEnd": 4.28
+      },
+      {
+        "start": 69,
+        "end": 73,
+        "text": "and ",
+        "audioStart": 4.28,
+        "audioEnd": 4.46
+      },
+      {
+        "start": 73,
+        "end": 80,
+        "text": "knock. ",
+        "audioStart": 4.46,
+        "audioEnd": 4.76
+      },
+      {
+        "start": 80,
+        "end": 84,
+        "text": "But ",
+        "audioStart": 5.74,
+        "audioEnd": 6.06
+      },
+      {
+        "start": 84,
+        "end": 87,
+        "text": "he ",
+        "audioStart": 6.06,
+        "audioEnd": 6.18
+      },
+      {
+        "start": 87,
+        "end": 92,
+        "text": "made ",
+        "audioStart": 6.18,
+        "audioEnd": 6.42
+      },
+      {
+        "start": 92,
+        "end": 94,
+        "text": "a ",
+        "audioStart": 6.42,
+        "audioEnd": 6.56
+      },
+      {
+        "start": 94,
+        "end": 100,
+        "text": "dash, ",
+        "audioStart": 6.56,
+        "audioEnd": 6.82
+      },
+      {
+        "start": 100,
+        "end": 104,
+        "text": "and ",
+        "audioStart": 6.82,
+        "audioEnd": 7.42
+      },
+      {
+        "start": 104,
+        "end": 108,
+        "text": "did ",
+        "audioStart": 7.42,
+        "audioEnd": 7.7
+      },
+      {
+        "start": 108,
+        "end": 113,
+        "text": "it: \"",
+        "audioStart": 7.7,
+        "audioEnd": 7.84
+      },
+      {
+        "start": 113,
+        "end": 116,
+        "text": "Is ",
+        "audioStart": 8.7,
+        "audioEnd": 9.22
+      },
+      {
+        "start": 116,
+        "end": 121,
+        "text": "your ",
+        "audioStart": 9.22,
+        "audioEnd": 9.38
+      },
+      {
+        "start": 121,
+        "end": 128,
+        "text": "master ",
+        "audioStart": 9.38,
+        "audioEnd": 9.72
+      },
+      {
+        "start": 128,
+        "end": 131,
+        "text": "at ",
+        "audioStart": 9.72,
+        "audioEnd": 9.98
+      },
+      {
+        "start": 131,
+        "end": 137,
+        "text": "home, ",
+        "audioStart": 9.98,
+        "audioEnd": 10.16
+      },
+      {
+        "start": 137,
+        "end": 140,
+        "text": "my ",
+        "audioStart": 10.38,
+        "audioEnd": 10.46
+      },
+      {
+        "start": 140,
+        "end": 147,
+        "text": "dear?\" ",
+        "audioStart": 10.46,
+        "audioEnd": 10.78
+      },
+      {
+        "start": 147,
+        "end": 152,
+        "text": "said ",
+        "audioStart": 11.46,
+        "audioEnd": 11.56
+      },
+      {
+        "start": 152,
+        "end": 160,
+        "text": "Scrooge ",
+        "audioStart": 11.56,
+        "audioEnd": 12.1
+      },
+      {
+        "start": 160,
+        "end": 163,
+        "text": "to ",
+        "audioStart": 12.1,
+        "audioEnd": 12.24
+      },
+      {
+        "start": 163,
+        "end": 167,
+        "text": "the ",
+        "audioStart": 12.24,
+        "audioEnd": 12.34
+      },
+      {
+        "start": 167,
+        "end": 173,
+        "text": "girl. ",
+        "audioStart": 12.34,
+        "audioEnd": 12.5
+      },
+      {
+        "start": 173,
+        "end": 178,
+        "text": "Nice ",
+        "audioStart": 13.44,
+        "audioEnd": 13.5
+      },
+      {
+        "start": 178,
+        "end": 184,
+        "text": "girl! ",
+        "audioStart": 13.5,
+        "audioEnd": 13.88
+      },
+      {
+        "start": 184,
+        "end": 189,
+        "text": "Very.",
+        "audioStart": 14.28,
+        "audioEnd": 14.46
+      }
+    ]
+  },
+  {
+    "rootId": "gutenberg-book-3178",
+    "sourceHash": "49202a49669a9b61af62441a3a50fa43bf4284b1b13c028c4cca0facb17afec4",
+    "title": "The Gilded Age: A Tale of Today",
+    "text": "Philip had to walk some five miles before he reached a little station, where he could wait for a train, and he had ample time for reflection.",
+    "audio": {
+      "src": "/audio/a2-speech/philip-before-station.mp3",
+      "sha256": "917d668955b27a421c3c7164b36adc3797fe839dc58fd568674cfdac830d0ce5",
+      "duration": 7.9,
+      "author": "Floyd Wilde",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Mark Twain; Charles Dudley Warner. Project Gutenberg edition 3178. LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Floyd Wilde (LibriVox reader 3945). Independently re-encoded from the whole original FLAC; unchanged source words. This continuous view ends after the complete first sentence, before the next sentence; unchanged source words.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/3178"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 7,
+        "text": "Philip ",
+        "audioStart": 0,
+        "audioEnd": 0.7
+      },
+      {
+        "start": 7,
+        "end": 11,
+        "text": "had ",
+        "audioStart": 0.7,
+        "audioEnd": 0.92
+      },
+      {
+        "start": 11,
+        "end": 14,
+        "text": "to ",
+        "audioStart": 0.92,
+        "audioEnd": 1.06
+      },
+      {
+        "start": 14,
+        "end": 19,
+        "text": "walk ",
+        "audioStart": 1.06,
+        "audioEnd": 1.24
+      },
+      {
+        "start": 19,
+        "end": 24,
+        "text": "some ",
+        "audioStart": 1.24,
+        "audioEnd": 1.44
+      },
+      {
+        "start": 24,
+        "end": 29,
+        "text": "five ",
+        "audioStart": 1.44,
+        "audioEnd": 1.76
+      },
+      {
+        "start": 29,
+        "end": 35,
+        "text": "miles ",
+        "audioStart": 1.76,
+        "audioEnd": 2.02
+      },
+      {
+        "start": 35,
+        "end": 42,
+        "text": "before ",
+        "audioStart": 2.02,
+        "audioEnd": 2.34
+      },
+      {
+        "start": 42,
+        "end": 45,
+        "text": "he ",
+        "audioStart": 2.34,
+        "audioEnd": 2.56
+      },
+      {
+        "start": 45,
+        "end": 53,
+        "text": "reached ",
+        "audioStart": 2.56,
+        "audioEnd": 2.82
+      },
+      {
+        "start": 53,
+        "end": 55,
+        "text": "a ",
+        "audioStart": 2.82,
+        "audioEnd": 2.94
+      },
+      {
+        "start": 55,
+        "end": 62,
+        "text": "little ",
+        "audioStart": 2.94,
+        "audioEnd": 3.08
+      },
+      {
+        "start": 62,
+        "end": 71,
+        "text": "station, ",
+        "audioStart": 3.08,
+        "audioEnd": 3.4
+      },
+      {
+        "start": 71,
+        "end": 77,
+        "text": "where ",
+        "audioStart": 4.2,
+        "audioEnd": 4.3
+      },
+      {
+        "start": 77,
+        "end": 80,
+        "text": "he ",
+        "audioStart": 4.3,
+        "audioEnd": 4.4
+      },
+      {
+        "start": 80,
+        "end": 86,
+        "text": "could ",
+        "audioStart": 4.4,
+        "audioEnd": 4.52
+      },
+      {
+        "start": 86,
+        "end": 91,
+        "text": "wait ",
+        "audioStart": 4.52,
+        "audioEnd": 4.68
+      },
+      {
+        "start": 91,
+        "end": 95,
+        "text": "for ",
+        "audioStart": 4.68,
+        "audioEnd": 4.92
+      },
+      {
+        "start": 95,
+        "end": 97,
+        "text": "a ",
+        "audioStart": 4.92,
+        "audioEnd": 5.04
+      },
+      {
+        "start": 97,
+        "end": 104,
+        "text": "train, ",
+        "audioStart": 5.04,
+        "audioEnd": 5.24
+      },
+      {
+        "start": 104,
+        "end": 108,
+        "text": "and ",
+        "audioStart": 5.8,
+        "audioEnd": 6.28
+      },
+      {
+        "start": 108,
+        "end": 111,
+        "text": "he ",
+        "audioStart": 6.28,
+        "audioEnd": 6.4
+      },
+      {
+        "start": 111,
+        "end": 115,
+        "text": "had ",
+        "audioStart": 6.4,
+        "audioEnd": 6.5
+      },
+      {
+        "start": 115,
+        "end": 121,
+        "text": "ample ",
+        "audioStart": 6.5,
+        "audioEnd": 6.64
+      },
+      {
+        "start": 121,
+        "end": 126,
+        "text": "time ",
+        "audioStart": 6.64,
+        "audioEnd": 6.96
+      },
+      {
+        "start": 126,
+        "end": 130,
+        "text": "for ",
+        "audioStart": 6.96,
+        "audioEnd": 7.16
+      },
+      {
+        "start": 130,
+        "end": 141,
+        "text": "reflection.",
+        "audioStart": 7.16,
+        "audioEnd": 7.36
+      }
+    ]
+  }
+]

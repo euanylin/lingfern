@@ -1,0 +1,81 @@
+{
+  "scopeId": "lingfern-fleurs-en-us-20261011",
+  "revision": "d7c758a6dceecd54a98cac43404d3d576e721f07",
+  "language": "en_us",
+  "license": "CC-BY-4.0",
+  "sourceCard": "https://huggingface.co/datasets/google/fleurs/blob/d7c758a6dceecd54a98cac43404d3d576e721f07/README.md",
+  "code": {
+    "url": "https://huggingface.co/datasets/google/fleurs/raw/d7c758a6dceecd54a98cac43404d3d576e721f07/fleurs.py",
+    "sha256": "5deb49cc66ab8f9af70060b4db81e3898c9c6254a89b68d5d78ec4d59a929b47"
+  },
+  "checksumEvidence": {
+    "audio": "Official Hugging Face LFS SHA256 oid and size; not downloaded in local audit",
+    "audioMetadataUrl": "https://huggingface.co/api/datasets/google/fleurs/tree/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/audio?expand=true",
+    "tsv": "Actual UTF-8 bytes read and SHA256 verified locally 2026-10-11; no audio collection locally"
+  },
+  "qualification": {
+    "accepted": 0,
+    "rootId": null,
+    "defaultStatus": "held",
+    "reasons": [
+      "original-article-root-and-underlying-text-rights-unverified",
+      "exact-evidence-and-offline-device-acceptance-pending",
+      "technical-audio-transcript-boundary-and-context-validation-pending"
+    ],
+    "sentenceIdIsIndependentRoot": false,
+    "doNotPublish": true,
+    "auditoryReviewPolicy": {
+      "mandatory": false,
+      "authority": "Explicit user instruction 2026-10-11: all listening audio no longer requires auditory review.",
+      "remainingGates": "Exact original root and regional text/audio rights; complete transcript/evidence and continuous sample/time boundaries; full decode and context exclusions; teaching/scoring; installed offline device playback/save/recovery.",
+      "historyBoundary": "Historical actual no-audition records, original holds and frozen acquisition/ASR identities remain unchanged. This policy change does not bulk-approve candidates."
+    }
+  },
+  "sources": [
+    {
+      "split": "train",
+      "kind": "audio",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/audio/train.tar.gz",
+      "bytes": 1380572241,
+      "sha256": "5f4491948c2bd29ac00f4b8afae2378f0a1dcdde4041b5cd284a80dff01fa9f5"
+    },
+    {
+      "split": "train",
+      "kind": "metadata",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/train.tsv",
+      "bytes": 1414907,
+      "sha256": "3ccfc83672cc03a835143e325abb38b4163e3a21725bc1a7d1165bc309b95852",
+      "rows": 2602
+    },
+    {
+      "split": "dev",
+      "kind": "audio",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/audio/dev.tar.gz",
+      "bytes": 171250900,
+      "sha256": "2658fda72f199e12676ecac9415094667a4e14e149b146e568ea00b2a2f0954c"
+    },
+    {
+      "split": "dev",
+      "kind": "metadata",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/dev.tsv",
+      "bytes": 213065,
+      "sha256": "9d57ee7e91e9d4c92edb39f6bbea668ef8dc2a3ff96eb510d5580b2ad05d17ec",
+      "rows": 394
+    },
+    {
+      "split": "test",
+      "kind": "audio",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/audio/test.tar.gz",
+      "bytes": 289851356,
+      "sha256": "d9c2e37b41aacd41bc283554a0a82b5476b36887049774ecb2819dcaaa55a356"
+    },
+    {
+      "split": "test",
+      "kind": "metadata",
+      "url": "https://huggingface.co/datasets/google/fleurs/resolve/d7c758a6dceecd54a98cac43404d3d576e721f07/data/en_us/test.tsv",
+      "bytes": 367864,
+      "sha256": "74c046239374deeb60fa63f258f907388093a32bcaa3140965f70ef05c79f7ca",
+      "rows": 647
+    }
+  ]
+}

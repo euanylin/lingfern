@@ -1,0 +1,243 @@
+{
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-01T15:00:17.433Z",
+  "scope": "Six captured original VOA text scopes personally inspected for supported beginner reading, including the freshly acquired complete official Lesson3 conversation and a contiguous Lesson6 excerpt. Official text provenance/general reuse terms checked. No images, audio, third-party material, generated questions or calibrated CEFR approved. Codex also inspected seed0 client-generated speaker-matching pairs, choices and exact cited turns for five viable excerpts; Welcome has no viable pair. This approves only those inspected attribution examples, not arbitrary variants or semantic comprehension.",
+  "records": [
+    {
+      "rootId": "voa-article-3111026",
+      "title": "Welcome!",
+      "textSha256": "0c827c7e9f0eff4dbc7e3b066e5a9b471f1a8fcf6e11231e09a6ee2433881a5b",
+      "decision": "supported-beginner-text",
+      "notes": "Complete captured greeting/name/spelling/address dialogue inspected against official Lesson1 conversation. Short explicit turns; supported adult beginner candidate. Number/address and spelling punctuation need worked support; no actual audio approval.",
+      "audioReview": "not-inspected",
+      "questionReview": "client-generated-not-inspected",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html"
+    },
+    {
+      "rootId": "voa-article-3113733",
+      "title": "Hello, I’m Anna!",
+      "textSha256": "ff86504eb9df9df9d07e74827f3deb48638a15d303a82db42ea2f7f50f74c674",
+      "decision": "supported-beginner-text",
+      "notes": "Complete captured introduction/apartment/roommate conversation inspected against official Lesson2 text. Short present-tense turns, explicit people and places. Roommate/apartment/D.C. need vocabulary support; supported beginner candidate, no calibrated level.",
+      "audioReview": "not-inspected",
+      "questionReview": "Codex inspected seed0 speaker-matching attribution and both exact cited turns. Completion, sequence, response and other generated variants remain uninspected.",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+      "apartmentTableReview": {
+        "reviewer": "Codex/AI",
+        "scope": "Personally inspected the published contiguous dialogue prefix and generated apartment rows. Jonathan explicitly says I am in apartment B4; Anna explicitly says I am in apartment C2; Pete explicitly says And I am in Apartment D7. Exact speaker-turn citations retain each statement. Seed changes row order only; does not change these facts. No other sources, other fact relations, audio or calibrated CEFR approved.",
+        "rows": {
+          "Jonathan": "B4",
+          "Anna": "C2",
+          "Pete": "D7"
+        },
+        "passageSha256": "8858c6053176039a6b5d9d7cec0933944e2004d4b37a4a7a4285fe0795faf414"
+      }
+    },
+    {
+      "rootId": "voa-article-3168920",
+      "title": "What Is It?",
+      "textSha256": "159f95f719e7107fa9fa682a94149cfcfd86eff740383e40de85d6e9efd0591c",
+      "decision": "supported-beginner-text",
+      "notes": "Complete captured object-search dialogue inspected against official Lesson4 conversation. Common objects and negation; first80-word turn-bounded excerpt avoids confusing incomplete object-search ending. Pronoun references and ellipses need support; no audio approval.",
+      "audioReview": "not-inspected",
+      "questionReview": "Codex inspected seed0 speaker-matching attribution and both exact cited turns. Completion, sequence, response and other generated variants remain uninspected.",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html"
+    },
+    {
+      "rootId": "voa-article-3168971",
+      "title": "Where Are You?",
+      "textSha256": "16abbe222b8f8bbe9007735223e0b21d0d534df9163620d076d8aece46f29267",
+      "decision": "supported-beginner-text",
+      "notes": "Complete captured rooms/actions dialogue inspected against official Lesson5 text. Explicit kitchen/living-room/bathroom/bedroom and daily actions. Compound room words and relax/upstairs need vocabulary support; first80-word prefix ends at a complete speaker turn. No audio approval.",
+      "audioReview": "not-inspected",
+      "questionReview": "Codex inspected seed0 speaker-matching attribution and both exact cited turns. Completion, sequence, response and other generated variants remain uninspected.",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html"
+    },
+    {
+      "rootId": "voa-article-3225958",
+      "title": "Where Is the Gym?",
+      "textSha256": "ec9576b120750006e326a7eb8e08319ca62ebcca9e73abfb62db545b25e4151b",
+      "decision": "supported-beginner-text",
+      "notes": "Entire captured contiguous excerpt checked against official Lesson6 conversation, from Things are awesome to This is the mailroom. Explicit room/location directions; stage directions preserve context. Gym, lounge, mailroom, work out, next to and across from already have simple offline course definitions. Source has additional conversation outside captured scope, not inspected or included here. No audio or calibrated CEFR approval.",
+      "audioReview": "not-inspected",
+      "questionReview": "Codex inspected seed0 speaker-matching attribution and both exact cited turns. Completion, sequence, response and other generated variants remain uninspected.",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html"
+    },
+    {
+      "rootId": "voa-article-3126527",
+      "title": "I'm Here!",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html",
+      "textSha256": "0b6b1056fe15c91946cdead7eeac4c3cc6a7845695de2bdede4260cfa421e18f",
+      "decision": "supported-beginner-text",
+      "notes": "Complete official current conversation personally inspected, including later closing. Web extraction captured unchanged words and punctuation, with paragraph boundaries retained. Prefix under80words has explicit apartment/cooking/telephone context and completed turns. Telephone digits need focused support; supermarket/dinner/wrong number meanings added separately. Earlier differing capture stays withheld, not silently rewritten. No audio/CEFR calibration approval.",
+      "audioReview": "not-inspected",
+      "questionReview": "Codex inspected seed0 speaker-matching attribution and both exact cited turns. Completion, sequence, response and other generated variants remain uninspected."
+    },
+    {
+      "rootId": "voa-article-3240468",
+      "title": "What Are You Doing?",
+      "textSha256": "116a988d3d1859cb52bb33594018bfe7d923b6964f82bbbf28f0708e30ca9d69",
+      "decision": "supported-beginner-text",
+      "notes": "Explicit introductions and present continuous workplace dialogue; prefix preserves the complete welcome exchange. Boss/co-worker and repeated Ms Weaver forms need support. Later interruptions and fragmented studio quotation are outside the prefix.",
+      "audioReview": "not-inspected",
+      "questionReview": "client-generated-not-inspected",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "captureSha256": "90ce83b6b3f79cd70811b19e3a9583b8d210311e07c4ba7977f2c7bcf8878931",
+      "inspectedPrefixSha256": "547445ff26aca9916597aaa9ac74464ef70c749b01d411e655b9f33997cf9a4f",
+      "inspectedPrefixWords": 78,
+      "scope": "Full captured conversation and exact installed prefix personally inspected. Supported source text only; generated variants require separate validation.",
+      "additionalExcerpts": [
+        {
+          "start": 384,
+          "end": 1073,
+          "sha256": "694abd951138b445159d665e1804212765b7d39d3974314c430241bbce9147e0",
+          "startingPoints": [
+            "A2"
+          ],
+          "reviewer": "Codex/AI",
+          "reviewedAt": "2026-10-07",
+          "decision": "supported-beginner-text",
+          "notes": "Complete unchanged introductions, writing interruption, studio dialogue and recording-again consequence. Preserve stage directions and Jonathan’s quoted broadcast; no inference that Anna is writing/recording or that every colleague is always busy. A2 supported scope only; the 124-word excerpt is not A1."
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-3253185",
+      "title": "Are You Busy?",
+      "textSha256": "e395b9c4f10df3d097c541fa2b79445982bac0960874c15bba8ff3ec643df858",
+      "decision": "supported-beginner-text",
+      "notes": "Workplace apology and busy schedules. Past yesterday and present work contrast require A2 support; do not mark A1. Complete first apology/writing exchange fits prefix; later invitation and party are not taught by this prefix.",
+      "audioReview": "not-inspected",
+      "questionReview": "client-generated-not-inspected",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html",
+      "startingPoints": [
+        "A2"
+      ],
+      "captureSha256": "aab6ce098abfcd077b36f6f484fe5b6d4a432df5e6e0cd3952cdd80aaf688cdb",
+      "inspectedPrefixSha256": "76ef70ccbafa0bd538bb5a8eb03c9f75d76d2a999ed152f12b68465318bdaed2",
+      "inspectedPrefixWords": 79,
+      "scope": "Full captured conversation and exact installed prefix personally inspected. Supported source text only; generated variants require separate validation.",
+      "additionalExcerpts": [
+        {
+          "start": 186,
+          "end": 627,
+          "sha256": "05587699ac0b4d7c8ad3c0d4b83588b798289d2d1421d66a1440dc362dfbe4c4",
+          "startingPoints": [
+            "A2"
+          ],
+          "reviewer": "Codex/AI",
+          "reviewedAt": "2026-10-07",
+          "decision": "supported-beginner-text",
+          "notes": "Complete unchanged visits to Anne and Jonathan, 10 a.m. writing, conditional studio-light recording and deferred studio visit. Preserve every day/when/right now/maybe and speaker turns; no unconditional time claim or promised later visit. A2 supported scope only."
+        }
+      ]
+    },
+    {
+      "rootId": "voa-article-3285228",
+      "title": "Come Over to My Place",
+      "textSha256": "8fc500fba98f6ce6ce8579abbe729c94f799cf826029911f1364577a590a4375",
+      "decision": "supported-beginner-text",
+      "notes": "Explicit apartment/Metro directions and phone exchange. Prefix contains complete exit/right/left/ahead instruction. Later coffee-shop ambiguity is outside this prefix; do not infer a uniquely identified coffee shop or real-world route.",
+      "audioReview": "not-inspected",
+      "questionReview": "client-generated-not-inspected",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-10/3285228.html",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "captureSha256": "d8429f29f3cad5af10b1d29501dc0bb5b1b73fd0199f71853f061bef5419e560",
+      "inspectedPrefixSha256": "2605f2e17912c00577d4beea6aad8c3310621e7a3899c69dbdd6b6187e251795",
+      "inspectedPrefixWords": 71,
+      "scope": "Full captured conversation and exact installed prefix personally inspected. Supported source text only; generated variants require separate validation."
+    },
+    {
+      "rootId": "voa-article-3293986",
+      "title": "This Is My Neighborhood",
+      "textSha256": "e702a04e96228a2288ce55492cce8e775f8aef5dd90adac796e405806cb0d3d2",
+      "decision": "supported-beginner-text",
+      "notes": "Neighborhood library exchange and explicit errands. Prefix ends before the four-letter/post-office continuation. Errands/library/corner require support. Later malformed combined speaker name and fragment excluded from installed prefix.",
+      "audioReview": "not-inspected",
+      "questionReview": "client-generated-not-inspected",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-11-this-is-my-neighborhood/3293986.html",
+      "startingPoints": [
+        "A1",
+        "A2"
+      ],
+      "captureSha256": "39a5bacf7898d492edd250aa423868e2aba964f872d9f6686be96c4ac9cb4aa9",
+      "inspectedPrefixSha256": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "inspectedPrefixWords": 66,
+      "scope": "Full captured conversation and exact installed prefix personally inspected. Supported source text only; generated variants require separate validation."
+    },
+    {
+      "rootId": "voa-article-3301733",
+      "title": "Meet My Family",
+      "textSha256": "18275e7f002609b8668007ea001ae91db6fbc4bcb1226fa4fff81efc71d12f7f",
+      "decision": "supported-beginner-text",
+      "notes": "Family/homesickness exchange and photo introduction; A2 support for homesick/reminds/rodeo. Later malformed That-That punctuation and unusual family occupations remain in retained original but outside default prefix; no silent correction.",
+      "audioReview": "not-inspected",
+      "questionReview": "client-generated-not-inspected",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-12-meet-my-family/3301733.html",
+      "startingPoints": [
+        "A2"
+      ],
+      "captureSha256": "bd5f4db38d82c701a1701a18c6fb61998223d6a5fadd55c27cb9d6c53ca53667",
+      "inspectedPrefixSha256": "a78ff4bc7c4ed258563df23cf4aea2535390bd226b4f8c0fee843b53a05b7999",
+      "inspectedPrefixWords": 77,
+      "scope": "Full captured conversation and exact installed prefix personally inspected. Supported source text only; generated variants require separate validation."
+    },
+    {
+      "rootId": "voa-article-3431138",
+      "title": "Lesson 25: Watch Out!",
+      "textSha256": "47114abbfd115fff3430e7f689f620b5558f4f9d656e7ea0146f87a27fe00693",
+      "decision": "supported-beginner-text",
+      "notes": "Complete connected introduction and encounter; monuments/memorials and named Presidents add vocabulary load, so A1 withheld. Intention expression meaning is explicitly scoped, not interpretation of ambiguous them or proof of completed learning. Later second wish/game change stays in full source, not clipped into false source claim.",
+      "startingPoints": [
+        "A2"
+      ],
+      "reviewer": "Codex/AI",
+      "reviewedAt": "2026-10-09T02:17:47.505Z",
+      "sourceCapture": "private/corpus/voa-beginners/second-root-followup-2026-10-09/25-26-43-tool-capture.txt",
+      "sourceCaptureSha256": "e0e0a0e3d88ed66ae94113041bb1ad3488a94c9b2f843aca5ebeaa53901487a8",
+      "audioReview": "not-acquired/not-accepted",
+      "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-25-watch-out/3431138.html"
+    }
+  ],
+  "batches": [
+    {
+      "reviewer": "Codex/AI",
+      "reviewedAt": "2026-10-03T04:02:36.224984+00:00",
+      "scope": "Personally read complete rendered conversation text for official lessons7–12. Five bounded prefixes accepted for listed support scopes; Lesson9 withheld. No audio, images, generated variants, CEFR calibration or real-route/weather approval.",
+      "permissionUrl": "https://learningenglish.voanews.com/p/6861.html",
+      "records": [
+        {
+          "rootId": "voa-article-3240468",
+          "decision": "supported-beginner-text"
+        },
+        {
+          "rootId": "voa-article-3253185",
+          "decision": "supported-beginner-text"
+        },
+        {
+          "rootId": "voa-article-3261789",
+          "decision": "withheld"
+        },
+        {
+          "rootId": "voa-article-3285228",
+          "decision": "supported-beginner-text"
+        },
+        {
+          "rootId": "voa-article-3293986",
+          "decision": "supported-beginner-text"
+        },
+        {
+          "rootId": "voa-article-3301733",
+          "decision": "supported-beginner-text"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "count": [
+    {
+      "rootId": "voa-article-3111026",
+      "title": "Welcome!",
+      "text": "Anna, is that A-N-A? No, A-N-N-A. Well, Anna with two N's.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-spelling-correction.mp3",
+        "sha256": "838761efefe4a0826e88a55c1674e40727c02f37f8a5ba5760b1e0e77dc6f3b1",
+        "duration": 7.72,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 20,
+          "text": "Anna, is that A-N-A?",
+          "audioStart": 0.2,
+          "audioEnd": 2.54
+        },
+        {
+          "start": 21,
+          "end": 33,
+          "text": "No, A-N-N-A.",
+          "audioStart": 2.86,
+          "audioEnd": 5.06
+        },
+        {
+          "start": 34,
+          "end": 58,
+          "text": "Well, Anna with two N's.",
+          "audioStart": 5.78,
+          "audioEnd": 7.52
+        }
+      ]
+    },
+    {
+      "rootId": "fleurs-work-0a82821b6b50cceaae34f95f171a0b6642986a8b956601a1c75e0e564d98606f",
+      "title": "Iranian passenger jet's wheel catches fire - Wikinews, the free news source",
+      "text": "Earlier this week, a police helicopter crash killed three people and wounded three more.",
+      "audio": {
+        "src": "/audio/a1-sentences/fleurs-helicopter-count.mp3",
+        "sha256": "ba7588268b643ea750eb74e15c628d6da3dce94bb66de2ecf5a02229fb034133",
+        "duration": 7.081315192743764,
+        "author": "FLEURS English volunteer speaker",
+        "sourceUrl": "https://huggingface.co/datasets/google/fleurs",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "Wikinews contributors. Iranian passenger jet's wheel catches fire - Wikinews, the free news source. https://en.wikinews.org/wiki/Iranian_passenger_jet%27s_wheel_catches_fire. English source-derived transcript: FLORES-200 CC BY-SA 4.0; retain all stated original article licences. FLEURS (Google). English en_us, train, 6041434003510973825.wav. CC BY 4.0. Full original recording independently transcoded to MP3; unchanged transcript.",
+        "license": "FLORES-200 transcript CC BY-SA 4.0; original article BY 2.5, BY 4.0; recording CC BY 4.0",
+        "sourceUrl": "https://en.wikinews.org/wiki/Iranian_passenger_jet%27s_wheel_catches_fire"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 88,
+          "text": "Earlier this week, a police helicopter crash killed three people and wounded three more.",
+          "audioStart": 0,
+          "audioEnd": 5.84
+        }
+      ]
+    }
+  ],
+  "time": [
+    {
+      "rootId": "voa-article-3253185",
+      "title": "Are You Busy?",
+      "text": "My office, 5 p.m. 5 p.m.",
+      "audio": {
+        "src": "/audio/a1-sentences/voa-office-time-headroom.mp3",
+        "sha256": "6dd86695a36be57da5c2cd66fdb33f346c950168ccd1456eabac687c59e15513",
+        "duration": 5.4,
+        "author": "VOA Learning English",
+        "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html",
+        "license": "VOA Learning English original production (public domain)",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 17,
+          "text": "My office, 5 p.m.",
+          "audioStart": 0.2,
+          "audioEnd": 1.96
+        },
+        {
+          "start": 18,
+          "end": 24,
+          "text": "5 p.m.",
+          "audioStart": 4.1,
+          "audioEnd": 5.2
+        }
+      ]
+    },
+    {
+      "rootId": "fleurs-work-6d2704b63cc438147d63a8d061458d2a8f92c607bab6579efee627869cd95e0f",
+      "title": "A 5.6 Richter quake hits Western Montana - Wikinews, the free news source",
+      "text": "A moderate earthquake shook western Montana at 10:08 p.m. on Monday.",
+      "audio": {
+        "src": "/audio/a1-sentences/fleurs-montana-clock.mp3",
+        "sha256": "4534cd59289d6b0788dd0453faaf043dde792883f45449fdfa958cbd7b86a068",
+        "duration": 5.88,
+        "author": "FLEURS English volunteer speaker",
+        "sourceUrl": "https://huggingface.co/datasets/google/fleurs",
+        "license": "CC BY 4.0",
+        "synthetic": false
+      },
+      "credit": {
+        "attribution": "Wikinews contributors. A 5.6 Richter quake hits Western Montana - Wikinews, the free news source. https://en.wikinews.org/wiki/A_5.6_Richter_quake_hits_Western_Montana. English source-derived transcript: FLORES-200 CC BY-SA 4.0; original article explicitly released into the public domain; retain FLORES-200 and recording licences separately. FLEURS (Google). English en_us, train, 7641817662902223477.wav. CC BY 4.0. Full original recording independently transcoded to MP3; unchanged transcript.",
+        "license": "Original Wikinews article public domain; FLORES-200 transcript CC BY-SA 4.0; recording CC BY 4.0",
+        "sourceUrl": "https://en.wikinews.org/wiki/A_5.6_Richter_quake_hits_Western_Montana"
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 68,
+          "text": "A moderate earthquake shook western Montana at 10:08 p.m. on Monday.",
+          "audioStart": 0,
+          "audioEnd": 4.96
+        }
+      ]
+    }
+  ]
+}

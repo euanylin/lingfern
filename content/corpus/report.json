@@ -1,0 +1,30 @@
+{
+  "sources": 35,
+  "passages": 12314,
+  "words": 3599276,
+  "distinctTexts": 12314,
+  "failures": [
+    {
+      "id": 1497,
+      "error": "AUTHOR_DATE_REVIEW_REQUIRED"
+    },
+    {
+      "id": 1232,
+      "error": "AUTHOR_DATE_REVIEW_REQUIRED"
+    },
+    {
+      "id": 2500,
+      "error": "AUTHOR_DATE_REVIEW_REQUIRED"
+    },
+    {
+      "id": 132,
+      "error": "AUTHOR_DATE_REVIEW_REQUIRED"
+    },
+    {
+      "id": 27827,
+      "error": "AUTHOR_DATE_REVIEW_REQUIRED"
+    }
+  ],
+  "reviewedExercises": 0,
+  "published": false
+}

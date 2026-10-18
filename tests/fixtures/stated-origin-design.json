@@ -1,0 +1,520 @@
+{
+  "scope": "Isolated source-grounded stated-origin regression fixture; complete two existing source conversations, exact admitted beginner excerpts, retained metadata/rights/support and21 synthetic boundary mutations. Not a learner-facing bank, source/audio/level approval or instance queue. No private learner data.",
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-09",
+  "corpusSnapshot": {
+    "path": "public/corpus/voa.json",
+    "fileByteSha256": "a488209e34927cc40e188cf9d4466822a84b754d8a705338dd46dd01418b3945",
+    "rootCount": 38,
+    "passageCount": 51,
+    "supportedPassageCount": 14,
+    "supportedRootCount": 12
+  },
+  "positives": [
+    {
+      "rootId": "voa-article-3113733",
+      "title": "Hello, I’m Anna!",
+      "sourceId": "voa-3113733",
+      "sourceHash": "ff86504eb9df9df9d07e74827f3deb48638a15d303a82db42ea2f7f50f74c674",
+      "originalText": "Jonathan: Hey, Pete! Who’s your friend?\nPete: She is Anna. She is new to D.C.\nJonathan: Where are you from?\nAnna: I am from a small town.\nJonathan: Well, welcome to D.C.\nAnna: Thank you.\nJonathan: I am Jonathan. I am in apartment B4.\nAnna: I am in apartment C2. Marsha is my roommate.\nJonathan: I know Marsha. She is nice.\nPete: And I am in Apartment D7. I have to go now.\nAnna: Oh!\nPete: Remember to call Marsha at work. Tell her you’re here.\nAnna: Right, thanks, Pete. Nice to meet you!",
+      "sourceMetadata": {
+        "authors": [
+          "VOA Learning English"
+        ],
+        "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+        "downloadUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+        "acquiredAt": "2026-09-30T16:34:14.546Z",
+        "licence": "Original VOA Learning English text: public domain with attribution.",
+        "licenceUrl": "https://learningenglish.voanews.com/p/6861.html",
+        "attribution": "VOA Learning English, Hello, I’m Anna!. https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+        "permissionReview": "Original attributed VOA dialogue text only; general VOA reuse terms checked2026-10-01. No third-party media adopted.",
+        "processing": "Codex inspected complete captured conversation; An unchanged turn-bounded prefix up to80 words; additional contiguous A2 excerpts individually hash-bound in voa-beginner-review.json. Beginner support scope only, not calibrated CEFR. No authored tasks.",
+        "reviewStatus": "draft",
+        "editorialReview": "pending"
+      },
+      "retainedCapture": {
+        "path": "private/corpus/voa-course/lesson-2-conversation.txt",
+        "fileByteSha256": "ad1b2e5fbffd0a6dc9ee843985000144f8b15084fefaf6c03b34a916f7ee3c69",
+        "captureMethod": "Retained original course-conversation UTF-8 text, with final newline; agrees exactly with source originalText after removing only final newline. Existing conversations.json records official source and acquisition. This is not HTTP HTML response bytes.",
+        "sourceLines": null,
+        "preparationRecord": "content/corpus/voa-beginners.json",
+        "preparedTextSha256": "ff86504eb9df9df9d07e74827f3deb48638a15d303a82db42ea2f7f50f74c674"
+      },
+      "existingSupport": {
+        "reviewJournal": "content/corpus/voa-beginner-review.json",
+        "record": {
+          "rootId": "voa-article-3113733",
+          "title": "Hello, I’m Anna!",
+          "textSha256": "ff86504eb9df9df9d07e74827f3deb48638a15d303a82db42ea2f7f50f74c674",
+          "decision": "supported-beginner-text",
+          "notes": "Complete captured introduction/apartment/roommate conversation inspected against official Lesson2 text. Short present-tense turns, explicit people and places. Roommate/apartment/D.C. need vocabulary support; supported beginner candidate, no calibrated level.",
+          "audioReview": "not-inspected",
+          "questionReview": "Codex inspected seed0 speaker-matching attribution and both exact cited turns. Completion, sequence, response and other generated variants remain uninspected.",
+          "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+          "apartmentTableReview": {
+            "reviewer": "Codex/AI",
+            "scope": "Personally inspected the published contiguous dialogue prefix and generated apartment rows. Jonathan explicitly says I am in apartment B4; Anna explicitly says I am in apartment C2; Pete explicitly says And I am in Apartment D7. Exact speaker-turn citations retain each statement. Seed changes row order only; does not change these facts. No other sources, other fact relations, audio or calibrated CEFR approved.",
+            "rows": {
+              "Jonathan": "B4",
+              "Anna": "C2",
+              "Pete": "D7"
+            },
+            "passageSha256": "8858c6053176039a6b5d9d7cec0933944e2004d4b37a4a7a4285fe0795faf414"
+          }
+        }
+      },
+      "inspectedSupportPassage": {
+        "id": "8858c6053176039a6b5d9d7cec0933944e2004d4b37a4a7a4285fe0795faf414",
+        "paragraphSha256": "8858c6053176039a6b5d9d7cec0933944e2004d4b37a4a7a4285fe0795faf414",
+        "wordCount": 75,
+        "startingPoints": [
+          "A1",
+          "A2"
+        ],
+        "start": 0,
+        "end": 382,
+        "text": "Jonathan: Hey, Pete! Who’s your friend?\nPete: She is Anna. She is new to D.C.\nJonathan: Where are you from?\nAnna: I am from a small town.\nJonathan: Well, welcome to D.C.\nAnna: Thank you.\nJonathan: I am Jonathan. I am in apartment B4.\nAnna: I am in apartment C2. Marsha is my roommate.\nJonathan: I know Marsha. She is nice.\nPete: And I am in Apartment D7. I have to go now.\nAnna: Oh!",
+        "precedingOriginalContext": "",
+        "followingOriginalContext": "\nPete: Remember to call Marsha at work. Tell her you’re here.\nAnna: Right, thanks, Pete. Nice to meet you!"
+      },
+      "semanticDesign": {
+        "operation": "choice:stated-origin",
+        "subject": "Anna",
+        "relationship": "The place the person explicitly says they are from, without inferring birthplace, residence, nationality or language.",
+        "question": {
+          "en": "Where does Anna say they are from?",
+          "zh-Hans": "Anna 说自己来自哪里？",
+          "zh-Hant": "Anna 說自己來自哪裡？"
+        },
+        "correctOption": "a small town",
+        "incorrectOption": "D.C.",
+        "correctEvidence": {
+          "text": "Anna: I am from a small town.",
+          "passageStart": 108,
+          "passageEnd": 137,
+          "originalStart": 108,
+          "originalEnd": 137,
+          "answerSpan": {
+            "passageStart": 124,
+            "passageEnd": 136
+          }
+        },
+        "originQuestionContext": "Jonathan: Where are you from?\nAnna: I am from a small town.",
+        "incorrectOptionEvidence": {
+          "text": "D.C.",
+          "context": "Jonathan: Well, welcome to D.C.",
+          "kind": "welcome-place"
+        },
+        "incorrectReason": "D.C. is the welcome destination in Jonathan’s next turn; Pete also says Anna is new to D.C. Anna explicitly contrasts this with being from a small town. Neither city mention states her origin. No claim that she lives in D.C. or was born in the town is made.",
+        "reviewDecision": "Suitable source evidence for a new generator-type design and automated rule validation. No generated question instance approved or required."
+      }
+    },
+    {
+      "rootId": "voa-article-3355849",
+      "title": "Lesson 16: Where Are You From?",
+      "sourceId": "voa-3355849",
+      "sourceHash": "317bfeff62417449628e966842986edef1be43d924ed691b89a832fc378ec2aa",
+      "originalText": "Anna: Hello! Washington, D.C. has many tourists! People from different countries come here. Today, my job is to interview tourists. I have to learn why they come here. This is very exciting! Excuse me. I’m Anna Matteo from The News. Do you have time for an interview?\n\nSabrina: Sure, I have time.\n\nAnna: What is your name?\n\nSabrina: My name is Sabrina.\n\nAnna: What country are you from?\n\nSabrina: I’m from Bangladesh.\n\nAnna: So, you are Bangladeshi.\n\nSabrina: That’s right! My nationality is Bangladeshi.\n\nAnna: Do you like Washington, D.C.?\n\nSabrina: Yes! The city is very beautiful!\n\nAnna: What do you like to do in Washington D.C.?\n\nSabrina: I like history. So, I like walking around and looking at all the monuments and memorials. They make history come alive!\n\nAnna: Washington has many monuments and memorials. The Washington Monument is behind us! Which is your favorite?\n\nSabrina: I really like Lincoln Memorial. It is very beautiful. And it feels like Abraham Lincoln is still alive.\n\nAnna: Awesome. Thank you for your time, Sabrina!\n\nSabrina: You’re welcome.\n\nAnna: Let’s find another tourist.\n\nAnna: Oh! Excuse me. I am Anna Matteo from The News. Do you have time for a couple of questions?\n\nLouis: Sure!\n\nAnna: Are you from Washington, D.C.?\n\nLouis: No, I’m not.\n\nAnna: What is your name and where are you from?\n\nLouis: My name is Louis. And I’m from China.\n\nAnna: What languages do you speak?\n\nLouis: I speak Chinese and English.\n\nAnna: What do you like about Washington DC?\n\nLouis: I like the museums. I really like the art museums.\n\nAnna: Many of the museums are free.\n\nLouis: I like that too!\n\nAnna: Awesome! Thanks for your time, Louis.\n\nLouis: You’re very welcome. Bye!\n\nAnna: Now, let’s find another tourist!\n\nAnna: Hello! I am Anna Matteo from The News. Do you have time to answer a couple of questions?\n\nMehrnoush: Sure!\n\nAnna: What is your name and where’re you from?\n\nMehrnoush: My name is Mehrnoush. I am from Iran. I’m Iranian.\n\nAnna: What language do they speak in Iran? Is it Persian?\n\nMehrnoush: They speak Farsi.\n\nAnna: What do you like to do in Washington DC?\n\nMehrnoush: Well, I like learning about government and politics.\n\nAnna: Washington has many politicians!\n\nMehrnoush: It does! I want to see the U.S. Capitol.\n\nAnna: Look, you are very near.\n\nMehrnoush: I am!\n\nAnna: Have fun!\n\nMehrnoush: Thanks!\n\nAnna: There you have it. Tourists from all over the world come to Washington, D.C. They all like doing and seeing different things in the city. This is Anna Matteo reporting for The News. Until next time!\n\nAnna: Is that okay? Awesome! Now, I want to do my favorite thing in the city … ride the carousel!",
+      "sourceMetadata": {
+        "authors": [
+          "VOA Learning English"
+        ],
+        "originalUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-16-where-are-you-from/3355849.html",
+        "downloadUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-16-where-are-you-from/3355849.html",
+        "acquiredAt": "2026-10-08T13:36:18.857340Z",
+        "licence": "Original VOA Learning English text: public domain with attribution. No agency content or media included.",
+        "licenceUrl": "https://learningenglish.voanews.com/p/6861.html",
+        "attribution": "Lesson 16: Where Are You From? — VOA Learning English. VOA Learning English (https://learningenglish.voanews.com/a/lets-learn-english-lesson-16-where-are-you-from/3355849.html).",
+        "permissionReview": "Official VOA own-author text and reuse policy checked2026-10-08. Captured page text only; no agency media or third-party song lyrics included.",
+        "processing": "Complete specified official-page prose/conversation capture; SHA binds retained text, not HTML response bytes. Whitespace-normalised contiguous paragraphs only; configured exclusions never spliced. Codex/AI inspected retained text scope. No authored questions or CEFR calibration.",
+        "reviewStatus": "draft",
+        "editorialReview": "pending"
+      },
+      "retainedCapture": {
+        "path": "private/corpus/voa-beginners/discovery-link-30.txt",
+        "fileByteSha256": "04179f4b962eb1aa764bf3fd995476d457295bef7bc7c3fd68aca41c482cffd3",
+        "captureMethod": "Official page text returned by web tool with line numbers; not HTTP HTML response bytes. Conversation turn separators normalised to blank lines; words unchanged.",
+        "sourceLines": {
+          "webLineStart": 180,
+          "webLineEnd": 269
+        },
+        "preparationRecord": "content/corpus/voa-additional-sources.json",
+        "preparedTextSha256": "317bfeff62417449628e966842986edef1be43d924ed691b89a832fc378ec2aa"
+      },
+      "existingSupport": {
+        "reviewJournal": "content/corpus/voa-additional-sources.json",
+        "record": {
+          "start": 1105,
+          "end": 1687,
+          "sourceHash": "317bfeff62417449628e966842986edef1be43d924ed691b89a832fc378ec2aa",
+          "sha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+          "startingPoints": [
+            "A2"
+          ],
+          "reviewer": "Codex/AI",
+          "reviewedAt": "2026-10-08",
+          "decision": "supported-beginner-text",
+          "notes": "Complete unchanged Louis interview inspected with its preceding and following tourist transitions. Direct name/country/languages/likes and museum-cost exchange, explicit Anna/Louis labels and closing. Existing simple museum definition and localized speaker/completion support remain available. Only106word source scope admitted for self-chosen A2 support; no A1, whole454word dialogue, audio or calibrated CEFR approval. Speaker matching records who says each sentence, not semantic mastery."
+        }
+      },
+      "inspectedSupportPassage": {
+        "id": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+        "paragraphSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+        "wordCount": 106,
+        "startingPoints": [
+          "A2"
+        ],
+        "start": 1105,
+        "end": 1687,
+        "text": "Anna: Oh! Excuse me. I am Anna Matteo from The News. Do you have time for a couple of questions?\n\nLouis: Sure!\n\nAnna: Are you from Washington, D.C.?\n\nLouis: No, I’m not.\n\nAnna: What is your name and where are you from?\n\nLouis: My name is Louis. And I’m from China.\n\nAnna: What languages do you speak?\n\nLouis: I speak Chinese and English.\n\nAnna: What do you like about Washington DC?\n\nLouis: I like the museums. I really like the art museums.\n\nAnna: Many of the museums are free.\n\nLouis: I like that too!\n\nAnna: Awesome! Thanks for your time, Louis.\n\nLouis: You’re very welcome. Bye!",
+        "precedingOriginalContext": "Anna: Hello! Washington, D.C. has many tourists! People from different countries come here. Today, my job is to interview tourists. I have to learn why they come here. This is very exciting! Excuse me. I’m Anna Matteo from The News. Do you have time for an interview?\n\nSabrina: Sure, I have time.\n\nAnna: What is your name?\n\nSabrina: My name is Sabrina.\n\nAnna: What country are you from?\n\nSabrina: I’m from Bangladesh.\n\nAnna: So, you are Bangladeshi.\n\nSabrina: That’s right! My nationality is Bangladeshi.\n\nAnna: Do you like Washington, D.C.?\n\nSabrina: Yes! The city is very beautiful!\n\nAnna: What do you like to do in Washington D.C.?\n\nSabrina: I like history. So, I like walking around and looking at all the monuments and memorials. They make history come alive!\n\nAnna: Washington has many monuments and memorials. The Washington Monument is behind us! Which is your favorite?\n\nSabrina: I really like Lincoln Memorial. It is very beautiful. And it feels like Abraham Lincoln is still alive.\n\nAnna: Awesome. Thank you for your time, Sabrina!\n\nSabrina: You’re welcome.\n\nAnna: Let’s find another tourist.\n\n",
+        "followingOriginalContext": "\n\nAnna: Now, let’s find another tourist!\n\nAnna: Hello! I am Anna Matteo from The News. Do you have time to answer a couple of questions?\n\nMehrnoush: Sure!\n\nAnna: What is your name and where’re you from?\n\nMehrnoush: My name is Mehrnoush. I am from Iran. I’m Iranian.\n\nAnna: What language do they speak in Iran? Is it Persian?\n\nMehrnoush: They speak Farsi.\n\nAnna: What do you like to do in Washington DC?\n\nMehrnoush: Well, I like learning about government and politics.\n\nAnna: Washington has many politicians!\n\nMehrnoush: It does! I want to see the U.S. Capitol.\n\nAnna: Look, you are very near.\n\nMehrnoush: I am!\n\nAnna: Have fun!\n\nMehrnoush: Thanks!\n\nAnna: There you have it. Tourists from all over the world come to Washington, D.C. They all like doing and seeing different things in the city. This is Anna Matteo reporting for The News. Until next time!\n\nAnna: Is that okay? Awesome! Now, I want to do my favorite thing in the city … ride the carousel!"
+      },
+      "semanticDesign": {
+        "operation": "choice:stated-origin",
+        "subject": "Louis",
+        "relationship": "The place the person explicitly says they are from, without inferring birthplace, residence, nationality or language.",
+        "question": {
+          "en": "Where does Louis say they are from?",
+          "zh-Hans": "Louis 说自己来自哪里？",
+          "zh-Hant": "Louis 說自己來自哪裡？"
+        },
+        "correctOption": "China",
+        "incorrectOption": "Washington, D.C.",
+        "correctEvidence": {
+          "text": "Louis: My name is Louis. And I’m from China.",
+          "passageStart": 220,
+          "passageEnd": 264,
+          "originalStart": 1325,
+          "originalEnd": 1369,
+          "answerSpan": {
+            "passageStart": 258,
+            "passageEnd": 263
+          }
+        },
+        "originQuestionContext": "Anna: What is your name and where are you from?\nLouis: My name is Louis. And I’m from China.",
+        "incorrectOptionEvidence": {
+          "text": "Washington, D.C.",
+          "context": "Anna: Are you from Washington, D.C.?\nLouis: No, I’m not.",
+          "kind": "denied-origin"
+        },
+        "incorrectReason": "The retained Louis interview includes Anna’s Washington, D.C. origin question and Louis’s explicit “No, I’m not.” The later direct answer states China. His liking Washington museums supplies visit context, not residence or origin. Anna’s “from The News” is professional affiliation and must not be accepted as an origin answer.",
+        "reviewDecision": "Suitable source evidence for a new generator-type design and automated rule validation. No generated question instance approved or required."
+      }
+    }
+  ],
+  "transferBoundary": {
+    "sameSemanticOperation": "Retrieve the explicitly stated self-origin in response to a direct origin question; distinguish it from another place named in the same dialogue.",
+    "actualDistinctRoots": [
+      "voa-article-3113733",
+      "voa-article-3355849"
+    ],
+    "supportedCrossRootStartingPoint": "A2",
+    "A1": "Only the Anna root has existing A1 support, so this does not establish A1 transfer. Do not broaden Louis support or treat repeated passages of one root as transfer.",
+    "notAbilityCalibration": true
+  },
+  "minimalClientRuleDesign": {
+    "inputs": "Only an already-supported intact passage with actual speaker turns and valid source/rights/exclusions. Preserve the Louis Washington question/No response and the complete 106-word interview.",
+    "recognition": "Require a complete direct Where are you from? or What is your name and where are you from? turn by a different speaker immediately before the positive first-person origin turn. The latter may contain a complete My name is NAME. prefix only if NAME agrees with the actual speaker label. Accept a single complete I am from PLACE. / I’m from PLACE. proposition, optional And; reject modal, negation, conditional, temporal, reported/quoted or multiple-origin claims. Do not search free occurrences of from or resolve she/he/it to people.",
+    "options": "One exact origin phrase and one distinct exact source-place distractor. Obtain the latter from an immediately subsequent welcome-to place, or an immediately preceding asked-origin question plus the target person’s explicit No, I’m not. followed by the actual origin question/answer. For the negative question branch preserve both question and denial. Never treat a question or a negative answer as a positive origin statement; reject missing or ambiguous denial. No invented place or organization option.",
+    "placeBoundaries": "A bounded geographical noun phrase in an explicit origin exchange; generic town/city/village phrases or conservative proper place phrases. Reject organizational affiliation (including The News), uncertain/disjunctive phrases and identical answer/distractor. D.C. punctuation must retain its full acronym. The disposable probe’s capitalized-place approximation is feasibility evidence only; a production implementation must validate its full negative boundary, rather than claim arbitrary capitalized names are known geography.",
+    "scoring": "Use existing choice controls, exact option identities and current saved-answer transaction. Correct/incorrect reflect only the explicit textual fact. Ordinary and generated Test modes may share the snapshot; Test must retain no assistance. Open responses remain unscored. No CEFR claim.",
+    "questionBoundary": "Ask where PERSON says they are from; never where they were born/live or what nationality/language they have. This is a relation between a named person and their stated origin, not completing the word from or attributing a random turn."
+  },
+  "negativeDesigns": [
+    {
+      "name": "negated",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I’m not from China.",
+      "mutatedAnalysisTextSha256": "4bbb629f91b3408756e0571600ea35c6cc370fecbf57bcb0516f88a983e3873e",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 252,
+        "baseText": "My name is Louis. And I’m",
+        "replacementText": "I’m not"
+      }
+    },
+    {
+      "name": "uncertain",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I may be from China.",
+      "mutatedAnalysisTextSha256": "eee9fa57a60deb72e06c47906a0f61f7a234dd8d4d2d6dabee85a3e7c45942e9",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 252,
+        "baseText": "My name is Louis. And I’m",
+        "replacementText": "I may be"
+      }
+    },
+    {
+      "name": "conditional",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "If I’m from China, I will speak Chinese.",
+      "mutatedAnalysisTextSha256": "cd1e5a09572bb5dcfdc1ebc4c8e9d94f08cac37226f6255996a005772fc18307",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 263,
+        "baseText": "My name is Louis. And I’m from China",
+        "replacementText": "If I’m from China, I will speak Chinese"
+      }
+    },
+    {
+      "name": "past",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I was from China.",
+      "mutatedAnalysisTextSha256": "bf6e035c5bdd7438467b8a2a494a755da6dbcadaf865206b525bb673636649db",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 252,
+        "baseText": "My name is Louis. And I’m",
+        "replacementText": "I was"
+      }
+    },
+    {
+      "name": "residence",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I live in China.",
+      "mutatedAnalysisTextSha256": "87debad8ee3eb998950149f706930e971dc8ad1062e4412ed4c7eab1d933ea0c",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 257,
+        "baseText": "My name is Louis. And I’m from",
+        "replacementText": "I live in"
+      }
+    },
+    {
+      "name": "birth",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I was born in China.",
+      "mutatedAnalysisTextSha256": "1b45bd816b5ddce67f4de7570ddc6406df8c0817f1fc5af5a42341cd366bbc57",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 257,
+        "baseText": "My name is Louis. And I’m from",
+        "replacementText": "I was born in"
+      }
+    },
+    {
+      "name": "affiliation",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I am Louis from The News.",
+      "mutatedAnalysisTextSha256": "365e1ea470fb8141de9a197ec043662f040c2fd2f498cc7a0ee3c72e336ba734",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 263,
+        "baseText": "My name is Louis. And I’m from China",
+        "replacementText": "I am Louis from The News"
+      }
+    },
+    {
+      "name": "organization",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I’m from The News.",
+      "mutatedAnalysisTextSha256": "6a85dafb39ce7f46c3d3e5ade3fad4161dd3d24f50b5aed651b9a8dfb54e728d",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 263,
+        "baseText": "My name is Louis. And I’m from China",
+        "replacementText": "I’m from The News"
+      }
+    },
+    {
+      "name": "pronoun",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "She is from China.",
+      "mutatedAnalysisTextSha256": "b60746c927b230ffa767c14d491255ae940facc1810565b1e16aebe31724f790",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 252,
+        "baseText": "My name is Louis. And I’m",
+        "replacementText": "She is"
+      }
+    },
+    {
+      "name": "thing",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "My train is from China.",
+      "mutatedAnalysisTextSha256": "b2e6f4e13c28c8142792ac2d081d5ddb9735d53cb5db15c803b4a1f2ea3402c2",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 230,
+        "baseEnd": 252,
+        "baseText": "name is Louis. And I’m",
+        "replacementText": "train is"
+      }
+    },
+    {
+      "name": "disjunction",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I’m from China or Japan.",
+      "mutatedAnalysisTextSha256": "8e3a0d94182470d43552ddf5dbd03abcb3c3d1437a2d05fbf6ea5e5a8c998b66",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 263,
+        "baseText": "My name is Louis. And I’m from China",
+        "replacementText": "I’m from China or Japan"
+      }
+    },
+    {
+      "name": "quoted",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "Anna said, “I’m from China.”",
+      "mutatedAnalysisTextSha256": "6468d32d64aecf9f86a344a7c1110e89179a24eb2475240fbcac42dc02be1de6",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 264,
+        "baseText": "My name is Louis. And I’m from China.",
+        "replacementText": "Anna said, “I’m from China.”"
+      }
+    },
+    {
+      "name": "reported",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I hear Louis is from China.",
+      "mutatedAnalysisTextSha256": "b8f0ff8a2cac49e994517180fe11eb115c3c1a81e94cb389dbefab1f54bcac47",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 252,
+        "baseText": "My name is Louis. And I’m",
+        "replacementText": "I hear Louis is"
+      }
+    },
+    {
+      "name": "identity mismatch",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "My name is Anna. And I’m from China.",
+      "mutatedAnalysisTextSha256": "8a71f97ec4ae11b96030566366e0f52cf204627e003a5424a087c74c4be5ee50",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 238,
+        "baseEnd": 243,
+        "baseText": "Louis",
+        "replacementText": "Anna"
+      }
+    },
+    {
+      "name": "two origins",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "I’m from China. I’m from Japan.",
+      "mutatedAnalysisTextSha256": "ae64d458401706d884f79940c77e52e1bae65a70a148cae190872d93af388ace",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 263,
+        "baseText": "My name is Louis. And I’m from China",
+        "replacementText": "I’m from China. I’m from Japan"
+      }
+    },
+    {
+      "name": "bare yes",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "Yes, I am.",
+      "mutatedAnalysisTextSha256": "580173bd938ed121c4d0ea4945fd23cede91c3a80b37e0cba96e40d69e010cde",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 227,
+        "baseEnd": 263,
+        "baseText": "My name is Louis. And I’m from China",
+        "replacementText": "Yes, I am"
+      }
+    },
+    {
+      "name": "unlabeled turn",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": "My name is Louis. And I’m from China.",
+      "mutatedAnalysisTextSha256": "d5c2203cfacadc061a25c324206c8f5d29fd0f1f1acde5bceed91b489602583e",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 220,
+        "baseEnd": 227,
+        "baseText": "Louis: ",
+        "replacementText": ""
+      }
+    },
+    {
+      "name": "missing denied answer",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": null,
+      "mutatedAnalysisTextSha256": "14d1a3a2e7a75b8831f5376878bf60eb9a6367db7b79c0dabafe3c20c18d5e69",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 157,
+        "baseEnd": 168,
+        "baseText": "No, I’m not",
+        "replacementText": "Maybe"
+      }
+    },
+    {
+      "name": "same-place denial",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": null,
+      "mutatedAnalysisTextSha256": "6345deaaf1ecc6bafb8268f1f4ad0a18ccf10963ebaa62fe3a15fd197be873b1",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 131,
+        "baseEnd": 147,
+        "baseText": "Washington, D.C.",
+        "replacementText": "China"
+      }
+    },
+    {
+      "name": "ambiguous denial speaker",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": null,
+      "mutatedAnalysisTextSha256": "c2cab7cd31adf50a2706c7147ec5c053ce29784ebafb9a8f653ba5a98e5dfbca",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 150,
+        "baseEnd": 155,
+        "baseText": "Louis",
+        "replacementText": "Anna"
+      }
+    },
+    {
+      "name": "earlier conflicting origin",
+      "basePassageSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "replacement": null,
+      "mutatedAnalysisTextSha256": "926edd5acedaadf5ead8230de94a7b92f5fcd8c8f6eab77fa2e11ccdbb94a1df",
+      "actualHitCount": 0,
+      "expected": "reject/no origin operation",
+      "exactIsolatedMutation": {
+        "baseStart": 105,
+        "baseEnd": 110,
+        "baseText": "Sure!",
+        "replacementText": "I’m from Japan."
+      }
+    }
+  ]
+}

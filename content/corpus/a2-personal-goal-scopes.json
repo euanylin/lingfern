@@ -1,0 +1,131 @@
+{
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-15",
+  "scope": "Four exact retained VOA scopes for explicit requirements and stated preferences; source boundaries only, not pre-authored tasks or ability classification. Two inspected whole-turn scopes for actual personal reply/request updates, not inferred external event or stock changes. Two complete continuous dialogue scopes for stated simple reasons, preserving speaker, habit/current or future scope.",
+  "need": [
+    {
+      "rootId": "voa-article-3406732",
+      "sourceHash": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+      "passageId": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+      "textSha256": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226"
+    },
+    {
+      "rootId": "voa-article-3293986",
+      "sourceHash": "e702a04e96228a2288ce55492cce8e775f8aef5dd90adac796e405806cb0d3d2",
+      "passageId": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "textSha256": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227"
+    }
+  ],
+  "preference": [
+    {
+      "rootId": "voa-article-3355849",
+      "sourceHash": "317bfeff62417449628e966842986edef1be43d924ed691b89a832fc378ec2aa",
+      "passageId": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97",
+      "textSha256": "d47dcbc0ac8afec49e9d3de2b278861094036eaab5ee8b5ef37702acd6a29c97"
+    },
+    {
+      "rootId": "voa-article-3753664",
+      "sourceHash": "d9e8bbafd40f8d2ed9a4e81856883bde3d029a0ab03a0cf0cce44bbcafcf008d",
+      "passageId": "60f0fd68abda60479c1d748763f09cccd5bfa10af2c23e1f20aca4f2f118dc85",
+      "textSha256": "60f0fd68abda60479c1d748763f09cccd5bfa10af2c23e1f20aca4f2f118dc85"
+    }
+  ],
+  "update": [
+    {
+      "rootId": "voa-article-3413753",
+      "sourceHash": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "passageId": "2773b4f369a658b3c9a98c471332f1fae95988882d09031c8ee6ebff74c27a12",
+      "textSha256": "2773b4f369a658b3c9a98c471332f1fae95988882d09031c8ee6ebff74c27a12",
+      "parentId": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "parentSha256": "d77ae0c0b79d61d41d32b2206d75fc3835f4ad417f8b0504707fd8e0bdd295e4",
+      "start": 683,
+      "end": 1339,
+      "words": 113
+    },
+    {
+      "rootId": "voa-article-3406732",
+      "sourceHash": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+      "passageId": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+      "textSha256": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+      "parentId": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+      "parentSha256": "205b96fd2167ec2b086e1db70e16151195bf6f2bc409d50101450849839ab226",
+      "start": 0,
+      "end": 581,
+      "words": 117
+    }
+  ],
+  "reason": [
+    {
+      "rootId": "voa-article-3312239",
+      "sourceHash": "c05d4483345ff94707936f930dcd7499f0b7504521eb177091cc1c7475afcf08",
+      "passageId": "ddebdb175c8d877fb2db9c6953c24031e6eedf379a5c3146c293f8823ce7e926",
+      "textSha256": "ddebdb175c8d877fb2db9c6953c24031e6eedf379a5c3146c293f8823ce7e926",
+      "parentId": "84b43201cbdbd1ada0d25fc787275705fac1c33631c40a1f674703381ece13d8",
+      "parentSha256": "84b43201cbdbd1ada0d25fc787275705fac1c33631c40a1f674703381ece13d8",
+      "start": 0,
+      "end": 267,
+      "words": 49
+    },
+    {
+      "rootId": "voa-article-3355785",
+      "sourceHash": "94f7e4f0bb7bc2e2af013349c148d391b599d6c40b395eda8d1279b389d05514",
+      "passageId": "465e3f2203e2e4c0b7d1d625645ae43428ebb5892f1d288f87a18784ed873017",
+      "textSha256": "465e3f2203e2e4c0b7d1d625645ae43428ebb5892f1d288f87a18784ed873017",
+      "parentId": "eb550795f476c92656408dc2e99909787a56272d26a959ce068bb6bbd92f824f",
+      "parentSha256": "eb550795f476c92656408dc2e99909787a56272d26a959ce068bb6bbd92f824f",
+      "start": 859,
+      "end": 1145,
+      "words": 59
+    }
+  ],
+  "rule": [
+    {
+      "rootId": "voa-article-3357748",
+      "sourceHash": "fc53fe1e1003f78ad12625c8ca8221e496b88cce9c31a8fd4c7cbdeaa2eb2160",
+      "passageId": "1b91fcf6d7dbd4b9e046a112d2be6f7f32a31f2e2ce26474925d358038037a13",
+      "textSha256": "1b91fcf6d7dbd4b9e046a112d2be6f7f32a31f2e2ce26474925d358038037a13",
+      "parentId": "7c033ad99e6e1d216f50d5921a6264e55de07b2baeaff32da71eb7e802aa1032",
+      "parentSha256": "7c033ad99e6e1d216f50d5921a6264e55de07b2baeaff32da71eb7e802aa1032",
+      "start": 0,
+      "end": 489,
+      "words": 93
+    },
+    {
+      "rootId": "voa-article-3406732",
+      "sourceHash": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+      "passageId": "61b606136a7b87e9bd07c5ea92504b8f1f19739ef02a89403846972737d170fb",
+      "textSha256": "61b606136a7b87e9bd07c5ea92504b8f1f19739ef02a89403846972737d170fb",
+      "parentId": "a924875e60d8f086eb46057e96dffb45b50ad4a7d28e94031f2cae8e3f72022d",
+      "parentSha256": "a924875e60d8f086eb46057e96dffb45b50ad4a7d28e94031f2cae8e3f72022d",
+      "start": 716,
+      "end": 921,
+      "words": 38
+    }
+  ],
+  "integration": [
+    {
+      "rootId": "voa-article-3293986",
+      "sourceHash": "e702a04e96228a2288ce55492cce8e775f8aef5dd90adac796e405806cb0d3d2",
+      "passageId": "94166606544f2e24f9f5aad48e9ca3844f2667e2f2d161cd4a6ce88741c76879",
+      "textSha256": "94166606544f2e24f9f5aad48e9ca3844f2667e2f2d161cd4a6ce88741c76879",
+      "parentId": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "parentSha256": "c9591179c9e9457c677d99e7f995e0722be21e7429314e27b6f5b3032912e227",
+      "start": 0,
+      "end": 228,
+      "words": 45,
+      "lineBoundaries": true
+    },
+    {
+      "rootId": "voa-article-3406732",
+      "sourceHash": "6756c75f1c293385fb56fe526f57553b4d65d106f92d73038ac58e9abbdb9808",
+      "passageId": "f9b5891a670e85d7c6e2aee806d863caa1c667b5740b00bc42c50efe1a42284d",
+      "textSha256": "f9b5891a670e85d7c6e2aee806d863caa1c667b5740b00bc42c50efe1a42284d",
+      "parentId": "a924875e60d8f086eb46057e96dffb45b50ad4a7d28e94031f2cae8e3f72022d",
+      "parentSha256": "a924875e60d8f086eb46057e96dffb45b50ad4a7d28e94031f2cae8e3f72022d",
+      "start": 397,
+      "end": 921,
+      "words": 104,
+      "lineBoundaries": true
+    }
+  ]
+}

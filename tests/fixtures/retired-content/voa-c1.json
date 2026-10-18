@@ -1,0 +1,564 @@
+[
+  {
+    "id": "c1-voa-education-reading",
+    "targetLevel": "C1",
+    "skill": "reading",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Evidence, attribution and purpose",
+      "zh-Hans": "Evidence, attribution and purpose",
+      "zh-Hant": "Evidence, attribution and purpose"
+    },
+    "goalId": "relate-evidence-and-attributed-reasons-reading",
+    "goal": {
+      "en": "Connect dispersed reasons, distinguish speakers’ purposes, and preserve the limits of a source-based interpretation.",
+      "zh-Hans": "Connect dispersed reasons, distinguish speakers’ purposes, and preserve the limits of a source-based interpretation.",
+      "zh-Hant": "Connect dispersed reasons, distinguish speakers’ purposes, and preserve the limits of a source-based interpretation."
+    },
+    "sourceId": "voa-2737208",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Map who makes each claim and why it is relevant. A reported educational benefit and a cultural rationale can support the same project for different reasons. In the second material, distinguish the author’s organising contrast from individual examples and keep borrowed words separate from your explanation.",
+      "zh-Hans": "Map who makes each claim and why it is relevant. A reported educational benefit and a cultural rationale can support the same project for different reasons. In the second material, distinguish the author’s organising contrast from individual examples and keep borrowed words separate from your explanation.",
+      "zh-Hant": "Map who makes each claim and why it is relevant. A reported educational benefit and a cultural rationale can support the same project for different reasons. In the second material, distinguish the author’s organising contrast from individual examples and keep borrowed words separate from your explanation."
+    },
+    "workedExample": {
+      "en": "If one speaker argues that a programme can help learning and another values its cultural role, a summary should attribute both reasons. Neither statement alone proves a guaranteed improvement for every learner.",
+      "zh-Hans": "If one speaker argues that a programme can help learning and another values its cultural role, a summary should attribute both reasons. Neither statement alone proves a guaranteed improvement for every learner.",
+      "zh-Hant": "If one speaker argues that a programme can help learning and another values its cultural role, a summary should attribute both reasons. Neither statement alone proves a guaranteed improvement for every learner."
+    },
+    "nextStep": {
+      "en": "Use an unfamiliar report to compare two attributed reasons. Quote short supporting passages and state one conclusion the source does not establish.",
+      "zh-Hans": "Use an unfamiliar report to compare two attributed reasons. Quote short supporting passages and state one conclusion the source does not establish.",
+      "zh-Hant": "Use an unfamiliar report to compare two attributed reasons. Quote short supporting passages and state one conclusion the source does not establish."
+    },
+    "materials": [
+      {
+        "id": "c1-voa-education-reading-2737208",
+        "rootId": "voa-article-2737208",
+        "sourceId": "voa-2737208",
+        "title": "Learning to Read in Safaliba Helps Ghanaian Kids Learn English (2015)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Ghana’s official national language is English. But for most citizens English is also a second language.\n\nUntil recently, children in the country had to learn English as soon as they entered school. But, many had little contact with English, especially those in poor rural areas. As a result, many Ghanaian children never learned to read and write.\n\nThe National Literacy Acceleration Program (NALAP) was designed to help deal with this problem. The country-wide program opened in 2010. It teaches reading and writing in local languages during a two-year kindergarten program and during grades one through three. Then in grade four, children begin to study in English only.\n\nSafaliba is a rare language with about 7,000 speakers in several towns in northern Ghana. It is mainly a spoken language. Among Safaliba speakers, the literacy rate in English is only eight percent.\n\nPublic school teachers in northern Ghana teach reading and writing in English and Gonja, one of the more common native languages in the area. The Ministry of Education provides the local schools with materials in those languages.\n\nSafaliba had no common written form until 2003. A research team of Ghanaian and American educators is working to change that.\n\nWriting an oral language\n\nPaul Schaefer grew up in Ghana and works for the Christian based non-governmental organization GILLBT. That stands for Ghana Institute of Linguistics, Literacy, and Bible Translation. Beginning in 1998, he and his wife, Jennifer Schaefer, studied the Safaliba language. They worked together with Safaliba speakers to develop a way to write the language. They used this written language in adult literacy programs and published short books for the students to read.\n\nIddi Bayaya is the main Safaliba literacy teacher. He is a farmer who had a few years of primary school education. Mr. Bayaya attended government-supported classes in Gonja and learned to be a literacy facilitator in that language.\n\nSince 2003, Mr. Bayaya has taught a nightly literacy class in his northern Ghanaian hometown, Mandari. He trained several other people to teach Safaliba literacy in Mandari. Then he began literacy classes in two other Safaliba-speaking villages.\n\nChildren want to learn, too\n\nSoon children started coming to the adult classes. The young people learned the written language quickly. Paul Schaefer says the classes helped people learn the many ways written language could help them. He says they also learned that children who learn to read and write in their own language can use those skills in a second language and do better in school.\n\n“So then they were basically saying that, well, we've seen that this does benefit the children in their formal education, why can't we have our language in the schools?”\n\nPaul Schaefer says the idea came from the famous anthropologist Esther Goody.\n\n“In her later years she was living here in Bole and doing research into education basically using local languages. She said, 'you're doing adult education, but if you would focus on also getting the children educated, eventually there wouldn't be a need for adult education.’”\n\nIt was not long before the Safaliba community asked to enlarge the adult program to include children. Ari Sherris is a professor of bilingual education at Texas A&M University in Kingsville, Texas. He began working with the government literacy program in Ghana about ten years ago. Esther Goody introduced him to Paul Schaefer in 2012 and over the next two years they talked about ways to work together on the school project. In 2014, Mr. Sherris visited the Safaliba area twice and helped encourage the new movement to teach the Safaliba language in school. He plans to live with Safaliba speakers and help them create Safaliba-English bilingual books.\n\nThe Mandari Safaliba Chief, Bodua Mango Kafinti the Second, also supports this effort. He sees the writing of Safaliba as a way to preserve the language. He says the language helps protect the culture. He says people must become proud of their language to guarantee it continues."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-voa-education-reading-0-choice",
+            "blockId": "source",
+            "prompt": "How does the reported local provision help explain the Safaliba project’s role?",
+            "options": [
+              "Schools receive English and Gonja materials; the project develops written learning in the community’s own language.",
+              "The report says schools already receive Safaliba materials in every grade.",
+              "The project aims to prevent children from ever studying English."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 874,
+              "end": 1103
+            },
+            "hints": [
+              {
+                "en": "Connect the existing provision with the unmet community need.",
+                "zh-Hans": "Connect the existing provision with the unmet community need.",
+                "zh-Hant": "Connect the existing provision with the unmet community need."
+              },
+              {
+                "en": "Compare the school-material languages with the subsequent account of developing written Safaliba.",
+                "zh-Hans": "Compare the school-material languages with the subsequent account of developing written Safaliba.",
+                "zh-Hant": "Compare the school-material languages with the subsequent account of developing written Safaliba."
+              },
+              {
+                "en": "Those languages refers to English and Gonja; the later community project adds a written form for Safaliba.",
+                "zh-Hans": "Those languages refers to English and Gonja; the later community project adds a written form for Safaliba.",
+                "zh-Hant": "Those languages refers to English and Gonja; the later community project adds a written form for Safaliba."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This connects existing provision with the project’s distinct linguistic focus, without denying later English study.",
+                "zh-Hans": "This connects existing provision with the project’s distinct linguistic focus, without denying later English study.",
+                "zh-Hant": "This connects existing provision with the project’s distinct linguistic focus, without denying later English study."
+              },
+              {
+                "en": "The reported school materials are English and Gonja; Safaliba is being developed separately.",
+                "zh-Hans": "The reported school materials are English and Gonja; Safaliba is being developed separately.",
+                "zh-Hant": "The reported school materials are English and Gonja; Safaliba is being developed separately."
+              },
+              {
+                "en": "The report describes transferring literacy skills to a second language and bilingual books, not excluding English.",
+                "zh-Hans": "The report describes transferring literacy skills to a second language and bilingual books, not excluding English.",
+                "zh-Hant": "The report describes transferring literacy skills to a second language and bilingual books, not excluding English."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c1-voa-education-reading-0-interpretation",
+            "blockId": "source",
+            "prompt": "Compare the educational and cultural reasons given for the project. Attribute each reason and support the contrast with two quotations.",
+            "criteria": [
+              {
+                "en": "Attribute the literacy-transfer argument to Schaefer and the cultural-preservation argument to the Chief.",
+                "zh-Hans": "Attribute the literacy-transfer argument to Schaefer and the cultural-preservation argument to the Chief.",
+                "zh-Hant": "Attribute the literacy-transfer argument to Schaefer and the cultural-preservation argument to the Chief."
+              },
+              {
+                "en": "Explain how the rationales complement each other without claiming the report proves every child will improve.",
+                "zh-Hans": "Explain how the rationales complement each other without claiming the report proves every child will improve.",
+                "zh-Hant": "Explain how the rationales complement each other without claiming the report proves every child will improve."
+              }
+            ],
+            "evidence": {
+              "start": 2438,
+              "end": 2594
+            },
+            "additionalEvidence": [
+              {
+                "start": 3933,
+                "end": 4058,
+                "blockId": "source"
+              }
+            ],
+            "hints": [
+              {
+                "en": "Distinguish practical educational benefits from cultural continuity.",
+                "zh-Hans": "Distinguish practical educational benefits from cultural continuity.",
+                "zh-Hant": "Distinguish practical educational benefits from cultural continuity."
+              },
+              {
+                "en": "Compare Schaefer’s account of children with the Chief’s closing reasons.",
+                "zh-Hans": "Compare Schaefer’s account of children with the Chief’s closing reasons.",
+                "zh-Hant": "Compare Schaefer’s account of children with the Chief’s closing reasons."
+              },
+              {
+                "en": "Can use those skills is an educational possibility; protect the culture and pride concern continuity and identity.",
+                "zh-Hans": "Can use those skills is an educational possibility; protect the culture and pride concern continuity and identity.",
+                "zh-Hant": "Can use those skills is an educational possibility; protect the culture and pride concern continuity and identity."
+              }
+            ],
+            "explanation": {
+              "en": "Schaefer links first-language literacy with second-language school learning. The Chief links written language and pride with cultural preservation. These are complementary attributed reasons; the report is not a controlled proof of a universal effect. Review both quotations and your attribution yourself; this answer is not automatically scored.",
+              "zh-Hans": "Schaefer links first-language literacy with second-language school learning. The Chief links written language and pride with cultural preservation. These are complementary attributed reasons; the report is not a controlled proof of a universal effect. Review both quotations and your attribution yourself; this answer is not automatically scored.",
+              "zh-Hant": "Schaefer links first-language literacy with second-language school learning. The Chief links written language and pride with cultural preservation. These are complementary attributed reasons; the report is not a controlled proof of a universal effect. Review both quotations and your attribution yourself; this answer is not automatically scored."
+            }
+          }
+        ]
+      },
+      {
+        "id": "c1-voa-education-reading-5668393",
+        "rootId": "voa-article-5668393",
+        "sourceId": "voa-5668393",
+        "title": "How to Inspect Your Own Writing (2020)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "There are several excellent sources on writing rules. However, the rules are different for different fields, such as business, technology, government, or academic writing.\n\nStrunk & White\n\nFull-time writers often turn to a handbook, such as Strunk and White’s “The Elements of Style.” This book, published in 1959, combined the earlier work of William Strunk, Junior and E. B. White, the writer of several popular children’s books. “The Elements of Style” has simple rules for good writing. You can get the 1920 version of the book free on Project Gutenberg. More recent versions deal with issues of gender and changes in punctuation.\n\nChicago Manual of Style\n\nStudents writing a report for school may use a book like The Chicago Manual of Style, from the University of Chicago. The Chicago Manual deals with English grammar and how to prepare an academic paper. It was first published in 1906. Kate L. Turabian’s Manual for Writers of Research Papers, Theses, and Dissertations is based on The Chicago Manual. Her work is especially helpful for high school and college students.\nIt is available free online.\n\nPurdue OWL\n\nAn excellent place to look for help with writing is Purdue University’s Online Writing Lab, or “OWL” for short. As noted earlier, technical and professional writing is different from what teachers expect of writing in school. So, Purdue OWL has a guide for writing business letters and technical materials.\n\nThe OWL has helpful resources for writing teachers who are working remotely, too. Teachers can download presentations on many subjects related to writing.\n\nAvoiding plagiarism\n\nAnother English learner asked us how to avoid plagiarism when writing. Plagiarism is when someone takes another person’s work and passes it off as their own.\n\nMany schools punish students severely for copying the words of another writer. For those learning English, writing has different problems, and to help them, the OWL has one part especially for ESL students. It includes an explanation of how American schools deal with plagiarism.\n\nWhen students find information on the internet, it is too easy to copy it and put it directly into their own written work. To avoid this, the OWL urges you to take more time to deeply understand what you read. Begin by looking at books and printed materials before turning to the internet. When you find information on the internet, write down notes by hand in a notebook. As you write, put the ideas into your own words. This process is called paraphrasing.\n\nThink about the meaning of the whole work. You want to tell your reader how this information is related to your own ideas. If you use another writer’s exact words, make sure to place quotation marks [“_”] before and after them, and tell your reader how to find the original source. The guides I named earlier in this report explain how to quote work in different styles of writing.\n\nIf you are not sure about how well you paraphrased another writer’s work, there are online tools that will tell you how closely your work resembles that of someone else. Ask your school which tool they suggest. Or you can take a few lines from your written work and copy them into an internet search engine. If they are the same as another published work, the search result will probably identify that work.\n\nWork with others\n\nAnother good way to test your writing is to read it aloud and see if it is easy to understand. Ask a friend or a family member to listen as you read it and tell you if they can understand. Writing well is not easy, but when finished you will have a good feeling: you have communicated your ideas to others clearly."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-voa-education-reading-1-choice",
+            "blockId": "source",
+            "prompt": "Which interpretation best explains why the author presents several writing resources?",
+            "options": [
+              "One handbook is declared the supreme authority for every type of writing.",
+              "Rules differ by field, so resources serve different writing purposes.",
+              "Academic and professional writing are described as identical."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 0,
+              "end": 171
+            },
+            "hints": [
+              {
+                "en": "Find the organising distinction behind the list of resources.",
+                "zh-Hans": "Find the organising distinction behind the list of resources.",
+                "zh-Hant": "Find the organising distinction behind the list of resources."
+              },
+              {
+                "en": "Compare the opening However with the later academic and business-writing examples.",
+                "zh-Hans": "Compare the opening However with the later academic and business-writing examples.",
+                "zh-Hant": "Compare the opening However with the later academic and business-writing examples."
+              },
+              {
+                "en": "However qualifies the availability of excellent sources: suitability depends on field.",
+                "zh-Hans": "However qualifies the availability of excellent sources: suitability depends on field.",
+                "zh-Hant": "However qualifies the availability of excellent sources: suitability depends on field."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author names several sources and explicitly distinguishes fields.",
+                "zh-Hans": "The author names several sources and explicitly distinguishes fields.",
+                "zh-Hant": "The author names several sources and explicitly distinguishes fields."
+              },
+              {
+                "en": "The opening distinction organises the later examples by writing purpose.",
+                "zh-Hans": "The opening distinction organises the later examples by writing purpose.",
+                "zh-Hant": "The opening distinction organises the later examples by writing purpose."
+              },
+              {
+                "en": "The report explicitly separates technical/professional writing from school expectations.",
+                "zh-Hans": "The report explicitly separates technical/professional writing from school expectations.",
+                "zh-Hant": "The report explicitly separates technical/professional writing from school expectations."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c1-voa-education-reading-1-interpretation",
+            "blockId": "source",
+            "prompt": "Explain the distinction between paraphrasing ideas and quoting exact words. Use both evidence passages, and identify the attribution requirement for a quotation.",
+            "criteria": [
+              {
+                "en": "Describe paraphrasing as expressing understood ideas in your own words, rather than merely copying them.",
+                "zh-Hans": "Describe paraphrasing as expressing understood ideas in your own words, rather than merely copying them.",
+                "zh-Hant": "Describe paraphrasing as expressing understood ideas in your own words, rather than merely copying them."
+              },
+              {
+                "en": "For exact wording, retain quotation marks and a way to locate the original source; do not claim a similarity search proves originality.",
+                "zh-Hans": "For exact wording, retain quotation marks and a way to locate the original source; do not claim a similarity search proves originality.",
+                "zh-Hant": "For exact wording, retain quotation marks and a way to locate the original source; do not claim a similarity search proves originality."
+              }
+            ],
+            "evidence": {
+              "start": 2420,
+              "end": 2505
+            },
+            "additionalEvidence": [
+              {
+                "start": 2630,
+                "end": 2788,
+                "blockId": "source"
+              }
+            ],
+            "hints": [
+              {
+                "en": "Preserve the difference between ideas expressed anew and exact wording borrowed.",
+                "zh-Hans": "Preserve the difference between ideas expressed anew and exact wording borrowed.",
+                "zh-Hant": "Preserve the difference between ideas expressed anew and exact wording borrowed."
+              },
+              {
+                "en": "Compare the paraphrasing definition with the If clause for exact words.",
+                "zh-Hans": "Compare the paraphrasing definition with the If clause for exact words.",
+                "zh-Hant": "Compare the paraphrasing definition with the If clause for exact words."
+              },
+              {
+                "en": "The exact-word condition requires both marking the quotation and identifying the source.",
+                "zh-Hans": "The exact-word condition requires both marking the quotation and identifying the source.",
+                "zh-Hant": "The exact-word condition requires both marking the quotation and identifying the source."
+              }
+            ],
+            "explanation": {
+              "en": "The report calls expressing ideas in your own words paraphrasing. Exact words instead require quotation marks and a traceable source. The later similarity tools are checks, not a guarantee of originality. Review your explanation and both quotations; it is not automatically scored.",
+              "zh-Hans": "The report calls expressing ideas in your own words paraphrasing. Exact words instead require quotation marks and a traceable source. The later similarity tools are checks, not a guarantee of originality. Review your explanation and both quotations; it is not automatically scored.",
+              "zh-Hant": "The report calls expressing ideas in your own words paraphrasing. Exact words instead require quotation marks and a traceable source. The later similarity tools are checks, not a guarantee of originality. Review your explanation and both quotations; it is not automatically scored."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c1-voa-education-listening",
+    "targetLevel": "C1",
+    "skill": "listening",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Hear evidence and attributed reasons",
+      "zh-Hans": "Hear evidence and attributed reasons",
+      "zh-Hant": "Hear evidence and attributed reasons"
+    },
+    "goalId": "relate-evidence-and-attributed-reasons-listening",
+    "goal": {
+      "en": "Connect dispersed reasons, distinguish speakers’ purposes, and preserve the limits of a source-based interpretation.",
+      "zh-Hans": "Connect dispersed reasons, distinguish speakers’ purposes, and preserve the limits of a source-based interpretation.",
+      "zh-Hant": "Connect dispersed reasons, distinguish speakers’ purposes, and preserve the limits of a source-based interpretation."
+    },
+    "sourceId": "voa-2737208",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Map who makes each claim and why it is relevant. A reported educational benefit and a cultural rationale can support the same project for different reasons. In the second material, distinguish the author’s organising contrast from individual examples and keep borrowed words separate from your explanation.",
+      "zh-Hans": "Map who makes each claim and why it is relevant. A reported educational benefit and a cultural rationale can support the same project for different reasons. In the second material, distinguish the author’s organising contrast from individual examples and keep borrowed words separate from your explanation.",
+      "zh-Hant": "Map who makes each claim and why it is relevant. A reported educational benefit and a cultural rationale can support the same project for different reasons. In the second material, distinguish the author’s organising contrast from individual examples and keep borrowed words separate from your explanation."
+    },
+    "workedExample": {
+      "en": "If one speaker argues that a programme can help learning and another values its cultural role, a summary should attribute both reasons. Neither statement alone proves a guaranteed improvement for every learner.",
+      "zh-Hans": "If one speaker argues that a programme can help learning and another values its cultural role, a summary should attribute both reasons. Neither statement alone proves a guaranteed improvement for every learner.",
+      "zh-Hant": "If one speaker argues that a programme can help learning and another values its cultural role, a summary should attribute both reasons. Neither statement alone proves a guaranteed improvement for every learner."
+    },
+    "nextStep": {
+      "en": "Use an unfamiliar report to compare two attributed reasons. Quote short supporting passages and state one conclusion the source does not establish.",
+      "zh-Hans": "Use an unfamiliar report to compare two attributed reasons. Quote short supporting passages and state one conclusion the source does not establish.",
+      "zh-Hant": "Use an unfamiliar report to compare two attributed reasons. Quote short supporting passages and state one conclusion the source does not establish."
+    },
+    "materials": [
+      {
+        "id": "c1-voa-education-listening-2737208",
+        "rootId": "voa-article-2737208",
+        "sourceId": "voa-2737208",
+        "title": "Learning to Read in Safaliba Helps Ghanaian Kids Learn English (2015)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Ghana’s official national language is English. But for most citizens English is also a second language.\n\nUntil recently, children in the country had to learn English as soon as they entered school. But, many had little contact with English, especially those in poor rural areas. As a result, many Ghanaian children never learned to read and write.\n\nThe National Literacy Acceleration Program (NALAP) was designed to help deal with this problem. The country-wide program opened in 2010. It teaches reading and writing in local languages during a two-year kindergarten program and during grades one through three. Then in grade four, children begin to study in English only.\n\nSafaliba is a rare language with about 7,000 speakers in several towns in northern Ghana. It is mainly a spoken language. Among Safaliba speakers, the literacy rate in English is only eight percent.\n\nPublic school teachers in northern Ghana teach reading and writing in English and Gonja, one of the more common native languages in the area. The Ministry of Education provides the local schools with materials in those languages.\n\nSafaliba had no common written form until 2003. A research team of Ghanaian and American educators is working to expand its use.\n\nWriting an oral language\n\nPaul Schaefer grew up in Ghana and works for the Christian based non-governmental organization GILLBT. That stands for Ghana Institute of Linguistics, Literacy, and Bible Translation. Beginning in 1998, he and his wife, Jennifer Schaefer, studied the Safaliba language. They worked together with Safaliba speakers to develop a way to write the language. They used this written language in adult literacy programs and published short books for the students to read.\n\nIddi Bayaya is the main Safaliba literacy teacher. He is a farmer who had a few years of primary school education. Mr. Bayaya attended government-supported classes in Gonja and learned to be a literacy facilitator in that language.\n\nSince 2003, Mr. Bayaya has taught a nightly literacy class in his northern Ghanaian hometown, Mandari. He trained several other people to teach Safaliba literacy in Mandari. Then he began literacy classes in two other Safaliba-speaking villages.\n\nChildren want to learn, too\n\nSoon children started coming to the adult classes. The young people learned the written language quickly. Paul Schaefer says the classes helped people learn the many ways written language could help them. He says they also learned that children who learn to read and write in their own language can use those skills in a second language and do better in school.\n\n“So then they were basically saying that, well, we've seen that this does benefit the children in their formal education, why can't we have our language in the schools?”\n\nPaul Schaefer says the idea came from the famous anthropologist Esther Goody.\n\n“In her later years she was living here in Bole and doing research into education basically using local languages. And then she said, well, you know, you're doing adult education, but if you would focus on also getting the children educated, eventually there wouldn't be a need for adult education.’”\n\nIt was not long before the Safaliba community asked to enlarge the adult program to include children. Ari Sherris is a professor of bilingual education at Texas A&M University in Kingsville, Texas. He began working with the government literacy program in Ghana about ten years ago. Esther Goody introduced him to Paul Schaefer in 2012 and over the next two years they talked about ways to work together on the school project. In 2014, Mr. Sherris visited the Safaliba area twice and helped encourage the new movement to teach the Safaliba language in school. He plans to live with Safaliba speakers and help them create Safaliba-English bilingual books.\n\nThe Mandari Safaliba Chief, Bodua Mango Kafinti the Second, also supports this effort. He sees the writing of Safaliba as a way to preserve the language. He says the language helps protect the culture. He says people must become proud of their language to guarantee it continues."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-voa-education-listening-0-choice",
+            "blockId": "source",
+            "prompt": "How does the reported local provision help explain the Safaliba project’s role?",
+            "options": [
+              "Schools receive English and Gonja materials; the project develops written learning in the community’s own language.",
+              "The report says schools already receive Safaliba materials in every grade.",
+              "The project aims to prevent children from ever studying English."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 874,
+              "end": 1103,
+              "audioStart": 80.68,
+              "audioEnd": 100.68
+            },
+            "hints": [
+              {
+                "en": "Connect the existing provision with the unmet community need.",
+                "zh-Hans": "Connect the existing provision with the unmet community need.",
+                "zh-Hant": "Connect the existing provision with the unmet community need."
+              },
+              {
+                "en": "Compare the school-material languages with the subsequent account of developing written Safaliba.",
+                "zh-Hans": "Compare the school-material languages with the subsequent account of developing written Safaliba.",
+                "zh-Hant": "Compare the school-material languages with the subsequent account of developing written Safaliba."
+              },
+              {
+                "en": "Those languages refers to English and Gonja; the later community project adds a written form for Safaliba.",
+                "zh-Hans": "Those languages refers to English and Gonja; the later community project adds a written form for Safaliba.",
+                "zh-Hant": "Those languages refers to English and Gonja; the later community project adds a written form for Safaliba."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This connects existing provision with the project’s distinct linguistic focus, without denying later English study.",
+                "zh-Hans": "This connects existing provision with the project’s distinct linguistic focus, without denying later English study.",
+                "zh-Hant": "This connects existing provision with the project’s distinct linguistic focus, without denying later English study."
+              },
+              {
+                "en": "The reported school materials are English and Gonja; Safaliba is being developed separately.",
+                "zh-Hans": "The reported school materials are English and Gonja; Safaliba is being developed separately.",
+                "zh-Hant": "The reported school materials are English and Gonja; Safaliba is being developed separately."
+              },
+              {
+                "en": "The report describes transferring literacy skills to a second language and bilingual books, not excluding English.",
+                "zh-Hans": "The report describes transferring literacy skills to a second language and bilingual books, not excluding English.",
+                "zh-Hant": "The report describes transferring literacy skills to a second language and bilingual books, not excluding English."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c1-voa-education-listening-0-interpretation",
+            "blockId": "source",
+            "prompt": "Compare the educational and cultural reasons given for the project. Attribute each reason and support the contrast with two quotations.",
+            "criteria": [
+              {
+                "en": "Attribute the literacy-transfer argument to Schaefer and the cultural-preservation argument to the Chief.",
+                "zh-Hans": "Attribute the literacy-transfer argument to Schaefer and the cultural-preservation argument to the Chief.",
+                "zh-Hant": "Attribute the literacy-transfer argument to Schaefer and the cultural-preservation argument to the Chief."
+              },
+              {
+                "en": "Explain how the rationales complement each other without claiming the report proves every child will improve.",
+                "zh-Hans": "Explain how the rationales complement each other without claiming the report proves every child will improve.",
+                "zh-Hant": "Explain how the rationales complement each other without claiming the report proves every child will improve."
+              }
+            ],
+            "evidence": {
+              "start": 2441,
+              "end": 2597,
+              "audioStart": 214.98,
+              "audioEnd": 227.04
+            },
+            "additionalEvidence": [
+              {
+                "start": 3960,
+                "end": 4085,
+                "audioStart": 337.6,
+                "audioEnd": 347.66,
+                "blockId": "source"
+              }
+            ],
+            "hints": [
+              {
+                "en": "Distinguish practical educational benefits from cultural continuity.",
+                "zh-Hans": "Distinguish practical educational benefits from cultural continuity.",
+                "zh-Hant": "Distinguish practical educational benefits from cultural continuity."
+              },
+              {
+                "en": "Compare Schaefer’s account of children with the Chief’s closing reasons.",
+                "zh-Hans": "Compare Schaefer’s account of children with the Chief’s closing reasons.",
+                "zh-Hant": "Compare Schaefer’s account of children with the Chief’s closing reasons."
+              },
+              {
+                "en": "Can use those skills is an educational possibility; protect the culture and pride concern continuity and identity.",
+                "zh-Hans": "Can use those skills is an educational possibility; protect the culture and pride concern continuity and identity.",
+                "zh-Hant": "Can use those skills is an educational possibility; protect the culture and pride concern continuity and identity."
+              }
+            ],
+            "explanation": {
+              "en": "Schaefer links first-language literacy with second-language school learning. The Chief links written language and pride with cultural preservation. These are complementary attributed reasons; the report is not a controlled proof of a universal effect. Review both quotations and your attribution yourself; this answer is not automatically scored.",
+              "zh-Hans": "Schaefer links first-language literacy with second-language school learning. The Chief links written language and pride with cultural preservation. These are complementary attributed reasons; the report is not a controlled proof of a universal effect. Review both quotations and your attribution yourself; this answer is not automatically scored.",
+              "zh-Hant": "Schaefer links first-language literacy with second-language school learning. The Chief links written language and pride with cultural preservation. These are complementary attributed reasons; the report is not a controlled proof of a universal effect. Review both quotations and your attribution yourself; this answer is not automatically scored."
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/c1-speech/voa-safaliba-literacy.mp3",
+          "sha256": "d61616dd6503cfa526c76737bb2f8f8942818813a0ac823f989d86103aa0427d",
+          "duration": 347.86,
+          "author": "VOA Learning English — Jill Robbins, Jim Tedder; interview: Paul Schaefer",
+          "sourceUrl": "https://learningenglish.voanews.com/a/learn-to-read-safaliba-helps-learn-english/2737208.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        }
+      },
+      {
+        "id": "c1-voa-education-listening-5668393",
+        "rootId": "voa-article-5668393",
+        "sourceId": "voa-5668393",
+        "title": "How to Inspect Your Own Writing (2020)",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "There are several excellent sources on writing rules. However, the rules are different for different fields, such as business, technology, government, or academic writing.\n\nStrunk & White\n\nFull-time writers often turn to a handbook, such as Strunk and White’s “The Elements of Style.” This book, published in 1959, combined the earlier work of William Strunk, Junior and E. B. White, the writer of several popular children’s books. “The Elements of Style” has simple rules for good writing. You can get the 1920 version of the book free on Project Gutenberg. More recent versions deal with issues of gender and changes in punctuation.\n\nChicago Manual of Style\n\nStudents writing a report for school may use a book like The Chicago Manual of Style, from the University of Chicago. The Chicago Manual deals with English grammar and how to prepare an academic paper. It was first published in 1906. Kate L. Turabian’s Manual for Writers of Research Papers, Theses, and Dissertations is based on The Chicago Manual. Her work is especially helpful for high school and college students.\nIt is available free online.\n\nPurdue OWL\n\nAn excellent place to look for help with writing is Purdue University’s Online Writing Lab, or “OWL” for short. As noted earlier, technical and professional writing is different from what teachers expect of writing in school. So, Purdue OWL has a guide for writing business letters and technical materials.\n\nThe OWL has helpful resources for writing teachers who are working remotely, too. Teachers can download presentations on many subjects related to writing.\n\nAvoiding plagiarism\n\nAnother English learner asked us how to avoid plagiarism when writing. Plagiarism is when someone takes another person’s work and passes it off as their own.\n\nMany schools punish students severely for copying the words of another writer. For those learning English, writing has different problems, and to help them, the OWL has one part especially for ESL students. It includes an explanation of how American schools deal with plagiarism.\n\nWhen students find information on the internet, it is too easy to copy it and put it directly into their own written work. To avoid this, the OWL urges you to take more time to deeply understand what you read. Begin by looking at books and printed materials before turning to the internet. When you find information on the internet, write down notes by hand in a notebook. As you write, put the ideas into your own words. This process is called paraphrasing.\n\nThink about the meaning of the whole work. You want to tell your reader how this information is related to your own ideas. If you use another writer’s exact words, make sure to place quotation marks [“_”] before and after them, and tell your reader how to find the original source. The guides I named earlier in this report explain how to quote work in different styles of writing.\n\nIf you are not sure about how well you paraphrased another writer’s work, there are online tools that will tell you how closely your work resembles that of someone else. Ask your school which tool they suggest. Or you can take a few lines from your written work and copy them into an internet search engine. If they are the same as another published work, the search result will probably identify that work.\n\nWork with others\n\nAnother good way to test your writing is to read it aloud and see if it is easy to understand. Ask a friend or a family member to listen as you read it and tell you if they can understand. Writing well is not easy, but when finished you will have a good feeling: you have communicated your ideas to others clearly."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-voa-education-listening-1-choice",
+            "blockId": "source",
+            "prompt": "Which interpretation best explains why the author presents several writing resources?",
+            "options": [
+              "One handbook is declared the supreme authority for every type of writing.",
+              "Rules differ by field, so resources serve different writing purposes.",
+              "Academic and professional writing are described as identical."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 0,
+              "end": 171,
+              "audioStart": 0.2,
+              "audioEnd": 14.08
+            },
+            "hints": [
+              {
+                "en": "Find the organising distinction behind the list of resources.",
+                "zh-Hans": "Find the organising distinction behind the list of resources.",
+                "zh-Hant": "Find the organising distinction behind the list of resources."
+              },
+              {
+                "en": "Compare the opening However with the later academic and business-writing examples.",
+                "zh-Hans": "Compare the opening However with the later academic and business-writing examples.",
+                "zh-Hant": "Compare the opening However with the later academic and business-writing examples."
+              },
+              {
+                "en": "However qualifies the availability of excellent sources: suitability depends on field.",
+                "zh-Hans": "However qualifies the availability of excellent sources: suitability depends on field.",
+                "zh-Hant": "However qualifies the availability of excellent sources: suitability depends on field."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The author names several sources and explicitly distinguishes fields.",
+                "zh-Hans": "The author names several sources and explicitly distinguishes fields.",
+                "zh-Hant": "The author names several sources and explicitly distinguishes fields."
+              },
+              {
+                "en": "The opening distinction organises the later examples by writing purpose.",
+                "zh-Hans": "The opening distinction organises the later examples by writing purpose.",
+                "zh-Hant": "The opening distinction organises the later examples by writing purpose."
+              },
+              {
+                "en": "The report explicitly separates technical/professional writing from school expectations.",
+                "zh-Hans": "The report explicitly separates technical/professional writing from school expectations.",
+                "zh-Hant": "The report explicitly separates technical/professional writing from school expectations."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "c1-voa-education-listening-1-interpretation",
+            "blockId": "source",
+            "prompt": "Explain the distinction between paraphrasing ideas and quoting exact words. Use both evidence passages, and identify the attribution requirement for a quotation.",
+            "criteria": [
+              {
+                "en": "Describe paraphrasing as expressing understood ideas in your own words, rather than merely copying them.",
+                "zh-Hans": "Describe paraphrasing as expressing understood ideas in your own words, rather than merely copying them.",
+                "zh-Hant": "Describe paraphrasing as expressing understood ideas in your own words, rather than merely copying them."
+              },
+              {
+                "en": "For exact wording, retain quotation marks and a way to locate the original source; do not claim a similarity search proves originality.",
+                "zh-Hans": "For exact wording, retain quotation marks and a way to locate the original source; do not claim a similarity search proves originality.",
+                "zh-Hant": "For exact wording, retain quotation marks and a way to locate the original source; do not claim a similarity search proves originality."
+              }
+            ],
+            "evidence": {
+              "start": 2420,
+              "end": 2505,
+              "audioStart": 194.92,
+              "audioEnd": 202
+            },
+            "additionalEvidence": [
+              {
+                "start": 2630,
+                "end": 2788,
+                "audioStart": 211.54,
+                "audioEnd": 224.98,
+                "blockId": "source"
+              }
+            ],
+            "hints": [
+              {
+                "en": "Preserve the difference between ideas expressed anew and exact wording borrowed.",
+                "zh-Hans": "Preserve the difference between ideas expressed anew and exact wording borrowed.",
+                "zh-Hant": "Preserve the difference between ideas expressed anew and exact wording borrowed."
+              },
+              {
+                "en": "Compare the paraphrasing definition with the If clause for exact words.",
+                "zh-Hans": "Compare the paraphrasing definition with the If clause for exact words.",
+                "zh-Hant": "Compare the paraphrasing definition with the If clause for exact words."
+              },
+              {
+                "en": "The exact-word condition requires both marking the quotation and identifying the source.",
+                "zh-Hans": "The exact-word condition requires both marking the quotation and identifying the source.",
+                "zh-Hant": "The exact-word condition requires both marking the quotation and identifying the source."
+              }
+            ],
+            "explanation": {
+              "en": "The report calls expressing ideas in your own words paraphrasing. Exact words instead require quotation marks and a traceable source. The later similarity tools are checks, not a guarantee of originality. Review your explanation and both quotations; it is not automatically scored.",
+              "zh-Hans": "The report calls expressing ideas in your own words paraphrasing. Exact words instead require quotation marks and a traceable source. The later similarity tools are checks, not a guarantee of originality. Review your explanation and both quotations; it is not automatically scored.",
+              "zh-Hant": "The report calls expressing ideas in your own words paraphrasing. Exact words instead require quotation marks and a traceable source. The later similarity tools are checks, not a guarantee of originality. Review your explanation and both quotations; it is not automatically scored."
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/c1-speech/voa-writing-sources.mp3",
+          "sha256": "ee6257e28fb81d9fa41a188c91cf773e7b9c892d8a830470fcf73810830038dc",
+          "duration": 291.48,
+          "author": "Jill Robbins, VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/how-to-inspect-your-own-writing/5668393.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        }
+      }
+    ]
+  }
+]

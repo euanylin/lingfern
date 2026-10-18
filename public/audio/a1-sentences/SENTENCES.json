@@ -1,0 +1,233 @@
+[
+  {
+    "rootId": "voa-article-3113733",
+    "title": "Hello, I’m Anna!",
+    "text": "She is Anna. She is new to D.C. Where are you from? I am from a small town.",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-introductions-short.mp3",
+      "sha256": "c12c5c6dcc0d89a3e5da966fe6bf6d4e9c6f7d09a31b2b3055d6c247f11d64d1",
+      "duration": 6.140907,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 31,
+        "text": "She is Anna. She is new to D.C.",
+        "audioStart": 0.2,
+        "audioEnd": 2.24
+      },
+      {
+        "start": 32,
+        "end": 51,
+        "text": "Where are you from?",
+        "audioStart": 2.68,
+        "audioEnd": 3.92
+      },
+      {
+        "start": 52,
+        "end": 75,
+        "text": "I am from a small town.",
+        "audioStart": 4.2,
+        "audioEnd": 5.94
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-3168971",
+    "title": "Where Are You?",
+    "text": "It is beautiful. We cook in the kitchen. I eat in the kitchen.",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-kitchen-short.mp3",
+      "sha256": "c011e32699458496d486e7e31c0fabb734583dd05c318a4e05d3dd1e6e3ed3dd",
+      "duration": 7.92,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 40,
+        "text": "It is beautiful. We cook in the kitchen.",
+        "audioStart": 0.2,
+        "audioEnd": 4.9
+      },
+      {
+        "start": 41,
+        "end": 62,
+        "text": "I eat in the kitchen.",
+        "audioStart": 4.9,
+        "audioEnd": 7.72
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-3126527",
+    "title": "I'm Here!",
+    "text": "Good. You are there. I want to find a supermarket.",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-supermarket-short.mp3",
+      "sha256": "ffaf775d2fde66b8994a9f225b8c6464c4d1fee465c62e06dc0b12d6c634461f",
+      "duration": 5.200499,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 20,
+        "text": "Good. You are there.",
+        "audioStart": 0.2,
+        "audioEnd": 2.04
+      },
+      {
+        "start": 21,
+        "end": 50,
+        "text": "I want to find a supermarket.",
+        "audioStart": 2.34,
+        "audioEnd": 5
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-3168920",
+    "title": "What Is It?",
+    "text": "It is not a pen. It is a book. It is a big book.",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-objects-short.mp3",
+      "sha256": "5aca2bd0ff0dad12bff43c14e66f6e788d67aa867e407b08486bf86d9f7b86dc",
+      "duration": 6.1,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 16,
+        "text": "It is not a pen.",
+        "audioStart": 0.2,
+        "audioEnd": 1.86
+      },
+      {
+        "start": 17,
+        "end": 30,
+        "text": "It is a book.",
+        "audioStart": 2.42,
+        "audioEnd": 3.62
+      },
+      {
+        "start": 31,
+        "end": 48,
+        "text": "It is a big book.",
+        "audioStart": 4.52,
+        "audioEnd": 5.9
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-3240468",
+    "title": "What Are You Doing?",
+    "text": "What are you doing? I'm reading. Are you reading the news?",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-reading-short.mp3",
+      "sha256": "61212a088ac0835097ff5454775c49bcbd711ff3b7111389d05d32d0de62bdea",
+      "duration": 5.801315,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 19,
+        "text": "What are you doing?",
+        "audioStart": 0.2,
+        "audioEnd": 1.68
+      },
+      {
+        "start": 20,
+        "end": 32,
+        "text": "I'm reading.",
+        "audioStart": 2.22,
+        "audioEnd": 3.54
+      },
+      {
+        "start": 33,
+        "end": 58,
+        "text": "Are you reading the news?",
+        "audioStart": 4.18,
+        "audioEnd": 5.6
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-3111026",
+    "title": "Welcome!",
+    "text": "Nice to meet you. Let's try that again.",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-greeting-short.mp3",
+      "sha256": "fc79bdf2fcadb7a4fe060dc3b124324ae1c1dead3c825842c7cb93ce081ad8c0",
+      "duration": 4.7,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 17,
+        "text": "Nice to meet you.",
+        "audioStart": 0.2,
+        "audioEnd": 1.14
+      },
+      {
+        "start": 18,
+        "end": 39,
+        "text": "Let's try that again.",
+        "audioStart": 3.14,
+        "audioEnd": 4.5
+      }
+    ]
+  },
+  {
+    "rootId": "voa-article-3225958",
+    "title": "Where Is the Gym?",
+    "text": "Oh, Pete. This is not the gym. That's right, Anna. This is the mailroom.",
+    "audio": {
+      "src": "/audio/a1-sentences/voa-gym-short.mp3",
+      "sha256": "c9f615fcedf9e8defde33aad333131ebf0b39c5f1a5ecf86c43f0c7fbe254526",
+      "duration": 8.62,
+      "author": "VOA Learning English",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html",
+      "license": "VOA Learning English original production (public domain)",
+      "synthetic": false
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 30,
+        "text": "Oh, Pete. This is not the gym.",
+        "audioStart": 0.2,
+        "audioEnd": 4.12
+      },
+      {
+        "start": 31,
+        "end": 72,
+        "text": "That's right, Anna. This is the mailroom.",
+        "audioStart": 4.92,
+        "audioEnd": 8.42
+      }
+    ]
+  }
+]

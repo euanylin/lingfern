@@ -1,0 +1,60 @@
+[
+  {
+    "rootId": "wikipedia-article-45262844",
+    "sourceHash": "d6e41e335956c81f997e903e71ec7e047084273944d4627d03c2ba807bc7bd51",
+    "title": "Cities XXL",
+    "text": "Before designating building lots, the game requires players to select which class of residents may live there. The social class chosen for a lot will not be modified by the simulation.",
+    "audio": {
+      "src": "/audio/a2-speech/cities-required-class.mp3",
+      "sha256": "1c4a6c8417290da5bc423eb3e6bd35ecb0b461fca643651f02d893d6e5b7ad29",
+      "duration": 13.230022675736961,
+      "author": "Speaker: Peppage Authors of the article",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Cities_XXL-article.ogg",
+      "license": "CC BY-SA 3.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Wikipedia contributors, Cities XXL, recorded revision 915405609. Recording: Speaker: Peppage Authors of the article. Continuous excerpt; unchanged words, mono MP3. Wikipedia author history: https://en.wikipedia.org/w/index.php?curid=45262844&action=history.",
+      "license": "Wikipedia text CC BY-SA 3.0 / 4.0; recording CC BY-SA 3.0",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Cities_XXL?oldid=915405609"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 184,
+        "text": "Before designating building lots, the game requires players to select which class of residents may live there. The social class chosen for a lot will not be modified by the simulation.",
+        "audioStart": 0,
+        "audioEnd": 13.230022675736961
+      }
+    ]
+  },
+  {
+    "rootId": "wikipedia-article-61241521",
+    "sourceHash": "f247396916f871fd6d5faac3d24cca4c4f40a8757082839788ea7a936259da71",
+    "title": "Dr. Mario World",
+    "text": "Following the completion of the first five stages, the player could choose to continue using Dr. Mario, or they may have elected to switch to either Dr. Peach or Dr. Bowser.",
+    "audio": {
+      "src": "/audio/a2-speech/mario-allowed-choice.mp3",
+      "sha256": "6ab2a4d9baab1e0e528cc57af37b845a3bd576d962b45776b70c85d55b46b6f0",
+      "duration": 11.789977324263038,
+      "author": "Speaker: Clay2004 Authors of the article",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-Dr.-Mario-World-article.ogg",
+      "license": "CC BY-SA 3.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Wikipedia contributors, Dr. Mario World, recorded revision 1208240000. Recording: Speaker: Clay2004 Authors of the article. Continuous excerpt; unchanged words, mono MP3. Wikipedia author history: https://en.wikipedia.org/w/index.php?curid=61241521&action=history.",
+      "license": "Wikipedia text CC BY-SA 3.0 / 4.0; recording CC BY-SA 3.0",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Dr._Mario_World?oldid=1208240000"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 173,
+        "text": "Following the completion of the first five stages, the player could choose to continue using Dr. Mario, or they may have elected to switch to either Dr. Peach or Dr. Bowser.",
+        "audioStart": 0,
+        "audioEnd": 11.789977324263038
+      }
+    ]
+  }
+]

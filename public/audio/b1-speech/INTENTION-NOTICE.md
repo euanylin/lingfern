@@ -1,0 +1,7 @@
+# Specific intentions: complete recording windows
+
+Frederick Marryat, The Children of the New Forest, Project Gutenberg6471; voice John Schell. L. Frank Baum (Edith Van Dyne), Aunt Jane's Nieces on Vacation, Project Gutenberg10059; voice Sarah Jennings. Exact source/reader credits, URLs and hashes are in INTENTION.json.
+
+Text public domain in the United States; other regions unverified. Preserve the unchanged Gutenberg terms in CONDITION-GUTENBERG-LICENSE.txt. Recordings CC BY4.0, LibriSpeech (c)2014 Vassil Panayotov with assistance of Daniel Povey; source https://www.openslr.org/12/ . Retain CONDITION-LIBRISPEECH-NOTICE.md and CONDITION-LIBRISPEECH-CC-BY-4.0.txt. Text and recording terms remain separate.
+
+Both whole official utterances were re-encoded from already retrieved, hash-verified FLAC at native16000Hz, with no trimming, padding, joining or retiming. Quotation marks are omitted in the plain transcripts; original words, narrator attributions and question/sentence punctuation remain. These windows end at complete sentences within longer speaker turns; no whole conversation is asserted. Whole-window segments carry no new fine-grained word times. Exact original source, official reference, retained ASR, contextual and technical checks remain separate. No new collection, ASR, audition, per-clip human-review claim or worldwide clearance. Historical diagnostics and all other precise holds remain.

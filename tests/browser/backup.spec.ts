@@ -1,0 +1,36 @@
+import { confirmTask } from './task-start';
+import { readFile } from 'node:fs/promises';
+import { expect, test } from '@playwright/test';
+import { selectPicker } from './picker';
+
+test('downloads a local ZIP and restores answers into a separate profile while offline', async ({ page, context }) => {
+  await page.goto('/today');
+  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  await page.getByRole('radio', { name: 'At the library.' }).check();
+  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await page.getByRole('link', { name: '离开任务' }).click();
+  await page.getByRole('link', { name: '设置', exact: true }).click();
+  await context.setOffline(true);
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: '下载备份' }).click();
+  const file = await download;
+  expect(file.suggestedFilename()).toMatch(/^lingfern-backup-.*\.zip$/);
+  const bytes = await readFile((await file.path())!);
+  await expect(page.locator('.backup-file-button')).toBeVisible();
+  const chooser = page.waitForEvent('filechooser');
+  await page.locator('.backup-file-button').click();
+  await (await chooser).setFiles({ name: 'saved.zip', mimeType: 'application/zip', buffer: bytes });
+  await expect(page.locator('.backup-file-name')).toHaveText('saved.zip');
+  await expect(page.getByText('待导入：本机档案')).toBeVisible();
+  await expect(page.locator('.backup-preview')).toContainText('任务 1 · 作答 1');
+  await page.getByRole('button', { name: '导入为新档案' }).click();
+  await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();
+  const current = await page.getByRole('button', { name: '当前档案' }).getAttribute('data-value');
+  expect(current).not.toBe('local-guest');
+  await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
+  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await page.getByRole('link', { name: '设置', exact: true }).click();
+  await selectPicker(page, '当前档案', 'local-guest');
+  await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
+  await expect(page.locator('.totals dd').first()).toHaveText('1');
+});

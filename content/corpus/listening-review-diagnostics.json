@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-01T19:17:52.227Z",
+  "scope": "Clip identity, full decoding, source-boundary candidates and local ASR diagnostics only; not audio/transcript editorial or rights approval. All inherited restrictions remain in force.",
+  "flaggedRoots": 212,
+  "flaggedClips": 391,
+  "clipsWithLocalMarkupOrHanCyrillic": 1,
+  "onlySourceTextFlagRoots": 58,
+  "sourceTextFlagRootsWithoutLocalMarkers": 57,
+  "locallyRetranscribedClips": 391,
+  "retranscriptionComplete": true,
+  "lexicalEqualClips": 195,
+  "asrTimestampOverruns": 30,
+  "completeSentenceCandidateRoots": 919,
+  "completeSentenceCandidateClips": 1701,
+  "audioTranscriptApprovals": 0,
+  "flagsCleared": 0
+}

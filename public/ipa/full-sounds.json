@@ -1,0 +1,509 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "ipa": "i",
+      "soundAudio": "/ipa/phonemes/sound-01.mp3"
+    },
+    {
+      "ipa": "y",
+      "soundAudio": "/ipa/phonemes/sound-41.mp3"
+    },
+    {
+      "ipa": "ɨ",
+      "soundAudio": "/ipa/phonemes/sound-42.mp3"
+    },
+    {
+      "ipa": "ʉ",
+      "soundAudio": "/ipa/phonemes/sound-43.mp3"
+    },
+    {
+      "ipa": "ɯ",
+      "soundAudio": "/ipa/phonemes/sound-44.mp3"
+    },
+    {
+      "ipa": "u",
+      "soundAudio": "/ipa/phonemes/sound-08.mp3"
+    },
+    {
+      "ipa": "ɪ",
+      "soundAudio": "/ipa/phonemes/sound-02.mp3"
+    },
+    {
+      "ipa": "ʏ",
+      "soundAudio": "/ipa/phonemes/sound-45.mp3"
+    },
+    {
+      "ipa": "ʊ",
+      "soundAudio": "/ipa/phonemes/sound-07.mp3"
+    },
+    {
+      "ipa": "e",
+      "soundAudio": "/ipa/phonemes/sound-46.mp3"
+    },
+    {
+      "ipa": "ø",
+      "soundAudio": "/ipa/phonemes/sound-47.mp3"
+    },
+    {
+      "ipa": "ɘ",
+      "soundAudio": "/ipa/phonemes/sound-48.mp3"
+    },
+    {
+      "ipa": "ɵ",
+      "soundAudio": "/ipa/phonemes/sound-49.mp3"
+    },
+    {
+      "ipa": "ɤ",
+      "soundAudio": "/ipa/phonemes/sound-50.mp3"
+    },
+    {
+      "ipa": "o",
+      "soundAudio": "/ipa/phonemes/sound-51.mp3"
+    },
+    {
+      "ipa": "ə",
+      "soundAudio": "/ipa/phonemes/sound-10.mp3"
+    },
+    {
+      "ipa": "ɛ",
+      "soundAudio": "/ipa/phonemes/sound-03.mp3"
+    },
+    {
+      "ipa": "œ",
+      "soundAudio": "/ipa/phonemes/sound-52.mp3"
+    },
+    {
+      "ipa": "ɜ",
+      "soundAudio": "/ipa/phonemes/sound-53.mp3"
+    },
+    {
+      "ipa": "ɞ",
+      "soundAudio": "/ipa/phonemes/sound-54.mp3"
+    },
+    {
+      "ipa": "ʌ",
+      "soundAudio": "/ipa/phonemes/sound-09.mp3"
+    },
+    {
+      "ipa": "ɔ",
+      "soundAudio": "/ipa/phonemes/sound-06.mp3"
+    },
+    {
+      "ipa": "æ",
+      "soundAudio": "/ipa/phonemes/sound-04.mp3"
+    },
+    {
+      "ipa": "ɐ",
+      "soundAudio": "/ipa/phonemes/sound-55.mp3"
+    },
+    {
+      "ipa": "a",
+      "soundAudio": "/ipa/phonemes/sound-56.mp3"
+    },
+    {
+      "ipa": "ɶ",
+      "soundAudio": "/ipa/phonemes/sound-57.mp3"
+    },
+    {
+      "ipa": "ɑ",
+      "soundAudio": "/ipa/phonemes/sound-05.mp3"
+    },
+    {
+      "ipa": "ɒ",
+      "soundAudio": "/ipa/phonemes/sound-58.mp3"
+    },
+    {
+      "ipa": "p",
+      "soundAudio": "/ipa/phonemes/sound-17.mp3"
+    },
+    {
+      "ipa": "b",
+      "soundAudio": "/ipa/phonemes/sound-18.mp3"
+    },
+    {
+      "ipa": "t",
+      "soundAudio": "/ipa/phonemes/sound-19.mp3"
+    },
+    {
+      "ipa": "d",
+      "soundAudio": "/ipa/phonemes/sound-20.mp3"
+    },
+    {
+      "ipa": "ʈ",
+      "soundAudio": "/ipa/phonemes/sound-59.mp3"
+    },
+    {
+      "ipa": "ɖ",
+      "soundAudio": "/ipa/phonemes/sound-60.mp3"
+    },
+    {
+      "ipa": "c",
+      "soundAudio": "/ipa/phonemes/sound-61.mp3"
+    },
+    {
+      "ipa": "ɟ",
+      "soundAudio": "/ipa/phonemes/sound-62.mp3"
+    },
+    {
+      "ipa": "k",
+      "soundAudio": "/ipa/phonemes/sound-21.mp3"
+    },
+    {
+      "ipa": "ɡ",
+      "soundAudio": "/ipa/phonemes/sound-22.mp3"
+    },
+    {
+      "ipa": "q",
+      "soundAudio": "/ipa/phonemes/sound-63.mp3"
+    },
+    {
+      "ipa": "ɢ",
+      "soundAudio": "/ipa/phonemes/sound-64.mp3"
+    },
+    {
+      "ipa": "ʔ",
+      "soundAudio": "/ipa/phonemes/sound-65.mp3"
+    },
+    {
+      "ipa": "m",
+      "soundAudio": "/ipa/phonemes/sound-34.mp3"
+    },
+    {
+      "ipa": "ɱ",
+      "soundAudio": "/ipa/phonemes/sound-66.mp3"
+    },
+    {
+      "ipa": "n",
+      "soundAudio": "/ipa/phonemes/sound-35.mp3"
+    },
+    {
+      "ipa": "ɳ",
+      "soundAudio": "/ipa/phonemes/sound-67.mp3"
+    },
+    {
+      "ipa": "ɲ",
+      "soundAudio": "/ipa/phonemes/sound-68.mp3"
+    },
+    {
+      "ipa": "ŋ",
+      "soundAudio": "/ipa/phonemes/sound-36.mp3"
+    },
+    {
+      "ipa": "ɴ",
+      "soundAudio": "/ipa/phonemes/sound-69.mp3"
+    },
+    {
+      "ipa": "ʙ",
+      "soundAudio": "/ipa/phonemes/sound-70.mp3"
+    },
+    {
+      "ipa": "r",
+      "soundAudio": "/ipa/phonemes/sound-71.mp3"
+    },
+    {
+      "ipa": "ʀ",
+      "soundAudio": "/ipa/phonemes/sound-72.mp3"
+    },
+    {
+      "ipa": "ⱱ",
+      "soundAudio": "/ipa/phonemes/sound-73.mp3"
+    },
+    {
+      "ipa": "ɾ",
+      "soundAudio": "/ipa/phonemes/sound-74.mp3"
+    },
+    {
+      "ipa": "ɽ",
+      "soundAudio": "/ipa/phonemes/sound-75.mp3"
+    },
+    {
+      "ipa": "ɸ",
+      "soundAudio": "/ipa/phonemes/sound-76.mp3"
+    },
+    {
+      "ipa": "β",
+      "soundAudio": "/ipa/phonemes/sound-77.mp3"
+    },
+    {
+      "ipa": "f",
+      "soundAudio": "/ipa/phonemes/sound-23.mp3"
+    },
+    {
+      "ipa": "v",
+      "soundAudio": "/ipa/phonemes/sound-24.mp3"
+    },
+    {
+      "ipa": "θ",
+      "soundAudio": "/ipa/phonemes/sound-25.mp3"
+    },
+    {
+      "ipa": "ð",
+      "soundAudio": "/ipa/phonemes/sound-26.mp3"
+    },
+    {
+      "ipa": "s",
+      "soundAudio": "/ipa/phonemes/sound-27.mp3"
+    },
+    {
+      "ipa": "z",
+      "soundAudio": "/ipa/phonemes/sound-28.mp3"
+    },
+    {
+      "ipa": "ʃ",
+      "soundAudio": "/ipa/phonemes/sound-29.mp3"
+    },
+    {
+      "ipa": "ʒ",
+      "soundAudio": "/ipa/phonemes/sound-30.mp3"
+    },
+    {
+      "ipa": "ʂ",
+      "soundAudio": "/ipa/phonemes/sound-78.mp3"
+    },
+    {
+      "ipa": "ʐ",
+      "soundAudio": "/ipa/phonemes/sound-79.mp3"
+    },
+    {
+      "ipa": "ç",
+      "soundAudio": "/ipa/phonemes/sound-80.mp3"
+    },
+    {
+      "ipa": "ʝ",
+      "soundAudio": "/ipa/phonemes/sound-81.mp3"
+    },
+    {
+      "ipa": "x",
+      "soundAudio": "/ipa/phonemes/sound-82.mp3"
+    },
+    {
+      "ipa": "ɣ",
+      "soundAudio": "/ipa/phonemes/sound-83.mp3"
+    },
+    {
+      "ipa": "χ",
+      "soundAudio": "/ipa/phonemes/sound-84.mp3"
+    },
+    {
+      "ipa": "ʁ",
+      "soundAudio": "/ipa/phonemes/sound-85.mp3"
+    },
+    {
+      "ipa": "ħ",
+      "soundAudio": "/ipa/phonemes/sound-86.mp3"
+    },
+    {
+      "ipa": "ʕ",
+      "soundAudio": "/ipa/phonemes/sound-87.mp3"
+    },
+    {
+      "ipa": "h",
+      "soundAudio": "/ipa/phonemes/sound-31.mp3"
+    },
+    {
+      "ipa": "ɦ",
+      "soundAudio": "/ipa/phonemes/sound-88.mp3"
+    },
+    {
+      "ipa": "ɬ",
+      "soundAudio": "/ipa/phonemes/sound-89.mp3"
+    },
+    {
+      "ipa": "ɮ",
+      "soundAudio": "/ipa/phonemes/sound-90.mp3"
+    },
+    {
+      "ipa": "ʋ",
+      "soundAudio": "/ipa/phonemes/sound-91.mp3"
+    },
+    {
+      "ipa": "ɹ",
+      "soundAudio": "/ipa/phonemes/sound-38.mp3"
+    },
+    {
+      "ipa": "ɻ",
+      "soundAudio": "/ipa/phonemes/sound-92.mp3"
+    },
+    {
+      "ipa": "j",
+      "soundAudio": "/ipa/phonemes/sound-39.mp3"
+    },
+    {
+      "ipa": "ɰ",
+      "soundAudio": "/ipa/phonemes/sound-93.mp3"
+    },
+    {
+      "ipa": "l",
+      "soundAudio": "/ipa/phonemes/sound-37.mp3"
+    },
+    {
+      "ipa": "ɭ",
+      "soundAudio": "/ipa/phonemes/sound-94.mp3"
+    },
+    {
+      "ipa": "ʎ",
+      "soundAudio": "/ipa/phonemes/sound-95.mp3"
+    },
+    {
+      "ipa": "ʟ",
+      "soundAudio": "/ipa/phonemes/sound-96.mp3"
+    },
+    {
+      "ipa": "ʘ",
+      "soundAudio": "/ipa/phonemes/sound-97.mp3"
+    },
+    {
+      "ipa": "ɓ",
+      "soundAudio": "/ipa/phonemes/sound-98.mp3"
+    },
+    {
+      "ipa": "pʼ",
+      "soundAudio": "/ipa/phonemes/sound-99.mp3"
+    },
+    {
+      "ipa": "ǀ",
+      "soundAudio": "/ipa/phonemes/sound-100.mp3"
+    },
+    {
+      "ipa": "ǃ",
+      "soundAudio": "/ipa/phonemes/sound-101.mp3"
+    },
+    {
+      "ipa": "ɗ",
+      "soundAudio": "/ipa/phonemes/sound-102.mp3"
+    },
+    {
+      "ipa": "tʼ",
+      "soundAudio": "/ipa/phonemes/sound-103.mp3"
+    },
+    {
+      "ipa": "ǂ",
+      "soundAudio": "/ipa/phonemes/sound-104.mp3"
+    },
+    {
+      "ipa": "ʄ",
+      "soundAudio": "/ipa/phonemes/sound-105.mp3"
+    },
+    {
+      "ipa": "ɠ",
+      "soundAudio": "/ipa/phonemes/sound-106.mp3"
+    },
+    {
+      "ipa": "kʼ",
+      "soundAudio": "/ipa/phonemes/sound-107.mp3"
+    },
+    {
+      "ipa": "ʛ",
+      "soundAudio": "/ipa/phonemes/sound-108.mp3"
+    },
+    {
+      "ipa": "ǁ",
+      "soundAudio": "/ipa/phonemes/sound-109.mp3"
+    },
+    {
+      "ipa": "sʼ",
+      "soundAudio": "/ipa/phonemes/sound-110.mp3"
+    },
+    {
+      "ipa": "ʍ",
+      "soundAudio": "/ipa/phonemes/sound-111.mp3"
+    },
+    {
+      "ipa": "w",
+      "soundAudio": "/ipa/phonemes/sound-40.mp3"
+    },
+    {
+      "ipa": "ɥ",
+      "soundAudio": "/ipa/phonemes/sound-112.mp3"
+    },
+    {
+      "ipa": "ʜ",
+      "soundAudio": "/ipa/phonemes/sound-113.mp3"
+    },
+    {
+      "ipa": "ʢ",
+      "soundAudio": "/ipa/phonemes/sound-114.mp3"
+    },
+    {
+      "ipa": "ʡ",
+      "soundAudio": "/ipa/phonemes/sound-115.mp3"
+    },
+    {
+      "ipa": "ɕ",
+      "soundAudio": "/ipa/phonemes/sound-116.mp3"
+    },
+    {
+      "ipa": "ʑ",
+      "soundAudio": "/ipa/phonemes/sound-117.mp3"
+    },
+    {
+      "ipa": "ɺ",
+      "soundAudio": "/ipa/phonemes/sound-118.mp3"
+    },
+    {
+      "ipa": "ɧ",
+      "soundAudio": "/ipa/phonemes/sound-119.mp3"
+    },
+    {
+      "ipa": "t͡s",
+      "soundAudio": "/ipa/phonemes/sound-120.mp3"
+    },
+    {
+      "ipa": "tʃ",
+      "soundAudio": "/ipa/phonemes/sound-32.mp3"
+    },
+    {
+      "ipa": "t͡ɕ",
+      "soundAudio": "/ipa/phonemes/sound-121.mp3"
+    },
+    {
+      "ipa": "ʈ͡ʂ",
+      "soundAudio": "/ipa/phonemes/sound-122.mp3"
+    },
+    {
+      "ipa": "d͡z",
+      "soundAudio": "/ipa/phonemes/sound-123.mp3"
+    },
+    {
+      "ipa": "dʒ",
+      "soundAudio": "/ipa/phonemes/sound-33.mp3"
+    },
+    {
+      "ipa": "d͡ʑ",
+      "soundAudio": "/ipa/phonemes/sound-124.mp3"
+    },
+    {
+      "ipa": "ɖ͡ʐ",
+      "soundAudio": "/ipa/phonemes/sound-125.mp3"
+    },
+    {
+      "ipa": "ɝ",
+      "soundAudio": "/ipa/phonemes/sound-11.mp3"
+    },
+    {
+      "ipa": "ɚ",
+      "soundAudio": "/ipa/phonemes/sound-11.mp3"
+    },
+    {
+      "ipa": "eɪ",
+      "soundAudio": "/ipa/phonemes/sound-12.mp3"
+    },
+    {
+      "ipa": "aɪ",
+      "soundAudio": "/ipa/phonemes/sound-13.mp3"
+    },
+    {
+      "ipa": "ɔɪ",
+      "soundAudio": "/ipa/phonemes/sound-14.mp3"
+    },
+    {
+      "ipa": "aʊ",
+      "soundAudio": "/ipa/phonemes/sound-15.mp3"
+    },
+    {
+      "ipa": "oʊ",
+      "soundAudio": "/ipa/phonemes/sound-16.mp3"
+    }
+  ]
+}

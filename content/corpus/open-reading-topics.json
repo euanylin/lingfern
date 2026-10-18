@@ -1,0 +1,365 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "rootId": "openstax-book-psychology-2e",
+      "sourceHash": "6be60580c7d640091e5406bf3c28ca9c5aa84b8de717cd5110ce11ba104c5435",
+      "topic": "health",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-psychology/blob/e061043bf2f9e86ace51c4e8dc9555160f60a99d/collections/psychology-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-biology-2e",
+      "sourceHash": "ad36c39c255b4b369765e8d7db8f0f41cc23074555e07649e13cf295ca79253e",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-biology-bundle/blob/d2779c2edfb435e75047325434fe2fe93d5aa120/collections/biology-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-physical-geology-2e",
+      "sourceHash": "bac292c654f85b96e17831f8db7b5ce9181e0d062f0f3a133aefc298a7fd4f71",
+      "topic": "science",
+      "provenance": {
+        "url": "https://opentextbc.ca/physicalgeology2ed/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-sociology-3e",
+      "sourceHash": "93918f53e902eeab76e526924bf6807e3b3f04e1127f4bdb03b7b2b2d87d2a0b",
+      "topic": "society",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introduction-sociology/blob/d35d5f3bdac40f93607d600134865d4f13ce1f9b/collections/introduction-sociology-3e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-us-history",
+      "sourceHash": "522791e9ee96f31b4146759bdf6c54377222d1356816108431270d94f02b0dbb",
+      "topic": "history",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-us-history/blob/046331cfcea0ac1b1a8fd461b3e6aae638845af3/collections/us-history.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-abealfreader1",
+      "sourceHash": "825a59e388141e6d508122346d19f25f4f8a454bf31c96428c50b865e7e8baab",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://opentextbc.ca/abealfreader1/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-business",
+      "sourceHash": "db6b2facf57ecf362c66d13e19a1d6dd03e7cd020687fdc73d9c69862dc9d033",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introduction-business/blob/9d3b8c44e4567d207424bc92d4f7ceffb1a9dcd5/collections/introduction-business.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-organizational-behavior",
+      "sourceHash": "b8483e2ce6031dae70beafcab4193e8a67b950c9b1697d4cc0cf157a3acdf7b7",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-principles-of-management-bundle/blob/54660e7c5d6b4495a796032457a70a94708f3eeb/collections/organizational-behavior.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-principles-management",
+      "sourceHash": "efa6b362e2a9e29c4173ccf7e940b5648bf203f7bc6ca26f6eaa6c595f732afb",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-principles-of-management-bundle/blob/54660e7c5d6b4495a796032457a70a94708f3eeb/collections/principles-management.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-principles-marketing",
+      "sourceHash": "0abfdd153d8f8434c4bfec55594e5cdc0ed6e8e388f5aae79e499b3d2e0d24e7",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-principles-marketing/blob/deb6e19777dc40f3c8861fad1a3fa319d91a940a/collections/principles-marketing.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-anthropology",
+      "sourceHash": "3faac5a77d333f57d6d23c4fbc885db6e37fa5dcec8640ecc5e5de850b3d2e5a",
+      "topic": "culture",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introduction-anthropology/blob/6cb07defded1d0d8d246aa2f592a044e2e19136e/collections/introduction-anthropology.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-philosophy",
+      "sourceHash": "2271f2fdc8e2cf9473870ee30db97b6e36c412a4844af6ab875c87cf39aeae63",
+      "topic": "society",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introduction-philosophy/blob/ec2804507cf93609bcdd72cc2f2f5aea054a8ae5/collections/introduction-philosophy.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-world-history-volume-1",
+      "sourceHash": "02866b629aa340e44e86d0d9e333c285c7626e06b7c1dce227f9cc22c99bb8ad",
+      "topic": "history",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-world-history/blob/dbe4cb6de157b506f07fab8c52ffe80704578f69/collections/world-history-volume-1.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-world-history-volume-2",
+      "sourceHash": "a0324290e568ffa3e95935a0e29ee6881ee8745aaef315d10857955d6eaa52ee",
+      "topic": "history",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-world-history/blob/dbe4cb6de157b506f07fab8c52ffe80704578f69/collections/world-history-volume-2.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-political-science",
+      "sourceHash": "202054d5e7230bd8d95aab6b66b178b4c059345923acd11608a27f6d06c76ea8",
+      "topic": "society",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introduction-political-science/blob/91f18d9248993ae0bcd44e08562acb61f24a08e8/collections/introduction-political-science.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-college-success",
+      "sourceHash": "4c7124b939373d006b7897e1fbbc5b96318d7cfd5b6b76eded6bb6ec2ec62d28",
+      "topic": "campus",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-college-success-bundle/blob/964da1b4e0343a4607b8af1b49470a35faf55f96/collections/college-success.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-entrepreneurship",
+      "sourceHash": "399d315f08e6dc7d311591e4b4357e1fafe92fb859d3184e91f3e9e1ec571aee",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-entrepreneurship/blob/9c67d18c5faaa4cdb4cd087ce684c742e14f4005/collections/entrepreneurship.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-american-government-3e",
+      "sourceHash": "e368a9cdecb601e48b55a5966eb74ec657e892d9c8c4ef34bc10ce932f587e3e",
+      "topic": "society",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-american-government/blob/dd9a37728e80d377f2be83c2a0085d3c6ef6854c/collections/american-government-3e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-anatomy-and-physiology-2e",
+      "sourceHash": "5a564a7e28abffaabc2563be429b044fe71406782a8486ca360a450108ec81bf",
+      "topic": "health",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-anatomy-physiology/blob/3f855aef2941c1da9c01db904d45b129e26106f2/collections/anatomy-and-physiology-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-astronomy-2e",
+      "sourceHash": "42d62def6d8d415025b07dad2d59a861ba665358f725607b0b565a92e6b0e976",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-astronomy/blob/9d7e69a2e0c9a651ad42254b9a93b701a6b08c10/collections/astronomy-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-business-ethics",
+      "sourceHash": "a999b0c4e28f88af6307584f01861dc53c07a272d6d9c6875ff144f9d93a6d20",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-business-ethics/blob/21122d7c873e27ef0f2f1bf0c395bd175b32d7be/collections/business-ethics.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-principles-economics-3e",
+      "sourceHash": "0d3cad09e5a511c3a404e0bc56a6b2710e29757f5c959ab84bbdabef26235325",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-principles-economics-bundle/blob/d0e5fcf6df9363727b71970378671fb7a804fce3/collections/principles-economics-3e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-microbiology",
+      "sourceHash": "6d086899ad71e3fd516d161acdfc1b9d1689b73bd25f37ce7b63adbbc3a31b03",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-microbiology/blob/3f4edff55fe6935eed59579a1dc2f7479b6ffc7d/collections/microbiology.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-chemistry-2e",
+      "sourceHash": "a1014005920277478a0e8a0ebbdd3bb9ec3ec9884fd61570a69c9866661d7651",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/9928441ef0badc3ff024c6a1fe2842c0048ea858/collections/chemistry-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introduction-intellectual-property",
+      "sourceHash": "67ec994b99140a1602e9e2d74446409e4f75e4cdece216b047fd27a89163c587",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introduction-intellectual-property/blob/55411cd2253d9d71104c7fe44c14ded7006585a8/collections/introduction-intellectual-property.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-college-physics-2e",
+      "sourceHash": "3d3cf2c93dddb3d55c61a1dcd09d6bae31e6ca7033b5e50081c818e28b4134b6",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-college-physics-bundle/blob/84147e8ddbb1a7d2689e235630b230e6b4f20480/collections/college-physics-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introductory-statistics-2e",
+      "sourceHash": "8b9dde8c3c4ad1cd3c35f59a7e5c664e3834284f975300fa8e653b72f82ade35",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introductory-statistics-bundle/blob/fc004a462a69bb1b64ac327c6dd1847899476e06/collections/introductory-statistics-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-introductory-business-statistics-2e",
+      "sourceHash": "fc36801ff752b04986601d130becb50997edf0b5f5d0f5aa4511e0efbe411631",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-introductory-statistics-bundle/blob/fc004a462a69bb1b64ac327c6dd1847899476e06/collections/introductory-business-statistics-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-intermediate-algebra-2e",
+      "sourceHash": "e82e3d36f8146695e3d78d0288bb7c4107420ee027b0f6856fee091810d53963",
+      "topic": "science",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-prealgebra-bundle/blob/bba5f5244066884797f730149d918e33f2beefd1/collections/intermediate-algebra-2e.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-principles-finance",
+      "sourceHash": "fafccd0fd0fe6876604d72542b13fac288883dd60c24da2a8d87c91d38fdd695",
+      "topic": "business",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-principles-finance/blob/e1283a2ffc060e7eef593151de3642ed79e12466/collections/principles-finance.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "openstax-book-writing-guide",
+      "sourceHash": "cf91dccde6d02bf840add41ae7d1ba1da916c6d746af491ac220133e40a42092",
+      "topic": "campus",
+      "provenance": {
+        "url": "https://github.com/openstax/osbooks-writing-guide/blob/aa32f33d8a271aaca990eaaf9c28e050b0a25a67/collections/writing-guide.collection.xml",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-abealfreader5",
+      "sourceHash": "a8a9bd569e540df6f4f650f4c459ec3ad9ddf7b06e7a1418bd40ad8572af737d",
+      "topic": "culture",
+      "provenance": {
+        "url": "https://opentextbc.ca/abealfreader5/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-abealfreader2",
+      "sourceHash": "c0a7dd7f9aef317da7ddf56d62142579e99a8bd3df5a3247c8e49aff78252fb1",
+      "topic": "culture",
+      "provenance": {
+        "url": "https://opentextbc.ca/abealfreader2/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-abealfreader3",
+      "sourceHash": "ece5616c9b2ab3f6b6bb7c26db8496edc73614ded4b6f383084dd4b26f182bd3",
+      "topic": "culture",
+      "provenance": {
+        "url": "https://opentextbc.ca/abealfreader3/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-abealfreader4",
+      "sourceHash": "5b37986ce396493aa00e61ecff2883dffd5558cb2a587154b252e63d3e8ab3ca",
+      "topic": "culture",
+      "provenance": {
+        "url": "https://opentextbc.ca/abealfreader4/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    },
+    {
+      "rootId": "bccampus-book-introduction-tourism-hospitality",
+      "sourceHash": "a90219d114cedad1c3fa6190e54e83154252276a5843ba5aa8e4a0b7653ff744",
+      "topic": "business",
+      "provenance": {
+        "url": "https://opentextbc.ca/introtourism/",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound original book subject and complete preface reviewed by Codex/AI; chapter roots are not created."
+      }
+    }
+  ]
+}

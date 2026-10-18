@@ -1,0 +1,3525 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "rootId": "nasa-article-194222171056800",
+      "sourceHash": "1cbd60913eb6ff986b9309b3623bc71de56eca8a73ea3bb02a6517cfc3efa859",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/dynamic-pressure/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-45884341552500",
+      "sourceHash": "4353f8a295f20986a09a651f61202b42254adbaf931cd819015f193154b782e9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/center-of-pressure/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-93431278601612",
+      "sourceHash": "7e2996709e5c139a05b2a4a916e2820cfdd89e56325698e9e5d458bd57223cc8",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aerodynamic-center/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-100561297644122",
+      "sourceHash": "9b4dca9776cecff514613e20d2621eb270da2837c2b119180337f3157486d806",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/spcal/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-26167861256850",
+      "sourceHash": "aa0137058533402414b2f1c4948897e69e3d120d20e35adf180bfa263f268896",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/boundary-layer/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-236866828826798",
+      "sourceHash": "d0b16fd9f33a67e804282b5d32b384b7b6e8e1c8e4e687c41686e1f401f4646f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/definition-of-streamlines/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-162502910101253",
+      "sourceHash": "b8bf3c4c5f655fe5bfde7523ec6efc7730edf325e769e8db50db62f2e2d37722",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/basic-object-motion/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-277274607832246",
+      "sourceHash": "22446477576384320446d8aa0777306ecf2591f79fcd0827e9abb3d2029666dd",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/motion-of-free-falling-object/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-61959881763910",
+      "sourceHash": "7d8705852f9359279d4c76110c460db80025d8e60c9d87aa3d2b208c9bde9a18",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/free-fall-without-air-resistance/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-171508993044565",
+      "sourceHash": "efd43473ff319c161a51892ae8fe1fb6cb3f9962dc5598c618a0444758fa38b5",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/simplified-aircraft-motion/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-69087738819102",
+      "sourceHash": "268cc8fe01f3c14cc5f14eaf48f14302997eebcc2437f232a57628381e57e2d0",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-motion-newtons-first-law/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-157371962253964",
+      "sourceHash": "efd1ed57ef353ffb65770b756e63bef55e5cf0c9004ca7776d829eccde1ba122",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-rotations/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-95436225647134",
+      "sourceHash": "2144ced95f05a6d3b37bfd809959f50ae7a8bd1ff30fc9db1dccf36f9a528812",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/banking-turns/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-242874790355678",
+      "sourceHash": "87cf93ae198d55f939846782080eb4f207b2ffed26429b8af7108fc3500bcb79",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/range-constant-velocity/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-119665421965562",
+      "sourceHash": "28481490adb0839545cc50bee87fb2a9b18c135550ad187e336d2935e997dff0",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/maximum-flight-time/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-142332168092614",
+      "sourceHash": "b292b1a6dad1c0a582c7ff0620bf960e362ac77cc5047a1608f20958fbef4a4d",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/range-summary/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-10702250177615",
+      "sourceHash": "2d914289acbf053ec2dff324c3cdd53fa46fdd3844e46f8274a438532c1ea745",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/airplane-parts-function/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-269667200623591",
+      "sourceHash": "6cbd8df07043bf31b13afb601e3bf2640a509837c4235db59a276c0a7009284a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/fuselage/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-159257851217500",
+      "sourceHash": "ffed54bd8451daa5539a64c1bf2e73c0e53adb7c7372d23cecfa3ef0026c2777",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/turbine-engines/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "nasa-article-227186238321592",
+      "sourceHash": "a464c28da4db7568e0f3793c61abb34fe4d45fe025129f93267e1483466ac578",
+      "topic": "science",
+      "provenance": {
+        "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/wing-geometry-interactive/",
+        "policyUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-217121916223523",
+      "sourceHash": "d681dff663302b16f895f803ae6458d42e43e4b035c3ae75115a8835db060a16",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/amoc.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-80619814715992",
+      "sourceHash": "cf9f9da2e8f296b1993bdf51cf0c5caa839fe9291ae17255d306fa7a98ef645e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/longitude.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-180620006749967",
+      "sourceHash": "18cb1c2e208c4395272062ea726c0d7d48dcc77e57de0d23cdc9c1764b277ed5",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/latitude.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-79852449220319",
+      "sourceHash": "beb025d64c71184d2b6730c2a62c22843e7df375986dc94653f84b5bcca1c915",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/ocean-oxygen.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-43476822299437",
+      "sourceHash": "c4fbc7562aa10e44f5764be10b18b397159fafa994e8f014cc35206347a1e981",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/carbon-cycle.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-46181646325799",
+      "sourceHash": "1bf3348a9a484b7a1a64033993f64f7bd2c161e74ad36ce40dfd71448384235c",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/sponge.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-62650998814814",
+      "sourceHash": "c3841790fa5758119d59f5fb61bde9860aaf58e9e71ec96bddf98ae13a0dda30",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/tide-pool.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-82046535983884",
+      "sourceHash": "01890ff2802a381f8cb86d5e5767bf15b7e20e18eef7c2625dcc4fb404790d07",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/lighthouse.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-99040419551248",
+      "sourceHash": "27a7b7d280d5d98ffe49af780bf7d19df0ad9f391b8acc073414b60d71640b35",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/canal.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-147125538880559",
+      "sourceHash": "e6edb493fc27fd189ef99662314aa55e92b11cfa20321b2c47256a99583849d2",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/windward-leeward.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-171632898588510",
+      "sourceHash": "aa3a5b542d4d6dd46a344d9006b80c4371f22a0e3f5e1c9a4068444f68974a56",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/high-tide.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-252122065106123",
+      "sourceHash": "dc6314520eb8f8acc1efcfbbc53cfba5d737d9dde978d5d03ca20003a0315369",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/hurricanes-sea-life.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-14112975739839",
+      "sourceHash": "d24aee292458e3b5c536d766c27efbc13998c8db09abb556aedb015346b5d365",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/glass-sponge.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-249253526704139",
+      "sourceHash": "e5a135380b418f88829d5886c9ae1758acf70152f2bc124f0998b4a1c6962885",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/how-hurricanes-form.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-149820501482793",
+      "sourceHash": "9ad061b99708e320bd91315b5832363e6befc4fdc096d14e9b63f6e1c2db5d85",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/ecoforecasting.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-215039592644680",
+      "sourceHash": "a2cddc4ec066c1cc7fc994ae5dc1dc54165cff7ceae20bd887363b99950714ad",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/ocean-species.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-182932362344554",
+      "sourceHash": "02bb735fd8db4f53a54533dfb357a4f062ce1a0880a1a4ef914f038621f4a988",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/watershed.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-127621287525041",
+      "sourceHash": "fb596487f7a4cdd8a31124c14a7eb89b4413a402a2526d285435e19059be0c39",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/eutrophication.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-187286440379195",
+      "sourceHash": "28f714b9b546ec5280f96b86bcd60834220996f5af4d80762b4429fa46df2670",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/high-tide-flooding.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "noaa-article-194863603758272",
+      "sourceHash": "204e65c8368ea534c31ac0ad866568da5cba6e8ff061f405a7f4f0ca252056d8",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://oceanservice.noaa.gov/facts/rossby-wave.html",
+        "policyUrl": "https://oceanservice.noaa.gov/about/faq.html",
+        "method": "Official agency educational science source identity; exact topic reviewed by Codex/AI."
+      }
+    },
+    {
+      "rootId": "usgs-article-68924980278435",
+      "sourceHash": "d4243f4110d98aedc6f87b08ea5b6c5aac1b70eab1fad4fab809074f79287cd4",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://www.usgs.gov/water-science-school/water-cycle",
+        "policyUrl": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+        "method": "Exact Codex/AI source-scope review: water state/storage/movement and human/environment effects."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2013.00001",
+      "sourceHash": "ffdcbd8351163f4e3a9d2a991ee0aff7944a1a1fb7af21df4d37f7f64108b676",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2013.00001",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2013.00007",
+      "sourceHash": "4cc071479e10ff483926596603d77ebbe196c9e4f79318051b08536a8f1b3ac3",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2013.00007",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2013.00013",
+      "sourceHash": "0b21df51dce5e55f89fcdb76545d7a555ddf57cfb3ee5e959096acd414b61812",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2013.00013",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2014.00004",
+      "sourceHash": "fb104db73c60b5c45db8a9275ca0fcda18b7af52a91832e156712de9f4190a36",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2014.00004",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2014.00016",
+      "sourceHash": "14c55673a2a2e74d9ee1936f6d85eadbc39396267026954fe099439495a6152b",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2014.00016",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2015.00001",
+      "sourceHash": "44389f28e018bb077ed96d651a8729a22ce242a1f7c10228e53cdfceefbcac92",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2015.00001",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2015.00007",
+      "sourceHash": "8f3478d87c6c3c7fcf22fde6ce7f963199a85bdd481af4eb2c8cd18a72beeff5",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2015.00007",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2015.00013",
+      "sourceHash": "6bad01d96ce530cfec6e8a9af25ab176b2cfadaedb0120204ab384a21f79f9fa",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2015.00013",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2016.00001",
+      "sourceHash": "1c6635520f697f99e95bf0b90abd7c4fa03e5d8291e4c1f7bf712fc5e82172d3",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2016.00001",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2016.00013",
+      "sourceHash": "e6adb23aaedd4999c079cd66c1da85bd15d0289e799bae7c0aa8d99a73a389d6",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2016.00013",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2016.00025",
+      "sourceHash": "fa64b9c28c0f65f0fb95ea9171b2793f674421b7074bbba41aef9e38265fa9cc",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2016.00025",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00001",
+      "sourceHash": "6d8cac0ada72ed46097b0523e3fc8fbb5f8519bb565899f3aba11229da6968b8",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00001",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00013",
+      "sourceHash": "ca44e8b89df98d15524932d8557eed6b8bffb6656354cc7fd21e572b42c2cc90",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00013",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00019",
+      "sourceHash": "5af46a3ebe74d424f8a5c40b0b79cbbad2950c2336c383a3d28259d10a563a39",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00019",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00025",
+      "sourceHash": "948edc9aa5b595444592b970855e29b16f64308974ce4f711c2d7b0259fbbaf9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00025",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00031",
+      "sourceHash": "24e0c991d5b96d3afeafb4ad33cadabf2212d2058781a03eec5cb8dadefe6929",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00031",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00037",
+      "sourceHash": "bbf9ea709eda0984d6e52dcab3ae1923890a37bba774ed9d1fd0ccb8413ffd69",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00037",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00043",
+      "sourceHash": "af3738c49212f3c69a27378b54ac209b75db8cf6d42a0e3695528b78cad0a79f",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00043",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00049",
+      "sourceHash": "aed74d98e774f3e4c76fdd9376f410b16be12809c3386ef162ceecdeac78b3d1",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00049",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00055",
+      "sourceHash": "f8095311576b650b4cbc6e063e64539cb41ee9f927c8b5cfc56a9882c9938fe1",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00055",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00061",
+      "sourceHash": "9654e414ad7326e9580ec7a7f1daa5ae8426d8830b8e86610c1e8aca231ea1e5",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00061",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2017.00067",
+      "sourceHash": "af074cf944782f99fc8cca3812b1a50c7e27ded2f2c071dd479b85986c7187da",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00067",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00002",
+      "sourceHash": "8298a1231e4a0fe70d77e55226304816c102290de66aa3fc6a3d030a35673770",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00002",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00008",
+      "sourceHash": "a3814736283a3a48afa787a0aa584112700338841bc6f575667908638af2a8b1",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00008",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00014",
+      "sourceHash": "617bf9a1f7e436f68431f9deaa74e6b321e6f39bcf3916b8c0f7d4ccd6705710",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00014",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00026",
+      "sourceHash": "5c9b3a73cb207a5665e7cb07e5cd275d54ad0fcfa2821bf4249148b9c1d34222",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00026",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00038",
+      "sourceHash": "0448c4c8c8b4e5fb016b1ce1216976d55f2420dd3b14f73c165e8d00dbe8675d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00038",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00044",
+      "sourceHash": "9f1a6594627838e0e3c4a3750247f538ef695b3727185f331c8a1432a810918b",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00044",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00050",
+      "sourceHash": "bed8e4f57a9be7733d680d7f9a1676231fcb4ccbb1202f09f20e6ca0b463df8d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00050",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00056",
+      "sourceHash": "9f50394cd6dd8a958f762eed4cb3276d21c92526a3c5db4a82c081448951ee07",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00056",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00062",
+      "sourceHash": "e135f52e16f882149d94f9f369effcc1deafdb04f1daf07a98494ac516644281",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00062",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00068",
+      "sourceHash": "963774391395a089003a3da7f4760fc9272be97f64d50134458cff40c2f633e3",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00068",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2018.00074",
+      "sourceHash": "127dad114908d3b028a25b19e0deba96c27a27c9aa48ce7d1aa33659476f4aee",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2018.00074",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00003",
+      "sourceHash": "901c6d066bdada8e5be7564e10ad6ca20611b15bde58dc46024e9b2b8607eba2",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00003",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00009",
+      "sourceHash": "a5e85226b35102ec6f8a8591a736a06f54f90bbd7e19de19b4072708a2d6ef78",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00009",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00015",
+      "sourceHash": "87d566aab420960a1400ad4cc0f6a8afacca38e0a705623e2cf92132db12cb01",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00015",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00021",
+      "sourceHash": "f234bb31633690c540d4f4f4cd17152dd3ca186291c590ae589d63387d7b1662",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00021",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00033",
+      "sourceHash": "9c1f1a1ced6706551197bfbce7e5bfc27d0611bf97e343f896f582ab409edeb4",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00033",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00039",
+      "sourceHash": "7bb6ae308228a5fd7c856541dd8ca3759e520a82606c48769fc3aa9eaaa2cecc",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00039",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00045",
+      "sourceHash": "112813e92a2c89239b57aa1ff06efa7ed456fc9026b38b35438abfa88d2b5e36",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00045",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00051",
+      "sourceHash": "69469536c3dda108f36273b0587d0ec24031b67c4d46a75d9a4e6f76317d26c9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00051",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00057",
+      "sourceHash": "a76a0e102823402d7d727adb1b37c0aa06102d89728be1140acbd980fee28eb8",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00057",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00063",
+      "sourceHash": "3c482c0bb6b031d33648710667d7deac7d6459b59eddb8cd3a36eac8975a1162",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00063",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00075",
+      "sourceHash": "e3b65feb1abe396ebf313e6838eb7602a3494baa11b8b9c734f1f7ee3e1121c1",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00075",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00081",
+      "sourceHash": "6175d8905953f581a9465b1d7cef7f4377b8ede890960c3209c7771e26c7c6d1",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00081",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00087",
+      "sourceHash": "8ea6a893dcb48ee7612e8097a20c8433fc20cec78b0eab3799abc5ac206c8cda",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00087",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00093",
+      "sourceHash": "7d5f54685bd02c7d4fb310a945e90d7245bcd88b319d6ef680240eb82dce1760",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00093",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00099",
+      "sourceHash": "a4f98b8c19c1b0287b26044e63f659695562a4c7ad94ff5548ec0299d2940327",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00099",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00105",
+      "sourceHash": "320cb57a6780e1ea3c7340a0881a41ddf6bf0ce908e291ed057055037570a607",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00105",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00111",
+      "sourceHash": "0242a2b5bf2c18106b4e42a67595c911e19275c852fb0bbaeb803ecf99756fcd",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00111",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00117",
+      "sourceHash": "f2780ee3fbf139b9c131dd0426329d5a5089e539cc8b587047543882c9988ec6",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00117",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00123",
+      "sourceHash": "cba74f766ceaf89147ed7a5586f4b15dfba13afe83a3e161980a2f47661549ba",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00123",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00129",
+      "sourceHash": "085bb5bc585f84854131e09401eab34ce014cd6364a08aa039fc22a700781b42",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00129",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00135",
+      "sourceHash": "5d8ca4dff3b5c6a69a506b0f2a66958c01bdead3489745235331e78e94dd218f",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00135",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00141",
+      "sourceHash": "d6fd19c4cc244babb45d32ea91053397b4096f9d195ee45300cf92d566279c8e",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00141",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00147",
+      "sourceHash": "6877c41dd85d118a297908e75e6f4089f9a0643f7cf22cdf8b8bdbb7bd623eaa",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00147",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00153",
+      "sourceHash": "45cacaf93da983eb57c88a3636d6870a12a7ca03b775b25b76744e0cf8913be1",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00153",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2019.00159",
+      "sourceHash": "c67f73c6ea3a6d07c87584cd1d5b29df5b0044885968d1b1b5a99f150718a4ba",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2019.00159",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00002",
+      "sourceHash": "d9a8cfc6c3288b57351250c7af6f2f67f9b86090d51b5b9b39797df2e06fc890",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00002",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00008",
+      "sourceHash": "feb1d82c4e9e5f605943d84fcaa0eede141899a35d547a7048d21e7fc18c62ff",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00008",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00014",
+      "sourceHash": "3ab3c31472adb22c3a964ab6c7adce97fedd819c0e3d249b11e6bf6fbde971be",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00014",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00020",
+      "sourceHash": "807cd5e4c27220ddff3de78dd37c9d6aea258e262f93d0e597507ec329a4c673",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00020",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00026",
+      "sourceHash": "56995ff6299074b0f3ddec119e19aec33f779a3961484b5d29cf7b29f78193ca",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00026",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00032",
+      "sourceHash": "898f2bdd6e1f993c3eb0a5c4577c659865bd72493e40da44e6fb99af53226ac4",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00032",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00038",
+      "sourceHash": "b312cf7921100e85c6e3bc0a1df18eaa57b865c0a249b4c489e29e89ef4f3675",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00038",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00044",
+      "sourceHash": "0f330c5bafede06583dd523e9c0be1dd1903a1779c5a7e5c845f853612e3066e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00044",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00050",
+      "sourceHash": "bc79b5dc48d83a677d4bf3edf14f41ef405b1e1731257242496fa672b06c301e",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00050",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00056",
+      "sourceHash": "82accd44da4ebb8e8b51cb29cfb023b6b2963647e4d917eeb8deb59bab3786b9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00056",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00062",
+      "sourceHash": "3cbba50b882ececf932c3b7deeffa796c08284f10564ddbfacfc7c60b6a913cb",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00062",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00068",
+      "sourceHash": "072bd13e37c9d9378f00ff55c226fd07016822b5e0333c488b7222b4b4b2944b",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00068",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00074",
+      "sourceHash": "e95b69b2ac78bd3e3fe5e3143b7fca4128cb2e124a9bc7dc5b93c4b8d8a40c34",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00074",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00081",
+      "sourceHash": "c87b6cff61d296eae44b9ebd4b776c3150a6ae81d8de64eebb8f352b78ed7644",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00081",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00087",
+      "sourceHash": "00c582a82dbbc31b23f2ff3a64eb4b2787b9729836e4e1ee07a1b94725db8677",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00087",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00093",
+      "sourceHash": "bbe47cc30195a2f4b4fd8329df9b74922b8861d4819450cd8b478729e5a04812",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00093",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00099",
+      "sourceHash": "bb24983d359eaceb1c6207a8ea2c4931bee13fb85fbba9a719e2b0ba31c61848",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00099",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00105",
+      "sourceHash": "bea74d48d7f34d73dd65c5ffd7511dbd43bce9cc12fb413e2d4206b371ee53a6",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00105",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00111",
+      "sourceHash": "dba6bd38ce8b327b749595538cc2a237fda488113094d02bae9dc5a5cd782f56",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00111",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00117",
+      "sourceHash": "dbeb891e25dcceeb1f9f56085f4ea83d5ed7164bbdffa0c08508e75667e53ecd",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00117",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.00123",
+      "sourceHash": "d6093258b4b52a3c4f6cbcdb7be898b18ff0fdf1519561611ed0eb08701a90e4",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.00123",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.467994",
+      "sourceHash": "27cd91ba4d9e0ffc1aa0405c3769f1c4befd7a62fc2335d8a68920e4d6001f69",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.467994",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.526870",
+      "sourceHash": "fd0cd179ae730a148854bf716e6c8fb6adad1b3464313e9ac66b7e8e5d48e48c",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.526870",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.534345",
+      "sourceHash": "7526cb2f38b16dbd04a9826578052e1fb71bea6c373ffff0b3b624a0e7e8db3d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.534345",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.539649",
+      "sourceHash": "8729d6f3711f149e0d97dd4cbbb9721d455783bc38703a0ac640ec07a7d505d9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.539649",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.543259",
+      "sourceHash": "a79852c5256f2aac80e4d9f0723c5ee98e85bc7be51eeda4f0fb12b75d4dd98a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.543259",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.547465",
+      "sourceHash": "834f91c7e8e7a25754c56c163bb23f5add137b631f25895e0f828641aae9d967",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.547465",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.554380",
+      "sourceHash": "af003be43032b41ab5952dbb7a3392499f615112cf483a122382be4f544f7349",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.554380",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.560890",
+      "sourceHash": "861d79ef2fc6487aa1f3b626ff16d3124d58a8fcbd5fdb46f07cad9f14d94c5f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.560890",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.582971",
+      "sourceHash": "7dc1a13c09b464da3951ea53f6e27d3684c246d4424da2a94244b0689e1d9f74",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.582971",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2020.621808",
+      "sourceHash": "c4576042518560ffa3d1202f8e2b35d902af942b0a636fda2b502b64fd352e35",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2020.621808",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.551557",
+      "sourceHash": "f105ca0a5b41c8b880cf8649eac8c8328a908763c3c232e22882855fc0baa664",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.551557",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.554875",
+      "sourceHash": "dfff52906e92935b22fb7a4506f9180522b90367ac590c4e048c1bc26b52d953",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.554875",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.558728",
+      "sourceHash": "87d0e247cbd6dce78b2d4ed18b84491de8e6ad9249a86e5cc9f69fb7aa63d613",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.558728",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.562430",
+      "sourceHash": "9556d9bea7c5b81a1100d9a0db0935dcfa495016a30fbc714e3469555231671d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.562430",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.566420",
+      "sourceHash": "efe5ba886d424350b8d7278407ab6b61baf867aba01358e4d6005064fb500706",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.566420",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.569850",
+      "sourceHash": "bacd1f6c039fe7c039fc7cf6decb74173a9802a0205e73f2c4dd2b2e49d21fc7",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.569850",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.572765",
+      "sourceHash": "4a0c919a52621aed4fd7e2738673a28c89cb870542ab87422d9a84c033d07600",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.572765",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.575131",
+      "sourceHash": "e50ffed18ffc600c784e528d85f9ec6c1cd1f97fb042c34fd01d03329c97bf8a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.575131",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.576035",
+      "sourceHash": "7ecb7fb874541d530c5fc50e0e51276c6f4ac6175bcd29759d8b226eebd5ba2c",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.576035",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.578431",
+      "sourceHash": "399887822600551ae2bf8685830773930484a9acb30420f40d00e71ba26e11c2",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.578431",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.581824",
+      "sourceHash": "ccdfe2c426db9ae190c4c3172bac7fb7793a43c1880b73e18924e271f31f3da9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.581824",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.584941",
+      "sourceHash": "aa07143dc7ed3a41073ccba11e841764c560b5d40ae832e35996cd9c5c49e56f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.584941",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.588455",
+      "sourceHash": "c886ee937477704f334ad275083cb347b709713909642bd3b5bf7b373df3eb15",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.588455",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.593935",
+      "sourceHash": "7fb2dc4992c28c92797d7d80a94207eebe9b0918336a74e094a1f9e69c4c1555",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.593935",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.598169",
+      "sourceHash": "5bd2d53b5881c179a9a96091426c191463fb5abf458d97cf06a0312ab2b42526",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.598169",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.604096",
+      "sourceHash": "1253b94fb37dfc9f08bb46b250d4926b4aba420d840ac7b93391fd5abc5ff603",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.604096",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.606902",
+      "sourceHash": "c1a1c4ba8c245f5dcd6ac16a352c321f273980f26f40afe6573ab90aa646c30a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.606902",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.608843",
+      "sourceHash": "366b541a0a5c60b273a7ab6ad6ba77dd3a9efc24bbf6919de6248e16041d92ab",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.608843",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.611282",
+      "sourceHash": "4cb491de1d61f7a9cd744f04641ed96be6aa42ba3b75de2208ecf1906d84dbb8",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.611282",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.611826",
+      "sourceHash": "5bd0e979aa5325468c1758c63968a99f2b575216272aed45def6cb973bfeac43",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.611826",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.612548",
+      "sourceHash": "a2da7023de7781fa2ba6954c00123d083811064299138dc3e9f12e08cc438595",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.612548",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.613577",
+      "sourceHash": "a441fdcab8a844c764147fdff000ebab83c477090c4ec653fa9cfaa5b015717f",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.613577",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.622451",
+      "sourceHash": "5c33abd151fff2dd4878f7e712ff89efa2fbd9562d67bb728c43386a2c3acebe",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.622451",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.631045",
+      "sourceHash": "dfde817c3d0aae236574b2bdc55976656ddbae098662786accd66f5f8d4003df",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.631045",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.648750",
+      "sourceHash": "0de224915570f5233b3ea8eb610357bd8ad67eedc9bb0a46c46746ddb0f303ac",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.648750",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.660425",
+      "sourceHash": "ab80dbd5d6d3a8fb7e954ee513dc60e36870bb4ac21e97a757a08e66fbf97f06",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.660425",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.678405",
+      "sourceHash": "72270a149b97c88da6cc0ff68e48a2fcca74d3aa31302d34b3f5058ef8fec94c",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.678405",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.682488",
+      "sourceHash": "04fbe1802a58d19008bbd10c1c9dd84bfba0d1ae19d93be64586eb016c75673a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.682488",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.703592",
+      "sourceHash": "999648b014c0980218b3c7d3c3b9f291b6c217e7ecbb0e10cf705806c7e9dbce",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.703592",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.712082",
+      "sourceHash": "146076144342509d7ae4f78c2cf9db6d3d16871eb2ef4c803d0e4b45c67add40",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.712082",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2021.751566",
+      "sourceHash": "836b5641162f64c6d43d8a1d719c3fb6122a91c8510d4c5013302ea729d1aa65",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2021.751566",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.1014522",
+      "sourceHash": "41dcb1f4428cb5af706701690cd77b3cffd5190652d8b20cf027a5ce22f6bea0",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.1014522",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.569350",
+      "sourceHash": "d4587579227d89b66d974db4c8c29565a35afe904241f2c34891611324c129c0",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.569350",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.612419",
+      "sourceHash": "3361db14fa8632fc7369fcb7eaa5af2dc2754ccc3197eb5c24dc79b05bd539c3",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.612419",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.615776",
+      "sourceHash": "4c16d299191c30a9aebed0054c0dcf105e51bed130dc9d901c5575749bd9dad2",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.615776",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.625050",
+      "sourceHash": "d1025d3468235d94056dc6e62919948635f395e7a445fa7143a2c5ed821de4e4",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.625050",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.629355",
+      "sourceHash": "5b5c8a5ded3fa411ebf5987565cf717dc0a60283b566b8a84b9deed6cfd5184b",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.629355",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.654148",
+      "sourceHash": "21682c118e08e3b244387f387530ed461a1737b7ac881b19b5795d4c533662e6",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.654148",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.660110",
+      "sourceHash": "aa8478bed4f65afee2e1493ad55c17bf89b0b1a402760cbe8be1d30855dd48bc",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.660110",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.662975",
+      "sourceHash": "3b33c24f7bc828f32fe285f54ee8974e6a062e159ce68963cde9b1c7cb504de7",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.662975",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.667792",
+      "sourceHash": "b89c1f345652657ef5c991120fd00bb693b766005317eb45357d42fa141fa0e2",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.667792",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.672376",
+      "sourceHash": "95d612d1b8e6451ee6e637c59061a053cce97f072b82f8d68b3af4a3593cfbec",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.672376",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.681496",
+      "sourceHash": "a7dd7c3f0663c1a8e2f584b3dedbe70b96b4e30fece195249ab4cb00e29e6dcc",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.681496",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.683643",
+      "sourceHash": "4234f10d16d82c3d7c024e5427bb910a53da041270ff100ca058e3bd1fac7751",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.683643",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.684710",
+      "sourceHash": "31fea42bab16d459d9cd3415d8029bca202a264c20507ddbaff566df102a9fba",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.684710",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.685862",
+      "sourceHash": "aab99caa5b74eb03b58aca88909e2582eee3fe5673b1978ca87a1add7096eca3",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.685862",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.687784",
+      "sourceHash": "5af836a7a3256d5e0fe5274f310793b26b422f237ea9d9e3ed8eb12e24968e29",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.687784",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.691255",
+      "sourceHash": "615f97add0c61be4cbf03cd9922c4cef58e05fd2377b24c9abf7a974ffccdf13",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.691255",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.693108",
+      "sourceHash": "b7016fa9a759f2cd780bd4e8d235edbdeed1cf670a8c3bb1898833d17d3047b6",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.693108",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.702690",
+      "sourceHash": "fde173e6f85bd4b92f793c00761fcf32c53178a643d127aa76874ed9504d6832",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.702690",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.703524",
+      "sourceHash": "c86fb9356d4afc93309757bb9b5679d8cb1a534b998ffa72e74d1567a9bc09c1",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.703524",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.704022",
+      "sourceHash": "31d603d6a5db01acc8dae14b1c0c23496edff03db41662d477519a0571f4ac80",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.704022",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.707514",
+      "sourceHash": "4a3d7cb539ce3b0fb33f370379cef1088530edbb33bfb07695b5464ea783187f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.707514",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.712036",
+      "sourceHash": "c9b68802420a7051544ee5a77e034113f05d7daeb7264fbc5fcc589da92126dc",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.712036",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.714834",
+      "sourceHash": "2a5d25a9a1ec0edc000c83bd34b0e6dde1a5ef910336416a19fb5a065ca1af74",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.714834",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.716479",
+      "sourceHash": "e13a838d74747dd4a4dee9009753f1ade7cf2aac29c57996998afb6d5c08e4a0",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.716479",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.716954",
+      "sourceHash": "6ebd1206d195fd2346901087e8429cf7899b3f3fd835fda1cec9ca567c3cfde6",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.716954",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.718606",
+      "sourceHash": "c585a1def29b01a4d2b68320370ae0cbb797eff2ac9344c7e42062bc91de291a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.718606",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.719630",
+      "sourceHash": "f5cad725f491e58747c68eae1fc5aacb30773837561be059b509b77c144a7826",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.719630",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.722958",
+      "sourceHash": "dd95ba93f85e0cb74bf2314294996023525eb9d6fb241814b3b4de7edbd7ffa4",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.722958",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.729784",
+      "sourceHash": "2d9448c4fbba57e689391f33b1f2803eaa4cdc772bdec3df1ac76e72852b7ac7",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.729784",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.734864",
+      "sourceHash": "5e2aa0de83e93fb8f57261b7d380a814e02f7616d99d4d23c752f89cc85aea04",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.734864",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.740838",
+      "sourceHash": "bdeba020fd10032382ec70f8b283e97b2035b96e0c6aaadb1985cdd62e2ccb30",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.740838",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.743943",
+      "sourceHash": "930c6019289e348157a56af240daecb43a674933a5cc5d20f604c979f3652fbd",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.743943",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.746593",
+      "sourceHash": "060daca0f544bcb4c358645d6c38eb9349c520f3693e4dc638e73b6d053fa418",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.746593",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.750301",
+      "sourceHash": "f894d863bbf7064428f34f4df15b6ff85d92dbc97fd4d8974dc3a36af64e51f7",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.750301",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.758890",
+      "sourceHash": "7073d365d7d0bdf35de0ad5ac1b01ddb0cadb38c2afbfbd3ab94e686fccf0023",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.758890",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.765740",
+      "sourceHash": "10a3f08c7a22c67f2d6d4632758836f6f343d14b259ea5d965ffc329095246a4",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.765740",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.772441",
+      "sourceHash": "83d306016d260efbfe34427fd13a9ca47b1ce3753e2f7fc18f1fe679e4be11a8",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.772441",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.781748",
+      "sourceHash": "5a89e31769cd93121e53614c4ddf2b9883892e7bbce18ac4e9bb8bd88bcf9c5d",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.781748",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.810556",
+      "sourceHash": "7ab02e1847f4170c34834c9e7c6bfa6340254b1881d3f4498a3b4a5cc9d66355",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.810556",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.813910",
+      "sourceHash": "f45eb9c1990eb4e9e0e5b64acb5436c0208845988a0aadfbbdb2d14afed9f843",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.813910",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.857995",
+      "sourceHash": "637d63d9650af7919ebe5a6e5d017571ca91c60e211e287f3fb82d3e331c1631",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.857995",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.873610",
+      "sourceHash": "5216724d72d8f39966c1363942525a398cf9c93b62c7c84e615f4ced0079ce50",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.873610",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.903742",
+      "sourceHash": "8551e554ef35d7e36462f7fea4e6df0edee5ca0d7679512ff003456e69609b04",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.903742",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.926624",
+      "sourceHash": "e0d4900dff8b08288b55a6b143533e64e8ec4e90aeed09c4f7fa00bf0327c48c",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.926624",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2022.982604",
+      "sourceHash": "f1e146a515c95d8491a8ff86d906660dda8dc8e61cad26b8703b3139186f3a18",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2022.982604",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1006057",
+      "sourceHash": "c54c77867b0eb08a6de2e586cd0511e8e30993631f7f54b875e695292c518ee9",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1006057",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1031267",
+      "sourceHash": "9ff904e66cc1b5920ec5869fc4c1cefcac882071bbfd0b0acfc721c161f50748",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1031267",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1037013",
+      "sourceHash": "3e91326379f85aa7ae5f7553a20eb1354b68985cb2d5ca65cff933bf1a8218a3",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1037013",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1045345",
+      "sourceHash": "6f0a31333f95b073fb46696e7905eb4da8fddc079ee1900191d8719e094ff57b",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1045345",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1052144",
+      "sourceHash": "f482af3d7b759e396f22948caafd83ec28e36bf981a02aa54f5066c5d233bdfc",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1052144",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1055909",
+      "sourceHash": "8b0ec4e3024b44cbb8a3191d164d9e3d5c7c9f22399d5a4687952c035385e45f",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1055909",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1063909",
+      "sourceHash": "ddb7bc5119eead6044d392b8c39556d4bc292f50b83843f9a9c0f93f9dd0436a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1063909",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1065588",
+      "sourceHash": "f5482fc6c700158f0c3550864042c6fd46287f414bf29f0623f71b701ee89bdb",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1065588",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1074453",
+      "sourceHash": "d7fca74fb12698265e34dd086cca0ba9a9d3893d9b75921061d1aeaf1856b2bd",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1074453",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1086538",
+      "sourceHash": "1c54a790e9a0a0a39235fa8e625b0ea9a6a6b2c90118720241778fa42f192101",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1086538",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1093433",
+      "sourceHash": "96e25874d9b9b53da70ade5e6957f85e934719207ae4ce83a7d649610fa2550a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1093433",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1114471",
+      "sourceHash": "95e21920ec4d205aab8ffead32a20b03e110303b1923ebaed9a67c6545642100",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1114471",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1129218",
+      "sourceHash": "12f6fefc2cc45b9f85979a223d8c4823b026e641453af91893e65535a41aa42e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1129218",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1150335",
+      "sourceHash": "d60c08c3d3158c7bd197cbb23c12dcd5df84e7b5a65e710f4ada00c08b37641c",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1150335",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1155100",
+      "sourceHash": "f26a929a004bde3cd2d6ca8abbfcb98e40884b77e629e5cae081020bbb89dd54",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1155100",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1169684",
+      "sourceHash": "6959a140f7f6ea4c28336b3e39fe2a2d4cb7f11f842f221c7a2e3a5acfb16057",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1169684",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1175170",
+      "sourceHash": "bdd83b0f2201e7d379b4515fc5ac63c5f0ac041577788dbdd708dfaa1d907651",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1175170",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1178537",
+      "sourceHash": "b4addfff40f98e614295d7e5afbcd9a2b6d7ea9415000ff0c48a04d17ea893eb",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1178537",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1185513",
+      "sourceHash": "3923031fac53dd9aff658dc6e03684680cbcaf6d28907150040862eb673f703b",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1185513",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1200611",
+      "sourceHash": "991151500e46cbad7cc7500886fe14d68e0192c234bb02ccdda1bd9b85bb766a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1200611",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1215124",
+      "sourceHash": "0a37e5b0f2d1b14939d0789e2dbab2535f932f0ce3311be27333afc978a3dc7b",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1215124",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1224593",
+      "sourceHash": "09321626a7baa5ae6b539a13d012707365358b2bc34a87d438c2f724e1ce2d4a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1224593",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1230167",
+      "sourceHash": "87bfe76cf61224325f0a129836defb55dfbb97a7dc48338703329784c175d9e3",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1230167",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1237281",
+      "sourceHash": "68ffd1b2678af44a45835ab379e89e7348d443a0b33b0c2d5834bfb8048cedba",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1237281",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1253426",
+      "sourceHash": "6abfc29f3622be2831dad1795dd5601a4a5de16c8c79bf0eecab8ba9da53c24d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1253426",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1286330",
+      "sourceHash": "ec60cbf8fc6e6a330a8c296619bff6782c8234a4a36b145c489f13c9781fad48",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1286330",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.1329759",
+      "sourceHash": "f729e9527071c14fd98daf6e6fbe0603a98e5fa4454b2bd620229370fe67d4af",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1329759",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.747790",
+      "sourceHash": "a8228bc1fa1e53278b962919a84ed48c0034706f1ff3888ff0107becd107924f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.747790",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.812844",
+      "sourceHash": "b85651123940df6ac2a030de4c2b64a3342c69275b1733d526bad8c3c2c5ed78",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.812844",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.853490",
+      "sourceHash": "91d43d2c53e87f663fe0411e78e387133f0d0dcc3e70530c17f4043c7c4cddb4",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.853490",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.874305",
+      "sourceHash": "29049d35b91079b3efa2a75dc3f086837ce28ef76f2e8975cf26320fde69752d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.874305",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.901402",
+      "sourceHash": "5d41b345496fd89d6271620b5229916bf985148da8c0de9670eb79bef2dfd687",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.901402",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.920671",
+      "sourceHash": "4ce96aa348515f86409df83bfbf0d012d2b8b1c521bc4f52233335d1039059bd",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.920671",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.947799",
+      "sourceHash": "42d57942c4d9656cfe50fb68bea8f5eb030ca565f3cde22bd8c441115233faf9",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.947799",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.961113",
+      "sourceHash": "c2e3bf64b1427e2d645e47dc396c59ff32f1ca68a8d6ee3f99b2da1b6386c632",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.961113",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.969254",
+      "sourceHash": "82a92af3fee587c1d39af11c915143745c770c666fd7be076cb548dc91e2ebb3",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.969254",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.974853",
+      "sourceHash": "c568b4075accf0410234757d58dedfc91c2cd72b528047df34e02e969eb76f98",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.974853",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2023.998004",
+      "sourceHash": "b289779c904cfe824e48118418bf08679c83be30ecd05ef3fd8275241a3887b5",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.998004",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1063878",
+      "sourceHash": "8cfc0536deb0f08a602ce870fa61fb09f9c456693e4cf8a871704f77bf5e8fc2",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1063878",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1178387",
+      "sourceHash": "777c68b5d15a3eeb197abc5cf50c03e04d9563d32ea561a6e76435e9a7867e1d",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1178387",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1205267",
+      "sourceHash": "0c35c632ce39eeaa9a2c23b069c1e126377f520038457af0eaab892dfd3d6410",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1205267",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1225865",
+      "sourceHash": "4db749dbe4fee139c62644e6c158b21efb5fbbc67f1ffeb0aca2e7de5f5f6b88",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1225865",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1232530",
+      "sourceHash": "5eb2fd0e25d737c57644aa06ae0ebc89644c2f5e94256b7ed2cdabd7085430c6",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1232530",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1239117",
+      "sourceHash": "97df6263dd416982b265430651b2082988bbfe7b2c7cd4d362ddd245c4886339",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1239117",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1250122",
+      "sourceHash": "91f260e3405991d660e01ef0a7d5cbc91ccb327df5990cba838f416e6aaa1fcc",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1250122",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1254254",
+      "sourceHash": "024035b9a0b8be537fb5a6c749e36ed6f6e61f2da02949b85304f1c659538df3",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1254254",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1258822",
+      "sourceHash": "104913fc109dd72397f98c133d678cc7a644c007c057eefb0b0cbeaa49c90d06",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1258822",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1267709",
+      "sourceHash": "a61ac102b5f43324379d3987bbbf0a88f1470437b01fc3c79fbbf37853cd89f1",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1267709",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1272036",
+      "sourceHash": "f997240c8c9a9aafbeabf9ecb71473e2f188808ad5e8fd6d2a6a073cf2767bd7",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1272036",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1274957",
+      "sourceHash": "70eb43d468b4b581e749f6a5464f2785bb7e4d05e17e1a262a612a0ea03c8597",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1274957",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1282740",
+      "sourceHash": "7b2ce044042dda628519a5e1db0680c5de7d4e98fb25fbe2adc4356b67b4328b",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1282740",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1288175",
+      "sourceHash": "fc41b5bacd35252185a72a9cf6631e15d85fcd0394ce430a504af7d0c9e4447a",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1288175",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1295239",
+      "sourceHash": "a9f438ac014ccbcf39db5841ac68076c5957f108a8b69b9b5e215b640e9e75dc",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1295239",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1302974",
+      "sourceHash": "42530a4eb7741ce184788aaa1bee3c06edb02d7e8f5e96b98afa1b24f7081aac",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1302974",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1308034",
+      "sourceHash": "c1246d0db3a96d192b0ca22d769917c4c9d476bdfa076417703acbcfd9641206",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1308034",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1320782",
+      "sourceHash": "84b006116dec0b3e73707dfb5cf154789f5c4017d1b64e5b6e008653964d3074",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1320782",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1332305",
+      "sourceHash": "ea8537d51f88368527788295058882123d087519c5e08eaa4b9817e1ed54fbc8",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1332305",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1337067",
+      "sourceHash": "a16220a30f6175d8077c1067f70f7d418456b117f0c8f13c33f96ab91d65004a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1337067",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1343566",
+      "sourceHash": "3b98bd803a3888fb2b0b96cd7fd2aa228e2f0d48cd448f892e8f86ac2d9ab475",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1343566",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1348954",
+      "sourceHash": "99880bf9fdf8cc07ea206dea091f5797fd67aac73daa9fc65d71055f091e0cbf",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1348954",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1355260",
+      "sourceHash": "616c7b1e078e3f0da4297e7e8510a5387ef56f2c27b27dfa00ffbfc212b1f8c3",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1355260",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1356411",
+      "sourceHash": "420e2833bfcbdb8de27f6e654daa309b0278db74b97f3fc6a95b56e6a8b4dfac",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1356411",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1369401",
+      "sourceHash": "bc99927ed2edd92861652ef6ba27e04b87e3ccf3db4e8aab7e2490925bdf545a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1369401",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1372875",
+      "sourceHash": "7a0e6360f6c339da79051bdab557cac3b9ac3345a447e9a5dfed49b8a61a7f6f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1372875",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1386116",
+      "sourceHash": "13c480b8abeae5e208ab4334fb3eacc3e0ee8abf7c9bde32df3bc798576d720c",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1386116",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1391572",
+      "sourceHash": "9974a1b8c00613cfb8c1d8367731618058d879c1e4a6f8f9ead19f2138774751",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1391572",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1395710",
+      "sourceHash": "4c97f0a3a1d6320189d4196e4a144a93bbbc65ee39f79ed646536ceaf5385b25",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1395710",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1403243",
+      "sourceHash": "438e64998a2a5518341fff544082dee14fc66b10b29a4c859ccb8dc5f11cbac3",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1403243",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1414155",
+      "sourceHash": "2c3d4c8a6e4ea900ea73538059362b147d46bf85c99cd07fd070d69f3b7ccaba",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1414155",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1419689",
+      "sourceHash": "8b3ed88d0be88a5280e4e989b70cb76c437bf9708658714300d14607479c591b",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1419689",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1431909",
+      "sourceHash": "3d71bc75cae24134708517b2af4234d7863f0d7bf9da158277de7c5c2deea7c7",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1431909",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1439440",
+      "sourceHash": "e696d644da061aa254fea827163846892183ea64980f17a0edf98c84a9d12287",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1439440",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1454051",
+      "sourceHash": "36a5308d5a38c001f456303fa52e91aa8248d0f2cc14230ed5095ed008a22c22",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1454051",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2024.1482339",
+      "sourceHash": "6ffdc0f504547578b46e412206a74abf8ffbab9498050d69658cb7876e9758e5",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2024.1482339",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1371506",
+      "sourceHash": "8e259e3385e25e976916d56bf2a3a846f73a7c0962413638d40c0ac791d9ce51",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1371506",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1403564",
+      "sourceHash": "e570e7fbb757b147d7c6fabdc89f63ceed30785e43d914ba978edaecd5d09871",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1403564",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1426118",
+      "sourceHash": "bffa3d3e47c05e4f413a349568e33d4d7c191ec7b85c22ef7eb81b119367e2f0",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1426118",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1434271",
+      "sourceHash": "c44ac589b282287c9c105ad7964aa85f1a7e6a9116157f4671fb816758e25d4e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1434271",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1461108",
+      "sourceHash": "007dd550a06855747fe2bd314a26937a1a646a2a776648d9caee5912933ecb14",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1461108",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1468370",
+      "sourceHash": "c54868afa10fa8e40e08e8cefc54b8dbb7379e706aa2591b99dddb37ecf1f1bf",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1468370",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1472709",
+      "sourceHash": "b8185ed76ef23f47e448ee03cff1ad3e2772bdc08ce4174d8b6c70e2c0641b2a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1472709",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1479828",
+      "sourceHash": "927a610b269833cb1ec39554c1ebe485950d00a02ad54b92ceaeb2b436748df0",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1479828",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1491113",
+      "sourceHash": "dc49f5b30328c216b7376500e52b05da4f6d18b2de16b73ed87e6486bd76df97",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1491113",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1494421",
+      "sourceHash": "db098b94280e1820b7c450d6bd3af75ccb77aac363f5bc4f42de8a13b56d2b03",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1494421",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1499439",
+      "sourceHash": "1214b3ee78d807bfefb02b850a95ae76cf3cf4d0c6da8c05fa3c8a77b2214dc6",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1499439",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1516184",
+      "sourceHash": "b1805af391891ef305e1a6bae80f48b02873298cc64952ad9854dcc3f7582c71",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1516184",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1524077",
+      "sourceHash": "8f6d079401cf5f4a09936a49c50b7866899edca0a3aa2e834e3bb9e29d4b9aed",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1524077",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1535493",
+      "sourceHash": "86e731f8edf2178509d981a730098a999bf971d196f443ffb0a5348c28b236b1",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1535493",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1546856",
+      "sourceHash": "caaa328277a70cb29bda2c816ea0648c71f8fa5a92a13983272946e45d568170",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1546856",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1557571",
+      "sourceHash": "4de8507a1e4169b87938e71fbc52f69767a7a8e9e060a01dfe324d91f712cc9b",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1557571",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1560485",
+      "sourceHash": "a966d9ee82c97be17137e5a4d03eb37193e32cca3d2e40a0ce9df3acdf71d946",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1560485",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1565644",
+      "sourceHash": "d325f2c86cdf9121718ff7788dc3ee9e530717a883ca3925421043dc898ff982",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1565644",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1571049",
+      "sourceHash": "2dc97c1907fa099994ebbe6d05c5cc7df04ba43e4b6be092fff26a01a98765be",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1571049",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "frontiers-article-10.3389-frym.2025.1572275",
+      "sourceHash": "d8bb4710b118a1558c9da7756d486599ef0bb841cb56e71b1cfa90f17b43b06b",
+      "topic": "science",
+      "provenance": {
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2025.1572275",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359439",
+      "sourceHash": "12e353717d749af8c561bc27735bc388ae56d07864b947c330a204f737724109",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359439",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358980",
+      "sourceHash": "09b2170fe5dec0c76803ec49445c7c8f9ca8dd01d4dc63f364254fae7e207f92",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358980",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359791",
+      "sourceHash": "7b6df63b1f2dd7703da3093070849dbac81efa037291cdc7660023e9989a2dd9",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359791",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0360658",
+      "sourceHash": "2c2b0e751e5e6c640c7dae42e4b291259106c5eab26649174ddb3e62dc0eed08",
+      "topic": "culture",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0360658",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359952",
+      "sourceHash": "e2ed96ea8ca67329ef1d95a08174d8f1768406031fae19e57def0046060eb21b",
+      "topic": "history",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359952",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0360070",
+      "sourceHash": "477edc60c1e5f638fb05ff735305c7dff3ea3ba1d1fd325d248632de9375f2fb",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0360070",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359961",
+      "sourceHash": "52b4abe704d8be46681f13cb725bcca91513d80a554e43f3c498964186f34716",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359961",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358135",
+      "sourceHash": "6ccf3ce24e8e7bf65ab126d554c95fba846f76fb54314688d4d6d74b0e1cec85",
+      "topic": "history",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358135",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358423",
+      "sourceHash": "30b030d0dcd29c9b98dcb5d89358cdfcc8def4d4063c7442a7ee5d9e7ffc69d9",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358423",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357475",
+      "sourceHash": "ca869bc37315607db1f2edf07ed4c7742068c9f9b1ae32d5341febf42cfff30e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357475",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358045",
+      "sourceHash": "afec59f6d1af0157731c7c49f5fb3d76874af2a895b14d029b17a763d2a22ea0",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358045",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359551",
+      "sourceHash": "8d28f233cbb2cf74437a851e1963afe24e71efd5947b612d6074bfec0d699293",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359551",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0338998",
+      "sourceHash": "efe9c3c52157af1f9932fa9791fc5c16a9a1e7306595a80e5bc8443bfdfcb058",
+      "topic": "business",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0338998",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358972",
+      "sourceHash": "d630788bafc5d3b208236df9743a9263a920cd113edcac2b0581db305df54b1f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358972",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0351518",
+      "sourceHash": "ea51385c089928f94897549916961412bf5b5f45b2f43c832e18307c17afe4ac",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0351518",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359542",
+      "sourceHash": "663c1b2d19ec0f88d7d503d40d00e899b7a86c6e2a715273c9a6177a77cbdf0b",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359542",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357566",
+      "sourceHash": "8e2a84a8b8b20080f3a5c2fe72601dba6a3b5c5dc8cf39cce304fdc507b0d3e5",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357566",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357798",
+      "sourceHash": "1caa5a2502edb916c374bd1189deb7cfa083db1e7558a2d86fd757038faab38d",
+      "topic": "science",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357798",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0359207",
+      "sourceHash": "fda208cbe9f99e1d1c0288ec3646bea33a932d79b93efcc007b3b0aae4895860",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0359207",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358076",
+      "sourceHash": "ec40c6405c3befd9dadc72f7027de292895823978739f149da30592345887f26",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358076",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358751",
+      "sourceHash": "577f8edfce65b1be98713533bf493467d580cbe4c618b39a1a2d9c432bef3590",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358751",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357447",
+      "sourceHash": "4564ceff2e27b02550e03ad16804f0384a695d7f4e352e90bb241c348fcfd309",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357447",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0340539",
+      "sourceHash": "87e9a8588a434abef05a744c35d466c404fae7a7eeded106c0cbb6d519fa29b9",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0340539",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357031",
+      "sourceHash": "0e61c87d8bc92bb997e896b0b8fd58b75f0af442ec06ce9763611ae7771520b2",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357031",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358701",
+      "sourceHash": "0c652d4aff5e890158f7719d32a30b1d31dae507454babe69deeecbc03e15ae8",
+      "topic": "business",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358701",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358769",
+      "sourceHash": "fb2c98779e0781f4b0c89d2b49a9c3ab92e53b24fe5603a47cb69bf4423e968c",
+      "topic": "science",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358769",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0353063",
+      "sourceHash": "28b9abdf5ada5b66283512235bc9925598721b475aea394f2eb19ab7602904f1",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0353063",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0356872",
+      "sourceHash": "57b57d4f8fd59de4a4bd8f18ab03481fc3e114f5c2bc47558a8c7cd45fd3c6fd",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356872",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357009",
+      "sourceHash": "b0a0ee27cd7c8f259e11fd08a7a4fd18a66ad2109ac6adfe0f27078e39fc309e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357009",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358231",
+      "sourceHash": "46f352f79b050df14d13ec9670335822cafae61c54ef3c67a736d83774bdb151",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358231",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0356777",
+      "sourceHash": "959390ee5e15318d080a80ec337d400a2b994497724ac12459d054ba4018da08",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356777",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0351782",
+      "sourceHash": "f2a4cdf93738a928f04b55cb7c9ce9636b8544815b4a1f2b7750e25bbc2c3722",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0351782",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357098",
+      "sourceHash": "4491110b27e993fb59298b30f9a0803246a3fc38fa16a374491aac733b680496",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357098",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358229",
+      "sourceHash": "8a391dd88aff272dff8e6e65af9af77bf7af9e99c3ced23608c375bf53536f77",
+      "topic": "business",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358229",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358469",
+      "sourceHash": "0f7266a8558d09905b15efbccf37bfb47a83ba00ab6275ad4b82c6854a3f580f",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358469",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0358232",
+      "sourceHash": "2fb54cc1aa8cfa65a4b530fa1bef4edc24d706a9835a7b9efa5445cbcd929951",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0358232",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0345687",
+      "sourceHash": "69cb57ef43fff9670b13d4290e68fcd650025b2b51996927f88aaecb73fcd6f5",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0345687",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357346",
+      "sourceHash": "bcbbd9159292db9799a04c89280468de7336f3e5c530ddbefb30d262917b02d2",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357346",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357011",
+      "sourceHash": "da8d7d5366fdbdab0a913b52634e29d60eded8e1b1c4c4124f30d9b091ab9b7f",
+      "topic": "science",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357011",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357404",
+      "sourceHash": "59ab94b88acf7274415879cdac6d3810a0c5b029d03e7d95a59d053240aa05b9",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357404",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357919",
+      "sourceHash": "c9df36b2c82cfc51e37f2ed366990c3e8ff5d8079b9fdc18a04464135b1ef32e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357919",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357315",
+      "sourceHash": "302bc399e29a6aa7ab3250f113fbc1285f71b4c0491c1ff739350be0a80bf1ca",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357315",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0354096",
+      "sourceHash": "d57c936436dd5839102d5a14d3d266b6bff5a5dec0a31fd7a7cd7520e9b4632a",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0354096",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357598",
+      "sourceHash": "cf42552d951b107e8e8217efab14b0d23a9981527a8fc3df95988c36146d312e",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357598",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357710",
+      "sourceHash": "5c04f8973b5b02d97268d5cefd3afef0c3f7c27cedcb330d85b303402a86056d",
+      "topic": "business",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357710",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357099",
+      "sourceHash": "03b25805b83e56cc1b260cb3845bb49fe994aa82f368a5a409c83cab14330bbd",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357099",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357442",
+      "sourceHash": "cfb670bfee31a0ad5e8ae89866e1494569f11ae0e8547e8c0c7f70a9279f4111",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357442",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357774",
+      "sourceHash": "1903e086334ba2802a90cf27a88151e0317b34fc584e2ceaf75bc028ed5d91d2",
+      "topic": "science",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357774",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0357446",
+      "sourceHash": "de59a4041e8a3c37001b217c8eca67004f09f093a0781f268aeef2d24eea902d",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0357446",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0335578",
+      "sourceHash": "f321186d9cdad76ed3305970ba0ef94f1d045f0873e8a302cd1154449e8365e2",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0335578",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    },
+    {
+      "rootId": "plos-article-10.1371-journal.pone.0329429",
+      "sourceHash": "a7ecaa7ed19c93dcca40900fcf196aedd530ec39dbb45e6b555886a6494514e1",
+      "topic": "nature",
+      "provenance": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0329429",
+        "policyUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Hash-bound article source, permission and native-paragraph scope review by Codex/AI."
+      }
+    }
+  ]
+}

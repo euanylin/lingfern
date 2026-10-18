@@ -1,0 +1,60 @@
+[
+  {
+    "rootId": "gutenberg-book-944",
+    "sourceHash": "e13d57170a6dd9f7d97ddbc14cbde961dffbd95e8861ed199e5f00a525e7e52a",
+    "title": "The Voyage of the Beagle",
+    "text": "A ridge connected this hill with another, distant some miles, and more lofty, so that patches of snow were lying on it. As the day was not far advanced, I determined to walk there and collect plants along the road.",
+    "audio": {
+      "src": "/audio/b1-speech/beagle-early-walk.mp3",
+      "sha256": "c87c55340315e63c380917b5829ab9a8b57d18180188a6147e554f968c66b9d6",
+      "duration": 12.935,
+      "author": "Rob Whelan",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Charles Darwin. Project Gutenberg edition 944. Recording: LibriSpeech (c)2014 Vassil Panayotov, with assistance of Daniel Povey; Rob Whelan. Whole original FLAC re-encoded at native16000Hz; original words and background floor retained.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/944"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 214,
+        "text": "A ridge connected this hill with another, distant some miles, and more lofty, so that patches of snow were lying on it. As the day was not far advanced, I determined to walk there and collect plants along the road.",
+        "audioStart": 0,
+        "audioEnd": 12.935
+      }
+    ]
+  },
+  {
+    "rootId": "gutenberg-book-6754",
+    "sourceHash": "247169a33d945a80b3f0db11cfbb9938b9518c465f426cfb1dfc0f381a30e97f",
+    "title": "The tale of Brownie Beaver",
+    "text": "And he built it himself, because he said he would rather have a neat, new house than one of the big, old dwellings that had been built many years before, when his great-great-grandfather had helped throw the dam across the stream. The dam was there still.",
+    "audio": {
+      "src": "/audio/b1-speech/brownie-new-house.mp3",
+      "sha256": "035f5fd5eff5499f7b9f38b8f9e87854ff17d893e2d6eb7f4afe638e8bff0ceb",
+      "duration": 15.81,
+      "author": "Betsie Bush",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Arthur Scott Bailey. Project Gutenberg edition 6754. Recording: LibriSpeech (c)2014 Vassil Panayotov, with assistance of Daniel Povey; Betsie Bush. Whole original FLAC re-encoded at native16000Hz; original words and background floor retained.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording: CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/6754"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 255,
+        "text": "And he built it himself, because he said he would rather have a neat, new house than one of the big, old dwellings that had been built many years before, when his great-great-grandfather had helped throw the dam across the stream. The dam was there still.",
+        "audioStart": 0,
+        "audioEnd": 15.81
+      }
+    ]
+  }
+]

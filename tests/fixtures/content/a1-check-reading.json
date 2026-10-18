@@ -1,0 +1,60 @@
+{
+  "id": "a1-art-club-check-draft",
+  "mode": "check",
+  "targetLevel": "A1",
+  "skill": "reading",
+  "title": { "zh-Hans": "美术社通知 · 检测草稿", "zh-Hant": "美術社通知 · 檢測草稿", "en": "Art club notice · check draft" },
+  "goal": { "zh-Hans": "从短通知中找到日期、地点、时间和要带的物品。", "zh-Hant": "從短通知中找到日期、地點、時間和要帶的物品。", "en": "Find the day, room, time, and item in a short notice." },
+  "goalId": "place-and-item",
+  "sourceId": "lingfern-original-a1-art-club-check",
+  "reviewStatus": "draft",
+  "expectedMinutes": 4,
+  "materials": [{
+    "id": "art-club-notice",
+    "rootId": "original-art-club-check",
+    "title": "Art club",
+    "blocks": [{ "id": "notice", "text": "On Tuesday, art club meets in Room 8 at three. Bring your blue folder. On Friday, art club meets in Room 2 at four. Bring a pencil." }],
+    "questions": [
+      {
+        "id": "tuesday-room", "blockId": "notice", "prompt": "Where does art club meet on Tuesday?",
+        "options": ["Room 2", "Room 8", "Room 3"], "answer": 1,
+        "evidence": { "start": 30, "end": 36 },
+        "explanations": [
+          { "zh-Hans": "2 号教室是周五的地点。", "zh-Hant": "2 號教室是週五的地點。", "en": "Room 2 is the Friday location." },
+          { "zh-Hans": "周二的通知写的是 8 号教室。", "zh-Hant": "週二的通知寫的是 8 號教室。", "en": "The Tuesday notice says Room 8." },
+          { "zh-Hans": "通知中没有提到 3 号教室。", "zh-Hant": "通知中沒有提到 3 號教室。", "en": "The notice does not mention Room 3." }
+        ]
+      },
+      {
+        "id": "tuesday-time", "blockId": "notice", "prompt": "What time does art club meet on Tuesday?",
+        "options": ["At two", "At three", "At four"], "answer": 1,
+        "evidence": { "start": 37, "end": 45 },
+        "explanations": [
+          { "zh-Hans": "通知中没有提到两点。", "zh-Hant": "通知中沒有提到兩點。", "en": "The notice does not say two o’clock." },
+          { "zh-Hans": "周二的时间是三点。", "zh-Hant": "週二的時間是三點。", "en": "Tuesday's time is three o’clock." },
+          { "zh-Hans": "四点是周五的时间。", "zh-Hant": "四點是週五的時間。", "en": "Four o’clock is the Friday time." }
+        ]
+      },
+      {
+        "id": "tuesday-item", "blockId": "notice", "prompt": "What should you bring on Tuesday?",
+        "options": ["A blue folder", "A pencil", "A book"], "answer": 0,
+        "evidence": { "start": 58, "end": 69 },
+        "explanations": [
+          { "zh-Hans": "周二要带蓝色文件夹。", "zh-Hant": "週二要帶藍色資料夾。", "en": "The Tuesday instruction says to bring a blue folder." },
+          { "zh-Hans": "铅笔是周五要带的。", "zh-Hant": "鉛筆是週五要帶的。", "en": "The pencil is for Friday." },
+          { "zh-Hans": "通知中没有要求带书。", "zh-Hant": "通知中沒有要求帶書。", "en": "The notice does not ask for a book." }
+        ]
+      },
+      {
+        "id": "friday-item", "blockId": "notice", "prompt": "What should you bring on Friday?",
+        "options": ["A blue folder", "A pencil", "A bag"], "answer": 1,
+        "evidence": { "start": 122, "end": 130 },
+        "explanations": [
+          { "zh-Hans": "蓝色文件夹是周二要带的。", "zh-Hant": "藍色資料夾是週二要帶的。", "en": "The blue folder is for Tuesday." },
+          { "zh-Hans": "周五要带铅笔。", "zh-Hant": "週五要帶鉛筆。", "en": "The Friday instruction says to bring a pencil." },
+          { "zh-Hans": "通知中没有要求带书包。", "zh-Hant": "通知中沒有要求帶書包。", "en": "The notice does not ask for a bag." }
+        ]
+      }
+    ]
+  }]
+}

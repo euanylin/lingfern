@@ -1,0 +1,596 @@
+{
+  "reviewer": "Codex/AI",
+  "reading": [
+    {
+      "rootId": "gutenberg-book-829",
+      "sourceHash": "fca36de3de0d8b831b7588cf1df84639ccf4c503172d6444ee61d1c1b2036edd",
+      "passageId": "1fcfb2bb12e45c6b9d2f91861600ac83fa1888b99aa0b8b9434d3ee60f29eb2d",
+      "textSha256": "1fcfb2bb12e45c6b9d2f91861600ac83fa1888b99aa0b8b9434d3ee60f29eb2d",
+      "text": "During our journey he made me observe the several methods used by farmers in managing their lands, which to me were wholly unaccountable; for, except in some very few places, I could not discover one ear of corn or blade of grass. But, in three hours travelling, the scene was wholly altered; we came into a most beautiful country; farmers’ houses, at small distances, neatly built; the fields enclosed, containing vineyards, corn-grounds, and meadows. Neither do I remember to have seen a more delightful prospect. His excellency observed my countenance to clear up; he told me, with a sigh, “that there his estate began, and would continue the same, till we should come to his house: that his countrymen ridiculed and despised him, for managing his affairs no better, and for setting so ill an example to the kingdom; which, however, was followed by very few, such as were old, and wilful, and weak like himself.”\n\nWe came at length to the house, which was indeed a noble structure, built according to the best rules of ancient architecture. The fountains, gardens, walks, avenues, and groves, were all disposed with exact judgment and taste. I gave due praises to every thing I saw, whereof his excellency took not the least notice till after supper; when, there being no third companion, he told me with a very melancholy air “that he doubted he must throw down his houses in town and country, to rebuild them after the present mode; destroy all his plantations, and cast others into such a form as modern usage required, and give the same directions to all his tenants, unless he would submit to incur the censure of pride, singularity, affectation, ignorance, caprice, and perhaps increase his majesty’s displeasure; that the admiration I appeared to be under would cease or diminish, when he had informed me of some particulars which, probably, I never heard of at court, the people there being too much taken up in their own speculations, to have regard to what passed here below.”\n\nThe sum of his discourse was to this effect: “That about forty years ago, certain persons went up to Laputa, either upon business or diversion, and, after five months continuance, came back with a very little smattering in mathematics, but full of volatile spirits acquired in that airy region: that these persons, upon their return, began to dislike the management of every thing below, and fell into schemes of putting all arts, sciences, languages, and mechanics, upon a new foot. To this end, they procured a royal patent for erecting an academy of projectors in Lagado; and the humour prevailed so strongly among the people, that there is not a town of any consequence in the kingdom without such an academy. In these colleges the professors contrive new rules and methods of agriculture and building, and new instruments, and tools for all trades and manufactures; whereby, as they undertake, one man shall do the work of ten; a palace may be built in a week, of materials so durable as to last for ever without repairing. All the fruits of the earth shall come to maturity at whatever season we think fit to choose, and increase a hundred fold more than they do at present; with innumerable other happy proposals. The only inconvenience is, that none of these projects are yet brought to perfection; and in the mean time, the whole country lies miserably waste, the houses in ruins, and the people without food or clothes. By all which, instead of being discouraged, they are fifty times more violently bent upon prosecuting their schemes, driven equally on by hope and despair: that as for himself, being not of an enterprising spirit, he was content to go on in the old forms, to live in the houses his ancestors had built, and act as they did, in every part of life, without innovation: that some few other persons of quality and gentry had done the same, but were looked on with an eye of contempt and ill-will, as enemies to art, ignorant, and ill common-wealth’s men, preferring their own ease and sloth before the general improvement of their country.”",
+      "credit": {
+        "attribution": "Gulliver's Travels into Several Remote Nations of the World — Swift, Jonathan, 1667-1745. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/829).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/829"
+      },
+      "nativeScope": {
+        "start": 337366,
+        "end": 341423,
+        "canonicalSha256": "9dcc2dfa01fc2ae670d024292e7c9879a3cf8410ac5162d51def146f0bde45d5",
+        "rawSha256": "fca36de3de0d8b831b7588cf1df84639ccf4c503172d6444ee61d1c1b2036edd",
+        "paragraphs": [
+          363,
+          366
+        ],
+        "words": 697,
+        "metadataSha256": "3489557a235eb6ae232e5035fe0c23bea8d6ac1d792df1e36a07ec4c0ac441d0",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "start": 0,
+          "end": 917,
+          "label": "Part 1: During our journey he made me observe..."
+        },
+        {
+          "start": 917,
+          "end": 1991,
+          "label": "Part 2: We came at length to the house..."
+        },
+        {
+          "start": 3212,
+          "end": 3421,
+          "label": "Part 3: The only inconvenience is..."
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    },
+    {
+      "rootId": "gutenberg-book-174",
+      "sourceHash": "38f36b510417177aa87a6a24c968e3ec63a447b7df36a9c1a7c5a3f2d9e51547",
+      "passageId": "57f5279157e211540f0c33e0223e72471f5a494b2cc190fa5e7fef5814f34c12",
+      "textSha256": "57f5279157e211540f0c33e0223e72471f5a494b2cc190fa5e7fef5814f34c12",
+      "text": "“Half-past six! What an hour! It will be like having a meat-tea, or reading an English novel. It must be seven. No gentleman dines before seven. Shall you see Basil between this and then? Or shall I write to him?”\n\n“Dear Basil! I have not laid eyes on him for a week. It is rather horrid of me, as he has sent me my portrait in the most wonderful frame, specially designed by himself, and, though I am a little jealous of the picture for being a whole month younger than I am, I must admit that I delight in it. Perhaps you had better write to him. I don’t want to see him alone. He says things that annoy me. He gives me good advice.”\n\nLord Henry smiled. “People are very fond of giving away what they need most themselves. It is what I call the depth of generosity.”\n\n“Oh, Basil is the best of fellows, but he seems to me to be just a bit of a Philistine. Since I have known you, Harry, I have discovered that.”\n\n“Basil, my dear boy, puts everything that is charming in him into his work. The consequence is that he has nothing left for life but his prejudices, his principles, and his common sense. The only artists I have ever known who are personally delightful are bad artists. Good artists exist simply in what they make, and consequently are perfectly uninteresting in what they are. A great poet, a really great poet, is the most unpoetical of all creatures. But inferior poets are absolutely fascinating. The worse their rhymes are, the more picturesque they look. The mere fact of having published a book of second-rate sonnets makes a man quite irresistible. He lives the poetry that he cannot write. The others write the poetry that they dare not realize.”\n\n“I wonder is that really so, Harry?” said Dorian Gray, putting some perfume on his handkerchief out of a large, gold-topped bottle that stood on the table. “It must be, if you say it. And now I am off. Imogen is waiting for me. Don’t forget about to-morrow. Good-bye.”\n\nAs he left the room, Lord Henry’s heavy eyelids drooped, and he began to think. Certainly few people had ever interested him so much as Dorian Gray, and yet the lad’s mad adoration of some one else caused him not the slightest pang of annoyance or jealousy. He was pleased by it. It made him a more interesting study. He had been always enthralled by the methods of natural science, but the ordinary subject-matter of that science had seemed to him trivial and of no import. And so he had begun by vivisecting himself, as he had ended by vivisecting others. Human life—that appeared to him the one thing worth investigating. Compared to it there was nothing else of any value. It was true that as one watched life in its curious crucible of pain and pleasure, one could not wear over one’s face a mask of glass, nor keep the sulphurous fumes from troubling the brain and making the imagination turbid with monstrous fancies and misshapen dreams. There were poisons so subtle that to know their properties one had to sicken of them. There were maladies so strange that one had to pass through them if one sought to understand their nature. And, yet, what a great reward one received! How wonderful the whole world became to one! To note the curious hard logic of passion, and the emotional coloured life of the intellect—to observe where they met, and where they separated, at what point they were in unison, and at what point they were at discord—there was a delight in that! What matter what the cost was? One could never pay too high a price for any sensation.\n\nHe was conscious—and the thought brought a gleam of pleasure into his brown agate eyes—that it was through certain words of his, musical words said with musical utterance, that Dorian Gray’s soul had turned to this white girl and bowed in worship before her. To a large extent the lad was his own creation. He had made him premature. That was something. Ordinary people waited till life disclosed to them its secrets, but to the few, to the elect, the mysteries of life were revealed before the veil was drawn away. Sometimes this was the effect of art, and chiefly of the art of literature, which dealt immediately with the passions and the intellect. But now and then a complex personality took the place and assumed the office of art, was indeed, in its way, a real work of art, life having its elaborate masterpieces, just as poetry has, or sculpture, or painting.\n\nYes, the lad was premature. He was gathering his harvest while it was yet spring. The pulse and passion of youth were in him, but he was becoming self-conscious. It was delightful to watch him. With his beautiful face, and his beautiful soul, he was a thing to wonder at. It was no matter how it all ended, or was destined to end. He was like one of those gracious figures in a pageant or a play, whose joys seem to be remote from one, but whose sorrows stir one’s sense of beauty, and whose wounds are like red roses.",
+      "credit": {
+        "attribution": "The Picture of Dorian Gray — Wilde, Oscar, 1854-1900. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/174).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/174"
+      },
+      "nativeScope": {
+        "start": 106173,
+        "end": 111066,
+        "canonicalSha256": "3471405a3ce7f4a0e7cd813809e42afa3a0a16a83b179a413a79e3b7754b29e5",
+        "rawSha256": "38f36b510417177aa87a6a24c968e3ec63a447b7df36a9c1a7c5a3f2d9e51547",
+        "paragraphs": [
+          426,
+          435
+        ],
+        "words": 890,
+        "metadataSha256": "ffaecadfe3058a8d59a1f132adf5c1fc420ee68f0f51816a317715a60681fd52",
+        "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6"
+      },
+      "parts": [
+        {
+          "start": 637,
+          "end": 770,
+          "label": "Part 1: Lord Henry smiled..."
+        },
+        {
+          "start": 1671,
+          "end": 1941,
+          "label": "Part 2: I wonder is that really so, Harry..."
+        },
+        {
+          "start": 4375,
+          "end": 4893,
+          "label": "Part 3: Yes, the lad was premature..."
+        }
+      ],
+      "review": "Codex/AI inspected exact continuous complete native paragraphs plus preceding/following context; complete original narrative contexts remain continuous across existing processed chunk boundaries. Source-only local explicit import, unchanged US public-domain label/regional pending and original Gutenberg terms. No whole-book or CEFR approval."
+    }
+  ],
+  "listening": [
+    {
+      "rootId": "jfk-speech-19620912-rice",
+      "sourceHash": "c621fa1d61f8a7e724f13e3efb02cc66a9814b172e5205ed45d8d8a0b2d271b1",
+      "clipId": "38083a051a7367653fa9090ee523f922e8f449bea466db96e6aa4b35c43e5212",
+      "textSha256": "37e0d6357677245ad84a6237582acd9cd8ef4f73cf3b4c72f8ec638b2f38044c",
+      "text": "We set sail on this new sea because there is new knowledge to be gained and new rights to be won, and they must be won and used for the progress of all people. For space science, like nuclear science and all technology, has no conscience of its own. Whether it will become a force for good or ill depends on man, and only if the United States occupies a position of preeminence can we help decide whether this new ocean will be a sea of peace or a new terrifying theater of war. I do not say that we should or will go unprotected against the hostile misuse of space any more than we go unprotected against the hostile use of land or sea. But I do say that space can be explored and mastered without feeding the fires of war, without repeating the mistakes that man has made in extending his writ around this globe of ours.\n\nThere is no strife, no prejudice, no national conflict in outer space as yet. Its hazards are hostile to us all. Its conquest deserves the best of all mankind, and its opportunity for peaceful cooperation may never come again. But why, some say, the moon? Why choose this as our goal? And they may well ask, why climb the highest mountain? Why, 35 years ago, fly the Atlantic? Why does Rice play Texas?\n\nWe choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard. Because that goal will serve to organize and measure the best of our energies and skills. That challenge is one that we're willing to accept, one we are unwilling to postpone, and one we intend to win, and the others too.",
+      "sourceCredit": {
+        "attribution": "John F. Kennedy. Address at Rice University on the space effort, 12 September 1962. https://www.rice.edu/kennedy",
+        "license": "Public domain — original US federal-government address",
+        "sourceUrl": "https://www.rice.edu/kennedy"
+      },
+      "credit": {
+        "attribution": "John F. Kennedy. Address at Rice University on the space effort, 12 September 1962. https://www.rice.edu/kennedy Recording: John F. Kennedy; original archival recording; https://www.jfklibrary.org/asset-viewer/archives/jfkwha-127-002",
+        "license": "Public domain — original US federal-government address; recording: Public domain — original US federal-government address",
+        "sourceUrl": "https://www.rice.edu/kennedy"
+      },
+      "audio": {
+        "src": "media/38083a051a7367653fa9090ee523f922e8f449bea466db96e6aa4b35c43e5212.mp3",
+        "sha256": "069c0b88fd08a406dce9fe1ea4ae41805c1b11d7d49782bec18c987aa698d0b9",
+        "duration": 147.84,
+        "author": "John F. Kennedy",
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Jfk_rice_university_we_choose_to_go_to_the_moon.ogg",
+        "license": "Public domain — original US federal-government address",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 159,
+          "text": "We set sail on this new sea because there is new knowledge to be gained and new rights to be won, and they must be won and used for the progress of all people.",
+          "audioStart": 0,
+          "audioEnd": 13.58
+        },
+        {
+          "start": 160,
+          "end": 249,
+          "text": "For space science, like nuclear science and all technology, has no conscience of its own.",
+          "audioStart": 14.08,
+          "audioEnd": 20.98
+        },
+        {
+          "start": 250,
+          "end": 312,
+          "text": "Whether it will become a force for good or ill depends on man,",
+          "audioStart": 22.02,
+          "audioEnd": 26.14
+        },
+        {
+          "start": 313,
+          "end": 377,
+          "text": "and only if the United States occupies a position of preeminence",
+          "audioStart": 26.14,
+          "audioEnd": 32.4
+        },
+        {
+          "start": 378,
+          "end": 442,
+          "text": "can we help decide whether this new ocean will be a sea of peace",
+          "audioStart": 32.4,
+          "audioEnd": 39.5
+        },
+        {
+          "start": 443,
+          "end": 478,
+          "text": "or a new terrifying theater of war.",
+          "audioStart": 39.5,
+          "audioEnd": 42.96
+        },
+        {
+          "start": 479,
+          "end": 529,
+          "text": "I do not say that we should or will go unprotected",
+          "audioStart": 43.68,
+          "audioEnd": 48.24
+        },
+        {
+          "start": 530,
+          "end": 565,
+          "text": "against the hostile misuse of space",
+          "audioStart": 48.24,
+          "audioEnd": 51.12
+        },
+        {
+          "start": 566,
+          "end": 597,
+          "text": "any more than we go unprotected",
+          "audioStart": 51.12,
+          "audioEnd": 53.84
+        },
+        {
+          "start": 598,
+          "end": 637,
+          "text": "against the hostile use of land or sea.",
+          "audioStart": 53.84,
+          "audioEnd": 57.54
+        },
+        {
+          "start": 638,
+          "end": 690,
+          "text": "But I do say that space can be explored and mastered",
+          "audioStart": 58.24,
+          "audioEnd": 62.04
+        },
+        {
+          "start": 691,
+          "end": 724,
+          "text": "without feeding the fires of war,",
+          "audioStart": 62.04,
+          "audioEnd": 64.78
+        },
+        {
+          "start": 725,
+          "end": 773,
+          "text": "without repeating the mistakes that man has made",
+          "audioStart": 65.64,
+          "audioEnd": 68.36
+        },
+        {
+          "start": 774,
+          "end": 822,
+          "text": "in extending his writ around this globe of ours.",
+          "audioStart": 68.36,
+          "audioEnd": 71.48
+        },
+        {
+          "start": 824,
+          "end": 857,
+          "text": "There is no strife, no prejudice,",
+          "audioStart": 72.3,
+          "audioEnd": 75.22
+        },
+        {
+          "start": 858,
+          "end": 901,
+          "text": "no national conflict in outer space as yet.",
+          "audioStart": 75.46,
+          "audioEnd": 78.8
+        },
+        {
+          "start": 902,
+          "end": 936,
+          "text": "Its hazards are hostile to us all.",
+          "audioStart": 79.84,
+          "audioEnd": 81.96
+        },
+        {
+          "start": 937,
+          "end": 1028,
+          "text": "Its conquest deserves the best of all mankind, and its opportunity for peaceful cooperation",
+          "audioStart": 81.96,
+          "audioEnd": 90.04
+        },
+        {
+          "start": 1029,
+          "end": 1050,
+          "text": "may never come again.",
+          "audioStart": 90.04,
+          "audioEnd": 91.64
+        },
+        {
+          "start": 1051,
+          "end": 1079,
+          "text": "But why, some say, the moon?",
+          "audioStart": 91.64,
+          "audioEnd": 95.14
+        },
+        {
+          "start": 1080,
+          "end": 1108,
+          "text": "Why choose this as our goal?",
+          "audioStart": 95.14,
+          "audioEnd": 98.1
+        },
+        {
+          "start": 1109,
+          "end": 1163,
+          "text": "And they may well ask, why climb the highest mountain?",
+          "audioStart": 98.1,
+          "audioEnd": 101.84
+        },
+        {
+          "start": 1164,
+          "end": 1200,
+          "text": "Why, 35 years ago, fly the Atlantic?",
+          "audioStart": 101.84,
+          "audioEnd": 106.36
+        },
+        {
+          "start": 1201,
+          "end": 1226,
+          "text": "Why does Rice play Texas?",
+          "audioStart": 106.36,
+          "audioEnd": 108.48
+        },
+        {
+          "start": 1228,
+          "end": 1256,
+          "text": "We choose to go to the moon.",
+          "audioStart": 108.48,
+          "audioEnd": 111.18
+        },
+        {
+          "start": 1257,
+          "end": 1341,
+          "text": "We choose to go to the moon in this decade and do the other things, not because they",
+          "audioStart": 111.18,
+          "audioEnd": 124.26
+        },
+        {
+          "start": 1342,
+          "end": 1378,
+          "text": "are easy, but because they are hard.",
+          "audioStart": 124.26,
+          "audioEnd": 127.74
+        },
+        {
+          "start": 1379,
+          "end": 1468,
+          "text": "Because that goal will serve to organize and measure the best of our energies and skills.",
+          "audioStart": 127.74,
+          "audioEnd": 135.02
+        },
+        {
+          "start": 1469,
+          "end": 1554,
+          "text": "That challenge is one that we're willing to accept, one we are unwilling to postpone,",
+          "audioStart": 135.02,
+          "audioEnd": 141.18
+        },
+        {
+          "start": 1555,
+          "end": 1600,
+          "text": "and one we intend to win, and the others too.",
+          "audioStart": 141.18,
+          "audioEnd": 147.84
+        }
+      ],
+      "parts": [
+        {
+          "start": 0,
+          "end": 824,
+          "label": "Part 1: We set sail on this new sea..."
+        },
+        {
+          "start": 824,
+          "end": 1228,
+          "label": "Part 2: There is no strife..."
+        },
+        {
+          "start": 1228,
+          "end": 1600,
+          "label": "Part 3: We choose to go to the moon..."
+        }
+      ]
+    },
+    {
+      "rootId": "jfk-speech-19630610-american-university",
+      "sourceHash": "e7ae78e3a78ce117d4e39eea35c781cd0fc1142bd577adbc96acfe74106f59bf",
+      "clipId": "de691c6c8dbf13a7de5154f92db3b07f105ef9bddcf1458d87706dc03f6931c5",
+      "textSha256": "250ee1734967c533f594ca81539819f5658057b4caaa241c5afb724ee9094cd4",
+      "text": "No government or social system is so evil that its people must be considered as lacking in virtue. As Americans, we find communism profoundly repugnant as a negation of personal freedom and dignity. But we can still hail the Russian people for their many achievements in science and space, in economic and industrial growth, in culture, in acts of courage.\n\nAmong the many traits the peoples of our two countries have in common, none is stronger than our mutual abhorrence of war. Almost unique among the major world powers, we have never been at war with each other. And no nation in the history of battle ever suffered more than the Soviet Union in the Second World War. At least 20 million lost their lives. Countless millions of homes and farms were burned or sacked. A third of the nation's territory, including two-thirds of its industrial base, was turned into a wasteland, a loss equivalent to the destruction of this country east of Chicago.\n\nToday, should total war ever break out again, no matter how, our two countries will be the primary target. It is an ironic but accurate fact that the two strongest powers are the two in the most danger of devastation. All we have built, all we have worked for, would be destroyed in the first 24 hours. And even in the Cold War, which brings burdens and dangers to so many countries, including this nation's closest allies, our two countries bear the heaviest burdens. For we are both devoting massive sums of money to weapons that could be better devoted to combat ignorance, poverty, and disease. We are both caught up in a vicious and dangerous cycle, with suspicion on one side breeding suspicion on the other, and new weapons begetting counter-weapons.\n\nIn short, both the United States and its allies, and the Soviet Union and its allies, have a mutually deep interest in a just and genuine peace and in halting the arms race. Agreements to this end are in the interests of the Soviet Union as well as ours, and even the most hostile nations can be relied upon to accept and keep those treaty obligations and only those treaty obligations which are in their own interest.",
+      "sourceCredit": {
+        "attribution": "John F. Kennedy. Commencement address at American University, 10 June 1963. https://www.presidency.ucsb.edu/documents/commencement-address-american-university-washington",
+        "license": "Public domain — original US federal-government address",
+        "sourceUrl": "https://www.presidency.ucsb.edu/documents/commencement-address-american-university-washington"
+      },
+      "credit": {
+        "attribution": "John F. Kennedy. Commencement address at American University, 10 June 1963. https://www.presidency.ucsb.edu/documents/commencement-address-american-university-washington Recording: John F. Kennedy; original archival recording; https://www.jfklibrary.org/asset-viewer/archives/jfkwha-190-002",
+        "license": "Public domain — original US federal-government address; recording: Public domain — original US federal-government address",
+        "sourceUrl": "https://www.presidency.ucsb.edu/documents/commencement-address-american-university-washington"
+      },
+      "audio": {
+        "src": "media/de691c6c8dbf13a7de5154f92db3b07f105ef9bddcf1458d87706dc03f6931c5.mp3",
+        "sha256": "f41c5afc7227b7e884bc657d3f815b192dae85626984cd35dc77f1dd42edd060",
+        "duration": 167.9,
+        "author": "John F. Kennedy",
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Jfk_American_University_4654_06-10-63.ogg",
+        "license": "Public domain — original US federal-government address",
+        "synthetic": false
+      },
+      "segments": [
+        {
+          "start": 0,
+          "end": 41,
+          "text": "No government or social system is so evil",
+          "audioStart": 0,
+          "audioEnd": 3.35
+        },
+        {
+          "start": 42,
+          "end": 76,
+          "text": "that its people must be considered",
+          "audioStart": 3.35,
+          "audioEnd": 5.95
+        },
+        {
+          "start": 77,
+          "end": 98,
+          "text": "as lacking in virtue.",
+          "audioStart": 5.95,
+          "audioEnd": 7.89
+        },
+        {
+          "start": 99,
+          "end": 130,
+          "text": "As Americans, we find communism",
+          "audioStart": 8.83,
+          "audioEnd": 10.93
+        },
+        {
+          "start": 131,
+          "end": 151,
+          "text": "profoundly repugnant",
+          "audioStart": 10.93,
+          "audioEnd": 12.87
+        },
+        {
+          "start": 152,
+          "end": 198,
+          "text": "as a negation of personal freedom and dignity.",
+          "audioStart": 12.87,
+          "audioEnd": 16.45
+        },
+        {
+          "start": 199,
+          "end": 239,
+          "text": "But we can still hail the Russian people",
+          "audioStart": 17.05,
+          "audioEnd": 19.35
+        },
+        {
+          "start": 240,
+          "end": 267,
+          "text": "for their many achievements",
+          "audioStart": 19.35,
+          "audioEnd": 21.45
+        },
+        {
+          "start": 268,
+          "end": 289,
+          "text": "in science and space,",
+          "audioStart": 21.45,
+          "audioEnd": 23.31
+        },
+        {
+          "start": 290,
+          "end": 324,
+          "text": "in economic and industrial growth,",
+          "audioStart": 24.07,
+          "audioEnd": 25.93
+        },
+        {
+          "start": 325,
+          "end": 356,
+          "text": "in culture, in acts of courage.",
+          "audioStart": 25.93,
+          "audioEnd": 28.61
+        },
+        {
+          "start": 358,
+          "end": 480,
+          "text": "Among the many traits the peoples of our two countries have in common, none is stronger than our mutual abhorrence of war.",
+          "audioStart": 28.61,
+          "audioEnd": 37.31
+        },
+        {
+          "start": 481,
+          "end": 567,
+          "text": "Almost unique among the major world powers, we have never been at war with each other.",
+          "audioStart": 38.27,
+          "audioEnd": 44.13
+        },
+        {
+          "start": 568,
+          "end": 672,
+          "text": "And no nation in the history of battle ever suffered more than the Soviet Union in the Second World War.",
+          "audioStart": 45.01,
+          "audioEnd": 51.87
+        },
+        {
+          "start": 673,
+          "end": 763,
+          "text": "At least 20 million lost their lives. Countless millions of homes and farms were burned or",
+          "audioStart": 51.87,
+          "audioEnd": 59.65
+        },
+        {
+          "start": 764,
+          "end": 851,
+          "text": "sacked. A third of the nation's territory, including two-thirds of its industrial base,",
+          "audioStart": 59.65,
+          "audioEnd": 66.01
+        },
+        {
+          "start": 852,
+          "end": 950,
+          "text": "was turned into a wasteland, a loss equivalent to the destruction of this country east of Chicago.",
+          "audioStart": 66.07,
+          "audioEnd": 72.25
+        },
+        {
+          "start": 952,
+          "end": 1050,
+          "text": "Today, should total war ever break out again, no matter how, our two countries will be the primary",
+          "audioStart": 73.31,
+          "audioEnd": 80.43
+        },
+        {
+          "start": 1051,
+          "end": 1146,
+          "text": "target. It is an ironic but accurate fact that the two strongest powers are the two in the most",
+          "audioStart": 80.43,
+          "audioEnd": 89.13
+        },
+        {
+          "start": 1147,
+          "end": 1244,
+          "text": "danger of devastation. All we have built, all we have worked for, would be destroyed in the first",
+          "audioStart": 89.13,
+          "audioEnd": 96.23
+        },
+        {
+          "start": 1245,
+          "end": 1335,
+          "text": "24 hours. And even in the Cold War, which brings burdens and dangers to so many countries,",
+          "audioStart": 96.23,
+          "audioEnd": 103.47
+        },
+        {
+          "start": 1336,
+          "end": 1420,
+          "text": "including this nation's closest allies, our two countries bear the heaviest burdens.",
+          "audioStart": 104.21,
+          "audioEnd": 109.83
+        },
+        {
+          "start": 1421,
+          "end": 1550,
+          "text": "For we are both devoting massive sums of money to weapons that could be better devoted to combat ignorance, poverty, and disease.",
+          "audioStart": 110.43,
+          "audioEnd": 120.91
+        },
+        {
+          "start": 1551,
+          "end": 1709,
+          "text": "We are both caught up in a vicious and dangerous cycle, with suspicion on one side breeding suspicion on the other, and new weapons begetting counter-weapons.",
+          "audioStart": 121.13,
+          "audioEnd": 133.49
+        },
+        {
+          "start": 1711,
+          "end": 1801,
+          "text": "In short, both the United States and its allies, and the Soviet Union and its allies, have",
+          "audioStart": 133.49,
+          "audioEnd": 141.19
+        },
+        {
+          "start": 1802,
+          "end": 1884,
+          "text": "a mutually deep interest in a just and genuine peace and in halting the arms race.",
+          "audioStart": 141.19,
+          "audioEnd": 149.17
+        },
+        {
+          "start": 1885,
+          "end": 1974,
+          "text": "Agreements to this end are in the interests of the Soviet Union as well as ours, and even",
+          "audioStart": 149.17,
+          "audioEnd": 155.83
+        },
+        {
+          "start": 1975,
+          "end": 2062,
+          "text": "the most hostile nations can be relied upon to accept and keep those treaty obligations",
+          "audioStart": 155.83,
+          "audioEnd": 163.25
+        },
+        {
+          "start": 2063,
+          "end": 2129,
+          "text": "and only those treaty obligations which are in their own interest.",
+          "audioStart": 163.25,
+          "audioEnd": 167.9
+        }
+      ],
+      "parts": [
+        {
+          "start": 0,
+          "end": 358,
+          "label": "Part 1: No government or social system..."
+        },
+        {
+          "start": 358,
+          "end": 952,
+          "label": "Part 2: Among the many traits..."
+        },
+        {
+          "start": 952,
+          "end": 2129,
+          "label": "Part 3: Today, should total war..."
+        }
+      ]
+    }
+  ]
+}

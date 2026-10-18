@@ -1,0 +1,37 @@
+import { confirmTask } from './task-start';
+import { expect, test } from '@playwright/test';
+
+test('C2 draft compares two sources, saves evidence and transfers to a new pair', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/today');
+  const task = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '保留分歧与责任' }) });
+  await task.getByRole('button', { name: '开始阅读' }).click();
+  await confirmTask(page);
+  await expect(page.locator('.material h3')).toHaveText(['Mara · Access lead', 'Elias · Collections archivist']);
+  await expect(page.locator('.passage')).toHaveCount(2);
+  await page.locator('input[type=radio]').nth(0).check();
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
+  await expect(page.locator('.evidence-source')).toHaveText(['Mara · Access lead', 'Elias · Collections archivist']);
+  await page.screenshot({ path: 'output/playwright/c2-reading-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
+  const savedUrl = page.url();
+  await page.getByRole('link', { name: '离开任务' }).click();
+  await expect(page).toHaveURL(/\/today$/);
+  await page.goto(savedUrl);
+  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
+  await page.getByRole('button', { name: '下一题' }).click();
+  await expect(page.getByRole('heading', { name: 'Which paraphrase keeps Elias’s allocation of responsibility?' })).toBeVisible();
+  await page.locator('input[type=radio]').nth(0).check();
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await page.getByRole('button', { name: '下一题' }).click();
+  await expect(page.getByRole('heading', { name: 'Which summary preserves both writers’ position on interim alerts?' })).toBeVisible();
+  await expect(page.locator('.material h3')).toHaveText(['Nia · Community liaison', 'Owen · Translation reviewer']);
+  await page.locator('input[type=radio]').nth(0).check();
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
+  await page.getByRole('button', { name: '下一题' }).click();
+  await expect(page.getByRole('heading', { name: 'Which change would misrepresent Owen’s allocation of responsibility?' })).toBeVisible();
+  await page.locator('input[type=radio]').nth(1).check();
+  await page.getByRole('button', { name: '保存答案' }).click();
+  await expect(page.getByRole('heading', { name: '阅读任务已保存' })).toBeVisible();
+});

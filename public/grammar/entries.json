@@ -1,0 +1,3079 @@
+{
+  "reviewStatus": "Original Lingfern development entries; independent English usage and three-language editorial review pending",
+  "entries": [
+    {
+      "id": "articles",
+      "title": {
+        "zh-Hans": "a、an 与 the",
+        "zh-Hant": "a、an 與 the",
+        "en": "a, an and the"
+      },
+      "keywords": [
+        "article",
+        "冠词",
+        "冠詞"
+      ],
+      "summary": {
+        "zh-Hans": "首次提到的单数可数名词常用 a/an；双方已能辨认的特定事物常用 the。a/an 按后接词的读音选择。",
+        "zh-Hant": "首次提到的單數可數名詞常用 a/an；雙方已能辨認的特定事物常用 the。a/an 按後接詞的讀音選擇。",
+        "en": "Use a/an for many first mentions of a singular count noun and the when the referent is identifiable. Choose a/an by sound."
+      },
+      "pattern": "a book · an hour · the book we discussed",
+      "example": "I found a key. The key was under the table.",
+      "question": {
+        "zh-Hans": "这里该用 a、an 还是 the？",
+        "zh-Hant": "這裡該用 a、an 還是 the？",
+        "en": "Do I need a, an, or the here?"
+      },
+      "headword": "a / an / the",
+      "contrast": "I saw a dog. The dog was sleeping. · an hour (vowel sound), a university (consonant sound).",
+      "related": [],
+      "usage": {
+        "zh-Hans": "判断冠词前，先问名词是否可数、是否单数，再问读者能否辨认具体对象。单数可数名词作普通指称时通常需要限定词；复数或不可数名词泛指时常不用冠词。the 可与单数、复数和不可数名词连用。\n\n首次提及也不总用 a/an：如果说话双方已通过现场、前文或限定语确定对象，首次出现也可用 the。a student 表示该类别中的一名成员，the student 则请读者找出特定一人。职业名称前的单数可数名词通常用 a/an；不要仅凭中文没有冠词就省去英语限定词。",
+        "zh-Hant": "判斷冠詞前，先問名詞是否可數、是否單數，再問讀者能否辨認具體對象。單數可數名詞作普通指稱時通常需要限定詞；複數或不可數名詞泛指時常不用冠詞。the 可與單數、複數和不可數名詞連用。\n\n首次提及也不總用 a/an：若說話雙方已藉現場、前文或限定語確定對象，首次出現也可用 the。a student 表示該類別中的一名成員，the student 則請讀者找出特定一人。職業名稱前的單數可數名詞通常用 a/an；不要只因中文沒有冠詞就省去英語限定詞。",
+        "en": "First ask whether the noun is countable and singular, then whether the listener can identify its referent. A singular count noun normally needs a determiner. Generic plural and mass nouns often have no article; the can occur with singular, plural and mass nouns.\n\nA first mention does not always need a/an: the is possible when the situation or a following modifier already identifies the referent. A student selects one member of a class; the student asks the reader to identify a particular member. Singular count nouns naming a job normally take a/an. Do not omit an English determiner merely because another language has no article."
+      },
+      "pitfall": {
+        "zh-Hans": "不要只按拼写首字母决定 a/an；an hour 与 a university 分别由开头的元音音素和辅音音素决定。",
+        "zh-Hant": "不要只按拼寫首字母決定 a/an；an hour 與 a university 分別由開頭的母音音素和子音音素決定。",
+        "en": "Do not choose a/an from the first written letter alone: an hour but a university."
+      },
+      "examples": [
+        "I found a key. The key was under the table.",
+        "I need an umbrella, but I already have the coat.",
+        "Books can be expensive; the books on this shelf are free.",
+        "The student sitting by the door has a question."
+      ]
+    },
+    {
+      "id": "passive",
+      "title": {
+        "zh-Hans": "被动语态",
+        "zh-Hant": "被動語態",
+        "en": "Passive voice"
+      },
+      "keywords": [
+        "passive",
+        "被动",
+        "被動"
+      ],
+      "summary": {
+        "zh-Hans": "用 be + 过去分词将受影响的人或物放在主语位置；时间信息仍由 be 的时态表达。",
+        "zh-Hant": "用 be + 過去分詞將受影響的人或物放在主語位置；時間資訊仍由 be 的時態表達。",
+        "en": "Use be + past participle to put the affected person or thing in subject position. The tense is carried by be."
+      },
+      "pattern": "be + past participle",
+      "example": "The results were published on Monday.",
+      "question": {
+        "zh-Hans": "什么时候用被动语态突出受事？",
+        "zh-Hant": "什麼時候用被動語態凸顯受事？",
+        "en": "When should the affected thing become the subject?"
+      },
+      "headword": "active / passive",
+      "contrast": "The editor corrected the page. · The page was corrected on Monday.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "被动语态把受事、结果或已知话题放在句首；执行者不重要、未知或需省略时可以不写 by 短语。时态和情态仍由助动词承担：is written、was written、has been written、will be written。\n\n选择主动或被动还取决于信息顺序：若读者已在讨论样本，The samples were collected... 可保持话题连贯；若重点是采集者，则用主动句或明确写出 by。get + 过去分词可表示某些事件中的变化，常比 be 被动更口语化，但不能在所有正式或状态表达中替换 be。若要说明具体责任，不应仅用省略执行者的被动句掩盖它。",
+        "zh-Hant": "被動語態把受事、結果或已知話題放在句首；執行者不重要、未知或需省略時可以不寫 by 片語。時態和情態仍由助動詞承擔：is written、was written、has been written、will be written。\n\n選擇主動或被動還取決於資訊順序：若讀者已在討論樣本，The samples were collected... 可保持話題連貫；若重點是採集者，則用主動句或明確寫出 by。get + 過去分詞可表示某些事件中的變化，常比 be 被動更口語化，但不能在所有正式或狀態表達中替換 be。若要說明具體責任，不應只用省略執行者的被動句掩蓋它。",
+        "en": "The passive foregrounds the affected entity, result or established topic. Omit a by-phrase when the agent is unknown or unimportant. Auxiliaries still carry tense and modality: is written, was written, has been written, will be written.\n\nVoice is also about information order: if the samples are already the topic, The samples were collected... keeps the topic in place. If the collector matters, use an active clause or a by-phrase. Get + participle can express a change of state in some event passives and often sounds more conversational; it does not replace be in every formal or stative context. Omitting an agent should not obscure responsibility when it matters."
+      },
+      "pitfall": {
+        "zh-Hans": "不能把所有 be + 过去分词都当成同样的事件被动；The door is closed 也可能表示状态，须结合上下文判断。",
+        "zh-Hant": "不能把所有 be + 過去分詞都當成同樣的事件被動；The door is closed 也可能表示狀態，須結合上下文判斷。",
+        "en": "Not every be + participle has the same event reading: The door is closed may describe a state."
+      },
+      "examples": [
+        "The results were published on Monday.",
+        "The samples were collected in May.",
+        "The report has been reviewed, but it has not been published.",
+        "The samples were collected by the field team."
+      ]
+    },
+    {
+      "id": "affect-effect",
+      "title": {
+        "zh-Hans": "affect / effect",
+        "zh-Hant": "affect / effect",
+        "en": "affect / effect"
+      },
+      "headword": "affect / effect",
+      "question": {
+        "zh-Hans": "affect 和 effect 在常见用法中怎样区分？",
+        "zh-Hant": "affect 和 effect 在常見用法中怎樣區分？",
+        "en": "Affect or effect?"
+      },
+      "keywords": [
+        "影响",
+        "影響",
+        "结果",
+        "結果"
+      ],
+      "summary": {
+        "zh-Hans": "常见用法中 affect 是“影响”的动词，effect 是“结果”的名词；两词也有较少见的其他词性。",
+        "zh-Hant": "常見用法中 affect 是「影響」的動詞，effect 是「結果」的名詞；兩詞也有較少見的其他詞性。",
+        "en": "In common use, affect is a verb meaning influence and effect is a noun meaning result; less common other uses exist."
+      },
+      "pattern": "affect / effect",
+      "example": "The change affected attendance.",
+      "contrast": "The change affected attendance. · Its effect was small.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "先识别句中需要动词还是名词：某事影响另一事时通常用 affect；影响产生的结果通常是 an effect。effect 也可作正式动词，表示“使某事发生”；affect 在心理学中可作名词，但都不是初学者的默认选项。",
+        "zh-Hant": "先辨認句中需要動詞還是名詞：某事影響另一事時通常用 affect；影響產生的結果通常是 an effect。effect 也可作正式動詞，表示「使某事發生」；affect 在心理學中可作名詞，但都不是初學者的預設選項。",
+        "en": "Check whether the sentence needs a verb or a noun. Affect usually means influence as a verb; an effect is usually a result. Effect can formally mean bring about as a verb, and affect is a specialist noun in psychology."
+      },
+      "pitfall": {
+        "zh-Hans": "不能把 effect 一律当动词“影响”；The policy effected change 是“促成改变”，含义不同。",
+        "zh-Hant": "不能把 effect 一律當動詞「影響」；The policy effected change 是「促成改變」，含義不同。",
+        "en": "Do not treat verbal effect as a simple synonym of affect: effected change means brought change about."
+      },
+      "examples": [
+        "The change affected attendance.",
+        "Noise can affect concentration.",
+        "The effect of the change was immediate."
+      ]
+    },
+    {
+      "id": "be",
+      "title": {
+        "zh-Hans": "be 动词",
+        "zh-Hant": "be 動詞",
+        "en": "The verb be"
+      },
+      "keywords": [
+        "am",
+        "is",
+        "are",
+        "身份",
+        "状态",
+        "身分",
+        "狀態"
+      ],
+      "summary": {
+        "zh-Hans": "用 am、is、are 说明身份、状态或位置；形式随主语改变。",
+        "zh-Hant": "用 am、is、are 說明身分、狀態或位置；形式隨主語改變。",
+        "en": "Use am, is or are for identity, state or location. The form depends on the subject."
+      },
+      "pattern": "I am · you/we/they are · he/she/it is",
+      "example": "The library is open today.",
+      "question": {
+        "zh-Hans": "什么时候用 am、is 或 are？",
+        "zh-Hant": "什麼時候用 am、is 或 are？",
+        "en": "When do I use am, is, or are?"
+      },
+      "headword": "am / is / are",
+      "contrast": "I am ready. · She is ready. · They are ready.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "现在时的 be 形式由主语决定：I am；you、we、they are；he、she、it 及单数名词 is。否定把 not 放在 be 后；一般疑问句把 be 移到主语前。be 也可与现在分词构成进行时。",
+        "zh-Hant": "現在時的 be 形式由主語決定：I am；you、we、they are；he、she、it 及單數名詞 is。否定把 not 放在 be 後；一般疑問句把 be 移到主語前。be 也可與現在分詞構成進行式。",
+        "en": "Present-tense be agrees with the subject: I am; you, we and they are; he, she, it and singular nouns are followed by is. Put not after be for negatives and move be before the subject for yes/no questions. Be also forms progressive tenses."
+      },
+      "pitfall": {
+        "zh-Hans": "带 be 的一般疑问句不再添加 do：Is she ready?，不是 Does she is ready?。",
+        "zh-Hant": "帶 be 的一般疑問句不再加 do：Is she ready?，不是 Does she is ready?。",
+        "en": "Do not add do to a be question: Is she ready?, not Does she is ready?."
+      },
+      "examples": [
+        "The library is open today.",
+        "Are the doors open?",
+        "I am not late, but my friends are."
+      ]
+    },
+    {
+      "id": "plurals",
+      "title": {
+        "zh-Hans": "可数名词复数",
+        "zh-Hant": "可數名詞複數",
+        "en": "Count noun plurals"
+      },
+      "keywords": [
+        "plural",
+        "singular",
+        "复数",
+        "複數"
+      ],
+      "summary": {
+        "zh-Hans": "数量大于一时，可数名词通常用复数；有不规则形式，如 child → children。",
+        "zh-Hant": "數量大於一時，可數名詞通常用複數；有不規則形式，如 child → children。",
+        "en": "Count nouns usually take a plural form above one; some are irregular, such as child → children."
+      },
+      "pattern": "one book → two books · one child → two children",
+      "example": "Two students are waiting outside.",
+      "question": {
+        "zh-Hans": "可数名词什么时候用复数？",
+        "zh-Hant": "可數名詞什麼時候用複數？",
+        "en": "When does a count noun need a plural form?"
+      },
+      "headword": "child / children",
+      "contrast": "one child → two children; one book → two books.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "规则复数通常加 -s 或 -es；辅音字母 + y 往往变成 -ies。常见不规则形式需单独记忆：man/men、child/children、person/people。数量词、动词一致和限定词也会随单复数变化。",
+        "zh-Hant": "規則複數通常加 -s 或 -es；子音字母 + y 往往變成 -ies。常見不規則形式需單獨記憶：man/men、child/children、person/people。數量詞、動詞一致和限定詞也會隨單複數變化。",
+        "en": "Regular plurals usually add -s or -es; consonant + y often becomes -ies. Learn frequent irregular forms separately: man/men, child/children, person/people. Number also affects quantifiers, determiners and verb agreement."
+      },
+      "pitfall": {
+        "zh-Hans": "不可数名词不能因为数量概念就直接加 -s；例如 information 通常用 some information 或 two pieces of information。",
+        "zh-Hant": "不可數名詞不能因為數量概念就直接加 -s；例如 information 通常用 some information 或 two pieces of information。",
+        "en": "A mass noun does not simply add -s: say some information or two pieces of information."
+      },
+      "examples": [
+        "Two students are waiting outside.",
+        "Three children are playing outside.",
+        "These boxes contain two dictionaries."
+      ]
+    },
+    {
+      "id": "despite-although",
+      "title": {
+        "zh-Hans": "despite / although",
+        "zh-Hant": "despite / although",
+        "en": "despite / although"
+      },
+      "headword": "despite / although",
+      "question": {
+        "zh-Hans": "despite 后能直接接完整句子吗？",
+        "zh-Hant": "despite 後能直接接完整句子嗎？",
+        "en": "Can despite introduce a full clause?"
+      },
+      "keywords": [
+        "尽管",
+        "儘管",
+        "让步",
+        "讓步"
+      ],
+      "summary": {
+        "zh-Hans": "despite 后通常接名词或 -ing；although 后接分句。despite the fact that 可接分句。",
+        "zh-Hant": "despite 後通常接名詞或 -ing；although 後接子句。despite the fact that 可接子句。",
+        "en": "Despite normally takes a noun phrase or -ing; although introduces a clause. Despite the fact that can introduce a clause."
+      },
+      "pattern": "despite / although",
+      "example": "Despite the delay, we arrived.",
+      "contrast": "Despite the delay, we arrived. · Although we were delayed, we arrived.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "despite 是介词，后接名词短语或 -ing 形式；although 是连词，后接带主语和谓语的从句。两者都表达让步，但句法位置不同。尽管可以说 despite the fact that + 从句，这不是把从句直接放在 despite 后。",
+        "zh-Hant": "despite 是介系詞，後接名詞片語或 -ing 形式；although 是連接詞，後接帶主語和述語的子句。兩者都表達讓步，但句法位置不同。儘管可以說 despite the fact that + 子句，這不是把子句直接放在 despite 後。",
+        "en": "Despite is a preposition followed by a noun phrase or -ing form; although is a conjunction followed by a finite clause. Both express concession, but their complements differ. Despite the fact that can introduce a clause indirectly."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 despite we were late；改为 despite being late 或 although we were late。",
+        "zh-Hant": "不要寫 despite we were late；改為 despite being late 或 although we were late。",
+        "en": "Avoid despite we were late; use despite being late or although we were late."
+      },
+      "examples": [
+        "Despite the delay, we arrived.",
+        "Despite the rain, the game continued.",
+        "Although it rained, the game continued."
+      ]
+    },
+    {
+      "id": "past-simple",
+      "title": {
+        "zh-Hans": "一般过去时",
+        "zh-Hant": "一般過去式",
+        "en": "Past simple"
+      },
+      "keywords": [
+        "past",
+        "yesterday",
+        "过去",
+        "過去"
+      ],
+      "summary": {
+        "zh-Hans": "描述已结束的过去事件；规则动词常加 -ed，不规则动词须看具体词形。",
+        "zh-Hant": "描述已結束的過去事件；規則動詞常加 -ed，不規則動詞須看具體詞形。",
+        "en": "Use it for a completed past event. Regular verbs often add -ed; irregular forms vary."
+      },
+      "pattern": "walk → walked · go → went",
+      "example": "The meeting started at nine yesterday.",
+      "question": {
+        "zh-Hans": "did 后面用 go 还是 went？",
+        "zh-Hant": "did 後面用 go 還是 went？",
+        "en": "Did you go or did you went?"
+      },
+      "headword": "did + base verb",
+      "contrast": "Did you go yesterday? · I went yesterday.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "一般过去时把事件放在过去；肯定句用过去式，否定和一般疑问句通常用 did + 动词原形。be 是特殊情况，使用 was/were。明确过去时间如 yesterday、last week 常与一般过去时搭配。",
+        "zh-Hant": "一般過去式把事件放在過去；肯定句用過去式，否定和一般疑問句通常用 did + 動詞原形。be 是特殊情況，使用 was/were。明確過去時間如 yesterday、last week 常與一般過去式搭配。",
+        "en": "The past simple places an event in the past. Affirmatives use the past form; negatives and most questions use did + base verb. Be is exceptional: was/were. Definite past-time expressions often occur with this tense."
+      },
+      "pitfall": {
+        "zh-Hans": "did 已经标记过去，后面的实义动词不再用过去式：Did you go?，不是 Did you went?。",
+        "zh-Hant": "did 已經標記過去，後面的實義動詞不再用過去式：Did you go?，不是 Did you went?。",
+        "en": "Did already marks past time: Did you go?, not Did you went?."
+      },
+      "examples": [
+        "The meeting started at nine yesterday.",
+        "Did you see the message yesterday?",
+        "She did not call last night."
+      ]
+    },
+    {
+      "id": "present-simple",
+      "title": {
+        "zh-Hans": "一般现在时",
+        "zh-Hant": "一般現在式",
+        "en": "Present simple"
+      },
+      "keywords": [
+        "habit",
+        "routine",
+        "习惯",
+        "習慣",
+        "三单"
+      ],
+      "summary": {
+        "zh-Hans": "描述习惯、通常情况或稳定事实；第三人称单数肯定句中的动词通常加 -s/-es。",
+        "zh-Hant": "描述習慣、通常情況或穩定事實；第三人稱單數肯定句中的動詞通常加 -s/-es。",
+        "en": "Use it for habits and general facts. In affirmative clauses, a third-person singular subject usually adds -s/-es."
+      },
+      "pattern": "I work · she works · she does not work",
+      "example": "Mina reads on the bus every morning.",
+      "question": {
+        "zh-Hans": "为什么 she works 要加 -s？",
+        "zh-Hant": "為什麼 she works 要加 -s？",
+        "en": "Why does she work have -s but I work does not?"
+      },
+      "headword": "do / does",
+      "contrast": "She works here. · She does not work here.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "一般现在时常用于习惯、规律和较稳定的事实。第三人称单数肯定句的实义动词通常加 -s；否定与疑问用 does + 原形。I、you、we、they 用 do + 原形。",
+        "zh-Hant": "一般現在式常用於習慣、規律和較穩定的事實。第三人稱單數肯定句的實義動詞通常加 -s；否定與疑問用 does + 原形。I、you、we、they 用 do + 原形。",
+        "en": "The present simple commonly describes habits, general patterns and relatively stable facts. A third-person singular affirmative verb usually takes -s; negatives and questions use does + base form. Use do with I, you, we and they."
+      },
+      "pitfall": {
+        "zh-Hans": "does 后不再加第三人称 -s：Does she work?，不是 Does she works?。",
+        "zh-Hant": "does 後不再加第三人稱 -s：Does she work?，不是 Does she works?。",
+        "en": "Does already carries third-person agreement: Does she work?, not Does she works?."
+      },
+      "examples": [
+        "Mina reads on the bus every morning.",
+        "She walks to work every day.",
+        "They do not open on Sundays."
+      ]
+    },
+    {
+      "id": "questions",
+      "title": {
+        "zh-Hans": "一般疑问句与特殊疑问句",
+        "zh-Hant": "一般疑問句與特殊疑問句",
+        "en": "Yes/no and wh- questions"
+      },
+      "keywords": [
+        "question",
+        "do",
+        "does",
+        "what",
+        "where",
+        "问句",
+        "問句"
+      ],
+      "summary": {
+        "zh-Hans": "一般现在时的动作疑问句常用 do/does 放在主语前；特殊疑问词通常放在最前面。be 动词直接移到主语前。",
+        "zh-Hant": "一般現在式的動作疑問句常用 do/does 放在主語前；特殊疑問詞通常放在最前面。be 動詞直接移到主語前。",
+        "en": "Put do/does before the subject for many present-simple action questions; wh- words usually lead. Move be before the subject directly."
+      },
+      "pattern": "Do you read? · Where does she work? · Is it open?",
+      "example": "Where does the train stop?",
+      "question": {
+        "zh-Hans": "为什么问句里是 does she work？",
+        "zh-Hant": "為什麼問句裡是 does she work？",
+        "en": "Why is it does she work, not does she works?"
+      },
+      "headword": "does + base verb",
+      "contrast": "Does she work here? · Is she here?",
+      "related": [],
+      "usage": {
+        "zh-Hans": "一般现在时的实义动词疑问句通常用 do/does + 主语 + 原形。疑问词放在句首：Where does she live? 但当 who 本身是主语时，不加这个助动词：Who lives here?。",
+        "zh-Hant": "一般現在式的實義動詞疑問句通常用 do/does + 主語 + 原形。疑問詞放在句首：Where does she live? 但當 who 本身是主語時，不加這個助動詞：Who lives here?。",
+        "en": "Present-simple lexical-verb questions generally use do/does + subject + base verb. Put a question word first: Where does she live? When who is itself the subject, no such auxiliary is needed: Who lives here?"
+      },
+      "pitfall": {
+        "zh-Hans": "不要把陈述语序直接搬到普通疑问句：Where she lives? 应为 Where does she live?。",
+        "zh-Hant": "不要把陳述語序直接搬到一般疑問句：Where she lives? 應為 Where does she live?。",
+        "en": "Do not retain statement order in a main question: Where does she live?, not Where she lives?."
+      },
+      "examples": [
+        "Where does the train stop?",
+        "Does your brother play tennis?",
+        "Who works in this office?"
+      ]
+    },
+    {
+      "id": "each-every",
+      "title": {
+        "zh-Hans": "each / every",
+        "zh-Hant": "each / every",
+        "en": "each / every"
+      },
+      "headword": "each / every",
+      "question": {
+        "zh-Hans": "each 和 every 都能指每一个吗？",
+        "zh-Hant": "each 和 every 都能指每一個嗎？",
+        "en": "Each or every?"
+      },
+      "keywords": [
+        "每个",
+        "每個"
+      ],
+      "summary": {
+        "zh-Hans": "each 强调个体；every 常把成员看作一个整体范围。两者后接单数可数名词；each 也可单独作代词。",
+        "zh-Hant": "each 強調個體；every 常把成員看作一個整體範圍。兩者後接單數可數名詞；each 也可單獨作代名詞。",
+        "en": "Each focuses on members individually; every often surveys the whole set. Both precede a singular count noun; each can also stand alone."
+      },
+      "pattern": "each / every",
+      "example": "Each student received a card.",
+      "contrast": "Each student received a card. · Every student received a card.",
+      "related": [
+        "plurals"
+      ],
+      "usage": {
+        "zh-Hans": "each 强调逐个成员，可作代词或限定词；every 强调群体中全部成员，后接单数可数名词。each 可用于两人或更多；every 通常用于三个或更多成员。两者后接单数名词时，动词通常用单数。",
+        "zh-Hant": "each 強調逐一成員，可作代名詞或限定詞；every 強調群體中全部成員，後接單數可數名詞。each 可用於兩人或更多；every 通常用於三個或更多成員。兩者後接單數名詞時，動詞通常用單數。",
+        "en": "Each looks at members individually and can be a pronoun or determiner. Every treats all members of a group together and precedes a singular count noun. Each can refer to two or more; every usually to three or more. Singular noun phrases take singular agreement."
+      },
+      "pitfall": {
+        "zh-Hans": "不能单独用 every 作代词：Each was checked 可以，Every was checked 不可以。",
+        "zh-Hant": "不能單獨用 every 作代名詞：Each was checked 可以，Every was checked 不可以。",
+        "en": "Every cannot stand alone as a pronoun: Each was checked is possible; Every was checked is not."
+      },
+      "examples": [
+        "Each student received a card.",
+        "Each of the students received a card.",
+        "Every room has a window."
+      ]
+    },
+    {
+      "id": "comparison",
+      "title": {
+        "zh-Hans": "比较级与最高级",
+        "zh-Hant": "比較級與最高級",
+        "en": "Comparatives and superlatives"
+      },
+      "keywords": [
+        "comparative",
+        "superlative",
+        "than",
+        "比较",
+        "比較"
+      ],
+      "summary": {
+        "zh-Hans": "比较两项常用比较级 + than；在一个明确的集合中指出极值时常用 the + 最高级。",
+        "zh-Hant": "比較兩項常用比較級 + than；在一個明確的集合中指出極值時常用 the + 最高級。",
+        "en": "Use a comparative with than for two things; use the + superlative for an extreme in an identifiable group."
+      },
+      "pattern": "smaller than · the smallest in the group",
+      "example": "This room is quieter than the hall.",
+      "question": {
+        "zh-Hans": "比较两项时怎样用 than？",
+        "zh-Hant": "比較兩項時怎樣用 than？",
+        "en": "How do I compare two things?"
+      },
+      "headword": "-er / more ... than",
+      "contrast": "This route is shorter than that one. · It is the shortest route of the three.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "比较级通常连接两个比较对象：形容词短词常加 -er，较长词常用 more；不规则形式如 good/better 需单独记忆。than 后要让比较对象逻辑一致；相同程度可用 as ... as。",
+        "zh-Hant": "比較級通常連接兩個比較對象：較短的形容詞常加 -er，較長的形容詞常用 more；不規則形式如 good/better 需單獨記憶。than 後要讓比較對象邏輯一致；相同程度可用 as ... as。",
+        "en": "Comparatives relate two comparable things. Short adjectives often take -er, longer ones often take more; irregular forms such as good/better must be learned. Make the comparison after than logically parallel. Use as ... as for equal degree."
+      },
+      "pitfall": {
+        "zh-Hans": "不要对同一个普通比较级同时用 more 和 -er：more taller 不合适；某些两音节形容词两种形式均可见。",
+        "zh-Hant": "不要對同一個一般比較級同時用 more 和 -er：more taller 不合適；某些雙音節形容詞兩種形式均可見。",
+        "en": "Do not normally combine more and -er: more taller is wrong. Some two-syllable adjectives allow either form."
+      },
+      "examples": [
+        "This room is quieter than the hall.",
+        "This route is shorter than the old one.",
+        "The second explanation is more useful than the first."
+      ]
+    },
+    {
+      "id": "few-a-few",
+      "title": {
+        "zh-Hans": "few / a few",
+        "zh-Hant": "few / a few",
+        "en": "few / a few"
+      },
+      "headword": "few / a few",
+      "question": {
+        "zh-Hans": "few 和 a few 的语气一样吗？",
+        "zh-Hant": "few 和 a few 的語氣一樣嗎？",
+        "en": "Few or a few?"
+      },
+      "keywords": [
+        "少数",
+        "少數"
+      ],
+      "summary": {
+        "zh-Hans": "a few 表示有一些；few 强调数量少，常带不足的意味。两者修饰可数名词复数。",
+        "zh-Hant": "a few 表示有一些；few 強調數量少，常帶不足的意味。兩者修飾可數名詞複數。",
+        "en": "A few means some; few stresses a small or insufficient number. Both modify plural count nouns."
+      },
+      "pattern": "few / a few",
+      "example": "A few seats remain, so we can go.",
+      "contrast": "A few seats remain, so we can go. · Few seats remain, so we may be too late.",
+      "related": [
+        "countability"
+      ],
+      "usage": {
+        "zh-Hans": "few 与 a few 后接复数可数名词。few 突出数量不足；a few 表示虽少但有一些。同类对比中，little / a little 通常用于不可数名词。选择哪种形式取决于说话者如何评价这个数量。",
+        "zh-Hant": "few 與 a few 後接複數可數名詞。few 強調數量不足；a few 表示雖少但有一些。同類對比中，little / a little 通常用於不可數名詞。選哪種形式取決於說話者如何評價這個數量。",
+        "en": "Few and a few take plural count nouns. Few emphasizes insufficiency; a few means a small but positive amount. Little and a little normally take mass nouns. The choice reflects the speaker’s assessment of the amount."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 a few 与不可数名词直接连用：a few advice 应改为 some advice 或 a few pieces of advice。",
+        "zh-Hant": "不要把 a few 與不可數名詞直接連用：a few advice 應改為 some advice 或 a few pieces of advice。",
+        "en": "Do not use a few directly with a mass noun: say some advice or a few pieces of advice."
+      },
+      "examples": [
+        "A few seats remain, so we can go.",
+        "Few people arrived, so we postponed the meeting.",
+        "A few people arrived, so we could start."
+      ]
+    },
+    {
+      "id": "first-conditional",
+      "title": {
+        "zh-Hans": "第一类条件句",
+        "zh-Hant": "第一類條件句",
+        "en": "First conditional"
+      },
+      "keywords": [
+        "if",
+        "conditional",
+        "条件句",
+        "條件句"
+      ],
+      "summary": {
+        "zh-Hans": "讨论真实可能的将来情况时，if 从句常用一般现在时，主句可用 will；不表示所有 if 句都必须如此。",
+        "zh-Hant": "討論真實可能的將來情況時，if 子句常用一般現在式，主句可用 will；不表示所有 if 句都必須如此。",
+        "en": "For a possible future condition, the if-clause often uses present simple and the main clause may use will; this is not the only if pattern."
+      },
+      "pattern": "if + present simple, will + base verb",
+      "example": "If the rain stops, we will walk to the station.",
+      "question": {
+        "zh-Hans": "将来条件句的 if 从句要用 will 吗？",
+        "zh-Hant": "將來條件句的 if 子句要用 will 嗎？",
+        "en": "If it rains, will we leave?"
+      },
+      "headword": "if + present, will",
+      "contrast": "If it rains, we will stay in. · If it will rain, we will stay in. (not the usual future-condition pattern)",
+      "related": [],
+      "usage": {
+        "zh-Hans": "谈论有可能发生的未来条件时，if 从句通常用现在时，主句可用 will、祈使句或情态动词表达结果。两句顺序可交换；if 从句在前通常用逗号隔开。并非所有 if 句都必须有 will。",
+        "zh-Hant": "談論有可能發生的未來條件時，if 子句通常用現在式，主句可用 will、祈使句或情態動詞表達結果。兩句順序可交換；if 子句在前通常用逗號隔開。並非所有 if 句都必須有 will。",
+        "en": "For a possible future condition, the if-clause usually takes a present form; the main clause may use will, an imperative or a modal. Either clause can come first, and a leading if-clause is usually followed by a comma. Not every if-sentence needs will."
+      },
+      "pitfall": {
+        "zh-Hans": "在这种常见未来条件句的 if 从句里通常不用 will：If it rains, we will stay inside。will 在 if 从句可有表示意愿等特殊用途。",
+        "zh-Hant": "在這種常見未來條件句的 if 子句裡通常不用 will：If it rains, we will stay inside。will 在 if 子句可有表示意願等特殊用途。",
+        "en": "Do not normally put will in a future-condition if-clause; will can have special meanings such as willingness."
+      },
+      "examples": [
+        "If the rain stops, we will walk to the station.",
+        "If it rains, we will stay inside.",
+        "Call me if you need help."
+      ]
+    },
+    {
+      "id": "hypothetical-conditionals",
+      "title": {
+        "zh-Hans": "假设条件句",
+        "zh-Hant": "假設條件句",
+        "en": "Hypothetical conditionals"
+      },
+      "keywords": [
+        "second conditional",
+        "third conditional",
+        "would",
+        "had",
+        "假设",
+        "假設"
+      ],
+      "summary": {
+        "zh-Hans": "与当前事实距离较远的假设常用 if + 过去式、would + 原形；对过去未发生情况的假设常用 if + had + 过去分词、would have + 过去分词。",
+        "zh-Hant": "與當前事實距離較遠的假設常用 if + 過去式、would + 原形；對過去未發生情況的假設常用 if + had + 過去分詞、would have + 過去分詞。",
+        "en": "A remote present hypothesis often uses if + past and would + base form; an unreal past often uses if + had + participle and would have + participle."
+      },
+      "pattern": "If I knew, I would tell you. · If I had known, I would have told you.",
+      "example": "If the figures had been checked, the report would have been clearer.",
+      "question": {
+        "zh-Hans": "现在假设与过去反事实如何区分？",
+        "zh-Hant": "現在假設與過去反事實如何區分？",
+        "en": "If I knew or if I had known?"
+      },
+      "headword": "if I knew / had known",
+      "contrast": "If I knew, I would tell you. · If I had known, I would have told you.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "现在或未来的非现实假设常用 if + 过去式、would + 原形；过去的反事实常用 if + had + 过去分词、would have + 过去分词。这里的过去形式主要标记距离现实的程度，不一定表示过去时间。\n\n过去式在 If I knew 中表达的是与现在或将来现实保持距离，而不是过去时间；If I had known 才把未实现的条件放在过去。结果分句可以与条件分句指向不同时间：If I had saved the file, I would have it now 表示过去没保存，因此现在没有。条件句不是按“第一、第二、第三类”机械填空；先判断事实、时间和说话人的立场，再选动词形式。",
+        "zh-Hant": "現在或未來的非現實假設常用 if + 過去式、would + 原形；過去的反事實常用 if + had + 過去分詞、would have + 過去分詞。這裡的過去形式主要標記與現實的距離，不一定表示過去時間。\n\n過去式在 If I knew 中表達的是與現在或將來現實保持距離，而不是過去時間；If I had known 才把未實現的條件放在過去。結果子句可以與條件子句指向不同時間：If I had saved the file, I would have it now 表示過去沒存檔，因此現在沒有。條件句不是依「第一、第二、第三類」機械填空；先判斷事實、時間和說話人的立場，再選動詞形式。",
+        "en": "Present or future unreal conditions often use if + past form with would + base form. Past counterfactuals use if + had + past participle with would have + past participle. A past form can mark distance from reality rather than past time.\n\nThe past form in If I knew expresses distance from present or future reality, not past time. If I had known places the unreal condition in the past. Condition and result can refer to different times: If I had saved the file, I would have it now describes a past omission with a present consequence. Do not fill conditional patterns mechanically from numbered labels; identify facts, time reference and the speaker’s stance first."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把两种时间框架机械混用；混合条件句确实存在，但应明确一个过去条件如何影响现在结果。",
+        "zh-Hant": "不要把兩種時間框架機械混用；混合條件句確實存在，但應明確一個過去條件如何影響現在結果。",
+        "en": "Do not mix time frames mechanically. Mixed conditionals are possible when a past condition has a present consequence."
+      },
+      "examples": [
+        "If the figures had been checked, the report would have been clearer.",
+        "If I knew the answer, I would tell you.",
+        "If I had left earlier, I would have caught the train.",
+        "If I had saved the file, I would have it now."
+      ]
+    },
+    {
+      "id": "imply-infer",
+      "title": {
+        "zh-Hans": "imply / infer",
+        "zh-Hant": "imply / infer",
+        "en": "imply / infer"
+      },
+      "headword": "imply / infer",
+      "question": {
+        "zh-Hans": "说话者 imply 与读者 infer 有何区别？",
+        "zh-Hant": "說話者 imply 與讀者 infer 有何區別？",
+        "en": "Who implies and who infers?"
+      },
+      "keywords": [
+        "暗示",
+        "推断",
+        "推斷"
+      ],
+      "summary": {
+        "zh-Hans": "imply 是通过表达暗示，infer 是依据证据推断；两者描述信息流的不同方向。",
+        "zh-Hant": "imply 是透過表達暗示，infer 是依據證據推斷；兩者描述資訊流的不同方向。",
+        "en": "A speaker or text implies something; a reader infers it from evidence. They describe different sides of communication."
+      },
+      "pattern": "imply / infer",
+      "example": "The note implied a delay.",
+      "contrast": "The note implied a delay. · We inferred a delay from the note.",
+      "related": [
+        "hedging"
+      ],
+      "usage": {
+        "zh-Hans": "imply 描述说话者或证据含蓄地表达什么；infer 描述读者或听者从证据推断什么。两者在交流过程中方向相反。正式写作中应说明推断所依据的可见线索，避免把推断写成原作者明确说过的话。",
+        "zh-Hant": "imply 描述說話者或證據含蓄地表達什麼；infer 描述讀者或聽者從證據推斷什麼。兩者在交流過程中方向相反。正式寫作中應說明推論所依據的可見線索，避免把推論寫成原作者明確說過的話。",
+        "en": "Imply describes what a speaker or evidence suggests indirectly; infer describes what a reader or listener concludes from it. The directions differ. In formal writing, state the observable grounds for an inference and do not present it as an explicit claim by the source."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写作者 inferred 某层意思来表示作者暗示了它；此时通常用 implied。",
+        "zh-Hant": "不要寫作者 inferred 某層意思來表示作者暗示了它；此時通常用 implied。",
+        "en": "Do not write that an author inferred a meaning when you mean the author implied it."
+      },
+      "examples": [
+        "The note implied a delay.",
+        "The notice implies that the office is closed.",
+        "From the empty room, we inferred that the meeting had ended."
+      ]
+    },
+    {
+      "id": "less-fewer",
+      "title": {
+        "zh-Hans": "less / fewer",
+        "zh-Hant": "less / fewer",
+        "en": "less / fewer"
+      },
+      "headword": "less / fewer",
+      "question": {
+        "zh-Hans": "数量减少时用 less 还是 fewer？",
+        "zh-Hant": "數量減少時用 less 還是 fewer？",
+        "en": "Less or fewer?"
+      },
+      "keywords": [
+        "可数",
+        "不可数",
+        "可數",
+        "不可數"
+      ],
+      "summary": {
+        "zh-Hans": "一般用 fewer 修饰可数名词复数，用 less 修饰不可数名词；时间、金额等整体量和口语用法可有例外。",
+        "zh-Hant": "一般用 fewer 修飾可數名詞複數，用 less 修飾不可數名詞；時間、金額等整體量和口語用法可有例外。",
+        "en": "Usually choose fewer with plural count nouns and less with mass nouns; totals of time or money and informal usage may vary."
+      },
+      "pattern": "less / fewer",
+      "example": "fewer pages",
+      "contrast": "fewer pages · less paper · less than ten minutes",
+      "related": [
+        "countability"
+      ],
+      "usage": {
+        "zh-Hans": "fewer 常与可逐个计数的复数名词搭配；less 常与不可数名词搭配。数字加时间、距离、金额等被当作一个量时常用 less than；实际英语中的用法比口号式规则更灵活。",
+        "zh-Hant": "fewer 常與可逐一計數的複數名詞搭配；less 常與不可數名詞搭配。數字加時間、距離、金額等被當作一個量時常用 less than；實際英語中的用法比口號式規則更靈活。",
+        "en": "Fewer usually modifies countable plural items; less usually modifies mass nouns. Less than often precedes a numerical time, distance or sum treated as one quantity. Actual usage is more flexible than an absolute slogan."
+      },
+      "pitfall": {
+        "zh-Hans": "把 fewer than ten minutes 一律判错不合理；具体语境中 fewer 和 less 都可能出现，但正式写作可优先采用更清晰的搭配。",
+        "zh-Hant": "把 fewer than ten minutes 一律判錯不合理；具體語境中 fewer 和 less 都可能出現，但正式寫作可優先採用更清晰的搭配。",
+        "en": "Do not treat every numerical duration with fewer as automatically wrong; choose the clearest form for the context."
+      },
+      "examples": [
+        "fewer pages",
+        "We have fewer chairs than guests.",
+        "This recipe needs less water."
+      ]
+    },
+    {
+      "id": "make-do",
+      "title": {
+        "zh-Hans": "make / do",
+        "zh-Hant": "make / do",
+        "en": "make / do"
+      },
+      "headword": "make / do",
+      "question": {
+        "zh-Hans": "make 和 do 如何区分？",
+        "zh-Hant": "make 和 do 如何區分？",
+        "en": "Make or do?"
+      },
+      "keywords": [
+        "搭配"
+      ],
+      "summary": {
+        "zh-Hans": "make 常指制作或产生结果，do 常指活动或任务；具体搭配还要按词条记忆。",
+        "zh-Hant": "make 常指製作或產生結果，do 常指活動或任務；具體搭配還要按詞條記憶。",
+        "en": "Make often points to creating a result; do often names an activity or task. Individual collocations still need checking."
+      },
+      "pattern": "make / do",
+      "example": "make a plan",
+      "contrast": "make a plan · do the cleaning · make a mistake",
+      "related": [],
+      "usage": {
+        "zh-Hans": "make 常强调制作、产生或导致结果；do 常强调进行活动或任务。但大量搭配需逐项学习，如 make a decision、make progress、do homework、do research。不能仅凭中文“做”选择。",
+        "zh-Hant": "make 常強調製作、產生或導致結果；do 常強調進行活動或任務。但大量搭配需逐項學習，如 make a decision、make progress、do homework、do research。不能只憑中文「做」選擇。",
+        "en": "Make often highlights creating a product or causing a result; do often highlights performing an activity or task. Many collocations must be learned individually: make a decision, make progress, do homework, do research."
+      },
+      "pitfall": {
+        "zh-Hans": "这只是搭配倾向，不是能推导所有用法的规则；应查具体名词的常见搭配。",
+        "zh-Hant": "這只是搭配傾向，不是能推導所有用法的規則；應查具體名詞的常見搭配。",
+        "en": "This is a tendency, not a rule that predicts every collocation; check the noun’s established combinations."
+      },
+      "examples": [
+        "make a plan",
+        "We made a decision after lunch.",
+        "She does research on local history."
+      ]
+    },
+    {
+      "id": "hedging",
+      "title": {
+        "zh-Hans": "审慎表达与限定",
+        "zh-Hant": "審慎表達與限定",
+        "en": "Hedging and qualification"
+      },
+      "keywords": [
+        "hedge",
+        "may",
+        "appear",
+        "suggest",
+        "谨慎",
+        "審慎",
+        "限定"
+      ],
+      "summary": {
+        "zh-Hans": "may、appear to、suggest 等表达可以限定结论强度；要保留原文的证据范围，不能把“可能”改写成“已经证实”。",
+        "zh-Hant": "may、appear to、suggest 等表達可以限定結論強度；要保留原文的證據範圍，不能把「可能」改寫成「已經證實」。",
+        "en": "May, appear to and suggest can limit a claim's strength. Keep the evidence scope; do not turn possibility into proof."
+      },
+      "pattern": "The data may suggest X; they do not establish Y.",
+      "example": "The early results appear to support the proposal, but the sample is small.",
+      "question": {
+        "zh-Hans": "may suggest 能改写成 proves 吗？",
+        "zh-Hant": "may suggest 能改寫成 proves 嗎？",
+        "en": "Does may suggest mean prove?"
+      },
+      "headword": "may suggest / proves",
+      "contrast": "The figures may suggest a trend. · The figures prove a trend. (stronger claim)",
+      "related": [],
+      "usage": {
+        "zh-Hans": "may、might、appears to、suggests 等可准确标记证据只支持可能性而非定论。选择表达时同时考虑证据强度、样本范围和已知替代解释；不要为了显得谨慎而把可靠事实写得含糊。\n\n语气强弱要与证据相符：may suggest 给出一种可能解释，is consistent with 表示资料与某解释相容，都不等于证明因果。即使研究结果显著，样本选择、测量方式和未控制因素也可能限制推论范围。可把观察结果、解释和结论分成不同句子，避免用 proves、always 之类的词把有限证据说成定论。",
+        "zh-Hant": "may、might、appears to、suggests 等可準確標記證據只支持可能性而非定論。選擇表達時同時考慮證據強度、樣本範圍和已知替代解釋；不要為了顯得謹慎而把可靠事實寫得含糊。\n\n語氣強弱要與證據相符：may suggest 提出一種可能解釋，is consistent with 表示資料與某解釋相容，都不等於證明因果。即使研究結果顯著，樣本選擇、測量方式和未控制因素也可能限制推論範圍。可把觀察結果、解釋和結論分成不同句子，避免用 proves、always 等詞把有限證據說成定論。",
+        "en": "May, might, appears to and suggests can mark that evidence supports a possibility rather than a conclusion. Match the wording to evidence strength, sample limits and alternative explanations; do not needlessly weaken well-established facts.\n\nMatch the strength of a claim to its evidence. May suggest offers a possible interpretation; is consistent with says the data fit an interpretation; neither proves causation. Even a significant result may be limited by sampling, measurement or uncontrolled factors. Separate observation, interpretation and conclusion where needed, rather than using proves or always to turn limited evidence into certainty."
+      },
+      "pitfall": {
+        "zh-Hans": "单个观察通常不能证明因果：The results prove X 往往比 The results suggest X 强得多。",
+        "zh-Hant": "單一觀察通常不能證明因果：The results prove X 往往比 The results suggest X 強得多。",
+        "en": "One observation rarely proves causation: prove is usually much stronger than suggest."
+      },
+      "examples": [
+        "The early results appear to support the proposal, but the sample is small.",
+        "These findings may indicate a change in behavior.",
+        "The data suggest an association, not a cause.",
+        "The pattern is consistent with a seasonal effect, but other causes remain possible."
+      ]
+    },
+    {
+      "id": "countability",
+      "title": {
+        "zh-Hans": "可数与不可数名词",
+        "zh-Hant": "可數與不可數名詞",
+        "en": "Countable and uncountable nouns"
+      },
+      "keywords": [
+        "countable",
+        "uncountable",
+        "much",
+        "many",
+        "可数",
+        "不可数",
+        "可數",
+        "不可數"
+      ],
+      "summary": {
+        "zh-Hans": "many 通常修饰可数名词复数，much 通常修饰不可数名词；有些词义会改变可数性。",
+        "zh-Hant": "many 通常修飾可數名詞複數，much 通常修飾不可數名詞；有些詞義會改變可數性。",
+        "en": "Many usually goes with plural count nouns; much usually goes with uncountable nouns. Some nouns change countability by meaning."
+      },
+      "pattern": "many books · much information",
+      "example": "We need more information before we decide.",
+      "question": {
+        "zh-Hans": "information 前面用 much 还是 many？",
+        "zh-Hant": "information 前面用 much 還是 many？",
+        "en": "Much information or many information?"
+      },
+      "headword": "much / many",
+      "contrast": "much information · many reports · a piece of information.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "可数名词可与数字和复数形式连用，常用 many、few；不可数名词通常用 much、little，不直接用普通复数。一个词可能因意义不同而改变可数性：coffee 可指饮料，也可指一杯咖啡。",
+        "zh-Hant": "可數名詞可與數字和複數形式連用，常用 many、few；不可數名詞通常用 much、little，不直接用一般複數。一個詞可能因意義不同而改變可數性：coffee 可指飲料，也可指一杯咖啡。",
+        "en": "Count nouns combine with numbers and plurals, and often with many or few. Mass nouns commonly take much or little and no ordinary plural. Countability can vary by meaning: coffee can mean a substance or a serving."
+      },
+      "pitfall": {
+        "zh-Hans": "不要只记住名词“永远可数/不可数”；例如 experience 表“经历”可数，表“经验”通常不可数。",
+        "zh-Hant": "不要只記住名詞「永遠可數／不可數」；例如 experience 表「經歷」可數，表「經驗」通常不可數。",
+        "en": "Do not label every sense of a noun permanently count or mass: an experience differs from experience in general."
+      },
+      "examples": [
+        "We need more information before we decide.",
+        "How many chairs do we need?",
+        "How much information is available?"
+      ]
+    },
+    {
+      "id": "modals",
+      "title": {
+        "zh-Hans": "情态动词：可能与义务",
+        "zh-Hant": "情態動詞：可能與義務",
+        "en": "Modals: possibility and obligation"
+      },
+      "keywords": [
+        "may",
+        "might",
+        "must",
+        "should",
+        "modal",
+        "可能",
+        "义务",
+        "義務"
+      ],
+      "summary": {
+        "zh-Hans": "may/might 表示可能；must 常表示强义务或强推断。must not 表示禁止，不等于 don't have to（不必）。",
+        "zh-Hant": "may/might 表示可能；must 常表示強義務或強推斷。must not 表示禁止，不等於 don't have to（不必）。",
+        "en": "May/might express possibility; must can express strong obligation or inference. Must not means prohibition, unlike don't have to."
+      },
+      "pattern": "modal + base verb",
+      "example": "You must not enter the room, but you do not have to wait outside.",
+      "question": {
+        "zh-Hans": "must not 和 do not have to 有何区别？",
+        "zh-Hant": "must not 和 do not have to 有何區別？",
+        "en": "Must not or do not have to?"
+      },
+      "headword": "must not / do not have to",
+      "contrast": "You must not enter. · You do not have to enter.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "must not 表示禁止；do not have to 表示没有义务，可以做也可以不做。must 可表强义务或有把握的推断；have to 通常表达外部要求。比较否定形式时尤其要看否定落在义务还是行为上。",
+        "zh-Hant": "must not 表示禁止；do not have to 表示沒有義務，可以做也可以不做。must 可表強義務或有把握的推斷；have to 通常表達外部要求。比較否定形式時尤其要看否定落在義務還是行為上。",
+        "en": "Must not prohibits an action; do not have to removes an obligation. Must can express a strong obligation or confident inference, while have to commonly refers to an external requirement. The scope of negation matters."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 You must not leave 和 You do not have to leave 都译成“你不必离开”；前者是不准离开。",
+        "zh-Hant": "不要把 You must not leave 和 You do not have to leave 都譯成「你不必離開」；前者是不准離開。",
+        "en": "Do not equate You must not leave with You do not have to leave; the former forbids leaving."
+      },
+      "examples": [
+        "You must not enter the room, but you do not have to wait outside.",
+        "You must not enter this room.",
+        "You do not have to attend if you are ill."
+      ]
+    },
+    {
+      "id": "present-perfect",
+      "title": {
+        "zh-Hans": "现在完成时",
+        "zh-Hant": "現在完成式",
+        "en": "Present perfect"
+      },
+      "keywords": [
+        "have",
+        "has",
+        "experience",
+        "since",
+        "for",
+        "完成"
+      ],
+      "summary": {
+        "zh-Hans": "用 have/has + 过去分词将过去事件与现在联系起来；明确的已结束时间通常用一般过去时。",
+        "zh-Hant": "用 have/has + 過去分詞將過去事件與現在聯繫起來；明確的已結束時間通常用一般過去式。",
+        "en": "Use have/has + past participle to connect a past event with the present; a specific finished past time generally takes past simple."
+      },
+      "pattern": "have/has + past participle",
+      "example": "I have visited this library before.",
+      "question": {
+        "zh-Hans": "明确的过去时间能搭配现在完成时吗？",
+        "zh-Hant": "明確的過去時間能搭配現在完成式嗎？",
+        "en": "I went or I have gone: does the time matter?"
+      },
+      "headword": "past simple / present perfect",
+      "contrast": "I went yesterday. · I have been there before.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "现在完成时把过去事件与现在的结果、经验或持续状态连接起来；明确过去时间通常用一般过去时。since 标起点、for 标时长，能持续的动作或状态可用完成时表达至今。某些时态选择也受英美英语习惯和语境影响。\n\n时间表达很关键：yesterday、in 2019 这类已结束的明确过去时间通常配一般过去时；so far、this week 若所指时段仍延续至现在，常配现在完成时。同一个 this morning 在上午未结束与已经结束时，选择可能不同。完成时还可谈经历或对现在有影响的结果，不必等于“刚刚完成”。美式英语在部分 already、yet 语境中也常用一般过去时，不能把这种差异机械判错。",
+        "zh-Hant": "現在完成式把過去事件與現在的結果、經驗或持續狀態連結起來；明確過去時間通常用一般過去式。since 標起點、for 標時長，能持續的動作或狀態可用完成式表達至今。某些時態選擇也受英美英語習慣和語境影響。\n\n時間表達很關鍵：yesterday、in 2019 這類已結束的明確過去時間通常配一般過去式；so far、this week 若所指時段仍延續至現在，常配現在完成式。同一個 this morning 在上午未結束與已結束時，選擇可能不同。完成式還可談經驗或對現在有影響的結果，不必等於「剛剛完成」。美式英語在部分 already、yet 語境中也常用一般過去式，不能把這種差異機械判錯。",
+        "en": "The present perfect links a past situation with a present result, experience or continuing state. A definite past-time reference normally takes the past simple. Since marks a starting point and for a duration. Variety and context can affect some choices.\n\nTime reference is crucial: a finished, specified time such as yesterday or in 2019 normally calls for the past simple. So far and this week can favour the present perfect while the period still includes now. Even this morning may be treated differently while morning continues and after it ends. The perfect can describe experience or a present consequence, not only a recent completion. American English also commonly uses the past simple in some already/yet contexts, so do not treat every such use as an error."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 yesterday 这种已结束的明确过去时间直接与现在完成时连用：I saw her yesterday。",
+        "zh-Hant": "不要把 yesterday 這種已結束的明確過去時間直接與現在完成式連用：I saw her yesterday。",
+        "en": "Do not normally combine the present perfect with a finished definite time such as yesterday: I saw her yesterday."
+      },
+      "examples": [
+        "I have visited this library before.",
+        "I have lost my key, so I cannot open the door.",
+        "I lost my key yesterday, but I found it later.",
+        "I have read two reports so far this week."
+      ]
+    },
+    {
+      "id": "inversion",
+      "title": {
+        "zh-Hans": "否定前置与倒装",
+        "zh-Hant": "否定前置與倒裝",
+        "en": "Negative fronting and inversion"
+      },
+      "keywords": [
+        "inversion",
+        "rarely",
+        "not only",
+        "倒装",
+        "倒裝"
+      ],
+      "summary": {
+        "zh-Hans": "rarely、not only 等限制性或否定表达放在句首时，书面语中常出现助动词与主语倒装；语气比普通语序更突出。",
+        "zh-Hant": "rarely、not only 等限制性或否定表達放在句首時，書面語中常出現助動詞與主語倒裝；語氣比普通語序更突出。",
+        "en": "Fronted restrictive or negative expressions such as rarely or not only often trigger subject–auxiliary inversion in formal prose, adding emphasis."
+      },
+      "pattern": "Rarely had + subject + past participle ...",
+      "example": "Rarely had the committee seen such a detailed reply.",
+      "question": {
+        "zh-Hans": "句首 rarely 为什么触发倒装？",
+        "zh-Hant": "句首 rarely 為什麼觸發倒裝？",
+        "en": "Why is it rarely had they seen?"
+      },
+      "headword": "rarely + inversion",
+      "contrast": "They had rarely seen such a case. · Rarely had they seen such a case.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "限制或否定意义的副词短语放在句首时，正式文体常出现主语与助动词倒装：Rarely have I seen...、Only then did I understand...。若原句没有助动词，要借助 do。倒装范围与前置成分有关。\n\n句首若放 hardly、rarely、not only 等带否定或限制意味的成分，正式文体中常出现助动词与主语倒装：Rarely have we seen...。如果原句没有助动词，就借助 do/does/did；动词原形随之出现。并非所有句首副词都触发倒装，Yesterday we left 不需要；触发范围也取决于词语实际修饰的句子部分。",
+        "zh-Hant": "限制或否定意義的副詞片語放在句首時，正式文體常出現主語與助動詞倒裝：Rarely have I seen...、Only then did I understand...。若原句沒有助動詞，要借助 do。倒裝範圍與前置成分有關。\n\n句首若放 hardly、rarely、not only 等帶否定或限制意味的成分，正式文體中常出現助動詞與主詞倒裝：Rarely have we seen...。若原句沒有助動詞，就借助 do/does/did；動詞原形隨之出現。並非所有句首副詞都觸發倒裝，Yesterday we left 不需要；觸發範圍也取決於詞語實際修飾的句子部分。",
+        "en": "When a negative or restrictive adverbial begins a clause, formal English often inverts auxiliary and subject: Rarely have I seen...; Only then did I understand.... If there is no auxiliary, use do-support. The fronted expression determines the scope.\n\nFronted negative or limiting expressions such as hardly, rarely and not only often trigger subject–auxiliary inversion in formal style: Rarely have we seen.... If no auxiliary is present, supply do/does/did and use the plain verb form. Not every initial adverb triggers inversion: Yesterday we left needs none. The construction also depends on what the fronted expression actually modifies."
+      },
+      "pitfall": {
+        "zh-Hans": "不是把所有句首副词都倒装；Often I go there 仍可用普通语序。",
+        "zh-Hant": "不是把所有句首副詞都倒裝；Often I go there 仍可用一般語序。",
+        "en": "Not every initial adverb triggers inversion: Often I go there has normal order."
+      },
+      "examples": [
+        "Rarely had the committee seen such a detailed reply.",
+        "Never had the team faced such a delay.",
+        "Only after the meeting did we see the full report.",
+        "Rarely did the committee reach a decision so quickly."
+      ]
+    },
+    {
+      "id": "respectively",
+      "title": {
+        "zh-Hans": "respectively",
+        "zh-Hant": "respectively",
+        "en": "respectively"
+      },
+      "headword": "respectively",
+      "question": {
+        "zh-Hans": "respectively 对应的是哪一组项目？",
+        "zh-Hant": "respectively 對應的是哪一組項目？",
+        "en": "What does respectively pair?"
+      },
+      "keywords": [
+        "分别",
+        "分別",
+        "指代",
+        "精确",
+        "精確"
+      ],
+      "summary": {
+        "zh-Hans": "respectively 按顺序把前后两组同数目的项目对应起来；项目数量或顺序不清会产生歧义。",
+        "zh-Hant": "respectively 按順序把前後兩組同數目的項目對應起來；項目數量或順序不清會產生歧義。",
+        "en": "Respectively pairs two equal-length lists in order. If the lists or ordering are unclear, rewrite the sentence."
+      },
+      "pattern": "respectively",
+      "example": "Mira and Sol scored 7 and 9, respectively.",
+      "contrast": "Mira and Sol scored 7 and 9, respectively. · Mira scored 7; Sol scored 9.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "respectively 将两个或更多有序列表按相同顺序逐一对应。读者必须容易找到两个列表及其顺序；若句子过长或对应关系复杂，直接拆成多句通常更清晰。它本身不表示因果。",
+        "zh-Hant": "respectively 將兩個或更多有序列表按相同順序逐一對應。讀者必須容易找到兩個列表及其順序；若句子過長或對應關係複雜，直接拆成多句通常更清楚。它本身不表示因果。",
+        "en": "Respectively pairs members of two or more ordered lists in the same order. Readers must be able to identify the lists and sequence. If the mapping becomes long or complex, separate sentences are clearer. The word itself adds no causal relation."
+      },
+      "pitfall": {
+        "zh-Hans": "列表数量不匹配时不要靠 respectively 掩盖歧义；应明确每一项对应谁。",
+        "zh-Hant": "列表數量不相符時不要靠 respectively 掩蓋歧義；應明確每一項對應誰。",
+        "en": "Do not use respectively to disguise a mismatch between the lists; state each pairing explicitly."
+      },
+      "examples": [
+        "Mira and Sol scored 7 and 9, respectively.",
+        "Ana and Bo scored 8 and 9 points, respectively.",
+        "The two samples weighed 3 g and 5 g, respectively."
+      ]
+    },
+    {
+      "id": "reported-speech",
+      "title": {
+        "zh-Hans": "转述话语",
+        "zh-Hant": "轉述話語",
+        "en": "Reported speech"
+      },
+      "keywords": [
+        "reported",
+        "said",
+        "told",
+        "间接引语",
+        "間接引語"
+      ],
+      "summary": {
+        "zh-Hans": "转述过去的话时，人称、时间词和时态可能随叙述视角调整；仍然成立的事实不一定回退时态。",
+        "zh-Hant": "轉述過去的話時，人稱、時間詞和時態可能隨敘述視角調整；仍然成立的事實不一定回退時態。",
+        "en": "Reporting past speech may change pronouns, time expressions and tense with the viewpoint; a still-valid fact need not always shift back."
+      },
+      "pattern": "She said (that) the meeting had ended.",
+      "example": "He said the bus would arrive later.",
+      "question": {
+        "zh-Hans": "间接引语一定要回退时态吗？",
+        "zh-Hant": "間接引語一定要回退時態嗎？",
+        "en": "Must every tense move back in reported speech?"
+      },
+      "headword": "said / reported tense",
+      "contrast": "She said the shop was closed then. · She said the earth is round.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "转述时要区分仍然成立的事实与仅属于原话当时的情境。过去的转述动词后，时态常后移，但在事实依然成立或语境清楚时不一定必须后移；代词、时间和地点指示也可能要调整。\n\n时态回移不是机械要求：若所报告的情况现在仍属实，保留原时态也可能合适；若明确把话语放在过去视角，回移可帮助标出时间关系。today、tomorrow、here 等词也不按固定表格一律改写，而要看转述发生在何时何地。引述别人的话时，要区分原话和转述者的推断，不要把转述改写得比原话更确定。",
+        "zh-Hant": "轉述時要區分仍然成立的事實與只屬於原話當時的情境。過去的轉述動詞後，時態常後移，但在事實依然成立或語境清楚時不一定必須後移；代名詞、時間和地點指示也可能要調整。\n\n時態回移不是機械要求：若所報告的情況現在仍屬實，保留原時態也可能合適；若明確把話語放在過去視角，回移可幫助標出時間關係。today、tomorrow、here 等詞也不按固定表格一律改寫，而要看轉述發生在何時何地。引述別人的話時，要區分原話和轉述者的推論，不要把轉述改寫得比原話更確定。",
+        "en": "In reporting, distinguish facts that still hold from situations tied to the original speaking time. After a past reporting verb, tense often shifts back, but this is not always required for a still-true fact. Pronouns and time/place expressions may also change.\n\nBackshifting is not a mechanical rule. If a reported fact is still true, keeping the original tense may be appropriate; shifting can instead mark a past viewpoint. Words such as today, tomorrow and here change only if the reporting time or place calls for it. When reporting someone else, separate their actual wording from your inference and avoid making the report more certain than the original."
+      },
+      "pitfall": {
+        "zh-Hans": "不要机械把所有现在时变过去时；He said the Earth is round 仍可保留普遍事实。",
+        "zh-Hant": "不要機械地把所有現在式變過去式；He said the Earth is round 仍可保留普遍事實。",
+        "en": "Do not backshift every present form mechanically; a general truth can remain present."
+      },
+      "examples": [
+        "He said the bus would arrive later.",
+        "She said that she was tired.",
+        "He said that the shop closes at six.",
+        "She said that the museum opens at ten."
+      ]
+    },
+    {
+      "id": "say-tell",
+      "title": {
+        "zh-Hans": "say / tell",
+        "zh-Hant": "say / tell",
+        "en": "say / tell"
+      },
+      "headword": "say / tell",
+      "question": {
+        "zh-Hans": "say 和 tell 怎样选择？",
+        "zh-Hant": "say 和 tell 怎樣選擇？",
+        "en": "When do I use say or tell?"
+      },
+      "keywords": [
+        "说",
+        "說",
+        "报告",
+        "報告"
+      ],
+      "summary": {
+        "zh-Hans": "say 可直接接话语内容；tell 报告信息时通常要说明告诉谁。不要用 tell that... 省去接收者。",
+        "zh-Hant": "say 可直接接話語內容；tell 報告資訊時通常要說明告訴誰。不要用 tell that... 省去接收者。",
+        "en": "Say can introduce the words or a clause. Tell normally names the recipient before reported information; avoid tell that without one."
+      },
+      "pattern": "say / tell",
+      "example": "She said that the room was ready.",
+      "contrast": "She said that the room was ready. · She told me that the room was ready.",
+      "related": [
+        "reported-speech"
+      ],
+      "usage": {
+        "zh-Hans": "say 侧重说出的内容，常用 say something 或 say something to someone；tell 通常需要说明告诉谁，用 tell someone something。两词都可接 that 从句，但 tell 后常保留受话人。tell 还可用于 tell a story、tell the truth 等固定搭配。",
+        "zh-Hant": "say 側重說出的內容，常用 say something 或 say something to someone；tell 通常需要說明告訴誰，用 tell someone something。兩詞都可接 that 子句，但 tell 後常保留聽話的人。tell 也可用於 tell a story、tell the truth 等固定搭配。",
+        "en": "Say focuses on the words or content: say something or say something to someone. Tell normally names a recipient: tell someone something. Both can take a that-clause, but tell commonly retains its listener. Learn fixed phrases such as tell a story and tell the truth."
+      },
+      "pitfall": {
+        "zh-Hans": "通常不说 say me 或 tell to me；应说 say to me 或 tell me。",
+        "zh-Hant": "通常不說 say me 或 tell to me；應說 say to me 或 tell me。",
+        "en": "Avoid say me and tell to me; use say to me or tell me."
+      },
+      "examples": [
+        "She said that the room was ready.",
+        "She said that the train was late.",
+        "She told me that the train was late."
+      ]
+    },
+    {
+      "id": "since-for",
+      "title": {
+        "zh-Hans": "since / for",
+        "zh-Hant": "since / for",
+        "en": "since / for"
+      },
+      "headword": "since / for",
+      "question": {
+        "zh-Hans": "since 和 for 表示时间时有什么区别？",
+        "zh-Hant": "since 和 for 表示時間時有什麼區別？",
+        "en": "Since or for with time?"
+      },
+      "keywords": [
+        "自从",
+        "自從",
+        "持续",
+        "持續"
+      ],
+      "summary": {
+        "zh-Hans": "since 指开始的时间点；for 指持续的时长。两者都不自动决定时态。",
+        "zh-Hant": "since 指開始的時間點；for 指持續的時長。兩者都不自動決定時態。",
+        "en": "Since identifies a starting point; for gives a duration. Neither word alone determines the tense."
+      },
+      "pattern": "since / for",
+      "example": "I have lived here since 2020.",
+      "contrast": "I have lived here since 2020. · I have lived here for six years.",
+      "related": [
+        "present-perfect"
+      ],
+      "usage": {
+        "zh-Hans": "since 后接起点，如年份、日期或具体事件；for 后接时间长度，如 two years。两者都能与可持续至今的状态搭配，但时态由整句意义决定；for 也常出现在过去时句中，并非现在完成时专用。",
+        "zh-Hant": "since 後接起點，如年份、日期或具體事件；for 後接時間長度，如 two years。兩者都能與可持續至今的狀態搭配，但時態由整句意義決定；for 也常出現在過去式句中，並非現在完成式專用。",
+        "en": "Since introduces a starting point such as a year, date or event; for introduces a duration such as two years. Both can occur with a state continuing to now, but tense depends on the sentence. For also occurs freely with past simple."
+      },
+      "pitfall": {
+        "zh-Hans": "不能只看数字判断：since 2020 是起点，for 2020 不表示持续时长。",
+        "zh-Hant": "不能只看數字判斷：since 2020 是起點，for 2020 不表示持續時長。",
+        "en": "Do not choose by the presence of a number: since 2020 gives a start, not a duration."
+      },
+      "examples": [
+        "I have lived here since 2020.",
+        "We have lived here for four years.",
+        "She worked there for six months and then moved."
+      ]
+    },
+    {
+      "id": "relative-clauses",
+      "title": {
+        "zh-Hans": "关系从句",
+        "zh-Hant": "關係子句",
+        "en": "Relative clauses"
+      },
+      "keywords": [
+        "who",
+        "which",
+        "that",
+        "relative",
+        "定语从句",
+        "定語子句"
+      ],
+      "summary": {
+        "zh-Hans": "关系从句可限定所说的人或物；非限定性补充信息通常用逗号隔开，不能随意用 that 替代。",
+        "zh-Hant": "關係子句可限定所說的人或物；非限定性補充資訊通常用逗號隔開，不能隨意用 that 替代。",
+        "en": "A relative clause can identify a person or thing. Non-defining extra information is usually set off by commas and does not freely take that."
+      },
+      "pattern": "the book that I borrowed · the library, which opened in 1990, ...",
+      "example": "The student who called yesterday has returned the book.",
+      "question": {
+        "zh-Hans": "补充说明的关系从句能用 that 吗？",
+        "zh-Hant": "補充說明的關係子句能用 that 嗎？",
+        "en": "Can I use that after a comma?"
+      },
+      "headword": "that / which",
+      "contrast": "The file that I need is here. · The file, which I opened yesterday, is here.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "限定性关系从句帮助读者确定是哪一个人或物；非限定性从句补充已确定对象的信息，通常用逗号隔开。that 可用于许多限定性从句，却一般不引导带逗号的非限定性从句。关系代词作宾语时有时可省略。\n\n先分清关系从句是否帮助确认对象：The report that arrived today is incomplete 限定是哪份报告；The report, which arrived today, is incomplete 则假定读者已知道是哪份报告，逗号间只是补充信息。非限定从句通常不用 that，也通常不省略关系词。介词若移到关系词前，形式会更正式，如 to whom；日常用法也常把介词留在从句末。",
+        "zh-Hant": "限定關係子句幫助讀者確定是哪一個人或物；非限定關係子句補充已確定對象的資訊，通常用逗號隔開。that 可用於許多限定關係子句，卻一般不引導帶逗號的非限定關係子句。關係代名詞作受詞時有時可省略。\n\n先分清關係子句是否幫助確認對象：The report that arrived today is incomplete 限定是哪份報告；The report, which arrived today, is incomplete 則假定讀者已知道是哪份報告，逗號間只是補充資訊。非限定子句通常不用 that，也通常不省略關係詞。介系詞若移到關係詞前，形式會更正式，如 to whom；日常用法也常把介系詞留在子句末。",
+        "en": "A defining relative clause identifies which person or thing is meant. A non-defining clause adds information about an already identified referent and is set off with commas. That is common in defining clauses but not normally in non-defining ones. Object relatives can sometimes be omitted.\n\nFirst ask whether the clause identifies the referent. The report that arrived today is incomplete picks out a report; the report, which arrived today, is incomplete treats the report as already known and adds information. Non-defining clauses normally do not use that or omit the relative word. Moving a preposition before a relative word, as in to whom, is more formal; ordinary usage often leaves it at the end of the clause."
+      },
+      "pitfall": {
+        "zh-Hans": "不要在非限定性从句中写逗号 + that：My car, which is red, ...。",
+        "zh-Hant": "不要在非限定關係子句中寫逗號 + that：My car, which is red, ...。",
+        "en": "Do not use comma + that for a non-defining clause: My car, which is red, ...."
+      },
+      "examples": [
+        "The student who called yesterday has returned the book.",
+        "The book that you lent me is useful.",
+        "My sister, who lives in Leeds, is visiting.",
+        "The report, which arrived today, is incomplete."
+      ]
+    },
+    {
+      "id": "used-to",
+      "title": {
+        "zh-Hans": "used to / be used to",
+        "zh-Hant": "used to / be used to",
+        "en": "used to / be used to"
+      },
+      "headword": "used to / be used to",
+      "question": {
+        "zh-Hans": "used to 和 be used to 后面接什么？",
+        "zh-Hant": "used to 和 be used to 後面接什麼？",
+        "en": "Used to do or be used to doing?"
+      },
+      "keywords": [
+        "过去习惯",
+        "過去習慣",
+        "习惯于",
+        "習慣於"
+      ],
+      "summary": {
+        "zh-Hans": "used to + 动词原形指过去的习惯或状态；be used to + 名词/-ing 表示现在已习惯。",
+        "zh-Hant": "used to + 動詞原形指過去的習慣或狀態；be used to + 名詞/-ing 表示現在已習慣。",
+        "en": "Used to + base verb describes a former habit or state; be used to + noun or -ing means accustomed to."
+      },
+      "pattern": "used to / be used to",
+      "example": "I used to walk to work.",
+      "contrast": "I used to walk to work. · I am used to walking to work.",
+      "related": [
+        "past-simple"
+      ],
+      "usage": {
+        "zh-Hans": "used to + 动词原形描述过去反复发生、现在通常不再发生的行为或状态。be used to + 名词或 -ing 描述“习惯于”；get used to 强调逐渐适应。这里的 to 在 be/get used to 后是介词，不是不定式标记。",
+        "zh-Hant": "used to + 動詞原形描述過去反覆發生、現在通常不再發生的行為或狀態。be used to + 名詞或 -ing 描述「習慣於」；get used to 強調逐漸適應。這裡的 to 在 be/get used to 後是介系詞，不是不定式標記。",
+        "en": "Used to + base verb describes a past habit or state that generally no longer holds. Be used to + noun or -ing means accustomed to; get used to emphasizes adaptation. To in be/get used to is a preposition, not an infinitive marker."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 I am used to wake early 来表达“习惯早起”；应为 I am used to waking early。",
+        "zh-Hant": "不要寫 I am used to wake early 來表達「習慣早起」；應為 I am used to waking early。",
+        "en": "Use I am used to waking early, not I am used to wake early."
+      },
+      "examples": [
+        "I used to walk to work.",
+        "I used to walk to school.",
+        "I am used to walking to work now."
+      ]
+    },
+    {
+      "id": "who-whom",
+      "title": {
+        "zh-Hans": "who / whom",
+        "zh-Hant": "who / whom",
+        "en": "who / whom"
+      },
+      "headword": "who / whom",
+      "question": {
+        "zh-Hans": "正式文本中何时使用 whom？",
+        "zh-Hant": "正式文本中何時使用 whom？",
+        "en": "When is whom used in formal English?"
+      },
+      "keywords": [
+        "宾语",
+        "受詞",
+        "正式",
+        "口语",
+        "口語"
+      ],
+      "summary": {
+        "zh-Hans": "whom 可作宾语，尤其在前置介词后；日常口语往往用 who。不要把正式写法当作唯一自然表达。",
+        "zh-Hant": "whom 可作受詞，尤其在前置介系詞後；日常口語往往用 who。不要把正式寫法當作唯一自然表達。",
+        "en": "Whom can mark an object, especially after a fronted preposition; everyday speech often uses who. Formal use is not the only natural choice."
+      },
+      "pattern": "who / whom",
+      "example": "To whom did you send it?",
+      "contrast": "To whom did you send it? · Who did you send it to?",
+      "related": [
+        "relative-clauses"
+      ],
+      "usage": {
+        "zh-Hans": "who 通常作主语，也广泛用于口语中的宾语位置；whom 是较正式的宾语形式，尤其见于介词前置后。判断时先找从句里缺少主语还是宾语，而不是只看前一个词。自然口语中不必强行使用 whom。",
+        "zh-Hant": "who 通常作主語，也廣泛用於口語中的受詞位置；whom 是較正式的受詞形式，尤其見於介系詞前置後。判斷時先找子句裡缺少主語還是受詞，而不是只看前一個詞。自然口語中不必強行使用 whom。",
+        "en": "Who is usually a subject and widely used as an object in speech. Whom is a formal object form, especially after a fronted preposition. Identify the missing role inside the clause rather than looking only at the preceding word. Do not force whom into ordinary conversation."
+      },
+      "pitfall": {
+        "zh-Hans": "Who did you invite? 在自然英语中完全正常；不应将其一概标成语法错误。",
+        "zh-Hant": "Who did you invite? 在自然英語中完全正常；不應將其一律標成文法錯誤。",
+        "en": "Who did you invite? is entirely normal in contemporary English; do not mark it categorically wrong."
+      },
+      "examples": [
+        "To whom did you send it?",
+        "Who called yesterday?",
+        "To whom should I address this letter?"
+      ]
+    },
+    {
+      "id": "future",
+      "title": {
+        "zh-Hans": "将来：will 与 be going to",
+        "zh-Hant": "將來：will 與 be going to",
+        "en": "Future: will and be going to"
+      },
+      "keywords": [
+        "future",
+        "计划",
+        "計畫",
+        "预测",
+        "預測"
+      ],
+      "summary": {
+        "zh-Hans": "will 可表示当下决定或预测；be going to 常表示已有计划或有当前迹象的预测。具体含义仍取决于语境。",
+        "zh-Hant": "will 可表示當下決定或預測；be going to 常表示已有計畫或有當前跡象的預測。具體含義仍取決於語境。",
+        "en": "Will can express a decision made now or a prediction; be going to often signals a prior plan or present evidence. Context matters."
+      },
+      "pattern": "will + base verb · am/is/are going to + base verb",
+      "example": "We are going to visit the museum on Saturday.",
+      "question": {
+        "zh-Hans": "已有计划用 will 还是 going to？",
+        "zh-Hant": "已有計畫用 will 還是 going to？",
+        "en": "Will or going to for a plan?"
+      },
+      "headword": "will / going to",
+      "contrast": "I will answer it now. · We are going to meet on Friday.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "will 常用于当下决定、预测或承诺；be going to 常用于已有意图或根据眼前迹象作预测。两者有大量交叠，不能机械说一种只表示“计划”，另一种只表示“临时”。日程表可用现在时，已安排事项也常用现在进行时。",
+        "zh-Hant": "will 常用於當下決定、預測或承諾；be going to 常用於已有意圖或根據眼前跡象作預測。兩者有大量重疊，不能機械地說一種只表示「計畫」，另一種只表示「臨時」。時刻表可用現在式，已安排事項也常用現在進行式。",
+        "en": "Will often marks decisions made now, predictions or promises. Be going to commonly presents a prior intention or prediction based on present evidence. They overlap considerably. Timetables can use the present simple, and arrangements the present progressive."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把任何未来事件都改成 will；The train leaves at six 是正常的时刻表表达。",
+        "zh-Hant": "不要把任何未來事件都改成 will；The train leaves at six 是正常的時刻表表達。",
+        "en": "Do not convert every future reference to will: The train leaves at six is a normal timetable statement."
+      },
+      "examples": [
+        "We are going to visit the museum on Saturday.",
+        "Look at those clouds. It is going to rain.",
+        "The train leaves at six tomorrow."
+      ]
+    },
+    {
+      "id": "present-continuous",
+      "title": {
+        "zh-Hans": "现在进行时",
+        "zh-Hant": "現在進行式",
+        "en": "Present continuous"
+      },
+      "keywords": [
+        "progressive",
+        "ing",
+        "正在",
+        "进行",
+        "進行"
+      ],
+      "summary": {
+        "zh-Hans": "用 be + 动词 -ing 描述此刻或当前阶段正在进行的事；与表示习惯的一般现在时区分。",
+        "zh-Hant": "用 be + 動詞 -ing 描述此刻或當前階段正在進行的事；與表示習慣的一般現在式區分。",
+        "en": "Use be + -ing for an action happening now or around now; contrast it with a habitual present simple."
+      },
+      "pattern": "am/is/are + verb-ing",
+      "example": "The staff are checking the room now.",
+      "question": {
+        "zh-Hans": "I work 和 I am working 如何区分？",
+        "zh-Hant": "I work 和 I am working 如何區分？",
+        "en": "I work or I am working: which fits now?"
+      },
+      "headword": "work / working",
+      "contrast": "I work here every Monday. · I am working here this week.",
+      "related": [],
+      "usage": {
+        "zh-Hans": "现在进行时常描述说话时正在进行的活动、临时状态或已安排的近期计划；一般现在时常描述习惯或稳定事实。进行时由 am/is/are + -ing 构成。某些状态动词通常不用进行时，但含义变化时可能可以。",
+        "zh-Hant": "現在進行式常描述說話時正在進行的活動、暫時狀態或已安排的近期計畫；一般現在式常描述習慣或穩定事實。進行式由 am/is/are + -ing 構成。某些狀態動詞通常不用進行式，但意義改變時可能可以。",
+        "en": "The present progressive commonly describes an activity happening now, a temporary situation or a near-future arrangement. The present simple commonly describes habits or stable facts. Form the progressive with am/is/are + -ing. Some stative verbs are rarely progressive unless their meaning shifts."
+      },
+      "pitfall": {
+        "zh-Hans": "通常说 I know the answer，而不是 I am knowing the answer；但 I am thinking about it 表示正在思考。",
+        "zh-Hant": "通常說 I know the answer，而不是 I am knowing the answer；但 I am thinking about it 表示正在思考。",
+        "en": "Usually say I know the answer, not I am knowing the answer; I am thinking about it describes an activity."
+      },
+      "examples": [
+        "The staff are checking the room now.",
+        "She is working from home this week.",
+        "She usually works in the office."
+      ]
+    },
+    {
+      "id": "some-any",
+      "title": {
+        "zh-Hans": "some 与 any",
+        "zh-Hant": "some 與 any",
+        "en": "some and any"
+      },
+      "headword": "some / any",
+      "question": {
+        "zh-Hans": "some 和 any 怎样选？",
+        "zh-Hant": "some 和 any 怎樣選？",
+        "en": "How do I choose some or any?"
+      },
+      "keywords": [
+        "限定词",
+        "限定詞",
+        "determiner"
+      ],
+      "summary": {
+        "zh-Hans": "肯定句常用 some；否定句和开放式疑问句常用 any。",
+        "zh-Hant": "肯定句常用 some；否定句和開放式疑問句常用 any。",
+        "en": "Some is common in affirmatives; any is common in negatives and open questions."
+      },
+      "usage": {
+        "zh-Hans": "两词可修饰复数可数名词与不可数名词。请求或提议如果预期肯定回答，也常用 some；any 在肯定句可表示“任意”。要看说话者的预期，不能只按句子有无问号来判断。",
+        "zh-Hant": "兩詞可修飾複數可數名詞與不可數名詞。請求或提議如果預期肯定回答，也常用 some；any 在肯定句可表示「任意」。要看說話者的預期，不能只按句子有無問號判斷。",
+        "en": "Both modify plural count nouns and mass nouns. Requests and offers expecting a yes often use some. In an affirmative, any can mean whichever. Consider the speaker’s expectation, not just the question mark."
+      },
+      "pitfall": {
+        "zh-Hans": "Would you like some tea? 是自然的提议，不必改成 any。",
+        "zh-Hant": "Would you like some tea? 是自然的提議，不必改成 any。",
+        "en": "Would you like some tea? is a natural offer; it need not use any."
+      },
+      "pattern": "some books / some water · any books / any water",
+      "example": "We bought some apples.",
+      "examples": [
+        "We bought some apples.",
+        "We did not buy any apples.",
+        "Would you like some water?"
+      ],
+      "contrast": "We bought some apples. · We did not buy any apples.",
+      "related": []
+    },
+    {
+      "id": "there-is",
+      "title": {
+        "zh-Hans": "there is 与 there are",
+        "zh-Hant": "there is 與 there are",
+        "en": "there is and there are"
+      },
+      "headword": "there is / there are",
+      "question": {
+        "zh-Hans": "怎样表示某处有东西？",
+        "zh-Hant": "怎樣表示某處有東西？",
+        "en": "How do I say something exists somewhere?"
+      },
+      "keywords": [
+        "存在句",
+        "存在句",
+        "existence"
+      ],
+      "summary": {
+        "zh-Hans": "there is 后通常接单数或不可数名词；there are 后接复数名词。",
+        "zh-Hant": "there is 後通常接單數或不可數名詞；there are 後接複數名詞。",
+        "en": "Use there is with a singular or mass noun, and there are with a plural noun."
+      },
+      "usage": {
+        "zh-Hans": "there 在这里先引入一个事物，不一定指“那里”。通常先说存在的事物，再加地点。疑问句把 is/are 移到 there 前；否定句把 not 放在 is/are 后。",
+        "zh-Hant": "there 在這裡先引入一個事物，不一定指「那裡」。通常先說存在的事物，再加地點。疑問句把 is/are 移到 there 前；否定句把 not 放在 is/are 後。",
+        "en": "Here there introduces an entity and does not necessarily mean in that place. Usually name the entity, then its location. In questions, move is/are before there; in negatives, put not after is/are."
+      },
+      "pitfall": {
+        "zh-Hans": "正式写作中注意和后接名词保持单复数一致。",
+        "zh-Hant": "正式寫作中注意與後接名詞保持單複數一致。",
+        "en": "In formal writing, match singular or plural agreement to the following noun."
+      },
+      "pattern": "there is + singular/mass noun · there are + plural noun",
+      "example": "There is a library near here.",
+      "examples": [
+        "There is a library near here.",
+        "There are two libraries near here.",
+        "Is there any water left?"
+      ],
+      "contrast": "There is a library near here. · There are two libraries near here.",
+      "related": []
+    },
+    {
+      "id": "possessive",
+      "title": {
+        "zh-Hans": "物主限定词与物主代词",
+        "zh-Hant": "所有限定詞與所有代名詞",
+        "en": "possessive determiners and pronouns"
+      },
+      "headword": "my / mine",
+      "question": {
+        "zh-Hans": "my 和 mine 为什么不同？",
+        "zh-Hant": "my 和 mine 為什麼不同？",
+        "en": "What is the difference between my and mine?"
+      },
+      "keywords": [
+        "所有格",
+        "所有格",
+        "possessive"
+      ],
+      "summary": {
+        "zh-Hans": "my、your、her 等放在名词前；mine、yours、hers 等可独立指代名词。",
+        "zh-Hant": "my、your、her 等放在名詞前；mine、yours、hers 等可獨立指代名詞。",
+        "en": "My, your and her precede nouns; mine, yours and hers can stand without a following noun."
+      },
+      "usage": {
+        "zh-Hans": "比较两套形式：my book / the book is mine；our room / the room is ours。his 两种位置形式相同。its 是限定词；独立的 its 很少使用。不要把带撇号的 it’s 当成物主形式。",
+        "zh-Hant": "比較兩套形式：my book / the book is mine；our room / the room is ours。his 兩種位置形式相同。its 是限定詞；獨立的 its 很少使用。不要把帶撇號的 it’s 當成所有形式。",
+        "en": "Compare my book with the book is mine, and our room with the room is ours. His has the same form in both positions. Its is a determiner; a stand-alone its is rare. It’s is a contraction, not a possessive."
+      },
+      "pitfall": {
+        "zh-Hans": "不能写 mine book；要说 my book 或 This book is mine。",
+        "zh-Hant": "不能寫 mine book；要說 my book 或 This book is mine。",
+        "en": "Do not write mine book; use my book or This book is mine."
+      },
+      "pattern": "my + noun · mine without noun",
+      "example": "This is my bag.",
+      "examples": [
+        "This is my bag.",
+        "This bag is mine.",
+        "Their room is larger than ours."
+      ],
+      "contrast": "This is my bag. · This bag is mine.",
+      "related": []
+    },
+    {
+      "id": "imperatives",
+      "title": {
+        "zh-Hans": "祈使句",
+        "zh-Hant": "祈使句",
+        "en": "imperatives"
+      },
+      "headword": "open / do not open",
+      "question": {
+        "zh-Hans": "怎样给出简短指令？",
+        "zh-Hant": "怎樣給出簡短指令？",
+        "en": "How do I give a short instruction?"
+      },
+      "keywords": [
+        "指令",
+        "指令",
+        "instruction"
+      ],
+      "summary": {
+        "zh-Hans": "祈使句通常以动词原形开头；否定式用 do not 或 don’t + 原形。",
+        "zh-Hant": "祈使句通常以動詞原形開頭；否定式用 do not 或 don’t + 原形。",
+        "en": "An imperative usually begins with the base verb; negatives use do not or don’t + base verb."
+      },
+      "usage": {
+        "zh-Hans": "主语 you 通常省略。Please 可使请求更礼貌，但语气仍受场合和关系影响；有时问句比命令更适合。Let’s + 原形常提出包括说话者在内的共同行动。",
+        "zh-Hant": "主語 you 通常省略。Please 可使請求更禮貌，但語氣仍受場合和關係影響；有時問句比命令更合適。Let’s + 原形常提出包括說話者在內的共同行動。",
+        "en": "The subject you is usually omitted. Please can soften a request, though context and relationship still matter; a question may be more appropriate. Let’s + base verb proposes joint action."
+      },
+      "pitfall": {
+        "zh-Hans": "否定指令不要直接在动词前加 not：说 Don’t open the door。",
+        "zh-Hant": "否定指令不要直接在動詞前加 not：說 Don’t open the door。",
+        "en": "Do not put not directly before the verb: say Don’t open the door."
+      },
+      "pattern": "base verb · do not + base verb · let’s + base verb",
+      "example": "Please close the window.",
+      "examples": [
+        "Please close the window.",
+        "Do not touch the screen.",
+        "Let’s take a break."
+      ],
+      "contrast": "Please close the window. · Do not touch the screen.",
+      "related": []
+    },
+    {
+      "id": "past-continuous",
+      "title": {
+        "zh-Hans": "过去进行时",
+        "zh-Hant": "過去進行式",
+        "en": "past progressive"
+      },
+      "headword": "was / were + -ing",
+      "question": {
+        "zh-Hans": "怎样说过去某时正在发生？",
+        "zh-Hant": "怎樣說過去某時正在發生？",
+        "en": "How do I describe an activity in progress in the past?"
+      },
+      "keywords": [
+        "过去时",
+        "過去式",
+        "background"
+      ],
+      "summary": {
+        "zh-Hans": "过去进行时由 was/were + -ing 构成，常作背景；一般过去时常描述插入或完成的事件。",
+        "zh-Hant": "過去進行式由 was/were + -ing 構成，常作背景；一般過去式常描述插入或完成的事件。",
+        "en": "The past progressive uses was/were + -ing, often for background activity; the past simple often names an interrupting or completed event."
+      },
+      "usage": {
+        "zh-Hans": "I was reading when the phone rang 中，阅读已在进行，电话铃响是另一事件。while 常连接两个同时进行的活动。并非所有过去动作都需要进行时；看说话者是关注过程还是完整事件。",
+        "zh-Hant": "I was reading when the phone rang 中，閱讀已在進行，電話鈴響是另一事件。while 常連接兩個同時進行的活動。不是所有過去動作都需要進行式；要看說話者關注過程還是完整事件。",
+        "en": "In I was reading when the phone rang, reading was already in progress and the ring is another event. While can link simultaneous activities. Choose the progressive for an unfolding process, not automatically for every past action."
+      },
+      "pitfall": {
+        "zh-Hans": "常见状态动词仍通常不用进行时：I knew the answer，而非 I was knowing it。",
+        "zh-Hant": "常見狀態動詞仍通常不用進行式：I knew the answer，而非 I was knowing it。",
+        "en": "Common stative verbs still usually avoid the progressive: I knew the answer, not I was knowing it."
+      },
+      "pattern": "was/were + verb-ing · when + past simple",
+      "example": "I was cooking when you called.",
+      "examples": [
+        "I was cooking when you called.",
+        "They were walking while we were driving.",
+        "The lights went out as she was reading."
+      ],
+      "contrast": "I was cooking when you called. · They were walking while we were driving.",
+      "related": []
+    },
+    {
+      "id": "have-to",
+      "title": {
+        "zh-Hans": "have to 与 must",
+        "zh-Hant": "have to 與 must",
+        "en": "have to and must"
+      },
+      "headword": "have to / must",
+      "question": {
+        "zh-Hans": "义务应该用 have to 还是 must？",
+        "zh-Hant": "義務應該用 have to 還是 must？",
+        "en": "Should I use have to or must for obligation?"
+      },
+      "keywords": [
+        "义务",
+        "義務",
+        "obligation"
+      ],
+      "summary": {
+        "zh-Hans": "两者都可表示义务；have to 常强调外部要求，must 常强调说话者的强烈要求。",
+        "zh-Hant": "兩者都可表示義務；have to 常強調外部要求，must 常強調說話者的強烈要求。",
+        "en": "Both can express obligation; have to often points to an external requirement, while must can emphasize the speaker’s strong requirement."
+      },
+      "usage": {
+        "zh-Hans": "have to 会随时态和主语变化：she has to、we had to、did you have to。must 没有普通过去式，过去的义务常用 had to。实际语气差异还受语境、地区和正式程度影响。",
+        "zh-Hant": "have to 會隨時態和主語變化：she has to、we had to、did you have to。must 沒有一般過去式，過去的義務常用 had to。實際語氣差異還受語境、地區和正式程度影響。",
+        "en": "Have to changes with tense and subject: she has to, we had to, did you have to. Must has no ordinary past form; had to commonly expresses past obligation. Tone also varies by context, region and register."
+      },
+      "pitfall": {
+        "zh-Hans": "否定形式意义不同：must not 是禁止，do not have to 是不必。",
+        "zh-Hant": "否定形式意義不同：must not 是禁止，do not have to 是不必。",
+        "en": "Their negatives differ: must not prohibits; do not have to removes obligation."
+      },
+      "pattern": "have/has/had to + base verb · must + base verb",
+      "example": "I have to leave by six.",
+      "examples": [
+        "I have to leave by six.",
+        "Visitors must show a ticket.",
+        "Did you have to wait long?"
+      ],
+      "contrast": "I have to leave by six. · Visitors must show a ticket.",
+      "related": []
+    },
+    {
+      "id": "prepositions-time",
+      "title": {
+        "zh-Hans": "时间介词 at、on、in",
+        "zh-Hant": "時間介系詞 at、on、in",
+        "en": "time prepositions at, on and in"
+      },
+      "headword": "at / on / in",
+      "question": {
+        "zh-Hans": "时间前用 at、on 还是 in？",
+        "zh-Hant": "時間前用 at、on 還是 in？",
+        "en": "At, on or in for time?"
+      },
+      "keywords": [
+        "时间",
+        "時間",
+        "date"
+      ],
+      "summary": {
+        "zh-Hans": "常用 at 表钟点，on 表日期或某一天，in 表月份、年份或较长时段。",
+        "zh-Hant": "常用 at 表鐘點，on 表日期或某一天，in 表月份、年份或較長時段。",
+        "en": "Use at for clock times, on for dates and days, and in for months, years and longer periods."
+      },
+      "usage": {
+        "zh-Hans": "at 7:30、on Monday、in October 是常见起点。可加修饰语：on Monday morning，但 in the morning。某些搭配有地区差异，如 at the weekend 与 on the weekend。",
+        "zh-Hant": "at 7:30、on Monday、in October 是常見起點。可加修飾語：on Monday morning，但 in the morning。某些搭配有地區差異，如 at the weekend 與 on the weekend。",
+        "en": "At 7:30, on Monday and in October are useful starting points. Modifiers matter: on Monday morning but in the morning. Some expressions vary by region, such as at the weekend and on the weekend."
+      },
+      "pitfall": {
+        "zh-Hans": "last、next、this 前通常不加时间介词：next Monday。",
+        "zh-Hant": "last、next、this 前通常不加時間介系詞：next Monday。",
+        "en": "Usually omit a time preposition before last, next or this: next Monday."
+      },
+      "pattern": "at + time · on + day/date · in + month/year",
+      "example": "The meeting starts at nine.",
+      "examples": [
+        "The meeting starts at nine.",
+        "We meet on Friday.",
+        "She was born in July."
+      ],
+      "contrast": "The meeting starts at nine. · We meet on Friday.",
+      "related": []
+    },
+    {
+      "id": "gerund-infinitive",
+      "title": {
+        "zh-Hans": "动词后的 -ing 与不定式",
+        "zh-Hant": "動詞後的 -ing 與不定詞",
+        "en": "-ing and to-infinitives after verbs"
+      },
+      "headword": "-ing / to + verb",
+      "question": {
+        "zh-Hans": "动词后该接 -ing 还是 to do？",
+        "zh-Hant": "動詞後該接 -ing 還是 to do？",
+        "en": "Should the next verb take -ing or to?"
+      },
+      "keywords": [
+        "动词补语",
+        "動詞補語",
+        "verb complement"
+      ],
+      "summary": {
+        "zh-Hans": "不同动词选择不同补语：enjoy 常接 -ing；decide 常接 to + 原形。",
+        "zh-Hant": "不同動詞選擇不同補語：enjoy 常接 -ing；decide 常接 to + 原形。",
+        "en": "Different verbs select different complements: enjoy commonly takes -ing; decide takes to + base verb."
+      },
+      "usage": {
+        "zh-Hans": "部分动词两者都可接，但意义可能改变：remember locking the door 表示记得已经锁门；remember to lock the door 表示记得要去锁门。建议连同搭配和意思一起记，而非只背一张形式表。\n\n这不是一个“动名词和不定式可自由互换”的规则。某些动词偏向一种补语，如 avoid doing、decide to do；另一些两种形式都可用，但意思或侧重点不同，如 stop reading / stop to read。介词后通常接 -ing，因此 look forward to meeting 中的 to 是介词，不是不定式标记。遇到新动词时应核查该动词的具体搭配。",
+        "zh-Hant": "部分動詞兩者都可接，但意義可能改變：remember locking the door 表示記得已經鎖門；remember to lock the door 表示記得要去鎖門。建議連同搭配和意思一起記，不只背一張形式表。\n\n這不是「動名詞和不定詞可自由互換」的規則。有些動詞偏向一種補語，如 avoid doing、decide to do；另一些兩種形式都可用，但意思或重點不同，如 stop reading / stop to read。介系詞後通常接 -ing，因此 look forward to meeting 中的 to 是介系詞，不是不定詞標記。遇到新動詞時應核查該動詞的具體搭配。",
+        "en": "Some verbs accept both but change meaning: remember locking the door recalls a completed action; remember to lock the door concerns a future task. Learn form and meaning together rather than memorizing only a list.\n\nThere is no general licence to swap -ing and to-infinitive forms. Some verbs prefer one complement, such as avoid doing or decide to do; others allow both but with different meanings or focus, as in stop reading versus stop to read. After a preposition, -ing is usual: the to in look forward to meeting is a preposition, not an infinitive marker. Check the pattern of each unfamiliar verb."
+      },
+      "pitfall": {
+        "zh-Hans": "在介词后通常用 -ing：interested in learning，而不是 interested in to learn。",
+        "zh-Hant": "在介系詞後通常用 -ing：interested in learning，而不是 interested in to learn。",
+        "en": "A verb after a preposition usually takes -ing: interested in learning, not interested in to learn."
+      },
+      "pattern": "enjoy + -ing · decide + to + base verb",
+      "example": "She enjoys reading novels.",
+      "examples": [
+        "She enjoys reading novels.",
+        "We decided to leave early.",
+        "I remember locking the door.",
+        "I look forward to meeting the team."
+      ],
+      "contrast": "She enjoys reading novels. · We decided to leave early.",
+      "related": []
+    },
+    {
+      "id": "present-perfect-progressive",
+      "title": {
+        "zh-Hans": "现在完成进行时",
+        "zh-Hant": "現在完成進行式",
+        "en": "present perfect progressive"
+      },
+      "headword": "have been + -ing",
+      "question": {
+        "zh-Hans": "什么时候用 have been doing？",
+        "zh-Hant": "什麼時候用 have been doing？",
+        "en": "When do I use have been doing?"
+      },
+      "keywords": [
+        "完成时",
+        "完成式",
+        "duration"
+      ],
+      "summary": {
+        "zh-Hans": "现在完成进行时强调从过去开始并延续到现在的活动或其近期影响。",
+        "zh-Hant": "現在完成進行式強調從過去開始並延續到現在的活動或其近期影響。",
+        "en": "The present perfect progressive highlights an activity begun in the past and continuing to now, or one whose recent effects remain."
+      },
+      "usage": {
+        "zh-Hans": "与现在完成时相比，进行形式常突出过程或持续时间；简单形式可能突出完成的成果：I have written three pages 强调页数，I have been writing for an hour 强调活动。状态动词通常偏向简单形式。",
+        "zh-Hant": "與現在完成式相比，進行形式常凸顯過程或持續時間；簡單形式可能凸顯完成的成果：I have written three pages 強調頁數，I have been writing for an hour 強調活動。狀態動詞通常偏向簡單形式。",
+        "en": "Compared with the simple perfect, the progressive often foregrounds process or duration. I have written three pages emphasizes output; I have been writing for an hour emphasizes activity. Stative verbs often prefer the simple form."
+      },
+      "pitfall": {
+        "zh-Hans": "不要据此断言活动一定仍在继续；It has been raining 可以指刚停下但地面还湿。",
+        "zh-Hant": "不要據此斷言活動一定仍在繼續；It has been raining 可以指剛停下但地面還濕。",
+        "en": "It need not mean the activity continues at this exact moment: It has been raining may explain wet ground after rain stops."
+      },
+      "pattern": "have/has been + verb-ing",
+      "example": "I have been waiting for an hour.",
+      "examples": [
+        "I have been waiting for an hour.",
+        "She has been studying since noon.",
+        "It has been raining, so the ground is wet."
+      ],
+      "contrast": "I have been waiting for an hour. · She has been studying since noon.",
+      "related": []
+    },
+    {
+      "id": "enough-too",
+      "title": {
+        "zh-Hans": "enough 与 too",
+        "zh-Hant": "enough 與 too",
+        "en": "enough and too"
+      },
+      "headword": "enough / too",
+      "question": {
+        "zh-Hans": "怎样表达“够”与“过于”？",
+        "zh-Hant": "怎樣表達「夠」與「過於」？",
+        "en": "How do I express sufficient or excessive degree?"
+      },
+      "keywords": [
+        "程度",
+        "程度",
+        "degree"
+      ],
+      "summary": {
+        "zh-Hans": "enough 表足够，too 常表超出合适限度。",
+        "zh-Hant": "enough 表足夠，too 常表超出合適限度。",
+        "en": "Enough expresses sufficiency; too often marks an excessive degree."
+      },
+      "usage": {
+        "zh-Hans": "enough 放在形容词或副词后、名词前：old enough、enough time。too 放在形容词或副词前：too heavy。与 to + 动词搭配时要辨认谁能执行动作：too heavy for me to carry。",
+        "zh-Hant": "enough 放在形容詞或副詞後、名詞前：old enough、enough time。too 放在形容詞或副詞前：too heavy。與 to + 動詞搭配時要辨認誰能執行動作：too heavy for me to carry。",
+        "en": "Enough follows adjectives and adverbs but precedes nouns: old enough, enough time. Too precedes adjectives or adverbs: too heavy. With to-infinitives, identify who can perform the action: too heavy for me to carry."
+      },
+      "pitfall": {
+        "zh-Hans": "不要说 enough old 或 time enough 表普通的“足够大/足够时间”。",
+        "zh-Hant": "不要說 enough old 或 time enough 來表達一般的「夠大／夠時間」。",
+        "en": "For ordinary sufficiency, say old enough and enough time, not enough old or time enough."
+      },
+      "pattern": "adjective + enough · enough + noun · too + adjective",
+      "example": "She is old enough to vote.",
+      "examples": [
+        "She is old enough to vote.",
+        "We have enough time to finish.",
+        "The box is too heavy for me to lift."
+      ],
+      "contrast": "She is old enough to vote. · We have enough time to finish.",
+      "related": []
+    },
+    {
+      "id": "articles-zero",
+      "title": {
+        "zh-Hans": "泛指时的零冠词",
+        "zh-Hant": "泛指時的零冠詞",
+        "en": "zero article for general reference"
+      },
+      "headword": "the / zero article",
+      "question": {
+        "zh-Hans": "什么时候完全不用冠词？",
+        "zh-Hant": "什麼時候完全不用冠詞？",
+        "en": "When is no article needed?"
+      },
+      "keywords": [
+        "冠词",
+        "冠詞",
+        "article"
+      ],
+      "summary": {
+        "zh-Hans": "复数可数名词和不可数名词在泛指时常不用冠词。",
+        "zh-Hant": "複數可數名詞和不可數名詞在泛指時常不用冠詞。",
+        "en": "Generic plural count nouns and generic mass nouns often have no article."
+      },
+      "usage": {
+        "zh-Hans": "Cats need sleep 与 The cats in this room need sleep 的范围不同；Water is essential 与 The water in this bottle is warm 也不同。专有名词、机构名称和固定表达各有习惯，不能仅靠“泛指”判断所有冠词。",
+        "zh-Hant": "Cats need sleep 與 The cats in this room need sleep 的範圍不同；Water is essential 與 The water in this bottle is warm 也不同。專有名詞、機構名稱和固定表達各有習慣，不能只靠「泛指」判斷所有冠詞。",
+        "en": "Cats need sleep differs from The cats in this room need sleep; Water is essential differs from The water in this bottle is warm. Proper names and established expressions have their own patterns, so general reference does not explain every article choice."
+      },
+      "pitfall": {
+        "zh-Hans": "单数可数名词普通泛指时通常不能裸用：A cat needs sleep，而不是 Cat needs sleep。",
+        "zh-Hant": "單數可數名詞一般泛指時通常不能裸用：A cat needs sleep，而不是 Cat needs sleep。",
+        "en": "A generic singular count noun normally needs a determiner: A cat needs sleep, not Cat needs sleep."
+      },
+      "pattern": "plural/mass noun (general) · the + identifiable noun",
+      "example": "Books are useful.",
+      "examples": [
+        "Books are useful.",
+        "The books on this desk are mine.",
+        "Water is essential."
+      ],
+      "contrast": "Books are useful. · The books on this desk are mine.",
+      "related": []
+    },
+    {
+      "id": "relative-pronoun-omission",
+      "title": {
+        "zh-Hans": "关系代词省略",
+        "zh-Hant": "關係代名詞省略",
+        "en": "omitting relative pronouns"
+      },
+      "headword": "who / which / that / Ø",
+      "question": {
+        "zh-Hans": "关系代词什么时候可以省？",
+        "zh-Hant": "關係代名詞什麼時候可以省？",
+        "en": "When can I omit a relative pronoun?"
+      },
+      "keywords": [
+        "关系从句",
+        "關係子句",
+        "relative clause"
+      ],
+      "summary": {
+        "zh-Hans": "限定性关系从句中，关系代词作宾语时常可省略；作主语时通常不能省略。",
+        "zh-Hant": "限定關係子句中，關係代名詞作受詞時常可省略；作主語時通常不能省略。",
+        "en": "In a defining relative clause, an object relative pronoun can often be omitted; a subject relative pronoun normally cannot."
+      },
+      "usage": {
+        "zh-Hans": "The book (that) I bought：I 是从句主语，book 是 bought 的宾语，that 可省。The book that fell：that 是 fell 的主语，不能省。带逗号的非限定性从句通常不能这样省。",
+        "zh-Hant": "The book (that) I bought：I 是子句主語，book 是 bought 的受詞，that 可省。The book that fell：that 是 fell 的主語，不能省。帶逗號的非限定關係子句通常不能這樣省。",
+        "en": "In The book (that) I bought, I is the clause subject and book the object of bought, so that can disappear. In The book that fell, that is the subject and must remain. Non-defining relatives do not normally allow this omission."
+      },
+      "pitfall": {
+        "zh-Hans": "不要在 The woman who called 里省略 who。",
+        "zh-Hant": "不要在 The woman who called 裡省略 who。",
+        "en": "Do not omit who from The woman who called."
+      },
+      "pattern": "noun + (that/which/who) + subject + verb",
+      "example": "The film I watched was excellent.",
+      "examples": [
+        "The film I watched was excellent.",
+        "The woman who called left a message.",
+        "The report that we discussed is online."
+      ],
+      "contrast": "The film I watched was excellent. · The woman who called left a message.",
+      "related": []
+    },
+    {
+      "id": "although-however",
+      "title": {
+        "zh-Hans": "although 与 however",
+        "zh-Hant": "although 與 however",
+        "en": "although and however"
+      },
+      "headword": "although / however",
+      "question": {
+        "zh-Hans": "although 与 however 能互换吗？",
+        "zh-Hant": "although 與 however 能互換嗎？",
+        "en": "Can although and however be swapped?"
+      },
+      "keywords": [
+        "连接",
+        "連接",
+        "concession"
+      ],
+      "summary": {
+        "zh-Hans": "although 引导从句；however 常作连接副词，连接两个独立陈述的对比。",
+        "zh-Hant": "although 引導子句；however 常作連接副詞，連接兩個獨立陳述的對比。",
+        "en": "Although introduces a subordinate clause; however is often a linking adverb contrasting independent statements."
+      },
+      "usage": {
+        "zh-Hans": "Although the plan is costly, it may work 是一个主从复句。The plan is costly. However, it may work 是两句。正式写作中，不要只用逗号把两个完整句子与 however 硬接在一起；可用句号或分号。",
+        "zh-Hant": "Although the plan is costly, it may work 是一個主從複句。The plan is costly. However, it may work 是兩句。正式寫作中，不要只用逗號把兩個完整句子與 however 硬接在一起；可用句號或分號。",
+        "en": "Although the plan is costly, it may work contains a subordinate clause. The plan is costly. However, it may work contains separate sentences. In formal prose, avoid joining two independent sentences with only a comma before however; use a period or semicolon."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 However the plan is costly, it may work 当作 although 的同义结构。",
+        "zh-Hant": "不要把 However the plan is costly, it may work 當作 although 的同義結構。",
+        "en": "However the plan is costly does not simply replace Although the plan is costly."
+      },
+      "pattern": "Although + clause, clause. · Clause. However, clause.",
+      "example": "Although it was late, we continued.",
+      "examples": [
+        "Although it was late, we continued.",
+        "It was late. However, we continued.",
+        "The idea is promising; however, it needs testing."
+      ],
+      "contrast": "Although it was late, we continued. · It was late. However, we continued.",
+      "related": []
+    },
+    {
+      "id": "wish-if-only",
+      "title": {
+        "zh-Hans": "wish 与 if only",
+        "zh-Hant": "wish 與 if only",
+        "en": "wish and if only"
+      },
+      "headword": "wish / if only",
+      "question": {
+        "zh-Hans": "怎样表达不符合现实的愿望？",
+        "zh-Hant": "怎樣表達不符合現實的願望？",
+        "en": "How do I express a wish contrary to fact?"
+      },
+      "keywords": [
+        "愿望",
+        "願望",
+        "counterfactual"
+      ],
+      "summary": {
+        "zh-Hans": "对现在不符现实的愿望常用 wish + 过去式；对过去的遗憾常用 wish + had + 过去分词。",
+        "zh-Hant": "對現在不符現實的願望常用 wish + 過去式；對過去的遺憾常用 wish + had + 過去分詞。",
+        "en": "For a wish contrary to present reality, use wish + past form; for regret about the past, use wish + had + past participle."
+      },
+      "usage": {
+        "zh-Hans": "I wish I knew the answer 暗示现在不知道。I wish I had known 暗示当时不知道。wish + would 可表达希望某人或某情况改变，常带不满；通常不用它表示自己主动要做的决定。if only 往往加强情绪。",
+        "zh-Hant": "I wish I knew the answer 暗示現在不知道。I wish I had known 暗示當時不知道。wish + would 可表達希望某人或某情況改變，常帶不滿；通常不用它表示自己主動要做的決定。if only 往往加強情緒。",
+        "en": "I wish I knew the answer implies that I do not know it now; I wish I had known points to an earlier lack of knowledge. Wish + would can ask for a change in someone’s behavior or a situation, often with frustration. If only often increases emotional force."
+      },
+      "pitfall": {
+        "zh-Hans": "这里的过去式不是简单的过去时间标记；I wish I know 通常不能表达当前反事实。",
+        "zh-Hant": "這裡的過去式不是簡單的過去時間標記；I wish I know 通常不能表達目前的反事實。",
+        "en": "The past form marks unreality here, not simply past time; I wish I know does not normally express a present counterfactual."
+      },
+      "pattern": "wish + past form · wish + past perfect",
+      "example": "I wish I knew her address.",
+      "examples": [
+        "I wish I knew her address.",
+        "I wish I had asked earlier.",
+        "If only the noise would stop."
+      ],
+      "contrast": "I wish I knew her address. · I wish I had asked earlier.",
+      "related": []
+    },
+    {
+      "id": "used-to-would",
+      "title": {
+        "zh-Hans": "过去习惯的 used to 与 would",
+        "zh-Hant": "過去習慣的 used to 與 would",
+        "en": "past habits with used to and would"
+      },
+      "headword": "used to / would",
+      "question": {
+        "zh-Hans": "过去习惯能用 would 吗？",
+        "zh-Hant": "過去習慣能用 would 嗎？",
+        "en": "Can would describe a past habit?"
+      },
+      "keywords": [
+        "过去习惯",
+        "過去習慣",
+        "past habit"
+      ],
+      "summary": {
+        "zh-Hans": "used to 可描述过去的习惯或状态；would 可在有明确过去语境时描述反复动作。",
+        "zh-Hant": "used to 可描述過去的習慣或狀態；would 可在有明確過去語境時描述反覆動作。",
+        "en": "Used to can describe past habits or states; would can describe repeated actions when a past frame is already clear."
+      },
+      "usage": {
+        "zh-Hans": "When we were children, we would play by the river 描述反复活动；We used to live by the river 描述过去状态。would 作过去习惯用法时通常不独立建立过去时间背景，也通常不用来陈述静态状况。",
+        "zh-Hant": "When we were children, we would play by the river 描述反覆活動；We used to live by the river 描述過去狀態。would 作過去習慣用法時通常不獨立建立過去時間背景，也通常不用來陳述靜態狀況。",
+        "en": "When we were children, we would play by the river describes repeated activity. We used to live by the river describes a past state. Habitual would normally needs an established past setting and is not usually used for static situations."
+      },
+      "pitfall": {
+        "zh-Hans": "We would live by the river 不能自然地替代 We used to live by the river 来表示过去居住状态。",
+        "zh-Hant": "We would live by the river 不能自然地替代 We used to live by the river 來表示過去居住狀態。",
+        "en": "Habitual We would live by the river is not a natural substitute for We used to live by the river."
+      },
+      "pattern": "used to + state/action · would + repeated action",
+      "example": "We used to live near the sea.",
+      "examples": [
+        "We used to live near the sea.",
+        "Every summer, we would swim there.",
+        "She used to visit every Sunday."
+      ],
+      "contrast": "We used to live near the sea. · Every summer, we would swim there.",
+      "related": []
+    },
+    {
+      "id": "its-it-is",
+      "title": {
+        "zh-Hans": "its 与 it’s",
+        "zh-Hant": "its 與 it’s",
+        "en": "its and it’s"
+      },
+      "headword": "its / it’s",
+      "question": {
+        "zh-Hans": "its 与 it’s 差在哪里？",
+        "zh-Hant": "its 與 it’s 差在哪裡？",
+        "en": "What is the difference between its and it’s?"
+      },
+      "keywords": [
+        "缩写",
+        "縮寫",
+        "apostrophe"
+      ],
+      "summary": {
+        "zh-Hans": "its 是物主限定词；it’s 是 it is 或 it has 的缩写。",
+        "zh-Hant": "its 是所有限定詞；it’s 是 it is 或 it has 的縮寫。",
+        "en": "Its is a possessive determiner; it’s contracts it is or it has."
+      },
+      "usage": {
+        "zh-Hans": "尝试展开为 it is 或 it has：如果句子通顺，用 it’s；若表示某物自己的部分、属性或所属关系，用 its。it has 的缩写常见于完成时，如 It’s been a long day。",
+        "zh-Hant": "嘗試展開成 it is 或 it has：如果句子通順，用 it’s；若表示某物自己的部分、屬性或所屬關係，用 its。it has 的縮寫常見於完成式，如 It’s been a long day。",
+        "en": "Expand it’s to it is or it has. If that works, use the apostrophe. For something belonging to or associated with it, use its. The it has contraction often occurs in a perfect construction: It’s been a long day."
+      },
+      "pitfall": {
+        "zh-Hans": "不要因为其他所有格常用撇号就写 the dog wagged it’s tail。",
+        "zh-Hant": "不要因為其他所有格常用撇號就寫 the dog wagged it’s tail。",
+        "en": "Do not imitate other possessives by writing the dog wagged it’s tail."
+      },
+      "pattern": "its + noun · it’s = it is / it has",
+      "example": "The dog wagged its tail.",
+      "examples": [
+        "The dog wagged its tail.",
+        "It’s raining outside.",
+        "It’s been a busy week."
+      ],
+      "contrast": "The dog wagged its tail. · It’s raining outside.",
+      "related": []
+    },
+    {
+      "id": "comma-splice",
+      "title": {
+        "zh-Hans": "逗号拼接",
+        "zh-Hant": "逗號拼接",
+        "en": "comma splices"
+      },
+      "headword": "comma / semicolon",
+      "question": {
+        "zh-Hans": "两个完整句能只用逗号连接吗？",
+        "zh-Hant": "兩個完整句能只用逗號連接嗎？",
+        "en": "Can a comma alone join two independent clauses?"
+      },
+      "keywords": [
+        "标点",
+        "標點",
+        "punctuation"
+      ],
+      "summary": {
+        "zh-Hans": "正式写作中，两个独立分句通常不能仅用逗号拼接。",
+        "zh-Hant": "正式寫作中，兩個獨立子句通常不能只用逗號拼接。",
+        "en": "In formal prose, a comma alone generally cannot join two independent clauses."
+      },
+      "usage": {
+        "zh-Hans": "可以改成句号、分号，或逗号加 and、but 等并列连词。也可以把其中一句变成从属结构。文学写作会有刻意的逗号拼接效果，但学习规范写作时应先掌握普通连接方法。",
+        "zh-Hant": "可以改成句號、分號，或逗號加 and、but 等對等連接詞。也可以把其中一句變成從屬結構。文學寫作會有刻意的逗號拼接效果，但學習規範寫作時應先掌握一般連接方法。",
+        "en": "Use a period, semicolon, or comma plus a coordinating conjunction such as and or but. Alternatively, make one clause subordinate. Literary prose sometimes uses deliberate comma splices, but standard academic prose generally avoids them."
+      },
+      "pitfall": {
+        "zh-Hans": "It was late, we left 在规范写作中需改为 It was late, so we left 等形式。",
+        "zh-Hant": "It was late, we left 在規範寫作中需改成 It was late, so we left 等形式。",
+        "en": "In standard prose, revise It was late, we left to It was late, so we left or another valid structure."
+      },
+      "pattern": "independent clause; independent clause · clause, and clause",
+      "example": "It was late, so we left.",
+      "examples": [
+        "It was late, so we left.",
+        "It was late; we left.",
+        "Because it was late, we left."
+      ],
+      "contrast": "It was late, so we left. · It was late; we left.",
+      "related": []
+    },
+    {
+      "id": "parallelism",
+      "title": {
+        "zh-Hans": "并列结构平行",
+        "zh-Hant": "並列結構平行",
+        "en": "parallel structure"
+      },
+      "headword": "parallel structure",
+      "question": {
+        "zh-Hans": "列举时怎样保持结构平行？",
+        "zh-Hant": "列舉時怎樣保持結構平行？",
+        "en": "How do I keep a list grammatically parallel?"
+      },
+      "keywords": [
+        "并列",
+        "並列",
+        "coordination"
+      ],
+      "summary": {
+        "zh-Hans": "并列项承担相同句法功能时，用相近形式帮助读者清楚比较。",
+        "zh-Hant": "並列項承擔相同句法功能時，用相近形式幫助讀者清楚比較。",
+        "en": "When coordinated items serve the same grammatical role, similar forms help readers see their relationship."
+      },
+      "usage": {
+        "zh-Hans": "She likes reading, writing and editing 三项都是 -ing。比较结构也要平行：The new method is faster than the old one。平行并不要求所有词数完全相同，而是要求结构和逻辑可对应。",
+        "zh-Hant": "She likes reading, writing and editing 三項都是 -ing。比較結構也要平行：The new method is faster than the old one。平行不要求所有詞數完全相同，而是要求結構和邏輯可對應。",
+        "en": "She likes reading, writing and editing uses three -ing forms. Comparisons also need parallel logic: The new method is faster than the old one. Parallelism does not require identical word counts; it requires comparable roles and meanings."
+      },
+      "pitfall": {
+        "zh-Hans": "避免无意混合 to read、writing、and edit 作为同一组并列项。",
+        "zh-Hant": "避免無意混用 to read、writing、and edit 作為同一組並列項。",
+        "en": "Avoid accidental mixtures such as to read, writing, and edit in one coordinated list."
+      },
+      "pattern": "verb-ing, verb-ing and verb-ing · noun compared with noun",
+      "example": "The course covers reading, writing and listening.",
+      "examples": [
+        "The course covers reading, writing and listening.",
+        "The first proposal is clearer than the second.",
+        "We aim to collect evidence and to test the claim."
+      ],
+      "contrast": "The course covers reading, writing and listening. · The first proposal is clearer than the second.",
+      "related": []
+    },
+    {
+      "id": "nominalisation",
+      "title": {
+        "zh-Hans": "名词化与动词选择",
+        "zh-Hant": "名詞化與動詞選擇",
+        "en": "nominalisation and verbs"
+      },
+      "headword": "noun / verb",
+      "question": {
+        "zh-Hans": "抽象名词会让句子变难读吗？",
+        "zh-Hant": "抽象名詞會讓句子變難讀嗎？",
+        "en": "Can nominalisation obscure a sentence?"
+      },
+      "keywords": [
+        "写作",
+        "寫作",
+        "academic writing"
+      ],
+      "summary": {
+        "zh-Hans": "名词化可压缩信息，但也可能隐藏行为者与动作。",
+        "zh-Hant": "名詞化可壓縮信息，但也可能隱藏行為者與動作。",
+        "en": "Nominalisation can compress information, but it can also hide the actor and the action."
+      },
+      "usage": {
+        "zh-Hans": "The committee decided 比 A decision was made by the committee 更直接；但在需要把概念当话题、进行比较或衔接上文时，the decision 很有用。根据篇章目的选择，并检查读者能否找出谁做了什么。",
+        "zh-Hant": "The committee decided 比 A decision was made by the committee 更直接；但在需要把概念當主題、比較或銜接上文時，the decision 很有用。依篇章目的選擇，並檢查讀者能否找出誰做了什麼。",
+        "en": "The committee decided is more direct than A decision was made by the committee. Yet the decision is useful when the concept itself is the topic or links to previous discourse. Choose by discourse purpose and check whether the agent remains recoverable."
+      },
+      "pitfall": {
+        "zh-Hans": "不是所有 -tion、-ment 名词都该删除；问题是信息是否被不必要地遮蔽。",
+        "zh-Hant": "不是所有 -tion、-ment 名詞都該刪除；問題是資訊是否被不必要地遮蔽。",
+        "en": "Not every -tion or -ment noun is bad; the issue is whether it unnecessarily obscures information."
+      },
+      "pattern": "agent + verb · nominalised action as topic",
+      "example": "The committee decided to postpone the vote.",
+      "examples": [
+        "The committee decided to postpone the vote.",
+        "The decision followed three meetings.",
+        "The team analysed the results."
+      ],
+      "contrast": "The committee decided to postpone the vote. · The decision followed three meetings.",
+      "related": []
+    },
+    {
+      "id": "scope-negation",
+      "title": {
+        "zh-Hans": "否定的范围",
+        "zh-Hant": "否定的範圍",
+        "en": "scope of negation"
+      },
+      "headword": "not all / none",
+      "question": {
+        "zh-Hans": "not all 与 none 的结论一样吗？",
+        "zh-Hant": "not all 與 none 的結論一樣嗎？",
+        "en": "Do not all and none mean the same thing?"
+      },
+      "keywords": [
+        "语义",
+        "語義",
+        "quantifier"
+      ],
+      "summary": {
+        "zh-Hans": "not all 只否定“全部”；none 否定“任何一个”。两者不能互换。",
+        "zh-Hant": "not all 只否定「全部」；none 否定「任何一個」。兩者不能互換。",
+        "en": "Not all denies that every member qualifies; none denies that any member qualifies. They are not interchangeable."
+      },
+      "usage": {
+        "zh-Hans": "Not all participants agreed 至少意味着并非人人同意，但本身不告诉我们同意者有多少。None of the participants agreed 则排除所有同意者。读论证或报告时，应保留量词与否定词的实际作用范围。",
+        "zh-Hant": "Not all participants agreed 至少意味著並非人人同意，但本身不告訴我們同意者有多少。None of the participants agreed 則排除所有同意者。讀論證或報告時，應保留量詞與否定詞的實際作用範圍。",
+        "en": "Not all participants agreed means agreement was not universal, but gives no exact count. None of the participants agreed excludes every participant from the agreeing group. Preserve the scope of quantifiers and negation when interpreting an argument."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 not necessarily 等同于 necessarily not；前者否定必然性，后者声称相反结果是必然的。",
+        "zh-Hant": "不要把 not necessarily 等同於 necessarily not；前者否定必然性，後者聲稱相反結果是必然的。",
+        "en": "Do not equate not necessarily with necessarily not: the first denies necessity, the second asserts necessity of the opposite."
+      },
+      "pattern": "not all + plural noun · none of + plural noun",
+      "example": "Not all students agreed with the proposal.",
+      "examples": [
+        "Not all students agreed with the proposal.",
+        "None of the students agreed with the proposal.",
+        "This is not necessarily a contradiction."
+      ],
+      "contrast": "Not all students agreed with the proposal. · None of the students agreed with the proposal.",
+      "related": []
+    },
+    {
+      "id": "presupposition",
+      "title": {
+        "zh-Hans": "预设与言外信息",
+        "zh-Hant": "預設與言外資訊",
+        "en": "presupposition in usage"
+      },
+      "headword": "even / still / stop",
+      "question": {
+        "zh-Hans": "一句话会暗含未说出的前提吗？",
+        "zh-Hant": "一句話會暗含未說出的前提嗎？",
+        "en": "Can wording presuppose an unstated fact?"
+      },
+      "keywords": [
+        "语用",
+        "語用",
+        "inference"
+      ],
+      "summary": {
+        "zh-Hans": "stop、still、even 等词常带出超出字面断言的背景信息。",
+        "zh-Hant": "stop、still、even 等詞常帶出超出字面斷言的背景資訊。",
+        "en": "Words such as stop, still and even often introduce background assumptions beyond the main assertion."
+      },
+      "usage": {
+        "zh-Hans": "She stopped smoking 通常预设她过去吸烟；She still works here 暗示原本可能预期她已离开；Even Jo passed 暗示 Jo 通过考试在某个比较尺度上出人意料。预设会受语境、否定和纠正影响，不能当作已验证事实。",
+        "zh-Hant": "She stopped smoking 通常預設她過去吸菸；She still works here 暗示原本可能預期她已離開；Even Jo passed 暗示 Jo 通過考試在某個比較尺度上出乎意料。預設會受語境、否定和糾正影響，不能當作已驗證事實。",
+        "en": "She stopped smoking normally presupposes prior smoking; She still works here suggests continued employment against a possible expectation; Even Jo passed frames Jo’s success as surprising on some scale. Context, negation and correction can affect these inferences; they are not verified facts."
+      },
+      "pitfall": {
+        "zh-Hans": "引述他人“仍然”“终于”时，先辨认这些词是谁的预设，避免把它写成自己的证据结论。",
+        "zh-Hant": "引述他人「仍然」「終於」時，先辨認這些詞是誰的預設，避免把它寫成自己的證據結論。",
+        "en": "When quoting still or finally, identify whose assumption it conveys before presenting it as your own evidence."
+      },
+      "pattern": "stop + -ing · still + verb · even + focused item",
+      "example": "She stopped calling after June.",
+      "examples": [
+        "She stopped calling after June.",
+        "He still works here.",
+        "Even the shortest route took two hours."
+      ],
+      "contrast": "She stopped calling after June. · He still works here.",
+      "related": []
+    },
+    {
+      "id": "cleft-focus",
+      "title": {
+        "zh-Hans": "分裂句与焦点",
+        "zh-Hant": "分裂句與焦點",
+        "en": "cleft sentences and focus"
+      },
+      "headword": "it is ... that",
+      "question": {
+        "zh-Hans": "It was ... that 强调什么？",
+        "zh-Hant": "It was ... that 強調什麼？",
+        "en": "What does It was ... that focus?"
+      },
+      "keywords": [
+        "焦点",
+        "焦點",
+        "discourse"
+      ],
+      "summary": {
+        "zh-Hans": "It-cleft 把一个成分标为焦点，并把其余信息置于背景。",
+        "zh-Hant": "It-cleft 把一個成分標為焦點，並把其餘資訊置於背景。",
+        "en": "An it-cleft presents one constituent as focus and treats the remaining proposition as background."
+      },
+      "usage": {
+        "zh-Hans": "It was Maya who found the error 强调发现者是 Maya；It was the error that Maya found 强调被发现的对象。使用时要检查焦点是否回答了实际争议，否则读者可能误会作者在纠正哪一项。常见关联词有 who、that。",
+        "zh-Hant": "It was Maya who found the error 強調發現者是 Maya；It was the error that Maya found 強調被發現的對象。使用時要檢查焦點是否回應了實際爭議，否則讀者可能誤會作者在糾正哪一項。常見關聯詞有 who、that。",
+        "en": "It was Maya who found the error focuses on the finder; It was the error that Maya found focuses on the object found. Check that the focus answers the actual dispute, or readers may misunderstand what is being corrected. Who and that are common linkers."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把每个 it was ... that 都当作普通“它是”；这里的 it 通常不是具体事物的代词。",
+        "zh-Hant": "不要把每個 it was ... that 都當作一般的「它是」；這裡的 it 通常不是具體事物的代名詞。",
+        "en": "Do not interpret every cleft it as referring to a concrete object."
+      },
+      "pattern": "It + be + focus + that/who + remainder",
+      "example": "It was Maya who found the error.",
+      "examples": [
+        "It was Maya who found the error.",
+        "It was the error that Maya found.",
+        "It is the timing that worries me."
+      ],
+      "contrast": "It was Maya who found the error. · It was the error that Maya found.",
+      "related": []
+    },
+    {
+      "id": "only-scope",
+      "title": {
+        "zh-Hans": "only 的位置与范围",
+        "zh-Hant": "only 的位置與範圍",
+        "en": "the scope of only"
+      },
+      "headword": "only",
+      "question": {
+        "zh-Hans": "only 放在哪里会改变意思？",
+        "zh-Hant": "only 放在哪裡會改變意思？",
+        "en": "How does only change meaning by position?"
+      },
+      "keywords": [
+        "焦点",
+        "焦點",
+        "scope"
+      ],
+      "summary": {
+        "zh-Hans": "only 限制其所聚焦的成分；位置和语调会改变读者理解。",
+        "zh-Hant": "only 限制其所聚焦的成分；位置和語調會改變讀者理解。",
+        "en": "Only limits the focused constituent; position and stress can change the interpretation."
+      },
+      "usage": {
+        "zh-Hans": "Only Sara reviewed the draft 表示其他人没有审阅；Sara only reviewed the draft 可能表示她只做了审阅，没修改。书面语缺少语调，正式写作应把 only 尽量放近需要限制的部分，并用上下文消除歧义。\n\nonly 的位置通常提示被限定的成分：Only Nora sent the draft 限定发送者；Nora sent only the draft 限定发送的东西；Nora only sent the draft 有时可表示她“只是发送”，但口语重音和语境仍可改变理解。正式写作如果歧义会影响论点，应把 only 紧贴目标成分，必要时重写整个句子。不要只按词序断言某个解释永远唯一。",
+        "zh-Hant": "Only Sara reviewed the draft 表示其他人沒有審閱；Sara only reviewed the draft 可能表示她只做了審閱，沒有修改。書面語缺少語調，正式寫作應把 only 盡量放近需要限制的部分，並用上下文消除歧義。\n\nonly 的位置通常提示被限定的成分：Only Nora sent the draft 限定寄送者；Nora sent only the draft 限定寄送的東西；Nora only sent the draft 有時可表示她「只是寄送」，但口語重音和語境仍可改變理解。正式寫作若歧義會影響論點，應把 only 緊貼目標成分，必要時重寫整句。不要只依詞序斷言某個解釋永遠唯一。",
+        "en": "Only Sara reviewed the draft excludes other reviewers. Sara only reviewed the draft may say she reviewed but did not edit it. Written prose lacks spoken stress; place only near the intended focus and use context to remove ambiguity.\n\nPlacement usually signals scope: Only Nora sent the draft restricts the sender; Nora sent only the draft restricts the item; Nora only sent the draft may mean she merely sent it. Stress and context can still change spoken interpretation. In precise writing, place only beside the intended element and rewrite if the distinction affects the argument. Word order alone does not guarantee a unique reading in every context."
+      },
+      "pitfall": {
+        "zh-Hans": "Sara reviewed only the draft 不等于 Only Sara reviewed the draft；前者限制审阅对象。",
+        "zh-Hant": "Sara reviewed only the draft 不等於 Only Sara reviewed the draft；前者限制審閱對象。",
+        "en": "Sara reviewed only the draft limits the object, not the people who reviewed it."
+      },
+      "pattern": "only + focused person/object/action",
+      "example": "Only Sara reviewed the draft.",
+      "examples": [
+        "Only Sara reviewed the draft.",
+        "Sara only reviewed the draft.",
+        "Sara reviewed only the draft.",
+        "Only Nora reviewed the draft."
+      ],
+      "contrast": "Only Sara reviewed the draft. · Sara only reviewed the draft.",
+      "related": []
+    },
+    {
+      "id": "because-because-of",
+      "title": {
+        "zh-Hans": "because / because of",
+        "zh-Hant": "because / because of",
+        "en": "because / because of"
+      },
+      "headword": "because / because of",
+      "question": {
+        "zh-Hans": "because 和 because of 后面接什么？",
+        "zh-Hant": "because 和 because of 後面接什麼？",
+        "en": "What follows because and because of?"
+      },
+      "summary": {
+        "zh-Hans": "because 后接有主语和谓语的分句；because of 后接名词性成分。",
+        "zh-Hant": "because 後接有主詞和謂語的子句；because of 後接名詞性成分。",
+        "en": "Because introduces a clause; because of introduces a noun phrase."
+      },
+      "usage": {
+        "zh-Hans": "选择时先看原因本身怎样表达：the road was closed 是分句，接 because；the road closure 是名词短语，接 because of。原因分句放句首时，通常在主句前加逗号；放句末时通常不加。because of 后也可接代词或 -ing 结构，但后者要能当名词性成分理解。两者可以表达相近的原因，句法结构却不能直接互换。",
+        "zh-Hant": "選擇時先看原因本身怎樣表達：the road was closed 是子句，接 because；the road closure 是名詞片語，接 because of。原因子句放句首時，通常在主句前加逗號；放句末時通常不加。because of 後也可接代名詞或 -ing 結構，但後者要能當名詞性成分理解。兩者可以表達相近的原因，句法結構卻不能直接互換。",
+        "en": "Inspect the form of the reason: the road was closed is a clause after because; the road closure is a noun phrase after because of. A reason clause at the beginning is normally followed by a comma, while a final one normally is not. Because of can also take a pronoun or a nominal -ing phrase. Similar reasons can be expressed with either form, but the grammar after them differs."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 because of the road was closed；这里应删去 of，或把原因改成 the road closure。",
+        "zh-Hant": "不要寫 because of the road was closed；這裡應刪去 of，或把原因改成 the road closure。",
+        "en": "Avoid because of the road was closed; remove of or change the reason into a noun phrase."
+      },
+      "pattern": "because + clause · because of + noun phrase",
+      "example": "The visit ended early because the road was closed.",
+      "examples": [
+        "The visit ended early because the road was closed.",
+        "The visit ended early because of the road closure.",
+        "Because the lift was broken, we took the stairs.",
+        "They changed the route because of heavy rain."
+      ],
+      "contrast": "We stayed inside because it rained. · We stayed inside because of the rain.",
+      "keywords": [
+        "reason",
+        "原因",
+        "because",
+        "because of"
+      ],
+      "related": [
+        "although-however"
+      ]
+    },
+    {
+      "id": "indirect-questions",
+      "title": {
+        "zh-Hans": "indirect questions",
+        "zh-Hant": "indirect questions",
+        "en": "indirect questions"
+      },
+      "headword": "indirect questions",
+      "question": {
+        "zh-Hans": "间接问句为什么不用直接问句语序？",
+        "zh-Hant": "間接問句為什麼不用直接問句語序？",
+        "en": "Why does an indirect question use statement order?"
+      },
+      "summary": {
+        "zh-Hans": "嵌入在另一句中的问句通常用主语在动词前的语序；是非问句用 if 或 whether 引入。",
+        "zh-Hant": "嵌入在另一句中的問句通常用主詞在動詞前的語序；是非問句用 if 或 whether 引入。",
+        "en": "An embedded question normally has statement word order; yes–no questions use if or whether."
+      },
+      "usage": {
+        "zh-Hans": "直接问句 Where does the bus stop? 变成 Do you know where the bus stops? 时，where 后不再保留 does + 主语的倒装。原句若用 did 提问，嵌入后仍要表达过去时间，但不保留助动词 did。礼貌请求可以用 Could you tell me...；若整句是疑问句，末尾用问号；I wonder... 是陈述句，通常用句号。无疑问词的是非问句使用 if 或 whether，后面同样用陈述语序。",
+        "zh-Hant": "直接問句 Where does the bus stop? 變成 Do you know where the bus stops? 時，where 後不再保留 does + 主詞的倒裝。原句若用 did 提問，嵌入後仍要表達過去時間，但不保留助動詞 did。禮貌請求可以用 Could you tell me...；若整句是疑問句，末尾用問號；I wonder... 是陳述句，通常用句號。無疑問詞的是非問句使用 if 或 whether，後面同樣用陳述語序。",
+        "en": "When Where does the bus stop? becomes Do you know where the bus stops?, the embedded part loses do-support and inversion. With a past-time question, keep the past meaning but not the question auxiliary did. Could you tell me...? is a polite question and takes a question mark; I wonder... is a statement and normally takes a full stop. For an embedded yes–no question, introduce the clause with if or whether and keep statement order."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 Could you tell me where does the bus stop?；只有外层问句需要倒装。",
+        "zh-Hant": "不要寫 Could you tell me where does the bus stop?；只有外層問句需要倒裝。",
+        "en": "Avoid Could you tell me where does the bus stop? Only the outer question is inverted."
+      },
+      "pattern": "Do you know + question word + subject + verb?",
+      "example": "Could you tell me where the bus stops?",
+      "examples": [
+        "Could you tell me where the bus stops?",
+        "I wonder why the office closed early.",
+        "Do you know whether the library is open?",
+        "She asked how much the ticket cost."
+      ],
+      "contrast": "Where did they go? · Do you know where they went?",
+      "keywords": [
+        "embedded question",
+        "间接问句",
+        "間接問句",
+        "word order"
+      ],
+      "related": [
+        "questions",
+        "whether-if"
+      ]
+    },
+    {
+      "id": "either-neither",
+      "title": {
+        "zh-Hans": "either / neither",
+        "zh-Hant": "either / neither",
+        "en": "either / neither"
+      },
+      "headword": "either / neither",
+      "question": {
+        "zh-Hans": "either 和 neither 表示两个选项时怎样用？",
+        "zh-Hant": "either 和 neither 表示兩個選項時怎樣用？",
+        "en": "How do either and neither refer to two alternatives?"
+      },
+      "summary": {
+        "zh-Hans": "either 表示两者中的任意一个；neither 表示两者都不。either...or 连接选择，neither...nor 同时否定两项。",
+        "zh-Hant": "either 表示兩者中的任意一個；neither 表示兩者都不。either...or 連接選擇，neither...nor 同時否定兩項。",
+        "en": "Either means one of two; neither means not one and not the other. Either...or offers alternatives, while neither...nor rejects both."
+      },
+      "usage": {
+        "zh-Hans": "单独作限定词时，either/neither 后接单数可数名词：either route、neither answer。接特定的复数名词或代词时用 either/neither of：neither of the routes、either of us。作主语时，正式写作通常配单数动词；日常口语中的复数动词也可见，不能简单判作绝对错误。either...or / neither...nor 连接的成分应尽量平行；复合主语的动词一致还受最近主语和文体影响。",
+        "zh-Hant": "單獨作限定詞時，either/neither 後接單數可數名詞：either route、neither answer。接特定的複數名詞或代名詞時用 either/neither of：neither of the routes、either of us。作主詞時，正式寫作通常配單數動詞；日常口語中的複數動詞也可見，不能簡單判作絕對錯誤。either...or / neither...nor 連接的成分應盡量平行；複合主詞的動詞一致還受最近主詞和文體影響。",
+        "en": "As determiners, either and neither precede a singular count noun: either route, neither answer. Use either/neither of before a determiner plus plural noun or a pronoun: neither of the routes, either of us. Formal writing commonly uses a singular verb with these as subjects; plural agreement also occurs in informal speech, so it is not an absolute error. Keep the paired elements in either...or and neither...nor parallel. Agreement with a compound subject can depend on the nearer element and style."
+      },
+      "pitfall": {
+        "zh-Hans": "neither 已含否定意义，通常不要再给同一意思加 not。涉及三项及以上时，也不要机械地把 neither 当作 none。",
+        "zh-Hant": "neither 已含否定意義，通常不要再給同一意思加 not。涉及三項及以上時，也不要機械地把 neither 當作 none。",
+        "en": "Neither is already negative; do not add not to express the same negation. For three or more items, do not automatically use neither in place of none."
+      },
+      "pattern": "either + singular noun · neither of + determiner + plural noun",
+      "example": "Either entrance will take you to the hall.",
+      "examples": [
+        "Either entrance will take you to the hall.",
+        "Neither answer explains the delay.",
+        "Neither of the two maps shows the new road.",
+        "You can email either the editor or the designer."
+      ],
+      "contrast": "Either plan is possible. · Neither plan is possible.",
+      "keywords": [
+        "choice",
+        "two alternatives",
+        "两者",
+        "兩者"
+      ],
+      "related": [
+        "each-every"
+      ]
+    },
+    {
+      "id": "unless",
+      "title": {
+        "zh-Hans": "unless / if not",
+        "zh-Hant": "unless / if not",
+        "en": "unless / if not"
+      },
+      "headword": "unless / if not",
+      "question": {
+        "zh-Hans": "unless 能否直接代替 if not？",
+        "zh-Hant": "unless 能否直接代替 if not？",
+        "en": "Can unless always replace if not?"
+      },
+      "summary": {
+        "zh-Hans": "unless 常表示“除非”；它适合提出使主句不成立的例外条件，但不能机械替换所有 if not。",
+        "zh-Hant": "unless 常表示「除非」；它適合提出使主句不成立的例外條件，但不能機械替換所有 if not。",
+        "en": "Unless often means except if; it introduces an exception, but does not replace every if not clause."
+      },
+      "usage": {
+        "zh-Hans": "You cannot enter unless you have a pass 表示“有通行证”是不能进入的例外。谈未来条件时，unless 分句通常用现在时而不是 will。若 if not 是对一个否定事实进行推理或表示“是否不”，改成 unless 往往改变焦点；若想说“如果他不喜欢茶”，也需根据上下文判断究竟是开放条件还是唯一例外。unless 本身含否定条件的意思，不要再随意加 not 造成意义反转。",
+        "zh-Hant": "You cannot enter unless you have a pass 表示「有通行證」是不能進入的例外。談未來條件時，unless 子句通常用現在式而不是 will。若 if not 是對一個否定事實進行推理或表示「是否不」，改成 unless 往往改變焦點；若想說「如果他不喜歡茶」，也需依上下文判斷究竟是開放條件還是唯一例外。unless 本身含否定條件的意思，不要再隨意加 not 造成意義反轉。",
+        "en": "You cannot enter unless you have a pass presents having a pass as the exception to a ban. In future-oriented conditions, the unless clause normally uses a present form rather than will. If not can merely state a negative condition or introduce a question about whether something is not true; replacing it with unless may change the focus. Check whether the clause really identifies the only exception. Unless already carries a negative conditional meaning, so another not may reverse the intended sense."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 unless 理解为“如果”；也不要在普通未来条件中写 unless you will have a pass。",
+        "zh-Hant": "不要把 unless 理解為「如果」；也不要在一般未來條件中寫 unless you will have a pass。",
+        "en": "Do not read unless as a neutral if, or normally write unless you will have a pass for a future condition."
+      },
+      "pattern": "main clause + unless + present clause",
+      "example": "The room stays locked unless a guide is present.",
+      "examples": [
+        "The room stays locked unless a guide is present.",
+        "Unless the weather improves, we will meet indoors.",
+        "I will keep the receipt unless you need it.",
+        "We cannot begin unless everyone is ready."
+      ],
+      "contrast": "We will leave if it does not rain. · We will leave unless it rains.",
+      "keywords": [
+        "condition",
+        "exception",
+        "除非",
+        "條件"
+      ],
+      "related": [
+        "first-conditional",
+        "hypothetical-conditionals"
+      ]
+    },
+    {
+      "id": "during-while",
+      "title": {
+        "zh-Hans": "during / while",
+        "zh-Hant": "during / while",
+        "en": "during / while"
+      },
+      "headword": "during / while",
+      "question": {
+        "zh-Hans": "during 和 while 后面分别接什么？",
+        "zh-Hant": "during 和 while 後面分別接什麼？",
+        "en": "What follows during and while?"
+      },
+      "summary": {
+        "zh-Hans": "during 后接名词性时间段；while 后通常接有主语和动词的分句。",
+        "zh-Hant": "during 後接名詞性的時段；while 後通常接有主詞和動詞的子句。",
+        "en": "During takes a noun phrase naming a period; while normally introduces a clause."
+      },
+      "usage": {
+        "zh-Hans": "during the meeting 与 while we were meeting 可以描述同一时间关系，但后面的结构不同。during 可以指事件过程中的某一点或贯穿整个时段，具体由语境决定。while 常突出两件事同时发生，也可以表示对比；当两个分句主语相同且意思清楚时，可以省去主语和 be，形成 while waiting 等缩减结构。选词前先看后面是名词短语还是完整分句。",
+        "zh-Hant": "during the meeting 與 while we were meeting 可以描述同一時間關係，但後面的結構不同。during 可以指事件過程中的某一點或貫穿整個時段，具體由語境決定。while 常凸顯兩件事同時發生，也可以表示對比；當兩個子句主詞相同且意思清楚時，可以省去主詞和 be，形成 while waiting 等簡縮結構。選詞前先看後面是名詞片語還是完整子句。",
+        "en": "During the meeting and while we were meeting can describe the same period, but the following structures differ. During can mean at some point in an event or throughout it, depending on context. While often highlights simultaneous actions and can also signal contrast. When the subject is shared and clear, a reduced clause such as while waiting is possible. First check whether the following material is a noun phrase or a clause."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 during we waited；可改为 while we waited 或 during the wait。",
+        "zh-Hant": "不要寫 during we waited；可改為 while we waited 或 during the wait。",
+        "en": "Avoid during we waited; use while we waited or during the wait."
+      },
+      "pattern": "during + noun phrase · while + clause",
+      "example": "The lights went out during the meeting.",
+      "examples": [
+        "The lights went out during the meeting.",
+        "The lights went out while we were meeting.",
+        "She read the instructions while I checked the map.",
+        "Do not use your phone while driving."
+      ],
+      "contrast": "during the flight · while the plane was flying",
+      "keywords": [
+        "time",
+        "同时",
+        "同時",
+        "during",
+        "while"
+      ],
+      "related": [
+        "past-continuous"
+      ]
+    },
+    {
+      "id": "like-as",
+      "title": {
+        "zh-Hans": "like / as",
+        "zh-Hant": "like / as",
+        "en": "like / as"
+      },
+      "headword": "like / as",
+      "question": {
+        "zh-Hans": "like 和 as 在比较与身份说明中有何不同？",
+        "zh-Hant": "like 和 as 在比較與身分說明中有何不同？",
+        "en": "How do like and as differ in comparisons and roles?"
+      },
+      "summary": {
+        "zh-Hans": "like 通常表示“像”；as 可表示“作为某种身份或用途”，也可引出比较分句。",
+        "zh-Hant": "like 通常表示「像」；as 可表示「以某種身分或用途」，也可引出比較子句。",
+        "en": "Like commonly means similar to; as can identify a role or function and can introduce a comparison clause."
+      },
+      "usage": {
+        "zh-Hans": "She works as a guide 表示她确实担任导览员；She talks like a guide 只描述说话方式相似。比较后若有完整分句，正式写作常用 as：Do it as I showed you；口语中 like + 分句也常见，不宜一概说错。as 还可以引出原因或时间分句，必须结合上下文判断；like 后接名词或代词表示相似，是最稳妥的基本用法。",
+        "zh-Hant": "She works as a guide 表示她確實擔任導覽員；She talks like a guide 只描述說話方式相似。比較後若有完整子句，正式寫作常用 as：Do it as I showed you；口語中 like + 子句也常見，不宜一概說錯。as 還可以引出原因或時間子句，必須依上下文判斷；like 後接名詞或代名詞表示相似，是最穩妥的基本用法。",
+        "en": "She works as a guide states her actual role; she talks like a guide describes a resemblance. Before a full comparison clause, formal writing often prefers as: Do it as I showed you. Like plus a clause is also common in speech and should not be labelled universally wrong. As can additionally introduce reason or time clauses, so context matters. Like before a noun or pronoun is the straightforward way to mark resemblance."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 work like a guide 与 work as a guide 当作完全同义：前者说“像”，后者说“担任”。",
+        "zh-Hant": "不要把 work like a guide 與 work as a guide 當作完全同義：前者說「像」，後者說「擔任」。",
+        "en": "Work like a guide and work as a guide differ: the first compares, the second names a role."
+      },
+      "pattern": "like + noun/pronoun · as + role · as + clause",
+      "example": "Mina works as an editor.",
+      "examples": [
+        "Mina works as an editor.",
+        "Mina writes like an editor.",
+        "Arrange the chairs as we discussed.",
+        "This cloth can be used as a cover."
+      ],
+      "contrast": "He acts like a teacher. · He works as a teacher.",
+      "keywords": [
+        "comparison",
+        "role",
+        "像",
+        "作为",
+        "作為"
+      ],
+      "related": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "stop-gerund-infinitive",
+      "title": {
+        "zh-Hans": "stop doing / stop to do",
+        "zh-Hant": "stop doing / stop to do",
+        "en": "stop doing / stop to do"
+      },
+      "headword": "stop doing / stop to do",
+      "question": {
+        "zh-Hans": "stop doing 与 stop to do 为什么意思不同？",
+        "zh-Hant": "stop doing 與 stop to do 為什麼意思不同？",
+        "en": "Why do stop doing and stop to do mean different things?"
+      },
+      "summary": {
+        "zh-Hans": "stop doing 是停止某个活动；stop to do 是暂停原活动，转而做另一件事。",
+        "zh-Hant": "stop doing 是停止某項活動；stop to do 是暫停原活動，轉而做另一件事。",
+        "en": "Stop doing ends an activity; stop to do pauses one activity in order to do another."
+      },
+      "usage": {
+        "zh-Hans": "She stopped reading 表示阅读停止了；She stopped to read 表示她停下原先在做的事，目的是阅读。to read 在后一句中表示目的，而不是 stop 的被停止对象。stop somebody from doing something 则表示阻止某人做某事，from 后接 -ing。写句子时先明确“停止的是什么”，再选结构。",
+        "zh-Hant": "She stopped reading 表示閱讀停止了；She stopped to read 表示她停下原先在做的事，目的是閱讀。to read 在後一句中表示目的，而不是 stop 的被停止對象。stop somebody from doing something 則表示阻止某人做某事，from 後接 -ing。寫句子時先明確「停止的是什麼」，再選結構。",
+        "en": "She stopped reading says the reading ended. She stopped to read says she paused a different activity for the purpose of reading; to read states purpose, not the activity discontinued. Stop somebody from doing something means prevent an action, with -ing after from. Identify what actually stopped before choosing the pattern."
+      },
+      "pitfall": {
+        "zh-Hans": "要表达“戒烟”用 stop smoking；stop to smoke 表示停下来抽烟，意思几乎相反。",
+        "zh-Hant": "要表達「戒菸」用 stop smoking；stop to smoke 表示停下來抽菸，意思幾乎相反。",
+        "en": "For giving up smoking, use stop smoking; stop to smoke means pause to have a smoke."
+      },
+      "pattern": "stop + -ing · stop + to-infinitive · stop someone from + -ing",
+      "example": "We stopped working when the alarm sounded.",
+      "examples": [
+        "We stopped working when the alarm sounded.",
+        "We stopped to check the map.",
+        "A fence stopped visitors from crossing the field.",
+        "He stopped talking to listen to the announcement."
+      ],
+      "contrast": "She stopped reading. · She stopped to read.",
+      "keywords": [
+        "verb pattern",
+        "动名词",
+        "動名詞",
+        "infinitive"
+      ],
+      "related": [
+        "gerund-infinitive",
+        "remember-gerund-infinitive"
+      ]
+    },
+    {
+      "id": "remember-gerund-infinitive",
+      "title": {
+        "zh-Hans": "remember doing / remember to do",
+        "zh-Hant": "remember doing / remember to do",
+        "en": "remember doing / remember to do"
+      },
+      "headword": "remember doing / remember to do",
+      "question": {
+        "zh-Hans": "remember doing 和 remember to do 有什么差别？",
+        "zh-Hant": "remember doing 和 remember to do 有什麼差別？",
+        "en": "What is the difference between remember doing and remember to do?"
+      },
+      "summary": {
+        "zh-Hans": "remember doing 是记得做过的事；remember to do 是记住要做的事。",
+        "zh-Hant": "remember doing 是記得做過的事；remember to do 是記住要做的事。",
+        "en": "Remember doing recalls a completed event; remember to do means not forgetting a task."
+      },
+      "usage": {
+        "zh-Hans": "I remember locking the door 回顾一个已经发生的动作；I remembered to lock the door 表示当时没有忘记这项任务，并做了它。否定句也不同：I do not remember locking it 是没有这段记忆，不一定证明没锁；I did not remember to lock it 通常表示忘了去锁。forget doing 与 forget to do 有类似的时间和意义区别，但 forget doing 的具体语境需另行判断。",
+        "zh-Hant": "I remember locking the door 回顧一個已經發生的動作；I remembered to lock the door 表示當時沒有忘記這項任務，並做了它。否定句也不同：I do not remember locking it 是沒有這段記憶，不一定證明沒鎖；I did not remember to lock it 通常表示忘了去鎖。forget doing 與 forget to do 有類似的時間和意義區別，但 forget doing 的具體語境需另行判斷。",
+        "en": "I remember locking the door looks back at an event. I remembered to lock the door says the task was not forgotten and was carried out. Negation matters: I do not remember locking it reports a missing memory, not proof that it stayed unlocked; I did not remember to lock it normally reports a forgotten task. Forget doing and forget to do show a related contrast, though their exact contexts still need checking."
+      },
+      "pitfall": {
+        "zh-Hans": "不要用 I remember to lock it 表达“我记得自己锁过”；应说 I remember locking it。",
+        "zh-Hant": "不要用 I remember to lock it 表達「我記得自己鎖過」；應說 I remember locking it。",
+        "en": "For a memory of having locked it, say I remember locking it, not I remember to lock it."
+      },
+      "pattern": "remember + -ing (past event) · remember + to-infinitive (task)",
+      "example": "I remember meeting her at the station.",
+      "examples": [
+        "I remember meeting her at the station.",
+        "Please remember to bring your ticket.",
+        "He remembered to save the document.",
+        "I cannot remember sending that message."
+      ],
+      "contrast": "I remember posting the letter. · I remembered to post the letter.",
+      "keywords": [
+        "memory",
+        "task",
+        "记得",
+        "記得",
+        "verb pattern"
+      ],
+      "related": [
+        "gerund-infinitive",
+        "stop-gerund-infinitive"
+      ]
+    },
+    {
+      "id": "suggest-patterns",
+      "title": {
+        "zh-Hans": "suggest + -ing / that-clause",
+        "zh-Hant": "suggest + -ing / that-clause",
+        "en": "suggest + -ing / that-clause"
+      },
+      "headword": "suggest + -ing / that-clause",
+      "question": {
+        "zh-Hans": "suggest 后面能直接接人加不定式吗？",
+        "zh-Hant": "suggest 後面能直接接人加不定詞嗎？",
+        "en": "Can suggest take a person plus to-infinitive?"
+      },
+      "summary": {
+        "zh-Hans": "提出建议时常用 suggest + -ing 或 suggest that + 分句；不要按 tell 的句型直接写 suggest someone to do。",
+        "zh-Hant": "提出建議時常用 suggest + -ing 或 suggest that + 子句；不要依 tell 的句型直接寫 suggest someone to do。",
+        "en": "For proposals, use suggest + -ing or suggest that + clause; not the tell pattern suggest someone to do."
+      },
+      "usage": {
+        "zh-Hans": "I suggest leaving early 表示建议早出发；I suggest that we leave early 明确指出由谁执行。正式英语中 that 分句可用原形动词；日常英语也可用普通时态形式。suggest 后可以接名词作建议内容，如 suggest a date；若要说明建议对象，可说 suggest to someone that...，而不是把 someone 直接放在 to-infinitive 前。suggest 还可表示“暗示”，此时不能把每个用法都理解成提出建议。",
+        "zh-Hant": "I suggest leaving early 表示建議早出發；I suggest that we leave early 明確指出由誰執行。正式英語中 that 子句可用原形動詞；日常英語也可用一般時態形式。suggest 後可以接名詞作建議內容，如 suggest a date；若要說明建議對象，可說 suggest to someone that...，而不是把 someone 直接放在 to-infinitive 前。suggest 還可表示「暗示」，此時不能把每個用法都理解成提出建議。",
+        "en": "I suggest leaving early proposes an action; I suggest that we leave early names the actor. Formal English may use a plain verb form in the that-clause; ordinary tense forms also occur. Suggest can take a noun naming the proposal, as in suggest a date. To name the recipient, say suggest to someone that..., rather than putting the person before a to-infinitive. Suggest can also mean indicate indirectly, where it is not a proposal at all."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 She suggested me to call；可说 She suggested that I call 或 She suggested calling。",
+        "zh-Hant": "不要寫 She suggested me to call；可說 She suggested that I call 或 She suggested calling。",
+        "en": "Avoid She suggested me to call; use She suggested that I call or She suggested calling."
+      },
+      "pattern": "suggest + -ing · suggest (that) + subject + verb",
+      "example": "I suggest checking the address first.",
+      "examples": [
+        "I suggest checking the address first.",
+        "She suggested that we take a later train.",
+        "The tutor suggested a shorter title.",
+        "The figures suggest that demand is falling."
+      ],
+      "contrast": "She suggested calling. · She told me to call.",
+      "keywords": [
+        "advice",
+        "verb pattern",
+        "建议",
+        "建議"
+      ],
+      "related": [
+        "gerund-infinitive",
+        "say-tell"
+      ]
+    },
+    {
+      "id": "neednt-mustnt",
+      "title": {
+        "zh-Hans": "needn’t / mustn’t",
+        "zh-Hant": "needn’t / mustn’t",
+        "en": "needn’t / mustn’t"
+      },
+      "headword": "needn’t / mustn’t",
+      "question": {
+        "zh-Hans": "needn’t 与 mustn’t 都是否定，为什么意思不同？",
+        "zh-Hant": "needn’t 與 mustn’t 都是否定，為何意思不同？",
+        "en": "Why do needn’t and mustn’t differ?"
+      },
+      "summary": {
+        "zh-Hans": "needn’t 表示没有必要；mustn’t 表示禁止或强烈要求不要做。",
+        "zh-Hant": "needn’t 表示沒有必要；mustn’t 表示禁止或強烈要求不要做。",
+        "en": "Needn’t means there is no necessity; mustn’t expresses prohibition or a strong instruction not to act."
+      },
+      "usage": {
+        "zh-Hans": "You needn’t print the form 表示电子版也可以；You mustn’t print the form 表示不能打印。don’t need to 和 needn’t 在许多语境里意思相近，但语法形式不同：needn’t 后接动词原形，don’t need to 后接带 to 的不定式。谈过去时，didn’t need to do 表示没有必要，是否真的做了可能要看语境；needn’t have done 通常暗示做了但其实没必要。",
+        "zh-Hant": "You needn’t print the form 表示電子版也可以；You mustn’t print the form 表示不能列印。don’t need to 和 needn’t 在許多語境裡意思相近，但文法形式不同：needn’t 後接動詞原形，don’t need to 後接帶 to 的不定詞。談過去時，didn’t need to do 表示沒有必要，是否真的做了可能要看語境；needn’t have done 通常暗示做了但其實沒必要。",
+        "en": "You needn’t print the form allows an electronic copy; you mustn’t print it forbids printing. Don’t need to and needn’t often express similar lack of necessity, but their forms differ: needn’t takes a plain verb; don’t need to takes a to-infinitive. In the past, didn’t need to do says there was no necessity and may leave the actual action open; needn’t have done usually implies the action happened unnecessarily."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 You mustn’t come early 当作“不必早来”；它更像“不得早来”。",
+        "zh-Hant": "不要把 You mustn’t come early 當作「不必早來」；它更像「不得早來」。",
+        "en": "Do not use You mustn’t come early to mean coming early is optional; it sounds like a ban."
+      },
+      "pattern": "needn’t + base verb · don’t need to + verb · mustn’t + base verb",
+      "example": "You needn’t bring a pen; we have spare ones.",
+      "examples": [
+        "You needn’t bring a pen; we have spare ones.",
+        "Visitors mustn’t touch the exhibits.",
+        "We did not need to book in advance.",
+        "I needn’t have bought a ticket; entry was free."
+      ],
+      "contrast": "You needn’t wait. · You mustn’t wait.",
+      "keywords": [
+        "necessity",
+        "prohibition",
+        "不必",
+        "禁止"
+      ],
+      "related": [
+        "modals",
+        "have-to"
+      ]
+    },
+    {
+      "id": "whether-if",
+      "title": {
+        "zh-Hans": "whether / if",
+        "zh-Hant": "whether / if",
+        "en": "whether / if"
+      },
+      "headword": "whether / if",
+      "question": {
+        "zh-Hans": "whether 和 if 引导间接问句时何时不能互换？",
+        "zh-Hant": "whether 和 if 引導間接問句時何時不能互換？",
+        "en": "When are whether and if not interchangeable?"
+      },
+      "summary": {
+        "zh-Hans": "两者都能引入许多间接是非问句；明确列出两种选择或放在介词后时，whether 更稳妥。",
+        "zh-Hant": "兩者都能引入許多間接是非問句；明確列出兩種選擇或放在介系詞後時，whether 更穩妥。",
+        "en": "Both can introduce many embedded yes–no questions. Whether is safer with explicit alternatives and after a preposition."
+      },
+      "usage": {
+        "zh-Hans": "I don’t know whether/if the door is open 两者都可。whether...or not 能明确表示两种可能；whether to leave 可接不定式，而 if to leave 不可。放在介词后用 whether，如 a discussion about whether to proceed。if 还引导条件句；当句子既可能是“是否”，也可能是“如果”，可用 whether 消除歧义。间接问句内部仍用陈述语序。",
+        "zh-Hant": "I don’t know whether/if the door is open 兩者都可。whether...or not 能明確表示兩種可能；whether to leave 可接不定詞，而 if to leave 不可。放在介系詞後用 whether，如 a discussion about whether to proceed。if 還引導條件句；當句子既可能是「是否」，也可能是「如果」，可用 whether 消除歧義。間接問句內部仍用陳述語序。",
+        "en": "I don’t know whether/if the door is open allows either word. Whether...or not makes alternatives explicit. Whether can precede a to-infinitive, but if to leave cannot. After a preposition, use whether, as in a discussion about whether to proceed. If also introduces conditions; whether can remove ambiguity between “whether” and “if” meanings. Keep statement order inside the embedded question."
+      },
+      "pitfall": {
+        "zh-Hans": "不要写 We discussed about if to leave；可说 We discussed whether to leave。",
+        "zh-Hant": "不要寫 We discussed about if to leave；可說 We discussed whether to leave。",
+        "en": "Avoid We discussed about if to leave; say We discussed whether to leave."
+      },
+      "pattern": "whether/if + subject + verb · whether + to-infinitive",
+      "example": "I asked whether the files had arrived.",
+      "examples": [
+        "I asked whether the files had arrived.",
+        "We have not decided whether to move.",
+        "The debate is about whether the rule is fair.",
+        "Tell me if the room is available."
+      ],
+      "contrast": "I asked if she was ready. · I asked whether she was ready or not.",
+      "keywords": [
+        "indirect question",
+        "是否",
+        "choice",
+        "if",
+        "whether"
+      ],
+      "related": [
+        "indirect-questions"
+      ]
+    },
+    {
+      "id": "modal-perfect",
+      "title": {
+        "zh-Hans": "must have / might have / can’t have",
+        "zh-Hant": "must have / might have / can’t have",
+        "en": "must have / might have / can’t have"
+      },
+      "headword": "must have / might have / can’t have",
+      "question": {
+        "zh-Hans": "情态动词加 have done 如何表示对过去的推断？",
+        "zh-Hant": "情態動詞加 have done 如何表示對過去的推斷？",
+        "en": "How do modal perfect forms express past deductions?"
+      },
+      "summary": {
+        "zh-Hans": "must have done 表示对过去有把握的推断；might/may have done 表示可能；can’t have done 表示认为不可能。",
+        "zh-Hant": "must have done 表示對過去有把握的推斷；might/may have done 表示可能；can’t have done 表示認為不可能。",
+        "en": "Must have done signals a strong past deduction, might/may have done a possibility, and can’t have done an inferred impossibility."
+      },
+      "usage": {
+        "zh-Hans": "这些形式谈说话人现在如何判断过去发生的事，不是直接报告亲眼所见。The lights are off; they must have left 是根据线索推断。could have done 可表示过去的可能性或未实现的能力／机会，须看语境；should have done 常表示过去本应做却没做，和推断的语气不同。否定推断通常用 can’t have done，而不是 mustn’t have done。",
+        "zh-Hant": "這些形式談說話人現在如何判斷過去發生的事，不是直接報告親眼所見。The lights are off; they must have left 是根據線索推斷。could have done 可表示過去的可能性或未實現的能力／機會，須看語境；should have done 常表示過去本應做卻沒做，和推斷的語氣不同。否定推斷通常用 can’t have done，而不是 mustn’t have done。",
+        "en": "These forms show the speaker’s present judgement about a past event; they are not direct eyewitness reports. The lights are off; they must have left is an inference from evidence. Could have done can suggest past possibility or an unrealised opportunity, depending on context. Should have done often criticises an action not taken, rather than making the same kind of deduction. Negative deduction normally uses can’t have done, not mustn’t have done."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把 must have left 当成过去时的“必须离开”；义务可用 had to leave。",
+        "zh-Hant": "不要把 must have left 當成過去式的「必須離開」；義務可用 had to leave。",
+        "en": "Do not use must have left for the past obligation “had to leave”; it usually expresses a deduction."
+      },
+      "pattern": "modal + have + past participle",
+      "example": "The floor is wet; it must have rained.",
+      "examples": [
+        "The floor is wet; it must have rained.",
+        "She might have missed the last bus.",
+        "He can’t have read the note; it is still sealed.",
+        "We should have checked the date earlier."
+      ],
+      "contrast": "She had to leave. · She must have left.",
+      "keywords": [
+        "deduction",
+        "past",
+        "推断",
+        "推斷",
+        "情态",
+        "情態"
+      ],
+      "related": [
+        "modals",
+        "hedging"
+      ]
+    },
+    {
+      "id": "question-tags",
+      "title": {
+        "zh-Hans": "question tags",
+        "zh-Hant": "question tags",
+        "en": "question tags"
+      },
+      "headword": "question tags",
+      "question": {
+        "zh-Hans": "反意疑问句怎样选助动词和代词？",
+        "zh-Hant": "附加問句怎樣選助動詞和代名詞？",
+        "en": "How do question tags choose their auxiliary and pronoun?"
+      },
+      "summary": {
+        "zh-Hans": "附加问句通常呼应主句的助动词与主语，并常用相反的肯否形式。",
+        "zh-Hant": "附加問句通常呼應主句的助動詞與主詞，並常用相反的肯否形式。",
+        "en": "A question tag normally echoes the main clause’s auxiliary and subject, often with reversed polarity."
+      },
+      "usage": {
+        "zh-Hans": "She is ready, isn’t she? 用 is 与 she；They have finished, haven’t they? 用 have。主句没有助动词时，附加问句常用 do/does/did：You work here, don’t you? 命令句和 Let’s... 有自己的惯用附加形式，如 will you? 和 shall we? 语调也影响功能：下降语调常期待确认，上升语调更像真正询问；标点不能完全传达这种差别。",
+        "zh-Hant": "She is ready, isn’t she? 用 is 與 she；They have finished, haven’t they? 用 have。主句沒有助動詞時，附加問句常用 do/does/did：You work here, don’t you? 祈使句和 Let’s... 有自己的慣用附加形式，如 will you? 和 shall we? 語調也影響功能：下降語調常期待確認，上升語調更像真正詢問；標點不能完全傳達這種差別。",
+        "en": "She is ready, isn’t she? repeats is and uses she; they have finished, haven’t they? repeats have. Without an auxiliary in the main clause, use do/does/did: You work here, don’t you? Imperatives and Let’s... have conventional tags such as will you? and shall we? Intonation matters too: a falling tag often seeks confirmation, while a rising one can be a genuine question. Punctuation alone does not capture this difference."
+      },
+      "pitfall": {
+        "zh-Hans": "不要按中文“对吗”统一写 is it；主句的人称、时态和助动词都要核对。",
+        "zh-Hant": "不要依中文「對嗎」一律寫 is it；主句的人稱、時態和助動詞都要核對。",
+        "en": "Do not append is it to every statement; check person, tense and auxiliary."
+      },
+      "pattern": "statement + comma + auxiliary + pronoun?",
+      "example": "You sent the form, didn’t you?",
+      "examples": [
+        "You sent the form, didn’t you?",
+        "Mira can drive, can’t she?",
+        "They are not late, are they?",
+        "Let’s take a break, shall we?"
+      ],
+      "contrast": "You know Sam, don’t you? · You knew Sam, didn’t you?",
+      "keywords": [
+        "tag question",
+        "反意疑问",
+        "附加問句",
+        "confirmation"
+      ],
+      "related": [
+        "questions",
+        "indirect-questions"
+      ]
+    },
+    {
+      "id": "as-long-as",
+      "title": {
+        "zh-Hans": "as long as / if",
+        "zh-Hant": "as long as / if",
+        "en": "as long as / if"
+      },
+      "headword": "as long as / if",
+      "question": {
+        "zh-Hans": "as long as 表条件时比 if 多表达什么？",
+        "zh-Hant": "as long as 表條件時比 if 多表達什麼？",
+        "en": "What does as long as add to a condition?"
+      },
+      "summary": {
+        "zh-Hans": "as long as 可表示“只要”，突出某条件是允许结果发生的要求；它也可表示时间长度。",
+        "zh-Hant": "as long as 可表示「只要」，凸顯某條件是容許結果發生的要求；它也可表示時間長度。",
+        "en": "As long as can mean provided that, highlighting a required condition; it can also refer to duration."
+      },
+      "usage": {
+        "zh-Hans": "You may borrow the camera as long as you return it tonight 表示归还是借用的条件。一般的 if 只提出一种可能，并不一定突出“以此为前提”的许可。表达未来条件时，条件分句通常用现在时。as long as 也可以字面指持续时间：I stayed as long as I could。判断时看主句是条件结果，还是在比较时间长短。",
+        "zh-Hant": "You may borrow the camera as long as you return it tonight 表示歸還是借用的條件。一般的 if 只提出一種可能，並不一定凸顯「以此為前提」的許可。表達未來條件時，條件子句通常用現在式。as long as 也可以字面指持續時間：I stayed as long as I could。判斷時看主句是條件結果，還是在比較時間長短。",
+        "en": "You may borrow the camera as long as you return it tonight makes returning it a condition of permission. A plain if introduces a possibility without necessarily stressing such a requirement. In future-oriented conditions, the conditional clause normally uses a present form. As long as can also literally describe duration: I stayed as long as I could. Decide whether the sentence concerns a conditional result or length of time."
+      },
+      "pitfall": {
+        "zh-Hans": "不要把所有 as long as 都译成“只要”；与 stayed、waited 等动词连用时可能指“尽可能久”。",
+        "zh-Hant": "不要把所有 as long as 都譯成「只要」；與 stayed、waited 等動詞連用時可能指「盡可能久」。",
+        "en": "Do not treat every as long as as conditional; with stayed or waited it may describe duration."
+      },
+      "pattern": "as long as + condition · as long as + duration",
+      "example": "You can use the room as long as you leave it tidy.",
+      "examples": [
+        "You can use the room as long as you leave it tidy.",
+        "As long as the file is complete, we can submit it.",
+        "I waited as long as the office remained open.",
+        "The offer stands as long as the stock lasts."
+      ],
+      "contrast": "You can join if you register. · You can join as long as you register.",
+      "keywords": [
+        "condition",
+        "provided that",
+        "只要",
+        "时长",
+        "時長"
+      ],
+      "related": [
+        "first-conditional",
+        "unless"
+      ]
+    }
+  ]
+}

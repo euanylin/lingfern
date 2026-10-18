@@ -1,0 +1,1642 @@
+[
+  {
+    "id": "a1-voa-weather-check-draft",
+    "mode": "check",
+    "targetLevel": "A1",
+    "skill": "reading",
+    "title": {
+      "en": "A weather report · check draft",
+      "zh-Hans": "A weather report · check draft",
+      "zh-Hant": "A weather report · check draft"
+    },
+    "goal": {
+      "en": "Read the phone’s weather answers.",
+      "zh-Hans": "读懂电话中的天气回答。",
+      "zh-Hant": "讀懂電話中的天氣回答。"
+    },
+    "goalId": "weather-report-reading",
+    "sourceId": "voa-course-9-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 4,
+    "materials": [
+      {
+        "id": "voa-weather-check",
+        "rootId": "voa-article-3261789",
+        "sourceId": "voa-course-9-check",
+        "title": "Is It Cold? — phone report excerpt",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Phone: Yes, Anna. It is warm.\nAnna: Excuse me, Phone. Is it windy today?\nPhone: No, it is not windy today.\nAnna: Is it sunny today?\nPhone: Yes, Anna. It is sunny.\nAnna: Excuse me, Phone?\nPhone: Yes, Anna.\nAnna: Is it snowy today?\nPhone: No, Anna. It is not snowy."
+          }
+        ],
+        "questions": [
+          {
+            "id": "weather-temperature",
+            "blockId": "dialogue",
+            "prompt": "What temperature does the phone report?",
+            "options": [
+              "Warm",
+              "Cold",
+              "Hot"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 18,
+              "end": 29
+            },
+            "explanations": [
+              {
+                "en": "The phone says it is warm.",
+                "zh-Hans": "The phone says it is warm.",
+                "zh-Hant": "The phone says it is warm."
+              },
+              {
+                "en": "The phone does not say it is cold in this excerpt.",
+                "zh-Hans": "The phone does not say it is cold in this excerpt.",
+                "zh-Hant": "The phone does not say it is cold in this excerpt."
+              },
+              {
+                "en": "The phone does not say it is hot.",
+                "zh-Hans": "The phone does not say it is hot.",
+                "zh-Hant": "The phone does not say it is hot."
+              }
+            ]
+          },
+          {
+            "id": "weather-wind",
+            "blockId": "dialogue",
+            "prompt": "Does the phone say it is windy?",
+            "options": [
+              "Yes",
+              "No",
+              "It does not say"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 80,
+              "end": 106
+            },
+            "explanations": [
+              {
+                "en": "The phone says it is not windy.",
+                "zh-Hans": "The phone says it is not windy.",
+                "zh-Hant": "The phone says it is not windy."
+              },
+              {
+                "en": "No is followed by not windy.",
+                "zh-Hans": "No is followed by not windy.",
+                "zh-Hant": "No is followed by not windy."
+              },
+              {
+                "en": "The phone answers the question about wind.",
+                "zh-Hans": "The phone answers the question about wind.",
+                "zh-Hant": "The phone answers the question about wind."
+              }
+            ]
+          },
+          {
+            "id": "weather-sun",
+            "blockId": "dialogue",
+            "prompt": "What does the phone say about the sun?",
+            "options": [
+              "It is sunny",
+              "It is not sunny",
+              "It does not say"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 150,
+              "end": 162
+            },
+            "explanations": [
+              {
+                "en": "The phone says it is sunny.",
+                "zh-Hans": "The phone says it is sunny.",
+                "zh-Hant": "The phone says it is sunny."
+              },
+              {
+                "en": "The phone says Yes, not No.",
+                "zh-Hans": "The phone says Yes, not No.",
+                "zh-Hant": "The phone says Yes, not No."
+              },
+              {
+                "en": "The phone answers the question about sunshine.",
+                "zh-Hans": "The phone answers the question about sunshine.",
+                "zh-Hant": "The phone answers the question about sunshine."
+              }
+            ]
+          },
+          {
+            "id": "weather-snow",
+            "blockId": "dialogue",
+            "prompt": "Does the phone say it is snowy?",
+            "options": [
+              "Yes",
+              "It does not say",
+              "No"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 237,
+              "end": 263
+            },
+            "explanations": [
+              {
+                "en": "The phone says it is not snowy.",
+                "zh-Hans": "The phone says it is not snowy.",
+                "zh-Hant": "The phone says it is not snowy."
+              },
+              {
+                "en": "The phone answers the question about snow.",
+                "zh-Hans": "The phone answers the question about snow.",
+                "zh-Hant": "The phone answers the question about snow."
+              },
+              {
+                "en": "No and not snowy give the answer.",
+                "zh-Hans": "No and not snowy give the answer.",
+                "zh-Hant": "No and not snowy give the answer."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a1-voa-directions-check-draft",
+    "mode": "check",
+    "targetLevel": "A1",
+    "skill": "reading",
+    "title": {
+      "en": "Come Over to My Place · check draft",
+      "zh-Hans": "Come Over to My Place · check draft",
+      "zh-Hant": "Come Over to My Place · check draft"
+    },
+    "goal": {
+      "en": "Find people, places and actions in a short conversation.",
+      "zh-Hans": "在简短对话中找出人物、地点和行动。",
+      "zh-Hant": "在簡短對話中找出人物、地點和行動。"
+    },
+    "goalId": "directions-reading",
+    "sourceId": "voa-course-10-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 4,
+    "materials": [
+      {
+        "id": "voa-directions-check",
+        "rootId": "voa-article-3285228",
+        "sourceId": "voa-course-10-check",
+        "title": "Come Over to My Place — conversation excerpt",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Hi Ashley!\nAshley: Hi Anna! I’m coming to your apartment. Where is your apartment?\nAnna: My apartment is near the Columbia Heights Metro.\nAshley: It is near the Columbia Heights Metro?\nAnna: Yes. Exit the Metro and turn right. Then at the bus station turn left. Then walk straight ahead."
+          }
+        ],
+        "questions": [
+          {
+            "id": "directions-visitor",
+            "blockId": "dialogue",
+            "prompt": "Who is coming to Anna’s apartment?",
+            "options": [
+              "Anna",
+              "Ashley",
+              "Marsha"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 17,
+              "end": 63
+            },
+            "explanations": [
+              {
+                "en": "Anna is giving the directions.",
+                "zh-Hans": "Anna is giving the directions.",
+                "zh-Hant": "Anna is giving the directions."
+              },
+              {
+                "en": "Ashley says she is coming to Anna’s apartment.",
+                "zh-Hans": "Ashley says she is coming to Anna’s apartment.",
+                "zh-Hant": "Ashley says she is coming to Anna’s apartment."
+              },
+              {
+                "en": "Marsha is not named in this conversation.",
+                "zh-Hans": "Marsha is not named in this conversation.",
+                "zh-Hant": "Marsha is not named in this conversation."
+              }
+            ]
+          },
+          {
+            "id": "directions-place",
+            "blockId": "dialogue",
+            "prompt": "What is near Anna’s apartment?",
+            "options": [
+              "A library",
+              "A post office",
+              "The Columbia Heights Metro"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 95,
+              "end": 143
+            },
+            "explanations": [
+              {
+                "en": "The passage does not name a library.",
+                "zh-Hans": "The passage does not name a library.",
+                "zh-Hant": "The passage does not name a library."
+              },
+              {
+                "en": "The passage does not name a post office.",
+                "zh-Hans": "The passage does not name a post office.",
+                "zh-Hant": "The passage does not name a post office."
+              },
+              {
+                "en": "Anna says her apartment is near the Metro.",
+                "zh-Hans": "Anna says her apartment is near the Metro.",
+                "zh-Hant": "Anna says her apartment is near the Metro."
+              }
+            ]
+          },
+          {
+            "id": "directions-exit",
+            "blockId": "dialogue",
+            "prompt": "Which way should Ashley turn when she leaves the Metro?",
+            "options": [
+              "Right",
+              "Left",
+              "Back"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 202,
+              "end": 232
+            },
+            "explanations": [
+              {
+                "en": "The first direction is turn right.",
+                "zh-Hans": "The first direction is turn right.",
+                "zh-Hant": "The first direction is turn right."
+              },
+              {
+                "en": "Turn left is the direction at the bus station.",
+                "zh-Hans": "Turn left is the direction at the bus station.",
+                "zh-Hant": "Turn left is the direction at the bus station."
+              },
+              {
+                "en": "The passage does not say to go back.",
+                "zh-Hans": "The passage does not say to go back.",
+                "zh-Hant": "The passage does not say to go back."
+              }
+            ]
+          },
+          {
+            "id": "directions-bus",
+            "blockId": "dialogue",
+            "prompt": "What should Ashley do at the bus station?",
+            "options": [
+              "Turn right",
+              "Turn left",
+              "Stop and wait"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 233,
+              "end": 267
+            },
+            "explanations": [
+              {
+                "en": "Turn right comes when she leaves the Metro.",
+                "zh-Hans": "Turn right comes when she leaves the Metro.",
+                "zh-Hant": "Turn right comes when she leaves the Metro."
+              },
+              {
+                "en": "At the bus station, Anna says turn left.",
+                "zh-Hans": "At the bus station, Anna says turn left.",
+                "zh-Hant": "At the bus station, Anna says turn left."
+              },
+              {
+                "en": "Anna does not ask Ashley to wait.",
+                "zh-Hans": "Anna does not ask Ashley to wait.",
+                "zh-Hant": "Anna does not ask Ashley to wait."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a1-voa-library-check-draft",
+    "mode": "check",
+    "targetLevel": "A1",
+    "skill": "reading",
+    "title": {
+      "en": "This Is My Neighborhood · check draft",
+      "zh-Hans": "This Is My Neighborhood · check draft",
+      "zh-Hant": "This Is My Neighborhood · check draft"
+    },
+    "goal": {
+      "en": "Find people, places and actions in a short conversation.",
+      "zh-Hans": "在简短对话中找出人物、地点和行动。",
+      "zh-Hant": "在簡短對話中找出人物、地點和行動。"
+    },
+    "goalId": "library-reading",
+    "sourceId": "voa-course-11-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 4,
+    "materials": [
+      {
+        "id": "voa-library-check",
+        "rootId": "voa-article-3293986",
+        "sourceId": "voa-course-11-check",
+        "title": "This Is My Neighborhood — conversation excerpt",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Hello! DC is a city for walking. In our neighborhood, I can do all my errands. Marsha, before we get ice cream, I need to return three books to the library. Where is the library?\nMarsha: It is on this street on the corner.\nAnna: Awesome!\nMarsha: Let's go!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "library-item",
+            "blockId": "dialogue",
+            "prompt": "What does Anna need to return?",
+            "options": [
+              "Letters",
+              "Money",
+              "Books"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 118,
+              "end": 162
+            },
+            "explanations": [
+              {
+                "en": "Letters are not named in this excerpt.",
+                "zh-Hans": "Letters are not named in this excerpt.",
+                "zh-Hant": "Letters are not named in this excerpt."
+              },
+              {
+                "en": "Anna does not say she needs to return money.",
+                "zh-Hans": "Anna does not say she needs to return money.",
+                "zh-Hant": "Anna does not say she needs to return money."
+              },
+              {
+                "en": "Anna says she needs to return books.",
+                "zh-Hans": "Anna says she needs to return books.",
+                "zh-Hant": "Anna says she needs to return books."
+              }
+            ]
+          },
+          {
+            "id": "library-quantity",
+            "blockId": "dialogue",
+            "prompt": "How many books does Anna need to return?",
+            "options": [
+              "Two",
+              "Three",
+              "Four"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 135,
+              "end": 146
+            },
+            "explanations": [
+              {
+                "en": "Anna says three, not two.",
+                "zh-Hans": "Anna says three, not two.",
+                "zh-Hant": "Anna says three, not two."
+              },
+              {
+                "en": "Anna needs to return three books.",
+                "zh-Hans": "Anna needs to return three books.",
+                "zh-Hant": "Anna needs to return three books."
+              },
+              {
+                "en": "Anna says three, not four.",
+                "zh-Hans": "Anna says three, not four.",
+                "zh-Hant": "Anna says three, not four."
+              }
+            ]
+          },
+          {
+            "id": "library-location",
+            "blockId": "dialogue",
+            "prompt": "Where is the library?",
+            "options": [
+              "On the corner of this street",
+              "Behind a store",
+              "Across from a bank"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 193,
+              "end": 228
+            },
+            "explanations": [
+              {
+                "en": "Marsha says the library is on the corner.",
+                "zh-Hans": "Marsha says the library is on the corner.",
+                "zh-Hant": "Marsha says the library is on the corner."
+              },
+              {
+                "en": "Marsha does not say it is behind a store.",
+                "zh-Hans": "Marsha does not say it is behind a store.",
+                "zh-Hant": "Marsha does not say it is behind a store."
+              },
+              {
+                "en": "A bank is not mentioned in this excerpt.",
+                "zh-Hans": "A bank is not mentioned in this excerpt.",
+                "zh-Hant": "A bank is not mentioned in this excerpt."
+              }
+            ]
+          },
+          {
+            "id": "library-later",
+            "blockId": "dialogue",
+            "prompt": "What do they plan to get after Anna returns the books?",
+            "options": [
+              "Stamps",
+              "Ice cream",
+              "Tickets"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 93,
+              "end": 146
+            },
+            "explanations": [
+              {
+                "en": "They do not mention stamps in this excerpt.",
+                "zh-Hans": "They do not mention stamps in this excerpt.",
+                "zh-Hant": "They do not mention stamps in this excerpt."
+              },
+              {
+                "en": "Anna will return the books before they get ice cream.",
+                "zh-Hans": "Anna will return the books before they get ice cream.",
+                "zh-Hant": "Anna will return the books before they get ice cream."
+              },
+              {
+                "en": "They do not mention tickets in this excerpt.",
+                "zh-Hans": "They do not mention tickets in this excerpt.",
+                "zh-Hant": "They do not mention tickets in this excerpt."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a2-voa-family-check-draft",
+    "mode": "check",
+    "targetLevel": "A2",
+    "skill": "reading",
+    "title": {
+      "en": "Meet My Family · check draft",
+      "zh-Hans": "Meet My Family · check draft",
+      "zh-Hant": "Meet My Family · check draft"
+    },
+    "goal": {
+      "en": "Follow relationships, preferences and changes in a short conversation.",
+      "zh-Hans": "读懂简短对话中的关系、偏好和计划变化。",
+      "zh-Hant": "讀懂簡短對話中的關係、偏好和計畫變化。"
+    },
+    "goalId": "family-reading",
+    "sourceId": "voa-course-12-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 5,
+    "materials": [
+      {
+        "id": "voa-family-check",
+        "rootId": "voa-article-3301733",
+        "sourceId": "voa-course-12-check",
+        "title": "Meet My Family — conversation excerpt",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Marsha: Who is that woman in the picture?\nAnna: That is my Aunt Lavender. She is my mom's sister. She loves gardening and makes spoons.\nMarsha: She makes spoons?\nAnna: Of course.\nMarsha: That, too, is very different.\nAnna: Oh! This is my Uncle John. He is my father's brother.\nMarsha: What does Uncle John do?\nAnna: He's a chicken farmer. And makes guitars. He's awesome, and I'm his favorite niece.\nMarsha: Who are they?\nAnna: They are my cousins. They are my Uncle John's daughter and son.\nMarsha: What do they do?\nAnna: They raise sheep and make sweaters."
+          }
+        ],
+        "questions": [
+          {
+            "id": "family-aunt",
+            "blockId": "dialogue",
+            "prompt": "How is Aunt Lavender related to Anna?",
+            "options": [
+              "She is Anna’s mother’s sister",
+              "She is Anna’s father’s sister",
+              "She is Anna’s cousin"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 48,
+              "end": 97
+            },
+            "explanations": [
+              {
+                "en": "Anna identifies Lavender as her mom’s sister.",
+                "zh-Hans": "Anna identifies Lavender as her mom’s sister.",
+                "zh-Hant": "Anna identifies Lavender as her mom’s sister."
+              },
+              {
+                "en": "Anna says her mom’s sister, not her father’s sister.",
+                "zh-Hans": "Anna says her mom’s sister, not her father’s sister.",
+                "zh-Hant": "Anna says her mom’s sister, not her father’s sister."
+              },
+              {
+                "en": "Anna identifies different people as her cousins.",
+                "zh-Hans": "Anna identifies different people as her cousins.",
+                "zh-Hant": "Anna identifies different people as her cousins."
+              }
+            ]
+          },
+          {
+            "id": "family-uncle",
+            "blockId": "dialogue",
+            "prompt": "What does Uncle John do in addition to farming?",
+            "options": [
+              "He makes spoons",
+              "He makes sweaters",
+              "He makes guitars"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 316,
+              "end": 357
+            },
+            "explanations": [
+              {
+                "en": "Aunt Lavender makes spoons.",
+                "zh-Hans": "Aunt Lavender makes spoons.",
+                "zh-Hant": "Aunt Lavender makes spoons."
+              },
+              {
+                "en": "Anna’s cousins make sweaters.",
+                "zh-Hans": "Anna’s cousins make sweaters.",
+                "zh-Hant": "Anna’s cousins make sweaters."
+              },
+              {
+                "en": "John is both a chicken farmer and a guitar maker.",
+                "zh-Hans": "John is both a chicken farmer and a guitar maker.",
+                "zh-Hant": "John is both a chicken farmer and a guitar maker."
+              }
+            ]
+          },
+          {
+            "id": "family-cousins",
+            "blockId": "dialogue",
+            "prompt": "Who are Anna’s cousins in this conversation?",
+            "options": [
+              "Aunt Lavender’s children",
+              "Uncle John’s daughter and son",
+              "Anna’s brother and sister"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 428,
+              "end": 491
+            },
+            "explanations": [
+              {
+                "en": "Anna names Uncle John as their father.",
+                "zh-Hans": "Anna names Uncle John as their father.",
+                "zh-Hant": "Anna names Uncle John as their father."
+              },
+              {
+                "en": "Anna explicitly says her cousins are John’s daughter and son.",
+                "zh-Hans": "Anna explicitly says her cousins are John’s daughter and son.",
+                "zh-Hant": "Anna explicitly says her cousins are John’s daughter and son."
+              },
+              {
+                "en": "They are John’s children, not Anna’s siblings.",
+                "zh-Hans": "They are John’s children, not Anna’s siblings.",
+                "zh-Hant": "They are John’s children, not Anna’s siblings."
+              }
+            ]
+          },
+          {
+            "id": "family-work",
+            "blockId": "dialogue",
+            "prompt": "Which pair of activities belongs to Anna’s cousins?",
+            "options": [
+              "Gardening and making spoons",
+              "Chicken farming and making guitars",
+              "Raising sheep and making sweaters"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 523,
+              "end": 558
+            },
+            "explanations": [
+              {
+                "en": "These are Aunt Lavender’s activities.",
+                "zh-Hans": "These are Aunt Lavender’s activities.",
+                "zh-Hant": "These are Aunt Lavender’s activities."
+              },
+              {
+                "en": "These are Uncle John’s activities.",
+                "zh-Hans": "These are Uncle John’s activities.",
+                "zh-Hant": "These are Uncle John’s activities."
+              },
+              {
+                "en": "The answer to what the cousins do names sheep and sweaters.",
+                "zh-Hans": "The answer to what the cousins do names sheep and sweaters.",
+                "zh-Hant": "The answer to what the cousins do names sheep and sweaters."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a2-voa-tourists-check-draft",
+    "mode": "check",
+    "targetLevel": "A2",
+    "skill": "reading",
+    "title": {
+      "en": "Where Are You From? · check draft",
+      "zh-Hans": "Where Are You From? · check draft",
+      "zh-Hant": "Where Are You From? · check draft"
+    },
+    "goal": {
+      "en": "Follow relationships, preferences and changes in a short conversation.",
+      "zh-Hans": "读懂简短对话中的关系、偏好和计划变化。",
+      "zh-Hant": "讀懂簡短對話中的關係、偏好和計畫變化。"
+    },
+    "goalId": "tourists-reading",
+    "sourceId": "voa-course-16-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 5,
+    "materials": [
+      {
+        "id": "voa-tourists-check",
+        "rootId": "voa-article-3355849",
+        "sourceId": "voa-course-16-check",
+        "title": "Where Are You From? — conversation excerpt",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: What is your name and where are you from?\nLouis: My name is Louis. And I’m from China.\nAnna: What languages do you speak?\nLouis: I speak Chinese and English.\nAnna: What do you like about Washington DC?\nLouis: I like the museums. I really like the art museums.\nAnna: Many of the museums are free.\nLouis: I like that too!\nAnna: Awesome! Thanks for your time, Louis.\nLouis: You’re very welcome. Bye!\nAnna: Now, let’s find another tourist!\nAnna: Hello! I am Anna Matteo from The News. Do you have time to answer a couple of questions?\nMehrnoush: Sure!\nAnna: What is your name and where’re you from?\nMehrnoush: My name is Mehrnoush. I am from Iran. I’m Iranian.\nAnna: What language do they speak in Iran? Is it Persian?\nMehrnoush: They speak Farsi.\nAnna: What do you like to do in Washington DC?\nMehrnoush: Well, I like learning about government and politics."
+          }
+        ],
+        "questions": [
+          {
+            "id": "tourists-languages",
+            "blockId": "dialogue",
+            "prompt": "Which languages does Louis say he speaks?",
+            "options": [
+              "Chinese and Farsi",
+              "Chinese and English",
+              "English and Italian"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 135,
+              "end": 163
+            },
+            "explanations": [
+              {
+                "en": "Farsi is mentioned later in the interview with Mehrnoush.",
+                "zh-Hans": "Farsi is mentioned later in the interview with Mehrnoush.",
+                "zh-Hant": "Farsi is mentioned later in the interview with Mehrnoush."
+              },
+              {
+                "en": "Louis names Chinese and English.",
+                "zh-Hans": "Louis names Chinese and English.",
+                "zh-Hant": "Louis names Chinese and English."
+              },
+              {
+                "en": "Louis does not name Italian.",
+                "zh-Hans": "Louis does not name Italian.",
+                "zh-Hant": "Louis does not name Italian."
+              }
+            ]
+          },
+          {
+            "id": "tourists-museum",
+            "blockId": "dialogue",
+            "prompt": "Which museums does Louis particularly like?",
+            "options": [
+              "Art museums",
+              "Science museums",
+              "History museums"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 235,
+              "end": 265
+            },
+            "explanations": [
+              {
+                "en": "Really like identifies art museums as a particular preference.",
+                "zh-Hans": "Really like identifies art museums as a particular preference.",
+                "zh-Hant": "Really like identifies art museums as a particular preference."
+              },
+              {
+                "en": "Louis does not name science museums.",
+                "zh-Hans": "Louis does not name science museums.",
+                "zh-Hant": "Louis does not name science museums."
+              },
+              {
+                "en": "Louis does not name history museums.",
+                "zh-Hans": "Louis does not name history museums.",
+                "zh-Hant": "Louis does not name history museums."
+              }
+            ]
+          },
+          {
+            "id": "tourists-fee",
+            "blockId": "dialogue",
+            "prompt": "Besides their art, what does Louis like about many museums?",
+            "options": [
+              "They are near his home",
+              "They open all night",
+              "They are free"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 272,
+              "end": 325
+            },
+            "explanations": [
+              {
+                "en": "The interview does not say the museums are near his home.",
+                "zh-Hans": "The interview does not say the museums are near his home.",
+                "zh-Hant": "The interview does not say the museums are near his home."
+              },
+              {
+                "en": "The interview gives no opening hours.",
+                "zh-Hans": "The interview gives no opening hours.",
+                "zh-Hant": "The interview gives no opening hours."
+              },
+              {
+                "en": "Louis’s that too refers to Anna’s statement that many museums are free.",
+                "zh-Hans": "Louis’s that too refers to Anna’s statement that many museums are free.",
+                "zh-Hant": "Louis’s that too refers to Anna’s statement that many museums are free."
+              }
+            ]
+          },
+          {
+            "id": "tourists-interest",
+            "blockId": "dialogue",
+            "prompt": "What does Mehrnoush want to learn about?",
+            "options": [
+              "Art and painting",
+              "Government and politics",
+              "Farming and gardening"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 814,
+              "end": 860
+            },
+            "explanations": [
+              {
+                "en": "Art museums are Louis’s interest.",
+                "zh-Hans": "Art museums are Louis’s interest.",
+                "zh-Hant": "Art museums are Louis’s interest."
+              },
+              {
+                "en": "Mehrnoush explicitly names government and politics.",
+                "zh-Hans": "Mehrnoush explicitly names government and politics.",
+                "zh-Hant": "Mehrnoush explicitly names government and politics."
+              },
+              {
+                "en": "The interview does not say she wants to learn about farming or gardening.",
+                "zh-Hans": "The interview does not say she wants to learn about farming or gardening.",
+                "zh-Hant": "The interview does not say she wants to learn about farming or gardening."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a2-voa-plans-check-draft",
+    "mode": "check",
+    "targetLevel": "A2",
+    "skill": "reading",
+    "title": {
+      "en": "Are You Free on Friday? · check draft",
+      "zh-Hans": "Are You Free on Friday? · check draft",
+      "zh-Hant": "Are You Free on Friday? · check draft"
+    },
+    "goal": {
+      "en": "Follow relationships, preferences and changes in a short conversation.",
+      "zh-Hans": "读懂简短对话中的关系、偏好和计划变化。",
+      "zh-Hant": "讀懂簡短對話中的關係、偏好和計畫變化。"
+    },
+    "goalId": "plans-reading",
+    "sourceId": "voa-course-17-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 5,
+    "materials": [
+      {
+        "id": "voa-plans-check",
+        "rootId": "voa-article-3355785",
+        "sourceId": "voa-course-17-check",
+        "title": "Are You Free on Friday? — conversation excerpt",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Marsha: How about on Wednesday night?\nAnna: Wednesday night I am not busy. Oh, no, wait. This Wednesday night I will be busy.\nMarsha: What are you doing?\nAnna: I’m going to teach children how to play the ukulele.\nAnna: Now, children, play “C.” Good. I like your “C.”\nMarsha: The world does need more ukulele players.\nAnna: Marsha, it looks like we’ll never have time to see a movie.\nAnna: Wait a minute. Are you busy now?\nMarsha: It’s Saturday afternoon. This is always when I do my errands.\nAnna: Okay, but the new Star Wars movie is gonna start in 30 minutes.\nMarsha: I’ll do my errands on Sunday. Let’s go!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "plans-revision",
+            "blockId": "dialogue",
+            "prompt": "After correcting herself, is Anna free this Wednesday night?",
+            "options": [
+              "Yes, she has no plans",
+              "No, she will be busy",
+              "She has not decided"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 75,
+              "end": 125
+            },
+            "explanations": [
+              {
+                "en": "The first not busy statement is corrected.",
+                "zh-Hans": "The first not busy statement is corrected.",
+                "zh-Hant": "The first not busy statement is corrected."
+              },
+              {
+                "en": "Anna’s final answer says she will be busy this Wednesday.",
+                "zh-Hans": "Anna’s final answer says she will be busy this Wednesday.",
+                "zh-Hant": "Anna’s final answer says she will be busy this Wednesday."
+              },
+              {
+                "en": "She gives a definite corrected answer.",
+                "zh-Hans": "She gives a definite corrected answer.",
+                "zh-Hant": "She gives a definite corrected answer."
+              }
+            ]
+          },
+          {
+            "id": "plans-teaching",
+            "blockId": "dialogue",
+            "prompt": "What is Anna planning to do on Wednesday?",
+            "options": [
+              "Teach children to play the ukulele",
+              "Watch children play a board game",
+              "Go to a movie with Marsha"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 160,
+              "end": 212
+            },
+            "explanations": [
+              {
+                "en": "Anna’s stated plan is to teach ukulele.",
+                "zh-Hans": "Anna’s stated plan is to teach ukulele.",
+                "zh-Hant": "Anna’s stated plan is to teach ukulele."
+              },
+              {
+                "en": "No board game is named in this excerpt.",
+                "zh-Hans": "No board game is named in this excerpt.",
+                "zh-Hant": "No board game is named in this excerpt."
+              },
+              {
+                "en": "The Wednesday plan prevents seeing a movie then.",
+                "zh-Hans": "The Wednesday plan prevents seeing a movie then.",
+                "zh-Hant": "The Wednesday plan prevents seeing a movie then."
+              }
+            ]
+          },
+          {
+            "id": "plans-usual",
+            "blockId": "dialogue",
+            "prompt": "What does Marsha usually do on Saturday afternoon?",
+            "options": [
+              "Teach music",
+              "Watch a new movie",
+              "Do her errands"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 430,
+              "end": 491
+            },
+            "explanations": [
+              {
+                "en": "Music teaching is Anna’s Wednesday plan.",
+                "zh-Hans": "Music teaching is Anna’s Wednesday plan.",
+                "zh-Hant": "Music teaching is Anna’s Wednesday plan."
+              },
+              {
+                "en": "The movie is a new invitation, not Marsha’s stated Saturday routine.",
+                "zh-Hans": "The movie is a new invitation, not Marsha’s stated Saturday routine.",
+                "zh-Hant": "The movie is a new invitation, not Marsha’s stated Saturday routine."
+              },
+              {
+                "en": "Always when I do my errands identifies her usual routine.",
+                "zh-Hans": "Always when I do my errands identifies her usual routine.",
+                "zh-Hant": "Always when I do my errands identifies her usual routine."
+              }
+            ]
+          },
+          {
+            "id": "plans-change",
+            "blockId": "dialogue",
+            "prompt": "What does Marsha decide to do so they can go to the movie now?",
+            "options": [
+              "Do her errands on Sunday",
+              "Ask Anna to teach on Sunday",
+              "Wait until Wednesday to see it"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 570,
+              "end": 609
+            },
+            "explanations": [
+              {
+                "en": "Marsha moves her errands to Sunday and agrees to go.",
+                "zh-Hans": "Marsha moves her errands to Sunday and agrees to go.",
+                "zh-Hant": "Marsha moves her errands to Sunday and agrees to go."
+              },
+              {
+                "en": "Marsha changes her own errands, not Anna’s teaching.",
+                "zh-Hans": "Marsha changes her own errands, not Anna’s teaching.",
+                "zh-Hant": "Marsha changes her own errands, not Anna’s teaching."
+              },
+              {
+                "en": "Let’s go accepts the invitation now, not on Wednesday.",
+                "zh-Hans": "Let’s go accepts the invitation now, not on Wednesday.",
+                "zh-Hant": "Let’s go accepts the invitation now, not on Wednesday."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b1-voa-borrowing-check-draft",
+    "mode": "check",
+    "targetLevel": "B1",
+    "skill": "reading",
+    "title": {
+      "en": "End Your Confusion about Borrow and Lend · check draft",
+      "zh-Hans": "End Your Confusion about Borrow and Lend · check draft",
+      "zh-Hant": "End Your Confusion about Borrow and Lend · check draft"
+    },
+    "goal": {
+      "en": "Follow reasons, references and conditions in an original explanation.",
+      "zh-Hans": "Follow reasons, references and conditions in an original explanation.",
+      "zh-Hant": "Follow reasons, references and conditions in an original explanation."
+    },
+    "goalId": "borrowing-reading",
+    "sourceId": "voa-article-4947277-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 6,
+    "materials": [
+      {
+        "id": "voa-borrowing-check",
+        "rootId": "voa-article-4947277",
+        "sourceId": "voa-article-4947277-check",
+        "title": "End Your Confusion about Borrow and Lend — original author excerpt",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Notice that the prepositions that often follow the verbs are different. We borrow from someone, but we lend to someone.\n\nLet’s say you and I go shopping, Tina. I need to sign my name on a receipt, but I do not have a pen. So I ask you, “Can I borrow a pen?” I chose “borrow” because I am thinking of the action as it relates to me. You are a good friend, so you lend me the pen. I forget it is yours and I put it in my bag.\n\nLater, we meet a good friend and she asks for your email address. You search in your bag, but – no pen! You think, “I lent Jill my pen. And she didn’t give it back to me.” Now you are thinking of the action that you did. So, you can ask me, “Jill, do you remember that pen I lent you? I need it now.”\n\nI feel bad that I forgot to return the pen. I say, “Sorry, Tina! I forgot that I borrowed it. Here you are!”"
+          }
+        ],
+        "questions": [
+          {
+            "id": "borrowing-need",
+            "blockId": "source",
+            "prompt": "Why does the narrator first ask Tina for a pen?",
+            "options": [
+              "She wants to sign a receipt but has no pen",
+              "She wants to give Tina a new pen",
+              "She wants to write her friend’s email address"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 160,
+              "end": 221
+            },
+            "explanations": [
+              {
+                "en": "The receipt and missing pen explain the first request.",
+                "zh-Hans": "The receipt and missing pen explain the first request.",
+                "zh-Hant": "The receipt and missing pen explain the first request."
+              },
+              {
+                "en": "The narrator asks to borrow a pen, not to give one away.",
+                "zh-Hans": "The narrator asks to borrow a pen, not to give one away.",
+                "zh-Hant": "The narrator asks to borrow a pen, not to give one away."
+              },
+              {
+                "en": "The email address comes up later, when Tina needs her pen.",
+                "zh-Hans": "The email address comes up later, when Tina needs her pen.",
+                "zh-Hant": "The email address comes up later, when Tina needs her pen."
+              }
+            ]
+          },
+          {
+            "id": "borrowing-direction",
+            "blockId": "source",
+            "prompt": "Which description matches the first transfer of the pen?",
+            "options": [
+              "Jill lends her pen to Tina",
+              "Tina lends her pen to Jill",
+              "Tina gives her pen to Jill permanently"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 332,
+              "end": 423
+            },
+            "explanations": [
+              {
+                "en": "The narrator receives Tina’s pen, not the other way around.",
+                "zh-Hans": "The narrator receives Tina’s pen, not the other way around.",
+                "zh-Hant": "The narrator receives Tina’s pen, not the other way around."
+              },
+              {
+                "en": "Tina lends the pen to the narrator, later identified as Jill.",
+                "zh-Hans": "Tina lends the pen to the narrator, later identified as Jill.",
+                "zh-Hant": "Tina lends the pen to the narrator, later identified as Jill."
+              },
+              {
+                "en": "The later request and apology show that the pen should be returned.",
+                "zh-Hans": "The later request and apology show that the pen should be returned.",
+                "zh-Hant": "The later request and apology show that the pen should be returned."
+              }
+            ]
+          },
+          {
+            "id": "borrowing-later",
+            "blockId": "source",
+            "prompt": "What prompts Tina to look for her pen later?",
+            "options": [
+              "Jill asks her to sign a receipt",
+              "She wants to put it in Jill’s bag",
+              "A friend asks for her email address"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 425,
+              "end": 528
+            },
+            "explanations": [
+              {
+                "en": "Signing the receipt explains Jill’s earlier request.",
+                "zh-Hans": "Signing the receipt explains Jill’s earlier request.",
+                "zh-Hant": "Signing the receipt explains Jill’s earlier request."
+              },
+              {
+                "en": "Jill has already put Tina’s pen in her own bag.",
+                "zh-Hans": "Jill has already put Tina’s pen in her own bag.",
+                "zh-Hant": "Jill has already put Tina’s pen in her own bag."
+              },
+              {
+                "en": "The friend’s request leads Tina to search her bag.",
+                "zh-Hans": "The friend’s request leads Tina to search her bag.",
+                "zh-Hant": "The friend’s request leads Tina to search her bag."
+              }
+            ]
+          },
+          {
+            "id": "borrowing-apology",
+            "blockId": "source",
+            "prompt": "What does Jill’s apology admit?",
+            "options": [
+              "She forgot to return something she had borrowed",
+              "She deliberately gave Tina’s pen to their friend",
+              "She forgot that Tina had borrowed her pen"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 727,
+              "end": 835
+            },
+            "explanations": [
+              {
+                "en": "Jill acknowledges borrowing the pen and forgetting to return it.",
+                "zh-Hans": "Jill acknowledges borrowing the pen and forgetting to return it.",
+                "zh-Hant": "Jill acknowledges borrowing the pen and forgetting to return it."
+              },
+              {
+                "en": "The passage describes forgetting, not deliberately giving the pen away.",
+                "zh-Hans": "The passage describes forgetting, not deliberately giving the pen away.",
+                "zh-Hant": "The passage describes forgetting, not deliberately giving the pen away."
+              },
+              {
+                "en": "Jill borrowed Tina’s pen, not the reverse.",
+                "zh-Hans": "Jill borrowed Tina’s pen, not the reverse.",
+                "zh-Hant": "Jill borrowed Tina’s pen, not the reverse."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b1-voa-question-choices-check-draft",
+    "mode": "check",
+    "targetLevel": "B1",
+    "skill": "reading",
+    "title": {
+      "en": "What vs. Which · check draft",
+      "zh-Hans": "What vs. Which · check draft",
+      "zh-Hant": "What vs. Which · check draft"
+    },
+    "goal": {
+      "en": "Follow reasons, references and conditions in an original explanation.",
+      "zh-Hans": "Follow reasons, references and conditions in an original explanation.",
+      "zh-Hant": "Follow reasons, references and conditions in an original explanation."
+    },
+    "goalId": "question-choices-reading",
+    "sourceId": "voa-article-6620353-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 6,
+    "materials": [
+      {
+        "id": "voa-question-choices-check",
+        "rootId": "voa-article-6620353",
+        "sourceId": "voa-article-6620353-check",
+        "title": "What vs. Which — original author excerpt",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "When we ask a question using “what,” we are asking for information because we do not know the answer. The information can be about things or actions.\n\nFor example:\n\nWhat is your favorite kind of pizza?\n\nIn this example, the person who asks the question does not know what kind of pizza the other person likes.\n\nThere can be an unlimited number of possible answers. This is important when trying to decide between the two question words.\nA person answering the pizza question could say a favorite combination of toppings, like meat and cheese, or even a favorite style of pizza.\n\nWhich\n\nWe use “which” to ask questions about specific information or when we are presenting a set of choices.\n\nWe may have some background information that we want to explore more by using a “which” question.\n\nFor example, if I am in a parking lot with my friend and I know she has a car but am unsure which is hers, I could ask a question using “which.”\nWhich is yours, the blue truck or the red car?\n\nHere, the question deals with a limited choice. So we use the question word “which.”"
+          }
+        ],
+        "questions": [
+          {
+            "id": "question-choices-unknown",
+            "blockId": "source",
+            "prompt": "What does the person asking the pizza question not know?",
+            "options": [
+              "Whether pizza exists",
+              "Which pizza the other person likes",
+              "How many cars are in a parking lot"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 220,
+              "end": 309
+            },
+            "explanations": [
+              {
+                "en": "The uncertainty is about a personal preference, not whether pizza exists.",
+                "zh-Hans": "The uncertainty is about a personal preference, not whether pizza exists.",
+                "zh-Hant": "The uncertainty is about a personal preference, not whether pizza exists."
+              },
+              {
+                "en": "The writer explicitly identifies the unknown preference.",
+                "zh-Hans": "The writer explicitly identifies the unknown preference.",
+                "zh-Hant": "The writer explicitly identifies the unknown preference."
+              },
+              {
+                "en": "Cars belong to a different example.",
+                "zh-Hans": "Cars belong to a different example.",
+                "zh-Hant": "Cars belong to a different example."
+              }
+            ]
+          },
+          {
+            "id": "question-choices-range",
+            "blockId": "source",
+            "prompt": "Why does the writer treat the pizza question as open-ended?",
+            "options": [
+              "It offers only meat or cheese",
+              "It requires one particular style of pizza",
+              "A reply could name many toppings or styles"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 311,
+              "end": 364
+            },
+            "explanations": [
+              {
+                "en": "Meat and cheese are examples, not the only permitted answers.",
+                "zh-Hans": "Meat and cheese are examples, not the only permitted answers.",
+                "zh-Hant": "Meat and cheese are examples, not the only permitted answers."
+              },
+              {
+                "en": "The passage allows different styles and combinations.",
+                "zh-Hans": "The passage allows different styles and combinations.",
+                "zh-Hant": "The passage allows different styles and combinations."
+              },
+              {
+                "en": "The possible answers are not limited to a supplied set.",
+                "zh-Hans": "The possible answers are not limited to a supplied set.",
+                "zh-Hant": "The possible answers are not limited to a supplied set."
+              }
+            ]
+          },
+          {
+            "id": "question-choices-background",
+            "blockId": "source",
+            "prompt": "What does the speaker already know in the parking-lot example?",
+            "options": [
+              "The friend has a car",
+              "The blue truck belongs to the friend",
+              "The friend likes pizza"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 846,
+              "end": 894
+            },
+            "explanations": [
+              {
+                "en": "The speaker knows a car exists but does not know which one is hers.",
+                "zh-Hans": "The speaker knows a car exists but does not know which one is hers.",
+                "zh-Hant": "The speaker knows a car exists but does not know which one is hers."
+              },
+              {
+                "en": "The vehicle’s ownership is precisely what the question asks.",
+                "zh-Hans": "The vehicle’s ownership is precisely what the question asks.",
+                "zh-Hant": "The vehicle’s ownership is precisely what the question asks."
+              },
+              {
+                "en": "The friend’s food preference is not part of this example.",
+                "zh-Hans": "The friend’s food preference is not part of this example.",
+                "zh-Hant": "The friend’s food preference is not part of this example."
+              }
+            ]
+          },
+          {
+            "id": "question-choices-limit",
+            "blockId": "source",
+            "prompt": "What makes the vehicle question a limited-choice question?",
+            "options": [
+              "The speaker knows the correct vehicle already",
+              "It presents the blue truck and red car as alternatives",
+              "It asks the friend to name any vehicle in the world"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 934,
+              "end": 980
+            },
+            "explanations": [
+              {
+                "en": "The speaker is still unsure which vehicle belongs to the friend.",
+                "zh-Hans": "The speaker is still unsure which vehicle belongs to the friend.",
+                "zh-Hant": "The speaker is still unsure which vehicle belongs to the friend."
+              },
+              {
+                "en": "The question supplies two alternatives.",
+                "zh-Hans": "The question supplies two alternatives.",
+                "zh-Hant": "The question supplies two alternatives."
+              },
+              {
+                "en": "The question limits the alternatives to two named vehicles.",
+                "zh-Hans": "The question limits the alternatives to two named vehicles.",
+                "zh-Hant": "The question limits the alternatives to two named vehicles."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b1-voa-thinking-check-draft",
+    "mode": "check",
+    "targetLevel": "B1",
+    "skill": "reading",
+    "title": {
+      "en": "Thinking in English · check draft",
+      "zh-Hans": "Thinking in English · check draft",
+      "zh-Hant": "Thinking in English · check draft"
+    },
+    "goal": {
+      "en": "Follow reasons, references and conditions in an original explanation.",
+      "zh-Hans": "Follow reasons, references and conditions in an original explanation.",
+      "zh-Hant": "Follow reasons, references and conditions in an original explanation."
+    },
+    "goalId": "thinking-reading",
+    "sourceId": "voa-article-7829311-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 6,
+    "materials": [
+      {
+        "id": "voa-thinking-check",
+        "rootId": "voa-article-7829311",
+        "sourceId": "voa-article-7829311-check",
+        "title": "Thinking in English — original author excerpt",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "However, we can still notice what happens when we think in a foreign language. And we can compare it to times when we have to pause and translate from our native language.\nConsider what happens when you exchange simple greetings, questions, and answers in a foreign language. If someone asks you in English, “How are you today?” you can probably answer without pausing or translating from your native language. For example, you can quickly reply, “I’m fine, thank you. And how are you?”\nThis example shows us the basic things we need for thinking in a foreign language. In this situation, you know all the words you need to say. You don’t need to stop and think about the grammar. And you have heard and said these phrases so many times that your response is automatic.\nThe reason the second conversation you talk about feels more natural is because you have already heard and used some of the vocabulary and grammar you need. So, for any subject you want to discuss, you will be able to think in English after you have learned and practiced what you need to say many times.\n\nSteps for thinking in English\n\nHere are some suggestions for learning to think in English:\nChoose a subject you are interested in discussing. Then, imagine you are speaking with another person. How easily and quickly can your mind find the vocabulary and grammar you need? Note when you need to pause to find vocabulary or think about grammar. Next, learn the vocabulary and grammar and then practice using them several times. Repeat the words until they become automatic.\nIf you can plan ahead and practice in your mind what you will likely talk about, then your first conversation might feel easier and similar to a second conversation."
+          }
+        ],
+        "questions": [
+          {
+            "id": "thinking-automatic",
+            "blockId": "source",
+            "prompt": "Why can a familiar greeting receive an automatic answer in the writer’s example?",
+            "options": [
+              "The learner avoids hearing the question",
+              "The learner always translates each word first",
+              "The learner has heard and said the phrases many times"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 685,
+              "end": 769
+            },
+            "explanations": [
+              {
+                "en": "The example involves hearing and understanding the question.",
+                "zh-Hans": "The example involves hearing and understanding the question.",
+                "zh-Hant": "The example involves hearing and understanding the question."
+              },
+              {
+                "en": "The example describes answering without pausing to translate.",
+                "zh-Hans": "The example describes answering without pausing to translate.",
+                "zh-Hant": "The example describes answering without pausing to translate."
+              },
+              {
+                "en": "Repeated hearing and use explain the automatic response.",
+                "zh-Hans": "Repeated hearing and use explain the automatic response.",
+                "zh-Hant": "Repeated hearing and use explain the automatic response."
+              }
+            ]
+          },
+          {
+            "id": "thinking-topic",
+            "blockId": "source",
+            "prompt": "What does the writer recommend as the first step of the suggested practice?",
+            "options": [
+              "Choose a subject you want to discuss",
+              "Memorize every word in a dictionary",
+              "Wait for a stranger to choose a subject"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 1167,
+              "end": 1217
+            },
+            "explanations": [
+              {
+                "en": "The practice starts with a subject that interests the learner.",
+                "zh-Hans": "The practice starts with a subject that interests the learner.",
+                "zh-Hant": "The practice starts with a subject that interests the learner."
+              },
+              {
+                "en": "The writer recommends relevant vocabulary, not an entire dictionary.",
+                "zh-Hans": "The writer recommends relevant vocabulary, not an entire dictionary.",
+                "zh-Hant": "The writer recommends relevant vocabulary, not an entire dictionary."
+              },
+              {
+                "en": "The writer asks the learner to choose a subject.",
+                "zh-Hans": "The writer asks the learner to choose a subject.",
+                "zh-Hant": "The writer asks the learner to choose a subject."
+              }
+            ]
+          },
+          {
+            "id": "thinking-pause",
+            "blockId": "source",
+            "prompt": "Why should the learner notice pauses during an imagined conversation?",
+            "options": [
+              "To avoid practising the difficult parts",
+              "To identify vocabulary or grammar that needs practice",
+              "To prove that all conversations will be easy"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 1349,
+              "end": 1502
+            },
+            "explanations": [
+              {
+                "en": "The next step is to learn and practise those parts.",
+                "zh-Hans": "The next step is to learn and practise those parts.",
+                "zh-Hant": "The next step is to learn and practise those parts."
+              },
+              {
+                "en": "Noticing the pauses reveals what the learner needs to learn and practise.",
+                "zh-Hans": "Noticing the pauses reveals what the learner needs to learn and practise.",
+                "zh-Hant": "Noticing the pauses reveals what the learner needs to learn and practise."
+              },
+              {
+                "en": "Pauses identify practice needs; they do not prove all conversations will be easy.",
+                "zh-Hans": "Pauses identify practice needs; they do not prove all conversations will be easy.",
+                "zh-Hant": "Pauses identify practice needs; they do not prove all conversations will be easy."
+              }
+            ]
+          },
+          {
+            "id": "thinking-outcome",
+            "blockId": "source",
+            "prompt": "What result does the final sentence suggest if a learner plans and rehearses likely topics?",
+            "options": [
+              "Every conversation is guaranteed to be fluent",
+              "No more practice will ever be needed",
+              "The first conversation might feel easier"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 1630,
+              "end": 1714
+            },
+            "explanations": [
+              {
+                "en": "Might feel easier is a possibility, not a guarantee of fluency.",
+                "zh-Hans": "Might feel easier is a possibility, not a guarantee of fluency.",
+                "zh-Hant": "Might feel easier is a possibility, not a guarantee of fluency."
+              },
+              {
+                "en": "The passage repeatedly recommends practice.",
+                "zh-Hans": "The passage repeatedly recommends practice.",
+                "zh-Hant": "The passage repeatedly recommends practice."
+              },
+              {
+                "en": "The conditional recommendation uses might to describe a possible benefit.",
+                "zh-Hans": "The conditional recommendation uses might to describe a possible benefit.",
+                "zh-Hant": "The conditional recommendation uses might to describe a possible benefit."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b2-voa-fluency-check-draft",
+    "mode": "check",
+    "targetLevel": "B2",
+    "skill": "reading",
+    "title": {
+      "en": "Speaking Fluently · check draft",
+      "zh-Hans": "Speaking Fluently · check draft",
+      "zh-Hant": "Speaking Fluently · check draft"
+    },
+    "goal": {
+      "en": "Distinguish the writer’s definition, conditions and qualified recommendations.",
+      "zh-Hans": "Distinguish the writer’s definition, conditions and qualified recommendations.",
+      "zh-Hant": "Distinguish the writer’s definition, conditions and qualified recommendations."
+    },
+    "goalId": "fluency-conditions-reading",
+    "sourceId": "voa-article-7750089-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 7,
+    "materials": [
+      {
+        "id": "voa-fluency-check",
+        "rootId": "voa-article-7750089",
+        "sourceId": "voa-article-7750089-check",
+        "title": "Speaking Fluently — original author excerpt",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "To help you reach your goal, consider the following two questions:\n\n1. What is making it difficult for you to become fluent?\n\n2. Are you getting the input and practice with English that you need? Input means the language you listen to and read.\n\nBeing fluent does not mean speaking a language without any mistakes. Instead, fluency is the ability to speak without stopping too much. It is also the ability to speak about a large number of issues.\n\nTry to identify what is preventing you from being fluent. Maybe you worry about making grammar mistakes. Maybe pronunciation problems slow you down. Perhaps you simply might not know enough words. Or, you might need more confidence, or belief in yourself. If that is the case, our VOA Learning English article linked here gives advice for gaining more confidence in your speaking.\n\nTwo things to know\n\nPeople generally need two things to become fluent. The first thing they need is to know a lot of words and expressions. You should listen to and read English that you can mostly understand but that also helps you learn a few new expressions at a time.\n\nRemember, you can be fluent even if you make many grammar mistakes. But you cannot speak fluently if you do not know enough words and expressions.\n\nThe second thing learners need is a lot of practice speaking in different kinds of situations.\n\nTry to find an English-speaking partner and practice often. Online sites can help you find a language partner. You can have a conversation with this person over a mobile phone or computer. And this VOA Learning English article gives advice for great language exchanges.\n\nOther suggestions\n\nPractice speaking about particular topics. For example, if you are interested in health and exercise, learn the words and expressions connected to that topic. Next, try to write about it. Writing can help you organize your ideas and remember vocabulary. Last, practice speaking about the topic, using the special vocabulary you have learned.\n\nStorytelling is another way to practice. It helps you learn expressions and grammatical forms. Tell a story many times. That will help you feel what it is like to speak fluently."
+          }
+        ],
+        "questions": [
+          {
+            "id": "fluency-definition",
+            "blockId": "source",
+            "prompt": "Which statement preserves the writer’s definition of fluency?",
+            "options": [
+              "A fluent speaker never makes a grammar mistake",
+              "A fluent speaker avoids excessive pauses and can discuss many issues",
+              "A fluent speaker only reads silently"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 246,
+              "end": 446
+            },
+            "explanations": [
+              {
+                "en": "The writer explicitly separates fluency from having no mistakes.",
+                "zh-Hans": "The writer explicitly separates fluency from having no mistakes.",
+                "zh-Hant": "The writer explicitly separates fluency from having no mistakes."
+              },
+              {
+                "en": "The definition combines continuity of speech with a range of subjects.",
+                "zh-Hans": "The definition combines continuity of speech with a range of subjects.",
+                "zh-Hant": "The definition combines continuity of speech with a range of subjects."
+              },
+              {
+                "en": "The definition concerns speaking, not silent reading alone.",
+                "zh-Hans": "The definition concerns speaking, not silent reading alone.",
+                "zh-Hant": "The definition concerns speaking, not silent reading alone."
+              }
+            ]
+          },
+          {
+            "id": "fluency-input",
+            "blockId": "source",
+            "prompt": "What balance does the writer recommend for listening and reading input?",
+            "options": [
+              "Material that is mostly understandable but introduces a few expressions",
+              "Material with no unfamiliar expressions at all",
+              "Material that is entirely incomprehensible"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 1000,
+              "end": 1101
+            },
+            "explanations": [
+              {
+                "en": "Mostly understand and a few new expressions preserve both parts of the recommendation.",
+                "zh-Hans": "Mostly understand and a few new expressions preserve both parts of the recommendation.",
+                "zh-Hant": "Mostly understand and a few new expressions preserve both parts of the recommendation."
+              },
+              {
+                "en": "The recommendation includes learning new expressions.",
+                "zh-Hans": "The recommendation includes learning new expressions.",
+                "zh-Hant": "The recommendation includes learning new expressions."
+              },
+              {
+                "en": "The writer recommends mostly understandable input.",
+                "zh-Hans": "The writer recommends mostly understandable input.",
+                "zh-Hant": "The writer recommends mostly understandable input."
+              }
+            ]
+          },
+          {
+            "id": "fluency-conditions",
+            "blockId": "source",
+            "prompt": "How does the writer contrast grammar mistakes with limited vocabulary?",
+            "options": [
+              "Both always make fluency impossible",
+              "Neither has any connection to fluency",
+              "Grammar mistakes can coexist with fluency, but insufficient vocabulary prevents it"
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 1113,
+              "end": 1249
+            },
+            "explanations": [
+              {
+                "en": "The writer says fluency can coexist with grammar mistakes.",
+                "zh-Hans": "The writer says fluency can coexist with grammar mistakes.",
+                "zh-Hant": "The writer says fluency can coexist with grammar mistakes."
+              },
+              {
+                "en": "The writer treats sufficient vocabulary as necessary.",
+                "zh-Hans": "The writer treats sufficient vocabulary as necessary.",
+                "zh-Hant": "The writer treats sufficient vocabulary as necessary."
+              },
+              {
+                "en": "Even if and but distinguish the two conditions.",
+                "zh-Hans": "Even if and but distinguish the two conditions.",
+                "zh-Hant": "Even if and but distinguish the two conditions."
+              }
+            ]
+          },
+          {
+            "id": "fluency-writing",
+            "blockId": "source",
+            "prompt": "What role does writing play in the suggested topic practice?",
+            "options": [
+              "It replaces all speaking practice",
+              "It helps organize ideas and recall words before speaking",
+              "It proves the learner can speak perfectly"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 1796,
+              "end": 1930
+            },
+            "explanations": [
+              {
+                "en": "Speaking remains the last step.",
+                "zh-Hans": "Speaking remains the last step.",
+                "zh-Hant": "Speaking remains the last step."
+              },
+              {
+                "en": "Writing supports organization and vocabulary before the learner speaks.",
+                "zh-Hans": "Writing supports organization and vocabulary before the learner speaks.",
+                "zh-Hant": "Writing supports organization and vocabulary before the learner speaks."
+              },
+              {
+                "en": "The passage makes no claim of perfect speech.",
+                "zh-Hans": "The passage makes no claim of perfect speech.",
+                "zh-Hant": "The passage makes no claim of perfect speech."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

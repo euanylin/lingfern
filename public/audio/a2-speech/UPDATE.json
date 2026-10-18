@@ -1,0 +1,340 @@
+[
+  {
+    "rootId": "fleurs-work-e41cd6a9cb9323f99912b0eeb0100c7f89789ccdb35ddfbbbcd73f93f1083701",
+    "sourceHash": "e710073be620095e248ffe3e36479d84105fa7202e5d2f47ee820a61ced9668c",
+    "title": "Wikijunior:How Things Work/Light Bulb - Wikibooks, open books for an open world",
+    "text": "After hundreds of hours of operation the filament in the bulb eventually burns out and the light bulb no longer works.",
+    "audio": {
+      "src": "/audio/a2-speech/fleurs-incandescent-status-headroom.mp3",
+      "sha256": "6a0366ee0d6b2805d9d18ccd1c9e01ecc77b21c69298519097d473f6b0746bee",
+      "duration": 9.36,
+      "author": "FLEURS English volunteer speaker",
+      "sourceUrl": "https://huggingface.co/datasets/google/fleurs",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Wikibooks contributors. Wikijunior:How Things Work/Light Bulb - Wikibooks, open books for an open world. https://en.wikibooks.org/wiki/Wikijunior:How_Things_Work/Light_Bulb. English source-derived transcript: FLORES-200 CC BY-SA 4.0; retain all stated original article licences. FLEURS (Google). English en_us, train, 12816727773288643465.wav. CC BY 4.0. Full original recording independently transcoded to MP3; unchanged transcript. Whole continuous original, static +26dB before MP3 encoding; no cut, padding or transcript/timing edit. Quiet original retained.",
+      "license": "FLORES-200 transcript CC BY-SA 4.0; original article BY-SA 4.0; recording CC BY 4.0",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Wikijunior:How_Things_Work/Light_Bulb"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 6,
+        "text": "After ",
+        "audioStart": 1.6599999999999988,
+        "audioEnd": 2.18
+      },
+      {
+        "start": 6,
+        "end": 15,
+        "text": "hundreds ",
+        "audioStart": 2.18,
+        "audioEnd": 2.42
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "text": "of ",
+        "audioStart": 2.42,
+        "audioEnd": 2.7
+      },
+      {
+        "start": 18,
+        "end": 24,
+        "text": "hours ",
+        "audioStart": 2.7,
+        "audioEnd": 2.96
+      },
+      {
+        "start": 24,
+        "end": 27,
+        "text": "of ",
+        "audioStart": 2.96,
+        "audioEnd": 3.16
+      },
+      {
+        "start": 27,
+        "end": 37,
+        "text": "operation ",
+        "audioStart": 3.16,
+        "audioEnd": 3.6
+      },
+      {
+        "start": 37,
+        "end": 41,
+        "text": "the ",
+        "audioStart": 4.26,
+        "audioEnd": 4.34
+      },
+      {
+        "start": 41,
+        "end": 50,
+        "text": "filament ",
+        "audioStart": 4.34,
+        "audioEnd": 4.62
+      },
+      {
+        "start": 50,
+        "end": 53,
+        "text": "in ",
+        "audioStart": 4.62,
+        "audioEnd": 4.9
+      },
+      {
+        "start": 53,
+        "end": 57,
+        "text": "the ",
+        "audioStart": 4.9,
+        "audioEnd": 5
+      },
+      {
+        "start": 57,
+        "end": 62,
+        "text": "bulb ",
+        "audioStart": 5,
+        "audioEnd": 5.16
+      },
+      {
+        "start": 62,
+        "end": 73,
+        "text": "eventually ",
+        "audioStart": 5.16,
+        "audioEnd": 5.72
+      },
+      {
+        "start": 73,
+        "end": 79,
+        "text": "burns ",
+        "audioStart": 5.72,
+        "audioEnd": 6.04
+      },
+      {
+        "start": 79,
+        "end": 83,
+        "text": "out ",
+        "audioStart": 6.04,
+        "audioEnd": 6.34
+      },
+      {
+        "start": 83,
+        "end": 87,
+        "text": "and ",
+        "audioStart": 6.34,
+        "audioEnd": 6.56
+      },
+      {
+        "start": 87,
+        "end": 91,
+        "text": "the ",
+        "audioStart": 6.56,
+        "audioEnd": 6.66
+      },
+      {
+        "start": 91,
+        "end": 97,
+        "text": "light ",
+        "audioStart": 6.66,
+        "audioEnd": 6.84
+      },
+      {
+        "start": 97,
+        "end": 102,
+        "text": "bulb ",
+        "audioStart": 6.84,
+        "audioEnd": 7.02
+      },
+      {
+        "start": 102,
+        "end": 105,
+        "text": "no ",
+        "audioStart": 7.02,
+        "audioEnd": 7.24
+      },
+      {
+        "start": 105,
+        "end": 112,
+        "text": "longer ",
+        "audioStart": 7.24,
+        "audioEnd": 7.56
+      },
+      {
+        "start": 112,
+        "end": 118,
+        "text": "works.",
+        "audioStart": 7.56,
+        "audioEnd": 7.82
+      }
+    ]
+  },
+  {
+    "rootId": "fleurs-work-1b3df646fd1c6e0b98536428d944dc731450501c3b48a99500c8574311931422",
+    "sourceHash": "ea21627fe90dc27e6cd775c503ce09a39182f14a3b627437b902f73cc7895d44",
+    "title": "Valley of the Kings – Travel guide at Wikivoyage",
+    "text": "The fabulous riches of the tomb are no longer in it, but have been removed to the Egyptian Museum in Cairo.",
+    "audio": {
+      "src": "/audio/a2-speech/fleurs-removed-riches.mp3",
+      "sha256": "8d3de45a26c61da217c014aba2da55b313554e011b0fa3e408978aa5fca29483",
+      "duration": 6.66,
+      "author": "FLEURS English volunteer speaker",
+      "sourceUrl": "https://huggingface.co/datasets/google/fleurs",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Wikivoyage contributors. Valley of the Kings – Travel guide at Wikivoyage. https://en.wikivoyage.org/wiki/Valley_of_the_Kings. English source-derived transcript: FLORES-200 CC BY-SA 4.0; retain all stated original article licences. FLEURS (Google). English en_us, train, 16839435922390256890.wav. CC BY 4.0. Full original recording independently transcoded to MP3; unchanged transcript. Retain the article’s referenced CC BY-SA 3.0 notices and contributor history: https://en.wikivoyage.org/w/index.php?title=Valley_of_the_Kings&action=history . Whole original MP3 reused byte for byte.",
+      "license": "FLORES-200 transcript CC BY-SA 4.0; original article CC BY-SA 4.0 with credited CC BY-SA 3.0 contributions (https://creativecommons.org/licenses/by-sa/3.0/); recording CC BY 4.0",
+      "sourceUrl": "https://en.wikivoyage.org/wiki/Valley_of_the_Kings"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 4,
+        "text": "The ",
+        "audioStart": 0,
+        "audioEnd": 0.46
+      },
+      {
+        "start": 4,
+        "end": 13,
+        "text": "fabulous ",
+        "audioStart": 0.46,
+        "audioEnd": 0.8
+      },
+      {
+        "start": 13,
+        "end": 20,
+        "text": "riches ",
+        "audioStart": 0.8,
+        "audioEnd": 1.08
+      },
+      {
+        "start": 20,
+        "end": 23,
+        "text": "of ",
+        "audioStart": 1.08,
+        "audioEnd": 1.42
+      },
+      {
+        "start": 23,
+        "end": 27,
+        "text": "the ",
+        "audioStart": 1.42,
+        "audioEnd": 1.54
+      },
+      {
+        "start": 27,
+        "end": 32,
+        "text": "tomb ",
+        "audioStart": 1.54,
+        "audioEnd": 1.74
+      },
+      {
+        "start": 32,
+        "end": 36,
+        "text": "are ",
+        "audioStart": 1.74,
+        "audioEnd": 1.98
+      },
+      {
+        "start": 36,
+        "end": 39,
+        "text": "no ",
+        "audioStart": 1.98,
+        "audioEnd": 2.1
+      },
+      {
+        "start": 39,
+        "end": 46,
+        "text": "longer ",
+        "audioStart": 2.1,
+        "audioEnd": 2.46
+      },
+      {
+        "start": 46,
+        "end": 49,
+        "text": "in ",
+        "audioStart": 2.46,
+        "audioEnd": 2.64
+      },
+      {
+        "start": 49,
+        "end": 53,
+        "text": "it, ",
+        "audioStart": 2.64,
+        "audioEnd": 2.78
+      },
+      {
+        "start": 53,
+        "end": 57,
+        "text": "but ",
+        "audioStart": 3.12,
+        "audioEnd": 3.26
+      },
+      {
+        "start": 57,
+        "end": 62,
+        "text": "have ",
+        "audioStart": 3.26,
+        "audioEnd": 3.34
+      },
+      {
+        "start": 62,
+        "end": 67,
+        "text": "been ",
+        "audioStart": 3.34,
+        "audioEnd": 3.52
+      },
+      {
+        "start": 67,
+        "end": 75,
+        "text": "removed ",
+        "audioStart": 3.52,
+        "audioEnd": 3.9
+      },
+      {
+        "start": 75,
+        "end": 78,
+        "text": "to ",
+        "audioStart": 3.9,
+        "audioEnd": 4.38
+      },
+      {
+        "start": 78,
+        "end": 82,
+        "text": "the ",
+        "audioStart": 4.38,
+        "audioEnd": 4.52
+      },
+      {
+        "start": 82,
+        "end": 91,
+        "text": "Egyptian ",
+        "audioStart": 4.52,
+        "audioEnd": 4.76
+      },
+      {
+        "start": 91,
+        "end": 98,
+        "text": "Museum ",
+        "audioStart": 4.76,
+        "audioEnd": 5.26
+      },
+      {
+        "start": 98,
+        "end": 101,
+        "text": "in ",
+        "audioStart": 5.26,
+        "audioEnd": 5.54
+      },
+      {
+        "start": 101,
+        "end": 107,
+        "text": "Cairo.",
+        "audioStart": 5.54,
+        "audioEnd": 5.72
+      }
+    ]
+  }
+]

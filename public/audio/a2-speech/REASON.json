@@ -1,0 +1,550 @@
+[
+  {
+    "rootId": "gutenberg-book-14958",
+    "sourceHash": "a72adec51f474ab03c6dd36860f3ce42226a383e45c72024be4fef052b80fe1f",
+    "title": "Mother West Wind \"Why\" Stories",
+    "text": "Peter wondered if he meant him, for you know Peter is a great gossip. But he didn't say anything, because he didn't know just what to say, and in a minute Grandfather Frog began the story Peter so much wanted.",
+    "audio": {
+      "src": "/audio/a2-speech/librispeech-peter-silence.mp3",
+      "sha256": "a59af96110e0188c71bb1b469e0e920fca73c3cb8f6152aa99166f7ce3887537",
+      "duration": 13.530022675736962,
+      "author": "Rayne",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Thornton W. Burgess. Mother West Wind \"Why\" Stories. Project Gutenberg edition 14958. Plain prose only; embedded Project Gutenberg licence retained. LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Rayne (LibriVox reader 3989). Independently re-encoded from the whole original FLAC; unchanged source words. Whole original MP3 reused byte for byte; original FLAC and official LibriSpeech gold words independently matched.",
+      "license": "Public domain text in the United States; Project Gutenberg terms retained; other regions unverified; recording CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/14958"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 6,
+        "text": "Peter ",
+        "audioStart": 0,
+        "audioEnd": 0.7
+      },
+      {
+        "start": 6,
+        "end": 15,
+        "text": "wondered ",
+        "audioStart": 0.7,
+        "audioEnd": 1
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "text": "if ",
+        "audioStart": 1,
+        "audioEnd": 1.36
+      },
+      {
+        "start": 18,
+        "end": 21,
+        "text": "he ",
+        "audioStart": 1.36,
+        "audioEnd": 1.46
+      },
+      {
+        "start": 21,
+        "end": 27,
+        "text": "meant ",
+        "audioStart": 1.46,
+        "audioEnd": 1.64
+      },
+      {
+        "start": 27,
+        "end": 32,
+        "text": "him, ",
+        "audioStart": 1.64,
+        "audioEnd": 1.92
+      },
+      {
+        "start": 32,
+        "end": 36,
+        "text": "for ",
+        "audioStart": 2.74,
+        "audioEnd": 2.78
+      },
+      {
+        "start": 36,
+        "end": 40,
+        "text": "you ",
+        "audioStart": 2.78,
+        "audioEnd": 2.96
+      },
+      {
+        "start": 40,
+        "end": 45,
+        "text": "know ",
+        "audioStart": 2.96,
+        "audioEnd": 3.14
+      },
+      {
+        "start": 45,
+        "end": 51,
+        "text": "Peter ",
+        "audioStart": 3.14,
+        "audioEnd": 3.46
+      },
+      {
+        "start": 51,
+        "end": 54,
+        "text": "is ",
+        "audioStart": 3.46,
+        "audioEnd": 3.72
+      },
+      {
+        "start": 54,
+        "end": 56,
+        "text": "a ",
+        "audioStart": 3.72,
+        "audioEnd": 3.82
+      },
+      {
+        "start": 56,
+        "end": 62,
+        "text": "great ",
+        "audioStart": 3.82,
+        "audioEnd": 4.02
+      },
+      {
+        "start": 62,
+        "end": 70,
+        "text": "gossip. ",
+        "audioStart": 4.02,
+        "audioEnd": 4.32
+      },
+      {
+        "start": 70,
+        "end": 74,
+        "text": "But ",
+        "audioStart": 5.16,
+        "audioEnd": 5.22
+      },
+      {
+        "start": 74,
+        "end": 77,
+        "text": "he ",
+        "audioStart": 5.22,
+        "audioEnd": 5.36
+      },
+      {
+        "start": 77,
+        "end": 84,
+        "text": "didn't ",
+        "audioStart": 5.36,
+        "audioEnd": 5.62
+      },
+      {
+        "start": 84,
+        "end": 88,
+        "text": "say ",
+        "audioStart": 5.62,
+        "audioEnd": 5.82
+      },
+      {
+        "start": 88,
+        "end": 98,
+        "text": "anything, ",
+        "audioStart": 5.82,
+        "audioEnd": 6.14
+      },
+      {
+        "start": 98,
+        "end": 106,
+        "text": "because ",
+        "audioStart": 6.72,
+        "audioEnd": 6.9
+      },
+      {
+        "start": 106,
+        "end": 109,
+        "text": "he ",
+        "audioStart": 6.9,
+        "audioEnd": 7.04
+      },
+      {
+        "start": 109,
+        "end": 116,
+        "text": "didn't ",
+        "audioStart": 7.04,
+        "audioEnd": 7.3
+      },
+      {
+        "start": 116,
+        "end": 121,
+        "text": "know ",
+        "audioStart": 7.3,
+        "audioEnd": 7.46
+      },
+      {
+        "start": 121,
+        "end": 126,
+        "text": "just ",
+        "audioStart": 7.46,
+        "audioEnd": 7.64
+      },
+      {
+        "start": 126,
+        "end": 131,
+        "text": "what ",
+        "audioStart": 7.64,
+        "audioEnd": 7.88
+      },
+      {
+        "start": 131,
+        "end": 134,
+        "text": "to ",
+        "audioStart": 7.88,
+        "audioEnd": 8.04
+      },
+      {
+        "start": 134,
+        "end": 139,
+        "text": "say, ",
+        "audioStart": 8.04,
+        "audioEnd": 8.34
+      },
+      {
+        "start": 139,
+        "end": 143,
+        "text": "and ",
+        "audioStart": 9.1,
+        "audioEnd": 9.24
+      },
+      {
+        "start": 143,
+        "end": 146,
+        "text": "in ",
+        "audioStart": 9.24,
+        "audioEnd": 9.36
+      },
+      {
+        "start": 146,
+        "end": 148,
+        "text": "a ",
+        "audioStart": 9.36,
+        "audioEnd": 9.48
+      },
+      {
+        "start": 148,
+        "end": 155,
+        "text": "minute ",
+        "audioStart": 9.48,
+        "audioEnd": 9.7
+      },
+      {
+        "start": 155,
+        "end": 167,
+        "text": "Grandfather ",
+        "audioStart": 9.92,
+        "audioEnd": 10.06
+      },
+      {
+        "start": 167,
+        "end": 172,
+        "text": "Frog ",
+        "audioStart": 10.06,
+        "audioEnd": 10.56
+      },
+      {
+        "start": 172,
+        "end": 178,
+        "text": "began ",
+        "audioStart": 10.56,
+        "audioEnd": 10.92
+      },
+      {
+        "start": 178,
+        "end": 182,
+        "text": "the ",
+        "audioStart": 10.92,
+        "audioEnd": 11.22
+      },
+      {
+        "start": 182,
+        "end": 188,
+        "text": "story ",
+        "audioStart": 11.22,
+        "audioEnd": 11.5
+      },
+      {
+        "start": 188,
+        "end": 194,
+        "text": "Peter ",
+        "audioStart": 11.5,
+        "audioEnd": 11.98
+      },
+      {
+        "start": 194,
+        "end": 197,
+        "text": "so ",
+        "audioStart": 11.98,
+        "audioEnd": 12.26
+      },
+      {
+        "start": 197,
+        "end": 202,
+        "text": "much ",
+        "audioStart": 12.26,
+        "audioEnd": 12.48
+      },
+      {
+        "start": 202,
+        "end": 209,
+        "text": "wanted.",
+        "audioStart": 12.48,
+        "audioEnd": 12.84
+      }
+    ]
+  },
+  {
+    "rootId": "gutenberg-book-2441",
+    "sourceHash": "81edee6e3acfff502c80ce93ba45e2eb20487919707ae469db76ac97cbc3c5c7",
+    "title": "The Burgess Animal Book for Children",
+    "text": "In each cheek is a pocket opening from the outside, and these pockets are lined with hair. He is called Silky Pocket Mouse because of the fineness and softness of his coat.",
+    "audio": {
+      "src": "/audio/a2-speech/librispeech-silky-name.mp3",
+      "sha256": "73b6f1176596ff7db4b11ab080321d40737fd5de8a0173d284112ae7f8d5f67b",
+      "duration": 15.56,
+      "author": "Janet Friday",
+      "sourceUrl": "https://www.openslr.org/12/",
+      "license": "CC BY 4.0",
+      "synthetic": false
+    },
+    "credit": {
+      "attribution": "Thornton W. Burgess. Project Gutenberg edition 2441. LibriSpeech (c) 2014 Vassil Panayotov, with assistance of Daniel Povey; Janet Friday (LibriVox reader 1348). Independently re-encoded from the whole original FLAC; unchanged source words. Whole original MP3 reused byte for byte; original FLAC and official LibriSpeech gold words independently matched.",
+      "license": "Public domain in the United States; Project Gutenberg terms retained; other regions unverified; recording CC BY 4.0",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/2441"
+    },
+    "segments": [
+      {
+        "start": 0,
+        "end": 3,
+        "text": "In ",
+        "audioStart": 0,
+        "audioEnd": 0.66
+      },
+      {
+        "start": 3,
+        "end": 8,
+        "text": "each ",
+        "audioStart": 0.66,
+        "audioEnd": 0.94
+      },
+      {
+        "start": 8,
+        "end": 14,
+        "text": "cheek ",
+        "audioStart": 0.94,
+        "audioEnd": 1.34
+      },
+      {
+        "start": 14,
+        "end": 17,
+        "text": "is ",
+        "audioStart": 1.34,
+        "audioEnd": 1.78
+      },
+      {
+        "start": 17,
+        "end": 19,
+        "text": "a ",
+        "audioStart": 1.78,
+        "audioEnd": 1.92
+      },
+      {
+        "start": 19,
+        "end": 26,
+        "text": "pocket ",
+        "audioStart": 1.92,
+        "audioEnd": 2.3
+      },
+      {
+        "start": 26,
+        "end": 34,
+        "text": "opening ",
+        "audioStart": 2.3,
+        "audioEnd": 2.82
+      },
+      {
+        "start": 34,
+        "end": 39,
+        "text": "from ",
+        "audioStart": 2.82,
+        "audioEnd": 3.14
+      },
+      {
+        "start": 39,
+        "end": 43,
+        "text": "the ",
+        "audioStart": 3.14,
+        "audioEnd": 3.34
+      },
+      {
+        "start": 43,
+        "end": 52,
+        "text": "outside, ",
+        "audioStart": 3.34,
+        "audioEnd": 3.84
+      },
+      {
+        "start": 52,
+        "end": 56,
+        "text": "and ",
+        "audioStart": 4.8,
+        "audioEnd": 5.12
+      },
+      {
+        "start": 56,
+        "end": 62,
+        "text": "these ",
+        "audioStart": 5.12,
+        "audioEnd": 5.4
+      },
+      {
+        "start": 62,
+        "end": 70,
+        "text": "pockets ",
+        "audioStart": 5.4,
+        "audioEnd": 5.82
+      },
+      {
+        "start": 70,
+        "end": 74,
+        "text": "are ",
+        "audioStart": 5.82,
+        "audioEnd": 6.2
+      },
+      {
+        "start": 74,
+        "end": 80,
+        "text": "lined ",
+        "audioStart": 6.2,
+        "audioEnd": 6.64
+      },
+      {
+        "start": 80,
+        "end": 85,
+        "text": "with ",
+        "audioStart": 6.64,
+        "audioEnd": 6.94
+      },
+      {
+        "start": 85,
+        "end": 91,
+        "text": "hair. ",
+        "audioStart": 6.94,
+        "audioEnd": 7.46
+      },
+      {
+        "start": 91,
+        "end": 94,
+        "text": "He ",
+        "audioStart": 8.3,
+        "audioEnd": 8.58
+      },
+      {
+        "start": 94,
+        "end": 97,
+        "text": "is ",
+        "audioStart": 8.58,
+        "audioEnd": 8.76
+      },
+      {
+        "start": 97,
+        "end": 104,
+        "text": "called ",
+        "audioStart": 8.76,
+        "audioEnd": 9.12
+      },
+      {
+        "start": 104,
+        "end": 110,
+        "text": "Silky ",
+        "audioStart": 9.12,
+        "audioEnd": 9.8
+      },
+      {
+        "start": 110,
+        "end": 117,
+        "text": "Pocket ",
+        "audioStart": 9.8,
+        "audioEnd": 10.12
+      },
+      {
+        "start": 117,
+        "end": 123,
+        "text": "Mouse ",
+        "audioStart": 10.12,
+        "audioEnd": 10.54
+      },
+      {
+        "start": 123,
+        "end": 131,
+        "text": "because ",
+        "audioStart": 10.54,
+        "audioEnd": 11.44
+      },
+      {
+        "start": 131,
+        "end": 134,
+        "text": "of ",
+        "audioStart": 11.44,
+        "audioEnd": 11.76
+      },
+      {
+        "start": 134,
+        "end": 138,
+        "text": "the ",
+        "audioStart": 11.76,
+        "audioEnd": 11.92
+      },
+      {
+        "start": 138,
+        "end": 147,
+        "text": "fineness ",
+        "audioStart": 11.92,
+        "audioEnd": 12.72
+      },
+      {
+        "start": 147,
+        "end": 151,
+        "text": "and ",
+        "audioStart": 12.72,
+        "audioEnd": 13.12
+      },
+      {
+        "start": 151,
+        "end": 160,
+        "text": "softness ",
+        "audioStart": 13.12,
+        "audioEnd": 14
+      },
+      {
+        "start": 160,
+        "end": 163,
+        "text": "of ",
+        "audioStart": 14,
+        "audioEnd": 14.4
+      },
+      {
+        "start": 163,
+        "end": 167,
+        "text": "his ",
+        "audioStart": 14.4,
+        "audioEnd": 14.62
+      },
+      {
+        "start": 167,
+        "end": 172,
+        "text": "coat.",
+        "audioStart": 14.62,
+        "audioEnd": 14.94
+      }
+    ]
+  }
+]

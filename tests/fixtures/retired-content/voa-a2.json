@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "a2-voa-everyday-details-reading",
+    "targetLevel": "A2",
+    "skill": "reading",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "A call and a search",
+      "zh-Hans": "一通电话与一次寻找",
+      "zh-Hant": "一通電話與一次尋找"
+    },
+    "goal": {
+      "en": "Follow key details and corrections in everyday conversations.",
+      "zh-Hans": "在日常对话中分清关键细节及更正。",
+      "zh-Hant": "在日常對話中分清關鍵細節及更正。"
+    },
+    "goalId": "follow-everyday-details-reading",
+    "sourceId": "voa-course-3",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Notice who answers and which detail changes. A wrong number is different from a correct number. “It is not a pen” rejects one object before naming another.",
+      "zh-Hans": "先分清说话人，再注意哪个信息被更正。拨错的号码不是正确号码；“It is not a pen”先排除一种物品，再说明找到的是什么。",
+      "zh-Hant": "先分清說話人，再注意哪個資訊被更正。撥錯的號碼不是正確號碼；「It is not a pen」先排除一種物品，再說明找到的是什麼。"
+    },
+    "workedExample": {
+      "en": "The man says Anna has the wrong number. “Excuse me” is her polite response; it does not mean she has reached Marsha.",
+      "zh-Hans": "男子说 Anna 拨错了号码，她用“Excuse me”礼貌回应；这不意味着电话已经拨通 Marsha。",
+      "zh-Hant": "男子說 Anna 撥錯了號碼，她用「Excuse me」禮貌回應；這不意味著電話已經撥通 Marsha。"
+    },
+    "nextStep": {
+      "en": "Ask someone for an everyday object. If you hear a correction, repeat the detail to check it.",
+      "zh-Hans": "向别人询问一件日常物品；听到更正时，重复具体信息加以核对。",
+      "zh-Hant": "向別人詢問一件日常物品；聽到更正時，重複具體資訊加以核對。"
+    },
+    "materials": [
+      {
+        "id": "voa-3",
+        "rootId": "voa-article-3126527",
+        "sourceId": "voa-course-3",
+        "title": "I’m Here!",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: I am in my new apartment! Great! I live with Marsha. We’re roommates. I want to cook dinner. Hum. Is there a supermarket near here? Marsha knows. Marsha’s work number is 555-8986.\nMan: Hello.\nAnna: Hello. Is this Marsha? It is Anna.\nMan: I am sorry. You have the wrong number.\nAnna: Oh. Is this 555-8986?\nMan: No. This is 555-8689.\nAnna: Oh. Excuse me!\nMan: Okay. ‘Bye.\nAnna: One more time. 555-8986. Please be Marsha.\nMarsha: Hello. This is Marsha.\nAnna: Yes, Marsha. I want to cook dinner.\nMarsha: Excuse me? Anna? Is that you?\nAnna: Oh, yes. I am here!\nMarsha: Good. You are there.\nAnna: I want to find a supermarket.\nMarsha: Oh, okay. The supermarket is at 1500 Irving Street. It is near the apartment.\nAnna: Great! Goodbye!\nMarsha: Goodbye, Anna."
+          }
+        ],
+        "questions": [
+          {
+            "id": "reading-3-call",
+            "blockId": "dialogue",
+            "prompt": "Which action helps Anna reach Marsha?",
+            "options": [
+              "Call 555-8689 again.",
+              "Call 555-8986 again.",
+              "Go to the supermarket without calling."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 376,
+              "end": 455
+            },
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Find the speaker’s correction in the conversation.",
+                "zh-Hans": "找出对话中的更正。",
+                "zh-Hant": "找出對話中的更正。"
+              },
+              {
+                "en": "“One more time” means another attempt; “at” can introduce a place.",
+                "zh-Hans": "“One more time”意为再试一次；“at”可引出具体地点。",
+                "zh-Hant": "「One more time」意為再試一次；「at」可引出具體地點。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "555-8689 belongs to the man who answered the wrong call. Anna reaches Marsha after trying 555-8986 again.",
+                "zh-Hans": "555-8689 是接错电话的男子的号码；Anna 重拨 555-8986 后才联系上 Marsha。",
+                "zh-Hant": "555-8689 是接錯電話的男子的號碼；Anna 重撥 555-8986 後才聯繫上 Marsha。"
+              },
+              {
+                "en": "Anna tries 555-8986 again. This time Marsha answers.",
+                "zh-Hans": "Anna 再拨一次 555-8986，这次接电话的是 Marsha。",
+                "zh-Hant": "Anna 再撥一次 555-8986，這次接電話的是 Marsha。"
+              },
+              {
+                "en": "The question is about reaching Marsha, not visiting the supermarket. Marsha answers the second call.",
+                "zh-Hans": "题目问的是如何联系 Marsha，而不是如何去超市；Marsha 接起了第二次来电。",
+                "zh-Hant": "題目問的是如何聯繫 Marsha，而不是如何去超市；Marsha 接起了第二次來電。"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "reading-3-note",
+            "blockId": "dialogue",
+            "prompt": "Complete Anna’s note for cooking dinner.",
+            "rows": [
+              {
+                "label": "Marsha’s work phone number",
+                "answer": "555-8986",
+                "accepted": [
+                  "555-8986",
+                  "5558986",
+                  "555 8986"
+                ]
+              },
+              {
+                "label": "Supermarket address",
+                "answer": "1500 Irving Street",
+                "accepted": [
+                  "1500 Irving Street",
+                  "1500 Irving St.",
+                  "1500 Irving St"
+                ]
+              }
+            ],
+            "evidence": {
+              "start": 152,
+              "end": 185
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "dialogue",
+                "start": 645,
+                "end": 712
+              }
+            ],
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Find the speaker’s correction in the conversation.",
+                "zh-Hans": "找出对话中的更正。",
+                "zh-Hant": "找出對話中的更正。"
+              },
+              {
+                "en": "“One more time” means another attempt; “at” can introduce a place.",
+                "zh-Hans": "“One more time”意为再试一次；“at”可引出具体地点。",
+                "zh-Hant": "「One more time」意為再試一次；「at」可引出具體地點。"
+              }
+            ],
+            "explanation": {
+              "en": "Marsha’s work number is 555-8986. The supermarket address is 1500 Irving Street. The man’s different number is not Marsha’s.",
+              "zh-Hans": "工作电话是 555-8986，超市地址是 1500 Irving Street；陌生男子的号码不是 Marsha 的。",
+              "zh-Hant": "工作電話是 555-8986，超市地址是 1500 Irving Street；陌生男子的號碼不是 Marsha 的。"
+            }
+          }
+        ]
+      },
+      {
+        "id": "voa-4",
+        "rootId": "voa-article-3168920",
+        "sourceId": "voa-course-4",
+        "title": "What Is It?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Pete, hi! Hi, we are here!\nPete: Hi, Anna! Hi, Marsha!\nAnna: Hi!\nPete: How are you two?\nMarsha: I am great!\nAnna: You know, Pete, I am new to D.C. The city is big.\nPete: Yeah. But you learn a little more every day. How’s the new apartment?\nAnna: The new apartment is great! Let’s get coffee!\nMarsha: Anna, do you have a pen?\nAnna: Yes. I have a pen in my bag. I have a …\nPete: It is not a pen. It is a book. It is a big book.\nAnna: Yes. Yes it is, Pete. I know I have a pen, though… I have a ....\nMarsha: It is not a pen, Anna ... a toy?\nAnna: I have a ....\nPete: And it is a pillow!\nAnna: Pete, Marsha, I know I have a pen.\nMarsha: Anna, it is a map.\nPete: Why do you have a map of the world?\nAnna: Pete, Marsha. Now I know I have a pen.\nPete: And now you have a lamp.\nMarsha: Anna.\nAnna: I have a pen! Let’s get coffee!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "reading-4-request",
+            "blockId": "dialogue",
+            "prompt": "What does Marsha ask Anna for?",
+            "options": [
+              "A book.",
+              "A pillow.",
+              "A pen."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 298,
+              "end": 330
+            },
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Find the speaker’s correction in the conversation.",
+                "zh-Hans": "找出对话中的更正。",
+                "zh-Hant": "找出對話中的更正。"
+              },
+              {
+                "en": "“It” points to an object; “not” says it is not the named object.",
+                "zh-Hans": "“It”指眼前的物品；“not”表示不是所说的那种物品。",
+                "zh-Hant": "「It」指眼前的物品；「not」表示不是所說的那種物品。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The book appears during Anna’s search. Marsha asks for a pen.",
+                "zh-Hans": "Book 是 Anna 找笔时先拿出的物品；Marsha 要的是 pen（笔）。",
+                "zh-Hant": "Book 是 Anna 找筆時先拿出的物品；Marsha 要的是 pen（筆）。"
+              },
+              {
+                "en": "The pillow appears later during the search. Marsha asks for a pen.",
+                "zh-Hans": "Pillow（枕头）是在寻找过程中出现的物品；Marsha 要的是 pen（笔）。",
+                "zh-Hant": "Pillow（枕頭）是在尋找過程中出現的物品；Marsha 要的是 pen（筆）。"
+              },
+              {
+                "en": "Marsha asks for a pen. Other objects appear while Anna looks for it.",
+                "zh-Hans": "Marsha 问 Anna 有没有 pen（笔）；其他物品是在找笔时拿出来的。",
+                "zh-Hant": "Marsha 問 Anna 有沒有 pen（筆）；其他物品是在找筆時拿出來的。"
+              }
+            ]
+          },
+          {
+            "kind": "sequence",
+            "id": "reading-4-objects",
+            "blockId": "dialogue",
+            "prompt": "Put these five objects in the order they are first named.",
+            "steps": [
+              "lamp",
+              "pillow",
+              "book",
+              "map",
+              "toy"
+            ],
+            "acceptedOrders": [
+              [
+                "book",
+                "toy",
+                "pillow",
+                "map",
+                "lamp"
+              ]
+            ],
+            "evidence": {
+              "start": 377,
+              "end": 775
+            },
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Find the speaker’s correction in the conversation.",
+                "zh-Hans": "找出对话中的更正。",
+                "zh-Hant": "找出對話中的更正。"
+              },
+              {
+                "en": "“It” points to an object; “not” says it is not the named object.",
+                "zh-Hans": "“It”指眼前的物品；“not”表示不是所说的那种物品。",
+                "zh-Hant": "「It」指眼前的物品；「not」表示不是所說的那種物品。"
+              }
+            ],
+            "explanation": {
+              "en": "The five objects are first named in this order: book, toy, pillow, map, lamp. The pen is what Marsha requested.",
+              "zh-Hans": "这五件物品首次被提及的顺序是：book、toy、pillow、map、lamp；pen 是 Marsha 想要的物品。",
+              "zh-Hant": "這五件物品首次被提及的順序是：book、toy、pillow、map、lamp；pen 是 Marsha 想要的物品。"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a2-voa-everyday-details-listening",
+    "targetLevel": "A2",
+    "skill": "listening",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "A call and a search",
+      "zh-Hans": "一通电话与一次寻找",
+      "zh-Hant": "一通電話與一次尋找"
+    },
+    "goal": {
+      "en": "Follow key details and corrections in everyday conversations.",
+      "zh-Hans": "在日常对话中分清关键细节及更正。",
+      "zh-Hant": "在日常對話中分清關鍵細節及更正。"
+    },
+    "goalId": "follow-everyday-details-listening",
+    "sourceId": "voa-course-3",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Notice who answers and which detail changes. A wrong number is different from a correct number. “It is not a pen” rejects one object before naming another.",
+      "zh-Hans": "先分清说话人，再注意哪个信息被更正。拨错的号码不是正确号码；“It is not a pen”先排除一种物品，再说明找到的是什么。",
+      "zh-Hant": "先分清說話人，再注意哪個資訊被更正。撥錯的號碼不是正確號碼；「It is not a pen」先排除一種物品，再說明找到的是什麼。"
+    },
+    "workedExample": {
+      "en": "The man says Anna has the wrong number. “Excuse me” is her polite response; it does not mean she has reached Marsha.",
+      "zh-Hans": "男子说 Anna 拨错了号码，她用“Excuse me”礼貌回应；这不意味着电话已经拨通 Marsha。",
+      "zh-Hant": "男子說 Anna 撥錯了號碼，她用「Excuse me」禮貌回應；這不意味著電話已經撥通 Marsha。"
+    },
+    "nextStep": {
+      "en": "Ask someone for an everyday object. If you hear a correction, repeat the detail to check it.",
+      "zh-Hans": "向别人询问一件日常物品；听到更正时，重复具体信息加以核对。",
+      "zh-Hant": "向別人詢問一件日常物品；聽到更正時，重複具體資訊加以核對。"
+    },
+    "materials": [
+      {
+        "id": "voa-3",
+        "rootId": "voa-article-3126527",
+        "sourceId": "voa-course-3",
+        "title": "I’m Here!",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: I am in my new apartment! Great! I live with Marsha. We’re roommates. I want to cook dinner. Hum. Is there a supermarket near here? Marsha knows. Marsha’s work number is 555-8986.\nMan: Hello.\nAnna: Hello. Is this Marsha? It is Anna.\nMan: I am sorry. You have the wrong number.\nAnna: Oh. Is this 555-8986?\nMan: No. This is 555-8689.\nAnna: Oh. Excuse me!\nMan: Okay. ‘Bye.\nAnna: One more time. 555-8986. Please be Marsha.\nMarsha: Hello. This is Marsha.\nAnna: Yes, Marsha. I want to cook dinner.\nMarsha: Excuse me? Anna? Is that you?\nAnna: Oh, yes. I am here!\nMarsha: Good. You are there.\nAnna: I want to find a supermarket.\nMarsha: Oh, okay. The supermarket is at 1500 Irving Street. It is near the apartment.\nAnna: Great! Goodbye!\nMarsha: Goodbye, Anna."
+          }
+        ],
+        "questions": [
+          {
+            "id": "listening-3-call",
+            "blockId": "dialogue",
+            "prompt": "Which action helps Anna reach Marsha?",
+            "options": [
+              "Call 555-8689 again.",
+              "Call 555-8986 again.",
+              "Go to the supermarket without calling."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 376,
+              "end": 455,
+              "audioStart": 63.7,
+              "audioEnd": 77.36
+            },
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Listen again from 63.7 seconds.",
+                "zh-Hans": "从 63.7 秒重新听。",
+                "zh-Hant": "從 63.7 秒重新聽。"
+              },
+              {
+                "en": "“One more time” means another attempt; “at” can introduce a place.",
+                "zh-Hans": "“One more time”意为再试一次；“at”可引出具体地点。",
+                "zh-Hant": "「One more time」意為再試一次；「at」可引出具體地點。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "555-8689 belongs to the man who answered the wrong call. Anna reaches Marsha after trying 555-8986 again.",
+                "zh-Hans": "555-8689 是接错电话的男子的号码；Anna 重拨 555-8986 后才联系上 Marsha。",
+                "zh-Hant": "555-8689 是接錯電話的男子的號碼；Anna 重撥 555-8986 後才聯繫上 Marsha。"
+              },
+              {
+                "en": "Anna tries 555-8986 again. This time Marsha answers.",
+                "zh-Hans": "Anna 再拨一次 555-8986，这次接电话的是 Marsha。",
+                "zh-Hant": "Anna 再撥一次 555-8986，這次接電話的是 Marsha。"
+              },
+              {
+                "en": "The question is about reaching Marsha, not visiting the supermarket. Marsha answers the second call.",
+                "zh-Hans": "题目问的是如何联系 Marsha，而不是如何去超市；Marsha 接起了第二次来电。",
+                "zh-Hant": "題目問的是如何聯繫 Marsha，而不是如何去超市；Marsha 接起了第二次來電。"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "listening-3-note",
+            "blockId": "dialogue",
+            "prompt": "Complete Anna’s note for cooking dinner.",
+            "rows": [
+              {
+                "label": "Marsha’s work phone number",
+                "answer": "555-8986",
+                "accepted": [
+                  "555-8986",
+                  "5558986",
+                  "555 8986"
+                ]
+              },
+              {
+                "label": "Supermarket address",
+                "answer": "1500 Irving Street",
+                "accepted": [
+                  "1500 Irving Street",
+                  "1500 Irving St.",
+                  "1500 Irving St"
+                ]
+              }
+            ],
+            "evidence": {
+              "start": 152,
+              "end": 185,
+              "audioStart": 33.92,
+              "audioEnd": 39.52
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "dialogue",
+                "start": 645,
+                "end": 712,
+                "audioStart": 90.38,
+                "audioEnd": 98.3
+              }
+            ],
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Listen again from 33.92 seconds.",
+                "zh-Hans": "从 33.92 秒重新听。",
+                "zh-Hant": "從 33.92 秒重新聽。"
+              },
+              {
+                "en": "“One more time” means another attempt; “at” can introduce a place.",
+                "zh-Hans": "“One more time”意为再试一次；“at”可引出具体地点。",
+                "zh-Hant": "「One more time」意為再試一次；「at」可引出具體地點。"
+              }
+            ],
+            "explanation": {
+              "en": "Marsha’s work number is 555-8986. The supermarket address is 1500 Irving Street. The man’s different number is not Marsha’s.",
+              "zh-Hans": "工作电话是 555-8986，超市地址是 1500 Irving Street；陌生男子的号码不是 Marsha 的。",
+              "zh-Hant": "工作電話是 555-8986，超市地址是 1500 Irving Street；陌生男子的號碼不是 Marsha 的。"
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/a2-speech/voa-here.mp3",
+          "sha256": "737a81e0a7a6cea1dd6f646c207450a3697319c3f94e1a7bf53a7349f3588923",
+          "duration": 101.916735,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      },
+      {
+        "id": "voa-4",
+        "rootId": "voa-article-3168920",
+        "sourceId": "voa-course-4",
+        "title": "What Is It?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Pete, hi! Hi, we are here!\nPete: Hi, Anna! Hi, Marsha!\nAnna: Hi!\nPete: How are you two?\nMarsha: I am great!\nAnna: You know, Pete, I am new to D.C. The city is big.\nPete: Yeah. But you learn a little more every day. How’s the new apartment?\nAnna: The new apartment is great! Let’s get coffee!\nMarsha: Anna, do you have a pen?\nAnna: Yes. I have a pen in my bag. I have a …\nPete: It is not a pen. It is a book. It is a big book.\nAnna: Yes. Yes it is, Pete. I know I have a pen, though… I have a ....\nMarsha: It is not a pen, Anna ... a toy?\nAnna: I have a ....\nPete: And it is a pillow!\nAnna: Pete, Marsha, I know I have a pen.\nMarsha: Anna, it is a map.\nPete: Why do you have a map of the world?\nAnna: Pete, Marsha. Now I know I have a pen.\nPete: And now you have a lamp.\nMarsha: Anna.\nAnna: I have a pen! Let’s get coffee!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "listening-4-request",
+            "blockId": "dialogue",
+            "prompt": "What does Marsha ask Anna for?",
+            "options": [
+              "A book.",
+              "A pillow.",
+              "A pen."
+            ],
+            "answer": 2,
+            "evidence": {
+              "start": 298,
+              "end": 330,
+              "audioStart": 30,
+              "audioEnd": 32.54
+            },
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Listen again from 30 seconds.",
+                "zh-Hans": "从 30 秒重新听。",
+                "zh-Hant": "從 30 秒重新聽。"
+              },
+              {
+                "en": "“It” points to an object; “not” says it is not the named object.",
+                "zh-Hans": "“It”指眼前的物品；“not”表示不是所说的那种物品。",
+                "zh-Hant": "「It」指眼前的物品；「not」表示不是所說的那種物品。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The book appears during Anna’s search. Marsha asks for a pen.",
+                "zh-Hans": "Book 是 Anna 找笔时先拿出的物品；Marsha 要的是 pen（笔）。",
+                "zh-Hant": "Book 是 Anna 找筆時先拿出的物品；Marsha 要的是 pen（筆）。"
+              },
+              {
+                "en": "The pillow appears later during the search. Marsha asks for a pen.",
+                "zh-Hans": "Pillow（枕头）是在寻找过程中出现的物品；Marsha 要的是 pen（笔）。",
+                "zh-Hant": "Pillow（枕頭）是在尋找過程中出現的物品；Marsha 要的是 pen（筆）。"
+              },
+              {
+                "en": "Marsha asks for a pen. Other objects appear while Anna looks for it.",
+                "zh-Hans": "Marsha 问 Anna 有没有 pen（笔）；其他物品是在找笔时拿出来的。",
+                "zh-Hant": "Marsha 問 Anna 有沒有 pen（筆）；其他物品是在找筆時拿出來的。"
+              }
+            ]
+          },
+          {
+            "kind": "sequence",
+            "id": "listening-4-objects",
+            "blockId": "dialogue",
+            "prompt": "Put these five objects in the order they are first named.",
+            "steps": [
+              "lamp",
+              "pillow",
+              "book",
+              "map",
+              "toy"
+            ],
+            "acceptedOrders": [
+              [
+                "book",
+                "toy",
+                "pillow",
+                "map",
+                "lamp"
+              ]
+            ],
+            "evidence": {
+              "start": 377,
+              "end": 775,
+              "audioStart": 39.04,
+              "audioEnd": 82.68
+            },
+            "hints": [
+              {
+                "en": "Follow the important details and corrections.",
+                "zh-Hans": "注意关键细节及更正。",
+                "zh-Hant": "注意關鍵細節及更正。"
+              },
+              {
+                "en": "Listen again from 39.04 seconds.",
+                "zh-Hans": "从 39.04 秒重新听。",
+                "zh-Hant": "從 39.04 秒重新聽。"
+              },
+              {
+                "en": "“It” points to an object; “not” says it is not the named object.",
+                "zh-Hans": "“It”指眼前的物品；“not”表示不是所说的那种物品。",
+                "zh-Hant": "「It」指眼前的物品；「not」表示不是所說的那種物品。"
+              }
+            ],
+            "explanation": {
+              "en": "The five objects are first named in this order: book, toy, pillow, map, lamp. The pen is what Marsha requested.",
+              "zh-Hans": "这五件物品首次被提及的顺序是：book、toy、pillow、map、lamp；pen 是 Marsha 想要的物品。",
+              "zh-Hant": "這五件物品首次被提及的順序是：book、toy、pillow、map、lamp；pen 是 Marsha 想要的物品。"
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/a2-speech/voa-objects.mp3",
+          "sha256": "367bf49cd0bce99226bcbbcb3cad7a3f8b9a5d1b9b829dfe8486d71533ad299d",
+          "duration": 89.247347,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html",
+          "license": "VOA Learning English original production (public domain)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a2-voa-working-reading",
+    "targetLevel": "A2",
+    "skill": "reading",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Busy at work",
+      "zh-Hans": "忙碌的同事",
+      "zh-Hant": "忙碌的同事"
+    },
+    "goal": {
+      "en": "Follow what people are doing and distinguish an invitation from being busy now.",
+      "zh-Hans": "理解正在进行的活动，分清现在正忙和稍后可以来访。",
+      "zh-Hant": "理解正在進行的活動，分清現在正忙和稍後可以來訪。"
+    },
+    "goalId": "follow-work-and-visits-reading",
+    "sourceId": "voa-course-7",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Keep each activity with its speaker. Notice now, again and time phrases. “Maybe another time” postpones a visit; it does not invite you in now.",
+      "zh-Hans": "把活动和说话者对应，注意 now、again 和时间表达。“Maybe another time”表示改天或稍后，并不是现在可以进去。",
+      "zh-Hant": "把活動和說話者對應，注意 now、again 和時間表達。「Maybe another time」表示改天或稍後，並不是現在可以進去。"
+    },
+    "workedExample": {
+      "en": "If someone says “I am cooking. Come by this evening”, cooking is the current activity and evening is the visit time. Keep these details separate.",
+      "zh-Hans": "如果有人说“I am cooking. Come by this evening”，cooking 是现在的活动，evening 是来访时间；把这两个细节分开。",
+      "zh-Hant": "如果有人說「I am cooking. Come by this evening」，cooking 是現在的活動，evening 是來訪時間；把這兩個細節分開。"
+    },
+    "nextStep": {
+      "en": "On the next conversation, check the speaker and the time before deciding what to do.",
+      "zh-Hans": "在下一段对话中，先确认说话者和时间，再决定该做什么。",
+      "zh-Hant": "在下一段對話中，先確認說話者和時間，再決定該做什麼。"
+    },
+    "materials": [
+      {
+        "id": "a2-voa-working-reading-7",
+        "rootId": "voa-article-3240468",
+        "sourceId": "voa-course-7",
+        "title": "What Are You Doing?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Hi there! I’m Anna.\nAnne: Hi, Anna. I’m Anne.\nAnna: Nice to meet you. What are you doing?\nAnne: Um, I’m writing.\nAnna: You are writing! You are writing a lot!\nAnna: (Spills papers) Oh! Oh dear.\nAnne: No! No! That's okay.\nAnna: I am sorry!\nAnne: That’s okay. Really.\nAnna: I am sorry!\nAnne: Please. Please. Please stop. Please.\nAnna: Sorry. Sorry.\nJonathan: (in the studio) “and people all around the world are waiting to hear news about the next president…”\nAnna: Jonathan, hi! Remember me? I live in your building.\nJonathan: Oh. Uh. Hi, Anna.\nAnna: What are you doing?\nJonathan: I am doing my show!\nAnna: Oh, sorry. Are you recording?\nJonathan: Yes! And, now I have to record again!\nAnna: Sorry. Have a good show.\nJonathan: Thank you.\nAnna: Sorry."
+          }
+        ],
+        "questions": [
+          {
+            "kind": "matching",
+            "id": "a2-voa-working-reading-activities",
+            "blockId": "dialogue",
+            "prompt": "Match each co-worker with the activity stated in the conversation.",
+            "choices": [
+              "Writing.",
+              "Recording a show.",
+              "Looking for a pen."
+            ],
+            "pairs": [
+              {
+                "label": "Anne",
+                "answer": "Writing."
+              },
+              {
+                "label": "Jonathan",
+                "answer": "Recording a show."
+              }
+            ],
+            "evidence": {
+              "start": 96,
+              "end": 118
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "dialogue",
+                "start": 642,
+                "end": 689
+              }
+            ],
+            "hints": [
+              {
+                "en": "Match names to present activities.",
+                "zh-Hans": "把名字和正在进行的活动配对。",
+                "zh-Hant": "把名字和正在進行的活動配對。"
+              },
+              {
+                "en": "Find “I’m writing” and the reply to “Are you recording?”",
+                "zh-Hans": "找“I’m writing”和对“Are you recording?”的回答。",
+                "zh-Hant": "找「I’m writing」和對「Are you recording?」的回答。"
+              },
+              {
+                "en": "I am plus an -ing form describes an activity happening now.",
+                "zh-Hans": "I am 加 -ing 形式表示正在进行的活动。",
+                "zh-Hant": "I am 加 -ing 形式表示正在進行的活動。"
+              }
+            ],
+            "explanation": {
+              "en": "Anne says she is writing. Jonathan confirms he is recording and needs to record again. Neither is looking for a pen.",
+              "zh-Hans": "Anne 说自己在写作；Jonathan 确认在录制，并需要重录。两人都没有在找笔。",
+              "zh-Hant": "Anne 說自己在寫作；Jonathan 確認在錄製，並需要重錄。兩人都沒有在找筆。"
+            }
+          },
+          {
+            "id": "a2-voa-working-reading-again",
+            "blockId": "dialogue",
+            "prompt": "What does Jonathan say he has to do next?",
+            "options": [
+              "Record again.",
+              "Write Anne’s papers.",
+              "Leave the building."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 652,
+              "end": 689
+            },
+            "hints": [
+              {
+                "en": "Find the action he says is necessary.",
+                "zh-Hans": "找他说必须做的事。",
+                "zh-Hant": "找他說必須做的事。"
+              },
+              {
+                "en": "Look at the sentence containing “have to”.",
+                "zh-Hans": "看含有 have to 的句子。",
+                "zh-Hant": "看含有 have to 的句子。"
+              },
+              {
+                "en": "Have to expresses a need; again means one more time.",
+                "zh-Hans": "have to 表示必须，again 表示再一次。",
+                "zh-Hant": "have to 表示必須，again 表示再一次。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "He explicitly says he has to record again.",
+                "zh-Hans": "他明确说自己必须重录。",
+                "zh-Hant": "他明確說自己必須重錄。"
+              },
+              {
+                "en": "Anne is writing, but Jonathan does not say he will write her papers.",
+                "zh-Hans": "Anne 在写作，但 Jonathan 没有说要替她写。",
+                "zh-Hant": "Anne 在寫作，但 Jonathan 沒有說要替她寫。"
+              },
+              {
+                "en": "Anna mentions the building, but he says he must record again.",
+                "zh-Hans": "Anna 提到他们住的楼；他说必须做的是重录。",
+                "zh-Hant": "Anna 提到他們住的樓；他說必須做的是重錄。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a2-voa-working-reading-8",
+        "rootId": "voa-article-3253185",
+        "sourceId": "voa-course-8",
+        "title": "Are You Busy?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Hi, Anne. Are you busy?\nAnne: Hi, Anna. Yes. At 10 a.m. I am writing. Every day I do my morning show. Sorry!\nAnna: Okay. See you later, maybe.\nAnne: Maybe I’ll see you later.\nAnna: Hi, Jonathan. Are you busy?\nJonathan: Yes, I’m busy. When the studio light is on, I am recording my evening show.\nAnna: Right. Sorry about yesterday.\nJonathan: No worries.\nAnna: May I see the studio?\nJonathan: Um, maybe another time? Right now I am busy.\nAnna: Sure. Okay, ’bye.\nJonathan: ‘Bye.\nAnna: Hi, Amelia! Are you busy?\nAmelia: I’m a little busy.\nAnna: I want to say I’m sorry for yesterday.\nAmelia: It’s okay, Anna.\nAnna: Well, I am sorry.\nAmelia: It’s okay, Anna. Come by this afternoon.\nAnna: Okay.\nCaty: Anna.\nAnna: Yes, Ms. Weaver.\nCaty: Are you busy?\nAnna: Yes, Ms. Weaver. I am busy.\nCaty: My office. 5:00 p.m.\nAnna: 5:00 p.m."
+          }
+        ],
+        "questions": [
+          {
+            "id": "a2-voa-working-reading-studio",
+            "blockId": "dialogue",
+            "prompt": "What does the studio light being on mean here?",
+            "options": [
+              "Jonathan is recording his evening show.",
+              "The studio is empty.",
+              "Amelia is holding a party."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 240,
+              "end": 300
+            },
+            "hints": [
+              {
+                "en": "Distinguish now from another time.",
+                "zh-Hans": "分清现在和另一个时间。",
+                "zh-Hant": "分清現在和另一個時間。"
+              },
+              {
+                "en": "Find the sentence starting with “When”.",
+                "zh-Hans": "找以 When 开头的句子。",
+                "zh-Hant": "找以 When 開頭的句子。"
+              },
+              {
+                "en": "Busy means occupied with work; another time is not now.",
+                "zh-Hans": "busy 表示正忙着；another time 不是现在。",
+                "zh-Hant": "busy 表示正忙著；another time 不是現在。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Jonathan directly connects the light being on with recording his evening show.",
+                "zh-Hans": "Jonathan 直接把灯亮与正在录制晚间节目联系起来。",
+                "zh-Hant": "Jonathan 直接把燈亮與正在錄製晚間節目聯繫起來。"
+              },
+              {
+                "en": "The light signals Jonathan is working in the studio, not that it is empty.",
+                "zh-Hans": "灯亮说明 Jonathan 正在演播室工作，不是空着。",
+                "zh-Hant": "燈亮說明 Jonathan 正在演播室工作，不是空著。"
+              },
+              {
+                "en": "Amelia is mentioned later; Jonathan explains the light as his recording signal.",
+                "zh-Hans": "Amelia 在后面出现；Jonathan 解释灯亮是自己正在录制。",
+                "zh-Hant": "Amelia 在後面出現；Jonathan 解釋燈亮是自己正在錄製。"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "a2-voa-working-reading-times",
+            "blockId": "dialogue",
+            "prompt": "Complete the times Anna is told to visit. Use the words or time from the conversation.",
+            "rows": [
+              {
+                "label": "Amelia: come by this …",
+                "answer": "afternoon",
+                "accepted": [
+                  "afternoon",
+                  "this afternoon"
+                ]
+              },
+              {
+                "label": "Caty: my office at …",
+                "answer": "5:00 p.m.",
+                "accepted": [
+                  "5:00 p.m.",
+                  "5 p.m.",
+                  "5 pm",
+                  "5:00 pm",
+                  "17:00"
+                ]
+              }
+            ],
+            "evidence": {
+              "start": 660,
+              "end": 683
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "dialogue",
+                "start": 791,
+                "end": 811
+              }
+            ],
+            "hints": [
+              {
+                "en": "Keep each invitation with the correct speaker.",
+                "zh-Hans": "把邀请时间和正确的说话者对应。",
+                "zh-Hant": "把邀請時間和正確的說話者對應。"
+              },
+              {
+                "en": "Find Amelia’s “Come by” and Caty’s “My office”.",
+                "zh-Hans": "找 Amelia 的 Come by 和 Caty 的 My office。",
+                "zh-Hant": "找 Amelia 的 Come by 和 Caty 的 My office。"
+              },
+              {
+                "en": "Afternoon is a part of the day; 5 p.m. is five in the afternoon.",
+                "zh-Hans": "afternoon 是下午这个时段；5 p.m. 是下午五点。",
+                "zh-Hant": "afternoon 是下午這個時段；5 p.m. 是下午五點。"
+              }
+            ],
+            "explanation": {
+              "en": "Amelia says this afternoon. Caty gives 5:00 p.m. Anne’s 10 a.m. writing time is not either invitation.",
+              "zh-Hans": "Amelia 说今天下午，Caty 指定下午五点。Anne 上午十点写作的时间不是这两次邀请的时间。",
+              "zh-Hant": "Amelia 說今天下午，Caty 指定下午五點。Anne 上午十點寫作的時間不是這兩次邀請的時間。"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "a2-voa-working-listening",
+    "targetLevel": "A2",
+    "skill": "listening",
+    "themes": [
+      "daily-life"
+    ],
+    "title": {
+      "en": "Hear activities and visit times",
+      "zh-Hans": "听出工作安排",
+      "zh-Hant": "聽出工作安排"
+    },
+    "goal": {
+      "en": "Follow what people are doing and distinguish an invitation from being busy now.",
+      "zh-Hans": "理解正在进行的活动，分清现在正忙和稍后可以来访。",
+      "zh-Hant": "理解正在進行的活動，分清現在正忙和稍後可以來訪。"
+    },
+    "goalId": "follow-work-and-visits-listening",
+    "sourceId": "voa-course-7",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "Keep each activity with its speaker. Notice now, again and time phrases. “Maybe another time” postpones a visit; it does not invite you in now.",
+      "zh-Hans": "把活动和说话者对应，注意 now、again 和时间表达。“Maybe another time”表示改天或稍后，并不是现在可以进去。",
+      "zh-Hant": "把活動和說話者對應，注意 now、again 和時間表達。「Maybe another time」表示改天或稍後，並不是現在可以進去。"
+    },
+    "workedExample": {
+      "en": "If someone says “I am cooking. Come by this evening”, cooking is the current activity and evening is the visit time. Keep these details separate.",
+      "zh-Hans": "如果有人说“I am cooking. Come by this evening”，cooking 是现在的活动，evening 是来访时间；把这两个细节分开。",
+      "zh-Hant": "如果有人說「I am cooking. Come by this evening」，cooking 是現在的活動，evening 是來訪時間；把這兩個細節分開。"
+    },
+    "nextStep": {
+      "en": "On the next conversation, check the speaker and the time before deciding what to do.",
+      "zh-Hans": "在下一段对话中，先确认说话者和时间，再决定该做什么。",
+      "zh-Hant": "在下一段對話中，先確認說話者和時間，再決定該做什麼。"
+    },
+    "materials": [
+      {
+        "id": "a2-voa-working-listening-7",
+        "rootId": "voa-article-3240468",
+        "sourceId": "voa-course-7",
+        "title": "What Are You Doing?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Jonathan: (in the studio) “and people all around the world are waiting to hear news about the next president…”\nAnna: Jonathan, hi! Remember me? I live in your building.\nJonathan: Oh. Uh. Hi, Anna.\nAnna: What are you doing?\nJonathan: I am doing my show!\nAnna: Oh, sorry. Are you recording?\nJonathan: Yes! And, now I have to record again!\nAnna: Sorry. Have a good show.\nJonathan: Thank you.\nAnna: Sorry."
+          }
+        ],
+        "audio": {
+          "src": "/audio/a2-speech/voa-working.mp3",
+          "sha256": "85acd9aded04a3bb7433e6688453d4aec0385a26e31c1027b66cdc60ffca5c20",
+          "duration": 29.66,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        },
+        "questions": [
+          {
+            "id": "a2-voa-working-listening-activity",
+            "blockId": "dialogue",
+            "prompt": "What is Jonathan doing when Anna speaks to him?",
+            "options": [
+              "Writing a letter.",
+              "Recording his show.",
+              "Visiting Anna’s home."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 299,
+              "end": 336,
+              "audioStart": 21.12,
+              "audioEnd": 24.42
+            },
+            "hints": [
+              {
+                "en": "Listen for Jonathan’s current activity.",
+                "zh-Hans": "听 Jonathan 正在做什么。",
+                "zh-Hant": "聽 Jonathan 正在做什麼。"
+              },
+              {
+                "en": "Replay his answer to “Are you recording?”",
+                "zh-Hans": "重听他对“Are you recording?”的回答。",
+                "zh-Hant": "重聽他對「Are you recording?」的回答。"
+              },
+              {
+                "en": "Record again means make another recording.",
+                "zh-Hans": "record again 表示再录一次。",
+                "zh-Hant": "record again 表示再錄一次。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "Writing belongs to Anne in the wider conversation. Jonathan confirms he is recording.",
+                "zh-Hans": "前面的对话中写作的是 Anne；Jonathan 确认正在录制节目。",
+                "zh-Hant": "前面的對話中寫作的是 Anne；Jonathan 確認正在錄製節目。"
+              },
+              {
+                "en": "He answers yes to recording and says he must record again.",
+                "zh-Hans": "他回答录制的问题为 yes，又说必须重录。",
+                "zh-Hant": "他回答錄製的問題為 yes，又說必須重錄。"
+              },
+              {
+                "en": "Anna mentions their building, but Jonathan is doing his show now.",
+                "zh-Hans": "Anna 提到他们住的楼，但 Jonathan 此刻正在做节目。",
+                "zh-Hant": "Anna 提到他們住的樓，但 Jonathan 此刻正在做節目。"
+              }
+            ]
+          },
+          {
+            "kind": "completion",
+            "id": "a2-voa-working-listening-show",
+            "blockId": "dialogue",
+            "prompt": "Complete Jonathan’s words: “I am doing my ____!”",
+            "answer": "show",
+            "accepted": [
+              "show"
+            ],
+            "evidence": {
+              "start": 233,
+              "end": 252,
+              "audioStart": 15.22,
+              "audioEnd": 17.16
+            },
+            "hints": [
+              {
+                "en": "Listen for the missing noun.",
+                "zh-Hans": "听出缺少的名词。",
+                "zh-Hant": "聽出缺少的名詞。"
+              },
+              {
+                "en": "Replay Jonathan’s answer after “What are you doing?”",
+                "zh-Hans": "重听 Jonathan 对“What are you doing?”的回答。",
+                "zh-Hant": "重聽 Jonathan 對「What are you doing?」的回答。"
+              },
+              {
+                "en": "A show is a programme made for an audience.",
+                "zh-Hans": "show 在这里是制作给观众的节目。",
+                "zh-Hant": "show 在這裡是製作給觀眾的節目。"
+              }
+            ],
+            "explanation": {
+              "en": "Jonathan says “show”. The task checks the exact word he uses, not a guessed synonym.",
+              "zh-Hans": "Jonathan 说的是 show；这里检查录音原词，而不是猜测近义词。",
+              "zh-Hant": "Jonathan 說的是 show；這裡檢查錄音原詞，而不是猜測近義詞。"
+            }
+          }
+        ]
+      },
+      {
+        "id": "a2-voa-working-listening-8",
+        "rootId": "voa-article-3253185",
+        "sourceId": "voa-course-8",
+        "title": "Are You Busy?",
+        "blocks": [
+          {
+            "id": "dialogue",
+            "text": "Anna: Hi, Jonathan. Are you busy?\nJonathan: Yes, I’m busy. When the studio light is on, I am recording my evening show.\nAnna: Right. Sorry about yesterday.\nJonathan: No worries.\nAnna: May I see the studio?\nJonathan: Um, maybe another time? Right now I am busy.\nAnna: Sure. Okay, ’bye.\nJonathan: ‘Bye.\nAnna: Hi, Amelia! Are you busy?\nAmelia: I’m a little busy.\nAnna: I want to say I’m sorry for yesterday.\nAmelia: It’s okay, Anna.\nAnna: Well, I am sorry.\nAmelia: It’s okay, Anna. Come by this afternoon.\nAnna: Okay.\nCaty: Anna.\nAnna: Yes, Ms. Weaver.\nCaty: Are you busy?\nAnna: Yes, Ms. Weaver. I am busy.\nCaty: My office. 5:00 p.m.\nAnna: 5:00 p.m."
+          }
+        ],
+        "audio": {
+          "src": "/audio/a2-speech/voa-visit-times.mp3",
+          "sha256": "a64d2250efea1c28fa820db13a608dfb0d2b12e1b907b166361906632cd6c781",
+          "duration": 49.18,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html",
+          "license": "VOA Learning English original production (public domain)",
+          "synthetic": false
+        },
+        "questions": [
+          {
+            "id": "a2-voa-working-listening-studio",
+            "blockId": "dialogue",
+            "prompt": "Can Anna see the studio right now?",
+            "options": [
+              "Yes, Jonathan invites her in now.",
+              "No; Jonathan suggests another time because he is busy.",
+              "Yes, but only after she brings a pen."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 216,
+              "end": 260,
+              "audioStart": 13.78,
+              "audioEnd": 17.06
+            },
+            "hints": [
+              {
+                "en": "Distinguish now from another time.",
+                "zh-Hans": "分清现在和另一个时间。",
+                "zh-Hant": "分清現在和另一個時間。"
+              },
+              {
+                "en": "Replay the answer after “May I see the studio?”",
+                "zh-Hans": "重听“May I see the studio?”后面的回答。",
+                "zh-Hant": "重聽「May I see the studio?」後面的回答。"
+              },
+              {
+                "en": "Busy means occupied with work; another time is not now.",
+                "zh-Hans": "busy 表示正忙着；another time 不是现在。",
+                "zh-Hant": "busy 表示正忙著；another time 不是現在。"
+              }
+            ],
+            "explanations": [
+              {
+                "en": "He says another time, not come in now.",
+                "zh-Hans": "他说另找时间，并没有邀请现在进去。",
+                "zh-Hant": "他說另找時間，並沒有邀請現在進去。"
+              },
+              {
+                "en": "He suggests another time and states that he is busy now.",
+                "zh-Hans": "他建议另找时间，并明确表示现在正忙。",
+                "zh-Hant": "他建議另找時間，並明確表示現在正忙。"
+              },
+              {
+                "en": "No pen condition is given; the stated reason is being busy.",
+                "zh-Hans": "这里没有带笔的条件；原因是正忙着。",
+                "zh-Hant": "這裡沒有帶筆的條件；原因是正忙著。"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "a2-voa-working-listening-times",
+            "blockId": "dialogue",
+            "prompt": "Complete the times Anna is told to visit. Use the words or time from the conversation.",
+            "rows": [
+              {
+                "label": "Amelia: come by this …",
+                "answer": "afternoon",
+                "accepted": [
+                  "afternoon",
+                  "this afternoon"
+                ]
+              },
+              {
+                "label": "Caty: my office at …",
+                "answer": "5:00 p.m.",
+                "accepted": [
+                  "5:00 p.m.",
+                  "5 p.m.",
+                  "5 pm",
+                  "5:00 pm",
+                  "17:00"
+                ]
+              }
+            ],
+            "evidence": {
+              "start": 479,
+              "end": 502,
+              "audioStart": 32.92,
+              "audioEnd": 35.28
+            },
+            "additionalEvidence": [
+              {
+                "blockId": "dialogue",
+                "start": 610,
+                "end": 630,
+                "audioStart": 43.98,
+                "audioEnd": 45.74
+              }
+            ],
+            "hints": [
+              {
+                "en": "Keep each invitation with the correct speaker.",
+                "zh-Hans": "把邀请时间和正确的说话者对应。",
+                "zh-Hant": "把邀請時間和正確的說話者對應。"
+              },
+              {
+                "en": "Find Amelia’s “Come by” and Caty’s “My office”.",
+                "zh-Hans": "找 Amelia 的 Come by 和 Caty 的 My office。",
+                "zh-Hant": "找 Amelia 的 Come by 和 Caty 的 My office。"
+              },
+              {
+                "en": "Afternoon is a part of the day; 5 p.m. is five in the afternoon.",
+                "zh-Hans": "afternoon 是下午这个时段；5 p.m. 是下午五点。",
+                "zh-Hant": "afternoon 是下午這個時段；5 p.m. 是下午五點。"
+              }
+            ],
+            "explanation": {
+              "en": "Amelia says this afternoon. Caty gives 5:00 p.m. Anne’s 10 a.m. writing time is not either invitation.",
+              "zh-Hans": "Amelia 说今天下午，Caty 指定下午五点。Anne 上午十点写作的时间不是这两次邀请的时间。",
+              "zh-Hant": "Amelia 說今天下午，Caty 指定下午五點。Anne 上午十點寫作的時間不是這兩次邀請的時間。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

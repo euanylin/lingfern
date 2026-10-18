@@ -1,0 +1,326 @@
+{
+  "id": "a1-everyday-words-listening",
+  "targetLevel": "A1",
+  "skill": "listening",
+  "title": {
+    "zh-Hans": "听出日常物品",
+    "zh-Hant": "聽出日常物品",
+    "en": "Hear everyday words"
+  },
+  "goal": {
+    "zh-Hans": "听一个简单单词，选出它的拼写。",
+    "zh-Hant": "聽一個簡單單字，選出它的拼字。",
+    "en": "Listen to one word. Choose the word you hear."
+  },
+  "goalId": "recognise-everyday-word-sounds",
+  "sourceId": "commons-dvortygirl-a1-words",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "点击播放，听完后选一个词。可以重听。先听开头，再听结尾。",
+    "zh-Hant": "點擊播放，聽完後選一個字。可以重聽。先聽開頭，再聽結尾。",
+    "en": "Tap Play. Listen. Choose one word. You can listen again. Listen to the first and last sounds."
+  },
+  "workedExample": {
+    "zh-Hans": "操作示范：播放 → 选择听到的词 → 保存答案 → 对照录音和文稿。这是单词听辨练习，不是句子理解或等级测评。",
+    "zh-Hant": "操作示範：播放 → 選擇聽到的字 → 儲存答案 → 對照錄音和文稿。這是單字聽辨練習，不是句子理解或等級測驗。",
+    "en": "Play → choose a word → save → listen and check. This is word practice, not a level test."
+  },
+  "materials": [
+    {
+      "id": "word-1",
+      "rootId": "commons-En-us-book.ogg",
+      "title": "Word 1",
+      "audio": {
+        "src": "/audio/a1-words/word-1.mp3",
+        "sha256": "0f5341994e833aa79868c1e33fb342d99e74585ae084bd17224d60f23ba59f55",
+        "duration": 0.592109,
+        "author": "Dvortygirl",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-book.ogg",
+        "license": "CC-BY-SA-3.0"
+      },
+      "blocks": [
+        {
+          "id": "word",
+          "text": "book"
+        }
+      ],
+      "questions": [
+        {
+          "id": "hear-word-1",
+          "blockId": "word",
+          "prompt": "Which word do you hear?",
+          "options": [
+            "bag",
+            "book",
+            "cup"
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 0,
+            "end": 4,
+            "audioStart": 0,
+            "audioEnd": 0.592109
+          },
+          "hints": [
+            {
+              "zh-Hans": "选出听到的词。可以再听一次。",
+              "zh-Hant": "選出聽到的字。可以再聽一次。",
+              "en": "Choose the word you hear. Listen again."
+            },
+            {
+              "zh-Hans": "开头是 /b/，结尾是 /k/。",
+              "zh-Hant": "開頭是 /b/，結尾是 /k/。",
+              "en": "It starts with /b/ and ends with /k/."
+            },
+            {
+              "zh-Hans": "这个词表示“书”。",
+              "zh-Hant": "這個字表示「書」。",
+              "en": "It means something you read."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "你选了 bag。录音说的是 book（书）。开头是 /b/，结尾是 /k/。",
+              "zh-Hant": "你選了 bag。錄音說的是 book（書）。開頭是 /b/，結尾是 /k/。",
+              "en": "You chose “bag”. The recording says “book”: something you read. It starts with /b/ and ends with /k/."
+            },
+            {
+              "zh-Hans": "正确。录音说的是 book（书）。开头是 /b/，结尾是 /k/。",
+              "zh-Hant": "正確。錄音說的是 book（書）。開頭是 /b/，結尾是 /k/。",
+              "en": "The recording says “book”: something you read. It starts with /b/ and ends with /k/."
+            },
+            {
+              "zh-Hans": "你选了 cup。录音说的是 book（书）。开头是 /b/，结尾是 /k/。",
+              "zh-Hant": "你選了 cup。錄音說的是 book（書）。開頭是 /b/，結尾是 /k/。",
+              "en": "You chose “cup”. The recording says “book”: something you read. It starts with /b/ and ends with /k/."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-2",
+      "rootId": "commons-En-us-pen.ogg",
+      "title": "Word 2",
+      "audio": {
+        "src": "/audio/a1-words/word-2.mp3",
+        "sha256": "3ee3914c80d835c226c23b0036cb769997d5cf63e1189c7b52cc4c7af87803b9",
+        "duration": 0.719819,
+        "author": "Dvortygirl",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-pen.ogg",
+        "license": "CC-BY-SA-3.0"
+      },
+      "blocks": [
+        {
+          "id": "word",
+          "text": "pen"
+        }
+      ],
+      "questions": [
+        {
+          "id": "hear-word-2",
+          "blockId": "word",
+          "prompt": "Which word do you hear?",
+          "options": [
+            "pen",
+            "cup",
+            "book"
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 0,
+            "end": 3,
+            "audioStart": 0,
+            "audioEnd": 0.719819
+          },
+          "hints": [
+            {
+              "zh-Hans": "选出听到的词。可以再听一次。",
+              "zh-Hant": "選出聽到的字。可以再聽一次。",
+              "en": "Choose the word you hear. Listen again."
+            },
+            {
+              "zh-Hans": "开头是 /p/，结尾是 /n/。",
+              "zh-Hant": "開頭是 /p/，結尾是 /n/。",
+              "en": "It starts with /p/ and ends with /n/."
+            },
+            {
+              "zh-Hans": "这个词表示“笔”。",
+              "zh-Hant": "這個字表示「筆」。",
+              "en": "It means something you write with."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确。录音说的是 pen（笔）。开头是 /p/，结尾是 /n/。",
+              "zh-Hant": "正確。錄音說的是 pen（筆）。開頭是 /p/，結尾是 /n/。",
+              "en": "The recording says “pen”: something you write with. It starts with /p/ and ends with /n/."
+            },
+            {
+              "zh-Hans": "你选了 cup。录音说的是 pen（笔）。开头是 /p/，结尾是 /n/。",
+              "zh-Hant": "你選了 cup。錄音說的是 pen（筆）。開頭是 /p/，結尾是 /n/。",
+              "en": "You chose “cup”. The recording says “pen”: something you write with. It starts with /p/ and ends with /n/."
+            },
+            {
+              "zh-Hans": "你选了 book。录音说的是 pen（笔）。开头是 /p/，结尾是 /n/。",
+              "zh-Hant": "你選了 book。錄音說的是 pen（筆）。開頭是 /p/，結尾是 /n/。",
+              "en": "You chose “book”. The recording says “pen”: something you write with. It starts with /p/ and ends with /n/."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-3",
+      "rootId": "commons-En-us-bag.ogg",
+      "title": "Word 3",
+      "audio": {
+        "src": "/audio/a1-words/word-3.mp3",
+        "sha256": "4f7092326a22d260364aeec50b1191b78e1ae7094c602a7608b16810ba3fe185",
+        "duration": 0.673379,
+        "author": "Dvortygirl",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-bag.ogg",
+        "license": "CC-BY-SA-3.0"
+      },
+      "blocks": [
+        {
+          "id": "word",
+          "text": "bag"
+        }
+      ],
+      "questions": [
+        {
+          "id": "hear-word-3",
+          "blockId": "word",
+          "prompt": "Which word do you hear?",
+          "options": [
+            "cup",
+            "pen",
+            "bag"
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 0,
+            "end": 3,
+            "audioStart": 0,
+            "audioEnd": 0.673379
+          },
+          "hints": [
+            {
+              "zh-Hans": "选出听到的词。可以再听一次。",
+              "zh-Hant": "選出聽到的字。可以再聽一次。",
+              "en": "Choose the word you hear. Listen again."
+            },
+            {
+              "zh-Hans": "开头是 /b/，结尾是 /ɡ/。",
+              "zh-Hant": "開頭是 /b/，結尾是 /ɡ/。",
+              "en": "It starts with /b/ and ends with /ɡ/."
+            },
+            {
+              "zh-Hans": "这个词表示“包”。",
+              "zh-Hant": "這個字表示「包」。",
+              "en": "It means something you carry things in."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "你选了 cup。录音说的是 bag（包）。开头是 /b/，结尾是 /ɡ/。",
+              "zh-Hant": "你選了 cup。錄音說的是 bag（包）。開頭是 /b/，結尾是 /ɡ/。",
+              "en": "You chose “cup”. The recording says “bag”: something you carry things in. It starts with /b/ and ends with /ɡ/."
+            },
+            {
+              "zh-Hans": "你选了 pen。录音说的是 bag（包）。开头是 /b/，结尾是 /ɡ/。",
+              "zh-Hant": "你選了 pen。錄音說的是 bag（包）。開頭是 /b/，結尾是 /ɡ/。",
+              "en": "You chose “pen”. The recording says “bag”: something you carry things in. It starts with /b/ and ends with /ɡ/."
+            },
+            {
+              "zh-Hans": "正确。录音说的是 bag（包）。开头是 /b/，结尾是 /ɡ/。",
+              "zh-Hant": "正確。錄音說的是 bag（包）。開頭是 /b/，結尾是 /ɡ/。",
+              "en": "The recording says “bag”: something you carry things in. It starts with /b/ and ends with /ɡ/."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-4",
+      "rootId": "commons-En-us-cup.ogg",
+      "title": "Word 4",
+      "audio": {
+        "src": "/audio/a1-words/word-4.mp3",
+        "sha256": "ffedd9eb65d37aeac46d4d104e84ac52918832c90bf73cd854042ac693daf1c5",
+        "duration": 0.719819,
+        "author": "Dvortygirl",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:En-us-cup.ogg",
+        "license": "CC-BY-SA-3.0"
+      },
+      "blocks": [
+        {
+          "id": "word",
+          "text": "cup"
+        }
+      ],
+      "questions": [
+        {
+          "id": "hear-word-4",
+          "blockId": "word",
+          "prompt": "Which word do you hear?",
+          "options": [
+            "book",
+            "cup",
+            "bag"
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 0,
+            "end": 3,
+            "audioStart": 0,
+            "audioEnd": 0.719819
+          },
+          "hints": [
+            {
+              "zh-Hans": "选出听到的词。可以再听一次。",
+              "zh-Hant": "選出聽到的字。可以再聽一次。",
+              "en": "Choose the word you hear. Listen again."
+            },
+            {
+              "zh-Hans": "开头是 /k/，结尾是 /p/。",
+              "zh-Hant": "開頭是 /k/，結尾是 /p/。",
+              "en": "It starts with /k/ and ends with /p/."
+            },
+            {
+              "zh-Hans": "这个词表示“杯子”。",
+              "zh-Hant": "這個字表示「杯子」。",
+              "en": "It means something you drink from."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "你选了 book。录音说的是 cup（杯子）。开头是 /k/，结尾是 /p/。",
+              "zh-Hant": "你選了 book。錄音說的是 cup（杯子）。開頭是 /k/，結尾是 /p/。",
+              "en": "You chose “book”. The recording says “cup”: something you drink from. It starts with /k/ and ends with /p/."
+            },
+            {
+              "zh-Hans": "正确。录音说的是 cup（杯子）。开头是 /k/，结尾是 /p/。",
+              "zh-Hant": "正確。錄音說的是 cup（杯子）。開頭是 /k/，結尾是 /p/。",
+              "en": "The recording says “cup”: something you drink from. It starts with /k/ and ends with /p/."
+            },
+            {
+              "zh-Hans": "你选了 bag。录音说的是 cup（杯子）。开头是 /k/，结尾是 /p/。",
+              "zh-Hant": "你選了 bag。錄音說的是 cup（杯子）。開頭是 /k/，結尾是 /p/。",
+              "en": "You chose “bag”. The recording says “cup”: something you drink from. It starts with /k/ and ends with /p/."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "daily-life"
+  ],
+  "nextStep": {
+    "zh-Hans": "再听一次，对照拼写，听清开头和结尾。",
+    "zh-Hant": "再聽一次，對照拼字，聽清開頭和結尾。",
+    "en": "Listen again. Compare the first and last sounds with the written word."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "reviewer": "Codex/AI",
+  "reviewedAt": "2026-10-01T14:45:19.686Z",
+  "scope": "Two original simple English explanations/examples personally inspected for the captured VOA beginner conversations. Apartment mapped to the exact installed OEWN2025 noun sense. Roommate deliberately unmapped: course context includes sharing an apartment, while installed OEWN definition is narrower room sharing. No fabricated sense key or externally validated learner comprehension. Three further original simple explanations/examples personally inspected for Lesson3: supermarket, dinner and wrong number; intentionally unmapped, no unverified WordNet sense key.",
+  "entries": [
+    {
+      "term": "apartment",
+      "senseId": "apartment%1:06:00::",
+      "definition": "A set of rooms where someone lives.",
+      "example": "Anna lives in an apartment.",
+      "sha256": "4ced55cae286a650b65f6de38383d77bb5ba99255d724fa405049b6c0648df65"
+    },
+    {
+      "term": "roommate",
+      "senseId": null,
+      "definition": "A person you share a room or apartment with.",
+      "example": "Anna and Marsha are roommates.",
+      "sha256": "c3e5e06763e28f774165e15b830e489b8d024479a9b3d15cf0b6f96f501fcba2"
+    },
+    {
+      "term": "supermarket",
+      "senseId": null,
+      "definition": "A large shop where people buy food and things for their home.",
+      "example": "Is there a supermarket near here?",
+      "sha256": "7addb45a55334a7e7fd02f82c06086766cd99386a954091f17ef1d70f8c57e4c"
+    },
+    {
+      "term": "dinner",
+      "senseId": null,
+      "definition": "The main meal of the day, often eaten in the evening.",
+      "example": "I want to cook dinner.",
+      "sha256": "bd92a62fcc890c7a8f529b48f05836bdf679843a777e4cc474237564c3ae7b54"
+    },
+    {
+      "term": "wrong number",
+      "senseId": null,
+      "definition": "A telephone number for a different person from the one you want to call.",
+      "example": "You have the wrong number.",
+      "sha256": "5593bf46542dc4b4faeb61cff566fc8ae8f3306cd6325ace266dbf783db225dd"
+    }
+  ]
+}

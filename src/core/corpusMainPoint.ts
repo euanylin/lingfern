@@ -1,0 +1,41 @@
+import readingScopes from '../../content/corpus/b1-main-point-scopes.json';
+import listeningSources from '../../public/audio/b1-speech/MAINIDEA.json';
+export const mainPointPrompt = 'Which statement gives the overall point of this excerpt rather than only an example or detail?';
+const local = (en: string, hans: string, hant: string) => ({en,'zh-Hans':hans,'zh-Hant':hant});
+const inspected = [...readingScopes.records,...listeningSources];
+
+/** Extract the general statement and concrete supports from the inspected argument structures. */
+export function corpusMainPoint(text: string, seed: number) {
+  if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_MAIN_POINT');
+  // shortcut: These four complete inspected argument contexts; review new rhetorical structures before extending.
+  if (!inspected.some(source=>source.text===text)) return;
+  const goals = /The great thing about goals is that they (can include and influence a number of other things that all work toward a much bigger picture)\./.exec(text);
+  const audiences = /The originator may have a real audience or an anticipated audience\./.exec(text);
+  const appeal = /Generally, we do not use “appeal” for normal, everyday requests\./.exec(text);
+  const questions = /These questions are very general, polite, and useful in a lot of situations\./.exec(text);
+  if ([goals,audiences,appeal,questions].filter(Boolean).length!==1) return;
+  const main=(goals??audiences??appeal??questions)!;
+  const one = goals ? /I am going to write one extra page tonight/.exec(text) : audiences ? /your real audience could be a group of your peers to whom you present your ideas in class/.exec(text) : appeal ? /I appeal for you to get some milk at the store\./.exec(text) : /Could you come to my office, please\?/.exec(text);
+  const two = goals ? /I am going to work to get an A in this course/.exec(text) : audiences ? /When you post on social media platforms, for instance, your audience is probably anticipated\./.exec(text) : appeal ? /The earthquake victims appealed to the government for more aid\./.exec(text) : /Could I talk to you for a moment\?/.exec(text);
+  if(!one||!two) return;
+  const correct=goals?`Goals ${goals[1]}.`:main[0];
+  const wrong=goals?correct.replace('can include and influence','cannot include or influence'):audiences?correct.replace('may have','cannot have'):appeal?correct.replace('do not use','use'):correct.replace('very general, polite, and useful in a lot of situations','never polite or useful in any situation');
+  if(correct===wrong)throw new Error('AMBIGUOUS_MAIN_POINT');
+  const labels=[correct,wrong,one[0],two[0]],offset=seed%4,order=[0,1,2,3].slice(offset).concat([0,1,2,3].slice(0,offset));
+  const context=goals
+    ? local('The paragraph connects goals at different scales with actions toward a larger aim. Writing a page or seeking an A are examples, not the whole point. Can does not guarantee an A, a job or learning effects.', '这段把不同层级的目标与朝向较大目标的行动联系起来。多写一页或争取A是例子，不是整段主旨；can没有保证成绩、工作或学习效果。', '這段把不同層級的目標與朝向較大目標的行動聯繫起來。多寫一頁或爭取A是例子，不是整段主旨；can沒有保證成績、工作或學習效果。')
+    : audiences?local('The paragraph introduces real and anticipated audiences, using class/social-media examples. Keep may and probably: the originator may know people personally or know of them; anticipated audiences are expected, not necessarily all strangers or physically present. One example does not cover both categories.', '这段用课堂及社交媒体例子介绍real与anticipated两类受众。保留may和probably：发起者可能亲自认识或知道对方，anticipated是预期受众，不一定全是陌生人，也没有要求实际在场。单个例子没有覆盖两类。', '這段用課堂及社交媒體例子介紹real與anticipated兩類受眾。保留may和probably：發起者可能親自認識或知道對方，anticipated是預期受眾，不一定全是陌生人，也沒有要求實際在場。單個例子沒有覆蓋兩類。')
+    : appeal?local('The general statement limits appeal in ordinary requests. The milk request is explicitly marked as what we would not say; the aid request is the contrasting positive example. They illustrate usage, not verified events. Removing do not reverses the stated point.', '概括句限制appeal在普通请求中的用法。买牛奶明确是would not say的反例，援助请求是对照的正例；它们说明用法，不是已核实事件。去掉do not会颠倒原意。', '概括句限制appeal在普通請求中的用法。買牛奶明確是would not say的反例，援助請求是對照的正例；它們說明用法，不是已核實事件。去掉do not會顛倒原意。')
+    : local('The evaluation refers to the group of polite questions, while office and moment-to-talk are particular examples. More exact wording can name a place or purpose. Useful in a lot of situations does not mean every form is equally suitable everywhere; the complete original later notes differences of context and speaker relationship.', '评价句概括这一组礼貌问句，office和短暂交谈是具体例子；更具体的措辞可以说明地点或目的。很多场合有用不等于所有形式在任何地方都同样适合；完整原文后面还说明语境及说话者关系会有影响。', '評價句概括這一組禮貌問句，office和短暫交談是具體例子；更具體的措辭可以說明地點或目的。很多場合有用不等於所有形式在任何地方都同樣適合；完整原文後面還說明語境及說話者關係會有影響。');
+  const options=order.map(i=>labels[i]),answer=order.indexOf(0);
+  return {prompt:mainPointPrompt,options,answer,evidence:{start:main.index,end:main.index+main[0].length},additionalEvidence:[one,two].map(m=>({start:m.index,end:m.index+m[0].length})),explanation:context.en,hans:context['zh-Hans'],hant:context['zh-Hant'],
+    optionExplanations:order.map(role=>local((role===0?'This covers the point illustrated by the examples. ':role===1?'This contradicts the stated point. ':'This is an example or supporting detail, not the overall point. ')+context.en,(role===0?'这概括了例子说明的主旨。':role===1?'这与所述主旨相反。':'这是例子或支持细节，没有概括整段。')+context['zh-Hans'],(role===0?'這概括了例子說明的主旨。':role===1?'這與所述主旨相反。':'這是例子或支持細節，沒有概括整段。')+context['zh-Hant']))};
+}
+
+export const mainPointSupport={
+  goal:local('Distinguish the overall point of a connected excerpt from a true but narrower example or detail.','区分连贯段落的整体主旨与真实但局部的例子或细节。','區分連貫段落的整體主旨與真實但局部的例子或細節。'),
+  teaching:local('A main point covers what the connected excerpt explains; a detail or example supports only part of it. Check a broad statement against all the relevant examples and keep negation, can/may and words such as generally or probably. A detail can be true and still fail a main-point question. Goal means an aim; an assignment is a course task. An originator starts communication; an audience receives it; anticipated means expected and peers are people in a similar group. In the recordings, appeal is a verb for making a request, while summon means call someone to come. Aid is help, victims are people affected by a harmful event, and government means the public authority. A supervisor is a person overseeing work; a principal leads a school; a moment means a short time, not a fixed number of seconds.','主旨概括这段连贯材料在说明什么；细节或例子只支持其中一部分。用相关例子核对概括句，保留否定、can／may以及generally／probably等限制。细节即使真实，也可能不能回答主旨题。goal是目标，assignment是课程任务；originator是沟通发起者，audience是受众，anticipated是预期的，peers是同类群体中的人。录音中appeal是提出请求的动词，summon是叫人过来；aid是援助，victims是受不利事件影响的人，government是政府。supervisor是工作主管，principal是校长；a moment是短暂一会儿，不是固定秒数。','主旨概括這段連貫材料在說明什麼；細節或例子只支持其中一部分。用相關例子核對概括句，保留否定、can／may以及generally／probably等限制。細節即使真實，也可能不能回答主旨題。goal是目標，assignment是課程任務；originator是溝通發起者，audience是受眾，anticipated是預期的，peers是同類群體中的人。錄音中appeal是提出請求的動詞，summon是叫人過來；aid是援助，victims是受不利事件影響的人，government是政府。supervisor是工作主管，principal是校長；a moment是短暫一會兒，不是固定秒數。'),
+  workedExample:local('Unscored made-up example: “Some buses use electric power. Route 4 uses an electric bus. Route 9 uses an electric bus.” Overall point: some buses use electric power. Route 4 is one supporting example; Route 9 is another. “No buses use electric power” contradicts the passage. The examples do not establish that all buses are electric.','不计分虚构示例：“Some buses use electric power. Route 4 uses an electric bus. Route 9 uses an electric bus.” 主旨是有些巴士使用电力；4路和9路分别是支持例子。“没有巴士用电”与材料相反，例子也没有证明所有巴士都用电。','不計分虛構示例：「Some buses use electric power. Route 4 uses an electric bus. Route 9 uses an electric bus.」主旨是有些巴士使用電力；4路和9路分別是支持例子。「沒有巴士用電」與材料相反，例子也沒有證明所有巴士都用電。'),
+  nextStep:local('On the other original, use no hints. Choose the statement that covers the excerpt, then locate the general statement and its supporting examples.','不用提示，在另一原作中选择覆盖整段的陈述，再定位概括句及支持例子。','不用提示，在另一原作中選擇覆蓋整段的陳述，再定位概括句及支持例子。'),
+  hints:[local('Separate the broad statement from particular cases.','区分概括句与具体例子。','區分概括句與具體例子。'),local('Find the statement connected to more than one example.','找到不只对应一个例子的陈述。','找到不只對應一個例子的陳述。'),local('Check coverage and keep negative/modal/quantity limits; a true detail is narrower.','核对覆盖范围并保留否定、情态及数量限制；真实细节的范围更窄。','核對覆蓋範圍並保留否定、情態及數量限制；真實細節的範圍更窄。')],
+};

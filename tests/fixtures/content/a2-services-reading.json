@@ -1,0 +1,265 @@
+{
+  "id": "a2-service-instructions-reading",
+  "targetLevel": "A2",
+  "skill": "reading",
+  "themes": [
+    "daily-life",
+    "travel"
+  ],
+  "title": {
+    "zh-Hans": "按服务说明办事",
+    "zh-Hant": "依服務說明辦事",
+    "en": "Follow service instructions"
+  },
+  "goal": {
+    "zh-Hans": "找出申请所需的信息，并区分提交、确认可以领取与实际领取的顺序。",
+    "zh-Hant": "找出申請所需的資訊，並區分提交、確認可以領取與實際領取的順序。",
+    "en": "Find the details needed for a request and follow the order from sending it to confirmation and collection."
+  },
+  "goalId": "follow-service-instructions",
+  "sourceId": "lingfern-original-a2-services",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先圈出要发送的信息，再找 first、wait、before 等顺序词。收到申请的回复，不一定表示物品可以领取。",
+    "zh-Hant": "先圈出要傳送的資訊，再找 first、wait、before 等順序詞。收到申請的回覆，不一定表示物品可以領取。",
+    "en": "Find what to send. Then look for “first”, “wait” and “before”. A reply may only say that staff have received your request."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：先发送姓名，等“票已准备好”的消息，再去柜台。→ 发送 → 等待可以领取 → 到柜台。排序题中逐个选择步骤，选择顺序就是你的答案。",
+    "zh-Hant": "示範（不計分）：先傳送姓名，等「票已準備好」的訊息，再去櫃檯。→ 傳送 → 等待可以領取 → 到櫃檯。排序題中逐個選擇步驟，選擇順序就是你的答案。",
+    "en": "Example (not scored): Send your name, wait for “Your ticket is ready”, then visit the desk. → Send → Wait until ready → Visit. In an ordering task, select the steps one by one in your chosen order."
+  },
+  "nextStep": {
+    "zh-Hans": "下次先列出必须提交的信息，再确认哪条回复允许你前往领取。",
+    "zh-Hant": "下次先列出必須提交的資訊，再確認哪則回覆允許你前往領取。",
+    "en": "Next time, list the required details and check which reply tells you that collection can begin."
+  },
+  "materials": [
+    {
+      "id": "library-book-request",
+      "rootId": "original-library-book-request",
+      "title": "Requesting a library book",
+      "blocks": [
+        {
+          "id": "library-book-request-text",
+          "text": "You can ask the library to keep a book for you. First, send the book title and your library card number using the request form. Do not send your home address. The library will check whether the book is available and send you a message. Wait for a message saying that your book is ready before you come to collect it. A message saying that staff have received your request does not mean that the book is ready. When you receive the ready message, visit the main desk with your library card. Show the card and ask for your book. Staff will keep the book for three days after the ready message. If you need more time, telephone the desk before those three days end."
+        }
+      ],
+      "questions": [
+        {
+          "id": "book-request-details",
+          "blockId": "library-book-request-text",
+          "prompt": "What information must you send in the request form?",
+          "options": [
+            "The book title and your library card number.",
+            "Your home address and the day you will visit.",
+            "Your library card number and the librarian's name."
+          ],
+          "answer": 0,
+          "evidence": {
+            "start": 48,
+            "end": 127
+          },
+          "hints": [
+            {
+              "zh-Hans": "找提交申请时需要的两项信息。",
+              "zh-Hant": "找提交申請時需要的兩項資訊。",
+              "en": "Find the two details needed in the request."
+            },
+            {
+              "zh-Hans": "看以 First 开头的句子。",
+              "zh-Hant": "看以 First 開頭的句子。",
+              "en": "Read the sentence beginning “First”."
+            },
+            {
+              "zh-Hans": "需要书名和借书证号码，不需要家庭地址。",
+              "zh-Hant": "需要書名和借書證號碼，不需要住址。",
+              "en": "Send the title and card number, not your home address."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "正确：第一步明确要求书名和借书证号码。",
+              "zh-Hant": "正確：第一步明確要求書名和借書證號碼。",
+              "en": "Correct: the first step asks for the title and card number."
+            },
+            {
+              "zh-Hans": "不对：说明明确说不要发送家庭地址。",
+              "zh-Hant": "不對：說明明確說不要傳送住址。",
+              "en": "The notice says not to send your home address."
+            },
+            {
+              "zh-Hans": "不对：申请不需要工作人员姓名，但需要书名。",
+              "zh-Hant": "不對：申請不需要工作人員姓名，但需要書名。",
+              "en": "The request needs the book title, not a staff member's name."
+            }
+          ]
+        },
+        {
+          "kind": "sequence",
+          "id": "book-request-order",
+          "blockId": "library-book-request-text",
+          "prompt": "Put the three actions in the required order.",
+          "steps": [
+            "Visit the main desk with your card and ask for the book.",
+            "Wait for a message saying the book is ready.",
+            "Send the book title and your card number."
+          ],
+          "acceptedOrders": [
+            [
+              "Send the book title and your card number.",
+              "Wait for a message saying the book is ready.",
+              "Visit the main desk with your card and ask for the book."
+            ]
+          ],
+          "evidence": {
+            "start": 48,
+            "end": 316
+          },
+          "hints": [
+            {
+              "zh-Hans": "先申请，再确认可以领取，最后到柜台。",
+              "zh-Hant": "先申請，再確認可以領取，最後到櫃檯。",
+              "en": "Request first, confirm readiness, then visit."
+            },
+            {
+              "zh-Hans": "找 First、Wait 和 When you receive。",
+              "zh-Hant": "找 First、Wait 和 When you receive。",
+              "en": "Find “First”, “Wait” and “When you receive”."
+            },
+            {
+              "zh-Hans": "收到申请的消息不等于可以领取；要等 ready 消息。",
+              "zh-Hant": "收到申請的訊息不等於可以領取；要等 ready 訊息。",
+              "en": "A received-request message is not a ready message."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "正确顺序是提交申请、等待可以领取的消息、带借书证到柜台。不要仅凭收到申请的消息就前往。",
+            "zh-Hant": "正確順序是提交申請、等待可以領取的訊息、帶借書證到櫃檯。不要僅憑收到申請的訊息就前往。",
+            "en": "Send the request, wait for the ready message, then visit with your card. Acknowledging a request does not authorise collection."
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "library-book-request-text",
+              "start": 410,
+              "end": 526
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bus-lost-item-report",
+      "rootId": "original-bus-lost-item-report",
+      "title": "Reporting a lost item on a bus",
+      "blocks": [
+        {
+          "id": "bus-lost-item-report-text",
+          "text": "If you leave an item on a town bus, use the lost-item form. First, describe the item and give the bus route number and the date of your journey. You do not need the driver's name. Staff will check the reports and send you a reply. Their first reply may only say that they have received your report. Wait for a reply saying that your item is ready for collection before you visit the office. This reply will include a collection number. Bring that number to the office and show it to staff to collect the item. Do not go to the bus station ticket desk: lost items are kept in the transport office across the road. If staff have not found your item, they will tell you that too."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lost-report-details",
+          "blockId": "bus-lost-item-report-text",
+          "prompt": "Which details are needed for the lost-item report?",
+          "options": [
+            "Your home address and the driver's name.",
+            "A description of the item, the bus route number and your journey date.",
+            "Only the day you want to collect the item."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 60,
+            "end": 144
+          },
+          "hints": [
+            {
+              "zh-Hans": "找报告丢失物品时需要的信息。",
+              "zh-Hant": "找報告遺失物品時需要的資訊。",
+              "en": "Find the details needed to report the item."
+            },
+            {
+              "zh-Hans": "看 First 后面列出的三项。",
+              "zh-Hant": "看 First 後面列出的三項。",
+              "en": "Read the three details after “First”."
+            },
+            {
+              "zh-Hans": "描述物品、线路号码和乘车日期；不需要司机姓名。",
+              "zh-Hant": "描述物品、路線號碼和乘車日期；不需要司機姓名。",
+              "en": "Describe the item and give the route and date; the driver's name is not needed."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "不对：说明明确说不需要司机姓名，也没有要求住址。",
+              "zh-Hant": "不對：說明明確說不需要司機姓名，也沒有要求住址。",
+              "en": "The driver's name is not needed, and the notice does not ask for a home address."
+            },
+            {
+              "zh-Hans": "正确：这三项帮助工作人员查找物品。",
+              "zh-Hant": "正確：這三項協助工作人員查找物品。",
+              "en": "Correct: these are the three requested report details."
+            },
+            {
+              "zh-Hans": "不对：工作人员还需要知道物品是什么、在哪条线路何时丢失。",
+              "zh-Hant": "不對：工作人員還需要知道物品是甚麼、在哪條路線何時遺失。",
+              "en": "Staff need the item description, route and journey date, not just a collection day."
+            }
+          ]
+        },
+        {
+          "kind": "sequence",
+          "id": "lost-report-order",
+          "blockId": "bus-lost-item-report-text",
+          "prompt": "Put the three actions in the required order.",
+          "steps": [
+            "Wait for a reply saying the item is ready for collection.",
+            "Visit the transport office with the collection number.",
+            "Send the item description, bus route number and journey date."
+          ],
+          "acceptedOrders": [
+            [
+              "Send the item description, bus route number and journey date.",
+              "Wait for a reply saying the item is ready for collection.",
+              "Visit the transport office with the collection number."
+            ]
+          ],
+          "evidence": {
+            "start": 60,
+            "end": 390
+          },
+          "hints": [
+            {
+              "zh-Hans": "先报告，再等可以领取的回复，最后去办公室。",
+              "zh-Hant": "先報告，再等可以領取的回覆，最後去辦公室。",
+              "en": "Report first, wait for readiness, then visit the office."
+            },
+            {
+              "zh-Hans": "找 Wait 与 Bring that number 两处说明。",
+              "zh-Hant": "找 Wait 與 Bring that number 兩處說明。",
+              "en": "Locate “Wait” and “Bring that number”."
+            },
+            {
+              "zh-Hans": "首次回复可能只确认收到报告。领取前要有 ready 回复和领取号码。",
+              "zh-Hant": "首次回覆可能只確認收到報告。領取前要有 ready 回覆和領取號碼。",
+              "en": "The first reply may only acknowledge the report. Wait for readiness and a collection number."
+            }
+          ],
+          "explanation": {
+            "zh-Hans": "提交报告后等待可以领取的回复，再带领取号码去交通办公室。车站售票处不是领取地点。",
+            "zh-Hant": "提交報告後等待可以領取的回覆，再帶領取號碼去交通辦公室。車站售票處不是領取地點。",
+            "en": "Report the item, wait for a ready reply, then visit the transport office with the collection number. The ticket desk is not the collection point."
+          },
+          "additionalEvidence": [
+            {
+              "blockId": "bus-lost-item-report-text",
+              "start": 391,
+              "end": 509
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

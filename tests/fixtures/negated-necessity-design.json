@@ -1,0 +1,326 @@
+{
+  "scope": "Isolated current question-type regression fixture: exact public-domain source contexts/hashes and synthetic negative boundary cases. Not learner-facing curriculum, an instance-approval record or whole-source/CEFR/audio acceptance. Existing source rights and regional review remain.",
+  "reviewer": "Codex/AI",
+  "sourceReadAt": "2026-10-08T16:36:36.637Z",
+  "scopes": [
+    {
+      "bookId": 3300,
+      "passageId": "04b3d2e19cae402851ae04281d88664dd48c7e80a50ccd2c9129a3919298c6f1",
+      "decision": "positive-design-source",
+      "evidence": "His fortune may, perhaps, afford him the means of acquiring both; but the mere possession of that fortune does not necessarily convey to him either.",
+      "sourceFrame": "does not necessarily convey",
+      "faithfulFrame": "is not guaranteed to convey",
+      "adversarialFrames": [
+        "necessarily does not convey",
+        "necessarily does convey"
+      ],
+      "contextReading": "The preceding complete sentence identifies either civil or military political power. The first clause retains may/perhaps and the means of acquiring both; the target denies a guarantee from mere possession, rather than denying every possibility. The following sentence identifies the purchasing power immediately and directly conveyed by possession. This is Smith’s historical argument, not a current economic fact endorsed by Lingfern.",
+      "rootId": "gutenberg-book-3300",
+      "title": "An Inquiry into the Nature and Causes of the Wealth of Nations",
+      "originalUrl": "https://www.gutenberg.org/ebooks/3300",
+      "rawPath": "content/corpus/raw/pg3300.txt",
+      "sourceHash": "e91d52dca43fd0fd69baf7776b00a5d8e74b69675b6b608ca8a0378aaf3ae58d",
+      "actualRawSha256": "e91d52dca43fd0fd69baf7776b00a5d8e74b69675b6b608ca8a0378aaf3ae58d",
+      "sourceHashMatches": true,
+      "rawBytes": 2468951,
+      "canonicalSha256": "17c96b8ba859f6fddc8081dc3c032e091c1c8cb60dc2b75749e2d65f83e78422",
+      "passageSha256": "04b3d2e19cae402851ae04281d88664dd48c7e80a50ccd2c9129a3919298c6f1",
+      "evidenceRange": {
+        "start": 195,
+        "end": 343,
+        "offsetUnit": "JavaScript UTF-16 code units in the complete target passage"
+      },
+      "evidenceSha256": "721afb9bafe896f3c209a0a479a38a231728b2983f4fbc2358421b5a16c0a58d",
+      "faithfulDesignExample": "His fortune may, perhaps, afford him the means of acquiring both; but the mere possession of that fortune is not guaranteed to convey to him either.",
+      "adversarialDesignExamples": [
+        "His fortune may, perhaps, afford him the means of acquiring both; but the mere possession of that fortune necessarily does not convey to him either.",
+        "His fortune may, perhaps, afford him the means of acquiring both; but the mere possession of that fortune necessarily does convey to him either."
+      ],
+      "currentRights": {
+        "licence": "Public domain in the USA; other jurisdictions require verification",
+        "permissionReview": "USA public-domain label verified; regional review pending",
+        "reviewStatus": "draft",
+        "editorialReview": "pending",
+        "changed": false
+      },
+      "inspected": [
+        {
+          "role": "complete-preceding-passage",
+          "passageIndex": 24,
+          "id": "73a2d96059b7d655f151b2b0217d722cddd7d6e5bd78e6ad795ea70621c9cd02",
+          "sha256": "73a2d96059b7d655f151b2b0217d722cddd7d6e5bd78e6ad795ea70621c9cd02",
+          "words": 357,
+          "canonicalStart": 64370,
+          "canonicalEnd": 66266,
+          "text": "Every man is rich or poor according to the degree in which he can afford to enjoy the necessaries, conveniencies, and amusements of human life. But after the division of labour has once thoroughly taken place, it is but a very small part of these with which a man’s own labour can supply him. The far greater part of them he must derive from the labour of other people, and he must be rich or poor according to the quantity of that labour which he can command, or which he can afford to purchase. The value of any commodity, therefore, to the person who possesses it, and who means not to use or consume it himself, but to exchange it for other commodities, is equal to the quantity of labour which it enables him to purchase or command. Labour therefore, is the real measure of the exchangeable value of all commodities.\n\nThe real price of every thing, what every thing really costs to the man who wants to acquire it, is the toil and trouble of acquiring it. What every thing is really worth to the man who has acquired it and who wants to dispose of it, or exchange it for something else, is the toil and trouble which it can save to himself, and which it can impose upon other people. What is bought with money, or with goods, is purchased by labour, as much as what we acquire by the toil of our own body. That money, or those goods, indeed, save us this toil. They contain the value of a certain quantity of labour, which we exchange for what is supposed at the time to contain the value of an equal quantity. Labour was the first price, the original purchase money that was paid for all things. It was not by gold or by silver, but by labour, that all the wealth of the world was originally purchased; and its value, to those who possess it, and who want to exchange it for some new productions, is precisely equal to the quantity of labour which it can enable them to purchase or command."
+        },
+        {
+          "role": "complete-target-passage",
+          "passageIndex": 25,
+          "id": "04b3d2e19cae402851ae04281d88664dd48c7e80a50ccd2c9129a3919298c6f1",
+          "sha256": "04b3d2e19cae402851ae04281d88664dd48c7e80a50ccd2c9129a3919298c6f1",
+          "words": 351,
+          "canonicalStart": 66268,
+          "canonicalEnd": 68303,
+          "text": "Wealth, as Mr Hobbes says, is power. But the person who either acquires, or succeeds to a great fortune, does not necessarily acquire or succeed to any political power, either civil or military. His fortune may, perhaps, afford him the means of acquiring both; but the mere possession of that fortune does not necessarily convey to him either. The power which that possession immediately and directly conveys to him, is the power of purchasing a certain command over all the labour, or over all the produce of labour which is then in the market. His fortune is greater or less, precisely in proportion to the extent of this power, or to the quantity either of other men’s labour, or, what is the same thing, of the produce of other men’s labour, which it enables him to purchase or command. The exchangeable value of every thing must always be precisely equal to the extent of this power which it conveys to its owner.\n\nBut though labour be the real measure of the exchangeable value of all commodities, it is not that by which their value is commonly estimated. It is often difficult to ascertain the proportion between two different quantities of labour. The time spent in two different sorts of work will not always alone determine this proportion. The different degrees of hardship endured, and of ingenuity exercised, must likewise be taken into account. There may be more labour in an hour’s hard work, than in two hours easy business; or in an hour’s application to a trade which it cost ten years labour to learn, than in a month’s industry, at an ordinary and obvious employment. But it is not easy to find any accurate measure either of hardship or ingenuity. In exchanging, indeed, the different productions of different sorts of labour for one another, some allowance is commonly made for both. It is adjusted, however, not by any accurate measure, but by the higgling and bargaining of the market, according to that sort of rough equality which, though not exact, is sufficient for carrying on the business of common life."
+        },
+        {
+          "role": "complete-following-passage",
+          "passageIndex": 26,
+          "id": "362165112880f2e1c0a4175a784959167bd277fed42ebb8cc81da50197c24761",
+          "sha256": "362165112880f2e1c0a4175a784959167bd277fed42ebb8cc81da50197c24761",
+          "words": 314,
+          "canonicalStart": 68305,
+          "canonicalEnd": 70128,
+          "text": "Every commodity, besides, is more frequently exchanged for, and thereby compared with, other commodities, than with labour. It is more natural, therefore, to estimate its exchangeable value by the quantity of some other commodity, than by that of the labour which it can produce. The greater part of people, too, understand better what is meant by a quantity of a particular commodity, than by a quantity of labour. The one is a plain palpable object; the other an abstract notion, which though it can be made sufficiently intelligible, is not altogether so natural and obvious.\n\nBut when barter ceases, and money has become the common instrument of commerce, every particular commodity is more frequently exchanged for money than for any other commodity. The butcher seldom carries his beef or his mutton to the baker or the brewer, in order to exchange them for bread or for beer; but he carries them to the market, where he exchanges them for money, and afterwards exchanges that money for bread and for beer. The quantity of money which he gets for them regulates, too, the quantity of bread and beer which he can afterwards purchase. It is more natural and obvious to him, therefore, to estimate their value by the quantity of money, the commodity for which he immediately exchanges them, than by that of bread and beer, the commodities for which he can exchange them only by the intervention of another commodity; and rather to say that his butcher’s meat is worth three-pence or fourpence a-pound, than that it is worth three or four pounds of bread, or three or four quarts of small beer. Hence it comes to pass, that the exchangeable value of every commodity is more frequently estimated by the quantity of money, than by the quantity either of labour or of any other commodity which can be had in exchange for it."
+        }
+      ]
+    },
+    {
+      "bookId": 1228,
+      "passageId": "ad1d2e5859a9709de68cc84e889aeb3960f6f2bb049e1550ee99700e3fb5b8fd",
+      "decision": "positive-design-source",
+      "evidence": "These cases anyhow show that variation is not necessarily connected, as some authors have supposed, with the act of generation.",
+      "sourceFrame": "is not necessarily connected",
+      "faithfulFrame": "is not guaranteed to be connected",
+      "adversarialFrames": [
+        "is necessarily not connected",
+        "is necessarily connected"
+      ],
+      "contextReading": "The complete passage describes sporting plants as a bud or offset assuming a different character, propagation by grafting, and the parent’s treatment affecting a bud or offset rather than ovules or pollen. It retains Darwin’s inference These cases anyhow show and the embedded attribution as some authors have supposed. The adjacent prior passage discusses reproductive-system changes and suspected causes; the next discusses differing individuals and causal uncertainty. No modern scientific validation is inferred.",
+      "rootId": "gutenberg-book-1228",
+      "title": "On the Origin of Species By Means of Natural Selection",
+      "originalUrl": "https://www.gutenberg.org/ebooks/1228",
+      "rawPath": "content/corpus/raw/pg1228.txt",
+      "sourceHash": "362142cb7c6f90850477520cfe2a62fe423ae92ea8eb6d9cd8b30ddb39de60b9",
+      "actualRawSha256": "362142cb7c6f90850477520cfe2a62fe423ae92ea8eb6d9cd8b30ddb39de60b9",
+      "sourceHashMatches": true,
+      "rawBytes": 970611,
+      "canonicalSha256": "5721b74c32f20ed9de7b893b948ddd2a72a97bf80be76fbf078318032bd9f281",
+      "passageSha256": "ad1d2e5859a9709de68cc84e889aeb3960f6f2bb049e1550ee99700e3fb5b8fd",
+      "evidenceRange": {
+        "start": 1411,
+        "end": 1538,
+        "offsetUnit": "JavaScript UTF-16 code units in the complete target passage"
+      },
+      "evidenceSha256": "55b2375a8aec57ca8c5ace71008e46dd5f9ecac4ed363dab6574314fe02b9e04",
+      "faithfulDesignExample": "These cases anyhow show that variation is not guaranteed to be connected, as some authors have supposed, with the act of generation.",
+      "adversarialDesignExamples": [
+        "These cases anyhow show that variation is necessarily not connected, as some authors have supposed, with the act of generation.",
+        "These cases anyhow show that variation is necessarily connected, as some authors have supposed, with the act of generation."
+      ],
+      "currentRights": {
+        "licence": "Public domain in the USA; other jurisdictions require verification",
+        "permissionReview": "USA public-domain label verified; regional review pending",
+        "reviewStatus": "draft",
+        "editorialReview": "pending",
+        "changed": false
+      },
+      "inspected": [
+        {
+          "role": "complete-preceding-passage",
+          "passageIndex": 6,
+          "id": "721cb146260aa9cc74ddeb97f121d98f6766c65934abc1a1ef46cad00ee62b92",
+          "sha256": "721cb146260aa9cc74ddeb97f121d98f6766c65934abc1a1ef46cad00ee62b92",
+          "words": 450,
+          "canonicalStart": 21345,
+          "canonicalEnd": 24062,
+          "text": "It has been disputed at what period of life the causes of variability, whatever they may be, generally act; whether during the early or late period of development of the embryo, or at the instant of conception. Geoffroy St. Hilaire’s experiments show that unnatural treatment of the embryo causes monstrosities; and monstrosities cannot be separated by any clear line of distinction from mere variations. But I am strongly inclined to suspect that the most frequent cause of variability may be attributed to the male and female reproductive elements having been affected prior to the act of conception. Several reasons make me believe in this; but the chief one is the remarkable effect which confinement or cultivation has on the functions of the reproductive system; this system appearing to be far more susceptible than any other part of the organisation, to the action of any change in the conditions of life. Nothing is more easy than to tame an animal, and few things more difficult than to get it to breed freely under confinement, even in the many cases when the male and female unite. How many animals there are which will not breed, though living long under not very close confinement in their native country! This is generally attributed to vitiated instincts; but how many cultivated plants display the utmost vigour, and yet rarely or never seed! In some few such cases it has been found out that very trifling changes, such as a little more or less water at some particular period of growth, will determine whether or not the plant sets a seed. I cannot here enter on the copious details which I have collected on this curious subject; but to show how singular the laws are which determine the reproduction of animals under confinement, I may just mention that carnivorous animals, even from the tropics, breed in this country pretty freely under confinement, with the exception of the plantigrades or bear family; whereas, carnivorous birds, with the rarest exceptions, hardly ever lay fertile eggs. Many exotic plants have pollen utterly worthless, in the same exact condition as in the most sterile hybrids. When, on the one hand, we see domesticated animals and plants, though often weak and sickly, yet breeding quite freely under confinement; and when, on the other hand, we see individuals, though taken young from a state of nature, perfectly tamed, long-lived, and healthy (of which I could give numerous instances), yet having their reproductive system so seriously affected by unperceived causes as to fail in acting, we need not be surprised at this system, when it does act under confinement, acting not quite regularly, and producing offspring not perfectly like their parents or variable."
+        },
+        {
+          "role": "complete-target-passage",
+          "passageIndex": 7,
+          "id": "ad1d2e5859a9709de68cc84e889aeb3960f6f2bb049e1550ee99700e3fb5b8fd",
+          "sha256": "ad1d2e5859a9709de68cc84e889aeb3960f6f2bb049e1550ee99700e3fb5b8fd",
+          "words": 264,
+          "canonicalStart": 24064,
+          "canonicalEnd": 25602,
+          "text": "Sterility has been said to be the bane of horticulture; but on this view we owe variability to the same cause which produces sterility; and variability is the source of all the choicest productions of the garden. I may add, that as some organisms will breed most freely under the most unnatural conditions (for instance, the rabbit and ferret kept in hutches), showing that their reproductive system has not been thus affected; so will some animals and plants withstand domestication or cultivation, and vary very slightly—perhaps hardly more than in a state of nature.\n\nA long list could easily be given of “sporting plants;” by this term gardeners mean a single bud or offset, which suddenly assumes a new and sometimes very different character from that of the rest of the plant. Such buds can be propagated by grafting, etc., and sometimes by seed. These “sports” are extremely rare under nature, but far from rare under cultivation; and in this case we see that the treatment of the parent has affected a bud or offset, and not the ovules or pollen. But it is the opinion of most physiologists that there is no essential difference between a bud and an ovule in their earliest stages of formation; so that, in fact, “sports” support my view, that variability may be largely attributed to the ovules or pollen, or to both, having been affected by the treatment of the parent prior to the act of conception. These cases anyhow show that variation is not necessarily connected, as some authors have supposed, with the act of generation."
+        },
+        {
+          "role": "complete-following-passage",
+          "passageIndex": 8,
+          "id": "c3bd9139e1f90d17a3dc17b0275b8351927bd418b9e6dde3605de9272b203903",
+          "sha256": "c3bd9139e1f90d17a3dc17b0275b8351927bd418b9e6dde3605de9272b203903",
+          "words": 246,
+          "canonicalStart": 25604,
+          "canonicalEnd": 27059,
+          "text": "Seedlings from the same fruit, and the young of the same litter, sometimes differ considerably from each other, though both the young and the parents, as Müller has remarked, have apparently been exposed to exactly the same conditions of life; and this shows how unimportant the direct effects of the conditions of life are in comparison with the laws of reproduction, and of growth, and of inheritance; for had the action of the conditions been direct, if any of the young had varied, all would probably have varied in the same manner. To judge how much, in the case of any variation, we should attribute to the direct action of heat, moisture, light, food, etc., is most difficult: my impression is, that with animals such agencies have produced very little direct effect, though apparently more in the case of plants. Under this point of view, Mr. Buckman’s recent experiments on plants seem extremely valuable. When all or nearly all the individuals exposed to certain conditions are affected in the same way, the change at first appears to be directly due to such conditions; but in some cases it can be shown that quite opposite conditions produce similar changes of structure. Nevertheless some slight amount of change may, I think, be attributed to the direct action of the conditions of life—as, in some cases, increased size from amount of food, colour from particular kinds of food and from light, and perhaps the thickness of fur from climate."
+        }
+      ]
+    },
+    {
+      "bookId": 1342,
+      "passageId": "783af9066de09057108c036aa8a8945dd8f7426cf6903e23d8bb41871b0db14c",
+      "decision": "quoted-source-reject-in-initial-rule",
+      "evidence": "It does not necessarily follow that a deep, intricate character is more or less estimable than such a one as yours.",
+      "sourceFrame": "does not necessarily follow",
+      "contextReading": "The preceding passage attributes the conversation to Elizabeth and Bingley; Bingley regards being easily seen through as pitiful. The target is Elizabeth’s reply, preceded in the same quoted paragraph by That is as it happens. The opening quotation is in that previous sentence; the target closes it. Do not promote the character’s claim to the author’s own judgment or strip quotation boundaries to make this a positive. The next passage explicitly corrects another speaker’s interpretation of Darcy. Retain as a real-source quotation rejection case until separately validated quotation/context handling exists.",
+      "rootId": "gutenberg-book-1342",
+      "title": "Pride and Prejudice",
+      "originalUrl": "https://www.gutenberg.org/ebooks/1342",
+      "rawPath": "content/corpus/raw/pg1342.txt",
+      "sourceHash": "3f6bb9d6f78e0293b56acd4714dd68cb7d6d1d293402031ce9d5a216bcaf9d75",
+      "actualRawSha256": "3f6bb9d6f78e0293b56acd4714dd68cb7d6d1d293402031ce9d5a216bcaf9d75",
+      "sourceHashMatches": true,
+      "rawBytes": 772386,
+      "canonicalSha256": "a23b0e654bb88f651276d40283e7fc1b300b340b57cf560e76623a11489ea50b",
+      "passageSha256": "783af9066de09057108c036aa8a8945dd8f7426cf6903e23d8bb41871b0db14c",
+      "evidenceRange": {
+        "start": 24,
+        "end": 139,
+        "offsetUnit": "JavaScript UTF-16 code units in the complete target passage"
+      },
+      "evidenceSha256": "279f66c60356b8439c3693e1902a7742a3e3eb8d079f1f2e5aa34a974560c6df",
+      "currentRights": {
+        "licence": "Public domain in the USA; other jurisdictions require verification",
+        "permissionReview": "USA public-domain label verified; regional review pending",
+        "reviewStatus": "draft",
+        "editorialReview": "pending",
+        "changed": false
+      },
+      "inspected": [
+        {
+          "role": "complete-preceding-passage",
+          "passageIndex": 59,
+          "id": "6511565b6cd4b19fa2c1005a1b9fb2889a7207c789340ff70ca073bd033780c7",
+          "sha256": "6511565b6cd4b19fa2c1005a1b9fb2889a7207c789340ff70ca073bd033780c7",
+          "words": 259,
+          "canonicalStart": 96606,
+          "canonicalEnd": 98019,
+          "text": "“Removed!” cried Bingley. “It must not be thought of. My sister, I am sure, will not hear of her removal.”\n\n“You may depend upon it, madam,” said Miss Bingley, with cold civility, “that Miss Bennet shall receive every possible attention while she remains with us.”\n\nMrs. Bennet was profuse in her acknowledgments.\n\n“I am sure,” she added, “if it was not for such good friends, I do not know what would become of her, for she is very ill indeed, and suffers a vast deal, though with the greatest patience in the world, which is always the way with her, for she has, without exception, the sweetest temper I ever met with. I often tell my other girls they are nothing to _her_. You have a sweet room here, Mr. Bingley, and a charming prospect over that gravel walk. I do not know a place in the country that is equal to Netherfield. You will not think of quitting it in a hurry, I hope, though you have but a short lease.”\n\n“Whatever I do is done in a hurry,” replied he; “and therefore if I should resolve to quit Netherfield, I should probably be off in five minutes. At present, however, I consider myself as quite fixed here.”\n\n“That is exactly what I should have supposed of you,” said Elizabeth.\n\n“You begin to comprehend me, do you?” cried he, turning towards her.\n\n“Oh yes--I understand you perfectly.”\n\n“I wish I might take this for a compliment; but to be so easily seen through, I am afraid, is pitiful.”"
+        },
+        {
+          "role": "complete-target-passage",
+          "passageIndex": 60,
+          "id": "783af9066de09057108c036aa8a8945dd8f7426cf6903e23d8bb41871b0db14c",
+          "sha256": "783af9066de09057108c036aa8a8945dd8f7426cf6903e23d8bb41871b0db14c",
+          "words": 266,
+          "canonicalStart": 98021,
+          "canonicalEnd": 99516,
+          "text": "“That is as it happens. It does not necessarily follow that a deep, intricate character is more or less estimable than such a one as yours.”\n\n“Lizzy,” cried her mother, “remember where you are, and do not run on in the wild manner that you are suffered to do at home.”\n\n“I did not know before,” continued Bingley, immediately, “that you were a studier of character. It must be an amusing study.”\n\n“Yes; but intricate characters are the _most_ amusing. They have at least that advantage.”\n\n“The country,” said Darcy, “can in general supply but few subjects for such a study. In a country neighbourhood you move in a very confined and unvarying society.”\n\n“But people themselves alter so much, that there is something new to be observed in them for ever.”\n\n“Yes, indeed,” cried Mrs. Bennet, offended by his manner of mentioning a country neighbourhood. “I assure you there is quite as much of _that_ going on in the country as in town.”\n\nEverybody was surprised; and Darcy, after looking at her for a moment, turned silently away. Mrs. Bennet, who fancied she had gained a complete victory over him, continued her triumph,--\n\n“I cannot see that London has any great advantage over the country, for my part, except the shops and public places. The country is a vast deal pleasanter, is not it, Mr. Bingley?”\n\n“When I am in the country,” he replied, “I never wish to leave it; and when I am in town, it is pretty much the same. They have each their advantages, and I can be equally happy in either.”"
+        },
+        {
+          "role": "complete-following-passage",
+          "passageIndex": 61,
+          "id": "cacab51850de16339a48b118a3a6cd040b664cf1c2c4afd757059d647384fc8b",
+          "sha256": "cacab51850de16339a48b118a3a6cd040b664cf1c2c4afd757059d647384fc8b",
+          "words": 300,
+          "canonicalStart": 99518,
+          "canonicalEnd": 101249,
+          "text": "“Ay, that is because you have the right disposition. But that gentleman,” looking at Darcy, “seemed to think the country was nothing at all.”\n\n“Indeed, mamma, you are mistaken,” said Elizabeth, blushing for her mother. “You quite mistook Mr. Darcy. He only meant that there was not such a variety of people to be met with in the country as in town, which you must acknowledge to be true.”\n\n“Certainly, my dear, nobody said there were; but as to not meeting with many people in this neighbourhood, I believe there are few neighbourhoods larger. I know we dine with four-and-twenty families.”\n\nNothing but concern for Elizabeth could enable Bingley to keep his countenance. His sister was less delicate, and directed her eye towards Mr. Darcy with a very expressive smile. Elizabeth, for the sake of saying something that might turn her mother’s thoughts, now asked her if Charlotte Lucas had been at Longbourn since _her_ coming away.\n\n“Yes, she called yesterday with her father. What an agreeable man Sir William is, Mr. Bingley--is not he? so much the man of fashion! so genteel and so easy! He has always something to say to everybody. _That_ is my idea of good breeding; and those persons who fancy themselves very important and never open their mouths quite mistake the matter.”\n\n“Did Charlotte dine with you?”\n\n“No, she would go home. I fancy she was wanted about the mince-pies. For my part, Mr. Bingley, _I_ always keep servants that can do their own work; _my_ daughters are brought up differently. But everybody is to judge for themselves, and the Lucases are a very good sort of girls, I assure you. It is a pity they are not handsome! Not that _I_ think Charlotte so _very_ plain; but then she is our particular friend.”"
+        }
+      ]
+    }
+  ],
+  "negativeDesigns": {
+    "domain": "Isolated synthetic boundary cases exercised by tests/negatedNecessity.test.ts; not learner-facing source text.",
+    "cases": [
+      {
+        "id": "missing-marker",
+        "text": "The possession of that fortune conveys political power.",
+        "expect": "no task",
+        "why": "Do not manufacture a qualification absent from the text."
+      },
+      {
+        "id": "unsupported-frequency",
+        "text": "The possession of that fortune does not always convey political power.",
+        "expect": "no task",
+        "why": "Not always and not necessarily are not interchangeable in every modal context; frequency is outside this initial rule."
+      },
+      {
+        "id": "unsupported-future-modal",
+        "text": "The possession of that fortune will not necessarily convey political power.",
+        "expect": "no task",
+        "why": "Initial does/is frames do not authorize dropping future modality."
+      },
+      {
+        "id": "human-volitional-predicate",
+        "text": "Alex does not necessarily buy a car.",
+        "expect": "no task",
+        "why": "Do not use untested human action or permission/deontic readings in the limited abstract-relation rule."
+      },
+      {
+        "id": "predicate-internal-negation",
+        "text": "The possession of that fortune does not necessarily fail to convey political power.",
+        "expect": "no task",
+        "why": "Fail to adds another negative scope, outside the initial positive finite predicate frame."
+      },
+      {
+        "id": "matrix-denial",
+        "text": "Robin denied that the possession of that fortune does not necessarily convey political power.",
+        "expect": "no task",
+        "why": "Do not replace a denied embedded proposition with an asserted one."
+      },
+      {
+        "id": "conditional-antecedent",
+        "text": "If the possession of that fortune does not necessarily convey political power, a further explanation is needed.",
+        "expect": "no task",
+        "why": "An antecedent is not an independently asserted conclusion."
+      },
+      {
+        "id": "polar-question",
+        "text": "Does the possession of that fortune not necessarily convey political power?",
+        "expect": "no task",
+        "why": "A question does not assert the target proposition."
+      },
+      {
+        "id": "closed-quotation",
+        "text": "“The possession of that fortune does not necessarily convey political power,” Robin said.",
+        "expect": "no task",
+        "why": "Initial rule rejects reported dialogue; quotation/source attribution must not be erased."
+      },
+      {
+        "id": "unclosed-quotation",
+        "text": "“The possession of that fortune does not necessarily convey political power.",
+        "expect": "no task",
+        "why": "Unbalanced quotation boundary is untrusted malformed source input."
+      },
+      {
+        "id": "incomplete-sentence",
+        "text": "The possession of that fortune does not necessarily convey political power",
+        "expect": "no task",
+        "why": "No complete sentence boundary; do not accept a truncated source conclusion."
+      },
+      {
+        "id": "repeated-exact-target",
+        "text": "The possession of that fortune does not necessarily convey political power. The possession of that fortune does not necessarily convey political power.",
+        "expect": "no task for this duplicated target",
+        "why": "Unique evidence location is required; a deterministic first match cannot silently choose between duplicate targets."
+      },
+      {
+        "id": "multiple-modal-targets-in-one-sentence",
+        "text": "The possession of that fortune does not necessarily convey political power, and variation is not necessarily connected with generation.",
+        "expect": "no task",
+        "why": "Do not transform one marker while silently conflating or changing the other modal proposition."
+      },
+      {
+        "id": "markup-or-citation-defect",
+        "text": "The possession of that fortune does not necessarily convey political power [citation needed].",
+        "expect": "no task",
+        "why": "Malformed or editorially unresolved source markers remain subject to existing exclusions."
+      },
+      {
+        "id": "invalid-seed",
+        "text": "The possession of that fortune does not necessarily convey political power.",
+        "seeds": [
+          -1,
+          0.5,
+          "NaN",
+          9007199254740992
+        ],
+        "expect": "throw INVALID input error",
+        "why": "Keep existing bounded generator safe-integer/nonnegative trust boundary."
+      },
+      {
+        "id": "oversized-source",
+        "construction": {
+          "repeat": "x",
+          "count": 12001
+        },
+        "expect": "throw INVALID input error",
+        "why": "Do not exceed the existing 12000 UTF-16-unit generator bound."
+      }
+    ]
+  }
+}

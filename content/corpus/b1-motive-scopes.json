@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "rootId": "gutenberg-book-158",
+      "sourceHash": "532b122b4e6a76cc556d6fdcd729b5892f5c4ce4a1b7060b9f832adfad8680dc",
+      "passageId": "8f4bcd1ec4e828ea20a72c8db937cf4e59847f853192db1755b09fce3727137b",
+      "textSha256": "8f4bcd1ec4e828ea20a72c8db937cf4e59847f853192db1755b09fce3727137b",
+      "text": "To Isabella, the relief of such tidings was very great, and they were scarcely less acceptable to Emma on her father’s account, who was immediately set as much at ease on the subject as his nervous constitution allowed; but the alarm that had been raised could not be appeased so as to admit of any comfort for him while he continued at Randalls. He was satisfied of there being no present danger in returning home, but no assurances could convince him that it was safe to stay; and while the others were variously urging and recommending, Mr. Knightley and Emma settled it in a few brief sentences: thus—\n\n“Your father will not be easy; why do not you go?”\n\n“I am ready, if the others are.”\n\n“Shall I ring the bell?”",
+      "credit": {
+        "attribution": "Emma — Austen, Jane, 1775-1817. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/158).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/158"
+      }
+    },
+    {
+      "rootId": "gutenberg-book-55",
+      "sourceHash": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+      "passageId": "50462341f21d41b44ece30046cb5ad17d4265b38c4daa9b24eadd3f7e8cc095a",
+      "textSha256": "50462341f21d41b44ece30046cb5ad17d4265b38c4daa9b24eadd3f7e8cc095a",
+      "text": "Dorothy came to meet them and thanked the little mice warmly for saving her companion from death. She had grown so fond of the big Lion she was glad he had been rescued.\n\nThen the mice were unharnessed from the truck and scampered away through the grass to their homes. The Queen of the Mice was the last to leave.\n\n“If ever you need us again,” she said, “come out into the field and call, and we shall hear you and come to your assistance. Good-bye!”\n\n“Good-bye!” they all answered, and away the Queen ran, while Dorothy held Toto tightly lest he should run after her and frighten her.\n\nAfter this they sat down beside the Lion until he should awaken; and the Scarecrow brought Dorothy some fruit from a tree near by, which she ate for her dinner.",
+      "credit": {
+        "attribution": "The Wonderful Wizard of Oz — Baum, L. Frank (Lyman Frank), 1856-1919. Source: Project Gutenberg (https://www.gutenberg.org/ebooks/55).",
+        "license": "Public domain in the USA; other jurisdictions require verification",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/55"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-03T06:11:56.716Z",
+  "distinctArticleAudioPairs": 1076,
+  "words": 2322573,
+  "audioHours": 266.54540704111105,
+  "unchangedVerifiedFullAudioFiles": 1076,
+  "alignedRoots": 1073,
+  "exactSourceSegments": 81931,
+  "independentlyReviewed": 0,
+  "published": false
+}

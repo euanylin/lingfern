@@ -1,0 +1,182 @@
+[
+  {
+    "id": "a1-voa-commute-listening-check-draft",
+    "mode": "check",
+    "targetLevel": "A1",
+    "skill": "listening",
+    "title": {
+      "en": "A changed journey · listening check draft",
+      "zh-Hans": "A changed journey · listening check draft",
+      "zh-Hant": "A changed journey · listening check draft"
+    },
+    "goal": {
+      "en": "Listen to Anna’s journey to work.",
+      "zh-Hans": "听懂 Anna 上班方式的变化。",
+      "zh-Hant": "聽懂 Anna 上班方式的變化。"
+    },
+    "goalId": "commute-listening",
+    "sourceId": "voa-course-19-check",
+    "reviewStatus": "draft",
+    "expectedMinutes": 4,
+    "materials": [
+      {
+        "id": "voa-commute-check",
+        "rootId": "voa-article-3357760",
+        "sourceId": "voa-course-19-check",
+        "title": "When Do I Start? — opening excerpt",
+        "blocks": [
+          {
+            "id": "opening",
+            "text": "Anna: Hi there! Summer in Washington, D.C. is hot and sunny. I always ride the Metro to work. Riding the Metro is cool and fast. But today it’s closed. So, I am walking to work."
+          }
+        ],
+        "audio": {
+          "src": "/audio/a1-words/voa-commute-check.mp3",
+          "sha256": "4304f77cb7860d0e954d1ae5711d868724b3e0a04359d69997af5dfda8861d4f",
+          "duration": 19,
+          "author": "VOA Learning English",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-19-when-do-you-start/3357760.html",
+          "license": "VOA Learning English original production (public domain)"
+        },
+        "questions": [
+          {
+            "id": "commute-weather",
+            "blockId": "opening",
+            "prompt": "What is the weather like?",
+            "options": [
+              "Hot and sunny",
+              "Cold and snowy",
+              "Cool and windy"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 46,
+              "end": 60,
+              "audioStart": 4,
+              "audioEnd": 9
+            },
+            "explanations": [
+              {
+                "en": "Anna says hot and sunny.",
+                "zh-Hans": "Anna says hot and sunny.",
+                "zh-Hant": "Anna says hot and sunny."
+              },
+              {
+                "en": "Anna does not say cold or snowy.",
+                "zh-Hans": "Anna does not say cold or snowy.",
+                "zh-Hant": "Anna does not say cold or snowy."
+              },
+              {
+                "en": "Cool describes riding the Metro, not the weather.",
+                "zh-Hans": "Cool describes riding the Metro, not the weather.",
+                "zh-Hant": "Cool describes riding the Metro, not the weather."
+              }
+            ]
+          },
+          {
+            "id": "commute-usual-travel",
+            "blockId": "opening",
+            "prompt": "How does Anna usually go to work?",
+            "options": [
+              "By bus",
+              "By Metro",
+              "On foot"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 61,
+              "end": 93,
+              "audioStart": 4,
+              "audioEnd": 9
+            },
+            "explanations": [
+              {
+                "en": "Anna does not mention a bus.",
+                "zh-Hans": "Anna does not mention a bus.",
+                "zh-Hant": "Anna does not mention a bus."
+              },
+              {
+                "en": "Always ride the Metro describes her usual journey.",
+                "zh-Hans": "Always ride the Metro describes her usual journey.",
+                "zh-Hant": "Always ride the Metro describes her usual journey."
+              },
+              {
+                "en": "Walking is her plan today, not her usual journey.",
+                "zh-Hans": "Walking is her plan today, not her usual journey.",
+                "zh-Hant": "Walking is her plan today, not her usual journey."
+              }
+            ]
+          },
+          {
+            "id": "commute-metro",
+            "blockId": "opening",
+            "prompt": "Why does Anna like riding the Metro?",
+            "options": [
+              "It is cool and fast",
+              "It is hot and slow",
+              "It is closed"
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 94,
+              "end": 128,
+              "audioStart": 9,
+              "audioEnd": 13
+            },
+            "explanations": [
+              {
+                "en": "Anna describes the ride as cool and fast.",
+                "zh-Hans": "Anna describes the ride as cool and fast.",
+                "zh-Hant": "Anna describes the ride as cool and fast."
+              },
+              {
+                "en": "Anna does not describe it as hot and slow.",
+                "zh-Hans": "Anna does not describe it as hot and slow.",
+                "zh-Hant": "Anna does not describe it as hot and slow."
+              },
+              {
+                "en": "Closed explains today’s change, not why she likes the ride.",
+                "zh-Hans": "Closed explains today’s change, not why she likes the ride.",
+                "zh-Hant": "Closed explains today’s change, not why she likes the ride."
+              }
+            ]
+          },
+          {
+            "id": "commute-today",
+            "blockId": "opening",
+            "prompt": "Why is Anna walking to work today?",
+            "options": [
+              "She likes hot weather",
+              "The Metro is closed",
+              "Her office is closed"
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 129,
+              "end": 177,
+              "audioStart": 13,
+              "audioEnd": 19
+            },
+            "explanations": [
+              {
+                "en": "Hot weather is not her reason for walking.",
+                "zh-Hans": "Hot weather is not her reason for walking.",
+                "zh-Hant": "Hot weather is not her reason for walking."
+              },
+              {
+                "en": "It refers to the Metro. Closed is followed by her changed journey.",
+                "zh-Hans": "It refers to the Metro. Closed is followed by her changed journey.",
+                "zh-Hant": "It refers to the Metro. Closed is followed by her changed journey."
+              },
+              {
+                "en": "It refers to the Metro, not her office.",
+                "zh-Hans": "It refers to the Metro, not her office.",
+                "zh-Hant": "It refers to the Metro, not her office."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

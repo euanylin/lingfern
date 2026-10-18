@@ -1,0 +1,385 @@
+{
+  "version": 1,
+  "scope": "Immutable historical source package regression fixtures; not a runtime catalogue or question bank.",
+  "baseline": "2026-10-08T10-45-23.152Z (unchanged through 13:29 recovery point)",
+  "packs": [
+    {
+      "id": "wikipedia-reading-001",
+      "path": "/source-packs/wikipedia-reading-001.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-001.zip",
+      "sha256": "9c112382b57e7646ebe4b9ff423697e9d8b46b0cbfdafe9e232d94e35e46eb81",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-002",
+      "path": "/source-packs/wikipedia-reading-002.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-002.zip",
+      "sha256": "27cc41f8d1681c041f3d3bfda01bccb5b4ec8434b9032ca337350373a63ef690",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-003",
+      "path": "/source-packs/wikipedia-reading-003.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-003.zip",
+      "sha256": "ffc36dacc7d809d2bb3976fac81754989d01129c2640eee4827d0e7c0eda6cac",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-004",
+      "path": "/source-packs/wikipedia-reading-004.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-004.zip",
+      "sha256": "f8858b65d1f3a126957866309d2a757e699699aa5d7ab45e36bf30fdba4679fa",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-005",
+      "path": "/source-packs/wikipedia-reading-005.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-005.zip",
+      "sha256": "4ec2f360dcda3a142efe146e7eee1fd6e242a2660b76d10e116d9cbc1d14220a",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-006",
+      "path": "/source-packs/wikipedia-reading-006.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-006.zip",
+      "sha256": "39f4d40d7e00493951efbb42e0f7f476ae1431374415f21862a644a77a7a5bde",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-007",
+      "path": "/source-packs/wikipedia-reading-007.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-007.zip",
+      "sha256": "8b4f4e513915b75cf037c23609dc2ae9d2e94347daeca77588fbeecce65e42ec",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-008",
+      "path": "/source-packs/wikipedia-reading-008.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-008.zip",
+      "sha256": "1cf144fd559dfb345a18cce7165037012e1599594bf4ee741086ee8ee5e5e76c",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-009",
+      "path": "/source-packs/wikipedia-reading-009.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-009.zip",
+      "sha256": "e4e5c0ee9a26dd6147154c376f77a36d47033c916557ede7989532d08f4a106f",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-010",
+      "path": "/source-packs/wikipedia-reading-010.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-010.zip",
+      "sha256": "81a117a417adc7cea9032df9d52c62c7ed24162f9f079af2fc5a53f009ad32af",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-011",
+      "path": "/source-packs/wikipedia-reading-011.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-011.zip",
+      "sha256": "673866a08c7f544fb4264ef93476cedd74ae2d9f1279137710f9e08d45e1fb34",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-012",
+      "path": "/source-packs/wikipedia-reading-012.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-012.zip",
+      "sha256": "96fde6ddfb61e50a775e326cb9961a4ff453e7d5ef42ca4f79d40d500d03af71",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-013",
+      "path": "/source-packs/wikipedia-reading-013.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-013.zip",
+      "sha256": "527b3c40a6edabf7e4821990a6f8e9042649c3b1d1ea423abf579a0f2d43f036",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-014",
+      "path": "/source-packs/wikipedia-reading-014.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-014.zip",
+      "sha256": "b280c8a27b4bc75087c52fdf9a54200ec5294c393e840b3a7610f771cf1e0a25",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-015",
+      "path": "/source-packs/wikipedia-reading-015.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-015.zip",
+      "sha256": "2212b71010abe62f5fb8dc64247590485623819e9bd6eb2a5496e153dc4334c6",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-016",
+      "path": "/source-packs/wikipedia-reading-016.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-016.zip",
+      "sha256": "f1656edf2d94c7a215a2fe1fdeed25eb12c5ed5a1f256d69ac6d0e5a776d9cdc",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-017",
+      "path": "/source-packs/wikipedia-reading-017.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-017.zip",
+      "sha256": "fbc4003a3fc35b3596476480856d3f61c32ca1bbbdd6af6a2fc452def2451f94",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-018",
+      "path": "/source-packs/wikipedia-reading-018.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-018.zip",
+      "sha256": "683c1a42c961d9f76cc554ad086079b202eeb86269c94e314ed04bb8b9963382",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-019",
+      "path": "/source-packs/wikipedia-reading-019.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-019.zip",
+      "sha256": "b7a1551769841839ac25f5f209bde9f034c5f75ffd71508727f648605b068b59",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-020",
+      "path": "/source-packs/wikipedia-reading-020.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-020.zip",
+      "sha256": "164c813513f375e3856bb7a9332652a182b3839ddb85f136e1ee714b9c325723",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-021",
+      "path": "/source-packs/wikipedia-reading-021.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-021.zip",
+      "sha256": "dc1d4ae87bae406224cf2c4ca561b800aac4283aaf64395388413448051d79d8",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-022",
+      "path": "/source-packs/wikipedia-reading-022.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-022.zip",
+      "sha256": "6cb1cfdd6864401ebbf66f21cc08f182439d625e2f9bf2c849af0710f1f3756c",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-023",
+      "path": "/source-packs/wikipedia-reading-023.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-023.zip",
+      "sha256": "7a3426d8305604ce2157e693d393afd4255543711d9cbca0943f4add9939fdab",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-024",
+      "path": "/source-packs/wikipedia-reading-024.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-024.zip",
+      "sha256": "c7965290ce8ffc5f182d9fb867d4f95affa676722a868a10618096d96c47b926",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-025",
+      "path": "/source-packs/wikipedia-reading-025.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-025.zip",
+      "sha256": "d0021fdd4ffb79834d029a942d961fd115236ae763c4185d43981f80c3cbe4b7",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-026",
+      "path": "/source-packs/wikipedia-reading-026.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-026.zip",
+      "sha256": "e955098c9ca9871fd3bd9bc40e490cbed7d60a3ef852b04ee4273ba52281bcf3",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-027",
+      "path": "/source-packs/wikipedia-reading-027.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-027.zip",
+      "sha256": "f88d13ac63c899488679cd94e70efca4920a2f3ec2868e2ae8543649bd1a9d56",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-028",
+      "path": "/source-packs/wikipedia-reading-028.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-028.zip",
+      "sha256": "c2d2321ec3beac5030878b18e5b1be289a0916f86c6ec63d431db6027f872a91",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-029",
+      "path": "/source-packs/wikipedia-reading-029.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-029.zip",
+      "sha256": "004f79d455f486b84ed31aa2f6c1622363923327be9d76b1dfc374b0035630d1",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-reading-030",
+      "path": "/source-packs/wikipedia-reading-030.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-reading-030.zip",
+      "sha256": "077425c7c1c5b29ed4b72b71c4cdf2f1c06160cb5c12c15bff23d62d2ed96d5a",
+      "skill": "reading"
+    },
+    {
+      "id": "wikipedia-listening-001",
+      "path": "/source-packs/wikipedia-listening-001.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-001.zip",
+      "sha256": "1e96b4f345a5f645245f86dafe533f1ad5d7b6976bf36aa9e1b4ec6d87b5fc14",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-002",
+      "path": "/source-packs/wikipedia-listening-002.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-002.zip",
+      "sha256": "f9ed71d2590b064b38fdda65e3a897476150fc3d3dd6d306d05605476406786f",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-003",
+      "path": "/source-packs/wikipedia-listening-003.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-003.zip",
+      "sha256": "9cac3d66c1f4245599a177ee426827316cb27809d180fb8a5862c4d9627d8227",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-004",
+      "path": "/source-packs/wikipedia-listening-004.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-004.zip",
+      "sha256": "c179a91db257d60c0b4030180de6230d0954575c720ccb55193bff0de4b2d15e",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-005",
+      "path": "/source-packs/wikipedia-listening-005.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-005.zip",
+      "sha256": "f6883670cd6e6d4230bd6d09f72de6b46b90f92a6ca920a1ed601b2f69c40a68",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-006",
+      "path": "/source-packs/wikipedia-listening-006.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-006.zip",
+      "sha256": "59f39af1c090a32bd6e5556d7bee44ccf33fcb1d3cefe42ded8d7ad15a7a47dd",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-007",
+      "path": "/source-packs/wikipedia-listening-007.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-007.zip",
+      "sha256": "cacf14ba3eabfdb9af07eae20c66769a4b6272b3c176dded775ea3f53026b372",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-008",
+      "path": "/source-packs/wikipedia-listening-008.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-008.zip",
+      "sha256": "d1e0836815cec80d252541822faa80c91d11594af7f459b1fce96c00e8f57014",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-009",
+      "path": "/source-packs/wikipedia-listening-009.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-009.zip",
+      "sha256": "6aa160d893b9abaaa568e10a12856d87b03b7e1c532e1d356ff40a5161e8628e",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-010",
+      "path": "/source-packs/wikipedia-listening-010.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-010.zip",
+      "sha256": "f81aadd502c7ea6d4987bca1f7333d575b3797a3bec2a9e9e781dbe7aee15331",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-011",
+      "path": "/source-packs/wikipedia-listening-011.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-011.zip",
+      "sha256": "a746b57ab6cffc198c85852a1d93fc8a71f7ee34de558b7febe7ca51b6f8e885",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-012",
+      "path": "/source-packs/wikipedia-listening-012.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-012.zip",
+      "sha256": "2a80094fd621ffd53916952e1ba2b4dc177d78abe222497c9d5797fd2eea7dce",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-013",
+      "path": "/source-packs/wikipedia-listening-013.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-013.zip",
+      "sha256": "7a794bbd36e20309e2959c068684f49ea1e97a4b5428d41975ce305cca22b628",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-014",
+      "path": "/source-packs/wikipedia-listening-014.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-014.zip",
+      "sha256": "d585b229ce11224e3cc21b3641ce91aef44eeb44e2d42b07dfa86c005b994add",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-015",
+      "path": "/source-packs/wikipedia-listening-015.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-015.zip",
+      "sha256": "1663e90c2bfc9b44eb050e6391a0e03bee50cebd0de84b712d0da3c186f23044",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-016",
+      "path": "/source-packs/wikipedia-listening-016.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-016.zip",
+      "sha256": "99389fcac1ba48142273fcf03e36688e7d728b2eb5eedc5e6bbcb53720a41c18",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-017",
+      "path": "/source-packs/wikipedia-listening-017.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-017.zip",
+      "sha256": "7b81ca8a4df879d892474ea3ab4ebd7c012fed59f549e7f970a80d448f2d02a3",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-018",
+      "path": "/source-packs/wikipedia-listening-018.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-018.zip",
+      "sha256": "4393f19db9c25ec0a20542a350f461057b9a7ce8259bd1862230d2a1ce8ffec8",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-019",
+      "path": "/source-packs/wikipedia-listening-019.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-019.zip",
+      "sha256": "e1a189f55179a98be921a4dc806750411681af745295b3ca8e0e2dd34d9e2683",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-020",
+      "path": "/source-packs/wikipedia-listening-020.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-020.zip",
+      "sha256": "6f73eb98b9eed2f9e42f74b02220bedf0e1956847a0f56b315b8ad5d87ff7377",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-021",
+      "path": "/source-packs/wikipedia-listening-021.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-021.zip",
+      "sha256": "11073ef4418aecd0bab1af2138b016ef223a44d6f6bf9b908c6063f4d48ae30a",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-022",
+      "path": "/source-packs/wikipedia-listening-022.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-022.zip",
+      "sha256": "75dcf3bad9420453da7b58cf8c11354a921aeb87035f5da97cf3850105e749c1",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-023",
+      "path": "/source-packs/wikipedia-listening-023.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-023.zip",
+      "sha256": "8cf5a71a1706125de71e860841711d04376023879e4a5ff1195d3a68fd189236",
+      "skill": "listening"
+    },
+    {
+      "id": "wikipedia-listening-024",
+      "path": "/source-packs/wikipedia-listening-024.zip",
+      "file": "tests/fixtures/source-packs/wikipedia-listening-024.zip",
+      "sha256": "fec4918d799b484a0041bcb404f0676b8c6a6fa9b1675804ffedf8daa050fd7e",
+      "skill": "listening"
+    }
+  ]
+}

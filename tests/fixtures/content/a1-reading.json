@@ -1,0 +1,260 @@
+{
+  "id": "a1-meeting-reading",
+  "targetLevel": "A1",
+  "skill": "reading",
+  "title": {
+    "zh-Hans": "找到集合地点",
+    "zh-Hant": "找到集合地點",
+    "en": "Find the meeting place"
+  },
+  "goal": {
+    "zh-Hans": "从短消息中找到地点和需要携带的物品。",
+    "zh-Hant": "從短訊息中找到地點和需要攜帶的物品。",
+    "en": "Find the place and what to bring in a short message."
+  },
+  "goalId": "place-and-item",
+  "sourceId": "lingfern-original-meeting",
+  "reviewStatus": "draft",
+  "teaching": {
+    "zh-Hans": "先找地点，再找物品。at 后面可以是地点；Bring 表示“带上”。时间不是地点。",
+    "zh-Hant": "先找地點，再找物品。at 後面可以是地點；Bring 表示「帶上」。時間不是地點。",
+    "en": "Look for a place. Then look for an item. “At” can come before a place. “Bring” tells you what to take."
+  },
+  "workedExample": {
+    "zh-Hans": "示范（不计分）：Meet at the park. Bring a hat. → 地点是 the park，需要带 a hat。",
+    "zh-Hant": "示範（不計分）：Meet at the park. Bring a hat. → 地點是 the park，需要帶 a hat。",
+    "en": "Example (not scored): Meet at the park. Bring a hat. → Place: the park. Bring: a hat."
+  },
+  "materials": [
+    {
+      "id": "library-message",
+      "rootId": "original-library-meeting",
+      "title": "A message from a friend",
+      "blocks": [
+        {
+          "id": "library-message",
+          "text": "Meet at the library at ten. Bring your student card. We will read together. You do not need a notebook."
+        }
+      ],
+      "questions": [
+        {
+          "id": "library-place",
+          "blockId": "library-message",
+          "prompt": "Where do we meet?",
+          "options": [
+            "At the café.",
+            "At the library.",
+            "At the park."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 5,
+            "end": 19
+          },
+          "hints": [
+            {
+              "zh-Hans": "先找集合地点。",
+              "zh-Hant": "先找集合地點。",
+              "en": "Look for the meeting place."
+            },
+            {
+              "zh-Hans": "看第一句中 at 后面的地点。",
+              "zh-Hant": "看第一句中 at 後面的地點。",
+              "en": "Look after “at” in the first sentence."
+            },
+            {
+              "zh-Hans": "library 是可以借书、读书的地方。at ten 说的是时间。",
+              "zh-Hant": "library 是可以借書、讀書的地方。at ten 說的是時間。",
+              "en": "A library is a place with books. “At ten” is the time."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "消息没有提到在咖啡馆见面。",
+              "zh-Hant": "訊息沒有提到在咖啡館見面。",
+              "en": "The message does not say café."
+            },
+            {
+              "zh-Hans": "at the library 明确给出了集合地点。",
+              "zh-Hant": "at the library 明確給出了集合地點。",
+              "en": "“At the library” gives the meeting place."
+            },
+            {
+              "zh-Hans": "park 只出现在示范里，不在这条消息中。",
+              "zh-Hant": "park 只出現在示範裡，不在這條訊息中。",
+              "en": "The park is in the example, not this message."
+            }
+          ]
+        },
+        {
+          "id": "library-item",
+          "blockId": "library-message",
+          "prompt": "What do we bring?",
+          "options": [
+            "A notebook.",
+            "A hat.",
+            "A student card."
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 28,
+            "end": 51
+          },
+          "hints": [
+            {
+              "zh-Hans": "现在找需要携带的物品。",
+              "zh-Hant": "現在找需要攜帶的物品。",
+              "en": "Find what to bring."
+            },
+            {
+              "zh-Hans": "看以 Bring 开头的句子。",
+              "zh-Hant": "看以 Bring 開頭的句子。",
+              "en": "Read the sentence with “Bring”."
+            },
+            {
+              "zh-Hans": "student card 是学生使用的身份卡。do not need 表示不需要。",
+              "zh-Hant": "student card 是學生使用的身分卡。do not need 表示不需要。",
+              "en": "A student card shows you are a student. “Do not need” means it is not needed."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "最后一句说不需要笔记本。",
+              "zh-Hant": "最後一句說不需要筆記本。",
+              "en": "The last sentence says you do not need a notebook."
+            },
+            {
+              "zh-Hans": "帽子是示范中的物品。",
+              "zh-Hant": "帽子是示範中的物品。",
+              "en": "The hat is in the example."
+            },
+            {
+              "zh-Hans": "Bring your student card 指出要带学生卡。",
+              "zh-Hant": "Bring your student card 指出要帶學生卡。",
+              "en": "“Bring your student card” tells you what to take."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "club-message",
+      "rootId": "original-art-club",
+      "title": "A new message",
+      "blocks": [
+        {
+          "id": "club-message",
+          "text": "The art club meets at the café at two. Bring a pencil. Paper is on the table. You do not need a student card."
+        }
+      ],
+      "questions": [
+        {
+          "id": "club-place",
+          "blockId": "club-message",
+          "prompt": "Where does the art club meet?",
+          "options": [
+            "At the library.",
+            "At the café.",
+            "At the park."
+          ],
+          "answer": 1,
+          "evidence": {
+            "start": 19,
+            "end": 30
+          },
+          "hints": [
+            {
+              "zh-Hans": "在这条新消息中找地点。",
+              "zh-Hant": "在這條新訊息中找地點。",
+              "en": "Find the place in this new message."
+            },
+            {
+              "zh-Hans": "看第一句。",
+              "zh-Hant": "看第一句。",
+              "en": "Look at the first sentence."
+            },
+            {
+              "zh-Hans": "café 是可以购买饮料和食物的地方。at two 是时间。",
+              "zh-Hant": "café 是可以購買飲料和食物的地方。at two 是時間。",
+              "en": "A café is a place to buy drinks and food. “At two” is the time."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "图书馆是上一条消息的地点。",
+              "zh-Hant": "圖書館是上一條訊息的地點。",
+              "en": "The library is in the earlier message."
+            },
+            {
+              "zh-Hans": "at the café 给出这次集合的地点。",
+              "zh-Hant": "at the café 給出這次集合的地點。",
+              "en": "“At the café” gives this meeting place."
+            },
+            {
+              "zh-Hans": "这条消息没有说公园。",
+              "zh-Hant": "這條訊息沒有說公園。",
+              "en": "This message does not say park."
+            }
+          ]
+        },
+        {
+          "id": "club-item",
+          "blockId": "club-message",
+          "prompt": "What do we bring?",
+          "options": [
+            "Paper.",
+            "A student card.",
+            "A pencil."
+          ],
+          "answer": 2,
+          "evidence": {
+            "start": 39,
+            "end": 53
+          },
+          "hints": [
+            {
+              "zh-Hans": "找要求带来的物品。",
+              "zh-Hant": "找要求帶來的物品。",
+              "en": "Find the item to bring."
+            },
+            {
+              "zh-Hans": "看第二句。",
+              "zh-Hant": "看第二句。",
+              "en": "Look at the second sentence."
+            },
+            {
+              "zh-Hans": "Bring a pencil 是要带铅笔。纸已经在桌上，学生卡不需要。",
+              "zh-Hant": "Bring a pencil 是要帶鉛筆。紙已經在桌上，學生卡不需要。",
+              "en": "“Bring a pencil” tells you to take a pencil. Paper is there. A student card is not needed."
+            }
+          ],
+          "explanations": [
+            {
+              "zh-Hans": "纸已经放在桌上，不是要求带来的物品。",
+              "zh-Hant": "紙已經放在桌上，不是要求帶來的物品。",
+              "en": "Paper is already on the table."
+            },
+            {
+              "zh-Hans": "这次明确不需要学生卡。",
+              "zh-Hant": "這次明確不需要學生卡。",
+              "en": "This message says you do not need a student card."
+            },
+            {
+              "zh-Hans": "Bring a pencil 明确要求带铅笔。",
+              "zh-Hant": "Bring a pencil 明確要求帶鉛筆。",
+              "en": "“Bring a pencil” tells you what to take."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": [
+    "campus"
+  ],
+  "nextStep": {
+    "zh-Hans": "下次先找地点，再看需要携带什么。",
+    "zh-Hant": "下次先找地點，再看需要攜帶什麼。",
+    "en": "Next time, find the place first. Then read what to bring."
+  }
+}

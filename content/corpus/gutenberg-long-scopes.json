@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "scope": "Source-only preparation of exact continuous excerpts. No generated-question instance approval and no originalText/whole-book coverage claim.",
+  "records": [
+    {
+      "bookId": 1661,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-08",
+      "decision": "accepted-source-scope",
+      "rawSha256": "922e2a12ccb43a4c9544c260b2166c6ad2097aeb5957faeee113f173bb857cd0",
+      "metadataSha256": "0c6233e26c66d420bd8c4a57f38216a2c867821fec31d721df949fec86e6febd",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "2865919728ecf3dbf243d26c0fb8d2413ffda326d64794f41692c920c1d89309",
+      "canonicalChars": 561758,
+      "start": 46905,
+      "end": 52370,
+      "textSha256": "6cdb5d33187296d10934c404d87c9c2aa9224e6f2058cf7ac0958e94020d63ca",
+      "words": 986,
+      "passages": [
+        "e33724d0289b93ee823d70315191a9511ab6b4ffab42e616f70c0ad0d8ea065f",
+        "f017505b56643ee02f29ee91be925056f11f2981f1babc05f1088d5dbbc5a014",
+        "94d2c42faa725867ad8d05e841af0cf8714223c9a20f97dcee9cad321b9817d6",
+        "2f2621fe85d5fe1263592c6744a2e4838c8f987cd335902cba8a82f3c97fc7b3"
+      ],
+      "context": {
+        "beforeStart": 46105,
+        "beforeSha256": "df9a2abd639247cc17c906700e3696860e3b1f44fc24d1699d0c5c72a558c988",
+        "afterEnd": 53370,
+        "afterSha256": "384fc3705a93b5437dd06ae7b4f724719870e05ec593aa40b5e81f88230c49bf"
+      },
+      "assessment": "Red-headed League opening introduces Watson/Holmes/Wilson and Holmes’ conjectures and observed dress. Relevant rich dialogue and epistemic limits, but dated body/social descriptions, tobacco and cultural assumptions remain source narration; no modern factual endorsement. Read explicit introduction and following China/tattoo explanation.",
+      "limits": [
+        "Only this continuous source range and necessary surrounding context were read; no whole-book approval.",
+        "Existing US public-domain label and pending regional rights review remain unchanged.",
+        "No CEFR calibration, advanced comprehension or audio acceptance."
+      ]
+    },
+    {
+      "bookId": 35,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-08",
+      "decision": "accepted-source-scope",
+      "rawSha256": "2892e919000e17c83e1dac51b30f4675db50536b644d7579fe8a89bb399a9bdc",
+      "metadataSha256": "76b0c68ac5f71d67f7a7c397258f8cc36401335e21005d5023d3c589a027be5d",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "0baabbfd58cb24a7fb0d6133df77f5fdb24e93aedb24707612f06976ae54ea57",
+      "canonicalChars": 179579,
+      "start": 441,
+      "end": 6558,
+      "textSha256": "e8aa95d3e44d6f70240ffdd587d0a2013c197e8b5c72b4133ae287f67ed29a24",
+      "words": 1051,
+      "passages": [
+        "43908263708579957ba5fea105207415139ae34621d9214b94b632d804e4605a",
+        "84c0b8c1d9e19f18da3692d5fd7c9edc9bb39596cb8fc10947de29f40a552d4d",
+        "67d91ab642884e62895dcf26cd59873635d0458f0a4d266670a0e44c6009f965",
+        "a370d1236b398e7504a889d7770031c1e56e900c714ffeef69f80bc861929d79"
+      ],
+      "context": {
+        "beforeStart": 0,
+        "beforeSha256": "92b2c31ff4255fa98863c817dc6a9c6f2c3e7b4ae6fe0d7c1b6a0938c45b7697",
+        "afterEnd": 7558,
+        "afterSha256": "cbc6d0258785e27ee1ecfe226a6d716a96cfa0a0990575d9ac2639c52b5c6ad8"
+      },
+      "assessment": "Time Machine opening identifies fictional narrator and Time Traveller dialogue; technical geometry/time argument and objections present rich discourse, with archaic lexicon and italics. Treat claims as fictional speaker exposition, not verified modern physics. Subsequent debate read to clarify unresolved argument.",
+      "limits": [
+        "Only this continuous source range and necessary surrounding context were read; no whole-book approval.",
+        "Existing US public-domain label and pending regional rights review remain unchanged.",
+        "No CEFR calibration, advanced comprehension or audio acceptance."
+      ]
+    },
+    {
+      "bookId": 1228,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-09",
+      "decision": "accepted-source-scope",
+      "rawSha256": "362142cb7c6f90850477520cfe2a62fe423ae92ea8eb6d9cd8b30ddb39de60b9",
+      "metadataSha256": "f9fc39519baeb1e19e472ef3d34a1d6d0e0787d0e3ac7b4de8b16da2fcf61a23",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "5721b74c32f20ed9de7b893b948ddd2a72a97bf80be76fbf078318032bd9f281",
+      "canonicalChars": 932462,
+      "start": 11112,
+      "end": 16707,
+      "textSha256": "e9f892fd0410d049abaa330583fd466a16e4790318b627e43629cd26286b66e7",
+      "words": 924,
+      "passages": [
+        "84265e8000289a14d52616359613ebfd1aebf46d0faf98c040949b3c4fe56271",
+        "3bfdfe8339bb3040b848333d74d2a7983a2236a29e9ea53bd798feccbf3cf10d",
+        "ac8abb742640407fdad149bd961f599b13a82a8473e8714ebc7f2138edbb42c3"
+      ],
+      "context": {
+        "beforeStart": 9254,
+        "beforeSha256": "a6a5bc2e982a04540159af2634992cd4a197771174b28c0b4f3fe20dae12fb67",
+        "afterEnd": 19435,
+        "afterSha256": "678a6026c5c7ca0e4a8ad185a73edaf561ef0c444b5e3c78ea03d807a21371ee"
+      },
+      "assessment": "Darwin introduction: read all three exact continuous existing passages, full preceding personal-history/publication paragraph and full following overview/qualification paragraph. The scope states Abstract limitations, acknowledges opposite evidence, distinguishes descent assertion from explanatory sufficiency, conjecturally represents the Vestiges author, and acknowledges the neglect of domestication studies while asserting their value. Historical scientific claims are attributed 1859 exposition, not verified modern facts. Current corpusConcession actually yields the complete I-may-venture/although sentence with both clauses, uncertainty and referents retained; interpretation remains unscored. The selected 924-word scope fits the existing C2 1200-word no-history effort bound without widening it. Official catalogue and licence checked live on 2026-10-09.",
+      "limits": [
+        "Only this continuous source range and necessary surrounding context were read; no whole-book approval.",
+        "Existing US public-domain label and pending regional rights review remain unchanged.",
+        "No CEFR calibration, advanced-comprehension validation or audio acceptance."
+      ]
+    },
+    {
+      "bookId": 84,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-09",
+      "decision": "accepted-source-scope",
+      "rawSha256": "7810cd483cffcf2cc8a1d8f0d5807931e69d4f48cd14149b8c76f88af82fead3",
+      "metadataSha256": "35797bb5fdfddada2b61739688f15776bff738e86768462af8597f317586d7ca",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "fc6d22c9ddbc2b8dad663d1d91fd38f29e97f424ba1bed08e68f089e0f38928d",
+      "canonicalChars": 419081,
+      "start": 162101,
+      "end": 166083,
+      "textSha256": "ef202a2166b9829fd031de1fe92504ecc05d972c15b4caf2d242b002dda83e0a",
+      "words": 702,
+      "passages": [
+        "e0da49a1e832fd637ebbf4fe6484437b2afb79ae24d26f895049357d7160b861",
+        "a194de3f615987b1e8953d299c564f7ad74f6d4154aa91aa04fd26983b9a30bc"
+      ],
+      "context": {
+        "beforeStart": 161574,
+        "beforeSha256": "4f2169755b54b78b7a570fc9e0452677a1cc0143730f12cde8c34fc76ee57f53",
+        "afterEnd": 166427,
+        "afterSha256": "28864d01d41ca8b4b741bb0ea07ba8b70501951e40a6f01cc2270412c980e337"
+      },
+      "assessment": "Read the complete continuous two-part source window, preceding arrival/rest and Chapter10, and the following complete Mutability stanza. Explicit scenes/They antecedent: scenery soothes but does not remove the narrator’s grief; the next morning’s melancholy prevents a permanent-cure interpretation. Fictional narration and later conditional speculation remain distinct from the scored asserted concession. Only this scope is accepted, not the novel as a whole.",
+      "limits": [
+        "Only the exact continuous source range and specified surrounding context were read; no whole-book approval.",
+        "Existing US public-domain label and pending regional rights review remain unchanged; official catalogue and licence checked live on2026-10-09.",
+        "No CEFR calibration, general reference-resolution or audio acceptance."
+      ]
+    },
+    {
+      "bookId": 1228,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-09",
+      "decision": "accepted-source-scope",
+      "rawSha256": "362142cb7c6f90850477520cfe2a62fe423ae92ea8eb6d9cd8b30ddb39de60b9",
+      "metadataSha256": "f9fc39519baeb1e19e472ef3d34a1d6d0e0787d0e3ac7b4de8b16da2fcf61a23",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "5721b74c32f20ed9de7b893b948ddd2a72a97bf80be76fbf078318032bd9f281",
+      "canonicalChars": 932462,
+      "start": 470374,
+      "end": 474596,
+      "textSha256": "84549a31485cec2df49b4271f6550f2687d5f710956044635c18b7e85450b6c7",
+      "words": 705,
+      "passages": [
+        "0adcaf446a3c2920ccaf259ab11701b36bc2376698dc26384e241dca7efd2acf",
+        "925ea766654e6c4fed099457bac0aa7c562a545296372687b9b58abf58b6ed69"
+      ],
+      "context": {
+        "beforeStart": 468761,
+        "beforeSha256": "696dc38707a610ec32eeab4f25122ee3ab93de882615cb17e1e1de611e113567",
+        "afterEnd": 474904,
+        "afterSha256": "449f3033531030ea8c717b52ab5495dabed1450bbd1edb164d18c8f830280de2"
+      },
+      "assessment": "Read the complete continuous two-part source window, full preceding horticulturist paragraph and complete following qualified conclusion. Retain the Pallas doctrine attribution, both hypotheses, latter=second alternative, the author’s probability preference and lack of direct evidence. Historical scientific exposition is not verified modern fact. The initially inspected754-word window is not prepared because its final49words are not a standalone existing source part; preserve the complete existing294+411-word parts and keep that conclusion in following context.",
+      "limits": [
+        "Only the exact continuous source range and specified surrounding context were read; no whole-book approval.",
+        "Existing US public-domain label and pending regional rights review remain unchanged; official catalogue and licence checked live on2026-10-09.",
+        "No CEFR calibration, general reference-resolution or audio acceptance."
+      ]
+    },
+    {
+      "bookId": 1228,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-09",
+      "decision": "accepted-source-scope",
+      "rawSha256": "362142cb7c6f90850477520cfe2a62fe423ae92ea8eb6d9cd8b30ddb39de60b9",
+      "metadataSha256": "f9fc39519baeb1e19e472ef3d34a1d6d0e0787d0e3ac7b4de8b16da2fcf61a23",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "5721b74c32f20ed9de7b893b948ddd2a72a97bf80be76fbf078318032bd9f281",
+      "canonicalChars": 932462,
+      "start": 56033,
+      "end": 62155,
+      "textSha256": "feef72ffc91f662bafea9e284bbd90e1e32f746dc8daba73bf415cc74016ecc7",
+      "words": 1012,
+      "passages": [
+        "2b0bf2c74f5030bbee26a7fe5370caa14c5697b9fd5dbf94b01685df6c414036",
+        "384791af263672c098c013f505cb2dd17ee94cca8a3506c72d4893942696f801",
+        "d091543a3ca6c1aef20e1afc0f2817ccc5bcf89ab10c06f1fff70d258c6f2f6b"
+      ],
+      "context": {
+        "beforeStart": 53213,
+        "beforeSha256": "647bc83b55aa411d702424c0c674cd0cae7d824b5e663804a04d113294be8af0",
+        "afterEnd": 64359,
+        "afterSha256": "4939ad1ecc39151448ac60740ebd45dddd677f4e39bd07dcd14e9c24b2ae5e0e"
+      },
+      "assessment": "Read the complete1012-word continuous three-part window and full preceding467/following381-word parts. Preserve about1600, Akber Khan/India, and the independent never-less-than20,000 minimum. Retain the Lepsius/Birch earliest-record disagreement and attributed Pliny/court-historian voices. Historical source wording is not verified modern fact.",
+      "limits": [
+        "Only this exact continuous scope and specified context were read; no whole-book approval.",
+        "Existing USA public-domain label and pending regional rights review remain unchanged.",
+        "No CEFR calibration, temporal-arithmetic or audio acceptance."
+      ]
+    },
+    {
+      "bookId": 1342,
+      "reviewer": "Codex/AI",
+      "reviewDate": "2026-10-09",
+      "decision": "accepted-source-scope",
+      "rawSha256": "3f6bb9d6f78e0293b56acd4714dd68cb7d6d1d293402031ce9d5a216bcaf9d75",
+      "metadataSha256": "5fa22fa5978ffa5410aecc217b91b1811a7c3c0404a7a17104974fbc67e838e0",
+      "policySha256": "3ef4bb881c96ece56ace531fe88b4ffc0d6363a66473ae26ca1ad86bf6a6c4b6",
+      "canonicalSha256": "a23b0e654bb88f651276d40283e7fc1b300b340b57cf560e76623a11489ea50b",
+      "canonicalChars": 720973,
+      "start": 2308,
+      "end": 6814,
+      "textSha256": "475e7b09f3cc7d9742ab0acc800fdacb1a307be979a31039e33576562c8c48f5",
+      "words": 745,
+      "passages": [
+        "f35bc489efacfb6c355f27290a4d393cf059db7b4610addfd060ca33c8611cd4",
+        "5e637bd8976e537e211ca95b6c7d082e3b23d72011a5c7f871dcb41dbcab23ce",
+        "376969a3370eef404927ac6e4203d40a56226a9ab096d354189be94588078883"
+      ],
+      "context": {
+        "beforeStart": 606,
+        "beforeSha256": "8f34947de7457faf2d606161d84bb99d2fe10e03ebe9cd91a9a16418b8e8e912",
+        "afterEnd": 10141,
+        "afterSha256": "49d788694bb45ad26bde24515e50dc27df256b9117280317a9e3e818b4de7761"
+      },
+      "assessment": "Read full157+403+185word continuous original parts, complete preceding282word novel comparison and following569word humour criticism, title/preface-author credit and signature. The named-book anchor resolves the book as Pride and Prejudice. Retain somewhere-about initial1796shape, barely-twenty-one, some-fifteen-year Chawton revision, not-published-till1813 and four-years-before-death. Preface opinions/conditional aesthetic causation are George Saintsbury’s historical criticism, not Austen autobiography, objective literary quality or modern endorsement of gender/social judgments. Official catalogue and licence checked live on2026-10-09.",
+      "limits": [
+        "Only this exact continuous source scope and complete surrounding context read; no whole-book approval.",
+        "Existing US public-domain label and pending regional rights remain unchanged.",
+        "No question-instance approval, calibrated CEFR, broad discourse or audio acceptance."
+      ]
+    }
+  ]
+}

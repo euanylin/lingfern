@@ -1,0 +1,45 @@
+{
+  "scope": "Isolated real-source regression transcripts only; no questions or public curriculum.",
+  "records": [
+    {
+      "rootId": "wikipedia-article-10772350",
+      "text": "Historians studying the ancient period examine the emergence of the first major civilizations in regions such as Mesopotamia, Egypt, the Indus Valley, China, and Peru, beginning approximately 3500 BCE in some regions. The new social, economic, and political complexities necessitated the development of writing systems. Thanks to advancements in agriculture, surplus food allowed these civilizations to support larger populations, leading to urbanization, the establishment of trade networks, and the emergence of regional empires. In the later part of the ancient period, sometimes termed the classical period, societies in China, India, Persia, and the Mediterranean expanded further, reaching new cultural, scientific, and political heights. Meanwhile, influential religious systems and philosophical ideas were first formulated, such as Hinduism, Buddhism, Confucianism, Judaism, and Greek philosophy.\n\nIn the study of post-classical or medieval history, which began around 500 CE, historians note the growing influence of major religions. Missionary religions, like Buddhism, Christianity, and Islam, spread rapidly and established themselves as world religions, marking a cultural shift as they gradually replaced other belief systems. Meanwhile, inter-regional trade networks flourished, leading to increased technological and cultural exchange. Conquering many territories in Asia and Europe, the Mongol Empire became a dominant force during the 13th and 14th centuries.\n\nHistorians focused on early modern history, which started roughly in 1500 CE, commonly highlight how European states rose to global power. As gunpowder empires, they explored and colonized large parts of the world. As a result, the Americas were integrated into the global network, triggering a vast biological exchange of plants, animals, people, and diseases. The Scientific Revolution prompted major discoveries and accelerated technological progress. It was accompanied by other intellectual developments, such as humanism and the Enlightenment, which ushered in secularization.\n\nIn the study of modern history, which began at the end of the 18th century, historians are interested in how the Industrial Revolution transformed economies by introducing more efficient modes of production. Western powers established vast colonial empires, gaining superiority through industrialized military technology. The increased international exchange of goods, ideas, and people marked the beginning of globalization. Various social revolutions challenged autocratic and colonial regimes, paving the way for democracies. Many developments in fields like science, technology, economy, living standards, and human population accelerated at unprecedented rates. This happened despite the widespread destruction caused by two world wars, which rebalanced international power relations by undermining European dominance.",
+      "source": {
+        "title": "History",
+        "articleUrl": "https://en.wikipedia.org/w/index.php?title=History&oldid=1300067617",
+        "authorHistoryUrl": "https://en.wikipedia.org/w/index.php?curid=10772350&action=history",
+        "textLicence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "textLicenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "textAttribution": "Wikipedia contributors, History, recorded revision 1300067617. https://en.wikipedia.org/w/index.php?title=History&oldid=1300067617",
+        "audioSourceUrl": "https://commons.wikimedia.org/wiki/File:En-History-article.ogg",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artistHtml": "<p><b>Speaker:</b> <a href=\"https://en.wikipedia.org/wiki/User:Cardboard_Moose\" class=\"extiw\" title=\"en:User:Cardboard Moose\">Cardboard Moose</a><br>\n</p>\n<b><a href=\"https://en.wikipedia.org/wiki/en:History\" class=\"extiw\" title=\"wikipedia:en:History\">History</a></b>",
+        "creditHtml": "<ul><li>Own recording by the speaker</li>\n<li>Derivative of <span class=\"plainlinks\"><a class=\"external text\" href=\"https://en.wikipedia.org/wiki/History?oldid=\">History</a></span></li></ul>",
+        "audioRightsEvidenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript."
+      },
+      "sha256": "f5fe082e56c70c28655b2926910972c7c0f8eae9eaf888a13485cbf1addaae57"
+    },
+    {
+      "rootId": "wikipedia-article-187946",
+      "text": "Web content providers also manipulated a number of attributes within the HTML source of a page in an attempt to rank well in search engines.\n\nBy relying so much on factors exclusively within a webmaster's control, early search engines suffered from abuse and ranking manipulation. To provide better results to their users, search engines had to adapt to ensure their results pages showed the most relevant search results, rather than unrelated pages stuffed with numerous keywords by unscrupulous webmasters. Since the success and popularity of a search engine is determined by its ability to produce the most relevant results to any given search allowing those results to be false would turn users to find other search sources. Search engines responded by developing more complex ranking algorithms, taking into account additional factors that were more difficult for webmasters to manipulate.\n\nGraduate students at Stanford University, Larry Page and Sergey Brin developed \"backrub\", a search engine that relied on a mathematical algorithm to rate the prominence of web pages. The number calculated by the algorithm, PageRank, is a function of the quantity and strength of inbound links. PageRank estimates the likelihood that a given page will be reached by a web user who randomly surfs the web, and follows links from one page to another. In effect, this means that some links are stronger than others, as a higher PageRank page is more likely to be reached by the random surfer.\n\nPage and Brin founded Google in 1998. Google attracted a loyal following among the growing number of Internet users, who liked its simple design. Off-page factors such as PageRank and hyperlink analysis were considered, as well as on-page factors, to enable Google to avoid the kind of manipulation seen in search engines that only considered on-page factors for their rankings.",
+      "source": {
+        "title": "Search engine optimization",
+        "articleUrl": "https://en.wikipedia.org/w/index.php?title=Search_engine_optimization&oldid=213702920",
+        "authorHistoryUrl": "https://en.wikipedia.org/w/index.php?curid=187946&action=history",
+        "textLicence": "CC BY-SA 4.0 under Wikimedia Terms of Use; source-specific exceptions require review",
+        "textLicenceUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+        "textAttribution": "Wikipedia contributors, Search engine optimization, recorded revision 213702920. https://en.wikipedia.org/w/index.php?title=Search_engine_optimization&oldid=213702920",
+        "audioSourceUrl": "https://commons.wikimedia.org/wiki/File:Search_engine_optimization.ogg",
+        "licence": "CC BY-SA 3.0",
+        "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+        "artistHtml": "<p><b>Speaker:</b> <a href=\"//commons.wikimedia.org/wiki/User:PopularOutcast\" title=\"User:PopularOutcast\">PopularOutcast</a><br>\n</p>\n<b><span class=\"plainlinks\"><a rel=\"nofollow\" class=\"external text\" href=\"https://xtools.wmflabs.org/articleinfo/en.wikipedia.org/Search%20engine%20optimization/2008-05-21\">Authors of the article</a></span></b>",
+        "creditHtml": "<ul><li>Own recording by the speaker</li>\n<li>Derivative of <span class=\"plainlinks\"><a class=\"external text\" href=\"https://en.wikipedia.org/wiki/Search_engine_optimization?oldid=\">Search engine optimization</a></span></li></ul>",
+        "audioRightsEvidenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+        "processing": "Extracted prose/headings/lists from the recording-linked complete source revision. Removed navigation, images, tables and reference lists; retained raw original HTML. Not a verified verbatim speech transcript."
+      },
+      "sha256": "8ff37e4ef7584d6eda5f6edc8423b3bcf4b42726f7fe84727260aae8e709d8ec"
+    }
+  ]
+}

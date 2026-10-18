@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "source": "https://www.usgs.gov/water-science-school/water-cycle",
+  "author": "U.S. Geological Survey Water Science School",
+  "rightsPolicy": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+  "acquiredAt": "2026-10-09T02:16:03.319Z",
+  "captureMethod": "Official web-tool text extraction; not raw HTTP response bytes",
+  "captureSha256": "d4243f4110d98aedc6f87b08ea5b6c5aac1b70eab1fad4fab809074f79287cd4",
+  "reviewer": "Codex/AI",
+  "decision": "accepted-exact-plain-text-scopes",
+  "regionalRights": "unverified",
+  "blocks": [
+    {
+      "lineNumbers": [
+        30,
+        31,
+        33,
+        34
+      ],
+      "text": "The water cycle describes where water is on Earth and how it moves. Water is stored in the atmosphere, on the land surface, and below the ground. It can be a liquid, a solid, or a gas. Liquid water can be fresh or saline (salty). Water moves between the places it is stored. Water moves at large scales, through watersheds, the atmosphere, and below the Earth's surface. Water moves at very small scales too. It is in us, plants, and other organisms.\n\nHuman activities impact the water cycle, affecting where water is stored, how it moves, and how clean it is.\n\nOceans store 96% of all water on Earth. Ocean water is saline, meaning it’s salty. On land, saline water is stored in saline lakes. The rest of the water on Earth is fresh water. Fresh water is stored in liquid form in freshwater lakes , artificial reservoirs, rivers , and wetlands. Water is stored in solid, frozen form in ice sheets and glaciers, and in snowpack at high elevations or near Earth's poles. Water vapor is a gas and is stored as atmospheric moisture over the ocean and land.\n\nIn the soil, frozen water is stored as permafrost and liquid water is stored as soil moisture. Deeper below ground, liquid water is stored as groundwater in aquifers. Water in groundwater aquifers is found within cracks and pores in the rock.",
+      "sha256": "95269b02b3554bec5de0d18e00f6bbd13540cde2a314db44b2ca7ff8736cc38e",
+      "words": 231
+    },
+    {
+      "lineNumbers": [
+        43,
+        44,
+        47
+      ],
+      "text": "As it moves, water can change form between liquid, solid, and gas. Circulation mixes water in the oceans and transports water vapor in the atmosphere. Water moves between the atmosphere and the surface through evaporation , evapotranspiration , and precipitation . Water moves across the surface through snowmelt , runoff , and streamflow . Water moves into the ground through infiltration and groundwater recharge. Underground, groundwater flows within aquifers.\n\nGroundwater can return to the surface through natural discharge into rivers, the ocean, and from springs .\n\nWater moves naturally and because of human actions. Energy from the sun and the force of gravity drive the continual movement of water between pools. The sun’s energy causes liquid water to evaporate into water vapor. Evapotranspiration is the main way water moves into the atmosphere from the land surface and oceans. Gravity causes water to flow downward on land. It causes rain, snow, and hail to fall from clouds.",
+      "sha256": "a6db0af96e55d4ff55b193b8c8f428840b61260022107b1da4adb6923732badc",
+      "words": 156
+    },
+    {
+      "lineNumbers": [
+        56,
+        57,
+        58,
+        60,
+        61,
+        64
+      ],
+      "text": "In addition to natural processes, human water use affects where water is stored and how water moves. We redirect rivers. We build dams to store water. We drain water from wetlands for development. We use water from rivers, lakes, reservoirs, and groundwater aquifers. We use that water to supply our homes and communities . We use it for agricultural irrigation and grazing livestock.\n\nWe use it in industrial activities like thermoelectric power generation , mining , and aquaculture .\n\nWe also affect water quality. In agricultural and urban areas, irrigation and precipitation wash fertilizers and pesticides into rivers and groundwater . Power plants and factories return heated and contaminated water to rivers. Runoff carries chemicals, sediment , and sewage into rivers and lakes. Downstream from these sources, contaminated water can cause harmful algal blooms , spread diseases, and harm habitats for wildlife.\n\nClimate change is actively affecting the water cycle. It is impacting water quantity and timing. Precipitation patterns are changing. The frequency, intensity, and length of extreme weather events, like floods or droughts , are also changing. Ocean sea levels are rising, leading to coastal flooding. Climate change is also impacting water quality. It is causing ocean acidification which damages the shells and skeletons of many marine organisms.\n\nClimate change increases the likelihood and intensity of wildfires , which introduces unwanted pollutants from soot and ash into nearby lakes and streams.\n\nHumans and other organisms rely on water for life. The amount of water that is available depends on how much water there is in each pool (water quantity). Water availability also depends on when and how fast water moves (water timing) through the water cycle. Finally, water availability depends on how clean the water is (water quality). By understanding human impacts on the water cycle, we can work toward using water sustainably.",
+      "sha256": "f036cdcf60763ae4d5c289d9290023c8602facfebf18e4a69304280e8c6360e1",
+      "words": 304
+    }
+  ],
+  "exclusions": {
+    "NASA": {
+      "lines": [
+        24,
+        26,
+        28,
+        29
+      ],
+      "reason": "Media, usage declaration, NASA-attributed caption prose and credit omitted. USGS authorship is not assumed for NASA prose."
+    },
+    "thirdPartyClouds": {
+      "lines": [
+        37,
+        39,
+        41,
+        42
+      ],
+      "reason": "Restricted media, explanatory caption and Tobias Hammer/Pixabay credit omitted."
+    },
+    "thirdPartyReservoir": {
+      "lines": [
+        50,
+        52,
+        54,
+        55
+      ],
+      "reason": "Restricted media, caption and Thomas Ehrhardt/Pixabay credit omitted."
+    },
+    "other": "Navigation, glossary/data-table/link lists, headings, summary duplication and footer omitted. No agency logo/photograph/video/audio copied.",
+    "crossScopeExclusion": "Selected paragraphs are not internally interrupted by credited/copyrighted prose; no public-domain assumption is made for surrounding media."
+  },
+  "continuity": {
+    "block1": {
+      "selected": [
+        30,
+        31,
+        33,
+        34
+      ],
+      "internalOmission": [
+        32
+      ],
+      "omittedType": "Section heading only; no omitted body prose. End before Fluxes heading/media."
+    },
+    "block2": {
+      "selected": [
+        43,
+        44,
+        47
+      ],
+      "internalOmission": [
+        45,
+        46
+      ],
+      "omittedType": "Section heading and blank only; no omitted body prose. Starts after restricted photograph/caption/credit."
+    },
+    "block3": {
+      "selected": [
+        56,
+        57,
+        58,
+        60,
+        61,
+        64
+      ],
+      "internalOmission": [
+        59,
+        62,
+        63
+      ],
+      "omittedType": "Two section headings and blank only; no omitted body prose. Starts after restricted photograph/caption/credit."
+    },
+    "decision": "Three separate section-bounded plain prose scopes; never concatenate across excluded media/caption/credited prose boundaries into originalText. Preserve precise captured source evidence and explicit exclusions."
+  },
+  "permissionDecision": {
+    "admissibleScope": "Exact plain prose in the three verified scopes, attributed to USGS Water Science School, under USGS-authored U.S.public-domain basis.",
+    "policyLimits": "Current USGS copyright policy covers agency-authored/produced information and warns of third-party rights; retain requested credit and source/policy links. No whole-site/media clearance or separate project-licence relabelling.",
+    "suggestedAttribution": "U.S. Geological Survey Water Science School, Water cycle. https://www.usgs.gov/water-science-school/water-cycle. Plain-text excerpts; links/headings/media/captions omitted. U.S. public domain; rights outside the U.S. unverified.",
+    "regionalRights": "unverified",
+    "logoEndorsement": "No USGS identifier adopted or agency endorsement implied."
+  },
+  "sourceEditorialReview": {
+    "sourceEditorial": "Precisely inspected accurate-to-captured agency prose, coherent without diagrams, can enter text corpus as draft using existing original-source attribution/rights safeguards.",
+    "supportLimits": "Domain vocabulary (aquifers, permafrost, evapotranspiration, groundwater recharge, thermoelectric generation, acidification) and156–304word scope do not support declaring these A1/A2 beginner instruction. No CEFR calibration, teaching comprehension or all-level suitability established.",
+    "sourceFaithfulness": "Retain source wording/qualifiers and extraction whitespace; no silent scientific/grammar rewriting. Source statements are passage claims, not independently verified research findings."
+  },
+  "sourceReviewSha256": "ae8920abd866cd0f6561d4260a31920a5e609eb24d6e0eacca6d106f3766b9a1"
+}

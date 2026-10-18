@@ -1,0 +1,558 @@
+[
+  {
+    "id": "c1-archival-argument-reading",
+    "targetLevel": "C1",
+    "skill": "reading",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Responsibility, resolve and cooperation",
+      "zh-Hans": "Responsibility, resolve and cooperation",
+      "zh-Hant": "Responsibility, resolve and cooperation"
+    },
+    "goalId": "follow-public-argument-reading",
+    "goal": {
+      "en": "Follow how a speaker balances resolve, responsibility and cooperation.",
+      "zh-Hans": "Follow how a speaker balances resolve, responsibility and cooperation.",
+      "zh-Hant": "Follow how a speaker balances resolve, responsibility and cooperation."
+    },
+    "sourceId": "kennedy-rice",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "These are historical addresses from 1962 and 1961, not current policy reports. Track contrasts, rhetorical questions and the surrounding reasons. Interpret what the speaker commits to and what remains open; analysis does not require agreement with the policy.",
+      "zh-Hans": "These are historical addresses from 1962 and 1961, not current policy reports. Track contrasts, rhetorical questions and the surrounding reasons. Interpret what the speaker commits to and what remains open; analysis does not require agreement with the policy.",
+      "zh-Hant": "These are historical addresses from 1962 and 1961, not current policy reports. Track contrasts, rhetorical questions and the surrounding reasons. Interpret what the speaker commits to and what remains open; analysis does not require agreement with the policy."
+    },
+    "workedExample": {
+      "en": "Saying an outcome “depends on” people assigns responsibility. It does not guarantee that scientific progress will have a good outcome. Read the condition beside the claim before summarizing it.",
+      "zh-Hans": "Saying an outcome “depends on” people assigns responsibility. It does not guarantee that scientific progress will have a good outcome. Read the condition beside the claim before summarizing it.",
+      "zh-Hant": "Saying an outcome “depends on” people assigns responsibility. It does not guarantee that scientific progress will have a good outcome. Read the condition beside the claim before summarizing it."
+    },
+    "nextStep": {
+      "en": "Find a contrast or concession in another original address. Compare what the speaker commits to with what remains conditional. Quote the surrounding reason and distinguish interpretation from endorsement.",
+      "zh-Hans": "Find a contrast or concession in another original address. Compare what the speaker commits to with what remains conditional. Quote the surrounding reason and distinguish interpretation from endorsement.",
+      "zh-Hant": "Find a contrast or concession in another original address. Compare what the speaker commits to with what remains conditional. Quote the surrounding reason and distinguish interpretation from endorsement."
+    },
+    "materials": [
+      {
+        "id": "kennedy-rice",
+        "rootId": "kennedy-rice",
+        "sourceId": "kennedy-rice",
+        "title": "Rice University address — 12 September 1962",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "Those who came before us made certain that this country rode the first waves of the industrial revolutions, the first waves of modern invention, and the first wave of nuclear power, and this generation does not intend to founder in the backwash of the coming age of space. We mean to be a part of it - we mean to lead it. For the eyes of the world now look into space, to the moon and to the planets beyond, and we have vowed that we shall not see it governed by a hostile flag of conquest, but by a banner of freedom and peace. We have vowed that we shall not see space filled with weapons of mass destruction, but with instruments of knowledge and understanding.\n\nYet the vows of this Nation can only be fulfilled if we in this Nation are first, and, therefore, we intend to be first. In short, our leadership in science and in industry, our hopes for peace and security, our obligations to ourselves as well as others, all require us to make this effort, to solve these mysteries, to solve them for the good of all men, and to become the world's leading space-faring nation.\n\nWe set sail on this new sea because there is new knowledge to be gained, and new rights to be won, and they must be won and used for the progress of all people. For space science, like nuclear science and all technology, has no conscience of its own. Whether it will become a force for good or ill depends on man, and only if the United States occupies a position of pre-eminence can we help decide whether this new ocean will be a sea of peace or a new terrifying theater of war. I do not say that we should or will go unprotected against the hostile misuse of space any more than we go unprotected against the hostile use of land or sea, but I do say that space can be explored and mastered without feeding the fires of war, without repeating the mistakes that man has made in extending his writ around this globe of ours.\n\nThere is no strife, no prejudice, no national conflict in outer space as yet. Its hazards are hostile to us all. Its conquest deserves the best of all mankind, and its opportunity for peaceful cooperation may never come again. But why, some say, the moon? Why choose this as our goal? And they may well ask why climb the highest mountain. Why, 35 years ago, fly the Atlantic? Why does Rice play Texas?\n\nWe choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too."
+          }
+        ],
+        "questions": [
+          {
+            "id": "responsibility",
+            "blockId": "source",
+            "prompt": "What is the role of the statement that technology has no conscience?",
+            "options": [
+              "It guarantees that scientific progress will be peaceful.",
+              "It places moral responsibility on the people using technology.",
+              "It rejects scientific exploration as inherently harmful."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 1240,
+              "end": 1391
+            },
+            "hints": [
+              {
+                "en": "Identify who determines whether technology is used for good or ill.",
+                "zh-Hans": "Identify who determines whether technology is used for good or ill.",
+                "zh-Hant": "Identify who determines whether technology is used for good or ill."
+              },
+              {
+                "en": "Read the two sentences about conscience and the dependence on people together.",
+                "zh-Hans": "Read the two sentences about conscience and the dependence on people together.",
+                "zh-Hant": "Read the two sentences about conscience and the dependence on people together."
+              },
+              {
+                "en": "“Good or ill” allows opposite outcomes; “depends on man” assigns responsibility.",
+                "zh-Hans": "“Good or ill” allows opposite outcomes; “depends on man” assigns responsibility.",
+                "zh-Hant": "“Good or ill” allows opposite outcomes; “depends on man” assigns responsibility."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The speaker allows a force for good or ill; peace is not guaranteed.",
+                "zh-Hans": "The speaker allows a force for good or ill; peace is not guaranteed.",
+                "zh-Hant": "The speaker allows a force for good or ill; peace is not guaranteed."
+              },
+              {
+                "en": "The second sentence gives people responsibility for the outcome.",
+                "zh-Hans": "The second sentence gives people responsibility for the outcome.",
+                "zh-Hant": "The second sentence gives people responsibility for the outcome."
+              },
+              {
+                "en": "The passage supports exploration while acknowledging possible harmful uses.",
+                "zh-Hans": "The passage supports exploration while acknowledging possible harmful uses.",
+                "zh-Hant": "The passage supports exploration while acknowledging possible harmful uses."
+              }
+            ]
+          },
+          {
+            "id": "resolve",
+            "blockId": "source",
+            "prompt": "How do the questions about mountains, the Atlantic and football prepare the declaration about the Moon?",
+            "options": [
+              "They establish a detailed comparison of the costs.",
+              "They present difficulty as familiar grounds for ambitious action.",
+              "They claim that reaching the Moon is as easy as a football game."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 2337,
+              "end": 2457
+            },
+            "hints": [
+              {
+                "en": "Follow the movement from familiar challenges to the Moon.",
+                "zh-Hans": "Follow the movement from familiar challenges to the Moon.",
+                "zh-Hant": "Follow the movement from familiar challenges to the Moon."
+              },
+              {
+                "en": "Compare the rhetorical questions with the “not because … but because” contrast.",
+                "zh-Hans": "Compare the rhetorical questions with the “not because … but because” contrast.",
+                "zh-Hant": "Compare the rhetorical questions with the “not because … but because” contrast."
+              },
+              {
+                "en": "The speaker makes difficulty a reason to accept the challenge, not proof of impossibility.",
+                "zh-Hans": "The speaker makes difficulty a reason to accept the challenge, not proof of impossibility.",
+                "zh-Hant": "The speaker makes difficulty a reason to accept the challenge, not proof of impossibility."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The sequence is rhetorical; no detailed costs are supplied.",
+                "zh-Hans": "The sequence is rhetorical; no detailed costs are supplied.",
+                "zh-Hant": "The sequence is rhetorical; no detailed costs are supplied."
+              },
+              {
+                "en": "The familiar challenges lead into the explicit choice of a difficult goal.",
+                "zh-Hans": "The familiar challenges lead into the explicit choice of a difficult goal.",
+                "zh-Hant": "The familiar challenges lead into the explicit choice of a difficult goal."
+              },
+              {
+                "en": "The declaration explicitly rejects ease as the reason.",
+                "zh-Hans": "The declaration explicitly rejects ease as the reason.",
+                "zh-Hant": "The declaration explicitly rejects ease as the reason."
+              }
+            ],
+            "additionalEvidence": [
+              {
+                "blockId": "source",
+                "start": 2190,
+                "end": 2306
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kennedy-inaugural",
+        "rootId": "kennedy-inaugural",
+        "sourceId": "kennedy-inaugural",
+        "title": "Inaugural address — 20 January 1961",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "To those people in the huts and villages of half the globe struggling to break the bonds of mass misery, we pledge our best efforts to help them help themselves, for whatever period is required–not because the communists may be doing it, not because we seek their votes, but because it is right. If a free society cannot help the many who are poor, it cannot save the few who are rich.\n\nTo our sister republics south of our border, we offer a special pledge–to convert our good words into good deeds–in a new alliance for progress–to assist free men and free governments in casting off the chains of poverty. But this peaceful revolution of hope cannot become the prey of hostile powers. Let all our neighbors know that we shall join with them to oppose aggression or subversion anywhere in the Americas. And let every other power know that this Hemisphere intends to remain the master of its own house.\n\nTo that world assembly of sovereign states, the United Nations, our last best hope in an age where the instruments of war have far outpaced the instruments of peace, we renew our pledge of support–to prevent it from becoming merely a forum for invective–to strengthen its shield of the new and the weak–and to enlarge the area in which its writ may run.\n\nFinally, to those nations who would make themselves our adversary, we offer not a pledge but a request: that both sides begin anew the quest for peace, before the dark powers of destruction unleashed by science engulf all humanity in planned or accidental self-destruction.\n\nWe dare not tempt them with weakness. For only when our arms are sufficient beyond doubt can we be certain beyond doubt that they will never be employed.\n\nBut neither can two great and powerful groups of nations take comfort from our present course–both sides overburdened by the cost of modern weapons, both rightly alarmed by the steady spread of the deadly atom, yet both racing to alter that uncertain balance of terror that stays the hand of mankind’s final war.\n\nSo let us begin anew–remembering on both sides that civility is not a sign of weakness, and sincerity is always subject to proof. Let us never negotiate out of fear. But let us never fear to negotiate.\n\nLet both sides explore what problems unite us instead of belaboring those problems which divide us.\n\nLet both sides, for the first time, formulate serious and precise proposals for the inspection and control of arms–and bring the absolute power to destroy other nations under the absolute control of all nations.\n\nLet both sides seek to invoke the wonders of science instead of its terrors. Together let us explore the stars, conquer the deserts, eradicate disease, tap the ocean depths and encourage the arts and commerce.\n\nLet both sides unite to heed in all corners of the earth the command of Isaiah–to “undo the heavy burdens . . . (and) let the oppressed go free.”\n\nAnd if a beachhead of cooperation may push back the jungle of suspicion, let both sides join in creating a new endeavor, not a new balance of power, but a new world of law, where the strong are just and the weak secure and the peace preserved.\n\nAll this will not be finished in the first one hundred days. Nor will it be finished in the first one thousand days, nor in the life of this Administration, nor even perhaps in our lifetime on this planet. But let us begin."
+          }
+        ],
+        "questions": [
+          {
+            "id": "negotiation",
+            "blockId": "source",
+            "prompt": "Which interpretation preserves both halves of the reversal about fear and negotiation?",
+            "options": [
+              "Reject intimidation as a motive, while remaining willing to negotiate.",
+              "Avoid negotiation whenever either side has powerful weapons.",
+              "Accept any agreement in order to avoid conflict."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 2134,
+              "end": 2205
+            },
+            "hints": [
+              {
+                "en": "Preserve both the refusal and the willingness.",
+                "zh-Hans": "Preserve both the refusal and the willingness.",
+                "zh-Hant": "Preserve both the refusal and the willingness."
+              },
+              {
+                "en": "Compare “out of fear” with “fear to”; the position of fear changes.",
+                "zh-Hans": "Compare “out of fear” with “fear to”; the position of fear changes.",
+                "zh-Hant": "Compare “out of fear” with “fear to”; the position of fear changes."
+              },
+              {
+                "en": "One clause rejects a motive for negotiating; the other rejects avoiding negotiation.",
+                "zh-Hans": "One clause rejects a motive for negotiating; the other rejects avoiding negotiation.",
+                "zh-Hant": "One clause rejects a motive for negotiating; the other rejects avoiding negotiation."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This preserves the two distinct relationships between fear and negotiation.",
+                "zh-Hans": "This preserves the two distinct relationships between fear and negotiation.",
+                "zh-Hant": "This preserves the two distinct relationships between fear and negotiation."
+              },
+              {
+                "en": "The second half explicitly argues against fearing negotiation.",
+                "zh-Hans": "The second half explicitly argues against fearing negotiation.",
+                "zh-Hant": "The second half explicitly argues against fearing negotiation."
+              },
+              {
+                "en": "Willingness to negotiate does not commit the speaker to accepting any terms.",
+                "zh-Hans": "Willingness to negotiate does not commit the speaker to accepting any terms.",
+                "zh-Hant": "Willingness to negotiate does not commit the speaker to accepting any terms."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "timescale",
+            "blockId": "source",
+            "prompt": "Explain how the final paragraph balances urgency with a long timescale. Support your interpretation with two short quotations.",
+            "criteria": [
+              {
+                "en": "Distinguish a call to begin from a promise to finish quickly.",
+                "zh-Hans": "Distinguish a call to begin from a promise to finish quickly.",
+                "zh-Hant": "Distinguish a call to begin from a promise to finish quickly."
+              },
+              {
+                "en": "Use evidence from both the extended timescale and the final call to action; do not invent a deadline or a guaranteed outcome.",
+                "zh-Hans": "Use evidence from both the extended timescale and the final call to action; do not invent a deadline or a guaranteed outcome.",
+                "zh-Hant": "Use evidence from both the extended timescale and the final call to action; do not invent a deadline or a guaranteed outcome."
+              }
+            ],
+            "evidence": {
+              "start": 3124,
+              "end": 3347
+            },
+            "hints": [
+              {
+                "en": "Explain how the speaker combines patience with action.",
+                "zh-Hans": "Explain how the speaker combines patience with action.",
+                "zh-Hant": "Explain how the speaker combines patience with action."
+              },
+              {
+                "en": "Compare the repeated negative clauses with the final sentence.",
+                "zh-Hans": "Compare the repeated negative clauses with the final sentence.",
+                "zh-Hant": "Compare the repeated negative clauses with the final sentence."
+              },
+              {
+                "en": "“Nor even perhaps” extends the possible timescale; “But” returns to beginning now.",
+                "zh-Hans": "“Nor even perhaps” extends the possible timescale; “But” returns to beginning now.",
+                "zh-Hant": "“Nor even perhaps” extends the possible timescale; “But” returns to beginning now."
+              }
+            ],
+            "explanation": {
+              "en": "The repeated “not” and “nor” clauses refuse an early completion promise, even allowing a timescale beyond a lifetime. “But let us begin” still urges action. Assess your quotations and interpretation against these two features; this response is not automatically scored.",
+              "zh-Hans": "The repeated “not” and “nor” clauses refuse an early completion promise, even allowing a timescale beyond a lifetime. “But let us begin” still urges action. Assess your quotations and interpretation against these two features; this response is not automatically scored.",
+              "zh-Hant": "The repeated “not” and “nor” clauses refuse an early completion promise, even allowing a timescale beyond a lifetime. “But let us begin” still urges action. Assess your quotations and interpretation against these two features; this response is not automatically scored."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c1-archival-argument-listening",
+    "targetLevel": "C1",
+    "skill": "listening",
+    "themes": [
+      "culture"
+    ],
+    "title": {
+      "en": "Responsibility, resolve and cooperation",
+      "zh-Hans": "Responsibility, resolve and cooperation",
+      "zh-Hant": "Responsibility, resolve and cooperation"
+    },
+    "goalId": "follow-public-argument-listening",
+    "goal": {
+      "en": "Follow how a speaker balances resolve, responsibility and cooperation.",
+      "zh-Hans": "Follow how a speaker balances resolve, responsibility and cooperation.",
+      "zh-Hant": "Follow how a speaker balances resolve, responsibility and cooperation."
+    },
+    "sourceId": "kennedy-rice",
+    "reviewStatus": "draft",
+    "teaching": {
+      "en": "These are historical addresses from 1962 and 1961, not current policy reports. Track contrasts, rhetorical questions and the surrounding reasons. Interpret what the speaker commits to and what remains open; analysis does not require agreement with the policy.",
+      "zh-Hans": "These are historical addresses from 1962 and 1961, not current policy reports. Track contrasts, rhetorical questions and the surrounding reasons. Interpret what the speaker commits to and what remains open; analysis does not require agreement with the policy.",
+      "zh-Hant": "These are historical addresses from 1962 and 1961, not current policy reports. Track contrasts, rhetorical questions and the surrounding reasons. Interpret what the speaker commits to and what remains open; analysis does not require agreement with the policy."
+    },
+    "workedExample": {
+      "en": "Saying an outcome “depends on” people assigns responsibility. It does not guarantee that scientific progress will have a good outcome. Read the condition beside the claim before summarizing it.",
+      "zh-Hans": "Saying an outcome “depends on” people assigns responsibility. It does not guarantee that scientific progress will have a good outcome. Read the condition beside the claim before summarizing it.",
+      "zh-Hant": "Saying an outcome “depends on” people assigns responsibility. It does not guarantee that scientific progress will have a good outcome. Read the condition beside the claim before summarizing it."
+    },
+    "nextStep": {
+      "en": "Find a contrast or concession in another original address. Compare what the speaker commits to with what remains conditional. Quote the surrounding reason and distinguish interpretation from endorsement.",
+      "zh-Hans": "Find a contrast or concession in another original address. Compare what the speaker commits to with what remains conditional. Quote the surrounding reason and distinguish interpretation from endorsement.",
+      "zh-Hant": "Find a contrast or concession in another original address. Compare what the speaker commits to with what remains conditional. Quote the surrounding reason and distinguish interpretation from endorsement."
+    },
+    "materials": [
+      {
+        "id": "kennedy-rice",
+        "rootId": "kennedy-rice",
+        "sourceId": "kennedy-rice",
+        "title": "Rice University address — 12 September 1962",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "We set sail on this new sea because there is new knowledge to be gained, and new rights to be won, and they must be won and used for the progress of all people. For space science, like nuclear science and all technology, has no conscience of its own. Whether it will become a force for good or ill depends on man, and only if the United States occupies a position of pre-eminence can we help decide whether this new ocean will be a sea of peace or a new terrifying theater of war. I do not say that we should or will go unprotected against the hostile misuse of space any more than we go unprotected against the hostile use of land or sea, but I do say that space can be explored and mastered without feeding the fires of war, without repeating the mistakes that man has made in extending his writ around this globe of ours.\n\nThere is no strife, no prejudice, no national conflict in outer space as yet. Its hazards are hostile to us all. Its conquest deserves the best of all mankind, and its opportunity for peaceful cooperation may never come again. But why, some say, the moon? Why choose this as our goal? And they may well ask why climb the highest mountain. Why, 35 years ago, fly the Atlantic? Why does Rice play Texas?\n\nWe choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too."
+          }
+        ],
+        "questions": [
+          {
+            "id": "responsibility",
+            "blockId": "source",
+            "prompt": "What is the role of the statement that technology has no conscience?",
+            "options": [
+              "It guarantees that scientific progress will be peaceful.",
+              "It places moral responsibility on the people using technology.",
+              "It rejects scientific exploration as inherently harmful."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 161,
+              "end": 312,
+              "audioStart": 14.54,
+              "audioEnd": 26.6
+            },
+            "hints": [
+              {
+                "en": "Identify who determines whether technology is used for good or ill.",
+                "zh-Hans": "Identify who determines whether technology is used for good or ill.",
+                "zh-Hant": "Identify who determines whether technology is used for good or ill."
+              },
+              {
+                "en": "Read the two sentences about conscience and the dependence on people together.",
+                "zh-Hans": "Read the two sentences about conscience and the dependence on people together.",
+                "zh-Hant": "Read the two sentences about conscience and the dependence on people together."
+              },
+              {
+                "en": "“Good or ill” allows opposite outcomes; “depends on man” assigns responsibility.",
+                "zh-Hans": "“Good or ill” allows opposite outcomes; “depends on man” assigns responsibility.",
+                "zh-Hant": "“Good or ill” allows opposite outcomes; “depends on man” assigns responsibility."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The speaker allows a force for good or ill; peace is not guaranteed.",
+                "zh-Hans": "The speaker allows a force for good or ill; peace is not guaranteed.",
+                "zh-Hant": "The speaker allows a force for good or ill; peace is not guaranteed."
+              },
+              {
+                "en": "The second sentence gives people responsibility for the outcome.",
+                "zh-Hans": "The second sentence gives people responsibility for the outcome.",
+                "zh-Hant": "The second sentence gives people responsibility for the outcome."
+              },
+              {
+                "en": "The passage supports exploration while acknowledging possible harmful uses.",
+                "zh-Hans": "The passage supports exploration while acknowledging possible harmful uses.",
+                "zh-Hant": "The passage supports exploration while acknowledging possible harmful uses."
+              }
+            ]
+          },
+          {
+            "id": "resolve",
+            "blockId": "source",
+            "prompt": "How do the questions about mountains, the Atlantic and football prepare the declaration about the Moon?",
+            "options": [
+              "They establish a detailed comparison of the costs.",
+              "They present difficulty as familiar grounds for ambitious action.",
+              "They claim that reaching the Moon is as easy as a football game."
+            ],
+            "answer": 1,
+            "evidence": {
+              "start": 1258,
+              "end": 1378,
+              "audioStart": 111.64,
+              "audioEnd": 128.2
+            },
+            "hints": [
+              {
+                "en": "Follow the movement from familiar challenges to the Moon.",
+                "zh-Hans": "Follow the movement from familiar challenges to the Moon.",
+                "zh-Hant": "Follow the movement from familiar challenges to the Moon."
+              },
+              {
+                "en": "Compare the rhetorical questions with the “not because … but because” contrast.",
+                "zh-Hans": "Compare the rhetorical questions with the “not because … but because” contrast.",
+                "zh-Hant": "Compare the rhetorical questions with the “not because … but because” contrast."
+              },
+              {
+                "en": "The speaker makes difficulty a reason to accept the challenge, not proof of impossibility.",
+                "zh-Hans": "The speaker makes difficulty a reason to accept the challenge, not proof of impossibility.",
+                "zh-Hant": "The speaker makes difficulty a reason to accept the challenge, not proof of impossibility."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "The sequence is rhetorical; no detailed costs are supplied.",
+                "zh-Hans": "The sequence is rhetorical; no detailed costs are supplied.",
+                "zh-Hant": "The sequence is rhetorical; no detailed costs are supplied."
+              },
+              {
+                "en": "The familiar challenges lead into the explicit choice of a difficult goal.",
+                "zh-Hans": "The familiar challenges lead into the explicit choice of a difficult goal.",
+                "zh-Hant": "The familiar challenges lead into the explicit choice of a difficult goal."
+              },
+              {
+                "en": "The declaration explicitly rejects ease as the reason.",
+                "zh-Hans": "The declaration explicitly rejects ease as the reason.",
+                "zh-Hant": "The declaration explicitly rejects ease as the reason."
+              }
+            ],
+            "additionalEvidence": [
+              {
+                "blockId": "source",
+                "start": 1111,
+                "end": 1227,
+                "audioStart": 98.56,
+                "audioEnd": 108.94
+              }
+            ]
+          }
+        ],
+        "audio": {
+          "src": "/audio/c1-speech/kennedy-rice.mp3",
+          "sha256": "6a205c3bda0ef4ac47f80ae8f26360f05bc9e160e904ca2914d85a55f6e6fb3e",
+          "duration": 148.559955,
+          "author": "John F. Kennedy; White House Audio Collection",
+          "sourceUrl": "https://www.jfklibrary.org/asset-viewer/archives/jfkwha-127-002",
+          "license": "JFK Library archival recording (public domain)",
+          "synthetic": false
+        }
+      },
+      {
+        "id": "kennedy-inaugural",
+        "rootId": "kennedy-inaugural",
+        "sourceId": "kennedy-inaugural",
+        "title": "Inaugural address — 20 January 1961",
+        "blocks": [
+          {
+            "id": "source",
+            "text": "So let us begin anew–remembering on both sides that civility is not a sign of weakness, and sincerity is always subject to proof. Let us never negotiate out of fear. But let us never fear to negotiate.\n\nLet both sides explore what problems unite us instead of belaboring those problems which divide us.\n\nLet both sides, for the first time, formulate serious and precise proposals for the inspection and control of arms–and bring the absolute power to destroy other nations under the absolute control of all nations.\n\nLet both sides seek to invoke the wonders of science instead of its terrors. Together let us explore the stars, conquer the deserts, eradicate disease, tap the ocean depths and encourage the arts and commerce.\n\nLet both sides unite to heed in all corners of the earth the command of Isaiah–to “undo the heavy burdens . . . (and) let the oppressed go free.”\n\nAnd if a beachhead of cooperation may push back the jungle of suspicion, let both sides join in creating a new endeavor, not a new balance of power, but a new world of law, where the strong are just and the weak secure and the peace preserved.\n\nAll this will not be finished in the first one hundred days. Nor will it be finished in the first one thousand days, nor in the life of this Administration, nor even perhaps in our lifetime on this planet. But let us begin."
+          }
+        ],
+        "questions": [
+          {
+            "id": "negotiation",
+            "blockId": "source",
+            "prompt": "Which interpretation preserves both halves of the reversal about fear and negotiation?",
+            "options": [
+              "Reject intimidation as a motive, while remaining willing to negotiate.",
+              "Avoid negotiation whenever either side has powerful weapons.",
+              "Accept any agreement in order to avoid conflict."
+            ],
+            "answer": 0,
+            "evidence": {
+              "start": 130,
+              "end": 201,
+              "audioStart": 11.7,
+              "audioEnd": 18.32
+            },
+            "hints": [
+              {
+                "en": "Preserve both the refusal and the willingness.",
+                "zh-Hans": "Preserve both the refusal and the willingness.",
+                "zh-Hant": "Preserve both the refusal and the willingness."
+              },
+              {
+                "en": "Compare “out of fear” with “fear to”; the position of fear changes.",
+                "zh-Hans": "Compare “out of fear” with “fear to”; the position of fear changes.",
+                "zh-Hant": "Compare “out of fear” with “fear to”; the position of fear changes."
+              },
+              {
+                "en": "One clause rejects a motive for negotiating; the other rejects avoiding negotiation.",
+                "zh-Hans": "One clause rejects a motive for negotiating; the other rejects avoiding negotiation.",
+                "zh-Hant": "One clause rejects a motive for negotiating; the other rejects avoiding negotiation."
+              }
+            ],
+            "explanations": [
+              {
+                "en": "This preserves the two distinct relationships between fear and negotiation.",
+                "zh-Hans": "This preserves the two distinct relationships between fear and negotiation.",
+                "zh-Hant": "This preserves the two distinct relationships between fear and negotiation."
+              },
+              {
+                "en": "The second half explicitly argues against fearing negotiation.",
+                "zh-Hans": "The second half explicitly argues against fearing negotiation.",
+                "zh-Hant": "The second half explicitly argues against fearing negotiation."
+              },
+              {
+                "en": "Willingness to negotiate does not commit the speaker to accepting any terms.",
+                "zh-Hans": "Willingness to negotiate does not commit the speaker to accepting any terms.",
+                "zh-Hant": "Willingness to negotiate does not commit the speaker to accepting any terms."
+              }
+            ]
+          },
+          {
+            "kind": "response",
+            "id": "timescale",
+            "blockId": "source",
+            "prompt": "Explain how the final paragraph balances urgency with a long timescale. Support your interpretation with two short quotations.",
+            "criteria": [
+              {
+                "en": "Distinguish a call to begin from a promise to finish quickly.",
+                "zh-Hans": "Distinguish a call to begin from a promise to finish quickly.",
+                "zh-Hant": "Distinguish a call to begin from a promise to finish quickly."
+              },
+              {
+                "en": "Use evidence from both the extended timescale and the final call to action; do not invent a deadline or a guaranteed outcome.",
+                "zh-Hans": "Use evidence from both the extended timescale and the final call to action; do not invent a deadline or a guaranteed outcome.",
+                "zh-Hant": "Use evidence from both the extended timescale and the final call to action; do not invent a deadline or a guaranteed outcome."
+              }
+            ],
+            "evidence": {
+              "start": 1120,
+              "end": 1343,
+              "audioStart": 119,
+              "audioEnd": 138.88
+            },
+            "hints": [
+              {
+                "en": "Explain how the speaker combines patience with action.",
+                "zh-Hans": "Explain how the speaker combines patience with action.",
+                "zh-Hant": "Explain how the speaker combines patience with action."
+              },
+              {
+                "en": "Compare the repeated negative clauses with the final sentence.",
+                "zh-Hans": "Compare the repeated negative clauses with the final sentence.",
+                "zh-Hant": "Compare the repeated negative clauses with the final sentence."
+              },
+              {
+                "en": "“Nor even perhaps” extends the possible timescale; “But” returns to beginning now.",
+                "zh-Hans": "“Nor even perhaps” extends the possible timescale; “But” returns to beginning now.",
+                "zh-Hant": "“Nor even perhaps” extends the possible timescale; “But” returns to beginning now."
+              }
+            ],
+            "explanation": {
+              "en": "The repeated “not” and “nor” clauses refuse an early completion promise, even allowing a timescale beyond a lifetime. “But let us begin” still urges action. Assess your quotations and interpretation against these two features; this response is not automatically scored.",
+              "zh-Hans": "The repeated “not” and “nor” clauses refuse an early completion promise, even allowing a timescale beyond a lifetime. “But let us begin” still urges action. Assess your quotations and interpretation against these two features; this response is not automatically scored.",
+              "zh-Hant": "The repeated “not” and “nor” clauses refuse an early completion promise, even allowing a timescale beyond a lifetime. “But let us begin” still urges action. Assess your quotations and interpretation against these two features; this response is not automatically scored."
+            }
+          }
+        ],
+        "audio": {
+          "src": "/audio/c1-speech/kennedy-inaugural.mp3",
+          "sha256": "839b7da5f0fdec352c062e9b496d23495eb0e2b626260e19808caf497169df07",
+          "duration": 139.16,
+          "author": "John F. Kennedy; White House Audio Collection",
+          "sourceUrl": "https://www.jfklibrary.org/asset-viewer/archives/jfkwha-001",
+          "license": "JFK Library archival recording (public domain)",
+          "synthetic": false
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "reviewer": "Codex",
+  "reviewerType": "AI",
+  "reviewedAt": "2026-10-01",
+  "authorization": "Maintainer accepts Codex review instead of independent human editorial review, 2026-10-01.",
+  "scope": "Six retained text excerpts, evidence prompts and explanations. No audio or validated CEFR review.",
+  "records": [
+    {
+      "id": 7920108,
+      "sourceHash": "81a5ae310ddb4ca0ac932d0fdbdb78395cbd8cccc2123f93d16f173d2b64ff29",
+      "decision": "accepted-text",
+      "notes": "Request variation is explicitly linked to context, familiarity and status; polite examples retain context."
+    },
+    {
+      "id": 7985917,
+      "sourceHash": "ede4dc77d50c8fd09eb9c45548a0e09783a67f815d64eb968be348eba86efae0",
+      "decision": "accepted-text",
+      "notes": "Everyday-request exclusion is explicit; noun/verb/adjective uses remain distinct."
+    },
+    {
+      "id": 7908917,
+      "sourceHash": "224d5fc8575de27a8f7d339b7b52977034c05222bd3baa2ea9ce1aaf361869f7",
+      "decision": "accepted-text",
+      "notes": "The target explicitly explains joking use; retain probably rather than treating all contemporary uses as jokes."
+    },
+    {
+      "id": 7902900,
+      "sourceHash": "11c07470e0711219356b1f76306b460a53f9a77ac633fc2ae448a2b1b009cab4",
+      "decision": "accepted-text",
+      "notes": "The target explicitly names synonyms; task tests the source statement, not interchangeable usage in every context."
+    },
+    {
+      "id": 7897823,
+      "sourceHash": "aa01744e9563d7e8fad048ad548cad57545ba27e4b12fc6c2cbff21e77c1728e",
+      "decision": "withheld",
+      "notes": "Withheld: the source claims only /t/ resembles an English letter in /k/, /æ/, /t/, although /k/ does too. Do not silently rewrite the credited source."
+    },
+    {
+      "id": 7886124,
+      "sourceHash": "731c4ae939e21cca54f2dde04cdba5ae801e4abf3082bb139cfd4c58ab8e4b07",
+      "decision": "accepted-text",
+      "notes": "The target explicitly contrasts duration; avoid promoting the wording to a universal psychological definition."
+    }
+  ]
+}
