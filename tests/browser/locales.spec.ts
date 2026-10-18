@@ -61,7 +61,8 @@ for (const locale of localeSchema.options) {
         await expect(page.getByRole('heading', { name: heading, exact: true }).first()).toBeVisible();
         await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('html')).toHaveAttribute('dir', locale === 'ar' ? 'rtl' : 'ltr');
-        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        const layout = await page.evaluate(() => ({ viewport: innerWidth, width: document.documentElement.scrollWidth, overflow: [...document.querySelectorAll('*')].filter(el => { const r = el.getBoundingClientRect(); return r.width && (r.right > innerWidth || r.left < 0); }).map(el => ({ tag: el.tagName, class: el.className, text: el.textContent?.slice(0, 80), left: el.getBoundingClientRect().left, right: el.getBoundingClientRect().right })) }));
+        expect(layout.width, JSON.stringify({ locale, path, requestedWidth: width, theme, ...layout })).toBeLessThanOrEqual(layout.viewport);
       }
       const link = await page.locator('.settings-start-link').evaluate(element => {
         const label = element.firstElementChild!.getBoundingClientRect(), arrow = element.lastElementChild!.getBoundingClientRect();
@@ -145,3 +146,4 @@ test('switching away from Arabic resets and persists left-to-right direction', a
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
 });
+

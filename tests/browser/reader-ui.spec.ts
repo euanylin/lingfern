@@ -49,8 +49,8 @@ for (const width of [320, 900, 1440]) test(`book-style line alignment preserves 
   await startReading(page);
   const result = await page.locator('.passage').first().evaluate(paragraph => {
     const original = paragraph.textContent, html = paragraph.innerHTML;
-    const lines = () => {
-      const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT), rows = new Map<number, { right: number; forced: boolean }>();
+    const lines = (element = paragraph) => {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT), rows = new Map<number, { right: number; forced: boolean }>();
       while (walker.nextNode()) {
         const node = walker.currentNode;
         for (let i = 0; i < node.textContent!.length; i++) {
@@ -63,12 +63,17 @@ for (const width of [320, 900, 1440]) test(`book-style line alignment preserves 
           else rows.set(top, { right: Math.max(row?.right ?? 0, rect.right), forced: row?.forced ?? false });
         }
       }
-      return [...rows.values()].map(row => ({ gap: paragraph.getBoundingClientRect().right - row.right, forced: row.forced }));
+      return [...rows.values()].map(row => ({ gap: element.getBoundingClientRect().right - row.right, forced: row.forced }));
     };
     const justified = lines();
     (paragraph as HTMLElement).style.textAlign = 'start'; const ragged = lines();
     (paragraph as HTMLElement).style.removeProperty('text-align');
-    return { justified, ragged, sourcePreserved: paragraph.textContent === original && paragraph.innerHTML === html,
+    // A fixed short forced line tests alignment independently of platform font metrics.
+    const probe = paragraph.cloneNode(false) as HTMLElement;
+    probe.textContent = 'Short line.\nA final line.';
+    paragraph.parentNode!.insertBefore(probe, paragraph.nextSibling);
+    const forced = lines(probe); probe.remove();
+    return { justified, ragged, forced, sourcePreserved: paragraph.textContent === original && paragraph.innerHTML === html,
       fits: paragraph.scrollWidth <= paragraph.clientWidth, width: paragraph.clientWidth,
       limit: parseFloat(getComputedStyle(paragraph).maxInlineSize),
       limits: { standard: CSS.supports('hyphenate-limit-chars', '6 3 3'), webkit: CSS.supports('-webkit-hyphenate-limit-lines', '2') } };
@@ -79,7 +84,8 @@ for (const width of [320, 900, 1440]) test(`book-style line alignment preserves 
   expect(result.justified.length).toBeGreaterThan(1);
   expect(result.justified.slice(0, -1).filter(row => !row.forced).every(row => row.gap < 10)).toBe(true);
   expect(result.justified.at(-1)!.gap).toBeGreaterThan(12);
-  expect(result.justified.some(row => row.forced && row.gap > 12)).toBe(true);
+  expect(result.forced.some(row => row.forced && row.gap > 12), JSON.stringify(result)).toBe(true);
+  expect(result.justified.filter(row => row.forced).map(row => row.gap)).toEqual(result.ragged.filter(row => row.forced).map(row => row.gap));
   expect(result.justified.slice(0, -1).reduce((sum, row) => sum + row.gap, 0)).toBeLessThan(result.ragged.slice(0, -1).reduce((sum, row) => sum + row.gap, 0));
 });
 
@@ -213,3 +219,4 @@ test('picker choices retain touch and keyboard activation without premature blur
     await expect(trigger).toHaveAttribute('data-value', 'light');
   } finally { await context.close(); }
 });
+

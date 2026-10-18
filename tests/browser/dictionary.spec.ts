@@ -219,7 +219,10 @@ test.describe('touch selection', () => {
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(375);
     expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(812);
     await page.screenshot({ path: 'output/playwright/learning-word-popup-touch-375x812-dark-zh-Hans.png' });
-    await page.touchscreen.tap(20, Math.max(0, bounds!.y - 10));
+    const outside = { x: bounds!.x + bounds!.width / 2, y: bounds!.y >= 48 ? bounds!.y - 48 : bounds!.y + bounds!.height + 48 };
+    expect(await page.evaluate(({ x, y }) => !!document.elementFromPoint(x, y)?.closest('.selection-dictionary'), outside)).toBe(false);
+    // Leave enough space to avoid Chromium's touch-target adjustment into the card.
+    await page.touchscreen.tap(outside.x, outside.y);
     await expect(card).toHaveCount(0);
     await page.setViewportSize({ width: 820, height: 900 });
     await highlightPassageWord(page, 'library');
@@ -373,3 +376,4 @@ test('reviewed course meanings rank the matching sense ahead of unrelated uses',
   }
   await page.screenshot({ path: 'output/playwright/dictionary-reviewed-sense-320-light-zh-Hans.png' });
 });
+

@@ -38,6 +38,7 @@ jobs:
           test -f dist/index.html && test -f dist/sw.js
           test -z "$(find dist -type f -size +20M -print -quit)"
           du -sh dist
+      - run: node scripts/release-config.mjs
       - run: npm run deploy:check
       - run: npx playwright install --with-deps chromium
       - run: npm run test:sync
