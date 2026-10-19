@@ -97,16 +97,16 @@ test('IPA opens simple on every screen without overriding a manual choice on res
   }
 });
 
-for (const theme of ['light', 'dark'] as const) test(`English detailed tables fit mobile controls with fixed axes at ${theme}`, async ({ browser }, testInfo) => {
-  const context = await browser.newContext({ viewport: { width: 375, height: 812 }, hasTouch: true, locale: 'zh-CN', colorScheme: theme, reducedMotion: 'reduce' });
+for (const theme of ['light', 'dark'] as const) test(`detailed IPA keeps complete columns and page scrolling at every aspect ratio in ${theme}`, async ({ browser, baseURL }, testInfo) => {
+  const context = await browser.newContext({ baseURL, viewport: { width: 375, height: 812 }, hasTouch: true, locale: 'zh-CN', colorScheme: theme, reducedMotion: 'reduce' });
   const page = await context.newPage();
   try {
-    await page.goto('http://127.0.0.1:5173/library/ipa');
+    await page.goto('/library/ipa');
     await expect(page.getByRole('button', { name: '简易版', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await page.getByRole('button', { name: '详细版', exact: true }).tap();
     await expect(page.locator('.ipa-group > h2')).toHaveText(['Vowels', 'Pulmonic consonants', 'Non-pulmonic consonants', 'Other symbols', 'Affricates (examples)', 'Diacritics', 'Suprasegmentals', 'Tones and word accents']);
-    for (const width of [320, 375, 767]) {
-      await page.setViewportSize({ width, height: 812 });
+    for (const [width, height] of [[320, 480], [375, 812], [667, 375], [767, 1024], [768, 375], [1024, 600], [1440, 420], [1440, 900]]) {
+      await page.setViewportSize({ width, height });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       for (const name of ['rhotic', 'diphthongs']) expect(await page.locator(`.ipa-table-${name}`).locator('..').evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
       const scroll = page.locator('.ipa-table-consonants').locator('..');
@@ -115,14 +115,38 @@ for (const theme of ['light', 'dark'] as const) test(`English detailed tables fi
       const rowHeader = page.locator('.ipa-table-consonants tbody th').first();
       const columnHeader = page.locator('.ipa-table-consonants thead th').nth(1);
       const beforeRow = (await rowHeader.boundingBox())!, beforeCol = (await columnHeader.boundingBox())!;
-      expect(beforeRow.width).toBe(96);
-      expect(await scroll.evaluate(el => el.clientHeight <= innerHeight * .7 + 1)).toBe(true);
+      expect(beforeRow.width).toBe(width <= 767 ? 96 : 140);
+      for (const container of await page.locator('.ipa-table-scroll, .ipa-vowel-scroll').all()) {
+        expect(await container.evaluate(el => ({ fullHeight: el.scrollHeight <= el.clientHeight + 1, maxHeight: getComputedStyle(el).maxHeight, verticalChaining: getComputedStyle(el).overscrollBehaviorY }))).toEqual({ fullHeight: true, maxHeight: 'none', verticalChaining: 'auto' });
+      }
+      expect(await scroll.evaluate(el => {
+        const table = el.querySelector('table')!.getBoundingClientRect(), box = el.getBoundingClientRect();
+        return table.top >= box.top && table.bottom <= box.top + el.clientTop + el.clientHeight + 1;
+      })).toBe(true);
       await scroll.evaluate(el => { el.scrollLeft = el.scrollWidth; el.scrollTop = el.scrollHeight; });
       expect(Math.abs((await rowHeader.boundingBox())!.x - beforeRow.x)).toBeLessThanOrEqual(1);
       expect(Math.abs((await columnHeader.boundingBox())!.y - beforeCol.y)).toBeLessThanOrEqual(1);
+      expect(await scroll.evaluate(el => el.scrollTop)).toBe(0);
+      for (const container of [page.locator('.ipa-vowel-scroll'), scroll]) {
+        await container.scrollIntoViewIfNeeded();
+        const box = (await container.boundingBox())!;
+        await page.mouse.move(Math.max(20, box.x + 30), (Math.max(96, box.y) + Math.min(height - 60, box.y + box.height)) / 2);
+        const before = await page.evaluate(() => scrollY);
+        await page.mouse.wheel(0, 180);
+        await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(before);
+        expect(await container.evaluate(el => el.scrollTop)).toBe(0);
+      }
       await scroll.evaluate(el => { el.scrollLeft = 0; el.scrollTop = 0; });
       expect(await page.locator('.ipa-entry button').evaluateAll(buttons => buttons.length === 167 && buttons.every(button => { const box = button.getBoundingClientRect(); return box.width >= 44 && box.height >= 44; }))).toBe(true);
-      await page.screenshot({ path: testInfo.outputPath(`detailed-mobile-${width}.png`), fullPage: true });
+      if (width === 375 || width === 1440 && height === 420) await page.screenshot({ path: testInfo.outputPath(`detailed-${width}x${height}.png`), fullPage: true });
     }
+    await page.setViewportSize({ width: 320, height: 480 });
+    await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+    for (const container of await page.locator('.ipa-table-scroll, .ipa-vowel-scroll').all()) expect(await container.evaluate(el => el.scrollHeight <= el.clientHeight + 1)).toBe(true);
+    await page.locator('.ipa-vowel-scroll').focus();
+    const beforeKeyboard = await page.evaluate(() => scrollY);
+    await page.keyboard.press('PageDown');
+    await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(beforeKeyboard);
+    expect(await page.locator('.ipa-vowel-scroll').evaluate(el => el.scrollTop)).toBe(0);
   } finally { await context.close(); }
 });

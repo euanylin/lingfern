@@ -226,9 +226,9 @@ test('intermediate and mobile widths keep the number at the card top and blur th
     await sheet.locator('.question-sheet-toggle').click();
     await expect(sheet).toHaveAttribute('data-open', 'true');
     await expect(sheet.locator('.question-progress')).toBeVisible();
-    const markerBounds = (await sheet.locator('.question-number > span').boundingBox())!;
-    await page.mouse.move(markerBounds.x + markerBounds.width / 2, markerBounds.y + markerBounds.height / 2);
+    await sheet.locator('.question-number > span').hover();
     await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
+    await sheet.locator('.question-number > span').hover();
     await page.mouse.down();
     await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(4px)');
     await page.mouse.up();

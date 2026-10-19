@@ -279,6 +279,28 @@ test('mobile reading navigation reveals the selected input inside the sheet with
   expect(await page.evaluate(() => scrollY)).toBe(position);
 });
 
+test('choosing an input during sheet expansion keeps the learner focus and draft', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 410 });
+  await start(page, worksheet);
+  const panel = page.locator('.workspace-questions');
+  await panel.locator('.question-sheet-toggle').click();
+  await page.locator('.workspace-card button').last().click();
+  const field = page.locator('.workspace-question[data-selected=true] input').first();
+  await expect(field).toBeFocused();
+  await panel.locator('.question-close').click();
+  await expect.poll(() => panel.evaluate(el => el.getAnimations().some(animation => animation.playState === 'running'))).toBe(false);
+  await page.addStyleTag({ content: '.workspace-questions { transition-duration: 800ms !important; }' });
+  await panel.locator('.question-sheet-toggle').click();
+  await expect(page.locator('.workspace-question[data-selected=true] h2')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(field).toBeFocused();
+  await field.fill('chosen-during-opening');
+  await expect.poll(() => panel.evaluate(el => el.getAnimations().some(animation => animation.playState === 'running'))).toBe(false);
+  await expect(field).toBeFocused();
+  await expect(field).toHaveValue('chosen-during-opening');
+  await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+});
+
 test('opening mobile reading keeps the editor unfocused until the learner chooses it', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await start(page, worksheet);

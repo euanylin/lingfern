@@ -33,7 +33,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const [playing, setPlaying] = useState(false), [elapsed, setElapsed] = useState(0), [duration, setDuration] = useState(0), [audioError, setAudioError] = useState(false);
   const previousMaterial = useRef(material.id);
   const positions = useRef(new Map<string, number>());
-  const focusRequest = useRef<{ questionId: string; slot: number; target: 'answer' | 'prompt' } | undefined>(undefined);
+  const focusRequest = useRef<{ questionId: string; slot: number; target: 'answer' | 'prompt'; focused?: HTMLElement } | undefined>(undefined);
   let number = 1;
   const numbered = all.map(item => { const start = number; number += questionSlots(item.question); return { ...item, start }; });
   const visible = numbered.filter(item => item.material.id === material.id);
@@ -64,6 +64,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     // Parent session updates can commit after the navigation callback's first frame.
     const focusQuestion = () => {
       if (focusRequest.current !== request) return;
+      if (request.focused && document.activeElement !== request.focused) { focusRequest.current = undefined; return; }
       const answer = document.getElementById(`answer-${request.questionId}-${request.slot}`);
       const element = (request.target === 'answer' ? answer : null) ?? document.getElementById(`prompt-${request.questionId}`);
       if (!element) return;
@@ -72,7 +73,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
         if (panel?.closest<HTMLElement>('.question-panel')?.dataset.open === 'true') frame = requestAnimationFrame(focusQuestion);
         return;
       }
-      element.focus({ preventScroll: true }); focusRequest.current = undefined;
+      if (!request.focused) { element.focus({ preventScroll: true }); request.focused = element; }
       if (listening) {
         const bar = document.querySelector<HTMLElement>('.workspace-questions .question-progress');
         const offset = bar && getComputedStyle(bar).position === 'sticky' ? parseFloat(getComputedStyle(bar).top) + bar.getBoundingClientRect().height + 16 : 16;
@@ -84,6 +85,9 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
           if (bottom > 0) panel.scrollTop += bottom;
         }
       }
+      // Keep the selected field visible while the sheet finishes expanding.
+      if (panel?.closest('.question-panel')?.getAnimations().some(animation => animation.playState === 'running')) frame = requestAnimationFrame(focusQuestion);
+      else focusRequest.current = undefined;
     };
     frame = requestAnimationFrame(focusQuestion);
     return () => cancelAnimationFrame(frame);
