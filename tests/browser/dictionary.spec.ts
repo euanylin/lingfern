@@ -73,22 +73,26 @@ test('empty dictionary fits without scrolling and keeps the active navigation at
   await expect(page.locator('.footer-wordmark')).toHaveCount(0);
 });
 
-test('focusing dictionary search keeps the mobile navigation compact', async ({ page }) => {
+test('focusing dictionary search keeps the mobile navigation fixed and compact', async ({ page }) => {
   for (const width of [320, 375, 640]) {
     await page.setViewportSize({ width, height: 746 });
     await page.goto('/library/dictionary');
     const nav = page.locator('.mobile-nav');
     const initial = await nav.boundingBox();
     await page.getByRole('combobox', { name: '查询单词或短语' }).focus();
-    await expect.poll(() => nav.evaluate(el => getComputedStyle(el).position)).toBe('relative');
+    await expect(nav).toHaveCSS('position', 'fixed');
     await expect(page.locator('footer')).toHaveCount(0);
     const focused = await nav.boundingBox();
+    expect(focused!.y + focused!.height).toBeCloseTo(746, 0);
     expect(await nav.evaluate(el => parseFloat(getComputedStyle(el, '::before').height))).toBeLessThanOrEqual(focused!.height + 1);
     expect(focused!.height).toBeLessThanOrEqual(initial!.height + 1);
     expect(focused!.width).toBeLessThanOrEqual(width);
     expect(await nav.locator('a').evaluateAll(links => links.every(link => link.getBoundingClientRect().height >= 44))).toBe(true);
     if (width === 375) {
       await page.setViewportSize({ width, height: 440 });
+      await expect(nav).toHaveCSS('position', 'fixed');
+      const resized = await nav.boundingBox();
+      expect(resized!.y + resized!.height).toBeCloseTo(440, 0);
       await expect(page.locator('footer')).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     }
