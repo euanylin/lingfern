@@ -11,8 +11,10 @@ export function questionSheetSize(viewport: number, headerBottom: number, reques
 export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobile: boolean, open: boolean) {
   const clearance = useRef(0), container = useRef<HTMLElement | null>(null);
   const requested = useRef<number | undefined>(undefined), fitCurrent = useRef<(() => void) | undefined>(undefined);
+  const preferred = useRef<number | undefined>(undefined);
   const drag = useRef<{ id: number; y: number; height: number; handle: HTMLElement } | undefined>(undefined);
   const activity = useRef<ReturnType<typeof cardInteraction> | undefined>(undefined);
+  const viewportMotion = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [blurBackground, setBlurBackground] = useState(false);
   const [size, setSize] = useState({ minimum: 0, maximum: 0, height: 0 });
   function endDrag() {
@@ -24,7 +26,9 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
   // Retain reserved page space across pane changes so short pages cannot clamp their scroll position.
   useLayoutEffect(() => () => {
     endDrag();
+    clearTimeout(viewportMotion.current);
     const main = container.current;
+    if (main) delete main.querySelector<HTMLElement>('.question-panel')?.dataset.viewportResizing;
     if (main) for (const property of ['--learning-viewport', '--learning-header', '--learning-panels-height', '--learning-bottom', '--question-sheet-clearance', '--question-sheet-height']) main.style.removeProperty(property);
   }, [enabled]);
   useLayoutEffect(() => {
@@ -43,13 +47,19 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
       if (!grid.isConnected) return;
       const height = viewport?.height ?? innerHeight;
       const headerHeight = ['sticky', 'fixed'].includes(getComputedStyle(header).position) ? header.getBoundingClientRect().height : 0;
+      const constrained = textEntry(document.activeElement) || (viewport?.scale ?? 1) > 1;
+      const bottom = constrained ? Math.max(0, innerHeight - height - (viewport?.offsetTop ?? 0)) : 0;
+      const viewportChanged = !!main.style.getPropertyValue('--learning-viewport') && (parseFloat(main.style.getPropertyValue('--learning-viewport')) !== height || parseFloat(main.style.getPropertyValue('--learning-bottom')) !== bottom);
+      if (mobile && viewportChanged && (constrained || bottom > 0 || parseFloat(main.style.getPropertyValue('--learning-bottom')) > 0)) {
+        // Follow the keyboard's own motion without starting another height animation each frame.
+        panel.dataset.viewportResizing = 'true'; clearTimeout(viewportMotion.current);
+        viewportMotion.current = setTimeout(() => { delete panel.dataset.viewportResizing; viewportMotion.current = undefined; }, 160);
+      }
       main.style.setProperty('--learning-viewport', `${height}px`);
       main.style.setProperty('--learning-header', `${headerHeight}px`);
       // Anchor to the document so scrolling cannot resize the answer card.
       main.style.setProperty('--learning-panels-height', `${Math.max(0, height - Math.max(headerHeight + 16, grid.getBoundingClientRect().top + scrollY - (viewport?.offsetTop ?? 0)) - 16)}px`);
       // Browser-bar animation already moves fixed cards; compensate only for editing or zoom.
-      const constrained = textEntry(document.activeElement) || (viewport?.scale ?? 1) > 1;
-      const bottom = constrained ? Math.max(0, innerHeight - height - (viewport?.offsetTop ?? 0)) : 0;
       main.style.setProperty('--learning-bottom', `${bottom}px`);
       if (mobile && toggle) {
         clearance.current = toggle.offsetHeight;
@@ -58,11 +68,22 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
         // The small viewport stays stable while browser bars animate; keyboards and zoom still use the visible area.
         const stableMaximum = parseFloat(getComputedStyle(panel).maxHeight);
         const available = !constrained && Number.isFinite(stableMaximum) ? stableMaximum + headerHeight + 24 + safeBottom : height;
-        const next = questionSheetSize(available, headerBottom + safeBottom, requested.current ?? available * .7 - safeBottom);
+        if (!constrained || preferred.current === undefined) preferred.current = available * .7 - safeBottom;
+        const next = questionSheetSize(available, headerBottom + safeBottom, requested.current ?? preferred.current);
         setSize(previous => previous.minimum === next.minimum && previous.maximum === next.maximum && previous.height === next.height ? previous : next);
         main.style.setProperty('--question-sheet-height', `${open ? next.height : clearance.current}px`);
       }
       main.style.setProperty('--question-sheet-clearance', `${clearance.current}px`);
+      const field = document.activeElement;
+      if (mobile && viewportChanged && field instanceof HTMLElement && textEntry(field) && panel.contains(field)) {
+        const content = field.closest<HTMLElement>('.question-sheet-content');
+        if (content) {
+          const frame = content.getBoundingClientRect(), box = field.getBoundingClientRect();
+          const top = frame.top + 8, bottom = frame.bottom - 8;
+          if (box.top < top && box.bottom <= bottom) content.scrollTop += box.top - top;
+          else if (box.bottom > bottom && box.top >= top) content.scrollTop += Math.min(box.bottom - bottom, box.top - top);
+        }
+      }
     };
     fitCurrent.current = fit;
     const observer = new ResizeObserver(fit); observer.observe(header); if (mobile && toggle) observer.observe(toggle); fit();

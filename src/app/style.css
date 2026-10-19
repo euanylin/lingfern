@@ -660,5 +660,5 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
   .question-sheet-resize{display:flex;flex:none;align-items:center;justify-content:center;min-height:44px;touch-action:none;cursor:ns-resize;background:var(--card)}
   .question-sheet-resize>span{width:40px;height:4px;border-radius:2px;background:var(--control);pointer-events:none}
   .question-sheet-resize:focus-visible{outline-offset:-3px}
-  .learning-grid:not(.listening-layout) .question-panel[data-resizing=true]{transition:none}
+  .learning-grid:not(.listening-layout) .question-panel:is([data-resizing=true],[data-viewport-resizing=true]){transition:none}
 }
