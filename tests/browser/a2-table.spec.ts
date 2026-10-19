@@ -20,7 +20,9 @@ test('A2 table preserves typed times and scores the exception on a new material'
   await page.screenshot({ path: 'output/playwright/a2-evidence-320x640-light-zh-Hans-unselected.png', fullPage: true });
   const alternativeEvidence = page.getByRole('radio', { name: /A group planning a Friday visit/ });
   await alternativeEvidence.focus();
+  await expect(alternativeEvidence).toBeFocused();
   await alternativeEvidence.press('Space');
+  await expect(alternativeEvidence).toBeChecked();
   await page.getByRole('button', { name: '保存答案' }).click();
   await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
   await expect(page.locator('.feedback blockquote')).toHaveCount(2);

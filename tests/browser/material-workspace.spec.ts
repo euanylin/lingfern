@@ -301,6 +301,23 @@ test('opening mobile reading keeps the editor unfocused until the learner choose
   }
 });
 
+for (const width of [375, 1440]) test(`idle card keyboard selection saves without blur resetting its native value: ${width}`, async ({ page }) => {
+  const raw = structuredClone(reading); raw.organization = 'material-v1';
+  await page.setViewportSize({ width, height: 900 });
+  await start(page, raw);
+  const panel = page.locator('.workspace-questions'), choices = panel.getByRole('radio');
+  if (width < 1200) await panel.locator('.question-sheet-toggle').click();
+  for (const index of [0, 1]) {
+    if (width < 1200) await expect(page.locator('.question-sheet-scrim')).toHaveAttribute('data-blur', 'false');
+    await choices.nth(index).focus(); await expect(choices.nth(index)).toBeFocused();
+    await choices.nth(index).press('Space'); await expect(choices.nth(index)).toBeChecked();
+    await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+  }
+  await page.reload();
+  if (width < 1200) await panel.locator('.question-sheet-toggle').click();
+  await expect(choices.nth(1)).toBeChecked();
+});
+
 test('mobile reading focuses a multiple-choice prompt after the sheet becomes visible', async ({ page }) => {
   const raw = structuredClone(reading); raw.organization = 'material-v1';
   await page.setViewportSize({ width: 375, height: 900 });
