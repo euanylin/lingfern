@@ -10,7 +10,7 @@ test('open responses restore drafts and optional self-assessment without automat
   await task.getByRole('button').click();
   await confirmTask(page);
   await showLearningPane(page, 'question');
-  await expect(page.locator('.session-header')).toHaveCSS('position', 'static');
+  await expect(page.locator('.session-header')).toHaveCSS('position', 'fixed');
   const response = 'We should wait for the Friday email before travelling. The room still needs an inspection, and the workshop may move online.';
   await expect(page.getByRole('button', { name: '保存答案' })).toBeDisabled();
   await page.getByRole('textbox', { name: 'Write your response in English.' }).fill(response);

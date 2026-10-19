@@ -79,7 +79,7 @@ test('mobile navigation stays at the bottom through transient browser-bar height
           viewport.dispatchEvent(new Event('scroll'));
           scrollTo(0, inset ? document.documentElement.scrollHeight : 0);
           await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
-          errors.push(Math.abs(document.querySelector('.mobile-nav')!.getBoundingClientRect().bottom - innerHeight));
+          errors.push(Math.abs(document.querySelector('.mobile-nav')!.getBoundingClientRect().bottom - innerHeight), Math.abs(document.querySelector('#root>header')!.getBoundingClientRect().top));
         }
       } finally {
         Reflect.deleteProperty(viewport, 'height');
@@ -92,12 +92,43 @@ test('mobile navigation stays at the bottom through transient browser-bar height
   await page.goto('/library');
   const search = page.locator('.offline-search input');
   await search.focus();
-  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'relative');
+  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
   await search.blur();
   await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
   await page.locator('.package-row:visible input[type=checkbox]').first().focus();
   await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
   await page.setViewportSize({ width: 375, height: 480 });
-  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'relative');
+  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
   expect(await page.locator('.mobile-nav a').evaluateAll(items => items.every(item => item.getBoundingClientRect().height >= 44))).toBe(true);
+});
+
+test.describe('fixed navigation inertia', () => {
+  test.use({ hasTouch: true });
+  test('top and bottom bars stay on viewport edges through native swipes, wheel bursts and zoom', async ({ page }) => {
+    for (const width of [375, 1440]) {
+      await page.setViewportSize({ width, height: 812 }); await page.goto('/settings');
+      const header = page.locator('#root>header'); await expect(header).toHaveCSS('position', 'fixed');
+      await page.evaluate(() => {
+        const rows: { scroll: number; top: number; bottom: number }[] = [];
+        let running = true;
+        const sample = () => { const nav = document.querySelector<HTMLElement>('.mobile-nav')!; rows.push({ scroll: scrollY, top: Math.abs(document.querySelector('#root>header')!.getBoundingClientRect().top), bottom: getComputedStyle(nav).display === 'none' ? 0 : Math.abs(nav.getBoundingClientRect().bottom - innerHeight) }); if (running) requestAnimationFrame(sample); };
+        sample(); (window as unknown as { stopBarSample: () => unknown }).stopBarSample = () => { running = false; return rows; };
+      });
+      const cdp = await page.context().newCDPSession(page);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 20, y: 680 }] });
+      for (const y of [600, 500, 400, 300, 180]) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 20, y }] });
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await page.mouse.wheel(0, 500); await page.mouse.wheel(0, -300);
+      await page.evaluate(() => new Promise<void>(resolve => { let left = 30; const frame = () => --left ? requestAnimationFrame(frame) : resolve(); requestAnimationFrame(frame); }));
+      const rows = await page.evaluate(() => (window as unknown as { stopBarSample: () => { scroll: number; top: number; bottom: number }[] }).stopBarSample());
+      expect(Math.max(...rows.map(row => row.scroll))).toBeGreaterThan(80);
+      expect(Math.max(...rows.map(row => Math.max(row.top, row.bottom)))).toBeLessThanOrEqual(1);
+      await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+      await expect.poll(() => page.locator('#root').evaluate(el => parseFloat(getComputedStyle(el).paddingTop) - document.querySelector('#root>header')!.getBoundingClientRect().height)).toBeGreaterThanOrEqual(-1);
+      expect(await header.locator('a:visible').evaluateAll(items => items.every(el => el.getBoundingClientRect().height >= 44))).toBe(true);
+      await page.getByRole('heading', { level: 1 }).scrollIntoViewIfNeeded();
+      await expect(header).toHaveCSS('position', 'fixed');
+      await test.info().attach(`fixed-bars-${width}`, { body: JSON.stringify(rows), contentType: 'application/json' }); await cdp.detach();
+    }
+  });
 });

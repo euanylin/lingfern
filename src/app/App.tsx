@@ -1,4 +1,7 @@
+import { NavIcon } from './NavIcon';
 import { useQuestionSheetLayout } from './useQuestionSheetLayout';
+import { touchFeedback } from './touchFeedback';
+import { scrollbarVisibility } from './scrollbarVisibility';
 import { QuestionSheetResize } from './QuestionSheetResize';
 import { loadInstructionLocale } from '../locales/teaching';
 import { localeDirection, localeSchema } from '../shared/locale';
@@ -28,9 +31,11 @@ import { TaskDetail, taskMinutes } from './TaskDetail';
 import { PracticeCard, practiceCardProgress } from './PracticeCard';
 import { corpusPracticeHistory } from '../core/corpusPractice';
 import { TaskCatalogue } from './TaskCatalogue';
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import QuestionInputs from './QuestionInputs';
 const MaterialWorkspace = lazy(() => import('./MaterialWorkspace'));
+const Welcome = lazy(() => import('./Welcome').then(module => ({ default: module.Welcome })));
+const IpaChart = lazy(() => import('./IpaChart').then(module => ({ default: module.IpaChart })));
 
 import { createPortal } from 'react-dom';
 import { registerSW } from 'virtual:pwa-register';
@@ -44,7 +49,6 @@ import { SelfAssessment } from './SelfAssessment';
 import { Dictionary } from './Dictionary';
 import { SelectionDictionary, type SelectedWord } from './SelectionDictionary';
 import { GrammarLookup } from './GrammarLookup';
-import { IpaChart } from './IpaChart';
 import { OfflineInstall } from './OfflineInstall';
 import { CommunityImport, InstalledResources } from './CommunityImport';
 import { ProfileBackup } from './ProfileBackup';
@@ -70,10 +74,14 @@ const listeningLesson = catalogue.find(item => item.targetLevel === 'A1' && item
 const owner = crypto.randomUUID();
 let firstEntry = location.pathname === '/';
 const route = () => location.pathname === '/' ? '/today' : location.pathname;
-const pageRoute = (path: string) => /^\/(start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(path);
+const pageRoute = (path: string) => /^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(path);
 type NavDisplay = 'text' | 'icon' | 'both';
 const navDisplay = (value?: string): value is NavDisplay => value === 'text' || value === 'icon' || value === 'both';
 const minutes = (seconds: number) => `${Math.floor(Math.round(seconds) / 60)}:${String(Math.round(seconds) % 60).padStart(2, '0')}`;
+function welcomeSeen() {
+  try { return localStorage.getItem('lingfern.onboarding.seen') === '1'; }
+  catch { return true; }
+}
 function acquireSessionLock(id: string): Promise<(() => void) | undefined> {
   if (!navigator.locks) return Promise.resolve(undefined);
   return new Promise((resolve, reject) => {
@@ -84,16 +92,10 @@ function acquireSessionLock(id: string): Promise<(() => void) | undefined> {
   });
 }
 
-function NavIcon({ name }: { name: 'today' | 'library' | 'settings' }) {
-  const shapes = {
-    today: <><rect x="3.5" y="5" width="17" height="16" rx="3"/><path d="M7.5 3v4M16.5 3v4M3.5 10h17"/><circle cx="12" cy="15.5" r="2.5" fill="currentColor" stroke="none"/></>,
-    library: <><rect x="3" y="4" width="4.5" height="16" rx="1.2"/><rect x="7.5" y="4" width="5" height="16" rx="1.2"/><path d="m14 5 3.6-.9a1.2 1.2 0 0 1 1.5.9l3.1 12.8a1.2 1.2 0 0 1-.9 1.5l-3.6.9zM4.5 8H6M9 16h2"/></>,
-    settings: <><path d="M10 3h4l.6 2.3 1.8 1 2.3-.6 2 3.4-1.7 1.7v2.4l1.7 1.7-2 3.4-2.3-.6-1.8 1L14 21h-4l-.6-2.3-1.8-1-2.3.6-2-3.4L5 13.2v-2.4L3.3 9.1l2-3.4 2.3.6 1.8-1z"/><circle cx="12" cy="12" r="3"/></>,
-  };
-  return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{shapes[name]}</svg>;
-}
 
 export function App() {
+  useEffect(touchFeedback, []);
+  useEffect(scrollbarVisibility, []);
   const [path, setPath] = useState(route);
   const currentPath = useRef(path); currentPath.current = path;
   const [todayDate, setTodayDate] = useState(() => localDay(new Date()));
@@ -164,7 +166,7 @@ export function App() {
       setPreferences(storedPreferences ? preferencesSchema.parse(storedPreferences) : undefined);
       const showFirstRun = firstEntry && !storedPreferences?.completed && !all.length;
       firstEntry = false;
-      if (showFirstRun) { window.history.replaceState(null, '', '/start'); setPath('/start'); }
+      if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; window.history.replaceState(null, '', next); setPath(next); }
       else if (location.pathname === '/') { window.history.replaceState(null, '', '/today'); setPath('/today'); }
       const language = localeSchema.safeParse(savedValues.get('locale'));
       const nextLocale = language.success ? language.data : initialLocale();
@@ -320,56 +322,17 @@ export function App() {
   }
   const nav = ['today','library','settings'] as const;
   const activeNav = path === '/progress' ? 'today' : path.startsWith('/library/') ? 'library' : path.startsWith('/settings/') ? 'settings' : path.slice(1);
-  return <>
-    <a className="skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t.skip}</a>
-    <header className={sessionId ? 'session-header' : ''}>
-      {sessionId ? <><a href="/today" onClick={e => { e.preventDefault(); void releaseSession(sessionId, owner).then(() => { setReady(false); window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0); }).catch(() => setError('save')); }}>{t.leave}</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
-        <a className="home-mark" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
-        <a className="mobile-brand" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
-        <nav className="desktop-nav" data-display={desktopNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
-      </>}
-    </header>
-    <main id="main" tabIndex={-1}>
-      {!online && <p className="notice" role="status">{offlineInstalled || localCorpus || localSpoken || communityLessons.length > 0 ? t.offlineInstalled : t.offline}</p>}
-      {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
-      {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p role="status">{t.loading}</p>) : sessionId ? <Learning key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await loadInstructionLocale(value); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
-        <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={progressRecords([], history, records, summaries).valid} locale={locale}/><h1>{t.today}</h1></section>
-        <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
-        <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
-          const choice = skill === 'reading' ? todayReading : todayListening;
-          return <div className={`primary-task${skill === 'reading' ? ' reading-task' : ''}`} key={skill}>
-            {choice ? <PracticeCard title={firstRunCopy[locale][skill]} locale={locale} records={records} sessions={choice.session ? [choice.session] : []} recommended={recommendation === skill} busy={starting} estimatedMinutes={choice.session ? undefined : taskMinutes(choice.lesson)} onStart={() => setPracticeDetail(choice.lesson)} onRestart={choice.session ? () => restartSelected(choice.session!) : undefined}/>
-            : <CorpusPractice key={`${activeProfile}:${skill}`} preferences={preferences} skill={skill} locale={locale} profileId={activeProfile} history={history} records={records} online={online} busy={starting} recommended={recommendation === skill} onRestart={restartSelected} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} startError={error === 'save' ? t.saveError : ''}/>}
-          </div>;
-        })}<div className="primary-task combined-training"><PracticeCard title={training.title} locale={locale} records={records} sessions={combinedTopicsChanged ? [] : combinedPeers} recommended={recommendation === 'combined'} busy={starting || combinedPreparing} dataSkill="combined" onStart={() => void openCombined()} onRestart={combinedPracticeSession && !combinedTopicsChanged ? () => restartSelected(combinedPracticeSession) : undefined}>
-          {(['reading', 'listening'] as const).map(skill => <SettingsPicker variant="topic" displayLabel={firstRunCopy[locale][skill]} key={`${activeProfile}:${skill}`} label={skill === 'reading' ? training.readingTopic : training.listeningTopic} value={combinedTopics[skill] ?? ''} disabled={starting || combinedPreparing} options={[{ value: '', label: training.automatic }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={value => { if (value === (combinedTopics[skill] ?? '')) return; setCombinedTopicsChanged(true); setCombinedDetail(undefined); setCombinedTopics(previous => ({ ...previous, [skill]: value ? topicSchema.parse(value) : undefined })); setCombinedError(''); }}/>) }
-        </PracticeCard>{combinedError && <p className="practice-status" role="status">{combinedError} <a href="/library">{t.library}</a></p>}</div></div></section></div>
-        <DailyQuote locale={locale} onDayChange={setTodayDate}/></div>
-        
-        {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
-        {practiceDetail && <TaskDetail key={practiceDetail.id} lesson={practiceDetail} locale={locale} profileId={activeProfile} action={t.start} busy={starting} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} onClose={() => setPracticeDetail(undefined)} startError={error === 'save' ? t.saveError : ''} available={true}/>}
-        {combinedDetail && <TaskDetail key={combinedDetail[0].id + combinedDetail[1].id} lesson={combinedDetail[0]} additionalLesson={combinedDetail[1]} heading={training.title} locale={locale} profileId={activeProfile} action={training.start} busy={starting} onStart={() => startCombinedPractice()} onCheck={() => startCombinedPractice(true)} onClose={() => { setCombinedDetail(undefined); requestAnimationFrame(() => { if (combinedInvoker.current?.isConnected && !combinedInvoker.current.matches(':disabled')) combinedInvoker.current.focus({ preventScroll: true }); }); }} startError={error === 'save' ? t.saveError : ''} available={true}/>}
-      </> : path === '/progress' ? <section id="today-records">
-        <a className="records-back" href="/today">← {t.today}</a>
-        <h1>{t.progress}</h1><div className="progress-overview">
-        <dl className="totals"><div><dt>{t.count}</dt><dd>{records.length + summaries.length + unavailableSummaries.length}</dd></div><div><dt>{t.materialCount}</dt><dd>{new Set([...records.map(r => r.rootId), ...summaries.map(row => row.event.payload.rootId), ...unavailableSummaries.map(event => event.payload.rootId)]).size}</dd></div></dl></div>
-        {preferences && <p>{firstRunCopy[locale].headings[3]}: {firstRunCopy[locale].reading} {preferences.reading ?? firstRunCopy[locale].unsure} · {firstRunCopy[locale].listening} {preferences.listening ?? firstRunCopy[locale].unsure}</p>}<CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/><ProgressRecords locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/>{!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}{history.length > 0 && <h2>{t.history}</h2>}<div className="history-grid">{history.map(s => <article className="history" key={s.id}><a href={`/learn/${s.id}`}><span lang={contentText(s.lesson.title, locale) === s.lesson.title.en ? 'en' : undefined}>{contentText(s.lesson.title, locale)}</span> · {s.status === 'active' ? t.resume : t.review}</a><time>{new Date(s.startedAt).toLocaleString(locale)}</time><details><summary>{t.count}: {records.filter(r => r.sessionId === s.id).length}</summary>{(s.lesson.mode === 'check' || s.lesson.mode === 'test') && s.status === 'active' ? <p>{t.checkResponseSaved}</p> : records.filter(r => r.sessionId === s.id).map(r => {
-          const item = questions(s.lesson).find(item => item.question.id === r.questionId);
-          return item && <section key={r.id}>{s.status !== 'active' && <DeleteRecord locale={locale} profileId={activeProfile} recordId={r.syncRecordId ?? r.id} onChange={load}/>}<h3 lang="en">{item.question.prompt}</h3><p>{t.yourAnswer}: <span lang="en">{answerText(item.question, r.answer)}</span> · <span className="result-status" data-result={r.correct === null ? undefined : r.correct ? 'correct' : 'incorrect'}>{r.correct === null ? t.unscored : r.correct ? `✓ ${t.correct}` : `× ${t.incorrect}`}</span></p><p lang={instructionLanguage(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}>{translateInstruction(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}</p><p>{t.conditions}: {r.assistance.hintLevel}/3{teachingSupport(s.lesson, r.rootId, r.assistance.teachingProvided) ? ` · ${t.teachingProvided}` : ""}{r.assistance.dictionaryUsed ? ` · ${t.dictionaryUsed}` : ""}</p>{s.lesson.skill === 'listening' && <p>{t.playbackRequests}: {r.assistance.playbackRequests ?? 0}</p>}<time>{new Date(r.submittedAt).toLocaleString(locale)}</time></section>;
-        })}<GutenbergLicence sourceUrl={s.lesson.materials.find(material => isGutenbergSource(material.credit?.sourceUrl))?.credit?.sourceUrl} locale={locale}/></details></article>)}</div>
-        </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
-          { path: 'dictionary', title: t.dictionaryEntry },
-          { path: 'ipa', title: t.ipa },
-          { path: 'grammar', title: t.grammar },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={ready => { setOfflineInstalled(ready); void installedOfflineGroups().then(setInstalledGroups).catch(() => {}); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
-      : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
-      : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
-      : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
-      : path === '/library/ipa' ? <IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/>
-      : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
-      : path === '/settings/about' ? <About/>
-      : path === '/settings' ? <section className="settings-page">
+  const introducing = path === '/introduction';
+  useLayoutEffect(() => {
+    const header = document.querySelector<HTMLElement>('#root>header'), root = document.documentElement;
+    if (!header) return;
+    let frame = 0;
+    const measure = () => { frame = 0; const height = `${header.offsetHeight}px`; if (root.style.getPropertyValue('--site-header-height') !== height) root.style.setProperty('--site-header-height', height); };
+    const observer = new ResizeObserver(() => { if (!frame) frame = requestAnimationFrame(measure); });
+    measure(); observer.observe(header);
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); root.style.removeProperty('--site-header-height'); };
+  }, [introducing]);
+  const settingsPage = <section className="settings-page">
         <h1>{t.settings}</h1>
         <section className="settings-preferences settings-group" aria-labelledby="settings-preferences-title">
           <h2 id="settings-preferences-title">{t.preferences}</h2>
@@ -402,7 +365,58 @@ export function App() {
           </button>
           <a className="settings-about-row settings-about-link" href="/settings/about"><span>{t.about}</span><span aria-hidden="true">→</span></a>
         </section>
-      </section> : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
+      </section>;
+  function beginFirstRun() { try { localStorage.setItem('lingfern.onboarding.seen', '1'); } catch { /* Continue without persistent browser storage. */ } window.history.pushState(null, '', '/start'); setPath('/start'); scrollTo(0, 0); }
+  return <>
+    <a className="skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t.skip}</a>
+    {!introducing && <header className={sessionId ? 'session-header' : ''}>
+      {sessionId ? <><a href="/today" onClick={e => { e.preventDefault(); void releaseSession(sessionId, owner).then(() => { setReady(false); window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0); }).catch(() => setError('save')); }}>{t.leave}</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
+        <a className="home-mark" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
+        <a className="mobile-brand" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
+        <nav className="desktop-nav" data-display={desktopNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
+      </>}
+    </header>}
+    <main id="main" tabIndex={-1} className={introducing ? 'welcome-main' : undefined}>
+      {!online && <p className="notice" role="status">{offlineInstalled || localCorpus || localSpoken || communityLessons.length > 0 ? t.offlineInstalled : t.offline}</p>}
+      {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
+      {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p role="status">{t.loading}</p>) : sessionId ? <Learning key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await loadInstructionLocale(value); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
+        <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={progressRecords([], history, records, summaries).valid} locale={locale}/><h1>{t.today}</h1></section>
+        <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
+        <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
+          const choice = skill === 'reading' ? todayReading : todayListening;
+          return <div className={`primary-task${skill === 'reading' ? ' reading-task' : ''}`} key={skill}>
+            {choice ? <PracticeCard title={firstRunCopy[locale][skill]} locale={locale} records={records} sessions={choice.session ? [choice.session] : []} recommended={recommendation === skill} busy={starting} estimatedMinutes={choice.session ? undefined : taskMinutes(choice.lesson)} onStart={() => setPracticeDetail(choice.lesson)} onRestart={choice.session ? () => restartSelected(choice.session!) : undefined}/>
+            : <CorpusPractice key={`${activeProfile}:${skill}`} preferences={preferences} skill={skill} locale={locale} profileId={activeProfile} history={history} records={records} online={online} busy={starting} recommended={recommendation === skill} onRestart={restartSelected} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} startError={error === 'save' ? t.saveError : ''}/>}
+          </div>;
+        })}<div className="primary-task combined-training"><PracticeCard title={training.title} locale={locale} records={records} sessions={combinedTopicsChanged ? [] : combinedPeers} recommended={recommendation === 'combined'} busy={starting || combinedPreparing} dataSkill="combined" onStart={() => void openCombined()} onRestart={combinedPracticeSession && !combinedTopicsChanged ? () => restartSelected(combinedPracticeSession) : undefined}>
+          {(['reading', 'listening'] as const).map(skill => <SettingsPicker variant="topic" displayLabel={firstRunCopy[locale][skill]} key={`${activeProfile}:${skill}`} label={skill === 'reading' ? training.readingTopic : training.listeningTopic} value={combinedTopics[skill] ?? ''} disabled={starting || combinedPreparing} options={[{ value: '', label: training.automatic }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={value => { if (value === (combinedTopics[skill] ?? '')) return; setCombinedTopicsChanged(true); setCombinedDetail(undefined); setCombinedTopics(previous => ({ ...previous, [skill]: value ? topicSchema.parse(value) : undefined })); setCombinedError(''); }}/>) }
+        </PracticeCard>{combinedError && <p className="practice-status" role="status">{combinedError} <a href="/library">{t.library}</a></p>}</div></div></section></div>
+        <DailyQuote locale={locale} onDayChange={setTodayDate}/></div>
+        
+        {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
+        {practiceDetail && <TaskDetail key={practiceDetail.id} lesson={practiceDetail} locale={locale} profileId={activeProfile} action={t.start} busy={starting} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} onClose={() => setPracticeDetail(undefined)} startError={error === 'save' ? t.saveError : ''} available={true}/>}
+        {combinedDetail && <TaskDetail key={combinedDetail[0].id + combinedDetail[1].id} lesson={combinedDetail[0]} additionalLesson={combinedDetail[1]} heading={training.title} locale={locale} profileId={activeProfile} action={training.start} busy={starting} onStart={() => startCombinedPractice()} onCheck={() => startCombinedPractice(true)} onClose={() => { setCombinedDetail(undefined); requestAnimationFrame(() => { if (combinedInvoker.current?.isConnected && !combinedInvoker.current.matches(':disabled')) combinedInvoker.current.focus({ preventScroll: true }); }); }} startError={error === 'save' ? t.saveError : ''} available={true}/>}
+      </> : path === '/progress' ? <section id="today-records">
+        <a className="records-back" href="/today">← {t.today}</a>
+        <h1>{t.progress}</h1><div className="progress-overview">
+        <dl className="totals"><div><dt>{t.count}</dt><dd>{records.length + summaries.length + unavailableSummaries.length}</dd></div><div><dt>{t.materialCount}</dt><dd>{new Set([...records.map(r => r.rootId), ...summaries.map(row => row.event.payload.rootId), ...unavailableSummaries.map(event => event.payload.rootId)]).size}</dd></div></dl></div>
+        {preferences && <p>{firstRunCopy[locale].headings[3]}: {firstRunCopy[locale].reading} {preferences.reading ?? firstRunCopy[locale].unsure} · {firstRunCopy[locale].listening} {preferences.listening ?? firstRunCopy[locale].unsure}</p>}<CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/><ProgressRecords locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/>{!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}{history.length > 0 && <h2>{t.history}</h2>}<div className="history-grid">{history.map(s => <article className="history" key={s.id}><a href={`/learn/${s.id}`}><span lang={contentText(s.lesson.title, locale) === s.lesson.title.en ? 'en' : undefined}>{contentText(s.lesson.title, locale)}</span> · {s.status === 'active' ? t.resume : t.review}</a><time>{new Date(s.startedAt).toLocaleString(locale)}</time><details><summary>{t.count}: {records.filter(r => r.sessionId === s.id).length}</summary>{(s.lesson.mode === 'check' || s.lesson.mode === 'test') && s.status === 'active' ? <p>{t.checkResponseSaved}</p> : records.filter(r => r.sessionId === s.id).map(r => {
+          const item = questions(s.lesson).find(item => item.question.id === r.questionId);
+          return item && <section key={r.id}>{s.status !== 'active' && <DeleteRecord locale={locale} profileId={activeProfile} recordId={r.syncRecordId ?? r.id} onChange={load}/>}<h3 lang="en">{item.question.prompt}</h3><p>{t.yourAnswer}: <span lang="en">{answerText(item.question, r.answer)}</span> · <span className="result-status" data-result={r.correct === null ? undefined : r.correct ? 'correct' : 'incorrect'}>{r.correct === null ? t.unscored : r.correct ? `✓ ${t.correct}` : `× ${t.incorrect}`}</span></p><p lang={instructionLanguage(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}>{translateInstruction(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}</p><p>{t.conditions}: {r.assistance.hintLevel}/3{teachingSupport(s.lesson, r.rootId, r.assistance.teachingProvided) ? ` · ${t.teachingProvided}` : ""}{r.assistance.dictionaryUsed ? ` · ${t.dictionaryUsed}` : ""}</p>{s.lesson.skill === 'listening' && <p>{t.playbackRequests}: {r.assistance.playbackRequests ?? 0}</p>}<time>{new Date(r.submittedAt).toLocaleString(locale)}</time></section>;
+        })}<GutenbergLicence sourceUrl={s.lesson.materials.find(material => isGutenbergSource(material.credit?.sourceUrl))?.credit?.sourceUrl} locale={locale}/></details></article>)}</div>
+        </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
+          { path: 'dictionary', title: t.dictionaryEntry },
+          { path: 'ipa', title: t.ipa },
+          { path: 'grammar', title: t.grammar },
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={ready => { setOfflineInstalled(ready); void installedOfflineGroups().then(setInstalledGroups).catch(() => {}); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+      : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
+      : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
+      : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
+      : path === '/library/ipa' ? <Suspense fallback={<p role="status">{t.loading}</p>}><IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/></Suspense>
+      : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
+      : path === '/settings/about' ? <About/>
+      : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
     </main>
     {confirmUpdate && createPortal(<dialog ref={updateDialog} className="update-confirm-dialog" aria-labelledby="update-confirm-title" aria-describedby="update-confirm-description" onCancel={event => { event.preventDefault(); closeUpdate(); }} onClick={event => { if (event.target === event.currentTarget) closeUpdate(); }}>
       <h2 id="update-confirm-title">{t.updateConfirm}</h2><p id="update-confirm-description">{t.updateConfirmDetail}</p>
@@ -410,7 +424,7 @@ export function App() {
       {updateBlocked && <p className="error" role="alert">{t.updateBlocked}</p>}
       <div className="update-confirm-actions"><button ref={updateCancel} type="button" disabled={applyingUpdate} onClick={closeUpdate}>{t.updateCancel}</button><button className="primary" type="button" disabled={applyingUpdate} aria-busy={applyingUpdate} onClick={() => void applyUpdate()}>{t.updateNow}</button></div>
     </dialog>, document.body)}
-    {!sessionId && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
+    {!sessionId && !introducing && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
   </>;
 }
 

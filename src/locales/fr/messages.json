@@ -951,5 +951,12 @@
     "groups": "Groupes de questions",
     "blank": "Blancs",
     "slots": "Champs de réponse"
+  },
+  "onboarding": {
+    "subToday": "Citation du jour et exercices de lecture et d’écoute",
+    "subLibrary": "Dictionnaire, tableau API et guide d’usage",
+    "subSync": "Enregistré sur cet appareil ; synchronisable avec votre dépôt GitHub privé",
+    "carousel": "Présentation",
+    "slideN": "Carte {n} sur 3"
   }
 }

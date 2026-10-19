@@ -951,5 +951,12 @@
     "groups": "Kelompok soal",
     "blank": "Isian kosong",
     "slots": "Kolom jawaban"
+  },
+  "onboarding": {
+    "subToday": "Kutipan harian dan latihan membaca serta menyimak",
+    "subLibrary": "Kamus, tabel IPA, dan panduan penggunaan",
+    "subSync": "Disimpan di perangkat ini; dapat disinkronkan ke repositori GitHub pribadi Anda",
+    "carousel": "Ikhtisar fitur",
+    "slideN": "Kartu {n} dari 3"
   }
 }

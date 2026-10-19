@@ -25,7 +25,7 @@ export default {
         headers: { 'Cache-Control': 'private, no-store', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'" },
       });
     }
-    if (/^\/(start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname) && ['GET', 'HEAD'].includes(request.method) && request.headers.get('Accept')?.includes('text/html')) {
+    if (/^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname) && ['GET', 'HEAD'].includes(request.method) && request.headers.get('Accept')?.includes('text/html')) {
       return env.ASSETS.fetch(new Request(new URL('/', request.url), request));
     }
     return env.ASSETS.fetch(request);

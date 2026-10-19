@@ -951,5 +951,12 @@
     "groups": "問題グループ",
     "blank": "空欄",
     "slots": "解答欄"
+  },
+  "onboarding": {
+    "subToday": "今日の一文と読解・リスニング練習",
+    "subLibrary": "辞書、発音表、用法辞典",
+    "subSync": "この端末に保存。非公開の GitHub リポジトリと同期できます",
+    "carousel": "機能紹介",
+    "slideN": "3 枚中 {n} 枚目"
   }
 }

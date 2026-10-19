@@ -26,6 +26,7 @@
       "/oauth",
       "/oauth/*",
       "/.well-known/*",
+      "/introduction",
       "/start",
       "/today",
       "/progress",

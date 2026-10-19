@@ -38,7 +38,7 @@ registerRoute(({ request, url }) => request.method === 'GET' && url.origin === s
 
 // @ts-expect-error Workbox replaces this literal during injectManifest.
 precacheAndRoute(self.__WB_MANIFEST);
-registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin === sw.location.origin && (/^\/(start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(url.pathname) || url.pathname === '/'), async ({ request }) => await matchPrecache('/index.html') ?? fetch(request));
+registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin === sw.location.origin && (/^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(url.pathname) || url.pathname === '/'), async ({ request }) => await matchPrecache('/index.html') ?? fetch(request));
 sw.addEventListener('message', event => {
   if (event.data?.type === 'SKIP_WAITING') void sw.skipWaiting();
   if (event.data?.type === 'RESOURCES_CATALOGUE_UPDATED') resourcePaths = undefined;

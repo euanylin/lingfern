@@ -288,6 +288,15 @@ test('first-run choices persist and route to available reading while disconnecte
   await page.reload();
   expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   await context.setOffline(true);
+  await page.goto('/introduction'); await expect(page).toHaveURL(/\/introduction$/); await expect(page.locator('.welcome')).toBeVisible();
+  await page.reload(); await expect(page.locator('.welcome')).toBeVisible();
+  for (const index of [1, 2, 0]) {
+    await page.locator('.welcome-dots button').nth(index).click();
+    await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', `第 ${index + 1} 张，共 3 张`);
+  }
+  expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBeNull();
+  await page.locator('.welcome-start').click(); await expect(page.locator('.first-run')).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBe('1');
   for (let step = 0; step < 3; step++) {
     await page.getByRole('button', { name: '跳过这一步' }).click();
     await expect(page.locator('.first-run-top span')).toHaveText(`第 ${step + 2} 步，共 5 步`);

@@ -38,10 +38,8 @@ export function DailyQuote({ locale, onDayChange }: { locale: Locale; onDayChang
     let disposed = false, observedWidth: number | undefined;
     const measure = () => {
       if (disposed) return;
-      const previous = { display: element.style.display, clamp: element.style.webkitLineClamp, maxHeight: element.style.maxHeight, overflow: element.style.overflow };
-      element.style.display = 'block'; element.style.webkitLineClamp = 'unset'; element.style.maxHeight = 'none'; element.style.overflow = 'visible';
-      const needed = quoteNeedsExpansion(element.getBoundingClientRect().height, parseFloat(getComputedStyle(element).lineHeight));
-      element.style.display = previous.display; element.style.webkitLineClamp = previous.clamp; element.style.maxHeight = previous.maxHeight; element.style.overflow = previous.overflow;
+      // Measure overflow without temporarily expanding the live page during browser-bar motion.
+      const needed = quoteNeedsExpansion(element.scrollHeight, parseFloat(getComputedStyle(element).lineHeight));
       setOverflow(current => current && current.id === id && current.needed === needed ? current : { id, needed });
     };
     measure();

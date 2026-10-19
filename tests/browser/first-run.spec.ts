@@ -4,7 +4,9 @@ import { languagePacks } from '../../src/locales';
 
 test('first site visit opens starting choices once, then Settings owns the edit entry', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveURL(/\/start$/);
+  await expect(page).toHaveURL(/\/introduction$/);
+  await expect(page.locator('.welcome')).toBeVisible();
+  await page.locator('.welcome-start').click();
   await expect(page.getByRole('heading', { name: '界面语言', exact: true })).toBeVisible();
   await page.getByRole('button', { name: '跳过这一步' }).click();
   await expect(page.getByRole('heading', { name: '你想用英语做什么？' })).toBeVisible();

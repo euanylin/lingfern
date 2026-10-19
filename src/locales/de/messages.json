@@ -951,5 +951,12 @@
     "groups": "Fragengruppen",
     "blank": "Lücken",
     "slots": "Antwortfelder"
+  },
+  "onboarding": {
+    "subToday": "Tageszitat und Lese- und Hörübungen",
+    "subLibrary": "Wörterbuch, IPA-Tabelle und Gebrauchswörterbuch",
+    "subSync": "Auf diesem Gerät gespeichert; mit deinem privaten GitHub-Repository synchronisierbar",
+    "carousel": "Funktionsübersicht",
+    "slideN": "Karte {n} von 3"
   }
 }

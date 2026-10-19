@@ -951,5 +951,12 @@
     "groups": "題組",
     "blank": "空格",
     "slots": "作答位置"
+  },
+  "onboarding": {
+    "subToday": "每日一句和聽讀練習",
+    "subLibrary": "詞典、發音表和用法詞典",
+    "subSync": "儲存在本機，可同步到你的私人 GitHub 儲存庫",
+    "carousel": "功能介紹",
+    "slideN": "第 {n} 張，共 3 張"
   }
 }

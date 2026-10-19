@@ -951,5 +951,12 @@
     "groups": "문항 그룹",
     "blank": "빈칸",
     "slots": "답안 칸"
+  },
+  "onboarding": {
+    "subToday": "오늘의 문장과 읽기·듣기 연습",
+    "subLibrary": "사전, 발음표, 용법 사전",
+    "subSync": "이 기기에 저장되며 비공개 GitHub 저장소와 동기화할 수 있습니다",
+    "carousel": "기능 소개",
+    "slideN": "3개 중 {n}번째"
   }
 }

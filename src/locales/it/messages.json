@@ -951,5 +951,12 @@
     "groups": "Gruppi di domande",
     "blank": "Spazi vuoti",
     "slots": "Campi di risposta"
+  },
+  "onboarding": {
+    "subToday": "Citazione del giorno ed esercizi di lettura e ascolto",
+    "subLibrary": "Dizionario, tabella IPA e guida all’uso",
+    "subSync": "Salvati su questo dispositivo; sincronizzabili con il tuo repository GitHub privato",
+    "carousel": "Panoramica",
+    "slideN": "Scheda {n} di 3"
   }
 }

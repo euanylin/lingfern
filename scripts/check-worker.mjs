@@ -8,7 +8,7 @@ assert.equal(home.status, 200);
 assert.match(home.headers.get('content-type'), /text\/html/);
 assert.match(home.headers.get('content-security-policy'), /frame-ancestors 'none'/);
 const html = await home.text();
-for (const pathname of ['/start', '/today', '/progress', '/library', '/library/dictionary', '/library/saved', '/library/ipa', '/library/grammar', '/library/history', '/settings', '/settings/about', '/learn/test-id']) {
+for (const pathname of ['/introduction', '/start', '/today', '/progress', '/library', '/library/dictionary', '/library/saved', '/library/ipa', '/library/grammar', '/library/history', '/settings', '/settings/about', '/learn/test-id']) {
   const response = await fetch(origin + pathname, { headers: { Accept: 'text/html' } });
   assert.equal(response.status, 200, pathname);
   assert.match(response.headers.get('content-type'), /text\/html/);
@@ -38,7 +38,7 @@ const js = await fetch(origin + asset);
 assert.equal(js.status, 200);
 assert.match(js.headers.get('cache-control'), /immutable/);
 assert.equal(js.headers.get('x-content-type-options'), 'nosniff');
-for (const pathname of ['/tasks', '/tests', '/settings/ai']) {
+for (const pathname of ['/tasks', '/tests', '/settings/ai', '/introduction/missing', '/introductions']) {
   const response = await fetch(origin + pathname, { headers: { Accept: 'text/html' } });
   assert.equal(response.status, 404, pathname);
 }

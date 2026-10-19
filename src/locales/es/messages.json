@@ -951,5 +951,12 @@
     "groups": "Grupos de preguntas",
     "blank": "Huecos",
     "slots": "Campos de respuesta"
+  },
+  "onboarding": {
+    "subToday": "Cita del día y práctica de lectura y comprensión auditiva",
+    "subLibrary": "Diccionario, tabla del AFI y guía de uso",
+    "subSync": "Se guarda en este dispositivo; puede sincronizarse con tu repositorio privado de GitHub",
+    "carousel": "Presentación",
+    "slideN": "Tarjeta {n} de 3"
   }
 }

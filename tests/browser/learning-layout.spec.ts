@@ -285,12 +285,13 @@ test('C1 desktop keeps the second question number on the answer card while readi
   await page.screenshot({ path: 'output/playwright/learning-c1-question-2-2208x1200-dark-zh-Hans.png' });
 });
 
-test('short learning viewport scrolls without a lingering blurred header', async ({ page }) => {
+test('short learning viewport scrolls below a fixed header without covering content', async ({ page }) => {
   await page.setViewportSize({ width: 801, height: 410 });
   await startLongReading(page);
   await page.evaluate(() => scrollTo(0, 200));
-  await expect(page.locator('header')).toHaveCSS('position', 'static');
-  expect(await page.locator('header').evaluate(el => getComputedStyle(el, '::before').content)).toBe('none');
+  await expect(page.locator('#root>header')).toHaveCSS('position', 'fixed');
+  expect(await page.locator('#root>header').evaluate(el => el.getBoundingClientRect().top)).toBe(0);
+  expect(await page.locator('#root').evaluate(el => parseFloat(getComputedStyle(el).paddingTop) >= document.querySelector('#root>header')!.getBoundingClientRect().height)).toBe(true);
   await expect(page.locator('.passage').first()).toBeVisible();
   await page.screenshot({ path: 'output/playwright/learning-short-801x410-light-zh-Hans.png' });
 });

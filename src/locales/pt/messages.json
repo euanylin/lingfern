@@ -951,5 +951,12 @@
     "groups": "Grupos de perguntas",
     "blank": "Lacunas",
     "slots": "Campos de resposta"
+  },
+  "onboarding": {
+    "subToday": "Citação do dia e prática de leitura e audição",
+    "subLibrary": "Dicionário, tabela do AFI e guia de uso",
+    "subSync": "Salvo neste dispositivo; pode ser sincronizado com seu repositório privado no GitHub",
+    "carousel": "Apresentação",
+    "slideN": "Cartão {n} de 3"
   }
 }

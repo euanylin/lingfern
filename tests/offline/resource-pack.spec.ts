@@ -32,7 +32,7 @@ test('imports a verified ZIP offline and leaves an existing package intact after
   await context.setOffline(true);
   await page.goto('/library/grammar');
   await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('条件句');
-  expect(await page.locator('.grammar-results details').count()).toBeGreaterThanOrEqual(2);
+  await expect.poll(() => page.locator('.grammar-results details').count()).toBeGreaterThanOrEqual(2);
 });
 
 test('download and local removal capture intentions without treating them as cached files', async ({ page }) => {

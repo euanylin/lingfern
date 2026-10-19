@@ -115,7 +115,7 @@ for (const theme of ['light', 'dark'] as const) test(`detailed IPA keeps complet
       const rowHeader = page.locator('.ipa-table-consonants tbody th').first();
       const columnHeader = page.locator('.ipa-table-consonants thead th').nth(1);
       const beforeRow = (await rowHeader.boundingBox())!, beforeCol = (await columnHeader.boundingBox())!;
-      expect(beforeRow.width).toBe(width <= 767 ? 96 : 140);
+      expect(beforeRow.width).toBe(await page.evaluate(() => matchMedia('(max-width:767px)').matches) ? 96 : 140);
       for (const container of await page.locator('.ipa-table-scroll, .ipa-vowel-scroll').all()) {
         expect(await container.evaluate(el => ({ fullHeight: el.scrollHeight <= el.clientHeight + 1, maxHeight: getComputedStyle(el).maxHeight, verticalChaining: getComputedStyle(el).overscrollBehaviorY }))).toEqual({ fullHeight: true, maxHeight: 'none', verticalChaining: 'auto' });
       }

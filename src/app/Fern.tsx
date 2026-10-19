@@ -11,16 +11,18 @@ import { lookupHistoryCopy } from './LookupHistory';
 type FernMotion = { growth: FernGrowth; velocity: FernGrowth; seconds: number; lookups: number };
 const shown = new Map<string, FernMotion>();
 
-export function Fern({ profileId, entries, locale }: { profileId: string; entries: ProgressEntry[]; locale: Locale }) {
-  const [lookups, setLookups] = useState<number | undefined>(() => shown.get(profileId)?.lookups);
+export function Fern({ profileId, entries, locale, illustrationActive }: { profileId: string; entries: ProgressEntry[]; locale: Locale; illustrationActive?: boolean }) {
+  const illustrating = illustrationActive !== undefined;
+  const [lookups, setLookups] = useState<number | undefined>(() => illustrating ? 0 : shown.get(profileId)?.lookups);
   const [failed, setFailed] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [visible, setVisible] = useState(() => !document.hidden);
   const reading = new Set(entries.filter(entry => entry.session.lesson.skill === 'reading').map(entry => entry.session.id)).size;
   const listening = new Set(entries.filter(entry => entry.session.lesson.skill === 'listening').map(entry => entry.session.id)).size;
   const activity = fernActivity(entries);
-  const target = fernGrowth(activity.reading, activity.listening, lookups ?? 0);
-  const initial = useRef(shown.get(profileId) ?? { growth: target, velocity: { stem: 0, left: 0, right: 0 }, seconds: 0, lookups: lookups ?? 0 });
+  const target = illustrating ? illustrationActive ? fernGrowth(10, 8, 15) : fernGrowth(0, 0, 0) : fernGrowth(activity.reading, activity.listening, lookups ?? 0);
+  const initial = useRef((illustrating ? undefined : shown.get(profileId)) ?? { growth: illustrating ? fernGrowth(0, 0, 0) : target, velocity: { stem: 0, left: 0, right: 0 }, seconds: 0, lookups: lookups ?? 0 });
+  const illustration = useRef({ phase: 0, target: 0 });
   const motion = useRef({ ...initial.current });
   const destination = useRef(target);
   const frame = useRef(0);
@@ -34,12 +36,13 @@ export function Fern({ profileId, entries, locale }: { profileId: string; entrie
     return () => { observer.disconnect(); document.removeEventListener('visibilitychange', update); };
   }, []);
   useEffect(() => {
+    if (illustrating) return;
     const observer = liveQuery(() => readLookupHistory(profileId)).subscribe({
       next(rows) { setLookups(rows.length); setFailed(false); },
       error() { setLookups(previous => previous ?? 0); setFailed(true); },
     });
     return () => observer.unsubscribe();
-  }, [profileId]);
+  }, [profileId, illustrating]);
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const change = () => setReduced(media.matches);
@@ -58,13 +61,14 @@ export function Fern({ profileId, entries, locale }: { profileId: string; entrie
     const stemPath = element.querySelector<SVGPathElement>('.fern-stem')!;
     // Only path coordinates change per frame; React still owns labels and errors.
     const paint = (value: FernGrowth, seconds = motion.current.seconds) => {
-      motion.current.growth = value; shown.set(profileId, motion.current);
+      motion.current.growth = value; if (!illustrating) shown.set(profileId, motion.current);
       const shape = fernShape(value, seconds);
       stemPath.setAttribute('d', shape.stem);
       [...shape.left, ...shape.right].forEach((d, index) => pinnae[index].setAttribute('d', d));
       element.setAttribute('data-growth', String(value.stem));
     };
-    if (!shown.has(profileId)) paint(to, 0);
+    if (!illustrating && !shown.has(profileId)) paint(to, 0);
+    illustration.current.target = illustrationActive ? 1.6 : 0;
     if (reduced || !visible) {
       cancelAnimationFrame(frame.current); frame.current = 0;
       if (reduced) { motion.current.seconds = 0; motion.current.velocity = { stem: 0, left: 0, right: 0 }; paint(to, 0); }
@@ -72,6 +76,16 @@ export function Fern({ profileId, entries, locale }: { profileId: string; entrie
     }
     if (frame.current) return;
     let previous = performance.now();
+    if (illustrating) {
+      const animate = (time: number) => {
+        const direction = Math.sign(illustration.current.target - illustration.current.phase);
+        illustration.current.phase = Math.max(0, Math.min(1.6, illustration.current.phase + direction * Math.min(.064, (time - previous) / 1000))); previous = time;
+        const value = advanceFern(fernGrowth(0, 0, 0), { stem: 0, left: 0, right: 0 }, fernGrowth(10, 8, 15), illustration.current.phase).growth;
+        paint(value, illustration.current.phase);
+        if (illustration.current.phase !== illustration.current.target) frame.current = requestAnimationFrame(animate); else frame.current = 0;
+      };
+      frame.current = requestAnimationFrame(animate); return;
+    }
     const animate = (time: number) => {
       const seconds = Math.min(.064, Math.max(0, (time - previous) / 1000));
       motion.current.seconds += seconds;
@@ -83,9 +97,9 @@ export function Fern({ profileId, entries, locale }: { profileId: string; entrie
       frame.current = requestAnimationFrame(animate);
     };
     frame.current = requestAnimationFrame(animate);
-  }, [stem, left, right, lookups, profileId, reduced, visible]);
+  }, [stem, left, right, lookups, profileId, reduced, visible, illustrating, illustrationActive]);
   const shape = fernShape(initial.current.growth, reduced ? 0 : initial.current.seconds);
-  const description = messages('additional', { reading, listening, lookups: lookups ?? 0, tests: activity.tests })[locale].activity;
+  const description = illustrating ? messages('onboarding')[locale].carousel : messages('additional', { reading, listening, lookups: lookups ?? 0, tests: activity.tests })[locale].activity;
   return <><svg ref={svg} className="fern" viewBox="0 0 240 180" role="img" aria-label={description} aria-busy={lookups === undefined} visibility={lookups === undefined ? 'hidden' : 'visible'} data-growth={initial.current.growth.stem} data-motion={reduced ? 'reduced' : visible ? 'active' : 'paused'}>
     <title>{description}</title>
     <g fill="currentColor">{shape.left.map((d, index) => <path className="fern-pinna" key={`left-${index}`} d={d}/>)}{shape.right.map((d, index) => <path className="fern-pinna" key={`right-${index}`} d={d}/>)}</g>

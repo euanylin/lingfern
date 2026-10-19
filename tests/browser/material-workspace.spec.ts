@@ -26,6 +26,28 @@ const facts = ['butterflies', 'containers', 'vegetables', 'waterfalls', 'archite
 for (const material of expanded.materials) material.blocks[0].text += '\n\n' + facts.map((word, index) => `The ${word} appeared in the local report on day ${index + 1}. This separate observation has its own careful description and clear context.`).join('\n\n');
 const worksheet = expanded;
 
+test('desktop submit feedback stays inside the answer card without a horizontal scrollbar', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 }); await start(page, worksheet);
+  const content = page.locator('.workspace-questions .question-sheet-content'), submit = content.locator('button[type=submit]');
+  await submit.scrollIntoViewIfNeeded(); await submit.hover(); await page.waitForTimeout(250);
+  expect(await content.evaluate(el => el.scrollWidth - el.clientWidth)).toBe(0);
+  const bounds = (await content.boundingBox())!, button = (await submit.boundingBox())!;
+  expect(button.x).toBeGreaterThanOrEqual(bounds.x); expect(button.x + button.width).toBeLessThanOrEqual(bounds.x + bounds.width);
+  await submit.focus(); await expect(submit).toBeFocused(); await expect(submit).toBeEnabled();
+});
+
+test('desktop question number follows visible questions without changing the saved selection or drafts', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 }); const { id } = await start(page, worksheet);
+  const before = await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace, id);
+  const section = page.locator('.workspace-question').nth(1), heading = section.locator('h2'), label = (await heading.textContent())!.match(/^\d+/)![0];
+  await heading.evaluate(el => { const panel = el.closest('.question-sheet-content')!; panel.scrollTop += el.getBoundingClientRect().top - panel.getBoundingClientRect().top - 16; });
+  expect(await heading.evaluate(el => el.getBoundingClientRect().top - el.closest('.question-sheet-content')!.getBoundingClientRect().top)).toBeCloseTo(16, 0);
+  await expect(page.locator('.workspace-questions .question-number bdi')).toHaveText(new RegExp(`^${label}/`));
+  await heading.evaluate(el => { const panel = el.closest('.question-sheet-content')!; panel.scrollTop += el.getBoundingClientRect().top - panel.getBoundingClientRect().top - 80; });
+  await expect(page.locator('.workspace-questions .question-number bdi')).toHaveText(new RegExp(`^${label}/`));
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace, id)).toEqual(before);
+});
+
 for (const width of [375, 1440]) for (const kind of ['reading', 'listening', 'gaps', 'response']) test(`typing and deletion keep the answer position while drafts save: ${kind}/${width}`, async ({ page }, testInfo) => {
   await page.setViewportSize({ width, height: 900 });
   const raw = kind === 'reading' ? worksheet : kind === 'gaps' ? (await import('../fixtures/workspace-lessons')).multiGapListening()
@@ -118,6 +140,11 @@ test('desktop reading follows page scrolling beside a pinned answer card, with f
 });
 
 for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const theme of ['light', 'dark'] as const) test(`mobile free navigation and reading position at ${locale}/${theme}`, async ({ page }, testInfo) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.addInitScript(() => {
+    const state = window as unknown as { layoutErrors: string[] }; state.layoutErrors = [];
+    window.addEventListener('error', event => state.layoutErrors.push(event.message));
+  });
   await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
   await selectPicker(page, (await page.locator('.setting-trigger').nth(1).getAttribute('aria-label'))!, theme);
@@ -139,6 +166,9 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   await page.screenshot({ path: testInfo.outputPath('mobile-open.png') });
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.evaluate(() => document.documentElement.style.fontSize = '200%');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  expect(errors).toEqual([]);
+  expect(await page.evaluate(() => (window as unknown as { layoutErrors: string[] }).layoutErrors)).toEqual([]);
 });
 
 test('same recording survives native playback, question navigation, answer edits and answer-card expansion', async ({ page }) => {

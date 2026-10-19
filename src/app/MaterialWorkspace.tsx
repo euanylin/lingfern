@@ -21,6 +21,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const [selected, setSelected] = useState(session.workspace?.selected ?? all[session.position].question.id);
   const [pane, setPane] = useState<'material' | 'question'>(finished ? 'question' : 'material');
   const [selectedSlot, setSelectedSlot] = useState(0);
+  const [visibleNumber, setVisibleNumber] = useState<{ material: string; number: number }>();
   const [mobile, setMobile] = useState(() => matchMedia('(max-width:1199px)').matches);
   useEffect(() => { const query = matchMedia('(max-width:1199px)'); const resize = () => setMobile(query.matches); query.addEventListener('change', resize); return () => query.removeEventListener('change', resize); }, []);
   const sheet = useQuestionSheetLayout(`${material.id}:${locale}`, true, mobile && !listening, pane === 'question');
@@ -39,6 +40,26 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const visible = numbered.filter(item => item.material.id === material.id);
   const active = numbered.find(item => item.question.id === selected) ?? numbered[session.position];
   const currentNumber = active.start + Math.min(selectedSlot, questionSlots(active.question) - 1);
+  const displayedNumber = !mobile && !listening && visibleNumber?.material === material.id ? visibleNumber.number : currentNumber;
+  function followVisibleQuestion(panel: HTMLElement) {
+    const bounds = panel.getBoundingClientRect();
+    let fallback: number | undefined;
+    for (const item of visible) {
+      const heading = document.getElementById(`prompt-${item.question.id}`), section = heading?.closest('.workspace-question');
+      if (!section) continue;
+      const box = section.getBoundingClientRect();
+      if (box.bottom <= bounds.top || box.top >= bounds.bottom) continue;
+      fallback ??= item.start;
+      const controls = [...section.querySelectorAll<HTMLElement>('h2,[id^="answer-"],.setting')];
+      const target = controls.find(element => { const box = element.getBoundingClientRect(); return box.height > 0 && box.bottom >= bounds.top + Math.min(16, box.height / 2) && box.top < bounds.bottom - 8; });
+      if (!target) continue;
+      const slot = target.id.startsWith('answer-') ? Number(target.id.split('-').at(-1)) : target.matches('.setting') ? controls.filter(element => element.matches('.setting')).indexOf(target) : 0;
+      const number = item.start + Math.min(Number.isFinite(slot) ? slot : 0, questionSlots(item.question) - 1);
+      setVisibleNumber(current => current?.material === material.id && current.number === number ? current : { material: material.id, number });
+      return;
+    }
+    if (fallback !== undefined) setVisibleNumber(current => current?.material === material.id && current.number === fallback ? current : { material: material.id, number: fallback });
+  }
   useEffect(() => { if (finished) requestAnimationFrame(() => document.getElementById('workspace-result')?.focus()); }, [finished]);
   useEffect(() => { if (finished) void attempts.where('sessionId').equals(session.id).toArray().then(setSaved).catch(() => setError(t.readError)); }, [finished, session.id, t.readError]);
   useEffect(() => {
@@ -120,7 +141,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     const target = all.find(item => item.question.id === questionId)!;
     if (target.material.id !== material.id && annotationDirty.current && !confirm(readingAnnotationCopy[locale].leave)) return;
     const request = { questionId, slot, target: 'answer' as const }; focusRequest.current = request;
-    setSelected(questionId); setSelectedSlot(slot); setPane('question');
+    setVisibleNumber(undefined); setSelected(questionId); setSelectedSlot(slot); setPane('question');
     try {
       await pending.current;
       const updated = await selectWorkspaceQuestion(session.id, owner, questionId);
@@ -193,14 +214,14 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
       <section className="question-panel workspace-questions" aria-label={t.question} aria-busy={busy} data-open={listening || pane === 'question'}>
         {mobile && !listening && pane === 'question' && <QuestionSheetResize locale={locale} controls="workspace-sheet-content" resize={sheet.resize}/>}
         <button className="question-sheet-toggle" type="button" aria-controls="workspace-sheet-content" aria-expanded={pane === 'question'} onClick={() => switchPane('question')}><span className="question-sheet-label"><span>{t.question} <bdi dir="ltr">{currentNumber}/{number - 1}</bdi></span><span className="question-sheet-preview" lang="en" dir="ltr">{active.question.prompt}</span></span></button>
-        <div className="question-progress" inert={mobile && !listening && pane !== 'question'}>{!listening && <div className="question-number"><span>{t.question} <bdi dir="ltr">{currentNumber}/{number - 1}</bdi></span>{mobile && !listening && <button type="button" className="question-close" onClick={() => switchPane('material')}>{t.material}</button>}</div>}
+        <div className="question-progress" inert={mobile && !listening && pane !== 'question'}>{!listening && <div className="question-number"><span>{t.question} <bdi dir="ltr">{displayedNumber}/{number - 1}</bdi></span>{mobile && !listening && <button type="button" className="question-close" onClick={() => switchPane('material')}>{t.material}</button>}</div>}
       {listening && material.audio && <div className="workspace-player-bar">
           <audio key={material.id} ref={audio} src={material.audio.src} preload="metadata" onLoadedMetadata={() => setDuration(audio.current?.duration ?? 0)} onTimeUpdate={() => setElapsed(audio.current?.currentTime ?? 0)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => void ended()} onError={() => { setAudioError(true); setPlaying(false); }}/>
           <div className="audio-player"><button type="button" className="audio-play" aria-label={playing ? t.pause : t.play} disabled={busy} onClick={() => void play()}><PlaybackIcon state={playing ? 'pause' : 'play'}/></button><div className="audio-timeline" dir="ltr"><input type="range" aria-label={t.playbackProgress} min={0} max={duration || material.audio.duration} step="0.1" value={Math.min(elapsed, duration || material.audio.duration)} aria-valuetext={`${Math.floor(elapsed / 60)}:${String(Math.floor(elapsed % 60)).padStart(2, '0')} / ${Math.floor((duration || material.audio.duration) / 60)}:${String(Math.floor((duration || material.audio.duration) % 60)).padStart(2, '0')}`} disabled={!duration || busy || audioError} style={{ backgroundImage: `linear-gradient(to right, var(--playback-fill, var(--accent)) ${elapsed / (duration || material.audio.duration) * 100}%, var(--line) 0%)` }} onChange={event => { if (audio.current) { audio.current.currentTime = Number(event.target.value); setElapsed(Number(event.target.value)); } }}/><div className="audio-times"><span>{Math.floor(elapsed / 60)}:{String(Math.floor(elapsed % 60)).padStart(2, '0')}</span><span>{Math.floor((duration || material.audio.duration) / 60)}:{String(Math.floor((duration || material.audio.duration) % 60)).padStart(2, '0')}</span></div></div></div>
       </div>}
         </div>
-        <div id="workspace-sheet-content" className="question-sheet-content" inert={mobile && !listening && pane !== 'question'}>
-        <details className="workspace-card" open><summary><span>{w.card}</span></summary><nav aria-label={w.card}>{numbered.flatMap(item => Array.from({ length: questionSlots(item.question) }, (_, slot) => <button type="button" key={`${item.question.id}:${slot}`} aria-label={`${item.start + slot}. ${slotAnswered(item.question, answers[item.question.id], slot) ? w.answered : w.unanswered}`} aria-current={selected === item.question.id && selectedSlot === slot ? 'step' : undefined} data-answered={slotAnswered(item.question, answers[item.question.id], slot)} onClick={() => void navigate(item.question.id, slot)}>{item.start + slot}</button>))}</nav></details>
+        <div id="workspace-sheet-content" className="question-sheet-content" inert={mobile && !listening && pane !== 'question'} onScroll={!mobile && !listening ? event => followVisibleQuestion(event.currentTarget) : undefined}>
+        <details className="workspace-card" open><summary><span>{w.card}</span></summary><nav aria-label={w.card}>{numbered.flatMap(item => Array.from({ length: questionSlots(item.question) }, (_, slot) => <button type="button" key={`${item.question.id}:${slot}`} aria-label={`${item.start + slot}. ${slotAnswered(item.question, answers[item.question.id], slot) ? w.answered : w.unanswered}`} aria-current={displayedNumber === item.start + slot ? 'step' : undefined} data-answered={slotAnswered(item.question, answers[item.question.id], slot)} onClick={() => void navigate(item.question.id, slot)}>{item.start + slot}</button>))}</nav></details>
 
         <p className="saved workspace-save-status sr-only" role="status">{saving ? t.saving : unsaved.current.size ? t.saveError : t.saved}</p>
         {error && <div className="error" role="alert"><p>{error}</p><button type="button" disabled={busy} onClick={() => { for (const [id, answer] of unsaved.current) persist(id, answer); if (!unsaved.current.size) void submitAll(); }}>{t.retry}</button><button type="button" onClick={download}>{t.export}</button></div>}
@@ -209,6 +230,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
             const split = 'kind' in item.question && item.question.kind === 'completion' ? item.question.prompt.indexOf('\n') : -1;
             return <section className="workspace-question" data-selected={selected === item.question.id} key={item.question.id} onFocus={event => {
             const target = event.target as HTMLElement;
+            setVisibleNumber(undefined);
             if (focusRequest.current && focusRequest.current.focused !== target) focusRequest.current = undefined;
             if (target.id.startsWith(`answer-${item.question.id}-`)) setSelectedSlot(Number(target.id.split('-').at(-1)));
             else if ('pairs' in item.question) { const index = Array.from(event.currentTarget.querySelectorAll('.setting')).indexOf(target.closest('.setting')!); if (index >= 0) setSelectedSlot(index); }

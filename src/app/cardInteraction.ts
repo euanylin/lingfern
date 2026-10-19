@@ -16,12 +16,12 @@ export function cardActivity(changed: (active: boolean) => void) {
   };
 }
 
-export function cardInteraction(panel: HTMLElement, changed: (active: boolean) => void) {
+export function cardInteraction(panel: HTMLElement, changed: (active: boolean) => void, touchOnly = false) {
   let scrolling = false;
   const state = cardActivity(active => { if (!active) scrolling = false; changed(active); });
   const editor = (event: Event) => textEntry(event.target);
-  const start = (event: PointerEvent) => { if (editor(event)) state.cancel(); else { scrolling = true; state.start(); } };
-  const activate = (event: Event) => { if (editor(event)) state.cancel(); else { scrolling = true; state.pulse(); } };
+  const start = (event: PointerEvent) => { if (touchOnly && event.pointerType === 'mouse') return; if (editor(event)) state.cancel(); else { scrolling = true; state.start(); } };
+  const activate = (event: Event) => { if (touchOnly && (!(event instanceof PointerEvent) || !['touch', 'pen'].includes(event.pointerType))) return; if (editor(event)) state.cancel(); else { scrolling = true; state.pulse(); } };
   // Let React commit native radio/checkbox changes before blur re-renders their controlled values.
   const click = (event: MouseEvent) => { if (event.target instanceof Node && panel.contains(event.target)) activate(event); };
   const scroll = (event: Event) => { if (scrolling && !editor(event)) state.pulse(); };

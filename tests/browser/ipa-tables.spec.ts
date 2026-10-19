@@ -72,10 +72,10 @@ test('an unexpected non-English chart symbol displays the existing read error in
 });
 
 
-test('every independent IPA sound plays locally, records history and retains the existing English word controls', async ({ page }) => {
+test('every independent IPA sound plays locally, records history and retains the existing English word controls', async ({ page, baseURL }) => {
   test.setTimeout(120_000);
   const external: string[] = [];
-  page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:5173/')) external.push(request.url()); });
+  page.on('request', request => { if (new URL(request.url()).origin !== new URL(baseURL!).origin) external.push(request.url()); });
   await page.goto('/library/ipa');
   await page.getByRole('button', { name: '详细版', exact: true }).click();
   await expect(page.locator('.ipa-entry')).toHaveCount(126);

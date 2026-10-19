@@ -25,7 +25,7 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
     const update = () => {
       interaction?.dispose(); setBlurBackground(false);
       const body = dialog.current?.querySelector<HTMLElement>('.task-detail-body');
-      interaction = query.matches && body ? cardInteraction(body, setBlurBackground) : undefined;
+      interaction = body ? cardInteraction(body, setBlurBackground, !query.matches) : undefined;
     };
     update(); query.addEventListener('change', update);
     return () => { interaction?.dispose(); query.removeEventListener('change', update); };
@@ -91,7 +91,7 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
   const mediaReady = !failed && bytes !== undefined;
   const recordings = lesson.materials.flatMap(material => material.audio ? [material.audio] : []);
   return createPortal(<dialog ref={dialog} className="task-detail" data-open={open} data-blur={blurBackground} onTransitionEnd={event => { if (closeTimer.current !== undefined && event.target === event.currentTarget && !event.nativeEvent.pseudoElement && event.propertyName === 'opacity') finishClose(); }} aria-labelledby="task-detail-title" onClose={onClose} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
-    {/* Desktop keeps hover; mobile uses actual card interaction, including with a mouse. */}
+    {/* Desktop mouse hover remains; touch contact works at every width. */}
     <div className="task-detail-body" onPointerEnter={event => { if (event.pointerType === 'mouse' && !matchMedia('(max-width:1199px)').matches) setBlurBackground(true); }} onPointerLeave={event => { if (event.pointerType === 'mouse' && !matchMedia('(max-width:1199px)').matches) setBlurBackground(false); }}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
       <h2 id="task-detail-title" lang={!heading && contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{heading ?? contentText(lesson.title, locale)}</h2>{heading && <h3 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h3>}<p lang={contentLanguage(lesson.goal, contentLocale)}>{contentText(lesson.goal, contentLocale)}</p>{practiceReason && lesson.generation?.generator === 'corpus-v1' && (practiceReason === 'vocabulary' || lesson.generation.focus) && <p className="muted">{t[practiceReason]}{practiceReason !== 'vocabulary' && lesson.generation.focus && <>: {t.kinds[lesson.generation.focus]}</>}</p>}
       <dl><dt>{t.duration}</dt><dd>{taskMinutes(lesson)} {t.minutes}</dd>

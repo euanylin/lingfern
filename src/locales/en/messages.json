@@ -951,5 +951,12 @@
     "groups": "Question groups",
     "blank": "Blanks",
     "slots": "Response slots"
+  },
+  "onboarding": {
+    "subToday": "Daily quote and reading/listening practice",
+    "subLibrary": "Dictionary, IPA chart and usage guide",
+    "subSync": "Stored on this device; can sync to your private GitHub repository",
+    "carousel": "Feature overview",
+    "slideN": "Card {n} of 3"
   }
 }

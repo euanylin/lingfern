@@ -166,7 +166,7 @@ test('small screen, theme and all interface languages', async ({ page }) => {
   await page.screenshot({ path: 'output/playwright/settings-320x640-dark-zh-Hant-empty.png', fullPage: true });
 });
 
-test('mobile navigation yields to learning and the software keyboard', async ({ page }) => {
+test('mobile navigation stays fixed around learning and software-keyboard focus', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto('/today');
   const nav = page.locator('.mobile-nav');
@@ -184,12 +184,12 @@ test('mobile navigation yields to learning and the software keyboard', async ({ 
   await page.getByRole('link', { name: '英英词典' }).click();
   const query = page.getByRole('combobox', { name: '查询单词或短语' });
   await query.focus();
-  expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('relative');
+  expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('fixed');
   await query.blur();
   expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('fixed');
   await page.setViewportSize({ width: 320, height: 500 });
-  expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('relative');
-  expect(await page.locator('#root > header').evaluate(el => getComputedStyle(el).position)).toBe('static');
+  expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('fixed');
+  expect(await page.locator('#root > header').evaluate(el => getComputedStyle(el).position)).toBe('fixed');
 });
 
 test('failed answer transaction preserves selection and never advances before retry', async ({ page }) => {

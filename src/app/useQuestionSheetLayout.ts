@@ -42,13 +42,21 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
     container.current = main;
     const viewport = window.visualViewport;
     const toggle = panel.querySelector<HTMLElement>('.question-sheet-toggle');
+    let fittedGeometry = '';
     // Use the visible viewport and the actual collapsed card height, including keyboard/zoom changes.
-    const fit = () => {
+    const fit = (scrollOnly = false) => {
       if (!grid.isConnected) return;
       const height = viewport?.height ?? innerHeight;
       const headerHeight = ['sticky', 'fixed'].includes(getComputedStyle(header).position) ? header.getBoundingClientRect().height : 0;
       const constrained = textEntry(document.activeElement) || (viewport?.scale ?? 1) > 1;
       const bottom = constrained ? Math.max(0, innerHeight - height - (viewport?.offsetTop ?? 0)) : 0;
+      const geometry = [innerWidth, innerHeight, viewport?.width, height, viewport?.scale].join(':');
+      // Page/viewport panning moves the card's anchor; it must not resize it or chase the focused field.
+      if (scrollOnly && mobile && geometry === fittedGeometry) {
+        if (main.style.getPropertyValue('--learning-bottom') !== `${bottom}px`) main.style.setProperty('--learning-bottom', `${bottom}px`);
+        return;
+      }
+      fittedGeometry = geometry;
       const viewportChanged = !!main.style.getPropertyValue('--learning-viewport') && (parseFloat(main.style.getPropertyValue('--learning-viewport')) !== height || parseFloat(main.style.getPropertyValue('--learning-bottom')) !== bottom);
       if (mobile && viewportChanged && (constrained || bottom > 0 || parseFloat(main.style.getPropertyValue('--learning-bottom')) > 0)) {
         // Follow the keyboard's own motion without starting another height animation each frame.
@@ -86,13 +94,16 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
       }
     };
     fitCurrent.current = fit;
-    const observer = new ResizeObserver(fit); observer.observe(header); if (mobile && toggle) observer.observe(toggle); fit();
-    window.addEventListener('resize', fit); window.addEventListener('scroll', fit, { passive: true });
-    viewport?.addEventListener('resize', fit); viewport?.addEventListener('scroll', fit);
+    let resizeFrame = 0;
+    const resize = () => { if (!resizeFrame) resizeFrame = requestAnimationFrame(() => { resizeFrame = 0; fit(); }); }, scroll = () => fit(true);
+    const observer = new ResizeObserver(resize); observer.observe(header); if (mobile && toggle) observer.observe(toggle); fit();
+    window.addEventListener('resize', scroll); window.addEventListener('scroll', scroll, { passive: true });
+    viewport?.addEventListener('resize', scroll); viewport?.addEventListener('scroll', scroll);
     return () => {
       fitCurrent.current = undefined;
-      observer.disconnect(); window.removeEventListener('resize', fit); window.removeEventListener('scroll', fit);
-      viewport?.removeEventListener('resize', fit); viewport?.removeEventListener('scroll', fit);
+      cancelAnimationFrame(resizeFrame);
+      observer.disconnect(); window.removeEventListener('resize', scroll); window.removeEventListener('scroll', scroll);
+      viewport?.removeEventListener('resize', scroll); viewport?.removeEventListener('scroll', scroll);
     };
   }, [layoutKey, enabled, mobile, open]);
   useLayoutEffect(() => {
