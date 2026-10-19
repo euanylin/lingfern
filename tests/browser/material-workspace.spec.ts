@@ -279,6 +279,28 @@ test('mobile reading navigation reveals the selected input inside the sheet with
   expect(await page.evaluate(() => scrollY)).toBe(position);
 });
 
+test('opening mobile reading keeps the editor unfocused until the learner chooses it', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await start(page, worksheet);
+  const panel = page.locator('.workspace-questions'), toggle = panel.locator('.question-sheet-toggle');
+  await toggle.click();
+  await panel.locator('.workspace-card button').last().click();
+  const input = panel.locator('.workspace-question[data-selected=true] input').first();
+  await expect(input).toBeFocused();
+  await input.fill('retained-without-opening-keyboard');
+  await panel.locator('.question-close').click();
+  for (const keyboard of [false, true]) {
+    if (keyboard) await toggle.press('Enter'); else await toggle.click();
+    await expect(panel.locator('.workspace-question[data-selected=true] h2')).toBeFocused();
+    await expect(input).not.toBeFocused();
+    await expect(input).toHaveValue('retained-without-opening-keyboard');
+    await input.click();
+    await expect(input).toBeFocused();
+    await panel.locator('.question-close').click();
+    await expect(toggle).toBeFocused();
+  }
+});
+
 test('mobile reading focuses a multiple-choice prompt after the sheet becomes visible', async ({ page }) => {
   const raw = structuredClone(reading); raw.organization = 'material-v1';
   await page.setViewportSize({ width: 375, height: 900 });
@@ -370,9 +392,94 @@ test('mobile sheet pointer blur stays inside the card and keyboard close restore
   const panel = page.locator('.workspace-questions'), toggle = panel.locator('.question-sheet-toggle'), scrim = page.locator('.question-sheet-scrim');
   await toggle.focus(); await toggle.press('Enter'); await expect(panel).toHaveAttribute('data-open', 'true');
   await expect(scrim).toHaveAttribute('data-blur', 'false');
-  const box = (await panel.boundingBox())!; await page.mouse.move(box.x + 10, box.y + 10); await expect(scrim).toHaveAttribute('data-blur', 'true');
+  const box = (await panel.boundingBox())!; await page.mouse.move(box.x + 10, box.y + 10); await expect(scrim).toHaveAttribute('data-blur', 'false');
+  await page.mouse.down(); await expect(scrim).toHaveAttribute('data-blur', 'true');
+  await page.mouse.up(); await expect(scrim).toHaveAttribute('data-blur', 'false');
   await page.mouse.move(2, 100); await expect(scrim).toHaveAttribute('data-blur', 'false');
   await page.keyboard.press('Escape'); await expect(panel).toHaveAttribute('data-open', 'false'); await expect(toggle).toBeFocused();
+});
+
+test('touch interaction and scrolling blur the mobile sheet backdrop while editing stays clear', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await start(page, worksheet);
+  const panel = page.locator('.workspace-questions'), scrim = page.locator('.question-sheet-scrim');
+  await panel.locator('.question-sheet-toggle').click();
+  await expect(scrim).toHaveAttribute('data-blur', 'false');
+  const prompt = panel.locator('.workspace-question[data-selected=true] h2');
+  await prompt.dispatchEvent('pointerdown', { pointerId: 7, pointerType: 'touch', bubbles: true });
+  await expect(scrim).toHaveAttribute('data-blur', 'true');
+  await panel.locator('.question-sheet-content').evaluate(el => { el.scrollTop += 30; });
+  await prompt.dispatchEvent('pointercancel', { pointerId: 7, pointerType: 'touch', bubbles: true });
+  await expect(scrim).toHaveAttribute('data-blur', 'false');
+  await panel.locator('.workspace-card button').last().click();
+  const input = panel.locator('.workspace-question[data-selected=true] input').first();
+  await input.fill('editing-keeps-the-material-clear');
+  await expect(scrim).toHaveAttribute('data-blur', 'false');
+  await input.dispatchEvent('pointerdown', { pointerId: 8, pointerType: 'touch', bubbles: true });
+  await expect(scrim).toHaveAttribute('data-blur', 'false');
+  await input.dispatchEvent('pointerup', { pointerId: 8, pointerType: 'touch', bubbles: true });
+});
+
+test('mobile answer sheet resizes continuously with pointer and keyboard without changing answers', async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 375, height: 900 });
+  const { id } = await start(page, worksheet);
+  const drafts = await page.evaluate(async sessionId => (await (await import('/src/data/db.ts' as string)).sessions.get(sessionId)).workspace?.drafts, id);
+  const panel = page.locator('.workspace-questions');
+  await panel.locator('.question-sheet-toggle').click();
+  const grip = panel.getByRole('separator', { name: '调整答题卡大小' });
+  await expect(grip).toBeVisible();
+  expect((await grip.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await expect(grip).toHaveCSS('touch-action', 'none');
+  await expect.poll(() => panel.evaluate(element => {
+    const target = parseFloat(getComputedStyle(element).getPropertyValue('--question-sheet-height'));
+    return Math.abs(element.getBoundingClientRect().height - target);
+  })).toBeLessThanOrEqual(1);
+  const initial = (await panel.boundingBox())!.height;
+  const handle = (await grip.boundingBox())!;
+  await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2 + 83, { steps: 8 });
+  expect(Math.abs((await panel.boundingBox())!.height - (initial - 83))).toBeLessThanOrEqual(1);
+  await page.mouse.up();
+  const resized = (await panel.boundingBox())!.height;
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+  expect(Math.abs((await panel.boundingBox())!.height - resized)).toBeLessThanOrEqual(1);
+  await grip.press('Home');
+  await expect(grip).toHaveAttribute('aria-valuenow', '0');
+  await grip.press('End');
+  await expect(grip).toHaveAttribute('aria-valuenow', '100');
+  await expect.poll(async () => {
+    const sheet = (await panel.boundingBox())!, header = (await page.locator('.session-header').boundingBox())!;
+    return sheet.y >= header.y + header.height + 23 && sheet.y + sheet.height <= 901;
+  }).toBe(true);
+  expect(await page.evaluate(async sessionId => (await (await import('/src/data/db.ts' as string)).sessions.get(sessionId)).workspace?.drafts, id)).toEqual(drafts);
+  await page.screenshot({ path: testInfo.outputPath('resized-mobile-sheet.png') });
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect(grip).toHaveCount(0);
+  await expect(panel).toHaveCSS('position', 'sticky');
+});
+
+test('stable mobile sheet still clears the software keyboard and restores its ordinary anchor', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 }); await start(page, worksheet);
+  const panel = page.locator('.workspace-questions');
+  await panel.locator('.question-sheet-toggle').click();
+  await panel.locator('.workspace-card button').last().click();
+  const input = panel.locator('.workspace-question[data-selected=true] input').first();
+  await expect(input).toBeFocused();
+  const geometry = await panel.evaluate(element => {
+    const viewport = window.visualViewport!;
+    try {
+      Object.defineProperty(viewport, 'height', { configurable: true, value: 480 });
+      viewport.dispatchEvent(new Event('resize'));
+      return { bottom: element.getBoundingClientRect().bottom, target: parseFloat(getComputedStyle(element).getPropertyValue('--question-sheet-height')), offset: parseFloat(getComputedStyle(element).getPropertyValue('--learning-bottom')) };
+    } finally {
+      Reflect.deleteProperty(viewport, 'height'); viewport.dispatchEvent(new Event('resize'));
+    }
+  });
+  expect(geometry.bottom).toBeCloseTo(480, 0); expect(geometry.target).toBeLessThanOrEqual(392); expect(geometry.offset).toBe(332);
+  await expect(input).toBeFocused();
+  expect((await panel.boundingBox())!.y + (await panel.boundingBox())!.height).toBeCloseTo(812, 0);
 });
 
 test('opening the mobile sheet near the end of a short page does not clamp the reading position', async ({ page }) => {

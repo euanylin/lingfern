@@ -941,6 +941,7 @@
     "activity": "Activity growth: {reading} reading sessions, {listening} listening sessions, {lookups} lookups; {tests} completed tests. Activity, not proficiency."
   },
   "workspace": {
+    "resize": "Resize answer card",
     "hint": "Hint",
     "card": "Answer card",
     "unanswered": "Unanswered",

@@ -941,6 +941,7 @@
     "activity": "Atividade: {reading} sessões de leitura, {listening} de escuta, {lookups} consultas; {tests} testes concluídos. Atividade, não proficiência."
   },
   "workspace": {
+    "resize": "Redimensionar o cartão de respostas",
     "hint": "Dica",
     "card": "Folha de respostas",
     "unanswered": "Sem resposta",

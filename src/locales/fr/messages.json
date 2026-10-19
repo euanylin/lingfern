@@ -941,6 +941,7 @@
     "activity": "Activité : séances de lecture : {reading}, d’écoute : {listening}, recherches : {lookups} ; tests terminés : {tests}. Activité, et non niveau de langue."
   },
   "workspace": {
+    "resize": "Redimensionner la fiche de réponses",
     "hint": "Indice",
     "card": "Grille de réponses",
     "unanswered": "Sans réponse",

@@ -106,8 +106,7 @@ nav a[aria-current]::after{opacity:.55;transform:scaleX(1)}
 .saved-word-heading h2{min-width:0}
 .saved-word-lookup{display:inline-flex;align-items:center;min-height:44px;font-size:.875rem;white-space:nowrap}
 main:has(> .library-page > .dictionary){min-height:0;padding:32px 0}main:has(> .library-page > .dictionary) h1{margin:24px 0}@media(max-width:374px){main:has(> .library-page > .dictionary){padding:12px 0}main:has(> .library-page > .dictionary) h1{margin:8px 0}.dictionary h2{margin:8px 0}.dictionary .online-lookup{margin:8px 0 16px}}
-.online-lookup{margin:16px 0 24px}.online-lookup h3{margin:0 0 6px;font-size:.875rem;font-weight:600;color:var(--muted)}.online-lookup-links{display:flex;flex-wrap:wrap;gap:4px 8px}.online-lookup-links a,.online-lookup-disabled{display:inline-flex;align-items:center;min-height:44px;padding:7px 9px;border-radius:var(--corner-radius);font-size:.875rem;white-space:nowrap}.online-lookup-links a{transition:background-color 160ms ease,transform 160ms ease}.online-lookup-links a:hover{background:var(--interactive-hover);transform:scale(1.025)}.online-lookup-links a:active{transform:scale(.98)}.online-lookup-disabled{color:var(--muted);opacity:.6}.online-lookup .muted{margin:4px 9px 0}@media(prefers-reduced-motion:reduce){.online-lookup-links a{transition:none}.online-lookup-links a:hover,.online-lookup-links a:active{transform:none}}
-.online-lookup h3 a{display:inline-flex;align-items:center;min-height:44px;color:var(--muted)}
+.online-lookup{margin:16px 0 24px}.online-lookup-links{display:flex;flex-wrap:wrap;gap:4px 8px}.online-lookup-links a,.online-lookup-disabled{display:inline-flex;align-items:center;min-height:44px;padding:7px 9px;border-radius:var(--corner-radius);font-size:.875rem;white-space:nowrap}.online-lookup-links a{transition:background-color 160ms ease,transform 160ms ease}.online-lookup-links a:hover{background:var(--interactive-hover);transform:scale(1.025)}.online-lookup-links a:active{transform:scale(.98)}.online-lookup-disabled{color:var(--muted);opacity:.6}.online-lookup .muted{margin:4px 9px 0}@media(prefers-reduced-motion:reduce){.online-lookup-links a{transition:none}.online-lookup-links a:hover,.online-lookup-links a:active{transform:none}}
 .setting{position:relative;display:flex;justify-content:space-between;align-items:center;min-height:68px;margin:0 0 8px;padding:10px 12px 10px 18px;gap:12px;border:0;border-radius:var(--corner-radius);background:var(--raised);font-weight:600;white-space:nowrap;transition:background-color 160ms ease}.setting:has(.setting-menu){z-index:20}
 .setting-trigger,.setting-trigger:hover,.setting-trigger:active{display:flex;align-items:center;justify-content:flex-end;gap:12px;min-width:44px;max-width:65%;min-height:44px;padding:0;border:0;background:transparent;color:var(--ink);font-weight:500;text-align:end;transform:none}.setting-trigger>span:first-child{overflow:hidden;text-overflow:ellipsis}.setting-trigger:focus-visible{outline:2px solid var(--focus);outline-offset:2px}.setting-chevron{display:grid;place-content:center;flex:none;width:36px;height:36px;border-radius:50%;background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--muted);font-size:14px;line-height:7px;text-align:center}
 :root{--menu-glass:rgb(248 248 248 / .32);--menu-filter:blur(20px) saturate(135%) brightness(1.08);--menu-rim:rgb(255 255 255 / .65);--menu-highlight:rgb(255 255 255 / .6)}
@@ -238,7 +237,7 @@ footer{border-top:0}
 }
 @media(max-width:767px) and (hover:hover) and (pointer:fine){.mobile-nav a:hover::after{animation:none}.mobile-nav a:hover svg{transform:translateY(-2px) rotate(-3deg)}}
 @media(max-width:767px) and (max-height:560px){#root>header,#root>header.session-header{position:static}.mobile-nav{position:relative}#root>main{padding-bottom:24px}}
-@media(max-width:767px){#root:not(:has(.library-page-heading)):has(input:focus:not([type=radio]):not([type=checkbox]):not([type=file]),textarea:focus) .mobile-nav{position:relative}#root:not(:has(.library-page-heading)):has(input:focus:not([type=radio]):not([type=checkbox]):not([type=file]),textarea:focus)>main{padding-bottom:24px}#root:has(input:focus:not([type=radio]):not([type=checkbox]):not([type=file]),textarea:focus)>footer{display:none}}
+@media(max-width:767px){#root:has(input:focus:not([type=radio]):not([type=checkbox]):not([type=file]),textarea:focus) .mobile-nav{position:relative}#root:has(input:focus:not([type=radio]):not([type=checkbox]):not([type=file]),textarea:focus)>main{padding-bottom:24px}#root:has(input:focus:not([type=radio]):not([type=checkbox]):not([type=file]),textarea:focus)>footer{display:none}}
 @media(prefers-reduced-motion:reduce){.mobile-nav svg{transition:none}.mobile-nav a:hover svg{transform:none}}
 
 .backup-file-label:has(input:focus-visible) .backup-file-button{outline:none;text-decoration-thickness:3px;text-underline-offset:6px}
@@ -356,7 +355,7 @@ button,.button{color:var(--secondary-ink);border-radius:var(--corner-radius);box
 .settings-group>h2,.settings-service-groups h2,.settings-service-groups h3{font-family:inherit;font-size:1rem;margin:0 0 8px}
 .settings-group-list{background:var(--card);border-radius:16px;padding:0 16px}.settings-group-list>.setting,.settings-dictionary-row>.setting{background:none;margin:0;padding:12px 0;border-radius:0;min-height:56px;font-weight:400}.settings-group-list>:not(:last-child){border-bottom:1px solid var(--line)}
 .settings-row-description{font-size:.75rem;color:var(--muted);margin:0;padding:0 0 12px}.settings-group-list>a,.settings-update-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;min-height:56px;padding:12px 0;color:var(--ink);text-decoration:none}.settings-group-list>.settings-about{margin:0;padding:12px 0;background:none;border-radius:0}.settings-update-row>p{margin:0}.settings-update-row .update-action{margin:0}
-.settings-service-groups>section{background:var(--card);border:0;border-radius:16px;padding:16px;margin:24px 0}.settings-service-groups>section section{background:none;border-radius:0;border-top:1px solid var(--line);padding:16px 0 0;margin:16px 0 0}.settings-service-groups .profile-backup{padding:16px}.settings-service-groups .profile-setting{background:none;padding-inline:0;font-weight:400}
+.settings-service-groups>section{background:var(--card);border:0;border-radius:16px;padding:16px;margin:24px 0}.settings-service-groups>section>:is(.sync-account-choice,.sync-controls){background:none;border-radius:0;border-top:1px solid var(--line);padding:16px 0 0;margin:16px 0 0}.settings-service-groups .profile-backup{padding:16px}.settings-service-groups .profile-setting{background:none;padding-inline:0;font-weight:400}
 .settings-page{display:block;max-width:760px}.settings-preferences>.settings-group-list{display:grid;gap:12px;padding:0;background:none;border-radius:0}.settings-page .settings-card{background:var(--card);border:0;border-radius:16px;padding:0 16px;margin:12px 0}.settings-preferences>.settings-group-list>.settings-card{margin:0;border:0}.settings-card>.setting{background:none;border-radius:0;margin:0;padding:12px 0;min-height:56px;font-weight:400}.settings-appearance>.setting:not(:last-child){border-bottom:1px solid var(--line)}.settings-page a.settings-card{display:flex;align-items:center;min-height:56px;padding:12px 16px;text-decoration:none;color:var(--ink)}.settings-update.settings-card{padding:0 16px}.settings-card .settings-group-list{background:none;padding:0;border-radius:0}.settings-service-groups>section{margin:12px 0}
 .practice-card-restart{margin-inline-start:auto;flex:none;min-height:44px;min-width:44px;padding:8px;font-size:.8125rem;font-weight:400;background:none;color:var(--muted)}.practice-card-restart:hover{color:var(--accent);background:var(--button-surface)}
 .settings-preferences.settings-group{background:var(--card);border-radius:16px;padding:16px}.settings-preferences>.settings-group-list{gap:0}.settings-preferences .settings-card{background:none;border-radius:0;padding:0}.settings-preferences>.settings-group-list>.settings-card:not(:last-child){border-bottom:1px solid var(--line)}.settings-preferences a.settings-card{padding:12px 0}
@@ -473,7 +472,7 @@ select:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--focus)}
 @media(prefers-reduced-transparency:reduce){.notice.update-notice,.mobile-nav a[aria-current]{background:var(--raised);backdrop-filter:none;-webkit-backdrop-filter:none}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.notice.update-notice,.mobile-nav a[aria-current]{background:var(--raised)}}
 
-@media(max-width:767px){#root:has(.library-page-heading) .mobile-nav{position:fixed;bottom:var(--library-navigation-bottom,0px)}#root:has(.library-page-heading)>main{padding-bottom:calc(84px + env(safe-area-inset-bottom))}.offline-search input{scroll-margin-block:80px}}
+@media(max-width:767px){.offline-search input{scroll-margin-block:80px}}
 
 @media(max-width:767px){.library-page:has(>.library-page-heading):has(input:focus:not([type=checkbox]):not([type=radio]),textarea:focus){padding-bottom:0}}
 @media(max-width:767px) and (max-height:560px){.library-page:has(>.library-page-heading):has(.offline-selection-actions){padding-bottom:0}}
@@ -544,7 +543,7 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 @media(max-width:1199px){
   .learning-grid:not(.listening-layout) .question-panel{border-bottom-left-radius:0;border-bottom-right-radius:0}
   .learning-grid .question-panel .question-sheet-toggle{background:var(--card)}
-  .learning-grid:not(.listening-layout) .question-sheet-content{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:auto;padding-bottom:calc(24px + env(safe-area-inset-bottom));scroll-padding:16px}
+  .learning-grid:not(.listening-layout) .question-sheet-content{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(24px + env(safe-area-inset-bottom));scroll-padding:16px}
 }
 @media(max-width:767px){.session-title{font-size:1.375rem}.learning-grid .question-panel h2{font-size:1.0625rem;line-height:1.55}}
 @media(max-height:560px) and (min-width:1200px){.learning-grid:not(.listening-layout)>article,.learning-grid:not(.listening-layout) .question-panel{position:static;height:auto;max-height:none;overflow:visible}.learning-grid:not(.listening-layout) .question-sheet-content{overflow:visible}}
@@ -580,8 +579,8 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 
 /* Reading sheets retain their contents while their measured height changes in both directions. */
 @media(max-width:1199px){
-  .learning-grid:not(.listening-layout) .question-panel{z-index:19;height:var(--question-sheet-height,auto);max-height:calc(var(--question-sheet-limit,70dvh) - env(safe-area-inset-bottom));transition:height 260ms cubic-bezier(.2,.7,.2,1)}
-  .learning-grid:not(.listening-layout) .question-sheet-toggle{position:absolute;inset:0 0 auto;display:flex;transition:opacity 120ms ease;opacity:1;visibility:visible}
+  .learning-grid:not(.listening-layout) .question-panel{z-index:19;height:var(--question-sheet-height,auto);max-height:calc(100vh - var(--learning-header,64px) - 24px - env(safe-area-inset-bottom));max-height:calc(100svh - var(--learning-header,64px) - 24px - env(safe-area-inset-bottom));transition:height 260ms cubic-bezier(.2,.7,.2,1)}
+  .learning-grid:not(.listening-layout) .question-sheet-toggle{position:absolute;inset:0 0 auto;display:flex;transition:opacity 120ms ease,transform 260ms cubic-bezier(.2,.7,.2,1);opacity:1;visibility:visible}
   .learning-grid:not(.listening-layout) .question-panel[data-open=true] .question-sheet-toggle{opacity:0;visibility:hidden;pointer-events:none}
   .learning-grid:not(.listening-layout) .question-panel :is(.question-progress,.question-sheet-content){transition:opacity 160ms ease,visibility 160ms;opacity:1;visibility:visible}
   .learning-grid:not(.listening-layout) .question-panel[data-open=false] :is(.question-progress,.question-sheet-content){display:block;opacity:0;visibility:hidden;pointer-events:none}
@@ -608,10 +607,11 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 /* Identity and MCP use the same quiet settings rows and raised actions. */
 .github-status-line[data-status=connected] .github-status{color:var(--ink)}
 .github-status-line[data-status=signed-out]{align-items:flex-start;flex-direction:column;gap:16px}
-.github-identity :is(button,a.button),.mcp-settings button{font-size:14px;font-weight:500;border-radius:12px;min-height:44px}
-.github-identity :is(button,a.button):hover,.mcp-settings button:hover{transform:none}
-.github-session-actions{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
-.github-session-actions button{padding:8px 10px;background:none;color:var(--muted);margin-inline-start:-10px}
+.github-identity :where(button,a.button),.mcp-settings button{font-size:14px;font-weight:500;border-radius:12px;min-height:44px}
+.github-identity :where(button,a.button):hover,.mcp-settings button:hover{transform:none}
+.github-session-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.github-identity>:is(.sync-account-choice,.sync-controls)+.github-session-actions{border-top:1px solid var(--line);padding-top:12px}
+.github-session-actions button{padding:8px 10px;background:none;color:var(--muted);font-weight:400;margin-inline-start:-10px}
 .github-session-actions button+button{margin-inline-start:0}
 .github-identity .service-danger,.mcp-settings .service-danger{color:var(--error)}
 .github-session-actions button:hover{background:var(--interactive-hover);color:var(--ink)}
@@ -622,11 +622,12 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 .repository-select-row bdi{overflow-wrap:anywhere}.repository-binding .setting>span{min-width:0}.repository-binding .setting-trigger{flex:1;justify-content:flex-end;min-width:44px;background:none;padding-inline:0;font-size:15px;font-weight:400}.repository-binding .setting-trigger bdi{overflow-wrap:anywhere}
 .repository-binding>button:not(.service-danger){color:var(--ink)}.repository-binding .setting-trigger .setting-chevron{background:none;width:auto;height:auto;padding:0;color:var(--muted)}
 .repository-steps{padding:20px 0 0;margin:24px 0 0;border-top:1px solid var(--line);list-style:none;counter-reset:repository-step}
+.repository-binding>.repository-steps{margin-top:0;padding-top:12px}
 .repository-steps li{position:relative;counter-increment:repository-step;padding-inline-start:28px;margin:6px 0}
 .repository-steps li::before{content:counter(repository-step) ".";position:absolute;inset-inline-start:0;top:10px;width:24px;font-size:15px;color:var(--muted)}
 .repository-steps a,.service-external{display:inline-flex;align-items:center;gap:6px;min-height:44px;text-decoration:none;color:var(--ink);font-size:15px}
 .repository-steps a span,.service-external span{font-size:12px;color:var(--muted)}
-.repository-steps p{margin:0 0 8px;font-size:13px;line-height:1.5}.repository-steps button{margin:0}
+.repository-steps p{margin:0 0 8px;font-size:13px;line-height:1.5}.repository-steps button{margin:0;color:var(--ink)}
 .service-disclosure{position:relative;border-block:1px solid var(--line);margin:28px 0 0;padding:0}
 .service-disclosure+.service-disclosure{margin-top:0;border-top:0}
 .service-disclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;min-height:52px;padding:8px 0;color:var(--ink);font-size:15px;font-weight:400;border-radius:8px}
@@ -635,10 +636,12 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 .service-disclosure>summary:active{transform:none}.service-disclosure>summary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .repository-reset .repository-steps{margin:0;padding:0;border:0}.repository-reset>div{padding-bottom:16px}.repository-reset>div>button{margin-top:12px}.repository-history>div{font-size:14px;padding-bottom:12px}.repository-history ol{padding-inline-start:24px}.repository-history li{margin:8px 0}.repository-history a{font-size:14px}
 .mcp-settings .sharing-management{margin:24px 0 0;padding:0;overflow-wrap:anywhere}
+.mcp-settings .sharing-management[open]{border-bottom:0}
 .sharing-management[open]>summary{padding-inline-end:76px}.sharing-management .sharing-refresh{position:absolute;top:4px;inset-inline-end:24px;display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:0;background:none;color:var(--muted);border-radius:10px}
 .sharing-management .sharing-refresh[aria-busy=true] svg{animation:sharing-refresh 800ms linear infinite}
 .sharing-management h3{margin:20px 0 8px;font-family:inherit;font-size:13px;font-weight:500;color:var(--muted)}.sharing-management>div>h3:first-child{margin-top:8px}
 .sharing-management .sharing-empty{margin:8px 0 20px;color:var(--muted);font-size:14px}
+.sharing-management>div>:last-child{margin-bottom:4px}
 .sharing-management article{display:flex;align-items:center;gap:16px;min-height:60px;padding:8px 0;border:0}.sharing-management article+article{border-top:1px solid var(--line)}.sharing-management article>div{flex:1;min-width:0}
 .sharing-management h4{margin:0;font-family:inherit;font-size:15px;font-weight:400}.sharing-management article p{margin:4px 0 0;color:var(--muted);font-size:13px}.sharing-management article button{flex:none;max-width:44%;padding:8px 14px;font-size:14px;border-radius:10px}
 .service-toast{position:fixed;z-index:40;inset-inline:16px;bottom:24px;max-width:560px;width:fit-content;margin-inline:auto;padding:12px 20px;min-height:48px;border-radius:14px;background:var(--button-surface);color:var(--ink);font-size:14px;box-shadow:0 12px 32px rgb(0 0 0 / .25);pointer-events:none;overflow-wrap:anywhere}
@@ -651,3 +654,11 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 @media(prefers-reduced-motion:reduce){.github-identity *,.mcp-settings *{transition:none!important;animation:none!important}.github-identity :is(button,a):active,.mcp-settings button:active{transform:none}}
 .github-identity .backup-actions>button{padding:8px 18px;background:var(--button-surface);color:var(--ink);text-decoration:none;font-weight:500}
 .github-identity .backup-actions>button:hover{background:var(--button-hover);text-decoration:none}
+
+@media(max-width:1199px){
+  :root{-webkit-tap-highlight-color:transparent}
+  .question-sheet-resize{display:flex;flex:none;align-items:center;justify-content:center;min-height:44px;touch-action:none;cursor:ns-resize;background:var(--card)}
+  .question-sheet-resize>span{width:40px;height:4px;border-radius:2px;background:var(--control);pointer-events:none}
+  .question-sheet-resize:focus-visible{outline-offset:-3px}
+  .learning-grid:not(.listening-layout) .question-panel[data-resizing=true]{transition:none}
+}

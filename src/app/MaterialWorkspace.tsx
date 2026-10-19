@@ -1,4 +1,5 @@
 import { useQuestionSheetLayout } from './useQuestionSheetLayout';
+import { QuestionSheetResize } from './QuestionSheetResize';
 import { useEffect, useRef, useState } from 'react';
 import { contentText, contentLanguage, messages } from '../locales';
 import { answerText, correctAnswerText, explanationText, practiceLocale, questions, scoreParts, materialPackageId, type Answer, type Locale } from '../shared/content';
@@ -21,9 +22,8 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const [pane, setPane] = useState<'material' | 'question'>(finished ? 'question' : 'material');
   const [selectedSlot, setSelectedSlot] = useState(0);
   const [mobile, setMobile] = useState(() => matchMedia('(max-width:1199px)').matches);
-  const [blurBackground, setBlurBackground] = useState(false);
   useEffect(() => { const query = matchMedia('(max-width:1199px)'); const resize = () => setMobile(query.matches); query.addEventListener('change', resize); return () => query.removeEventListener('change', resize); }, []);
-  useQuestionSheetLayout(`${material.id}:${locale}`, true, mobile && !listening, pane === 'question');
+  const sheet = useQuestionSheetLayout(`${material.id}:${locale}`, true, mobile && !listening, pane === 'question');
   const [hintLevels, setHintLevels] = useState<Record<string, number>>({});
   const [saved, setSaved] = useState<Attempt[]>([]), [error, setError] = useState(''), [busy, setBusy] = useState(false), [saving, setSaving] = useState(false);
   const pendingVersions = useRef(new Map<string, number>());
@@ -33,7 +33,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const [playing, setPlaying] = useState(false), [elapsed, setElapsed] = useState(0), [duration, setDuration] = useState(0), [audioError, setAudioError] = useState(false);
   const previousMaterial = useRef(material.id);
   const positions = useRef(new Map<string, number>());
-  const focusRequest = useRef<{ questionId: string; slot: number } | undefined>(undefined);
+  const focusRequest = useRef<{ questionId: string; slot: number; target: 'answer' | 'prompt' } | undefined>(undefined);
   let number = 1;
   const numbered = all.map(item => { const start = number; number += questionSlots(item.question); return { ...item, start }; });
   const visible = numbered.filter(item => item.material.id === material.id);
@@ -64,7 +64,8 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     // Parent session updates can commit after the navigation callback's first frame.
     const focusQuestion = () => {
       if (focusRequest.current !== request) return;
-      const element = document.getElementById(`answer-${request.questionId}-${request.slot}`) ?? document.getElementById(`prompt-${request.questionId}`);
+      const answer = document.getElementById(`answer-${request.questionId}-${request.slot}`);
+      const element = (request.target === 'answer' ? answer : null) ?? document.getElementById(`prompt-${request.questionId}`);
       if (!element) return;
       const panel = element.closest<HTMLElement>('.question-sheet-content');
       if (element.closest('[inert]') || !element.getClientRects().length || getComputedStyle(element).visibility !== 'visible') {
@@ -76,14 +77,20 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
         const bar = document.querySelector<HTMLElement>('.workspace-questions .question-progress');
         const offset = bar && getComputedStyle(bar).position === 'sticky' ? parseFloat(getComputedStyle(bar).top) + bar.getBoundingClientRect().height + 16 : 16;
         scrollTo(0, scrollY + element.getBoundingClientRect().top - offset);
-      } else if (panel) panel.scrollTop += element.getBoundingClientRect().top - panel.getBoundingClientRect().top - 16;
+      } else if (panel) {
+        panel.scrollTop += element.getBoundingClientRect().top - panel.getBoundingClientRect().top - 16;
+        if (request.target === 'prompt' && answer?.matches('input:not([type=radio],[type=checkbox]),textarea')) {
+          const bottom = answer.getBoundingClientRect().bottom - panel.getBoundingClientRect().bottom + 8;
+          if (bottom > 0) panel.scrollTop += bottom;
+        }
+      }
     };
     frame = requestAnimationFrame(focusQuestion);
     return () => cancelAnimationFrame(frame);
   }, [session, selected, selectedSlot, pane, mobile, listening]);
   function switchPane(next: 'material' | 'question') {
-    focusRequest.current = next === 'question' ? { questionId: selected, slot: selectedSlot } : undefined;
-    setPane(next); setBlurBackground(false);
+    focusRequest.current = next === 'question' ? { questionId: selected, slot: selectedSlot, target: 'prompt' } : undefined;
+    setPane(next);
     if (next === 'material') requestAnimationFrame(() => document.querySelector<HTMLElement>('.workspace-questions .question-sheet-toggle')?.focus({ preventScroll: true }));
   }
   useEffect(() => {
@@ -108,7 +115,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     if (busy) return;
     const target = all.find(item => item.question.id === questionId)!;
     if (target.material.id !== material.id && annotationDirty.current && !confirm(readingAnnotationCopy[locale].leave)) return;
-    const request = { questionId, slot }; focusRequest.current = request;
+    const request = { questionId, slot, target: 'answer' as const }; focusRequest.current = request;
     setSelected(questionId); setSelectedSlot(slot); setPane('question');
     try {
       await pending.current;
@@ -164,7 +171,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const points = saved.flatMap(record => scoreParts(all.find(item => item.question.id === record.questionId)!.question, record.answer));
   return <section className="material-workspace" data-pane={pane} data-listening={listening}>
     <h1 className="session-title sr-only" hidden={!listening} lang={contentLanguage(lesson.title, instructionLocale)}>{contentText(lesson.title, instructionLocale)}</h1>
-    {mobile && !listening && <button className="question-sheet-scrim" type="button" aria-label={t.material} aria-hidden={pane !== 'question'} tabIndex={pane === 'question' ? 0 : -1} data-open={pane === 'question'} data-blur={blurBackground} onClick={() => switchPane('material')}/>}
+    {mobile && !listening && <button className="question-sheet-scrim" type="button" aria-label={t.material} aria-hidden={pane !== 'question'} tabIndex={pane === 'question' ? 0 : -1} data-open={pane === 'question'} data-blur={sheet.blurBackground} onClick={() => switchPane('material')}/>}
     <div className={`learning-grid workspace-grid${listening ? ' listening-layout' : ''}`}>
 
       <article className="workspace-material">
@@ -179,8 +186,9 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
           {material.audio.synthetic && <p>{t.syntheticCredit}</p>}
         </section> : <ReadingMaterial key={material.id} material={material} locale={locale} label={t.material} sessionId={session.id} owner={owner} annotation={session.readingAnnotations?.find(item => item.materialId === material.id)} checking={!!lesson.mode} profileId={profileId} online={online} defaultId={onlineDictionary} onLookup={lookup} onDirty={value => { annotationDirty.current = value; }} onSaved={readingAnnotations => onSession({ ...live.current, readingAnnotations })}/>}
       </article>
-      <section className="question-panel workspace-questions" aria-label={t.question} aria-busy={busy} data-open={listening || pane === 'question'} onPointerEnter={event => { if (event.pointerType === 'mouse') setBlurBackground(true); }} onPointerLeave={() => setBlurBackground(false)}>
-        <button className="question-sheet-toggle" type="button" aria-controls="workspace-sheet-content" aria-expanded={pane === 'question'} onClick={event => { switchPane('question'); setBlurBackground((event.nativeEvent as PointerEvent).pointerType === 'mouse'); }}><span className="question-sheet-label"><span>{t.question} <bdi dir="ltr">{currentNumber}/{number - 1}</bdi></span><span className="question-sheet-preview" lang="en" dir="ltr">{active.question.prompt}</span></span></button>
+      <section className="question-panel workspace-questions" aria-label={t.question} aria-busy={busy} data-open={listening || pane === 'question'}>
+        {mobile && !listening && pane === 'question' && <QuestionSheetResize locale={locale} controls="workspace-sheet-content" resize={sheet.resize}/>}
+        <button className="question-sheet-toggle" type="button" aria-controls="workspace-sheet-content" aria-expanded={pane === 'question'} onClick={() => switchPane('question')}><span className="question-sheet-label"><span>{t.question} <bdi dir="ltr">{currentNumber}/{number - 1}</bdi></span><span className="question-sheet-preview" lang="en" dir="ltr">{active.question.prompt}</span></span></button>
         <div className="question-progress" inert={mobile && !listening && pane !== 'question'}>{!listening && <div className="question-number"><span>{t.question} <bdi dir="ltr">{currentNumber}/{number - 1}</bdi></span>{mobile && !listening && <button type="button" className="question-close" onClick={() => switchPane('material')}>{t.material}</button>}</div>}
       {listening && material.audio && <div className="workspace-player-bar">
           <audio key={material.id} ref={audio} src={material.audio.src} preload="metadata" onLoadedMetadata={() => setDuration(audio.current?.duration ?? 0)} onTimeUpdate={() => setElapsed(audio.current?.currentTime ?? 0)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => void ended()} onError={() => { setAudioError(true); setPlaying(false); }}/>

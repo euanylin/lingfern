@@ -1,3 +1,4 @@
+import { cardInteraction } from './cardInteraction';
 import { questionSlots } from '../shared/practiceWorkspace';
 import { contentLanguage, contentText, messages } from '../locales';
 import { GutenbergLicence } from './GutenbergLicence';
@@ -18,6 +19,17 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
   const [open, setOpen] = useState(false);
   const [blurBackground, setBlurBackground] = useState(false);
   const enterFrame = useRef(0), closeTimer = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    const query = matchMedia('(max-width:1199px)');
+    let interaction: ReturnType<typeof cardInteraction> | undefined;
+    const update = () => {
+      interaction?.dispose(); setBlurBackground(false);
+      const body = dialog.current?.querySelector<HTMLElement>('.task-detail-body');
+      interaction = query.matches && body ? cardInteraction(body, setBlurBackground) : undefined;
+    };
+    update(); query.addEventListener('change', update);
+    return () => { interaction?.dispose(); query.removeEventListener('change', update); };
+  }, []);
   function finishClose() {
     clearTimeout(closeTimer.current); closeTimer.current = undefined; dialog.current?.close();
   }
@@ -79,8 +91,8 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
   const mediaReady = !failed && bytes !== undefined;
   const recordings = lesson.materials.flatMap(material => material.audio ? [material.audio] : []);
   return createPortal(<dialog ref={dialog} className="task-detail" data-open={open} data-blur={blurBackground} onTransitionEnd={event => { if (closeTimer.current !== undefined && event.target === event.currentTarget && !event.nativeEvent.pseudoElement && event.propertyName === 'opacity') finishClose(); }} aria-labelledby="task-detail-title" onClose={onClose} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
-    {/* Native backdrop events target the dialog too; only its visible body counts as hovered. */}
-    <div className="task-detail-body" onPointerEnter={event => { if (event.pointerType === 'mouse') setBlurBackground(true); }} onPointerLeave={event => { if (event.pointerType === 'mouse') setBlurBackground(false); }}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
+    {/* Desktop keeps hover; mobile uses actual card interaction, including with a mouse. */}
+    <div className="task-detail-body" onPointerEnter={event => { if (event.pointerType === 'mouse' && !matchMedia('(max-width:1199px)').matches) setBlurBackground(true); }} onPointerLeave={event => { if (event.pointerType === 'mouse' && !matchMedia('(max-width:1199px)').matches) setBlurBackground(false); }}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
       <h2 id="task-detail-title" lang={!heading && contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{heading ?? contentText(lesson.title, locale)}</h2>{heading && <h3 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h3>}<p lang={contentLanguage(lesson.goal, contentLocale)}>{contentText(lesson.goal, contentLocale)}</p>{practiceReason && lesson.generation?.generator === 'corpus-v1' && (practiceReason === 'vocabulary' || lesson.generation.focus) && <p className="muted">{t[practiceReason]}{practiceReason !== 'vocabulary' && lesson.generation.focus && <>: {t.kinds[lesson.generation.focus]}</>}</p>}
       <dl><dt>{t.duration}</dt><dd>{taskMinutes(lesson)} {t.minutes}</dd>
         <dt>{t.types}</dt><dd>{[...new Set(lesson.materials.flatMap(material => material.questions.map(question => t.kinds['gaps' in question ? 'completion' : 'kind' in question ? question.kind : 'choice'])))].join(' / ')}</dd>

@@ -45,7 +45,9 @@ export function SelectionDictionary({ selected, locale, profileId, online, defau
     document.addEventListener('keydown', escape);
     window.addEventListener('scroll', scroll, true);
     window.addEventListener('resize', onClose);
-    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); window.removeEventListener('scroll', scroll, true); window.removeEventListener('resize', onClose); };
+    const viewport = innerWidth < 1200 ? window.visualViewport : undefined;
+    viewport?.addEventListener('scroll', onClose); viewport?.addEventListener('resize', onClose);
+    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); window.removeEventListener('scroll', scroll, true); window.removeEventListener('resize', onClose); viewport?.removeEventListener('scroll', onClose); viewport?.removeEventListener('resize', onClose); };
   }, [onClose]);
 
   async function lookup(term: string) {

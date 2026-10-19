@@ -941,6 +941,7 @@
     "activity": "活動の成長：読解{reading}回、リスニング{listening}回、検索{lookups}件、完了したテスト{tests}回。活動の記録であり、英語力の判定ではありません。"
   },
   "workspace": {
+    "resize": "解答カードのサイズを調整",
     "hint": "ヒント",
     "card": "解答一覧",
     "unanswered": "未解答",

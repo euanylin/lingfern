@@ -941,6 +941,7 @@
     "activity": "Aktivitas: {reading} sesi membaca, {listening} menyimak, {lookups} pencarian; {tests} tes selesai. Aktivitas, bukan kemahiran."
   },
   "workspace": {
+    "resize": "Ubah ukuran kartu jawaban",
     "hint": "Petunjuk",
     "card": "Lembar jawaban",
     "unanswered": "Belum dijawab",

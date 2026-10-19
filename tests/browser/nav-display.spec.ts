@@ -49,3 +49,55 @@ test('desktop and mobile navigation display modes are independent and persist', 
   await expect(page.getByRole('button', { name: '語言' })).toHaveAttribute('data-value', 'zh-Hant');
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
 });
+
+test('mobile controls suppress native tap flashes and retain keyboard focus', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  for (const path of ['/today', '/library', '/settings', '/library/dictionary', '/library/ipa', '/library/grammar']) {
+    await page.goto(path);
+    await expect(page.locator('.mobile-nav')).toBeVisible();
+    const controls = page.locator('a:visible,button:visible,label:visible,input:visible,summary:visible');
+    expect(await controls.count()).toBeGreaterThan(0);
+    expect(await controls.evaluateAll(items => items.every(item => getComputedStyle(item).getPropertyValue('-webkit-tap-highlight-color') === 'rgba(0, 0, 0, 0)'))).toBe(true);
+  }
+  const link = page.locator('.mobile-nav a').first();
+  await link.focus();
+  await expect(link).toBeFocused();
+  expect(await link.evaluate(item => getComputedStyle(item).outlineStyle)).toBe('solid');
+});
+
+test('mobile navigation stays at the bottom through transient browser-bar heights and rapid scrolls', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  for (const path of ['/library', '/today', '/settings']) {
+    await page.goto(path);
+    await expect(page.locator('.mobile-nav')).toBeVisible();
+    const errors = await page.evaluate(async () => {
+      const viewport = window.visualViewport!;
+      const errors: number[] = [];
+      try {
+        for (const inset of [56, 0, 32, 0, 56, 0]) {
+          Object.defineProperty(viewport, 'height', { configurable: true, value: innerHeight - inset });
+          viewport.dispatchEvent(new Event('scroll'));
+          scrollTo(0, inset ? document.documentElement.scrollHeight : 0);
+          await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+          errors.push(Math.abs(document.querySelector('.mobile-nav')!.getBoundingClientRect().bottom - innerHeight));
+        }
+      } finally {
+        Reflect.deleteProperty(viewport, 'height');
+        viewport.dispatchEvent(new Event('resize'));
+      }
+      return errors;
+    });
+    expect(Math.max(...errors)).toBeLessThanOrEqual(1);
+  }
+  await page.goto('/library');
+  const search = page.locator('.offline-search input');
+  await search.focus();
+  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'relative');
+  await search.blur();
+  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
+  await page.locator('.package-row:visible input[type=checkbox]').first().focus();
+  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
+  await page.setViewportSize({ width: 375, height: 480 });
+  await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'relative');
+  expect(await page.locator('.mobile-nav a').evaluateAll(items => items.every(item => item.getBoundingClientRect().height >= 44))).toBe(true);
+});

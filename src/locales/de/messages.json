@@ -941,6 +941,7 @@
     "activity": "Aktivitätswachstum: {reading} Lesesitzungen, {listening} Hörsitzungen, {lookups} Suchen; {tests} abgeschlossene Tests. Aktivität, keine Sprachkompetenz."
   },
   "workspace": {
+    "resize": "Größe der Antwortkarte ändern",
     "hint": "Hinweis",
     "card": "Antwortübersicht",
     "unanswered": "Unbeantwortet",

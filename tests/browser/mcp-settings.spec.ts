@@ -44,6 +44,11 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
   await expect(repository).toBeVisible();
   expect(repositoryReads).toBe(0); expect(sharingReads).toBe(0);
   await expect(repository.locator('.repository-steps')).toBeHidden();
+  const repositoryRow = repository.locator('.repository-select-row');
+  await expect(repositoryRow).toHaveCSS('min-height', '52px');
+  await expect(repositoryRow).toHaveCSS('border-radius', '0px');
+  await expect(repositoryRow).toHaveCSS('font-size', '15px');
+  await expect(repositoryRow).toHaveCSS('font-weight', '400');
   await repository.getByRole('button', { name: '已授权资料库 lingfern-data' }).click();
   await expect(repository.getByRole('button', { name: '已授权资料库', exact: true })).toBeVisible();
   expect(repositoryReads).toBe(1);
@@ -63,6 +68,12 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
         if (!await management.evaluate(element => (element as HTMLDetailsElement).open)) await management.locator('summary').press('Enter');
         await expect(management.locator('.sharing-empty')).toHaveCount(2);
         await expect(management.locator('summary')).toHaveText(permissions);
+        expect(await management.evaluate(element => getComputedStyle(element).borderBottomWidth)).toBe('0px');
+        expect(await management.locator('h3').first().evaluate(element => getComputedStyle(element).fontSize)).toBe('13px');
+        expect(await management.locator('.sharing-empty').last().evaluate(element => getComputedStyle(element).marginBottom)).toBe('4px');
+        const footer = page.locator('.github-session-actions');
+        expect(await footer.evaluate(element => getComputedStyle(element).borderTopWidth)).toBe('0px');
+        await expect(footer.locator('button').first()).toHaveCSS('font-weight', '400');
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
         const smallTargets = await page.locator('.github-identity button,.github-identity a,.mcp-settings button,.mcp-settings summary').evaluateAll(elements => elements.filter(element => {
           const box = element.getBoundingClientRect();
@@ -70,6 +81,7 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
         }).map(element => element.textContent));
         expect(smallTargets).toEqual([]);
         await page.locator('.github-identity').evaluate(element => window.scrollTo(0, element.getBoundingClientRect().top + scrollY - 100));
+        await page.mouse.move(0, 0);
         await page.locator('.github-identity').screenshot({ path: `output/playwright/github-card-${locale}-${colorScheme}-${width}.png`, animations: 'disabled' });
         await management.locator('summary').blur();
         await page.locator('.mcp-settings').evaluate(element => window.scrollTo(0, element.getBoundingClientRect().top + scrollY - 100));

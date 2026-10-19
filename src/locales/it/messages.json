@@ -941,6 +941,7 @@
     "activity": "Attività: {reading} sessioni di lettura, {listening} di ascolto, {lookups} ricerche; {tests} test completati. Attività, non competenza."
   },
   "workspace": {
+    "resize": "Ridimensiona la scheda delle risposte",
     "hint": "Suggerimento",
     "card": "Scheda risposte",
     "unanswered": "Senza risposta",

@@ -3,7 +3,6 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { lookupDictionary, normaliseTerm, rankDictionarySuggestions, suggestDictionary } from '../shared/dictionary';
 import type { Locale } from '../shared/content';
 import { OnlineLookup } from './OnlineLookup';
-import type { OnlineDictionaryId } from './onlineDictionaries';
 import { removeSense, saveSense, projectMemories } from '../data/memory';
 import { memories } from '../data/db';
 import { communityDictionary, communityDictionaryTerms } from '../data/communityInstall';
@@ -13,7 +12,7 @@ import { lookupHistoryCopy } from './LookupHistory';
 type Result = Awaited<ReturnType<typeof lookupDictionary>> & { community: Awaited<ReturnType<typeof communityDictionary>> };
 const labels = messages('dictionary');
 
-export function Dictionary({ locale, online, defaultId, profileId, standalone = false, initialQuery = '', onLookup }: { locale: Locale; online: boolean; defaultId: OnlineDictionaryId; profileId: string; standalone?: boolean; initialQuery?: string; onLookup?: () => Promise<void> }) {
+export function Dictionary({ locale, online, profileId, standalone = false, initialQuery = '', onLookup }: { locale: Locale; online: boolean; profileId: string; standalone?: boolean; initialQuery?: string; onLookup?: () => Promise<void> }) {
   const t = labels[locale];
   const [query, setQuery] = useState('');
   const [result, setResult] = useState<Result>();
@@ -88,7 +87,7 @@ export function Dictionary({ locale, online, defaultId, profileId, standalone = 
       const match = prefix && word.toLocaleLowerCase('en').startsWith(prefix.toLocaleLowerCase('en'));
       return <li key={word} id={`dictionary-suggestion-${index}`} role="option" aria-label={word} aria-selected={index === activeSuggestion} onPointerDown={event => event.preventDefault()} onClick={() => void searchTerm(word)}>{match ? <><strong>{word.slice(0, prefix.length)}</strong>{word.slice(prefix.length)}</> : word}</li>;
     })}</ul></div></form>
-    <OnlineLookup query={query} locale={locale} online={online} defaultId={defaultId} onOpen={standalone ? () => { if (normaliseTerm(query)) void remember(query); } : undefined}/>
+    <OnlineLookup query={query} locale={locale} online={online} onOpen={standalone ? () => { if (normaliseTerm(query)) void remember(query); } : undefined}/>
     {error && <p role="alert" className="error">{error}</p>}
     {result && <div className="dictionary-results" aria-live="polite"><h3 lang="en">{result.term}</h3>{result.matched !== result.term && <p>{t.lemma}: <span lang="en">{result.matched}</span></p>}
       {!result.course.length && !result.community.length && !result.senses.length && <p>{t.missing}</p>}

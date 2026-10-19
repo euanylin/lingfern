@@ -941,6 +941,7 @@
     "activity": "Actividad: sesiones de lectura: {reading}, de escucha: {listening}, consultas: {lookups}; pruebas completadas: {tests}. Indica actividad, no dominio del idioma."
   },
   "workspace": {
+    "resize": "Cambiar el tamaño de la tarjeta de respuestas",
     "hint": "Pista",
     "card": "Hoja de respuestas",
     "unanswered": "Sin responder",

@@ -149,15 +149,23 @@ for (const theme of ['light', 'dark'] as const) {
       };
       requestAnimationFrame(frame);
     }));
-    const opening = sample();
     await sheet.locator('.question-sheet-toggle').click();
-    const entered = await opening;
+    await expect(scrim).toHaveCSS('backdrop-filter', 'blur(0px)');
+    const marker = sheet.locator('.question-number > span');
+    const press = async () => {
+      const box = (await marker.boundingBox())!;
+      await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+      await page.mouse.down();
+    };
+    const opening = sample(); await press(); const entered = await opening;
     expect(new Set(entered.filter(f => f.blur > 0 && f.blur < 4).map(f => f.blur)).size).toBeGreaterThanOrEqual(3);
     await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');
+    await page.mouse.up(); await expect(scrim).toHaveCSS('backdrop-filter', 'blur(0px)');
     await page.getByRole('radio').first().check();
     await page.screenshot({ path: `output/playwright/reader-sheet-open-${browserName}-375-${theme}.png` });
+    await press(); await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');
     const closing = sample();
-    await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape'); await page.mouse.up();
     const exited = await closing;
     expect(new Set(exited.filter(f => f.blur > 0 && f.blur < 4).map(f => f.blur)).size).toBeGreaterThanOrEqual(3);
     await expect(scrim).toHaveCount(1);
@@ -165,10 +173,10 @@ for (const theme of ['light', 'dark'] as const) {
     await expect(scrim).toHaveCSS('opacity', '0');
     await expect(sheet).toHaveAttribute('data-open', 'false');
     await sheet.locator('.question-sheet-toggle').click();
-    await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');
-    await page.keyboard.press('Escape');
-    await sheet.locator('.question-sheet-toggle').click();
-    await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');
+    await press(); await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');
+    await page.mouse.up(); await page.waitForTimeout(160);
+    await press(); await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');
+    await page.mouse.up();
     await expect(page.getByRole('radio').first()).toBeChecked();
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await expect(scrim).toHaveCSS('transition-duration', '0s');
@@ -220,3 +228,36 @@ test('picker choices retain touch and keyboard activation without premature blur
   } finally { await context.close(); }
 });
 
+
+
+test('mobile answer peek scales smoothly in both directions without shifting its layout', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.mouse.move(0, 0);
+  await startReading(page);
+  const toggle = page.locator('.question-sheet-toggle');
+  await expect(toggle).toBeVisible();
+  const sampleScale = () => toggle.evaluate(element => new Promise<number[]>(resolve => {
+    const values: number[] = [], start = performance.now();
+    const frame = () => {
+      const transform = getComputedStyle(element).transform;
+      values.push(transform === 'none' ? 1 : new DOMMatrixReadOnly(transform).a);
+      if (performance.now() - start < 400) requestAnimationFrame(frame); else resolve(values);
+    };
+    requestAnimationFrame(frame);
+  }));
+  const layout = await toggle.evaluate(element => { const item = element as HTMLElement; return [item.offsetTop, item.offsetLeft, item.offsetWidth, item.offsetHeight]; });
+  const box = (await toggle.boundingBox())!;
+  const entering = sampleScale(); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); const enlarged = await entering;
+  expect(new Set(enlarged.filter(value => value > 1 && value < 1.025)).size).toBeGreaterThanOrEqual(3);
+  expect(enlarged.at(-1)).toBeCloseTo(1.025, 4);
+  const leaving = sampleScale(); await page.mouse.move(0, 0); const restored = await leaving;
+  expect(new Set(restored.filter(value => value > 1 && value < 1.025)).size).toBeGreaterThanOrEqual(3);
+  expect(restored.at(-1)).toBe(1);
+  expect(await toggle.evaluate(element => { const item = element as HTMLElement; return [item.offsetTop, item.offsetLeft, item.offsetWidth, item.offsetHeight]; })).toEqual(layout);
+  await page.keyboard.press('Tab');
+  await toggle.focus(); await expect(toggle).toBeFocused();
+  await expect.poll(() => toggle.evaluate(element => element.matches(':focus-visible'))).toBe(true);
+  await expect(toggle).toHaveCSS('box-shadow', /0px 0px 0px 2px inset/);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(toggle).toHaveCSS('transition-duration', '0s');
+});

@@ -193,6 +193,10 @@ test('selected-word popup fits a narrow dark learning view and closes with Escap
   await page.screenshot({ path: 'output/playwright/learning-word-popup-375x812-dark-zh-Hans.png' });
   await page.keyboard.press('Escape');
   await expect(popup).toHaveCount(0);
+  await selectPassageWord(page, 'library');
+  await expect(page.locator('.selection-dictionary-menu')).toBeVisible();
+  await page.evaluate(() => window.visualViewport!.dispatchEvent(new Event('scroll')));
+  await expect(page.locator('.selection-dictionary-menu')).toHaveCount(0);
 });
 
 test.describe('touch selection', () => {
@@ -302,7 +306,7 @@ test('online dictionary preference persists and invalid saved values fall back',
   await expect(picker).toHaveAttribute('data-value', 'oxford');
   await page.goto('/library/dictionary');
   await page.getByRole('combobox', { name: '查询单词或短语' }).fill('apple');
-  await expect(page.locator('.online-lookup h3 a')).toHaveAttribute('href', /oxfordlearnersdictionaries\.com/);
+  await expect(page.locator('.online-lookup h3')).toHaveCount(0);
   await expect(page.locator('.online-lookup-links a').first()).toHaveAttribute('href', /dictionary\.cambridge\.org/);
   const [popup] = await Promise.all([page.waitForEvent('popup'), page.locator('.online-lookup-links a').first().click()]);
   await popup.close();
@@ -356,7 +360,9 @@ test('online lookup labels follow all three interface languages without contacti
     await page.goto('/library/dictionary');
     await page.locator('#dictionary-query').fill('apple');
     await expect(page.getByRole('listbox', { name: suggestions }).getByRole('option').first()).toHaveText('apple');
-    await expect(page.locator('.online-lookup h3')).toContainText(heading);
+    await expect(page.getByRole('region', { name: heading, exact: true })).toBeVisible();
+    await expect(page.locator('.online-lookup h3')).toHaveCount(0);
+    await expect(page.locator('.online-lookup a')).toHaveCount(4);
     await expect(page.locator('.online-lookup-links a').first()).toHaveAttribute('aria-label', label);
     await page.goto('/settings');
   }

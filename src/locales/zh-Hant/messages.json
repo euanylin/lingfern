@@ -941,6 +941,7 @@
     "activity": "活動成長：閱讀 {reading} 次，聽力 {listening} 次，查詢 {lookups} 項；含 {tests} 次完整測試。表示活動積累，不代表英語能力。"
   },
   "workspace": {
+    "resize": "調整答題卡大小",
     "hint": "提示",
     "card": "答題卡",
     "unanswered": "未作答",

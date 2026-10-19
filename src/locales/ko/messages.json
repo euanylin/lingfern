@@ -941,6 +941,7 @@
     "activity": "활동 성장: 읽기 {reading}회, 듣기 {listening}회, 검색 {lookups}회, 완료한 테스트 {tests}회. 활동 기록이며 영어 능력 평가가 아닙니다."
   },
   "workspace": {
+    "resize": "답안 카드 크기 조절",
     "hint": "힌트",
     "card": "답안 목록",
     "unanswered": "미응답",

@@ -1,4 +1,5 @@
 import { useQuestionSheetLayout } from './useQuestionSheetLayout';
+import { QuestionSheetResize } from './QuestionSheetResize';
 import { loadInstructionLocale } from '../locales/teaching';
 import { localeDirection, localeSchema } from '../shared/locale';
 import { contentLanguage, instructionLanguage, translateInstruction, contentText, messages, languageOptions } from '../locales';
@@ -140,17 +141,6 @@ export function App() {
   const [updateCheck, setUpdateCheck] = useState<'idle' | 'checking' | 'current' | 'offline' | 'unavailable' | 'failed'>('idle');
   const t = copy[locale];
   const sessionId = path.startsWith('/learn/') ? path.slice(7) : undefined;
-  useEffect(() => {
-    if (path !== '/library') return;
-    const root = document.getElementById('root'), viewport = window.visualViewport;
-    const positionNavigation = () => root?.style.setProperty('--library-navigation-bottom', `${Math.max(0, window.innerHeight - (viewport?.height ?? window.innerHeight) - (viewport?.offsetTop ?? 0))}px`);
-    positionNavigation();
-    window.addEventListener('resize', positionNavigation);
-    viewport?.addEventListener('resize', positionNavigation);
-    viewport?.addEventListener('scroll', positionNavigation);
-    return () => { window.removeEventListener('resize', positionNavigation); viewport?.removeEventListener('resize', positionNavigation); viewport?.removeEventListener('scroll', positionNavigation); root?.style.removeProperty('--library-navigation-bottom'); };
-  }, [path]);
-
   async function load() {
     setError('');
     try {
@@ -374,7 +364,7 @@ export function App() {
           { path: 'grammar', title: t.grammar },
         ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={ready => { setOfflineInstalled(ready); void installedOfflineGroups().then(setInstalledGroups).catch(() => {}); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
-      : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} defaultId={onlineDictionary} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
+      : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
       : path === '/library/ipa' ? <IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/>
       : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
@@ -472,7 +462,6 @@ function Learning({ id, profileId, locale, online, onlineDictionary, combinedSes
   const [audioError, setAudioError] = useState(false);
   const [audioRepairError, setAudioRepairError] = useState(false);
   const [pane, setPane] = useState<'material' | 'question'>('material');
-  const [blurBackground, setBlurBackground] = useState(true);
   const [selectedWord, setSelectedWord] = useState<SelectedWord>();
   useEffect(() => {
     if (session?.lesson.mode === 'check' || session?.lesson.mode === 'test') return;
@@ -498,14 +487,8 @@ function Learning({ id, profileId, locale, online, onlineDictionary, combinedSes
   useEffect(() => {
     if (!mobile || pane !== 'question') return;
     const close = (event: KeyboardEvent) => { if (event.key === 'Escape' && !event.defaultPrevented) setPane('material'); };
-    const trackPointer = (event: PointerEvent) => {
-      if (event.pointerType !== 'mouse') return;
-      const card = document.getElementById('learning-question')?.getBoundingClientRect();
-      if (card) setBlurBackground(event.clientX >= card.left && event.clientX <= card.right && event.clientY >= card.top && event.clientY <= card.bottom);
-    };
     document.addEventListener('keydown', close);
-    document.addEventListener('pointermove', trackPointer);
-    return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointermove', trackPointer); };
+    return () => { document.removeEventListener('keydown', close); };
   }, [mobile, pane]);
   async function load() {
     setError('');
@@ -583,13 +566,12 @@ function Learning({ id, profileId, locale, online, onlineDictionary, combinedSes
     }
   }, [result, session?.position, session?.lesson.skill, pane, mobile]);
   function showPane(nextPane: 'material' | 'question') {
-    if (nextPane === 'question') setBlurBackground(true);
     setPane(nextPane);
   }
   const message = error === 'CHECK_EXPOSED' ? t.checkUnavailable : error === 'CHECK_DEVICE' ? t.checkOriginalDevice : error === 'NO_AUDIO' ? t.listenFirst : error === 'BUSY' ? t.busy : error === 'NOT_FOUND' ? t.missing : error === 'CONFLICT' ? t.conflict : error === 'INVALID_ANSWER' ? t.invalidAnswer : error === 'READ' ? t.readError : t.saveError;
   const all = session ? questions(session.lesson) : [];
   const current = session ? all[session.position] : undefined;
-  useQuestionSheetLayout(`${current?.material.id}:${session?.status}:${session?.checkStartedAt}:${locale}`, !!session && session.lesson.skill !== 'listening' && session.lesson.organization !== 'material-v1', mobile, pane === 'question');
+  const sheet = useQuestionSheetLayout(`${current?.material.id}:${session?.status}:${session?.checkStartedAt}:${locale}`, !!session && session.lesson.skill !== 'listening' && session.lesson.organization !== 'material-v1', mobile, pane === 'question');
   const audioPack = listeningSourcePack(session && current ? materialPackageId(session.lesson, current.material) : undefined);
   async function repairAudio() {
     if (!audioPack || busy || !online) return;
@@ -774,7 +756,7 @@ function Learning({ id, profileId, locale, online, onlineDictionary, combinedSes
   if (legacyCheck && session.status === 'active' && !session.checkStartedAt) return <section className="narrow check-intro"><p className="eyebrow">{session.lesson.skill.toUpperCase()}</p><h1 lang={contentLanguage(session.lesson.title, contentLocale)}>{contentText(session.lesson.title, contentLocale)}</h1><p lang={contentLanguage(session.lesson.goal, contentLocale)}>{contentText(session.lesson.goal, contentLocale)}</p><p className="muted">{t.checkUnseen}</p><dl><div><dt>{t.checkMaterialLength}</dt><dd>{listening && material.audio ? minutes(material.audio.duration) : `${material.blocks.map(block => block.text.trim().split(/\s+/).length).reduce((a,b) => a+b,0)} ${t.checkWords}`}</dd></div><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{listening ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl><button className="primary" disabled={busy || error === 'BUSY' || error === 'CHECK_EXPOSED'} onClick={() => void begin()}>{t.checkBegin}</button>{error && <p className="error" role="alert">{message}</p>}</section>;
   return <>
     {listening && <h1 className="session-title" lang={contentText(session.lesson.title, contentLocale) === session.lesson.title.en ? 'en' : undefined}>{contentText(session.lesson.title, contentLocale)}</h1>}
-    {mobile && !listening && <button className="question-sheet-scrim" type="button" aria-label={listening ? t.listening : t.material} aria-hidden={pane !== 'question'} tabIndex={pane === 'question' ? 0 : -1} data-open={pane === 'question'} data-blur={blurBackground} onClick={() => showPane('material')}/>}
+    {mobile && !listening && <button className="question-sheet-scrim" type="button" aria-label={listening ? t.listening : t.material} aria-hidden={pane !== 'question'} tabIndex={pane === 'question' ? 0 : -1} data-open={pane === 'question'} data-blur={sheet.blurBackground} onClick={() => showPane('material')}/>}
     <div className={`learning-grid${listening ? ' listening-layout' : ''}`}>
       <article id="learning-material" tabIndex={-1}>
         <p className="eyebrow" lang={contentLocale}>{instructions.goal}</p><p className="lead" lang={contentLanguage(session.lesson.goal, contentLocale)}>{contentText(session.lesson.goal, contentLocale)}</p>
@@ -798,6 +780,7 @@ function Learning({ id, profileId, locale, online, onlineDictionary, combinedSes
       </article>
       {!checking && selectedWord && <SelectionDictionary key={`${selectedWord.term}:${selectedWord.x}:${selectedWord.y}`} selected={selectedWord} locale={locale} profileId={profileId} online={online} defaultId={onlineDictionary} onLookup={dictionaryLookup} onClose={() => setSelectedWord(undefined)}/>}
       <section id="learning-question" className="question-panel" aria-label={t.question} aria-busy={busy} data-open={listening || pane === 'question'}>
+        {mobile && !listening && pane === 'question' && <QuestionSheetResize locale={locale} controls="question-sheet-content" resize={sheet.resize}/>}
         <button className="question-sheet-toggle" type="button" disabled={busy} aria-controls="question-sheet-content" aria-expanded={pane === 'question'} onClick={() => showPane('question')}><span className="question-sheet-label"><span>{t.question} {session.position + 1}/{all.length}</span><span className="question-sheet-preview" lang="en">{question.prompt}</span></span></button>
         <div className="question-progress" inert={mobile && !listening && pane !== 'question'}><div className="question-number"><span><bdi dir="ltr">{session.position + 1} / {all.length}</bdi></span>{mobile && !listening && <button type="button" className="question-close" onClick={() => showPane('material')}>{t.material}</button>}</div><progress aria-label={t.saved} max={all.length} value={session.position + (result ? 1 : 0)}/></div>
         <div id="question-sheet-content" className="question-sheet-content" inert={mobile && !listening && pane !== 'question'}>

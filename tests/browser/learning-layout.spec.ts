@@ -8,6 +8,62 @@ async function startLongReading(page: import('@playwright/test').Page) {
   await expect(page.locator('.learning-grid')).toBeVisible();
 }
 
+for (const workspace of [false, true]) test(`mobile sheet keeps its frame through browser-bar motion and rapid page scrolling: ${workspace ? 'workspace' : 'legacy'}`, async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await startLongReading(page);
+  if (workspace) {
+    const id = await page.evaluate(async () => {
+      const { sessions, createSession } = await import('/src/data/db.ts' as string);
+      const { organizePractice } = await import('/src/core/practiceOrganization.ts' as string);
+      const session = await sessions.get(location.pathname.split('/').pop()!);
+      return (await createSession(organizePractice(session.lesson))).id;
+    });
+    await page.goto(`/learn/${id}`); await expect(page.locator('.material-workspace')).toBeVisible();
+  }
+  const panel = page.locator('.question-panel');
+  for (const open of [false, true]) {
+    if (open) await panel.locator('.question-sheet-toggle').click();
+    await expect.poll(() => panel.evaluate(element => Math.abs(element.getBoundingClientRect().height - parseFloat(getComputedStyle(element).getPropertyValue('--question-sheet-height'))))).toBeLessThanOrEqual(1);
+    const samples = await panel.evaluate(async element => {
+      const viewport = window.visualViewport!, initial = element.getBoundingClientRect(), sizes: { height: number; bottom: number; target: number }[] = [];
+      try {
+        for (const [inset, offset] of [[56, 4], [0, 0], [32, 2], [0, 0], [56, 0], [0, 0]]) {
+          Object.defineProperty(viewport, 'height', { configurable: true, value: innerHeight - inset });
+          Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: offset });
+          viewport.dispatchEvent(new Event('resize')); viewport.dispatchEvent(new Event('scroll'));
+          scrollTo(0, inset ? document.documentElement.scrollHeight : 0);
+          await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+          const box = element.getBoundingClientRect();
+          sizes.push({ height: Math.abs(box.height - initial.height), bottom: Math.abs(box.bottom - innerHeight), target: Math.abs(parseFloat(getComputedStyle(element).getPropertyValue('--question-sheet-height')) - initial.height) });
+        }
+      } finally {
+        Reflect.deleteProperty(viewport, 'height'); Reflect.deleteProperty(viewport, 'offsetTop');
+        viewport.dispatchEvent(new Event('resize'));
+      }
+      return sizes;
+    });
+    expect(Math.max(...samples.flatMap(sample => Object.values(sample)))).toBeLessThanOrEqual(1);
+  }
+  await expect(panel.locator('.question-sheet-content')).toHaveCSS('overscroll-behavior-y', 'contain');
+  const bottom = await panel.evaluate(element => {
+    const viewport = window.visualViewport!;
+    try {
+      Object.defineProperty(viewport, 'height', { configurable: true, value: 512 });
+      Object.defineProperty(viewport, 'offsetTop', { configurable: true, value: 40 });
+      Object.defineProperty(viewport, 'scale', { configurable: true, value: 1.5 });
+      viewport.dispatchEvent(new Event('resize'));
+      return element.getBoundingClientRect().bottom;
+    } finally {
+      for (const key of ['height', 'offsetTop', 'scale']) Reflect.deleteProperty(viewport, key);
+      viewport.dispatchEvent(new Event('resize'));
+    }
+  });
+  expect(bottom).toBeCloseTo(552, 0);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect(panel).toHaveCSS('position', 'sticky');
+  await expect(panel.locator('.question-sheet-content')).toHaveCSS('overscroll-behavior-y', workspace ? 'contain' : 'auto');
+});
+
 for (const width of [375, 1440]) test(`legacy reading reveals the next prompt after scrolling feedback at ${width}px`, async ({ page }, testInfo) => {
   await page.setViewportSize({ width, height: width < 1200 ? 410 : 650 });
   await startLongReading(page);
@@ -82,8 +138,13 @@ test('mobile answer sheet peeks from below, expands, and closes without losing r
   await expect(sheet).toHaveAttribute('data-open', 'true');
   await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
   await expect(page.locator('.question-sheet-scrim')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-  await page.mouse.move(180, 400);
+  const marker = (await sheet.locator('.question-number > span').boundingBox())!;
+  await page.mouse.move(marker.x + marker.width / 2, marker.y + marker.height / 2);
+  await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
+  await page.mouse.down();
   await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(4px)');
+  await page.mouse.up();
+  await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
   expect(await page.evaluate(() => document.elementFromPoint(6, 100)?.classList.contains('question-sheet-scrim'))).toBe(true);
   await page.mouse.click(6, 100);
   await expect(sheet).toHaveAttribute('data-open', 'false');
@@ -165,15 +226,19 @@ test('intermediate and mobile widths keep the number at the card top and blur th
     await sheet.locator('.question-sheet-toggle').click();
     await expect(sheet).toHaveAttribute('data-open', 'true');
     await expect(sheet.locator('.question-progress')).toBeVisible();
-    const cardBounds = (await sheet.boundingBox())!;
-    await page.mouse.move(cardBounds.x + cardBounds.width / 2, cardBounds.y + cardBounds.height / 2);
+    const markerBounds = (await sheet.locator('.question-number > span').boundingBox())!;
+    await page.mouse.move(markerBounds.x + markerBounds.width / 2, markerBounds.y + markerBounds.height / 2);
+    await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
+    await page.mouse.down();
     await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(4px)');
+    await page.mouse.up();
     await sheet.locator('.question-sheet-content').evaluate(el => { el.scrollTop = el.scrollHeight; });
     expect(await sheet.evaluate(el => {
       const card = el.getBoundingClientRect();
       const marker = el.querySelector('.question-progress')!.getBoundingClientRect();
       const content = el.querySelector('.question-sheet-content')!.getBoundingClientRect();
-      return Math.abs(marker.top - card.top) < 2 && content.top >= marker.bottom - 1 && marker.bottom <= card.bottom;
+      const handle = el.querySelector('.question-sheet-resize')?.getBoundingClientRect();
+      return Math.abs(marker.top - (handle?.bottom ?? card.top)) < 2 && content.top >= marker.bottom - 1 && marker.bottom <= card.bottom;
     })).toBe(true);
     expect(await page.evaluate(() => document.elementFromPoint(6, 100)?.classList.contains('question-sheet-scrim'))).toBe(true);
     await page.mouse.move(6, 100);

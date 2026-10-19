@@ -941,6 +941,7 @@
     "activity": "活动成长：阅读 {reading} 次，听力 {listening} 次，查询 {lookups} 项；含 {tests} 次完整测试。表示活动积累，不代表英语能力。"
   },
   "workspace": {
+    "resize": "调整答题卡大小",
     "hint": "提示",
     "card": "答题卡",
     "unanswered": "未作答",
