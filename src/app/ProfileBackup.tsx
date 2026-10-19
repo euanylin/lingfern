@@ -15,7 +15,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const name = (value: string) => value.replace('Local profile', t.local);
-  useEffect(() => { void profiles.toArray().then(setItems).catch(() => setMessage(t.failed)); }, [t.failed]);
+  useEffect(() => { void profiles.toArray().then(setItems).catch(() => setMessage(t.failed)); }, [activeProfile, t.failed]);
   async function download() {
     setBusy(true); setMessage('');
     try {

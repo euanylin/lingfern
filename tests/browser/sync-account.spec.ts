@@ -21,6 +21,7 @@ test('account changes require a choice, preserve local originals, and do not upl
   await expect(page.locator('.repository-binding')).toBeVisible();
   const copied = await page.getByRole('button', { name: '当前档案', exact: true }).getAttribute('data-value');
   expect(copied).not.toBe('local-guest');
+  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toContainText(' · ');
   accountId = 2;
   await page.reload();
   await expect(page.locator('.sync-account-choice')).toBeVisible();
@@ -31,6 +32,7 @@ test('account changes require a choice, preserve local originals, and do not upl
   await expect(page.locator('.repository-binding')).toBeVisible();
   const second = await page.getByRole('button', { name: '当前档案', exact: true }).getAttribute('data-value');
   expect(second).not.toBe(copied);
+  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toContainText('learner-2 · 本机档案');
   expect(await page.evaluate(async () => {
     const path = '/src/data/db.ts'; const data = await import(path);
     const selected = (await data.settings.get('activeProfile')).value;
@@ -65,6 +67,29 @@ test('all account choices remain readable in three languages on narrow screens',
         await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
         await choice.screenshot({ path: `output/playwright/sync-account-${width}-${value}-dark.png`, animations: 'disabled' });
       }
+    }
+  }
+});
+
+test('a new account profile is immediately named and keyboard-selectable in the backup picker', async ({ page }) => {
+  await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1, login: 'learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: [] } }));
+  await page.goto('/settings');
+  await page.getByRole('button', { name: '切换到账号档案', exact: true }).click();
+  for (const [languageLabel, locale, profileLabel, localName] of [['语言', 'en', 'Current profile', 'Local profile'], ['Language', 'zh-Hant', '目前檔案', '本機檔案'], ['語言', 'zh-Hans', '当前档案', '本机档案']]) {
+    await selectPicker(page, languageLabel, locale);
+    for (const colorScheme of ['light', 'dark'] as const) {
+      await page.setViewportSize({ width: colorScheme === 'light' ? 1440 : 375, height: 900 });
+      await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
+      const picker = page.getByRole('button', { name: profileLabel, exact: true });
+      await expect(picker).toContainText(`learner · ${localName}`);
+      await picker.focus(); await picker.press('Enter');
+      const selected = page.getByRole('option', { selected: true });
+      await expect(selected).toContainText(`learner · ${localName}`);
+      await expect(page.getByRole('option')).toHaveCount(2);
+      expect(await selected.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await page.screenshot({ path: `output/playwright/account-profile-${locale}-${colorScheme}.png`, fullPage: true });
+      await page.keyboard.press('Escape'); await expect(picker).toBeFocused();
     }
   }
 });

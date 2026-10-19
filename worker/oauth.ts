@@ -19,10 +19,11 @@ function language(request: Request) {
   const value = request.headers.get('Accept-Language') ?? '';
   return /^(zh-(?:TW|HK|Hant))/i.test(value) ? 'zh-Hant' : /^zh/i.test(value) ? 'zh-Hans' : 'en';
 }
-function html(request: Request, content: string, headers = new Headers()) {
+function html(request: Request, content: string, headers = new Headers(), redirectUri?: string) {
   headers.set('Content-Type', 'text/html; charset=utf-8'); headers.set('Cache-Control', 'private, no-store');
-  headers.set('Content-Security-Policy', "default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
-  headers.set('X-Content-Type-Options', 'nosniff'); headers.set('Referrer-Policy', 'no-referrer');
+  // Browsers apply form-action to the redirect after consent as well as the form target.
+  headers.set('Content-Security-Policy', `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'${redirectUri ? ` ${new URL(redirectUri).origin}` : ''}; base-uri 'none'; frame-ancestors 'none'`);
+  headers.set('X-Content-Type-Options', 'nosniff');
   return new Response(`<!doctype html><html lang="${language(request)}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/oauth-consent.css"><title>Lingfern</title><main><span class="logo" role="img" aria-label="Lingfern"></span>${content}</main></html>`, { headers });
 }
 const cookieName = (env: OAuthEnv) => env.LOCAL_AUTH === 'true' ? 'lingfern_local_mcp_return' : '__Host-lingfern-mcp-return';
@@ -55,7 +56,7 @@ async function consent(request: Request, env: OAuthEnv) {
     const transaction = await oauth.beginConsent(auth);
     transaction.headers.append('Set-Cookie', returnCookie(env, '', 0));
     const options = auth.scope.filter(scope => scope !== 'mcp:read').map(scope => `<label><input type="checkbox" name="scope" value="${scope}" checked> ${scope === 'contexts:read' ? t.contexts : scope === 'materials:read' ? t.materials : t.refresh}</label>`).join('');
-    return html(request, `<h1>${t.title}</h1><p>${t.identity}: ${escape(session.login)}</p><p>${t.client}: <strong>${escape(details.clientName)}</strong></p><p>${t.destination}: ${escape(details.redirectHost)}</p><p>${t.warning}</p>${details.redirectIsLoopback ? `<p>${t.local}</p>` : ''}<form method="post" action="/oauth/authorize"><input type="hidden" name="handle" value="${escape(transaction.handle)}"><input type="hidden" name="csrf" value="${escape(session.csrf)}">${options}<p>${t.limitation}</p><button name="decision" value="approve">${t.allow}</button> <button name="decision" value="deny">${t.deny}</button></form>`, transaction.headers);
+    return html(request, `<h1>${t.title}</h1><p>${t.identity}: ${escape(session.login)}</p><p>${t.client}: <strong>${escape(details.clientName)}</strong></p><p>${t.destination}: ${escape(details.redirectHost)}</p><p>${t.warning}</p>${details.redirectIsLoopback ? `<p>${t.local}</p>` : ''}<form method="post" action="/oauth/authorize"><input type="hidden" name="handle" value="${escape(transaction.handle)}"><input type="hidden" name="csrf" value="${escape(session.csrf)}">${options}<p>${t.limitation}</p><button name="decision" value="approve">${t.allow}</button> <button name="decision" value="deny">${t.deny}</button></form>`, transaction.headers, auth.redirectUri);
   }
   if (request.method !== 'POST' || url.pathname !== '/oauth/authorize') return privateJson({ error: 'METHOD' }, 405);
   if (request.headers.get('Origin') !== site(env)) throw new ApiError('ORIGIN', 403);
@@ -150,7 +151,9 @@ export async function oauthRoute(request: Request, env: OAuthEnv, ctx: Execution
       boundedRequest = new Request(request.url, { method: request.method, headers: request.headers, body });
     }
     const response = await provider.fetch(boundedRequest, env, ctx);
-    const headers = new Headers(response.headers); headers.set('Cache-Control', 'private, no-store'); headers.set('X-Content-Type-Options', 'nosniff'); headers.set('Referrer-Policy', 'no-referrer');
+    const headers = new Headers(response.headers); headers.set('Cache-Control', 'private, no-store'); headers.set('X-Content-Type-Options', 'nosniff');
+    // Native form posts need their same-origin Origin; external clients still receive no referrer.
+    headers.set('Referrer-Policy', headers.get('Content-Type')?.startsWith('text/html') ? 'same-origin' : 'no-referrer');
     return new Response(response.body, { status: response.status, headers });
   } catch (error) {
     if (error instanceof Error && error.message === 'BODY_SIZE') return privateJson({ error: 'MCP_REQUEST_SIZE' }, 413);
