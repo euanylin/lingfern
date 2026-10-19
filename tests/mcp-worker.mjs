@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawn, execFileSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
+import { createServer } from 'node:http';
 import { chromium } from '@playwright/test';
 
 const directory = await mkdtemp(path.join(tmpdir(), 'lingfern-mcp-test-'));
@@ -11,6 +12,14 @@ const origin = 'http://127.0.0.1:8787', address = 'http://127.0.0.1:8789';
 const configPath = path.join(directory, 'wrangler.json'), entry = path.join(directory, 'worker.ts'), state = path.join(directory, 'state');
 const root = process.cwd(), cookie = 's'.repeat(43), csrf = 'c'.repeat(43);
 const instance = randomUUID();
+let callbackOrigin, callbackUrl;
+const callbacks = [];
+const callbackServer = createServer((request, response) => {
+  const url = new URL(request.url, callbackOrigin);
+  if (request.method !== 'GET' || url.pathname !== '/callback') { response.writeHead(404).end(); return; }
+  callbacks.push({ url, referer: request.headers.referer });
+  response.writeHead(200, { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' }).end('Synthetic callback');
+});
 const hash = value => createHash('sha256').update(value).digest('base64url');
 // Test-only bridge preserves the fixed local production-like resource identifier on an isolated port.
 await writeFile(entry, `import worker from ${JSON.stringify(path.join(root, 'worker/index.ts'))}; export default {fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/__mcp_test_instance')return new Response('${instance}');url.port='8787';const headers=new Headers(request.headers);if(headers.get('Origin')==='${address}')headers.set('Origin','${origin}');return worker.fetch(new Request(url,{method:request.method,headers,body:['GET','HEAD'].includes(request.method)?undefined:request.body}),env,ctx)}};`);
@@ -32,11 +41,7 @@ async function request(route, options = {}, cookies = jar) {
 const post = (body, headers = {}) => ({ method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', ...headers }, body: new URLSearchParams(body) });
 async function json(response, expected) { assert.equal(response.status, expected); return response.json(); }
 async function submitConsent(page, decision) {
-  let callback;
-  await page.route('https://client.example/callback?*', route => {
-    callback = route.request();
-    return route.fulfill({ status: 200, contentType: 'text/plain', body: 'Synthetic callback' });
-  });
+  const callbackCount = callbacks.length;
   const cookies = new Map((await page.context().cookies(address)).map(value => [value.name, value.value]));
   const [response] = await Promise.all([
     page.waitForResponse(response => response.url() === `${address}/oauth/authorize` && response.request().method() === 'POST'),
@@ -45,13 +50,16 @@ async function submitConsent(page, decision) {
   assert.equal(response.request().headers().origin, address, 'the native consent form must retain its same-origin Origin');
   assert.equal(response.status(), 302);
   assert.equal(response.headers()['referrer-policy'], 'no-referrer');
-  await page.waitForURL('https://client.example/callback?*');
+  await page.waitForURL(`${callbackUrl}?*`);
   await page.waitForLoadState('domcontentloaded');
-  assert.ok(callback);
-  assert.equal(callback.headers().referer, undefined, 'authorization details must not reach the client as a referrer');
-  return { redirect: new URL(callback.url()), form: new URLSearchParams(response.request().postData()), cookies };
+  assert.equal(callbacks.length, callbackCount + 1, 'one actual callback must arrive without a navigation retry');
+  assert.equal(callbacks.at(-1).referer, undefined, 'authorization details must not reach the client as a referrer');
+  return { redirect: callbacks.at(-1).url, form: new URLSearchParams(response.request().postData()), cookies };
 }
 try {
+  await new Promise((resolve, reject) => { callbackServer.once('error', reject); callbackServer.listen(0, '127.0.0.1', resolve); });
+  callbackOrigin = `http://127.0.0.1:${callbackServer.address().port}`; callbackUrl = `${callbackOrigin}/callback`;
+  assert.notEqual(callbackOrigin, address);
   let ready = false;
   for (let attempt = 0; attempt < 120; attempt++) {
     assert.equal(server.exitCode, null, 'this isolated Worker exited before becoming ready');
@@ -64,8 +72,16 @@ try {
   const protectedResource = await json(await request('/.well-known/oauth-protected-resource/mcp'), 200);
   assert.equal(protectedResource.resource, `${origin}/mcp`);
   const missing = await request('/mcp'); assert.equal(missing.status, 401); assert.ok(missing.headers.get('WWW-Authenticate')?.includes('resource_metadata'));
-  const registered = await json(await request('/oauth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: 'Synthetic <client>', redirect_uris: ['https://client.example/callback'], grant_types: ['authorization_code', 'refresh_token'], response_types: ['code'], token_endpoint_auth_method: 'none' }) }), 201);
-  const verifier = 'v'.repeat(43), query = new URLSearchParams({ response_type: 'code', client_id: registered.client_id, redirect_uri: 'https://client.example/callback', resource: `${origin}/mcp`, scope: 'mcp:read contexts:read materials:read offline_access', state: 'synthetic-state', code_challenge: hash(verifier), code_challenge_method: 'S256' });
+  const registered = await json(await request('/oauth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: 'Synthetic <client>', redirect_uris: [callbackUrl, 'https://client.example/callback'], grant_types: ['authorization_code', 'refresh_token'], response_types: ['code'], token_endpoint_auth_method: 'none' }) }), 201);
+  const verifier = 'v'.repeat(43), query = new URLSearchParams({ response_type: 'code', client_id: registered.client_id, redirect_uri: callbackUrl, resource: `${origin}/mcp`, scope: 'mcp:read contexts:read materials:read offline_access', state: 'synthetic-state', code_challenge: hash(verifier), code_challenge_method: 'S256' });
+  const httpsQuery = new URLSearchParams(query); httpsQuery.set('redirect_uri', 'https://client.example/callback');
+  const httpsPage = await request(`/oauth/authorize?${httpsQuery}`);
+  assert.equal(httpsPage.status, 200); assert.equal(httpsPage.headers.get('Content-Security-Policy').match(/form-action ([^;]+)/)[1], "'self' https://client.example");
+  const httpsHandle = (await httpsPage.text()).match(/name="handle" value="([^"]+)"/)[1];
+  const httpsDenied = await request('/oauth/authorize', post({ handle: httpsHandle, csrf, decision: 'deny' }, { Origin: origin }));
+  assert.equal(httpsDenied.status, 302); assert.equal(new URL(httpsDenied.headers.get('Location')).origin, 'https://client.example');
+  assert.equal(new URL(httpsDenied.headers.get('Location')).searchParams.get('error'), 'access_denied');
+  assert.equal(httpsDenied.headers.get('Referrer-Policy'), 'no-referrer');
   const icon = await request('/icon.svg');
   assert.equal(icon.status, 200); assert.equal(await icon.text(), await readFile('public/icon.svg', 'utf8'));
   const browser = await chromium.launch({ channel: process.env.CI ? undefined : 'chrome', headless: true });
@@ -76,7 +92,7 @@ try {
       await context.addCookies([{ name: 'lingfern_local_session', value: cookie, url: address }]);
       const page = await context.newPage(); const document = await page.goto(`${address}/oauth/authorize?${query}`);
       assert.equal(document.headers()['referrer-policy'], 'same-origin');
-      assert.equal(document.headers()['content-security-policy'].match(/form-action ([^;]+)/)[1], "'self' https://client.example");
+      assert.equal(document.headers()['content-security-policy'].match(/form-action ([^;]+)/)[1], `'self' ${callbackOrigin}`);
       await page.getByRole('heading', { name: heading }).waitFor();
       assert.ok(await page.getByRole('img', { name: 'Lingfern', exact: true }).evaluate(el => getComputedStyle(el).maskImage.includes('/icon.svg')));
       assert.ok(await page.evaluate(async () => { const image = new Image(); image.src = '/icon.svg'; await image.decode(); return image.naturalWidth > 0 && image.naturalWidth === image.naturalHeight; }));
@@ -120,9 +136,9 @@ try {
     await consentPage.goto(`${address}/oauth/authorize?${query}`);
     approved = await submitConsent(consentPage, 'approve');
   } finally { await consentBrowser.close(); }
-  const { redirect } = approved; assert.equal(redirect.origin, 'https://client.example'); assert.equal(redirect.searchParams.get('state'), 'synthetic-state'); assert.equal(redirect.searchParams.get('iss'), origin);
+  const { redirect } = approved; assert.equal(redirect.origin, callbackOrigin); assert.equal(redirect.searchParams.get('state'), 'synthetic-state'); assert.equal(redirect.searchParams.get('iss'), origin);
   assert.equal((await request('/oauth/authorize', post(approved.form, { Origin: origin }), approved.cookies)).status, 400);
-  const tokenRequest = { grant_type: 'authorization_code', client_id: registered.client_id, code: redirect.searchParams.get('code'), code_verifier: verifier, redirect_uri: 'https://client.example/callback', resource: `${origin}/mcp` };
+  const tokenRequest = { grant_type: 'authorization_code', client_id: registered.client_id, code: redirect.searchParams.get('code'), code_verifier: verifier, redirect_uri: callbackUrl, resource: `${origin}/mcp` };
   const tokenResponse = await request('/oauth/token', post(tokenRequest));
   assert.equal(tokenResponse.headers.get('Referrer-Policy'), 'no-referrer');
   const token = await json(tokenResponse, 200);
@@ -137,6 +153,7 @@ try {
   const initialized = await rpc('initialize', { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'Synthetic client', version: '1' } }); assert.equal(initialized.response.status, 200, JSON.stringify(initialized.body)); assert.equal(initialized.body.result.serverInfo.name, 'Lingfern');
   const listed = await rpc('tools/list'); assert.equal(listed.body.result.tools.length, 4);
   assert.equal((await rpc('tools/list', {}, token.access_token, 'https://client.example')).response.status, 200);
+  assert.equal((await rpc('tools/list', {}, token.access_token, callbackOrigin)).response.status, 200);
   assert.equal((await rpc('tools/list', {}, token.access_token, 'https://foreign.example')).response.status, 403);
   const read = await rpc('tools/call', { name: 'read_shared_context', arguments: { id: shared.id } }); assert.equal(JSON.parse(read.body.result.content[0].text).text, 'Synthetic private text');
   const removed = await rpc('tools/call', { name: 'search_materials', arguments: { keywords: 'meeting', level: 'A1' } });
@@ -193,8 +210,11 @@ try {
   const limited = await request('/oauth/authorize'); assert.equal(limited.status, 429); assert.equal(limited.headers.get('Retry-After'), '60');
   sql('DELETE FROM auth_limits');
   assert.equal((await request('/oauth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: 'x'.repeat(65537) })).status, 413);
+  assert.equal(callbacks.length, 4);
   console.log('PASS: actual isolated Worker/Provider/KV/D1 consent, PKCE code exchange, SDK tools, refresh, ownership and immediate business/library revocation. Synthetic identity only; no GitHub or external client acceptance.');
 } finally {
+  callbackServer.closeAllConnections();
+  await new Promise(resolve => callbackServer.close(resolve));
   try { process.kill(-server.pid, 'SIGTERM'); } catch { /* Child already exited. */ }
   if (server.exitCode === null) await new Promise(resolve => server.once('exit', resolve));
   await rm(directory, { recursive: true, force: true });
