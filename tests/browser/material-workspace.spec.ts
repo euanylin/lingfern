@@ -426,6 +426,27 @@ test('multi-slot navigation marks exactly one current response and keeps number 
   }
 });
 
+for (const width of [375, 1440]) test(`manual input focus wins before the navigation frame: ${width}`, async ({ page }) => {
+  const { multiGapListening } = await import('../fixtures/workspace-lessons');
+  await page.setViewportSize({ width, height: 900 });
+  await page.clock.install({ time: new Date('2026-10-19T09:00:00Z') });
+  const { id } = await start(page, multiGapListening());
+  const nav = page.locator('.workspace-card nav'), input = page.locator('.inline-gap input').first();
+  await input.focus();
+  await page.clock.pauseAt(new Date('2026-10-19T09:10:00Z'));
+  const second = nav.getByRole('button').nth(1);
+  await second.focus(); await second.press('Enter');
+  await expect(nav.locator('[aria-current]')).toHaveText('2');
+  await input.focus(); await expect(nav.locator('[aria-current]')).toHaveText('1');
+  await page.clock.runFor(64);
+  await expect(input).toBeFocused(); await expect(nav.locator('[aria-current]')).toHaveText('1');
+  await page.clock.resume();
+  await page.keyboard.type('manual-focus-kept');
+  await expect(input).toHaveValue('manual-focus-kept');
+  await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+  await expect.poll(() => page.evaluate(async id => Object.values((await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace.drafts).some(value => Array.isArray(value) && value[0] === 'manual-focus-kept'), id)).toBe(true);
+});
+
 test('mobile sheet pointer blur stays inside the card and keyboard close restores the peek focus', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 }); await page.emulateMedia({ reducedMotion: 'reduce' }); await start(page, worksheet);
   const panel = page.locator('.workspace-questions'), toggle = panel.locator('.question-sheet-toggle'), scrim = page.locator('.question-sheet-scrim');

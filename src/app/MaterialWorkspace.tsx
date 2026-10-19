@@ -73,7 +73,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
         if (panel?.closest<HTMLElement>('.question-panel')?.dataset.open === 'true') frame = requestAnimationFrame(focusQuestion);
         return;
       }
-      if (!request.focused) { element.focus({ preventScroll: true }); request.focused = element; }
+      if (!request.focused) { request.focused = element; element.focus({ preventScroll: true }); }
       if (listening) {
         const bar = document.querySelector<HTMLElement>('.workspace-questions .question-progress');
         const offset = bar && getComputedStyle(bar).position === 'sticky' ? parseFloat(getComputedStyle(bar).top) + bar.getBoundingClientRect().height + 16 : 16;
@@ -209,6 +209,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
             const split = 'kind' in item.question && item.question.kind === 'completion' ? item.question.prompt.indexOf('\n') : -1;
             return <section className="workspace-question" data-selected={selected === item.question.id} key={item.question.id} onFocus={event => {
             const target = event.target as HTMLElement;
+            if (focusRequest.current && focusRequest.current.focused !== target) focusRequest.current = undefined;
             if (target.id.startsWith(`answer-${item.question.id}-`)) setSelectedSlot(Number(target.id.split('-').at(-1)));
             else if ('pairs' in item.question) { const index = Array.from(event.currentTarget.querySelectorAll('.setting')).indexOf(target.closest('.setting')!); if (index >= 0) setSelectedSlot(index); }
             else if (questionSlots(item.question) === 1) setSelectedSlot(0);
