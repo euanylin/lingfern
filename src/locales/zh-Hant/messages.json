@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "連接支援 MCP 的助手，讀取你授權分享的學習內容。",
     "copy": "複製位址",
-    "copied": "已複製。",
+    "copied": "已複製",
     "failed": "複製失敗，請選取位址手動複製。"
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "核驗已到期或授權已改變，請重新核驗。",
     "capacity": "安裝範圍或資料庫超過本輪處理上限。請縮小授權範圍或先匯出清理。",
     "permission": "GitHub 權限無法使用，請檢查授權後重試。",
-    "limited": "請求過於頻繁，請稍後重試。"
+    "limited": "請求過於頻繁，請稍後重試。",
+    "reset": "重新設定",
+    "newWindow": "在新視窗開啟"
   },
   "repositoryBinding_historyLabels": {
     "title": "清除遠端歷史",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "分享與用戶端權限",
-    "load": "檢視或重新整理",
+    "load": "重新整理權限清單",
     "loading": "正在讀取…",
     "shares": "有效分享",
     "clients": "已授權用戶端",
-    "empty": "暫無有效項目。",
+    "empty": "暫無有效項目",
     "expires": "到期",
     "profile": "檔案",
     "context": "讀取已分享內容",
@@ -557,12 +559,14 @@
     "revokeShare": "撤銷分享",
     "revokeClient": "撤銷用戶端權限",
     "confirm": "撤銷後將停止後續讀取，接收方已儲存的副本無法收回。確認撤銷？",
-    "done": "已撤銷。",
+    "done": "已撤銷 {name} 的存取權",
     "failed": "未能完成操作，請重新整理後重試。",
     "unavailable": "分享服務尚未設定。",
     "offline": "目前離線，連線後可管理分享。",
     "changed": "網站帳戶已變更，請重新開啟設定。",
-    "limited": "操作過於頻繁，請稍後重試。"
+    "limited": "操作過於頻繁，請稍後重試。",
+    "granted": "{date}授權",
+    "revoke": "撤銷"
   },
   "sharingUpload": {
     "title": "提供給已連接的助手",

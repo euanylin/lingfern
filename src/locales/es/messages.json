@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "Conecta un asistente compatible con MCP para leer el contenido que decidas compartir.",
     "copy": "Copiar dirección",
-    "copied": "Copiado.",
+    "copied": "Copiado",
     "failed": "No se pudo copiar. Selecciona la dirección y cópiala manualmente."
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "La verificación caducó o cambió la autorización. Vuelve a verificar.",
     "capacity": "La instalación o el repositorio supera la capacidad de esta operación. Reduce el acceso de la aplicación o exporta y limpia primero.",
     "permission": "El permiso de GitHub no está disponible. Comprueba la autorización e inténtalo de nuevo.",
-    "limited": "Demasiadas solicitudes. Inténtalo más tarde."
+    "limited": "Demasiadas solicitudes. Inténtalo más tarde.",
+    "reset": "Configurar de nuevo",
+    "newWindow": "Se abre en una ventana nueva"
   },
   "repositoryBinding_historyLabels": {
     "title": "Eliminar historial remoto",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "Compartir y permisos de clientes",
-    "load": "Ver o actualizar",
+    "load": "Actualizar permisos",
     "loading": "Cargando…",
     "shares": "Contenido compartido activo",
     "clients": "Clientes autorizados",
-    "empty": "No hay elementos activos.",
+    "empty": "No hay elementos activos",
     "expires": "Caducidad",
     "profile": "Perfil",
     "context": "Leer contextos compartidos",
@@ -557,12 +559,14 @@
     "revokeShare": "Revocar contenido compartido",
     "revokeClient": "Revocar acceso del cliente",
     "confirm": "La revocación impide futuras lecturas. No se pueden recuperar las copias que el destinatario ya guardó. ¿Revocar?",
-    "done": "Revocado.",
+    "done": "Acceso a {name} revocado",
     "failed": "No se pudo completar la acción. Actualiza e inténtalo de nuevo.",
     "unavailable": "La función de compartir no está configurada.",
     "offline": "No tienes conexión. Conéctate para gestionar el contenido compartido.",
     "changed": "La cuenta web ha cambiado. Vuelve a abrir Ajustes.",
-    "limited": "Demasiadas solicitudes. Inténtalo más tarde."
+    "limited": "Demasiadas solicitudes. Inténtalo más tarde.",
+    "granted": "Autorizado el {date}",
+    "revoke": "Revocar"
   },
   "sharingUpload": {
     "title": "Compartir con un asistente conectado",

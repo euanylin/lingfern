@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "Conecte um assistente MCP para ler os conteúdos que você escolher compartilhar.",
     "copy": "Copiar endereço",
-    "copied": "Copiado.",
+    "copied": "Copiado",
     "failed": "Não foi possível copiar. Selecione o endereço e copie manualmente."
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "Verificação expirada ou autorização alterada. Verifique novamente.",
     "capacity": "Instalação ou repositório excede a capacidade desta rodada. Limite acesso do App ou exporte e limpe antes.",
     "permission": "Permissão GitHub indisponível. Confira autorização e tente novamente.",
-    "limited": "Muitas solicitações. Tente mais tarde."
+    "limited": "Muitas solicitações. Tente mais tarde.",
+    "reset": "Configurar novamente",
+    "newWindow": "Abre numa nova janela"
   },
   "repositoryBinding_historyLabels": {
     "title": "Remover histórico remoto",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "Compartilhamento e permissões",
-    "load": "Ver ou atualizar",
+    "load": "Atualizar permissões",
     "loading": "Carregando…",
     "shares": "Compartilhamentos ativos",
     "clients": "Clientes autorizados",
-    "empty": "Nenhum item ativo.",
+    "empty": "Nenhum item ativo",
     "expires": "Expira",
     "profile": "Perfil",
     "context": "Ler contextos compartilhados",
@@ -557,12 +559,14 @@
     "revokeShare": "Revogar compartilhamento",
     "revokeClient": "Revogar acesso do cliente",
     "confirm": "A revogação impede novas leituras. Cópias já salvas pelo destinatário não podem ser recuperadas. Revogar?",
-    "done": "Revogado.",
+    "done": "Acesso a {name} revogado",
     "failed": "Não foi possível concluir. Atualize e tente novamente.",
     "unavailable": "Compartilhamento não configurado.",
     "offline": "Você está offline. Conecte-se para gerenciar compartilhamentos.",
     "changed": "Conta web alterada. Reabra Configurações.",
-    "limited": "Muitas solicitações. Tente mais tarde."
+    "limited": "Muitas solicitações. Tente mais tarde.",
+    "granted": "Autorizado em {date}",
+    "revoke": "Revogar"
   },
   "sharingUpload": {
     "title": "Disponibilizar ao assistente conectado",

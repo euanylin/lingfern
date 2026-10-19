@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "Hubungkan asisten MCP untuk membaca materi belajar yang Anda pilih untuk dibagikan.",
     "copy": "Salin alamat",
-    "copied": "Disalin.",
+    "copied": "Disalin",
     "failed": "Gagal menyalin. Pilih alamat dan salin secara manual."
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "Verifikasi kedaluwarsa atau otorisasi berubah. Periksa ulang.",
     "capacity": "Pemasangan atau repositori melebihi kapasitas putaran ini. Batasi akses App atau ekspor dan bersihkan dahulu.",
     "permission": "Izin GitHub tidak tersedia. Periksa otorisasi dan coba lagi.",
-    "limited": "Terlalu banyak permintaan. Coba lagi nanti."
+    "limited": "Terlalu banyak permintaan. Coba lagi nanti.",
+    "reset": "Atur ulang",
+    "newWindow": "Terbuka di jendela baru"
   },
   "repositoryBinding_historyLabels": {
     "title": "Hapus riwayat jarak jauh",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "Berbagi dan izin klien",
-    "load": "Lihat atau segarkan",
+    "load": "Muat ulang izin",
     "loading": "Memuat…",
     "shares": "Berbagi aktif",
     "clients": "Klien diotorisasi",
-    "empty": "Tidak ada item aktif.",
+    "empty": "Tidak ada item aktif",
     "expires": "Kedaluwarsa",
     "profile": "Profil",
     "context": "Baca konteks bersama",
@@ -557,12 +559,14 @@
     "revokeShare": "Cabut berbagi",
     "revokeClient": "Cabut akses klien",
     "confirm": "Pencabutan menghentikan pembacaan berikutnya. Salinan yang sudah disimpan penerima tidak dapat ditarik. Cabut?",
-    "done": "Dicabut.",
+    "done": "Akses ke {name} dicabut",
     "failed": "Tindakan gagal. Segarkan dan coba lagi.",
     "unavailable": "Berbagi belum dikonfigurasi.",
     "offline": "Anda luring. Hubungkan untuk mengelola berbagi.",
     "changed": "Akun web berubah. Buka ulang Pengaturan.",
-    "limited": "Terlalu banyak permintaan. Coba lagi nanti."
+    "limited": "Terlalu banyak permintaan. Coba lagi nanti.",
+    "granted": "Diizinkan pada {date}",
+    "revoke": "Cabut"
   },
   "sharingUpload": {
     "title": "Sediakan untuk asisten terhubung",

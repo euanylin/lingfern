@@ -88,6 +88,10 @@ test('private repository binding is inspected before confirmation and disconnect
   expect(markerWrites).toBe(0);
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
   await page.getByRole('button', { name: '确认绑定', exact: true }).click();
+  await expect(page.locator('.repository-reset')).not.toHaveAttribute('open', '');
+  await expect(page.locator('.repository-steps')).toBeHidden();
+  await expect(page.getByRole('button', { name: '已授权资料库', exact: false })).toContainText('lingfern-data');
+  await page.locator('.repository-reset>summary').click();
   await expect(page.getByRole('button', { name: '断开资料库同步绑定' })).toBeVisible();
   await expect(page.locator('.repository-binding')).toContainText('批次同步尚未开放');
   expect(markerWrites).toBe(1);
@@ -147,4 +151,23 @@ test('a failed logout of a known account keeps retry instead of offering a secon
   await identity.getByRole('button', { name: '退出本设备的网站会话', exact: true }).click();
   await expect(identity.getByRole('button', { name: '重试', exact: true })).toBeVisible();
   await expect(identity.getByRole('link', { name: '连接 GitHub', exact: true })).toHaveCount(0);
+});
+
+test('verifying a bound repository reads current choices and never substitutes another repository', async ({ page }) => {
+  let available = true, inspections = 0;
+  await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1234, login: 'test-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: [{ name: 'lingfern-data', owner: 'test-learner', profileId: 'local-guest', disabled: false }] } }));
+  await page.route('**/api/sync/repositories', route => route.fulfill({ json: { repositories: [{ name: available ? 'lingfern-data' : 'another-data', repositoryId: 21, installationId: 31 }] } }));
+  await page.route('**/api/sync/inspect', route => {
+    inspections++; expect(route.request().postDataJSON().name).toBe('lingfern-data');
+    return route.fulfill({ json: { intent: 'i'.repeat(43), name: 'lingfern-data', owner: 'test-learner', profileId: 'local-guest', existing: true, expiresAt: Math.floor(Date.now() / 1000) + 300 } });
+  });
+  await page.goto('/settings');
+  await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
+  await page.getByRole('button', { name: '核验资料库', exact: true }).click();
+  await expect(page.locator('.backup-preview')).toContainText('已有匹配的档案标记');
+  expect(inspections).toBe(1);
+  available = false; await page.reload();
+  await page.getByRole('button', { name: '核验资料库', exact: true }).click();
+  await expect(page.locator('.repository-binding')).toContainText('资料库不存在或暂不可访问');
+  expect(inspections).toBe(1);
 });

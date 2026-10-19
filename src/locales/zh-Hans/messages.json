@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "连接支持 MCP 的助手，读取你授权分享的学习内容。",
     "copy": "复制地址",
-    "copied": "已复制。",
+    "copied": "已复制",
     "failed": "复制失败，请选中地址手动复制。"
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "核验已过期或授权已改变，请重新核验。",
     "capacity": "安装范围或资料库超过本轮处理上限。请缩小授权范围或先导出清理。",
     "permission": "GitHub 权限不可用，请检查授权后重试。",
-    "limited": "请求过于频繁，请稍后重试。"
+    "limited": "请求过于频繁，请稍后重试。",
+    "reset": "重新设置",
+    "newWindow": "在新窗口打开"
   },
   "repositoryBinding_historyLabels": {
     "title": "清除远程历史",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "分享与客户端权限",
-    "load": "查看或刷新",
+    "load": "刷新权限列表",
     "loading": "正在读取…",
     "shares": "有效分享",
     "clients": "已授权客户端",
-    "empty": "暂无有效项目。",
+    "empty": "暂无有效项目",
     "expires": "到期",
     "profile": "档案",
     "context": "读取已分享内容",
@@ -557,12 +559,14 @@
     "revokeShare": "撤销分享",
     "revokeClient": "撤销客户端权限",
     "confirm": "撤销后将停止后续读取，接收方已保存的副本无法收回。确认撤销？",
-    "done": "已撤销。",
+    "done": "已撤销 {name} 的访问",
     "failed": "未能完成操作，请刷新后重试。",
     "unavailable": "分享服务尚未配置。",
     "offline": "当前离线，联网后可管理分享。",
     "changed": "网站账户已变化，请重新打开设置。",
-    "limited": "操作过于频繁，请稍后重试。"
+    "limited": "操作过于频繁，请稍后重试。",
+    "granted": "{date}授权",
+    "revoke": "撤销"
   },
   "sharingUpload": {
     "title": "提供给已连接的助手",

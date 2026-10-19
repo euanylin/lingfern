@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "Connect an MCP-compatible assistant to read learning content you choose to share.",
     "copy": "Copy address",
-    "copied": "Copied.",
+    "copied": "Copied",
     "failed": "Could not copy. Select the address and copy it manually."
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "Verification expired or authorisation changed. Verify again.",
     "capacity": "The installation or repository exceeds this round’s capacity. Narrow App access or export and clean up first.",
     "permission": "GitHub permission is unavailable. Check authorisation and retry.",
-    "limited": "Too many requests. Try again later."
+    "limited": "Too many requests. Try again later.",
+    "reset": "Set up again",
+    "newWindow": "Opens in a new window"
   },
   "repositoryBinding_historyLabels": {
     "title": "Remove remote history",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "Sharing and client permissions",
-    "load": "View or refresh",
+    "load": "Refresh permissions",
     "loading": "Loading…",
     "shares": "Active shares",
     "clients": "Authorised clients",
-    "empty": "No active items.",
+    "empty": "No active items",
     "expires": "Expires",
     "profile": "Profile",
     "context": "Read shared contexts",
@@ -557,12 +559,14 @@
     "revokeShare": "Revoke share",
     "revokeClient": "Revoke client access",
     "confirm": "Revocation stops future reads. Copies already saved by the recipient cannot be recalled. Revoke?",
-    "done": "Revoked.",
+    "done": "Revoked access to {name}",
     "failed": "Could not complete the action. Refresh and try again.",
     "unavailable": "Sharing is not configured.",
     "offline": "You are offline. Connect to manage sharing.",
     "changed": "The web account changed. Reopen Settings.",
-    "limited": "Too many requests. Try again later."
+    "limited": "Too many requests. Try again later.",
+    "granted": "Authorised {date}",
+    "revoke": "Revoke"
   },
   "sharingUpload": {
     "title": "Make available to a connected assistant",

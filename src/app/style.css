@@ -604,3 +604,50 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 .workspace-question h2{font-size:1.125rem;line-height:1.5;font-weight:600}.workspace-question .question-sentence{font-family:var(--font-heading);font-size:1.125rem;line-height:1.7;white-space:pre-line;margin:8px 0 20px}
 .workspace-question :is(.completion-answer>span,.response-answer>span){font-size:.875rem;color:var(--muted)}.workspace-question :is(.completion-answer input,.response-answer textarea){border-radius:12px;padding-inline:16px}.workspace-hints>button{min-height:44px;padding:8px 18px;border-radius:12px;font-weight:500;color:var(--ink)}
 @media(max-width:767px){.workspace-question h2,.workspace-question .question-sentence{font-size:1.0625rem}}
+
+/* Identity and MCP use the same quiet settings rows and raised actions. */
+.github-status-line[data-status=connected] .github-status{color:var(--ink)}
+.github-status-line[data-status=signed-out]{align-items:flex-start;flex-direction:column;gap:16px}
+.github-identity :is(button,a.button),.mcp-settings button{font-size:14px;font-weight:500;border-radius:12px;min-height:44px}
+.github-identity :is(button,a.button):hover,.mcp-settings button:hover{transform:none}
+.github-session-actions{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
+.github-session-actions button{padding:8px 10px;background:none;color:var(--muted);margin-inline-start:-10px}
+.github-session-actions button+button{margin-inline-start:0}
+.github-identity .service-danger,.mcp-settings .service-danger{color:var(--error)}
+.github-session-actions button:hover{background:var(--interactive-hover);color:var(--ink)}
+.github-session-actions .service-danger:hover{color:var(--error)}
+.repository-binding{margin-top:28px}.repository-binding>h3{margin:0}.repository-binding>.muted{font-size:13px;margin:0 0 12px}
+.repository-binding>:is(.setting,.repository-select-row){color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:52px;padding:8px 0;margin:0 0 12px;border-block:1px solid var(--line);border-radius:0;background:none;font-size:15px;font-weight:400;text-align:start}
+.repository-select-row>span:last-child{display:flex;align-items:center;gap:8px;color:var(--muted);min-width:0;text-align:end}
+.repository-select-row bdi{overflow-wrap:anywhere}.repository-binding .setting>span{min-width:0}.repository-binding .setting-trigger{flex:1;justify-content:flex-end;min-width:44px;background:none;padding-inline:0;font-size:15px;font-weight:400}.repository-binding .setting-trigger bdi{overflow-wrap:anywhere}
+.repository-binding>button:not(.service-danger){color:var(--ink)}.repository-binding .setting-trigger .setting-chevron{background:none;width:auto;height:auto;padding:0;color:var(--muted)}
+.repository-steps{padding:20px 0 0;margin:24px 0 0;border-top:1px solid var(--line);list-style:none;counter-reset:repository-step}
+.repository-steps li{position:relative;counter-increment:repository-step;padding-inline-start:28px;margin:6px 0}
+.repository-steps li::before{content:counter(repository-step) ".";position:absolute;inset-inline-start:0;top:10px;width:24px;font-size:15px;color:var(--muted)}
+.repository-steps a,.service-external{display:inline-flex;align-items:center;gap:6px;min-height:44px;text-decoration:none;color:var(--ink);font-size:15px}
+.repository-steps a span,.service-external span{font-size:12px;color:var(--muted)}
+.repository-steps p{margin:0 0 8px;font-size:13px;line-height:1.5}.repository-steps button{margin:0}
+.service-disclosure{position:relative;border-block:1px solid var(--line);margin:28px 0 0;padding:0}
+.service-disclosure+.service-disclosure{margin-top:0;border-top:0}
+.service-disclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;list-style:none;min-height:52px;padding:8px 0;color:var(--ink);font-size:15px;font-weight:400;border-radius:8px}
+.service-disclosure>summary::-webkit-details-marker{display:none}.service-disclosure>summary::marker{content:""}
+.github-identity details.service-disclosure>summary::after,.mcp-settings details.service-disclosure>summary::after{right:auto;inset-inline-end:0}
+.service-disclosure>summary:active{transform:none}.service-disclosure>summary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.repository-reset .repository-steps{margin:0;padding:0;border:0}.repository-reset>div{padding-bottom:16px}.repository-reset>div>button{margin-top:12px}.repository-history>div{font-size:14px;padding-bottom:12px}.repository-history ol{padding-inline-start:24px}.repository-history li{margin:8px 0}.repository-history a{font-size:14px}
+.mcp-settings .sharing-management{margin:24px 0 0;padding:0;overflow-wrap:anywhere}
+.sharing-management[open]>summary{padding-inline-end:76px}.sharing-management .sharing-refresh{position:absolute;top:4px;inset-inline-end:24px;display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:0;background:none;color:var(--muted);border-radius:10px}
+.sharing-management .sharing-refresh[aria-busy=true] svg{animation:sharing-refresh 800ms linear infinite}
+.sharing-management h3{margin:20px 0 8px;font-family:inherit;font-size:13px;font-weight:500;color:var(--muted)}.sharing-management>div>h3:first-child{margin-top:8px}
+.sharing-management .sharing-empty{margin:8px 0 20px;color:var(--muted);font-size:14px}
+.sharing-management article{display:flex;align-items:center;gap:16px;min-height:60px;padding:8px 0;border:0}.sharing-management article+article{border-top:1px solid var(--line)}.sharing-management article>div{flex:1;min-width:0}
+.sharing-management h4{margin:0;font-family:inherit;font-size:15px;font-weight:400}.sharing-management article p{margin:4px 0 0;color:var(--muted);font-size:13px}.sharing-management article button{flex:none;max-width:44%;padding:8px 14px;font-size:14px;border-radius:10px}
+.service-toast{position:fixed;z-index:40;inset-inline:16px;bottom:24px;max-width:560px;width:fit-content;margin-inline:auto;padding:12px 20px;min-height:48px;border-radius:14px;background:var(--button-surface);color:var(--ink);font-size:14px;box-shadow:0 12px 32px rgb(0 0 0 / .25);pointer-events:none;overflow-wrap:anywhere}
+.service-toast:empty{display:none}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.service-toast{background:color-mix(in srgb,var(--button-surface) 85%,transparent);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)}}
+@media(min-width:768px){.settings-service-groups>:is(.github-identity,.mcp-settings){padding:24px}}
+@media(max-width:767px){.service-toast{bottom:calc(80px + env(safe-area-inset-bottom));width:auto}.sharing-management article{gap:8px}}
+@media(prefers-reduced-transparency:reduce){.service-toast{background:var(--button-surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
+@keyframes sharing-refresh{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.github-identity *,.mcp-settings *{transition:none!important;animation:none!important}.github-identity :is(button,a):active,.mcp-settings button:active{transform:none}}
+.github-identity .backup-actions>button{padding:8px 18px;background:var(--button-surface);color:var(--ink);text-decoration:none;font-weight:500}
+.github-identity .backup-actions>button:hover{background:var(--button-hover);text-decoration:none}

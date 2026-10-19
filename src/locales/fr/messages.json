@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "Connectez un assistant compatible MCP pour lire le contenu d’apprentissage que vous choisissez de partager.",
     "copy": "Copier l’adresse",
-    "copied": "Copié.",
+    "copied": "Copié",
     "failed": "Copie impossible. Sélectionnez l’adresse et copiez-la manuellement."
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "Vérification expirée ou autorisation modifiée. Vérifiez à nouveau.",
     "capacity": "L’installation ou le dépôt dépasse la capacité de ce traitement. Réduisez l’accès de l’application ou exportez et nettoyez d’abord.",
     "permission": "Autorisation GitHub indisponible. Vérifiez-la et réessayez.",
-    "limited": "Trop de requêtes. Réessayez plus tard."
+    "limited": "Trop de requêtes. Réessayez plus tard.",
+    "reset": "Reconfigurer",
+    "newWindow": "Ouvre une nouvelle fenêtre"
   },
   "repositoryBinding_historyLabels": {
     "title": "Supprimer l’historique distant",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "Partage et permissions des clients",
-    "load": "Afficher ou actualiser",
+    "load": "Actualiser les autorisations",
     "loading": "Chargement…",
     "shares": "Partages actifs",
     "clients": "Clients autorisés",
-    "empty": "Aucun élément actif.",
+    "empty": "Aucun élément actif",
     "expires": "Expiration",
     "profile": "Profil",
     "context": "Lire les contextes partagés",
@@ -557,12 +559,14 @@
     "revokeShare": "Révoquer le partage",
     "revokeClient": "Révoquer l’accès du client",
     "confirm": "La révocation bloque les lectures futures. Les copies déjà enregistrées par le destinataire ne peuvent être rappelées. Révoquer ?",
-    "done": "Révoqué.",
+    "done": "Accès à {name} révoqué",
     "failed": "Action impossible. Actualisez et réessayez.",
     "unavailable": "Le partage n’est pas configuré.",
     "offline": "Vous êtes hors ligne. Connectez-vous pour gérer le partage.",
     "changed": "Le compte web a changé. Rouvrez les paramètres.",
-    "limited": "Trop de requêtes. Réessayez plus tard."
+    "limited": "Trop de requêtes. Réessayez plus tard.",
+    "granted": "Autorisé le {date}",
+    "revoke": "Révoquer"
   },
   "sharingUpload": {
     "title": "Mettre à disposition d’un assistant connecté",

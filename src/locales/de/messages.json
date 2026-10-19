@@ -321,7 +321,7 @@
   "mcpSettings": {
     "description": "MCP-kompatiblen Assistenten verbinden, um freigegebene Lerninhalte zu lesen.",
     "copy": "Adresse kopieren",
-    "copied": "Kopiert.",
+    "copied": "Kopiert",
     "failed": "Kopieren fehlgeschlagen. Adresse markieren und manuell kopieren."
   },
   "offlineInstall": {
@@ -474,7 +474,9 @@
     "expired": "Prüfung abgelaufen oder Autorisierung geändert. Erneut prüfen.",
     "capacity": "Installation oder Repository über dieser Kapazität. App-Zugriff einschränken oder erst exportieren und bereinigen.",
     "permission": "GitHub-Berechtigung fehlt. Autorisierung prüfen und erneut versuchen.",
-    "limited": "Zu viele Anfragen. Später erneut versuchen."
+    "limited": "Zu viele Anfragen. Später erneut versuchen.",
+    "reset": "Erneut einrichten",
+    "newWindow": "Öffnet ein neues Fenster"
   },
   "repositoryBinding_historyLabels": {
     "title": "Remote-Verlauf entfernen",
@@ -545,11 +547,11 @@
   },
   "sharingManagement": {
     "title": "Freigaben und Client-Berechtigungen",
-    "load": "Ansehen oder aktualisieren",
+    "load": "Berechtigungen aktualisieren",
     "loading": "Laden…",
     "shares": "Aktive Freigaben",
     "clients": "Autorisierte Clients",
-    "empty": "Keine aktiven Einträge.",
+    "empty": "Keine aktiven Einträge",
     "expires": "Läuft ab",
     "profile": "Profil",
     "context": "Freigegebene Kontexte lesen",
@@ -557,12 +559,14 @@
     "revokeShare": "Freigabe widerrufen",
     "revokeClient": "Client-Zugriff widerrufen",
     "confirm": "Widerruf stoppt künftige Zugriffe. Bereits gespeicherte Empfängerkopien bleiben. Widerrufen?",
-    "done": "Widerrufen.",
+    "done": "Zugriff auf {name} widerrufen",
     "failed": "Aktion fehlgeschlagen. Aktualisieren und erneut versuchen.",
     "unavailable": "Freigaben sind nicht eingerichtet.",
     "offline": "Offline. Zum Verwalten der Freigaben verbinden.",
     "changed": "Webkonto geändert. Einstellungen erneut öffnen.",
-    "limited": "Zu viele Anfragen. Später erneut versuchen."
+    "limited": "Zu viele Anfragen. Später erneut versuchen.",
+    "granted": "Autorisiert am {date}",
+    "revoke": "Widerrufen"
   },
   "sharingUpload": {
     "title": "Verbundenem Assistenten bereitstellen",
