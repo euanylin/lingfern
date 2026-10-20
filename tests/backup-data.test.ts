@@ -10,6 +10,25 @@ import { gutenbergTerms } from '../src/shared/sourceLicence';
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
 
 describe('local ZIP backup', () => {
+  it.each(['x'.repeat(91), `${'x'.repeat(79)}𝒜`, '𝒜'.repeat(46)])('exports an older overlong profile label without altering its records or weakening imports', async name => {
+    const original = await createSession(raw);
+    await claimSession(original.id, 'tab', Date.now(), undefined, true);
+    const answer = await submit(original.id, 'tab', 1);
+    await profiles.put({ id: 'local-guest', name, createdAt: new Date().toISOString() });
+    const zip = await exportBackup('local-guest');
+    const inspected = await inspectBackup(zip);
+    expect(inspected.summary.profileName.length).toBeLessThanOrEqual(80);
+    expect(new TextDecoder().decode(new TextEncoder().encode(inspected.summary.profileName))).toBe(inspected.summary.profileName);
+    expect(inspected.records.sessions[0].lesson).toEqual(original.lesson);
+    expect(inspected.records.attempts).toEqual([answer]);
+    expect((await profiles.get('local-guest'))?.name).toBe(name);
+    const files = unzipSync(zip);
+    const manifest = JSON.parse(new TextDecoder().decode(files['manifest.json']));
+    manifest.profileName = 'x'.repeat(81);
+    files['manifest.json'] = new TextEncoder().encode(JSON.stringify(manifest));
+    await expect(inspectBackup(zipSync(files))).rejects.toThrow();
+  });
+
   it('includes complete Gutenberg notice/terms only with credited session content and retains them after restore', async () => {
     const empty = unzipSync(await exportBackup('local-guest'));
     expect(empty['gutenberg-license.txt']).toBeUndefined();

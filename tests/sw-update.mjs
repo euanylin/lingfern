@@ -38,10 +38,15 @@ try {
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
   assert.equal(await page.evaluate(() => !!navigator.serviceWorker.controller), true);
-  const previousStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(await readFile(join(previousRoot, 'index.html'), 'utf8'))[1];
-  const currentStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(await readFile(join(root, 'index.html'), 'utf8'))[1];
+  const previousHtml = await readFile(join(previousRoot, 'index.html'), 'utf8');
+  const currentHtml = await readFile(join(root, 'index.html'), 'utf8');
+  const previousStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(previousHtml)[1];
+  const currentStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(currentHtml)[1];
+  const previousScript = /<script[^>]+type="module"[^>]+src="([^"]+)"/.exec(previousHtml)[1];
+  const currentScript = /<script[^>]+type="module"[^>]+src="([^"]+)"/.exec(currentHtml)[1];
   assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), previousStyle);
-  if (previousBuild) assert.notEqual(previousStyle, currentStyle, 'The archived predecessor must exercise a real asset revision');
+  assert.equal(await page.locator('script[type=module]').getAttribute('src'), previousScript);
+  if (previousBuild) assert.notDeepEqual([previousStyle, previousScript], [currentStyle, currentScript], 'The archived predecessor must exercise a real application asset revision');
   await page.goto(`${origin}/settings`);
   await page.getByRole('button', { name: '检查更新' }).click();
   await page.getByText('已是最新版本。').waitFor();
@@ -101,6 +106,8 @@ try {
     await refreshed;
     await page.waitForFunction(async () => !(await navigator.serviceWorker.getRegistration())?.waiting);
     await page.getByRole('heading', { name: '设置', exact: true }).waitFor();
+    assert.equal(await page.locator('script[type=module]').getAttribute('src'), currentScript);
+    assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), currentStyle);
     await section.getByRole('button', { name: '检查更新', exact: true }).waitFor();
     await page.setViewportSize({ width: 1280, height: 900 });
     await section.evaluate(element => element.scrollIntoView({ block: 'center' }));
@@ -193,6 +200,7 @@ try {
   await page.waitForFunction(async () => !(await navigator.serviceWorker.getRegistration())?.waiting, { timeout: 15000 });
   await page.getByRole('heading', { name: '今日' }).waitFor();
   assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), currentStyle);
+  assert.equal(await page.locator('script[type=module]').getAttribute('src'), currentScript);
   assert.deepEqual(await savedState(page), saved);
   console.log('PASS: invalid update preserved the active worker and offline answer; valid update waited during learning, another active tab blocked activation, exact saved draft/formal answer and lesson snapshot retained.');
   }

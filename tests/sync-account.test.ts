@@ -8,8 +8,26 @@ import { exportBackup, importBackup, inspectBackup } from '../src/data/backup';
 
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
 
+it.each(['学'.repeat(80), '𝒜'.repeat(40)])('keeps repeated restores and account copies exportable at the profile-name boundary', async name => {
+  await profiles.put({ id: 'p', name, createdAt: new Date().toISOString() });
+  await saveSense('p', 'sense', 'word', 'definition');
+  const original = (await pendingSyncBatch('p'))!;
+  const events = await readSyncEvents('p');
+  let current = 'p';
+  for (let round = 0; round < 8; round++) {
+    current = round % 2 ? await copyProfileForAccount(current, 2) : await importBackup(await inspectBackup(await exportBackup(current)));
+    const exported = await inspectBackup(await exportBackup(current));
+    expect(exported.summary.profileName.length).toBeLessThanOrEqual(80);
+    expect(new TextDecoder().decode(new TextEncoder().encode(exported.summary.profileName))).toBe(exported.summary.profileName);
+    expect(exported.records.memories).toEqual([expect.objectContaining({ memoryId: 'sense', term: 'word', definition: 'definition' })]);
+    expect(await readSyncEvents(current)).toEqual(events);
+    expect(await pendingSyncBatch(current)).toMatchObject({ batch: original.batch, hash: original.hash });
+  }
+  expect((await profiles.get('p'))?.name).toBe(name);
+});
+
 it('copies originals explicitly without transferring another account acknowledgement or changing the source', async () => {
-  await profiles.put({ id: 'p', name: 'Original', createdAt: new Date().toISOString() });
+  await profiles.put({ id: 'p', name: 'Original'.padEnd(80, 'x'), createdAt: new Date().toISOString() });
   await settings.put({ key: 'activeProfile', value: 'p' });
   await settings.put({ key: 'profile:p:syncAccount', value: JSON.stringify({ accountId: 1, profileId: 'p' }) });
   await saveSense('p', 'sense', 'private term', 'private definition');
