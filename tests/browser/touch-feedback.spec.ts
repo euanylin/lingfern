@@ -16,7 +16,7 @@ test.describe('touch feedback', () => {
     const point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
     await expect.poll(() => trigger.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(idle.color);
-    await expect.poll(() => trigger.evaluate(el => getComputedStyle(el).boxShadow)).not.toBe('none');
+    await expect(trigger).toHaveCSS('box-shadow', 'none');
     expect((await trigger.boundingBox())!.width).toBeCloseTo(idle.width, 1);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
     await expect(page.getByRole('listbox')).toBeVisible();
@@ -68,6 +68,33 @@ test.describe('touch feedback', () => {
     await expect(page.locator('[data-touch-active]')).toHaveCount(0); await cdp.detach();
   });
 
+  test('touch navigation clears inherited keyboard rings and Tab restores them on the same touchscreen', async ({ page, context }, info) => {
+    await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/settings');
+    const library = page.locator('.mobile-nav a[href="/library"]');
+    await library.focus(); await library.press('ArrowRight');
+    await expect(library).toHaveCSS('outline-width', '2px');
+    const box = (await library.boundingBox())!, cdp = await context.newCDPSession(page);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+    await expect(library).toHaveCSS('outline-width', '0px');
+    await page.screenshot({ path: info.outputPath('touch-navigation-no-ring.png') });
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await expect(page).toHaveURL(/\/library$/); await expect(library).toHaveCSS('outline-width', '0px');
+    await page.keyboard.press('Tab');
+    await expect(page.locator('.mobile-nav a[href="/settings"]')).toBeFocused();
+    await expect(page.locator('.mobile-nav a[href="/settings"]')).toHaveCSS('outline-width', '2px');
+    await cdp.detach();
+  });
+
+  test('typing after touch focus keeps native text entry without restoring a bright ring', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/library/dictionary');
+    const query = page.locator('#dictionary-query'); await query.tap(); await page.keyboard.type('dad');
+    await expect(page.locator('html')).toHaveAttribute('data-touch-input', '');
+    await expect(query).toBeFocused(); await expect(query).toHaveValue('dad');
+    await expect(query).toHaveCSS('outline-style', 'none');
+    await expect(query).toHaveCSS('box-shadow', /0px 0px 0px 0px inset/);
+    await page.keyboard.press('Tab'); await expect(page.locator('html')).not.toHaveAttribute('data-touch-input');
+  });
+
   test('touching resource labels keeps native selection and ignores disabled actions', async ({ page, context }) => {
     await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/library');
     const row = page.locator('.package-row').filter({ hasText: '英英词典' });
@@ -117,13 +144,15 @@ test.describe('portable touch feedback', () => {
     await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
     const trigger = page.locator('.settings-language .setting-trigger');
     await trigger.evaluate(el => el.scrollIntoView({ block: 'center' }));
-    const samples = trigger.evaluate(el => new Promise<{ active: boolean; shadow: string }[]>(resolve => {
-      const frames: { active: boolean; shadow: string }[] = [], started = performance.now();
-      const frame = () => { frames.push({ active: el.hasAttribute('data-touch-active'), shadow: getComputedStyle(el).boxShadow }); if (performance.now() - started < 500) requestAnimationFrame(frame); else resolve(frames); };
+    const idle = await trigger.evaluate(el => getComputedStyle(el).backgroundColor);
+    const samples = trigger.evaluate(el => new Promise<{ active: boolean; shadow: string; background: string }[]>(resolve => {
+      const frames: { active: boolean; shadow: string; background: string }[] = [], started = performance.now();
+      const frame = () => { frames.push({ active: el.hasAttribute('data-touch-active'), shadow: getComputedStyle(el).boxShadow, background: getComputedStyle(el).backgroundColor }); if (performance.now() - started < 500) requestAnimationFrame(frame); else resolve(frames); };
       requestAnimationFrame(frame);
     }));
     await trigger.tap(); const frames = await samples;
-    expect(frames.some(f => f.active && f.shadow !== 'none')).toBe(true);
+    expect(frames.some(f => f.active && f.background !== idle)).toBe(true);
+    expect(frames.filter(f => f.active).every(f => f.shadow === 'none')).toBe(true);
     expect(frames.at(-1)!.active).toBe(false);
     await expect(page.getByRole('listbox')).toBeVisible();
     await page.getByRole('listbox').locator(`[role=option][data-value="${locale}"]`).tap();

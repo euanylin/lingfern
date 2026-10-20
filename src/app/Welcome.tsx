@@ -43,9 +43,10 @@ export function Welcome(props: WelcomeProps) {
   const [width, setWidth] = useState(0), [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [screenRatio, setScreenRatio] = useState(() => innerWidth / innerHeight);
   const stage = useRef<HTMLDivElement>(null), frame = useRef(0), current = useRef(0);
-  const drag = useRef<{ id: number; x: number; y: number; position: number; moved: boolean } | undefined>(undefined), suppressClick = useRef(false);
+  const drag = useRef<{ id: number; x: number; y: number; position: number; moved: boolean; axis?: 'x' | 'y' } | undefined>(undefined), suppressClick = useRef(false);
   const pointerHeld = useRef(false);
-  const idleUntil = useRef(performance.now() + 6000), keyboard = useRef(false), wheel = useRef({ at: 0, total: 0, used: false });
+  const idleUntil = useRef(performance.now() + 6000), keyboard = useRef(false);
+  const wheel = useRef<{ at: number; total: number; start: number; horizontal: boolean; timer?: ReturnType<typeof setTimeout> }>({ at: 0, total: 0, start: 0, horizontal: false });
   const rtl = locale === 'ar' ? -1 : 1;
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)'), update = () => setReduced(media.matches);
@@ -59,6 +60,7 @@ export function Welcome(props: WelcomeProps) {
   const shift = innerWidth < 700 ? Math.min(75, width * .18) : Math.min(300, Math.max(24, (width - cardWidth * .85) / 2));
   function paint(value: number) { current.current = value; setPosition(value); setActive(((Math.round(value) % 3) + 3) % 3); }
   const go = useCallback((target: number) => {
+    clearTimeout(wheel.current.timer); wheel.current.timer = undefined; wheel.current.at = 0;
     idleUntil.current = performance.now() + 6000;
     cancelAnimationFrame(frame.current);
     const start = current.current, began = performance.now();
@@ -98,18 +100,29 @@ export function Welcome(props: WelcomeProps) {
   useEffect(() => {
     const root = stage.current!;
     const scroll = (event: WheelEvent) => {
-      if (innerWidth < 700 || event.ctrlKey || event.metaKey || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
-      const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey, delta = (event.shiftKey ? event.deltaY * rtl : event.deltaX * rtl) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
-      if (!horizontal || !delta) return;
-      event.preventDefault(); keyboard.current = false;
+      if (event.ctrlKey || event.metaKey || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
       const now = performance.now(); idleUntil.current = now + 6000;
-      if (now - wheel.current.at > 180) wheel.current = { at: now, total: 0, used: false };
-      wheel.current.at = now; wheel.current.total += delta;
-      if (!wheel.current.used && Math.abs(wheel.current.total) >= 40) { wheel.current.used = true; go(Math.round(current.current) + Math.sign(wheel.current.total)); }
+      const gesture = wheel.current;
+      const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey;
+      if (!gesture.at || now - gesture.at > 180 || (!gesture.horizontal && horizontal)) {
+        clearTimeout(gesture.timer);
+        gesture.start = current.current; gesture.total = 0;
+        gesture.horizontal = horizontal;
+      }
+      gesture.at = now;
+      if (!gesture.horizontal || (!horizontal && Math.abs(event.deltaY) >= 8)) return;
+      // Own horizontal gestures only inside the carousel, including their momentum tail.
+      event.preventDefault(); keyboard.current = false; cancelAnimationFrame(frame.current);
+      gesture.total += (event.shiftKey ? event.deltaY * rtl : event.deltaX * rtl) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+      const target = Math.round(gesture.start) + (Math.abs(gesture.total) >= 40 ? Math.sign(gesture.total) : 0);
+      const value = reduced ? target : gesture.start + Math.max(-1, Math.min(1, gesture.total / Math.max(90, shift * 1.1)));
+      frame.current = requestAnimationFrame(() => paint(value));
+      clearTimeout(gesture.timer);
+      gesture.timer = setTimeout(() => { gesture.at = 0; gesture.timer = undefined; go(target); }, 180);
     };
     root.addEventListener('wheel', scroll, { passive: false });
-    return () => root.removeEventListener('wheel', scroll);
-  }, [go, rtl]);
+    return () => { root.removeEventListener('wheel', scroll); clearTimeout(wheel.current.timer); };
+  }, [go, rtl, shift, reduced]);
   function end(event: ReactPointerEvent<HTMLDivElement>) {
     const held = drag.current; drag.current = undefined;
     if (!held || held.id !== event.pointerId) return;
@@ -119,13 +132,16 @@ export function Welcome(props: WelcomeProps) {
   }
   return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': Math.max(.9, Math.min(1.85, screenRatio)) } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); go(active + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
     <div className="welcome-stage" ref={stage} role="region" aria-roledescription={t.carousel} aria-label={t.carousel}
-      onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, moved: false }; } }}
+      onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { clearTimeout(wheel.current.timer); wheel.current.at = 0; cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, moved: false }; } }}
       onPointerMove={event => {
         idleUntil.current = performance.now() + 6000;
         const held = drag.current; if (!held || held.id !== event.pointerId) return;
         const dx = event.clientX - held.x, dy = event.clientY - held.y;
-        if (!held.moved && Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) { held.moved = true; cancelAnimationFrame(frame.current); event.currentTarget.setPointerCapture(event.pointerId); }
-        if (held.moved) { event.preventDefault(); paint(held.position - dx * rtl / Math.max(90, shift * 1.1)); }
+        if (!held.axis && Math.max(Math.abs(dx), Math.abs(dy)) >= 12) {
+          if (Math.abs(dy) > Math.abs(dx)) held.axis = 'y';
+          else if (Math.abs(dx) >= Math.abs(dy) * 1.25) { held.axis = 'x'; held.moved = true; cancelAnimationFrame(frame.current); event.currentTarget.setPointerCapture(event.pointerId); }
+        }
+        if (held.axis === 'x') { event.preventDefault(); paint(held.position + Math.max(-1, Math.min(1, -dx * rtl / Math.max(90, shift * 1.1)))); }
       }} onPointerUp={end} onPointerCancel={end}
       onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; event.preventDefault(); event.stopPropagation(); } }}>
       {titles.map((title, index) => {

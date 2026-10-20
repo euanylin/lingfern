@@ -70,6 +70,41 @@ test('mouse wheel and trackpad switch horizontally once per burst while vertical
   await expect(current).toHaveAttribute('aria-label', '第 1 张，共 3 张');
 });
 
+test('small trackpad deltas move cards continuously before the switch threshold and settle once', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
+  await content.hover();
+  const samples: number[] = [];
+  for (const delta of [12, 11, 10, 9, 8, 6]) {
+    await page.mouse.wheel(delta, 0);
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
+  }
+  expect(samples[0]).toBeLessThan(-1);
+  expect(samples.every((x, i) => !i || x <= samples[i - 1] + .1)).toBe(true);
+  expect(samples.every((x, i) => !i || Math.abs(x - samples[i - 1]) < 30)).toBe(true);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+  await expect.poll(() => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
+  await test.info().attach('trackpad-contact-positions', {body:JSON.stringify(samples),contentType:'application/json'});
+});
+
+test('narrow-view trackpad gestures belong to the cards while normal browser Back remains available', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/today'); await page.goto('/introduction');
+  const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
+  await expect(content).toHaveCSS('touch-action', 'pan-y'); await expect(content).toHaveCSS('overscroll-behavior-x', 'contain');
+  await page.evaluate(() => {
+    (window as unknown as {wheelOwnership:boolean[]}).wheelOwnership = [];
+    window.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) (window as unknown as {wheelOwnership:boolean[]}).wheelOwnership.push(e.defaultPrevented); });
+  });
+  await content.hover();
+  for (const delta of [14, 14, 14, 14]) { await page.mouse.wheel(delta, 0); await page.evaluate(() => new Promise(requestAnimationFrame)); }
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+  const ownership = await page.evaluate(() => (window as unknown as {wheelOwnership:boolean[]}).wheelOwnership);
+  expect(ownership.length).toBeGreaterThan(0); expect(ownership.every(Boolean)).toBe(true);
+  await expect(page).toHaveURL(/\/introduction$/);
+  await page.goBack(); await expect(page).toHaveURL(/\/today$/); await expect(page.getByRole('heading',{name:'今日',exact:true})).toBeVisible();
+});
+
 test('the same fern reverses its growth when Today leaves and resumes on return', async ({ page }) => {
   await page.goto('/'); await expect(page.locator('.welcome')).toBeVisible();
   const fern = page.locator('.welcome .fern');
@@ -91,6 +126,50 @@ test('the same fern reverses its growth when Today leaves and resumes on return'
 
 test.describe('native touch carousel', () => {
   test.use({ hasTouch: true });
+  test('a multi-frame swipe starting inside the scrolling card keeps pointer ownership without jumps', async ({ page, context }) => {
+    await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
+    const content = page.locator('.welcome-card').first().locator('.welcome-content');
+    const box = (await content.boundingBox())!, x = box.x + box.width * .8, y = box.y + box.height * .55;
+    await page.evaluate(() => {
+      const events: string[] = []; (window as unknown as { swipeEvents: string[] }).swipeEvents = events;
+      for (const name of ['pointermove','pointercancel']) document.querySelector('.welcome-stage')!.addEventListener(name, () => events.push(name));
+    });
+    const cdp = await context.newCDPSession(page), positions: number[] = [];
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{x,y}] });
+    for (let i = 1; i <= 8; i++) {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{x:x-i*12,y:y+1}] });
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      positions.push(await page.locator('.welcome-card').first().evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
+    }
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    const events = await page.evaluate(() => (window as unknown as {swipeEvents:string[]}).swipeEvents);
+    expect(events.filter(e => e === 'pointercancel')).toHaveLength(0);
+    expect(events.filter(e => e === 'pointermove').length).toBeGreaterThanOrEqual(6);
+    expect(positions.every((x, i) => !i || x <= positions[i - 1] + .1)).toBe(true);
+    expect(positions.every((x, i) => !i || Math.abs(x - positions[i - 1]) < 20)).toBe(true);
+    await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+    await expect(content).toHaveJSProperty('scrollLeft', 0);
+    await test.info().attach('content-swipe-positions', {body:JSON.stringify({events,positions}),contentType:'application/json'});
+    await cdp.detach();
+  });
+  test('mobile preview contents do not scroll horizontally while vertical scrolling and card switching remain available', async ({ page }) => {
+    for (const width of [320, 390, 767]) {
+      await page.setViewportSize({ width, height: 600 }); await page.goto('/introduction');
+      for (let index = 0; index < 3; index++) {
+        await page.locator('.welcome-dots button').nth(index).tap();
+        const current = page.locator('.welcome-card[data-current=true]');
+        await expect(current).toHaveAttribute('aria-label', `第 ${index + 1} 张，共 3 张`);
+        const content = current.locator('.welcome-content');
+        await expect(content).toHaveCSS('overflow-x', 'hidden');
+        await expect(content).toHaveCSS('overflow-y', 'auto');
+        expect(await content.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
+        const box = (await content.boundingBox())!;
+        await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+        await page.mouse.wheel(100, 0);
+        await expect.poll(() => content.evaluate(el => el.scrollLeft)).toBe(0);
+      }
+    }
+  });
   test('horizontal contact follows the finger, settles, and does not activate preview controls', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/'); await expect(page.locator('.welcome')).toBeVisible();
     const cdp = await page.context().newCDPSession(page), stage = (await page.locator('.welcome-stage').boundingBox())!;
@@ -113,6 +192,22 @@ test.describe('native touch carousel', () => {
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
     await expect.poll(() => current.locator('.welcome-content').evaluate(el => el.scrollTop)).toBeGreaterThan(0);
     await expect(current).toHaveAttribute('aria-label', before!); await expect(page.locator('.first-run')).toHaveCount(0); await cdp.detach();
+  });
+  test('small sideways finger drift at the start of vertical reading does not twitch the card', async ({ page, context }) => {
+    await page.setViewportSize({width:390,height:440}); await page.goto('/introduction');
+    const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content'), box = (await content.boundingBox())!;
+    const x=box.x+box.width/2,y=box.y+box.height-20,cdp=await context.newCDPSession(page),positions:number[]=[];
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+    for(const [dx,dy] of [[8,1],[9,26],[20,90],[30,170]]) {
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx,y:y-dy}]});
+      await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+      positions.push(await first.evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
+    }
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    expect(positions.every(x=>Math.abs(x)<.1)).toBe(true);
+    await expect.poll(()=>content.evaluate(el=>el.scrollTop)).toBeGreaterThan(0);
+    await expect(first).toHaveAttribute('data-current','true');await cdp.detach();
+    await test.info().attach('vertical-finger-drift',{body:JSON.stringify(positions),contentType:'application/json'});
   });
 });
 
@@ -247,6 +342,8 @@ for (const [locale, theme, width] of [['zh-Hans','light',390],['en','dark',1440]
     const preview = page.locator('.welcome-card[data-current=true] .settings-page'); await expect(preview).toBeVisible();
     expect(await page.locator('.welcome-card[data-current=true] .welcome-window').evaluate(el => [...el.querySelectorAll('a,button,input,select,textarea,summary,[tabindex]')].filter(node => !node.closest('[inert]')).every(node => !!node.closest('.daily-quote,.desktop-nav,.welcome-mobile-nav')))).toBe(true);
     const normal = await context.newPage(); await normal.goto('/settings');
+    await expect(preview.locator('.github-status-line')).not.toHaveAttribute('data-status', 'loading');
+    await expect(normal.locator('.github-status-line')).not.toHaveAttribute('data-status', 'loading');
     for (const selector of ['.settings-language','.settings-appearance','.settings-dictionary-row','.settings-start-link','.github-identity','.mcp-settings','.profile-backup','.settings-update-row','.settings-about-link']) {
       await expect(preview.locator(selector)).toHaveCount(1);
       expect(await preview.locator(selector).innerText()).toBe(await normal.locator('.settings-page').locator(selector).innerText());
