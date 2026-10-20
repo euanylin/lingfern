@@ -71,21 +71,25 @@ test('mouse wheel and trackpad switch horizontally once per burst while vertical
 });
 
 test('small trackpad deltas move cards continuously before the switch threshold and settle once', async ({ page }) => {
+  await page.clock.install();
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
   await content.hover();
+  // Browser sampling must not turn one continuous gesture into separated wheel bursts.
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   const samples: number[] = [];
   for (const delta of [12, 11, 10, 9, 8, 6]) {
     await page.mouse.wheel(delta, 0);
-    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await page.clock.runFor(32);
     samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
   }
+  await test.info().attach('trackpad-contact-positions', {body:JSON.stringify(samples),contentType:'application/json'});
   expect(samples[0]).toBeLessThan(-1);
   expect(samples.every((x, i) => !i || x <= samples[i - 1] + .1)).toBe(true);
   expect(samples.every((x, i) => !i || Math.abs(x - samples[i - 1]) < 30)).toBe(true);
+  await page.clock.runFor(1000);
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await expect.poll(() => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
-  await test.info().attach('trackpad-contact-positions', {body:JSON.stringify(samples),contentType:'application/json'});
 });
 
 test('narrow-view trackpad gestures belong to the cards while normal browser Back remains available', async ({ page }) => {
