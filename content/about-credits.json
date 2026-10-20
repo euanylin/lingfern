@@ -36,6 +36,14 @@
       ]
     },
     {
+      "name": "wheel-gestures",
+      "license": "MIT",
+      "url": "https://github.com/xiel/wheel-gestures",
+      "packages": [
+        "wheel-gestures"
+      ]
+    },
+    {
       "name": "fflate",
       "license": "MIT",
       "url": "https://github.com/101arrowz/fflate",

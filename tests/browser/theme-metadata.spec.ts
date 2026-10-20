@@ -71,7 +71,9 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
     await expect(picker).toBeFocused();
     const focused = await shape();
     expect({ ...focused, shadow: resting.shadow }).toEqual(resting);
-    if (await picker.evaluate(el => el.matches(':focus-visible'))) expect(focused.shadow).toContain('2px inset');
+    if (await picker.evaluate(el => el.matches(':focus-visible'))) {
+      expect(focused.shadow).toBe('none'); await expect(picker.locator('span').first()).toHaveCSS('text-decoration-line', 'underline');
+    }
     else expect(focused.shadow).toBe(resting.shadow);
     await picker.evaluate(el => (el as HTMLElement).blur());
     expect(await shape()).toEqual(resting);

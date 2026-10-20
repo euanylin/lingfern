@@ -24,7 +24,7 @@ for (const [locale, width] of [['zh-Hans', 1440], ['zh-Hant', 375], ['en', 640],
       expect(radii.every(radius => radius > 0 && radius === radii[0])).toBe(true);
     }
     await expect(input).toBeFocused();
-    expect(await input.evaluate(el => getComputedStyle(el).boxShadow)).toContain('inset');
+    expect(await input.evaluate(el => getComputedStyle(el).boxShadow)).toBe('none');
     expect(await menu.getByRole('option').evaluateAll(items => items.every(item => item.getBoundingClientRect().height >= 44))).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     if (locale === 'ar') await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');

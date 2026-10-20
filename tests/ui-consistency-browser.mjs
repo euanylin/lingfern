@@ -34,13 +34,13 @@ try{
     }
    }
    for(const field of await page.locator('main input:not([type=radio],[type=checkbox],[type=file],[type=range]),main textarea').all()){
-    if(!await field.isVisible())continue;await field.focus();assert(await field.evaluate(element=>{const style=getComputedStyle(element);return style.outlineStyle==='none'&&style.boxShadow.includes('inset')&&style.borderRadius===getComputedStyle(document.documentElement).getPropertyValue('--corner-radius').trim();}));await field.blur();
+    if(!await field.isVisible())continue;await field.focus();assert(await field.evaluate(element=>{const style=getComputedStyle(element);return style.outlineStyle==='none'&&style.boxShadow==='none'&&style.borderRadius===getComputedStyle(document.documentElement).getPropertyValue('--corner-radius').trim();}));await field.blur();
    }
    if(locale==='zh-Hans'&&['settings','library/ipa','today'].includes(route)&&[375,1440].includes(width))await page.screenshot({animations:'disabled',path:`output/playwright/ui-audit-${route.replaceAll('/','-')}-${width}-${theme}.png`});views++;
   }
  }
  await page.goto(origin+'/start');await page.getByRole('button',{name:'Skip this step',exact:true}).click();await expect(page.locator('.first-run-choices .option').first()).toBeVisible();await page.locator('.first-run-choices input[type=radio]').last().check();
- assert(await page.locator('.first-run-choices .option').last().evaluate(element=>{const style=getComputedStyle(element);return style.borderRadius===getComputedStyle(document.documentElement).getPropertyValue('--corner-radius').trim()&&style.boxShadow.includes('inset');}));
+ assert(await page.locator('.first-run-choices .option').last().evaluate(element=>{const style=getComputedStyle(element);return style.borderRadius===getComputedStyle(document.documentElement).getPropertyValue('--corner-radius').trim()&&style.boxShadow==='none';}));
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.first-run-choices .option').last().evaluate(element=>getComputedStyle(element).transitionDuration),'0s');
  await page.goto(origin+'/settings');await page.locator('.settings-preferences .setting-trigger').first().click();await page.locator('.setting-menu [data-value="zh-Hans"]').click();await expect(page.locator('.settings-preferences .setting-trigger').first()).toHaveAttribute('data-value','zh-Hans');await page.goto(origin+'/today');await expect(page.getByRole('heading',{name:'今日',exact:true})).toBeAttached();assert.deepEqual(errors,[]);
  console.log(`PASS: ${files.length} component source inventory; ${views} route/locale/theme/viewport combinations, shared input focus/radius, existing pickers, selected rows, contained navigation hover/scroll/focus, reduced motion and Today. Conditional account/learning states use separate browser runners.`);

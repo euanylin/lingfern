@@ -1,5 +1,6 @@
+import { WheelGestures } from 'wheel-gestures';
 import { NavIcon } from './NavIcon';
-import { memo, useCallback, useEffect, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react';
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react';
 import { messages } from '../locales';
 import { topicSchema, type Locale } from '../shared/content';
 import { DailyQuote } from './DailyQuote';
@@ -39,14 +40,15 @@ type WelcomeProps = { locale: Locale; profileId: string; date: string; onDayChan
 export function Welcome(props: WelcomeProps) {
   const { locale, onContinue } = props, t = messages('onboarding')[locale], app = messages('app')[locale];
   const titles = [app.today, app.library, app.settings], subtitles = [t.subToday, t.subLibrary, `${app.preferences} · ${t.subSync}`];
-  const [position, setPosition] = useState(0), [active, setActive] = useState(0);
+  const [active, setActive] = useState(0), [fernActive, setFernActive] = useState(true);
   const [width, setWidth] = useState(0), [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [screenRatio, setScreenRatio] = useState(() => innerWidth / innerHeight);
-  const stage = useRef<HTMLDivElement>(null), frame = useRef(0), current = useRef(0);
-  const drag = useRef<{ id: number; x: number; y: number; position: number; moved: boolean; axis?: 'x' | 'y' } | undefined>(undefined), suppressClick = useRef(false);
-  const pointerHeld = useRef(false);
+  const stage = useRef<HTMLDivElement>(null), frame = useRef(0), current = useRef(0), destination = useRef(0);
+  const cards = useRef<(HTMLElement | null)[]>([]), dots = useRef<(HTMLSpanElement | null)[]>([]);
+  const selected = useRef(0), growing = useRef(true);
+  const drag = useRef<{ id: number; x: number; y: number; position: number; moved: boolean; at: number; last: number; velocity: number; axis?: 'x' | 'y' } | undefined>(undefined), suppressClick = useRef(false);
+  const pointerHeld = useRef(false), cancelWheel = useRef(() => {});
   const idleUntil = useRef(performance.now() + 6000), keyboard = useRef(false);
-  const wheel = useRef<{ at: number; total: number; start: number; horizontal: boolean; timer?: ReturnType<typeof setTimeout> }>({ at: 0, total: 0, start: 0, horizontal: false });
   const rtl = locale === 'ar' ? -1 : 1;
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)'), update = () => setReduced(media.matches);
@@ -58,20 +60,51 @@ export function Welcome(props: WelcomeProps) {
   }, []);
   const cardWidth = Math.min(width - (innerWidth < 700 ? 40 : 0), innerWidth < 700 ? 420 : screenRatio <= 1 ? 600 : 900);
   const shift = innerWidth < 700 ? Math.min(75, width * .18) : Math.min(300, Math.max(24, (width - cardWidth * .85) / 2));
-  function paint(value: number) { current.current = value; setPosition(value); setActive(((Math.round(value) % 3) + 3) % 3); }
-  const go = useCallback((target: number) => {
-    clearTimeout(wheel.current.timer); wheel.current.timer = undefined; wheel.current.at = 0;
+  const paint = useCallback((value: number) => {
+    current.current = value;
+    const next = ((Math.round(value) % 3) + 3) % 3;
+    if (next !== selected.current) { selected.current = next; setActive(next); }
+    const todayActive = Math.abs(((value + 4.5) % 3 + 3) % 3 - 1.5) < .25;
+    if (todayActive !== growing.current) { growing.current = todayActive; setFernActive(todayActive); }
+    cards.current.forEach((card, index) => {
+      if (!card) return;
+      const distance = ((index - value + 4.5) % 3 + 3) % 3 - 1.5, away = Math.abs(distance), side = Math.max(-1, Math.min(1, distance));
+      const x = (side + (distance - side) * .3) * shift * rtl;
+      const scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
+      // Parallel, flattened cards exchange depth as whole surfaces instead of intersecting tilted planes.
+      card.style.transform = reduced ? 'none' : `translate3d(${x}px,0,${-100 * away}px) scale(${scale})`;
+      card.style.opacity = String(reduced ? Number(index === next) : away > 1 ? Math.max(0, 1 - (away - 1) / .4) : 1);
+      card.style.visibility = reduced && index !== next ? 'hidden' : 'visible';
+      if (card.dataset.current !== String(index === next)) { card.dataset.current = String(index === next); card.setAttribute('aria-hidden', String(index !== next)); }
+      card.querySelector<HTMLElement>('.welcome-window')!.inert = index !== next || !!drag.current?.moved;
+      card.querySelector<HTMLElement>('.welcome-shadow')!.style.opacity = String(reduced ? 1 : 1 - .8 * Math.min(away, 1));
+      card.querySelector<HTMLElement>('.welcome-shade')!.style.opacity = String(reduced ? 0 : Math.min(.25, away * .18));
+      const amount = Math.max(0, Math.min(1, (away - .25) / .75));
+      card.querySelector<HTMLElement>('.welcome-blur')!.style.opacity = String(reduced ? 0 : amount * amount * (3 - 2 * amount));
+      const dot = dots.current[index], weight = Math.max(0, 1 - away);
+      if (dot) {
+        const button = dot.parentElement!;
+        if (index === next) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current');
+        dot.style.transform = `scaleX(${(7 + 19 * weight) / 26})`; dot.style.opacity = String(.4 + .6 * weight); dot.style.borderRadius = `${3.5 * 26 / (7 + 19 * weight)}px / 3.5px`; }
+    });
+  }, [reduced, rtl, shift]);
+  useLayoutEffect(() => { paint(current.current); }, [paint]);
+  const go = useCallback((target: number, velocity = 0) => {
     idleUntil.current = performance.now() + 6000;
     cancelAnimationFrame(frame.current);
-    const start = current.current, began = performance.now();
-    const finish = () => { const next = ((Math.round(target) % 3) + 3) % 3; paint(next); };
+    const offset = current.current - target, speed = Math.max(-6, Math.min(6, velocity)), began = performance.now();
+    destination.current = target;
+    const finish = () => { frame.current = 0; destination.current = ((Math.round(target) % 3) + 3) % 3; paint(destination.current); };
     if (reduced || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+    // A critically damped release keeps its velocity and can be interrupted at any frame.
     const animate = (now: number) => {
-      const progress = Math.min(1, (now - began) / 720); paint(start + (target - start) * (1 - (1 - progress) ** 4));
-      if (progress < 1) frame.current = requestAnimationFrame(animate); else finish();
+      const seconds = (now - began) / 1000, decay = Math.exp(-18 * seconds);
+      const value = target + (offset + (speed + 18 * offset) * seconds) * decay;
+      paint(value);
+      if (seconds < .8 && Math.abs(value - target) > .0005) frame.current = requestAnimationFrame(animate); else finish();
     };
     frame.current = requestAnimationFrame(animate);
-  }, [reduced]);
+  }, [paint, reduced]);
   useEffect(() => { if (reduced) go(Math.round(current.current)); }, [go, reduced]);
   useEffect(() => {
     if (reduced) return;
@@ -98,41 +131,57 @@ export function Welcome(props: WelcomeProps) {
     };
   }, [go, reduced]);
   useEffect(() => {
-    const root = stage.current!;
-    const scroll = (event: WheelEvent) => {
-      if (event.ctrlKey || event.metaKey || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
-      const now = performance.now(); idleUntil.current = now + 6000;
-      const gesture = wheel.current;
-      const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey;
-      if (!gesture.at || now - gesture.at > 180 || (!gesture.horizontal && horizontal)) {
-        clearTimeout(gesture.timer);
-        gesture.start = current.current; gesture.total = 0;
-        gesture.horizontal = horizontal;
+    const root = stage.current!, gestures = WheelGestures({ preventWheelAction: false, reverseSign: false });
+    let start = 0, origin = 0, total = 0, velocity = 0, settled = false, lastAt = 0, peak = 0, lastDelta = 0;
+    let release: ReturnType<typeof setTimeout>;
+    const settle = (ending = false) => { if (!settled && !drag.current) { settled = ending || Math.abs(total) >= 40; go(target(), velocity); } };
+    const target = () => origin + (Math.abs(total) >= 40 ? Math.sign(total) : 0);
+    cancelWheel.current = () => { settled = true; clearTimeout(release); };
+    const off = gestures.on('wheel', event => {
+      if (drag.current) return;
+      if (event.isEnding) { clearTimeout(release); if (!event.isMomentumCancel) settle(true); return; }
+      const delta = (event.event.shiftKey ? event.axisDelta[1] : event.axisDelta[0]) * rtl;
+      const fresh = settled && !event.isMomentum && (Math.sign(delta) !== Math.sign(total) || Math.abs(delta) > Math.max(12, Math.abs(lastDelta) * 2) || event.event.timeStamp - lastAt > 160 && Math.abs(delta) >= Math.max(12, Math.min(peak * .8, Math.abs(lastDelta) * 2)));
+      if (event.isStart || fresh) {
+        peak = 0;
+        origin = frame.current ? destination.current : Math.round(current.current);
+        cancelAnimationFrame(frame.current); frame.current = 0; start = current.current; total = 0; settled = false;
       }
-      gesture.at = now;
-      if (!gesture.horizontal || (!horizontal && Math.abs(event.deltaY) >= 8)) return;
-      // Own horizontal gestures only inside the carousel, including their momentum tail.
-      event.preventDefault(); keyboard.current = false; cancelAnimationFrame(frame.current);
-      gesture.total += (event.shiftKey ? event.deltaY * rtl : event.deltaX * rtl) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
-      const target = Math.round(gesture.start) + (Math.abs(gesture.total) >= 40 ? Math.sign(gesture.total) : 0);
-      const value = reduced ? target : gesture.start + Math.max(-1, Math.min(1, gesture.total / Math.max(90, shift * 1.1)));
-      frame.current = requestAnimationFrame(() => paint(value));
-      clearTimeout(gesture.timer);
-      gesture.timer = setTimeout(() => { gesture.at = 0; gesture.timer = undefined; go(target); }, 180);
+      lastAt = event.event.timeStamp; lastDelta = delta;
+      if (settled) return;
+      peak = Math.max(peak, Math.abs(delta)); total += delta;
+      velocity = (event.event.shiftKey ? event.axisVelocity[1] : event.axisVelocity[0]) * rtl * 1000 / Math.max(90, shift * 1.1);
+      clearTimeout(release);
+      if (event.isMomentum) { settle(true); return; }
+      // Stop following after contact pauses, but keep the classifier alive for the inertia tail.
+      release = setTimeout(() => settle(), 100);
+      cancelAnimationFrame(frame.current); frame.current = 0;
+      paint(reduced ? target() : start + Math.max(-1, Math.min(1, total / Math.max(90, shift * 1.1))));
+    });
+    const scroll = (event: WheelEvent) => {
+      if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
+      idleUntil.current = performance.now() + 6000;
+      if (!(Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey)) return;
+      // Leave vertical scrolling and browser shortcuts native; own horizontal movement only here.
+      event.preventDefault(); keyboard.current = false; gestures.feedWheel(event);
     };
     root.addEventListener('wheel', scroll, { passive: false });
-    return () => { root.removeEventListener('wheel', scroll); clearTimeout(wheel.current.timer); };
-  }, [go, rtl, shift, reduced]);
+    return () => { root.removeEventListener('wheel', scroll); clearTimeout(release); cancelWheel.current = () => {}; off(); gestures.disconnect(); };
+  }, [go, paint, rtl, shift, reduced]);
   function end(event: ReactPointerEvent<HTMLDivElement>) {
     const held = drag.current; drag.current = undefined;
     if (!held || held.id !== event.pointerId) return;
     if (held.moved) suppressClick.current = true;
-    if (held.moved || Math.abs(current.current - Math.round(current.current)) > .001) go(Math.round(current.current));
+    const velocity = event.type === 'pointercancel' || performance.now() - held.at > 100 ? 0 : held.velocity;
+    if (held.moved || Math.abs(current.current - Math.round(current.current)) > .001) {
+      const projected = current.current + velocity * .16;
+      go(Math.max(Math.round(held.position) - 1, Math.min(Math.round(held.position) + 1, Math.round(projected))), velocity);
+    } else paint(current.current);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': Math.max(.9, Math.min(1.85, screenRatio)) } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); go(active + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
+  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': Math.max(.9, Math.min(1.85, screenRatio)), '--welcome-card-width': `${Math.max(0, cardWidth)}px` } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
     <div className="welcome-stage" ref={stage} role="region" aria-roledescription={t.carousel} aria-label={t.carousel}
-      onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { clearTimeout(wheel.current.timer); wheel.current.at = 0; cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, moved: false }; } }}
+      onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { cancelWheel.current(); cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, moved: false, at: performance.now(), last: current.current, velocity: 0 }; } }}
       onPointerMove={event => {
         idleUntil.current = performance.now() + 6000;
         const held = drag.current; if (!held || held.id !== event.pointerId) return;
@@ -141,27 +190,28 @@ export function Welcome(props: WelcomeProps) {
           if (Math.abs(dy) > Math.abs(dx)) held.axis = 'y';
           else if (Math.abs(dx) >= Math.abs(dy) * 1.25) { held.axis = 'x'; held.moved = true; cancelAnimationFrame(frame.current); event.currentTarget.setPointerCapture(event.pointerId); }
         }
-        if (held.axis === 'x') { event.preventDefault(); paint(held.position + Math.max(-1, Math.min(1, -dx * rtl / Math.max(90, shift * 1.1)))); }
+        if (held.axis === 'x') {
+          event.preventDefault();
+          const value = held.position + Math.max(-1, Math.min(1, -dx * rtl / Math.max(90, shift * 1.1))), now = performance.now();
+          held.velocity = (value - held.last) * 1000 / Math.max(8, now - held.at);
+          held.at = now; held.last = value; paint(value);
+        }
       }} onPointerUp={end} onPointerCancel={end}
       onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; event.preventDefault(); event.stopPropagation(); } }}>
-      {titles.map((title, index) => {
-        const distance = ((index - position + 4.5) % 3 + 3) % 3 - 1.5, away = Math.abs(distance), side = Math.max(-1, Math.min(1, distance));
-        const x = (side + (distance - side) * .3) * shift * rtl, scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
-        const amount = Math.max(0, Math.min(1, (away - .25) / .75)), blur = 1.25 * amount * amount * (3 - 2 * amount);
-        return <article key={index} className="welcome-card" data-current={index === active} role="group" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-hidden={index !== active} style={{ transform: reduced ? 'none' : `translateX(${x}px) scale(${scale}) perspective(1600px) rotateY(${side * 14 * rtl}deg)`, opacity: reduced ? Number(index === active) : away > 1 ? Math.max(0, 1 - (away - 1) / .4) : 1, zIndex: 100 - Math.round(away * 20), visibility: reduced && index !== active ? 'hidden' : 'visible' }}>
-          <div className="welcome-shadow" style={{ opacity: reduced ? 1 : 1 - .8 * Math.min(away, 1) }}/>
-          <div className="welcome-window" inert={index !== active || !!drag.current?.moved} style={{ filter: reduced || blur < .05 ? 'none' : `blur(${blur}px)` }}>
-            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><nav className="desktop-nav" data-display="text" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); go(target); }}><span className="nav-label">{app[name]}</span></a>)}</nav></header>
-            <div className="welcome-content">{index === 0 ? <TodayPreview {...props} active={Math.abs(((position + 4.5) % 3 + 3) % 3 - 1.5) < .25}/> : index === 1 ? <div inert><LibraryPreview locale={locale} profileId={props.profileId}/></div> : <div inert>{props.settings}</div>}</div>
-            <nav className="mobile-nav welcome-mobile-nav" data-display="both" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); go(target); }}><NavIcon name={name}/><span className="nav-label">{app[name]}</span></a>)}</nav>
-            <div className="welcome-shade" style={{ opacity: reduced ? 0 : Math.min(.25, away * .18) }}/>
+      {titles.map((_, index) => {
+        return <article key={index} ref={node => { cards.current[index] = node; }} className="welcome-card" data-current={index === 0} role="group" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-hidden={index !== 0}>
+          <div className="welcome-shadow"/>
+          <div className="welcome-window" inert={index !== 0}>
+            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><nav className="desktop-nav" data-display="text" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><span className="nav-label">{app[name]}</span></a>)}</nav></header>
+            <div className="welcome-content">{index === 0 ? <TodayPreview {...props} active={fernActive}/> : index === 1 ? <div inert><LibraryPreview locale={locale} profileId={props.profileId}/></div> : <div inert>{props.settings}</div>}</div>
+            <nav className="mobile-nav welcome-mobile-nav" data-display="both" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><NavIcon name={name}/><span className="nav-label">{app[name]}</span></a>)}</nav>
+            <div className="welcome-blur"/><div className="welcome-shade"/>
           </div>
-          {index !== active && !reduced && <button className="welcome-side" type="button" tabIndex={-1} aria-hidden="true" onClick={() => go(position + distance)}>{title}</button>}
         </article>;
       })}
     </div>
     <div className="welcome-caption"><div aria-live="polite" aria-atomic="true"><h1>{titles[active]}</h1><p>{subtitles[active]}</p></div>
-      <div className="welcome-controls"><div className="welcome-dots">{titles.map((title, index) => <button key={title} type="button" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-current={index === active ? 'true' : undefined} onClick={() => go(position + (((index - position + 4.5) % 3 + 3) % 3 - 1.5))}><span style={{ width: `${7 + 19 * Math.max(0, 1 - Math.abs(((index - position + 4.5) % 3 + 3) % 3 - 1.5))}px`, backgroundColor: `color-mix(in srgb,var(--ink) ${100 * Math.max(0, 1 - Math.abs(((index - position + 4.5) % 3 + 3) % 3 - 1.5))}%,var(--control))` }}/></button>)}</div></div>
+      <div className="welcome-controls"><div className="welcome-dots">{titles.map((_, index) => <button key={index} type="button" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-current={index === 0 ? 'true' : undefined} onClick={() => { cancelWheel.current(); go(current.current + (((index - current.current + 4.5) % 3 + 3) % 3 - 1.5)); }}><span ref={node => { dots.current[index] = node; }}/></button>)}</div></div>
       <button type="button" className="primary welcome-start" onClick={onContinue}>{messages('corpusPractice')[locale].start}</button>
     </div>
   </section>;

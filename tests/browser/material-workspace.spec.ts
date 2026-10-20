@@ -725,7 +725,8 @@ test('reference completion hierarchy preserves exact prompt text, saved snapshot
       if (split > 0) await expect(block.locator('.question-sentence')).toHaveText(prompt.slice(split + 1));
       else await expect(block.locator('.question-sentence')).toHaveCount(0);
       await expect(block.locator('input')).toBeFocused();
-      await expect(block.locator('input')).toHaveCSS('box-shadow', /inset/);
+      await expect(block.locator('input')).toHaveCSS('box-shadow', 'none');
+      await expect(block.locator('input')).toHaveCSS('outline-style', 'none');
       await expect(block.locator('input')).toHaveCSS('direction', 'ltr');
     }
     expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).lesson, id)).toEqual(lesson);

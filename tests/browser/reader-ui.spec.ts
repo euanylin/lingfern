@@ -257,7 +257,8 @@ test('mobile answer peek scales smoothly in both directions without shifting its
   await page.keyboard.press('Tab');
   await toggle.focus(); await expect(toggle).toBeFocused();
   await expect.poll(() => toggle.evaluate(element => element.matches(':focus-visible'))).toBe(true);
-  await expect(toggle).toHaveCSS('box-shadow', /0px 0px 0px 2px inset/);
+  await expect(toggle).toHaveCSS('outline-style', 'none');
+  await expect(toggle).toHaveCSS('text-decoration-line', 'underline');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(toggle).toHaveCSS('transition-duration', '0s');
 });

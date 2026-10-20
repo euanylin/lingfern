@@ -24,6 +24,19 @@ test('deep links, settings entry and unavailable storage keep their existing flo
   await page.goto('/'); await expect(page.locator('.first-run')).toBeVisible(); await expect(page.locator('.welcome')).toHaveCount(0);
 });
 
+test('Start stays fully visible without scrolling the introduction at short and narrow sizes', async ({ page }) => {
+  for (const [width, height] of [[1440, 740], [1280, 720], [1366, 650], [844, 390], [390, 844], [320, 568], [375, 667]]) {
+    await page.setViewportSize({ width, height }); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
+    const button = (await page.locator('.welcome-start').boundingBox())!;
+    expect(button.y).toBeGreaterThanOrEqual(0); expect(button.y + button.height).toBeLessThanOrEqual(height);
+    expect(button.height).toBeGreaterThanOrEqual(44); expect(await page.evaluate(() => scrollY)).toBe(0);
+    expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(height + 1);
+    await expect(page.locator('.welcome-card[data-current=true] .welcome-site-header')).toBeVisible();
+    if (width < 768) await expect(page.locator('.welcome-card[data-current=true] .welcome-mobile-nav')).toBeVisible();
+  }
+  await page.locator('.welcome-start').click(); await expect(page).toHaveURL(/\/start$/); await expect(page.locator('.first-run')).toBeVisible();
+});
+
 test('idle rotation waits until contact, scrolling and keyboard activity end and respects reduced motion', async ({ page }) => {
   await page.clock.install(); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
   const current = page.locator('.welcome-card[data-current=true]');
@@ -92,6 +105,102 @@ test('small trackpad deltas move cards continuously before the switch threshold 
   await expect.poll(() => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
 });
 
+test('a delayed decaying wheel tail cannot pull the selected card back', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  await page.locator('.welcome-content').first().hover();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  await page.mouse.wheel(50, 0); await page.clock.runFor(220);
+  const first = page.locator('.welcome-card').first(), samples: number[] = [];
+  for (const delta of [6, 4, 3, 2, 1]) {
+    await page.mouse.wheel(delta, 0); await page.clock.runFor(32);
+    samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
+  }
+  await page.clock.runFor(1100);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+  expect(samples.every((x, i) => !i || x <= samples[i - 1] + .1)).toBe(true);
+  await test.info().attach('late-momentum-positions', { body: JSON.stringify(samples), contentType: 'application/json' });
+});
+
+test('a mouse wheel can accelerate after small separated ticks instead of becoming stuck', async ({ page }) => {
+  await page.clock.install(); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
+  await page.locator('.welcome-content').first().hover(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  for (const [delay, delta] of [[0, -4], [392, -4], [104, -17], [96, -58], [104, -77], [96, -103]]) {
+    await page.clock.runFor(delay); await page.mouse.wheel(delta, 0);
+  }
+  await page.clock.runFor(1800);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 3 张，共 3 张');
+});
+
+test('small line-sized wheel ticks accumulate across brief pauses without a release fighting the input', async ({ page }) => {
+  await page.clock.install(); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
+  await page.locator('.welcome-content').first().hover(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  for (const delay of [0, 392, 104]) { await page.clock.runFor(delay); await page.mouse.wheel(-18, 0); }
+  await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 3 张，共 3 张');
+});
+
+test('reversing a wheel gesture interrupts the release without snapping or replacing page content', async ({ page }) => {
+  await page.clock.install(); await page.goto('/introduction'); await page.locator('.welcome-content').first().hover();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const first = page.locator('.welcome-card').first();
+  await first.evaluate(el => { (window as unknown as { originalPreview: Element }).originalPreview = el.querySelector('.today-home')!; });
+  await page.mouse.wheel(80, 0); await page.clock.runFor(140);
+  const before = await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  await page.mouse.wheel(-45, 0); await page.clock.runFor(16);
+  const after = await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  expect(after).toBeGreaterThan(before); expect(after - before).toBeLessThan(150);
+  await page.clock.runFor(1200);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 1 张，共 3 张');
+  expect(await first.evaluate(el => el.querySelector('.today-home') === (window as unknown as { originalPreview: Element }).originalPreview)).toBe(true);
+  for (const card of await page.locator('.welcome-card').all()) {
+    await expect(card).toHaveCSS('z-index', 'auto'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', 'none');
+  }
+});
+
+for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test.describe(`whole card surfaces ${locale}/${theme}`, () => {
+  test.use({ locale, colorScheme: theme });
+  test('forward, backward and interrupted drags never intersect the visible card planes', async ({ page }, info) => {
+    await page.clock.install();
+    const samples: { width: number; selected: number; offset: number; intersections: number[][] }[] = [];
+    for (const [width, height] of [[1440, 900], [390, 844], [844, 390]]) {
+      await page.setViewportSize({ width, height }); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
+      for (let selected = 0; selected < 3; selected++) {
+        await page.locator('.welcome-dots button').nth(selected).click(); await page.clock.runFor(1000);
+        const box = (await page.locator('.welcome-stage').boundingBox())!;
+        const cardWidth = await page.locator('.welcome-card').first().evaluate(el => (el as HTMLElement).offsetWidth);
+        const shift = width < 700 ? Math.min(75, box.width * .18) : Math.min(300, Math.max(24, (box.width - cardWidth * .85) / 2));
+        const start = { x: box.x + box.width / 2, y: box.y + 4 };
+        await page.mouse.move(start.x, start.y); await page.mouse.down();
+        // Hold contact across both depth handoffs, then reverse before releasing.
+        for (const offset of [.1, .25, .4, .49, .5, .51, .6, .9, 1, .6, .1, -.1, -.4, -.49, -.5, -.51, -.6, -1, -.4, 0]) {
+          await page.mouse.move(start.x - offset * Math.max(90, shift * 1.1), start.y); await page.clock.runFor(16);
+          const intersections = await page.locator('.welcome-card').evaluateAll(elements => {
+            const planes = elements.map(element => {
+              const style = getComputedStyle(element), m = new DOMMatrixReadOnly(style.transform), half = (element as HTMLElement).offsetWidth * m.m11 / 2;
+              return { x: m.m41, z: m.m43, slope: m.m13 / m.m11, left: m.m41 - half, right: m.m41 + half, visible: Number(style.opacity) > .01 };
+            });
+            const cuts: number[][] = [];
+            for (let a = 0; a < planes.length; a++) for (let b = a + 1; b < planes.length; b++) {
+              const one = planes[a], two = planes[b], left = Math.max(one.left, two.left), right = Math.min(one.right, two.right);
+              if (!one.visible || !two.visible || right <= left) continue;
+              const depth = (x: number) => one.z + one.slope * (x - one.x) - two.z - two.slope * (x - two.x);
+              if (depth(left) * depth(right) < -.01) cuts.push([a, b]);
+            }
+            return cuts;
+          });
+          samples.push({ width, selected, offset, intersections });
+          expect(intersections, `intersecting planes at ${width}px, card ${selected}, drag ${offset}`).toEqual([]);
+        }
+        await page.mouse.up(); await page.clock.runFor(1000);
+      }
+      for (const card of await page.locator('.welcome-card').all()) {
+        await expect(card).toHaveCSS('transform-style', 'flat'); await expect(card).toHaveCSS('isolation', 'isolate');
+      }
+    }
+    await info.attach('sampled-card-planes', { body: JSON.stringify(samples), contentType: 'application/json' });
+  });
+});
+
 test('narrow-view trackpad gestures belong to the cards while normal browser Back remains available', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/today'); await page.goto('/introduction');
   const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
@@ -130,6 +239,24 @@ test('the same fern reverses its growth when Today leaves and resumes on return'
 
 test.describe('native touch carousel', () => {
   test.use({ hasTouch: true });
+  test('a short fast flick advances while the same held displacement returns to rest', async ({ page, context }) => {
+    await page.clock.install(); await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
+    await expect(page.locator('.welcome')).toBeVisible();
+    await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+    const cdp = await context.newCDPSession(page), current = page.locator('.welcome-card[data-current=true]');
+    for (const held of [true, false]) {
+      const box = (await current.locator('.welcome-content').boundingBox())!, x = box.x + box.width * .8, y = box.y + box.height * .5;
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+      for (const dx of [12, 24]) {
+        await page.clock.runFor(16);
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - dx, y }] });
+      }
+      if (held) await page.clock.runFor(200);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await page.clock.runFor(1000);
+      await expect(current).toHaveAttribute('aria-label', held ? '第 1 张，共 3 张' : '第 2 张，共 3 张');
+    }
+    await cdp.detach();
+  });
   test('a multi-frame swipe starting inside the scrolling card keeps pointer ownership without jumps', async ({ page, context }) => {
     await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
     const content = page.locator('.welcome-card').first().locator('.welcome-content');
@@ -254,7 +381,8 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['de', 'lig
       for (let index = 0; index < 3; index++) {
         await page.locator('.welcome-dots button').nth(index).click();
         const current = page.locator('.welcome-card[data-current=true]'); await expect(current).toHaveAttribute('aria-label', languagePacks[locale].onboarding.slideN.replace('{n}', String(index + 1)));
-        await expect(page.locator('.welcome-dots [aria-current] span')).toHaveCSS('width', '26px');
+        await expect(current).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        expect((await page.locator('.welcome-dots [aria-current] span').boundingBox())!.width).toBeCloseTo(26, 1);
         if (await page.evaluate(() => matchMedia('(min-width:768px)').matches)) {
           await expect(current.locator('.welcome-site-header')).toBeVisible();
           await expect(current.locator('.desktop-nav a[aria-current]')).toHaveAttribute('href', `/${['today', 'library', 'settings'][index]}`);
@@ -292,7 +420,7 @@ test('both neighbouring cards stay visible while only quote and navigation contr
     for (const side of await page.locator('.welcome-card[data-current=false]').all()) {
       const box = (await side.boundingBox())!;
       expect(Math.max(front.x - box.x, box.x + box.width - front.x - front.width, front.y - box.y)).toBeGreaterThanOrEqual(14);
-      await expect(side.locator('.welcome-window')).toHaveCSS('filter', 'blur(1.25px)');
+      await expect(side.locator('.welcome-blur')).toHaveCSS('backdrop-filter', 'blur(1.25px)');
       await expect(side.locator('.welcome-shade')).toHaveCSS('opacity', '0.18');
     }
     if (width >= 768) {
@@ -414,7 +542,7 @@ test('slide indicators follow the moving cards continuously instead of waiting f
     const rows: { at: number; widths: number[]; active: number }[] = [], start = performance.now();
     const sample = () => {
       const buttons = [...el.querySelectorAll('.welcome-dots button')];
-      rows.push({ at: performance.now() - start, widths: buttons.map(button => parseFloat(getComputedStyle(button.firstElementChild!).width)), active: buttons.findIndex(button => button.hasAttribute('aria-current')) });
+      rows.push({ at: performance.now() - start, widths: buttons.map(button => button.firstElementChild!.getBoundingClientRect().width), active: buttons.findIndex(button => button.hasAttribute('aria-current')) });
       if (performance.now() - start < 900) requestAnimationFrame(sample); else resolve(rows);
     }; requestAnimationFrame(sample);
   }));

@@ -135,7 +135,7 @@ test('dictionary finds course, WordNet, inflected, multiword and missing terms',
   await query.focus();
   expect(await query.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('none');
   expect(await query.evaluate(el => getComputedStyle(el).borderTopWidth)).toBe('0px');
-  expect(await query.evaluate(el => getComputedStyle(el).boxShadow)).toContain('inset');
+  expect(await query.evaluate(el => getComputedStyle(el).boxShadow)).toBe('none');
   async function lookup(term: string) { await query.fill(term); await page.getByLabel('查询单词或短语').press('Enter'); }
   await lookup('book');
   await expect(page.getByText('A set of pages with words or pictures that you can read.')).toBeVisible();

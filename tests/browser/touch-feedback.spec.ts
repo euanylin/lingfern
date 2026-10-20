@@ -4,6 +4,31 @@ import { readFileSync } from 'node:fs';
 
 test.describe('touch feedback', () => {
   test.use({ hasTouch: true });
+  for (const [width, locale, theme] of [[375, 'zh-Hans', 'light'], [1440, 'en', 'dark'], [390, 'ar', 'dark']] as const) test(`all available practice topic chips retain touch feedback while open: ${width}/${locale}/${theme}`, async ({ page, context }) => {
+    await page.setViewportSize({ width, height: 900 }); await page.goto('/settings');
+    await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+    await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+    await page.goto('/today');
+    const chips = page.locator('.practice-card-topics .setting-trigger'), cdp = await context.newCDPSession(page);
+    await expect(chips).toHaveCount(3);
+    for (const chip of await chips.all()) {
+      await chip.evaluate(el => el.scrollIntoView({ block: 'center' }));
+      const idle = await chip.evaluate(el => getComputedStyle(el).backgroundColor), box = (await chip.boundingBox())!;
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+      await expect(chip).toHaveAttribute('data-touch-active', '');
+      await expect.poll(() => chip.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(idle);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await expect(chip).toHaveAttribute('aria-expanded', 'true'); await expect(chip).not.toHaveAttribute('data-touch-active');
+      await expect.poll(() => chip.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(idle);
+      await expect(chip).toHaveCSS('outline-style', 'none');
+      await expect.poll(() => chip.locator('.setting-chevron').evaluate(el => getComputedStyle(el).translate)).toBe(locale === 'ar' ? '-2px' : '2px');
+      await page.getByRole('listbox').getByRole('option').first().tap(); await expect(chip).toHaveAttribute('aria-expanded', 'false');
+      await expect(chip).toBeFocused();
+    }
+    await page.emulateMedia({ reducedMotion: 'reduce' }); await chips.first().tap();
+    await expect(chips.first()).toHaveCSS('scale', 'none'); await expect(chips.first()).toHaveCSS('translate', 'none');
+    await expect(page.getByRole('listbox')).toBeVisible(); await cdp.detach();
+  });
   for (const [width, locale, theme] of [[375, 'zh-Hans', 'light'], [900, 'en', 'dark'], [1440, 'ar', 'dark']] as const) test(`native touch shows and clears control feedback at ${width}/${locale}/${theme}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/settings');
@@ -26,7 +51,8 @@ test.describe('touch feedback', () => {
     await expect(trigger).toBeFocused();
     await expect(trigger).toHaveCSS('box-shadow', 'none');
     await trigger.press('Tab'); await page.keyboard.press('Shift+Tab');
-    await expect.poll(() => trigger.evaluate(el => getComputedStyle(el).boxShadow)).not.toBe('none');
+    await expect(trigger).toHaveCSS('box-shadow', 'none');
+    await expect.poll(() => trigger.evaluate(el => getComputedStyle(el.firstElementChild!).textDecorationLine)).toBe('underline');
     await test.info().attach('touch-control-state', { body: JSON.stringify({ width, locale, theme, idle }), contentType: 'application/json' });
     await cdp.detach();
   });
@@ -68,11 +94,11 @@ test.describe('touch feedback', () => {
     await expect(page.locator('[data-touch-active]')).toHaveCount(0); await cdp.detach();
   });
 
-  test('touch navigation clears inherited keyboard rings and Tab restores them on the same touchscreen', async ({ page, context }, info) => {
+  test('touch and keyboard navigation use filled focus cues without bright rings', async ({ page, context }, info) => {
     await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/settings');
     const library = page.locator('.mobile-nav a[href="/library"]');
     await library.focus(); await library.press('ArrowRight');
-    await expect(library).toHaveCSS('outline-width', '2px');
+    await expect(library).toHaveCSS('outline-width', '0px');
     const box = (await library.boundingBox())!, cdp = await context.newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
     await expect(library).toHaveCSS('outline-width', '0px');
@@ -81,7 +107,7 @@ test.describe('touch feedback', () => {
     await expect(page).toHaveURL(/\/library$/); await expect(library).toHaveCSS('outline-width', '0px');
     await page.keyboard.press('Tab');
     await expect(page.locator('.mobile-nav a[href="/settings"]')).toBeFocused();
-    await expect(page.locator('.mobile-nav a[href="/settings"]')).toHaveCSS('outline-width', '2px');
+    await expect(page.locator('.mobile-nav a[href="/settings"]')).toHaveCSS('outline-width', '0px');
     await cdp.detach();
   });
 
@@ -91,7 +117,7 @@ test.describe('touch feedback', () => {
     await expect(page.locator('html')).toHaveAttribute('data-touch-input', '');
     await expect(query).toBeFocused(); await expect(query).toHaveValue('dad');
     await expect(query).toHaveCSS('outline-style', 'none');
-    await expect(query).toHaveCSS('box-shadow', /0px 0px 0px 0px inset/);
+    await expect(query).toHaveCSS('box-shadow', 'none');
     await page.keyboard.press('Tab'); await expect(page.locator('html')).not.toHaveAttribute('data-touch-input');
   });
 
@@ -134,6 +160,24 @@ test.describe('touch feedback', () => {
     expect(thumb.transform).toBe('none');
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await expect(slider).not.toHaveAttribute('data-touch-active'); await cdp.detach();
   });
+});
+
+for (const theme of ['light', 'dark']) test(`desktop search and keyboard controls use clear focus without bright frames: ${theme}`, async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/settings');
+  await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+  await page.goto('/library');
+  const field = page.locator('.offline-search'), input = field.locator('input');
+  const idle = await field.evaluate(el => getComputedStyle(el).backgroundColor);
+  await input.click(); await input.fill('test');
+  await expect(input).toHaveCSS('outline-style', 'none'); await expect(input).toHaveCSS('box-shadow', 'none');
+  await expect(field).toHaveCSS('outline-width', '0px');
+  await expect.poll(() => field.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(idle);
+  await input.fill(''); await page.goto('/settings');
+  const trigger = page.locator('.settings-language .setting-trigger'); await trigger.focus(); await trigger.press('ArrowDown');
+  await expect(page.getByRole('listbox')).toBeVisible(); await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused(); await expect(trigger).toHaveCSS('outline-style', 'none'); await expect(trigger).toHaveCSS('box-shadow', 'none');
+  await expect(trigger.locator('span').first()).toHaveCSS('text-decoration-line', 'underline');
+  await trigger.press('Enter'); await expect(page.getByRole('listbox')).toBeVisible(); await expect(page.getByRole('option').first()).toHaveCSS('outline-style', 'none');
 });
 
 test.describe('portable touch feedback', () => {

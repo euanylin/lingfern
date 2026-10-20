@@ -139,6 +139,14 @@ Source: github:gr2m/universal-user-agent
 
 - [LICENSE.md](licenses/universal-user-agent@7.0.3/LICENSE.md)
 
+## wheel-gestures 2.3.0
+
+Scope: runtime. License: MIT.
+
+Source: https://github.com/xiel/wheel-gestures.git
+
+- [LICENSE](licenses/wheel-gestures@2.3.0/LICENSE)
+
 ## workbox-background-sync 7.4.1
 
 Scope: installed Workbox component; selected modules are bundled in the browser. License: MIT.

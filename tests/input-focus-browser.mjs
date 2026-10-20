@@ -29,7 +29,7 @@ try {
      const before=await field.evaluate(el=>({width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height}));
      await field.focus();await expect(field).toBeFocused();
      const after=await field.evaluate(el=>{const s=getComputedStyle(el);return {width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height,outline:s.outlineStyle,border:s.borderTopWidth,shadow:s.boxShadow,transform:s.transform};});
-     assert.equal(after.width,before.width);assert.equal(after.height,before.height);assert.equal(after.outline,'none');assert.equal(after.border,'1px');assert(after.shadow.includes('inset'));assert.equal(after.transform,'none');
+     assert.equal(after.width,before.width);assert.equal(after.height,before.height);assert.equal(after.outline,'none');assert.equal(after.border,'1px');assert.equal(after.shadow,'none');assert.equal(after.transform,'none');
      if(width<768) {
       const nav=await page.locator('.mobile-nav').evaluate(el=>({position:getComputedStyle(el).position,height:el.getBoundingClientRect().height,pseudoHeight:parseFloat(getComputedStyle(el,'::before').height)}));
       assert.equal(nav.position,'relative');assert(Math.abs(nav.height-nav.pseudoHeight)<2,'Navigation backdrop must stay inside navigation, not cover the viewport');
