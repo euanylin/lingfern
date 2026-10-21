@@ -22,10 +22,10 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
   const editor = (event: Event) => textEntry(event.target);
   const start = (event: PointerEvent) => { if (touchOnly && event.pointerType === 'mouse') return; if (editor(event)) state.cancel(); else { scrolling = true; state.start(); } };
   const activate = (event: Event) => { if (touchOnly && (!(event instanceof PointerEvent) || !['touch', 'pen'].includes(event.pointerType))) return; if (editor(event)) state.cancel(); else { scrolling = true; state.pulse(); } };
-  // Let React commit native radio/checkbox changes before blur re-renders their controlled values.
+  // Let React commit controlled values before feedback can re-render the panel.
   const click = (event: MouseEvent) => { if (event.target instanceof Node && panel.contains(event.target)) activate(event); };
   const scroll = (event: Event) => { if (scrolling && !editor(event)) state.pulse(); };
-  const editing = (event: Event) => { if (editor(event)) state.cancel(); };
+  const editing = (event: Event) => { if (event.target instanceof Node && panel.contains(event.target) && editor(event)) state.cancel(); };
   const leave = (event: PointerEvent) => { if (event.pointerType === 'mouse') state.cancel(); };
   panel.addEventListener('pointerdown', start);
   panel.addEventListener('pointerleave', leave);
@@ -33,8 +33,8 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
   panel.addEventListener('wheel', activate, { passive: true });
   panel.addEventListener('scroll', scroll, true);
   panel.addEventListener('scrollend', state.scrollEnd, true);
-  panel.addEventListener('input', editing, true);
-  panel.addEventListener('focusin', editing);
+  window.addEventListener('input', editing);
+  window.addEventListener('focusin', editing);
   window.addEventListener('pointerup', state.end);
   window.addEventListener('pointercancel', state.end);
   window.addEventListener('blur', state.cancel);
@@ -46,8 +46,8 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
     panel.removeEventListener('wheel', activate);
     panel.removeEventListener('scroll', scroll, true);
     panel.removeEventListener('scrollend', state.scrollEnd, true);
-    panel.removeEventListener('input', editing, true);
-    panel.removeEventListener('focusin', editing);
+    window.removeEventListener('input', editing);
+    window.removeEventListener('focusin', editing);
     window.removeEventListener('pointerup', state.end);
     window.removeEventListener('pointercancel', state.end);
     window.removeEventListener('blur', state.cancel);

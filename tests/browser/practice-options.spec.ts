@@ -42,6 +42,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   expect(await kind.locator('bdi').evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(60);
   for (const word of ['cat', 'bed']) {
     await dialog.getByRole('searchbox', { name: t.search }).fill(word);
+    await expect(dialog.getByRole('searchbox', { name: t.search })).toHaveValue(word);
     await dialog.getByRole('checkbox', { name: word, exact: true }).check();
   }
   await dialog.getByRole('searchbox', { name: t.search }).fill('');
@@ -256,4 +257,23 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} material c
   await page.evaluate(() => window.dispatchEvent(new Event('lingfern-resources-installed')));
   await expect.poll(() => page.evaluate(() => Reflect.get(window, 'materialReads'))).toBeGreaterThan(0);
   await expect(dialog.getByRole('checkbox').first()).toBeVisible();
+});
+
+
+test('text edits commit before card feedback resets and outside edits stay isolated', async ({ page }) => {
+  await page.goto('/today');
+  const order = await page.evaluate(async () => {
+    const path = '/src/app/cardInteraction.ts', { cardInteraction } = await import(path);
+    const panel = document.createElement('div'), input = document.createElement('input'), outside = document.createElement('input'), events: string[] = [];
+    panel.appendChild(input); document.body.appendChild(panel); document.body.appendChild(outside);
+    const edit = () => events.push('edit');
+    document.body.addEventListener('input', edit);
+    const state = cardInteraction(panel, (active: boolean) => { if (!active) events.push('feedback'); });
+    try {
+      input.dispatchEvent(new InputEvent('input', { bubbles: true }));
+      outside.dispatchEvent(new InputEvent('input', { bubbles: true }));
+      return events;
+    } finally { state.dispose(); document.body.removeEventListener('input', edit); panel.remove(); outside.remove(); }
+  });
+  expect(order).toEqual(['edit', 'feedback', 'edit']);
 });

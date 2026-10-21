@@ -165,6 +165,8 @@ test.describe('touch input', () => {
     await body.evaluate(el => el.scrollTo(0, el.scrollHeight));
     await expect.poll(() => body.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
     expect(await dialog.evaluate(el => el.scrollTop)).toBe(0);
+    // Scrolling can re-hit-test a stationary mouse without moving it.
+    await body.dispatchEvent('pointerover', { pointerId: 1, pointerType: 'mouse', bubbles: true });
     await body.dispatchEvent('pointercancel', { pointerId: 4, pointerType: 'touch', bubbles: true });
     await expect(dialog).toHaveAttribute('data-blur', 'false');
     await page.emulateMedia({ reducedMotion: 'reduce' });

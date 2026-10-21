@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cardInteraction } from './cardInteraction';
 
 export function useTaskDialog(id: string, onClose: () => void, historyKey = 'practicePreview') {
-  const dialog = useRef<HTMLDialogElement>(null), enterFrame = useRef(0), closeTimer = useRef<number | undefined>(undefined);
+  const dialog = useRef<HTMLDialogElement>(null), enterFrame = useRef(0), closeTimer = useRef<number | undefined>(undefined), touchInput = useRef(false);
   const [open, setOpen] = useState(false), [contact, setContact] = useState(false), [hovered, setHovered] = useState(false);
   function finishClose() { clearTimeout(closeTimer.current); closeTimer.current = undefined; dialog.current?.close(); }
   function dismiss() {
@@ -35,6 +35,11 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
   return {
     open, close,
     dialogProps: { ref: dialog, 'data-open': open, 'data-blur': hovered || contact, onClose, onCancel: (event: React.SyntheticEvent) => { event.preventDefault(); close(); }, onClick: (event: React.MouseEvent) => { if (event.target === event.currentTarget) close(); }, onTransitionEnd: (event: React.TransitionEvent) => { if (closeTimer.current !== undefined && event.target === event.currentTarget && !event.nativeEvent.pseudoElement && event.propertyName === 'opacity') finishClose(); } },
-    bodyProps: { onPointerEnter: (event: React.PointerEvent) => { if (event.pointerType === 'mouse') setHovered(true); }, onPointerLeave: (event: React.PointerEvent) => { if (event.pointerType === 'mouse') setHovered(false); } },
+    bodyProps: {
+      onPointerDownCapture: (event: React.PointerEvent) => { if (event.pointerType === 'touch' || event.pointerType === 'pen') { touchInput.current = true; setHovered(false); } },
+      onPointerEnter: (event: React.PointerEvent) => { if (event.pointerType === 'mouse' && !touchInput.current) setHovered(true); },
+      onPointerMove: (event: React.PointerEvent) => { if (event.pointerType === 'mouse') { touchInput.current = false; setHovered(true); } },
+      onPointerLeave: (event: React.PointerEvent) => { if (event.pointerType === 'mouse') setHovered(false); },
+    },
   };
 }
