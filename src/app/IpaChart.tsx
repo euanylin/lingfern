@@ -1,3 +1,4 @@
+import './IpaChart.css';
 import { messages } from '../locales';
 import { PlaybackIcon } from './PlaybackIcon';
 import { useEffect, useRef, useState } from 'react';
@@ -23,12 +24,13 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
   const [historyError, setHistoryError] = useState(false);
   const chartLabels = view === 'detailed' ? labels.en : t;
   const player = useRef<HTMLAudioElement>(null);
+  const playback = useRef({ id: '', request: 0 });
   const focusedEntry = useRef<HTMLElement>(null);
   useEffect(() => {
     let live = true;
     fetch('/ipa/entries.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return ipaChartSchema.parse(await response.json()); }).then(data => { if (live) setEntries(data.entries); }).catch(() => { if (live) setError(t.failed); });
     fetch('/ipa/full-sounds.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return fullIpaAudioSchema.parse(await response.json()); }).then(data => { if (live) setSounds(data.entries); }).catch(() => { if (live) setFullError(true); });
-    return () => { live = false; player.current?.pause(); };
+    return () => { live = false; playback.current.request++; playback.current.id = ''; player.current?.pause(); };
   }, [t.failed]);
   useEffect(() => {
     if (initialQuery && focusedEntry.current) {
@@ -39,11 +41,21 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
   async function play(ipa: string, src: string, kind: 'sound' | 'word') {
     const audio = player.current;
     if (!audio) return;
-    setError(''); setPlaying(`${ipa}-${kind}`);
+    const id = `${ipa}-${kind}`, request = ++playback.current.request;
+    audio.pause();
+    if (playback.current.id === id) {
+      playback.current.id = ''; setPlaying(''); return;
+    }
+    playback.current.id = id;
+    setError(''); setPlaying(id);
     audio.src = src;
-    try { await audio.play(); } catch { setPlaying(''); setError(t.failed); return; }
-    try { await recordLookup(profileId, 'ipa', ipa); setHistoryError(false); }
-    catch { setHistoryError(true); }
+    try { await audio.play(); } catch {
+      if (request === playback.current.request) { playback.current.id = ''; setPlaying(''); setError(t.failed); }
+      return;
+    }
+    if (request !== playback.current.request) return;
+    try { await recordLookup(profileId, 'ipa', ipa); if (request === playback.current.request) setHistoryError(false); }
+    catch { if (request === playback.current.request) setHistoryError(true); }
   }
   const bySymbol = new Map(entries?.map(entry => [entry.ipa, entry]));
   const bySound = new Map(sounds?.map(entry => [entry.ipa, entry]));
@@ -103,7 +115,7 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
     {(!entries || view === 'detailed' && !sounds) && !error && !fullError && <p role="status">{t.loading}</p>}
     {(error || view === 'detailed' && fullError) && <p role="alert" className="error">{error || t.failed}</p>}
     {historyError && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].saveFailed}</p>}
-    <audio ref={player} preload="none" onEnded={() => setPlaying('')} onError={() => { setPlaying(''); setError(t.failed); }}/>
+    <audio ref={player} preload="none" onEnded={() => { if (player.current?.ended) { playback.current.id = ''; setPlaying(''); } }} onError={() => { if (player.current?.error) { playback.current.id = ''; setPlaying(''); setError(t.failed); } }}/>
     {entries && (view === 'simple' ? (['vowel', 'consonant'] as const).map(group => <section className="ipa-group" key={group}>
       <h2>{t.groups[group]}</h2>
       {group === 'consonant' && <section className="ipa-category"><h3>{t.contrast}</h3><div className="ipa-pairs" dir="ltr">{entries.filter(entry => entry.voicing === 'voiceless' && entry.pair).map(entry => <div className="ipa-pair" key={entry.ipa}><span>/{entry.ipa}/</span><span aria-hidden="true">↔</span><span>/{entry.pair}/</span></div>)}</div></section>}

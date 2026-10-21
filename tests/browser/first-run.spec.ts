@@ -63,7 +63,7 @@ test('first run saves optional choices, resumes and changes separate task recomm
   await expect(page).toHaveURL(/\/today$/);
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await expect(page.getByRole('dialog').getByRole('heading', { name: '保留分歧与责任', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '关闭详情' }).click();
+  await page.getByRole('button', { name: '关闭' }).click();
   const preferences = await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences);
   expect(preferences).toMatchObject({ reading: 'C2', listening: 'A1', interests: ['science'], purpose: 'travel', completed: true });
   expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);

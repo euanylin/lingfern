@@ -116,7 +116,7 @@ try {
     await page.locator('.corpus-practice[data-skill=reading]').getByRole('button', { name: '开始', exact: true }).click();
     await expect(page.getByRole('dialog')).toBeVisible({ timeout: 90000 });
     assert(downloads.some(url => url.endsWith('/' + id + '.zip')));
-    await page.getByRole('dialog').getByRole('button', { name: '关闭详情', exact: true }).click();
+    await page.getByRole('dialog').getByRole('button', { name: '关闭', exact: true }).click();
     installedIds.add(id);
   }
   await context.setOffline(true); await page.reload();

@@ -54,7 +54,7 @@ try {
     const interfaceLocales = [...new Set(resources.flatMap(file => interfaceChunks.get(file.path) ?? []))];
     assert(interfaceLocales.includes(locale));
     assert(interfaceLocales.every(value => value === locale || value === 'en'), `${locale}: unrelated interface languages downloaded: ${interfaceLocales}`);
-    assert(!resources.some(file => /\/(?:corpus|prepareCorpusPractice|text-review|Learning|Dictionary|GrammarLookup|SavedWords|ProfileBackup|GithubIdentity|ProgressRecords|CompletionTiming|SessionHistory|SyncConflicts|OfflineInstall|CommunityImport|LookupHistory|UnsavedDemo)-/.test(file.path)), 'Unopened views and generation modules are not first-screen work');
+    assert(!resources.some(file => /\/(?:corpus|sources|prepareCorpusPractice|text-review|Learning|Dictionary|GrammarLookup|SavedWords|ProfileBackup|GithubIdentity|ProgressRecords|CompletionTiming|SessionHistory|SyncConflicts|OfflineInstall|CommunityImport|LookupHistory|UnsavedDemo)-/.test(file.path)), 'Unopened views, source credits and generation modules are not first-screen work');
     const total = resources.reduce((sum, file) => sum + file.gzip, 0);
     const shared = resources.filter(file => !/\/(?:\d{3}|teaching)-/.test(file.path)).reduce((sum, file) => sum + file.gzip, 0);
     const worstCase = shared + maxTeaching + maxQuote;

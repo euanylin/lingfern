@@ -142,7 +142,7 @@ export function corpusPracticeHistory(history: Session[], records: Attempt[], pr
   const seen = new Set(history.filter(session => session.profileId === profileId && session.lesson.generation?.generator === 'corpus-v1')
     .flatMap(session => session.lesson.materials.map(material => material.id))
     .filter(id => id.startsWith('corpus-')).map(id => id.slice('corpus-'.length)));
-  // Exclude direct overlaps only; seen long clips must not hide untouched neighbors transitively.
+  // Exclude direct overlaps; transitive overlap would hide untouched clips.
   const originalSeen = new Set(seen);
   for (const scope of shortListeningOverlaps.records) {
     if (originalSeen.has(scope.id)) for (const id of scope.overlappingIds) seen.add(id);

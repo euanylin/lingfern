@@ -32,10 +32,11 @@ test('installed offline workspace preserves arbitrary reading answers and multi-
   for (const [index, question] of [...items].reverse().entries()) {
     await page.locator('.workspace-card button').nth(items.length - 1 - index).click();
     if (!('options' in question)) throw new Error('NO_CHOICE');
-    await page.locator('.workspace-question:visible').getByRole('radio').nth(question.answer).check();
+    await page.locator('.workspace-question[data-selected=true]').getByRole('radio').nth(question.answer).check();
   }
   await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
   await page.reload(); await page.locator('.workspace-questions .question-sheet-toggle').click(); await expect(page.locator('.workspace-card button[data-answered=true]')).toHaveCount(4);
+  await page.locator('.workspace-card button').last().click();
   await page.getByRole('button', { name: '提交练习', exact: true }).click(); await expect(page.locator('#workspace-result')).toBeVisible(); await expect(page.locator('.workspace-review')).toHaveCount(4);
   await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto(`/learn/${listeningId}`);

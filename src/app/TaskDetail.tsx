@@ -1,5 +1,5 @@
 import { useTaskDialog } from './useTaskDialog';
-import { questionSlots } from '../shared/practiceWorkspace';
+import { answerPointCount, readingWordCount } from '../shared/practiceQuantity';
 import { contentLanguage, contentText, messages } from '../locales';
 import { GutenbergLicence } from './GutenbergLicence';
 import { materialPackageId, practiceLocale } from '../shared/content';
@@ -8,15 +8,14 @@ import { createPortal } from 'react-dom';
 import type { Lesson, Locale } from '../shared/content';
 import { communityPacks } from '../data/db';
 import { communityCacheName } from '../data/communityInstall';
-import sources from '../../content/sources.json';
 
 const labels = messages('taskDetail');
 // shortcut: estimated duration only; replace with reviewed unit timings when available.
-export const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : material.blocks.reduce((words, block) => words + block.text.split(/\s+/).length, 0) / 120) + (lesson.organization ? material.questions.reduce((sum, question) => sum + questionSlots(question), 0) : material.questions.length) * .5, 0)));
+export const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : readingWordCount(material) / 120) + answerPointCount(material.questions) * .5, 0)));
 
 export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review' | 'vocabulary'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
   const { open, close, dialogProps, bodyProps } = useTaskDialog(lesson.id, onClose), t = labels[locale];
-  const [source, setSource] = useState<{ title: string; author: string; license: string } | undefined>(() => sources.find(item => item.id === lesson.sourceId));
+  const [source, setSource] = useState<{ title: string; author: string; license: string }>();
   const previewLessons = [lesson, ...(additionalLesson ? [additionalLesson] : [])];
   const paths = [...new Set(previewLessons.flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path))))];
   const [bytes, setBytes] = useState<number | undefined>(() => paths.length ? undefined : 0);
@@ -24,6 +23,7 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
   useEffect(() => {
     let disposed = false;
     void (async () => {
+      const builtin = !lesson.communityPackageId && !lesson.generation ? (await import('../../content/sources.json')).default.find(item => item.id === lesson.sourceId) : undefined;
       const pack = lesson.communityPackageId ? await communityPacks.get([profileId, lesson.communityPackageId]) : undefined;
       const record = pack?.sources.find(item => `community:${pack.hash}:${item.id}` === lesson.sourceId) ?? (pack?.spoken && (lesson.generation?.generator === 'corpus-v1' || lesson.generation?.generator === 'corpus-check-v1') ? { title: lesson.materials.map(material => material.title).join(' · '), author: [...new Set(lesson.materials.map(material => material.audio!.author))].join('; '), license: [...new Set(lesson.materials.map(material => material.credit!.license))].join('; ') } : undefined);
       if (lesson.communityPackageId && !record) throw new Error('MISSING_SOURCE');
@@ -37,7 +37,7 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
         if (!response) throw new Error('MISSING_MEDIA');
         return (await response.blob()).size;
       }))));
-      if (!disposed) { if (record) setSource(record); setBytes(sizes.reduce((sum, size) => sum + size, 0)); }
+      if (!disposed) { setSource(record ?? builtin); setBytes(sizes.reduce((sum, size) => sum + size, 0)); }
     })().catch(() => { if (!disposed) setFailed(true); });
     return () => { disposed = true; };
   // Keep one immutable lesson snapshot per keyed dialog opening.

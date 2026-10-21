@@ -66,7 +66,7 @@ export async function deleteLearningRecord(profileId: string, recordId: string, 
   });
 }
 
-// Remove current practice snapshots only; retain tombstones to prevent synced answer/contact resurrection.
+// Retain tombstones so sync cannot restore deleted answers or contacts.
 
 export async function restartPractice(profileId: string, sessionId: string) {
   profileIdSchema.parse(profileId);

@@ -678,7 +678,7 @@
       "response": "簡答",
       "evidence": "定位證據"
     },
-    "close": "關閉詳情",
+    "close": "關閉",
     "source": "來源與授權",
     "duration": "預計用時",
     "minutes": "分鐘",
@@ -823,7 +823,7 @@
     "checkAudioRule": "每段錄音播完後才能儲存答案；可重聽，重聽會記錄。",
     "checkNoAudio": "本次閱讀測試沒有錄音。",
     "checkBegin": "開始測試",
-    "checkEndAndLearn": "結束測試並轉入學習",
+    "endCheck": "結束檢查",
     "checkLearnError": "未能進入練習，請重試。作答已儲存。",
     "start": "開始閱讀",
     "resume": "繼續任務",

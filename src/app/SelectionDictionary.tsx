@@ -34,7 +34,7 @@ export function SelectionDictionary({ selected, locale, profileId, online, defau
   useEffect(() => { if (open) root.current?.querySelector<HTMLButtonElement>('.selection-dictionary-heading button')?.focus({ preventScroll: true }); }, [open]);
   function dismiss(returnFocus = false) {
     onClose();
-    if (returnFocus) document.getElementById('learning-material')?.focus({ preventScroll: true });
+    if (returnFocus) document.querySelector<HTMLElement>('.reading-workspace')?.focus({ preventScroll: true });
   }
 
   useEffect(() => {

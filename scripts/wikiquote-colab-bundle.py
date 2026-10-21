@@ -1,4 +1,6 @@
-"""Bundle explicitly allowlisted public corpus inputs for optional cloud replay. Exclude scans, credentials, learner exports, captured sessions, and private outputs; run no cloud jobs or publication."""
+"""Bundle allowlisted public inputs for cloud replay; run no jobs or publication.
+
+Exclude scans, credentials, learner exports, captured sessions and private outputs."""
 import hashlib
 import importlib.util
 import json

@@ -1,4 +1,6 @@
-"""Collect explicit official editions without approving quotes. Use Python's standard library, run offline --self-test before cloud --collect, and retain originals and failures."""
+"""Collect official editions with the standard library; do not approve quotes.
+
+Run offline --self-test before cloud --collect. Retain originals and failures."""
 import argparse
 import datetime
 import hashlib

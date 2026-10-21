@@ -1,5 +1,5 @@
 export const nameEnding = /(?:\b(?:Dr|Mr|Mrs|Ms|Prof|Capt|St|Bros|v|vs)\.|\b(?:[A-Z]\.){2,4}|\b(?:[A-Z][a-z]{1,30}|by|with|from|to|after|of|and) [A-Z]\.)(?:\s*[A-Z]\.)*$/;
-/** Keep honorifics, initials, and company abbreviations within their source paragraph/turn. */
+// Do not split a source turn at honorifics, initials or company abbreviations.
 export function sentenceSegments(text: string) {
   const segments = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)];
   const merged: { segment: string; index: number }[] = [];

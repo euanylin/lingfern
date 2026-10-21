@@ -1,8 +1,51 @@
+import type { Lesson } from '../../src/shared/content';
+import { questionSlots } from '../../src/shared/practiceQuantity';
 import { readFile } from 'node:fs/promises';
 import { showLearningPane } from '../browser/learning-pane';
-import { confirmTask } from '../browser/task-start';
+import { confirmTask as confirmNewTask } from '../browser/task-start';
+import { confirmFixtureTask as confirmTask } from './fixture-session';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from '../browser/picker';
+
+async function completeWorkspace(page: import('@playwright/test').Page, response = 'The source supports this interpretation, with its stated conditions and limits.') {
+  await expect(page.locator('.material-workspace')).toBeVisible();
+  await expect(page).toHaveURL(/\/learn\//);
+  const lesson = await page.evaluate(() => new Promise<Lesson>((resolve, reject) => {
+    const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
+    open.onsuccess = () => { const db = open.result, request = db.transaction('sessions').objectStore('sessions').get(location.pathname.split('/').at(-1)!); request.onsuccess = () => { resolve(request.result.lesson); db.close(); }; request.onerror = () => reject(request.error); };
+  }));
+  await showLearningPane(page, 'question');
+  let slot = 0;
+  for (const material of lesson.materials) {
+    await page.locator('.workspace-card button').nth(slot).click();
+    if (material.audio) {
+      const audio = page.locator('audio');
+      await page.locator('.audio-play').click();
+      await expect.poll(() => audio.evaluate((audio: HTMLAudioElement) => Number.isFinite(audio.duration) && audio.duration > 0)).toBe(true);
+      await audio.evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.playbackRate = 16; });
+      await expect.poll(() => audio.evaluate((audio: HTMLAudioElement) => audio.ended && audio.duration > 0), { timeout: 20_000 }).toBe(true);
+      await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible();
+    }
+    for (const question of material.questions) {
+      await page.locator('.workspace-card button').nth(slot).click();
+      const section = page.locator('.workspace-question').filter({ has: page.locator(`[id="prompt-${question.id}"]`) });
+      await expect(section).toBeVisible();
+      if ('options' in question) await section.getByRole('radio').nth(question.answer).check();
+      else if ('spans' in question) await section.getByRole('radio').nth(question.accepted[0]).check();
+      else if ('criteria' in question) for (const input of await section.locator('textarea').all()) await input.fill(response);
+      else if ('gaps' in question) for (const [index, gap] of question.gaps.entries()) await section.locator('.inline-gap input').nth(index).fill(gap.answer);
+      else if ('rows' in question) for (const [index, row] of question.rows.entries()) await section.locator('.answer-table input').nth(index).fill(row.answer);
+      else if ('pairs' in question) for (const [index, pair] of question.pairs.entries()) await selectPicker(page, `${slot + index + 1}. ${pair.label}`, pair.answer);
+      else if ('steps' in question) for (const step of question.acceptedOrders[0]) await section.locator('.sequence-choices').getByRole('button', { name: `${step} ＋`, exact: true }).click();
+      else await section.locator('.completion-answer input').fill(question.answer);
+      slot += questionSlots(question);
+    }
+  }
+  await page.locator('.workspace-card button').last().click();
+  await page.getByRole('button', { name: '提交练习', exact: true }).click();
+  await expect(page.locator('#workspace-result')).toBeVisible();
+  return { lesson, slots: slot };
+}
 
 test('chosen word materials and question type persist, generate and save offline', async ({ page, context }) => {
   await page.goto('/start');
@@ -28,7 +71,7 @@ test('chosen word materials and question type persist, generate and save offline
   await dialog.locator('[role=option][data-value=choice]').click();
   await dialog.getByRole('button', { name: '题型', exact: true }).click();
   for (const word of ['cat', 'bed']) await dialog.getByRole('checkbox', { name: word, exact: true }).check();
-  await dialog.getByRole('button', { name: '取消', exact: true }).click();
+  await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
@@ -39,9 +82,9 @@ test('chosen word materials and question type persist, generate and save offline
   await expect(dialog.getByRole('button', { name: '主题', exact: true })).toHaveAttribute('data-value', 'science,daily-life');
   for (const word of ['cat', 'bed']) await expect(dialog.getByRole('checkbox', { name: word, exact: true })).toBeChecked();
   await expect(dialog.getByRole('button', { name: '题型', exact: true })).toHaveAttribute('data-value', 'completion,choice');
-  await dialog.getByRole('button', { name: '取消', exact: true }).click();
+  await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await card.getByRole('button', { name: '开始', exact: true }).click();
-  await confirmTask(page);
+  await confirmNewTask(page);
   const snapshot = await page.evaluate(() => new Promise<{ materials: { rootId: string; audio: { src: string }; blocks: { text: string }[]; questions: { kind: string }[] }[] }>((resolve, reject) => {
     const request = indexedDB.open('lingfern');
     request.onerror = () => reject(request.error);
@@ -75,16 +118,19 @@ test('open response and self-assessment save and reopen offline without a score'
   await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '转述计划与限制' }) }).getByRole('button').click();
   await confirmTask(page);
   const response = 'Wait for Friday’s email. The room needs an inspection; the alternative is online.';
-  await page.locator('.response-answer textarea').fill(response);
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '已保存 · 未自动评分' })).toBeVisible();
-  for (const row of await page.locator('.self-assessment fieldset').all()) await row.getByRole('radio', { name: 'Unsure', exact: true }).check();
-  await page.getByRole('button', { name: 'Save self-assessment' }).click();
-  await expect(page.getByText('Self-assessment saved.')).toBeVisible();
-  await page.reload();
-  await expect(page.locator('.response-answer textarea')).toHaveValue(response);
-  await expect(page.locator('.self-assessment input:checked')).toHaveCount(3);
-  await expect(page.getByRole('heading', { name: '已保存 · 未自动评分' })).toBeVisible();
+  await completeWorkspace(page, response);
+  for (const assessment of await page.locator('.self-assessment').all()) {
+    for (const row of await assessment.locator('fieldset').all()) await row.getByRole('radio', { name: 'Unsure', exact: true }).check();
+    await assessment.getByRole('button', { name: 'Save self-assessment' }).click();
+    await expect(assessment.getByText('Self-assessment saved.')).toBeVisible();
+  }
+  const selected = await page.locator('.self-assessment input:checked').count();
+  expect(selected).toBeGreaterThan(0);
+  await page.reload(); await showLearningPane(page, 'question');
+  await expect(page.locator('.response-answer textarea').first()).toHaveValue(response);
+  await expect(page.locator('.self-assessment input:checked')).toHaveCount(selected);
+  await expect(page.locator('.slot-result')).toHaveText(['1: 已保存 · 未自动评分', '2: 已保存 · 未自动评分']);
+
 });
 
 test('matching a new pair of messages works offline and survives reopening', async ({ page, context }) => {
@@ -95,13 +141,14 @@ test('matching a new pair of messages works offline and survives reopening', asy
   await context.setOffline(true);
   await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '配对活动安排' }) }).getByRole('button', { name: '开始阅读' }).click();
   await confirmTask(page);
-  await selectPicker(page, 'Mia', 'library');
-  await selectPicker(page, 'Ben', 'park');
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  await page.reload();
-  await expect(page.locator('.feedback blockquote')).toHaveText(['at the library', 'at the park']);
-  await expect(page.getByRole('button', { name: 'Mia', exact: true })).toBeDisabled();
+  const { slots } = await completeWorkspace(page);
+  expect(slots).toBe(8);
+  await page.reload(); await showLearningPane(page, 'question');
+  await page.locator('.workspace-card button').first().click();
+  await expect(page.locator('.slot-result')).toHaveCount(slots);
+  await expect(page.locator('.workspace-review').first().locator('blockquote')).toHaveText(['at the library', 'at the park']);
+  await expect(page.getByRole('button', { name: '1. Mia', exact: true })).toBeDisabled();
+
 });
 
 test('A2 controlled completion saves and reopens offline', async ({ page, context }) => {
@@ -117,15 +164,10 @@ test('A2 controlled completion saves and reopens offline', async ({ page, contex
   const task = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '听懂临时变动' }) });
   await task.getByRole('button', { name: '开始听力' }).click();
   await confirmTask(page);
-  await page.getByRole('textbox', { name: '填写听到的缺失内容。' }).fill('Room 12');
-  await page.getByRole('button', { name: '播放 / 重听' }).click();
-  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => Number.isFinite(audio.duration) && audio.duration > 20)).toBe(true);
-  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.playbackRate = 16; audio.currentTime = 0; });
-  await expect(page.getByRole('button', { name: '保存答案' })).toBeEnabled({ timeout: 20_000 });
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
   await page.reload();
-  await expect(page.locator('.feedback blockquote')).toContainText('Room Twelve');
+  await expect(page.locator('.workspace-review').first().locator('blockquote')).toContainText('Room Twelve');
+
 });
 
 test('A2 evidence and ordering responses can be saved with the network disconnected', async ({ page, context }) => {
@@ -137,26 +179,11 @@ test('A2 evidence and ordering responses can be saved with the network disconnec
   const task = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '核对开放时间的例外' }) });
   await task.getByRole('button', { name: '开始阅读' }).click();
   await confirmTask(page);
-  await page.getByRole('textbox', { name: 'Friday' }).fill('11:00');
-  await page.getByRole('textbox', { name: 'Wednesday' }).fill('9:00');
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await page.getByRole('button', { name: '下一题' }).click();
-  await page.locator('input[type=radio]').nth(1).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
-  await page.getByRole('button', { name: '下一题' }).click();
-  await page.getByRole('textbox', { name: 'Thursday' }).fill('12:00');
-  await page.getByRole('textbox', { name: 'Tuesday' }).fill('10:00');
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await page.getByRole('button', { name: '下一题' }).click();
-  for (const name of ['Check the usual opening days and times.', "Check Thursday's changed opening time.", 'Plan to collect reserved materials after the doors open.']) {
-    await page.getByRole('button', { name: `添加步骤: ${name}` }).click();
-  }
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  await page.reload();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  const { slots } = await completeWorkspace(page);
+  await expect(page.locator('.slot-result')).toHaveCount(slots);
+  await expect(page.locator('.workspace-review').nth(1).locator('blockquote')).toHaveCount(2);
+  await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
+
 });
 
 test('verified install reopens, looks up an unvisited word, plays audio and saves offline', async ({ page, context, baseURL }) => {
@@ -230,33 +257,21 @@ test('verified install reopens, looks up an unvisited word, plays audio and save
   expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
   const readingURL = page.url();
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page).toHaveURL(/\/today$/);
-  await page.goto(readingURL);
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await page.goto(readingURL); await expect(page.locator('#workspace-result')).toBeVisible();
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始', exact: true }).click();
-  await confirmTask(page);
-  await page.getByRole('radio', { name: 'book', exact: true }).check();
-  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; });
-  await page.getByRole('button', { name: '播放 / 重听', exact: true }).click();
-  await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await confirmTask(page); await completeWorkspace(page);
   expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.ended && audio.duration > 0)).toBe(true);
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page).toHaveURL(/\/today$/);
-  await page.getByRole('link', { name: '今日', exact: true }).click();
   const c2 = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '保留分歧与责任' }) });
   await c2.getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
-  await page.locator('input[type=radio]').first().check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
+  await confirmTask(page); await completeWorkspace(page);
+  await expect(page.locator('.workspace-review').first().locator('blockquote')).toHaveCount(2);
   expect(await page.evaluate(async () => { try { await fetch('/api/unknown'); return false; } catch { return true; } })).toBe(true);
   expect(external).toEqual([]);
 });
@@ -265,9 +280,7 @@ test('a failed selected package preserves earlier packages and learning records'
   await page.goto('/today');
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page).toHaveURL(/\/today$/);
   const license = Buffer.from(await readFile('/tmp/lingfern-offline-fixtures-resources/public/audio/a1-words/CC-BY-SA-3.0.txt'));
@@ -288,18 +301,16 @@ test('a failed selected package preserves earlier packages and learning records'
   await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('被动');
   await expect(page.locator('.grammar-results details')).toHaveCount(1);
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('4');
 });
 
 test('select all toggles all packages and removal keeps learning records', async ({ page, context }) => {
   await page.goto('/today');
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('4');
   await page.goto('/library');
   await expect(page.locator('.package-row input:checked')).toHaveCount(0);
   await page.getByRole('button', { name: '全选', exact: true }).click();
@@ -326,7 +337,7 @@ test('select all toggles all packages and removal keeps learning records', async
   await page.reload();
   await expect(grammar).not.toContainText('已安装');
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('4');
 });
 
 
@@ -337,13 +348,14 @@ test('finite variants generate, save and reload with the network disconnected', 
   expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   await context.setOffline(true);
   await page.getByRole('button', { name: '开始变式练习', exact: true }).click();
-  await page.getByRole('radio').nth(1).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  const text = await page.locator('.material').innerText();
-  await page.reload();
-  expect(await page.locator('.material').innerText()).toBe(text);
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  const { lesson, slots } = await completeWorkspace(page);
+  expect(slots).toBeLessThanOrEqual(12);
+  await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
+  await expect(page.locator('.slot-result')).toHaveCount(slots);
+  expect(await page.evaluate(() => new Promise((resolve, reject) => {
+    const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
+    open.onsuccess = () => { const db = open.result, request = db.transaction('sessions').objectStore('sessions').get(location.pathname.split('/').at(-1)!); request.onsuccess = () => { resolve(request.result.lesson); db.close(); }; };
+  }))).toEqual(lesson);
 });
 
 test('first-run choices persist and route to available reading while disconnected', async ({ page, context }) => {
@@ -375,7 +387,7 @@ test('first-run choices persist and route to available reading while disconnecte
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
   await page.locator('.primary-task').first().getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
-  await expect(page.locator('.session-header')).toBeVisible();
+  await expect(page.locator('.material-workspace')).toBeVisible();
   await expect(page.locator('.question-panel')).toBeVisible();
 });
 
@@ -431,22 +443,15 @@ test('C1 concessions complete and reopen with new course definitions while disco
   await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '读懂让步与有条件的建议' }) }).getByRole('button').click();
   await confirmTask(page);
   const url = page.url();
-  for (const [position, answer] of [1, 2, 0, 2].entries()) {
-    await showLearningPane(page, 'question');
-    await page.getByRole('radio').nth(answer).check();
-    await page.getByRole('button', { name: '保存答案', exact: true }).click();
-    await expect(page.locator('.feedback blockquote')).toHaveCount(position === 3 ? 3 : 2);
-    if (position < 3) await page.getByRole('button', { name: '下一题', exact: true }).click();
-  }
-  await expect(page.getByRole('heading', { name: '阅读任务已保存', exact: true })).toBeVisible();
-  await page.reload();
-  await expect(page.getByRole('heading', { name: '阅读任务已保存', exact: true })).toBeVisible();
+  await completeWorkspace(page);
+  await expect(page.locator('.workspace-review').last().locator('blockquote')).toHaveCount(3);
+  await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
   await page.goto('/library/dictionary');
   await page.getByRole('combobox', { name: '查询单词或短语' }).fill('provided');
   await page.getByRole('option', { name: 'provided', exact: true }).click();
   await expect(page.getByText('Only if a stated condition is met. In a recommendation, it introduces a condition on support.')).toBeVisible();
   await page.goto(url);
-  await expect(page.getByRole('heading', { name: '阅读任务已保存', exact: true })).toBeVisible();
+  await expect(page.locator('#workspace-result')).toBeVisible();
 });
 
 test('A2 service instructions save orders and retain course-specific advice offline', async ({ page, context }) => {
@@ -456,16 +461,10 @@ test('A2 service instructions save orders and retain course-specific advice offl
   await context.setOffline(true);
   await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '按服务说明办事' }) }).getByRole('button').click();
   await confirmTask(page);
-  const orders = [['Send the book title and your card number.', 'Wait for a message saying the book is ready.', 'Visit the main desk with your card and ask for the book.'], ['Send the item description, bus route number and journey date.', 'Wait for a reply saying the item is ready for collection.', 'Visit the transport office with the collection number.']];
-  for (let position = 0; position < 4; position++) {
-    if (position % 2 === 0) await page.getByRole('radio').nth(position === 0 ? 0 : 1).check();
-    else for (const step of orders[(position - 1) / 2]) await page.getByRole('button', { name: `添加步骤: ${step}`, exact: true }).click();
-    await page.getByRole('button', { name: '保存答案', exact: true }).click();
-    await expect(page.locator('.feedback')).toContainText('下次先列出必须提交的信息，再确认哪条回复允许你前往领取。');
-    if (position < 3) await page.getByRole('button', { name: '下一题', exact: true }).click();
-  }
-  await page.reload();
-  await expect(page.getByRole('heading', { name: '阅读任务已保存', exact: true })).toBeVisible();
+  await completeWorkspace(page);
+  await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
+  await expect(page.locator('.workspace-review')).toHaveCount(4);
+
 });
 
 test('downloads a local ZIP and restores answers into a separate profile while offline', async ({ page, context }) => {
@@ -473,9 +472,9 @@ test('downloads a local ZIP and restores answers into a separate profile while o
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
   expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmNewTask(page);
+  const { slots } = await completeWorkspace(page);
+  expect(slots).toBe(2);
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.getByRole('link', { name: '设置', exact: true }).click();
   await context.setOffline(true);
@@ -490,15 +489,15 @@ test('downloads a local ZIP and restores answers into a separate profile while o
   await (await chooser).setFiles({ name: 'saved.zip', mimeType: 'application/zip', buffer: bytes });
   await expect(page.locator('.backup-file-name')).toHaveText('saved.zip');
   await expect(page.getByText('待导入：本机档案')).toBeVisible();
-  await expect(page.locator('.backup-preview')).toContainText('任务 1 · 作答 1');
+  await expect(page.locator('.backup-preview')).toContainText('任务 1 · 作答 2');
   await page.getByRole('button', { name: '导入为新档案' }).click();
   await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();
   const current = await page.getByRole('button', { name: '当前档案' }).getAttribute('data-value');
   expect(current).not.toBe('local-guest');
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('2');
   await page.getByRole('link', { name: '设置', exact: true }).click();
   await selectPicker(page, '当前档案', 'local-guest');
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('2');
 });

@@ -77,7 +77,7 @@ async function runDependence() {
   const packSeed=available.findIndex(pack=>pack.id===id); assert(packSeed>=0);
   await page.evaluate(seed=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=values=>values instanceof Uint32Array&&values.length===2?(values[0]=seed,values[1]=0,values):original(values);},packSeed);
   await page.locator('.corpus-practice[data-skill=reading]').getByRole('button',{name:'开始',exact:true}).click(); await expect(page.getByRole('dialog')).toBeVisible({timeout:90000});
-  assert(downloads.some(url=>url.endsWith('/'+id+'.zip'))); await page.getByRole('dialog').getByRole('button',{name:'关闭详情',exact:true}).click(); installed.add(id);
+  assert(downloads.some(url=>url.endsWith('/'+id+'.zip'))); await page.getByRole('dialog').getByRole('button',{name:'关闭',exact:true}).click(); installed.add(id);
  }
  await context.setOffline(true); await page.reload();
  await page.evaluate(seed=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=values=>values instanceof Uint32Array&&values.length===2?(values[0]=0,values[1]=seed,values):original(values);},practiceSeed);

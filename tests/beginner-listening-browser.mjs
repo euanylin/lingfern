@@ -81,7 +81,7 @@ try {
  const attempts=await rows('attempts');assert.equal(attempts.length,6+sentenceSources.length);assert.equal(attempts.filter(attempt=>attempt.correct===false).length,1);assert.equal(attempts.filter(attempt=>attempt.correct===true).length,attempts.length-1);assert(attempts.every(attempt=>attempt.assistance.audioCompleted===true&&attempt.assistance.playbackRequests===1));
  await page.locator('.corpus-practice[data-skill=listening]').getByRole('button',{name:'开始',exact:true}).click();
  const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();await expect(dialog).toContainText('听单词');
- await dialog.getByRole('button',{name:'关闭详情',exact:true}).click();
+ await dialog.getByRole('button',{name:'关闭',exact:true}).click();
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.deepEqual(errors,[]);
  console.log('PASS: actual IPA/short-audio download; two fresh complete word applications unlock source-generated short sentences; real native audio playback, evidence/scoring/save, disconnected reload without duplicate, every installed short root, one incorrect answer followed by real word remediation and resumed sentences, exhausted-source fallback and Today at375px.');
 }finally{await context.close();await browser.close();}

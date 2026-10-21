@@ -62,7 +62,7 @@ export function ReadingMaterial({ material, locale, label, sessionId, owner, ann
     });
   }
   const removing = !!selection && marks.some(mark => readingHighlightsOverlap(mark, selection.highlight));
-  return <section className="material reading-workspace" ref={root}>
+  return <section className="material reading-workspace" tabIndex={-1} ref={root}>
     {selection && <SelectionDictionary key={`${selection.term}:${selection.x}:${selection.y}`} selected={selection} locale={locale} profileId={profileId} online={online} defaultId={defaultId} onLookup={onLookup} lookupEnabled={!checking && !!normaliseTerm(selection.term)} onClose={() => setSelection(undefined)} actions={<><button type="button" disabled={busy || (!removing && marks.length >= 50)} onPointerDown={event => event.preventDefault()} onClick={async () => { if (await save(removing ? marks.filter(mark => !readingHighlightsOverlap(mark, selection.highlight)) : [...marks, selection.highlight])) setSelection(undefined); }}>{removing ? t.remove : t.highlight}</button>{message === t.error && <p className="error" role="alert">{t.error}</p>}{!removing && marks.length >= 50 && <p className="muted">{t.full}</p>}</>}/>}
     <p className="eyebrow">{label}</p><h1 lang="en">{material.title}</h1>
     {material.illustration && <img className="material-illustration" src={material.illustration.src} alt={contentText(material.illustration.alt, locale)} loading="lazy"/>}

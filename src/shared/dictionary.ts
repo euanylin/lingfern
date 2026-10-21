@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import course from '../../content/dictionary-course.json';
 
-export const senseSchema = z.object({ id: z.string().min(1), pos: z.enum(['noun', 'verb', 'adjective', 'adverb']), definition: z.string().min(1), example: z.string().optional() }).strict();
-export const bucketSchema = z.record(z.string(), z.array(senseSchema));
-export const formsSchema = z.record(z.string(), z.array(z.string().min(1)));
+const senseSchema = z.object({ id: z.string().min(1), pos: z.enum(['noun', 'verb', 'adjective', 'adverb']), definition: z.string().min(1), example: z.string().optional() }).strict();
+const bucketSchema = z.record(z.string(), z.array(senseSchema));
+const formsSchema = z.record(z.string(), z.array(z.string().min(1)));
 const headwordsSchema = z.array(z.string().min(1)).min(1).max(150_000);
 const courseSchema = z.object({ reviewStatus: z.literal('draft'), source: z.string(), entries: z.array(z.object({ term: z.string(), senseId: z.string().nullable(), definition: z.string().min(1), example: z.string().min(1) }).strict()) }).strict();
-export const courseEntries = courseSchema.parse(course).entries;
+const courseEntries = courseSchema.parse(course).entries;
 export type DictionarySense = z.infer<typeof senseSchema>;
 const base = '/dictionary/oewn-2025/';
 const cache = new Map<string, Promise<unknown>>();
@@ -65,7 +65,7 @@ export async function suggestDictionary(raw: string) {
   return rankDictionarySuggestions(raw, [...new Set([...indexed, ...courseEntries.map(entry => normaliseTerm(entry.term))])]);
 }
 
-export function candidateTerms(value: string, forms: Record<string, string[]>) {
+function candidateTerms(value: string, forms: Record<string, string[]>) {
   const term = normaliseTerm(value);
   if (!term) return [];
   const candidates = new Set(forms[term] ?? []);

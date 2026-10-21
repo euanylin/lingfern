@@ -99,6 +99,10 @@ Rule-based routing reports task performance and evidence only. It must not manuf
 
 ## Brand, shared UI and motion
 
+Write all first-party code comments and docstrings in concise English. Explain intent, constraints or non-obvious behaviour; remove redundant or outdated comments. Preserve licence notices, attribution and required tool directives. Keep user-facing copy, source evidence and saved content in their original languages.
+
+Use the shared `MaterialWorkspace` for reading/listening answers. Do not restore the retired per-question answer page. Preserve scoring, transactions and mode restrictions in the shared data layer.
+
 Maintainer update (2026-10-18): keep one currently used fern symbol, `public/icon.svg`, as the sole logo source. Reuse its unchanged geometry directly or as a CSS mask with the theme accent colour. Retain only the required size-specific PNG installation icons; do not restore alternative logos, handwritten Lingfern wordmarks, editable artwork or personal signatures in application/source exports. Keep meaningful image labels and 44px link targets. The maintainer authorised local historical/recovery artwork cleanup on 2026-10-18; create and verify a clean recovery baseline before discarding affected older recovery points; do not claim a normal deletion erases the already-public Git history. Any public history rewrite requires its own concrete approval.
 
 The main visual is an **ostrich-fern fiddlehead gradually unfurling**, centred on Landing and Today. Size it so that the main task remains usable. Do not add plant watermarks to Learning, Check, or Settings. Share one SVG skeleton and six ordinary parameter sets; implement static states before lightweight transitions, not a plant-simulation framework.
@@ -113,17 +117,21 @@ Before UI changes, inspect surrounding pages and reuse `SettingsPicker`, `TaskDe
 
 Keep copy restrained: short labels/actions, concise actionable save/error/deletion/authorisation/backup details and actual licence attribution. Do not repeatedly explain implementation status, missing features or original/local/authentic qualities in ordinary flows.
 
+Keep every card/control scrollbar within its owning surface and rounded corners. Preserve native scrolling, keyboard access and focus visibility.
+
 Use the existing lively translucent navigation underline and related small purposeful motion for controls, navigation, selections and state changes. Preserve accepted continuous fern/resting motion and live mobile backdrop; keep geometry, reading and actions stable. Do not reserve empty update-status space or fixed spare lines. `prefers-reduced-motion: reduce` gets a clear static state; no separate animation framework.
 
 ## Verification, preview and delivery
+
+Maintainer acceptance update (2026-10-21): the maintainer reports having tried physical-device/accessibility and mainland-network use without problems and explicitly removes both from pending first-launch acceptance. Do not require another device, screen-reader or carrier sample matrix as a release gate. Preserve accessible behaviour and relevant regression checks. Real two-device synchronisation, identity/MCP security, protected CI, production update/recovery and separate launch approval remain required. Retained earlier agent test gaps are historical, not pending device/network gates. See [the acceptance record](docs/history/2026-10-21-release-gates.md).
 
 Maintainer deployment-control update (2026-10-18): use `euanyxlin` as the requested second test identity after verifying permitted account use; do not require an independent reviewer. Record independent approval as waived, not passed. Retain separately approved exact source upload, controlled deployment and public launch, manual maintainer approval, pinned Actions, least-privilege environment secrets and fork isolation. See [docs/upload-deployment-review.md](docs/upload-deployment-review.md); no external protection settings are changed by this decision.
 
 Choose actual type/content/unit/browser/local Worker/build/deployment checks by affected behaviour, using the commands in `AGENT_WORKFLOW.md`. Overall acceptance covers six-level boundaries, exhausted materials, offline/audio/database failures, tabs, two-device conflicts, revocation, account switching, malicious imports and routes/cache headers. Documentation-only work checks links, commands, consistency and backup restoration; do not imply application tests ran.
 
-For changed UI, check real controls in context across light/dark, three locales, desktop/narrow widths, keyboard, disabled/selected, reduced-motion and 44px touch states. State viewport/theme/language/data for screenshots. Contrast calculations/source inventories do not replace browser, screen-reader, mobile-audio or conditional-provider testing. Keep synthetic records in tests only.
+For changed UI, check real controls in context across light/dark, three locales, desktop/narrow widths, keyboard, disabled/selected, reduced-motion and 44px touch states. State viewport/theme/language/data for screenshots. Contrast calculations/source inventories do not replace relevant browser or conditional-provider tests. Device/accessibility acceptance follows the maintainer update above; do not reopen a standalone sign-off for each change. Keep synthetic records in tests only.
 
-Verify pinned dependencies/protocols against official documentation when modifying them; pin production Actions to verified commits and protect production credentials. Preserve relevant exact-source/hash/primary/ownership/recovery assertions; repair failed tests rather than delete or weaken them. Full product completion requires real remaining content, provider/device/network and release acceptance, not a green build.
+Verify pinned dependencies/protocols against official documentation when modifying them; pin production Actions to verified commits and protect production credentials. Preserve relevant exact-source/hash/primary/ownership/recovery assertions; repair failed tests rather than delete or weaken them. Full product completion requires remaining content, provider/security and release acceptance, not a green build.
 
 After verified website changes, keep/restart the local 8787 preview, verify `/sw.js` and the rendered 今日 heading without altering real learner data, then offer this final follow-up (do not automatically open/focus the browser):
 
@@ -137,6 +145,6 @@ Report actual changed files, operations, commands/results, evidence, untested ga
 
 The initial core experience, course downloads, audio, dictionary, logo, help, and local saving must not depend on external sign-in, Google Fonts, public npm CDNs, GitHub content URLs, or AI websites. Source links may be opened deliberately, but must not be hotlinked by the player or initial page load. Do not make platform-default subdomains a necessary entry point for users in mainland China.
 
-Using Cloudflare does not mean mainland accessibility has been verified. Record tests on real China Telecom, China Unicom, and China Mobile networks at different times separately from simulated networks, overseas CI, and MCP-client tests. Mark missing samples as untested. Do not claim nationwide stability or presume superiority over another service.
+Mainland-network release acceptance is closed by the maintainer's 2026-10-21 report; do not request further carrier/region/time samples for first launch. Attribute that confirmation to the maintainer without inventing sample details or claiming nationwide stability or superiority over another service. Preserve earlier measured results and investigate concrete new access defects through ordinary issue handling.
 
 GitHub's authorisation page and external AI services retain their own network and supported-region restrictions. Do not implement proxy sign-in, access third-party cookies, provide access tunnels, or silently fall back to a cloud service. Installed local learning and backups must continue working when remote features are unavailable.

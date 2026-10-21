@@ -117,7 +117,7 @@ const batchOutputManifestSha256='ee2c0454937b34a06bdb2c47ffd343b4f4b18c441737e9c
 const reviewRows=report=>{const rows=Array.isArray(report)?report:report.rows??report.windows;assert(Array.isArray(rows),'RECOVERED_BATCH_REVIEW_ROWS');const result=new Map(rows.map(row=>[row.id,row]));assert.equal(result.size,rows.length,'RECOVERED_BATCH_REVIEW_DUPLICATE');return result;};
 const goodDecode=d=>assert(d&&d.engine==='ffmpeg-full-stream-decode'&&digest.test(d.pcmSha256)&&Number.isSafeInteger(d.samples)&&d.samples>0&&Number.isSafeInteger(d.sampleRate)&&d.sampleRate>0&&d.duration===d.samples/d.sampleRate&&Number.isFinite(d.peak)&&d.peak>0&&d.peak<.98&&d.clippingSamples===0&&Number.isFinite(d.rms)&&d.rms>1e-5,'RECOVERED_BATCH_DECODE');
 
-/** Record cloud completion and per-window retrieval/review without claiming whole-archive/device acceptance. */
+// Record cloud and per-window review; do not imply archive or device acceptance.
 export function verifyRecoveredBatch(scope,readBytes) {
  keys(scope,['version','scope','job','completionReport','outputManifest','contextReview','recoveryReview','independentReview','textReview','boundaryReview','supplementalMediaReview','windows','continuationReview']);assert([1,2].includes(scope.version),'RECOVERED_BATCH_VERSION');
  const continuation=scope.version===2;assert(continuation||!scope.continuationReview,'RECOVERED_BATCH_CONTINUATION_SCOPE');

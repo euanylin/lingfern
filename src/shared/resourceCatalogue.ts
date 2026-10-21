@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const cataloguePath = '/resources/catalogue.json';
 export const catalogueCacheName = 'lingfern-resource-catalogue';
 export const catalogueMaxBytes = 2 * 1024 * 1024;
-export const resourceMaxBytes = 25 * 1024 * 1024;
+const resourceMaxBytes = 25 * 1024 * 1024;
 const id = z.string().regex(/^[a-z0-9][a-z0-9-]{0,127}$/);
 const version = z.string().regex(/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$/);
 const bytes = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);

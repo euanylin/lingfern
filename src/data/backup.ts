@@ -51,7 +51,7 @@ function backupProfileName(name: string, suffix = '') {
   return `${prefix}${suffix}` || 'Local profile';
 }
 
-// Preserve validated timing rows for recovery; keep absent cards paused until original-event confirmation.
+// Retain timing rows; pause absent cards until their original events are confirmed.
 
 async function backupMemoryCard(memory: Memory, reviews: MemoryReview[], events: StoredEvent[]) {
   const source = events.map(({ profileId: _profile, batchId: _batch, ...event }) => { void _profile; void _batch; return event; });
@@ -173,7 +173,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
     }
     if (session.profileId !== manifest.sourceProfileId || session.position >= questions(session.lesson).length) throw new Error('BACKUP_REFERENCE');
     if (session.lesson.mode !== 'check' && (session.status === 'ended' || session.checkDeviceId || session.checkStartedAt || session.checkEndedAt)) throw new Error('BACKUP_REFERENCE');
-    if (session.lesson.mode === 'check' && (session.status === 'ended' ? !session.checkStartedAt || !session.checkEndedAt : !!session.checkEndedAt)) throw new Error('BACKUP_REFERENCE');
+    if (session.lesson.mode === 'check' && (session.status === 'ended' ? !session.checkStartedAt || !session.checkEndedAt : session.status === 'active' ? !!session.checkEndedAt : !!session.checkEndedAt && !session.checkStartedAt)) throw new Error('BACKUP_REFERENCE');
     if (session.workspace) validateWorkspace(session.lesson, session.workspace);
     if (session.draft !== undefined) validateAnswer(questions(session.lesson)[session.position].question, session.draft, true);
     if (await sha256(encoder.encode(JSON.stringify(session.lesson))) !== session.contentHash) throw new Error('BACKUP_INTEGRITY');

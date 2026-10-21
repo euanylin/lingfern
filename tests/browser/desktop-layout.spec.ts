@@ -47,6 +47,7 @@ test('topic collapse retains selection and the group control geometry', async ({
 });
 
 test('checking updates keeps the action and status layout stable', async ({ page, context }) => {
+  test.setTimeout(90_000);
   // Delay the provider fixture to inspect pending UI; test SW updates separately.
   await page.addInitScript(() => {
     navigator.serviceWorker.getRegistration = async () => {

@@ -126,7 +126,7 @@ try {
     await practice.getByRole('button', { name: '开始', exact: true }).click();
     await expect(dialog).toBeVisible();
     sequenceFound = (await dialog.innerText()).includes('排序');
-    if (!sequenceFound) await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+    if (!sequenceFound) await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   }
   await page.evaluate(() => { crypto.getRandomValues = window.lingfernTestRandom; delete window.lingfernTestRandom; });
   assert(sequenceFound, 'No real source produced a sequence task in 60 deterministic seeds');

@@ -1,6 +1,6 @@
 import calendar from '../../content/quote-calendar.json';
 
-export const random = () => crypto.getRandomValues(new Uint32Array(1))[0] / 0x100000000;
+const random = () => crypto.getRandomValues(new Uint32Array(1))[0] / 0x100000000;
 export const localDay = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 
 export const quotePreview = (text: string) => text.length > 240 ? `${text.slice(0, 239).replace(/\s+\S*$/, '').trimEnd()}…` : text;

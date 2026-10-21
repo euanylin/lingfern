@@ -1,4 +1,6 @@
-"""Replay the frozen public Wikiquote bundle in a fresh Colab CPU workspace. Reuse existing inventory/parsers without Drive, OAuth, secrets, learner data, installations, or new parsing logic."""
+"""Replay the frozen public bundle on a fresh Colab CPU with existing parsers.
+
+No Drive, OAuth, secrets, learner data, installations or new parsing logic."""
 import hashlib
 import json
 import pathlib

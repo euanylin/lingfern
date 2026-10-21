@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { Lesson } from './content';
 
-export const readingAnnotationSchema = z.object({
+const readingAnnotationSchema = z.object({
   materialId: z.string().min(1).max(160),
   note: z.string().max(4000),
   highlights: z.array(z.object({ blockId: z.string().min(1).max(160), start: z.number().int().nonnegative(), end: z.number().int().positive(), text: z.string().min(1).max(4000) }).strict()).max(50),

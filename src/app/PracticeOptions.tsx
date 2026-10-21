@@ -83,7 +83,7 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
   const selected = draft.materials.length;
   return createPortal(<dialog {...motion.dialogProps} className="task-detail practice-options-dialog" aria-labelledby={id} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
     <div className="task-detail-body practice-options-body" {...motion.bodyProps}>
-      <header><div><p className="eyebrow" lang="en">{skill.toUpperCase()}</p><h2 id={id}>{t[skill === 'reading' ? 'readingSettings' : 'listeningSettings']}</h2></div><button type="button" disabled={saving} onClick={close}>{t.cancel}</button></header>
+      <header><div><p className="eyebrow" lang="en">{skill.toUpperCase()}</p><h2 id={id}>{t[skill === 'reading' ? 'readingSettings' : 'listeningSettings']}</h2></div><button type="button" disabled={saving} onClick={close}>{messages('taskDetail')[locale].close}</button></header>
       <div className="practice-option-fields">
         <SettingsPicker variant="field" label={messages('corpusPractice_topic')[locale]} multiple value={draft.topics} options={[{ value: '', label: automatic }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={topics => change({ ...draft, topics: topicSchema.array().parse(topics) })}/>
         <SettingsPicker variant="field" label={t.kind} multiple value={draft.kinds} options={[{ value: '', label: automatic }, ...corpusQuestionKindSchema.options.map(value => ({ value, label: messages('taskDetail')[locale].kinds[value] }))]} onChange={kinds => change({ ...draft, kinds: corpusQuestionKindSchema.array().parse(kinds) })}/>

@@ -1,3 +1,4 @@
+import './Welcome.css';
 import { WheelGestures } from 'wheel-gestures';
 import { NavIcon } from './NavIcon';
 import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react';
@@ -55,7 +56,6 @@ export function Welcome(props: WelcomeProps) {
     const resize = () => setScreenRatio(innerWidth / innerHeight);
     media.addEventListener('change', update);
     window.addEventListener('resize', resize);
-    setWidth(stage.current!.clientWidth);
     const observer = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width)); observer.observe(stage.current!);
     return () => { media.removeEventListener('change', update); window.removeEventListener('resize', resize); observer.disconnect(); cancelAnimationFrame(frame.current); cancelAnimationFrame(inputFrame.current); };
   }, []);
@@ -75,7 +75,7 @@ export function Welcome(props: WelcomeProps) {
       const scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
       // Flatten each card so overlapping surfaces exchange depth without intersecting.
       card.style.transform = reduced ? 'none' : `translate3d(${x}px,0,${-100 * away}px) scale(${scale})`;
-      card.style.zIndex = String(Math.round((1.5 - away) * 1000));
+      card.style.zIndex = index === next ? '3' : '1';
       card.style.opacity = String(reduced ? Number(index === next) : away > 1 ? Math.max(0, 1 - (away - 1) / .4) : 1);
       card.style.visibility = reduced && index !== next ? 'hidden' : 'visible';
       if (card.dataset.current !== String(index === next)) { card.dataset.current = String(index === next); card.setAttribute('aria-hidden', String(index !== next)); }
@@ -169,7 +169,7 @@ export function Welcome(props: WelcomeProps) {
       if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
       idleUntil.current = performance.now() + 6000;
       if (event.shiftKey || event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-      // Handle pixel-based horizontal trackpad input; preserve native wheel and Shift+wheel behavior.
+      // Handle horizontal trackpad pixels; preserve native wheel and Shift+wheel.
       event.preventDefault(); keyboard.current = false; gestures.feedWheel(event);
     };
     root.addEventListener('wheel', scroll, { passive: false });
@@ -188,7 +188,7 @@ export function Welcome(props: WelcomeProps) {
     } else paint(current.current);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': Math.max(.9, Math.min(1.85, screenRatio)), '--welcome-card-width': `${Math.max(0, cardWidth)}px` } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
+  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': Math.max(.9, Math.min(1.85, screenRatio)) } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
     <div className="welcome-stage" ref={stage} role="region" aria-roledescription={t.carousel} aria-label={t.carousel}
       onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { cancelWheel.current(); cancelAnimationFrame(inputFrame.current); inputFrame.current = 0; cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, moved: false, at: performance.now(), last: current.current, velocity: 0 }; } }}
       onPointerMove={event => {

@@ -82,7 +82,7 @@ export function validCorpusLanguage(text: string, language?: z.infer<typeof corp
 }
 
 const corpusDigestSchema = z.string().regex(/^[a-f0-9]{64}$/);
-export const quoteProvenanceSchema = z.object({
+const quoteProvenanceSchema = z.object({
   pageId: z.number().int().positive(), revisionId: z.number().int().positive(), pageTitle: z.string().min(1).max(300),
   revisionTimestamp: z.iso.datetime(), pageTextSha256: corpusDigestSchema,
   section: z.array(z.string().max(300)).max(20), locator: z.string().min(1).max(2000),
@@ -114,7 +114,7 @@ export const quoteProvenanceSchema = z.object({
     ctx.addIssue({ code: 'custom', message: 'Invalid quotation source boundaries' });
 });
 
-export const sourceProvenanceSchema = z.object({
+const sourceProvenanceSchema = z.object({
   workId: z.string().min(1).max(120), chapter: z.string().min(1).max(300), locator: z.string().min(1).max(2000),
   sourceUrl: z.string().max(2000), rawSha256: corpusDigestSchema, canonicalSha256: corpusDigestSchema,
   paragraphIndex: z.number().int().nonnegative(), codePointStart: z.number().int().nonnegative(), codePointEnd: z.number().int().positive(),
@@ -351,10 +351,10 @@ export function corpusSpeakers(text: string, seed: number) {
   return { pairs: selected.map(({ label, answer }) => ({ label, answer })), choices: seed % 2 ? names : names.reverse(),
     evidence: first.evidence, otherEvidence: selected[1].evidence };
 }
-export const quantityPrompt = 'How many? Read the stated count.';
-export const verificationPrompt = 'Read. Is this detail correct?';
+const quantityPrompt = 'How many? Read the stated count.';
+const verificationPrompt = 'Read. Is this detail correct?';
 
-export const timePrompt = 'Read the time stated for this question.';
+const timePrompt = 'Read the time stated for this question.';
 
 /** Require both inspected clues, rather than sentence-order recall. */
 export function corpusShortIntegration(text: string, seed: number) {
@@ -546,8 +546,8 @@ export function corpusVerification(text: string, seed: number) {
     hant: spelling ? `糾正後的拼寫是${correct}，不是${wrong}。題目細節與原文相同選Yes，不同選No。` : `${phone!.name}的工作電話是${correct}，誤撥到的是${wrong}。撥錯沒有改變工作電話。題目細節相同選Yes，不同選No。` };
 }
 
-export const locationPrompt = 'Where is the place?';
-export const instructionPrompt = 'What are you asked to do?';
+const locationPrompt = 'Where is the place?';
+const instructionPrompt = 'What are you asked to do?';
 
 /** Preserve each named landmark relation without substituting later directions. */
 export function corpusLocation(text: string, seed: number) {
@@ -2314,7 +2314,7 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   }), startingPoint);
 }
 
-/** Reserve four low seed bits for Wikiquote: each 16-seed group shares generation and eligibility; only slot zero may replace the application, keeping successful Wikiquote sessions at most 1/16 for uniform seeds. */
+// Shared eligibility per 16 seeds limits Wikiquote to slot zero: at most 1/16 with uniform seeds.
 export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
   const hasQuotes = startingPoint !== 'A1' && startingPoint !== 'A2' && [corpus, applicationCorpus].some(bank => bank?.records.some(source => source.passages.some(passage => passage.quoteProvenance)));
   if (!hasQuotes) return corpusCandidateLesson(corpus, seen, seed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus, includeResponse);

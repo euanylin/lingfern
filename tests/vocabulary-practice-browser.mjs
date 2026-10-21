@@ -37,7 +37,7 @@ try {
     await page.goto(origin + '/today');
   }
   const baseline = await choose();
-  await page.getByRole('dialog').getByRole('button', { name: '关闭详情', exact: true }).click();
+  await page.getByRole('dialog').getByRole('button', { name: '关闭', exact: true }).click();
   await page.goto(origin + '/library/dictionary');
   await page.getByLabel('查询单词或短语').fill(term);
   await page.getByLabel('查询单词或短语').press('Enter');

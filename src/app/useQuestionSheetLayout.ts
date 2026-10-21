@@ -43,7 +43,7 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
     const viewport = window.visualViewport;
     const toggle = panel.querySelector<HTMLElement>('.question-sheet-toggle');
     let fittedGeometry = '';
-    // Use visible viewport and collapsed-card bounds, including keyboard and zoom changes.
+    // Include the keyboard and zoom when measuring collapsed-card bounds.
     const fit = (scrollOnly = false) => {
       if (!grid.isConnected) return;
       const height = viewport?.height ?? innerHeight;

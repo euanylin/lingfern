@@ -42,8 +42,6 @@ export async function installedOfflineGroups() {
   return new Set(states.filter(([, ready]) => ready).map(([id]) => id));
 }
 
-export async function offlineReady() { return (await installedOfflineGroups()).size > 0; }
-
 export async function removeOfflineResources(ids: string | string[], profileId: string) {
   await loadRuntimeResources();
   const selected = [...new Set(typeof ids === 'string' ? [ids] : ids)];

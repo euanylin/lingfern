@@ -47,7 +47,7 @@ export function SharingUpload({ locale, profileId, attemptId, title, text }: { l
       if (!client) throw new Error('SHARING_SCOPE_CHANGED');
       const value = createShareSchema.parse({ profileId, connectionId: clientId, title, text, confirm: true });
       await localScope(); signal.throwIfAborted();
-      // Do not retry automatically: a lost response may hide a successful snapshot upload.
+      // A lost response may hide a successful upload; require explicit retry.
       sent = true; setSubmitted(true);
       const result = sharingSummariesSchema.shape.shares.element.parse(await jsonRequest('/api/ai/shares', signal, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': current.csrfToken }, body: JSON.stringify(value) }));
       if (result.profileId !== profileId || result.connectionId !== clientId || result.title !== value.title) throw new Error('SHARING_RESPONSE');

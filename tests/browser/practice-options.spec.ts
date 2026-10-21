@@ -51,7 +51,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   expect(await dialog.locator('.practice-material-search').evaluate(element => { const [automatic, search] = [...element.children].map(child => child.getBoundingClientRect()); return Math.abs(automatic.top - search.top) < 1 && automatic.height >= 44 && search.height >= 44; })).toBe(true);
   if (width < 768) { const size = await dialog.boundingBox(); expect(size!.width).toBe(width); expect(size!.height).toBe(812); }
   await page.screenshot({ path: `output/playwright/practice-options-${width}-${locale}-${theme}.png` });
-  await dialog.getByRole('button', { name: t.cancel, exact: true }).click();
+  await dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.reload();
   await expect(button).toHaveAccessibleName(t.listeningSettings);
@@ -62,7 +62,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await expect(dialog.getByRole('button', { name: t.kind, exact: true })).toHaveAttribute('data-value', 'completion,choice');
   await expect(dialog.getByRole('checkbox', { name: 'cat', exact: true })).toBeChecked();
   await expect(dialog.getByRole('checkbox', { name: 'bed', exact: true })).toBeChecked();
-  await dialog.getByRole('button', { name: t.cancel, exact: true }).click();
+  await dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
@@ -110,7 +110,7 @@ test('unavailable choices remain visible and can be cleared without changing ano
   await dialog.getByRole('checkbox', { name: 'Unavailable material · removed-work', exact: true }).uncheck();
   await expect(dialog.getByText(languagePacks.en.practiceOptions.materialHint, { exact: true })).toBeVisible();
   await dialog.getByRole('button', { name: 'Automatic', exact: true }).click();
-  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(dialog).toHaveCount(0);
   const values = await page.evaluate(async () => {
     const path = '/src/data/db.ts', data = await import(path);
@@ -140,7 +140,7 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} topics mig
   await expect(topic).toHaveAttribute('data-value', 'travel');
   await dialog.locator('[role=option][data-value=science]').click();
   await topic.click();
-  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.reload(); await button.click();
   await expect(topic).toHaveAttribute('data-value', 'travel,science');
@@ -149,7 +149,7 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} topics mig
   await dialog.locator('[role=option][data-value=""]').click();
   await expect(topic).toHaveAttribute('data-value', '');
   await expect(dialog.locator('[role=option][aria-selected=true]')).toHaveCount(1);
-  await topic.click(); await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await topic.click(); await dialog.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(dialog).toHaveCount(0); await page.reload();
   await expect(button).toHaveAttribute('data-configured', 'false');
 });
@@ -210,7 +210,7 @@ test('automatic saves report a failed write and retry the latest rapid multi-sel
   await dialog.locator('[role=option][data-value=choice]').click();
   await dialog.locator('[role=option][data-value=matching]').click();
   await dialog.locator('.setting-trigger').last().click();
-  await dialog.getByRole('button', { name: languagePacks['zh-Hans'].practiceOptions.cancel, exact: true }).click();
+  await dialog.getByRole('button', { name: languagePacks['zh-Hans'].taskDetail.close, exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.reload();
   await page.locator('[data-practice-skill=reading]').first().click();
@@ -238,15 +238,15 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} material c
     data.communityPacks.where = (index: unknown) => { Reflect.set(window, 'materialReads', Reflect.get(window, 'materialReads') + 1); return where(index); };
   });
   await dialog.getByRole('checkbox').first().check();
-  await expect(dialog.getByRole('button', { name: '取消', exact: true })).toBeEnabled();
+  await expect(dialog.getByRole('button', { name: '关闭', exact: true })).toBeEnabled();
   await dialog.getByRole('searchbox').fill('a');
   await dialog.getByRole('searchbox').fill('');
   await dialog.locator('.practice-material-search>button').click();
-  await expect(dialog.getByRole('button', { name: '取消', exact: true })).toBeEnabled();
+  await expect(dialog.getByRole('button', { name: '关闭', exact: true })).toBeEnabled();
   // Let saves/live queries settle before checking for duplicate subscriptions.
   await page.waitForTimeout(350);
   expect(await page.evaluate(() => Reflect.get(window, 'materialReads'))).toBe(0);
-  await dialog.getByRole('button', { name: '取消', exact: true }).click();
+  await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.locator(`[data-practice-skill=${skill}]`).first().click();
   await expect(group).toBeVisible();

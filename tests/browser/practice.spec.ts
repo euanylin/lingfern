@@ -13,7 +13,7 @@ test('Today uses saved reading evidence without changing the listening starting 
   await page.getByRole('link', { name: '返回今日' }).click();
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await expect(page.getByRole('dialog').getByRole('heading', { name: '配对活动安排', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '关闭详情' }).click();
+  await page.getByRole('button', { name: '关闭' }).click();
   await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始', exact: true }).click();
   await expect(page.getByRole('dialog').getByRole('heading', { name: '听出日常物品', exact: true })).toBeVisible();
 });

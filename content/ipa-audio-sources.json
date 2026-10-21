@@ -27,7 +27,13 @@
     "sha256": "4e6fcae818f58d5229eb8ccf163ed608338f1dfc4c50c0764605082706cdf7ec",
     "duration": 0.639,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/sit.mp3",
+      "sha256": "019e582475e1b064334eb5336b03d3e3c1f19c64d7c4467331380fb8902b1360",
+      "duration": 0.926,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "bed",
@@ -42,7 +48,13 @@
     "sha256": "d8d284385fdc0bd0cf7d9f82a97223b1f1d1a2ba3cb58704fd968298835d464f",
     "duration": 0.662,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/bed.mp3",
+      "sha256": "5bf5849f5879d1d119bb4a1243fa4c88237ca32c3bbc87d6fe8a0a421b8d3c0d",
+      "duration": 0.949,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "cat",
@@ -57,7 +69,13 @@
     "sha256": "41c6892794695e032a72642dc0886438027af262ea769a5d4ef567be4028758d",
     "duration": 0.522,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/cat.mp3",
+      "sha256": "214e05fa3fcdf0a56df1554e8e345ad21f9854849c604ed493e9916e9e55b079",
+      "duration": 0.81,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "father",
@@ -72,7 +90,13 @@
     "sha256": "f5212124ed44b7e1f7cadf6850025c0456ddb1d637e93c4b7b461669f1db6d34",
     "duration": 0.685,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/father.mp3",
+      "sha256": "58c4ceebd3ea7d9082a7b9bd58855df16f4674e3449e9a6ca2f3db2a4baedbd5",
+      "duration": 0.972,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "law",
@@ -87,7 +111,13 @@
     "sha256": "f28dd2b6309dba08d7090e11606948f6cc5f45b23f71aedfe04da293ce454248",
     "duration": 0.662,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/law.mp3",
+      "sha256": "270b672af62f4b71ef1c61f64bff28311071fd00129f80232a31849f13aa6909",
+      "duration": 0.949,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "book",
@@ -102,7 +132,13 @@
     "sha256": "0f601ae11b4848cdc2e63be6343eed656236dfb8d337e741d9aa93df1311dc04",
     "duration": 0.592,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/book.mp3",
+      "sha256": "b514f6147d7cf14682b6ba839da56d6fad3be10df7733ce32da758b42b122d4e",
+      "duration": 0.879,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "blue",
@@ -117,7 +153,13 @@
     "sha256": "7bf11ad6d7c6e49a3eb47dedf5e21187a99b461c5078cdca6e940917510f2c86",
     "duration": 0.58,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/blue.mp3",
+      "sha256": "6c5da00f44b1b8b11168e6bbeba59dd2e7ddad4421dd6512b8533636c237b42b",
+      "duration": 0.868,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "cup",
@@ -132,7 +174,13 @@
     "sha256": "52a3c7de782f9fc69c871caa774ea35ee8b8db2ffed444f03ea10ae12bf9804c",
     "duration": 0.72,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/cup.mp3",
+      "sha256": "25b788820b41ba2468921a94f8ddf8517a7c5022f632c887832d861da4017d13",
+      "duration": 1.007,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "about",
@@ -147,7 +195,13 @@
     "sha256": "0d5db4f6e7d84db233980680a4e6afb0ebd0574f24e411d033a8cbf407811157",
     "duration": 0.592,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/about.mp3",
+      "sha256": "9d7ff62f3d3681533337bd14919808bba5d91544dd2b81abe55ed221559f6989",
+      "duration": 0.879,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "bird",
@@ -177,7 +231,13 @@
     "sha256": "0fa8e572fb1c91cfb94f96471a2310041c134a8a038ab6e2f580eb4f7b7a85ad",
     "duration": 0.476,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/late.mp3",
+      "sha256": "6d6aba0382e3cf73f168564186a221f9e5eda7fc9ece29d2b915abbfdc5423ba",
+      "duration": 0.763,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "my",
@@ -192,7 +252,13 @@
     "sha256": "fba6c6dc99c04420508062c3c81485aaa6cc19ef62efc713f1f281bb6b7fd4c5",
     "duration": 0.604,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/my.mp3",
+      "sha256": "f96b3a6e36b9101a9d325373bc87bb2be85e2f022642c881b43579bc18907925",
+      "duration": 0.891,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "boy",
@@ -207,7 +273,13 @@
     "sha256": "e037970ecca509157492b32494e2edc399af987d7f10ddcc672acbfceb409182",
     "duration": 0.499,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/boy.mp3",
+      "sha256": "410953539440664eb74f48602b3a7a1e71fc9ade8ef7292f107fda1cf076f29f",
+      "duration": 0.787,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "now",
@@ -222,7 +294,13 @@
     "sha256": "cfacad4540e0097442b3c7a3ee697a8a900a6cfd6c58123adb1b31804e4ad7dd",
     "duration": 0.464,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/now.mp3",
+      "sha256": "b4047f932336ccf7348aa33b23277331f2dd222589abc1fe65f30e75cc65f433",
+      "duration": 0.752,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "go",
@@ -252,7 +330,13 @@
     "sha256": "2fd8d64d4f1a32da05e79b2c7fdb3cb0e2c227b47edb0b4cf5a77f85205e7f7c",
     "duration": 0.72,
     "changes": "Transcoded Ogg Vorbis to MP3 using FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/pen.mp3",
+      "sha256": "ebd7bd5215855bd344f9255319db279b00c1b8bf3ea3a2d029e6ea96a34290b5",
+      "duration": 1.007,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "bag",
@@ -267,7 +351,13 @@
     "sha256": "35b4b6098e22b5e0f68fb6dcfe1a7a99c3acbf54cd6006fb37a50dcd4749f9d6",
     "duration": 0.675,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/bag.mp3",
+      "sha256": "ec9f290aff206949858589ead07a35e92cfb02dda4b2854b844277f4a80518a2",
+      "duration": 0.962,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "tea",
@@ -297,7 +387,13 @@
     "sha256": "79992d2c9da403fc85ebcd14a1f71befb3366dc55fb0687fa17f0560cf3dcf91",
     "duration": 0.666,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/dog.mp3",
+      "sha256": "b88644ae5adf01181a5c006316f1531a1f75ae4013eb9bb62fb53f17666f9a3e",
+      "duration": 0.953,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "key",
@@ -327,7 +423,13 @@
     "sha256": "6e2ee875369a856480e0ac01efa3ea141154894dd229f4d52a36667bae4d1150",
     "duration": 0.701,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/fine.mp3",
+      "sha256": "79c2f21107ca4665245b6e4d94a142ba37bfdceca10b4a46c35f16383c89ce46",
+      "duration": 0.988,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "van",
@@ -342,7 +444,13 @@
     "sha256": "0e5e3053aa12a208b4b1be514c1c7ef1830edeb927fd84b616bf92ed65ffca1b",
     "duration": 1.032,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/van.mp3",
+      "sha256": "e558bcb1c50cfd2651553849b56e023fdcd708da7a74983eb9af5f76abacef81",
+      "duration": 1.319,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "think",
@@ -372,7 +480,13 @@
     "sha256": "641edd2710582dae7a643e4fade7e8af6aaf1ec9171e1f9c1b30a6e2855c0ebf",
     "duration": 0.771,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/them.mp3",
+      "sha256": "a0a0a03a9148a4a7662aa74f4438611c8910bb46a19a695934c1c74cf71e0bb9",
+      "duration": 1.058,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "sun",
@@ -402,7 +516,13 @@
     "sha256": "8f6a5c1ad4f5b57849772a3388f2143933b8e38ecf7c5785589f4395ecc0a171",
     "duration": 0.556,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/zip.mp3",
+      "sha256": "14f7090cb91203cff5ba29081a24f11d133129a578ef17cdd97610123138463b",
+      "duration": 0.843,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "ship",
@@ -417,7 +537,13 @@
     "sha256": "b4d6dcd9f06e8b61105b7d49d0c0724a5a1504cc1bb9a42f872bf861edb42767",
     "duration": 0.64,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/ship.mp3",
+      "sha256": "c6eaace93c7a02e7dc147b73bfa7d8a0f29c8e23ed1670d1fba6880c5076e5cf",
+      "duration": 0.927,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "vision",
@@ -432,7 +558,13 @@
     "sha256": "16e28b480ffa13a1c7a6e858b52af14749b0ee4721299d0d3a7fbd438ca0eb52",
     "duration": 1.002,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/vision.mp3",
+      "sha256": "ac0d8fef7dd1e93c9983a88dc195953a6e73e16de79dcf5a9826ddcee16c05df",
+      "duration": 1.29,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "hat",
@@ -462,7 +594,13 @@
     "sha256": "8e2c3607ac13c59a6d3873d994caa190c5462f202c087bf13b115c83769a8265",
     "duration": 0.666,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/chair.mp3",
+      "sha256": "4f204f453d6203b6da85e96ee1ccb4bba6fa3778ba7283dd0d159bfaa6606f00",
+      "duration": 0.953,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "jam",
@@ -477,7 +615,13 @@
     "sha256": "a8f5d9c540ad939aa85e8b6d27e0c54883178cfd90f790683f249f130a4ad051",
     "duration": 0.953,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/jam.mp3",
+      "sha256": "5f20387e1ca9e902d8828417ca8e339d3344ceae4654d1e3cd18ac5f254aa1d4",
+      "duration": 1.241,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "man",
@@ -522,7 +666,13 @@
     "sha256": "11f54fc344f72e52513b8b3467abd3e68e1428d99e4e590b369d916a2fa7cd9f",
     "duration": 0.64,
     "changes": "Wikimedia Commons MP3 transcode of the source Ogg file; no local trimming or pitch changes.",
-    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review"
+    "reviewStatus": "source word checked; phoneme mapping awaits independent listening review",
+    "playback": {
+      "path": "/ipa/audio/v2/sing.mp3",
+      "sha256": "85629d5ccd1295fb1b54fcff840df92a11605942c77f4d36ba7389e7f1f69aa5",
+      "duration": 0.927,
+      "changes": "Short silent lead-in (287 ms decoded); all original encoded speech frames retained without re-encoding."
+    }
   },
   {
     "word": "leg",

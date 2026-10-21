@@ -1,4 +1,7 @@
-"""Prepare USA-public-domain Gutenberg readers, two CC BY 4.0 BCcampus readers, and eligible State Department Everyday Conversations. Require the latter's producer notice and no reserved-rights notice. Exclude Curry/Dobson dialogue booklets and OpenStax; pattern hits grant no task admission."""
+"""Prepare US-public-domain Gutenberg and two CC BY 4.0 BCcampus readers.
+
+Everyday Conversations requires a producer notice and no reserved rights.
+Exclude Curry/Dobson booklets and OpenStax; pattern matches do not admit tasks."""
 import datetime, gzip, hashlib, io, json, os, pathlib, platform, re, subprocess, sys, time, traceback, urllib.request, zipfile
 from collections import Counter
 from html.parser import HTMLParser

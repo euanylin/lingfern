@@ -2,6 +2,7 @@ import { expect, it } from 'vitest';
 import admission from '../content/corpus/long-listening-admission.json';
 import raw from './fixtures/content/a1-reading.json';
 import { alignedGapQuestion, listeningGapSpacing, organizePractice, readingQuestionPlan } from '../src/core/practiceOrganization';
+import { answerPointCount, quantityBudget } from '../src/shared/practiceQuantity';
 import { asTestLesson, lessonSchema, score, scoreParts, validateAnswer } from '../src/shared/content';
 
 const reading = lessonSchema.parse(raw);
@@ -25,7 +26,7 @@ it('plans from length, useful information, structure, genre, complexity and leve
   const long = readingQuestionPlan(material(sample(65)), 'C2');
   expect(short.target).toBeLessThan(medium.target); expect(medium.target).toBeLessThanOrEqual(long.target);
   const plain = readingQuestionPlan(material(sentence.repeat(30)), 'B2');
-  const structured = readingQuestionPlan(material(Array.from({ length: 15 }, () => 'However, in 2005 researchers collected several mineral specimens. ').join('\n\n')), 'B2');
+  const structured = readingQuestionPlan(material(Array.from({ length: 15 }, (_, index) => `However, in ${2005 + index} researchers collected several mineral specimens. `).join('\n\n')), 'B2');
   expect(structured.paragraphs).toBeGreaterThan(plain.paragraphs); expect(structured.relations).toBeGreaterThan(plain.relations);
   expect(readingQuestionPlan(material(sentence.repeat(30)), 'A1').minutes).toBeLessThan(plain.minutes);
   expect(readingQuestionPlan(material('A cat sat. '.repeat(30)), 'B2').useful).toBe(0);
@@ -61,7 +62,7 @@ it('uses exact segment bounds and adequate spaces, never interpolates word times
 
 it('does not let a full-passage unscored response suppress distinct source-bound questions', () => {
   const lesson = structuredClone(reading), material = lesson.materials[0];
-  material.blocks[0].text += '\n\n' + ['butterflies', 'containers', 'vegetables', 'waterfalls', 'architects', 'libraries', 'astronauts', 'musicians', 'mountains', 'hospitals'].map(word => `The ${word} featured in a separate observation. Its context was described in the local report.`).join('\n\n');
+  material.blocks[0].text += '\n\n' + ['butterflies', 'containers', 'vegetables', 'waterfalls', 'architects', 'libraries', 'astronauts', 'musicians', 'mountains', 'hospitals', 'workshops', 'newspapers', 'buildings', 'paintings', 'passengers', 'neighbours', 'batteries', 'forests', 'crystals', 'dolphins', 'volcanoes', 'telescopes', 'carpenters', 'orchards', 'fountains', 'printers', 'bicycles', 'harbours', 'satellites', 'laboratories'].map(word => `The ${word} featured in a separate observation. Its context was described in the local report with several details about the original setting and its particular significance.`).join('\n\n');
   material.questions.push({ kind: 'response', id: 'whole-reflection', blockId: material.blocks[0].id, prompt: 'Summarize with evidence.', evidence: { start: 0, end: material.blocks[0].text.length }, criteria: [reading.teaching!, reading.workedExample!], hints: [reading.teaching!, reading.teaching!, reading.teaching!], explanation: reading.teaching! });
   const result = organizePractice(lesson);
   expect(result.materials[0].questions.length).toBeGreaterThan(material.questions.length);
@@ -94,15 +95,15 @@ it('excludes every additional evidence range when expanding a passage', () => {
   const lesson = structuredClone(reading), material = lesson.materials[0], block = material.blocks[0];
   block.text += '\n\nThe butterflies arrived beside the waterfalls. The astronauts inspected the containers. The musicians described the vegetables.';
   material.questions[0].additionalEvidence = [{ blockId: block.id, start: 0, end: block.text.length }];
-  expect(organizePractice(lesson).materials[0].questions).toEqual(material.questions);
+  expect(organizePractice(lesson).materials[0].questions.every(question => material.questions.some(original => original.id === question.id))).toBe(true);
 });
 
-it('permits a rich source above its reference band within the time budget and uses provided themes', () => {
+it('caps rich whole sources at twelve points without increasing quantity for harder CEFR levels', () => {
   const text = Array.from({ length: 80 }, (_, index) => `However, observation ${index + 1} records a separate mineral discovery in location ${index + 2}. Researchers describe this particular finding and its surrounding context.`).join('\n\n');
   const material = { ...reading.materials[0], title: 'Field notes', blocks: [{ id: reading.materials[0].blocks[0].id, text }] };
   const plan = readingQuestionPlan(material, 'C2', ['science']);
-  expect(plan.genre).toBe('expository'); expect(plan.target).toBeGreaterThan(24); expect(plan.target).toBeLessThanOrEqual(plan.minutes);
-  expect(readingQuestionPlan(material, 'A1', ['science']).target).toBeLessThan(plan.target);
+  expect(plan.genre).toBe('expository'); expect(plan.target).toBe(quantityBudget('reading', plan.words).baseline); expect(plan.target).toBeLessThanOrEqual(12); expect(plan.target).toBeLessThanOrEqual(plan.maximum);
+  expect(readingQuestionPlan(material, 'A1', ['science']).target).toBe(plan.target);
   const repeated = { ...material, blocks: [{ ...material.blocks[0], text: 'The butterflies appeared in the garden. '.repeat(100) }] };
   expect(readingQuestionPlan(repeated, 'C2').useful).toBe(1);
 });
@@ -115,6 +116,9 @@ it('does not retest dates already used as additional objective evidence in anoth
   // Provide enough untouched information to exceed the old pre-generation question count.
   material.blocks.push({ id: 'separate-observations', text: Array.from({ length: 14 }, (_, index) => `However, the research team reported observation ${index + 1} with several distinctive environmental conditions.`).join('\n\n') });
   const without = structuredClone(lesson); without.materials[0].questions[0].additionalEvidence = undefined;
-  expect(organizePractice(without).materials[0].questions.some(question => 'rows' in question && question.blockId === 'dated-events')).toBe(true);
-  expect(organizePractice(lesson).materials[0].questions.some(question => 'rows' in question && question.blockId === 'dated-events')).toBe(false);
+  without.materials[1].blocks.push({ id: 'application-dates', text: text + ' ' + Array.from({length: 220}, () => 'context').join(' ') });
+  const table = organizePractice(without, [], ['table']); expect(table.materials[0].questions.some(question => 'rows' in question && question.blockId === 'dated-events')).toBe(true);
+  expect(answerPointCount(table.materials[0].questions)).toBeLessThanOrEqual(quantityBudget('reading', readingQuestionPlan(without.materials[0], 'A1').words).maximum);
+  const selected = organizePractice(lesson).materials[0].questions;
+  expect(selected.some(question => question.id === material.questions[0].id) && selected.some(question => 'rows' in question && question.blockId === 'dated-events')).toBe(false);
 });

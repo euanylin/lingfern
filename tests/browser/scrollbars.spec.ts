@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 import { selectPicker } from './picker';
 
 for (const [locale, theme] of [['zh-Hans','light'],['en','dark'],['ar','dark']] as const) test(`native scrollbar styling preserves menu scrolling and keyboard selection in ${locale}/${theme}`, async ({ page }) => {
@@ -43,4 +44,63 @@ test('short overflow hides the thumb while native scrolling, resizing and conten
   await page.locator('.ipa-view-switch button').nth(1).click();
   await expect(page.locator('.ipa-table-scroll').filter({ has: page.locator('.ipa-table-consonants') })).toHaveAttribute('data-scrollbar-x','true');
   await expect.poll(() => page.evaluate(() => document.documentElement.dataset.scrollbarY)).toBe('true');
+});
+
+for (const [locale, width, theme] of [['zh-Hans',375,'light'],['en',1440,'dark'],['ar',375,'dark']] as const) test(`control scrollbars stay inside rounded surfaces in ${locale}/${width}/${theme}`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 640 }); await page.goto('/settings');
+  await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+  await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+  const inset = async (selector: string) => {
+    const element = page.locator(selector).first();
+    await expect(element).toBeVisible();
+    await expect.poll(() => element.evaluate(el => { const box = el.getBoundingClientRect(); return box.left >= 0 && box.right <= innerWidth + 1; })).toBe(true);
+    expect(await element.evaluate(el => {
+      const track = getComputedStyle(el, '::-webkit-scrollbar-track'), box = el.getBoundingClientRect();
+      return { margins: [track.marginTop,track.marginRight,track.marginBottom,track.marginLeft], fits: box.left >= 0 && box.right <= innerWidth + 1, native: ['auto','scroll'].includes(getComputedStyle(el).overflowY) || ['auto','scroll'].includes(getComputedStyle(el).overflowX) };
+    })).toEqual({ margins: ['8px','8px','8px','8px'], fits: true, native: true });
+  };
+  await page.locator('.settings-language .setting-trigger').click(); await inset('.setting-menu');
+  await page.keyboard.press('End'); await expect(page.getByRole('option').last()).toBeInViewport();
+  await page.keyboard.press('Escape');
+  await page.goto('/today'); await page.locator('.primary-task.reading-task [data-practice-skill=reading]').click();
+  const group = page.locator('.practice-material-list .offline-source-group-toggle').first();
+  await expect(group).toBeVisible();
+  if (await group.getAttribute('aria-expanded') !== 'true') await group.click();
+  await expect.poll(() => page.locator('.practice-options-body').evaluate(el => el.scrollHeight > el.clientHeight + 16)).toBe(true);
+  await inset('.practice-options-body');
+  expect(await page.locator('.practice-options-body').evaluate(el => {
+    const card = el.closest('dialog')!, box = card.getBoundingClientRect(), scroll = el.getBoundingClientRect();
+    return scroll.top >= box.top && scroll.bottom <= box.bottom + 1 && getComputedStyle(el).borderRadius === getComputedStyle(card).borderRadius && getComputedStyle(card).overflow === 'hidden';
+  })).toBe(true);
+  await page.locator('.practice-options-body').evaluate(el => el.scrollTop = el.scrollHeight);
+  await page.screenshot({ path: test.info().outputPath(`scrollbar-${locale}-${width}-${theme}.png`) });
+  await page.keyboard.press('Escape'); await page.goto('/library/ipa');
+  await page.locator('.ipa-view-switch button').nth(1).click();
+  await inset('.ipa-table-scroll');
+  const horizontal = page.locator('.ipa-table-scroll').filter({ has: page.locator('.ipa-table-consonants') });
+  await horizontal.evaluate(el => el.scrollLeft = el.scrollWidth);
+  expect(await horizontal.evaluate(el => el.scrollWidth <= el.clientWidth || el.scrollLeft > 0)).toBe(true);
+});
+
+for (const width of [375,1440]) test(`answer-card and text-entry scrollbars remain inside their surfaces at ${width}px`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 900 }); await page.goto('/today');
+  const lesson = JSON.parse(readFileSync(new URL('../fixtures/content/b1-summary-reading.json', import.meta.url), 'utf8'));
+  const id = await page.evaluate(async lesson => (await (await import('/src/data/db.ts' as string)).createSession(lesson)).id, lesson);
+  await page.goto(`/learn/${id}`); await expect(page.locator('.material-workspace')).toBeVisible();
+  if (width < 1200) await page.locator('.question-sheet-toggle').click();
+  const input = page.locator('.response-answer textarea').first();
+  await input.fill('Keep the stated condition and next action.\n'.repeat(60));
+  await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+  expect(await input.evaluate(el => {
+    const control = el.getBoundingClientRect(), card = el.closest('.workspace-questions')!.getBoundingClientRect();
+    return control.left >= card.left && control.right <= card.right && getComputedStyle(el,'::-webkit-scrollbar-track').marginTop === '8px' && el.scrollHeight > el.clientHeight;
+  })).toBe(true);
+  await input.evaluate(el => el.scrollTop = el.scrollHeight); expect(await input.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  const content = page.locator('.question-sheet-content');
+  expect(await content.evaluate(el => {
+    const scroll = el.getBoundingClientRect(), card = el.closest('.workspace-questions')!, box = card.getBoundingClientRect();
+    return scroll.left >= box.left && scroll.right <= box.right && (getComputedStyle(el).overflowY === 'visible' || scroll.bottom <= box.bottom + 1 && getComputedStyle(card).overflow === 'hidden');
+  })).toBe(true);
+  await content.evaluate(el => el.scrollTop = el.scrollHeight);
+  await page.screenshot({ path: test.info().outputPath(`answer-scrollbars-${width}.png`) });
 });

@@ -47,6 +47,16 @@ describe('offline references', () => {
     for (const entries of [fullAudio.entries.slice(1), [...fullAudio.entries.slice(1), fullAudio.entries[1]], [{ ...fullAudio.entries[0], ipa: 'not-a-sound' }, ...fullAudio.entries.slice(1)]]) expect(fullIpaAudioSchema.safeParse({ ...fullAudio, entries }).success).toBe(false);
     for (const soundAudio of ['https://example.com/audio.mp3', '/ipa/phonemes/../sound-41.mp3', '/ipa/phonemes/sound-41.mp3?redirect=1']) expect(fullIpaAudioSchema.safeParse({ ...fullAudio, entries: [{ ...fullAudio.entries[0], soundAudio }, ...fullAudio.entries.slice(1)] }).success).toBe(false);
   });
+  it('keeps versioned chart words local and the original learning recordings intact', () => {
+    for (const source of sources) {
+      expect(createHash('sha256').update(readFileSync('public' + source.path)).digest('hex')).toBe(source.sha256);
+      if (source.playback) {
+        expect(source.playback.path).toBe(`/ipa/audio/v2/${source.word}.mp3`);
+        expect(source.playback.duration).toBeGreaterThan(source.duration);
+      }
+    }
+    for (const audio of ['https://example.com/now.mp3', '/ipa/audio/v2/../now.mp3', '/ipa/audio/v3/now.mp3', '/ipa/audio/v2/now.mp3?redirect=1']) expect(ipaChartSchema.safeParse({ ...chart, entries: [{ ...chart.entries[0], audio }, ...chart.entries.slice(1)] }).success).toBe(false);
+  });
   it('includes the full chart with exactly one placement for every installed English recording', () => {
     const vowels = fullVowels.flatMap(row => row.cells.flatMap(([, left, right]) => [left, right].filter(Boolean)));
     expect(vowels).toHaveLength(28);
@@ -101,10 +111,10 @@ describe('offline references', () => {
     for (const entry of chart.entries) {
       expect(entry.before + entry.bold + entry.after).toBe(entry.example);
       expect(entry.soundAudio).not.toBe(entry.audio);
-      const source = sources.find(item => item.path === entry.audio);
+      const source = sources.find(item => (item.playback?.path ?? item.path) === entry.audio);
       expect(source?.word).toBe(entry.example);
       expect(source?.license).toBe('CC BY-SA 3.0');
-      expect(createHash('sha256').update(readFileSync('public' + entry.audio)).digest('hex')).toBe(source?.sha256);
+      expect(createHash('sha256').update(readFileSync('public' + entry.audio)).digest('hex')).toBe((source?.playback ?? source)?.sha256);
       const soundSource = phonemeSources.find(item => item.path === entry.soundAudio);
       expect(soundSource?.ipa).toContain(entry.ipa);
       expect(['CC BY-SA 3.0', 'CC BY-SA 4.0', 'CC0', 'Public domain']).toContain(soundSource?.license);

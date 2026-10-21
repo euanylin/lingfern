@@ -3,6 +3,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import type { Attempt, Session } from '../data/db';
 import { questions, type Locale } from '../shared/content';
+import { questionSlots, slotAnswered } from '../shared/practiceWorkspace';
 
 export function practiceCardProgress(sessions: readonly Session[], records: readonly Attempt[]) {
   let answered = 0, total = 0, lastActivityAt: string | undefined;
@@ -13,10 +14,12 @@ export function practiceCardProgress(sessions: readonly Session[], records: read
   for (const session of sessions) {
     if (session.recordsDeleted || seen.has(session.id)) continue;
     seen.add(session.id);
-    const roots = new Map(questions(session.lesson).map(item => [item.question.id, item.material.rootId]));
-    total += roots.size;
-    const saved = records.filter(record => record.sessionId === session.id && record.profileId === session.profileId && roots.get(record.questionId) === record.rootId);
-    answered += new Set(saved.map(record => record.questionId)).size;
+    const items = questions(session.lesson), roots = new Map(items.map(item => [item.question.id, item.material.rootId]));
+    const saved = records.filter(record => record.sessionId === session.id && record.profileId === session.profileId && roots.get(record.questionId) === record.rootId), committed = new Set(saved.map(record => record.questionId));
+    for (const { question } of items) {
+      const slots = questionSlots(question); total += slots;
+      answered += committed.has(question.id) ? slots : Array.from({ length: slots }, (_, index) => slotAnswered(question, session.workspace?.drafts[question.id], index)).filter(Boolean).length;
+    }
     latest(session.startedAt);
     saved.forEach(record => latest(record.submittedAt));
   }

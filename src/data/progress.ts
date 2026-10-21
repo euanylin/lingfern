@@ -2,6 +2,7 @@ import { teachingSupport, lessonSchema, questions, type Lesson } from '../shared
 import type { Attempt, Session } from './db';
 import { completionTiming } from './completionTiming';
 import { canonicalJson, projectSyncEvents, type SyncEvent } from '../shared/sync';
+import { questionSlots } from '../shared/practiceQuantity';
 
 export type CompletionSummary = Extract<SyncEvent, { type: 'completion' }>;
 export type ResolvedSummary = { event: CompletionSummary; lesson: Lesson };
@@ -12,11 +13,11 @@ export type ProgressGoal = { key: string; lesson: Lesson; entries: ProgressEntry
 
 // Display answer coverage without implying correctness or ability.
 export function fernActivity(entries: ProgressEntry[]) {
-  const sessions = new Map<string, { lesson: Lesson; items: Set<string>; answered: Set<string> }>();
+  const sessions = new Map<string, { lesson: Lesson; items: Map<string, number>; answered: Set<string> }>();
   for (const { session, attempt } of entries) {
     let activity = sessions.get(session.id);
     if (!activity) {
-      activity = { lesson: session.lesson, items: new Set(questions(session.lesson).map(item => JSON.stringify([item.material.rootId, item.question.id]))), answered: new Set() };
+      activity = { lesson: session.lesson, items: new Map(questions(session.lesson).map(item => [JSON.stringify([item.material.rootId, item.question.id]), questionSlots(item.question)])), answered: new Set() };
       sessions.set(session.id, activity);
     }
     const item = JSON.stringify([attempt.rootId, attempt.questionId]);
@@ -27,7 +28,7 @@ export function fernActivity(entries: ProgressEntry[]) {
   for (const [, { lesson, items, answered }] of [...sessions].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)) {
     if (!items.size) continue;
     const completedTest = answered.size === items.size && (lesson.mode === 'test' || lesson.mode === 'check');
-    result[lesson.skill] += completedTest ? 3 : answered.size / items.size;
+    result[lesson.skill] += completedTest ? 3 : [...answered].reduce((sum, key) => sum + items.get(key)!, 0) / [...items.values()].reduce((sum, value) => sum + value, 0);
     if (completedTest) result.tests++;
   }
   return result;

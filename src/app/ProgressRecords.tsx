@@ -1,3 +1,4 @@
+import { questionSlots } from '../shared/practiceQuantity';
 import { contentText, messages } from '../locales';
 import { DeleteRecord } from './DeleteRecord';
 import { useState } from 'react';
@@ -35,7 +36,7 @@ export function ProgressRecords({ locale, lessons, history, records, summaries =
     <div className="progress-skill-summary">{(['reading', 'listening'] as const).map(item => {
       const entries = valid.filter(entry => entry.session.lesson.skill === item);
       const completed = entries.filter(entry => entry.session.status === 'completed').at(-1);
-      return <section key={item}><h3>{t[item]}</h3><dl><div><dt>{t.materials}</dt><dd>{new Set(entries.map(entry => entry.attempt.rootId)).size}</dd></div><div><dt>{t.valid}</dt><dd>{entries.length}</dd></div><div><dt>{t.checks}</dt><dd>{entries.filter(entry => entry.mark === '●').length}</dd></div><div><dt>{t.last}</dt><dd>{completed ? new Date(completed.attempt.submittedAt).toLocaleDateString(locale) : t.none}</dd></div></dl></section>;
+      return <section key={item}><h3>{t[item]}</h3><dl><div><dt>{t.materials}</dt><dd>{new Set(entries.map(entry => entry.attempt.rootId)).size}</dd></div><div><dt>{t.valid}</dt><dd>{entries.reduce((sum, entry) => sum + questionSlots(entry.session.lesson.materials.flatMap(material => material.questions).find(question => question.id === entry.attempt.questionId)!), 0)}</dd></div><div><dt>{t.checks}</dt><dd>{entries.filter(entry => entry.mark === '●').length}</dd></div><div><dt>{t.last}</dt><dd>{completed ? new Date(completed.attempt.submittedAt).toLocaleDateString(locale) : t.none}</dd></div></dl></section>;
     })}</div>
     <h2>{t.matrix}</h2><p className="muted">{t.legend}</p>
     <div className="progress-skill-tabs" role="group" aria-label={t.matrix}>{(['reading', 'listening'] as const).map(item => <button key={item} type="button" aria-pressed={skill === item} onClick={() => { setSkill(item); setOpened(null); }}>{t[item]}</button>)}</div>

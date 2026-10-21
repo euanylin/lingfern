@@ -7,6 +7,49 @@ import { selectPicker } from './picker';
 
 const chart = JSON.parse(readFileSync('public/ipa/entries.json', 'utf8'));
 const fullSounds = JSON.parse(readFileSync('public/ipa/full-sounds.json', 'utf8'));
+test('IPA playback ignores superseded requests and the active button stops playback', async ({ page }) => {
+  await page.goto('/library/ipa');
+  await expect(page.locator('.ipa-entry')).toHaveCount(41);
+  await page.evaluate(() => {
+    const audio = document.querySelector('audio')!;
+    let rejectPrevious: ((reason: Error) => void) | undefined;
+    audio.play = () => new Promise<void>((resolve, reject) => {
+      if (rejectPrevious) { rejectPrevious(new DOMException('Superseded', 'AbortError')); resolve(); }
+      rejectPrevious = reject;
+    });
+  });
+  const now = page.getByRole('button', { name: /now$/, exact: false });
+  await now.click();
+  await page.getByRole('button', { name: /see$/, exact: false }).click();
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /see$/, exact: false })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: /see$/, exact: false }).click();
+  await expect(page.locator('.ipa-entry button[aria-pressed=true]')).toHaveCount(0);
+  expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true);
+});
+
+test('now retains audible onset headroom and plays from the beginning through native completion', async ({ page }) => {
+  await page.goto('/library/ipa');
+  await expect(page.locator('.ipa-entry')).toHaveCount(41);
+  const timing = await page.evaluate(async () => {
+    const context = new AudioContext();
+    try {
+      const buffer = await context.decodeAudioData(await (await fetch('/ipa/audio/v2/now.mp3')).arrayBuffer());
+      const samples = buffer.getChannelData(0), window = Math.floor(buffer.sampleRate * .01);
+      for (let index = 0; index < samples.length; index += window) {
+        const segment = samples.subarray(index, index + window);
+        if (Math.sqrt(segment.reduce((sum, value) => sum + value * value, 0) / segment.length) > 10 ** (-45 / 20)) return { onset: index / buffer.sampleRate, duration: buffer.duration };
+      }
+      throw new Error('Silent recording');
+    } finally { await context.close(); }
+  });
+  expect(timing.onset).toBeGreaterThanOrEqual(.25);
+  expect(timing.duration - timing.onset).toBeGreaterThan(.35);
+  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; });
+  await page.getByRole('button', { name: /now$/, exact: false }).click();
+  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.ended && audio.played.length > 0 && audio.played.start(0) < .05 && audio.played.end(0) >= audio.duration - .05)).toBe(true);
+  await expect(page.locator('.ipa-entry button[aria-pressed=true]')).toHaveCount(0);
+});
 test('compound tone accents remain legible without platform font support', async ({ page }) => {
   await page.goto('/library/ipa');
   await page.getByRole('button', { name: '详细版', exact: true }).click();
@@ -109,7 +152,7 @@ test('every independent IPA sound plays locally, records history and retains the
   for (const entry of fullSounds.entries as { ipa: string; soundAudio: string }[]) {
     await page.getByRole('button', { name: `Play sound /${entry.ipa}/`, exact: true }).click();
     await expect(audio).toHaveAttribute('src', entry.soundAudio);
-    await expect.poll(() => audio.evaluate((element: HTMLAudioElement) => element.currentTime > 0 && element.duration > 0 && !element.error)).toBe(true);
+    await expect.poll(() => audio.evaluate((element: HTMLAudioElement) => element.currentTime > 0 && element.duration > 0 && !element.error), { message: `Native playback /${entry.ipa}/ (${entry.soundAudio})` }).toBe(true);
     await audio.evaluate((element: HTMLAudioElement) => element.pause());
   }
   await expect(page.locator('.ipa-entry .ipa-word')).toHaveCount(41);

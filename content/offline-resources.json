@@ -1,5 +1,5 @@
 {
-  "version": "a205fff46f4f9d06",
+  "version": "ed2ee32355a8616a",
   "groups": [
     {
       "id": "dictionary",
@@ -175,8 +175,8 @@
     },
     {
       "id": "ipa",
-      "version": "1dabb03c7dd0d964",
-      "bytes": 3591070,
+      "version": "cb5ebbfc993dcf02",
+      "bytes": 3997222,
       "files": [
         {
           "path": "/ipa/audio/about.mp3",
@@ -349,6 +349,131 @@
           "sha256": "c01184cf213b040e0a9bd898cbb2cceed842f633046cfc8b409dbd0561a964e2"
         },
         {
+          "path": "/ipa/audio/v2/about.mp3",
+          "bytes": 9091,
+          "sha256": "9d7ff62f3d3681533337bd14919808bba5d91544dd2b81abe55ed221559f6989"
+        },
+        {
+          "path": "/ipa/audio/v2/bag.mp3",
+          "bytes": 20188,
+          "sha256": "ec9f290aff206949858589ead07a35e92cfb02dda4b2854b844277f4a80518a2"
+        },
+        {
+          "path": "/ipa/audio/v2/bed.mp3",
+          "bytes": 12872,
+          "sha256": "5bf5849f5879d1d119bb4a1243fa4c88237ca32c3bbc87d6fe8a0a421b8d3c0d"
+        },
+        {
+          "path": "/ipa/audio/v2/blue.mp3",
+          "bytes": 10941,
+          "sha256": "6c5da00f44b1b8b11168e6bbeba59dd2e7ddad4421dd6512b8533636c237b42b"
+        },
+        {
+          "path": "/ipa/audio/v2/book.mp3",
+          "bytes": 8674,
+          "sha256": "b514f6147d7cf14682b6ba839da56d6fad3be10df7733ce32da758b42b122d4e"
+        },
+        {
+          "path": "/ipa/audio/v2/boy.mp3",
+          "bytes": 9689,
+          "sha256": "410953539440664eb74f48602b3a7a1e71fc9ade8ef7292f107fda1cf076f29f"
+        },
+        {
+          "path": "/ipa/audio/v2/cat.mp3",
+          "bytes": 7578,
+          "sha256": "214e05fa3fcdf0a56df1554e8e345ad21f9854849c604ed493e9916e9e55b079"
+        },
+        {
+          "path": "/ipa/audio/v2/chair.mp3",
+          "bytes": 13025,
+          "sha256": "4f204f453d6203b6da85e96ee1ccb4bba6fa3778ba7283dd0d159bfaa6606f00"
+        },
+        {
+          "path": "/ipa/audio/v2/cup.mp3",
+          "bytes": 13447,
+          "sha256": "25b788820b41ba2468921a94f8ddf8517a7c5022f632c887832d861da4017d13"
+        },
+        {
+          "path": "/ipa/audio/v2/dog.mp3",
+          "bytes": 17889,
+          "sha256": "b88644ae5adf01181a5c006316f1531a1f75ae4013eb9bb62fb53f17666f9a3e"
+        },
+        {
+          "path": "/ipa/audio/v2/father.mp3",
+          "bytes": 9039,
+          "sha256": "58c4ceebd3ea7d9082a7b9bd58855df16f4674e3449e9a6ca2f3db2a4baedbd5"
+        },
+        {
+          "path": "/ipa/audio/v2/fine.mp3",
+          "bytes": 13807,
+          "sha256": "79c2f21107ca4665245b6e4d94a142ba37bfdceca10b4a46c35f16383c89ce46"
+        },
+        {
+          "path": "/ipa/audio/v2/jam.mp3",
+          "bytes": 17351,
+          "sha256": "5f20387e1ca9e902d8828417ca8e339d3344ceae4654d1e3cd18ac5f254aa1d4"
+        },
+        {
+          "path": "/ipa/audio/v2/late.mp3",
+          "bytes": 10420,
+          "sha256": "6d6aba0382e3cf73f168564186a221f9e5eda7fc9ece29d2b915abbfdc5423ba"
+        },
+        {
+          "path": "/ipa/audio/v2/law.mp3",
+          "bytes": 12402,
+          "sha256": "270b672af62f4b71ef1c61f64bff28311071fd00129f80232a31849f13aa6909"
+        },
+        {
+          "path": "/ipa/audio/v2/my.mp3",
+          "bytes": 11567,
+          "sha256": "f96b3a6e36b9101a9d325373bc87bb2be85e2f022642c881b43579bc18907925"
+        },
+        {
+          "path": "/ipa/audio/v2/now.mp3",
+          "bytes": 6692,
+          "sha256": "b4047f932336ccf7348aa33b23277331f2dd222589abc1fe65f30e75cc65f433"
+        },
+        {
+          "path": "/ipa/audio/v2/pen.mp3",
+          "bytes": 9638,
+          "sha256": "ebd7bd5215855bd344f9255319db279b00c1b8bf3ea3a2d029e6ea96a34290b5"
+        },
+        {
+          "path": "/ipa/audio/v2/ship.mp3",
+          "bytes": 17001,
+          "sha256": "c6eaace93c7a02e7dc147b73bfa7d8a0f29c8e23ed1670d1fba6880c5076e5cf"
+        },
+        {
+          "path": "/ipa/audio/v2/sing.mp3",
+          "bytes": 16219,
+          "sha256": "85629d5ccd1295fb1b54fcff840df92a11605942c77f4d36ba7389e7f1f69aa5"
+        },
+        {
+          "path": "/ipa/audio/v2/sit.mp3",
+          "bytes": 8986,
+          "sha256": "019e582475e1b064334eb5336b03d3e3c1f19c64d7c4467331380fb8902b1360"
+        },
+        {
+          "path": "/ipa/audio/v2/them.mp3",
+          "bytes": 14014,
+          "sha256": "a0a0a03a9148a4a7662aa74f4438611c8910bb46a19a695934c1c74cf71e0bb9"
+        },
+        {
+          "path": "/ipa/audio/v2/van.mp3",
+          "bytes": 18550,
+          "sha256": "e558bcb1c50cfd2651553849b56e023fdcd708da7a74983eb9af5f76abacef81"
+        },
+        {
+          "path": "/ipa/audio/v2/vision.mp3",
+          "bytes": 18551,
+          "sha256": "ac0d8fef7dd1e93c9983a88dc195953a6e73e16de79dcf5a9826ddcee16c05df"
+        },
+        {
+          "path": "/ipa/audio/v2/zip.mp3",
+          "bytes": 12245,
+          "sha256": "14f7090cb91203cff5ba29081a24f11d133129a578ef17cdd97610123138463b"
+        },
+        {
           "path": "/ipa/audio/van.mp3",
           "bytes": 17406,
           "sha256": "0e5e3053aa12a208b4b1be514c1c7ef1830edeb927fd84b616bf92ed65ffca1b"
@@ -385,8 +510,8 @@
         },
         {
           "path": "/ipa/entries.json",
-          "bytes": 13323,
-          "sha256": "b9ef4b5d84bb9deb8348c02b47b374c2bbfc76e6c452ff28b96c378e0ff16229"
+          "bytes": 13401,
+          "sha256": "edba440c837ad5e9f438860f37748ee128d74c6cfa165f8233f419ba188cde5b"
         },
         {
           "path": "/ipa/full-sounds.json",
@@ -395,18 +520,18 @@
         },
         {
           "path": "/ipa/PHONEME_SOURCES.json",
-          "bytes": 123725,
-          "sha256": "b79bdfaf6b3360dce6b992c564892bf18cf212d06ae2e5efb65f2a75ff9fd725"
+          "bytes": 132725,
+          "sha256": "b7c6b426de3d95826c11f202dbb3c6df655bab7fe13d053e94920f645d2d17d9"
         },
         {
           "path": "/ipa/phonemes/sound-01.mp3",
-          "bytes": 9355,
-          "sha256": "2aa159bdd24b741bcb620e83559422ec3a3b02a73e23ba61062a03080937d2a0"
+          "bytes": 10499,
+          "sha256": "0ace2c76bc43aa8038f9ee78513deff3b61b9ee8d952f317908b105ed3cce46e"
         },
         {
           "path": "/ipa/phonemes/sound-02.mp3",
-          "bytes": 9092,
-          "sha256": "0085a593280f155d3f0ecc717815ce2795d83e69396f9330a3bd3f50ee2b52ef"
+          "bytes": 10236,
+          "sha256": "06f98e6c697f9cf4253aafb77c0dc924304e019d446b8385354b358b9bf4d823"
         },
         {
           "path": "/ipa/phonemes/sound-03.mp3",
@@ -415,38 +540,38 @@
         },
         {
           "path": "/ipa/phonemes/sound-04.mp3",
-          "bytes": 11445,
-          "sha256": "0598a98652f2bde896c2ed097f3499571ee49379646abe94fb05a6e4398117c8"
+          "bytes": 12589,
+          "sha256": "d7f11605cc20ce2f96f8c9bd6389026648073e50ee1aff947e33417b802e89c5"
         },
         {
           "path": "/ipa/phonemes/sound-05.mp3",
-          "bytes": 7687,
-          "sha256": "4435d735b2c628a7145e3aaf1b75f1622fab4b223eaffd472a2f2a118a562132"
+          "bytes": 8831,
+          "sha256": "9447fd41370f65f9fe548a906e55736d13997fbe12d54845aa2faa7b4fa00034"
         },
         {
           "path": "/ipa/phonemes/sound-06.mp3",
-          "bytes": 7480,
-          "sha256": "8ed928deedc7d13ce0ccf26cb0b041ee34b71b8d413598a231c81bd592722768"
+          "bytes": 8624,
+          "sha256": "1f0365641f4f49e3a2d90993fabbe3166195ced157c33a22414c828e851f4725"
         },
         {
           "path": "/ipa/phonemes/sound-07.mp3",
-          "bytes": 8101,
-          "sha256": "87dba39705d3bbbcef352847b21e37ef983b2bf8037be808951c8b6141f414c5"
+          "bytes": 9245,
+          "sha256": "de6225eeb896aad7475e69df5dac3b123ed5ef08b6b48806222aa6a358be8c80"
         },
         {
           "path": "/ipa/phonemes/sound-08.mp3",
-          "bytes": 7636,
-          "sha256": "48bde37192e42e158e2ea2648e3c5cc798a713ce6c1a6853839db7e5275d4dd7"
+          "bytes": 8780,
+          "sha256": "7b2ccf782936200f049d7c5c8890116f064f8872a425a93035440d97bf47294d"
         },
         {
           "path": "/ipa/phonemes/sound-09.mp3",
-          "bytes": 9462,
-          "sha256": "25e2dfdff52f64920a2ebbe56e80685e831418172a1e6464d8c8c33b61b355d1"
+          "bytes": 10606,
+          "sha256": "f523d95f0fb158362ed1cb483c88f33c1d85361373f27febe6a64ca01f051e9a"
         },
         {
           "path": "/ipa/phonemes/sound-10.mp3",
-          "bytes": 8728,
-          "sha256": "34c973de03329bafba6b7e011e6318acf158402bc6413e2d0dc2214efe23e41b"
+          "bytes": 9872,
+          "sha256": "2456ce1ef856b9a4c29c21b41709905f9d7ffc14ccb1ccfc8881282abcabed54"
         },
         {
           "path": "/ipa/phonemes/sound-100.mp3",
@@ -455,8 +580,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-101.mp3",
-          "bytes": 19986,
-          "sha256": "b84ef28fa6af88fd17cbb688e1311292ee9cf3f791c83796578d387c21e08a08"
+          "bytes": 21130,
+          "sha256": "378876c3199e1356c79b0c472b3e901109b03c13a9aae8aaf63a51f5c0e0f49e"
         },
         {
           "path": "/ipa/phonemes/sound-102.mp3",
@@ -465,13 +590,13 @@
         },
         {
           "path": "/ipa/phonemes/sound-103.mp3",
-          "bytes": 22022,
-          "sha256": "25a5ff17add77cc351b049ccac7441fe7f47e95e65a13a836e5a88d2f8a937af"
+          "bytes": 23166,
+          "sha256": "b95926b6c073ce4d97c96e799c7421e8a626b01451791988b8c238583eff4a55"
         },
         {
           "path": "/ipa/phonemes/sound-104.mp3",
-          "bytes": 20979,
-          "sha256": "5029d5a827b45411052687dbf41530c0adb609d6d86edb20fff90a07ee3d91d1"
+          "bytes": 22123,
+          "sha256": "6e296a7fa8a5e4d82758e91be9428ea4d68155f1f13170e92b352d5da4f40c87"
         },
         {
           "path": "/ipa/phonemes/sound-105.mp3",
@@ -485,8 +610,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-107.mp3",
-          "bytes": 24055,
-          "sha256": "2a313d6951eaf55c159757809f3527ed5176c00b67ebce85be7ef71e4ae37b53"
+          "bytes": 25199,
+          "sha256": "44caed3a263f92dd970aaeb2f378059eb74f731702e4ea428a84c12b8320c167"
         },
         {
           "path": "/ipa/phonemes/sound-108.mp3",
@@ -495,18 +620,18 @@
         },
         {
           "path": "/ipa/phonemes/sound-109.mp3",
-          "bytes": 21029,
-          "sha256": "3973f77866b8439776ae5459cceb9dfb8d15dfa49384433e71440d4c43055035"
+          "bytes": 22173,
+          "sha256": "05c0ad6b7ad6cce1612281a4d5ef9279a61c461961220835b8e245f1257b1f26"
         },
         {
           "path": "/ipa/phonemes/sound-11.mp3",
-          "bytes": 6538,
-          "sha256": "65583f7ddd7b5261a742fa66a5e3223dcaeb2b8dcebf5b3f9c0a5af413a3bdc6"
+          "bytes": 7682,
+          "sha256": "90b113b5ebae5d4baf0e9d3abcdc7f5c3de4ab4c642cdb811716ab148c4bbcd1"
         },
         {
           "path": "/ipa/phonemes/sound-110.mp3",
-          "bytes": 21291,
-          "sha256": "004cc4cc490b97790e7c8dcf5a7a194229cc9e0cbff131a4435ee2b4bc49ecbf"
+          "bytes": 22435,
+          "sha256": "de09f3ba777125d8eae9cf4da03cdf0f788db937a5a2463ea9e6a712dafa38cf"
         },
         {
           "path": "/ipa/phonemes/sound-111.mp3",
@@ -520,23 +645,23 @@
         },
         {
           "path": "/ipa/phonemes/sound-113.mp3",
-          "bytes": 65037,
-          "sha256": "e760a9181a5db087bb59284fee97106d348b8da5979fc325abef3044eb01f76d"
+          "bytes": 66181,
+          "sha256": "e3d2efa573abb024cdc78ea22094810253da5ff46bc056ca9875c595e5a5075e"
         },
         {
           "path": "/ipa/phonemes/sound-114.mp3",
-          "bytes": 44683,
-          "sha256": "dd47d8f0a8c6b42882301c3d6ba43cc03eb4aec4e6899dca9bc5f72045d73ee4"
+          "bytes": 45827,
+          "sha256": "1170925836f4394d990c81af3d7c630e021a56eed5a86f39485b529d38bae618"
         },
         {
           "path": "/ipa/phonemes/sound-115.mp3",
-          "bytes": 45311,
-          "sha256": "ef402b6cd1211fdb52a5afa7bc6245dfb8d47c03a0027cbd68a3b588abbc52ce"
+          "bytes": 46455,
+          "sha256": "7e2c3ced3223a6bedfba1ce36d661dbeb53fb8acb7255413554e0433132c86e0"
         },
         {
           "path": "/ipa/phonemes/sound-116.mp3",
-          "bytes": 26309,
-          "sha256": "7421b94c37ba1097e670b90cd55c98a44dbd1c63d91f7270e0eb88f762863fb5"
+          "bytes": 27453,
+          "sha256": "e7e83ac0aeb32e560f3b8a987e851a0c120c20d3dd19b2b3fdacb0d4af3793ec"
         },
         {
           "path": "/ipa/phonemes/sound-117.mp3",
@@ -555,23 +680,23 @@
         },
         {
           "path": "/ipa/phonemes/sound-12.mp3",
-          "bytes": 33605,
-          "sha256": "c68c19c8b9a3fb6e062b65855c2d6098601595be83a9a351fb5e2071c8e23d57"
+          "bytes": 34749,
+          "sha256": "583e92cb8539336f90c9baf2630b9b421a7ebe31c93bd7b8c1f28b7f69419047"
         },
         {
           "path": "/ipa/phonemes/sound-120.mp3",
-          "bytes": 8885,
-          "sha256": "970800ebac52d9a1154e07340365312733114dfde7b64539d292be14c190d2d2"
+          "bytes": 10029,
+          "sha256": "00be8594bfd7c8f599a0d23039324b685cc46a812500a98fb1748f2708f2768a"
         },
         {
           "path": "/ipa/phonemes/sound-121.mp3",
-          "bytes": 30772,
-          "sha256": "9b12b5163d31c6282c8a949916847b1593cdaf2e08ffeae68985de895030dc4f"
+          "bytes": 31916,
+          "sha256": "2af3b6e6ef32cc0cb69a96e17f8fd5ed7dc116340f2c4a5b57e0a6d88f8c08bf"
         },
         {
           "path": "/ipa/phonemes/sound-122.mp3",
-          "bytes": 33122,
-          "sha256": "826c14aaccd80ac2b5ecffe3256c884a004438313932e781cbbf1de81aa569ce"
+          "bytes": 34266,
+          "sha256": "693dc9439023e2ebe4276704cd9cef697e91629d368f735b08d14cf73693d147"
         },
         {
           "path": "/ipa/phonemes/sound-123.mp3",
@@ -580,8 +705,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-124.mp3",
-          "bytes": 33168,
-          "sha256": "70083e4450a1e7854e7152c646d0d1446bf7691e9e7f3d0284e56dac5d1befee"
+          "bytes": 34312,
+          "sha256": "b9f58fc062c24a58bd4c0131c6ccf67f78b6f08a017c69fc80bf935de73e9730"
         },
         {
           "path": "/ipa/phonemes/sound-125.mp3",
@@ -590,8 +715,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-13.mp3",
-          "bytes": 6853,
-          "sha256": "489c4f9acb337aa3f8d66d7cacc6ef9d0956d19a3918c2240fe7ed6c77aee869"
+          "bytes": 7997,
+          "sha256": "da680b67bd5c9fe8001c695cf9c1a62346cbb21da2475a88e4f7e6b53eb4738e"
         },
         {
           "path": "/ipa/phonemes/sound-14.mp3",
@@ -610,8 +735,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-17.mp3",
-          "bytes": 16286,
-          "sha256": "c63067a41306de37e9a178432b29a1a0e07c4bd88857da0f240be41114531ed3"
+          "bytes": 17430,
+          "sha256": "5f5fe186a88373c2353bf59385ca558260c2b81b1d470eb6a63ec4f3fec2ffc9"
         },
         {
           "path": "/ipa/phonemes/sound-18.mp3",
@@ -640,18 +765,18 @@
         },
         {
           "path": "/ipa/phonemes/sound-23.mp3",
-          "bytes": 8363,
-          "sha256": "0d1a90a8b270b24180d89e501477e65aa8d0b9c66d84fa7283125c5c5e1b9e2c"
+          "bytes": 9507,
+          "sha256": "184c5ff9d81f0c4320f28783f3401442fedb7f43de4535c65c4318e495d6c90a"
         },
         {
           "path": "/ipa/phonemes/sound-24.mp3",
-          "bytes": 9146,
-          "sha256": "700fb1d8bf766069bcff40b80e317533450d2d17503abb1dba0e2efecb286c6e"
+          "bytes": 10290,
+          "sha256": "7f39057483166f53c81ebbbffe12204ed2af5e7a0885138d26747c0589f4662b"
         },
         {
           "path": "/ipa/phonemes/sound-25.mp3",
-          "bytes": 41611,
-          "sha256": "8619be16ad7fde2747f3026faece605855ce1b0cf119cc33def3783bc56977a8"
+          "bytes": 42755,
+          "sha256": "a3afc7a7cabc097845dd10d3d6d14b7cc35eb3efd47ece6ea737d5dbd41594a4"
         },
         {
           "path": "/ipa/phonemes/sound-26.mp3",
@@ -690,8 +815,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-33.mp3",
-          "bytes": 25969,
-          "sha256": "e3bc35a8d5feb59dc51cbc31f55866da1775b0d68e8307637203852384dac72a"
+          "bytes": 27113,
+          "sha256": "4d2c61a3cfd972f4caaeb505d52be27480753be2060faa8dc21806c07ca9141b"
         },
         {
           "path": "/ipa/phonemes/sound-34.mp3",
@@ -715,8 +840,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-38.mp3",
-          "bytes": 41207,
-          "sha256": "848225fec48fe4f8d851186cc7071638f6bec90f0b6cd41b3928a8a17301318a"
+          "bytes": 42351,
+          "sha256": "bb247f97ea0020c7d99475fc58adb24e26afefdcfdadb60b355b1f334c475c6c"
         },
         {
           "path": "/ipa/phonemes/sound-39.mp3",
@@ -725,73 +850,73 @@
         },
         {
           "path": "/ipa/phonemes/sound-40.mp3",
-          "bytes": 35566,
-          "sha256": "81ce5d93b08e06ecd728d19f3f907424f3b15989b3e744c9b9b821c4b4e0a8eb"
+          "bytes": 36710,
+          "sha256": "db7b3942489882dc6f46cfd91aac38405e6b87241214c13e589ce7a5c1020a91"
         },
         {
           "path": "/ipa/phonemes/sound-41.mp3",
-          "bytes": 8315,
-          "sha256": "2cda09a4e78f5037dcf6dadb895b44cd9edc1cd417412e210c07c3575a520c53"
+          "bytes": 9459,
+          "sha256": "add7f569a8420879a07a4ccdaaab418f73491a23bc7874c748e59c7b91fe5c9a"
         },
         {
           "path": "/ipa/phonemes/sound-42.mp3",
-          "bytes": 7373,
-          "sha256": "9e8ec6bdca7e0d4b43da8984b06b0b14dca40254d282ef23893da13ec72eb3c2"
+          "bytes": 8517,
+          "sha256": "188d7801a19c70d9d7d5fe82bac3a9b1545a60e6fded60e2d02613183bc7b211"
         },
         {
           "path": "/ipa/phonemes/sound-43.mp3",
-          "bytes": 9516,
-          "sha256": "3a903dc53859824d3182d3b472015ca6a832d51b44c6bb3eea6dc823038a6a63"
+          "bytes": 10660,
+          "sha256": "ca719b1ccc09e286f4e44682991c0d3c481a00181fd4cad732a771ed00f4c246"
         },
         {
           "path": "/ipa/phonemes/sound-44.mp3",
-          "bytes": 6826,
-          "sha256": "d59e940184ef622323836e54be1314791177201819175f65c31d74f90e03dceb"
+          "bytes": 7970,
+          "sha256": "0725d0003a1187cb8b7cbd22e99d5701b6bc7ac487f8ddd6c2955ce7c953579a"
         },
         {
           "path": "/ipa/phonemes/sound-45.mp3",
-          "bytes": 8572,
-          "sha256": "cdf4b39107aed53151d1b1095532e7276485c4833b9b733f54ab1145427215e3"
+          "bytes": 9716,
+          "sha256": "be883761d590a6a63f8b80d6d2717c936e2798703fc3f7f50a5b192323147972"
         },
         {
           "path": "/ipa/phonemes/sound-46.mp3",
-          "bytes": 11442,
-          "sha256": "cf7eb0cad8d8a50cb2a48696fcc6176a2c1eb7bca077d955aabb3df1b088f985"
+          "bytes": 12586,
+          "sha256": "1ae62b1ce6971cd15ec92036824bdf18a39b93e848bd428610501e1be2f20ce9"
         },
         {
           "path": "/ipa/phonemes/sound-47.mp3",
-          "bytes": 7948,
-          "sha256": "35a94079617c67c87cc3020bbf72e84263c0c727cabeadbcc57aa6f5f9442ebd"
+          "bytes": 9092,
+          "sha256": "9c69a5493fe17d576d7fc627ea73dff0192824ddbbc3c24de03b20539d437d7c"
         },
         {
           "path": "/ipa/phonemes/sound-48.mp3",
-          "bytes": 7505,
-          "sha256": "a7bef53c4dfa3b9350dbeb4ace6664b709039a0f933575f7fd28c6fef79f3842"
+          "bytes": 8649,
+          "sha256": "e48c5156b62f3987f9d3eb3ce4b9c8b3f843632e52dad5a2c1da2e681007f5ef"
         },
         {
           "path": "/ipa/phonemes/sound-49.mp3",
-          "bytes": 7084,
-          "sha256": "e6906b817c16695c28e1d957424470cc9e5df21fe029878feb4038678f4b5208"
+          "bytes": 8228,
+          "sha256": "8a270ad1d476baced7e92665b8e881773688200e5c42519dba8d6ea5280d2b53"
         },
         {
           "path": "/ipa/phonemes/sound-50.mp3",
-          "bytes": 8885,
-          "sha256": "a11b4b82b438c08480c4fe67f15c3376207619d1bc2dd262aa051bd8c86f827f"
+          "bytes": 10029,
+          "sha256": "d6897b5e378636b2d41121aa5714677be10fa128ca4d3c601df16bab65e5e027"
         },
         {
           "path": "/ipa/phonemes/sound-51.mp3",
-          "bytes": 7055,
-          "sha256": "cc77c28d1d716961886fb2372b6162d2a4a1e97d3487d974476342c4863c8dc6"
+          "bytes": 8199,
+          "sha256": "c0297dd17d72ace87f450ca57d07cc63119b40d035cd2b736a23cca876cdba5c"
         },
         {
           "path": "/ipa/phonemes/sound-52.mp3",
-          "bytes": 12150,
-          "sha256": "3796a967ea6a8e1b968f72dfe56759b955283ffbe9ba85b7dfa8d2c743f9b7ef"
+          "bytes": 13294,
+          "sha256": "febfaccca7850d1aa6f486ffdec332f01eca4ec9f5c8b99c5e9310224c6f5ede"
         },
         {
           "path": "/ipa/phonemes/sound-53.mp3",
-          "bytes": 7765,
-          "sha256": "029e9ce393e107ccac1bf048ba6ae2cf6c4cb7ea879aa63eb21442d337e58462"
+          "bytes": 8909,
+          "sha256": "827dcafce16d6466d4b8adba7af292d521396f44575333e52758a5a190c61f6c"
         },
         {
           "path": "/ipa/phonemes/sound-54.mp3",
@@ -800,28 +925,28 @@
         },
         {
           "path": "/ipa/phonemes/sound-55.mp3",
-          "bytes": 7555,
-          "sha256": "16dd4b6b6451ef530028d0eb3f4825356d17f215dc1488a982a979216ecd3f47"
+          "bytes": 8699,
+          "sha256": "7c8fafc638d85edeaf84e796b78404a32f96251c1592cf4456ace3a0ffeec147"
         },
         {
           "path": "/ipa/phonemes/sound-56.mp3",
-          "bytes": 8728,
-          "sha256": "b0ba1e4e73ad71fbc8bccf55c0e325b20c2becf762225b02f30f9a23c3b5379e"
+          "bytes": 9872,
+          "sha256": "f8e672de3f9eac3398e038f29a1d0c92dcea3eaa63dc1ccc02fa11c5b45b7d43"
         },
         {
           "path": "/ipa/phonemes/sound-57.mp3",
-          "bytes": 7709,
-          "sha256": "19e3da1f1606e6b14860e6713ed0641bdc09f4abebd7e86a3b9dd9610a39b976"
+          "bytes": 8853,
+          "sha256": "8228c5ceff7d81b600bf3878249ca789395f02874a9eb30cf86c4362cf7f8526"
         },
         {
           "path": "/ipa/phonemes/sound-58.mp3",
-          "bytes": 8940,
-          "sha256": "20bef980a55c39d7230e63204372fde3e0bce268397bd87087b5eaf413e6eced"
+          "bytes": 10084,
+          "sha256": "cbd81d3d2a9e113f81747aee83c85250eae44e357200247beae69115293391db"
         },
         {
           "path": "/ipa/phonemes/sound-59.mp3",
-          "bytes": 19787,
-          "sha256": "744b9e7642930745066c78de3f61f1fc1bef2857d3fcd2771e5fa1bde72b159e"
+          "bytes": 20931,
+          "sha256": "79f1ffa0dbf0a586822cfd3adf6e86a3984a8696a3b55373f947d3d8fc9375a2"
         },
         {
           "path": "/ipa/phonemes/sound-60.mp3",
@@ -885,13 +1010,13 @@
         },
         {
           "path": "/ipa/phonemes/sound-72.mp3",
-          "bytes": 25580,
-          "sha256": "a60063845361adaff8807e6965342f312ff4e1ffb3380e0cc1fdc2ff26a6e9ad"
+          "bytes": 26724,
+          "sha256": "9ad6e55d3140981711f2710b6fffbee1ff12adf701a9e933339db4681f9a63f8"
         },
         {
           "path": "/ipa/phonemes/sound-73.mp3",
-          "bytes": 18520,
-          "sha256": "20df2a95dad22dd40f415801dff14ea8e06b5cdf06a087283142272f090b79df"
+          "bytes": 19664,
+          "sha256": "3ac462dba13bc80d9d4e1d5a19b98945d7b00ff0e8d9841e3ffca4386845073d"
         },
         {
           "path": "/ipa/phonemes/sound-74.mp3",
@@ -905,13 +1030,13 @@
         },
         {
           "path": "/ipa/phonemes/sound-76.mp3",
-          "bytes": 24583,
-          "sha256": "58992f44227da76ffcf8ef22219eb64fc37e6f39d3b7e1b2aace8ff2a02884ba"
+          "bytes": 25727,
+          "sha256": "f6518e8a5b4990ff2deba0fdb11784db7ade65f4c286cecd70f5b24ad966c404"
         },
         {
           "path": "/ipa/phonemes/sound-77.mp3",
-          "bytes": 22875,
-          "sha256": "bb5bf216c29dda38bf456a7c8800ff3ab430826e7543f87e2556ca3980a71fdb"
+          "bytes": 24019,
+          "sha256": "a77881c0ba53ef429b895a99d73ce06fa62e1d7f29d8ee5ad352b6eb57549c67"
         },
         {
           "path": "/ipa/phonemes/sound-78.mp3",
@@ -935,8 +1060,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-82.mp3",
-          "bytes": 23384,
-          "sha256": "331b25464048e462cc75bb0522d2fa195ab24c37dcd108cf3590620c1186101a"
+          "bytes": 24528,
+          "sha256": "405a0c6539d57770fb42636eaa959c073ed4c4b4f50d7344b9c551c238bea697"
         },
         {
           "path": "/ipa/phonemes/sound-83.mp3",
@@ -945,8 +1070,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-84.mp3",
-          "bytes": 22808,
-          "sha256": "074244e4a4400213ec90325392aa2fb86c13a2e0fbcc80fc4a7f18354875d7e3"
+          "bytes": 23952,
+          "sha256": "55af2f515268a2dd4638435154ac9b8cba5aad8782bbb3dcfe45a85e9ae4ef8a"
         },
         {
           "path": "/ipa/phonemes/sound-85.mp3",
@@ -955,13 +1080,13 @@
         },
         {
           "path": "/ipa/phonemes/sound-86.mp3",
-          "bytes": 24061,
-          "sha256": "7d7af0e5098e164ec63ea258d9e6318580cf25998222ddfbbfcd7435ddec31b7"
+          "bytes": 25205,
+          "sha256": "9f273e1e518550ac72c6f86c8594de43bd19e0288bbdfb66f4f33272c0858459"
         },
         {
           "path": "/ipa/phonemes/sound-87.mp3",
-          "bytes": 17997,
-          "sha256": "cc6e73e7c13b200aef4aa16360000febc147e45b65bb94e681d75380f42d1a96"
+          "bytes": 19141,
+          "sha256": "25eb843811bec69386ef061544299d5ae0167591df69ba4d3fdbf28629127de5"
         },
         {
           "path": "/ipa/phonemes/sound-88.mp3",
@@ -990,8 +1115,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-93.mp3",
-          "bytes": 24530,
-          "sha256": "3001381b879c17c8ae99cb7c00b786dd7efa23555503ab9175ceeef441addf0c"
+          "bytes": 25674,
+          "sha256": "758874d4758ffa0841d23f2da2a208f01e4a652737bfa989e188780401f59a2e"
         },
         {
           "path": "/ipa/phonemes/sound-94.mp3",
@@ -1015,8 +1140,8 @@
         },
         {
           "path": "/ipa/phonemes/sound-98.mp3",
-          "bytes": 15241,
-          "sha256": "ae638c954122f5955bd33a3fea06e27bfe8b218400d99cce32fcad550ceef66a"
+          "bytes": 16385,
+          "sha256": "d03872aa1ce2958b8055b28227832b24e830851b42f050cc75dfd2b22bfc0e7e"
         },
         {
           "path": "/ipa/phonemes/sound-99.mp3",
@@ -1030,8 +1155,8 @@
         },
         {
           "path": "/ipa/SOURCES.json",
-          "bytes": 31132,
-          "sha256": "c6def66a3833d8d029c1e52c855679db159ac1ad1a51d24b26b87d5740691741"
+          "bytes": 38546,
+          "sha256": "3a6b14f6e1162674fb751edbae34c77397dc4546ffcd3bcf787172f68fbfb981"
         }
       ]
     },

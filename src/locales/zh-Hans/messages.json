@@ -678,7 +678,7 @@
       "response": "简答",
       "evidence": "定位证据"
     },
-    "close": "关闭详情",
+    "close": "关闭",
     "source": "来源与许可",
     "duration": "预计用时",
     "minutes": "分钟",
@@ -823,7 +823,7 @@
     "checkAudioRule": "每段录音播完后才能保存答案；可重听，重听会记录。",
     "checkNoAudio": "本次阅读测试没有录音。",
     "checkBegin": "开始测试",
-    "checkEndAndLearn": "结束测试并转入学习",
+    "endCheck": "结束检查",
     "checkLearnError": "未能进入练习，请重试。作答已保存。",
     "start": "开始阅读",
     "resume": "继续任务",

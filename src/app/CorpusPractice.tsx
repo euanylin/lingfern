@@ -31,7 +31,7 @@ export function CorpusPractice({ locale, profileId, preferences, selection, onSe
   async function choose() {
     setLoading(true); setError('');
     try {
-      if (fallback && !configured) { setDetailReason(undefined); setDetail(fallback.lesson); return; }
+      if (fallback && !configured) { const { organizePractice } = await import('../core/practiceOrganization'); setDetailReason(undefined); setDetail(organizePractice(fallback.lesson)); return; }
       const { lesson: next, reason, downloadFailed } = await prepareCorpusPractice({ locale, profileId, preferences, history, records, online, skill, selection, previewIds: selection.materials.length ? [] : preview.current, previewRoots: selection.materials.length ? new Set() : previewRoots.current });
       if (next) {
         setDetailReason(reason);

@@ -374,7 +374,7 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
     const conditional = interpretation?.prompt === spokenConditionPrompt;
     const audioSpan = (span: { start: number; end: number }) => {
       let start = span.start, end = span.end;
-      // Preserve snapshots; omit punctuation belonging to adjacent timed comparison segments.
+      // Keep snapshots intact; omit punctuation from adjacent timed segments.
       if (compared) {
         const text = clip.text.slice(start, end), offset = text.search(/[\p{L}\p{N}]/u);
         if (offset < 0) throw new Error('MISSING_SPOKEN_EVIDENCE');

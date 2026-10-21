@@ -201,7 +201,7 @@ export function sentenceMeaningLesson(input: unknown, seen: ReadonlySet<string>,
     nextStep: local('Try the same goal on the other recording without hints. Check the complete answer and explain why the other option changes it.', '不用提示，在另一原作上完成同一目标。核对完整回答，解释另一选项改动了什么。', '不用提示，在另一原作上完成同一目標。核對完整回答，解釋另一選項改動了什麼。'), materials });
 }
 
-/** Keep counts and times bound to their referents; do not combine groups or convert zones. */
+// Keep counts and times tied to their referents; never combine groups or zones.
 export function sentenceNumericLesson(input: unknown, seen: ReadonlySet<string>, seed: number, kind: 'count' | 'time') {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_SENTENCE_LISTENING_SEED');
   const sources = z.array(z.union([sourceSchema, fleursSchema])).max(20).parse(input);

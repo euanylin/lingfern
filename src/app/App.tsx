@@ -208,7 +208,15 @@ export function App() {
   }
   async function start(selected: Lesson) {
     setStarting(true); setError('');
-    try { if (selected.mode === 'check') throw new Error('CHECK_UNAVAILABLE'); const session = history.find(s => s.status === 'active' && s.lesson.id === selected.id && s.lesson.mode === selected.mode && (!selected.mode || JSON.stringify(s.lesson) === JSON.stringify(selected))) ?? await createSession(selected, activeProfile); if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${session.id}`); else window.history.pushState(null, '', `/learn/${session.id}`); setCombinedDetail(undefined); setPath(route()); scrollTo(0, 0); }
+    try {
+      if (selected.mode === 'check') throw new Error('CHECK_UNAVAILABLE');
+      const prior = history.find(s => s.status === 'active' && s.lesson.id === selected.id && s.lesson.mode === selected.mode && (!selected.mode || JSON.stringify(s.lesson) === JSON.stringify(selected)));
+      const frozenTest = selected.mode === 'test' && history.some(s => !s.lesson.mode && s.lesson.id === selected.id && JSON.stringify(asTestLesson(s.lesson)) === JSON.stringify(selected));
+      const prepared = prior || frozenTest ? selected : (await import('../core/practiceOrganization')).organizePractice(selected);
+      const session = prior ?? await createSession(prepared, activeProfile);
+      if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${session.id}`); else window.history.pushState(null, '', `/learn/${session.id}`);
+      setCombinedDetail(undefined); setPath(route()); scrollTo(0, 0);
+    }
     catch { setError('save'); } finally { setStarting(false); }
   }
   async function savePracticeSelection(skill: 'reading' | 'listening', value: PracticeSelection) {
@@ -312,9 +320,12 @@ export function App() {
     const header = document.querySelector<HTMLElement>('#root>header'), root = document.documentElement;
     if (!header) return;
     let frame = 0;
-    const measure = () => { frame = 0; const height = `${header.offsetHeight}px`; if (root.style.getPropertyValue('--site-header-height') !== height) root.style.setProperty('--site-header-height', height); };
-    const observer = new ResizeObserver(() => { if (!frame) frame = requestAnimationFrame(measure); });
-    measure(); observer.observe(header);
+    const observer = new ResizeObserver(([entry]) => {
+      const height = `${Math.ceil(entry.borderBoxSize?.[0]?.blockSize ?? header.offsetHeight)}px`;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => { if (root.style.getPropertyValue('--site-header-height') !== height) root.style.setProperty('--site-header-height', height); });
+    });
+    observer.observe(header);
     return () => { cancelAnimationFrame(frame); observer.disconnect(); root.style.removeProperty('--site-header-height'); };
   }, [introducing, entryPending]);
   const settingsPage = <section className="settings-page">
@@ -366,7 +377,7 @@ export function App() {
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <PageBoundary key={path} locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p role="status">{t.loading}</p>) : sessionId ? <Learning catalogue={catalogue} owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={progressRecords([], history, records, summaries).valid} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {

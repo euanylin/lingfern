@@ -372,9 +372,8 @@ export async function advance(id: string, owner: string) {
 export async function saveSelfAssessment(id: string, owner: string, questionId: string, value: unknown) {
   return db.transaction('rw', sessions, settings, attempts, async () => {
     const session = await owned(id, owner);
-    const question = questions(session.lesson)[session.position].question;
-    if (session.lesson.mode || session.lesson.organization !== 'material-v1' && question.id !== questionId) throw new Error('CONFLICT');
-    const selected = session.lesson.organization === 'material-v1' ? questions(session.lesson).find(item => item.question.id === questionId)?.question : question;
+    if (session.lesson.mode) throw new Error('CONFLICT');
+    const selected = questions(session.lesson).find(item => item.question.id === questionId)?.question;
     if (!selected) throw new Error('CONFLICT');
     const selfAssessment = validateSelfAssessment(selected, value);
     const attempt = await attempts.get(`${id}:${questionId}`);
@@ -513,7 +512,7 @@ export async function bootstrapSyncEvents(profileId: string) {
 export async function saveWorkspaceDraft(id: string, owner: string, questionId: string, answer: Answer) {
   return db.transaction('rw', sessions, settings, async () => {
     const session = await owned(id, owner);
-    if (session.lesson.organization !== 'material-v1' || session.lesson.mode === 'check' || session.status !== 'active') throw new Error('CONFLICT');
+    if (session.status !== 'active' || session.lesson.mode === 'check' && !session.checkStartedAt) throw new Error('CONFLICT');
     const item = questions(session.lesson).find(item => item.question.id === questionId);
     if (!item) throw new Error('INVALID_ANSWER');
     validateAnswer(item.question, answer, true);
@@ -526,7 +525,7 @@ export async function saveWorkspaceDraft(id: string, owner: string, questionId: 
 export async function selectWorkspaceQuestion(id: string, owner: string, questionId: string) {
   return db.transaction('rw', sessions, settings, async () => {
     const session = await owned(id, owner), all = questions(session.lesson);
-    if (session.lesson.organization !== 'material-v1' || session.lesson.mode === 'check') throw new Error('CHECK_RESTRICTED');
+    if (session.lesson.mode === 'check' && !session.checkStartedAt) throw new Error('CHECK_RESTRICTED');
     const target = all.find(item => item.question.id === questionId);
     if (!target) throw new Error('INVALID_ANSWER');
     const previous = all[session.position].material;
@@ -545,21 +544,22 @@ export async function selectWorkspaceQuestion(id: string, owner: string, questio
 export async function submitWorkspace(id: string, owner: string) {
   return db.transaction('rw', sessions, settings, attempts, syncEvents, syncClocks, async () => {
     const session = await owned(id, owner);
-    if (session.lesson.organization !== 'material-v1' || session.lesson.mode === 'check' || session.status === 'ended') throw new Error('CHECK_RESTRICTED');
+    if (session.status === 'ended' || session.lesson.mode === 'check' && !session.checkStartedAt) throw new Error('CHECK_RESTRICTED');
     const all = questions(session.lesson), current = all[session.position].material;
     const workspace = validateWorkspace(session.lesson, session.workspace ?? { drafts: {}, assistance: {} });
     workspace.assistance[current.id] = session.assistance;
     const saved: Attempt[] = [];
     for (const item of all) {
-      const answer = workspace.drafts[item.question.id];
+      const recordId = `${id}:${item.question.id}`, existing = await attempts.get(recordId);
+      const answer = workspace.drafts[item.question.id] ?? existing?.answer ?? (all[session.position].question.id === item.question.id ? session.draft : undefined);
       if (answer === undefined) throw new Error('UNSAVED');
       const result = score(item.question, answer), assistance = workspace.assistance[item.material.id] ?? { hintLevel: 0 };
-      if (session.lesson.skill === 'listening' && !assistance.audioCompleted) throw new Error('NO_AUDIO');
-      const recordId = `${id}:${item.question.id}`, existing = await attempts.get(recordId);
+      workspace.drafts[item.question.id] = answer;
       if (existing) {
         if (JSON.stringify(existing.answer) !== JSON.stringify(answer)) throw new Error('CONFLICT');
         saved.push(existing); continue;
       }
+      if (session.lesson.skill === 'listening' && !assistance.audioCompleted) throw new Error('NO_AUDIO');
       const attempt: Attempt = { id: recordId, ...(session.syncSessionId ? { syncRecordId: `${session.syncSessionId}:${item.question.id}` } : {}), sessionId: id, profileId: session.profileId,
         questionId: item.question.id, rootId: item.material.rootId, answer, ...result, assistance, submittedAt: new Date().toISOString() };
       await attempts.add(attempt); saved.push(attempt);
@@ -569,6 +569,7 @@ export async function submitWorkspace(id: string, owner: string) {
       else await appendSyncEvent(session.profileId, event, db, { occurredAt: saved[index].submittedAt });
     }
     session.status = 'completed'; session.workspace = workspace;
+    if (session.lesson.mode === 'check') session.checkEndedAt ??= new Date().toISOString();
     await sessions.put(session);
     return { session, attempts: saved };
   });

@@ -140,7 +140,8 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   }
   if (selection?.materials.some(root => root.startsWith('community:'))) {
     const imported = await importedPracticeLessons(profileId, skill);
-    return { lesson: imported.find(lesson => practiceSelectionMatches(lesson, selection)), downloadFailed: false };
+    const selected = imported.find(lesson => practiceSelectionMatches(lesson, selection));
+    return { lesson: selected ? organizePractice(selected, [], selection.kinds) : undefined, downloadFailed: false };
   }
   if (selection && (selection.kinds.length || selection.materials.length)) {
     for (let offset = 0; offset < Math.max(1, selection.kinds.length); offset++) {

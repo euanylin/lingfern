@@ -41,7 +41,7 @@ export function SharingManagement({ locale, accountId }: { locale: Locale; accou
       const session = sessionSummarySchema.parse(await jsonRequest('/api/session', signal));
       if (session.account?.id !== accountId || !session.csrfToken) throw new Error('SHARING_ACCOUNT_CHANGED');
       if (path) sharingRevokedSchema.parse(await jsonRequest(path, signal, { method: 'DELETE', headers: { 'X-CSRF-Token': session.csrfToken } }));
-      // Read sequentially to expose cancellation and errors without requesting private text.
+      // Read sequentially so cancellation needs no private text.
       const connections = sharingConnectionsSchema.parse(await jsonRequest('/api/ai/connections', signal)).connections;
       const shares = sharingSummariesSchema.parse(await jsonRequest('/api/ai/shares', signal)).shares;
       if (sessionSummarySchema.parse(await jsonRequest('/api/session', signal)).account?.id !== accountId) throw new Error('SHARING_ACCOUNT_CHANGED');

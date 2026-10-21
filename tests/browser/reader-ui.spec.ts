@@ -201,8 +201,8 @@ test('task drawer owns its edge radii at the existing full-screen breakpoint', a
     expect(Math.abs(box.x + box.width - width)).toBeLessThanOrEqual(1);
     expect(box.y).toBe(0); expect(box.height).toBe(height);
     expect(await panel.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
-    await panel.getByRole('button', { name: '关闭详情', exact: true }).scrollIntoViewIfNeeded();
-    await expect(panel.getByRole('button', { name: '关闭详情', exact: true })).toBeInViewport();
+    await panel.getByRole('button', { name: '关闭', exact: true }).scrollIntoViewIfNeeded();
+    await expect(panel.getByRole('button', { name: '关闭', exact: true })).toBeInViewport();
     if (width === 1440 || width === 375) await page.screenshot({ path: `output/playwright/reader-drawer-${browserName}-${width}-light-zh-Hans.png` });
   }
   await page.keyboard.press('Escape');

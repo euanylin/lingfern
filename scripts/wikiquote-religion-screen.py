@@ -1,4 +1,7 @@
-"""Screen source-bound themes with existing parsers; retain raw data and all outcomes, including uncertainty. Grant no rights and use no religion/author blacklist; preserve ordinary metaphors and incidental wording."""
+"""Screen source-bound themes; retain raw data, outcomes and uncertainty.
+
+Grant no rights. Use no religion or author blacklist; preserve ordinary metaphors
+and incidental wording."""
 import argparse,collections,hashlib,html,importlib.util,json,pathlib,re
 
 STRONG_CATEGORIES={'founders of religions','religious texts','sacred texts','christian texts','hindu texts','buddhist texts','sikh texts','quran','koran','bible','hebrew bible','new testament','old testament','sermons','prayers','liturgical texts','sayings of jesus'}

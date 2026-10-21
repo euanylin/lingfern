@@ -114,7 +114,7 @@ export function actionOrderListeningLesson(input: unknown, seen: ReadonlySet<str
 
 const admittedChange = changeSources.map(source => sourceSchema.parse(source));
 
-/** Preserve both states and their direction without asserting current real-world conditions. */
+// Preserve the recorded change without claiming it remains true.
 export function stateChangeListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_STATE_CHANGE_LISTENING');
   const parsed = z.array(sourceSchema).max(20).parse(input);

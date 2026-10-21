@@ -150,7 +150,7 @@ export async function restartSyncDownload(profileId: string, scope: SyncDownload
 
 
 // Release native locks automatically when tabs close.
-// shortcut: 90s leases may overlap after suspension; immutable IDs/CAS protect data; renew if longer fallback rounds are needed.
+// shortcut: suspended 90s leases may overlap; IDs/CAS protect data; renew for longer rounds.
 async function syncLock<T>(profileId: string, scope: SyncDownloadScope, signal: AbortSignal | undefined, work: () => Promise<T>): Promise<T> {
   profileIdSchema.parse(profileId); scope = syncDownloadScopeSchema.parse(scope);
   const retryKey = `profile:${profileId}:syncRetry:${scope.accountId}:${scope.bindingVersion}`;

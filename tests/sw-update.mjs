@@ -139,7 +139,15 @@ try {
   else throw new Error('Expected a scored first task');
   async function answerVisible(target) {
     if (organized) await expect(target.locator('.workspace-save-status,.workspace-questions > p[role=status]')).toHaveText('已保存在本设备');
-    else await target.getByRole('heading', { name: '✓ 回答正确' }).waitFor();
+    else if (await target.locator('.material-workspace').count()) {
+      const current = target.locator('.workspace-question').first();
+      if (typeof expectedAnswer === 'number') await expect(current.getByRole('radio').nth(expectedAnswer)).toBeChecked();
+      else if (typeof expectedAnswer === 'string') await expect(current.locator('input:not([type=radio])')).toHaveValue(expectedAnswer);
+      else if (firstQuestion.kind === 'matching') for (const [index, answer] of expectedAnswer.entries()) await expect(current.locator('.setting-trigger').nth(index)).toHaveAttribute('data-value', answer);
+      else if (firstQuestion.kind === 'sequence') await expect(current.locator('.sequence-order li>span')).toHaveText(expectedAnswer);
+      else for (const [index, answer] of expectedAnswer.entries()) await expect(current.locator('input:not([type=radio])').nth(index)).toHaveValue(answer);
+      await expect(current.locator('fieldset').first()).toBeDisabled();
+    } else await target.getByRole('heading', { name: '✓ 回答正确' }).waitFor();
   }
   if (!organized) await page.getByRole('button', { name: '保存答案', exact: true }).click();
   await answerVisible(page);

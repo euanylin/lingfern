@@ -208,14 +208,14 @@
     "signedIn": "연결됨",
     "signedOut": "연결 안 됨",
     "pending": "일괄 동기화를 아직 사용할 수 없습니다.",
-    "cancelled": "GitHub 인증을 취소했습니다."
+    "cancelled": "GitHub 권한 부여를 취소했습니다."
   },
   "githubIdentity_disconnectLabels": {
     "action": "GitHub 계정 연결 해제",
     "confirm": "GitHub 계정 연결을 해제하고 모든 기기의 웹 세션을 종료할까요? 로컬 학습 기록과 GitHub 저장소는 유지됩니다.",
-    "done": "GitHub 연결과 인증을 해제했습니다.",
-    "partial": "저장된 인증 정보와 모든 웹 세션을 비활성화했지만 GitHub 인증 취소는 확인하지 못했습니다. GitHub에서 Lingfern의 권한을 취소하세요.",
-    "revoke": "GitHub 인증 관리",
+    "done": "GitHub 연결을 해제하고 권한을 취소했습니다.",
+    "partial": "저장된 인증 정보와 모든 웹 세션을 비활성화했지만 GitHub 권한 취소는 확인하지 못했습니다. GitHub에서 Lingfern의 권한을 취소하세요.",
+    "revoke": "GitHub 권한 관리",
     "failed": "연결을 해제하지 못했습니다. 다시 시도하세요."
   },
   "grammarLookup": {
@@ -271,7 +271,7 @@
     "consonantNote": "/w/는 양순연구개 이중 조음이며 /tʃ dʒ/는 파찰음입니다.",
     "stressed": "강세 있음",
     "unstressed": "강세 없음",
-    "ending": "끝소리",
+    "ending": "끝점",
     "frontness": {
       "front": "전설",
       "near-front": "근전설",
@@ -473,7 +473,7 @@
     "mismatch": "이 저장소는 다른 프로필에 속합니다. 해당 로컬 프로필로 전환하거나 다른 저장소를 선택하세요. 표시는 덮어쓰지 않습니다.",
     "expired": "검증이 만료되었거나 권한이 변경되었습니다. 다시 검증하세요.",
     "capacity": "설치 또는 저장소가 이번 처리 용량을 초과합니다. App 접근 범위를 줄이거나 먼저 내보내고 정리하세요.",
-    "permission": "GitHub 권한을 사용할 수 없습니다. 인증을 확인하고 다시 시도하세요.",
+    "permission": "GitHub 권한을 사용할 수 없습니다. 권한 부여 상태를 확인하고 다시 시도하세요.",
     "limited": "요청이 너무 많습니다. 나중에 다시 시도하세요.",
     "reset": "다시 설정",
     "newWindow": "새 창에서 열기"
@@ -550,7 +550,7 @@
     "load": "권한 목록 새로고침",
     "loading": "불러오는 중…",
     "shares": "활성 공유",
-    "clients": "인증된 클라이언트",
+    "clients": "권한을 부여한 클라이언트",
     "empty": "활성 항목 없음",
     "expires": "만료",
     "profile": "프로필",
@@ -570,11 +570,11 @@
   },
   "sharingUpload": {
     "title": "연결된 도우미에 공유",
-    "load": "인증된 클라이언트 불러오기",
+    "load": "권한을 부여한 클라이언트 불러오기",
     "loading": "불러오는 중…",
     "client": "수신 클라이언트",
     "choose": "클라이언트 선택",
-    "empty": "공유 문맥을 읽도록 인증된 클라이언트가 없습니다. 먼저 도우미에서 Lingfern에 연결하세요.",
+    "empty": "공유 문맥을 읽을 권한이 있는 클라이언트가 없습니다. 먼저 도우미에서 Lingfern에 연결하세요.",
     "account": "웹 계정",
     "profile": "로컬 프로필",
     "preview": "업로드할 내용",
@@ -678,7 +678,7 @@
       "response": "서술형",
       "evidence": "근거 찾기"
     },
-    "close": "상세 닫기",
+    "close": "닫기",
     "source": "출처 및 라이선스",
     "duration": "예상 시간",
     "minutes": "분",
@@ -823,7 +823,7 @@
     "checkAudioRule": "저장 전에 각 녹음을 끝까지 재생하세요. 다시 듣기는 허용되며 기록됩니다.",
     "checkNoAudio": "이 읽기 테스트에는 녹음이 없습니다.",
     "checkBegin": "테스트 시작",
-    "checkEndAndLearn": "테스트 종료 후 학습으로",
+    "endCheck": "평가 종료",
     "checkLearnError": "연습을 열지 못했습니다. 다시 시도하세요. 답변은 저장되어 있습니다.",
     "start": "읽기 시작",
     "resume": "과제 이어하기",

@@ -3,6 +3,8 @@ import { languagePacks, languageOptions } from '../../src/locales';
 import { localeSchema } from '../../src/shared/locale';
 import { selectPicker } from './picker';
 import { confirmTask } from './task-start';
+import { questionSlots } from '../../src/shared/practiceWorkspace';
+import type { Lesson } from '../../src/shared/content';
 
 test('Settings and First Run share English alphabetical language order in every display direction', async ({ page }) => {
   const ordered = ['ar', 'zh-Hans', 'zh-Hant', 'en', 'fr', 'de', 'hi', 'id', 'it', 'ja', 'ko', 'pt', 'ru', 'es'];
@@ -96,15 +98,38 @@ for (const locale of ['ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi'
     await expect(page.locator('.learning-grid > article > .lead')).toHaveCSS('direction', 'ltr');
     await expect(page.locator('.question-sheet-toggle')).toContainText(t.question);
     await page.locator('.question-sheet-toggle').click();
-    await expect(page.locator('.question-number bdi')).toHaveText('1 / 4');
+    const session = await page.evaluate(async () => {
+      const { sessions } = await import('/src/data/db.ts' as string);
+      return sessions.get(location.pathname.split('/').at(-1)!);
+    }) as { id: string; lesson: Lesson };
+    const questions = session.lesson.materials.flatMap(material => material.questions);
+    const total = questions.reduce((sum, question) => sum + questionSlots(question), 0);
+    await expect(page.locator('.question-number bdi')).toHaveText(`1/${total}`);
     await expect(page.locator('.question-number bdi')).toHaveCSS('direction', 'ltr');
-    await page.getByRole('radio').first().check();
-    await page.getByRole('button', { name: t.submit, exact: true }).click();
-    await expect(page.getByText(t.saved, { exact: true })).toBeVisible();
+    await expect(page.locator('.workspace-card button')).toHaveCount(total);
+    let slot = 0;
+    for (const question of questions) {
+      await page.locator('.workspace-card button').nth(slot).click();
+      const group = page.locator('.workspace-question').filter({ has: page.locator(`[id="prompt-${question.id}"]`) });
+      if ('options' in question) await group.getByRole('radio').nth(question.answer).check();
+      else if ('spans' in question) await group.getByRole('radio').nth(question.accepted[0]).check();
+      else if ('kind' in question && question.kind === 'completion') await group.locator('input').fill(question.answer);
+      else if ('gaps' in question) for (const [index, gap] of question.gaps.entries()) await group.locator('input').nth(index).fill(gap.answer);
+      else if ('steps' in question) for (const step of question.acceptedOrders[0]) await group.getByRole('button', { name: `${step} ＋`, exact: true }).click();
+      else throw new Error(`Unexpected fixture question: ${Object.keys(question).join(',')}`);
+      slot += questionSlots(question);
+    }
+    await expect(page.locator('.workspace-save-status')).toHaveText(t.saved);
+    await page.locator('.workspace-card button').last().click();
+    await page.getByRole('button', { name: languagePacks[locale].workspace.submitAll, exact: true }).click();
+    await expect(page.locator('#workspace-result')).toHaveText(t.completed);
+    const attempts = await page.evaluate(async id => (await import('/src/data/db.ts' as string)).attempts.where('sessionId').equals(id).toArray(), session.id);
+    expect(attempts).toHaveLength(questions.length);
+    expect(attempts.every((attempt: { correct: boolean }) => attempt.correct)).toBe(true);
     await page.reload();
-    await page.locator('.question-sheet-toggle').click();
     await expect(page.locator('.feedback')).toBeVisible();
-    await expect(page.locator('.feedback p[lang=en]').first()).toBeVisible();
+    await expect(page.locator('.workspace-review')).toHaveCount(questions.length);
+    await expect(page.locator('.workspace-review p[lang=en]').first()).toBeVisible();
     await page.screenshot({ path: `output/playwright/locale-${locale}-375-saved-english-instruction.png` });
   });
 }

@@ -60,13 +60,19 @@ test('imports community lessons with offline image and audio, and rejects damage
   const imported = options.locator('.offline-source-group').filter({ hasText: reading.title.en });
   await expect(imported.getByRole('checkbox')).toHaveCount(reading.materials.length);
   for (const checkbox of await imported.getByRole('checkbox').all()) await checkbox.check();
-  await options.getByRole('button', { name: '取消', exact: true }).click();
+  await options.getByRole('button', { name: '关闭', exact: true }).click();
   await expect(options).toHaveCount(0);
   await page.locator('.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
   await expect(page).toHaveURL(/\/learn\//);
   await expect(page.getByRole('heading', { name: reading.materials[0].title, level: 1, exact: true })).toBeVisible();
-  await expect(page.locator('.session-title')).toHaveCount(0);
+  await expect(page.locator('.session-title')).toBeHidden();
+  const reports = await page.evaluate(() => new Promise<{ actual: number; baseline: number }[]>((resolve, reject) => {
+    const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
+    open.onsuccess = () => { const db = open.result, request = db.transaction('sessions').objectStore('sessions').get(location.pathname.split('/').at(-1)!); request.onsuccess = () => { resolve(request.result.lesson.materials.map((material: { quantity: unknown }) => material.quantity)); db.close(); }; request.onerror = () => reject(request.error); };
+  }));
+  expect(reports).toHaveLength(reading.materials.length);
+  expect(reports.every(report => report.actual === 1 && report.baseline === 1)).toBe(true);
   const readingUrl = page.url();
   const illustration = page.getByRole('img', { name: '示例插图' });
   await expect(illustration).toBeVisible();

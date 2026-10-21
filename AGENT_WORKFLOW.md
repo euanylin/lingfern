@@ -1,6 +1,6 @@
 # Agent workflow
 
-This is the operational entry point for `<workspace>`, checked on 2026-10-17. It indexes existing requirements and tools; it does not grant production permission or change acceptance gates. User-facing replies default to concise Chinese; operational documentation and code comments use English.
+This is the operational entry point for `/Users/euan/Documents/Lingfern`, checked on 2026-10-17. It indexes existing requirements and tools; it does not grant production permission or change acceptance gates. User-facing replies default to concise Chinese; operational documentation uses English; code comments and docstrings use concise English as required by `AGENTS.md`.
 
 ## 1. Start with the requested scope
 
@@ -43,6 +43,8 @@ Use `rg` with explicit directories and exclude `backup/`, `private/`, `node_modu
 Current runtime version comes from `package.json`, dependency pins from `package-lock.json`. Download/install metadata comes from `public/resources/catalogue.json`; topic ZIPs from `content/source-packs.json`; preparation coverage from `content/corpus/runtime-audit.json`. Those files describe different units: source roots, excerpts, ZIPs and resource groups are not interchangeable. Reconcile them before making a fresh inventory claim.
 
 ## 3. Read current rules once
+
+Physical-device/accessibility and mainland-network release checks are maintainer-accepted as of 2026-10-21, with no further standalone sample/sign-off requirement. Keep ordinary accessible-UI regression checks and the separate real two-device sync/security/release gates; see [the acceptance record](docs/history/2026-10-21-release-gates.md).
 
 Training/navigation, generation/review, cloud/sampling, permissions and security rules are consolidated in [AGENTS.md](AGENTS.md). Do not reconstruct them from historical overrides or duplicate another current-design list here. The product/interface documents provide detailed current behaviour, not superseded examples.
 

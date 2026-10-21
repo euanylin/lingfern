@@ -1,4 +1,7 @@
-"""Acquire Timothy Krause's CC BY 4.0 Home and School on the task-owned Colab CPU. Fetch chapter URLs only from https://openoregon.pressbooks.pub/homeandschool/ on that host. Structural preparation grants no rights, level, generator, or audio acceptance."""
+"""Acquire Krause's CC BY 4.0 Home and School on the owned Colab CPU.
+
+Fetch only https://openoregon.pressbooks.pub/homeandschool/ chapters.
+Preparation grants no rights, level, generator or audio acceptance."""
 import hashlib, json, os, pathlib, platform, re, time, zipfile
 import urllib.request
 from html.parser import HTMLParser

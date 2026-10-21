@@ -4,6 +4,8 @@ import { questionSlots } from '../../src/shared/practiceWorkspace';
 import type { Lesson } from '../../src/shared/content';
 const reading = JSON.parse(readFileSync(new URL('../fixtures/content/a1-reading.json', import.meta.url), 'utf8'));
 const listening = JSON.parse(readFileSync(new URL('../fixtures/content/c2-listening.json', import.meta.url), 'utf8'));
+// UI regression snapshots retain their original question types and positions.
+listening.organization = 'material-v1';
 const questions = (lesson: Lesson) => lesson.materials.flatMap(material => material.questions.map(question => ({ material, question })));
 import { selectPicker } from './picker';
 import { languagePacks } from '../../src/locales';
@@ -13,7 +15,7 @@ async function start(page: Page, raw: unknown, testMode = false) {
   const result = await page.evaluate(async ({ raw, testMode }) => {
     const { organizePractice } = await import('/src/core/practiceOrganization.ts' as string);
     const { asTestLesson } = await import('/src/shared/content.ts' as string);
-    const lesson = organizePractice(raw);
+    const lesson = (raw as { organization?: string }).organization ? raw : organizePractice(raw);
     const session = await (await import('/src/data/db.ts' as string)).createSession(testMode ? asTestLesson(lesson) : lesson);
     return { id: session.id, lesson: session.lesson };
   }, { raw, testMode });
@@ -26,8 +28,82 @@ const facts = ['butterflies', 'containers', 'vegetables', 'waterfalls', 'archite
 for (const material of expanded.materials) material.blocks[0].text += '\n\n' + facts.map((word, index) => `The ${word} appeared in the local report on day ${index + 1}. This separate observation has its own careful description and clear context.`).join('\n\n');
 const worksheet = expanded;
 
+test.describe('native reading sheet scrolling', () => {
+  test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  test('touch scrolling reaches later questions without moving the article', async ({ page, context }) => {
+    await start(page, worksheet); await page.locator('.question-sheet-toggle').click();
+    const content = page.locator('#workspace-sheet-content');
+    await expect.poll(() => page.locator('.workspace-questions').evaluate(el => el.getAnimations().every(animation => animation.playState !== 'running'))).toBe(true);
+    const before = await content.evaluate(el => el.scrollTop), article = await page.evaluate(() => scrollY);
+    const box = (await content.boundingBox())!, cdp = await context.newCDPSession(page), x = box.x + box.width / 2, y = box.y + box.height - 16;
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+    for (let step = 1; step <= 8; step++) {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + 1, y: y - step * 24 }] });
+      await page.waitForTimeout(20);
+    }
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(before + 80);
+    expect(await page.evaluate(() => scrollY)).toBe(article);
+    await expect(page.locator('.workspace-question:visible')).toHaveCount(4);
+    await expect(page.locator('.question-jump')).toBeVisible();
+    await cdp.detach();
+  });
+});
+
+for (const [locale, width, theme] of [['en', 375, 'light'], ['ar', 1440, 'dark']] as const) test.describe(`validation popup ${locale}`, () => {
+  test.use({ locale, colorScheme: theme, viewport: { width, height: 844 } });
+  test('keeps the localized error and draft export inside a keyboard-closeable popup', async ({ page }) => {
+    await start(page, worksheet);
+    if (width < 1200) await page.locator('.question-sheet-toggle').click();
+    await page.locator('.workspace-card button').last().click();
+    await page.locator('button[type=submit]').click();
+    const dialog = page.getByRole('dialog', { name: languagePacks[locale].workspace.submitAll });
+    await expect(dialog).toBeVisible(); await expect(dialog.locator('[role=alert]')).toHaveText(languagePacks[locale].app.invalidAnswer);
+    await expect(dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true })).toBeFocused();
+    const downloaded = page.waitForEvent('download'); await dialog.getByRole('button', { name: languagePacks[locale].app.export, exact: true }).click();
+    expect((await downloaded).suggestedFilename()).toBe('lingfern-answer-drafts.json');
+    await page.keyboard.press('Escape'); await expect(dialog).toBeHidden();
+    await expect(page.locator('button[type=submit]')).toBeFocused();
+  });
+});
+
+for (const width of [375, 1440]) test(`reading scrolls through all passage questions and submits only after the final question at ${width}px`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 812 });
+  const { id, lesson } = await start(page, worksheet);
+  if (width < 1200) await page.locator('.question-sheet-toggle').click();
+  const content = page.locator('#workspace-sheet-content'), jump = page.locator('.question-jump'), nav = page.locator('#workspace-question-nav');
+  await expect(page.locator('.workspace-question:visible')).toHaveCount(lesson.materials[0].questions.length);
+  await expect.poll(() => page.locator('.workspace-questions').evaluate(el => el.getAnimations().every(animation => animation.playState !== 'running'))).toBe(true);
+  await content.evaluate(el => el.scrollTop = 0);
+  await expect(jump).toHaveCount(0);
+  await expect(page.locator('button[type=submit]')).toHaveCount(0);
+  const last = page.locator('.workspace-question').nth(1).locator('h2');
+  await last.evaluate(el => { const content = el.closest('.question-sheet-content')!; content.scrollTop += el.getBoundingClientRect().top - content.getBoundingClientRect().top - 16; });
+  await expect(jump).toBeVisible();
+  expect(await jump.evaluate(el => el.getBoundingClientRect().width >= 44 && el.getBoundingClientRect().height >= 44)).toBe(true);
+  await expect(page.locator('.question-number bdi')).toHaveText(new RegExp(`^${(await last.textContent())!.match(/^\d+/)![0]}/`));
+  await jump.click(); await expect(nav).toBeInViewport(); await expect(jump).toHaveCount(0);
+  await page.locator('.workspace-card summary').click(); await expect(jump).toBeVisible();
+  await jump.focus(); await jump.press('Enter'); await expect(nav).toBeVisible(); await expect(jump).toHaveCount(0);
+  await content.locator('form>button').click();
+  await expect(page.locator('.workspace-question:visible')).toHaveCount(lesson.materials[1].questions.length);
+  const submit = content.locator('button[type=submit]'); await expect(submit).toHaveCount(1);
+  expect(await submit.evaluate(el => el.previousElementSibling?.classList.contains('workspace-question'))).toBe(true);
+  await page.screenshot({ path: test.info().outputPath(`reading-final-${width}.png`) });
+  await submit.click();
+  const dialog = page.getByRole('dialog', { name: languagePacks['zh-Hans'].workspace.submitAll });
+  await expect(dialog).toBeVisible(); await expect(dialog.locator('[role=alert]')).toHaveText(languagePacks['zh-Hans'].app.invalidAnswer);
+  expect(await dialog.evaluate(el => el.matches(':modal'))).toBe(true);
+  await page.screenshot({ path: test.info().outputPath(`reading-validation-${width}.png`) });
+  await expect(dialog.getByRole('button', { name: '关闭', exact: true })).toBeFocused();
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).attempts.where('sessionId').equals(id).count()), id)).toBe(0);
+  await page.keyboard.press('Escape'); await expect(dialog).toBeHidden(); await expect(submit).toBeFocused();
+});
+
 test('desktop submit feedback stays inside the answer card without a horizontal scrollbar', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 }); await start(page, worksheet);
+  await expect(page.locator('.workspace-questions button[type=submit]')).toHaveCount(0);
+  await page.locator('.workspace-card button').last().click();
   const content = page.locator('.workspace-questions .question-sheet-content'), submit = content.locator('button[type=submit]');
   await submit.scrollIntoViewIfNeeded(); await submit.hover(); await page.waitForTimeout(250);
   expect(await content.evaluate(el => el.scrollWidth - el.clientWidth)).toBe(0);
@@ -131,6 +207,7 @@ test('desktop reading follows page scrolling beside a pinned answer card, with f
   }
   await expect.poll(() => page.locator('.workspace-save-status').textContent()).toBe('已保存在本设备');
   await expect(page.locator('.workspace-review')).toHaveCount(0);
+  await page.locator('.workspace-card button').last().click();
   await page.getByRole('button', { name: '提交练习', exact: true }).click();
   await expect(page.locator('#workspace-result')).toBeVisible(); await expect(page.locator('#workspace-result')).toBeFocused(); await expect(page.locator('.workspace-review')).toHaveCount(all.length);
   expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).attempts.where('sessionId').equals(id).toArray()).every((attempt: {correct: boolean}) => attempt.correct), id)).toBe(true);
@@ -155,9 +232,9 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   await page.evaluate(() => scrollTo(0, 250)); const top = await page.evaluate(() => scrollY);
   await page.locator('.workspace-questions .question-sheet-toggle').click();
   await page.locator('.workspace-card button').nth(2).click();
-  await page.locator('.workspace-question:visible input:not([type=radio]):not([type=range])').fill('mobile-draft');
+  await page.locator('.workspace-question[data-selected=true] input:not([type=radio]):not([type=range])').fill('mobile-draft');
   await page.locator('.workspace-card button').first().click();
-  await page.locator('.workspace-card button').nth(2).click(); await expect(page.locator('.workspace-question:visible input:not([type=radio]):not([type=range])')).toHaveValue('mobile-draft');
+  await page.locator('.workspace-card button').nth(2).click(); await expect(page.locator('.workspace-question[data-selected=true] input:not([type=radio]):not([type=range])')).toHaveValue('mobile-draft');
   await page.locator('.workspace-questions .question-close').click();
   await expect(reader).toBeVisible(); expect(await page.evaluate(() => scrollY)).toBe(top);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -195,6 +272,7 @@ for (const raw of [worksheet, listening]) test(`Test hides teaching, hints, dict
   await start(page, raw, true);
   await expect(page.locator('.workspace-hints,.teaching,.workspace-review')).toHaveCount(0);
   await expect(page.locator('.material-workspace .dictionary-trigger')).toHaveCount(0);
+  await page.locator('.workspace-card button').last().click();
   await page.getByRole('button', { name: '提交练习', exact: true }).click();
   await expect(page.locator('.material-workspace [role=alert]')).toBeVisible();
   await expect(page.locator('.workspace-review')).toHaveCount(0);
@@ -266,6 +344,7 @@ test('B1-C2 answer instructions remain English while navigation follows the inte
   const instruction = page.locator('.completion-answer > span').first();
   await expect(instruction).toHaveAttribute('lang', 'en');
   await expect(instruction).toHaveText('Type the missing word from the passage.');
+  await page.locator('.workspace-card button').last().click();
   await expect(page.getByRole('button', { name: '提交练习', exact: true })).toBeVisible();
 });
 
@@ -603,7 +682,7 @@ test('short desktop viewport lets the new card flow without shrinking or clippin
 });
 
 test('table prompts use the full card width with inputs underneath on desktop and mobile', async ({ page }) => {
-  const raw = JSON.parse(readFileSync(new URL('../fixtures/content/a2-reading.json', import.meta.url), 'utf8'));
+  const raw = JSON.parse(readFileSync(new URL('../fixtures/content/a2-reading.json', import.meta.url), 'utf8')); raw.organization = 'material-v1';
   await page.setViewportSize({ width: 1440, height: 900 }); await start(page, raw);
   for (const width of [1440, 375]) {
     await page.setViewportSize({ width, height: 812 });

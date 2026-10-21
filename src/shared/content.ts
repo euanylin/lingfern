@@ -11,15 +11,16 @@ import changeListeningSources from '../../public/audio/a2-speech/UPDATE.json' wi
 import orderListeningSources from '../../public/audio/a2-speech/ORDER.json' with { type: 'json' };
 import personalListeningSources from '../../public/audio/a2-speech/PERSONAL.json' with { type: 'json' };
 import { z } from 'zod';
+import { answerPointCount, quantityBudget, quantityReportSchema, readingWordCount } from './practiceQuantity';
 
 export const corpusQuestionKindSchema = z.enum(['completion', 'sequence', 'evidence', 'matching', 'table', 'choice']);
 export type CorpusQuestionKind = z.infer<typeof corpusQuestionKindSchema>;
 export const topicSchema = z.enum(['campus', 'daily-life', 'science', 'culture', 'travel', 'technology', 'nature', 'environment', 'history', 'literature', 'music', 'film', 'sport', 'health', 'business', 'society', 'language', 'food']);
 export const levelSchema = z.enum(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
-export const localizedSchema = z.object({ 'zh-Hans': z.string().min(1), 'zh-Hant': z.string().min(1), en: z.string().min(1) }).strict();
+const localizedSchema = z.object({ 'zh-Hans': z.string().min(1), 'zh-Hant': z.string().min(1), en: z.string().min(1) }).strict();
 export type { Locale } from './locale';
 import { contentLocale, type Locale } from './locale';
-const evidenceSchema = z.object({ start: z.number().int().nonnegative(), end: z.number().int().positive(), audioStart: z.number().nonnegative().optional(), audioEnd: z.number().positive().optional() }).strict();
+const evidenceSchema = z.object({ start: z.number().int().nonnegative(), end: z.number().int().positive(), audioStart: z.number().nonnegative().optional(), audioEnd: z.number().positive().optional(), audioTiming: z.literal('estimated').optional() }).strict();
 const additionalEvidenceSchema = evidenceSchema.extend({ blockId: z.string().min(1) });
 export const ruleHashesSchema = z.object({ scoring: z.string().regex(/^[a-f0-9]{64}$/), generator: z.string().regex(/^[a-f0-9]{64}$/).optional() }).strict();
 const choiceQuestionSchema = z.object({
@@ -63,6 +64,7 @@ const matchingQuestionSchema = z.object({
 const responseQuestionSchema = z.object({
   kind: z.literal('response'), id: z.string().min(1), blockId: z.string().min(1), prompt: z.string().min(1),
   modelAnswer: z.string().min(1).max(4000).optional(), criteria: z.array(localizedSchema).min(2).max(4),
+  parts: z.array(z.string().min(1).max(1000)).min(2).max(12).optional(),
   evidence: evidenceSchema, additionalEvidence: z.array(additionalEvidenceSchema).optional(),
   hints: z.array(localizedSchema).length(3).optional(), explanation: localizedSchema,
 }).strict();
@@ -82,7 +84,7 @@ export const sourceCreditSchema = z.object({
 export const questionSchema = z.union([gapFillQuestionSchema, choiceQuestionSchema, tableQuestionSchema, sequenceQuestionSchema, completionQuestionSchema, matchingQuestionSchema, responseQuestionSchema, evidenceQuestionSchema]);
 export const recordingSchema = z.object({
   src: z.string().regex(/^\/(?:audio\/[a-z0-9-]+|ipa\/audio)\/[a-z0-9-]+\.mp3$/),
-  sha256: z.string().regex(/^[a-f0-9]{64}$/), duration: z.number().positive().max(600),
+  sha256: z.string().regex(/^[a-f0-9]{64}$/), duration: z.number().positive().max(7200),
   author: z.string().min(1), sourceUrl: z.string().min(1),
   license: z.string().min(1), synthetic: z.boolean().optional(),
 }).strict();
@@ -105,10 +107,12 @@ export const lessonSchema = z.object({
     communityPackageId: z.string().regex(/^[a-f0-9]{64}$/).optional(),
     illustration: z.object({ src: z.string(), sha256: z.string().regex(/^[a-f0-9]{64}$/), alt: localizedSchema, sourceId: z.string().min(1) }).strict().optional(),
     audio: recordingSchema.optional(),
+    quantity: quantityReportSchema.optional(),
     blocks: z.array(z.object({ id: z.string().min(1), title: z.string().min(1).optional(), text: z.string().min(1) }).strict()).min(1),
     questions: z.array(questionSchema).min(1),
   }).strict()).min(1),
 }).strict().superRefine((lesson, ctx) => {
+  if (lesson.materials.some(material => material.quantity) && answerPointCount(lesson.materials.flatMap(material => material.questions)) > (lesson.skill === 'reading' ? 12 : 20)) ctx.addIssue({ code: 'custom', message: 'Practice exceeds the shared answer-point budget' });
   if (lesson.generation?.generator === 'corpus-check-v1' ? lesson.mode !== 'check' || lesson.skill !== 'reading' || !!lesson.communityPackageId || lesson.targetLevel !== lesson.generation.startingPoint : lesson.generation && (lesson.mode === 'check' || lesson.reviewStatus !== 'draft' || (lesson.communityPackageId && (lesson.generation.generator !== 'corpus-v1' || lesson.skill !== 'listening')))) ctx.addIssue({ code: 'custom', message: 'Generated practice stays draft; generated checks require the dedicated reading-check shape' });
   if (lesson.communityPackageId && (lesson.mode === 'check' || lesson.reviewStatus !== 'draft')) ctx.addIssue({ code: 'custom', message: 'Community lessons are draft learning only' });
   if (lesson.mode === 'check') {
@@ -120,6 +124,10 @@ export const lessonSchema = z.object({
   const ids = new Set<string>();
   const roots = new Set<string>();
   for (const material of lesson.materials) {
+    if (material.quantity) {
+      const length = lesson.skill === 'reading' ? readingWordCount(material) : material.audio?.duration, budget = quantityBudget(lesson.skill, length);
+      if (material.quantity.length !== length || material.quantity.baseline !== budget.baseline || material.quantity.actual !== answerPointCount(material.questions) || material.quantity.actual > material.quantity.target || material.quantity.target > budget.maximum || material.quantity.preferSegments !== budget.preferSegments) ctx.addIssue({ code: 'custom', message: 'Invalid answer-point quantity report' });
+    }
     const packageId = material.communityPackageId ?? lesson.communityPackageId;
     if (material.communityPackageId && (!lesson.communityPackageId || lesson.generation?.generator !== 'corpus-v1' || lesson.skill !== 'listening' || !material.audio || material.illustration || lesson.materials.length !== 2 || lesson.materials[0] === material && material.communityPackageId !== lesson.communityPackageId)) ctx.addIssue({ code: 'custom', message: 'Material package ownership is restricted to generated listening application' });
     if (material.illustration && (!lesson.communityPackageId || !new RegExp(`^/images/community-${lesson.communityPackageId}/[a-z0-9-]+\\.png$`).test(material.illustration.src))) ctx.addIssue({ code: 'custom', message: 'Illustration source is invalid' });
@@ -217,14 +225,14 @@ export function questions(lesson: Lesson) {
   return lesson.materials.flatMap(material => material.questions.map(question => ({ material, question })));
 }
 
-export function normalizeAnswer(value: string) { return value.normalize('NFKC').trim().toLowerCase().replace(/\s+/g, ' ').replace(/\b([ap])\.m\./g, '$1m'); }
-export function normalizeCompletion(value: string) { return value.normalize('NFKC').toLowerCase().replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim(); }
+function normalizeAnswer(value: string) { return value.normalize('NFKC').trim().toLowerCase().replace(/\s+/g, ' ').replace(/\b([ap])\.m\./g, '$1m'); }
+function normalizeCompletion(value: string) { return value.normalize('NFKC').toLowerCase().replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim(); }
 
 export function validateAnswer(question: Question, answer: Answer, partial = false) {
   if ('gaps' in question) {
     if (!Array.isArray(answer) || answer.length !== question.gaps.length || answer.some((value, index) => typeof value !== 'string' || value.length > 80 || (!partial && (!normalizeCompletion(value) || value.trim().split(/\s+/).length > question.gaps[index].maxWords)))) throw new Error('INVALID_ANSWER');
   } else if ('criteria' in question) {
-    if (typeof answer !== 'string' || answer.length > 4000 || (!partial && !answer.trim())) throw new Error('INVALID_ANSWER');
+    if (question.parts ? !Array.isArray(answer) || answer.length !== question.parts.length || answer.some(value => typeof value !== 'string' || value.length > 4000 || !partial && !value.trim()) : typeof answer !== 'string' || answer.length > 4000 || !partial && !answer.trim()) throw new Error('INVALID_ANSWER');
   } else if ('pairs' in question) {
     if (!Array.isArray(answer) || answer.length !== question.pairs.length || answer.some(value => !(partial && value === '') && !question.choices.includes(value))) throw new Error('INVALID_ANSWER');
   } else if ('kind' in question && question.kind === 'completion') {
@@ -254,6 +262,7 @@ export function score(question: Question, answer: Answer): { correct: boolean | 
 }
 
 export function scoreParts(question: Question, answer: Answer): { id: string; correct: boolean | null }[] {
+  if ('criteria' in question && question.parts) return question.parts.map((_, index) => ({ id: String(index + 1), correct: null }));
   if ('gaps' in question) return question.gaps.map((gap, index) => ({ id: gap.id, correct: gap.accepted.some(value => normalizeCompletion(value) === normalizeCompletion(Array.isArray(answer) ? answer[index] ?? '' : '')) }));
   if ('pairs' in question) return question.pairs.map((pair, index) => ({ id: String(index + 1), correct: Array.isArray(answer) && answer[index] === pair.answer }));
   if ('rows' in question) return question.rows.map((row, index) => ({ id: String(index + 1), correct: row.accepted.some(value => normalizeAnswer(value) === normalizeAnswer(Array.isArray(answer) ? answer[index] ?? '' : '')) }));
@@ -262,7 +271,7 @@ export function scoreParts(question: Question, answer: Answer): { id: string; co
 
 export function answerText(question: Question, answer: Answer) {
   if ('gaps' in question) return question.gaps.map((gap, index) => `${gap.id}: ${Array.isArray(answer) ? answer[index] ?? '' : ''}`).join(' · ');
-  if ('criteria' in question) return typeof answer === 'string' ? answer : '';
+  if ('criteria' in question) return question.parts && Array.isArray(answer) ? question.parts.map((prompt, index) => `${prompt}: ${answer[index] ?? ''}`).join('\n') : typeof answer === 'string' ? answer : '';
   if ('pairs' in question) return Array.isArray(answer) ? question.pairs.map((pair, index) => `${pair.label}: ${answer[index]}`).join(' · ') : '';
   if ('kind' in question && question.kind === 'completion') return typeof answer === 'string' ? answer : '';
   if ('steps' in question) return Array.isArray(answer) ? answer.join(' → ') : '';
@@ -291,9 +300,6 @@ export function validateSelfAssessment(question: Question, value: unknown): Self
   if (!('criteria' in question) || ratings.length !== question.criteria.length) throw new Error('INVALID_SELF_ASSESSMENT');
   return ratings;
 }
-
-/** Generated practice has no reviewed curriculum level. */
-export const lessonTargetLevel = (lesson: Lesson) => lesson.generation?.generator === 'corpus-v1' ? undefined : lesson.targetLevel;
 
 /** Preserve legacy package ownership and separate generated-application owners. */
 export const materialPackageId = (lesson: Lesson, material: Lesson['materials'][number]) => material.communityPackageId ?? lesson.communityPackageId;

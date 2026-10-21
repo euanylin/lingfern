@@ -1,5 +1,36 @@
 import { expect, test } from '@playwright/test';
+
+for (const [width, height] of [[1440, 900], [390, 844], [900, 1100]]) test(`introduction card geometry is stable before the first resize observation at ${width}px`, async ({ page }) => {
+  await page.setViewportSize({ width, height });
+  await page.addInitScript(() => {
+    const NativeObserver = window.ResizeObserver;
+    window.ResizeObserver = class extends NativeObserver {
+      constructor(callback: ResizeObserverCallback) { super((entries, observer) => setTimeout(() => callback(entries, observer), 500)); }
+    };
+  });
+  await page.goto('/introduction');
+  const card = page.locator('.welcome-card[data-current=true]');
+  await expect(card).toBeVisible();
+  const initial = await card.boundingBox();
+  await page.waitForTimeout(650);
+  const measured = await card.boundingBox();
+  expect(Math.abs(measured!.height - initial!.height)).toBeLessThanOrEqual(1);
+  expect(Math.abs(measured!.y - initial!.y)).toBeLessThanOrEqual(1);
+});
 import { languagePacks } from '../../src/locales';
+
+for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`desktop Today heading fits fully in the introduction at ${locale}`, async ({ browser }) => {
+  const context = await browser.newContext({ baseURL: test.info().project.use.baseURL, locale, reducedMotion: 'reduce', colorScheme: 'dark' });
+  const page = await context.newPage();
+  for (const [width, height] of [[1280, 720], [1440, 740], [1440, 900], [1920, 1080]]) {
+    await page.setViewportSize({ width, height }); await page.goto('/introduction');
+    await expect(page.locator('.welcome-card[data-current=true] .today-hero h1')).toHaveText(languagePacks[locale].app.today);
+    expect(await page.locator('.today-hero h1').evaluate(el => { const box = el.getBoundingClientRect(), frame = el.closest('.welcome-content')!.getBoundingClientRect(); return box.top >= frame.top && box.bottom <= frame.bottom; })).toBe(true);
+    await expect(page.locator('.welcome-start')).toBeInViewport({ ratio: 1 });
+    if (width === 1280) await page.screenshot({ path: test.info().outputPath(`desktop-heading-${locale}.png`) });
+  }
+  await context.close();
+});
 
 for (const width of [1440, 900, 375]) test(`pages and introduction previews share the Settings top spacing at ${width}px`, async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -189,7 +220,7 @@ test('reversing a wheel gesture interrupts the release without snapping or repla
   expect(await first.evaluate(el => el.querySelector('.today-home') === (window as unknown as { originalPreview: Element }).originalPreview)).toBe(true);
   for (const card of await page.locator('.welcome-card').all()) {
     const current = (await card.getAttribute('data-current')) === 'true';
-    await expect(card).toHaveCSS('z-index', current ? '1500' : '500'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', current ? 'blur(0px)' : 'blur(3px)');
+    await expect(card).toHaveCSS('z-index', current ? '3' : '1'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', current ? 'blur(0px)' : 'blur(3px)');
   }
 });
 

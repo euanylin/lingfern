@@ -47,7 +47,7 @@ test('task details confirm metadata without starting, exposing passages or playi
     if (width < 768) await expect(dialog).toHaveCSS('width', `${width}px`);
     await page.screenshot({ path: `output/playwright/task-detail-${width}-light-zh-Hans.png` });
   }
-  await dialog.getByRole('button', { name: '关闭详情' }).click();
+  await dialog.getByRole('button', { name: '关闭' }).click();
   await trigger.click();
   await confirmTask(page);
   await expect(page).toHaveURL(/\/learn\//);

@@ -53,15 +53,15 @@ try {
       assert(urls.length > 0 && urls.every(url => records.some(record => record.originalUrl === url)), 'Reading preview source must belong to the actual available bundled/installed collection');
       assert(installed.some(pack => pack.id === 'wikipedia-reading-001' && pack.state === 'ready'), 'Normal online reading package was not installed');
     }
-    await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await dialog.getByRole('button', { name: '关闭', exact: true }).click();
     await button.click(); await expect(dialog).toBeVisible({ timeout: 90000 });
     assert.notEqual(await dialog.locator('h2').innerText(), first, skill + ' preview repeated with identical RNG seed');
     assert.equal((await rows('sessions')).length, 0);
     assert.equal((await rows('exposures')).length, 0);
-    if (skill === 'reading') await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+    if (skill === 'reading') await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   }
   assert(downloads.length >= 4 && downloads.every(item => item.status === 200));
-  await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+  await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await page.goto(origin + '/library');
   await expect(page.locator('.package-row')).toHaveCount(sourceCatalogue.packs.length + offlineResources.groups.filter(group => group.id === 'audio-beginner' || !group.id.startsWith('audio-')).length);
   await expect(page.locator('.package-row').filter({ hasText: '阅读 · 001' })).toContainText('已安装');
@@ -92,7 +92,7 @@ try {
     assert((await rows('communityPacks')).some(pack => pack.hash === entry.sha256), 'Exhausted candidate was not actually downloaded');
     const titles = corpus.records.map(record => record.title);
     await expect(dialog.locator('h2')).not.toHaveText(new RegExp(titles.map(title => title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')));
-    await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await dialog.getByRole('button', { name: '关闭', exact: true }).click();
     await page.evaluate(excluded => new Promise((resolve, reject) => {
       const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
       open.onsuccess = () => { const db = open.result, tx = db.transaction('exposures', 'readwrite');
@@ -108,13 +108,13 @@ try {
     await expect(dialog).toBeVisible();
     await expect(section.getByRole('status')).toHaveCount(0);
     assert.equal((await rows('communityPacks')).length, fallbackInstalledCount);
-    await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+    await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   }
   await page.unroute(failedPath);
   await context.setOffline(true);
   await reading.getByRole('button', { name: '开始', exact: true }).click();
   await expect(dialog).toBeVisible();
-  await dialog.getByRole('button', { name: '关闭详情', exact: true }).click();
+  await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await page.locator('.corpus-practice[data-skill=listening]').getByRole('button', { name: '开始', exact: true }).click();
   await expect(dialog).toBeVisible();
   const packs = await rows('communityPacks'); assert(packs.some(pack => pack.corpus) && packs.some(pack => pack.spoken));

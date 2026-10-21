@@ -3,7 +3,7 @@ import { teachingExample } from './teachingCopy';
 import { useState } from 'react';
 import { practiceLocale, questions, score, type Lesson, type Locale } from '../shared/content';
 
-export const unsavedCopy = messages('unsavedDemo_unsavedCopy');
+const unsavedCopy = messages('unsavedDemo_unsavedCopy');
 export function UnsavedDemo({ lesson, locale, onClose }: { lesson: Lesson; locale: Locale; onClose: () => void }) {
   const [position, setPosition] = useState(0);
   const [answer, setAnswer] = useState<number>();

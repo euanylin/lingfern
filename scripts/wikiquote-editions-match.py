@@ -1,4 +1,7 @@
-"""Discover exact matches across newly collected editions using frozen parsing/normalization. Never read the owning ledger or publish; require separate source-range, author, regional-rights, and religion review."""
+"""Find exact edition matches with frozen parsing and normalization.
+
+Do not read the owning ledger or publish. Review source ranges, authors,
+regional rights and religious content separately."""
 import argparse,collections,hashlib,importlib.util,json,pathlib,re,sys,time,urllib.parse
 
 

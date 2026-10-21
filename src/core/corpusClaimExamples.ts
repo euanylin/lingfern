@@ -1,7 +1,7 @@
 import scopes from '../../content/corpus/b2-claim-example-scopes.json';
 import longAdmission from '../../content/corpus/long-listening-admission.json';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-export const claimExamplePrompt='Match each example or part of the account to the claim it directly illustrates at that point.';
+const claimExamplePrompt='Match each example or part of the account to the claim it directly illustrates at that point.';
 export const claimExampleOperation='matching:'+claimExamplePrompt;
 /** Interpret examples through local claims without treating them as universal proof. */
 export function corpusClaimExamples(text:string,seed:number){

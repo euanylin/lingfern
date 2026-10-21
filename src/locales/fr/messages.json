@@ -227,7 +227,7 @@
     "count": "entrées d’usage",
     "none": "Aucun résultat. Essayez un mot ou une recherche plus courte.",
     "loading": "Chargement du dictionnaire d’usage…",
-    "failed": "Impossible de lire les entrées. Connectez-vous ou installez le paquet de grammaire dans la bibliothèque.",
+    "failed": "Impossible de lire les entrées. Connectez-vous à Internet ou installez le paquet de grammaire dans la bibliothèque.",
     "note": "Recherchez des usages précis et comparez les formes souvent confondues.",
     "answer": "Usage",
     "usage": "En savoir plus",
@@ -261,7 +261,7 @@
       "approximant": "Approximantes",
       "lateral-approximant": "Approximantes latérales"
     },
-    "failed": "Impossible de lire le tableau ou l’enregistrement. Connectez-vous ou installez le paquet IPA dans la bibliothèque.",
+    "failed": "Impossible de lire le tableau ou l’enregistrement. Connectez-vous à Internet ou installez le paquet IPA dans la bibliothèque.",
     "loading": "Chargement du tableau phonétique…",
     "scope": "Sons anglais uniquement : transcription large de l’anglais américain général, pas l’API complet.",
     "officialChart": "Tableau officiel de l’API",
@@ -274,9 +274,9 @@
     "ending": "Arrivée",
     "frontness": {
       "front": "Antérieure",
-      "near-front": "Pré-antérieure",
+      "near-front": "Quasi antérieure",
       "central": "Centrale",
-      "near-back": "Pré-postérieure",
+      "near-back": "Quasi postérieure",
       "back": "Postérieure"
     },
     "heights": {
@@ -678,7 +678,7 @@
       "response": "Réponse courte",
       "evidence": "Repérer les preuves"
     },
-    "close": "Fermer les détails",
+    "close": "Fermer",
     "source": "Source et licence",
     "duration": "Durée estimée",
     "minutes": "minutes",
@@ -823,7 +823,7 @@
     "checkAudioRule": "Écoutez chaque enregistrement jusqu’au bout avant d’enregistrer. La réécoute est autorisée et consignée.",
     "checkNoAudio": "Aucun enregistrement dans ce test de lecture.",
     "checkBegin": "Commencer le test",
-    "checkEndAndLearn": "Arrêter le test et passer à l’apprentissage",
+    "endCheck": "Terminer la vérification",
     "checkLearnError": "Impossible d’ouvrir l’exercice. Réessayez ; vos réponses sont enregistrées.",
     "start": "Commencer la lecture",
     "resume": "Reprendre l’activité",

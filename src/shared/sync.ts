@@ -46,13 +46,13 @@ export const syncDownloadScopeSchema = z.object({ accountId: z.number().int().po
 export const syncUploadSchema = z.object({ scope: syncDownloadScopeSchema, batch: syncBatchSchema, hash }).strict();
 export const syncAcknowledgementSchema = z.object({ scope: syncDownloadScopeSchema, batchId: id, hash, previouslyWritten: z.boolean() }).strict();
 const blobSha = z.string().regex(/^[a-f0-9]{40}$/);
-export const syncFileSchema = z.object({ deviceId: id, batchId: id, blobSha, bytes: z.number().int().min(0).max(syncByteLimit) }).strict();
+const syncFileSchema = z.object({ deviceId: id, batchId: id, blobSha, bytes: z.number().int().min(0).max(syncByteLimit) }).strict();
 export const syncKnownFilesSchema = z.array(syncFileSchema.pick({ deviceId: true, batchId: true, blobSha: true })).max(10);
 export type SyncDownloadScope = z.infer<typeof syncDownloadScopeSchema>;
 export const syncChangesSchema = z.object({ scope: syncDownloadScopeSchema.optional(), commit: blobSha, cursor: z.string().min(1).max(4096), nextCursor: z.string().min(1).max(4096).optional(), total: z.number().int().min(0).max(5000), files: z.array(syncFileSchema).max(10), batches: z.array(z.object({ batch: syncBatchSchema, hash, blobSha }).strict()).max(10) }).strict();
 
 
-// Canonicalize schema-validated values only; reject undefined, executable, or non-finite data.
+// Canonicalize validated data only; reject undefined, code and non-finite numbers.
 export function canonicalJson(value: unknown): string {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
