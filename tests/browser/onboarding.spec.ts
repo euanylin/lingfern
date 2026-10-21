@@ -1,30 +1,28 @@
 import { expect, test } from '@playwright/test';
 import { languagePacks } from '../../src/locales';
 
-test('pages and introduction previews share the Settings top spacing', async ({ page }) => {
+for (const width of [1440, 900, 375]) test(`pages and introduction previews share the Settings top spacing at ${width}px`, async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const width of [1440, 900, 375]) {
-    await page.setViewportSize({ width, height: 900 });
-    await page.goto('/settings');
-    await expect(page.locator('.settings-page>h1')).toBeVisible();
-    const gap = await page.locator('.settings-page>h1').evaluate(el => el.getBoundingClientRect().top - document.querySelector('#root>header')!.getBoundingClientRect().bottom);
-    expect(gap).toBe(width < 768 ? 20 : 44);
-    for (const [route, selector] of [
-      ['/today', width < 768 ? '.today-hero .eyebrow' : '.practice-section-heading'],
-      ['/library', '.library-page-heading h1'], ['/library/dictionary', '.dictionary-heading h1'],
-      ['/library/ipa', '.ipa-heading h1'], ['/library/grammar', '.grammar-page>h1'],
-      ['/library/saved', '.saved-words>h1'], ['/library/history', '.records-back'],
-      ['/progress', '.records-back'], ['/settings/about', '.about-back'], ['/start', '.first-run-top'],
-    ]) {
-      await page.goto(route); await expect(page.locator(selector)).toBeVisible();
-      expect(await page.locator(selector).evaluate(el => el.getBoundingClientRect().top - document.querySelector('#root>header')!.getBoundingClientRect().bottom)).toBeCloseTo(gap, 0);
-    }
-    await page.goto('/introduction');
-    for (const [index, selector] of [[0, width < 768 ? '.today-hero .eyebrow' : '.practice-section-heading'], [1, '.library-page-heading h1'], [2, '.settings-page>h1']] as const) {
-      await page.locator('.welcome-dots button').nth(index).click();
-      const card = page.locator('.welcome-card[data-current=true]'); await expect(card.locator(selector)).toBeVisible();
-      expect(await card.locator(selector).evaluate(el => el.getBoundingClientRect().top - el.closest('.welcome-window')!.querySelector('.welcome-site-header')!.getBoundingClientRect().bottom)).toBeCloseTo(gap, 0);
-    }
+  await page.setViewportSize({ width, height: 900 });
+  await page.goto('/settings');
+  await expect(page.locator('.settings-page>h1')).toBeVisible();
+  const gap = await page.locator('.settings-page>h1').evaluate(el => el.getBoundingClientRect().top - document.querySelector('#root>header')!.getBoundingClientRect().bottom);
+  expect(gap).toBe(width < 768 ? 20 : 44);
+  for (const [route, selector] of [
+    ['/today', width < 768 ? '.today-hero .eyebrow' : '.practice-section-heading'],
+    ['/library', '.library-page-heading h1'], ['/library/dictionary', '.dictionary-heading h1'],
+    ['/library/ipa', '.ipa-heading h1'], ['/library/grammar', '.grammar-page>h1'],
+    ['/library/saved', '.saved-words>h1'], ['/library/history', '.records-back'],
+    ['/progress', '.records-back'], ['/settings/about', '.about-back'], ['/start', '.first-run-top'],
+  ]) {
+    await page.goto(route); await expect(page.locator(selector)).toBeVisible();
+    expect(await page.locator(selector).evaluate(el => el.getBoundingClientRect().top - document.querySelector('#root>header')!.getBoundingClientRect().bottom)).toBeCloseTo(gap, 0);
+  }
+  await page.goto('/introduction');
+  for (const [index, selector] of [[0, width < 768 ? '.today-hero .eyebrow' : '.practice-section-heading'], [1, '.library-page-heading h1'], [2, '.settings-page>h1']] as const) {
+    await page.locator('.welcome-dots button').nth(index).click();
+    const card = page.locator('.welcome-card[data-current=true]'); await expect(card.locator(selector)).toBeVisible();
+    expect(await card.locator(selector).evaluate(el => el.getBoundingClientRect().top - el.closest('.welcome-window')!.querySelector('.welcome-site-header')!.getBoundingClientRect().bottom)).toBeCloseTo(gap, 0);
   }
 });
 

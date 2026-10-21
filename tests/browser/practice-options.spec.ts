@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { messages } from '../../src/locales';
-import type { Locale } from '../../src/shared/content';
+import { languagePacks } from '../../src/locales';
 
 test.use({ hasTouch: true });
 
@@ -16,7 +15,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   }, { locale, theme });
   await page.goto('/today');
   if (width === 1440) await page.emulateMedia({ reducedMotion: 'reduce' });
-  const t = messages('practiceOptions')[locale as Locale];
+  const t = languagePacks[locale].practiceOptions;
   const card = page.locator('.primary-task:not(.reading-task):not(.combined-training)').first();
   const button = card.getByRole('button', { name: t.listeningSettings, exact: true });
   if (width < 768) await button.tap(); else { await button.focus(); await page.keyboard.press('Enter'); }
@@ -109,7 +108,7 @@ test('unavailable choices remain visible and can be cleared without changing ano
   const dialog = page.getByRole('dialog');
   await expect(dialog.getByRole('checkbox', { name: 'Unavailable material · removed-work', exact: true })).toBeChecked();
   await dialog.getByRole('checkbox', { name: 'Unavailable material · removed-work', exact: true }).uncheck();
-  await expect(dialog.getByText(messages('practiceOptions').en.materialHint, { exact: true })).toBeVisible();
+  await expect(dialog.getByText(languagePacks.en.practiceOptions.materialHint, { exact: true })).toBeVisible();
   await dialog.getByRole('button', { name: 'Automatic', exact: true }).click();
   await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
   await expect(dialog).toHaveCount(0);
@@ -211,7 +210,7 @@ test('automatic saves report a failed write and retry the latest rapid multi-sel
   await dialog.locator('[role=option][data-value=choice]').click();
   await dialog.locator('[role=option][data-value=matching]').click();
   await dialog.locator('.setting-trigger').last().click();
-  await dialog.getByRole('button', { name: messages('practiceOptions')['zh-Hans'].cancel, exact: true }).click();
+  await dialog.getByRole('button', { name: languagePacks['zh-Hans'].practiceOptions.cancel, exact: true }).click();
   await expect(dialog).toHaveCount(0);
   await page.reload();
   await page.locator('[data-practice-skill=reading]').first().click();

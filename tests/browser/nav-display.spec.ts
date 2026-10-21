@@ -108,6 +108,8 @@ test.describe('fixed navigation inertia', () => {
     for (const width of [375, 1440]) {
       await page.setViewportSize({ width, height: 812 }); await page.goto('/settings');
       const header = page.locator('#root>header'); await expect(header).toHaveCSS('position', 'fixed');
+      await expect(page.locator('.profile-backup')).toBeVisible();
+      await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight - innerHeight)).toBeGreaterThan(80);
       await page.evaluate(() => {
         const rows: { scroll: number; top: number; bottom: number }[] = [];
         let running = true;
