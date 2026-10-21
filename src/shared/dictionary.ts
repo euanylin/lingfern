@@ -25,16 +25,21 @@ export function normaliseTerm(value: string) {
 
 function distanceWithin(a: string, b: string, limit: number) {
   if (Math.abs(a.length - b.length) > limit) return limit + 1;
-  let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  let previous = Array.from({ length: b.length + 1 }, (_, index) => Math.min(index, limit + 1));
+  let current = new Array<number>(b.length + 1).fill(limit + 1);
   for (let i = 1; i <= a.length; i++) {
-    const current = [i];
+    current[0] = i;
     let closest = i;
-    for (let j = 1; j <= b.length; j++) {
+    const start = Math.max(1, i - limit), end = Math.min(b.length, i + limit);
+    // Cells outside this band cannot produce a match within the allowed distance.
+    if (start > 1) current[start - 1] = limit + 1;
+    for (let j = start; j <= end; j++) {
       current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + Number(a[i - 1] !== b[j - 1]));
       closest = Math.min(closest, current[j]);
     }
+    if (end < b.length) current[end + 1] = limit + 1;
     if (closest > limit) return limit + 1;
-    previous = current;
+    [previous, current] = [current, previous];
   }
   return previous[b.length];
 }

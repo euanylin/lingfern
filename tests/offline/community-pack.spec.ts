@@ -32,9 +32,17 @@ async function makeZip(corrupt: false | 'manifest' | 'media' | 'image' = false) 
 }
 
 test('imports community lessons with offline image and audio, and rejects damaged updates', async ({ page, context }) => {
+  await page.goto('/today');
+  await page.locator('.reading-task [data-practice-skill=reading]').click();
+  const liveOptions = page.locator('.practice-options-dialog');
+  const installer = await context.newPage();
+  await installer.goto('/library');
+  await installer.getByLabel('导入 ZIP').setInputFiles({ name: 'sample.zip', mimeType: 'application/zip', buffer: await makeZip() });
+  await expect(installer.locator('.community-import [role=status]')).toContainText('资源已安装', { timeout: 60_000 });
+  await expect(liveOptions.locator('.offline-source-group').filter({ hasText: reading.title.en }).getByRole('checkbox')).toHaveCount(reading.materials.length);
+  await installer.close();
+  await page.keyboard.press('Escape'); await expect(liveOptions).toHaveCount(0);
   await page.goto('/library');
-  await page.getByLabel('导入 ZIP').setInputFiles({ name: 'sample.zip', mimeType: 'application/zip', buffer: await makeZip() });
-  await expect(page.locator('.community-import [role=status]')).toContainText('资源已安装', { timeout: 60_000 });
   await expect(page.locator('.community-import input[type=file]')).toHaveCount(1);
   await expect(page.locator('.resource-pack-tools input[type=file]')).toHaveCount(0);
   const installed = page.locator('.installed-resources');
@@ -47,7 +55,14 @@ test('imports community lessons with offline image and audio, and rejects damage
   const community = page.locator('.task-catalogue-list .community-task');
   await expect(community).toHaveCount(2);
   await expect(community.first()).toContainText('私人或社区课程');
-  await community.filter({ has: page.getByRole('heading', { name: reading.title['zh-Hans'], exact: true }) }).getByRole('button').click();
+  await page.locator('.reading-task [data-practice-skill=reading]').click();
+  const options = page.locator('.practice-options-dialog');
+  const imported = options.locator('.offline-source-group').filter({ hasText: reading.title.en });
+  await expect(imported.getByRole('checkbox')).toHaveCount(reading.materials.length);
+  for (const checkbox of await imported.getByRole('checkbox').all()) await checkbox.check();
+  await options.getByRole('button', { name: '取消', exact: true }).click();
+  await expect(options).toHaveCount(0);
+  await page.locator('.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
   await expect(page).toHaveURL(/\/learn\//);
   await expect(page.getByRole('heading', { name: reading.materials[0].title, level: 1, exact: true })).toBeVisible();

@@ -7,6 +7,12 @@ import { goalReviews } from './goalReview';
 
 export type PracticeReason = 'resume' | 'reteach' | 'retry' | 'review' | 'new' | 'first' | 'chosen';
 
+export function activeCorpusPractice(history: Session[], profileId: string, skill: Lesson['skill']) {
+  return history.find(session => session.profileId === profileId && session.lesson.skill === skill
+    && session.lesson.generation?.generator === 'corpus-v1' && session.lesson.mode !== 'check'
+    && session.status === 'active' && !session.recordsDeleted && !session.practiceGroupId);
+}
+
 export function selectPractice(
   lessons: Lesson[], history: Session[], attempts: Attempt[], skill: Lesson['skill'],
   available: (lesson: Lesson) => boolean = () => true,

@@ -7,7 +7,7 @@ test('About stays English across every installed language and offline reload', a
   await page.goto('/settings');
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   await context.setOffline(true);
-  for (const [path, expected] of [['/licenses/octicons/LICENSE', 'MIT License'], ['/dictionary/oewn-2025/WNDB_License.txt', 'WordNet'], ['/ipa/CC-BY-SA-4.0.txt', 'Creative Commons']] as const) {
+  for (const [path, expected] of [['/licenses/octicons/LICENSE', 'MIT License'], ['/dictionary/oewn-2025/WNDB_License.txt', 'WordNet'], ['/ipa/CC-BY-SA-4.0.txt', 'Creative Commons'], ['/licenses/lingfern/LICENSE', 'Apache License'], ['/licenses/lingfern/CC-BY-4.0.txt', 'Attribution 4.0 International'], ['/licenses/lingfern/NOTICE', 'Lingfern contributors'], ['/licenses/lingfern/BRAND.md', 'Artwork has separate terms']] as const) {
     const result = await page.evaluate(async path => { const response = await fetch(path); return { status: response.status, text: await response.text() }; }, path);
     expect(result.status).toBe(200); expect(result.text).toContain(expected);
   }

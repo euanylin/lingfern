@@ -13,7 +13,7 @@ vi.mock('../src/data/sourcePacks', async importOriginal => ({ ...await importOri
 vi.mock('../src/data/offline', async importOriginal => ({ ...await importOriginal<typeof import('../src/data/offline')>(), offlineGroupReady: vi.fn(async () => false) }));
 vi.mock('../src/data/memory', () => ({ dueMemories: vi.fn(async () => []) }));
 vi.mock('../src/core/spokenCorpus', async importOriginal => ({ ...await importOriginal<typeof import('../src/core/spokenCorpus')>(), spokenCorpusLesson: vi.fn() }));
-vi.mock('../src/core/wordListening', () => ({ wordListeningLesson: vi.fn() }));
+vi.mock('../src/core/wordListening', async importOriginal => ({ ...await importOriginal<typeof import('../src/core/wordListening')>(), wordListeningLesson: vi.fn() }));
 import { spokenCorpusLesson, type SpokenCorpus } from '../src/core/spokenCorpus';
 import { wordListeningLesson } from '../src/core/wordListening';
 import { corpusInterestMatch, corpusOperation } from '../src/core/corpusPractice';
@@ -136,6 +136,42 @@ it('uses all available reading sources after a normal online package install wit
 
 const readingBank = () => JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')) as Corpus;
 const base = { locale: 'zh-Hans' as const, profileId: 'isolated-topic-selection', history: [], records: [], online: false };
+
+it('filters multiple reading topics as a union without changing stored source data', async () => {
+  const original = readingBank().records[0];
+  // Orchestration-only text fixture; this does not qualify altered source text.
+  const bank: Corpus = { version: 1, failures: [], records: [{ ...original, title: 'A neutral heading', passages: ['A physics experiment in a laboratory.', 'A passport for an airport journey.', 'Cooking a recipe.'].map((text, index) => ({ ...original.passages[0], id: `topic-union-${index}`, text })) }] };
+  const saved = structuredClone(bank), topics = ['science' as const, 'travel' as const];
+  vi.mocked(loadReadingCorpus).mockResolvedValue(bank);
+  await prepareCorpusPractice({ ...base, skill: 'reading', preferences: { reading: 'B1', interests: [], step: 4, completed: true }, selection: { topics, kinds: [], materials: [] } });
+  expect(corpusLesson).toHaveBeenCalled();
+  for (const call of vi.mocked(corpusLesson).mock.calls) {
+    expect(call[5]).toEqual(topics);
+    expect(call[0].records[0].passages.map(passage => passage.text)).toEqual(bank.records[0].passages.slice(0, 2).map(passage => passage.text));
+  }
+  expect(bank).toEqual(saved);
+});
+
+it('filters listening clips and downloads for any selected topic while preserving audio and source metadata', async () => {
+  const { inspectCommunityPack } = await import('../src/data/communityPack');
+  const pack = sourcePacks.find(pack => pack.skill === 'listening' && pack.topic === 'science')!;
+  const downloaded = await inspectCommunityPack(new Uint8Array(readFileSync('public' + pack.path)));
+  const source = downloaded.spoken!.records[0], topics = ['science' as const, 'travel' as const];
+  const bank: SpokenCorpus = { ...downloaded.spoken!, records: [{ ...source, title: 'A neutral heading', clips: ['A physics experiment.', 'A passport for a journey.', 'Cooking a recipe.'].map(text => ({ ...source.clips[0], text })) }] };
+  const saved = structuredClone(bank);
+  vi.mocked(loadSpokenCorpora).mockResolvedValue([bank]);
+  vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0, 0]));
+  await prepareCorpusPractice({ ...base, online: true, skill: 'listening', preferences: { listening: 'B1', interests: [], step: 4, completed: true }, selection: { topics, kinds: [], materials: [] } });
+  expect(spokenCorpusLesson).toHaveBeenCalled();
+  for (const call of vi.mocked(spokenCorpusLesson).mock.calls) {
+    expect(call[5]).toEqual(topics);
+    expect(call[0].records[0].clips).toEqual(bank.records[0].clips.slice(0, 2));
+    for (const other of call[9] ?? []) expect(other.records[0].clips).toEqual(bank.records[0].clips.slice(0, 2));
+  }
+  const chosen = sourcePacks.find(pack => pack.skill === 'listening' && topics.some(topic => topic === pack.topic) && pack.minSeconds !== null && pack.minSeconds <= 90)!;
+  expect(installSourcePack).toHaveBeenCalledWith(chosen.id, base.profileId);
+  expect(bank).toEqual(saved);
+});
 
 it('hard-filters reading passages for the selected topic while preserving source metadata and preferences', async () => {
   vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0, 0]));

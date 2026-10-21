@@ -958,5 +958,23 @@
     "subSync": "Disimpan di perangkat ini; dapat disinkronkan ke repositori GitHub pribadi Anda",
     "carousel": "Ikhtisar fitur",
     "slideN": "Kartu {n} dari 3"
+  },
+  "practiceOptions": {
+    "kind": "Jenis soal",
+    "materials": "Materi yang digunakan",
+    "materialHint": "Pilih satu materi lagi dari karya yang berbeda.",
+    "search": "Cari materi",
+    "selected": "{count} dipilih",
+    "unavailable": "Materi tidak tersedia",
+    "empty": "Tidak ada materi yang cocok. Ubah pencarian atau pasang sumber daya di Pustaka.",
+    "refine": "Persempit pencarian untuk melihat materi lain.",
+    "loading": "Memuat…",
+    "saving": "Menyimpan…",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "failed": "Tidak dapat memuat atau menyimpan pilihan. Coba lagi.",
+    "unsuitable": "Tidak ada latihan yang sesuai dengan pilihan ini. Ubah jenis soal atau materi.",
+    "readingSettings": "Pengaturan membaca",
+    "listeningSettings": "Pengaturan menyimak"
   }
 }

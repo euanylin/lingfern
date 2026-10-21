@@ -958,5 +958,23 @@
     "subSync": "Enregistré sur cet appareil ; synchronisable avec votre dépôt GitHub privé",
     "carousel": "Présentation",
     "slideN": "Carte {n} sur 3"
+  },
+  "practiceOptions": {
+    "kind": "Type de question",
+    "materials": "Supports utilisés",
+    "materialHint": "Choisissez un autre document provenant d’une œuvre différente.",
+    "search": "Rechercher des supports",
+    "selected": "{count} sélectionnés",
+    "unavailable": "Support indisponible",
+    "empty": "Aucun support correspondant. Modifiez la recherche ou installez des ressources dans la bibliothèque.",
+    "refine": "Affinez la recherche pour voir davantage de supports.",
+    "loading": "Chargement…",
+    "saving": "Enregistrement…",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "failed": "Impossible de charger ou enregistrer les choix. Réessayez.",
+    "unsuitable": "Aucun exercice adapté à ces choix. Modifiez le type de question ou les supports.",
+    "readingSettings": "Réglages de lecture",
+    "listeningSettings": "Réglages d’écoute"
   }
 }

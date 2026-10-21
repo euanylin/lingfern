@@ -387,7 +387,7 @@ test('mobile reading focuses a multiple-choice prompt after the sheet becomes vi
 for (const width of [1440, 375]) test(`cross-material focus waits for the parent commit and preserves drafts: ${width}`, async ({ page }) => {
   await page.setViewportSize({ width, height: 812 });
   await page.addInitScript(raw => { (window as unknown as { deferredLesson: unknown }).deferredLesson = raw; }, worksheet);
-  await page.route('**/src/main.tsx', route => route.fulfill({ contentType: 'text/javascript', body: "import {mountDeferredWorkspace} from '/tests/fixtures/deferred-workspace.tsx'; mountDeferredWorkspace(window.deferredLesson);" }));
+  await page.route(/\/src\/main\.tsx(?:\?.*)?$/, route => route.fulfill({ contentType: 'text/javascript', body: "import {mountDeferredWorkspace} from '/tests/fixtures/deferred-workspace.tsx'; mountDeferredWorkspace(window.deferredLesson);" }));
   await page.goto('/today');
   const panel = page.locator('.workspace-questions'), toggle = panel.locator('.question-sheet-toggle');
   await expect(panel).toBeVisible();
@@ -680,8 +680,7 @@ for (const mobile of [false, true]) test(`reading card fits available height and
   const panel = page.locator('.workspace-questions');
   if (!mobile) {
     const first = (await panel.boundingBox())!;
-    expect(first.y + first.height).toBeGreaterThanOrEqual(880);
-    expect(first.y + first.height).toBeLessThanOrEqual(885);
+    expect(900 - first.y - first.height).toBeCloseTo(64, 0);
     await page.setViewportSize({ width: 1440, height: 1050 });
     await expect.poll(async () => (await panel.boundingBox())!.height).toBeGreaterThan(first.height + 140);
     return;

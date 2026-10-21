@@ -5,7 +5,7 @@ import { sourcePacks, installedSourcePacks, installSourcePack, removeSourcePack 
 import { liveQuery } from 'dexie';
 import { createPortal } from 'react-dom';
 import { readInstallationIntents, saveInstallationIntent } from '../data/installationIntent';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { topicSchema, type Locale } from '../shared/content';
 import { firstRunCopy } from './FirstRun';
 import { installOfflineResources, installedOfflineGroups, offlineGroups, removeOfflineResources } from '../data/offline';
@@ -16,23 +16,24 @@ const libraryLabels = messages('offlineInstall_libraryLabels');
 
 const size = (bytes: number) => bytes < 1_048_576 ? `${Math.ceil(bytes / 1024)} KiB` : `${(bytes / 1_048_576).toFixed(1)} MiB`;
 
-export function OfflineInstall({ locale, online, onReady, profileId }: { profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean) => void }) {
+export function OfflineInstall({ locale, online, onReady, profileId }: { profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean, publicGroups: Set<string>) => void }) {
   const t = labels[locale], ui = libraryLabels[locale];
+  const sourceById = new Map(sourcePacks.map(pack => [pack.id, pack]));
   const downloadableGroups = [...offlineGroups, ...sourcePacks];
   const details = (id: string) => {
-    const pack = sourcePacks.find(pack => pack.id === id);
+    const pack = sourceById.get(id);
     if (!pack) return '';
     const count = pack.passages ?? pack.clips ?? 0;
     return messages('additional', { count: count.toLocaleString(locale) })[locale].excerpts;
   };
   const topicName = (id: string) => {
-    const pack = sourcePacks.find(pack => pack.id === id), topic = topicSchema.safeParse(pack?.topic);
+    const pack = sourceById.get(id), topic = topicSchema.safeParse(pack?.topic);
     return topic.success ? firstRunCopy[locale].themes[topicSchema.options.indexOf(topic.data)] : pack?.topic ?? ui.other;
   };
-  const name = (id: string) => t.names[id as keyof typeof t.names] ?? sourcePacks.find(pack => pack.id === id)?.title[contentLocale(locale)] ?? id;
+  const name = (id: string) => t.names[id as keyof typeof t.names] ?? sourceById.get(id)?.title[contentLocale(locale)] ?? id;
   const categories = [
-    { id: 'reading' as const, groups: downloadableGroups.filter(group => (group.id === 'corpus' || group.id === 'corpus-open-reading') || sourcePacks.some(pack => pack.id === group.id && pack.skill === 'reading')) },
-    { id: 'listening' as const, groups: downloadableGroups.filter(group => group.id.startsWith('audio-') || sourcePacks.some(pack => pack.id === group.id && pack.skill === 'listening')) },
+    { id: 'reading' as const, groups: downloadableGroups.filter(group => (group.id === 'corpus' || group.id === 'corpus-open-reading') || sourceById.get(group.id)?.skill === 'reading') },
+    { id: 'listening' as const, groups: downloadableGroups.filter(group => group.id.startsWith('audio-') || sourceById.get(group.id)?.skill === 'listening') },
     { id: 'reference' as const, groups: offlineGroups.filter(group => !group.id.startsWith('audio-') && group.id !== 'corpus' && group.id !== 'corpus-open-reading') },
   ];
   const [intents, setIntents] = useState<Awaited<ReturnType<typeof readInstallationIntents>>>({ current: new Set(), unavailable: new Set() });
@@ -44,17 +45,30 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
   const [confirmingRemoval, setConfirmingRemoval] = useState(false);
   const removalDialog = useRef<HTMLDialogElement>(null), removalCancel = useRef<HTMLButtonElement>(null), removalTrigger = useRef<HTMLButtonElement>(null);
   const [installing, setInstalling] = useState(false);
+  const actionsVisible = selected.size > 0 || installing;
+  const actions = useRef<HTMLDivElement>(null);
   const [deleting, setDeleting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [total, setTotal] = useState(0);
   const [active, setActive] = useState('');
   const [error, setError] = useState('');
-  const controller = useRef<AbortController | null>(null);
+  const controller = useRef<AbortController | null>(null), busy = useRef(false), progressTime = useRef(0);
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
+  useLayoutEffect(() => {
+    const bar = actions.current, main = bar?.closest('main');
+    if (!bar || !main) return;
+    const measure = () => {
+      const height = `${bar.offsetHeight}px`;
+      if (main.style.getPropertyValue('--offline-action-height') !== height) main.style.setProperty('--offline-action-height', height);
+    };
+    measure();
+    const observer = new ResizeObserver(measure); observer.observe(bar);
+    return () => { observer.disconnect(); main.style.removeProperty('--offline-action-height'); };
+  }, [actionsVisible]);
   useEffect(() => {
     let live = true;
-    void loadRuntimeResources(true).then(() => Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)])).then(([publicGroups, sourceGroups]) => { const found = new Set([...publicGroups, ...sourceGroups]); return found; }).then(found => { if (live) { setInstalled(found); setChecking(false); onReadyRef.current(found.size > 0); } }).catch(() => { if (live) { setChecking(false); setError(t.failed); } });
+    void loadRuntimeResources(true).then(() => Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)])).then(([publicGroups, sourceGroups]) => { const found = new Set([...publicGroups, ...sourceGroups]); if (live) { setInstalled(found); setChecking(false); onReadyRef.current(found.size > 0, publicGroups); } }).catch(() => { if (live) { setChecking(false); setError(t.failed); } });
     return () => { live = false; controller.current?.abort(); };
   }, []);
   useEffect(() => {
@@ -72,7 +86,7 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
   const removable = downloadableGroups.filter(group => selected.has(group.id) && installed.has(group.id));
   const chosenBytes = chosen.reduce((sum, group) => sum + group.bytes, 0);
   const matches = (id: string) => {
-    const pack = sourcePacks.find(pack => pack.id === id);
+    const pack = sourceById.get(id);
     return `${name(id)} ${pack ? topicName(id) + ' ' + pack.title.en : ''}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
   };
   const visible = downloadableGroups.filter(group => matches(group.id));
@@ -87,7 +101,7 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
   useEffect(() => { if (confirmingRemoval) { removalDialog.current?.showModal(); removalCancel.current?.focus(); } }, [confirmingRemoval]);
   function closeRemoval() { if (deleting) return; removalDialog.current?.close(); setConfirmingRemoval(false); removalTrigger.current?.focus(); }
   function row(group: typeof downloadableGroups[number]) {
-    const pack = sourcePacks.find(pack => pack.id === group.id);
+    const pack = sourceById.get(group.id);
     const fullTitle = name(group.id), parts = fullTitle.split(' · '), title = pack && parts.length > 2 ? parts.slice(2).join(' · ') : fullTitle;
     return <label className="package-row" key={group.id}>
       <input type="checkbox" checked={selected.has(group.id)} aria-label={fullTitle} onChange={() => selectGroups([group.id])}/>
@@ -96,10 +110,10 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
     </label>;
   }
   function categoryRows(category: typeof categories[number]) {
-    const base = category.groups.filter(group => !sourcePacks.some(pack => pack.id === group.id));
+    const base = category.groups.filter(group => !sourceById.has(group.id));
     const buckets = new Map<string, typeof downloadableGroups>();
-    for (const group of category.groups.filter(group => sourcePacks.some(pack => pack.id === group.id))) {
-      const topic = sourcePacks.find(pack => pack.id === group.id)!.topic;
+    for (const group of category.groups.filter(group => sourceById.has(group.id))) {
+      const topic = sourceById.get(group.id)!.topic;
       const bucket = buckets.get(topic) ?? []; bucket.push(group); buckets.set(topic, bucket);
     }
     const singletons = [...buckets.values()].filter(groups => groups.length === 1).flat();
@@ -116,67 +130,75 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
             <label className="offline-group-check"><input type="checkbox" aria-label={`${t.categories[category.id]} · ${bucket.title}`} checked={selectedCount === groups.length} aria-checked={selectedCount > 0 && selectedCount < groups.length ? 'mixed' : selectedCount === groups.length} ref={node => { if (node) node.indeterminate = selectedCount > 0 && selectedCount < groups.length; }} onChange={() => { selectGroups(groups.map(group => group.id)); if (selectedCount !== groups.length) setExpanded(previous => new Set([...previous, key])); }}/></label>
             <button className="offline-source-group-toggle" type="button" aria-expanded={open} aria-controls={`offline-group-items-${key}`} onClick={() => setExpanded(previous => { const next = new Set(previous); if (next.has(key)) next.delete(key); else next.add(key); return next; })}><span id={`offline-group-${key}`}>{bucket.title}</span><small>{ui.count.replace('{count}', String(groups.length))}{installedCount > 0 && ` · ${ui.installed.replace('{count}', String(installedCount))}`}</small><span className="offline-group-chevron" aria-hidden="true">⌄</span></button>
           </div>
-          <div className="package-list offline-group-items" id={`offline-group-items-${key}`} hidden={!open}>{groups.map(row)}</div>
+          <div className="package-list offline-group-items" id={`offline-group-items-${key}`} hidden={!open}>{(open || bucket.key === 'general') && groups.map(row)}</div>
         </div>;
       })}
     </>;
   }
   async function install() {
-    const request = new AbortController(); controller.current = request;
+    const request = new AbortController(); controller.current = request; busy.current = true; progressTime.current = 0;
     const packages = chosen;
     const bytes = chosenBytes;
     let completed = 0;
+    const finished = new Set<string>();
+    const report = (current: number) => { if (performance.now() - progressTime.current >= 100) { progressTime.current = performance.now(); setProgress(completed + current); } };
     setProgress(0); setTotal(bytes); setError(''); setInstalling(true);
     try {
       for (const group of packages) {
         setActive(group.id);
         const isSource = sourcePacks.some(pack => pack.id === group.id);
-        const ready = isSource ? (await installSourcePack(group.id, profileId, request.signal, current => setProgress(completed + current)), true) : await installOfflineResources(group.id, current => setProgress(completed + current), request.signal, profileId);
+        const ready = isSource ? (await installSourcePack(group.id, profileId, request.signal, report), true) : await installOfflineResources(group.id, report, request.signal, profileId);
         if (!ready) throw new Error('INCOMPLETE_PACKAGE');
-        completed += group.bytes;
-        setInstalled(previous => new Set([...previous, group.id]));
-        setSelected(previous => new Set([...previous].filter(id => id !== group.id)));
-        onReady(true);
+        completed += group.bytes; setProgress(completed); finished.add(group.id);
       }
     } catch (cause) {
       setError(cause instanceof Error && cause.message === 'INSTALLATION_INTENT_FAILED' ? t.intentFailed : cause instanceof DOMException && cause.name === 'AbortError' ? t.cancelled : cause instanceof DOMException && cause.name === 'QuotaExceededError' ? t.quota : cause instanceof Error && cause.message === 'UNSUPPORTED' ? t.unsupported : t.failed);
-    } finally { setInstalling(false); setActive(''); controller.current = null; }
+    } finally {
+      busy.current = false; await refresh();
+      setSelected(previous => new Set([...previous].filter(id => !finished.has(id))));
+      setInstalling(false); setActive(''); controller.current = null;
+    }
   }
   async function removeSelected() {
-    setDeleting(true); setError('');
-    const remaining = new Set(installed);
+    busy.current = true; setDeleting(true); setError('');
     try {
-      for (const group of removable) {
-        if (sourcePacks.some(pack => pack.id === group.id)) await removeSourcePack(group.id, profileId);
-        else await removeOfflineResources(group.id, profileId);
-        remaining.delete(group.id);
-        setInstalled(new Set(remaining));
-        setSelected(previous => new Set([...previous].filter(id => id !== group.id)));
-        onReady(remaining.size > 0);
-      }
+      const sources = removable.filter(group => sourcePacks.some(pack => pack.id === group.id)).map(group => group.id);
+      const publicGroups = removable.filter(group => !sources.includes(group.id)).map(group => group.id);
+      if (sources.length) await removeSourcePack(sources, profileId);
+      if (publicGroups.length) await removeOfflineResources(publicGroups, profileId);
     } catch (cause) { setError(cause instanceof Error && cause.message === 'INSTALLATION_INTENT_FAILED' ? t.intentFailed : t.removeFailed); }
     finally {
+      busy.current = false;
+      const found = await refresh();
+      if (found) setSelected(previous => new Set([...previous].filter(id => !removable.some(group => group.id === id) || found.has(id))));
       setDeleting(false);
     }
   }
+  async function refresh() {
+    try {
+      const [publicGroups, sourceGroups] = await Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)]);
+      const found = new Set([...publicGroups, ...sourceGroups]);
+      setInstalled(found); onReadyRef.current(found.size > 0, publicGroups); return found;
+    } catch { setError(t.failed); }
+  }
   useEffect(() => {
-    const refresh = () => { void Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)]).then(([publicGroups, sourceGroups]) => { const found = new Set([...publicGroups, ...sourceGroups]); setInstalled(found); onReadyRef.current(found.size > 0); }).catch(() => setError(t.failed)); };
-    window.addEventListener('lingfern-resources-installed', refresh);
-    return () => window.removeEventListener('lingfern-resources-installed', refresh);
+    const changed = () => { if (!busy.current) void refresh(); };
+    window.addEventListener('lingfern-resources-installed', changed);
+    return () => window.removeEventListener('lingfern-resources-installed', changed);
   }, [profileId, t.failed]);
   return <section className="offline-install" aria-label={t.title}>
-    <h2>{t.title}</h2>{!checking && [...intents.current].some(id => !installed.has(id)) && <p className="muted installation-intent-notice">{t.intentions}</p>}{!checking && intents.unavailable.size > 0 && <p className="muted" role="status">{t.unavailableIntent}</p>}
-    {!checking && pendingIntents.length > 0 && <button type="button" disabled={installing || deleting} onClick={() => void clearPending()}>{t.clearPending}</button>}
+    <h2>{t.title}</h2>{!checking && !installing && !deleting && [...intents.current].some(id => !installed.has(id)) && <p className="muted installation-intent-notice">{t.intentions}</p>}{!checking && intents.unavailable.size > 0 && <p className="muted" role="status">{t.unavailableIntent}</p>}
+    {!checking && !installing && !deleting && pendingIntents.length > 0 && <button type="button" disabled={installing || deleting} onClick={() => void clearPending()}>{t.clearPending}</button>}
     {checking ? <p role="status">{t.checking}</p> : <><div className="offline-package-details">
       <fieldset disabled={installing || deleting || confirmingRemoval} aria-label={t.select}>
-        <label className="offline-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span className="sr-only">{ui.search}</span><input type="search" value={query} placeholder={ui.search} onChange={event => setQuery(event.target.value)} autoComplete="off"/></label>
+        <label className="offline-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span className="sr-only">{ui.search}</span><input type="search" name="resource-search" value={query} placeholder={ui.search} onChange={event => setQuery(event.target.value)} autoComplete="off"/></label>
         <div className="offline-package-heading"><span aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))}</span><button className="offline-select-all" type="button" disabled={!visible.length} onClick={() => selectGroups(visible.map(group => group.id))}>{allVisibleSelected ? t.clear : t.all}</button></div>
         {!visible.length && <p className="muted" role="status">{ui.empty} <button type="button" onClick={() => setQuery('')}>{ui.clearSearch}</button></p>}
         <div className="offline-categories">{categories.filter(category => category.groups.some(group => matches(group.id))).map(category => <section className="offline-category" key={category.id}><h3>{t.categories[category.id]}</h3>{categoryRows(category)}</section>)}</div>
       </fieldset>
     </div>
-      {(selected.size > 0 || installing) && <div className="offline-selection-actions" role="region" aria-label={ui.actions}><p className="muted" aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))} · {ui.downloadAction} {size(chosenBytes)}</p>
-      {installing ? <><p role="status">{t.installing} {name(active)}: {size(progress)} / {size(total)}</p><progress max={total} value={progress} aria-label={t.installing}/><button type="button" onClick={() => controller.current?.abort()}>{t.cancel}</button></> : <div className="offline-actions">{removable.length > 0 && <button className="offline-remove" aria-label={t.remove} ref={removalTrigger} type="button" disabled={deleting || removable.length === 0} onClick={() => setConfirmingRemoval(true)}>{deleting ? t.removing : ui.removeAction}</button>}{chosen.length > 0 && <button aria-label={t.start} className="primary" type="button" disabled={deleting || !online || chosen.length === 0} onClick={() => void install()}>{ui.downloadAction}</button>}</div>}</div>}
+      {actionsVisible && <div ref={actions} className="offline-selection-actions" role="region" aria-label={ui.actions}><p className="muted" aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))} · {ui.downloadAction} {size(chosenBytes)}</p>
+      {installing ? <div className="offline-download-progress"><p role="status"><span title={name(active)}>{t.installing} {name(active)}</span><span dir="ltr">{size(progress)} / {size(total)}</span></p><progress max={total} value={progress} aria-label={t.installing}/><button type="button" onClick={() => controller.current?.abort()}>{t.cancel}</button></div> : <div className="offline-actions">{removable.length > 0 && <button className="offline-remove" aria-label={t.remove} ref={removalTrigger} type="button" disabled={deleting || removable.length === 0} onClick={() => setConfirmingRemoval(true)}>{deleting ? t.removing : ui.removeAction}</button>}{chosen.length > 0 && <button aria-label={t.start} className="primary" type="button" disabled={deleting || !online || chosen.length === 0} onClick={() => void install()}>{ui.downloadAction}</button>}</div>}</div>}
       {selected.size > 0 && <details className="resource-pack-tools"><summary>{t.zip}</summary><div className="resource-pack-links">{downloadableGroups.filter(group => selected.has(group.id)).map(group => { const path = 'path' in group ? group.path : runtimeResources.downloads.packs.find(pack => pack.id === group.id && pack.version === group.version)?.path; return path ? <a key={group.id} href={path} download>{name(group.id)} · {t.zipDownload}</a> : null; })}</div></details>}
       {confirmingRemoval && createPortal(<dialog role="alertdialog" ref={removalDialog} className="offline-remove-dialog" aria-labelledby="offline-remove-title" onCancel={event => { event.preventDefault(); closeRemoval(); }} onClick={event => { if (event.target === event.currentTarget) closeRemoval(); }}><h2 id="offline-remove-title">{ui.removeTitle}</h2><p>{ui.removeDetail.replace('{count}', String(removable.length)).replace('{size}', size(removable.reduce((sum, group) => sum + group.bytes, 0)))}</p><div className="offline-remove-dialog-actions"><button ref={removalCancel} type="button" disabled={deleting} onClick={closeRemoval}>{t.cancel}</button><button className="offline-remove-confirm" type="button" disabled={deleting} onClick={() => { removalDialog.current?.close(); setConfirmingRemoval(false); void removeSelected(); }}>{t.remove}</button></div></dialog>, document.body)}
       {!online && chosen.length > 0 && <p className="muted">{t.online}</p>}{error && <p role="alert" className="error">{error}</p>}</>}

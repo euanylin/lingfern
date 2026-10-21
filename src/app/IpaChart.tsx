@@ -10,6 +10,8 @@ import { lookupHistoryCopy } from './LookupHistory';
 import { fullVowels, fullPlaces, fullConsonants, otherSymbols, affricates, nonPulmonic, diacritics, suprasegmentals, tones, englishVariants } from './fullIpa';
 
 const labels = messages('ipaChart');
+// These compound accents are missing from common mobile system fonts.
+const toneAccents: Record<string, string> = { '᷄': 'M2 9H9L16 2', '᷅': 'M2 2L9 9H16', '᷈': 'M2 2L7 9L12 2L17 9' };
 
 export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Locale; profileId: string; initialQuery?: string }) {
   const t = labels[locale];
@@ -50,7 +52,15 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
     const entry = bySymbol.get(symbol);
     if (!entry) {
       const sound = bySound.get(symbol);
-      if (!sound) return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>{symbol}</span>;
+      if (!sound) {
+        const [vowel, letters] = symbol.split(' '), accent = toneAccents[vowel[1]];
+        if (!letters || !/^[˥˦˧˨˩]+$/.test(letters)) return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>{symbol}</span>;
+        const right = Math.max(8, (letters.length - 1) * 6 + 2);
+        const points = [...letters].map((letter, index) => `${index * 6 + 2},${'˥˦˧˨˩'.indexOf(letter) * 5 + 2}`).join(' ');
+        return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>
+          <span className="sr-only">{symbol}</span><span aria-hidden="true">{accent ? <span className="ipa-compound-tone">e<svg viewBox="0 0 19 12" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d={accent}/></svg></span> : vowel}<svg className="ipa-tone-letter" viewBox={`0 0 ${right + 3} 26`} style={{ width: `${(right + 3) / 26}em` }} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><polyline points={letters.length === 1 ? `${points} ${right},${'˥˦˧˨˩'.indexOf(letters) * 5 + 2}` : points}/><path d={`M${right} 2V22`}/></svg></span>
+        </span>;
+      }
       return <article className="ipa-entry ipa-reference-entry" key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
         <button type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, sound.soundAudio, 'sound')}>
           <span className={englishVariants.includes(symbol) ? 'ipa-english-variant' : undefined} lang="en" dir="ltr" title={englishVariants.includes(symbol) ? 'English accent variant or allophone' : undefined}>{symbol}</span><PlaybackIcon state={playing === `${symbol}-sound` ? 'stop' : 'play'}/>

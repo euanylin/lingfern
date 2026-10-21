@@ -958,5 +958,23 @@
     "subSync": "Stored on this device; can sync to your private GitHub repository",
     "carousel": "Feature overview",
     "slideN": "Card {n} of 3"
+  },
+  "practiceOptions": {
+    "kind": "Question type",
+    "materials": "Materials",
+    "materialHint": "Choose one more material from a different work.",
+    "search": "Search materials",
+    "selected": "{count} selected",
+    "unavailable": "Unavailable material",
+    "empty": "No matching materials. Install resources in Library or change the search.",
+    "refine": "Refine your search to see more materials.",
+    "loading": "Loading…",
+    "saving": "Saving…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "failed": "Could not save or load choices. Please try again.",
+    "unsuitable": "No suitable practice for these choices. Change the question type or materials.",
+    "readingSettings": "Reading settings",
+    "listeningSettings": "Listening settings"
   }
 }

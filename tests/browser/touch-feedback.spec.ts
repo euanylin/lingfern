@@ -4,13 +4,34 @@ import { readFileSync } from 'node:fs';
 
 test.describe('touch feedback', () => {
   test.use({ hasTouch: true });
-  for (const [width, locale, theme] of [[375, 'zh-Hans', 'light'], [1440, 'en', 'dark'], [390, 'ar', 'dark']] as const) test(`all available practice topic chips retain touch feedback while open: ${width}/${locale}/${theme}`, async ({ page, context }) => {
+  test('primary links and both History buttons use their desktop colours during touch contact', async ({ page, context }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.route('**/api/session', route => route.fulfill({ json: { account: null, syncAvailable: false } }));
+    const cdp = await context.newCDPSession(page);
+    for (const [path, selector, token] of [['/settings', '.github-connect:not(:disabled)', '--primary-hover'], ['/today', '.practice-section-heading .records-link', '--button-hover'], ['/library', '.library-history-entry .records-link', '--button-hover']]) {
+      await page.goto(path);
+      const control = page.locator(selector).first();
+      await expect(control).toBeVisible(); await control.scrollIntoViewIfNeeded();
+      const expected = await control.evaluate((element, token) => { const sample = document.createElement('span'); sample.style.backgroundColor = getComputedStyle(element).getPropertyValue(token); document.body.appendChild(sample); const color = getComputedStyle(sample).backgroundColor; sample.remove(); return color; }, token);
+      const idle = await control.evaluate(element => getComputedStyle(element).backgroundColor), box = (await control.boundingBox())!;
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+      await expect(control).toHaveAttribute('data-touch-active', '');
+      await expect.poll(() => control.evaluate(element => getComputedStyle(element).backgroundColor)).toBe(expected);
+      expect(expected).not.toBe(idle);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+      await expect(control).not.toHaveAttribute('data-touch-active');
+      await expect.poll(() => control.evaluate(element => getComputedStyle(element).backgroundColor)).toBe(idle);
+    }
+    await cdp.detach();
+  });
+  for (const [width, locale, theme] of [[375, 'zh-Hans', 'light'], [1440, 'en', 'dark'], [390, 'ar', 'dark']] as const) test(`practice settings and their topic pickers retain touch feedback while open: ${width}/${locale}/${theme}`, async ({ page, context }) => {
     await page.setViewportSize({ width, height: 900 }); await page.goto('/settings');
     await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
     await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
     await page.goto('/today');
     const chips = page.locator('.practice-card-topics .setting-trigger'), cdp = await context.newCDPSession(page);
-    await expect(chips).toHaveCount(3);
+    await expect(chips).toHaveCount(5);
     for (const chip of await chips.all()) {
       await chip.evaluate(el => el.scrollIntoView({ block: 'center' }));
       const idle = await chip.evaluate(el => getComputedStyle(el).backgroundColor), box = (await chip.boundingBox())!;
@@ -22,12 +43,16 @@ test.describe('touch feedback', () => {
       await expect.poll(() => chip.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(idle);
       await expect(chip).toHaveCSS('outline-style', 'none');
       await expect.poll(() => chip.locator('.setting-chevron').evaluate(el => getComputedStyle(el).translate)).toBe(locale === 'ar' ? '-2px' : '2px');
-      await page.getByRole('listbox').getByRole('option').first().tap(); await expect(chip).toHaveAttribute('aria-expanded', 'false');
+      const settings = page.locator('.practice-options-dialog'); await expect(settings).toBeVisible();
+      await settings.locator('.setting-trigger').first().tap(); await expect(settings.getByRole('listbox')).toBeVisible();
+      await settings.getByRole('listbox').getByRole('option').first().tap();
+      await page.keyboard.press('Escape'); await expect(settings.getByRole('listbox')).toHaveCount(0);
+      await page.keyboard.press('Escape'); await expect(settings).toHaveCount(0); await expect(chip).toHaveAttribute('aria-expanded', 'false');
       await expect(chip).toBeFocused();
     }
     await page.emulateMedia({ reducedMotion: 'reduce' }); await chips.first().tap();
     await expect(chips.first()).toHaveCSS('scale', 'none'); await expect(chips.first()).toHaveCSS('translate', 'none');
-    await expect(page.getByRole('listbox')).toBeVisible(); await cdp.detach();
+    await expect(page.locator('.practice-options-dialog')).toBeVisible(); await page.keyboard.press('Escape'); await cdp.detach();
   });
   for (const [width, locale, theme] of [[375, 'zh-Hans', 'light'], [900, 'en', 'dark'], [1440, 'ar', 'dark']] as const) test(`native touch shows and clears control feedback at ${width}/${locale}/${theme}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });

@@ -1,9 +1,9 @@
-import { cardInteraction } from './cardInteraction';
+import { useTaskDialog } from './useTaskDialog';
 import { questionSlots } from '../shared/practiceWorkspace';
 import { contentLanguage, contentText, messages } from '../locales';
 import { GutenbergLicence } from './GutenbergLicence';
 import { materialPackageId, practiceLocale } from '../shared/content';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Lesson, Locale } from '../shared/content';
 import { communityPacks } from '../data/db';
@@ -15,57 +15,12 @@ const labels = messages('taskDetail');
 export const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : material.blocks.reduce((words, block) => words + block.text.split(/\s+/).length, 0) / 120) + (lesson.organization ? material.questions.reduce((sum, question) => sum + questionSlots(question), 0) : material.questions.length) * .5, 0)));
 
 export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review' | 'vocabulary'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
-  const dialog = useRef<HTMLDialogElement>(null), t = labels[locale];
-  const [open, setOpen] = useState(false);
-  const [blurBackground, setBlurBackground] = useState(false);
-  const enterFrame = useRef(0), closeTimer = useRef<number | undefined>(undefined);
-  useEffect(() => {
-    const query = matchMedia('(max-width:1199px)');
-    let interaction: ReturnType<typeof cardInteraction> | undefined;
-    const update = () => {
-      interaction?.dispose(); setBlurBackground(false);
-      const body = dialog.current?.querySelector<HTMLElement>('.task-detail-body');
-      interaction = body ? cardInteraction(body, setBlurBackground, !query.matches) : undefined;
-    };
-    update(); query.addEventListener('change', update);
-    return () => { interaction?.dispose(); query.removeEventListener('change', update); };
-  }, []);
-  function finishClose() {
-    clearTimeout(closeTimer.current); closeTimer.current = undefined; dialog.current?.close();
-  }
-  function dismiss() {
-    cancelAnimationFrame(enterFrame.current);
-    if (closeTimer.current !== undefined) return;
-    setOpen(false);
-    const duration = parseFloat(getComputedStyle(dialog.current!, '::backdrop').transitionDuration) * 1000;
-    // Keep the native focus trap and backdrop until the exit transition finishes.
-    if (duration > 0) closeTimer.current = window.setTimeout(finishClose, duration + 50);
-    else finishClose();
-  }
-  useEffect(() => {
-    const previous = window.history.state;
-    window.history.pushState({ ...previous, practicePreview: lesson.id }, '', location.href);
-    window.addEventListener('popstate', dismiss);
-    return () => {
-      window.removeEventListener('popstate', dismiss);
-      if (window.history.state?.practicePreview === lesson.id) window.history.replaceState(previous, '', location.href);
-    };
-  }, [lesson.id]);
-  function close() {
-    if (window.history.state?.practicePreview === lesson.id) window.history.back();
-    else dismiss();
-  }
-
+  const { open, close, dialogProps, bodyProps } = useTaskDialog(lesson.id, onClose), t = labels[locale];
   const [source, setSource] = useState<{ title: string; author: string; license: string } | undefined>(() => sources.find(item => item.id === lesson.sourceId));
   const previewLessons = [lesson, ...(additionalLesson ? [additionalLesson] : [])];
   const paths = [...new Set(previewLessons.flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path))))];
   const [bytes, setBytes] = useState<number | undefined>(() => paths.length ? undefined : 0);
   const [failed, setFailed] = useState(false);
-  useEffect(() => {
-    dialog.current?.showModal();
-    enterFrame.current = requestAnimationFrame(() => { enterFrame.current = requestAnimationFrame(() => setOpen(true)); });
-    return () => { cancelAnimationFrame(enterFrame.current); clearTimeout(closeTimer.current); };
-  }, []);
   useEffect(() => {
     let disposed = false;
     void (async () => {
@@ -90,9 +45,8 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
   const contentLocale = practiceLocale(lesson, locale);
   const mediaReady = !failed && bytes !== undefined;
   const recordings = lesson.materials.flatMap(material => material.audio ? [material.audio] : []);
-  return createPortal(<dialog ref={dialog} className="task-detail" data-open={open} data-blur={blurBackground} onTransitionEnd={event => { if (closeTimer.current !== undefined && event.target === event.currentTarget && !event.nativeEvent.pseudoElement && event.propertyName === 'opacity') finishClose(); }} aria-labelledby="task-detail-title" onClose={onClose} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
-    {/* Desktop mouse hover remains; touch contact works at every width. */}
-    <div className="task-detail-body" onPointerEnter={event => { if (event.pointerType === 'mouse' && !matchMedia('(max-width:1199px)').matches) setBlurBackground(true); }} onPointerLeave={event => { if (event.pointerType === 'mouse' && !matchMedia('(max-width:1199px)').matches) setBlurBackground(false); }}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
+  return createPortal(<dialog {...dialogProps} className="task-detail" aria-labelledby="task-detail-title">
+    <div className="task-detail-body" {...bodyProps}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
       <h2 id="task-detail-title" lang={!heading && contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{heading ?? contentText(lesson.title, locale)}</h2>{heading && <h3 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h3>}<p lang={contentLanguage(lesson.goal, contentLocale)}>{contentText(lesson.goal, contentLocale)}</p>{practiceReason && lesson.generation?.generator === 'corpus-v1' && (practiceReason === 'vocabulary' || lesson.generation.focus) && <p className="muted">{t[practiceReason]}{practiceReason !== 'vocabulary' && lesson.generation.focus && <>: {t.kinds[lesson.generation.focus]}</>}</p>}
       <dl><dt>{t.duration}</dt><dd>{taskMinutes(lesson)} {t.minutes}</dd>
         <dt>{t.types}</dt><dd>{[...new Set(lesson.materials.flatMap(material => material.questions.map(question => t.kinds['gaps' in question ? 'completion' : 'kind' in question ? question.kind : 'choice'])))].join(' / ')}</dd>

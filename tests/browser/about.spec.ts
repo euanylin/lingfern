@@ -59,6 +59,8 @@ test('every display language opens the same English About page with local artwor
   }
   await expect(page.locator('.about-blogger-icon')).toHaveCount(0);
   await expect(page.locator('.about-credits a[href="/THIRD_PARTY_NOTICES.md"]')).toBeVisible();
+  for (const [name, file] of [[t.projectCode, 'LICENSE'], [t.projectText, 'CC-BY-4.0.txt'], [t.projectNotice, 'NOTICE'], [t.brandTerms, 'BRAND.md']]) await expect(page.getByRole('link', { name, exact: true })).toHaveAttribute('href', `/licenses/lingfern/${file}`);
+  await expect(page.locator('.about-credits')).toContainText(credits.ipaClassification.copyright);
   const sources = page.locator('.about-credit-details').filter({ has: page.getByText(`${t.corpora} (${credits.corpora.length})`, { exact: true }) });
   await sources.locator('summary').click();
   await expect(sources.locator('li a')).toHaveText(credits.corpora.map(source => `${source.name} ↗`));
@@ -96,6 +98,10 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`${locale} keeps Abo
     await expect(page.locator('.about-copyright')).toHaveText('© Euan Lin');
     await expect(page.locator('.about-logo')).toHaveCSS('border-bottom-width', '0px');
     await expect(page.locator('.about-credits')).toHaveCSS('border-top-width', '1px');
+    if (width === 1440) {
+      const sections = await page.locator('.about-credits > section').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().top));
+      expect(sections[0]).toBe(sections[1]);
+    }
     await expect(page.getByRole('heading', { name: 'About', exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const back = page.locator('.about-back');

@@ -1,4 +1,4 @@
-import { lessonSchema, correctAnswerText, type Lesson, type Question } from '../shared/content';
+import { lessonSchema, correctAnswerText, type Lesson, type Question, type CorpusQuestionKind } from '../shared/content';
 import { corpusDates, corpusRestoration, restorationWords } from './corpus';
 import { sentenceSegments } from './corpusSegments';
 import type { SpokenCorpus } from './spokenCorpus';
@@ -109,7 +109,7 @@ export function alignedGapQuestion(material: Material, segments: readonly Alignm
     explanation: english('Each missing word is present in the recording. Time ranges identify verified aligned segments, not estimated word timestamps.') };
 }
 
-export function organizePractice(raw: Lesson, banks: readonly SpokenCorpus[] = []): Lesson {
+export function organizePractice(raw: Lesson, banks: readonly SpokenCorpus[] = [], kinds: readonly CorpusQuestionKind[] = []): Lesson {
   const lesson = structuredClone(lessonSchema.parse(raw));
   if (lesson.mode === 'check' || lesson.organization) return lesson;
   const level = lesson.generation?.generator === 'corpus-v1' ? lesson.generation.startingPoint ?? lesson.targetLevel : lesson.targetLevel;
@@ -119,6 +119,7 @@ export function organizePractice(raw: Lesson, banks: readonly SpokenCorpus[] = [
     if (lesson.skill === 'reading') {
       const plan = readingQuestionPlan(material, level, lesson.themes);
       for (const block of material.blocks) {
+        if (kinds.length && !kinds.includes('table')) break;
         if (material.questions.length >= plan.target || block.text.length > 12000) break;
         const dates = corpusDates(block.text, seed);
         if (!dates) continue;
@@ -126,11 +127,11 @@ export function organizePractice(raw: Lesson, banks: readonly SpokenCorpus[] = [
         if (material.questions.filter(question => !('criteria' in question)).some(question => [{ blockId: question.blockId, ...question.evidence }, ...(question.additionalEvidence ?? [])].some(other => other.blockId === block.id && spans.some(span => span.start < other.end && span.end > other.start)))) continue;
         material.questions.push({ kind: 'table', id: `${material.id.slice(0, 48)}-dates-${material.blocks.indexOf(block)}`, blockId: block.id, prompt: 'Complete each event with its year from the passage. Keep the timing qualifications.', rows: dates.rows, evidence: dates.evidence, additionalEvidence: dates.otherEvidence.map(span => ({ ...span, blockId: block.id })), hints: support, explanation: english('Each date belongs to its quoted event. Words such as before, around and until do not establish an exact event date or a cause.') });
       }
-      material.questions.push(...readingExtras(material, level, seed, lesson.themes));
+      if (!kinds.length || kinds.includes('completion')) material.questions.push(...readingExtras(material, level, seed, lesson.themes));
     }
     else {
       const clip = banks.flatMap(bank => bank.records.flatMap(record => record.clips)).find(clip => material.audio?.sha256 === clip.audio.sha256 && material.audio.duration === clip.audio.duration && material.blocks[0].text === clip.text);
-      const extra = clip && alignedGapQuestion(material, clip.segments, level, seed);
+      const extra = (!kinds.length || kinds.includes('completion')) && clip && alignedGapQuestion(material, clip.segments, level, seed);
       if (extra) material.questions.push(extra);
       material.questions.sort((a, b) => Number('criteria' in a) - Number('criteria' in b) || (a.evidence.audioStart ?? 0) - (b.evidence.audioStart ?? 0));
     }

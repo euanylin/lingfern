@@ -8,6 +8,28 @@ import a1 from './fixtures/content/a1-reading.json';
 import a2 from './fixtures/content/a2-reading.json';
 import c2 from './fixtures/content/c2-reading.json';
 import listening from './fixtures/content/a1-listening.json';
+import { readPracticeSelection } from '../src/shared/practiceSelection';
+
+it('persists separate practice selections atomically, validates IDs, and retains them in backups', async () => {
+  await profiles.add({ id: 'choices', name: 'Choices', createdAt: new Date().toISOString() });
+  const reading = { topics: ['culture', 'music'], kinds: ['completion', 'choice'], materials: ['work-a', 'work-b'] };
+  const listening = { topics: [], kinds: ['choice'], materials: [] };
+  await saveSetting('choices', 'readingPractice', JSON.stringify(reading));
+  await saveSetting('choices', 'listeningPractice', JSON.stringify(listening));
+  let projected = await projectPreferences('choices');
+  expect(readPracticeSelection(projected.values.get('readingPractice'))).toEqual(reading);
+  expect(readPracticeSelection(projected.values.get('listeningPractice'))).toEqual(listening);
+  const fail = () => { throw new Error('disk failed'); };
+  syncEvents.hook('creating', fail);
+  try { await expect(saveSetting('choices', 'readingPractice', '{"materials":[]}')).rejects.toThrow('disk failed'); }
+  finally { syncEvents.hook('creating').unsubscribe(fail); }
+  projected = await projectPreferences('choices');
+  expect(readPracticeSelection(projected.values.get('readingPractice'))).toEqual(reading);
+  for (const value of ['null', '{"materials":["same","same"]}', '{"kind":"response","materials":[]}', '{"materials":[],"text":"private answer"}']) await expect(saveSetting('choices', 'readingPractice', value)).rejects.toThrow();
+  const restored = await importBackup(await inspectBackup(await exportBackup('choices')));
+  expect(restored).not.toBe('choices');
+  expect(readPracticeSelection((await projectPreferences(restored)).values.get('readingPractice'))).toEqual(reading);
+});
 
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
 it('saves profile choices and locale atomically and restores them without altering the original', async () => {

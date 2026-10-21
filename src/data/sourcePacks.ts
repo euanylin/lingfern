@@ -1,6 +1,7 @@
 import { loadRuntimeResources, runtimeResources } from './runtimeResources';
 import { communityPacks } from './db';
 import { communityCacheName, communityPackageReady, installCommunityPack } from './communityInstall';
+import { notifyResourceChange } from './resourceChanges';
 
 export const sourcePacks = runtimeResources.sources.packs;
 export function listeningSourcePack(hash?: string) {
@@ -51,12 +52,20 @@ export async function installSourcePack(id: string, profileId: string, signal?: 
     ...(pack.spoken ? { spoken: { ...pack.spoken, records: (await Promise.all(pack.spoken.records.map(async record => ({ ...record,
       clips: await reviewedExcerpts(record, record.clips) })))).filter(record => record.clips.length) } } : {}) };
 }
-export async function removeSourcePack(id: string, profileId: string) {
+export async function removeSourcePack(ids: string | string[], profileId: string) {
   await loadRuntimeResources();
-  const entry = sourcePacks.find(pack => pack.id === id);
-  if (!entry) throw new Error('UNKNOWN_PACKAGE');
-  await (await import('./installationIntent')).saveInstallationIntent(profileId, id, false);
-  await communityPacks.delete([profileId, entry.sha256]);
+  const selected = [...new Set(typeof ids === 'string' ? [ids] : ids)];
+  const entries = selected.map(id => { const entry = sourcePacks.find(pack => pack.id === id); if (!entry) throw new Error('UNKNOWN_PACKAGE'); return entry; });
+  await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
+  await communityPacks.bulkDelete(entries.map(entry => [profileId, entry.sha256]));
   // Media may be shared with another local profile; never remove its installed files.
-  if (!await communityPacks.filter(pack => pack.hash === entry.sha256).count()) await caches.delete(communityCacheName(entry.sha256));
+  const shared = new Set((await communityPacks.toCollection().primaryKeys()).map(key => key[1]));
+  try {
+    for (let offset = 0; offset < entries.length; offset += 4) await Promise.all(entries.slice(offset, offset + 4).map(async entry => {
+      if (shared.has(entry.sha256)) return;
+      const name = communityCacheName(entry.sha256);
+      await caches.delete(name);
+      if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+    }));
+  } finally { notifyResourceChange(); }
 }

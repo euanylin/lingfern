@@ -958,5 +958,23 @@
     "subSync": "Salvati su questo dispositivo; sincronizzabili con il tuo repository GitHub privato",
     "carousel": "Panoramica",
     "slideN": "Scheda {n} di 3"
+  },
+  "practiceOptions": {
+    "kind": "Tipo di domanda",
+    "materials": "Materiali",
+    "materialHint": "Scegli un altro materiale da un’opera diversa.",
+    "search": "Cerca materiali",
+    "selected": "{count} selezionati",
+    "unavailable": "Materiale non disponibile",
+    "empty": "Nessun materiale corrispondente. Modifica la ricerca o installa risorse nella biblioteca.",
+    "refine": "Affina la ricerca per vedere altri materiali.",
+    "loading": "Caricamento…",
+    "saving": "Salvataggio…",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "failed": "Impossibile caricare o salvare le scelte. Riprova.",
+    "unsuitable": "Nessun esercizio adatto a queste scelte. Cambia il tipo di domanda o i materiali.",
+    "readingSettings": "Impostazioni di lettura",
+    "listeningSettings": "Impostazioni di ascolto"
   }
 }

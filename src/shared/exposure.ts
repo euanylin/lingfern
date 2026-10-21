@@ -1,12 +1,13 @@
 import { z } from 'zod';
 export const exposureQuestionIdSchema = z.string().min(1).max(80);
+export const exposureRootIdSchema = z.string().min(1).max(160);
 
 const contactSchema = z.object({
   sessionId: z.string().min(1).max(80), materialId: z.string().min(1), questionId: exposureQuestionIdSchema,
   variantGroup: exposureQuestionIdSchema, firstSeenAt: z.iso.datetime(), lastSeenAt: z.iso.datetime(),
 }).strict();
 export const exposureSchema = z.object({
-  profileId: z.string().min(1).max(80), rootId: z.string().min(1).max(160), firstSeenAt: z.iso.datetime(),
+  profileId: z.string().min(1).max(80), rootId: exposureRootIdSchema, firstSeenAt: z.iso.datetime(),
   lastSeenAt: z.iso.datetime().optional(), contacts: z.array(contactSchema).max(50_000).optional(),
 }).strict().superRefine((exposure, ctx) => {
   if (exposure.lastSeenAt && exposure.lastSeenAt < exposure.firstSeenAt) ctx.addIssue({ code: 'custom', message: 'Exposure time range is invalid' });

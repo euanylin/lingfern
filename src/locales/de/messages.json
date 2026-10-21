@@ -958,5 +958,23 @@
     "subSync": "Auf diesem Gerät gespeichert; mit deinem privaten GitHub-Repository synchronisierbar",
     "carousel": "Funktionsübersicht",
     "slideN": "Karte {n} von 3"
+  },
+  "practiceOptions": {
+    "kind": "Aufgabentyp",
+    "materials": "Materialien",
+    "materialHint": "Wähle ein weiteres Material aus einem anderen Werk.",
+    "search": "Materialien suchen",
+    "selected": "{count} ausgewählt",
+    "unavailable": "Material nicht verfügbar",
+    "empty": "Keine passenden Materialien. Suche ändern oder Ressourcen in der Bibliothek installieren.",
+    "refine": "Grenze die Suche ein, um weitere Materialien zu sehen.",
+    "loading": "Wird geladen…",
+    "saving": "Wird gespeichert…",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "failed": "Auswahl konnte nicht geladen oder gespeichert werden. Bitte erneut versuchen.",
+    "unsuitable": "Keine passende Übung für diese Auswahl. Ändere den Aufgabentyp oder die Materialien.",
+    "readingSettings": "Leseeinstellungen",
+    "listeningSettings": "Höreinstellungen"
   }
 }

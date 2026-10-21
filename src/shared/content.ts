@@ -1,3 +1,4 @@
+import '../validationConfig';
 import procedureListeningSources from '../../public/audio/b1-speech/PROCEDURE.json' with { type: 'json' };
 import intentionListeningSources from '../../public/audio/b1-speech/INTENTION.json' with { type: 'json' };
 import motiveListeningSources from '../../public/audio/b1-speech/MOTIVE.json' with { type: 'json' };

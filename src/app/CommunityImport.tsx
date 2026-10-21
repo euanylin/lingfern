@@ -1,4 +1,5 @@
 import { messages } from '../locales';
+import { notifyResourceChange } from '../data/resourceChanges';
 import { liveQuery } from 'dexie';
 import { installResourcePack, type ResourcePack } from '../data/resourcePack';
 import { isSourcePack } from '../data/sourcePacks';
@@ -46,7 +47,7 @@ export function CommunityImport({ locale, profileId, onInstalled }: { locale: Lo
       });
       if (pack.kind === 'resource') await installResourcePack(pack.pack, profileId, request.signal);
       else await installCommunityPack(pack.pack, profileId, request.signal);
-      window.dispatchEvent(new Event('lingfern-resources-installed')); 
+      notifyResourceChange();
       }
       setMessage(t.done);
     } catch (error) { setMessage(error instanceof Error && error.message === 'UNSUPPORTED' ? t.unsupported : error instanceof DOMException && error.name === 'AbortError' ? t.cancel : t.failed); }

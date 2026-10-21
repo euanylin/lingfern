@@ -958,5 +958,23 @@
     "subSync": "この端末に保存。非公開の GitHub リポジトリと同期できます",
     "carousel": "機能紹介",
     "slideN": "3 枚中 {n} 枚目"
+  },
+  "practiceOptions": {
+    "kind": "問題形式",
+    "materials": "使用する教材",
+    "materialHint": "別の作品から教材をもう1件選んでください。",
+    "search": "教材を検索",
+    "selected": "{count} 件選択中",
+    "unavailable": "利用できない教材",
+    "empty": "該当する教材がありません。検索を変更するか、ライブラリで教材をインストールしてください。",
+    "refine": "検索を絞り込むと他の教材が表示されます。",
+    "loading": "読み込み中…",
+    "saving": "保存中…",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "failed": "選択を読み込み、または保存できませんでした。もう一度お試しください。",
+    "unsuitable": "この選択では適切な練習を作成できません。問題形式や教材を変更してください。",
+    "readingSettings": "リーディング設定",
+    "listeningSettings": "リスニング設定"
   }
 }

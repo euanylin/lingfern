@@ -14,18 +14,28 @@ export async function officialContentHash(id: string) {
 }
 
 export async function saveInstallationIntent(profileId: string, id: string, wanted: boolean) {
+  return saveInstallationIntents(profileId, [id], wanted);
+}
+
+export async function saveInstallationIntents(profileId: string, ids: string[], wanted: boolean) {
   await loadRuntimeResources();
-  const currentHash = [...runtimeResources.offline.groups, ...runtimeResources.sources.packs].some(group => group.id === id) ? await officialContentHash(id) : undefined;
-  if (wanted && !currentHash) throw new Error('UNKNOWN_PACKAGE');
+  const choices = await Promise.all([...new Set(ids)].map(async id => {
+    const currentHash = [...runtimeResources.offline.groups, ...runtimeResources.sources.packs].some(group => group.id === id) ? await officialContentHash(id) : undefined;
+    if (wanted && !currentHash) throw new Error('UNKNOWN_PACKAGE');
+    return { id, currentHash };
+  }));
   try {
     await db.transaction('rw', settings, syncEvents, syncClocks, async () => {
       const active = await settings.get('activeProfile');
       if (active && active.value !== profileId) throw new Error('SYNC_SCOPE_CHANGED');
-      const previous = projectSyncEvents(await readSyncEvents(profileId)).installations.get(id);
-      const contentHash = !wanted && previous ? previous.payload.contentHash : currentHash;
-      if (!contentHash) throw new Error('UNKNOWN_PACKAGE');
-      if (previous?.payload.contentHash === contentHash && previous.payload.wanted === wanted) return;
-      await appendSyncEvent(profileId, { type: 'installation', payload: { contentId: id, contentHash, wanted } });
+      const installations = projectSyncEvents(await readSyncEvents(profileId)).installations;
+      for (const { id, currentHash } of choices) {
+        const previous = installations.get(id);
+        const contentHash = !wanted && previous ? previous.payload.contentHash : currentHash;
+        if (!contentHash) throw new Error('UNKNOWN_PACKAGE');
+        if (previous?.payload.contentHash === contentHash && previous.payload.wanted === wanted) continue;
+        await appendSyncEvent(profileId, { type: 'installation', payload: { contentId: id, contentHash, wanted } });
+      }
     });
   } catch (cause) { throw new Error('INSTALLATION_INTENT_FAILED', { cause }); }
 }

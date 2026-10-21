@@ -83,7 +83,7 @@ test('client snapshot pagination returns only authorized summaries and validates
   expect(f.primary.every(value => value === 'first-primary')).toBe(true);
 });
 
-test('official stateless SDK serves initialization and four read-only tools with per-request authorization', async () => {
+test('official stateless SDK serves initialization and six read-only tools with per-request authorization', async () => {
   const f = await fixture(), summary = await (await f.create()).json() as { id: string };
   f.sqlite.exec('UPDATE mcp_connections SET materials_read=1');
   const auth = { token: 'synthetic-verified-token', clientId: 'synthetic-client', scopes: ['mcp:read', 'contexts:read', 'materials:read'], expiresAt: Math.floor(Date.now() / 1000) + 3600, resource: new URL('http://127.0.0.1:8787/mcp'), extra: { accountId: 1, connectionId: f.value.connectionId } };
@@ -97,8 +97,21 @@ test('official stateless SDK serves initialization and four read-only tools with
   };
   expect((await call('initialize', { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'Synthetic protocol client', version: '1' } })).body.result.serverInfo.name).toBe('Lingfern');
   const tools = (await call('tools/list')).body.result.tools;
-  expect(tools.map((tool: { name: string }) => tool.name).sort()).toEqual(['get_practice_template', 'list_shared_contexts', 'read_shared_context', 'search_materials']);
+  expect(tools.map((tool: { name: string }) => tool.name).sort()).toEqual(['fetch', 'get_practice_template', 'list_shared_contexts', 'read_shared_context', 'search', 'search_materials']);
   expect(tools.every((tool: { annotations: { readOnlyHint: boolean } }) => tool.annotations.readOnlyHint)).toBe(true);
+  const found = (await call('tools/call', { name: 'search', arguments: { query: 'synthetic context' } })).body.result;
+  expect(found.structuredContent.results).toEqual([{ id: summary.id, title: f.value.title, url: 'http://127.0.0.1:8787/settings#mcp' }]);
+  expect(JSON.parse(found.content[0].text)).toEqual(found.structuredContent);
+  expect(found.content[0].text).not.toContain(f.value.text);
+  const fetched = (await call('tools/call', { name: 'fetch', arguments: { id: summary.id } })).body.result;
+  expect(fetched.structuredContent).toMatchObject({ id: summary.id, title: f.value.title, text: f.value.text });
+  expect(JSON.parse(fetched.content[0].text)).toEqual(fetched.structuredContent);
+  expect((await call('tools/call', { name: 'search', arguments: { query: 'absent title' } })).body.result.structuredContent.results).toEqual([]);
+  for (const name of ['search', 'fetch']) {
+    const args = name === 'search' ? { query: '' } : { id: summary.id };
+    expect((await call('tools/call', { name, arguments: args }, { ...auth, scopes: ['mcp:read'] })).body.result.isError).toBe(true);
+    expect((await call('tools/call', { name, arguments: { ...args, accountId: 2 } })).body.result.isError).toBe(true);
+  }
   const read = (await call('tools/call', { name: 'read_shared_context', arguments: { id: summary.id } })).body.result;
   expect(JSON.parse(read.content[0].text).text).toBe(f.value.text);
   const list = (await call('tools/call', { name: 'list_shared_contexts', arguments: {} })).body.result;
@@ -189,4 +202,32 @@ test('signed identity revocation removes temporary text and cannot revive old cl
   expect((await webhookRoute(request(), f.env))!.status).toBe(202);
   f.sqlite.exec('UPDATE accounts SET revoked=0');
   expect(f.sqlite.prepare('SELECT revoked FROM mcp_connections').get()!.revoked).toBe(1);
+});
+
+
+test('common legacy Streamable HTTP protocol revisions retain tool discovery and text fallback', async () => {
+  const f = await fixture();
+  const auth = {token:'synthetic-verified-token',clientId:'synthetic-client',scopes:['mcp:read','contexts:read'],expiresAt:Math.floor(Date.now()/1000)+3600,resource:new URL('http://127.0.0.1:8787/mcp'),extra:{accountId:1,connectionId:f.value.connectionId}};
+  for (const version of ['2024-11-05','2025-03-26','2025-06-18','2025-11-25']) {
+    const call = async (method:string, params:unknown = {}) => {
+      const response = await mcpFetch(new Request('http://127.0.0.1:8787/mcp',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json, text/event-stream','MCP-Protocol-Version':version},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})}),f.env,auth,[]);
+      expect(response.status).toBe(200); const raw = await response.text(); return JSON.parse(raw.startsWith('event:') ? raw.split('\n').find(line=>line.startsWith('data: '))!.slice(6) : raw) as {result:{protocolVersion?:string;tools?:{name:string}[]}};
+    };
+    const initialized = await call('initialize',{protocolVersion:version,capabilities:{},clientInfo:{name:'Synthetic compatibility profile',version:'1'}});
+    expect(initialized.result.protocolVersion).toBe(version);
+    expect((await call('tools/list')).result.tools?.map(t=>t.name)).toContain('fetch');
+  }
+});
+
+
+test('modern per-request clients discover and list tools without a legacy initialization session', async () => {
+  const f = await fixture();
+  const auth = {token:'synthetic-verified-token',clientId:'synthetic-client',scopes:['mcp:read','contexts:read'],expiresAt:Math.floor(Date.now()/1000)+3600,resource:new URL('http://127.0.0.1:8787/mcp'),extra:{accountId:1,connectionId:f.value.connectionId}};
+  const meta = {'io.modelcontextprotocol/protocolVersion':'2026-07-28','io.modelcontextprotocol/clientCapabilities':{},'io.modelcontextprotocol/clientInfo':{name:'Synthetic modern client',version:'1'}};
+  const call = async (method:string) => {
+    const response = await mcpFetch(new Request('http://127.0.0.1:8787/mcp',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json, text/event-stream','MCP-Protocol-Version':'2026-07-28','Mcp-Method':method},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params:{_meta:meta}})}),f.env,auth,[]);
+    const body = await response.json() as {result:{supportedVersions?:string[];tools?:{name:string}[]}}; expect(response.status, JSON.stringify(body)).toBe(200); return body;
+  };
+  expect((await call('server/discover')).result.supportedVersions).toContain('2026-07-28');
+  expect((await call('tools/list')).result.tools?.map((t:{name:string})=>t.name)).toContain('fetch');
 });

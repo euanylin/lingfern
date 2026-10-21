@@ -1,5 +1,6 @@
 import { messages } from '../locales';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { liveQuery } from 'dexie';
 import { lookupDictionary, normaliseTerm, rankDictionarySuggestions, suggestDictionary } from '../shared/dictionary';
 import type { Locale } from '../shared/content';
 import { OnlineLookup } from './OnlineLookup';
@@ -22,6 +23,7 @@ export function Dictionary({ locale, online, profileId, standalone = false, init
   const [savedIds, setSavedIds] = useState<string[]>([]);
   const [savingId, setSavingId] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [communityTerms, setCommunityTerms] = useState<string[]>([]), [termsRequested, setTermsRequested] = useState(false);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const lookupId = useRef(0);
@@ -32,15 +34,20 @@ export function Dictionary({ locale, online, profileId, standalone = false, init
     catch { setError(lookupHistoryCopy[locale].saveFailed); }
   }
   useEffect(() => {
+    if (!termsRequested) return;
+    const subscription = liveQuery(() => communityDictionaryTerms(profileId)).subscribe({ next: setCommunityTerms, error: () => setCommunityTerms([]) });
+    return () => subscription.unsubscribe();
+  }, [termsRequested, profileId]);
+  useEffect(() => {
     if (!suggestionsOpen || !normaliseTerm(query)) return;
     let live = true;
     const timer = window.setTimeout(() => {
-      void Promise.all([communityDictionaryTerms(profileId), suggestDictionary(query).catch(() => [])]).then(([local, builtIn]) => {
-        if (live) setSuggestions(rankDictionarySuggestions(query, [...new Set([...local, ...builtIn])]));
+      void suggestDictionary(query).catch(() => []).then(builtIn => {
+        if (live) setSuggestions(rankDictionarySuggestions(query, [...new Set([...communityTerms, ...builtIn])]));
       }).catch(() => { if (live) setSuggestions([]); });
     }, 100);
     return () => { live = false; window.clearTimeout(timer); };
-  }, [query, suggestionsOpen, profileId]);
+  }, [query, suggestionsOpen, communityTerms]);
   useEffect(() => {
     if (suggestionsOpen && activeSuggestion >= 0) document.getElementById(`dictionary-suggestion-${activeSuggestion}`)?.scrollIntoView({ block: 'nearest' });
   }, [activeSuggestion, suggestionsOpen]);
@@ -82,7 +89,7 @@ export function Dictionary({ locale, online, profileId, standalone = false, init
   }
   return <section className="dictionary" aria-label={t.title}>
     {standalone ? <div className="dictionary-heading"><h1>{t.title}</h1><a className="dictionary-bookmarks" href="/library/saved">{t.bookmarks}</a></div> : <h2>{t.title}</h2>}
-    <form onSubmit={(event: FormEvent) => { event.preventDefault(); void searchTerm(activeSuggestion < 0 ? query : suggestions[activeSuggestion]); }} className="dictionary-search"><label htmlFor="dictionary-query">{t.search}</label><div className="dictionary-search-field"><input ref={queryInput} id="dictionary-query" role="combobox" aria-autocomplete="list" aria-expanded={suggestionsOpen && suggestions.length > 0} aria-controls="dictionary-suggestions" aria-activedescendant={!suggestionsOpen || activeSuggestion < 0 ? undefined : `dictionary-suggestion-${activeSuggestion}`} aria-busy={busy} lang="en" value={query} onChange={event => { lookupId.current++; setBusy(false); setQuery(event.target.value); setResult(undefined); setError(''); setSuggestions([]); setActiveSuggestion(-1); setSuggestionsOpen(true); }} onFocus={() => setSuggestionsOpen(true)} onBlur={event => { if (!event.currentTarget.parentElement?.contains(event.relatedTarget)) setSuggestionsOpen(false); setActiveSuggestion(-1); }} onKeyDown={event => { if (event.key === 'Escape') { setSuggestionsOpen(false); setActiveSuggestion(-1); } else if (suggestionsOpen && suggestions.length && event.key === 'ArrowDown') { event.preventDefault(); setActiveSuggestion(index => (index + 1) % suggestions.length); } else if (suggestionsOpen && suggestions.length && event.key === 'ArrowUp') { event.preventDefault(); setActiveSuggestion(index => (index + suggestions.length - 1) % suggestions.length); } }} maxLength={80} autoComplete="off"/><ul id="dictionary-suggestions" className="dictionary-suggestions" role="listbox" aria-label={t.suggestions} hidden={!suggestionsOpen || !suggestions.length}>{suggestions.map((word, index) => {
+    <form onSubmit={(event: FormEvent) => { event.preventDefault(); void searchTerm(activeSuggestion < 0 ? query : suggestions[activeSuggestion]); }} className="dictionary-search"><label htmlFor="dictionary-query">{t.search}</label><div className="dictionary-search-field"><input ref={queryInput} id="dictionary-query" role="combobox" aria-autocomplete="list" aria-expanded={suggestionsOpen && suggestions.length > 0} aria-controls="dictionary-suggestions" aria-activedescendant={!suggestionsOpen || activeSuggestion < 0 ? undefined : `dictionary-suggestion-${activeSuggestion}`} aria-busy={busy} lang="en" value={query} onChange={event => { lookupId.current++; setBusy(false); setQuery(event.target.value); setResult(undefined); setError(''); setSuggestions([]); setActiveSuggestion(-1); setSuggestionsOpen(true); }} onFocus={() => { setTermsRequested(true); setSuggestionsOpen(true); }} onBlur={event => { if (!event.currentTarget.parentElement?.contains(event.relatedTarget)) setSuggestionsOpen(false); setActiveSuggestion(-1); }} onKeyDown={event => { if (event.key === 'Escape') { setSuggestionsOpen(false); setActiveSuggestion(-1); } else if (suggestionsOpen && suggestions.length && event.key === 'ArrowDown') { event.preventDefault(); setActiveSuggestion(index => (index + 1) % suggestions.length); } else if (suggestionsOpen && suggestions.length && event.key === 'ArrowUp') { event.preventDefault(); setActiveSuggestion(index => (index + suggestions.length - 1) % suggestions.length); } }} maxLength={80} autoComplete="off"/><ul id="dictionary-suggestions" className="dictionary-suggestions" role="listbox" aria-label={t.suggestions} hidden={!suggestionsOpen || !suggestions.length}>{suggestions.map((word, index) => {
       const prefix = normaliseTerm(query);
       const match = prefix && word.toLocaleLowerCase('en').startsWith(prefix.toLocaleLowerCase('en'));
       return <li key={word} id={`dictionary-suggestion-${index}`} role="option" aria-label={word} aria-selected={index === activeSuggestion} onPointerDown={event => event.preventDefault()} onClick={() => void searchTerm(word)}>{match ? <><strong>{word.slice(0, prefix.length)}</strong>{word.slice(prefix.length)}</> : word}</li>;

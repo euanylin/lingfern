@@ -66,7 +66,8 @@ export function useQuestionSheetLayout(layoutKey: string, enabled: boolean, mobi
       main.style.setProperty('--learning-viewport', `${height}px`);
       main.style.setProperty('--learning-header', `${headerHeight}px`);
       // Anchor to the document so scrolling cannot resize the answer card.
-      main.style.setProperty('--learning-panels-height', `${Math.max(0, height - Math.max(headerHeight + 16, grid.getBoundingClientRect().top + scrollY - (viewport?.offsetTop ?? 0)) - 16)}px`);
+      const bottomSpace = parseFloat(getComputedStyle(main).getPropertyValue('--page-bottom-space'));
+      main.style.setProperty('--learning-panels-height', `${Math.max(0, height - Math.max(headerHeight + 16, grid.getBoundingClientRect().top + scrollY - (viewport?.offsetTop ?? 0)) - bottomSpace)}px`);
       // Browser-bar animation already moves fixed cards; compensate only for editing or zoom.
       main.style.setProperty('--learning-bottom', `${bottom}px`);
       if (mobile && toggle) {

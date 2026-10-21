@@ -958,5 +958,23 @@
     "subSync": "保存在本机，可同步到你的私有 GitHub 仓库",
     "carousel": "功能介绍",
     "slideN": "第 {n} 张，共 3 张"
+  },
+  "practiceOptions": {
+    "kind": "题型",
+    "materials": "使用的材料",
+    "materialHint": "再选一份不同作品的材料",
+    "search": "搜索材料",
+    "selected": "已选 {count} 份",
+    "unavailable": "材料不可用",
+    "empty": "没有匹配材料，请调整搜索或前往资料库安装资源。",
+    "refine": "请缩小搜索范围以查看其他材料。",
+    "loading": "正在读取…",
+    "saving": "正在保存…",
+    "save": "保存",
+    "cancel": "取消",
+    "failed": "无法读取或保存选择，请重试。",
+    "unsuitable": "当前选择无法生成合适练习，请调整题型或材料。",
+    "readingSettings": "阅读设置",
+    "listeningSettings": "听力设置"
   }
 }

@@ -958,5 +958,23 @@
     "subSync": "Se guarda en este dispositivo; puede sincronizarse con tu repositorio privado de GitHub",
     "carousel": "Presentación",
     "slideN": "Tarjeta {n} de 3"
+  },
+  "practiceOptions": {
+    "kind": "Tipo de pregunta",
+    "materials": "Materiales",
+    "materialHint": "Elige otro material de una obra diferente.",
+    "search": "Buscar materiales",
+    "selected": "{count} seleccionados",
+    "unavailable": "Material no disponible",
+    "empty": "No hay materiales coincidentes. Cambia la búsqueda o instala recursos en la biblioteca.",
+    "refine": "Afina la búsqueda para ver más materiales.",
+    "loading": "Cargando…",
+    "saving": "Guardando…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "failed": "No se pudieron cargar o guardar las elecciones. Inténtalo de nuevo.",
+    "unsuitable": "No hay práctica adecuada para estas elecciones. Cambia el tipo de pregunta o los materiales.",
+    "readingSettings": "Ajustes de lectura",
+    "listeningSettings": "Ajustes de escucha"
   }
 }

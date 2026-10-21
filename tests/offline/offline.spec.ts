@@ -4,6 +4,68 @@ import { confirmTask } from '../browser/task-start';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from '../browser/picker';
 
+test('chosen word materials and question type persist, generate and save offline', async ({ page, context }) => {
+  await page.goto('/start');
+  for (let step = 0; step < 3; step++) await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
+  for (const skill of ['阅读', '听力']) await page.getByRole('group', { name: skill, exact: true }).getByLabel(/^A1 ·/).check();
+  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
+  await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
+  await page.goto('/library');
+  await page.getByRole('button', { name: /^通用材料/ }).last().click();
+  await page.locator('.package-row').filter({ hasText: 'IPA 发音与录音' }).locator('input').check();
+  await page.getByRole('button', { name: '下载所选资源' }).click();
+  await expect(page.locator('.package-row').filter({ hasText: 'IPA 发音与录音' })).toContainText('已安装', { timeout: 90_000 });
+  await page.goto('/today');
+  const card = page.locator('.primary-task:not(.reading-task):not(.combined-training)').first();
+  await card.getByRole('button', { name: '听力设置', exact: true }).click();
+  const dialog = page.locator('.practice-options-dialog');
+  await dialog.getByRole('button', { name: '主题', exact: true }).click();
+  await dialog.locator('[role=option][data-value=science]').click();
+  await dialog.locator('[role=option][data-value=daily-life]').click();
+  await dialog.getByRole('button', { name: '主题', exact: true }).click();
+  await dialog.getByRole('button', { name: '题型', exact: true }).click();
+  await dialog.locator('[role=option][data-value=completion]').click();
+  await dialog.locator('[role=option][data-value=choice]').click();
+  await dialog.getByRole('button', { name: '题型', exact: true }).click();
+  for (const word of ['cat', 'bed']) await dialog.getByRole('checkbox', { name: word, exact: true }).check();
+  await dialog.getByRole('button', { name: '取消', exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload();
+  expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+  await context.setOffline(true);
+  await page.reload();
+  await card.getByRole('button', { name: '听力设置', exact: true }).click();
+  await expect(dialog.getByRole('button', { name: '主题', exact: true })).toHaveAttribute('data-value', 'science,daily-life');
+  for (const word of ['cat', 'bed']) await expect(dialog.getByRole('checkbox', { name: word, exact: true })).toBeChecked();
+  await expect(dialog.getByRole('button', { name: '题型', exact: true })).toHaveAttribute('data-value', 'completion,choice');
+  await dialog.getByRole('button', { name: '取消', exact: true }).click();
+  await card.getByRole('button', { name: '开始', exact: true }).click();
+  await confirmTask(page);
+  const snapshot = await page.evaluate(() => new Promise<{ materials: { rootId: string; audio: { src: string }; blocks: { text: string }[]; questions: { kind: string }[] }[] }>((resolve, reject) => {
+    const request = indexedDB.open('lingfern');
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => { const db = request.result, query = db.transaction('sessions').objectStore('sessions').get(location.pathname.split('/').at(-1)!); query.onsuccess = () => { resolve(query.result.lesson); db.close(); }; query.onerror = () => reject(query.error); };
+  }));
+  expect(snapshot.materials.map(material => material.rootId).sort()).toEqual(['ipa-word-bed', 'ipa-word-cat']);
+  expect(snapshot.materials.every(material => material.questions.every(question => question.kind === 'completion'))).toBe(true);
+  for (const [index, material] of snapshot.materials.entries()) {
+    await page.locator('.workspace-card button').nth(index).click();
+    await expect(page.locator('audio')).toHaveAttribute('src', material.audio.src);
+    await page.locator('.audio-play').click();
+    await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.ended && audio.duration > 0), { timeout: 15_000 }).toBe(true);
+    await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible();
+    await page.locator('.completion-answer input').fill(material.blocks[0].text);
+    await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+  }
+  await page.reload();
+  await expect(page.locator('.completion-answer input')).toHaveValue(snapshot.materials.at(-1)!.blocks[0].text);
+  await page.getByRole('button', { name: '提交练习', exact: true }).click();
+  await expect(page.locator('#workspace-result')).toBeVisible();
+  await expect(page.locator('.workspace-review')).toHaveCount(snapshot.materials.length);
+  await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
+});
+
 test('open response and self-assessment save and reopen offline without a score', async ({ page, context }) => {
   await page.goto('/today');
   await page.evaluate(() => navigator.serviceWorker.ready);
@@ -121,6 +183,8 @@ test('verified install reopens, looks up an unvisited word, plays audio and save
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.getByRole('button', { name: '详细版', exact: true }).click();
   await expect(page.locator('.ipa-entry')).toHaveCount(126);
+  await expect(page.locator('.ipa-compound-tone')).toHaveCount(3);
+  expect(await page.locator('.ipa-compound-tone svg').evaluateAll(marks => marks.every(mark => mark.getBoundingClientRect().width > 10))).toBe(true);
   await expect(page.locator('.ipa-entry').first().locator('strong')).toHaveText('ee');
   await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; });
   await page.getByRole('button', { name: 'Play sound /i/' }).click();

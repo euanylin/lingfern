@@ -5,7 +5,7 @@ import { normaliseTerm } from '../shared/dictionary';
 import { unpackZip } from './zip';
 import { spokenCorpusSchema, type SpokenCorpus } from '../core/spokenCorpus';
 import longAdmission from '../../content/corpus/long-listening-admission.json';
-import { exposureQuestionIdSchema } from '../shared/exposure';
+import { exposureQuestionIdSchema, exposureRootIdSchema } from '../shared/exposure';
 import { corpusSchema, type Corpus } from '../core/corpus';
 
 const decoder = new TextDecoder('utf-8', { fatal: true });
@@ -126,7 +126,9 @@ export async function inspectCommunityPack(bytes: Uint8Array): Promise<Community
       if (typeof material.rootId !== 'string' || !material.rootId) throw new Error('COMMUNITY_LESSON');
       const source = sources.find(source => source.id === (material.sourceId ?? item.sourceId));
       if (!source) throw new Error('COMMUNITY_SOURCE');
-      const scoped: Record<string, unknown> = { ...material, rootId: `community:${hash}:${material.rootId}`, credit: { attribution: source.attribution, license: source.license, ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}) } };
+      const rootId = `community:${hash}:${material.rootId}`;
+      if (!exposureRootIdSchema.safeParse(rootId).success) throw new Error('COMMUNITY_LESSON');
+      const scoped: Record<string, unknown> = { ...material, rootId, credit: { attribution: source.attribution, license: source.license, ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}) } };
       if (material.illustration) {
         const illustration = z.record(z.string(), z.unknown()).parse(material.illustration);
         const name = String(illustration.src);

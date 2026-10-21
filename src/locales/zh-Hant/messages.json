@@ -958,5 +958,23 @@
     "subSync": "儲存在本機，可同步到你的私人 GitHub 儲存庫",
     "carousel": "功能介紹",
     "slideN": "第 {n} 張，共 3 張"
+  },
+  "practiceOptions": {
+    "kind": "題型",
+    "materials": "使用的材料",
+    "materialHint": "再選一份不同作品的材料",
+    "search": "搜尋材料",
+    "selected": "已選 {count} 份",
+    "unavailable": "材料無法使用",
+    "empty": "沒有符合的材料，請調整搜尋或前往資料庫安裝資源。",
+    "refine": "請縮小搜尋範圍以查看其他材料。",
+    "loading": "正在讀取…",
+    "saving": "正在儲存…",
+    "save": "儲存",
+    "cancel": "取消",
+    "failed": "無法讀取或儲存選擇，請重試。",
+    "unsuitable": "目前的選擇無法產生合適練習，請調整題型或材料。",
+    "readingSettings": "閱讀設定",
+    "listeningSettings": "聽力設定"
   }
 }

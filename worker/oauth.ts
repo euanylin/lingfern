@@ -22,7 +22,7 @@ function language(request: Request) {
 function html(request: Request, content: string, headers = new Headers(), redirectUri?: string) {
   headers.set('Content-Type', 'text/html; charset=utf-8'); headers.set('Cache-Control', 'private, no-store');
   // Browsers apply form-action to the redirect after consent as well as the form target.
-  headers.set('Content-Security-Policy', `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'${redirectUri ? ` ${new URL(redirectUri).origin}` : ''}; base-uri 'none'; frame-ancestors 'none'`);
+  headers.set('Content-Security-Policy', `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'${redirectUri ? ` ${(new URL(redirectUri).origin === 'null' ? new URL(redirectUri).protocol : new URL(redirectUri).origin)}` : ''}; base-uri 'none'; frame-ancestors 'none'`);
   headers.set('X-Content-Type-Options', 'nosniff');
   return new Response(`<!doctype html><html lang="${language(request)}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/oauth-consent.css"><title>Lingfern</title><main><span class="logo" role="img" aria-label="Lingfern"></span>${content}</main></html>`, { headers });
 }
@@ -39,6 +39,12 @@ async function consent(request: Request, env: OAuthEnv) {
       const pending = await db.prepare('DELETE FROM mcp_login_requests WHERE hash=? AND expires_at>? RETURNING authorize_url').bind(await digest(credential), time).first<{ authorize_url: string }>();
       if (!pending) throw new ApiError('MCP_LOGIN_EXPIRED', 400);
       validatedRequest = new Request(pending.authorize_url, { headers: request.headers });
+    }
+    // Clients that omit scopes get an explicit, short-lived read consent, never persistent access.
+    const authorizationUrl = new URL(validatedRequest.url);
+    if (!authorizationUrl.searchParams.get('scope')?.trim()) {
+      authorizationUrl.searchParams.set('scope', 'mcp:read contexts:read');
+      validatedRequest = new Request(authorizationUrl, { headers: validatedRequest.headers });
     }
     const auth = await oauth.parseAuthRequest(validatedRequest);
     if (!auth.scope.includes('mcp:read') || auth.scope.some(scope => !scopes.includes(scope))) throw new ApiError('MCP_SCOPE', 400);
@@ -98,7 +104,7 @@ export async function oauthRoute(request: Request, env: OAuthEnv, ctx: Execution
   const options: OAuthProviderOptions<OAuthEnv> = {
     apiRoute: `${site(env)}/mcp`, authorizeEndpoint: `${site(env)}/oauth/authorize`, tokenEndpoint: `${site(env)}/oauth/token`, clientRegistrationEndpoint: `${site(env)}/oauth/register`,
     resourceMetadata: { resource: `${site(env)}/mcp`, authorization_servers: [site(env)] }, requiredScopes: ['mcp:read'], scopesSupported: scopes,
-    accessTokenTTL: 3600, refreshTokenTTL: 30 * 86400, clientRegistrationTTL: 30 * 86400, clientIdMetadataDocumentEnabled: false,
+    accessTokenTTL: 3600, refreshTokenTTL: 30 * 86400, clientRegistrationTTL: 30 * 86400, clientIdMetadataDocumentEnabled: true, allowPrivateUseRedirectUris: true,
     async tokenExchangeCallback(value) {
       const props = z.object({ accountId: z.number().int().positive(), connectionId: shareIdSchema }).strict().parse(value.props);
       const live = await env.AUTH_DB!.withSession('first-primary').prepare('SELECT c.id FROM mcp_connections c JOIN accounts a ON a.id=c.account_id WHERE c.id=? AND c.account_id=? AND c.client_id=? AND c.revoked=0 AND c.expires_at>? AND a.revoked=0').bind(props.connectionId, props.accountId, value.clientId, Math.floor(Date.now() / 1000)).first();
@@ -109,6 +115,7 @@ export async function oauthRoute(request: Request, env: OAuthEnv, ctx: Execution
       const verified = context as OAuthResourceContext<{ accountId: number; connectionId: string }>;
       if (!verified.auth.clientId || verified.auth.userId !== String(verified.props.accountId)) return privateJson({ error: 'MCP_UNAUTHORIZED' }, 401);
       const origin = request.headers.get('Origin');
+      if (origin === 'null') return privateJson({ error: 'ORIGIN' }, 403);
       if (origin && origin !== site(env)) {
         const client = await env.OAUTH_PROVIDER!.lookupClient(verified.auth.clientId);
         if (!client?.redirectUris.some(uri => new URL(uri).origin === origin)) return privateJson({ error: 'ORIGIN' }, 403);
@@ -154,6 +161,15 @@ export async function oauthRoute(request: Request, env: OAuthEnv, ctx: Execution
     const headers = new Headers(response.headers); headers.set('Cache-Control', 'private, no-store'); headers.set('X-Content-Type-Options', 'nosniff');
     // Native form posts need their same-origin Origin; external clients still receive no referrer.
     headers.set('Referrer-Policy', headers.get('Content-Type')?.startsWith('text/html') ? 'same-origin' : 'no-referrer');
+    // Discovery asks for useful read access; catalogue-only grants still need only the protocol baseline.
+    const readScopes = 'mcp:read contexts:read';
+    if (url.pathname === '/mcp' && response.status === 401) {
+      const challenge = headers.get('WWW-Authenticate');
+      if (challenge) headers.set('WWW-Authenticate', challenge.includes('scope=') ? challenge.replace(/scope="[^"]*"/, `scope="${readScopes}"`) : `${challenge}, scope="${readScopes}"`);
+    }
+    if (request.method === 'GET' && ['/.well-known/oauth-protected-resource', '/.well-known/oauth-protected-resource/mcp'].includes(url.pathname) && response.status === 200) {
+      return new Response(JSON.stringify({ ...await response.json() as Record<string, unknown>, scopes_supported: readScopes.split(' ') }), { status: 200, headers });
+    }
     return new Response(response.body, { status: response.status, headers });
   } catch (error) {
     if (error instanceof Error && error.message === 'BODY_SIZE') return privateJson({ error: 'MCP_REQUEST_SIZE' }, 413);

@@ -1874,7 +1874,7 @@ function corpusCanFocus(passage: Corpus['records'][number]['passages'][number], 
 }
 
 /** Generate one source-bound material; practice adds its separate application afterwards. */
-export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeof selectCorpusPassage>>, seed: number, startingPoint?: z.infer<typeof levelSchema>, preferred?: CorpusQuestionKind, preferredOperation?: string, attributionCycle = 1): Lesson['materials'][number] | undefined {
+export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeof selectCorpusPassage>>, seed: number, startingPoint?: z.infer<typeof levelSchema>, preferred?: CorpusQuestionKind, preferredOperation?: string, attributionCycle = 1, includeResponse = true): Lesson['materials'][number] | undefined {
   if (preferredOperation === indirectStanceOperation && (startingPoint !== 'C1' || !indirectStanceScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
   if (preferredOperation === argumentBoundariesOperation && (startingPoint !== 'C1' || !argumentBoundariesScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
   if (preferredOperation === registerAudienceOperation && (startingPoint !== 'C1' || !registerAudienceScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
@@ -2095,7 +2095,7 @@ export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeo
       explanation: english('The passage presents these sentences in this order.') } : { kind: 'completion', id: `${id}-restore`, blockId: id, prompt: `${restoration!.lemma ? 'Complete with the form of “' + restoration!.lemma + '” used in the sentence:' : 'Fill in the missing word:'}\n${gap.trim()}`, answer: restoration!.answer, accepted: [restoration!.answer], evidence: evidence!,
       hints: [english('Find the matching sentence in the passage.'), english(`Look for the sentence beginning “${sentence!.segment.trim().split(/\s+/).slice(0, 5).join(' ')}”.`), english('Copy the word and check its spelling.')],
       explanation: english(restoration!.lemma ? `“${restoration!.answer}” is the form of “${restoration!.lemma}” used here.` : `The sentence uses “${restoration!.answer}”.`) },
-    { kind: 'response', id: `${id}-response`, blockId: id, ...(origin ? {
+    ...(includeResponse ? [{ kind: 'response' as const, id: `${id}-response`, blockId: id, ...(origin ? {
       prompt: 'Write one short sentence about where the person says they are from. Use words from their answer.',
       criteria: [local('I use the person’s stated origin.', '我使用这个人说的来源。', '我使用這個人說的來源。'), local('I quote their answer without guessing where they live or were born.', '我引用回答，不猜测居住地或出生地。', '我引用回答，不猜測居住地或出生地。')],
       evidence: origin.evidence, additionalEvidence: origin.otherEvidence.map(span => ({ blockId: id, ...span })),
@@ -2184,12 +2184,12 @@ export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeo
       criteria: [english('My summary agrees with the information in the excerpt.'), english('I support my interpretation with an exact quotation and avoid inventing missing context.')],
       evidence: { start: 0, end: passage.text.length },
       hints: [english('Identify what happens or what the speaker is describing.'), english('Choose one detail that supports your main point.'), english('Separate what the excerpt says from your own interpretation.')],
-      explanation: english('Compare your response with the passage and assess it using the points below.') }) },
+      explanation: english('Compare your response with the passage and assess it using the points below.') }) }] : []),
   ] };
 }
 
 /** Ordinary material selection and generation; fresh sessions apply the source quota below. */
-function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus) {
+function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
   // Derived application seeds wrap at the same32-bit boundary as the public seed.
   const nextSeed = (seed + 1) >>> 0;
   const beginner = startingPoint === 'A1' || startingPoint === 'A2';
@@ -2259,7 +2259,7 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   const focused = { ...eligible, records: eligible.records.map(source => ({ ...source, passages: source.passages.filter(passage => canFocus(passage, seed, focus ?? automatic?.[0], focusOperation ?? automatic?.[1])) })) };
   let first = selectCorpusPassage(focused, seen, seed, maxWords, interests, reviewTerms, startingPoint) ?? selectCorpusPassage(eligible, seen, seed, maxWords, interests, reviewTerms, startingPoint);
   if (!first) return;
-  const materialFor = (item: NonNullable<ReturnType<typeof selectCorpusPassage>>, index: number, preferred = focus, preferredOperation = focusOperation) => corpusMaterial(item, (seed + index) >>> 0, startingPoint, preferred, preferredOperation, attributionCycle);
+  const materialFor = (item: NonNullable<ReturnType<typeof selectCorpusPassage>>, index: number, preferred = focus, preferredOperation = focusOperation) => corpusMaterial(item, (seed + index) >>> 0, startingPoint, preferred, preferredOperation, attributionCycle, includeResponse);
   let taught = materialFor(first, 0, focus ?? automatic?.[0], focusOperation ?? automatic?.[1]);
   if (focusOperation && corpusOperation(taught?.questions[0]) !== focusOperation) {
     const replacement = eligible.records.flatMap(source => source.passages.map(passage => ({ source, passage })))
@@ -2321,15 +2321,15 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
  * Only slot zero may replace the application, so even conditional on success a
  * uniform random seed gives at most one Wikiquote session in sixteen.
  */
-export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus) {
+export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
   const hasQuotes = startingPoint !== 'A1' && startingPoint !== 'A2' && [corpus, applicationCorpus].some(bank => bank?.records.some(source => source.passages.some(passage => passage.quoteProvenance)));
-  if (!hasQuotes) return corpusCandidateLesson(corpus, seen, seed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus);
+  if (!hasQuotes) return corpusCandidateLesson(corpus, seen, seed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus, includeResponse);
   if (!Number.isSafeInteger(seed) || seed < 0) throw new Error('INVALID_CORPUS_SELECTION');
   const ordinary = (bank: Corpus): Corpus => ({ ...bank, records: bank.records.map(source => ({ ...source,
     passages: source.passages.filter(passage => !passage.quoteProvenance),
   })).filter(source => source.passages.length) });
   const baseSeed = Math.floor(seed / 16);
-  const baseline = corpusCandidateLesson(ordinary(corpus), seen, baseSeed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus && ordinary(applicationCorpus));
+  const baseline = corpusCandidateLesson(ordinary(corpus), seen, baseSeed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus && ordinary(applicationCorpus), includeResponse);
   if (!baseline) return;
   const savedSeed = { ...baseline, generation: { ...baseline.generation!, seed } };
   if (seed % 16) return savedSeed;
@@ -2346,7 +2346,7 @@ export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: nu
     && corpusMaterialRoot(source, passage) !== primary.rootId && textKey(passage.text) !== primaryText).map(passage => ({ source, passage })));
   for (let offset = 0; offset < candidates.length; offset++) {
     const candidate = candidates[(baseSeed + offset) % candidates.length];
-    const application = corpusMaterial(candidate, baseSeed + 1, startingPoint, target, operation);
+    const application = corpusMaterial(candidate, baseSeed + 1, startingPoint, target, operation, 1, includeResponse);
     if (!application || corpusOperation(application.questions[0]) !== operation
       || matchesReview([primary, application]) !== baselineReview) continue;
     return lessonSchema.parse({ ...savedSeed, id: `corpus-v1-${primary.id.slice('corpus-'.length, 'corpus-'.length + 16)}-${candidate.passage.id.slice(0, 16)}`,

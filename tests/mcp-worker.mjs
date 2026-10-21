@@ -23,7 +23,7 @@ const callbackServer = createServer((request, response) => {
 const hash = value => createHash('sha256').update(value).digest('base64url');
 // Test-only bridge preserves the fixed local production-like resource identifier on an isolated port.
 await writeFile(entry, `import worker from ${JSON.stringify(path.join(root, 'worker/index.ts'))}; export default {fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/__mcp_test_instance')return new Response('${instance}');url.port='8787';const headers=new Headers(request.headers);if(headers.get('Origin')==='${address}')headers.set('Origin','${origin}');return worker.fetch(new Request(url,{method:request.method,headers,body:['GET','HEAD'].includes(request.method)?undefined:request.body}),env,ctx)}};`);
-await writeFile(configPath, JSON.stringify({ name: 'lingfern-mcp-test', main: entry, compatibility_date: '2026-09-27', compatibility_flags: ['nodejs_compat'], kv_namespaces: [{ binding: 'OAUTH_KV', id: '0'.repeat(32) }], d1_databases: [{ binding: 'AUTH_DB', database_name: 'mcp-test', database_id: '00000000-0000-0000-0000-000000000001', migrations_dir: path.join(root, 'worker/migrations') }], assets: { directory: path.join(root, 'dist'), binding: 'ASSETS', run_worker_first: true }, vars: { LOCAL_AUTH: 'true', GITHUB_CLIENT_ID: 'synthetic-app', GITHUB_CLIENT_SECRET: 'synthetic-secret', TOKEN_ENCRYPTION_KEY: btoa('k'.repeat(32)), SHARE_ENCRYPTION_KEY: btoa('h'.repeat(32)) } }));
+await writeFile(configPath, JSON.stringify({ name: 'lingfern-mcp-test', main: entry, compatibility_date: '2026-09-27', compatibility_flags: ['nodejs_compat', 'global_fetch_strictly_public'], kv_namespaces: [{ binding: 'OAUTH_KV', id: '0'.repeat(32) }], d1_databases: [{ binding: 'AUTH_DB', database_name: 'mcp-test', database_id: '00000000-0000-0000-0000-000000000001', migrations_dir: path.join(root, 'worker/migrations') }], assets: { directory: path.join(root, 'dist'), binding: 'ASSETS', run_worker_first: true }, vars: { LOCAL_AUTH: 'true', GITHUB_CLIENT_ID: 'synthetic-app', GITHUB_CLIENT_SECRET: 'synthetic-secret', TOKEN_ENCRYPTION_KEY: btoa('k'.repeat(32)), SHARE_ENCRYPTION_KEY: btoa('h'.repeat(32)) } }));
 const cli = ['wrangler', '--config', configPath];
 function sql(command) { execFileSync('npx', [...cli, 'd1', 'execute', 'mcp-test', '--local', '--persist-to', state, '--command', command], { stdio: 'pipe' }); }
 execFileSync('npx', [...cli, 'd1', 'migrations', 'apply', 'mcp-test', '--local', '--persist-to', state], { stdio: 'pipe' });
@@ -71,9 +71,30 @@ try {
   assert.equal(metadata.issuer, origin); assert.equal(metadata.revocation_endpoint, `${origin}/oauth/token`);
   const protectedResource = await json(await request('/.well-known/oauth-protected-resource/mcp'), 200);
   assert.equal(protectedResource.resource, `${origin}/mcp`);
-  const missing = await request('/mcp'); assert.equal(missing.status, 401); assert.ok(missing.headers.get('WWW-Authenticate')?.includes('resource_metadata'));
-  const registered = await json(await request('/oauth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: 'Synthetic <client>', redirect_uris: [callbackUrl, 'https://client.example/callback'], grant_types: ['authorization_code', 'refresh_token'], response_types: ['code'], token_endpoint_auth_method: 'none' }) }), 201);
+  assert.deepEqual(protectedResource.scopes_supported, ['mcp:read', 'contexts:read']);
+  assert.equal(metadata.client_id_metadata_document_supported, true);
+  const missing = await request('/mcp'); assert.equal(missing.status, 401); assert.ok(missing.headers.get('WWW-Authenticate')?.includes('resource_metadata')); assert.ok(missing.headers.get('WWW-Authenticate')?.includes('scope="mcp:read contexts:read"'));
+  const registered = await json(await request('/oauth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_name: 'Synthetic <client>', redirect_uris: [callbackUrl, 'https://client.example/callback', 'cursor://lingfern/callback'], grant_types: ['authorization_code', 'refresh_token'], response_types: ['code'], token_endpoint_auth_method: 'none' }) }), 201);
   const verifier = 'v'.repeat(43), query = new URLSearchParams({ response_type: 'code', client_id: registered.client_id, redirect_uri: callbackUrl, resource: `${origin}/mcp`, scope: 'mcp:read contexts:read materials:read offline_access', state: 'synthetic-state', code_challenge: hash(verifier), code_challenge_method: 'S256' });
+  const scopeLess = new URLSearchParams(query); scopeLess.delete('scope');
+  const scopeLessPage = await request(`/oauth/authorize?${scopeLess}`);
+  assert.equal(scopeLessPage.status, 200);
+  const scopeLessHtml = await scopeLessPage.text();
+  assert.ok(scopeLessHtml.includes('value="contexts:read"'));
+  assert.ok(!scopeLessHtml.includes('value="offline_access"'));
+  const scopeLessDenied = await request('/oauth/authorize', post({ handle: scopeLessHtml.match(/name="handle" value="([^"]+)"/)[1], csrf, decision: 'deny' }, { Origin: origin }));
+  assert.equal(scopeLessDenied.status, 302);
+  const nativeQuery = new URLSearchParams(query); nativeQuery.set('redirect_uri', 'cursor://lingfern/callback');
+  const nativePage = await request(`/oauth/authorize?${nativeQuery}`);
+  assert.equal(nativePage.status, 200);
+  assert.equal(nativePage.headers.get('Content-Security-Policy').match(/form-action ([^;]+)/)[1], "'self' cursor:");
+  const nativeHtml = await nativePage.text();
+  const nativeDenied = await request('/oauth/authorize', post({ handle: nativeHtml.match(/name="handle" value="([^"]+)"/)[1], csrf, decision: 'deny' }, { Origin: origin }));
+  assert.equal(nativeDenied.status, 302); assert.equal(new URL(nativeDenied.headers.get('Location')).protocol, 'cursor:');
+  // CIMD is delegated to the Provider's strictly-public fetch guard, never an arbitrary private URL proxy.
+  const privateClient = new URLSearchParams(query); privateClient.set('client_id', `${origin}/private-client.json`);
+  assert.notEqual((await request(`/oauth/authorize?${privateClient}`)).status, 200);
+  sql('DELETE FROM auth_limits');
   const httpsQuery = new URLSearchParams(query); httpsQuery.set('redirect_uri', 'https://client.example/callback');
   const httpsPage = await request(`/oauth/authorize?${httpsQuery}`);
   assert.equal(httpsPage.status, 200); assert.equal(httpsPage.headers.get('Content-Security-Policy').match(/form-action ([^;]+)/)[1], "'self' https://client.example");
@@ -151,10 +172,17 @@ try {
     return { response, body: JSON.parse(raw.startsWith('event:') ? raw.split('\n').find(line => line.startsWith('data: ')).slice(6) : raw) };
   };
   const initialized = await rpc('initialize', { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'Synthetic client', version: '1' } }); assert.equal(initialized.response.status, 200, JSON.stringify(initialized.body)); assert.equal(initialized.body.result.serverInfo.name, 'Lingfern');
-  const listed = await rpc('tools/list'); assert.equal(listed.body.result.tools.length, 4);
+  const listed = await rpc('tools/list'); assert.equal(listed.body.result.tools.length, 6);
   assert.equal((await rpc('tools/list', {}, token.access_token, 'https://client.example')).response.status, 200);
   assert.equal((await rpc('tools/list', {}, token.access_token, callbackOrigin)).response.status, 200);
   assert.equal((await rpc('tools/list', {}, token.access_token, 'https://foreign.example')).response.status, 403);
+  assert.equal((await rpc('tools/list', {}, token.access_token, 'null')).response.status, 403);
+  const compatibleSearch = await rpc('tools/call', { name: 'search', arguments: { query: 'synthetic' } });
+  assert.deepEqual(compatibleSearch.body.result.structuredContent.results, [{id:shared.id,title:'Synthetic context',url:`${origin}/settings#mcp`}]);
+  assert.deepEqual(JSON.parse(compatibleSearch.body.result.content[0].text), compatibleSearch.body.result.structuredContent);
+  const compatibleFetch = await rpc('tools/call', { name: 'fetch', arguments: { id: shared.id } });
+  assert.equal(compatibleFetch.body.result.structuredContent.text, 'Synthetic private text');
+  assert.deepEqual(JSON.parse(compatibleFetch.body.result.content[0].text), compatibleFetch.body.result.structuredContent);
   const read = await rpc('tools/call', { name: 'read_shared_context', arguments: { id: shared.id } }); assert.equal(JSON.parse(read.body.result.content[0].text).text, 'Synthetic private text');
   const removed = await rpc('tools/call', { name: 'search_materials', arguments: { keywords: 'meeting', level: 'A1' } });
   assert.deepEqual(JSON.parse(removed.body.result.content[0].text).materials, []);

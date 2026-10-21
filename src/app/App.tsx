@@ -9,8 +9,7 @@ import { contentLanguage, instructionLanguage, translateInstruction, contentText
 import { ReadingMaterial, readingAnnotationCopy } from './ReadingMaterial';
 import { version as appVersion } from '../../package.json';
 import { teachingExample } from './teachingCopy';
-import { isGutenbergSource } from '../shared/sourceLicence';
-import { GutenbergLicence } from './GutenbergLicence';
+import { SessionHistory } from './SessionHistory';
 import { LookupHistory, lookupHistoryCopy } from './LookupHistory';
 import { Fern } from './Fern';
 import { PlaybackIcon } from './PlaybackIcon';
@@ -18,7 +17,7 @@ import { asTestLesson, materialPackageId } from '../shared/content';
 import { teachingSupport } from '../shared/content';
 import { SyncConflicts } from './SyncConflicts';
 import { purgeDeletedRecords, restartPractice } from '../data/deletion';
-import { DeleteRecord, deletionCopy } from './DeleteRecord';
+import { deletionCopy } from './DeleteRecord';
 import { startSyncSchedule } from '../data/syncSchedule';
 import { GithubIdentity } from './GithubIdentity';
 import { UnsavedDemo, unsavedCopy } from './UnsavedDemo';
@@ -27,23 +26,22 @@ import { preferencesSchema, type Preferences } from '../shared/preferences';
 import { CorpusPractice, prepareCorpusPractice } from './CorpusPractice';
 import { DailyQuote } from './DailyQuote';
 import { localDay } from '../core/dailyQuoteSelection';
-import { TaskDetail, taskMinutes } from './TaskDetail';
+import { TaskDetail } from './TaskDetail';
 import { PracticeCard, practiceCardProgress } from './PracticeCard';
-import { corpusPracticeHistory } from '../core/corpusPractice';
 import { TaskCatalogue } from './TaskCatalogue';
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import QuestionInputs from './QuestionInputs';
 const MaterialWorkspace = lazy(() => import('./MaterialWorkspace'));
 const Welcome = lazy(() => import('./Welcome').then(module => ({ default: module.Welcome })));
 const IpaChart = lazy(() => import('./IpaChart').then(module => ({ default: module.IpaChart })));
+const About = lazy(() => import('./About').then(module => ({ default: module.About })));
 
 import { createPortal } from 'react-dom';
 import { registerSW } from 'virtual:pwa-register';
 import { activateWaitingUpdate } from './serviceWorkerUpdate';
-import { answerText, correctAnswerText, explanationText, practiceLocale, questions, validateAnswer, type Answer, type Locale, type Lesson, topicSchema } from '../shared/content';
+import { answerText, correctAnswerText, explanationText, practiceLocale, questions, validateAnswer, type Answer, type Locale, type Lesson } from '../shared/content';
 import { advance, attempts, beginCheck, bootstrapSyncEvents, claimSession, communityPacks, createCombinedPractice, createSession, endCheck, markExposure, profiles, projectPreferences, saveSetting, recordDictionaryUse, recordPlayback, releaseSession, revealHint, saveDraft, sessions, settings, submit, syncClocks, type Attempt, type Session } from '../data/db';
 import { copy, initialLocale } from './i18n';
-import { About } from './About';
 import { AiHandoff } from './AiHandoff';
 import { SelfAssessment } from './SelfAssessment';
 import { Dictionary } from './Dictionary';
@@ -59,12 +57,14 @@ import type { CompletionTime } from '../data/completionTiming';
 import { ProgressRecords } from './ProgressRecords';
 import { SavedWords } from './SavedWords';
 import { SettingsPicker } from './SettingsPicker';
+import { PracticeOptions } from './PracticeOptions';
+import { automaticPractice, readPracticeSelection, practiceSelectionMatches, type PracticeSelection } from '../shared/practiceSelection';
 import { defaultOnlineDictionary, onlineDictionaries, type OnlineDictionaryId } from './onlineDictionaries';
 import { installedOfflineGroups } from '../data/offline';
 import { communityPackageReady } from '../data/communityInstall';
 import { installedSourcePacks, listeningSourcePack, installSourcePack } from '../data/sourcePacks';
 import { normaliseTerm } from '../shared/dictionary';
-import { selectPractice } from '../data/practice';
+import { activeCorpusPractice, selectPractice } from '../data/practice';
 
 const { catalogue } = import.meta.env.MODE === 'test-fixtures'
   ? await import('../../tests/fixtures/catalogue')
@@ -113,12 +113,11 @@ export function App() {
   const [online, setOnline] = useState(navigator.onLine);
   const [error, setError] = useState('');
   const [ready, setReady] = useState(false);
-  const [practiceDetail, setPracticeDetail] = useState<Lesson>();
   const [combinedDetail, setCombinedDetail] = useState<[Lesson, Lesson]>();
   const combinedInvoker = useRef<HTMLElement | null>(null);
   const [combinedPreparing, setCombinedPreparing] = useState(false);
   const [combinedError, setCombinedError] = useState('');
-  const [combinedTopics, setCombinedTopics] = useState<Partial<Record<'reading' | 'listening', Preferences['interests'][number]>>>({});
+  const [practiceSelections, setPracticeSelections] = useState<Record<'reading' | 'listening', PracticeSelection>>({ reading: automaticPractice, listening: automaticPractice });
   const [combinedTopicsChanged, setCombinedTopicsChanged] = useState(false);
   const [history, setHistory] = useState<Session[]>([]);
   const [pageSearch, setPageSearch] = useState(location.search);
@@ -179,6 +178,7 @@ export function App() {
       setDesktopNavDisplay(navDisplay(desktopDisplay) ? desktopDisplay : 'text');
       setMobileNavDisplay(navDisplay(mobileDisplay) ? mobileDisplay : 'both');
       setOnlineDictionary(defaultOnlineDictionary(savedValues.get('onlineDictionary')));
+      setPracticeSelections({ reading: readPracticeSelection(savedValues.get('readingPractice')), listening: readPracticeSelection(savedValues.get('listeningPractice')) });
       setHistory(all.sort((a,b) => b.startedAt.localeCompare(a.startedAt))); setRecords(effective.records); setReady(true);
     } catch { setError('read'); setReady(false); }
   }
@@ -229,23 +229,28 @@ export function App() {
   }
   async function start(selected: Lesson) {
     setStarting(true); setError('');
-    try { if (selected.mode === 'check') throw new Error('CHECK_UNAVAILABLE'); const session = history.find(s => s.status === 'active' && s.lesson.id === selected.id && s.lesson.mode === selected.mode && (!selected.mode || JSON.stringify(s.lesson) === JSON.stringify(selected))) ?? await createSession(selected, activeProfile); if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${session.id}`); else window.history.pushState(null, '', `/learn/${session.id}`); setPracticeDetail(undefined); setCombinedDetail(undefined); setPath(route()); scrollTo(0, 0); }
+    try { if (selected.mode === 'check') throw new Error('CHECK_UNAVAILABLE'); const session = history.find(s => s.status === 'active' && s.lesson.id === selected.id && s.lesson.mode === selected.mode && (!selected.mode || JSON.stringify(s.lesson) === JSON.stringify(selected))) ?? await createSession(selected, activeProfile); if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${session.id}`); else window.history.pushState(null, '', `/learn/${session.id}`); setCombinedDetail(undefined); setPath(route()); scrollTo(0, 0); }
     catch { setError('save'); } finally { setStarting(false); }
+  }
+  async function savePracticeSelection(skill: 'reading' | 'listening', value: PracticeSelection) {
+    await saveSetting(activeProfile, `${skill}Practice`, JSON.stringify(value));
+    setPracticeSelections(previous => ({ ...previous, [skill]: value }));
+    setCombinedTopicsChanged(true); setCombinedDetail(undefined); setCombinedError('');
   }
   async function openCombined(reselect = false) {
     combinedInvoker.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setCombinedPreparing(true); setCombinedError('');
     try {
-      if (combinedPracticeSession?.lesson.mode === 'test' && !reselect && !combinedTopicsChanged) {
+      if (combinedPracticeSession?.lesson.mode === 'test' && !reselect && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
         window.history.pushState(null, '', `/learn/${combinedPracticeSession.id}`); setPath(route()); scrollTo(0, 0);
-      } else if (combinedPracticeSession && !reselect && !combinedTopicsChanged) {
+      } else if (combinedPracticeSession && !reselect && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
         const pair = history.filter(item => item.practiceGroupId === combinedPracticeSession.practiceGroupId);
         setCombinedDetail([pair.find(item => item.lesson.skill === 'reading')!.lesson, pair.find(item => item.lesson.skill === 'listening')!.lesson]);
       } else {
-        const reading = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'reading', topic: combinedTopics.reading });
-        if (!reading.lesson) { setCombinedError(combinedTopics.reading ? training.readingEmpty : t.checkInsufficient); return; }
-        const listening = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'listening', topic: combinedTopics.listening, previewRoots: new Set(reading.lesson.materials.map(material => material.rootId)) });
-        if (!listening.lesson) { setCombinedError(combinedTopics.listening ? training.listeningEmpty : t.checkInsufficient); return; }
+        const reading = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'reading', selection: practiceSelections.reading });
+        if (!reading.lesson) { setCombinedError(practiceSelections.reading.kinds.length || practiceSelections.reading.materials.length ? messages('practiceOptions')[locale].unsuitable : practiceSelections.reading.topics.length ? training.readingEmpty : t.checkInsufficient); return; }
+        const listening = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'listening', selection: practiceSelections.listening, previewRoots: new Set(reading.lesson.materials.map(material => material.rootId)) });
+        if (!listening.lesson) { setCombinedError(practiceSelections.listening.kinds.length || practiceSelections.listening.materials.length ? messages('practiceOptions')[locale].unsuitable : practiceSelections.listening.topics.length ? training.listeningEmpty : t.checkInsufficient); return; }
         setCombinedDetail([reading.lesson, listening.lesson]);
       }
     } catch { setCombinedError(t.checkInsufficient); } finally { setCombinedPreparing(false); }
@@ -307,8 +312,8 @@ export function App() {
   const training = messages('app_training')[locale];
   const combinedPeers = combinedPracticeSession ? history.filter(item => item.practiceGroupId === combinedPracticeSession.practiceGroupId) : [];
   const individualSessions = {
-    reading: todayReading?.session ?? corpusPracticeHistory(individualHistory, records, activeProfile, 'reading', 'all', preferences?.reading).active,
-    listening: todayListening?.session ?? corpusPracticeHistory(individualHistory, records, activeProfile, 'listening', 'all', preferences?.listening).active,
+    reading: todayReading?.session ?? activeCorpusPractice(individualHistory, activeProfile, 'reading'),
+    listening: todayListening?.session ?? activeCorpusPractice(individualHistory, activeProfile, 'listening'),
   };
   const recommendation = ([
     { skill: 'reading', progress: practiceCardProgress(individualSessions.reading ? [individualSessions.reading] : [], records) },
@@ -317,7 +322,7 @@ export function App() {
   ] as const).filter(item => item.progress.answered > 0).sort((a, b) => (b.progress.lastActivityAt ?? '').localeCompare(a.progress.lastActivityAt ?? ''))[0]?.skill;
   async function restartSelected(session: Session) {
     await restartPractice(activeProfile, session.id);
-    setPracticeDetail(undefined); setCombinedDetail(undefined); setCombinedError('');
+    setCombinedDetail(undefined); setCombinedError('');
     await load();
   }
   const nav = ['today','library','settings'] as const;
@@ -386,36 +391,31 @@ export function App() {
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
           const choice = skill === 'reading' ? todayReading : todayListening;
           return <div className={`primary-task${skill === 'reading' ? ' reading-task' : ''}`} key={skill}>
-            {choice ? <PracticeCard title={firstRunCopy[locale][skill]} locale={locale} records={records} sessions={choice.session ? [choice.session] : []} recommended={recommendation === skill} busy={starting} estimatedMinutes={choice.session ? undefined : taskMinutes(choice.lesson)} onStart={() => setPracticeDetail(choice.lesson)} onRestart={choice.session ? () => restartSelected(choice.session!) : undefined}/>
-            : <CorpusPractice key={`${activeProfile}:${skill}`} preferences={preferences} skill={skill} locale={locale} profileId={activeProfile} history={history} records={records} online={online} busy={starting} recommended={recommendation === skill} onRestart={restartSelected} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} startError={error === 'save' ? t.saveError : ''}/>}
+            <CorpusPractice key={`${activeProfile}:${skill}`} fallback={choice ?? undefined} selection={practiceSelections[skill]} onSelection={value => savePracticeSelection(skill, value)} preferences={preferences} skill={skill} locale={locale} profileId={activeProfile} history={history} records={records} online={online} busy={starting} recommended={recommendation === skill} onRestart={restartSelected} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} startError={error === 'save' ? t.saveError : ''}/>
           </div>;
         })}<div className="primary-task combined-training"><PracticeCard title={training.title} locale={locale} records={records} sessions={combinedTopicsChanged ? [] : combinedPeers} recommended={recommendation === 'combined'} busy={starting || combinedPreparing} dataSkill="combined" onStart={() => void openCombined()} onRestart={combinedPracticeSession && !combinedTopicsChanged ? () => restartSelected(combinedPracticeSession) : undefined}>
-          {(['reading', 'listening'] as const).map(skill => <SettingsPicker variant="topic" displayLabel={firstRunCopy[locale][skill]} key={`${activeProfile}:${skill}`} label={skill === 'reading' ? training.readingTopic : training.listeningTopic} value={combinedTopics[skill] ?? ''} disabled={starting || combinedPreparing} options={[{ value: '', label: training.automatic }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={value => { if (value === (combinedTopics[skill] ?? '')) return; setCombinedTopicsChanged(true); setCombinedDetail(undefined); setCombinedTopics(previous => ({ ...previous, [skill]: value ? topicSchema.parse(value) : undefined })); setCombinedError(''); }}/>) }
+          {(['reading', 'listening'] as const).map(skill => <PracticeOptions history={history} records={records} key={`${activeProfile}:${skill}`} locale={locale} profileId={activeProfile} skill={skill} preferences={preferences} value={practiceSelections[skill]} disabled={starting || combinedPreparing} onChange={value => savePracticeSelection(skill, value)}/>) }
         </PracticeCard>{combinedError && <p className="practice-status" role="status">{combinedError} <a href="/library">{t.library}</a></p>}</div></div></section></div>
         <DailyQuote locale={locale} onDayChange={setTodayDate}/></div>
         
-        {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
-        {practiceDetail && <TaskDetail key={practiceDetail.id} lesson={practiceDetail} locale={locale} profileId={activeProfile} action={t.start} busy={starting} onStart={start} onCheck={snapshot => start(asTestLesson(snapshot))} onClose={() => setPracticeDetail(undefined)} startError={error === 'save' ? t.saveError : ''} available={true}/>}
+        {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue selections={practiceSelections} onSelection={savePracticeSelection} preferences={preferences} key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
         {combinedDetail && <TaskDetail key={combinedDetail[0].id + combinedDetail[1].id} lesson={combinedDetail[0]} additionalLesson={combinedDetail[1]} heading={training.title} locale={locale} profileId={activeProfile} action={training.start} busy={starting} onStart={() => startCombinedPractice()} onCheck={() => startCombinedPractice(true)} onClose={() => { setCombinedDetail(undefined); requestAnimationFrame(() => { if (combinedInvoker.current?.isConnected && !combinedInvoker.current.matches(':disabled')) combinedInvoker.current.focus({ preventScroll: true }); }); }} startError={error === 'save' ? t.saveError : ''} available={true}/>}
       </> : path === '/progress' ? <section id="today-records">
         <a className="records-back" href="/today">← {t.today}</a>
         <h1>{t.progress}</h1><div className="progress-overview">
         <dl className="totals"><div><dt>{t.count}</dt><dd>{records.length + summaries.length + unavailableSummaries.length}</dd></div><div><dt>{t.materialCount}</dt><dd>{new Set([...records.map(r => r.rootId), ...summaries.map(row => row.event.payload.rootId), ...unavailableSummaries.map(event => event.payload.rootId)]).size}</dd></div></dl></div>
-        {preferences && <p>{firstRunCopy[locale].headings[3]}: {firstRunCopy[locale].reading} {preferences.reading ?? firstRunCopy[locale].unsure} · {firstRunCopy[locale].listening} {preferences.listening ?? firstRunCopy[locale].unsure}</p>}<CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/><ProgressRecords locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/>{!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}{history.length > 0 && <h2>{t.history}</h2>}<div className="history-grid">{history.map(s => <article className="history" key={s.id}><a href={`/learn/${s.id}`}><span lang={contentText(s.lesson.title, locale) === s.lesson.title.en ? 'en' : undefined}>{contentText(s.lesson.title, locale)}</span> · {s.status === 'active' ? t.resume : t.review}</a><time>{new Date(s.startedAt).toLocaleString(locale)}</time><details><summary>{t.count}: {records.filter(r => r.sessionId === s.id).length}</summary>{(s.lesson.mode === 'check' || s.lesson.mode === 'test') && s.status === 'active' ? <p>{t.checkResponseSaved}</p> : records.filter(r => r.sessionId === s.id).map(r => {
-          const item = questions(s.lesson).find(item => item.question.id === r.questionId);
-          return item && <section key={r.id}>{s.status !== 'active' && <DeleteRecord locale={locale} profileId={activeProfile} recordId={r.syncRecordId ?? r.id} onChange={load}/>}<h3 lang="en">{item.question.prompt}</h3><p>{t.yourAnswer}: <span lang="en">{answerText(item.question, r.answer)}</span> · <span className="result-status" data-result={r.correct === null ? undefined : r.correct ? 'correct' : 'incorrect'}>{r.correct === null ? t.unscored : r.correct ? `✓ ${t.correct}` : `× ${t.incorrect}`}</span></p><p lang={instructionLanguage(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}>{translateInstruction(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}</p><p>{t.conditions}: {r.assistance.hintLevel}/3{teachingSupport(s.lesson, r.rootId, r.assistance.teachingProvided) ? ` · ${t.teachingProvided}` : ""}{r.assistance.dictionaryUsed ? ` · ${t.dictionaryUsed}` : ""}</p>{s.lesson.skill === 'listening' && <p>{t.playbackRequests}: {r.assistance.playbackRequests ?? 0}</p>}<time>{new Date(r.submittedAt).toLocaleString(locale)}</time></section>;
-        })}<GutenbergLicence sourceUrl={s.lesson.materials.find(material => isGutenbergSource(material.credit?.sourceUrl))?.credit?.sourceUrl} locale={locale}/></details></article>)}</div>
+        {preferences && <p>{firstRunCopy[locale].headings[3]}: {firstRunCopy[locale].reading} {preferences.reading ?? firstRunCopy[locale].unsure} · {firstRunCopy[locale].listening} {preferences.listening ?? firstRunCopy[locale].unsure}</p>}<CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/><ProgressRecords locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/>{!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}{history.length > 0 && <h2>{t.history}</h2>}<SessionHistory history={history} records={records} locale={locale} profileId={activeProfile} onChange={load}/>
         </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={ready => { setOfflineInstalled(ready); void installedOfflineGroups().then(setInstalledGroups).catch(() => {}); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(ready, groups) => { setOfflineInstalled(ready); setInstalledGroups(groups); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
       : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
       : path === '/library/ipa' ? <Suspense fallback={<p role="status">{t.loading}</p>}><IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/></Suspense>
       : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
-      : path === '/settings/about' ? <About/>
+      : path === '/settings/about' ? <Suspense fallback={<p role="status">{t.loading}</p>}><About/></Suspense>
       : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
     </main>
     {confirmUpdate && createPortal(<dialog ref={updateDialog} className="update-confirm-dialog" aria-labelledby="update-confirm-title" aria-describedby="update-confirm-description" onCancel={event => { event.preventDefault(); closeUpdate(); }} onClick={event => { if (event.target === event.currentTarget) closeUpdate(); }}>

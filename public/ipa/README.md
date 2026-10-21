@@ -6,6 +6,8 @@ The 126 sound buttons use 125 recordings. The existing /ɝ/ and /ɚ/ entries sha
 
 Whole-word recordings in `audio/` are individually credited in [SOURCES.json](SOURCES.json). They originate from Wikimedia Commons recordings by Dvortygirl under CC BY-SA 3.0. Sound recordings in `phonemes/` are individually credited in [PHONEME_SOURCES.json](PHONEME_SOURCES.json),including the author,source page,original hash,local hash,licence and conversion details. [full-sounds.json](full-sounds.json) maps each chart sound to its local recording;[entries.json](entries.json) retains the English examples.
 
+Recordings favour consistent speakers: Peter Isotalo (also credited as Karmosin) supplies 79 sound recordings; Denelson83 supplies 28, including 27 of the 28 chart vowels. The remaining sounds retain individually credited recordings when an exact, clearly attributed replacement is unavailable. All 39 example words remain by Dvortygirl. Same-speaker coverage does not justify substituting a different articulation or ignoring conflicting source credits.
+
 Each recording keeps its source licence:CC BY-SA 3.0,CC BY-SA 4.0,CC0 or public domain. The full original recordings were converted to MP3 without trimming,pitch changes or speed changes. See [CC BY-SA 3.0](CC-BY-SA-3.0.txt),[CC BY-SA 4.0](CC-BY-SA-4.0.txt) and each file's licence link. The IPA chart classification retains its separate International Phonetic Association attribution.
 
 Audio is served by Lingfern and included in the downloadable IPA resource package. Install or update that package for all sounds to work offline. No external audio service is contacted during playback.

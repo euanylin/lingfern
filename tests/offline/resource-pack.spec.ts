@@ -36,21 +36,38 @@ test('imports a verified ZIP offline and leaves an existing package intact after
 });
 
 test('download and local removal capture intentions without treating them as cached files', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 812 });
   await page.goto('/library');
   await page.getByRole('button', { name: /^通用材料/ }).last().click();
   const row = page.locator('.package-row').filter({ hasText: 'A1 单词录音' });
+  const grammar = page.locator('.package-row').filter({ hasText: '英语用法词典' });
   await row.locator('input').check();
+  await grammar.locator('input').check();
+  await page.evaluate(() => {
+    const samples: number[] = [];
+    (window as unknown as { resourceBarHeights: number[] }).resourceBarHeights = samples;
+    const observe = () => { const bar = document.querySelector('.offline-selection-actions:has(progress)'); if (bar) samples.push(bar.getBoundingClientRect().height); requestAnimationFrame(observe); };
+    requestAnimationFrame(observe);
+  });
   await page.getByRole('button', { name: '下载所选资源', exact: true }).click();
   await expect(row).toContainText('已安装');
+  await expect(grammar).toContainText('已安装');
+  const heights = await page.evaluate(() => (window as unknown as { resourceBarHeights: number[] }).resourceBarHeights);
+  expect(heights.length).toBeGreaterThan(1);
+  expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(1);
   await row.locator('input').check();
+  await grammar.locator('input').check();
   await page.getByRole('button', { name: '删除所选资源', exact: true }).click();
   const removal = page.getByRole('alertdialog');
   await expect(removal.getByRole('button', { name: '取消', exact: true })).toBeFocused();
   await removal.getByRole('button', { name: '取消', exact: true }).click();
   await expect(row).toContainText('已安装');
   await page.getByRole('button', { name: '删除所选资源', exact: true }).click();
+  const began = Date.now();
   await removal.getByRole('button', { name: '删除所选资源', exact: true }).click();
   await expect(row).not.toContainText('已安装');
+  await expect(grammar).not.toContainText('已安装');
+  await test.info().attach('batch-resource-operation', { body: JSON.stringify({ viewport: '320x812', progressBarHeights: [...new Set(heights)], removalMs: Date.now() - began }), contentType: 'application/json' });
   await expect(page.locator('.installation-intent-notice')).toHaveCount(0);
   const events = await page.evaluate(() => new Promise<{ type: string; payload: { contentId: string; contentHash: string; wanted: boolean } }[]>((resolve, reject) => {
     const request = indexedDB.open('lingfern');
@@ -58,9 +75,9 @@ test('download and local removal capture intentions without treating them as cac
     request.onsuccess = () => { const database = request.result, read = database.transaction('syncEvents').objectStore('syncEvents').getAll(); read.onerror = () => { database.close(); reject(read.error); }; read.onsuccess = () => { database.close(); resolve(read.result); }; };
   }));
   const intents = events.filter(event => event.type === 'installation');
-  expect(intents).toHaveLength(2);
-  expect(intents.map(event => event.payload.wanted).sort()).toEqual([false, true]);
-  expect(intents.every(event => event.payload.contentId === 'audio-a1' && /^[a-f0-9]{64}$/.test(event.payload.contentHash))).toBe(true);
+  expect(intents).toHaveLength(4);
+  expect(intents.map(event => event.payload.wanted).sort()).toEqual([false, false, true, true]);
+  expect(intents.every(event => ['audio-a1', 'grammar'].includes(event.payload.contentId) && /^[a-f0-9]{64}$/.test(event.payload.contentHash))).toBe(true);
 });
 
 test('imports the full dictionary ZIP and serves an unvisited entry after going offline', async ({ page, context }) => {

@@ -12,6 +12,15 @@ import { fullVowels, fullPlaces, fullConsonants, otherSymbols, affricates, nonPu
 import { fullIpaAudioSchema, fullIpaSoundSymbols } from '../src/app/ipaFullAudio';
 
 describe('offline references', () => {
+  it('favours one recorder per IPA sound family while keeping exact articulations and word credits', () => {
+    for (const symbol of ['f', 'v', 'ɮ']) expect(phonemeSources.find(source => source.ipa.includes(symbol))?.author).toBe('Peter Isotalo');
+    const vowels = fullVowels.flatMap(row => row.cells.flatMap(([, left, right]) => [left, right].filter(symbol => symbol != null)));
+    expect(vowels.filter(symbol => phonemeSources.find(source => source.ipa.includes(symbol))?.author.includes('Denelson83'))).toHaveLength(27);
+    expect(phonemeSources.find(source => source.ipa.includes('ɛ'))?.author).toBe('RoachPeter');
+    expect(phonemeSources.find(source => source.ipa.includes('ɹ'))?.author).toBe('Erutuon');
+    expect(sources).toHaveLength(39);
+    expect(new Set(sources.map(source => source.author))).toEqual(new Set(['Dvortygirl']));
+  });
   it('provides a licensed local recording for all126independent sounds without changing the English inventory', () => {
     expect(fullIpaSoundSymbols).toHaveLength(126);
     expect(fullIpaAudioSchema.parse(fullAudio)).toEqual(fullAudio);

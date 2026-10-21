@@ -7,6 +7,31 @@ import { selectPicker } from './picker';
 
 const chart = JSON.parse(readFileSync('public/ipa/entries.json', 'utf8'));
 const fullSounds = JSON.parse(readFileSync('public/ipa/full-sounds.json', 'utf8'));
+test('compound tone accents remain legible without platform font support', async ({ page }) => {
+  await page.goto('/library/ipa');
+  await page.getByRole('button', { name: '详细版', exact: true }).click();
+  const section = page.locator('.ipa-group').filter({ has: page.getByRole('heading', { name: 'Tones and word accents', exact: true }) });
+  for (const [symbol, description] of [['e᷄ ˧˥', 'High rising'], ['e᷅ ˩˧', 'Low rising'], ['e᷈ ˦˥˦', 'Rising–falling']]) {
+    const row = section.locator('.ipa-symbol-item').filter({ has: page.getByText(description, { exact: true }) });
+    await expect(row.locator('.sr-only')).toHaveText(symbol);
+    await expect(row.locator('.ipa-compound-tone')).toHaveText('e');
+    await expect(row.locator('.ipa-compound-tone svg path')).toHaveCount(1);
+    await expect(row.locator('[aria-hidden=true]')).toHaveText('e');
+    await expect(row.locator('.ipa-tone-letter polyline')).toHaveAttribute('points', description === 'High rising' ? '2,12 8,2' : description === 'Low rising' ? '2,22 8,12' : '2,7 8,2 14,7');
+  }
+  await expect(section.locator('.ipa-tone-letter')).toHaveCount(10);
+  for (const width of [1440, 375, 320]) {
+    await page.setViewportSize({ width, height: 812 });
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.locator('.ipa-compound-tone svg').evaluateAll(marks => marks.every(mark => {
+      const box = mark.getBoundingClientRect(), row = mark.closest('.ipa-symbol-item')!.getBoundingClientRect();
+      return box.width > 10 && box.height > 6 && box.top >= row.top && box.bottom < row.bottom;
+    }))).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await section.screenshot({ path: `output/playwright/ipa-tones-${width}.png` });
+  }
+});
+
 for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const theme of ['light', 'dark'] as const) test(`English IPA axes, controls and local scrolling at ${locale}/${theme}`, async ({ page }) => {
   await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);

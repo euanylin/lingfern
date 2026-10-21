@@ -958,5 +958,23 @@
     "subSync": "Salvo neste dispositivo; pode ser sincronizado com seu repositório privado no GitHub",
     "carousel": "Apresentação",
     "slideN": "Cartão {n} de 3"
+  },
+  "practiceOptions": {
+    "kind": "Tipo de pergunta",
+    "materials": "Materiais",
+    "materialHint": "Escolha mais um material de uma obra diferente.",
+    "search": "Pesquisar materiais",
+    "selected": "{count} selecionados",
+    "unavailable": "Material indisponível",
+    "empty": "Nenhum material correspondente. Altere a pesquisa ou instale recursos na biblioteca.",
+    "refine": "Restrinja a pesquisa para ver outros materiais.",
+    "loading": "A carregar…",
+    "saving": "A guardar…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "failed": "Não foi possível carregar ou guardar as escolhas. Tente novamente.",
+    "unsuitable": "Não há prática adequada para estas escolhas. Altere o tipo de pergunta ou os materiais.",
+    "readingSettings": "Definições de leitura",
+    "listeningSettings": "Definições de escuta"
   }
 }

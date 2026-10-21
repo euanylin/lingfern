@@ -6,6 +6,12 @@ import packs from '../content/source-packs.json';
 import teaching from '../content/corpus/teaching-source-packs.json';
 import audio from '../content/audio-sources.json';
 
+it('preserves the project licences, attribution and separate artwork terms verbatim', () => {
+  for (const [source, published] of [['LICENSE', 'LICENSE'], ['NOTICE', 'NOTICE'], ['BRAND.md', 'BRAND.md'], ['LICENSES/CC-BY-4.0.txt', 'CC-BY-4.0.txt']]) {
+    expect(readFileSync(`public/licenses/lingfern/${published}`, 'utf8')).toBe(readFileSync(source, 'utf8'));
+  }
+});
+
 it('credits every direct installed package with its actual declared licence', () => {
   const represented = credits.software.concat(credits.development).flatMap(project => project.packages);
   expect(represented.sort()).toEqual([...Object.keys(pkg.dependencies), ...Object.keys(pkg.devDependencies)].sort());

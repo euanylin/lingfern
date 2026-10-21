@@ -7,6 +7,7 @@ import { corpusInterestMatch, corpusInterestScore, corpusPreferencePool, corpusP
 import { inspectCommunityPack } from '../src/data/communityPack';
 import type { Attempt, Session } from '../src/data/db';
 import { levelSchema, topicSchema } from '../src/shared/content';
+import { activeCorpusPractice } from '../src/data/practice';
 
 // Isolated policy metadata; no synthetic learner profile enters application assets.
 const lesson = corpusLesson(corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8'))), new Set(), 0)!;
@@ -26,6 +27,25 @@ function answers(s: Session): Attempt[] {
 }
 const route = (sessions: Session[], records: Attempt[], skill: 'reading' | 'listening' = 'reading') =>
   corpusPracticeHistory(sessions, records, profile, skill, 'voa');
+
+it('keeps the lightweight resume query identical to full routing without changing records', () => {
+  for (const skill of ['reading', 'listening'] as const) {
+    const active: Session = { ...session('active', skill), status: 'active' };
+    const skipped: Session[] = [
+      { ...active, profileId: 'another-profile' }, { ...active, status: 'completed' },
+      { ...active, recordsDeleted: true }, { ...active, practiceGroupId: 'combined' },
+      { ...active, lesson: { ...active.lesson, mode: 'check' } },
+      { ...active, lesson: { ...active.lesson, generation: undefined } },
+      { ...active, lesson: { ...active.lesson, skill: skill === 'reading' ? 'listening' : 'reading' } },
+    ];
+    for (const history of [[], skipped, [...skipped, active], [{ ...active, lesson: { ...active.lesson, mode: 'test' as const } }, active]]) {
+      const original = JSON.stringify(history);
+      const expected = corpusPracticeHistory(history.filter(item => !item.practiceGroupId || item.status !== 'active'), [], profile, skill, 'all').active;
+      expect(activeCorpusPractice(history, profile, skill)).toBe(expected);
+      expect(JSON.stringify(history)).toBe(original);
+    }
+  }
+});
 
 it('uses the current qualification operation without rewriting a saved lesson', () => {
   const original = structuredClone(transferLesson);
@@ -343,6 +363,8 @@ it('supports all expanded interests, title relevance, rotating preferences and c
   const examples = ['University students', 'Apartment kitchen', 'Physics experiment', 'Museum festival', 'Airport hotel', 'Computer software', 'Wildlife forest', 'Climate pollution', 'Ancient empire', 'Poetry fiction', 'Songs orchestra', 'Cinema movies', 'Football grand prix', 'Medical hospital', 'Business workplace', 'Democracy society', 'Linguistics dialect', 'Cooking recipe'];
   expect(topicSchema.options).toHaveLength(18);
   topicSchema.options.forEach((topic, index) => expect(corpusInterestMatch(examples[index], [topic])).toBe(true));
+  expect(corpusInterestMatch('Cooking recipe', topicSchema.options)).toBe(true);
+  expect(() => corpusInterestMatch('Cooking recipe', ['food', 'food'])).toThrow('INVALID_CORPUS_INTERESTS');
   expect(corpusInterestMatch('cathedral programmingly hotelier', ['nature', 'technology', 'travel'])).toBe(false);
   expect(corpusInterestScore('Football', 'A match happened.', ['sport'])).toBeGreaterThan(corpusInterestScore('Overview', 'Football '.repeat(30), ['sport']));
   const text = 'We read the words and talk about them. '.repeat(6);

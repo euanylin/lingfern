@@ -3,6 +3,8 @@ import { contentText, messages } from '../locales';
 import { useEffect, useState } from 'react';
 import type { Attempt, Session } from '../data/db';
 import { practiceLocale, levelSchema, topicSchema, type Lesson, type Locale } from '../shared/content';
+import type { PracticeSelection } from '../shared/practiceSelection';
+import type { Preferences } from '../shared/preferences';
 import { CorpusPractice } from './CorpusPractice';
 import { copy } from './i18n';
 import { firstRunCopy } from './FirstRun';
@@ -11,7 +13,7 @@ import { TaskDetail, taskMinutes } from './TaskDetail';
 import { GeneratedPractice, generatedPracticeLabels } from '../../tests/fixtures/GeneratedPractice';
 
 const labels = messages('taskCatalogue');
-export function TaskCatalogue({ locale, lessons, history, records, online, installedGroups, localCorpus = false, localSpoken = false, busy, onStart, profileId, startError }: { localCorpus?: boolean; localSpoken?: boolean; startError: string; profileId: string; locale: Locale; lessons: readonly Lesson[]; history: Session[]; records: Attempt[]; online: boolean; installedGroups: ReadonlySet<string>; busy: boolean; onStart: (lesson: Lesson) => Promise<void> }) {
+export function TaskCatalogue({ selections, onSelection, preferences, locale, lessons, history, records, online, installedGroups, localCorpus = false, localSpoken = false, busy, onStart, profileId, startError }: { selections: Record<'reading' | 'listening', PracticeSelection>; onSelection: (skill: 'reading' | 'listening', value: PracticeSelection) => Promise<void>; preferences?: Preferences; localCorpus?: boolean; localSpoken?: boolean; startError: string; profileId: string; locale: Locale; lessons: readonly Lesson[]; history: Session[]; records: Attempt[]; online: boolean; installedGroups: ReadonlySet<string>; busy: boolean; onStart: (lesson: Lesson) => Promise<void> }) {
   const t = labels[locale], c = copy[locale];
   const [query, setQuery] = useState('');
   const [detail, setDetail] = useState<Lesson>();
@@ -45,8 +47,8 @@ export function TaskCatalogue({ locale, lessons, history, records, online, insta
       {matches.map(lesson => { const completed = history.some(session => session.lesson.id === lesson.id && session.status === 'completed'); const estimated = taskMinutes(lesson); return <section className={`task-row${lesson.communityPackageId ? ' community-task' : ''}`} key={lesson.id}><p className="eyebrow">{lesson.skill.toUpperCase()} · {t.learning}</p><h2 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h2><p lang={practiceLocale(lesson, locale)}>{contentText(lesson.goal, practiceLocale(lesson, locale))}</p><p className="muted">{lesson.communityPackageId && <>{c.communityLessons} · </>}{estimated} {t.minutes} · {local(lesson) ? t.ready : t.missing} · {completed ? t.done : t.fresh}{lesson.themes?.length ? ` · ${lesson.themes.map(value => firstRunCopy[locale].themes[topicSchema.options.indexOf(value)]).join(' / ')}` : ''}</p><button type="button" className="primary" disabled={busy} onClick={() => setDetail(lesson)}>{actionFor(lesson)}</button></section>; })}
     </div></div>
     {detail && <TaskDetail key={detail.id} lesson={detail} action={actionFor(detail)} available={online || local(detail)} locale={locale} profileId={profileId} busy={busy} startError={startError} onStart={onStart} onClose={() => setDetail(undefined)}/>}
-    {skill !== 'listening' && (theme === 'all' || theme === 'culture') && (!query.trim() || /english|英语|英語|原文|liter|gutenberg|wiki|b2/i.test(query)) && (applied.downloaded !== 'local' || installedGroups.has('corpus') || installedGroups.has('corpus-open-reading') || localCorpus) && <CorpusPractice key={profileId} locale={locale} profileId={profileId} history={history} records={records} online={online} busy={busy} onStart={onStart} startError={startError}/> }
-    {localSpoken && skill !== 'reading' && (theme === 'all' || theme === 'culture') && (!query.trim() || /english|英语|英語|原声|原聲|听力|聽力|listen|wiki|b2/i.test(query)) && <CorpusPractice key={`spoken:${profileId}`} skill="listening" locale={locale} profileId={profileId} history={history} records={records} online={online} busy={busy} onStart={onStart} startError={startError}/> }
+    {skill !== 'listening' && (theme === 'all' || theme === 'culture') && (!query.trim() || /english|英语|英語|原文|liter|gutenberg|wiki|b2/i.test(query)) && (applied.downloaded !== 'local' || installedGroups.has('corpus') || installedGroups.has('corpus-open-reading') || localCorpus) && <CorpusPractice selection={selections.reading} onSelection={value => onSelection('reading', value)} preferences={preferences} key={profileId} locale={locale} profileId={profileId} history={history} records={records} online={online} busy={busy} onStart={onStart} startError={startError}/> }
+    {localSpoken && skill !== 'reading' && (theme === 'all' || theme === 'culture') && (!query.trim() || /english|英语|英語|原声|原聲|听力|聽力|listen|wiki|b2/i.test(query)) && <CorpusPractice selection={selections.listening} onSelection={value => onSelection('listening', value)} preferences={preferences} key={`spoken:${profileId}`} skill="listening" locale={locale} profileId={profileId} history={history} records={records} online={online} busy={busy} onStart={onStart} startError={startError}/> }
     {import.meta.env.MODE === 'test-fixtures' && skill !== 'listening' && (theme === 'all' || theme === 'travel') && (!query.trim() || generatedPracticeLabels[contentLocale(locale)].title.toLocaleLowerCase(locale).includes(query.trim().toLocaleLowerCase(locale))) && <GeneratedPractice locale={locale} history={history} busy={busy} onStart={onStart}/>}
   </section>;
 }

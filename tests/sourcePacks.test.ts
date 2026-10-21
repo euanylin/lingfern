@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { afterEach, expect, it, vi } from 'vitest';
-import { installSourcePack, sourcePacks } from '../src/data/sourcePacks';
+import { installSourcePack, removeSourcePack, sourcePacks } from '../src/data/sourcePacks';
+import { communityPacks, db } from '../src/data/db';
 import { installCommunityPack } from '../src/data/communityInstall';
 import { inspectCommunityPack } from '../src/data/communityPack';
 import { corpusLesson } from '../src/core/corpus';
@@ -20,6 +21,23 @@ it('rejects missing, truncated, oversized and altered source downloads before in
     await expect(installSourcePack(entry.id, 'isolated-profile')).rejects.toThrow();
   }
   expect(installCommunityPack).not.toHaveBeenCalled();
+});
+
+it('removes a selected batch without deleting another profile’s shared media or unrelated packages', async () => {
+  await Promise.all(db.tables.map(table => table.clear()));
+  const [first, shared, unrelated] = sourcePacks;
+  const record = (profileId: string, entry: typeof first) => ({ profileId, hash: entry.sha256, id: entry.id, lessons: [], sources: [], state: 'ready' as const, installedAt: new Date().toISOString() });
+  await communityPacks.bulkPut([record('isolated-profile', first), record('isolated-profile', shared), record('other-profile', shared), record('isolated-profile', unrelated)]);
+  const names = new Set([first, shared, unrelated].map(entry => `lingfern-community-${entry.sha256}`));
+  const cache = { delete: vi.fn(async (name: string) => names.delete(name)), has: vi.fn(async (name: string) => names.has(name)) };
+  const changed = vi.fn();
+  vi.stubGlobal('window', { dispatchEvent: changed }); vi.stubGlobal('caches', cache);
+  await removeSourcePack([first.id, shared.id, first.id], 'isolated-profile');
+  expect(cache.delete.mock.calls).toEqual([[`lingfern-community-${first.sha256}`]]);
+  expect(await communityPacks.get(['other-profile', shared.sha256])).toBeDefined();
+  expect(await communityPacks.get(['isolated-profile', unrelated.sha256])).toBeDefined();
+  expect(await communityPacks.get(['isolated-profile', first.sha256])).toBeUndefined();
+  expect(changed).toHaveBeenCalledTimes(1);
 });
 it('generates from the repaired inspected whole article and retains excluded spelling targets', async () => {
   let inspected;

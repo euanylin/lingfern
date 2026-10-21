@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { describe, expect, it, vi } from 'vitest';
+import fc from 'fast-check';
 import { rankDictionarySuggestions, lookupDictionary, lookupDictionarySense, suggestDictionary } from '../src/shared/dictionary';
 
 describe('dictionary suggestions', () => {
@@ -43,6 +44,22 @@ it('finds bundled course phrases beside an older installed index without duplica
     expect(provided.filter(term => term === 'provided')).toHaveLength(1);
     expect(provided).toHaveLength(new Set(provided).size);
   } finally { vi.unstubAllGlobals(); }
+});
+
+it('bounded suggestion distances preserve full-matrix rankings across varied words and accents', () => {
+  const word = fc.array(fc.constantFrom(...'abcdefé -'), { minLength: 1, maxLength: 18 }).map(chars => chars.join(''));
+  function distance(a: string, b: string) {
+    const matrix = Array.from({ length: a.length + 1 }, (_, i) => Array.from({ length: b.length + 1 }, (_, j) => i ? j ? 0 : i : j));
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + Number(a[i - 1] !== b[j - 1]));
+    return matrix[a.length][b.length];
+  }
+  fc.assert(fc.property(word.filter(value => /^[a-zé][a-zé -]*$/.test(value.trim())), fc.array(word, { maxLength: 90 }), (raw, headwords) => {
+    const term = raw.trim().replace(/\s+/g, ' '), limit = Math.min(4, Math.max(2, Math.ceil(term.length / 3)));
+    const expected = headwords.map(word => ({ word, prefix: word.startsWith(term), distance: word.startsWith(term) ? word.length - term.length : distance(term, word) }))
+      .filter(match => match.prefix || match.distance <= limit)
+      .sort((a, b) => a.distance - b.distance || Number(b.prefix) - Number(a.prefix) || a.word.localeCompare(b.word, 'en')).slice(0, 64).map(match => match.word);
+    expect(rankDictionarySuggestions(raw, headwords)).toEqual(expected);
+  }), { numRuns: 400, seed: 61020 });
 });
 
 it('prioritises inspected course senses without assigning swimming-pool equivalence', async () => {

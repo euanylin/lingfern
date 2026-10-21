@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { lessonSchema } from '../shared/content';
 
 const sourceSchema = z.object({ word: z.string().regex(/^[a-z]+$/), path: z.string().regex(/^\/ipa\/audio\/[a-z]+\.mp3$/), sha256: z.string().regex(/^[a-f0-9]{64}$/), duration: z.number().positive().max(5), author: z.string().min(1), source: z.string().regex(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:[A-Za-z0-9_.-]+$/), license: z.literal('CC BY-SA 3.0') });
-const words = new Set(['bed','cat','father','book','cup','bird','pen','bag','tea','dog','key','sun','hat','chair','man','leg','red','yes','no','blue']);
+export const wordListeningWords = new Set(['bed','cat','father','book','cup','bird','pen','bag','tea','dog','key','sun','hat','chair','man','leg','red','yes','no','blue']);
 const local = (en: string, hans: string, hant: string) => ({ en, 'zh-Hans': hans, 'zh-Hant': hant });
 
 /** Recognition of individual source words only; not sentence comprehension or ability. */
@@ -10,7 +10,7 @@ export function wordListeningLesson(input: unknown, seen: ReadonlySet<string>, s
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_WORD_LISTENING_SEED');
   const sources = z.array(sourceSchema).max(100).parse(input);
   if (new Set(sources.map(source => source.word)).size !== sources.length || sources.some(source => source.path !== `/ipa/audio/${source.word}.mp3`)) throw new Error('INVALID_WORD_LISTENING_SOURCES');
-  const available = sources.filter(source => words.has(source.word) && !seen.has(source.sha256));
+  const available = sources.filter(source => wordListeningWords.has(source.word) && !seen.has(source.sha256));
   if (available.length < 2) return;
   const first = available[seed % available.length], remaining = available.filter(source => source !== first);
   const second = remaining[(seed + 1) % remaining.length];

@@ -88,18 +88,28 @@
     "ipa": [
       "ɔ"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:PR-open-mid_back_rounded_vowel.ogg",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/PR-open-mid_back_rounded_vowel.ogg",
-    "originalSha1": "676b373dcc591ac97d2faa934b77706f4608b561",
+    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_back_rounded_vowel.ogg?oldid=1209240141",
+    "sourceRevision": 1209240141,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Open-mid_back_rounded_vowel.ogg",
+    "originalSha1": "65ccf8f231e7d05a8a06b7522b7b24e040d1d0dc",
+    "originalBytes": 11959,
     "mp3Source": null,
-    "author": "RoachPeter",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-06.mp3",
-    "sha256": "18fed5359a42ec8e38984e6c52ffed3ab60b99a1692d5c1964dbcfb35183153b",
-    "duration": 0.759,
-    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source and licence checked; independent listening review pending"
+    "sha256": "8ed928deedc7d13ce0ccf26cb0b041ee34b71b8d413598a231c81bd592722768",
+    "duration": 0.5710625,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 7480,
+      "decodedSamples": 9137,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.23932031733340933,
+      "peak": 0.7006357908248901,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -139,18 +149,28 @@
     "ipa": [
       "ʌ"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:PR-open-mid_back_unrounded_vowel2.ogg",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/PR-open-mid_back_unrounded_vowel2.ogg",
-    "originalSha1": "d6d6a53ca3a347ea58578cf07b96385660e4f69e",
+    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_back_unrounded_vowel.ogg?oldid=1246656322",
+    "sourceRevision": 1246656322,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Open-mid_back_unrounded_vowel.ogg",
+    "originalSha1": "68c363004297b56414c91cc6421345c98d981ffb",
+    "originalBytes": 14096,
     "mp3Source": null,
-    "author": "RoachPeter",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-09.mp3",
-    "sha256": "a9e077fe5958a278f251f1563d0ec4e83e89afd0c071d91c374f1d3c0c68c157",
-    "duration": 0.743,
-    "changes": "Locally transcoded original recording to MP3 with FFmpeg qscale 4; no trimming or pitch changes.",
-    "reviewStatus": "source and licence checked; independent listening review pending"
+    "sha256": "25e2dfdff52f64920a2ebbe56e80685e831418172a1e6464d8c8c33b61b355d1",
+    "duration": 0.6353125,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 9462,
+      "decodedSamples": 10165,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.12424434820192833,
+      "peak": 0.48025795817375183,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -378,35 +398,55 @@
     "ipa": [
       "f"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_labio-dental_fricative.ogg",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Voiceless_labio-dental_fricative.ogg",
-    "originalSha1": "b8499e54f8f0e7b68262facbc720b2d3973a0b7e",
-    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c7/Voiceless_labio-dental_fricative.ogg/Voiceless_labio-dental_fricative.ogg.mp3",
-    "author": "Nixinova",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Voiceless_labiodental_fricative.ogg?oldid=812646041",
+    "sourceRevision": 812646041,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Voiceless_labiodental_fricative.ogg",
+    "originalSha1": "ee060dc62b68ac348f87ab6afb511460855226b3",
+    "originalBytes": 11466,
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-23.mp3",
-    "sha256": "0e7c568f644b5f18f6ae192e01d3e72f2e6bfccc4a2dab870e4496b4bd2fead5",
-    "duration": 1.91,
-    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
-    "reviewStatus": "source and licence checked; independent listening review pending"
+    "sha256": "0d1a90a8b270b24180d89e501477e65aa8d0b9c66d84fa7283125c5c5e1b9e2c",
+    "duration": 0.715375,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 8363,
+      "decodedSamples": 11446,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.036732648542068716,
+      "peak": 0.24395962059497833,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
       "v"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:Voiced_labio-dental_fricative.ogg",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Voiced_labio-dental_fricative.ogg",
-    "originalSha1": "4360102943b65003100a7e87f213a3117cb6d2d6",
-    "mp3Source": "https://upload.wikimedia.org/wikipedia/commons/transcoded/4/42/Voiced_labio-dental_fricative.ogg/Voiced_labio-dental_fricative.ogg.mp3",
-    "author": "Nixinova",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_labiodental_fricative.ogg?oldid=812646021",
+    "sourceRevision": 812646021,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/Voiced_labiodental_fricative.ogg",
+    "originalSha1": "317301036b1d806633252ca25045dcb201409c98",
+    "originalBytes": 11193,
+    "mp3Source": null,
+    "author": "Peter Isotalo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-24.mp3",
-    "sha256": "593b2fe24e854fe34ea0d543e47ae9af75da1afbd67a6396ade0dae652a8e2b7",
-    "duration": 1.738,
-    "changes": "Wikimedia Commons MP3 transcode; no local trimming or pitch changes.",
-    "reviewStatus": "source and licence checked; independent listening review pending"
+    "sha256": "700fb1d8bf766069bcff40b80e317533450d2d17503abb1dba0e2efecb286c6e",
+    "duration": 0.696625,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 9146,
+      "decodedSamples": 11146,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.0718440859704949,
+      "peak": 0.4956207871437073,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -893,20 +933,28 @@
     "ipa": [
       "œ"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_front_rounded_vowel.ogg",
-    "sourceRevision": 1267414044,
-    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1267414044",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Open-mid_front_rounded_vowel.ogg",
-    "originalSha1": "2ec2bb7ad1e0d1f7ef41cc383ae0c346f1e84de3",
+    "source": "https://commons.wikimedia.org/wiki/File:Open-mid_front_rounded_vowel.ogg?oldid=41548909",
+    "sourceRevision": 41548909,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/archive/0/00/20110327104754%21Open-mid_front_rounded_vowel.ogg",
+    "originalSha1": "f8f4c9b63ae6a70eaeb8c2c874d8d696b59d52df",
+    "originalBytes": 10930,
     "mp3Source": null,
-    "author": "JøMa",
+    "author": "Denelson83",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-52.mp3",
-    "sha256": "cf438c49eb731639149eb9df0842fe8a67dba818639adbf92f7ad11040360dd7",
-    "duration": 1.152,
-    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. Gain reduced by3dB to keep decoded peaks below full scale. No trimming, pitch, speed or channel changes.",
-    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+    "sha256": "3796a967ea6a8e1b968f72dfe56759b955283ffbe9ba85b7dfa8d2c743f9b7ef",
+    "duration": 0.7186875,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 12150,
+      "decodedSamples": 11499,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.17762789658928085,
+      "peak": 0.858855128288269,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -950,39 +998,55 @@
     "ipa": [
       "ɐ"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:PR-near-open_central_unrounded_vowel.ogg",
-    "sourceRevision": 729153383,
-    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=729153383",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/PR-near-open_central_unrounded_vowel.ogg",
-    "originalSha1": "9858e40c13f8b2605e599b0fb491017b738f92da",
+    "source": "https://commons.wikimedia.org/wiki/File:Near-open_central_unrounded_vowel.ogg?oldid=729153067",
+    "sourceRevision": 729153067,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Near-open_central_unrounded_vowel.ogg",
+    "originalSha1": "22ba4684bc7974a6d8249ca64c20747c5d4b642e",
+    "originalBytes": 12400,
     "mp3Source": null,
-    "author": "RoachPeter",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-55.mp3",
-    "sha256": "37b0a594af30f06fadd1cdb48041d27936cc1579ea610d93be18529790981ed4",
-    "duration": 0.7183125,
-    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
-    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+    "sha256": "16dd4b6b6451ef530028d0eb3f4825356d17f215dc1488a982a979216ecd3f47",
+    "duration": 0.5368125,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 7555,
+      "decodedSamples": 8589,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.1625498916292636,
+      "peak": 0.6936674118041992,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
       "a"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:PR-open_front_unrounded_vowel.ogg",
-    "sourceRevision": 935790569,
-    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=935790569",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/PR-open_front_unrounded_vowel.ogg",
-    "originalSha1": "86b3c51da882b0426c18058eb4322ba024c032c1",
+    "source": "https://commons.wikimedia.org/wiki/File:Open_front_unrounded_vowel.ogg?oldid=1199062819",
+    "sourceRevision": 1199062819,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Open_front_unrounded_vowel.ogg",
+    "originalSha1": "ee33026172662d8e770c2965cc0958938cbec25e",
+    "originalBytes": 13748,
     "mp3Source": null,
-    "author": "RoachPeter",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-56.mp3",
-    "sha256": "839e3ef629848cb603c9ca0496597618a48d39b94a558064361dd2e4219e2589",
-    "duration": 0.6661875,
-    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
-    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+    "sha256": "b0ba1e4e73ad71fbc8bccf55c0e325b20c2becf762225b02f30f9a23c3b5379e",
+    "duration": 0.58375,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 8728,
+      "decodedSamples": 9340,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.11120893573811756,
+      "peak": 0.7101563215255737,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -1007,20 +1071,28 @@
     "ipa": [
       "ɒ"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:PR-open_back_rounded_vowel.ogg",
-    "sourceRevision": 1177828254,
-    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1177828254",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/PR-open_back_rounded_vowel.ogg",
-    "originalSha1": "4b5316047a580b5ca9dabfd7130c574d9ba2d35a",
+    "source": "https://commons.wikimedia.org/wiki/File:Open_back_rounded_vowel.ogg?oldid=901544387",
+    "sourceRevision": 901544387,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Open_back_rounded_vowel.ogg",
+    "originalSha1": "d63fba79b14b773c8b156a309dfff2241f0b6109",
+    "originalBytes": 14586,
     "mp3Source": null,
-    "author": "RoachPeter",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Denelson83",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-58.mp3",
-    "sha256": "22c2fbe115b052a74ecac7e4ef05269e6a98c7c9632af8686092ecf1c6397b21",
-    "duration": 0.70225,
-    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
-    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+    "sha256": "20bef980a55c39d7230e63204372fde3e0bce268397bd87087b5eaf413e6eced",
+    "duration": 0.683375,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 8940,
+      "decodedSamples": 10934,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.19165718256119907,
+      "peak": 0.663965106010437,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -1583,7 +1655,7 @@
     "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Voiced_glottal_fricative.ogg",
     "originalSha1": "26c650a7dd4835d4912cf54efc03299f326e224b",
     "mp3Source": null,
-    "author": "Karmosin",
+    "author": "Peter Isotalo (credited as Karmosin)",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-88.mp3",
@@ -1615,20 +1687,28 @@
     "ipa": [
       "ɮ"
     ],
-    "source": "https://commons.wikimedia.org/wiki/File:Voiced_alveolar_lateral_fricative.ogg",
-    "sourceRevision": 1105741445,
-    "sourceRevisionUrl": "https://commons.wikimedia.org/w/index.php?oldid=1105741445",
-    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Voiced_alveolar_lateral_fricative.ogg",
-    "originalSha1": "5eae05c4aec3753fe9fa78ccdffdcf6aa9e2765b",
+    "source": "https://commons.wikimedia.org/wiki/File:Voiced_lateral_fricative.ogg?oldid=1253825353",
+    "sourceRevision": 1253825353,
+    "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Voiced_lateral_fricative.ogg",
+    "originalSha1": "54e517f8621bc46b74a26ba360e07d0694658403",
+    "originalBytes": 26572,
     "mp3Source": null,
-    "author": "Adamsa123",
+    "author": "Peter Isotalo",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-90.mp3",
-    "sha256": "eaf93c136d5b870994dca7537cec2f57803eb423a7d8e1a5639852b0dc921cf6",
-    "duration": 1.648625,
-    "changes": "Full original recording transcoded locally to MP3 with FFmpeg qscale4; metadata removed. No trimming, pitch, speed or channel changes.",
-    "reviewStatus": "Codex/AI source, exact IPA mapping, licence and full decoding checked; not a human auditory or physical-device review."
+    "sha256": "b99631fc73d8c68fe94b6acb7e4fd4102814dbecc320498a30ab185130c63222",
+    "duration": 2.0916875,
+    "changes": "Full original recording transcoded to MP3 with FFmpeg qscale 4; metadata removed. No trimming, pitch, speed or gain changes.",
+    "reviewStatus": "Codex/AI exact source revision, attributed recorder, phoneme label, licence, original SHA1 and full decoding checked; not human audition or physical-device acceptance.",
+    "technical": {
+      "bytes": 25625,
+      "decodedSamples": 33467,
+      "diagnosticSampleRate": 16000,
+      "rms": 0.0739553321708137,
+      "peak": 0.39433956146240234,
+      "clippedSampleRatio": 0.0
+    }
   },
   {
     "ipa": [
@@ -1659,7 +1739,7 @@
     "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Retroflex_approximant.ogg",
     "originalSha1": "ff5a3ac7231aa747f8f880ced074b4abf7f5a84d",
     "mp3Source": null,
-    "author": "Karmosin",
+    "author": "Peter Isotalo (credited as Karmosin)",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "path": "/ipa/phonemes/sound-92.mp3",

@@ -1,6 +1,33 @@
 import { expect, test } from '@playwright/test';
 import { languagePacks } from '../../src/locales';
 
+test('pages and introduction previews share the Settings top spacing', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const width of [1440, 900, 375]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/settings');
+    await expect(page.locator('.settings-page>h1')).toBeVisible();
+    const gap = await page.locator('.settings-page>h1').evaluate(el => el.getBoundingClientRect().top - document.querySelector('#root>header')!.getBoundingClientRect().bottom);
+    expect(gap).toBe(width < 768 ? 20 : 44);
+    for (const [route, selector] of [
+      ['/today', width < 768 ? '.today-hero .eyebrow' : '.practice-section-heading'],
+      ['/library', '.library-page-heading h1'], ['/library/dictionary', '.dictionary-heading h1'],
+      ['/library/ipa', '.ipa-heading h1'], ['/library/grammar', '.grammar-page>h1'],
+      ['/library/saved', '.saved-words>h1'], ['/library/history', '.records-back'],
+      ['/progress', '.records-back'], ['/settings/about', '.about-back'], ['/start', '.first-run-top'],
+    ]) {
+      await page.goto(route); await expect(page.locator(selector)).toBeVisible();
+      expect(await page.locator(selector).evaluate(el => el.getBoundingClientRect().top - document.querySelector('#root>header')!.getBoundingClientRect().bottom)).toBeCloseTo(gap, 0);
+    }
+    await page.goto('/introduction');
+    for (const [index, selector] of [[0, width < 768 ? '.today-hero .eyebrow' : '.practice-section-heading'], [1, '.library-page-heading h1'], [2, '.settings-page>h1']] as const) {
+      await page.locator('.welcome-dots button').nth(index).click();
+      const card = page.locator('.welcome-card[data-current=true]'); await expect(card.locator(selector)).toBeVisible();
+      expect(await card.locator(selector).evaluate(el => el.getBoundingClientRect().top - el.closest('.welcome-window')!.querySelector('.welcome-site-header')!.getBoundingClientRect().bottom)).toBeCloseTo(gap, 0);
+    }
+  }
+});
+
 test('first visit introduces the app before existing choices and remembers only explicit Start', async ({ page }) => {
   await page.goto('/'); await expect(page).toHaveURL(/\/introduction$/);
   await expect(page.locator('.welcome')).toBeVisible(); await expect(page.locator('.first-run')).toHaveCount(0);
@@ -64,7 +91,7 @@ test('idle rotation waits until contact, scrolling and keyboard activity end and
   await expect(current).toHaveCSS('transform', 'none'); await expect(current.locator('.welcome-window')).toHaveCSS('filter', 'none');
 });
 
-test('mouse wheel and trackpad switch horizontally once per burst while vertical gestures scroll content', async ({ page }) => {
+test('only horizontal trackpad gestures switch cards; wheel and Shift+wheel keep native scrolling', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   await expect(page.locator('.welcome')).toBeVisible();
   const current = page.locator('.welcome-card[data-current=true]'), content = current.locator('.welcome-content');
@@ -80,7 +107,12 @@ test('mouse wheel and trackpad switch horizontally once per burst while vertical
   await page.waitForTimeout(220); await page.mouse.wheel(-90, 0);
   await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await page.waitForTimeout(220); await page.keyboard.down('Shift'); await page.mouse.wheel(0, -90); await page.keyboard.up('Shift');
-  await expect(current).toHaveAttribute('aria-label', '第 1 张，共 3 张');
+  await page.waitForTimeout(900);
+  await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+  const wheel = await current.evaluate(el => { const e = new WheelEvent('wheel', {deltaX:120,deltaMode:1,bubbles:true,cancelable:true}); el.dispatchEvent(e); return e.defaultPrevented; });
+  expect(wheel).toBe(false);
+  await page.waitForTimeout(900);
+  await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
 });
 
 test('small trackpad deltas move cards continuously before the switch threshold and settle once', async ({ page }) => {
@@ -121,7 +153,7 @@ test('a delayed decaying wheel tail cannot pull the selected card back', async (
   await test.info().attach('late-momentum-positions', { body: JSON.stringify(samples), contentType: 'application/json' });
 });
 
-test('a mouse wheel can accelerate after small separated ticks instead of becoming stuck', async ({ page }) => {
+test('a horizontal trackpad gesture can accelerate after small separated samples', async ({ page }) => {
   await page.clock.install(); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
   await page.locator('.welcome-content').first().hover(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   for (const [delay, delta] of [[0, -4], [392, -4], [104, -17], [96, -58], [104, -77], [96, -103]]) {
@@ -131,7 +163,7 @@ test('a mouse wheel can accelerate after small separated ticks instead of becomi
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 3 张，共 3 张');
 });
 
-test('small line-sized wheel ticks accumulate across brief pauses without a release fighting the input', async ({ page }) => {
+test('small horizontal pixel samples accumulate across brief pauses without fighting the release', async ({ page }) => {
   await page.clock.install(); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
   await page.locator('.welcome-content').first().hover(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   for (const delay of [0, 392, 104]) { await page.clock.runFor(delay); await page.mouse.wheel(-18, 0); }
@@ -153,7 +185,7 @@ test('reversing a wheel gesture interrupts the release without snapping or repla
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 1 张，共 3 张');
   expect(await first.evaluate(el => el.querySelector('.today-home') === (window as unknown as { originalPreview: Element }).originalPreview)).toBe(true);
   for (const card of await page.locator('.welcome-card').all()) {
-    await expect(card).toHaveCSS('z-index', 'auto'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', 'none');
+    await expect(card).toHaveCSS('z-index', 'auto'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', (await card.getAttribute('data-current')) === 'true' ? 'blur(0px)' : 'blur(3px)');
   }
 });
 
@@ -420,7 +452,7 @@ test('both neighbouring cards stay visible while only quote and navigation contr
     for (const side of await page.locator('.welcome-card[data-current=false]').all()) {
       const box = (await side.boundingBox())!;
       expect(Math.max(front.x - box.x, box.x + box.width - front.x - front.width, front.y - box.y)).toBeGreaterThanOrEqual(14);
-      await expect(side.locator('.welcome-blur')).toHaveCSS('backdrop-filter', 'blur(1.25px)');
+      await expect(side.locator('.welcome-window')).toHaveCSS('filter', 'blur(3px)');
       await expect(side.locator('.welcome-shade')).toHaveCSS('opacity', '0.18');
     }
     if (width >= 768) {
@@ -551,4 +583,83 @@ test('slide indicators follow the moving cards continuously instead of waiting f
   for (const row of rows) expect(row.widths[row.active]).toBeGreaterThanOrEqual(Math.max(...row.widths) - .5);
   await expect(page.locator('.welcome-dots button').nth(1).locator('span')).toHaveCSS('width','26px');
   await test.info().attach('synchronized-indicator-frames', { body: JSON.stringify(rows), contentType: 'application/json' });
+});
+
+
+test.describe('mobile transition follow-up', () => {
+  test.use({ hasTouch: true });
+  test('a long swipe keeps following beyond ninety pixels and releases at the last contact', async ({ page, context }) => {
+    await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
+    const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
+    const b = (await content.boundingBox())!, x = b.x + b.width - 24, y = b.y + b.height * .55;
+    const cdp = await context.newCDPSession(page), samples: number[] = [];
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchStart',touchPoints:[{x,y}]});
+    for (const dx of [20,40,60,80,100,120,140]) {
+      await cdp.send('Input.dispatchTouchEvent', {type:'touchMove',touchPoints:[{x:x-dx,y}]});
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
+    }
+    expect(samples.slice(1).every((value, i) => value < samples[i] - .1)).toBe(true);
+    expect(samples.slice(1).every((value, i) => Math.abs(value - samples[i]) < 20)).toBe(true);
+    await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
+    await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label','第 2 张，共 3 张');
+    await expect(page.locator('.welcome-card[data-current=true] .welcome-window')).toHaveJSProperty('inert',false);
+    await test.info().attach('long-contact-positions',{body:JSON.stringify(samples),contentType:'application/json'});
+    await cdp.detach();
+  });
+});
+
+test('card contents blur continuously with depth and stay inside the rounded window', async ({ page }) => {
+  for (const [width,height] of [[390,844],[1440,900]]) {
+    await page.setViewportSize({width,height}); await page.goto('/introduction');
+    const first = page.locator('.welcome-card').first(), stage = (await page.locator('.welcome-stage').boundingBox())!;
+    await expect(first.locator('.welcome-window')).toHaveCSS('filter','blur(0px)');
+    await expect(page.locator('.welcome-card').nth(1).locator('.welcome-window')).toHaveCSS('filter','blur(3px)');
+    await page.mouse.move(stage.x + stage.width * .65, stage.y + 25); await page.mouse.down();
+    await page.mouse.move(stage.x + stage.width * .65 - (width < 700 ? 80 : 150), stage.y + 25, {steps:4});
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const blur = await first.locator('.welcome-window').evaluate(el => parseFloat(getComputedStyle(el).filter.slice(5)));
+    expect(blur).toBeGreaterThan(0); expect(blur).toBeLessThan(3);
+    for (const window of await page.locator('.welcome-window').all()) await expect(window).toHaveCSS('overflow','hidden');
+    await page.screenshot({path:test.info().outputPath(`transition-${width}.png`)});
+    await page.mouse.up();
+    await expect(page.locator('.welcome-card[data-current=true] .welcome-window')).toHaveCSS('filter','blur(0px)');
+  }
+});
+
+
+for (const locale of ['zh-Hans','en','ar'] as const) test.describe(`stable caption ${locale}`, () => {
+  test.use({locale});
+  test('different caption lengths do not resize the stage or move Start during transitions', async ({page}) => {
+    for (const [width,height] of [[320,700],[390,844],[1440,740]]) {
+      await page.setViewportSize({width,height}); await page.goto('/introduction');
+      await page.evaluate(()=>document.fonts.ready);
+      const rows:number[][]=[];
+      for (const index of [0,1,2,0]) {
+        await page.locator('.welcome-dots button').nth(index).click();
+        await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label',languagePacks[locale].onboarding.slideN.replace('{n}',String(index+1)));
+        rows.push(await page.evaluate(()=>[...document.querySelectorAll('.welcome-stage,.welcome-start')].flatMap(el=>{const r=el.getBoundingClientRect();return [r.y,r.height];})));
+      }
+      for(let column=0;column<rows[0].length;column++) expect(Math.max(...rows.map(row=>row[column]))-Math.min(...rows.map(row=>row[column]))).toBeLessThanOrEqual(1);
+    }
+  });
+});
+
+
+test('navigation uses the nearest loop copy and a fast release does not overshoot its card', async ({page}) => {
+  await page.clock.install(); await page.setViewportSize({width:1440,height:900}); await page.goto('/introduction');
+  await expect(page.locator('.welcome')).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())+1000));
+  await page.locator('.welcome-card[data-current=true] .desktop-nav a[href="/settings"]').click();
+  await page.clock.runFor(100);
+  expect(await page.locator('.welcome-card').first().evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeGreaterThan(0);
+  await page.clock.runFor(1000); await page.locator('.welcome-dots button').first().click(); await page.clock.runFor(1000);
+  const stage=(await page.locator('.welcome-stage').boundingBox())!, first=page.locator('.welcome-card').first();
+  const shift=Math.min(300,Math.max(24,(stage.width-(await first.boundingBox())!.width*.85)/2)), distance=Math.max(90,shift*1.1);
+  const x=stage.x+stage.width*.7,y=stage.y+25;
+  await page.mouse.move(x,y); await page.mouse.down();
+  for(const fraction of [.25,.5,.75,.99]) {await page.clock.runFor(16);await page.mouse.move(x-fraction*distance,y);}
+  await page.mouse.up();const positions:number[]=[];
+  for(let i=0;i<50;i++){await page.clock.runFor(16);positions.push(await first.evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));}
+  expect(Math.min(...positions)).toBeGreaterThanOrEqual(positions.at(-1)!-.1);
 });

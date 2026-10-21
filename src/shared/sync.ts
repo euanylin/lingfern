@@ -3,6 +3,7 @@ import { localeSchema } from './locale';
 import { profileIdSchema } from './repository';
 import { preferencesSchema } from './preferences';
 import { levelSchema } from './content';
+import { readPracticeSelection } from './practiceSelection';
 
 export const syncByteLimit = 250 * 1024;
 const id = z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/);
@@ -15,6 +16,7 @@ const settingPayload = z.discriminatedUnion('key', [
   z.object({ key: z.literal('theme'), value: z.enum(['system', 'light', 'dark']) }).strict(),
   z.object({ key: z.enum(['desktopNavDisplay', 'mobileNavDisplay']), value: z.enum(['text', 'icon', 'both']) }).strict(),
   z.object({ key: z.literal('onlineDictionary'), value: z.enum(['cambridge', 'oxford', 'wiktionary', 'merriam-webster']) }).strict(),
+  z.object({ key: z.enum(['readingPractice', 'listeningPractice']), value: z.string().max(6000).refine(value => { try { readPracticeSelection(value); return true; } catch { return false; } }) }).strict(),
 ]);
 export { settingPayload as syncSettingSchema };
 const base = z.object({ id, deviceId: id, counter: z.number().int().min(1).max(Number.MAX_SAFE_INTEGER), occurredAt: z.iso.datetime() });

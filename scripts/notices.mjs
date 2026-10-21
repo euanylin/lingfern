@@ -4,6 +4,8 @@ import path from 'node:path';
 const credits = JSON.parse(await readFile('content/about-credits.json', 'utf8'));
 const audioSources = JSON.parse(await readFile('content/audio-sources.json', 'utf8'));
 const lock = JSON.parse(await readFile('package-lock.json', 'utf8'));
+await mkdir('public/licenses/lingfern', { recursive: true });
+for (const file of ['LICENSE', 'NOTICE', 'BRAND.md', 'LICENSES/CC-BY-4.0.txt']) await copyFile(file, path.join('public/licenses/lingfern', path.basename(file)));
 const notices = ['# Installed dependency notices', '', 'Generated from the lockfile and packages actually installed on this machine. Platform-specific optional packages not installed are omitted. Original terms remain authoritative. Project content and logos have separate release terms.', ''];
 const development = ['# Development dependency notices', '', 'Build/test tools are not shipped in the frontend except selected Workbox components, which also appear in the runtime notices. Entries without bundled license text are explicitly marked for upstream review before redistribution of those tools. See Issues.md.', ''];
 for (const [directory, entry] of Object.entries(lock.packages).sort()) {

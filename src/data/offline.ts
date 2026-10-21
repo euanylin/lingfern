@@ -1,4 +1,5 @@
 import { loadRuntimeResources, runtimeResources } from './runtimeResources';
+import { notifyResourceChange } from './resourceChanges';
 
 export const offlineGroups = runtimeResources.offline.groups;
 const group = (id: string) => offlineGroups.find(item => item.id === id);
@@ -43,15 +44,19 @@ export async function installedOfflineGroups() {
 
 export async function offlineReady() { return (await installedOfflineGroups()).size > 0; }
 
-export async function removeOfflineResources(id: string, profileId: string) {
+export async function removeOfflineResources(ids: string | string[], profileId: string) {
   await loadRuntimeResources();
-  const item = group(id);
-  if (!item) throw new Error('UNKNOWN_PACKAGE');
+  const selected = [...new Set(typeof ids === 'string' ? [ids] : ids)];
+  if (selected.some(id => !group(id))) throw new Error('UNKNOWN_PACKAGE');
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
-  await (await import('./installationIntent')).saveInstallationIntent(profileId, id, false);
-  const name = offlineCacheName(id);
-  await caches.delete(name);
-  if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+  await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
+  try {
+    for (let offset = 0; offset < selected.length; offset += 4) await Promise.all(selected.slice(offset, offset + 4).map(async id => {
+      const name = offlineCacheName(id);
+      await caches.delete(name);
+      if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+    }));
+  } finally { notifyResourceChange(); }
 }
 
 export async function installOfflineResources(id: string, onProgress: (bytes: number) => void, signal: AbortSignal, profileId: string) {
@@ -94,9 +99,11 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
     }
     if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
     await cache.put(offlineMarker(id), new Response(item.version));
+    notifyResourceChange();
     return await offlineGroupReady(id);
   } catch (error) {
     await caches.delete(name);
+    notifyResourceChange();
     throw error;
   }
 }

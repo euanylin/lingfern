@@ -15,30 +15,38 @@ const sample = (page: Page) => page.evaluate(() => new Promise<{ present: boolea
   requestAnimationFrame(frame);
 }));
 
-test('task backdrop follows the mouse position rather than opening or keyboard focus', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
+for (const width of [1440, 900, 375]) test(`task backdrop follows the mouse across the entire card at ${width}px`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 900 });
   await page.goto('/today');
   const trigger = page.locator('.task-row').first().getByRole('button'), dialog = page.locator('.task-detail');
-  await page.mouse.move(20, 300);
+  await page.mouse.move(-10, -10);
   await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
   await expect(dialog).toHaveAttribute('data-blur', 'false');
   expect(await dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(0px)');
   const box = (await dialog.boundingBox())!;
-  await page.mouse.move(box.x + 60, 200);
-  await expect(dialog).toHaveAttribute('data-blur', 'true');
+  for (const point of [{ x: box.x + 2, y: 200 }, { x: box.x + box.width / 2, y: box.y + box.height - 2 }, { x: box.x + 60, y: 200 }]) {
+    await page.mouse.move(point.x, point.y);
+    await expect(dialog).toHaveAttribute('data-blur', 'true');
+  }
   await dialog.getByRole('button').first().focus();
-  await page.mouse.move(20, 300);
+  await page.mouse.move(-10, -10);
   await expect(dialog.getByRole('button').first()).toBeFocused();
   await expect(dialog).toHaveAttribute('data-blur', 'false');
   await expect.poll(() => dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(0px)');
   await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);
-  await trigger.click(); await expect(dialog).toHaveCSS('opacity', '1');
+  await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
   await expect(dialog).toHaveAttribute('data-blur', 'false');
   await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);
   // A stationary pointer is still inside when the panel slides underneath it.
   await page.mouse.move(box.x + 60, 200);
   await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
   await expect(dialog).toHaveAttribute('data-blur', 'true');
+  if (width === 1440) {
+    await page.setViewportSize({ width: 1190, height: 900 });
+    await expect(dialog).toHaveAttribute('data-blur', 'true');
+    await page.setViewportSize({ width, height: 900 });
+    await expect(dialog).toHaveAttribute('data-blur', 'true');
+  }
   await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);
 });
 
@@ -61,7 +69,7 @@ for (const [width, theme, locale, action] of [[1440, 'light', 'zh-Hans', 'escape
   }
   if (locale === 'ar') await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   const box = (await dialog.boundingBox())!;
-  const hovering = sample(page); await page.mouse.move(box.x + 60, 200); if (width < 1200) await page.mouse.down(); const entered = await hovering;
+  const hovering = sample(page); await page.mouse.move(box.x + 60, 200); const entered = await hovering;
   expect(new Set(entered.filter(frame => frame.blur > 0 && frame.blur < 3).map(frame => frame.blur)).size).toBeGreaterThanOrEqual(3);
   await page.screenshot({ path: `output/playwright/task-detail-motion-${browserName}-${width}-${theme}-${locale}.png` });
   const closing = sample(page);
@@ -103,7 +111,7 @@ for (const [width, theme, locale] of [[1440, 'light', 'zh-Hans'], [900, 'dark', 
   const trigger = page.locator('.task-row').first().getByRole('button'), dialog = page.locator('.task-detail'), body = dialog.locator('.task-detail-body');
   await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
   const box = (await dialog.boundingBox())!;
-  await page.mouse.move(box.x + 60, 200); if (width < 1200) await page.mouse.down();
+  await page.mouse.move(box.x + 60, 200);
   await expect.poll(() => dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(3px)');
   const original = await dialog.evaluate(el => ({ rect: el.getBoundingClientRect().toJSON(), radii: [getComputedStyle(el).borderTopLeftRadius, getComputedStyle(el).borderBottomLeftRadius] }));
   expect(await body.evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
@@ -145,7 +153,7 @@ for (const [width, theme, locale] of [[1440, 'light', 'zh-Hans'], [900, 'dark', 
 
 test.describe('touch input', () => {
   test.use({ hasTouch: true });
-  test('mobile task blur follows touch and mouse actions, then clears while idle', async ({ page }) => {
+  test('mobile task blur follows touch contact and mouse hover independently', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 350 }); await page.goto('/today');
     const trigger = page.locator('.task-row').first().getByRole('button'), dialog = page.locator('.task-detail');
     await trigger.tap(); await expect(dialog).toHaveCSS('opacity', '1');
@@ -160,10 +168,11 @@ test.describe('touch input', () => {
     await body.dispatchEvent('pointercancel', { pointerId: 4, pointerType: 'touch', bubbles: true });
     await expect(dialog).toHaveAttribute('data-blur', 'false');
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.mouse.move(100, 200); await expect(dialog).toHaveAttribute('data-blur', 'false');
+    await page.mouse.move(100, 200); await expect(dialog).toHaveAttribute('data-blur', 'true');
     await page.mouse.down(); await expect(dialog).toHaveAttribute('data-blur', 'true');
     expect(await dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(3px)');
-    await page.mouse.up(); await expect(dialog).toHaveAttribute('data-blur', 'false');
+    await page.mouse.up(); await expect(dialog).toHaveAttribute('data-blur', 'true');
+    await page.mouse.move(-10, -10); await expect(dialog).toHaveAttribute('data-blur', 'false');
     expect(await dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(0px)');
     expect(await dialog.evaluate(el => getComputedStyle(el, '::backdrop').transitionDuration)).toBe('0s');
     await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);

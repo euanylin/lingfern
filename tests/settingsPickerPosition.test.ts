@@ -34,3 +34,8 @@ it('uses reduced visual viewport offsets for zoom and keyboard bounds', () => {
   expect(point.left + 240).toBeLessThanOrEqual(viewport.left + viewport.width - 8);
   expect(point.top + 220).toBeLessThanOrEqual(viewport.top + viewport.height - 8);
 });
+
+it('keeps right-to-left triggers near the left edge inside the dialog clipping region', () => {
+  const point = pickerMenuPosition({ top: 220, right: 985, height: 44 }, { width: 240, height: 300 }, { left: 920, top: 0, width: 520, height: 900 });
+  expect(point).toEqual({ left: 928, top: 268 });
+});
