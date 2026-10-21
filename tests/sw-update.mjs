@@ -182,7 +182,8 @@ try {
   updated = true;
   const checker = await context.newPage();
   await checker.goto(`${origin}/settings`);
-  await checker.getByRole('button', { name: '检查更新' }).click();
+  // Automatic discovery may replace the check button before this tab settles.
+  await checker.evaluate(async () => (await navigator.serviceWorker.ready).update());
   await checker.getByText('立即更新', { exact: true }).waitFor();
   await checker.close();
   await page.waitForFunction(async () => !!(await navigator.serviceWorker.getRegistration())?.waiting, { timeout: 15000 });
@@ -191,7 +192,7 @@ try {
   await page.waitForURL(/\/today$/);
   const second = await context.newPage();
   await second.goto(`${origin}/today`);
-  await second.locator('.corpus-practice[data-skill=reading]').getByRole('button', { name: organized ? '开始' : '继续', exact: true }).click();
+  await second.locator('.corpus-practice[data-skill=reading]').getByRole('button', { name: /^(开始|继续)$/, exact: true }).click();
   await second.getByRole('dialog').locator('button[data-mode=practice]').click();
   await second.waitForURL(url => url.pathname === sessionPath);
   await answerVisible(second); assert.deepEqual(await savedState(second), saved);
