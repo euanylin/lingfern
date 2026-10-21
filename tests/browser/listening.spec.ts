@@ -1,5 +1,5 @@
+import { openSnapshot, focusQuestion, fillQuestion, playMaterial, submitWorkspace, verifyWorkspace } from './workspace';
 import { confirmTask } from './task-start';
-import { showLearningPane } from './learning-pane';
 import { selectPicker } from './picker';
 import { expect, test } from '@playwright/test';
 
@@ -10,77 +10,43 @@ test('four real recordings play from this site, save evidence and resume', async
     if (!url.startsWith('http://127.0.0.1:5173/')) { external.push(url); return route.abort(); }
     return route.continue();
   });
-  await page.goto('/today'); await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  const { lesson, id } = await openSnapshot(page, 'a1-listening');
   await expect(page.locator('.passage')).toHaveCount(0);
-  for (const word of ['book', 'pen', 'bag', 'cup']) {
-    await showLearningPane(page, 'question');
-    await page.getByRole('radio', { name: word, exact: true }).check();
-    await expect(page.getByRole('button', { name: '保存答案', exact: true })).toBeDisabled();
-    await expect(page.locator('blockquote')).toHaveCount(0);
-    // Exercise decoding and natural ended events without claiming audible playback.
-    await page.locator('audio').evaluate((el: HTMLAudioElement) => { el.muted = true; });
-    await showLearningPane(page, 'material');
-    await page.getByRole('button', { name: '播放 / 重听', exact: true }).click();
-    await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible();
-    expect(await page.locator('audio').evaluate((el: HTMLAudioElement) => el.ended && el.duration > 0)).toBe(true);
-    await showLearningPane(page, 'question');
-    await page.getByRole('button', { name: '保存答案', exact: true }).click();
-    await expect(page.locator('blockquote')).toHaveText(word);
-    await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-    if (word === 'book') {
-      await page.setViewportSize({ width: 375, height: 812 });
-      await page.screenshot({ path: 'output/playwright/listening-375x812-light-zh-Hans-one-answer.png', fullPage: true });
-      const url = page.url();
-      await page.getByRole('link', { name: '离开任务' }).click();
-      await expect(page).toHaveURL(/\/today$/);
-      await page.goto(url);
-      await expect(page.locator('blockquote')).toHaveText(word);
-      await showLearningPane(page, 'question');
-      await expect(page.getByText('播放请求次数: 1', { exact: true })).toBeVisible();
+  for (const [index, material] of lesson.materials.entries()) {
+    await fillQuestion(await focusQuestion(page, lesson, index), material.questions[0]);
+    await expect(page.locator('.workspace-review')).toHaveCount(0);
+    await playMaterial(page);
+    if (!index) {
+      await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).assistance.audioCompleted, id)).toBe(true);
+      await page.reload(); await expect(page.getByRole('radio', { name: 'book', exact: true })).toBeChecked();
     }
-    if (word !== 'cup') await page.getByRole('button', { name: '下一题' }).click();
   }
-  await expect(page.getByRole('heading', { name: '听力任务已保存' })).toBeVisible();
-  await page.getByRole('link', { name: '返回今日' }).click();
-  await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd')).toHaveText(['4', '4']);
+  await submitWorkspace(page); await verifyWorkspace(page, lesson);
+  await page.goto('/progress'); await expect(page.locator('.totals dd')).toHaveText(['4', '4']);
   expect(external).toEqual([]);
 });
 
 test('failed audio never permits scoring and recovers on an explicit replay', async ({ page }) => {
-  const exposureCount = () => page.evaluate(() => new Promise<number>((resolve, reject) => {
-    const open = indexedDB.open('lingfern');
-    open.onsuccess = () => {
-      const count = open.result.transaction('exposures').objectStore('exposures').count();
-      count.onsuccess = () => resolve(count.result);
-      count.onerror = () => reject(count.error);
-    };
-    open.onerror = () => reject(open.error);
-  }));
-  await page.goto('/today'); await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  // Load real preview media before failing the practice player's request.
+  const { lesson, id } = await openSnapshot(page, 'a1-listening', true);
   await page.route('**/audio/**/*.mp3', route => route.abort());
   await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.load());
-  expect(await exposureCount()).toBe(0);
-  await page.getByRole('radio', { name: 'book', exact: true }).check();
-  await page.getByRole('button', { name: '播放 / 重听', exact: true }).click();
+  await fillQuestion(await focusQuestion(page, lesson, 0), lesson.materials[0].questions[0]);
+  await page.locator('.audio-play').click();
   await expect(page.getByRole('alert')).toContainText('音频播放失败');
-  await expect(page.getByRole('button', { name: '保存答案', exact: true })).toBeDisabled();
-  expect(await exposureCount()).toBe(0);
-  await page.unroute('**/audio/**/*.mp3');
-  await page.locator('audio').evaluate((el: HTMLAudioElement) => { el.muted = true; });
-  await page.getByRole('button', { name: '播放 / 重听', exact: true }).click();
-  await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible();
-  expect(await exposureCount()).toBe(1);
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByText('播放请求次数: 2', { exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
+  await page.locator('button[type=submit]').click();
+  await expect(page.getByRole('alert').filter({ hasText: '播放' })).toBeVisible();
+  expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
+  await page.unroute('**/audio/**/*.mp3'); await playMaterial(page);
+  for (let index = 1; index < lesson.materials.length; index++) { await fillQuestion(await focusQuestion(page, lesson, index), lesson.materials[index].questions[0]); await playMaterial(page); }
+  await submitWorkspace(page);
+  const records = await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).attempts.where('sessionId').equals(id).toArray()), id);
+  expect(records).toHaveLength(4); expect(records[0].assistance.audioCompleted).toBe(true); expect(records[0].assistance.playbackRequests).toBe(2);
 });
-
 
 test('listening answers share the player page and playback waits, cancels and stops on leaving', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
-  await page.goto('/today');
-  await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  await openSnapshot(page, 'a1-listening', true);
   await expect(page.locator('.listening-layout')).toBeVisible();
   await expect(page.locator('.question-sheet-toggle')).toBeHidden();
   await expect(page.locator('.question-sheet-scrim')).toHaveCount(0);
@@ -89,7 +55,7 @@ test('listening answers share the player page and playback waits, cancels and st
   const play = page.getByRole('button', { name: '播放 / 重听', exact: true });
   await play.click();
   await expect(page.getByRole('button', { name: '取消播放', exact: true })).toBeEnabled();
-  await expect(page.getByRole('status')).toContainText('即将播放');
+  await expect(page.getByRole('status').filter({ hasText: '即将播放' })).toBeVisible();
   expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused && audio.currentTime === 0)).toBe(true);
   await page.getByRole('button', { name: '取消播放', exact: true }).click();
   await expect(play).toBeVisible();
@@ -104,9 +70,7 @@ test('listening answers share the player page and playback waits, cancels and st
   await play.click();
   await expect.poll(() => page.locator('audio').getAttribute('data-delay')).not.toBeNull();
   expect(Number(await page.locator('audio').getAttribute('data-delay'))).toBeGreaterThanOrEqual(1400);
-  await expect(page.getByRole('button', { name: '保存答案', exact: true })).toBeEnabled();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await expect(page.locator('button[type=submit]')).toBeEnabled();
   await play.click();
   await page.getByRole('link', { name: '离开任务', exact: true }).click();
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
@@ -136,7 +100,7 @@ test('listening layout uses shared controls in three locales, both themes and na
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
         const panel = await page.locator('.question-panel').boundingBox();
         const player = await page.locator('.audio-player').boundingBox();
-        expect(panel && player && player.y + player.height <= panel.y).toBe(true);
+        expect(panel && player && player.y >= panel.y && player.y + player.height <= panel.y + panel.height).toBe(true);
         await expect(page.locator('.question-panel')).toHaveCSS('position', 'static');
         for (const control of await page.locator('.audio-play,.audio-timeline input,.question-panel .option,.submit').all()) {
           const box = await control.boundingBox(); expect(box && box.height >= 44).toBe(true);

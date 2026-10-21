@@ -1,3 +1,4 @@
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 import { languagePacks } from '../../src/locales';
@@ -75,10 +76,11 @@ test('skipped choices stay unspecified and the English demonstration starts a re
   for (let index = 0; index < 4; index++) await page.getByRole('button', { name: 'Skip this step' }).click();
   await expect(page.getByRole('heading', { name: 'Try a short task' })).toBeVisible();
   await page.getByRole('button', { name: 'Try reading', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Where do we meet?' })).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await expect(page.getByRole('heading', { name: /Where do we meet\?/  })).toBeVisible();
   await page.getByRole('radio', { name: 'At the library.', exact: true }).check();
-  await page.getByRole('button', { name: 'Save answer', exact: true }).click();
-  await expect(page.getByRole('heading', { name: /Correct/ })).toBeVisible();
+  await completeWorkspace(page, lesson);
+  await expect(page.locator('.slot-result').first()).toContainText('Correct');
   const preferences = await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences);
   expect(preferences.reading).toBeUndefined(); expect(preferences.listening).toBeUndefined(); expect(preferences.purpose).toBeUndefined();
 });

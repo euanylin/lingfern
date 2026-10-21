@@ -1,10 +1,9 @@
+import { currentSnapshot, focusQuestion, openSnapshot, completeWorkspace } from './workspace';
 import { confirmTask } from './task-start';
 import { expect, test } from '@playwright/test';
 
 async function startLongReading(page: import('@playwright/test').Page) {
-  await page.goto('/today');
-  await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '保留分歧与责任' }) }).getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
+  await openSnapshot(page, 'c2-reading');
   await expect(page.locator('.learning-grid')).toBeVisible();
 }
 
@@ -61,24 +60,19 @@ for (const workspace of [false, true]) test(`mobile sheet keeps its frame throug
   expect(bottom).toBeCloseTo(552, 0);
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(panel).toHaveCSS('position', 'sticky');
-  await expect(panel.locator('.question-sheet-content')).toHaveCSS('overscroll-behavior-y', workspace ? 'contain' : 'auto');
+  await expect(panel.locator('.question-sheet-content')).toHaveCSS('overscroll-behavior-y', 'contain');
 });
 
-for (const width of [375, 1440]) test(`legacy reading reveals the next prompt after scrolling feedback at ${width}px`, async ({ page }, testInfo) => {
+for (const width of [375, 1440]) test(`saved reading jumps to a reachable prompt after scrolling at ${width}px`, async ({ page }, testInfo) => {
   await page.setViewportSize({ width, height: width < 1200 ? 410 : 650 });
   await startLongReading(page);
-  const panel = page.locator('.question-panel');
-  if (width < 1200) await panel.locator('.question-sheet-toggle').click();
-  await page.getByRole('radio').first().check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.locator('.feedback h2').first()).toBeVisible();
-  await page.getByRole('button', { name: '下一题', exact: true }).click();
-  await expect(panel.locator('.question-number')).toContainText('2');
-  const prompt = panel.locator('form>h2');
-  await expect(prompt).toBeFocused();
+  const lesson = await currentSnapshot(page);
+  const section = await focusQuestion(page, lesson, 1);
+  await expect(section.locator('h2')).toBeFocused();
+  await expect(page.locator('.question-number bdi')).toHaveText('2/4');
   await page.screenshot({ path: testInfo.outputPath('next-prompt.png') });
   await expect.poll(async () => {
-    const frame = (await panel.locator('.question-sheet-content').boundingBox())!, heading = (await prompt.boundingBox())!;
+    const frame = (await page.locator('.question-sheet-content').boundingBox())!, heading = (await section.locator('h2').boundingBox())!;
     return heading.y >= frame.y && heading.y + heading.height <= frame.y + frame.height;
   }).toBe(true);
 });
@@ -101,8 +95,8 @@ test('learning header keeps the regular logo size without an extra page label', 
 test('mobile answer sheet peeks from below, expands, and closes without losing reading or answers', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await startLongReading(page);
-  const material = page.locator('#learning-material');
-  const sheet = page.locator('#learning-question');
+  const material = page.locator('.workspace-material');
+  const sheet = page.locator('.workspace-questions');
   const toggle = sheet.locator('.question-sheet-toggle');
   const corners = () => sheet.evaluate(el => { const css = getComputedStyle(el); return [css.borderBottomLeftRadius, css.borderBottomRightRadius, css.borderTopLeftRadius]; });
   await expect.poll(corners).toEqual(['0px', '0px', '16px']);
@@ -133,11 +127,15 @@ test('mobile answer sheet peeks from below, expands, and closes without losing r
   await expect(material).toBeVisible();
   expect(await page.evaluate(() => scrollY)).toBe(readingPosition);
   await page.getByRole('radio').first().check();
+  expect(await sheet.evaluate(element => element.scrollTop)).toBe(0);
+  await expect(sheet.locator('.question-number')).toBeInViewport();
   await page.screenshot({ path: 'output/playwright/learning-sheet-open-375x812-light-zh-Hans.png' });
   await page.mouse.move(6, 100);
   await expect(sheet).toHaveAttribute('data-open', 'true');
   await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
   await expect(page.locator('.question-sheet-scrim')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect.poll(() => sheet.evaluate(element => element.getAnimations().every(animation => animation.playState !== 'running'))).toBe(true);
+  await expect.poll(() => page.locator('.question-sheet-scrim').evaluate(element => element.getAnimations().every(animation => animation.playState !== 'running'))).toBe(true);
   const marker = (await sheet.locator('.question-number > span').boundingBox())!;
   await page.mouse.move(marker.x + marker.width / 2, marker.y + marker.height / 2);
   await expect(page.locator('.question-sheet-scrim')).toHaveCSS('backdrop-filter', 'blur(0px)');
@@ -156,7 +154,7 @@ test('mobile answer sheet peeks from below, expands, and closes without losing r
   await page.keyboard.press('Escape');
   await expect(sheet).toHaveAttribute('data-open', 'false');
   await toggle.click();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await completeWorkspace(page);
   await expect(page.locator('.feedback h2').first()).toBeVisible();
   await page.setViewportSize({ width: 320, height: 500 });
   await expect(sheet).toHaveCSS('position', 'fixed');
@@ -183,7 +181,7 @@ test('desktop question number stays visible through page and long feedback scrol
   await page.setViewportSize({ width: 1440, height: 900 });
   await startLongReading(page);
   await page.getByRole('radio').first().check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await completeWorkspace(page);
   await expect(page.locator('.feedback h2').first()).toBeVisible();
   for (const [width, height] of [[1440, 900], [1200, 900], [1440, 650]]) {
     await page.setViewportSize({ width, height });
@@ -194,7 +192,7 @@ test('desktop question number stays visible through page and long feedback scrol
     });
     const number = page.locator('.question-progress');
     expect(await page.locator('.question-sheet-content').evaluate(el => el.scrollHeight > el.clientHeight && el.scrollTop > 0)).toBe(true);
-    await expect(number.locator('.question-number > span')).toHaveText('1 / 4');
+    await expect(number.locator('.question-number bdi')).toHaveText('4/4');
     await expect(page.locator('.question-panel').locator('.question-progress')).toHaveCount(1);
     await expect(number).toBeInViewport();
     expect(await number.evaluate(el => {
@@ -257,17 +255,13 @@ test('C1 desktop keeps the second question number on the answer card while readi
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.goto('/today');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '读懂支持与承诺' }) }).getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
-  await page.locator('input[type=radio]').first().check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await page.getByRole('button', { name: '下一题' }).click();
-  await page.locator('input[type=radio]').first().check();
+  const { lesson } = await openSnapshot(page, 'c1-reading');
+  const section = await focusQuestion(page, lesson, 1); await section.getByRole('radio').first().check();
   await page.evaluate(() => scrollTo(0, 650));
   await expect(page.locator('.question-sheet-toggle')).toBeHidden();
   const card = page.locator('.question-panel');
   const number = card.locator('.question-progress');
-  await expect(number.locator('.question-number > span')).toHaveText('2 / 4');
+  await expect(number.locator('.question-number bdi')).toHaveText('2/4');
   await expect(number).toBeInViewport();
   expect(await number.evaluate(el => {
     const marker = el.getBoundingClientRect();

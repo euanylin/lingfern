@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { lessonSchema } from '../../src/shared/content';
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { selectPicker } from './picker';
 
 for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay English in all interface languages, including saved lessons`, async ({ page }) => {
@@ -15,7 +15,8 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
   await expect(row).not.toContainText(lesson.goal['zh-Hans']);
   await row.getByRole('button').click();
   await expect(page.getByRole('dialog')).toContainText(lesson.goal.en);
-  await confirmTask(page);
+  await page.getByRole('dialog').locator('header button').click();
+  await openSnapshot(page, `${level}-reading`);
   const url = page.url();
   const id = url.split('/').at(-1)!;
   for (const locale of ['zh-Hans', 'zh-Hant', 'en'] as const) {
@@ -30,9 +31,9 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
     await expect(page.locator('.teaching')).toContainText(lesson.teaching!.en);
     await expect(page.locator('.teaching')).toContainText('Before you start');
     await expect(page.locator('.teaching')).toContainText(lesson.workedExample!.en.replace(/^Unscored example:\s*/, ''));
-    await expect(page.getByRole('button', { name: locale === 'en' ? 'Save answer' : locale === 'zh-Hant' ? '儲存答案' : '保存答案', exact: true })).toBeVisible();
+    await expect(page.locator('.workspace-question')).toHaveCount(2);
   }
-  await page.locator('.hint').click();
+  await page.locator('.hint').first().click();
   await expect(page.locator('.hint-text')).toHaveText(question.hints![0].en);
   await expect(page.locator('.hint-text')).toHaveAttribute('lang', 'en');
   // Render English without changing legacy multilingual snapshots.
@@ -40,10 +41,9 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
     const { sessions } = await import('/src/data/db.ts' as string);
     return (await sessions.get(id)).lesson;
   }, id)).toEqual(lesson);
-  await page.locator('.option input').nth(question.answer).check();
-  await page.getByRole('button', { name: 'Save answer', exact: true }).click();
+  await completeWorkspace(page, lesson);
   await expect(page.locator('.feedback')).toContainText(question.explanations[question.answer].en);
-  await page.locator('.ai-handoff > summary').click();
+  await page.locator('.ai-handoff > summary').first().click();
   await expect(page.locator('.ai-preview').first()).toContainText(lesson.goal.en);
   await expect(page.locator('.ai-preview').first()).toContainText(question.explanations[question.answer].en);
   await page.goto('/progress');

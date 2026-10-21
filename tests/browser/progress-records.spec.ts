@@ -1,4 +1,4 @@
-import { confirmTask } from './task-start';
+import { seedLegacyAnswers } from './workspace';
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { selectPicker } from './picker';
@@ -7,13 +7,7 @@ const reading = JSON.parse(readFileSync('tests/fixtures/content/a1-reading.json'
 
 test('progress separates skills and shows first saved response without claiming goal completion', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/today');
-  await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: reading.title['zh-Hans'] }) }).getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
-  await page.locator('input[type=radio]').nth(reading.materials[0].questions[0].answer).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  await page.getByRole('link', { name: '离开任务' }).click();
+  await seedLegacyAnswers(page, 1);
   await page.goto('/progress');
   await expect(page.locator('.progress-cell [role=img]').filter({ hasText: /^●$/ })).toHaveCount(0);
   const summaries = page.locator('.progress-skill-summary > section');
@@ -52,15 +46,7 @@ test('progress separates skills and shows first saved response without claiming 
 
 test('a completed goal material gets a dated review without a level claim', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-27T10:00:00Z') });
-  await page.goto('/today');
-  await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: reading.title['zh-Hans'] }) }).getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
-  for (const [index, question] of reading.materials.flatMap(material => material.questions).entries()) {
-    await page.locator('input[type=radio]').nth(question.answer).check();
-    await page.getByRole('button', { name: '保存答案' }).click();
-    if (index < 3) await page.getByRole('button', { name: '下一题' }).click();
-  }
-  await page.getByRole('link', { name: '返回今日' }).click();
+  await seedLegacyAnswers(page, 4);
   await page.goto('/progress');
   await page.getByRole('button', { name: `查看作答: ${reading.goal['zh-Hans']}` }).click();
   await expect(page.locator('#progress-record-detail')).toContainText('独立完成的不同材料: 1');

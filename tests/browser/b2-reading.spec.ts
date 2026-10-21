@@ -1,35 +1,18 @@
-import { confirmTask } from './task-start';
-import { showLearningPane } from './learning-pane';
 import { expect, test } from '@playwright/test';
+import { openSnapshot, completeWorkspace } from './workspace';
 
 test('B2 survey cases retain sample limits and distinguish a pilot from an unsupported claim', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/today');
-  await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '读懂调查能支持什么' }) }).getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
-  await expect(page.getByRole('heading', { name: 'Which conclusion is supported by the survey as conducted?' })).toBeVisible();
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
-  await expect(page.locator('.feedback blockquote')).toContainText(['Thirty-two volunteers', 'responding volunteers']);
-  await page.evaluate(() => scrollTo(0, 0));
-  await page.screenshot({ path: 'output/playwright/b2-reading-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
-  await page.setViewportSize({ width: 375, height: 812 });
-  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
-  await page.screenshot({ path: 'output/playwright/b2-reading-375x812-light-zh-Hans-one-answer.png', fullPage: true });
-  await page.getByRole('button', { name: '下一题' }).click();
-  await showLearningPane(page, 'question');
-  await page.locator('input[type=radio]').nth(1).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toContainText(['small repeat', 'proven campus-wide success']);
-  await page.getByRole('button', { name: '下一题' }).click();
-  await showLearningPane(page, 'question');
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toContainText(['Forty visitors', 'did not collect responses']);
-  await page.getByRole('button', { name: '下一题' }).click();
-  await showLearningPane(page, 'question');
-  await page.locator('input[type=radio]').nth(2).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '阅读任务已保存' })).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'b2-reading');
+  await completeWorkspace(page, lesson);
+  const reviews = page.locator('.workspace-review');
+  await expect(reviews.nth(0).locator('blockquote')).toHaveCount(2);
+  await expect(reviews.nth(0).locator('blockquote')).toContainText(['Thirty-two volunteers', 'responding volunteers']);
+  await expect(reviews.nth(1).locator('blockquote')).toContainText(['small repeat', 'proven campus-wide success']);
+  await expect(reviews.nth(2).locator('blockquote')).toContainText(['Forty visitors', 'did not collect responses']);
+  await expect(page.locator('.slot-result')).toHaveText(Array(4).fill(/✓/));
+  for (const width of [1440, 375]) {
+    await page.setViewportSize({ width, height: 812 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+    await page.screenshot({ path: test.info().outputPath(`b2-reading-${width}.png`) });
+  }
 });

@@ -99,7 +99,7 @@ for (const [width, theme, locale] of [[1440, 'light', 'zh-Hans'], [375, 'dark', 
     await startReading(page, locale);
     await expect(page.locator('.session-title')).toHaveCount(0);
     await expect(page.locator('.session-meta')).toHaveCount(0);
-    await expect(page.locator('.question-number bdi')).toHaveText('1 / 4');
+    await expect(page.locator('.question-number bdi')).toHaveText(/^1\/(?:[1-9]|1[0-2])$/);
     await expect(page.locator('.paragraph-number')).toHaveCount(0);
     await expect(page.locator('main h1')).toHaveCount(1);
     const title = page.locator('.reading-workspace > h1');
@@ -154,9 +154,12 @@ for (const theme of ['light', 'dark'] as const) {
     const marker = sheet.locator('.question-number > span');
     const press = async () => {
       const box = (await marker.boundingBox())!;
-      await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+      const point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+      expect(await page.evaluate(point => !!document.elementFromPoint(point.x, point.y)?.closest('.question-panel'), point), JSON.stringify(await page.evaluate(point => document.elementFromPoint(point.x, point.y)?.outerHTML, point))).toBe(true);
+      await page.mouse.move(point.x, point.y);
       await page.mouse.down();
     };
+    await expect.poll(() => sheet.evaluate(element => element.getAnimations().every(animation => animation.playState !== 'running'))).toBe(true);
     const opening = sample(); await press(); const entered = await opening;
     expect(new Set(entered.filter(f => f.blur > 0 && f.blur < 4).map(f => f.blur)).size).toBeGreaterThanOrEqual(3);
     await expect(scrim).toHaveCSS('backdrop-filter', 'blur(4px)');

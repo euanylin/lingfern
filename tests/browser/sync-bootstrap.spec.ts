@@ -1,15 +1,10 @@
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 test('legacy task and review originals are captured once and their IDs survive actual ZIP restoration', async ({ page }) => {
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  for (const [index, answer] of [1, 2, 1, 2].entries()) {
-    await page.getByRole('radio').nth(answer).check();
-    await page.getByRole('button', { name: '保存答案', exact: true }).click();
-    if (index < 3) await page.getByRole('button', { name: '下一题', exact: true }).click();
-  }
+  const { lesson } = await openSnapshot(page, 'a1-reading');
+  await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.goto('/settings');
   const reviewId = await page.evaluate(async () => {
@@ -50,10 +45,8 @@ test('legacy task and review originals are captured once and their IDs survive a
 });
 
 test('failed legacy event capture leaves local learning records readable', async ({ page }) => {
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio').nth(1).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
   await page.evaluate(async () => {
@@ -65,10 +58,10 @@ test('failed legacy event capture leaves local learning records readable', async
     (window as unknown as { removeSyncFailure: () => void }).removeSyncFailure = () => data.syncEvents.hook('creating').unsubscribe(fail);
   });
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('2');
   await expect(page.getByRole('alert')).toBeVisible();
   expect(await page.evaluate(async () => {
     const path = '/src/data/db.ts'; return (await import(path)).attempts.count();
-  })).toBe(1);
+  })).toBe(2);
   await page.evaluate(() => (window as unknown as { removeSyncFailure: () => void }).removeSyncFailure());
 });

@@ -1,4 +1,4 @@
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { readFile } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
@@ -13,10 +13,8 @@ for (const [locale, profileLabel, exportLabel, importLabel, copyLabel, done] of 
   let syncWrites = 0;
   await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1, login: 'learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: [] } }));
   page.on('request', request => { if (request.method() === 'POST' && new URL(request.url()).pathname.startsWith('/api/sync/')) syncWrites++; });
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.goto('/settings');
   const name = "Reading and listening practice · Personal learning profile · Daily review record";
@@ -42,7 +40,7 @@ for (const [locale, profileLabel, exportLabel, importLabel, copyLabel, done] of 
     await expect(page.getByRole('status').filter({ hasText: done })).toBeVisible();
   };
   const original = await download();
-  expect(original.answers).toHaveLength(1);
+  expect(original.answers).toHaveLength(2);
   for (const colorScheme of ['light', 'dark'] as const) {
     await page.setViewportSize({ width: colorScheme === 'light' ? 1440 : 375, height: 900 });
     await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
@@ -60,6 +58,6 @@ for (const [locale, profileLabel, exportLabel, importLabel, copyLabel, done] of 
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `output/playwright/backup-long-name-${locale}-${colorScheme}.png`, fullPage: true });
   }
-  expect(await page.evaluate(async () => { const path = '/src/data/db.ts'; const data = await import(path); return { name: (await data.profiles.get('local-guest')).name, answers: await data.attempts.where('profileId').equals('local-guest').count() }; })).toEqual({ name, answers: 1 });
+  expect(await page.evaluate(async () => { const path = '/src/data/db.ts'; const data = await import(path); return { name: (await data.profiles.get('local-guest')).name, answers: await data.attempts.where('profileId').equals('local-guest').count() }; })).toEqual({ name, answers: 2 });
   expect(syncWrites).toBe(0);
 });

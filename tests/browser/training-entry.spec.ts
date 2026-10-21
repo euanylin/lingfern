@@ -1,3 +1,4 @@
+import { fillWorkspace, submitWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { selectPicker } from './picker';
@@ -65,26 +66,11 @@ test('isolated draft provider audio uses test controls without approving the sou
   await expect(page.locator('.session-meta')).toHaveCount(0);
   await expect(page.locator('.audio-timeline input[type=range]')).toBeVisible();
   await expect(page.locator('.teaching,.hint,.ai-handoff,.self-assessment,.selection-dictionary,.check-end')).toHaveCount(0);
-  const questions = providerSnapshot.materials.flatMap((material: { questions: { options: string[]; answer: number }[] }) => material.questions);
-  for (const [index, question] of questions.entries()) {
-    await page.getByRole('radio', { name: question.options[question.answer], exact: true }).check();
-    if (index === 0 || index === draft.materials[0].questions.length) {
-      await expect(page.getByRole('button', { name: 'Save answer', exact: true })).toBeDisabled();
-      await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.playbackRate = 16; });
-      await page.getByRole('button', { name: 'Play / replay', exact: true }).click();
-      await expect(page.getByText('Recording played. You can choose and save.', { exact: true })).toBeVisible();
-    }
-    await page.getByRole('button', { name: 'Save answer', exact: true }).click();
-    if (index < questions.length - 1) {
-      await expect(page.getByText('Response saved. Answers appear after the check.', { exact: true })).toBeVisible();
-      await expect(page.locator('.check-result')).toHaveCount(0);
-      await page.reload();
-      await page.getByRole('button', { name: 'Next question', exact: true }).click();
-      await expect(page.locator('.feedback')).toHaveCount(0);
-    }
-  }
-  await expect(page.getByRole('heading', { name: 'Check finished', exact: true })).toBeVisible();
-  await expect(page.locator('.check-result')).toHaveCount(5);
+  await fillWorkspace(page);
+  await expect(page.locator('.workspace-review,.feedback')).toHaveCount(0);
+  await page.reload(); await expect(page.locator('.workspace-review,.feedback')).toHaveCount(0);
+  await fillWorkspace(page); await submitWorkspace(page);
+  await expect(page.locator('.workspace-review')).toHaveCount(5);
   const state = await page.evaluate(async () => {
     const { sessions, attempts } = await import('/src/data/db.ts' as string);
     const session = (await sessions.toArray())[0];
@@ -96,5 +82,5 @@ test('isolated draft provider audio uses test controls without approving the sou
   expect(state).toEqual({ skill: 'listening', mode: 'test', reviewStatus: 'draft', checkGroup: false, practiceGroup: false,
     sameQuestionIds: JSON.stringify(providerSnapshot.materials.flatMap((material: { questions: { id: string }[] }) => material.questions.map(question => question.id))), helpers: false,
     attempts: Array.from({ length: 5 }, () => ({ correct: true, audioCompleted: true, hints: 0, dictionary: false })) });
-  await page.reload(); await expect(page.locator('.check-result')).toHaveCount(5);
+  await page.reload(); await expect(page.locator('.workspace-review')).toHaveCount(5);
 });

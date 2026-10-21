@@ -1,4 +1,4 @@
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
@@ -40,11 +40,8 @@ test('disconnect confirmation can cancel and reports upstream revocation failure
     expect(route.request().postDataJSON()).toEqual({ confirm: true });
     await route.fulfill({ json: { disconnected: true, providerRevoked: false } });
   });
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio').first().check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.locator('.feedback h2').first()).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
   await page.goto('/settings');
   page.once('dialog', dialog => dialog.dismiss());
   await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
@@ -55,7 +52,7 @@ test('disconnect confirmation can cancel and reports upstream revocation failure
   await expect(page.locator('.github-identity')).toContainText('无法确认 GitHub 撤销成功');
   await expect(page.getByRole('link', { name: '在 GitHub 管理授权' })).toHaveAttribute('href', 'https://github.com/settings/apps');
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('1');
+  await expect(page.locator('.totals dd').first()).toHaveText('2');
 });
 
 test('private repository binding is inspected before confirmation and disconnect stays separate', async ({ page }) => {

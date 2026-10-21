@@ -3,15 +3,20 @@ import { readFileSync } from 'node:fs';
 import { selectPicker } from './picker';
 
 const raw = JSON.parse(readFileSync(new URL('../fixtures/content/a1-reading.json', import.meta.url), 'utf8'));
+const material = raw.materials[0], original = material.questions[0], start = material.blocks[0].text.indexOf('library');
+material.questions[0] = { kind: 'completion', id: original.id, blockId: original.blockId,
+  prompt: 'Complete the meeting place.', answer: 'library', accepted: ['library'], evidence: { start, end: start + 7 },
+  explanation: original.explanations[original.answer], hints: original.hints };
+
 
 async function editingAboveKeyboard(page: Page, workspace: boolean, width: number) {
   await page.setViewportSize({ width, height: 640 }); await page.goto('/today');
   const id = await page.evaluate(async ({ raw, workspace }) => {
-    const { organizePractice } = await import('/src/core/practiceOrganization.ts' as string);
     const { createSession, sessions } = await import('/src/data/db.ts' as string);
     const source = structuredClone(raw);
     for (const material of source.materials) material.blocks[0].text += ' This separate practice paragraph keeps the article available for free scrolling.'.repeat(80);
-    const lesson = organizePractice(source);
+    const lesson = source;
+    if (workspace) lesson.organization = 'material-v1';
     if (!workspace) delete lesson.organization;
     const position = lesson.materials.flatMap((m: { questions: { kind?: string }[] }) => m.questions).findIndex((q: { kind?: string }) => q.kind === 'completion');
     const session = await createSession(lesson); await sessions.update(session.id, { position }); return session.id;
@@ -74,9 +79,9 @@ for (const [workspace, width, locale, scheme, motion] of [
   await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
   const id = await page.evaluate(async ({ raw, workspace }) => {
-    const { organizePractice } = await import('/src/core/practiceOrganization.ts' as string);
     const { createSession, sessions } = await import('/src/data/db.ts' as string);
-    const lesson = organizePractice(raw);
+    const lesson = structuredClone(raw);
+    if (workspace) lesson.organization = 'material-v1';
     const position = lesson.materials.flatMap((m: { questions: { kind?: string }[] }) => m.questions).findIndex((q: { kind?: string }) => q.kind === 'completion');
     if (position < 0) throw new Error('Missing existing completion fixture');
     if (!workspace) delete lesson.organization;

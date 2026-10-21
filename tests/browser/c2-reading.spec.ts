@@ -1,37 +1,20 @@
-import { confirmTask } from './task-start';
 import { expect, test } from '@playwright/test';
+import { openSnapshot, focusQuestion, fillQuestion, submitWorkspace } from './workspace';
 
 test('C2 draft compares two sources, saves evidence and transfers to a new pair', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/today');
-  const task = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '保留分歧与责任' }) });
-  await task.getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
+  const { lesson } = await openSnapshot(page, 'c2-reading');
   await expect(page.locator('.material h3')).toHaveText(['Mara · Access lead', 'Elias · Collections archivist']);
   await expect(page.locator('.passage')).toHaveCount(2);
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
-  await expect(page.locator('.evidence-source')).toHaveText(['Mara · Access lead', 'Elias · Collections archivist']);
-  await page.screenshot({ path: 'output/playwright/c2-reading-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
-  const savedUrl = page.url();
-  await page.getByRole('link', { name: '离开任务' }).click();
-  await expect(page).toHaveURL(/\/today$/);
-  await page.goto(savedUrl);
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
-  await page.getByRole('button', { name: '下一题' }).click();
-  await expect(page.getByRole('heading', { name: 'Which paraphrase keeps Elias’s allocation of responsibility?' })).toBeVisible();
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await page.getByRole('button', { name: '下一题' }).click();
-  await expect(page.getByRole('heading', { name: 'Which summary preserves both writers’ position on interim alerts?' })).toBeVisible();
-  await expect(page.locator('.material h3')).toHaveText(['Nia · Community liaison', 'Owen · Translation reviewer']);
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
-  await page.getByRole('button', { name: '下一题' }).click();
-  await expect(page.getByRole('heading', { name: 'Which change would misrepresent Owen’s allocation of responsibility?' })).toBeVisible();
-  await page.locator('input[type=radio]').nth(1).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '阅读任务已保存' })).toBeVisible();
+  const questions = lesson.materials.flatMap(material => material.questions);
+  for (const [index, question] of questions.entries()) {
+    const section = await focusQuestion(page, lesson, index);
+    await expect(section.locator('h2')).toContainText(question.prompt);
+    if (index === 2) await expect(page.locator('.material h3')).toHaveText(['Nia · Community liaison', 'Owen · Translation reviewer']);
+    await fillQuestion(section, question);
+    if (!index) { await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备'); await page.reload(); await expect(page.getByRole('radio').first()).toBeChecked(); }
+  }
+  await submitWorkspace(page);
+  for (const index of [0, 2]) await expect(page.locator('.workspace-review').nth(index).locator('blockquote')).toHaveCount(2);
+  await expect(page.locator('.slot-result')).toHaveText(Array(4).fill(/✓/));
+  await page.reload(); await expect(page.locator('.workspace-review')).toHaveCount(4);
 });

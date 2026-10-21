@@ -1,4 +1,5 @@
 import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 
 test('task lists use available width without spilling on smaller screens', async ({ page }) => {
@@ -19,9 +20,7 @@ test('task lists use available width without spilling on smaller screens', async
 
 test('history cards remain separate without duplicate borders', async ({ page }) => {
   await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true); await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page).toHaveURL(/\/today$/);
   await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始' }).click(); await confirmTask(page);

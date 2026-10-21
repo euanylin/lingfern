@@ -1,5 +1,5 @@
+import { seedLegacyAnswers } from './workspace';
 import { expect, test } from '@playwright/test';
-import { confirmTask } from './task-start';
 import { selectPicker } from './picker';
 import { fernGrowth } from '../../src/core/fern';
 
@@ -10,12 +10,7 @@ test('saved practice and unique lookups grow the same SVG through intermediate s
   await expect(fern).toHaveAttribute('aria-label', /阅读 0 次，听力 0 次，查询 0 项/);
   const initial = await stem.getAttribute('d');
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.locator('.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check(); await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  await page.getByRole('button', { name: '下一题' }).click();
-  await page.getByRole('radio', { name: 'A student card.' }).check(); await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await page.getByRole('link', { name: '离开任务' }).click();
+  await seedLegacyAnswers(page, 2); await page.goto('/today');
   await expect(fern).toHaveAttribute('aria-label', /阅读 1 次/);
   await expect(fern).toHaveAttribute('data-growth', String(fernGrowth(.5, 0, 0).stem));
   expect(await stem.getAttribute('d')).not.toEqual(initial);

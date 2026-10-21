@@ -1,15 +1,11 @@
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 
 test('saved feedback can be selectively exported without contacting an AI site', async ({ page }) => {
   const external: string[] = [];
   page.on('request', request => { if (new URL(request.url()).hostname !== '127.0.0.1') external.push(request.url()); });
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await expect(page.getByText('询问 AI')).toHaveCount(0);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
   await page.getByText('询问 AI').first().click();
   await expect(page.getByRole('heading', { name: '上下文阅读视图' })).toBeVisible();
   await page.getByRole('checkbox', { name: '材料' }).uncheck();
@@ -42,19 +38,17 @@ test('saved feedback can be selectively exported without contacting an AI site',
 });
 
 test('external feedback is reviewed and saved as a note without changing the answer', async ({ page }) => {
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
+  const handoff = page.locator('.ai-handoff').first();
   await page.getByText('询问 AI').first().click();
-  await page.getByLabel('粘贴纯文本反馈').fill('The location clue supports the answer.');
+  await handoff.getByLabel('粘贴纯文本反馈').fill('The location clue supports the answer.');
   await page.getByRole('button', { name: '检查反馈' }).click();
   await expect(page.getByRole('paragraph').filter({ hasText: 'The location clue supports the answer.' })).toBeVisible();
   await page.getByRole('button', { name: '保存为笔记' }).click();
   await expect(page.getByRole('status').filter({ hasText: '反馈已保存为笔记。' })).toBeVisible();
   await expect(page.getByRole('paragraph').filter({ hasText: 'The location clue supports the answer.' })).toBeVisible();
-  await page.getByLabel('选择 JSON 反馈').setInputFiles({ name: 'feedback.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ explanation: 'Check the time phrase.', evidence: [{ blockId: 'unknown', comment: 'Unverified.' }] })) });
+  await handoff.getByLabel('选择 JSON 反馈').setInputFiles({ name: 'feedback.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ explanation: 'Check the time phrase.', evidence: [{ blockId: 'unknown', comment: 'Unverified.' }] })) });
   await expect(page.getByText('材料或目标引用不存在，按普通文字保存。')).toBeVisible();
   await page.getByRole('button', { name: '保存为笔记' }).click();
   await expect(page.getByRole('status').filter({ hasText: '反馈已保存为笔记。' })).toBeVisible();
@@ -63,19 +57,17 @@ test('external feedback is reviewed and saved as a note without changing the ans
   await expect(page.getByRole('paragraph').filter({ hasText: 'The location clue supports the answer.' })).toBeVisible();
   await expect(page.getByRole('paragraph').filter({ hasText: 'Check the time phrase.' })).toBeVisible();
   await expect(page.getByText('材料或目标引用不存在，按普通文字保存。')).toBeVisible();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).attempts.toArray()).map((attempt: {correct:boolean; answer:number}) => ({correct:attempt.correct,answer:attempt.answer})))).toEqual([{correct:true,answer:1}]);
+  await expect(page.locator('.slot-result')).toHaveText([/✓/, /✓/]);
+  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).attempts.toArray()).map((attempt: {correct:boolean; answer:number}) => ({correct:attempt.correct,answer:attempt.answer})))).toEqual([{correct:true,answer:1},{correct:true,answer:1}]);
 });
 
 test('material excerpt is selected from the original text and clearly labelled in export', async ({ page }) => {
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
+  const handoff = page.locator('.ai-handoff').first();
   await page.getByText('询问 AI').first().click();
-  await page.getByText('选取材料节选').click();
-  await page.locator('.ai-excerpt textarea').evaluate(element => {
+  await handoff.getByText('选取材料节选').click();
+  await handoff.locator('.ai-excerpt textarea').evaluate(element => {
     const input = element as HTMLTextAreaElement;
     const start = input.value.indexOf('at the library');
     input.focus();

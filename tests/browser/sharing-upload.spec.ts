@@ -1,17 +1,14 @@
-import { confirmTask } from './task-start';
+import { showLearningPane } from './learning-pane';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test, type Page } from '@playwright/test';
 import { selectPicker } from './picker';
-import { showLearningPane } from './learning-pane';
 
 const connectionId = '7c57514e-a61f-4f0b-9e97-12d33535cb89';
 async function openUpload(page: Page) {
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await showLearningPane(page, 'question');
-  await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await page.locator('.ai-handoff>summary').click();
-  await page.locator('.sharing-upload>summary').click();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
+  await page.locator('.ai-handoff>summary').first().click();
+  await page.locator('.sharing-upload>summary').first().click();
 }
 function session(account = 1234) { return { account: { id: account, login: 'synthetic-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false }; }
 function clients(contextsRead = 1) { return { connections: [{ id: connectionId, name: 'Synthetic assistant', createdAt: 100, expiresAt: 2147483647, contextsRead, materialsRead: 1 }] }; }
@@ -31,8 +28,8 @@ test('only explicitly selected, previewed and confirmed content is uploaded once
   await openUpload(page);
   expect(reads).toBe(0); expect(uploads).toEqual([]);
   await page.getByRole('checkbox', { name: '材料', exact: true }).uncheck();
-  await page.locator('.sharing-upload>summary').click();
-  const upload = page.locator('.sharing-upload');
+  await page.locator('.sharing-upload>summary').first().click();
+  const upload = page.locator('.sharing-upload').first();
   await upload.getByRole('button', { name: '读取已授权客户端' }).click();
   await expect(upload).toContainText('synthetic-learner');
   await expect(upload.getByRole('button', { name: '确认上传' })).toBeDisabled();
@@ -40,7 +37,7 @@ test('only explicitly selected, previewed and confirmed content is uploaded once
   await upload.getByRole('checkbox').check();
   // Invalidate content approval and receiver choice after selection edits.
   await page.getByRole('radio', { name: '再举一个例子' }).check();
-  await page.locator('.sharing-upload>summary').click();
+  await page.locator('.sharing-upload>summary').first().click();
   await upload.getByRole('button', { name: '读取已授权客户端' }).click();
   await selectPicker(page, '接收客户端', connectionId);
   await expect(upload.getByRole('checkbox')).not.toBeChecked();
@@ -72,7 +69,7 @@ test('account changes and lost acknowledgement never silently upload or retry', 
   await page.route('**/api/ai/connections', route => route.fulfill({ json: clients(allowed) }));
   await page.route('**/api/ai/shares', route => { posts++; return route.abort('connectionfailed'); });
   await openUpload(page);
-  const upload = page.locator('.sharing-upload');
+  const upload = page.locator('.sharing-upload').first();
   async function approve() {
     await upload.getByRole('button', { name: '读取已授权客户端' }).click();
     await selectPicker(page, '接收客户端', connectionId);
@@ -114,7 +111,7 @@ test('missing identity, client permission, configuration and network preserve lo
   await page.route('**/api/ai/connections', route => route.fulfill(configured ? { json: clients(0) } : { status: 503, json: { error: 'SHARING_NOT_CONFIGURED' } }));
   await page.route('**/api/ai/shares', route => { posts++; return route.abort(); });
   await openUpload(page);
-  const upload = page.locator('.sharing-upload');
+  const upload = page.locator('.sharing-upload').first();
   await upload.getByRole('button', { name: '读取已授权客户端' }).click();
   await expect(upload.getByRole('status')).toContainText('请先在设置中登录 GitHub');
   signedIn = true;

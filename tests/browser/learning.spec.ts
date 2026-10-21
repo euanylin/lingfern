@@ -1,4 +1,4 @@
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace, fillWorkspace, focusQuestion, currentSnapshot, verifyWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
@@ -6,7 +6,7 @@ test('mobile reading keeps the answer while the bottom sheet opens and closes', 
   await page.setViewportSize({ width: 375, height: 812 });
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   const sheet = page.locator('.question-panel');
   const toggle = sheet.locator('.question-sheet-toggle');
   await expect(sheet).toHaveAttribute('data-open', 'false');
@@ -19,72 +19,50 @@ test('mobile reading keeps the answer while the bottom sheet opens and closes', 
   await expect(page.locator('.material')).toBeVisible();
   await toggle.click();
   await expect(page.getByRole('radio', { name: 'At the library.' })).toBeChecked();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
+  await expect(page.locator('.slot-result').first()).toContainText('✓');
+  await focusQuestion(page, await currentSnapshot(page), 0);
   await expect.poll(() => page.getByRole('radio', { name: 'At the library.' }).evaluate(el => getComputedStyle(el).backgroundColor))
-    .toBe(await page.locator('.feedback h2').evaluate(el => getComputedStyle(el).color));
+    .toBe(await page.locator('.slot-result').first().evaluate(el => getComputedStyle(el).color));
 });
 
 test('visitor learns, saves, reopens and finishes another root material', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/today');
-  await expect(page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true })).toBeVisible();
-  await page.screenshot({ path: 'output/playwright/today-1440x900-light-zh-Hans-empty.png', fullPage: true });
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await expect(page.getByRole('heading', { name: 'Where do we meet?' })).toBeVisible();
+  const { lesson, id } = await openSnapshot(page, 'a1-reading');
   const option = page.getByRole('radio', { name: 'At the library.' }).locator('..');
-  const optionColor = await option.evaluate(el => getComputedStyle(el).backgroundColor);
-  await option.hover();
-  await expect.poll(() => option.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(optionColor);
+  const color = await option.evaluate(el => getComputedStyle(el).backgroundColor); await option.hover();
+  await expect.poll(() => option.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(color);
   await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  const selectedRadio = page.getByRole('radio', { name: 'At the library.' });
-  await expect(selectedRadio).toBeDisabled();
-  await expect.poll(() => selectedRadio.evaluate(el => getComputedStyle(el).backgroundColor))
-    .toBe(await page.locator('.feedback h2').evaluate(el => getComputedStyle(el).color));
-  await expect(page.locator('.question-panel input[type=radio]:not(:checked)').first()).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-  await page.screenshot({ path: 'output/playwright/learning-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
-  const url = page.url();
-  await page.getByRole('link', { name: '离开任务' }).click();
-  await expect(page).toHaveURL(/\/today$/);
-  await page.goto(url);
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  for (const answer of ['A student card.', 'At the café.', 'A pencil.']) {
-    await page.getByRole('button', { name: '下一题' }).click();
-    await page.getByRole('radio', { name: answer }).check();
-    await page.getByRole('button', { name: '保存答案', exact: true }).click();
-    await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
-  }
-  await expect(page.getByRole('heading', { name: '阅读任务已保存' })).toBeVisible();
-  await page.getByRole('link', { name: '返回今日' }).click();
-  await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd')).toHaveText(['4', '2']);
+  await expect.poll(() => page.evaluate(async id => Object.values((await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace.drafts), id)).toContain(1);
+  await page.goto('/today'); await page.goto(`/learn/${id}`);
+  await expect(page.getByRole('radio', { name: 'At the library.' })).toBeChecked();
+  await completeWorkspace(page, lesson); await verifyWorkspace(page, lesson);
+  await page.reload(); await expect(page.locator('.workspace-review')).toHaveCount(4);
+  await page.goto('/progress'); await expect(page.locator('.totals dd')).toHaveText(['4', '2']);
   await expect(page.locator('.progress-cell [role=img]').filter({ hasText: /^●$/ })).toHaveCount(0);
-  await page.locator('summary').click();
-  await expect(page.getByRole('heading', { name: 'Where do we meet?' })).toBeVisible();
+  await page.locator('.history summary').click(); await expect(page.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
 });
 
 test('an already open task saves while offline without claiming offline installation', async ({ page, context }) => {
-  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await expect(page.getByRole('heading', { name: 'Where do we meet?' })).toBeVisible();
+  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
+  await expect(page.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
   await context.setOffline(true);
-  await expect(page.getByRole('status')).toContainText('尚未确认资源完整安装');
+  await expect(page.getByRole('status').filter({ hasText: '尚未确认资源完整安装' })).toBeVisible();
   await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
+  await expect(page.locator('.slot-result').first()).toContainText('✓');
 });
 
 test('another tab cannot edit the same active session', async ({ page, context }) => {
-  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await expect(page.getByRole('heading', { name: 'Where do we meet?' })).toBeVisible();
+  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
+  await expect(page.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
   const other = await context.newPage(); await other.goto(page.url());
   await expect(other.getByRole('alert')).toContainText('另一标签页');
   await expect(other.getByRole('radio')).toHaveCount(0);
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page).toHaveURL(/\/today$/);
   await other.getByRole('button', { name: '重试', exact: true }).click();
-  await expect(other.getByRole('heading', { name: 'Where do we meet?' })).toBeVisible();
+  await expect(other.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
 });
 
 test('small screen, theme and all interface languages', async ({ page }) => {
@@ -172,7 +150,7 @@ test('mobile navigation stays fixed around learning and software-keyboard focus'
   const nav = page.locator('.mobile-nav');
   await expect(nav).toBeVisible();
   expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('fixed');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   await expect(nav).toHaveCount(0);
   const leave = page.getByRole('link', { name: '离开任务' });
   const symbol = page.locator('.session-header > .brand-symbol');
@@ -193,8 +171,9 @@ test('mobile navigation stays fixed around learning and software-keyboard focus'
 });
 
 test('failed answer transaction preserves selection and never advances before retry', async ({ page }) => {
-  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   await page.getByRole('radio', { name: 'At the library.' }).check();
+  await fillWorkspace(page);
   await page.evaluate(() => {
     const add = IDBObjectStore.prototype.add;
     IDBObjectStore.prototype.add = function(...args) {
@@ -205,21 +184,22 @@ test('failed answer transaction preserves selection and never advances before re
       return add.apply(this, args);
     };
   });
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await page.locator('button[type=submit]').click();
   await expect(page.getByRole('alert')).toContainText('未能保存');
+  await focusQuestion(page, await currentSnapshot(page), 0);
   await expect(page.getByRole('radio', { name: 'At the library.' })).toBeChecked();
-  await expect(page.getByRole('button', { name: '下一题' })).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toHaveCount(0);
+  expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
+  await expect(page.locator('.workspace-review')).toHaveCount(0);
   await page.getByRole('button', { name: '重试', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await expect(page.locator('.slot-result').first()).toContainText('✓');
 });
 
 test('full browser refresh releases its tab lock and immediately recovers the saved answer', async ({ page }) => {
-  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible();
+  await completeWorkspace(page);
+  await expect(page.locator('.slot-result').first()).toContainText('✓');
   await page.reload();
-  await expect(page.getByRole('heading', { name: '✓ 回答正确' })).toBeVisible({ timeout: 5000 });
+  await expect(page.locator('.slot-result').first()).toContainText('✓');
   await expect(page.getByRole('alert')).toHaveCount(0);
 });

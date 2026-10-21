@@ -1,4 +1,4 @@
-import { confirmTask } from './task-start';
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
@@ -7,10 +7,8 @@ test('account changes require a choice, preserve local originals, and do not upl
   let accountId = 1, syncWrites = 0;
   await page.route('**/api/session', route => route.fulfill({ json: { account: { id: accountId, login: `learner-${accountId}` }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: accountId === 2 ? [{ name: 'lingfern-first', owner: 'learner-2', profileId: 'remote-first', disabled: false }, { name: 'lingfern-target', owner: 'learner-2', profileId: 'remote-target', disabled: false }] : [] } }));
   page.on('request', request => { if (request.method() === 'POST' && new URL(request.url()).pathname.startsWith('/api/sync/')) syncWrites++; });
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  await page.getByRole('radio').nth(1).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.goto('/settings');
   await page.getByRole('button', { name: '保留当前本机档案' }).click();
@@ -46,7 +44,7 @@ test('account changes require a choice, preserve local originals, and do not upl
   expect(await page.evaluate(async () => {
     const path = '/src/data/db.ts'; const data = await import(path);
     return { originals: await data.attempts.where('profileId').equals('local-guest').count(), profiles: await data.profiles.count() };
-  })).toEqual({ originals: 1, profiles: 3 });
+  })).toEqual({ originals: 2, profiles: 3 });
   expect(syncWrites).toBe(0);
 });
 

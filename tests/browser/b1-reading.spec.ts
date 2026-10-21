@@ -1,27 +1,19 @@
-import { confirmTask } from './task-start';
 import { expect, test } from '@playwright/test';
+import { openSnapshot, focusQuestion, fillQuestion, submitWorkspace } from './workspace';
 
 test('B1 connected updates use causes and conditions across two materials', async ({ page }) => {
-  await page.goto('/today');
-  await page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '读懂变化的原因与条件' }) }).getByRole('button', { name: '开始阅读' }).click();
-  await confirmTask(page);
-  await expect(page.getByRole('heading', { name: 'Why did the organisers move planting to Sunday?' })).toBeVisible();
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toContainText('wet ground');
-  await page.evaluate(() => scrollTo(0, 0));
-  await page.screenshot({ path: 'output/playwright/b1-reading-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
-  await page.getByRole('button', { name: '下一题' }).click();
-  await page.locator('input[type=radio]').nth(1).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toHaveCount(2);
-  await page.getByRole('button', { name: '下一题' }).click();
-  await expect(page.getByRole('heading', { name: 'What changed about the practice session?' })).toBeVisible();
-  await page.locator('input[type=radio]').nth(1).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.locator('.feedback blockquote')).toContainText('computer room at two');
-  await page.getByRole('button', { name: '下一题' }).click();
-  await page.locator('input[type=radio]').nth(0).check();
-  await page.getByRole('button', { name: '保存答案' }).click();
-  await expect(page.getByRole('heading', { name: '阅读任务已保存' })).toBeVisible();
+  const { lesson } = await openSnapshot(page, 'b1-reading');
+  const questions = lesson.materials.flatMap(material => material.questions);
+  for (const [index, question] of questions.entries()) {
+    const section = await focusQuestion(page, lesson, index);
+    await expect(section.locator('h2')).toContainText(question.prompt);
+    await fillQuestion(section, question);
+  }
+  await submitWorkspace(page);
+  const reviews = page.locator('.workspace-review');
+  await expect(reviews.nth(0).locator('blockquote')).toContainText('wet ground');
+  await expect(reviews.nth(1).locator('blockquote')).toHaveCount(2);
+  await expect(reviews.nth(2).locator('blockquote')).toContainText('computer room at two');
+  await expect(page.locator('.slot-result')).toHaveText(Array(4).fill(/✓/));
+  await page.reload(); await expect(reviews).toHaveCount(4);
 });

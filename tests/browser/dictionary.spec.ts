@@ -1,3 +1,4 @@
+import { openSnapshot, completeWorkspace } from './workspace';
 import { confirmTask } from './task-start';
 import { expect, test, type Page } from '@playwright/test';
 import { selectPicker } from './picker';
@@ -153,6 +154,7 @@ test('learning lookup retains the current task while opening one external dictio
   await context.route('https://dictionary.cambridge.org/**', route => route.abort());
   await page.goto('/today');
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
   await expect(page.locator('.dictionary-panel')).toHaveCount(0);
   await selectPassageWord(page, 'library');
   expect(await page.locator('.passage').first().evaluate(el => el.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true })))).toBe(true);
@@ -164,10 +166,10 @@ test('learning lookup retains the current task while opening one external dictio
   await popup.close();
   await expect(page.getByRole('dialog', { name: '查词: library' })).toBeVisible();
   expect(await page.evaluate(() => scrollY)).toBe(position);
-  await expect(page.locator('.question-number bdi')).toHaveText('1 / 4');
-  await expect(page.locator('.question-panel h2')).toHaveText('Where do we meet?');
+  await expect(page.locator('.question-number bdi')).toHaveText('1/2');
+  await expect(page.locator('.workspace-question h2')).toContainText('Where do we meet?');
   await page.getByRole('radio', { name: 'At the library.' }).check();
-  await page.getByRole('button', { name: '保存答案', exact: true }).click();
+  await completeWorkspace(page, lesson);
   const saved = await page.evaluate(async () => {
     const request = indexedDB.open('lingfern');
     const database = await new Promise<IDBDatabase>((resolve, reject) => { request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
@@ -175,7 +177,8 @@ test('learning lookup retains the current task while opening one external dictio
     const all = tx.objectStore('attempts').getAll();
     return new Promise<unknown[]>((resolve, reject) => { all.onsuccess = () => resolve(all.result); all.onerror = () => reject(all.error); });
   });
-  expect(saved).toEqual([expect.objectContaining({ assistance: expect.objectContaining({ dictionaryUsed: true }) })]);
+  expect(saved).toHaveLength(2);
+  expect(saved).toEqual(expect.arrayContaining([expect.objectContaining({ questionId: 'library-place', assistance: expect.objectContaining({ dictionaryUsed: true }) })]));
 });
 
 test('selected-word popup fits a narrow dark learning view and closes with Escape', async ({ page }) => {

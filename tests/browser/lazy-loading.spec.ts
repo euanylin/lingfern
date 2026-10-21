@@ -1,3 +1,4 @@
+import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { languagePacks } from '../../src/locales';
 import { confirmTask } from './task-start';
@@ -161,15 +162,7 @@ test('First Run restores picker focus after a delayed teaching package finishes'
 });
 
 test('returning from learning waits for refreshed history before enabling Today', async ({ page }) => {
-  await page.goto('/today');
-  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
-  await confirmTask(page);
-  for (const answer of ['At the library.', 'A student card.', 'At the café.', 'A pencil.']) {
-    await page.getByRole('radio', { name: answer }).check();
-    await page.getByRole('button', { name: '保存答案', exact: true }).click();
-    if (answer !== 'A pencil.') await page.getByRole('button', { name: '下一题' }).click();
-  }
-  // Hold refresh until the received language package loads.
+  const { lesson } = await openSnapshot(page, 'a1-reading'); await completeWorkspace(page, lesson);
   await page.evaluate("import('/src/data/db.ts').then(module => module.saveSetting('local-guest', 'locale', 'ar'))");
   let release!: () => void, started!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });

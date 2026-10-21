@@ -565,7 +565,7 @@ details[open]:not(.installed-resources)>summary:not(.practice-card-menu-trigger)
 
 /* Preserve sheet contents while measured height changes. */
 @media(max-width:1199px){
-  .learning-grid:not(.listening-layout) .question-panel{z-index:19;height:var(--question-sheet-height,auto);max-height:calc(100vh - var(--learning-header,64px) - 24px - env(safe-area-inset-bottom));max-height:calc(100svh - var(--learning-header,64px) - 24px - env(safe-area-inset-bottom));transition:height 260ms cubic-bezier(.2,.7,.2,1)}
+  .learning-grid:not(.listening-layout) .question-panel{z-index:19;overflow:clip;height:var(--question-sheet-height,auto);max-height:calc(100vh - var(--learning-header,64px) - 24px - env(safe-area-inset-bottom));max-height:calc(100svh - var(--learning-header,64px) - 24px - env(safe-area-inset-bottom));transition:height 260ms cubic-bezier(.2,.7,.2,1)}
   .learning-grid:not(.listening-layout) .question-sheet-toggle{position:absolute;inset:0 0 auto;display:flex;transition:opacity 120ms ease,transform 260ms cubic-bezier(.2,.7,.2,1);opacity:1;visibility:visible}
   .learning-grid:not(.listening-layout) .question-panel[data-open=true] .question-sheet-toggle{opacity:0;visibility:hidden;pointer-events:none}
   .learning-grid:not(.listening-layout) .question-panel :is(.question-progress,.question-sheet-content){transition:opacity 160ms ease,visibility 160ms;opacity:1;visibility:visible}
@@ -731,3 +731,5 @@ html:has(#root>main.welcome-main){overflow:hidden}
 @media(min-aspect-ratio:3/2) and (max-height:650px){
   #root>main.welcome-main{padding:var(--page-top-space) 24px var(--page-bottom-space)}
 }
+
+.slot-result[data-correct=true]{color:var(--accent)}.slot-result[data-correct=false]{color:var(--error)}.workspace-review .evidence-source{display:block;font-style:normal;margin:0 0 4px}
