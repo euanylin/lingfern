@@ -101,9 +101,9 @@ it('rejects apparent transfer to the same original Gutenberg work and identical 
   expect(sameText.materials.every(material => !material.sourceId?.startsWith('wikiquote-'))).toBe(true);
 });
 
-it('caps the whole successful session at one independent Wikiquote slot in sixteen for every focus and training entry', () => {
+it.each(['B1', 'B2', 'C1', 'C2'] as const)('caps the whole successful session at one independent Wikiquote slot in sixteen for every focus and training entry at %s', level => {
   const corpus = withOrdinary(bank(source(1, 100), source(2, 74, 'Readers consider thoughtful descriptions and preserve complete evidence.')));
-  for (const level of ['B1', 'B2', 'C1', 'C2'] as const) for (const focus of [undefined, 'completion', 'sequence', 'evidence', 'matching', 'table', 'choice'] as const) for (const base of [0, 1, 7, 268435455]) for (const separate of [false, true]) {
+  for (const focus of [undefined, 'completion', 'sequence', 'evidence', 'matching', 'table', 'choice'] as const) for (const base of [0, 1, 7, 268435455]) for (const separate of [false, true]) {
     const lessons = Array.from({ length: 16 }, (_, slot) => corpusLesson(separate ? ordinaryBank() : corpus, new Set(), base * 16 + slot, 400, level, [], focus, [], undefined, separate ? corpus : undefined));
     const successful = lessons.filter(lesson => lesson !== undefined);
     expect(successful.length === 0 || successful.length === 16).toBe(true);
