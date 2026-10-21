@@ -70,7 +70,7 @@ for (const [locale, width, theme] of [['zh-Hans',375,'light'],['en',1440,'dark']
   await inset('.practice-options-body');
   expect(await page.locator('.practice-options-body').evaluate(el => {
     const card = el.closest('dialog')!, box = card.getBoundingClientRect(), scroll = el.getBoundingClientRect();
-    return scroll.top >= box.top && scroll.bottom <= box.bottom + 1 && getComputedStyle(el).borderRadius === getComputedStyle(card).borderRadius && getComputedStyle(card).overflow === 'hidden';
+    return scroll.top >= box.top && scroll.bottom <= box.bottom + 1 && getComputedStyle(el).borderRadius === getComputedStyle(card).borderRadius && ['hidden', 'clip'].includes(getComputedStyle(card).overflow);
   })).toBe(true);
   await page.locator('.practice-options-body').evaluate(el => el.scrollTop = el.scrollHeight);
   await page.screenshot({ path: test.info().outputPath(`scrollbar-${locale}-${width}-${theme}.png`) });
@@ -99,7 +99,7 @@ for (const width of [375,1440]) test(`answer-card and text-entry scrollbars rema
   const content = page.locator('.question-sheet-content');
   expect(await content.evaluate(el => {
     const scroll = el.getBoundingClientRect(), card = el.closest('.workspace-questions')!, box = card.getBoundingClientRect();
-    return scroll.left >= box.left && scroll.right <= box.right && (getComputedStyle(el).overflowY === 'visible' || scroll.bottom <= box.bottom + 1 && getComputedStyle(card).overflow === 'hidden');
+    return scroll.left >= box.left && scroll.right <= box.right && (getComputedStyle(el).overflowY === 'visible' || scroll.bottom <= box.bottom + 1 && ['hidden', 'clip'].includes(getComputedStyle(card).overflow));
   })).toBe(true);
   await content.evaluate(el => el.scrollTop = el.scrollHeight);
   await page.screenshot({ path: test.info().outputPath(`answer-scrollbars-${width}.png`) });

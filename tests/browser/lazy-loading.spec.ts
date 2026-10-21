@@ -22,14 +22,14 @@ test('Today loads learning, reference, history and account views only when opene
 });
 
 test('a failed learning download offers retry without losing the saved session', async ({ page }) => {
-  await page.route('**/src/app/Learning.tsx', route => route.abort('failed'));
+  await page.route('**/src/app/Learning.tsx*', route => route.abort('failed'));
   await page.goto('/today');
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
   await expect(page.getByRole('alert')).toContainText(languagePacks['zh-Hans'].app.readError);
   const path = new URL(page.url()).pathname;
   expect(path).toMatch(/^\/learn\//);
-  await page.unroute('**/src/app/Learning.tsx');
+  await page.unroute('**/src/app/Learning.tsx*');
   await page.getByRole('alert').getByRole('button', { name: '重试', exact: true }).click();
   await expect(page.getByRole('radio').first()).toBeVisible();
   expect(new URL(page.url()).pathname).toBe(path);
