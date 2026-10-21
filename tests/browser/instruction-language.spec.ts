@@ -56,3 +56,16 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
   await history.locator('details summary').click();
   await expect(history).toContainText(question.explanations[question.answer].en);
 });
+
+test('a private beginner example keeps its English language and direction beside translated guidance', async ({ page }) => {
+  await page.goto('/settings'); await selectPicker(page, '语言', 'ar');
+  const lesson = lessonSchema.parse(JSON.parse(readFileSync('tests/fixtures/content/a1-reading.json', 'utf8')));
+  lesson.teaching = { en: 'Listen again.', 'zh-Hans': 'Listen again.', 'zh-Hant': 'Listen again.' };
+  lesson.workedExample = { en: 'An unlisted example remains in its original English.', 'zh-Hans': 'An unlisted example remains in its original English.', 'zh-Hant': 'An unlisted example remains in its original English.' };
+  const id = await page.evaluate(async lesson => (await (await import('/src/data/db.ts' as string)).createSession(lesson)).id, lesson);
+  await page.goto(`/learn/${id}`);
+  const teaching = page.locator('.teaching'); await expect(teaching).toHaveAttribute('lang', 'ar'); await teaching.locator('summary').click();
+  const example = teaching.locator('p').last(); await expect(example).toHaveText(lesson.workedExample.en);
+  await expect(example).toHaveAttribute('lang', 'en'); await expect(example).toHaveCSS('direction', 'ltr');
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).lesson, id)).toEqual(lesson);
+});

@@ -244,7 +244,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
 
       <article className="workspace-material">
         <p className="eyebrow" lang={instructionLocale}>{copy[instructionLocale].goal}</p><p className="lead" lang={contentLanguage(lesson.goal, instructionLocale)}>{contentText(lesson.goal, instructionLocale)}</p>
-        {!lesson.mode && lesson.teaching && <details className="teaching" lang={contentLanguage(lesson.teaching, instructionLocale)}><summary>{copy[instructionLocale].teaching}</summary><p>{contentText(lesson.teaching, instructionLocale)}</p>{lesson.workedExample && <p>{contentText(lesson.workedExample, instructionLocale)}</p>}</details>}
+        {!lesson.mode && lesson.teaching && <details className="teaching" lang={contentLanguage(lesson.teaching, instructionLocale)}><summary>{copy[instructionLocale].teaching}</summary><p>{contentText(lesson.teaching, instructionLocale)}</p>{lesson.workedExample && <p lang={contentLanguage(lesson.workedExample, instructionLocale)}>{contentText(lesson.workedExample, instructionLocale)}</p>}</details>}
         {listening && material.audio ? <section className="material workspace-player">
           {material.illustration && <img className="material-illustration" src={material.illustration.src} alt={contentText(material.illustration.alt, locale)}/>}
 
