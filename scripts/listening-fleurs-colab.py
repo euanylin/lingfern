@@ -1,4 +1,4 @@
-"""Official English FLEURS acquisition/diagnostics; every record held, accepted=0."""
+"""Acquire and diagnose official English FLEURS; keep every record held and accepted=0."""
 import argparse
 import concurrent.futures
 import datetime
@@ -306,7 +306,7 @@ def self_test():
             pass
         else:
             raise AssertionError('CORRUPT_FROZEN_HELPER_ACCEPTED')
-    # Local recovery only: an unusable URL proves no HTTP request is needed.
+    # Test local recovery with an unusable URL to prove no HTTP request is needed.
     with tempfile.TemporaryDirectory(prefix='lingfern-fleurs-resume-test-') as directory:
         destination = pathlib.Path(directory) / 'source.tsv'
         partial = destination.with_suffix(destination.suffix + '.partial')
@@ -325,7 +325,7 @@ def self_test():
         else:
             raise AssertionError('CORRUPT_COMPLETE_PARTIAL_ACCEPTED')
         assert partial.read_bytes() == wrong and not destination.exists()
-        # An existing destination remains authoritative, even with a full partial.
+        # Prefer existing destinations even when a complete partial exists.
         destination.write_bytes(content)
         fetch(source, destination)
         assert destination.read_bytes() == content and partial.read_bytes() == wrong

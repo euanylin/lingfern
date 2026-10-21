@@ -29,7 +29,7 @@ try{
  const {corpusSchema}=await server.ssrLoadModule('/src/core/corpus.ts');
  const sources=[...records.values()],outputs=[];
  for(let i=0;i<sources.length;i+=100){const file=`wikiquote${i?'-'+(i/100+1):''}.json`,bank=corpusSchema.parse({version:1,records:sources.slice(i,i+100),failures:[]});outputs.push([file,JSON.stringify(bank,null,2)+'\n']);}
- // Validate every shard before any public write.
+ // Validate all shards before public writes.
  for(const [file,bytes]of outputs)await writeFile('public/corpus/'+file,bytes);
  for(const file of await readdir('public/corpus'))if(/^wikiquote(?:-[1-9]\d*)?\.json$/.test(file)&&!outputs.some(([name])=>name===file))await unlink('public/corpus/'+file);
  console.log(JSON.stringify({quotes:sources.reduce((count,source)=>count+source.passages.length,0),pages:sources.length,shards:outputs.length,originalWorks:new Set(filtered.quotes.map(q=>q.rightsEvidence.workId)).size,noConcatenation:true,noBeginnerAssignment:true}));

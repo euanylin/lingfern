@@ -1,4 +1,4 @@
-"""Add two fixed CC BY 4.0 official books on CPU, reusing reviewed source parser."""
+"""Prepare two fixed official CC BY 4.0 books on CPU with the reviewed parser."""
 import pathlib,hashlib,importlib.util,urllib.request,tarfile,io,xml.etree.ElementTree as ET,json,re,zipfile,time,os,platform,collections,datetime
 PARSER=pathlib.Path('/content/reading-expansion-colab-scope-reviewed.py')
 assert hashlib.sha256(PARSER.read_bytes()).hexdigest()=='83913a54ff90345a8cfec41d876a5ba38ef7785fc0582ed934d287cba5704b35'
@@ -30,7 +30,7 @@ def run():
      else:item['id']=sha((work+'\0'+locator+'\0'+str(index)+'\0'+text).encode());item['licenceUrl']=BY;item['preparationStatus']='complete-source-paragraph-structural-ready';rows.append(item);eligible+=1
     chapters.append({'workId':work,'title':title,'locator':locator,'sourceUrl':url,'sourceHash':sha(raw),'canonicalSha256':sha(canonical.encode()),'paragraphs':len(paragraphs),'prepared':eligible})
   ledger.append({'workId':work,'institution':'OpenStax, Rice University','repository':repo,'commit':commit,'collection':collection_file,'acquiredAt':acquired,'licenceUrl':BY,'licenseSha256':sha(license_bytes),'rawArchiveSha256':sha(archive_bytes),'rawArchiveBytes':len(archive_bytes),'rawArchiveCloudPath':str(ROOT/'acquisition'/f'{work}.tar.gz'),'collectionSha256':sha(cb),'modules':len(order),'rightsBoundary':'Exact old official CC BY4 snapshot only. All excluded XML containers/descendants, footnotes, unclear quotes, media references, overlong/short paragraphs and strong-religious source contexts retained privately as exclusions. Full source XML is exported; source media archive stays private in cloud.'})
- # Dedup within these sources and against actual reviewed initial books in cloud.
+ # Deduplicate in cloud against these sources and reviewed initial books.
  base=ROOT.parent/'lingfern-reading-expansion-20261009/prepared-lossless';original=json.loads((base/'prepared.json').read_text());seen={parser.norm(p['text']):p['id']for p in original};unique=[]
  for p in rows:
   key=parser.norm(p['text'])

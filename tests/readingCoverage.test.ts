@@ -78,12 +78,12 @@ async function readBank(entry: typeof entries[number]) {
  return bank;
 }
 
-// Scan each passage once per rule; full-bank generation is bounded by operations and source families.
+// Scan each passage once per rule; bound generation by operations and source families.
 function verifyRepresentatives(bank: Corpus, supporting: Candidate[], operation?: string) {
  if (!supporting.length) return;
  const focus = (operation?.split(':')[0] ?? 'evidence') as CorpusQuestionKind;
- // A quotation can support a rule without supplying the two ordinary roots
- // required for a fresh session. Keep checking its actual answers and evidence.
+ // Check exact answers/evidence even when a quote lacks two roots for a fresh session.
+
  for (const item of supporting.filter(item => item.passage.quoteProvenance)) {
   const material = corpusMaterial(item, 0, 'C2', focus, operation)!;
   expect(material).toBeDefined();
@@ -110,7 +110,7 @@ function verifyRepresentatives(bank: Corpus, supporting: Candidate[], operation?
  if (chosen.length === 1 && otherRoot) chosen.push(otherRoot);
  const reached = new Set<string>();
  for (const representative of chosen) {
-  // C2 prioritises substantial passages. Exposing other roots makes a shorter real representative reachable.
+  // Expose other roots to reach shorter C2 representatives without changing passage priorities.
   const seen = new Set(supporting.filter(item => item.passage.wordCount >= 700 && item.source.rootId !== representative.source.rootId).map(item => item.passage.id));
   const remaining = supporting.filter(item => !seen.has(item.passage.id));
   const substantial = remaining.filter(item => item.passage.wordCount >= 700);

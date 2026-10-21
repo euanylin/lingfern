@@ -3,10 +3,10 @@ const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':h
 export const comparisonPrompt='Which comparison keeps the stated similarities, differences and limits?';
 export const comparisonOperation='choice:context-comparison';
 
-/** Compare the actual content of both cases, not a replacement for a connecting word. */
+/** Compare both cases' content rather than substitute a connecting word. */
 export function corpusComparison(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_CONTEXT_COMPARISON');
- // shortcut: four inspected complete contexts only; review roles, competing readings and scope before extending.
+ // shortcut: four complete contexts; review roles, alternatives, and scope before extending.
  if(![...scopes.reading,...scopes.listening].some(s=>s.text===text))return;
  let evidence:RegExpMatchArray|null,others:(RegExpMatchArray|null)[],options:string[],explanations:ReturnType<typeof local>[];
  if(text.startsWith('Previous studies suggest')){

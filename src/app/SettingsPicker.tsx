@@ -37,7 +37,7 @@ export function SettingsPicker(props: Props) {
       if (!trigger.current || !root.current) return;
       const visual = window.visualViewport;
       let viewport = { left: visual?.offsetLeft ?? 0, top: visual?.offsetTop ?? 0, width: visual?.width ?? innerWidth, height: visual?.height ?? innerHeight };
-      // Matching menus must stay inside the answer panel's visible scroll area.
+      // Keep matching menus within the answer panel's visible area.
       const clip = popup.closest('.question-sheet-content,.task-detail-body')?.getBoundingClientRect();
       if (clip) {
         const left = Math.max(viewport.left, clip.left), top = Math.max(viewport.top, clip.top);
@@ -64,7 +64,7 @@ export function SettingsPicker(props: Props) {
     const touchStart = (event: TouchEvent) => { touchY = event.target instanceof Node && popup.contains(event.target) ? undefined : event.touches[0]?.clientY; };
     const touchMove = (event: TouchEvent) => { if (touchY !== undefined && Math.abs((event.touches[0]?.clientY ?? touchY) - touchY) > 10) dismiss(event); };
     window.addEventListener('resize', reposition);
-    // Let the trigger's own scroll-into-view finish before observing later scrolling.
+    // Start scroll dismissal after the trigger finishes scrolling into view.
     const frame = requestAnimationFrame(() => { update(); window.addEventListener('scroll', dismiss, true); });
     window.addEventListener('wheel', dismiss, { capture: true, passive: true });
     window.addEventListener('touchstart', touchStart, { capture: true, passive: true });
@@ -111,7 +111,7 @@ export function SettingsPicker(props: Props) {
       {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}>{variant === 'topic' && <>{displayLabel ?? label}{['zh-Hans', 'zh-Hant', 'ja'].includes(document.documentElement.lang) ? '：' : ': '}</>}<bdi lang={options[selected]?.lang}>{props.multiple ? options.filter(isSelected).map(option => option.label).join(' / ') : options[selected]?.label}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true">›</span>}
     </button>
     {open && <div ref={menu} id={`${id}-options`} className="setting-menu" role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
-      {/* Safari pointer focus loss must not dismiss the menu before the option click. */}
+      {/* Keep Safari menus open through pointer focus loss until the option click. */}
       {options.map((option, index) => <button key={option.value} type="button" role="option" style={{ minHeight: 44 }} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span><bdi lang={option.lang}>{option.label}</bdi></button>)}
     </div>}
   </div>;

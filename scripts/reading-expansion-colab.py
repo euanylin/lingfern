@@ -1,4 +1,4 @@
-"""Optional public corpus research. Run with Colab CLI; no website dependency."""
+"""Research public corpora through Colab CLI without adding website dependencies."""
 import hashlib, html, io, json, pathlib, re, tarfile, urllib.request, xml.etree.ElementTree as ET, zipfile, time, os, platform, shutil, subprocess
 from html.parser import HTMLParser
 ROOT = pathlib.Path('/content/lingfern-reading-expansion-20261009')
@@ -7,7 +7,7 @@ BY = 'https://creativecommons.org/licenses/by/4.0/'
 def sha(b): return hashlib.sha256(b).hexdigest()
 def norm(s): return re.sub(r'\s+', ' ', s).strip()
 def fetch(url):
-    # Replay only the byte-verified original cloud capture, never a local cleaned source.
+    # Replay verified original cloud captures, never locally cleaned substitutes.
     previous=ROOT/'prepared-v2'
     for row in json.loads((previous/'chapters.json').read_text()):
         if row['sourceUrl']==url:
@@ -124,7 +124,7 @@ def run():
         ledger.append({'workId':work,'institution':'OpenStax, Rice University','repository':repo,'commit':commit,'licenceUrl':BY,'licenseSha256':sha(license_bytes),'rawArchiveSha256':sha(rawtar),'modules':len(members),'collectionSha256':sha(collection_raw),'rightsBoundary':'Only fixed pre-NC snapshot original prose; all media, citations/quoted blocks, notes/examples/exercises excluded. No current-main material.'})
     home=(ROOT/'geology-home').read_bytes();hp=Paragraphs();hp.feed(home.decode()); schema=re.search(r'<script type="application/ld\+json">(.*?)</script>',home.decode(),re.S);metadata=json.loads(schema.group(1));assert metadata['license']['url']==BY and metadata['author'][0]['name']=='Steven Earle'
     exception_bytes=(ROOT/'geology-exceptions').read_bytes();ep=Paragraphs();ep.feed(exception_bytes.decode()); exception_text='\n'.join(p['text'] for p in ep.rows);(OUT/'raw/geology-exceptions.txt').write_text(exception_text);(OUT/'raw/geology-exceptions.html').write_bytes(exception_bytes);(OUT/'raw/geology-home.html').write_bytes(home)
-    # The official exception page is retained and all image/media/third-party containers excluded.
+    # Preserve the exception page; exclude image, media, and third-party containers.
     print('GE0LOGY_EXCEPTION_PROSE',exception_text[:6000])
     urls=list(dict.fromkeys(re.findall(r'href="(https://opentextbc.ca/physicalgeology2ed/chapter/[^"#?]+/)"',home.decode())))
     for url in urls:
@@ -134,7 +134,7 @@ def run():
         p=Paragraphs();p.feed(raw.decode());title=norm(''.join(p.title));chapter('bccampus-physical-geology-2e',title,url.split('/chapter/')[1].rstrip('/'),url,raw,p.rows)
     ledger.append({'workId':'bccampus-physical-geology-2e','institution':'BCcampus','title':metadata['name'],'author':'Steven Earle; chapter22 Karla Panchuk','licenceUrl':BY,'licenseEvidenceSha256':sha(home),'exceptionsSha256':sha(exception_bytes),'rightsBoundary':'Original prose only; all image/media/table/quotation/exercise containers and uncertain quoted text excluded; exception page retained for independent source review.'})
     from collections import Counter
-    # Exact cross-chapter duplicate paragraphs stay private as exclusions.
+    # Retain exact cross-chapter duplicates privately as exclusions.
     seen={};unique=[]
     for p in prepared:
         key=norm(p['text'])

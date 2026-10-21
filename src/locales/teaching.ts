@@ -36,7 +36,7 @@ function templates(pack: Record<string, string>) {
   return value;
 }
 
-// Only these inspected slots contain explanations; every other slot is source/answer data.
+// Translate only inspected explanation slots; preserve source and answer data.
 const instructionSlots: Record<string, readonly string[]> = {
   'Yes. {v0}': ['{v0}'],
   'This keeps the stated meaning. {v0}': ['{v0}'],
@@ -63,7 +63,7 @@ function translateKnown(text: string, pack: Record<string, string>, depth: numbe
   return text;
 }
 
-/** Display known instructions without rewriting snapshots or translating source quotations. */
+/** Translate known instructions without changing snapshots or source quotes. */
 export function translateInstruction(text: string, locale: Locale): string {
   const pack = instructionPacks[locale];
   return pack ? translateKnown(text, pack, 0) : text;

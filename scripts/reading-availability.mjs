@@ -1,4 +1,4 @@
-/** Preparation only: probe current rules without changing source text or saved learning. */
+/** Probe preparation rules without changing source text or saved learning. */
 export function readingGenerationAvailable(source, passage, corpusMaterial) {
  const item = { source, passage };
  const levels = passage.startingPoints ?? ['B1', 'B2', 'C1', 'C2'];

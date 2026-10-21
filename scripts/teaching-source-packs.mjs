@@ -4,7 +4,7 @@ import { createServer } from 'vite';
 import { createTopicPacks, sha } from './topic-packs.mjs';
 import { canonicalBook } from './corpus.mjs';
 
-// Preparation only: reuse inspected bulk-source windows; ordinary builds read the saved public catalogue.
+// Prepare inspected windows; let ordinary builds read the saved public catalogue.
 const check = process.argv.includes('--check'), inputPath = 'private/corpus/teaching-contexts/inputs.json';
 const input = JSON.parse(await readFile(inputPath, 'utf8'));
 assert.equal(input.version, 1); assert.equal(input.entries.length, 48);
@@ -64,7 +64,7 @@ try {
     const summary = [...new Set(pack.inputs.map(e => e.record.title))].slice(0, 2).join(' / ').slice(0, 120);
     catalogue.push({ ...pack.entry, title: Object.fromEntries(Object.entries(pack.entry.title).map(([locale, title]) => [locale, title + ' · ' + summary])), minWords: skill === 'reading' ? minimum : null, minSeconds: skill === 'listening' ? minimum : null });
   }
-  // Validate every source/notice before writing; retain all older site packages byte-for-byte.
+  // Validate sources/notices first; preserve older package bytes.
   const manifestPath = 'content/corpus/teaching-source-packs.json', prior = JSON.parse(await readFile(manifestPath, 'utf8').catch(e => { if (e.code === 'ENOENT') return '{"version":1,"packs":[]}'; throw e; }));
   const merged = originalCatalogue.packs.filter(p => !prior.packs.some(old => old.id === p.id));
   for (const pack of packed) {

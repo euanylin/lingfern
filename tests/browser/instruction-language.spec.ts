@@ -35,7 +35,7 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
   await page.locator('.hint').click();
   await expect(page.locator('.hint-text')).toHaveText(question.hints![0].en);
   await expect(page.locator('.hint-text')).toHaveAttribute('lang', 'en');
-  // The old multilingual snapshot remains intact; only the renderer chooses English.
+  // Render English without changing legacy multilingual snapshots.
   expect(await page.evaluate(async id => {
     const { sessions } = await import('/src/data/db.ts' as string);
     return (await sessions.get(id)).lesson;

@@ -5,7 +5,7 @@ import {createServer} from 'vite';
 const coverageOutput=process.argv.find(arg=>arg.startsWith('--coverage-output='))?.slice(18);
 if(process.argv.includes('--coverage')&&(!coverageOutput||!/^private\/corpus\/teaching-[a-z0-9-]+\.json$/.test(coverageOutput)||fs.existsSync(coverageOutput)))throw Error('Coverage requires a fresh private/corpus/teaching-*.json output path.');
 const generatorHashes=['scripts/check-starting-points.mjs','src/core/corpus.ts','src/core/corpusPractice.ts','src/core/beginnerListening.ts','src/core/wordListening.ts','src/core/spokenCorpus.ts','src/core/spokenAttribution.ts','src/core/corpusReference.ts','src/core/spokenLongAdmission.ts','content/corpus/long-listening-admission.json','src/data/corpus.ts','src/shared/content.ts'].map(path=>({path,sha256:createHash('sha256').update(fs.readFileSync(path)).digest('hex')}));
-// Actual starting-point bounds and source packages; this is not a CEFR calibration.
+// Probe actual starting bounds and packages without claiming CEFR calibration.
 const server=await createServer({optimizeDeps:{noDiscovery:true,include:[]},server:{middlewareMode:true,hmr:false,ws:false}});
 try {
  const {inspectCommunityPack}=await server.ssrLoadModule('/src/data/communityPack.ts');
@@ -44,7 +44,7 @@ try {
   const wikiquote={...rawWikiquote,records:await reviewedReading(rawWikiquote.records,maxWords)};
   const openReading={...rawOpenReading,records:await reviewedReading(rawOpenReading.records,maxWords)};
   const candidates=await Promise.all(banks.filter(bank=>bank.skill==='reading').map(async bank=>({id:bank.id,bank:{...bank.pack.corpus,records:await reviewedReading(bank.pack.corpus.records,maxWords)}})));
-  // Same bundled-then-installed source precedence as loadReadingCorpus.
+  // Match loadReadingCorpus's bundled-then-installed precedence.
   const application={version:1,failures:[],records:mergeReadingRecords([...bundled.records,...gutenberg.records,...additional.records,...wikiquote.records,...openReading.records,...candidates.flatMap(candidate=>candidate.bank.records)])};
   const reviewed={bundled,candidates:[{id:'bundled-gutenberg',bank:gutenberg},{id:'bundled-additional',bank:additional},{id:'bundled-wikiquote',bank:wikiquote},{id:'bundled-open-reading',bank:openReading},...candidates],application};readingByBounds.set(maxWords,reviewed);return reviewed;
  }
@@ -62,13 +62,13 @@ try {
   const candidates=skill==='reading'?['A1','A2'].includes(level)?[{id:'bundled-voa',bank:reading.bundled}]:reading.candidates:banks.filter(b=>b.skill===skill).map(b=>({id:b.id,bank:b.pack.spoken}));
   if(skill==='listening'&&level==='A1')candidates.splice(0,candidates.length,{id:'bundled-words',bank:JSON.parse(fs.readFileSync('public/ipa/SOURCES.json'))});
   for(const {id,bank} of candidates)for(let index=0;index<13;index++) {
-   // Spread across the 32-bit normal-entry seed space; initial small seeds miss long operation cycles.
+   // Sample the full 32-bit seed space to cover long operation cycles.
    const seed=samplingPhase==='initial'?index:Math.imul(index+1,0x9e3779b1)>>>0;
    const installed=samplingPhase==='installed-dispersed';
    const lesson=skill==='reading'?corpusLesson(bank,new Set(),seed,bounds.maxWords,level,[],undefined,[],undefined,installed?reading.application:undefined):level==='A1'?wordListeningLesson(bank,new Set(),seed):spokenCorpusLesson(bank,new Set(),seed,bounds.maxSeconds,level,[],undefined,[],undefined,installed?applicationListening:[]);
    if(!lesson)continue;
    if(installed) {
-    // Compare the same ordinary seed when only installed materials enable the Wikiquote quota.
+    // Compare identical ordinary seeds when installed sources enable the Wikiquote quota.
     const singleSeed=skill==='reading'&&!['A1','A2'].includes(level)&&reading.application.records.some(source=>source.passages.some(passage=>passage.quoteProvenance))&&!bank.records.some(source=>source.passages.some(passage=>passage.quoteProvenance))?Math.floor(seed/16):seed;
     const single=skill==='reading'?corpusLesson(bank,new Set(),singleSeed,bounds.maxWords,level):level==='A1'?wordListeningLesson(bank,new Set(),seed):spokenCorpusLesson(bank,new Set(),seed,bounds.maxSeconds,level);
     const newOutcome = skill === 'listening' && corpusOperation(lesson.materials[0].questions[0]) === 'choice:stated-outcome';
@@ -148,7 +148,7 @@ try {
   const familyCounts=new Map();
   for(const source of beginnerBank.records){const count=source.passages.filter(passage=>passage.startingPoints?.includes(level)&&passage.wordCount<=maxWords).length;if(count)familyCounts.set(source.id.split('-')[0],(familyCounts.get(source.id.split('-')[0])??0)+count);}
   const gcd=(a,b)=>b?gcd(b,a%b):a;
-  // Mixed families select within a family as well as cycling operations.
+  // Select within mixed families as well as cycling operations.
   const sampledLessons=[...familyCounts.values()].reduce((period,count)=>{const selectionPeriod=count*familyCounts.size;return period/gcd(period,selectionPeriod)*selectionPeriod;},passageCount*operationCount);
   for(let seed=0;seed<sampledLessons;seed++) {
    const lesson=corpusLesson(beginnerBank,new Set(),seed,maxWords,level);assert(lesson);

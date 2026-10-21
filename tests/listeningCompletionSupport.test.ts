@@ -46,7 +46,7 @@ it('fills the real seed9 advanced listening gap without changing assessed materi
   const expected = structuredClone(historicalMaterials);
   expected[0].questions[0].prompt = "Listen and complete the sentence:\nIn the old house were\r\nthe two first volumes of Cooper's novel, called _The Prairie_, a\r\nrelic--probably a dishonest relic--of some subscription to Hookham's\r\n________.";
   expected[1].questions[0].prompt = 'Listen and complete the sentence:\nA dozen soldiers turned their\r\nfaces quickly toward him and ________ with vague displeasure.';
-  expect(lesson.materials).toEqual(expected); // Only full prompt context changes; all source/audio/scoring fields remain exact.
+  expect(lesson.materials).toEqual(expected); // Change prompt context only; preserve exact source, audio, and scoring fields.
   expect(sha(JSON.stringify(lesson.materials))).toBe('fee75357b8fe97d0c238831122adf217b2d4250e92349c75b32ae4a5bca4c375');
   assertDemo(lesson);
   expect(lesson.workedExample!['zh-Hans']).toBe(lesson.workedExample!.en);
@@ -73,7 +73,7 @@ it('keeps existing source examples before fallback completion demonstrations', (
 
 it('provides three-language beginner support at the controlled no-unused-source boundary', () => {
   for (const point of ['A1', 'A2'] as const) {
-    // Controlled evidence-coverage fixture, not a claim that this boundary was observed in installed beginner inventory.
+    // Test controlled evidence coverage without claiming installed beginner coverage.
     const input = structuredClone(generate('A2')), material = input.materials[0], question = material.questions[0];
     if (!('kind' in question) || question.kind !== 'completion') throw Error('Expected completion');
     question.evidence = { ...question.evidence, start: 0, end: material.blocks[0].text.length };

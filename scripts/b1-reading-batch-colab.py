@@ -1,4 +1,4 @@
-"""Frozen public-parent validation and batch GPU duplication diagnostics; no qualification."""
+"""Validate frozen public parents and diagnose GPU batch duplicates without granting qualification."""
 import pathlib,json,hashlib,re,time,zipfile,collections,subprocess
 ROOT=pathlib.Path('/content/lingfern-b1-reading-batch-20261013')
 INPUT=pathlib.Path('/content/lingfern-b1-reading-input.json')
@@ -17,7 +17,7 @@ def run():
  (ROOT/'validated.json').write_text(json.dumps(prepared,ensure_ascii=False)+'\n');(ROOT/'held.json').write_text(json.dumps(held,ensure_ascii=False)+'\n')
  import torch
  assert torch.cuda.is_available();device=torch.cuda.get_device_name(0);assert'A100'in device;torch.set_num_threads(2);torch.backends.cuda.matmul.allow_tf32=False
- # Hashed lexical vectors rank review neighbours only, never source acceptance or CEFR.
+ # Use hashed lexical vectors to rank review candidates, never to accept sources or assign CEFR.
  width=2048;vectors=torch.zeros((len(prepared),width),dtype=torch.float32)
  for i,r in enumerate(prepared):
   words=re.findall(r"[a-z]+(?:'[a-z]+)?|\d+",r['text'].lower().replace('’',"'"));counts=collections.Counter(words+[' '.join(pair)for pair in zip(words,words[1:])])

@@ -1,4 +1,4 @@
-"""Fixed official FLORES provenance inspection and exact FLEURS join; accepted=0."""
+"""Join exact FLEURS records to fixed official FLORES provenance; accept no records."""
 import argparse
 import csv
 import datetime
@@ -110,8 +110,8 @@ def download(url, destination, size, expected_sha=None):
 def members(archive):
     result, names, total = {}, set(), 0
     for member in archive:
-        # The official archive uses one leading "./". Canonical keys still
-        # reject aliases/collisions, repeated separators and nested dot paths.
+        # Strip the official archive's leading "./"; reject aliases, collisions, repeated separators, and nested dots.
+
         raw_name = member.name[2:] if member.name.startswith('./') else member.name
         name = raw_name[:-1] if member.isdir() and raw_name.endswith('/') else raw_name
         path = pathlib.PurePosixPath(name)
@@ -145,7 +145,7 @@ def texts(archive, index):
 def parse_flores(data):
     result = []
     for split, (sentence_path, metadata_path) in PATHS.items():
-        # Inspect first. Only literal header "URL" at column zero is supported.
+        # Inspect headers first; accept only literal "URL" in column zero.
         sentences = data[sentence_path].decode('utf-8').splitlines()
         lines = data[metadata_path].decode('utf-8').splitlines()
         header = lines[0].split('\t') if lines else []

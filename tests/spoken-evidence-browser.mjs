@@ -18,7 +18,7 @@ const packId=matching?'wikipedia-listening-009':postposed?'wikipedia-listening-0
 const catalogue=JSON.parse(await readFile('content/source-packs.json'));
 let packSeed=catalogue.packs.filter(pack=>pack.skill==='listening'&&pack.minSeconds!==null&&pack.minSeconds<=60).findIndex(pack=>pack.id===packId);
 assert(packSeed>=0);
-// Derive a deterministic normal-entry seed from the actual current package, not a temporary fixture.
+// Derive deterministic normal-entry seeds from current packages, not temporary fixtures.
 const server=await createServer({server:{middlewareMode:true,hmr:false,ws:false}});
 let selection;
 try {
@@ -178,7 +178,7 @@ try {
    const contentBounds=await page.locator('.question-sheet-content').boundingBox();
    assert(promptBounds&&contentBounds&&promptBounds.y>=contentBounds.y-1&&promptBounds.x>=contentBounds.x-1&&promptBounds.x+promptBounds.width<=contentBounds.x+contentBounds.width+1);
    await page.screenshot({path:`output/playwright/spoken-${family}-prompt-${index}-375-light-zh-Hans-offline.png`,animations:'disabled'});
-   // Inspect post-enlargement compositor settling separately from fresh offline recovery.
+   // Check post-resize compositing separately from fresh offline recovery.
    await page.evaluate(()=>new Promise(resolve=>{let frames=8;const tick=()=>--frames?requestAnimationFrame(tick):resolve();requestAnimationFrame(tick);}));
    await page.screenshot({path:`output/playwright/spoken-${family}-prompt-${index}-settled-375-light-zh-Hans-offline.png`,animations:'disabled'});
    await page.reload();await expand();
@@ -208,7 +208,7 @@ try {
    assert.match(await page.locator('header').evaluate(header=>getComputedStyle(header,'::before').backdropFilter),/blur\(16px\)/);
    await expect(page.locator('.question-sheet-scrim')).toHaveCount(0);
    const header=await page.locator('header').boundingBox();assert(header&&header.y===0&&header.height<=72);
-   // A resize can leave the previous compositor frame pending after layout settles.
+   // Layout may settle before the previous compositor frame completes.
    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
    await page.screenshot({path:`output/playwright/spoken-${family}-evidence-${index}-375-light-zh-Hans-offline.png`,animations:'disabled'});
    await page.reload();await expect(page.locator('.feedback')).toContainText(focusedFallback&&index===2?'再看一看':'回答正确');await expand();

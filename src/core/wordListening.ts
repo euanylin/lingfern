@@ -5,7 +5,7 @@ const sourceSchema = z.object({ word: z.string().regex(/^[a-z]+$/), path: z.stri
 export const wordListeningWords = new Set(['bed','cat','father','book','cup','bird','pen','bag','tea','dog','key','sun','hat','chair','man','leg','red','yes','no','blue']);
 const local = (en: string, hans: string, hant: string) => ({ en, 'zh-Hans': hans, 'zh-Hant': hant });
 
-/** Recognition of individual source words only; not sentence comprehension or ability. */
+/** Recognize individual recorded words without claiming sentence comprehension or ability. */
 export function wordListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_WORD_LISTENING_SEED');
   const sources = z.array(sourceSchema).max(100).parse(input);

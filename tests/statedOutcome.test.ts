@@ -178,8 +178,8 @@ it('keeps full history-pack primary phases identical when installed outcome part
   const partners = banks.filter(bank => !bank.records.some(source => source.rootId === gold.rootId));
   expect(primary.records.length).toBeGreaterThan(1);
   expect([...new Set(primary.records.filter(source => source.clips.some(clip => !clip.qualityFlags.length && corpusOutcome(clip.text, 0))).map(source => source.rootId))]).toEqual([gold.rootId]);
-  // Actual installed-audit regression: Adelaide table 4ee7a699...18319c5 replaced Cupcake completion 893da712...ac5ad.
-  // The original log omitted its seed; cover every exact dispersed audit seed rather than inventing one.
+  // Preserve the installed audit swap: Adelaide table 4ee7a699...18319c5 for Cupcake completion 893da712...ac5ad.
+  // Cover all dispersed audit seeds because the original log omitted its seed.
   const seeds = Array.from({ length: 13 }, (_unused, index) => Math.imul(index + 1, 0x9e3779b1) >>> 0);
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) {
     const maxSeconds = corpusPracticeHistory([], [], 'isolated-history-phases', 'listening', 'all', point).maxSeconds;
@@ -212,9 +212,9 @@ it('keeps full history-pack primary phases identical when installed outcome part
       expect(application.blocks[0].text, scope).toBe(owner.records.find(source => source.rootId === application.rootId)!.clips[0].text);
     }
   }
-  // Default B1's 35-second effort bound cannot admit the history pack's sole 55.43-second outcome clip.
-  // Its existing independent-application upper bound is 60 seconds; the other points use default effort bounds.
-  // B1 below is a pure effort-bound test, not a default UI route, a real profile achievement or CEFR acceptance.
+  // Default B1's 35s bound excludes the history pack's sole 55.43s outcome clip.
+  // Use B1's existing 60s application bound; keep other starting-point defaults.
+  // Test B1 effort only, without claiming default routing, profile achievement, or CEFR acceptance.
   for (const [point, maxSeconds] of [['B1', 60], ['B2', 60], ['C1', 75], ['C2', 91]] as const) {
     let reached = false;
     for (let index = 0; index < 512; index++) {
@@ -266,7 +266,7 @@ it('saves actual Practice/Test choices and unscored explanations before advancin
         expect(current.position).toBe(position); await markExposure(current);
         expect(question.id.length).toBeLessThanOrEqual(80);
         expect((await exposures.get([profileId, material.rootId]))!.contacts).toContainEqual(expect.objectContaining({ questionId: question.id, variantGroup: question.id }));
-        // Exercise the real playback-completion transaction; this simulated event is not auditory acceptance.
+        // Test real playback-completion writes without claiming auditory acceptance.
         if (!current.assistance.audioCompleted) {
           await expect(submit(session.id, 'outcome-owner', 'kind' in question ? 'A response.' : question.answer)).rejects.toThrow('NO_AUDIO');
           await recordPlayback(session.id, 'outcome-owner', question.id, false);

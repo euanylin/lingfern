@@ -20,7 +20,7 @@ export function DailyQuote({ locale, onDayChange }: { locale: Locale; onDayChang
     const token = ++request.current;
     setLoading(true); setFailed(false);
     let previous = current.current?.quote.id;
-    try { previous ??= localStorage.getItem('lingfern:last-daily-quote') ?? undefined; } catch { /* Storage can be disabled. */ }
+    try { previous ??= localStorage.getItem('lingfern:last-daily-quote') ?? undefined; } catch { /* Allow browsers with disabled storage. */ }
     try {
       const next = await dailyQuoteOnDemand(new Date(), previous);
       if (token === request.current) { current.current = next; setSelection(next); }
@@ -38,7 +38,7 @@ export function DailyQuote({ locale, onDayChange }: { locale: Locale; onDayChang
     let disposed = false, observedWidth: number | undefined;
     const measure = () => {
       if (disposed) return;
-      // Measure overflow without temporarily expanding the live page during browser-bar motion.
+      // Measure overflow without expanding the page during browser-bar motion.
       const needed = quoteNeedsExpansion(element.scrollHeight, parseFloat(getComputedStyle(element).lineHeight));
       setOverflow(current => current && current.id === id && current.needed === needed ? current : { id, needed });
     };
@@ -56,7 +56,7 @@ export function DailyQuote({ locale, onDayChange }: { locale: Locale; onDayChang
   }, [selection?.quote.id, locale]);
   useEffect(() => {
     setExpandedId(undefined);
-    try { if (selection) localStorage.setItem('lingfern:last-daily-quote', selection.quote.id); } catch { /* Keep quotes available without storage. */ }
+    try { if (selection) localStorage.setItem('lingfern:last-daily-quote', selection.quote.id); } catch { /* Display quotes even when storage fails. */ }
   }, [selection?.quote.id]);
   useEffect(() => {
     const refresh = () => {

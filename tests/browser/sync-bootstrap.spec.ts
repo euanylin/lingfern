@@ -19,7 +19,7 @@ test('legacy task and review originals are captured once and their IDs survive a
     await memory.enableReview('local-guest', 'apple%1:13:00::');
     const id = crypto.randomUUID();
     await memory.rateMemory('local-guest', 'apple%1:13:00::', 3, id);
-    // Simulate upgrading an archive created before synchronization events existed.
+    // Upgrade an archive predating sync events.
     await data.syncEvents.clear(); await data.syncClocks.clear();
     await data.settings.delete('profile:local-guest:syncBootstrap');
     return id;

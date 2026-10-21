@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { chromium, expect } from '@playwright/test';
 import { createServer } from 'vite';
-// Isolated historical-session fixture; this does not approve a draft or add an authored check catalogue.
+// Test historical sessions without approving drafts or adding a check catalogue.
 const server = await createServer({ server: { middlewareMode: true, hmr: false, ws: false } });
 let check;
 try { const { lessonSchema } = await server.ssrLoadModule('/src/shared/content.ts'); check = lessonSchema.parse(JSON.parse(readFileSync('tests/fixtures/content/a1-check-reading.json', 'utf8'))); } finally { await server.close(); }

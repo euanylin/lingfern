@@ -4,7 +4,7 @@ import {resolve,relative,sep} from 'node:path';
 import {createHash} from 'node:crypto';
 import {cloudSegments} from './cloud-listening.mjs';
 
-// Exact reviewed single-window local manifest; changes require a new evidence review.
+// Re-review evidence before changing the exact single-window manifest.
 export const recoveredListeningManifestSha256 = 'd7483cbbbf2624e960b7565780e8caec65f26a53b2cbb4a1b9e168062a279d54';
 const manifestPath='content/corpus/recovered-listening-sources.json';
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
@@ -19,7 +19,7 @@ const keys=(value,allowed)=>assert(value&&typeof value==='object'&&!Array.isArra
 const nonempty=value=>assert(typeof value==='string'&&value.trim().length>0,'RECOVERED_TEXT_FIELD');
 const safePath=path=>assert(typeof path==='string'&&/^private\/(?:verification|corpus)\//.test(path)&&!path.split('/').some(part=>!part||part==='.'||part==='..')&&!path.includes('\\'),'RECOVERED_PATH');
 
-/** Reflow this book's print line breaks only; keep exact UTF-16 source offsets. */
+/** Reflow this book's print wraps while preserving UTF-16 source offsets. */
 export function recoveredPreparedText(sourceText,sourceStart=0) {
  assert(typeof sourceText==='string'&&Number.isSafeInteger(sourceStart)&&sourceStart>=0,'RECOVERED_REFLOW_INPUT');
  let text='';const preparedOffsetToOriginalOffset=[];
@@ -36,7 +36,7 @@ export function recoveredPreparedText(sourceText,sourceStart=0) {
  return {text,preparedOffsetToOriginalOffset};
 }
 
-/** Original typography plus actual word timestamps, without inferred or inserted speech. */
+/** Preserve original typography and word timestamps without inserting speech. */
 export function recoveredWordSegments(text,raw,duration) {
  assert(raw&&raw.language==='en'&&typeof raw.text==='string'&&Array.isArray(raw.segments)&&raw.segments.length,'RECOVERED_RAW');
  assert.deepEqual(normalize(raw.text),normalize(text),'RECOVERED_RAW_TEXT');
@@ -50,7 +50,7 @@ export function recoveredWordSegments(text,raw,duration) {
  return cloudSegments(text,{text:raw.text,segments:words.map(word=>({text:word.word,start:word.start,end:word.end}))},duration);
 }
 
-/** Pure verification seam for isolated regression fixtures; the production entry also requires its frozen manifest hash. */
+/** Allow isolated verification fixtures; require the frozen manifest hash in production. */
 export function verifyRecoveredListening(scope,readBytes) {
  keys(scope,['version','scope','sources']);assert.equal(scope.version,1,'RECOVERED_VERSION');
  keys(scope.scope,['regions','use','published']);assert.deepEqual(scope.scope,{regions:['mainland-China','USA'],use:'local',published:false},'RECOVERED_SCOPE');
@@ -102,7 +102,7 @@ export function recoveredListeningInputs() {
  return result;
 }
 
-// Frozen only after the actual complete cloud run and complete per-window recovered evidence are verified.
+// Freeze only after verifying the full cloud run and every recovered window.
 export const recoveredListeningBatchManifestSha256='48e725e7a78894a120731ba56229ee712f675d9405fcd3949da670a1709ea164';
 const batchAuthorityPath='content/corpus/cloud-listening-sources.json';
 const batchAuthoritySha256='89a7202536e1f9e2df662430b8305ac1f9199e297b031e9aceab7630abf9e31c';
@@ -117,7 +117,7 @@ const batchOutputManifestSha256='ee2c0454937b34a06bdb2c47ffd343b4f4b18c441737e9c
 const reviewRows=report=>{const rows=Array.isArray(report)?report:report.rows??report.windows;assert(Array.isArray(rows),'RECOVERED_BATCH_REVIEW_ROWS');const result=new Map(rows.map(row=>[row.id,row]));assert.equal(result.size,rows.length,'RECOVERED_BATCH_REVIEW_DUPLICATE');return result;};
 const goodDecode=d=>assert(d&&d.engine==='ffmpeg-full-stream-decode'&&digest.test(d.pcmSha256)&&Number.isSafeInteger(d.samples)&&d.samples>0&&Number.isSafeInteger(d.sampleRate)&&d.sampleRate>0&&d.duration===d.samples/d.sampleRate&&Number.isFinite(d.peak)&&d.peak>0&&d.peak<.98&&d.clippingSamples===0&&Number.isFinite(d.rms)&&d.rms>1e-5,'RECOVERED_BATCH_DECODE');
 
-/** All-window cloud execution plus individually complete retrieval/review; no whole-archive or device claim. */
+/** Record cloud completion and per-window retrieval/review without claiming whole-archive/device acceptance. */
 export function verifyRecoveredBatch(scope,readBytes) {
  keys(scope,['version','scope','job','completionReport','outputManifest','contextReview','recoveryReview','independentReview','textReview','boundaryReview','supplementalMediaReview','windows','continuationReview']);assert([1,2].includes(scope.version),'RECOVERED_BATCH_VERSION');
  const continuation=scope.version===2;assert(continuation||!scope.continuationReview,'RECOVERED_BATCH_CONTINUATION_SCOPE');
@@ -180,7 +180,7 @@ export function recoveredListeningBatchInputs() {
  return verifyRecoveredBatch(JSON.parse(bytes),path=>{assert(path===batchAuthorityPath||path.startsWith('private/'),'RECOVERED_BATCH_PATH');let current=process.cwd();for(const part of path.split('/')){current=resolve(current,part);assert(!lstatSync(current).isSymbolicLink(),'RECOVERED_BATCH_SYMLINK');}return readFileSync(path);});
 }
 
-// Separately frozen continuation; original batch pins and holds remain unchanged.
+// Freeze continuations separately without changing original pins or holds.
 export const recoveredListeningContinuationManifestSha256='0b20267db6c64bd86aeef9f2a1e6958dca5d9d6ec36873f46efe2593b5cb9000';
 export function recoveredListeningContinuationInputs(){
  const path='content/corpus/recovered-listening-continuation-sources.json',bytes=readFileSync(path);assert.equal(sha(bytes),recoveredListeningContinuationManifestSha256,'RECOVERED_CONTINUATION_MANIFEST_CHANGED');

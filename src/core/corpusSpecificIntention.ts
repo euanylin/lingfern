@@ -1,10 +1,10 @@
 import scopes from '../../content/corpus/b1-intention-scopes.json';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
 export const specificIntentionPrompt='What concrete intention does the speaker express here, in this context?';
-/** Interpret the undertaking or presentation in context, preserving agent, scope and completion status. */
+/** Preserve agent, scope, and completion status when interpreting undertakings or presentations. */
 export function corpusSpecificIntention(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||text.length>12000)throw new Error('INVALID_SPECIFIC_INTENTION');
- // shortcut: two inspected speech-act contexts only; review complete speaker/action/context before extending.
+ // shortcut: two speech-act contexts; review full speakers, actions, and context before extending.
  if(!scopes.records.some(s=>s.text===text))return;
  const holmes=text.startsWith('“And your father?');
  const action=holmes?text.match(/“I shall (glance into the case for you),” said (Holmes), rising, “and I have no doubt that we shall reach some definite result\./):text.match(/Anna: Today we are going to (take you on a summer vacation)! You will (see popular things to do on vacation)!/);

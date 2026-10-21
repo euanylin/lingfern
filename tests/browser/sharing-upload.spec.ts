@@ -38,7 +38,7 @@ test('only explicitly selected, previewed and confirmed content is uploaded once
   await expect(upload.getByRole('button', { name: '确认上传' })).toBeDisabled();
   await selectPicker(page, '接收客户端', connectionId);
   await upload.getByRole('checkbox').check();
-  // Changing the selected content invalidates approval and the receiver choice.
+  // Invalidate content approval and receiver choice after selection edits.
   await page.getByRole('radio', { name: '再举一个例子' }).check();
   await page.locator('.sharing-upload>summary').click();
   await upload.getByRole('button', { name: '读取已授权客户端' }).click();

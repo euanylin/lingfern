@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import type { Lesson } from '../../src/shared/content';
 const raw = JSON.parse(readFileSync(new URL('./content/c2-listening.json', import.meta.url), 'utf8')) as Lesson;
-/** Isolated UI fixture: losslessly join two speaker blocks; retain the authored audio evidence intervals. */
+/** Join fixture speaker blocks losslessly while preserving audio evidence intervals. */
 export function multiGapListening() {
   const lesson = structuredClone(raw), material = lesson.materials[0], original = material.questions[0];
   const offsets = new Map<string, number>(); let text = '';

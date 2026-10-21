@@ -1,4 +1,4 @@
-"""Acquire five precise official programme/audio pairs; preserve credits and pending rights/audio."""
+"""Acquire five fixed official programme/audio pairs, preserving credits and rights/audio holds."""
 import traceback, datetime, hashlib, importlib.util, json, pathlib, re, subprocess, time, urllib.request
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
 SOURCES = [

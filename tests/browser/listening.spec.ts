@@ -17,7 +17,7 @@ test('four real recordings play from this site, save evidence and resume', async
     await page.getByRole('radio', { name: word, exact: true }).check();
     await expect(page.getByRole('button', { name: '保存答案', exact: true })).toBeDisabled();
     await expect(page.locator('blockquote')).toHaveCount(0);
-    // The test runner has no reliable audio output; decoding and natural ended events still run.
+    // Exercise decoding and natural ended events without claiming audible playback.
     await page.locator('audio').evaluate((el: HTMLAudioElement) => { el.muted = true; });
     await showLearningPane(page, 'material');
     await page.getByRole('button', { name: '播放 / 重听', exact: true }).click();
@@ -58,7 +58,7 @@ test('failed audio never permits scoring and recovers on an explicit replay', as
     open.onerror = () => reject(open.error);
   }));
   await page.goto('/today'); await page.locator('.primary-task:not(.reading-task):not(.combined-training)').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
-  // The preview must read real media before Practice starts; fail the player's own request afterwards.
+  // Load real preview media before failing the practice player's request.
   await page.route('**/audio/**/*.mp3', route => route.abort());
   await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.load());
   expect(await exposureCount()).toBe(0);

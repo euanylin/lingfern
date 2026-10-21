@@ -60,7 +60,7 @@ try {
    }
   }
   planned.push({ level, operation, practice: await createSession(lesson), test: await createSession(asTestLesson(lesson)) });
-  // Each browser plan has its own profile database; mirror that isolation in the in-memory planner.
+  // Isolate each in-memory plan like its browser profile database.
   if (advancedSupport || roomSupport || speakerSupport) await sessions.clear();
  }
 } finally { await server.close(); }

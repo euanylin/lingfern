@@ -10,7 +10,7 @@ export type ResolvedSummary = { event: CompletionSummary; lesson: Lesson };
 export type ProgressEntry = { attempt: Pick<Attempt, 'id' | 'sessionId' | 'questionId' | 'rootId' | 'correct' | 'assistance' | 'submittedAt'>; session: Pick<Session, 'id' | 'status' | 'lesson'>; localSessionId?: string; materialTitle: string; mark: '●' | '◐' | '○' | '×' | '◇' };
 export type ProgressGoal = { key: string; lesson: Lesson; entries: ProgressEntry[] };
 
-// Activity display only: answer coverage, not correctness or an ability estimate.
+// Display answer coverage without implying correctness or ability.
 export function fernActivity(entries: ProgressEntry[]) {
   const sessions = new Map<string, { lesson: Lesson; items: Set<string>; answered: Set<string> }>();
   for (const { session, attempt } of entries) {
@@ -23,7 +23,7 @@ export function fernActivity(entries: ProgressEntry[]) {
     if (activity.items.has(item)) activity.answered.add(item);
   }
   const result = { reading: 0, listening: 0, tests: 0 };
-  // Stable summation makes sync/recovery input order irrelevant to the graphic.
+  // Sum deterministically so sync/recovery order cannot change the graphic.
   for (const [, { lesson, items, answered }] of [...sessions].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)) {
     if (!items.size) continue;
     const completedTest = answered.size === items.size && (lesson.mode === 'test' || lesson.mode === 'check');
@@ -79,7 +79,7 @@ export function progressRecords(lessons: Lesson[], sessions: Session[], attempts
 }
 
 
-// Resolve summaries only against the exact installed/saved lesson snapshot. Never fabricate original answers.
+// Resolve exact lesson snapshots without inventing original answers.
 export async function mergeLearningRecords(lessons: Lesson[], sessions: Session[], attempts: Attempt[], events: SyncEvent[]) {
   const merged = projectSyncEvents(events);
   const timing = await completionTiming(events);

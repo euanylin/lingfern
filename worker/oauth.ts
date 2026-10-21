@@ -21,7 +21,7 @@ function language(request: Request) {
 }
 function html(request: Request, content: string, headers = new Headers(), redirectUri?: string) {
   headers.set('Content-Type', 'text/html; charset=utf-8'); headers.set('Cache-Control', 'private, no-store');
-  // Browsers apply form-action to the redirect after consent as well as the form target.
+  // Allow form-action redirects as well as consent form targets.
   headers.set('Content-Security-Policy', `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'${redirectUri ? ` ${(new URL(redirectUri).origin === 'null' ? new URL(redirectUri).protocol : new URL(redirectUri).origin)}` : ''}; base-uri 'none'; frame-ancestors 'none'`);
   headers.set('X-Content-Type-Options', 'nosniff');
   return new Response(`<!doctype html><html lang="${language(request)}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/oauth-consent.css"><title>Lingfern</title><main><span class="logo" role="img" aria-label="Lingfern"></span>${content}</main></html>`, { headers });
@@ -40,7 +40,7 @@ async function consent(request: Request, env: OAuthEnv) {
       if (!pending) throw new ApiError('MCP_LOGIN_EXPIRED', 400);
       validatedRequest = new Request(pending.authorize_url, { headers: request.headers });
     }
-    // Clients that omit scopes get an explicit, short-lived read consent, never persistent access.
+    // Require explicit short-lived read consent when scopes are omitted.
     const authorizationUrl = new URL(validatedRequest.url);
     if (!authorizationUrl.searchParams.get('scope')?.trim()) {
       authorizationUrl.searchParams.set('scope', 'mcp:read contexts:read');
@@ -159,9 +159,9 @@ export async function oauthRoute(request: Request, env: OAuthEnv, ctx: Execution
     }
     const response = await provider.fetch(boundedRequest, env, ctx);
     const headers = new Headers(response.headers); headers.set('Cache-Control', 'private, no-store'); headers.set('X-Content-Type-Options', 'nosniff');
-    // Native form posts need their same-origin Origin; external clients still receive no referrer.
+    // Preserve same-origin Origin for native forms and omit external referrers.
     headers.set('Referrer-Policy', headers.get('Content-Type')?.startsWith('text/html') ? 'same-origin' : 'no-referrer');
-    // Discovery asks for useful read access; catalogue-only grants still need only the protocol baseline.
+    // Advertise useful read scopes; catalogue-only grants need just the protocol baseline.
     const readScopes = 'mcp:read contexts:read';
     if (url.pathname === '/mcp' && response.status === 401) {
       const challenge = headers.get('WWW-Authenticate');

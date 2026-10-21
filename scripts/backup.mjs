@@ -61,7 +61,7 @@ async function backupUnlocked(root) {
   if (previous && !files.length && !deleted.length) return path.join(backupRoot, previous);
   const createdAt = new Date().toISOString();
   const destination = path.join(backupRoot, createdAt.replaceAll(':', '-'));
-  await mkdir(destination); // Never overwrite a snapshot.
+  await mkdir(destination); // Keep snapshots immutable.
   for (const file of files) {
     const source = path.join(root, file.path);
     const target = path.join(destination, 'project', file.path);
@@ -69,14 +69,14 @@ async function backupUnlocked(root) {
     await copyFile(source, target);
     if (hash(await readFile(target)) !== file.sha256 || hash(await readFile(source)) !== file.sha256) throw new Error(`File changed during backup: ${file.path}`);
   }
-  // A manifest written last makes an interrupted backup unusable rather than silently complete.
+  // Write manifests last so interrupted backups cannot appear complete.
   await writeFile(path.join(destination, 'manifest.json'), JSON.stringify({ createdAt, kind: previous ? 'incremental' : 'full', ...(previous && { parent: previous }), scope: 'Changed project files; excludes secrets, private/, git history, generated dist/, caches and nested backups. Not browser or production data.', files, deleted }, null, 2) + '\n');
   return destination;
 }
 
 export async function restore(root, snapshot, target) {
   const { snapshots } = await chain(path.join(root, 'backup'), snapshot);
-  await mkdir(target); // Restore only into a new empty directory.
+  await mkdir(target); // Require a new empty restore directory.
   for (const { name, manifest } of snapshots) {
     for (const removed of manifest.deleted ?? []) await rm(path.join(target, removed), { force: true });
     for (const file of manifest.files) {
@@ -92,7 +92,7 @@ export async function restore(root, snapshot, target) {
   return target;
 }
 
-/** Explicit maintenance only: verify a self-contained baseline before deleting the old chain. */
+/** Verify a standalone baseline before explicitly consolidating the old chain. */
 async function compactUnlocked(root) {
   const backupRoot = path.join(root, 'backup');
   const old = (await readdir(backupRoot, { withFileTypes: true })).filter(entry => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}T[\d-]+\.\d{3}Z$/.test(entry.name)).map(entry => entry.name).sort();
@@ -119,12 +119,12 @@ async function compactUnlocked(root) {
   await writeFile(path.join(destination, 'manifest.json'), JSON.stringify({ createdAt, kind: 'full', scope: 'Verified consolidated project baseline; excludes secrets, private data, generated output and caches.', files, deleted: [] }, null, 2) + '\n');
   const verified = await chain(backupRoot, path.basename(destination));
   if (verified.snapshots.length !== 1 || verified.state.size !== files.length) throw new Error('Invalid consolidated baseline');
-  // Never run automatically during ordinary backups. Only captured older directories are removed.
+  // Remove only captured old directories during explicit consolidation.
   for (const name of old) await rm(path.join(backupRoot, name), { recursive: true });
   return destination;
 }
 
-// ponytail: one project lock; per-project backups are serial, no automatic stale-lock removal.
+// shortcut: one serial project lock; verify ownership before removing any stale lock.
 async function locked(root, operation) {
   const folder = path.join(root, 'backup');
   await mkdir(folder, { recursive: true });

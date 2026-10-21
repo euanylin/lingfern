@@ -10,6 +10,15 @@ const locales = ['zh-Hans', 'zh-Hant', 'en', 'ja', 'ko', 'fr', 'es', 'de', 'pt',
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const compressed = bytes => gzipSync(bytes).length;
 const files = await readdir('dist/assets');
+const nativeNames = await Promise.all(locales.map(async locale => [locale, JSON.parse(await readFile(`src/locales/${locale}/messages.json`, 'utf8')).meta.nativeName]));
+const interfaceChunks = new Map();
+for (const name of files.filter(name => name.endsWith('.js'))) {
+  const source = await readFile('dist/assets/' + name, 'utf8');
+  if (!source.includes('nativeName')) continue;
+  const included = nativeNames.filter(([, label]) => source.includes('nativeName:`' + label + '`') || source.includes('"nativeName":"' + label + '"')).map(([locale]) => locale);
+  if (included.length) interfaceChunks.set('/assets/' + name, included);
+}
+assert(locales.every(locale => [...interfaceChunks.values()].some(included => included.includes(locale))), 'Every built interface package must be identifiable');
 const size = async name => compressed(await readFile('dist/assets/' + name));
 const maximum = async pattern => Math.max(...await Promise.all(files.filter(name => pattern.test(name)).map(size)));
 const maxQuote = await maximum(/^\d{3}-.*\.js$/);
@@ -42,7 +51,10 @@ try {
     await expect(page.locator('.daily-quote[data-quote-id] blockquote')).toBeVisible();
     await page.waitForLoadState('networkidle');
     const resources = [...new Map((await Promise.all(pending)).map(file => [file.path, file])).values()];
-    assert(!resources.some(file => /\/(?:corpus|prepareCorpusPractice|text-review)-/.test(file.path)), 'Generation/source parsing is not first-screen work');
+    const interfaceLocales = [...new Set(resources.flatMap(file => interfaceChunks.get(file.path) ?? []))];
+    assert(interfaceLocales.includes(locale));
+    assert(interfaceLocales.every(value => value === locale || value === 'en'), `${locale}: unrelated interface languages downloaded: ${interfaceLocales}`);
+    assert(!resources.some(file => /\/(?:corpus|prepareCorpusPractice|text-review|Learning|Dictionary|GrammarLookup|SavedWords|ProfileBackup|GithubIdentity|ProgressRecords|CompletionTiming|SessionHistory|SyncConflicts|OfflineInstall|CommunityImport|LookupHistory|UnsavedDemo)-/.test(file.path)), 'Unopened views and generation modules are not first-screen work');
     const total = resources.reduce((sum, file) => sum + file.gzip, 0);
     const shared = resources.filter(file => !/\/(?:\d{3}|teaching)-/.test(file.path)).reduce((sum, file) => sum + file.gzip, 0);
     const worstCase = shared + maxTeaching + maxQuote;
@@ -52,7 +64,7 @@ try {
     const timing = await page.evaluate(() => ({ paint: performance.getEntriesByType('paint').map(entry => entry.toJSON()), heap: performance.memory ? { used: performance.memory.usedJSHeapSize, total: performance.memory.totalJSHeapSize, limit: performance.memory.jsHeapSizeLimit } : null }));
     const sw = await context.request.get(origin + '/sw.js');
     assert.equal(sha(await sw.body()), sha(await readFile('dist/sw.js')));
-    report.runs.push({ locale, total, worstCase, timing, resources, quote: await page.locator('.daily-quote').getAttribute('data-quote-id') });
+    report.runs.push({ locale, total, worstCase, interfaceLocales, timing, resources, quote: await page.locator('.daily-quote').getAttribute('data-quote-id') });
     await context.close();
   }
   report.passed = true;

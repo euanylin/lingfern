@@ -1,4 +1,4 @@
-// Activation may come from a worker installed by another tab, outside Workbox's local lifecycle.
+// Another tab may activate a worker outside this tab's Workbox lifecycle.
 export async function activateWaitingUpdate(container: ServiceWorkerContainer, registration: ServiceWorkerRegistration) {
   const worker = registration.waiting;
   if (!worker) return;

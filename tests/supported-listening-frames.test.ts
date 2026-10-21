@@ -21,7 +21,7 @@ it('compares finite result direction while retaining Ireland, date, diet and ove
 });
 it.each([
  ['B1',20,'choice','choice:stated-outcome','Barn owl','wikipedia-article-9228'],
- // The short Envy view contains another attributed definition; retain the inspected Anthea claim instead.
+ // Retain inspected Anthea claims; the short Envy view has a different attributed definition.
  ['B2',25,'evidence','evidence:Which sentence explicitly attributes a claim to a named source?','Sega v. Accolade','gutenberg-book-836'],
 ] as const)('generates supported %s two-root %s and preserves ownership, scoring, Test and exhaustion',(level,bound,kind,operation,title,otherRoot)=>{
  const row=scope.records.find(r=>r.title===title)!;

@@ -143,7 +143,7 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
       const batches: { batch: z.infer<typeof syncUploadSchema>['batch']; hash: string; blobSha: string }[] = [];
       if (!metadata) {
         const missing = page.filter((_, position) => !known.some(item => item.deviceId === files[position].deviceId && item.batchId === files[position].batchId && item.blobSha === files[position].blobSha));
-        // Two upstream blob requests at a time; a failed page never returns a partial cursor.
+        // Fetch two blobs at once; never return partial-page cursors on failure.
         for (let offset = 0; offset < missing.length; offset += 2) {
           await allowed();
           const pair = await Promise.all(missing.slice(offset, offset + 2).map(async entry => {
@@ -185,7 +185,7 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
         } catch (error) { if (error instanceof ApiError) throw error; throw new ApiError('SYNC_REMOTE_INVALID', 409); }
         return true;
       };
-      // Initial attempt plus at most three retries, never overwriting an existing path.
+      // Attempt once plus three retries without overwriting existing paths.
       for (let attempt = 0; attempt <= 3; attempt++) {
         await allowed();
         const checked = await inspect(api, session.id, { installationId: binding.installation_id, repositoryId: binding.repository_id, name: binding.repository_name, profileId: payload.batch.profileId });
@@ -203,8 +203,8 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
           const status = error && typeof error === 'object' && 'status' in error ? error.status : undefined;
           if (status !== 409 && status !== 422) throw error;
           if (attempt === 3) throw new ApiError('SYNC_PENDING', 409);
-          // A 422 may be a duplicate race or provider limiting. Honour supplied wait timing;
-          // long waits belong to a later client round rather than holding the Worker open.
+          // Respect 422 retry timing for races/rate limits; defer long waits to later client rounds.
+
           const headers = error && typeof error === 'object' && 'response' in error ? (error.response as { headers?: Record<string, string> })?.headers : undefined;
           const retry = Number(headers?.['retry-after'] ?? 0);
           const reset = headers?.['x-ratelimit-remaining'] === '0' ? Math.max(0, Number(headers['x-ratelimit-reset']) * 1000 - Date.now()) : 0;
@@ -227,7 +227,7 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
       const personal = list.filter(installation => readyInstallation(installation, session.id));
       if (personal.length > 1) throw new ApiError('GITHUB_RESPONSE', 502);
       for (const installation of personal) {
-        // Personal ownership means at most one relevant installation for this App.
+        // Personal ownership limits this App to one relevant installation.
         for (const repository of await installedRepositories(api, installation.id)) if (readyRepository(repository, session.id)) repositories.push({ installationId: installation.id, repositoryId: repository.id, name: repository.name });
       }
       if (repositories.length > 100) throw new ApiError('REPOSITORY_CAPACITY', 413);
@@ -241,7 +241,7 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
       const repositoryVersion = repositoryBefore?.version ?? randomSecret();
       const checked = await inspect(api, session.id, choice);
       const version = before?.version ?? randomSecret();
-      // A revocation arriving during inspection must win over this verification.
+      // Let revocation during inspection override verification.
       const state = await db.prepare('INSERT INTO installation_states(id,version,disabled) VALUES(?,?,0) ON CONFLICT(id) DO UPDATE SET disabled=0 WHERE version=? RETURNING version').bind(choice.installationId, version, before?.version ?? '').first<{ version: string }>();
       if (!state) throw new ApiError('AUTHORISATION_CHANGED', 409);
       await db.prepare('INSERT OR IGNORE INTO repository_states(id,version) VALUES(?,?)').bind(choice.repositoryId, repositoryVersion).run();
@@ -266,7 +266,7 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
       const stillAllowed = await db.prepare('SELECT hash FROM binding_intents WHERE hash=? AND consumed=1 AND expires_at>unixepoch() AND EXISTS(SELECT 1 FROM installation_states WHERE id=? AND version=? AND disabled=0) AND EXISTS(SELECT 1 FROM repository_states WHERE id=? AND version=?)').bind(intent.hash, intent.installation_id, intent.installation_version, intent.repository_id, intent.repository_version).first();
       if (!stillAllowed || !await requireSession(request, env, true)) throw new ApiError('AUTHORISATION_CHANGED', 409);
       await api('PUT /repos/{owner}/{repo}/contents/{path}', { ...path, path: 'profile.json', branch: checked.repository.default_branch, message: 'Initialise Lingfern profile marker', content: btoa(JSON.stringify({ product: 'Lingfern', formatVersion: 1, profileId: intent.profile_id })) });
-      // No sha is supplied: an existing marker is never overwritten, including a race.
+      // Omit sha so existing markers cannot be overwritten, even in races.
       await inspect(api, session.id, { installationId: intent.installation_id, repositoryId: intent.repository_id, name: intent.repository_name, profileId: intent.profile_id });
     }
     const bindingVersion = randomSecret();

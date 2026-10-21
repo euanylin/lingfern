@@ -9,7 +9,7 @@ import type { Attempt, Session } from '../src/data/db';
 import { levelSchema, topicSchema } from '../src/shared/content';
 import { activeCorpusPractice } from '../src/data/practice';
 
-// Isolated policy metadata; no synthetic learner profile enters application assets.
+// Keep synthetic policy/profile metadata out of application assets.
 const lesson = corpusLesson(corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8'))), new Set(), 0)!;
 const profile = 'policy-test';
 const transferLesson = corpusLesson(corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8'))), new Set(), 0, 300, 'B2', [], 'completion')!;
@@ -86,7 +86,7 @@ it('retries the requested semantic matching operation through actual source-pack
   const catalogue = regressionSourcePacks as { packs: { id: string; path: string }[] };
   const entry = catalogue.packs.find(pack => pack.id === 'wikipedia-reading-017')!;
   const bank = (await inspectCommunityPack(readSourcePackFixture(entry.id))).corpus!;
-  // Both operations are checked against the exact package below; discovering their names is not the retry contract.
+  // Check exact package operations; operation names alone do not establish retries.
   const operations = [
     'matching:Match each action to what the request asks for or rules out.',
     'matching:In the paired statement, match each reliance to what needs it.',

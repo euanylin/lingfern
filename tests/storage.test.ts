@@ -170,7 +170,7 @@ it('does not rewrite legacy completion payloads when teaching support is inferre
     await submit(session.id, 'legacy', question.answer);
     if (index < items.length - 1) await advance(session.id, 'legacy');
   }
-  // Isolated pre-upgrade data: missing optional marker must not mutate immutable wire summaries.
+  // Preserve immutable wire summaries when legacy rows lack optional markers.
   for (const saved of await attempts.toArray()) {
     delete saved.assistance.teachingProvided;
     await attempts.put(saved);

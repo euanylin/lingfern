@@ -1,6 +1,6 @@
 import type { Preferences } from './preferences';
 
-// Explicit offline lexical signals; these are recommendation hints, not semantic labels.
+// Use offline keywords for recommendations without claiming semantic labels.
 export const interestWords = {
   campus: /\b(?:campus|university|college|students?|classroom|lectures?|education)\b/gi,
   'daily-life': /\b(?:apartment|roommate|kitchen|bedroom|bathroom|supermarket|breakfast|dinner|shopping)\b/gi,

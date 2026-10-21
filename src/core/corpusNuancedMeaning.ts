@@ -2,7 +2,7 @@ import scopes from '../../content/corpus/c2-nuanced-meaning-scopes.json';
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const nuancedMeaningOperation = 'choice:nuanced-meaning';
 export const nuancedMeaningPrompt = 'Consider this proposed edit in the complete context. Which account preserves both the change and the contextual limits?';
-// shortcut: inspected contextual effects of these semantic edits; review competing interpretations before extending.
+// shortcut: inspected effects of semantic edits; review competing interpretations before extending.
 const edits = [
   {
     "from": "they could represent one of four—if they could master the perspective of the thing.",

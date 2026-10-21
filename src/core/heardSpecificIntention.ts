@@ -1,10 +1,10 @@
 import sources from '../../public/audio/b1-speech/INTENTION.json';
 import { specificIntentionPrompt, specificIntentionSupport } from './corpusSpecificIntention';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-/** Distinguish a future undertaking or practical suggestion from completion, rejection or a changed agent. */
+/** Distinguish future undertakings/suggestions from completion, rejection, or agent changes. */
 export function heardSpecificIntention(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_HEARD_SPECIFIC_INTENTION');
- // shortcut: two inspected whole utterances only; review other speech acts and continuations before extending.
+ // shortcut: two whole utterances; review other speech acts and continuations before extending.
  if(!sources.some(s=>s.text===text))return;
  const forest=text.startsWith('You are here highly spoken of');
  const action=forest?text.match(/We will (retain you), for your services will be wanted (by-and-by)\./):text.match(/You might (buy the old mill and turn it into a newspaper office)\./);

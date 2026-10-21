@@ -47,7 +47,7 @@ export async function webhookRoute(request: Request, env: AuthEnv): Promise<Resp
       );
     } else if (kind === 'installation_repositories') {
       const event = z.object({ action: z.string(), installation: z.object({ id: z.number().int().positive() }) }).parse(rawEvent);
-      // Any selection change requires fresh inspection, without automatically disabling identity.
+      // Require fresh inspection after selection changes without disabling identity.
       changes.push(
         db.prepare(`INSERT INTO installation_states(id,version,disabled) SELECT ?,?,0 WHERE ${guard} ON CONFLICT(id) DO UPDATE SET version=excluded.version`).bind(event.installation.id, randomSecret(), delivery, hash),
         db.prepare(`UPDATE repository_bindings SET disabled=1 WHERE installation_id=? AND ${guard}`).bind(event.installation.id, delivery, hash),
@@ -62,7 +62,7 @@ export async function webhookRoute(request: Request, env: AuthEnv): Promise<Resp
         db.prepare(`DELETE FROM binding_intents WHERE repository_id=? AND ${guard}`).bind(event.repository.id, delivery, hash),
       );
     } else return privateJson({ accepted: true, applied: false }, 202);
-    // Receipt and invalidation commit together; a duplicate cannot revoke a later login.
+    // Commit receipt and invalidation together so duplicates cannot revoke newer logins.
     await db.batch([
       db.prepare('INSERT OR IGNORE INTO webhook_deliveries(id,body_hash,received_at) VALUES(?,?,?)').bind(delivery, hash, Math.floor(Date.now() / 1000)),
       ...changes,

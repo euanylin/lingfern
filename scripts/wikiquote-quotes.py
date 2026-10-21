@@ -1,4 +1,4 @@
-"""Private, source-bound full Wikiquote candidate pass. Does not write public assets."""
+"""Prepare private source-bound Wikiquote candidates without writing public assets."""
 import argparse, array, collections, datetime, hashlib, html, json, pathlib, re, unicodedata, urllib.parse
 ROOT = pathlib.Path('private/wikiquote')
 ALIASES = {
@@ -60,7 +60,7 @@ def ledger():
         titles = list(dict.fromkeys([record['title'], *ALIASES.get(book_id, [])]))
         patterns = [re.compile(r'(?<!\w)' + re.escape(normal(t)) + r'(?!\w)', re.I) for t in titles]
         works.append({'workId': record['id'], 'title':record['title'], 'sourceHash':record['sourceHash'], 'metadataSha256':sha(meta_bytes), 'regionalRights':'unverified', 'aliases':titles, 'authorSurnames':[author.split(',')[0] for author in record['authors']], 'text':text, 'normalized':normalized, 'positions':positions, 'patterns':patterns})
-    # Explicit private edition additions: validate the whole frozen input before any output writes.
+    # Validate complete frozen private additions before writing output.
     addition_path = ROOT/'expansion/new-edition-ledger.json'
     addition_bytes = addition_path.read_bytes()
     assert sha(addition_bytes) == '51342b46bd90c39d3b4d46c32e63af12a0077872aff63de43d315ff3774cff16'
@@ -109,7 +109,7 @@ def parse_candidate(row):
     if row.get('complexMarkupNeedsRendering'): raise ValueError('complex-template-ref-html')
     lines = row['rawBlock'].splitlines()
     if not lines or not re.match(r'^\*(?![*:#])\s*\S', lines[0]): raise ValueError('not-top-level-quote')
-    # Only one complete top-level bullet; do not silently truncate continuation or infer nested translations as quote.
+    # Accept complete top-level bullets without truncating continuations or inferring translations.
     quote_lines, citation_lines = [], []
     citation_started = False
     for line in lines:
@@ -118,7 +118,7 @@ def parse_candidate(row):
         if not citation_started:
             if line.strip(): quote_lines.append(re.sub(r'^\*\s*', '', line) if not quote_lines else line)
         elif line.strip():
-            # Categories/site footers are outside the citation; nested translations, dialogue and prose continuations unsupported.
+            # Exclude categories/footers; reject nested translations, dialogue, and continuations.
             if re.match(r'^\[\[(?:Category|[a-z]{2,3}):|^==', line, re.I): break
             raise ValueError('unsupported-citation-continuation')
     if not citation_lines: raise ValueError('no-explicit-double-star-citation')
@@ -134,7 +134,7 @@ def match_work(text, citation, title, works, raw_citation=""):
     for work in works:
         for alias, pattern in zip(work['aliases'], work['patterns']):
             if not pattern.search(context): continue
-            # A one-word work name can also be a person's name. Require a work page, typography/link or the verified edition author in citation.
+            # Require work-page, typography/link, or verified-author evidence for ambiguous one-word titles.
             if len(alias.split()) == 1:
                 page_is_work = bool(re.fullmatch(re.escape(alias)+r'(?: \(.*\))?', normal(title), re.I))
                 formatted_work = bool(re.search(r"'{2,3}"+re.escape(alias)+r"'{2,3}|\[\["+re.escape(alias)+r'(?:[|#\]]| \()', raw_citation, re.I))
@@ -145,7 +145,7 @@ def match_work(text, citation, title, works, raw_citation=""):
     matches = []
     for work in explicit:
         ranges = [part for part in work.get('subworks',[]) if part['pattern'].search(context)]
-        # Explicit Henry part identifiers narrow the source range; an unqualified series may match one part only.
+        # Narrow Henry sources by explicit part; unqualified series may match one part only.
         selected=[]
         for part in ranges:
             if part['part'] is not None:
@@ -187,7 +187,7 @@ def display_locator(row):
     return citation or ' / '.join(row['section']) or row['title'], citation, excluded
 
 def dedup_key(text):
-    # Dedup only; edition matching never lowercases or applies NFKC.
+    # Normalize only for deduplication; preserve case and Unicode form for edition matching.
     return normal(unicodedata.normalize('NFKC',text)).casefold()
 def is_work_page(row,works):
     work=next(w for w in works if w['workId']==row['rightsEvidence']['workId'])

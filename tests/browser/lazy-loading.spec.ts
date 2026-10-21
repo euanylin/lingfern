@@ -3,6 +3,61 @@ import { languagePacks } from '../../src/locales';
 import { confirmTask } from './task-start';
 import { selectPicker } from './picker';
 
+test('Today loads learning, reference, history and account views only when opened', async ({ page }) => {
+  const modules = new Set<string>();
+  page.on('request', request => modules.add(new URL(request.url()).pathname));
+  await page.goto('/today');
+  await expect(page.locator('.practice-card').first()).toBeVisible();
+  for (const name of ['Learning', 'Dictionary', 'GrammarLookup', 'SavedWords', 'ProfileBackup', 'GithubIdentity', 'ProgressRecords', 'CompletionTiming', 'SessionHistory', 'SyncConflicts', 'OfflineInstall', 'CommunityImport', 'LookupHistory', 'UnsavedDemo']) {
+    expect(modules.has(`/src/app/${name}.tsx`), name).toBe(false);
+  }
+  await page.getByRole('link', { name: '资料库', exact: true }).first().click();
+  await expect(page.locator('.offline-install')).toBeVisible();
+  expect(modules.has('/src/app/OfflineInstall.tsx')).toBe(true);
+  await page.locator('a[href="/library/dictionary"]').first().click();
+  await expect(page.locator('.dictionary input').first()).toBeVisible();
+  expect(modules.has('/src/app/Dictionary.tsx')).toBe(true);
+  expect(modules.has('/src/app/Learning.tsx')).toBe(false);
+});
+
+test('a failed learning download offers retry without losing the saved session', async ({ page }) => {
+  await page.route('**/src/app/Learning.tsx', route => route.abort('failed'));
+  await page.goto('/today');
+  await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
+  await confirmTask(page);
+  await expect(page.getByRole('alert')).toContainText(languagePacks['zh-Hans'].app.readError);
+  const path = new URL(page.url()).pathname;
+  expect(path).toMatch(/^\/learn\//);
+  await page.unroute('**/src/app/Learning.tsx');
+  await page.getByRole('alert').getByRole('button', { name: '重试', exact: true }).click();
+  await expect(page.getByRole('radio').first()).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(path);
+  const records = await page.evaluate("import('/src/data/db.ts').then(async module => ({ sessions: await module.sessions.count(), answers: await module.attempts.count() }))");
+  expect(records).toEqual({ sessions: 1, answers: 0 });
+});
+
+test('a failed optional account module leaves local settings and backup usable', async ({ page }) => {
+  await page.route('**/src/app/GithubIdentity.tsx', route => route.abort('failed'));
+  await page.goto('/settings');
+  await expect(page.getByRole('alert')).toContainText(languagePacks['zh-Hans'].app.readError);
+  await expect(page.getByRole('button', { name: '下载备份', exact: true })).toBeVisible();
+  await expect(page.locator('.settings-language .setting-trigger')).toBeEnabled();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: '下载备份', exact: true }).click();
+  expect((await download).suggestedFilename()).toMatch(/^lingfern-backup-.*\.zip$/);
+});
+
+test('reference pages do not load the daily quotation index until Today is opened', async ({ page }) => {
+  const requests: string[] = [];
+  page.on('request', request => { if (request.url().includes('/content/daily-quote-index.json')) requests.push(request.url()); });
+  for (const path of ['/settings', '/library', '/library/dictionary', '/library/grammar', '/settings/about']) {
+    await page.goto(path); await expect(page.locator('main h1').first()).toBeVisible();
+  }
+  expect(requests).toHaveLength(0);
+  await page.goto('/today'); await expect(page.locator('.daily-quote[data-quote-id] blockquote')).toBeVisible();
+  expect(requests).toHaveLength(1);
+});
+
 test('a quote chunk failure leaves Today usable and reload retries without resetting records', async ({ page }) => {
   await page.route(/\/content\/daily-quote-chunks\/\d+\.json/, route => route.abort('failed'));
   await page.goto('/today');
@@ -77,7 +132,7 @@ test('a slower earlier teaching request cannot overwrite the latest saved langua
   await selectPicker(page, (await trigger.getAttribute('aria-label'))!, 'fr');
   const response = page.waitForResponse(/\/src\/locales\/ar\/teaching\.json/);
   release(); await (await response).finished();
-  // Await the same module evaluation, then read after any previously queued settings transaction.
+  // Await module evaluation and queued settings writes before reading.
   await page.evaluate("import('/src/locales/teaching.ts').then(module => module.loadInstructionLocale('ar'))");
   const stored = await page.evaluate(async () => {
     const db = await new Promise<IDBDatabase>((resolve, reject) => { const request = indexedDB.open('lingfern'); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
@@ -114,7 +169,7 @@ test('returning from learning waits for refreshed history before enabling Today'
     await page.getByRole('button', { name: '保存答案', exact: true }).click();
     if (answer !== 'A pencil.') await page.getByRole('button', { name: '下一题' }).click();
   }
-  // A received language change holds the next view refresh while its uncached package loads.
+  // Hold refresh until the received language package loads.
   await page.evaluate("import('/src/data/db.ts').then(module => module.saveSetting('local-guest', 'locale', 'ar'))");
   let release!: () => void, started!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });

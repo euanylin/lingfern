@@ -31,7 +31,7 @@ function distanceWithin(a: string, b: string, limit: number) {
     current[0] = i;
     let closest = i;
     const start = Math.max(1, i - limit), end = Math.min(b.length, i + limit);
-    // Cells outside this band cannot produce a match within the allowed distance.
+    // Skip cells outside the allowed edit-distance band.
     if (start > 1) current[start - 1] = limit + 1;
     for (let j = start; j <= end; j++) {
       current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + Number(a[i - 1] !== b[j - 1]));
@@ -118,7 +118,7 @@ export async function lookupDictionary(raw: string) {
 }
 
 
-// OEWN sense keys include their lemma. Resolve only an exact ID from the installed public dictionary.
+// Resolve exact lemma-bearing OEWN sense IDs from the installed dictionary.
 async function resolveSense(memoryId: string) {
   const match = /^([^%]{1,80})%[1-5]:[0-9]{2}:[0-9]{2}:[^:]*:[^:]*$/.exec(memoryId);
   if (!match) return undefined;

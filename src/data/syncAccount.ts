@@ -6,7 +6,7 @@ import { exportBackup, importBackup, inspectBackup } from './backup';
 export async function readSyncAccount(profileId: string) {
   const row = await settings.get(`profile:${profileId}:syncAccount`);
   try { return row ? syncAccountSchema.parse(JSON.parse(row.value)) : undefined; }
-  catch { return undefined; } // Corrupt metadata grants no association; learner records are untouched.
+  catch { return undefined; } // Reject corrupt associations without touching learner records.
 }
 
 export async function accountProfiles(accountId: number) {
@@ -22,7 +22,7 @@ export async function accountProfiles(accountId: number) {
   });
 }
 
-// These functions run only after an explicit choice. Neither makes a remote request.
+// Require explicit choices; make no remote requests here.
 export async function switchAccountProfile(account: { id: number; login: string }, target?: string, localProfileId?: string) {
   account = sessionSummarySchema.shape.account.unwrap().parse(account);
   if (target) profileIdSchema.parse(target);

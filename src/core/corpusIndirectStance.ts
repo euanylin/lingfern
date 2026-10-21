@@ -67,7 +67,7 @@ const cues: Partial<Record<Role, RegExp>> = {
 };
 export function corpusIndirectStance(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_INDIRECT_STANCE');
-  // shortcut: exact inspected complete contexts; extend after reviewing voice, implied evaluation and plausible alternatives.
+  // shortcut: complete inspected contexts; review voice, implied evaluation, and alternatives before extending.
   const scope = [...scopes.reading, ...scopes.listening].find(s => s.text === text);
   if (!scope) return;
   const all = scope.parts.map(part => ({ ...part, role: stance(text.slice(part.start, part.end), text) }));

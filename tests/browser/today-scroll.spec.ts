@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 for (const width of [375, 768, 1440]) test(`quote measurement leaves page position and full-quote controls stable at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: 812 }); await page.goto('/today');
   const quote = page.locator('.daily-quote blockquote'); await expect(quote).toBeVisible();
-  // A long isolated quote makes any temporary unclamping affect the page's scroll anchor.
+  // Use a long quote to expose temporary scroll-anchor unclamping.
   await quote.evaluate(el => { el.textContent = 'Synthetic scrolling regression sentence with enough words to wrap naturally. '.repeat(80); window.dispatchEvent(new Event('resize')); });
   const expand = page.locator('.daily-quote .update-action'); await expect(expand).toBeVisible();
   const result = await page.evaluate(async () => {

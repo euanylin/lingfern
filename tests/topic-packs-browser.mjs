@@ -118,7 +118,7 @@ try {
   }
  }
  await page.setViewportSize({width:375,height:812});await preferences('zh-Hans','light');await page.goto(origin+'/library');await contentList();
- // Core files and selected topic packages are actually installed through the existing checkbox/download UI.
+ // Install core files and selected topic packs through real checkbox/download controls.
  const corpus=page.locator('.package-row').filter({hasText:'阅读语料'});if(!spokenOutcome)await corpus.getByRole('checkbox').check();
  for(const {entry}of plan.banks)await packageCheckbox(entry,'zh-Hans').check();
  await page.getByRole('button',{name:copy['zh-Hans'].download,exact:true}).click();if(!spokenOutcome)await expect(corpus).toContainText('已安装',{timeout:180000});

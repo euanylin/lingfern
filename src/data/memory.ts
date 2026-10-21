@@ -135,7 +135,7 @@ export async function dueMemories(profileId: string, now = Date.now()) {
     .sort((a, b) => new Date(a.card?.due ?? a.savedAt).getTime() - new Date(b.card?.due ?? b.savedAt).getTime() || a.memoryId.localeCompare(b.memoryId));
 }
 
-// Public sense definitions are resolved outside IndexedDB. Original events are never rewritten.
+// Resolve public definitions outside IndexedDB without rewriting events.
 export async function projectMemories(profileId: string, now = Date.now()) {
   const snapshot = await db.transaction('r', memories, memoryReviews, syncEvents, async () => ({
     items: await memories.where('profileId').equals(profileId).toArray(),
@@ -160,7 +160,7 @@ export async function projectMemories(profileId: string, now = Date.now()) {
     let item = items.get(memoryId);
     if (!item) {
       let meaning;
-      try { meaning = await lookupDictionarySense(memoryId); } catch { /* Keep the received ID pending while its dictionary is unavailable. */ }
+      try { meaning = await lookupDictionarySense(memoryId); } catch { /* Keep received IDs pending until their dictionary is available. */ }
       if (!meaning) { problems.push({ memoryId, code: 'DICTIONARY_UNAVAILABLE' }); continue; }
       item = { profileId, memoryId, ...meaning, savedAt: first.occurredAt, reviewEnabled: latest.payload.reviewEnabled };
     }
@@ -188,7 +188,7 @@ export async function projectMemories(profileId: string, now = Date.now()) {
       if (!['REVIEW_CLOCK', 'REVIEW_INVALID', 'REVIEW_CONFLICT', 'REVIEW_ORDER', 'REVIEW_TIMING_INVALID'].includes(code)) throw error;
       problem = code as MemoryProblem['code']; problems.push({ memoryId, code: problem });
     }
-    // Invalid/colliding originals stay in sync quarantine/events, never replace an original review row.
+    // Quarantine invalid/colliding originals without replacing review rows.
     if (!problem) {
       const unique = new Map(events.map(event => [event.id, event]));
       originals.push(...unique.values());
@@ -197,7 +197,7 @@ export async function projectMemories(profileId: string, now = Date.now()) {
   }
   await db.transaction('rw', memories, memoryReviews, syncEvents, async () => {
     const current = { items: await memories.where('profileId').equals(profileId).toArray(), reviews: await memoryReviews.where('profileId').equals(profileId).toArray(), events: await readSyncEvents(profileId) };
-    // ponytail: compares the profile snapshot; use a revision token if large queues make projection slow.
+    // shortcut: compare profile snapshots; use revision tokens if large queues slow projection.
     if (JSON.stringify(current) !== JSON.stringify(snapshot)) throw new Error('SYNC_LOCAL_CHANGED');
     for (const [memoryId, latest] of merged.savedItems) {
       if (!latest.payload.saved) {

@@ -73,16 +73,18 @@ export function Welcome(props: WelcomeProps) {
       const distance = ((index - value + 4.5) % 3 + 3) % 3 - 1.5, away = Math.abs(distance), side = Math.max(-1, Math.min(1, distance));
       const x = (side + (distance - side) * .3) * shift * rtl;
       const scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
-      // Parallel, flattened cards exchange depth as whole surfaces instead of intersecting tilted planes.
+      // Flatten each card so overlapping surfaces exchange depth without intersecting.
       card.style.transform = reduced ? 'none' : `translate3d(${x}px,0,${-100 * away}px) scale(${scale})`;
+      card.style.zIndex = String(Math.round((1.5 - away) * 1000));
       card.style.opacity = String(reduced ? Number(index === next) : away > 1 ? Math.max(0, 1 - (away - 1) / .4) : 1);
       card.style.visibility = reduced && index !== next ? 'hidden' : 'visible';
       if (card.dataset.current !== String(index === next)) { card.dataset.current = String(index === next); card.setAttribute('aria-hidden', String(index !== next)); }
-      card.querySelector<HTMLElement>('.welcome-window')!.inert = index !== next || !!drag.current?.moved;
+      const window = card.querySelector<HTMLElement>('.welcome-window')!, inert = index !== next || !!drag.current?.moved;
+      if (window.inert !== inert) window.inert = inert;
       card.querySelector<HTMLElement>('.welcome-shadow')!.style.opacity = String(reduced ? 1 : 1 - .8 * Math.min(away, 1));
       card.querySelector<HTMLElement>('.welcome-shade')!.style.opacity = String(reduced ? 0 : Math.min(.25, away * .18));
       const amount = Math.max(0, Math.min(1, (away - .25) / .75));
-      card.style.setProperty('--welcome-blur', `${reduced ? 0 : 3 * amount * amount * (3 - 2 * amount)}px`);
+      window.style.filter = `blur(${reduced ? 0 : 3 * amount * amount * (3 - 2 * amount)}px)`;
       const dot = dots.current[index], weight = Math.max(0, 1 - away);
       if (dot) {
         const button = dot.parentElement!;
@@ -94,14 +96,14 @@ export function Welcome(props: WelcomeProps) {
   const go = useCallback((target: number, velocity = 0) => {
     idleUntil.current = performance.now() + 6000;
     cancelAnimationFrame(frame.current);
-    // Use the nearest copy in the loop, including navigation clicks during an unfinished drag.
+    // Choose the nearest loop copy, even during an unfinished drag.
     target = current.current + (((target - current.current + 4.5) % 3 + 3) % 3 - 1.5);
     const offset = current.current - target, toward = Math.sign(-offset);
     const speed = toward * velocity > 0 ? toward * Math.min(6, Math.abs(velocity), 18 * Math.abs(offset)) : Math.max(-6, Math.min(6, velocity)), began = performance.now();
     destination.current = target;
     const finish = () => { frame.current = 0; destination.current = ((Math.round(target) % 3) + 3) % 3; paint(destination.current); };
     if (reduced || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
-    // A critically damped release keeps its velocity and can be interrupted at any frame.
+    // Preserve release velocity with an interruptible critically damped spring.
     const animate = (now: number) => {
       const seconds = (now - began) / 1000, decay = Math.exp(-18 * seconds);
       const value = target + (offset + (speed + 18 * offset) * seconds) * decay;
@@ -158,7 +160,7 @@ export function Welcome(props: WelcomeProps) {
       velocity = event.axisVelocity[0] * rtl * 1000 / dragDistance;
       clearTimeout(release);
       if (event.isMomentum) { settle(true); return; }
-      // Stop following after contact pauses, but keep the classifier alive for the inertia tail.
+      // Stop following paused contact; keep classifying the inertia tail.
       release = setTimeout(() => settle(), 100);
       cancelAnimationFrame(frame.current); frame.current = 0;
       paint(reduced ? target() : start + Math.max(-1, Math.min(1, total / dragDistance)));
@@ -167,7 +169,7 @@ export function Welcome(props: WelcomeProps) {
       if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
       idleUntil.current = performance.now() + 6000;
       if (event.shiftKey || event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-      // Pixel-based horizontal trackpad gestures only; leave wheel ticks and Shift+wheel native.
+      // Handle pixel-based horizontal trackpad input; preserve native wheel and Shift+wheel behavior.
       event.preventDefault(); keyboard.current = false; gestures.feedWheel(event);
     };
     root.addEventListener('wheel', scroll, { passive: false });
@@ -202,7 +204,7 @@ export function Welcome(props: WelcomeProps) {
           const value = held.position + Math.max(-1, Math.min(1, -dx * rtl / dragDistance)), now = performance.now();
           held.velocity = (value - held.last) * 1000 / Math.max(8, now - held.at);
           held.at = now; held.last = value;
-          // Coalesce high-rate touch samples into one paint without dropping the release position.
+          // Paint once per frame while retaining the final touch position.
           if (!inputFrame.current) inputFrame.current = requestAnimationFrame(() => { inputFrame.current = 0; if (drag.current === held) paint(held.last); });
         }
       }} onPointerUp={end} onPointerCancel={end}

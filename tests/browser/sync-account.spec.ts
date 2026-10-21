@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
 test('account changes require a choice, preserve local originals, and do not upload implicitly', async ({ page }) => {
-  // Session UI simulation only; no real GitHub sign-in or upload is claimed.
+  // Simulate session UI without claiming real sign-in or upload.
   let accountId = 1, syncWrites = 0;
   await page.route('**/api/session', route => route.fulfill({ json: { account: { id: accountId, login: `learner-${accountId}` }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: accountId === 2 ? [{ name: 'lingfern-first', owner: 'learner-2', profileId: 'remote-first', disabled: false }, { name: 'lingfern-target', owner: 'learner-2', profileId: 'remote-target', disabled: false }] : [] } }));
   page.on('request', request => { if (request.method() === 'POST' && new URL(request.url()).pathname.startsWith('/api/sync/')) syncWrites++; });

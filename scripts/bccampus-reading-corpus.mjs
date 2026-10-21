@@ -9,7 +9,7 @@ function chapterMetadata(raw) {
   if (!match) throw Error('BCCAMPUS_CHAPTER_RIGHTS');
   return JSON.parse(match[1]);
 }
-/** Original frozen cloud native paragraphs; source approvals never generate authored exercises. */
+/** Preserve frozen cloud paragraphs without turning approvals into authored exercises. */
 export async function prepareBccampusReading(shared) {
   const bytes = await readFile('content/corpus/bccampus-source-review.json');
   const beginnerBytes = await readFile('content/corpus/bccampus-beginner-source-review.json');

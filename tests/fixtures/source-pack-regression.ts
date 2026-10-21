@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import catalogue from './source-packs-regression.json';
 
-/** Fixed source bytes for historical semantic regressions, never a learner catalogue. */
+/** Preserve historical source bytes as regression fixtures, never learner catalogues. */
 export const regressionSourcePacks = catalogue;
 export function readSourcePackFixture(id: string): Buffer {
   const entry = catalogue.packs.find(pack => pack.id === id);

@@ -1,8 +1,4 @@
-"""Build local dictionary assets from the pinned OEWN 2025 JSON release.
-
-Editorial rebuild only; Python and the source ZIP are not website dependencies.
-Usage: python3 scripts/build-dictionary.py release.zip LICENSE.md WNDB_License.txt
-"""
+"""Rebuild editorial dictionary assets from pinned OEWN 2025 JSON; Python/source ZIP are not website dependencies. Usage: python3 scripts/build-dictionary.py release.zip LICENSE.md WNDB_License.txt"""
 
 import hashlib
 import json

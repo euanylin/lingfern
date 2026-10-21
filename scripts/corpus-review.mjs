@@ -43,7 +43,7 @@ export function reviewedAudioHolds(sources, prepared, input) {
     if (seen.has(entry.id)) throw new Error('DUPLICATE_AUDIO_HOLD');
     seen.add(entry.id);
     if (!source || source.textSha256 !== entry.sourceTextSha256 || source.audioSha256 !== entry.sourceAudioSha256 || createHash('sha256').update(source.text).digest('hex') !== entry.sourceTextSha256) throw new Error('AUDIO_HOLD_SOURCE_CHANGED');
-    // A recut clip has a new ID/hash; its predecessor stays held in the journal.
+    // Keep recut IDs/hashes separate and predecessors held in the journal.
     if (clip && (clip.rootId !== entry.rootId || clip.sha256 !== entry.clipSha256)) throw new Error('AUDIO_HOLD_CLIP_CHANGED');
     holds.set(entry.id, `Codex/AI clip review hold: ${entry.reason}`);
     for (const [id, candidate] of clips) if (candidate.rootId === entry.rootId && candidate.sha256 === entry.clipSha256)
@@ -63,7 +63,7 @@ export function reviewedExcerpt(original, text, excludedSpans = []) {
   if (!excludedSpans.length) return true;
   let start = original.indexOf(text);
   if (!text || start < 0) throw new Error('REVIEW_EXCERPT_SOURCE_MISMATCH');
-  // Repeated source wording is allowed only when every occurrence avoids excluded spans.
+  // Allow repeated wording only when all occurrences avoid excluded spans.
   while (start >= 0) {
     if (excludedSpans.some(span => start < span.end && start + text.length > span.start)) return false;
     start = original.indexOf(text, start + 1);
@@ -72,7 +72,7 @@ export function reviewedExcerpt(original, text, excludedSpans = []) {
 }
 
 
-/** Reorder reviewed source records by a hash-bound recipe; never add items or clear flags. */
+/** Reorder hash-bound reviewed records without adding items or clearing holds. */
 export function groupSpokenSources(records, input) {
   const recipe = z.object({ version: z.literal(1), roots: z.array(z.object({ rootId: z.string().min(1), textSha256: hash,
     clips: z.array(z.object({ id: hash, sha256: hash }).strict()).min(1).max(2) }).strict()).min(2).max(10) }).strict().parse(input);

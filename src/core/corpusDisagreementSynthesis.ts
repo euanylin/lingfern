@@ -2,7 +2,7 @@ import scopes from '../../content/corpus/c2-disagreement-synthesis-scopes.json';
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const disagreementSynthesisOperation = 'choice:disagreement-synthesis';
 export const disagreementSynthesisPrompt = 'Which two-part synthesis preserves the represented positions and the limits of their disagreement? Keep common ground, competing reasons and qualifications without inventing a settlement.';
-// shortcut: exact inspected synthesis relations; inspect represented positions and competing summaries before extending.
+// shortcut: inspected synthesis relations; review represented positions and competing summaries before extending.
 const relations = [
   {
     "focus": "Yet to calculate is not in itself to analyse.",

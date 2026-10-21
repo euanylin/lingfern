@@ -1,4 +1,4 @@
-// About is English-only and deliberately independent of display-language packages.
+// Keep About in English, separate from interface translations.
 export const aboutCopy = {
   "title": "About",
   "projectCode": "Code: Apache-2.0",

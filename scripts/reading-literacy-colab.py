@@ -1,11 +1,4 @@
-"""Prepare one allowlist of beginner literacy and dialogue sources.
-
-Gutenberg readers are USA public-domain literacy books. Two BCcampus adult-literacy
-readers are CC BY 4.0. Everyday Conversations is included only when the file itself
-shows it was produced by the U.S. Department of State and carries no rights-reserved
-notice. Named-author Curry and Dobson dialogue booklets stay off this allowlist.
-No OpenStax book is fetched. Pattern hits are not admitted tasks.
-"""
+"""Prepare USA-public-domain Gutenberg readers, two CC BY 4.0 BCcampus readers, and eligible State Department Everyday Conversations. Require the latter's producer notice and no reserved-rights notice. Exclude Curry/Dobson dialogue booklets and OpenStax; pattern hits grant no task admission."""
 import datetime, gzip, hashlib, io, json, os, pathlib, platform, re, subprocess, sys, time, traceback, urllib.request, zipfile
 from collections import Counter
 from html.parser import HTMLParser
@@ -19,7 +12,7 @@ PRESSBOOKS = [
     'https://opentextbc.ca/abealfreader6/',
 ]
 STATE = [('state-everyday-conversations', 'https://americanenglish.state.gov/files/ae/resource_files/b_dialogues_everyday_conversations_english_lo_0.pdf')]
-# A later allowlist. None of these ids are in the 2026-10-10 McGuffey batch.
+# Keep this later allowlist separate from the 2026-10-10 McGuffey batch.
 NEXT_GUTENBERG = [15747, 65323, 68545, 61852, 13853, 15825, 67302, 71019, 15659, 16936, 15170, 51441, 18561, 52044, 40774, 41243, 19721, 6963, 9106, 54825, 19923, 60186, 56286]
 HOSTS = {'www.gutenberg.org', 'gutenberg.org', 'opentextbc.ca', 'americanenglish.state.gov'}
 SEARCH = {
@@ -355,7 +348,7 @@ def process_state(work, url, old, seen, rows, holds, chapters, hits, ledger, lim
                    'pages': len(pages)})
 
 def state_only():
-    """Finish the one allowlisted PDF that the main batch held for the 20 MB cap."""
+    """Finish the sole allowlisted PDF held by the main batch's 20MB cap."""
     global OUT, LOG
     OUT = pathlib.Path('/content/lingfern-literacy-state-20261010')
     LOG = pathlib.Path('/content/literacy-state-log.txt')
@@ -371,7 +364,7 @@ def state_only():
     work, url = STATE[0]
     process_state(work, url, old, seen, rows, holds, chapters, hits, ledger)
     folded = []
-    # Case-folded search stays a candidate log. Exact admission still requires the current parser.
+    # Log case-folded candidates; require the current parser for exact admission.
     raw_text = (OUT / 'raw/state-everyday-conversations.canonical.txt').read_text()
     for kind, pattern in SEARCH.items():
         if pattern.search(raw_text):
@@ -396,7 +389,7 @@ def state_only():
     log('STATE_DONE ' + json.dumps({**{k: report[k] for k in report if k != 'ledger'}, 'archiveBytes': archive.stat().st_size, 'archiveSha256': sha(archive.read_bytes()), 'ledger': ledger}))
 
 def run_next():
-    """One new allowlist: graded readers and school dialogues, not the McGuffey or OpenStax batches."""
+    """Prepare a separate graded-reader/dialogue allowlist, excluding McGuffey and OpenStax batches."""
     global OUT, LOG, GUTENBERG, PRESSBOOKS, STATE
     if set(NEXT_GUTENBERG) & {14642, 14640, 14668, 14766, 14880, 15040, 16751, 15456, 1489, 1490, 4710}:
         raise RuntimeError('next allowlist repeats a finished batch')

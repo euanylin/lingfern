@@ -7,7 +7,7 @@ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const gates={sourceRights:true,sourceRoot:true,sourceContext:true,transcript:true,fullDecode:true,wordTiming:true,continuousWindow:true,acousticBoundary:true,mediaHash:true};
 const kinds=['rights-context','boundary','processing','media-validation'];
 
-// Adapter fixtures only: synthetic media/evidence do not establish actual recording acceptance.
+// Test adapters with synthetic media without granting recording acceptance.
 function fixture() {
  const processing=JSON.parse(readFileSync('private/verification/listening360-scott-processing-20261012/verification.json'));
  const approved=JSON.parse(readFileSync('private/verification/listening360-scott-rights-closure-20261012/verification.json'));
@@ -55,7 +55,7 @@ test('Scott print reflow preserves two full sentences and exact punctuation/sour
 });
 
 
-// Actual cloud completion and per-window member bytes; mutated review fixtures below test guards only.
+// Verify cloud completion/member bytes; use mutated review fixtures only to test guards.
 const batchBase='private/verification/listening360-cloud-processing-20261012',batchId='2775-134792-0012';
 function batchFixture(cpu=false) {
  const files=new Map(),base=batchBase+'/partial-output/restored',paths={job:base+'/job.json',complete:batchBase+'/cloud-execution-observations.json',output:batchBase+'/full-output/output-manifest.json',recovery:batchBase+'/partial-output/verification.json',independent:batchBase+'/partial-output/independent-verification.json',context:'private/verification/listening360-full-source-audit-20261012/source-context-977-snapshot423.json',authority:'content/corpus/cloud-listening-sources.json',export:'private/verification/listening360-manifest-hash-recovery-20261011-095201/scale-export-manifest.json'};
@@ -68,7 +68,7 @@ function batchFixture(cpu=false) {
  const w={id:batchId,processingPath,processingSha256:sha(files.get(processingPath)),rawResultPath,rawResultSha256:sha(files.get(rawResultPath)),bindingPath,bindingSha256:sha(files.get(bindingPath)),sourcePath,sourceSha256:context.sourceHash,originalAudioPath,originalAudioSha256:processing.input.audioSha256,transcriptPath,transcriptSha256:processing.input.transcriptSha256,audioPath,audioSha256:sha(files.get(audioPath))};
  let boundaryRef={id:batchId,...ref(diagnosticPath)},supplemental=[];
  if(cpu){
-  // Synthetic CPU replacement and missing-media inventory are isolated fixtures, never real approvals.
+  // Keep CPU replacements and missing-media inventories as unapproved test fixtures.
   const diagnostic=JSON.parse(files.get(diagnosticPath)),media=Buffer.from('isolated new CPU media bytes'),newPath=diagnosticPath.replace(/diagnostics\/[^/]+$/,'media/'+batchId+'.mp3');files.set(newPath,media);
   diagnostic.media={path:'media/'+batchId+'.mp3',bytes:media.length,sha256:sha(media),decode:{...processing.media.decode,engine:'ffmpeg-cpu-full-stream-f32le',allFinite:true},independentNewCPUEncoding:true,restoresOldCloudMediaIdentity:false,oldCloudMediaExpected:processing.media};files.set(diagnosticPath,Buffer.from(JSON.stringify(diagnostic)));boundaryRef={id:batchId,...ref(diagnosticPath)};supplemental=[boundaryRef];w.audioPath=newPath;w.audioSha256=sha(media);
   const recovery=JSON.parse(files.get(paths.recovery)),independent=JSON.parse(files.get(paths.independent));delete recovery.members['media/'+batchId+'.mp3'];independent.completeMediaDiagnosticIds=independent.completeMediaDiagnosticIds.filter(id=>id!==batchId);files.set(paths.recovery,Buffer.from(JSON.stringify(recovery)));files.set(paths.independent,Buffer.from(JSON.stringify(independent)));

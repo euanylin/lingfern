@@ -24,7 +24,7 @@ test('previously unvisited quote chunks, teaching locales and generation work af
     await expect(page.locator('.daily-quote[data-quote-id] blockquote')).toBeVisible();
     await expect(page.locator('.daily-quote blockquote')).toHaveCSS('direction', 'ltr');
   }
-  // The existing full offline suite separately exercises actual installed Reading/Listening saves.
+  // Test actual installed reading/listening saves in the full offline suite.
   const requests: string[] = [];
   page.on('requestfailed', request => requests.push(request.url()));
   await page.goto('/library');

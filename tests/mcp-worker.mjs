@@ -21,7 +21,7 @@ const callbackServer = createServer((request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' }).end('Synthetic callback');
 });
 const hash = value => createHash('sha256').update(value).digest('base64url');
-// Test-only bridge preserves the fixed local production-like resource identifier on an isolated port.
+// Bridge isolated ports without changing the production-like resource identifier.
 await writeFile(entry, `import worker from ${JSON.stringify(path.join(root, 'worker/index.ts'))}; export default {fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/__mcp_test_instance')return new Response('${instance}');url.port='8787';const headers=new Headers(request.headers);if(headers.get('Origin')==='${address}')headers.set('Origin','${origin}');return worker.fetch(new Request(url,{method:request.method,headers,body:['GET','HEAD'].includes(request.method)?undefined:request.body}),env,ctx)}};`);
 await writeFile(configPath, JSON.stringify({ name: 'lingfern-mcp-test', main: entry, compatibility_date: '2026-09-27', compatibility_flags: ['nodejs_compat', 'global_fetch_strictly_public'], kv_namespaces: [{ binding: 'OAUTH_KV', id: '0'.repeat(32) }], d1_databases: [{ binding: 'AUTH_DB', database_name: 'mcp-test', database_id: '00000000-0000-0000-0000-000000000001', migrations_dir: path.join(root, 'worker/migrations') }], assets: { directory: path.join(root, 'dist'), binding: 'ASSETS', run_worker_first: true }, vars: { LOCAL_AUTH: 'true', GITHUB_CLIENT_ID: 'synthetic-app', GITHUB_CLIENT_SECRET: 'synthetic-secret', TOKEN_ENCRYPTION_KEY: btoa('k'.repeat(32)), SHARE_ENCRYPTION_KEY: btoa('h'.repeat(32)) } }));
 const cli = ['wrangler', '--config', configPath];
@@ -63,7 +63,7 @@ try {
   let ready = false;
   for (let attempt = 0; attempt < 120; attempt++) {
     assert.equal(server.exitCode, null, 'this isolated Worker exited before becoming ready');
-    try { if (await (await request('/__mcp_test_instance')).text() === instance) { ready = true; break; } } catch { /* Waiting for this live child to listen. */ }
+    try { if (await (await request('/__mcp_test_instance')).text() === instance) { ready = true; break; } } catch { /* Wait for the owned child server to listen. */ }
     await new Promise(resolve => setTimeout(resolve, 250));
   }
   assert.ok(ready, 'isolated Worker did not start');
@@ -91,7 +91,7 @@ try {
   const nativeHtml = await nativePage.text();
   const nativeDenied = await request('/oauth/authorize', post({ handle: nativeHtml.match(/name="handle" value="([^"]+)"/)[1], csrf, decision: 'deny' }, { Origin: origin }));
   assert.equal(nativeDenied.status, 302); assert.equal(new URL(nativeDenied.headers.get('Location')).protocol, 'cursor:');
-  // CIMD is delegated to the Provider's strictly-public fetch guard, never an arbitrary private URL proxy.
+  // Delegate CIMD to the Provider's public-only fetch guard; never proxy private URLs.
   const privateClient = new URLSearchParams(query); privateClient.set('client_id', `${origin}/private-client.json`);
   assert.notEqual((await request(`/oauth/authorize?${privateClient}`)).status, 200);
   sql('DELETE FROM auth_limits');
@@ -202,7 +202,7 @@ try {
   assert.equal((await rpc('tools/list', {}, refreshed.access_token)).response.status, 401);
   assert.equal((await request('/oauth/token', post({ grant_type: 'refresh_token', refresh_token: refreshed.refresh_token, client_id: registered.client_id, resource: `${origin}/mcp` }))).status, 400);
   assert.equal((await json(await request('/api/ai/shares'), 200)).shares.length, 0);
-  // Code reuse may revoke the issued grant; check it after the valid-token flow.
+  // Test code reuse after valid tokens because reuse may revoke the grant.
   assert.equal((await request('/oauth/token', post(tokenRequest))).status, 400);
   sql('DELETE FROM auth_limits');
   const pendingJar = new Map();
@@ -243,7 +243,7 @@ try {
 } finally {
   callbackServer.closeAllConnections();
   await new Promise(resolve => callbackServer.close(resolve));
-  try { process.kill(-server.pid, 'SIGTERM'); } catch { /* Child already exited. */ }
+  try { process.kill(-server.pid, 'SIGTERM'); } catch { /* Ignore an already-exited child. */ }
   if (server.exitCode === null) await new Promise(resolve => server.once('exit', resolve));
   await rm(directory, { recursive: true, force: true });
 }

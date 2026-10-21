@@ -9,7 +9,7 @@ export const fullVowels = [
   { height: 'Open', y: 92, cells: [[49, 'a', 'ɶ'], [91, 'ɑ', 'ɒ']] },
 ] as const;
 export const fullPlaces = ['Bilabial', 'Labiodental', 'Dental', 'Alveolar', 'Postalveolar', 'Retroflex', 'Palatal', 'Velar', 'Uvular', 'Pharyngeal', 'Glottal'];
-// A dash marks an impossible articulation; an empty slot is unspecified, not impossible.
+// A dash means impossible articulation; an empty slot means unspecified.
 export const fullConsonants = [
   ['Plosive', ['p','b'], [], [], ['t','d'], [], ['ʈ','ɖ'], ['c','ɟ'], ['k','ɡ'], ['q','ɢ'], ['—','—'], ['ʔ','—']],
   ['Nasal', [null,'m'], [null,'ɱ'], [], [null,'n'], [], [null,'ɳ'], [null,'ɲ'], [null,'ŋ'], [null,'ɴ'], ['—','—'], ['—','—']],
@@ -32,5 +32,5 @@ export const diacritics = [
 ] as const;
 export const suprasegmentals = [['ˈ','Primary stress'],['ˌ','Secondary stress'],['ː','Long'],['ˑ','Half-long'],['ĕ','Extra-short'],['|','Minor (foot) group'],['‖','Major (intonation) group'],['.','Syllable break'],['‿','Linking (absence of a break)']] as const;
 export const tones = [['e̋ ˥','Extra high'],['é ˦','High'],['ē ˧','Mid'],['è ˨','Low'],['ȅ ˩','Extra low'],['↓','Downstep'],['↑','Upstep'],['ě ˩˥','Rising'],['ê ˥˩','Falling'],['e᷄ ˧˥','High rising'],['e᷅ ˩˧','Low rising'],['e᷈ ˦˥˦','Rising–falling'],['↗','Global rise'],['↘','Global fall']] as const;
-// Common British English vowels and English allophones beyond the installed American inventory.
+// Include British vowels and English allophones absent from the American inventory.
 export const englishVariants: readonly string[] = ['ɒ', 'ɜ', 'ɾ', 'ʔ', 'ʍ'];

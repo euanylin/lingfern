@@ -112,7 +112,7 @@ it('does not retest dates already used as additional objective evidence in anoth
   const text = 'The library opened in 1991. The hall was rebuilt in 2013. The museum closed in 2020.';
   material.blocks.push({ id: 'dated-events', text });
   material.questions[0].additionalEvidence = [{ blockId: 'dated-events', start: 0, end: text.length }];
-  // Supply enough untouched information to make the pre-generation target exceed the old question count.
+  // Provide enough untouched information to exceed the old pre-generation question count.
   material.blocks.push({ id: 'separate-observations', text: Array.from({ length: 14 }, (_, index) => `However, the research team reported observation ${index + 1} with several distinctive environmental conditions.`).join('\n\n') });
   const without = structuredClone(lesson); without.materials[0].questions[0].additionalEvidence = undefined;
   expect(organizePractice(without).materials[0].questions.some(question => 'rows' in question && question.blockId === 'dated-events')).toBe(true);

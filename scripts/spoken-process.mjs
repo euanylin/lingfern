@@ -30,7 +30,7 @@ export async function saveProcessing(directory, reportFile, records, report, com
   await atomic(complete ? reportFile : new URL('processing-progress.json', directory), { ...report, complete });
 }
 
-// Only independent article roots run concurrently. Commit and checkpoint on one writer.
+// Process independent roots concurrently; serialize commits and checkpoints.
 export async function processBatchSources(items, { seen, records, failures, processItem, checkpoint }) {
   const groups = new Map();
   for (const item of items) {
@@ -67,7 +67,7 @@ export async function processBatchSources(items, { seen, records, failures, proc
         records.push(result.value.record);
       }
     }
-    // No task can still be running or writing a checkpoint here.
+    // Require all tasks and checkpoint writes to finish first.
     if (fatal.length || records.length - checkpointCount >= 25) {
       await checkpoint(false);
       checkpointCount = records.length;
@@ -91,7 +91,7 @@ async function main() {
     console.log(JSON.stringify(report));
   };
   try {
-    // One bounded catch-up snapshot includes downloads completed during processing.
+    // Capture newly completed downloads in one bounded catch-up snapshot.
     for (let pass = 0; pass < 2; pass++) {
       if (pass) state = JSON.parse(await readFile(new URL('index.json', directory), 'utf8'));
       await processBatchSources(state.records, { seen, records, failures, checkpoint, processItem: async item => {

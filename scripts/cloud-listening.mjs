@@ -6,7 +6,7 @@ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const tokens=text=>[...text.matchAll(/[a-z]+(?:['’][a-z]+)?|\d+/gi)];
 const normalized=text=>tokens(text).map(match=>match[0].toLowerCase().replaceAll('’',"'"));
 
-/** Keep original typography and actual cloud timestamps; never infer missing words or times. */
+/** Preserve source typography and cloud timestamps without inventing words or times. */
 export function cloudSegments(text,audit,duration) {
  assert.deepEqual(normalized(text),normalized(audit.text),'CLOUD_TRANSCRIPT_CHANGED');
  const source=tokens(text),result=[];let cursor=0,previous=0;
@@ -22,7 +22,7 @@ export function cloudSegments(text,audit,duration) {
  return result;
 }
 
-/** Adapt only the frozen candidate pool; uncertain rereview results are never read. */
+/** Adapt frozen candidates only; ignore uncertain rereview outputs. */
 export function cloudListeningInputs() {
  const scopeBytes=readFileSync('content/corpus/cloud-listening-sources.json');
  assert.equal(sha(scopeBytes),'89a7202536e1f9e2df662430b8305ac1f9199e297b031e9aceab7630abf9e31c','CLOUD_RIGHTS_SCOPE_CHANGED');

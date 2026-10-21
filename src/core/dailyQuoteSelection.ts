@@ -6,7 +6,7 @@ export const localDay = (date: Date) => `${date.getFullYear()}-${String(date.get
 export const quotePreview = (text: string) => text.length > 240 ? `${text.slice(0, 239).replace(/\s+\S*$/, '').trimEnd()}…` : text;
 export function quoteSourceUrl(quote: { url: string; text: string }) {
   const url = new URL(quote.url);
-  // Text-directive punctuation must not become range/context separators.
+  // Preserve text-directive punctuation within its original range/context.
   url.hash = `${url.hash.slice(1).split(':~:')[0]}:~:text=${encodeURIComponent(quote.text).replace(/-/g, '%2D')}`;
   return url.href;
 }

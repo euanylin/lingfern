@@ -5,7 +5,7 @@ export const VARIANT_COUNT = 432;
 export const VARIANT_ATTEMPTS = 30;
 const time = (minutes: number) => `${Math.floor(minutes / 60).toString().padStart(2, '0')}:${(minutes % 60).toString().padStart(2, '0')}`;
 
-/** Finite fictional notices. Roots and question IDs stay stable across parameter changes. */
+/** Keep fictional notice roots and question IDs stable across parameters. */
 export function travelVariant(seed: number, excluded: ReadonlySet<string> = new Set()): { lesson: Lesson | null; attempts: number } {
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_SEED');
   for (let attempt = 0; attempt < VARIANT_ATTEMPTS; attempt++) {

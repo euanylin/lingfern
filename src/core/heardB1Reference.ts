@@ -1,10 +1,10 @@
 import sources from '../../public/audio/b1-speech/REFERENCE.json';
 import { referencePrompt, referenceSupport } from './corpusReference';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-/** Resolve a resumed list or inference, keeping it separate from nearby evidence or people. */
+/** Resolve resumed ideas separately from nearby evidence or people. */
 export function heardB1Reference(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_HEARD_B1_REFERENCE');
- // shortcut: two inspected complete utterances only; review other resumed ideas before extending.
+ // shortcut: two complete utterances; review other resumed ideas before extending.
  if(!sources.some(s=>s.text===text))return;
  const jimmy=text.startsWith('Rapid motion through space');
  const antecedent=jimmy?text.match(/(Rapid motion through space) elates one; so does (notoriety); so does (the possession of money)\./):text.match(/led one to infer (that its owner must be equally charming)/);

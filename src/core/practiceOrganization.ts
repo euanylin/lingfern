@@ -3,7 +3,7 @@ import { corpusDates, corpusRestoration, restorationWords } from './corpus';
 import { sentenceSegments } from './corpusSegments';
 import type { SpokenCorpus } from './spokenCorpus';
 
-// Effort budgets, not CEFR calibration or a requirement to fill a quota.
+// Bound effort without CEFR calibration or fill quotas.
 export const practiceBudgets = {
   readingBands: [[250, 3, 6], [500, 6, 10], [900, 10, 16], [Infinity, 14, 24]],
   levelMinutes: { A1: 9, A2: 12, B1: 16, B2: 20, C1: 25, C2: 30 },
@@ -58,7 +58,7 @@ function readingExtras(material: Material, level: Lesson['targetLevel'], seed: n
     const paragraph = block.text.slice(0, start).split(/\n\s*\n/).length - 1;
     return [{ block, sentence, gap, start, end, paragraph }];
   }));
-  // Spread before filling: one pass per paragraph; never repeat a sentence or target word.
+  // Scan each paragraph once before adding more; do not repeat sentences or targets.
   const selected: typeof candidates = [], words = new Set<string>();
   for (let pass = 0; selected.length < needed && pass < needed; pass++) {
     const paragraphs = new Set<string>();
@@ -88,7 +88,7 @@ export function alignedGapQuestion(material: Material, segments: readonly Alignm
   for (const segment of segments) {
     if (occupied.length && segment.audioStart < lastObjective + spacing) continue;
     if (block.text.slice(segment.start, segment.end) !== segment.text || segment.audioStart < 0 || segment.audioEnd > material.audio.duration || segment.audioStart >= segment.audioEnd) continue;
-    // Conservative segment bounds: do not interpolate a word time within a sentence.
+    // Use conservative segment bounds without interpolating word times.
     if (occupied.some(span => span.audioStart === undefined || span.audioEnd === undefined || segment.audioStart < span.audioEnd + spacing && segment.audioEnd + spacing > span.audioStart)) continue;
     if (chosen.length && segment.audioStart - chosen.at(-1)!.segment.audioEnd < spacing) continue;
     const words = [...restorationWords(segment.text, undefined, level === 'A1' || level === 'A2')];

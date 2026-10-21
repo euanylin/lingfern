@@ -42,7 +42,7 @@ export function processArticle(text, reviewed = false, excludedSpans = []) {
     }
     const chunks = [];
     let pending = '';
-    // Drop the entire intersecting sentence; never splice across a reviewed exclusion.
+    // Drop entire intersecting sentences without splicing across exclusions.
     for (const part of new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)) {
       if (excludedSpans.some(span => part.index < span.end && part.index + part.segment.length > span.start)) {
         if (pending.trim()) chunks.push(pending.trim());
@@ -55,7 +55,7 @@ export function processArticle(text, reviewed = false, excludedSpans = []) {
   }
   const passages = processBook(`*** START OF THE PROJECT GUTENBERG EBOOK LOCAL BOUNDARY ***\n${text}\n*** END OF THE PROJECT GUTENBERG EBOOK LOCAL BOUNDARY ***`);
   const wordCount = text.trim().split(/\s+/).length;
-  // Keep short headings and their context together only for an inspected whole article.
+  // Join short headings with context only in inspected whole articles.
   if (!passages.length && reviewed && wordCount >= 120 && wordCount <= 700 && text.length <= 12000)
     passages.push({ id: hash(text), text, wordCount });
   return passages;

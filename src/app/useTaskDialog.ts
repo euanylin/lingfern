@@ -10,7 +10,7 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
     if (closeTimer.current !== undefined || !dialog.current?.open) return;
     setOpen(false);
     const duration = parseFloat(getComputedStyle(dialog.current, '::backdrop').transitionDuration) * 1000;
-    // Retain the native focus trap and backdrop until the exit transition finishes.
+    // Keep the native focus trap and backdrop through the exit transition.
     if (duration > 0) closeTimer.current = window.setTimeout(finishClose, duration + 50);
     else finishClose();
   }

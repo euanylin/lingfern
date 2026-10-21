@@ -3,7 +3,7 @@ import { gutenbergNotice, gutenbergLicence, isGutenbergSource } from '../shared/
 import type { Locale } from '../shared/content';
 
 
-/** Keep the source's required notice and full terms available without a network. */
+/** Keep required source notices and full terms available offline. */
 export function GutenbergLicence({ sourceUrl, locale }: { sourceUrl?: string; locale: Locale }) {
   if (!isGutenbergSource(sourceUrl)) return null;
   return <section className="gutenberg-licence muted" lang="en">

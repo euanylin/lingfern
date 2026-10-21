@@ -204,7 +204,7 @@ export function asTestLesson(raw: Lesson): Lesson {
   return lessonSchema.parse(snapshot);
 }
 export type Question = z.infer<typeof questionSchema>;
-/** Older snapshots can still identify the instructed root without a new assistance flag. */
+/** Resolve instructed roots in old snapshots without adding assistance flags. */
 export function teachingSupport(lesson: Lesson, rootId: string, provided = false) {
   return !lesson.mode && (provided || !!lesson.teaching && lesson.materials[0].rootId === rootId);
 }
@@ -292,9 +292,9 @@ export function validateSelfAssessment(question: Question, value: unknown): Self
   return ratings;
 }
 
-/** Generated source practice has no reviewed curriculum level. */
+/** Generated practice has no reviewed curriculum level. */
 export const lessonTargetLevel = (lesson: Lesson) => lesson.generation?.generator === 'corpus-v1' ? undefined : lesson.targetLevel;
 
-/** Historical lessons inherit one package; generated application may retain a second owner. */
+/** Preserve legacy package ownership and separate generated-application owners. */
 export const materialPackageId = (lesson: Lesson, material: Lesson['materials'][number]) => material.communityPackageId ?? lesson.communityPackageId;
 export const lessonPackageIds = (lesson: Lesson) => [...new Set(lesson.materials.map(material => materialPackageId(lesson, material)).filter((id): id is string => !!id))];

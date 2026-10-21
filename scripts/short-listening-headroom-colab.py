@@ -1,4 +1,4 @@
-"""One source-identical A100 headroom repair; original float waveform and old holds retained."""
+"""Repair one A100 headroom issue without changing source audio, float originals, or prior holds."""
 import array,datetime,hashlib,json,math,pathlib,subprocess,sys,tarfile,time,urllib.request
 from urllib.parse import urlsplit
 ROOT=pathlib.Path('/content/lingfern-gandy-headroom-20261013')

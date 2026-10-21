@@ -4,7 +4,7 @@ import { nextSyncUpload, readSyncDownload } from './sync';
 import { downloadSyncPage, readSyncConsent, uploadSyncBatch } from './syncClient';
 import { profileIdSchema } from '../shared/repository';
 
-// Foreground work only: one page and one immutable batch per round, at least a minute apart.
+// Run one page/batch per foreground round, at least one minute apart.
 export function startSyncSchedule(profileId: string, onMerge: () => Promise<void>) {
   profileIdSchema.parse(profileId);
   let stopped = false, running = false, last = -Infinity, retryAt = 0, failures = 0, paused = false, consentId = '';

@@ -3,7 +3,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { corpusInterestMatch, corpusPracticeHistory } from '../src/core/corpusPractice.ts';
 
-// Local-only actual bank acceptance; private sources and learner records never enter CI.
+// Verify real banks locally without exposing private sources or learner data in CI.
 const origin = 'http://127.0.0.1:8787';
 const starting = process.argv.find(arg => arg.startsWith('--starting='))?.slice(11);
 assert(!starting || ['A1','A2','B1','B2','C1','C2'].includes(starting));
@@ -116,7 +116,7 @@ try {
   }
   const practice = page.locator('.corpus-practice[data-skill=listening]');
   const dialog = page.getByRole('dialog');
-  // Fix only the generation seed in this isolated profile; source text/audio stay real.
+  // Fix generation seeds only; preserve real source text and audio.
   let sequenceFound = false;
   for (let seed = 0; seed < 60 && !sequenceFound; seed++) {
     await page.evaluate(seed => {

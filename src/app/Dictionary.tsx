@@ -8,7 +8,6 @@ import { removeSense, saveSense, projectMemories } from '../data/memory';
 import { memories } from '../data/db';
 import { communityDictionary, communityDictionaryTerms } from '../data/communityInstall';
 import { recordLookup } from '../data/lookupHistory';
-import { lookupHistoryCopy } from './LookupHistory';
 
 type Result = Awaited<ReturnType<typeof lookupDictionary>> & { community: Awaited<ReturnType<typeof communityDictionary>> };
 const labels = messages('dictionary');
@@ -31,7 +30,7 @@ export function Dictionary({ locale, online, profileId, standalone = false, init
   useEffect(() => { if (initialQuery) void searchTerm(initialQuery); }, [initialQuery]);
   async function remember(term: string) {
     try { await recordLookup(profileId, 'dictionary', term); }
-    catch { setError(lookupHistoryCopy[locale].saveFailed); }
+    catch { setError(messages('lookupHistory_lookupHistoryCopy')[locale].saveFailed); }
   }
   useEffect(() => {
     if (!termsRequested) return;

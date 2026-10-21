@@ -139,7 +139,7 @@ test('learning popup retains installed course meanings when the general dictiona
   await page.goto('/today');
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
-  // Isolated DOM selection exercises the popup independently of fixture passage vocabulary.
+  // Test popup selection independently of fixture vocabulary.
   await page.locator('.passage').first().evaluate(paragraph => {
     const text = document.createTextNode(' ferncourseword'); paragraph.querySelector('[data-block-text]')!.appendChild(text);
     const range = document.createRange(); range.setStart(text, 1); range.setEnd(text, text.length);

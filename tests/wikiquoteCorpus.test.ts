@@ -6,13 +6,13 @@ import { selectCorpusPassage, corpusLesson, corpusMaterial, corpusMaterialRoot, 
 import { reviewedReading } from '../src/data/corpus';
 import { claimSession, createSession, db, sessions, submit } from '../src/data/db';
 import { asTestLesson, questions, score } from '../src/shared/content';
-// @ts-expect-error Node-only packaging is JavaScript; this regression exercises its actual ZIP output.
+// @ts-expect-error Exercise the real ZIP output of Node-only JavaScript packaging.
 import { createTopicPacks } from '../scripts/topic-packs.mjs';
 import { inspectCommunityPack } from '../src/data/communityPack';
 import { unzipSync, zipSync } from 'fflate';
 
 const hash = (text: string) => createHash('sha256').update(text).digest('hex');
-// Isolated synthetic provenance fixtures exercise validation, not source admission or CEFR.
+// Test provenance validation with synthetic fixtures, without source admission or CEFR claims.
 function source(pageId: number, workId: number, text = 'The library contains interesting books. Readers discover different stories and compare their meanings.') {
   const revisionId = pageId + 100, url = `https://en.wikiquote.org/w/index.php?oldid=${revisionId}`, digest = hash(text);
   return { id: `wikiquote-${pageId}`, rootId: `wikiquote-page-${pageId}`, title: `Quote page ${pageId}`, authors: ['Wikiquote contributors'],

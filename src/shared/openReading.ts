@@ -1,7 +1,7 @@
 import { scopes as bccampusScopes } from '../../content/corpus/bccampus-beginner-source-review.json';
 import { scopes } from '../../content/corpus/open-reading-beginner-source-review.json';
 
-/** Only these actual archived editions are eligible; live repository licences do not extend this list. */
+/** Admit only archived editions; current repository licences cannot expand this list. */
 export const openReadingLicenceUrl = 'https://creativecommons.org/licenses/by/4.0/' as const;
 export const openReadingLicenceSha256 = '0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868';
 export const openReadingEditions = [
@@ -59,7 +59,7 @@ export function validOpenReadingChapter(id: string, url: string, locator: string
   return /^[a-z0-9-]+$/.test(locator) && url === `${openReadingBookUrl(edition)}chapter/${locator}/`;
 }
 
-/** Reviewed source ranges, not questions; every chapter retains the same original book root. */
+/** Review source ranges without storing questions; preserve each original book root. */
 export const openReadingBeginnerScopes = [...scopes, ...bccampusScopes];
 export function validOpenReadingBeginnerScope(passage: { id: string; wordCount: number; startingPoints?: readonly string[]; sourceProvenance?: object }) {
   const provenance = passage.sourceProvenance as Record<string, unknown> | undefined;

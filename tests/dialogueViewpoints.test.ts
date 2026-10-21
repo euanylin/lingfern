@@ -39,7 +39,7 @@ it('preserves opinion denial, limited agreement and complete conditional/possess
     }
     const viewpoint = corpusViewpoints(text, seed)!; expect(new Set(viewpoint.names)).toEqual(new Set(task.choices));
   }
-  // Extending matching must not turn multi-sentence dialogue into a sentence-attribution evidence task.
+  // Preserve multi-sentence dialogue semantics when extending matching.
   for (const text of texts) expect(corpusAttribution(text, 0)).toBeUndefined();
 });
 it('withholds changed negation, incomplete tail, wrong owners, repeated claims and imagined/nested source scopes', () => {

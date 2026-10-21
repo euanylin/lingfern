@@ -14,7 +14,7 @@ await mkdir(output, { recursive: true });
 const packs = [];
 for (const group of catalogue.groups) {
   const manifest = { format: 'lingfern-public-resources', version: 1, groupId: group.id, groupVersion: group.version, files: group.files };
-  // ZIP stores local wall time; retain the published 08:00 fields in every timezone.
+  // Preserve published 08:00 ZIP wall-time fields in every timezone.
   const mtime = new Date(1980, 0, 1, 8);
   const entries = { 'manifest.json': [new TextEncoder().encode(JSON.stringify(manifest)), { mtime }] };
   for (const file of group.files) entries[file.path.slice(1)] = [await readFile(join(publicRoot, file.path)), { mtime }];

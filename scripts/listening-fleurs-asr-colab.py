@@ -1,4 +1,4 @@
-"""Pinned A100 FLEURS ASR diagnostics; source transcripts and all acceptance holds stay unchanged."""
+"""Run pinned A100 FLEURS ASR diagnostics without changing transcripts or acceptance holds."""
 import argparse
 import concurrent.futures
 import datetime
@@ -65,7 +65,7 @@ def verify_acquisition_driver(driver_hash, frozen):
     current = HERE / 'listening-fleurs-colab.py'
     if driver_hash == PINS['listening-fleurs-colab.py'] and sha(current) == driver_hash:
         return
-    # Historical acquisition binds its own frozen bytes, not the current helper implementation.
+    # Bind acquisition evidence to frozen historical bytes, not current helpers.
     if (driver_hash not in HISTORICAL_ACQUISITION_SHA256S or not frozen.is_file() or
             frozen.is_symlink() or any(p.is_symlink() for p in frozen.parents) or sha(frozen) != driver_hash):
         raise ValueError('ACQUISITION_DRIVER_UNKNOWN_OR_UNVERIFIED')

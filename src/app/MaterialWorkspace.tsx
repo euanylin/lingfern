@@ -71,7 +71,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   useEffect(() => {
     const materialChanged = previousMaterial.current !== material.id; previousMaterial.current = material.id;
     const player = audio.current;
-    // Cached metadata can arrive before this effect; retain the native duration.
+    // Metadata may load before this effect; preserve the native duration.
     setPlaying(false); setElapsed(0); setDuration(player && Number.isFinite(player.duration) ? player.duration : 0); setAudioError(false);
     requestAnimationFrame(() => {
       if (materialChanged && !listening) scrollTo(0, positions.current.get(material.id) ?? 0);
@@ -82,7 +82,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     const request = focusRequest.current;
     if (!request) return;
     let frame = 0;
-    // Parent session updates can commit after the navigation callback's first frame.
+    // Session updates may commit after the first navigation frame.
     const focusQuestion = () => {
       if (focusRequest.current !== request) return;
       if (request.focused && document.activeElement !== request.focused) { focusRequest.current = undefined; return; }
@@ -106,7 +106,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
           if (bottom > 0) panel.scrollTop += bottom;
         }
       }
-      // Keep the selected field visible while the sheet finishes expanding.
+      // Keep the selected field visible until the sheet finishes expanding.
       if (panel?.closest('.question-panel')?.getAnimations().some(animation => animation.playState === 'running')) frame = requestAnimationFrame(focusQuestion);
       else focusRequest.current = undefined;
     };

@@ -30,7 +30,7 @@ function filesFor(entries, terms) {
   }
   if (entries.some(entry => entry.record.id.startsWith('wikiquote-'))) {
     files['wikiquote-CC-BY-SA-4.0.txt'] = readFileSync('public/daily-quotes/CC-BY-SA-4.0.txt');
-    // Source notices stay stable when the daily display documentation changes.
+    // Keep source notices stable across daily-display documentation changes.
     files['wikiquote-README.md'] = readFileSync('content/corpus/wikiquote-source-NOTICE.md');
   }
   if (entries.some(entry => entry.record.licenceUrl === 'https://creativecommons.org/licenses/by/4.0/')) {
@@ -47,7 +47,7 @@ function filesFor(entries, terms) {
     files['fleurs-CC-BY-SA-4.0.txt'] = readFileSync('public/daily-quotes/CC-BY-SA-4.0.txt');
     files['fleurs-NOTICE.md'] = Buffer.from('FLEURS English recordings: CC BY 4.0; https://huggingface.co/datasets/google/fleurs . English transcripts and source mapping derive from FLORES-200: CC BY-SA 4.0; https://github.com/facebookresearch/flores . Original article prose retains each stated Wikimedia licence and contributor attribution in sources.json. Quoted third-party text is excluded. Whole original recordings were independently transcoded to MP3; source words were not rewritten. No ability calibration claim.\n');
   }
-  // Exact window admissions require their original companion notices as well as source credits.
+  // Require original companion notices and credits for exact window admissions.
   for (const entry of entries) for (const [name, bytes] of Object.entries(entry.notices ?? {})) {
     if (!/^[a-zA-Z0-9][a-zA-Z0-9._-]*\.(?:txt|md)$/.test(name) || bytes.length > 64 * 1024) throw Error('TOPIC_NOTICE');
     if (files[name] && !Buffer.from(files[name]).equals(bytes)) throw Error('TOPIC_NOTICE_CONFLICT: ' + name);
@@ -62,7 +62,7 @@ function fits(entries, terms) {
     && files[entries[0].skill === 'reading' ? 'corpus.json' : 'spoken.json'].length <= metadataLimit
     && Object.values(files).reduce((total, bytes) => total + bytes.length, 0) <= assetLimit - 64 * 1024;
 }
-/** Repartition existing inert source data without changing any excerpt, rights or audio flags. */
+/** Repartition inert data without changing excerpts, rights, or audio flags. */
 export function createTopicPacks(entries, titles, terms) {
   const groups = new Map();
   for (const entry of entries) {
@@ -132,7 +132,7 @@ export function createTopicPacks(entries, titles, terms) {
   return output;
 }
 
-/** Explicit hash-bound recording holds are excluded from new packages, never promoted. */
+/** Exclude hash-bound recording holds from new packages without promoting them. */
 export function excludeHeldAudio(records, heldHashes) {
   const excluded=[];
   const kept=records.flatMap(record=>{
@@ -146,7 +146,7 @@ export function excludeHeldAudio(records, heldHashes) {
   return {records:kept,excluded};
 }
 
-/** Remove unusable public recordings while retaining exact exclusion evidence. */
+/** Retain exclusion evidence when removing unusable public recordings. */
 export function excludeUnavailableAudio(records, supports) {
   const excluded=[];
   const kept=records.flatMap(record=>{
@@ -180,7 +180,7 @@ const subjectPatterns = {
   society: /\b(?:society|social|communit(?:y|ies)|politics|political|government|rights|justice|democracy|presidents?|politicians?|cities|city|towns?|countries|country)\b/gi,
   'daily-life': /\b(?:apartments?|roommates?|kitchen|bedroom|bathroom|supermarket|breakfast|dinner|shopping|housing|household)\b/gi,
 };
-/** Navigation labels only: title, explicit subject category, and introductory description. */
+/** Derive navigation labels from titles, explicit categories, and introductions only. */
 export function inferSourceTopic(record, categories = '') {
   const title = record.title ?? '';
   const genre = /\(([^)]+)\)/.exec(title)?.[1] ?? '';

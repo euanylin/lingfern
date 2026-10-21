@@ -1,6 +1,6 @@
 import type { AuthEnv } from '../../worker/auth';
 
-// Isolated workerd fixture only. No upstream network fallback or real credentials.
+// Keep workerd fixtures isolated without upstream fallback or real credentials.
 const owner = { id: 1, login: 'synthetic', type: 'User' };
 const nativeFetch = globalThis.fetch;
 const repository = { id: 21, name: 'lingfern-data', owner, private: true, fork: false, archived: false, disabled: false, default_branch: 'main', permissions: { pull: true, push: true } };

@@ -4,7 +4,7 @@ import type { Locale } from '../shared/content';
 import { lookupHistoryUrl, readLookupHistory, type LookupRecord } from '../data/lookupHistory';
 import { copy } from './i18n';
 
-export const lookupHistoryCopy = messages('lookupHistory_lookupHistoryCopy');
+const lookupHistoryCopy = messages('lookupHistory_lookupHistoryCopy');
 
 export function LookupHistory({ locale, profileId }: { locale: Locale; profileId: string }) {
   const t = lookupHistoryCopy[locale];

@@ -148,7 +148,7 @@ export async function inspectCommunityPack(bytes: Uint8Array): Promise<Community
     return lessonSchema.parse({ ...safe, materials: converted, id: `community:${hash}:${item.id}`, sourceId: `community:${hash}:${item.sourceId}`, communityPackageId: hash, reviewStatus: 'draft' });
   });
   if (new Set(lessons.map(item => item.id)).size !== lessons.length || lessons.reduce((count, lesson) => count + lesson.materials.length, 0) !== manifest.materialCount || (lessons.length > 0 && new Set(lessons.map(item => item.targetLevel)).size !== manifest.levels.length) || lessons.some(lesson => !manifest.levels.includes(lesson.targetLevel))) throw new Error('COMMUNITY_MANIFEST');
-  // Preserve legacy snapshot reads; new imports must fit the existing exposure/sync contract.
+  // Preserve legacy reads; enforce exposure/sync limits on new imports.
   if (lessons.some(lesson => lesson.materials.some(material => material.questions.some(question =>
     !exposureQuestionIdSchema.safeParse(question.id).success || 'variantGroup' in question && question.variantGroup && !exposureQuestionIdSchema.safeParse(question.variantGroup).success)))) throw new Error('COMMUNITY_LESSON');
   const media: Record<string, Uint8Array> = Object.create(null);

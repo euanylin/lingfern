@@ -1,2 +1,2 @@
--- Retain a consumed confirmation until expiry so revocation can fence in-flight work.
+-- Retain consumed confirmations until expiry to fence revocation races.
 ALTER TABLE binding_intents ADD COLUMN consumed INTEGER NOT NULL DEFAULT 0;

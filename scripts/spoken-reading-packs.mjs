@@ -5,7 +5,7 @@ import { readCorpusLanguage } from './corpus-language.mjs';
 import { processArticle } from './corpus.mjs';
 import { readSourceReview, reviewedLanguage, reviewedExcerpt } from './corpus-review.mjs';
 
-// Local source preparation; production publication and rights acceptance are separate.
+// Prepare sources locally; authorize publication and rights separately.
 const directory = process.argv.find(arg => arg.startsWith('--output='))?.slice(9) ?? 'private/corpus/spoken/reading-packs';
 const annotationPath = process.argv.find(arg => arg.startsWith('--language='))?.slice(11);
 const annotations = await readCorpusLanguage(annotationPath);

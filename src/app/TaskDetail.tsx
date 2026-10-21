@@ -11,7 +11,7 @@ import { communityCacheName } from '../data/communityInstall';
 import sources from '../../content/sources.json';
 
 const labels = messages('taskDetail');
-// ponytail: planning estimate only; replace with reviewed unit timings when available.
+// shortcut: estimated duration only; replace with reviewed unit timings when available.
 export const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : material.blocks.reduce((words, block) => words + block.text.split(/\s+/).length, 0) / 120) + (lesson.organization ? material.questions.reduce((sum, question) => sum + questionSlots(question), 0) : material.questions.length) * .5, 0)));
 
 export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review' | 'vocabulary'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
@@ -40,7 +40,7 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
       if (!disposed) { if (record) setSource(record); setBytes(sizes.reduce((sum, size) => sum + size, 0)); }
     })().catch(() => { if (!disposed) setFailed(true); });
     return () => { disposed = true; };
-  // The keyed dialog receives an immutable lesson snapshot for one opening.
+  // Keep one immutable lesson snapshot per keyed dialog opening.
   }, [lesson, additionalLesson, profileId]);
   const contentLocale = practiceLocale(lesson, locale);
   const mediaReady = !failed && bytes !== undefined;

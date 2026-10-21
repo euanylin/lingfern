@@ -1,9 +1,4 @@
-"""Full-universe exact discovery against newly collected editions.
-
-Uses the frozen existing parser and normalization, never its owning ledger or
-publication entry point. Output remains pending: source ranges, original author,
-regional rights and religion screening are separate admission requirements.
-"""
+"""Discover exact matches across newly collected editions using frozen parsing/normalization. Never read the owning ledger or publish; require separate source-range, author, regional-rights, and religion review."""
 import argparse,collections,hashlib,importlib.util,json,pathlib,re,sys,time,urllib.parse
 
 

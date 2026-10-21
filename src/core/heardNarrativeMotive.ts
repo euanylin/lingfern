@@ -1,10 +1,10 @@
 import sources from '../../public/audio/b1-speech/MOTIVE.json';
 import { narrativeMotivePrompt, narrativeMotiveSupport } from './corpusNarrativeMotive';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-/** Preserve the reason explicitly attached to the narrated choice, rather than supplying another plausible motive. */
+/** Use the explicit reason for the narrated choice, not another plausible motive. */
 export function heardNarrativeMotive(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_HEARD_NARRATIVE_MOTIVE');
- // shortcut: two inspected whole utterances only; review other reasons, actors and context before extending.
+ // shortcut: two whole utterances; review other reasons, actors, and context before extending.
  if(!sources.some(s=>s.text===text))return;
  const walking=text.startsWith('A ridge connected');
  const action=walking?text.match(/As (the day was not far advanced), I determined to (walk there and collect plants along the road)\./):text.match(/And he built it himself, because he said (he would rather have (a neat, new house) than (one of the big, old dwellings)) that had been built many years before, when his great-great-grandfather had helped throw the dam across the stream\./);

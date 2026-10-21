@@ -17,7 +17,7 @@ it('applies exact reviewed spans and spelling exclusions to older excerpts witho
   const expectedRules = textReview.records.map(record => ({ rootId: record.rootId, articleSha256: record.articleSha256,
     textSha256: record.textSha256, decision: record.decision, excludedTargets: record.excludedTargets ?? [],
     excludedSpans: (record.excludedSpans ?? []).map(span => ({ start: span.start, end: span.end, sha256: createHash('sha256').update(span.text).digest('hex') })) }));
-  // The later exact Luther exclusion is separate from the frozen original review report.
+  // Keep later exact Luther exclusions separate from the frozen review report.
   const religiousSpan = { start: 64194, end: 65009, sha256: '5ccb4e3b29ff2d3ef9e6f26f020c97c87e9cb6ce3f344f39374982e0bce72f70' };
   expectedRules.find(record => record.rootId === 'wikipedia-article-7567080')!.excludedSpans.push(religiousSpan);
   expect(reviewRules.records).toEqual(expectedRules);
@@ -177,7 +177,7 @@ it('loads the complete expanded site catalogue without raising the custom-packag
     for (const entry of retainedListeningPacks.records) {
       const current = entries.find(pack => pack.id.startsWith(entry.id.slice(0, entry.id.lastIndexOf('-') + 1)))!;
       const pack = await inspectCommunityPack(new Uint8Array(readFileSync('public' + current.path)));
-      // Isolated retained-identity fixture; original archive conservation is checked separately.
+      // Test retained identity separately from original-archive conservation.
       const spoken = structuredClone(pack.spoken!);
       spoken.communityPackageId = entry.sha256;
       for (const record of spoken.records) for (const clip of record.clips) clip.audio.src = clip.audio.src.replace(pack.hash, entry.sha256);

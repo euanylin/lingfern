@@ -26,7 +26,7 @@ export function recording(page) {
   if (!/^(?:CC BY(?:-SA)? (?:[234]\.0|2\.5)|CC0|Public domain)$/.test(value('LicenseShortName'))) return null;
   if (value('Restrictions') || /speech synthesis|text.to.speech|parts or simplified|unreviewed spoken/i.test(value('Categories'))) return null;
   if (!Number.isFinite(info.duration) || info.duration < 60 || info.duration > 7200 || info.size > 50000000 || !/^[a-f0-9]{40}$/.test(info.sha1)) return null;
-  // Exact recorded revisions only; a current article is not a matching transcript.
+  // Use exact recorded revisions, not current article text.
   const description = value('ImageDescription').replaceAll('&amp;', '&');
   const links = [...description.matchAll(/href="(https:\/\/en\.wikipedia\.org\/[^"<>]+)"/g)].map(match => new URL(match[1]));
   const article = links.find(url => /^\d+$/.test(url.searchParams.get('oldid') ?? '') && (url.pathname.startsWith('/wiki/') || url.pathname === '/w/index.php'));
@@ -42,7 +42,7 @@ async function download(url, limit) {
   const parsed = new URL(url);
   if (parsed.protocol !== 'https:' || !['commons.wikimedia.org', 'upload.wikimedia.org', 'api.wikimedia.org'].includes(parsed.hostname) || parsed.username || parsed.password) throw new Error('UNTRUSTED_SOURCE');
   if (parsed.hostname === 'upload.wikimedia.org') return bytes(url, limit);
-  // API requests remain serial; only static CDN recordings use the download pool.
+  // Serialize API calls; pool static recording downloads only.
   const request = apiRequests.then(() => bytes(url, limit));
   apiRequests = request.catch(() => {});
   return request;
@@ -152,7 +152,7 @@ async function main() {
     await checkpoint();
     console.log(`Retained ${state.records.length} distinct recorded article candidates`);
   }
-  // Validate cached historical sources too: an API can return a merged target.
+  // Validate cached historical sources because API results may be merged targets.
   for (const item of state.records.filter(item => item.transcriptStatus === 'downloaded-source' || item.transcriptStatus === 'rejected-source')) {
     try {
       const bytes = await readFile(new URL(`articles/${item.revision}.html`, directory));
@@ -190,7 +190,7 @@ async function main() {
       } catch (error) { item.transcriptStatus = 'failed'; failures.push({ fileId: item.fileId, stage: 'article', error: error.message }); }
     }
   };
-  // ponytail: six bounded downloads; no background crawl or unbounded retry.
+  // shortcut: six bounded downloads; review limits before adding crawls or retries.
   const ordered = acquisitionOrder(state.records);
   let next = 0;
   await Promise.all(Array.from({ length: 6 }, async () => {

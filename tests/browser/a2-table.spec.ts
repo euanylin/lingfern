@@ -64,7 +64,7 @@ test('A2 table draft returns after leaving the task', async ({ page }) => {
   await task.getByRole('button', { name: '开始阅读' }).click();
   await confirmTask(page);
   await page.getByRole('textbox', { name: 'Friday' }).fill('11 am');
-  await page.waitForTimeout(500); // wait for the 350 ms local draft debounce
+  await page.waitForTimeout(500); // Wait for the 350ms draft-save debounce.
   await page.getByRole('link', { name: '离开任务' }).click();
   await expect(page).toHaveURL(/\/today$/);
   await page.getByRole('link', { name: '今日', exact: true }).click();

@@ -9,7 +9,7 @@ import { inspectCommunityPack } from '../src/data/communityPack';
 import { spokenCorpusLesson, spokenCorpusSchema, maxInstalledSpokenBanks } from '../src/core/spokenCorpus';
 import { lessonSchema, questions, score, practiceLocale } from '../src/shared/content';
 
-// Synthetic audio metadata is confined to this invariant test, never learner assets.
+// Keep synthetic audio metadata within invariant tests.
 function bank() {
   const original = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
   const hash = 'a'.repeat(64);
@@ -354,7 +354,7 @@ it('follows actual qualified and attributed recordings with contextual unscored 
       }
     }
     if (operation === attribution) {
-      // Only one current source supports this operation; preserve fallback without claiming transfer.
+      // Preserve fallback when only one source supports an operation; claim no transfer.
       expect(corpusOperation(lesson.materials[1].questions[0])).not.toBe(operation);
     }
   }

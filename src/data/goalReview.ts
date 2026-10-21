@@ -51,7 +51,7 @@ export function goalReviews(lessons: Lesson[], sessions: Session[], attempts: At
     if (material.questions.some(question => !first.has(question.id))) continue;
     const responses = [...first.values()];
     if (responses.some(entry => entry.mark === '◇')) {
-      // Completed mixed practice schedules recurrence, without treating self-assessment as independent success.
+      // Schedule recurrence from mixed practice without treating self-assessment as independent success.
       if (session.status === 'completed' && responses.some(entry => entry.mark !== '◇')) {
         const key = `${session.lesson.skill}:${session.lesson.targetLevel}:${session.lesson.goalId}`;
         const at = responses.at(-1)!.attempt.submittedAt;

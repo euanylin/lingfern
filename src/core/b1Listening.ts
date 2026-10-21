@@ -29,7 +29,7 @@ const listeningTargets={
 };
 
 
-/** Generate same-goal applications from intact, exactly inspected B1 listening sources. */
+/** Use intact inspected B1 recordings for same-goal applications. */
 function b1ListeningLesson(input:unknown,seen:ReadonlySet<string>,seed:number,kind:keyof typeof listeningTargets='main'){
  const target=listeningTargets[kind],{references,support}=target;
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff)throw new Error('INVALID_MAIN_POINT_LISTENING');
@@ -38,7 +38,7 @@ function b1ListeningLesson(input:unknown,seen:ReadonlySet<string>,seed:number,ki
  if(new Set(parsed.map(s=>s.rootId)).size!==parsed.length||new Set(parsed.map(s=>s.audio.sha256)).size!==parsed.length||new Set(parsed.map(s=>s.audio.src)).size!==parsed.length)throw new Error('DUPLICATE_MAIN_POINT_SOURCE');
  const available=parsed.filter(s=>!seen.has(s.audio.sha256)),first=available[seed%available.length],second=available.find(s=>s.rootId!==first?.rootId);if(!first||!second)return;
  const materials=[first,second].map((source,index):Lesson['materials'][number]=>{const frame=target.frame(source.text,(seed+index)>>>0);if(!frame)throw new Error('UNSUPPORTED_MAIN_POINT_FRAME');const id=`corpus-${source.audio.sha256}`;
-  // The whole verified window supports the argument; no new fine-grained word timestamps are claimed.
+  // Use the verified full window; do not invent word timestamps.
   const audioEvidence=(span:{start:number;end:number})=>({...span,audioStart:0,audioEnd:source.audio.duration});
   return{id,rootId:source.rootId,sourceId:source.rootId,title:source.title,audio:source.audio,credit:source.credit,blocks:[{id,text:source.text}],questions:[{id:`${id}-${target.suffix}`,blockId:id,prompt:frame.prompt,options:frame.options,answer:frame.answer,evidence:audioEvidence(frame.evidence),additionalEvidence:frame.additionalEvidence.map(span=>({blockId:id,...audioEvidence(span)})),...(!index?{hints:support.hints}:{}),explanations:'optionExplanations'in frame?frame.optionExplanations:frame.explanations}]};
  });

@@ -11,7 +11,7 @@ export const referenceSupport = {
   nextStep: local('Use the same checks on a different source; quote both the reference and its context.', '在另一份资料中用相同方法核对，引用指代表达及其语境。', '在另一份資料中用相同方法核對，引用指代表達及其語境。'),
 };
 
-/** Two bounded grammatical constructions; never a nearest-noun or general coreference guess. */
+/** Use two bounded grammatical forms without guessing nearest-noun coreference. */
 export function corpusReference(text: string, seed: number) {
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_REFERENCE_SEED');
   if (!text || text.length > 12000) return;
@@ -41,7 +41,7 @@ export function corpusReference(text: string, seed: number) {
       if (text.indexOf(context.segment.trim()) === text.lastIndexOf(context.segment.trim()) && founded?.[1] === design[1] && algorithms.length === 1 && algorithms[0][1] !== design[1]) candidates.push({ expression: design[3], statement, context, choices: [design[1] + '.', 'The ' + design[2] + '.', algorithms[0][1] + '.'] });
     }
   }
-  // shortcut: Only the two inspected constructions are scored; add a construction after ambiguity/source design review.
+  // shortcut: two scored forms; review source ambiguity before adding constructions.
   if (candidates.length !== 1) return;
   const { expression, statement, context, choices } = candidates[0];
   const shift = seed % choices.length;

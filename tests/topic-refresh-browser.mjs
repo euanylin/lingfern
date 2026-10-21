@@ -103,7 +103,7 @@ try {
   await expect(dialog).toBeVisible({ timeout: 90000 });
   await page.keyboard.press('Escape');
   assert.deepEqual(await rows(page, 'sessions'), saved); assert.deepEqual(await rows(page, 'attempts'), attempts);
-  // Clear the cancelled preview's reservations by changing the topic again.
+  // Change topics to clear cancelled-preview reservations.
   await choose(''); await choose('daily-life');
   await card.getByRole('button', { name: '开始', exact: true }).click();
   await expect(dialog).toBeVisible({ timeout: 90000 });

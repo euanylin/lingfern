@@ -4,8 +4,8 @@ import { selectPicker } from './picker';
 
 const draft = JSON.parse(readFileSync(new URL('../fixtures/retired-content/voa-listening-checks.json', import.meta.url), 'utf8'))[0];
 const providerSnapshot = structuredClone(draft); providerSnapshot.mode = 'test'; delete providerSnapshot.expectedMinutes;
-// Pair the existing provider fixture with an existing Commons word fixture, keeping actual roots/evidence.
-// This satisfies the practice-derived two-source shape without inventing or approving another source.
+// Pair existing provider/Commons fixtures while preserving roots and evidence.
+// Meet the two-source practice shape without inventing or approving sources.
 const word = JSON.parse(readFileSync(new URL('../../tests/fixtures/content/a1-listening.json', import.meta.url), 'utf8')).materials[0];
 for (const question of word.questions) delete question.hints;
 providerSnapshot.materials.push(word);
@@ -18,7 +18,7 @@ test('isolated practice snapshot uses the shared detail action and test restrict
     const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
     const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
     const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
-    // Isolated valid practice fixture, never installed as the normal curriculum.
+    // Keep valid practice fixtures outside normal curriculum installs.
     const practice = fixture;
     const { asTestLesson } = await import('/src/shared/content.ts' as string);
     const host = document.createElement('div'); document.body.appendChild(host);
@@ -26,7 +26,7 @@ test('isolated practice snapshot uses the shared detail action and test restrict
       lesson: practice, locale: 'en', profileId: 'local-guest', action: 'Start listening', available: true,
       busy: false, startError: '',
       onStart: async () => { throw new Error('Practice callback must not run for Test'); },
-      // The callback receives this exact preview snapshot; it does not select another source.
+      // Pass the exact preview snapshot without selecting another source.
       onCheck: async (snapshot: typeof practice) => { const session = await (await import('/src/data/db.ts' as string)).createSession(asTestLesson(snapshot)); location.assign(`/learn/${session.id}`); },
       onClose: () => {},
     }));
@@ -57,7 +57,7 @@ test('isolated practice snapshot uses the shared detail action and test restrict
 test('isolated draft provider audio uses test controls without approving the source for the catalogue', async ({ page }) => {
   await page.goto('/settings'); await selectPicker(page, '语言', 'en');
   await page.evaluate(async fixture => {
-    // Fixture-only legacy recording/questions re-expressed in test mode, not a practice source release.
+    // Reuse legacy media/questions in test mode without releasing practice sources.
     const { createSession } = await import('/src/data/db.ts' as string);
     const session = await createSession({ ...fixture, mode: 'test' }); location.assign(`/learn/${session.id}`);
   }, providerSnapshot);

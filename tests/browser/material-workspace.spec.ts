@@ -120,7 +120,7 @@ test('desktop reading follows page scrolling beside a pinned answer card, with f
   await page.reload(); await expect(page.locator('.material-workspace')).toBeVisible();
   await expect(page.locator('.workspace-question input:not([type=radio]):not([type=range])').last()).toHaveValue('retained-draft');
   const all = questions(lesson);
-  // Drive real controls in reverse order; no previous-question requirement.
+  // Answer through real controls in reverse order without prior-question gating.
   for (const item of [...all].reverse()) {
     const nav = page.locator('.workspace-card button').filter({ hasText: /^\d+$/ });
     const index = all.indexOf(item); await nav.nth(index).click();
@@ -609,7 +609,7 @@ test('table prompts use the full card width with inputs underneath on desktop an
     await page.setViewportSize({ width, height: 812 });
     if (width < 1200) await page.locator('.workspace-questions .question-sheet-toggle').click();
     const row = page.locator('.workspace-question .answer-table label').first();
-    // The sheet moves while opening; compare all three boxes in the same frame.
+    // Compare moving-sheet bounds in the same frame.
     const boxes = await row.evaluate(element => ({
       row: element.getBoundingClientRect().toJSON(),
       label: element.querySelector('span')!.getBoundingClientRect().toJSON(),
@@ -633,7 +633,7 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
     expect(card.y).toBeGreaterThanOrEqual(source.y + source.height); await expect(panel).toHaveCSS('position', 'static');
     await expect(panel).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)'); await expect(panel).toHaveCSS('border-radius', '0px');
     await expect(bar.locator('..')).toHaveClass('question-progress'); await expect(bar.locator('..')).toHaveCSS('position', 'sticky'); await expect(slider).toHaveCSS('direction', 'ltr');
-    // Preloading is a browser hint; a real playback gesture must make seeking available.
+    // Require seeking after a playback gesture; preload is only a hint.
     await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.muted = true);
     await page.getByRole('button', { name: languagePacks[locale].app.play, exact: true }).click();
     await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.currentTime)).toBeGreaterThan(.1);

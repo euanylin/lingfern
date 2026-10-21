@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test';
-import { copy } from '../../src/app/i18n';
 import { languagePacks, languageOptions } from '../../src/locales';
 import { localeSchema } from '../../src/shared/locale';
 import { selectPicker } from './picker';
@@ -33,7 +32,7 @@ for (const locale of localeSchema.options) {
     await page.goto('/settings');
     const language = page.locator('.settings-language .setting-trigger');
     await selectPicker(page, (await language.getAttribute('aria-label'))!, locale);
-    const t = copy[locale];
+    const t = languagePacks[locale].app;
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('html')).toHaveAttribute('dir', locale === 'ar' ? 'rtl' : 'ltr');
     await page.reload();
@@ -81,7 +80,7 @@ for (const locale of ['ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi'
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('/settings');
     await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
-    const t = copy[locale];
+    const t = languagePacks[locale].app;
     await page.goto('/today');
     const row = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: 'Preserve disagreement and responsibility', exact: true }) });
     await row.getByRole('button').click();
@@ -89,7 +88,7 @@ for (const locale of ['ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi'
     await expect(detail.locator('p[lang=en]').filter({ hasText: 'Synthesize two writers' })).toBeVisible();
     await expect(detail.locator('[data-mode=practice]')).toHaveText(t.start);
     await confirmTask(page);
-    await expect(page.locator('.learning-grid > article > .eyebrow')).toHaveText(copy.en.goal);
+    await expect(page.locator('.learning-grid > article > .eyebrow')).toHaveText(languagePacks.en.app.goal);
     await expect(page.locator('.learning-grid > article > .lead')).toHaveAttribute('lang', 'en');
     await expect(page.locator('.passage').first()).toHaveAttribute('lang', 'en');
     await expect(page.locator('.passage').first()).toHaveCSS('direction', 'ltr');
@@ -139,9 +138,9 @@ for (const locale of ['ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi'
 
 test('switching away from Arabic resets and persists left-to-right direction', async ({ page }) => {
   await page.goto('/settings');
-  await selectPicker(page, copy['zh-Hans'].language, 'ar');
+  await selectPicker(page, languagePacks['zh-Hans'].app.language, 'ar');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
-  await selectPicker(page, copy.ar.language, 'de');
+  await selectPicker(page, languagePacks.ar.app.language, 'de');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');

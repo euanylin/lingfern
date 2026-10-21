@@ -1,4 +1,4 @@
-"""Public-only Colab acquisition/decoding; outputs are candidates, never listening approval."""
+"""Acquire and decode public candidates in Colab without granting listening acceptance."""
 import concurrent.futures, datetime, hashlib, json, os, pathlib, platform, re, subprocess, tarfile, time, urllib.request
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
 URL = 'https://www.openslr.org/resources/12/test-clean.tar.gz'

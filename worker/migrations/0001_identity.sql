@@ -1,4 +1,4 @@
--- Identity state only; learning records remain in the browser/private repository.
+-- Store identity state only; keep learning records in the browser/private repository.
 CREATE TABLE IF NOT EXISTS accounts (
   id INTEGER PRIMARY KEY, login TEXT NOT NULL, encrypted_tokens TEXT NOT NULL,
   updated_at INTEGER NOT NULL

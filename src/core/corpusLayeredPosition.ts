@@ -2,7 +2,7 @@ import scopes from '../../content/corpus/c2-layered-position-scopes.json';
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const layeredPositionOperation = 'choice:layered-position';
 export const layeredPositionPrompt = 'Which account is supported for both A and B? Keep each quoted claim, its reporting voice and its degree of commitment in their proper relationship.';
-// shortcut: exact inspected stance-layer annotations; inspect competing interpretations before extending to other contexts.
+// shortcut: inspected stance layers; review competing interpretations before extending.
 const relations = [
   {
     "focus": "but I believed none of it.",

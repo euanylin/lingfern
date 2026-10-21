@@ -17,7 +17,7 @@ try {
   banks.push({entry,bank:pack.corpus});
  }
  primary=banks[0];foreign=banks[1];
- // Match loadReadingCorpus's bundled order and IndexedDB [profileId,hash] package order.
+ // Match bundled source order and IndexedDB [profileId,hash] package order.
  const installed=[...banks].sort((a,b)=>a.entry.sha256.localeCompare(b.entry.sha256)).flatMap(item=>item.bank.records);
  const records=await reviewedReading([...['voa','gutenberg'].flatMap(source=>JSON.parse(readFileSync('public/corpus/'+source+'.json','utf8')).records),...installed],220);
  const mixed={version:1,failures:[],records:[...new Map(records.map(record=>[record.rootId,record])).values()]};

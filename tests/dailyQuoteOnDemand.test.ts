@@ -13,7 +13,9 @@ it('retains every full display record exactly once and derives the same eligibil
   expect(chunks).toEqual(catalogue.quotes);
   const normalize = (text: string) => text.normalize('NFKC').replace(/\s+/g, ' ').trim().toLocaleLowerCase('en');
   expect(new Set(catalogue.quotes.map(quote => normalize(quote.text))).size).toBe(catalogue.quotes.length);
-  expect(index).toEqual(catalogue.quotes.map((quote, position) => ({ id: quote.id, pageTitle: quote.pageTitle, chunk: String(Math.floor(position / 64)).padStart(3, '0'), eligible: readableQuotation(quote.text) && !exclusions.some(exclusion => quote.id === exclusion.id || normalize(quote.text) === normalize(exclusion.text)) })));
+  expect(new Set(index.map(quote => quote.id)).size).toBe(index.length);
+  expect(index.every(quote => /^[a-f0-9]{16}$/.test(quote.id))).toBe(true);
+  expect(index).toEqual(catalogue.quotes.map((quote, position) => ({ id: quote.id.slice(-16), pageTitle: quote.pageTitle, chunk: String(Math.floor(position / 64)).padStart(3, '0'), eligible: readableQuotation(quote.text) && !exclusions.some(exclusion => quote.id === exclusion.id || normalize(quote.text) === normalize(exclusion.text)) })));
 });
 
 describe('on-demand selection preserves current calendar, random draws, previous exclusion and complete credits', () => {
@@ -22,7 +24,7 @@ describe('on-demand selection preserves current calendar, random draws, previous
     for (const date of dates) for (const draw of [0, .37, .999999]) {
       const now = new Date(2026, month, Number(date.slice(3)), 12);
       const previous = dailyQuote(now, undefined, () => draw)?.quote.id;
-      for (const prior of [undefined, previous, 'unknown-old-quote']) expect(await dailyQuoteOnDemand(now, prior, () => draw)).toEqual(dailyQuote(now, prior, () => draw));
+      for (const prior of [undefined, previous, 'unknown-old-quote', previous?.slice(-16), previous?.replace('wikiquote-', 'unknown-')]) expect(await dailyQuoteOnDemand(now, prior, () => draw)).toEqual(dailyQuote(now, prior, () => draw));
     }
   }, 30000);
 });

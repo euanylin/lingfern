@@ -1,6 +1,6 @@
 import { readFile, readdir, writeFile, unlink } from 'node:fs/promises';
 
-/** Keep each public input within the existing per-file trust boundary. */
+/** Keep public inputs within existing per-file limits. */
 export function corpusShards(corpus, maxBytes = 20 * 1024 * 1024) {
   const shards = [];
   let records = [];

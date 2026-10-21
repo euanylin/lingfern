@@ -229,7 +229,7 @@ test.describe('touch selection', () => {
     await page.screenshot({ path: 'output/playwright/learning-word-popup-touch-375x812-dark-zh-Hans.png' });
     const outside = { x: bounds!.x + bounds!.width / 2, y: bounds!.y >= 48 ? bounds!.y - 48 : bounds!.y + bounds!.height + 48 };
     expect(await page.evaluate(({ x, y }) => !!document.elementFromPoint(x, y)?.closest('.selection-dictionary'), outside)).toBe(false);
-    // Leave enough space to avoid Chromium's touch-target adjustment into the card.
+    // Avoid Chromium touch-target adjustment into the card.
     await page.touchscreen.tap(outside.x, outside.y);
     await expect(card).toHaveCount(0);
     await page.setViewportSize({ width: 820, height: 900 });
@@ -325,9 +325,9 @@ test('online dictionary preference persists and invalid saved values fall back',
     database.close();
   });
   await page.reload();
-  // Legacy corruption cannot override a valid profile-scoped saved event.
+  // Preserve valid profile events against corrupt legacy values.
   await expect(picker).toHaveAttribute('data-value', 'oxford');
-  // A fresh profile with no valid dictionary event must reject a corrupt scoped value.
+  // Reject corrupt scoped values when no valid dictionary event exists.
   const fresh = await context.browser()!.newContext({ locale: 'zh-CN' });
   try {
     const freshPage = await fresh.newPage();

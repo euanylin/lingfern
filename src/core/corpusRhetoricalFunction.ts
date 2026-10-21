@@ -2,7 +2,7 @@ import scopes from '../../content/corpus/c2-rhetorical-function-scopes.json';
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const rhetoricalFunctionOperation = 'choice:rhetorical-function';
 export const rhetoricalFunctionPrompt = 'How do A and B work in this complete context? Choose the account that links each piece of wording to its own specific rhetorical effect.';
-// shortcut: inspected wording–context interpretations; review competing links before extending these source-bound annotations.
+// shortcut: inspected wording/context links; review competing links before extending.
 const functions = [
   {
     "focus": "It was the best of times, it was the worst of times",

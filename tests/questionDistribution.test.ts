@@ -18,7 +18,7 @@ it.each(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const)('balances reading kinds w
   if (point === 'C1') for (const operation of ['choice:information-density', 'choice:implicit-intention', 'matching:discourse-organization', 'matching:register-audience', 'matching:argument-boundaries', 'matching:indirect-stance']) expect(operations.has(operation)).toBe(true);
 });
 
-// Synthetic metadata stays in tests; both roots support ordering and exact-word restoration only.
+// Keep synthetic metadata in tests; support only ordering and exact-word restoration here.
 function sparseBank() {
   const original = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
   const hash = 'a'.repeat(64);

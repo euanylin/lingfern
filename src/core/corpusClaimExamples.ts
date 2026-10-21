@@ -3,10 +3,10 @@ import longAdmission from '../../content/corpus/long-listening-admission.json';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
 export const claimExamplePrompt='Match each example or part of the account to the claim it directly illustrates at that point.';
 export const claimExampleOperation='matching:'+claimExamplePrompt;
-/** Read an example through its local framing claim, not as universal proof or a keyword category. */
+/** Interpret examples through local claims without treating them as universal proof. */
 export function corpusClaimExamples(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_CLAIM_EXAMPLES');
- // shortcut: four inspected complete contexts only; review each example’s local role and competing readings before extending.
+ // shortcut: four complete contexts; review example roles and competing readings before extending.
  if(!scopes.records.some(s=>s.text===text)&&!longAdmission.records.some(s=>s.clip.text===text))return;
  let pairs:{label:string;answer:string}[],choices:string[],evidence:RegExpMatchArray|null,others:(RegExpMatchArray|undefined)[],detail:ReturnType<typeof local>;
  if(text.startsWith('We live in a changing world')){

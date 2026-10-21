@@ -3,7 +3,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createServer } from 'vite';
 import { prepareBccampusReading } from './bccampus-reading-corpus.mjs';
-// Updated only after the complete independent source audit; empty pins reject publication.
+// Freeze independent source audits before updating pins; reject empty publication pins.
 export const approvedSourceManifestSha256 = '9e47ef00164e3bc3eda9726bf72ab6fc827d40de30536370d2ecda77d78ba05d';
 export const independentSourceReviewSha256 = '16346af59a6c263a725179e32dbc9b405b9b35dde0ba6b6b18160bc0a8ecdd60';
 export const beginnerSourceReviewSha256 = '02656490f601dc6c1ccb4609f31c85c8ec56a1ae1d242632f3df5b3789022a04';
@@ -35,7 +35,7 @@ export async function readFrozenSources(base, expectedManifestSha256) {
   }
   return data;
 }
-/** Only reviewed beginner windows can include several complete native paragraphs or list items. */
+/** Allow multiple native paragraphs/list items only in reviewed beginner windows. */
 export function beginnerOffsets(canonical, scope) {
   const source = scope.sourceProvenance, parts = canonical.split('\n\n');
   const prefix = parts.slice(0, source.paragraphIndex).join('\n\n') + (source.paragraphIndex ? '\n\n' : '');
@@ -250,7 +250,7 @@ async function prepareOpenReadingLiteracy(shared) {
   if (rows.some(row => !excluded.has(row.id) && !records.some(record => record.id === row.workId))) throw Error('OPEN_READING_LITERACY_UNLISTED');
   return { records, review };
 }
-/** Frozen manifest is admitted only after separate complete raw/rights/parser source verification. */
+/** Require full raw/rights/parser verification before admitting frozen manifests. */
 export async function prepareOpenReading({ check = false } = {}) {
   const approvedBytes = await readFile('content/corpus/open-reading-source-manifest.json');
   if (!approvedSourceManifestSha256 || sha(approvedBytes) !== approvedSourceManifestSha256) throw Error('OPEN_READING_UNFROZEN');
@@ -323,7 +323,7 @@ export async function prepareOpenReading({ check = false } = {}) {
     }) };
     const outputs = [['content/corpus/open-reading-topics.json', JSON.stringify(topics, null, 2) + '\n'], ['content/corpus/open-reading.json', serialized], ['public/corpus/open-reading.json', serialized],
       ['public/corpus/open-reading-CC-BY-4.0.txt', license], ['public/corpus/open-reading-NOTICE.md', approved.notice + '\n' + beginner.review.attribution + '\n' + [...expansion.review.books, ...bulk.review.books, ...scale.review.books, ...bc.review.books, ...literacy.review.books].map(book => book.attribution).join('\n') + '\nOriginal text only; images, audio and other media are excluded.\n']];
-    // All input and schema checks finish before the first publication write.
+    // Validate all inputs and schemas before publication writes.
     for (const [path, value] of outputs) {
       if (check) { if (!Buffer.from(await readFile(path)).equals(Buffer.from(value))) throw Error('OPEN_READING_STALE'); }
       else { await mkdir(resolve(path, '..'), { recursive: true }); await writeFile(path, value); }

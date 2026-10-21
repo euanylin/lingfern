@@ -1,7 +1,7 @@
 import { cp, mkdir, rm } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 
-// Test-only staging keeps fictional recordings out of the normal site and packs.
+// Stage fictional recordings for tests only, outside normal site resources.
 const stage = process.env.LINGFERN_OFFLINE_FIXTURES === '1' ? '/tmp/lingfern-offline-fixtures-resources' : '/tmp/lingfern-test-fixtures-resources';
 await rm(stage, { recursive: true, force: true });
 await mkdir(`${stage}/content`, { recursive: true });

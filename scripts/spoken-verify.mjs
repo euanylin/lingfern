@@ -3,7 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { articleIdentity } from './spoken-corpus.mjs';
 
-// Private preprocessing acceptance, never editorial approval or a publish operation.
+// Validate private preprocessing without granting editorial approval or publication.
 const directory = new URL('../private/corpus/spoken/', import.meta.url);
 const { records } = JSON.parse(await readFile(new URL('processed.json', directory), 'utf8'));
 const report = JSON.parse(await readFile(new URL('../content/corpus/spoken-processing-report.json', import.meta.url), 'utf8'));
@@ -14,7 +14,7 @@ assert.equal(new Set(records.map(record => record.fileId)).size, records.length)
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 let words = 0, seconds = 0;
 const byRoot = new Map();
-// Four independent source/audio pairs at a time; bounded memory, unchanged source order.
+// Verify four independent pairs concurrently with bounded memory and stable source order.
 for (let offset = 0; offset < records.length; offset += 4) {
   const batch = records.slice(offset, offset + 4);
   const results = await Promise.allSettled(batch.map(async record => {
@@ -63,7 +63,7 @@ for (const candidate of alignment.records) {
 }
 const result = { checkedAt: new Date().toISOString(), distinctArticleAudioPairs: records.length, words, audioHours: seconds / 3600, unchangedVerifiedFullAudioFiles: records.length, alignedRoots: alignedRoots.size, exactSourceSegments: segments, independentlyReviewed: 0, published: false };
 await writeFile(new URL('../content/corpus/spoken-integrity-report.json', import.meta.url), JSON.stringify(result, null, 2) + '\n');
-// CSV contains provenance and triage metadata only, never learners' records or ASR output.
+// Export provenance/triage metadata only, excluding learner records and ASR output.
 const columns = ['rootId', 'title', 'wordCount', 'decodedDuration', 'articleUrl', 'audioSourceUrl', 'textLicence', 'licence', 'qualityFlags', 'editorialReview'];
 const cell = value => '"' + String(Array.isArray(value) ? value.join('; ') : value).replaceAll('"', '""') + '"';
 await writeFile(new URL('inventory.csv', directory), [columns.join(','), ...records.map(record => columns.map(key => cell(record[key])).join(','))].join('\n') + '\n');

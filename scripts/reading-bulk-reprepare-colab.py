@@ -1,4 +1,4 @@
-"""Re-prepare the already acquired OpenStax CNXML using senior-author evidence from the preface."""
+"""Reprepare acquired OpenStax CNXML using senior-author evidence from its preface."""
 import ast, datetime, gzip, hashlib, json, pathlib, re, shutil, traceback, zipfile, xml.etree.ElementTree as ET
 from collections import Counter
 LOG = pathlib.Path('/content/reprepare-log.txt')

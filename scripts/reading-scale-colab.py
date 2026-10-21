@@ -1,8 +1,4 @@
-"""Prepare one bulk allowlist of frozen pre-2025 OpenStax CC BY 4.0 books.
-
-No early stop. Current NC editions are not fetched. Structural preparation is not
-CEFR, audio or full-book semantic acceptance.
-"""
+"""Prepare every allowlisted frozen pre-2025 OpenStax CC BY 4.0 book without early stopping. Exclude current NC editions; structural checks grant no CEFR, audio, or whole-book semantic acceptance."""
 import datetime, gzip, hashlib, json, os, pathlib, platform, re, shutil, subprocess, time, traceback, urllib.request, zipfile, xml.etree.ElementTree as ET
 from collections import Counter
 

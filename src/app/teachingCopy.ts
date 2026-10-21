@@ -1,4 +1,4 @@
-/** Clean older saved examples without changing their lesson or content hash. */
+/** Clean legacy example display without changing lesson hashes. */
 export function teachingExample(text: string | undefined) {
   return text
     ?.replace(/^(?:Unscored made-up transcript|Made-up examples?|Illustrative (?:example|relation)):\s*/i, 'Example: ')

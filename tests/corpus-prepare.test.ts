@@ -9,7 +9,7 @@ import { installSourcePack, sourcePacks } from '../src/data/sourcePacks';
 vi.mock('../src/core/corpus', async importOriginal => ({ ...await importOriginal<typeof import('../src/core/corpus')>(), corpusLesson: vi.fn() }));
 vi.mock('../src/data/corpus', async importOriginal => ({ ...await importOriginal<typeof import('../src/data/corpus')>(), loadReadingCorpus: vi.fn(), loadSpokenCorpora: vi.fn() }));
 vi.mock('../src/data/sourcePacks', async importOriginal => ({ ...await importOriginal<typeof import('../src/data/sourcePacks')>(), installedSourcePacks: vi.fn(async () => new Set()), installSourcePack: vi.fn() }));
-// Node fixtures have no installed built-in audio cache; actual offline installation is browser-tested.
+// Test actual offline audio installation in browsers, not Node fixtures.
 vi.mock('../src/data/offline', async importOriginal => ({ ...await importOriginal<typeof import('../src/data/offline')>(), offlineGroupReady: vi.fn(async () => false) }));
 vi.mock('../src/data/memory', () => ({ dueMemories: vi.fn(async () => []) }));
 vi.mock('../src/core/spokenCorpus', async importOriginal => ({ ...await importOriginal<typeof import('../src/core/spokenCorpus')>(), spokenCorpusLesson: vi.fn() }));
@@ -139,7 +139,7 @@ const base = { locale: 'zh-Hans' as const, profileId: 'isolated-topic-selection'
 
 it('filters multiple reading topics as a union without changing stored source data', async () => {
   const original = readingBank().records[0];
-  // Orchestration-only text fixture; this does not qualify altered source text.
+  // Test orchestration without admitting altered source text.
   const bank: Corpus = { version: 1, failures: [], records: [{ ...original, title: 'A neutral heading', passages: ['A physics experiment in a laboratory.', 'A passport for an airport journey.', 'Cooking a recipe.'].map((text, index) => ({ ...original.passages[0], id: `topic-union-${index}`, text })) }] };
   const saved = structuredClone(bank), topics = ['science' as const, 'travel' as const];
   vi.mocked(loadReadingCorpus).mockResolvedValue(bank);
@@ -226,7 +226,7 @@ it('filters listening primary and application clips inside their guarded banks w
   const entry = sourcePacks.find(pack => pack.skill === 'listening' && pack.topic === 'science')!;
   const downloaded = await inspectCommunityPack(new Uint8Array(readFileSync('public' + entry.path)));
   const source = downloaded.spoken!.records[0], clip = source.clips[0];
-  // Isolated orchestration fixtures: no audio/content acceptance or production installation.
+  // Keep orchestration fixtures separate from audio/content acceptance and deployment.
   const bank: SpokenCorpus = { ...downloaded.spoken!, records: [
     { ...source, title: 'A neutral heading', clips: [{ ...clip, text: 'A science experiment in a laboratory.' }, { ...clip, text: 'A passport for a journey.' }] },
     { ...source, rootId: 'isolated-secondary-root', title: 'Another heading', clips: [{ ...clip, text: 'A physics experiment.' }] },
@@ -294,7 +294,7 @@ it.each(['reading','listening'] as const)('stops exhausted focused %s entry with
  }
 });
 
-// Fixed reviewed-fixture seeds avoid an unrelated exhaustive search inside the routing check.
+// Use reviewed fixture seeds without exhaustive unrelated routing searches.
 it.each([
   ['explicit-person-description', 672], ['explicit-place-relation', 1160],
   ['explicit-basic-instruction', 1464], ['explicit-small-count', 1770],
@@ -544,7 +544,7 @@ it('excludes seen original roots across skills for new B2 claim/example practice
   vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0, 0]));
   for (const lesson of [reading, heard]) {
     const skill = lesson.skill as 'reading' | 'listening', profileId = `claim-root-${skill}`;
-    // Isolated routing history only; browser acceptance must complete actual ordinary prerequisites.
+    // Simulate routing history only; earn ordinary prerequisites in browser acceptance.
     const prior: Session = { id: 'seen-other-clip', profileId, lesson: { ...lesson, skill: skill === 'reading' ? 'listening' : 'reading', materials: [{ ...lesson.materials[0], id: 'corpus-' + 'f'.repeat(64) }] }, contentHash: 'a'.repeat(64), position: 0, status: 'active', startedAt: new Date(Date.now() - 1000).toISOString(), assistance: { hintLevel: 0 }, leaseUntil: 0 };
     vi.mocked(loadReadingCorpus).mockResolvedValue(readingBank); vi.mocked(loadSpokenCorpora).mockResolvedValue(banks);
     vi.mocked(corpusLesson).mockReset(); vi.mocked(spokenCorpusLesson).mockReset();
@@ -635,7 +635,7 @@ it('reaches C1 implicit intention through ordinary preparation using the full na
   const raw = await inspectCommunityPack(new Uint8Array(readFileSync('tests/fixtures/c1-implicit-reading-contexts.zip')));
   const bank = { ...raw.corpus!, records: await data.reviewedReading(raw.corpus!.records, 900) };
   vi.mocked(corpusLesson).mockImplementation(core.corpusLesson); vi.mocked(loadReadingCorpus).mockResolvedValue(bank);
-  // This installed pair excludes newer operations; retain its original ordinary seed rather than the full-menu phase.
+  // Preserve this installed pair's old seed phase while newer operations are unavailable.
   vi.spyOn(crypto, 'getRandomValues').mockImplementation(a => { (a as Uint32Array).set([0, 78]); return a; });
   const profileId = 'implicit-ordinary-route', base = { profileId, locale: 'zh-Hans' as const, skill: 'reading' as const, online: false, preferences: { reading: 'C1' as const, listening: 'C1' as const, interests: [], step: 4, completed: true } };
   const lesson = (await prepareCorpusPractice({ ...base, history: [], records: [] })).lesson!;
@@ -841,7 +841,7 @@ it('keeps faithful paraphrase within the existing ordinary support condition, ex
     if (skill === 'reading') {
       expect((await prepareCorpusPractice({ ...base, history, records })).lesson?.goalId).not.toBe('faithful-paraphrase');
       const snapshot = core.corpusLesson(reading, new Set(), 0, 1800, 'C2', [], 'choice', [], 'choice:faithful-paraphrase')!;
-      // Isolated synthetic history tests the existing support threshold; browser acceptance earns it through actual Today sessions.
+      // Test support thresholds with synthetic history; verify actual Today prerequisites separately.
       for (let n = 0; n < 2; n++) {
         const lesson = structuredClone(snapshot); lesson.goalId = 'source-wording-and-summary';
         for (const [i, m] of lesson.materials.entries()) {

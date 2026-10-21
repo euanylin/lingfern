@@ -17,7 +17,7 @@ test('native English hyphenation and emergency wrapping preserve the original te
   const result = await page.evaluate(() => {
     const probe = document.createElement('p');
     probe.className = 'passage'; probe.lang = 'en'; probe.textContent = 'responsibility';
-    // Isolated layout probe; no lesson, answer, annotation or original source is changed.
+    // Probe layout without changing lessons, answers, annotations, or sources.
     probe.style.cssText = 'width:64px;overflow-wrap:normal';
     document.querySelector<HTMLElement>('.reading-workspace')!.appendChild(probe);
     const lines = () => {
@@ -68,7 +68,7 @@ for (const width of [320, 900, 1440]) test(`book-style line alignment preserves 
     const justified = lines();
     (paragraph as HTMLElement).style.textAlign = 'start'; const ragged = lines();
     (paragraph as HTMLElement).style.removeProperty('text-align');
-    // A fixed short forced line tests alignment independently of platform font metrics.
+    // Use fixed short lines to isolate alignment from font metrics.
     const probe = paragraph.cloneNode(false) as HTMLElement;
     probe.textContent = 'Short line.\nA final line.';
     paragraph.parentNode!.insertBefore(probe, paragraph.nextSibling);

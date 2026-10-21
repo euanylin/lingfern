@@ -48,7 +48,7 @@ function parseSentenceSources(input: unknown, seed: number) {
   return sources;
 }
 
-/** Exact words within short recorded utterances; no inferred meaning or proficiency score. */
+/** Recognize exact recorded words without inferring meaning or proficiency. */
 export function sentenceListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   const sources = parseSentenceSources(input, seed);
   const candidates = sources.filter(source => !seen.has(source.audio.sha256)).flatMap(source => {
@@ -71,7 +71,7 @@ export function sentenceListeningLesson(input: unknown, seen: ReadonlySet<string
       return { material, example: corpusWorkedExample(material, seed, 'A1', true) };
     }).filter(item => item !== undefined);
   });
-  // Teach from an unused source sentence without giving away the scored word.
+  // Teach from an unused source sentence without revealing the scored word.
   const taught = candidates.filter(candidate => candidate.example);
   const first = taught[seed % taught.length];
   if (!first) return;
@@ -86,10 +86,10 @@ export function sentenceListeningLesson(input: unknown, seen: ReadonlySet<string
     materials: [first.material, second.material] });
 }
 
-/** Explicit descriptions, with a mentioned alternative that is not the stated description. */
+/** Contrast an explicit description with a mentioned alternative. */
 export function sentenceDescriptionLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   const candidates = parseSentenceSources(input, seed).filter(source => !seen.has(source.audio.sha256)).flatMap(source => {
-    // shortcut: These two inspected complete constructions do not cover arbitrary introductions or object references.
+    // shortcut: two inspected complete forms; review arbitrary introductions and references before adding them.
     const origin = /^She is [A-Z][a-z]+\. She is new to ([A-Z][A-Za-z. ]+)\. Where are you from\? I am from (a [a-z]+ town)\.$/.exec(source.text);
     const object = /^It is not (a [a-z]+)\. It is (a [a-z]+)\. It is a big ([a-z]+)\.$/.exec(source.text);
     if (!origin && (!object || object[1] === object[2] || object[2] !== `a ${object[3]}`)) return [];
@@ -127,7 +127,7 @@ export function sentenceDescriptionLesson(input: unknown, seen: ReadonlySet<stri
     nextStep: local('Try the other recording without hints. Identify the stated description and explain why the other detail does not answer the question.', '不用提示听另一原作，找到明确描述，并解释另一细节为什么不回答题目。', '不用提示聽另一原作，找到明確描述，並解釋另一細節為什麼不回答題目。'), materials });
 }
 
-/** Only the inspected complete correction, location and request constructions are admitted. */
+/** Admit only inspected complete corrections, locations, and requests. */
 export function sentenceMeaningLesson(input: unknown, seen: ReadonlySet<string>, seed: number, kind: 'location' | 'instruction' | 'verification') {
   const support = {
     location: {
@@ -201,7 +201,7 @@ export function sentenceMeaningLesson(input: unknown, seen: ReadonlySet<string>,
     nextStep: local('Try the same goal on the other recording without hints. Check the complete answer and explain why the other option changes it.', '不用提示，在另一原作上完成同一目标。核对完整回答，解释另一选项改动了什么。', '不用提示，在另一原作上完成同一目標。核對完整回答，解釋另一選項改動了什麼。'), materials });
 }
 
-/** Counts and clock times retain their reported referent; never add groups or convert time zones. */
+/** Keep counts and times bound to their referents; do not combine groups or convert zones. */
 export function sentenceNumericLesson(input: unknown, seen: ReadonlySet<string>, seed: number, kind: 'count' | 'time') {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_SENTENCE_LISTENING_SEED');
   const sources = z.array(z.union([sourceSchema, fleursSchema])).max(20).parse(input);
@@ -263,7 +263,7 @@ export function sentenceNumericLesson(input: unknown, seen: ReadonlySet<string>,
     nextStep: local('Try the same goal on the other recording without hints. Explain which number and unit are stated and what the other option changes.', '不用提示，在另一原作上完成同一目标。说明数字及其对象／时刻，核对另一选项改动了什么。', '不用提示，在另一原作上完成同一目標。說明數字及其對象／時刻，核對另一選項改動了什麼。'), materials });
 }
 
-/** Reported simple present statements only; never an inference about the world or a speaker's identity. */
+/** Score reported simple-present statements without inferring facts or speaker identity. */
 export function sentencePolarityLesson(input: unknown, seen: ReadonlySet<string>, seed: number, skill: 'reading' | 'listening' = 'listening') {
   const reading = skill === 'reading';
   const sources = parseSentenceSources(input, seed);
@@ -273,17 +273,17 @@ export function sentencePolarityLesson(input: unknown, seen: ReadonlySet<string>
     const statements = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(source.text)].flatMap(statement => {
       const match = /^((?:It|She|He|This) is|I am|(?:You|We|They) are|I['’]m)( not)? ([A-Za-z]+(?: [A-Za-z]+){0,6})\.\s*$/.exec(statement.segment);
       if (!match || /\b(?:here|there|not|never|and|or|either|neither)\b/i.test(match[3])) return [];
-      // A name already supplied in the source title cannot establish independent comprehension.
+      // A name supplied by the title cannot prove independent comprehension.
       if (/^[A-Z][a-z]+$/.test(match[3]) && source.title.includes(match[3])) return [];
       if (reading && (!['It is', 'This is'].includes(match[1]) || !/^(?:a (?:big )?(?:pen|book)|the (?:gym|mailroom)|beautiful)$/.test(match[3]))) return [];
-      // The reviewed correction names the same room in the next turn; other deictic contexts stay unavailable.
+      // Admit the reviewed same-room correction; leave other deictic contexts unavailable.
       if (match[1] === 'This is' && source.text !== "Oh, Pete. This is not the gym. That's right, Anna. This is the mailroom.") return [];
       const end = statement.index + statement.segment.trimEnd().length;
       const segment = source.segments.find(segment => segment.start <= statement.index && segment.end >= end);
       if (!segment) return [];
       return [{ source, statement: statement.segment.trim(), prefix: match[1], predicate: match[3], negative: !!match[2], segment }];
     });
-    // shortcut: Only inspected atomic present-be polarity is scored; review other scopes/constructions before adding them.
+    // shortcut: inspected atomic present-be polarity; review other forms and scopes before extending.
     const key = (candidate: typeof statements[number]) => `${candidate.prefix.replace(/^I['’]m$/, 'I am')} ${candidate.predicate}`.toLowerCase();
     return statements.filter(candidate => !statements.some(other => key(other) === key(candidate) && other.negative !== candidate.negative));
   });

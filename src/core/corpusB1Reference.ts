@@ -1,10 +1,10 @@
 import scopes from '../../content/corpus/b1-reference-scopes.json';
 import { referencePrompt, referenceSupport } from './corpusReference';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-/** Resolve only inspected category references, using their antecedent and the complete surrounding explanation. */
+/** Resolve inspected category references using full antecedent explanations. */
 export function corpusB1Reference(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_B1_REFERENCE');
- // shortcut: two exact complete native paragraphs only; review other referents/competing entities before extending.
+ // shortcut: two complete native paragraphs; review competing referents before extending.
  if(!scopes.records.some(s=>s.text===text))return;
  const survey=text.startsWith('Surveys allow researchers');
  const statement=survey?text.match(/These measures provide an overall summary of what a typical response looks like\./):text.match(/These descriptive aids can help researchers determine whether a collection contains resources that fit their needs and can make a visit to a selected archive more efficient and worthwhile\./);

@@ -4,7 +4,7 @@ import { createServer } from 'vite';
 import { sha, readFrozenSources, paragraphOffsets } from './open-reading-corpus.mjs';
 import { corpusShards } from './corpus-shards.mjs';
 
-// Pin only after the independent edition, rights and source review is frozen.
+// Freeze independent edition/rights/source review before pinning.
 export const gutenbergExpansionReviewSha256 = '2f85bd8d990ea153efb28878a3ddf670ddfbbf89473739ee299e07a07dbe04e6';
 export async function prepareGutenbergExpansion(corpus) {
   const bytes = await readFile('content/corpus/gutenberg-expansion-source-review.json');

@@ -1,4 +1,4 @@
-"""Local editorial NLP sidecar; never a website dependency or proficiency label."""
+"""Run local editorial NLP without website dependencies or proficiency claims."""
 import argparse
 import hashlib
 import json

@@ -45,8 +45,7 @@ test('reference history persists per profile and reopens dictionary, usage and I
   await expect(page.locator('.history')).not.toContainText(['pear']);
 });
 
-test('history entry matches Today style and aligns with the Library title above references', async ({ page }) => {
-  for (const locale of ['zh-Hans', 'zh-Hant', 'en']) {
+for (const locale of ['zh-Hans', 'zh-Hant', 'en']) test(`history entry matches Today style and aligns with the Library title above references (${locale})`, async ({ page }) => {
     await page.goto('/settings'); await selectPicker(page, (await page.locator('.setting-trigger').first().getAttribute('aria-label'))!, locale);
     for (const theme of ['light', 'dark']) {
       await page.goto('/settings'); await selectPicker(page, (await page.locator('.setting-trigger').nth(1).getAttribute('aria-label'))!, theme);
@@ -71,7 +70,6 @@ test('history entry matches Today style and aligns with the Library title above 
         if (locale === 'zh-Hans' && ((width === 1440 && theme === 'light') || (width === 320 && theme === 'dark'))) await page.screenshot({ path: `output/playwright/lookup-history-${width}-${theme}-zh-Hans-empty.png`, fullPage: true });
       }
     }
-  }
 });
 
 test('a failed history write preserves lookup results and reports the save failure', async ({ page }) => {

@@ -60,7 +60,7 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
     setDraft(next);
     const request = ++revision.current;
     setSaving(true); setError('');
-    // Keep rapid selections in order so an older write cannot replace the latest choice.
+    // Serialize selections so stale writes cannot replace newer choices.
     saveQueue.current = saveQueue.current.then(async () => {
       try { await onChange(practiceSelectionSchema.parse(next)); return true; }
       catch { if (request === revision.current) setError(t.failed); return false; }
@@ -102,7 +102,7 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
   </dialog>, document.body);
 }
 
-// Contact/blur and save-status changes must not rebuild hundreds of material controls.
+// Memoize material controls across feedback and save-status updates.
 const PracticeMaterialList = memo(function PracticeMaterialList({ groups, selected, expanded, searching, locale, id, onToggle, onExpand }: { groups: MaterialGroup[]; selected: string[]; expanded: Set<string>; searching: boolean; locale: Locale; id: string; onToggle: (value: string, checked: boolean) => void; onExpand: (group: string) => void }) {
   const t = messages('practiceOptions')[locale], ui = messages('offlineInstall_libraryLabels')[locale], checked = new Set(selected);
   return <div className="practice-material-list">{groups.map(bucket => {

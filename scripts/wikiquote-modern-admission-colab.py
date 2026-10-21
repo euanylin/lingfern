@@ -1,4 +1,4 @@
-"""Recheck the exact, individually inspected modern quotations in the owned cloud batch."""
+"""Recheck exact individually inspected modern quotes in the owned cloud batch."""
 import pathlib,json,hashlib,zipfile,datetime,xml.etree.ElementTree as ET,importlib.util
 ROOT=pathlib.Path('/content/lingfern-modern-quotes');OUT=ROOT/'admission';OUT.mkdir(exist_ok=True)
 def sha(x):return hashlib.sha256(x.encode() if isinstance(x,str) else x).hexdigest()

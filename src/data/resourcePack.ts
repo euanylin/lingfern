@@ -24,7 +24,7 @@ export async function inspectResourcePack(bytes: Uint8Array) {
 
 export type ResourcePack = Awaited<ReturnType<typeof inspectResourcePack>>;
 
-// Keep profile/database mutations out of the ZIP inspection worker’s static imports.
+// Keep database mutations out of inspection-worker imports.
 export async function installResourcePack(pack: ResourcePack, profileId: string, signal?: AbortSignal) {
   const group = offlineGroups.find(item => item.id === pack.id);
   if (!group) throw new Error('PACKAGE_MANIFEST');

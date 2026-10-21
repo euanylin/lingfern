@@ -51,8 +51,8 @@ function backupProfileName(name: string, suffix = '') {
   return `${prefix}${suffix}` || 'Local profile';
 }
 
-// Raw rows have already passed strict schemas/ownership checks. Keep unusable timing
-// records recoverable; an absent card remains paused until the original event is confirmed.
+// Preserve validated timing rows for recovery; keep absent cards paused until original-event confirmation.
+
 async function backupMemoryCard(memory: Memory, reviews: MemoryReview[], events: StoredEvent[]) {
   const source = events.map(({ profileId: _profile, batchId: _batch, ...event }) => { void _profile; void _batch; return event; });
   try {
@@ -121,7 +121,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
     const file = files[licenceName], expected = manifest.files[licenceName];
     if (file.length > MAX_LICENCE || file.length !== expected.bytes || expected.count !== 1 || await sha256(file) !== expected.sha256) throw new Error('BACKUP_INTEGRITY');
     const text = decoder.decode(file);
-    // Terms remain inert text; a hash is integrity, not rights approval.
+    // Treat terms as inert text; hashes prove integrity, not rights.
     if (!text.startsWith(gutenbergNotice + '\n\nSTART: FULL LICENSE\n') || !text.includes('\nTHE FULL PROJECT GUTENBERG LICENSE\n') || [1, 2, 3, 4, 5].some(section => !text.includes(`\nSection ${section}. `)) || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(text)) throw new Error('BACKUP_INTEGRITY');
   }
   const read = async <T>(name: string, schema: z.ZodType<T>) => {
@@ -240,7 +240,7 @@ export async function importBackup(inspection: BackupInspection, accountId?: num
     await memoryReviews.bulkAdd(importedReviews);
     await feedbackNotes.bulkAdd(importedFeedback);
     await db.table('syncEvents').bulkAdd(inspection.records.syncEvents.map(row => ({ ...row, profileId: id })));
-    // Explicit account import does not inherit another account's acknowledgement.
+    // Do not inherit another account's acknowledgement during explicit imports.
     await db.table('syncBatches').bulkAdd(inspection.records.syncBatches.map(row => ({ ...row, profileId: id, ...(association && row.state !== 'conflict' ? { state: 'pending' } : {}) })));
     await db.table('syncConflicts').bulkAdd(inspection.records.syncConflicts.map(row => ({ ...row, profileId: id })));
     await db.table('syncClocks').add({ profileId: id, deviceId: crypto.randomUUID(), counter: oldClock?.counter ?? 0, logicalProfileId });

@@ -1,4 +1,4 @@
-"""Final source dependence gate on frozen cloud-prepared paragraphs, no editing."""
+"""Verify frozen cloud paragraphs against source dependencies without editing them."""
 import pathlib,json,hashlib,importlib.util,re,time,os,zipfile
 PARSER=pathlib.Path('/content/reading-expansion-colab-scope-reviewed.py')
 assert hashlib.sha256(PARSER.read_bytes()).hexdigest()=='83913a54ff90345a8cfec41d876a5ba38ef7785fc0582ed934d287cba5704b35'

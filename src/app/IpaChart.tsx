@@ -5,12 +5,11 @@ import { ipaChartSchema, ipaSymbols, officialIpaChart, rhoticRows, diphthongRows
 import { fullIpaAudioSchema, fullIpaSoundSymbols, type FullIpaSound } from './ipaFullAudio';
 import type { Locale } from '../shared/content';
 import { recordLookup } from '../data/lookupHistory';
-import { lookupHistoryCopy } from './LookupHistory';
 
 import { fullVowels, fullPlaces, fullConsonants, otherSymbols, affricates, nonPulmonic, diacritics, suprasegmentals, tones, englishVariants } from './fullIpa';
 
 const labels = messages('ipaChart');
-// These compound accents are missing from common mobile system fonts.
+// Common mobile fonts lack these compound accents.
 const toneAccents: Record<string, string> = { '᷄': 'M2 9H9L16 2', '᷅': 'M2 2L9 9H16', '᷈': 'M2 2L7 9L12 2L17 9' };
 
 export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Locale; profileId: string; initialQuery?: string }) {
@@ -103,7 +102,7 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
     </div>
     {(!entries || view === 'detailed' && !sounds) && !error && !fullError && <p role="status">{t.loading}</p>}
     {(error || view === 'detailed' && fullError) && <p role="alert" className="error">{error || t.failed}</p>}
-    {historyError && <p role="alert" className="error">{lookupHistoryCopy[locale].saveFailed}</p>}
+    {historyError && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].saveFailed}</p>}
     <audio ref={player} preload="none" onEnded={() => setPlaying('')} onError={() => { setPlaying(''); setError(t.failed); }}/>
     {entries && (view === 'simple' ? (['vowel', 'consonant'] as const).map(group => <section className="ipa-group" key={group}>
       <h2>{t.groups[group]}</h2>

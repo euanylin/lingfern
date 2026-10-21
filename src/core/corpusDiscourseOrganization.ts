@@ -47,7 +47,7 @@ const roleChinese: Record<Role, [string, string]> = {
   proof: ['确立消除所有不确定性的无条件证明', '確立消除所有不確定性的無條件證明'],
   unrelated: ['放弃原有主题，转向无关话题', '放棄原有主題，轉向無關話題'],
 };
-/** Structural cues describe reusable rhetorical relations; source partitions contain no stored questions or answers. */
+/** Store source partitions and rhetorical cues, without questions or answers. */
 function functionOf(part: string, index: number, whole: string): Role | undefined {
   if (/although they did not remove my grief, they subdued/.test(part)) return 'setting';
   if (/All of soul-inspiriting fled with sleep/.test(part) && /I remembered the effect/.test(part)) return 'reversal';
@@ -63,14 +63,14 @@ function functionOf(part: string, index: number, whole: string): Role | undefine
 }
 export function corpusDiscourseOrganization(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_DISCOURSE_ORGANIZATION');
-  // shortcut: only complete inspected source partitions; extend after reviewing competing whole-text functions.
+  // shortcut: complete inspected partitions; review competing whole-text functions before extending.
   const scope = [...scopes.reading, ...scopes.listening].find(scope => scope.text === text);
   if (!scope || scope.parts.length < 2 || scope.parts.length > 3) return;
   const parts = scope.parts.map((part, index) => ({ ...part, role: functionOf(text.slice(part.start, part.end), index, text) }));
   if (parts.some(part => !part.role || part.start < 0 || part.end <= part.start || part.end > text.length)
     || new Set(parts.map(part => part.role)).size !== parts.length) return;
   const all = parts.map(part => ({ label: part.label, answer: roles[part.role!], part }));
-  // Ask a different structural comparison, retaining the complete unasked context.
+  // Vary structural comparisons while retaining the full unasked context.
   const selected = all.length === 3 && seed % 2 ? all.filter((_, index) => index !== Math.floor(seed / 2) % 3) : all;
   const choices = [...all.map(pair => pair.answer), roles.proof, roles.unrelated];
   const rotate = seed % choices.length; choices.push(...choices.splice(0, rotate));

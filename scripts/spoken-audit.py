@@ -1,4 +1,4 @@
-"""Optional local acquisition audit; not a website or deployment dependency."""
+"""Audit acquisition locally without website or deployment dependencies."""
 import collections
 from datetime import datetime, timezone
 import hashlib
@@ -21,7 +21,7 @@ rows = []
 for item in state['records'][:limit]:
     audio = directory / 'audio' / f"{item['fileId']}.ogg"
     try:
-        # Reuse the installed skill verbatim, including its hash/parameter cache.
+        # Reuse the installed skill and its hash/parameter cache unchanged.
         sys.argv = [str(script), str(audio), '--language', 'en', '--model', model]
         try:
             runpy.run_path(str(script), run_name='__main__')
@@ -52,7 +52,7 @@ for item in state['records'][:limit]:
         rows.append({'fileId': item['fileId'], 'articlePageId': item['articlePageId'], 'audioSha256': digest, 'model': model, 'modelRevision': revision, 'language': 'en', 'recognizedWords': len(spoken), 'sourceWords': len(original), 'lexicalOverlap': round(overlap, 4), 'flags': flags, 'reviewStatus': 'pending'})
     except Exception as error:
         rows.append({'fileId': item['fileId'], 'error': str(error), 'reviewStatus': 'pending'})
-    # A bounded batch checkpoint, not a watcher or a scheduled job.
+    # Save a bounded checkpoint without starting a watcher or scheduled job.
     (directory / 'asr-audit.json.tmp').write_text(json.dumps({'records': rows}, indent=2))
     (directory / 'asr-audit.json.tmp').replace(directory / 'asr-audit.json')
     report = {'updatedAt': datetime.now(timezone.utc).isoformat(), 'requestedLimit': limit, 'availableSourcePairs': len(state['records']), 'audited': len(rows), 'complete': len(rows) == min(limit, len(state['records'])), 'transcriptionFailures': sum('error' in row for row in rows), 'qualityFlagged': sum(bool(row.get('flags')) for row in rows), 'model': model, 'modelRevision': revision, 'humanReviewed': 0, 'approvedListeningTasks': 0, 'note': 'Automatic source/audio matching diagnostics, not validated transcripts, language-ability estimates or editorial approval.'}

@@ -22,7 +22,7 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
   const editor = (event: Event) => textEntry(event.target);
   const start = (event: PointerEvent) => { if (touchOnly && event.pointerType === 'mouse') return; if (editor(event)) state.cancel(); else { scrolling = true; state.start(); } };
   const activate = (event: Event) => { if (touchOnly && (!(event instanceof PointerEvent) || !['touch', 'pen'].includes(event.pointerType))) return; if (editor(event)) state.cancel(); else { scrolling = true; state.pulse(); } };
-  // Let React commit controlled values before feedback can re-render the panel.
+  // Commit controlled values before feedback triggers another render.
   const click = (event: MouseEvent) => { if (event.target instanceof Node && panel.contains(event.target)) activate(event); };
   const scroll = (event: Event) => { if (scrolling && !editor(event)) state.pulse(); };
   const editing = (event: Event) => { if (event.target instanceof Node && panel.contains(event.target) && editor(event)) state.cancel(); };

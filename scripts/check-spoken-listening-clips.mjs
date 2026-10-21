@@ -73,7 +73,7 @@ for (const record of index.records) {
         assert(Array.isArray(transcript.segments) && transcript.segments.length <= 1000);
         assert(transcript.segments.every(segment => Number.isFinite(segment.start) && Number.isFinite(segment.end)
           && segment.start >= 0 && segment.end > segment.start && typeof segment.text === 'string'));
-        // ponytail: lexical equality is diagnostic only; numbers, names and senses still need contextual review.
+        // shortcut: lexical equality is diagnostic; review numbers, names, and senses in context.
         clipTranscripts.push({ rootId: record.rootId, title: source.title, id: clip.id, clipSha256: clip.sha256,
           transcriptSha256: sha(transcriptBytes), model: transcript._source.model, duration: clip.duration,
           sourceText: clip.text, recognizedText: transcript.text, segments: transcript.segments.map(({ start, end, text }) => ({ start, end, text })),

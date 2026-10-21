@@ -18,7 +18,7 @@ function environment() {
   sqlite.exec(readFileSync('worker/migrations/0005_repository_revocation.sql', 'utf8'));
   sqlite.exec(readFileSync('worker/migrations/0006_binding_generation.sql', 'utf8'));
   sqlite.exec(readFileSync('worker/migrations/0007_temporary_sharing.sql', 'utf8'));
-  // Minimal D1 adapter backed by real SQLite, including atomic DELETE RETURNING.
+  // Back the minimal D1 adapter with real SQLite and atomic DELETE RETURNING.
   const database = {
     prepare(sql: string) {
       let values: (string | number)[] = [];
@@ -497,7 +497,7 @@ test('installation revocation wins over an in-flight bind and invalidates associ
   expect(sqlite.prepare('SELECT count(*) AS n FROM repository_bindings').get()!.n).toBe(0);
   fixture.duringPut = undefined;
   expect((await invoke('/api/sync/repositories')).status).toBe(401);
-  // Simulate provider unsuspension and a separately completed new login.
+  // Simulate provider recovery followed by a separate new login.
   await webhookRoute(await webhook(env, crypto.randomUUID(), 1, '', 'installation', { action: 'unsuspend', installation: { id: 31 } }), env);
   const credential = randomSecret(), csrf = randomSecret();
   const encrypted = await sealTokens({ access_token: 'old-access', token_type: 'bearer', obtainedAt: Math.floor(Date.now() / 1000), expires_in: 28800 }, env.TOKEN_ENCRYPTION_KEY!, 1);
@@ -670,7 +670,7 @@ test('disconnecting or replacing a binding during a write fences its late acknow
   const response = await invoke('/api/sync/batches', value);
   expect(response.status).toBe(409);
   expect(await response.json()).toEqual({ error: 'AUTHORISATION_CHANGED' });
-  expect(fixture.batchWrites).toBe(1); // The provider may already have accepted bytes; no false local acknowledgement.
+  expect(fixture.batchWrites).toBe(1); // Do not acknowledge locally when the provider may already have accepted bytes.
 });
 
 test('bounded branch-conflict retries and provider timing leave fixed batches pending', async () => {

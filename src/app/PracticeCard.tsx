@@ -26,7 +26,7 @@ export function practiceCardProgress(sessions: readonly Session[], records: read
 export function practiceCardDate(at: string, locale: Locale, now = new Date()) {
   const date = new Date(at);
   if (!Number.isFinite(date.getTime())) return '';
-  // Calendar dates use the device's local day, including daylight-saving boundaries.
+  // Use the device's calendar day across daylight-saving changes.
   const localDay = (value: Date) => Date.UTC(value.getFullYear(), value.getMonth(), value.getDate());
   const days = Math.round((localDay(now) - localDay(date)) / 86400000);
   if (days === 0) return messages('practiceCard_today')[locale];

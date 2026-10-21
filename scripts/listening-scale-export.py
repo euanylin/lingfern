@@ -1,4 +1,4 @@
-"""Bounded streaming export/check of the fixed scale research job; no public publication."""
+"""Stream and verify bounded exports from the fixed scale job without public publication."""
 import argparse, datetime, hashlib, importlib.util, io, json, pathlib, shutil, stat, tarfile, tempfile, zipfile
 ROOT=pathlib.Path('/content/lingfern-listening-scale-20261009');PART_BYTES=4*1024*1024;MAX_TOTAL=10_000_000_000;MAX_FILE=400_000_000;MAX_FILES=100000;MD5='2a93770f6d5c6c964bc36631d331a522';PARTITION='train-clean-100';MAX_SOURCE_TOTAL=MAX_TOTAL
 SOURCE_URL='https://www.openslr.org/resources/12/train-clean-100.tar.gz'
@@ -46,7 +46,7 @@ def export(source_parts=False):
     for clip in clips:
         row=by_id[clip['id']];used.update([row['audioPath'],row['transcriptPath']])
         if sha(ROOT/row['audioPath'])!=row['audioSha256']or sha(ROOT/row['transcriptPath'])!=row['transcriptSha256']:raise ValueError('USED_ORIGINAL_CHANGED')
-    # Original archive separately retained byte-for-byte. Only used decoded recordings are duplicated in the data ZIP.
+    # Preserve the original archive separately; copy only used decoded recordings into the data ZIP.
     files={};paths=[];out=ROOT/'scale-export';out.mkdir(exist_ok=True)
     for path in sorted(ROOT.rglob('*')):
         if not path.is_file():continue
@@ -91,7 +91,7 @@ def verify_zip(archive,files,destination):
             with zipped.open(item)as source:
                 while chunk:=source.read(1024*1024):digest.update(chunk);size+=len(chunk)
             if size!=item.file_size or digest.hexdigest()!=files[item.filename]['sha256']:raise ValueError('ZIP_FILE_HASH')
-        # No extraction until every member has passed the trust boundary.
+        # Validate every member before extraction.
         destination.mkdir()
         for item in zipped.infolist():
             target=destination/item.filename;target.parent.mkdir(parents=True,exist_ok=True)
@@ -259,7 +259,7 @@ def check(directory,destination,expected_hash,source_archive=None,data_only=Fals
     metadata=json.loads((directory/'scale-export-manifest.json').read_text())
     if metadata['scope']!=MANIFEST_SCOPE or metadata['accepted']!=0 or metadata['published']is not False:raise ValueError('EXPORT_SCOPE')
     if destination.exists():raise ValueError('DESTINATION_EXISTS')
-    # Reconstructed archives retained outside the extracted destination; no source/part deletion.
+    # Retain reconstructed archives outside extraction; delete no sources or parts.
     with tempfile.TemporaryDirectory(prefix='lingfern-scale-check-')as temp:
         zip_path=pathlib.Path(temp)/'scale-data.zip';raw=pathlib.Path(temp)/(PARTITION+'.tar.gz')
         reconstruct(metadata['archive'],directory,zip_path)
@@ -359,7 +359,7 @@ def self_test():
         try:reconstruct(broken,root,root/'broken')
         except ValueError:pass
         else:raise AssertionError('Wrong part accepted')
-        # More than a thousand small transfer parts are supported without a fixed old207 count.
+        # Support over 1,000 transfer parts without the old fixed count.
         many=[];payload=b'x'*1001
         for index in range(1001):
             name=f'p{index}';(root/name).write_bytes(b'x');many.append({'path':name,'bytes':1,'sha256':hashlib.sha256(b'x').hexdigest()})
@@ -369,7 +369,7 @@ def self_test():
         except ValueError as error:assert str(error)=='ARCHIVE_SIZE' and not(root/'over-limit').exists()
         else:raise AssertionError('Transfer limit ignored')
         reconstruct(limited,root,root/'source-limit',1001);assert(root/'source-limit').read_bytes()==payload
-        # Large original archives get their separate bound; data ZIP stays capped at 10GB.
+        # Bound original archives separately; cap the data ZIP at 10GB.
         large={'bytes':MAX_TOTAL+1,'sha256':'0'*64,'parts':[{'path':'absent','bytes':1,'sha256':'0'*64}]}
         try:reconstruct(large,root,root/'large-data')
         except ValueError as error:assert str(error)=='ARCHIVE_SIZE' and not(root/'large-data').exists()

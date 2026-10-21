@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 
-/** Full seed-0 parser inventory, followed by bounded real generator/support checks. */
+/** Inventory seed-0 parsing before bounded generator/support checks. */
 export async function teachingCoverage({server,readingForBounds,applicationListening,banks,bundledPaths,generatorHashes,outputPath}) {
  assert(typeof outputPath==='string'&&!fs.existsSync(outputPath),'Use a fresh explicit coverage evidence path; historical reports must not be overwritten.');
  const c=await server.ssrLoadModule('/src/core/corpus.ts');
@@ -27,7 +27,7 @@ export async function teachingCoverage({server,readingForBounds,applicationListe
   if(!operations[name].has(key))operations[name].set(key,!!detectors[name](excerpt.text,0,excerpt.language,beginner));
   return operations[name].get(key);
  };
- // Plan2.6 editorial starting lengths are diagnostics, never CEFR or acceptance thresholds.
+ // Treat Plan §2.6 lengths as diagnostics, not CEFR or acceptance thresholds.
  const editorialLengths={B1:{reading:[150,400],listening:[45,150]},B2:{reading:[300,750],listening:[90,240]},C1:{reading:[500,1200],listening:[120,360]},C2:{reading:[700,1800],listening:[180,480]}};
  const rows=[];
  for(const level of ['A1','A2','B1','B2','C1','C2'])for(const skill of ['reading','listening'])for(const condition of [0,1,2]) {
@@ -63,7 +63,7 @@ export async function teachingCoverage({server,readingForBounds,applicationListe
      let operation;
      if(skill==='reading')operation=corpusOperation(c.corpusMaterial({source:first.source,passage:first.excerpt},0,level,kind)?.questions[0]);
      else operation=name==='spokenMatching'?`matching:${spokenAttributionMatchingPrompt}`:name==='outcome'?'choice:stated-outcome':['qualification','attribution','spokenCondition'].includes(name)?`evidence:${detectors[name](first.excerpt.text,0).prompt}`:undefined;
-     // Explicit semantic operations avoid the generic kind choosing another subtype.
+     // Select explicit operations to avoid generic kinds choosing different subtypes.
      if(skill==='reading'&&!['completion','sequence','table','apartments','speakers'].includes(name)) {
       const task=detectors[name](first.excerpt.text,0);
       const named={action:'choice:conditional-action',cause:'choice:qualified-cause',contrast:'choice:explicit-contrast',negation:'choice:negated-necessity',concessive:'choice:concessive-relation',timing:'choice:qualified-timing',polite:'choice:polite-request',address:'choice:requested-address',phone:'choice:work-phone',intention:'choice:stated-intention',origin:'choice:stated-origin',rooms:`matching:${c.roomMatchingPrompt}`,attributionMatching:`matching:${c.attributionMatchingPrompt}`,request:'matching:Match each action to what the request asks for or rules out.',reliance:pairedRelianceOperation};

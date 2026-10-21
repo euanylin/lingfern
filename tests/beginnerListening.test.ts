@@ -56,7 +56,7 @@ it('uses real short recordings, exact phrase evidence and unused worked examples
 });
 
 it('requires two unfamiliar word applications and completed unassisted audio before the A1 progression gate', () => {
-  // Isolated policy records; these never enter the learner-facing corpus or a real profile.
+  // Keep policy fixtures out of learner corpora and real profiles.
   const first = wordListeningLesson(words, new Set(), 0)!;
   const second = wordListeningLesson(words, new Set(first.materials.map(material => material.audio!.sha256)), 0)!;
   const history: Session[] = [first, second].map((lesson, index) => ({ id: `sentence-policy-${index}`, profileId: 'sentence-policy', lesson,

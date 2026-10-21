@@ -17,7 +17,7 @@ test('matching preserves partial answers, supports keyboards and cites both mess
   await page.getByRole('option', { name: 'library', exact: true }).press('Enter');
   await expect(mia).toContainText('library');
   await expect(page.getByRole('button', { name: '保存答案' })).toBeDisabled();
-  await page.waitForTimeout(500); // Allow the existing 350ms draft transaction to finish.
+  await page.waitForTimeout(500); // Wait for the 350ms draft save to finish.
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.goto('/today');
   await task.getByRole('button', { name: '继续任务' }).click();
@@ -99,7 +99,7 @@ test('long selected matching labels stay inside the answer panel after narrowing
   await confirmTask(page);
   await showLearningPane(page, 'question');
   await selectPicker(page, 'Mia', 'library');
-  // Isolated DOM length stress on the real shared picker; no learning record or fixture answer is changed.
+  // Stress shared-picker DOM length without changing records or answers.
   await page.locator('.matching-answers .setting').first().evaluate(row => {
     row.querySelector('.setting-trigger > span')!.textContent = 'Ancient-period formulation of belief and philosophical systems';
     row.querySelector(':scope > span')!.textContent = 'Hinduism, Buddhism, Confucianism, Judaism, and Greek philosophy';

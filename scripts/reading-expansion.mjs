@@ -5,7 +5,7 @@ import { sha, readFrozenSources, paragraphOffsets } from './open-reading-corpus.
 import { corpusShards } from './corpus-shards.mjs';
 
 export const sourceReviewSha256 = 'a25832fbff83393a1be3a12e3d256203b9740254adea7f33c28359ca9316266f';
-/** Source acceptance is hash-bound; generated questions remain client rules. */
+/** Bind source acceptance to hashes; generate questions through client rules. */
 export async function prepareReadingExpansion(voa, additional) {
   const bytes = await readFile('content/corpus/reading-expansion-source-review.json');
   if (!sourceReviewSha256 || sha(bytes) !== sourceReviewSha256) throw Error('READING_EXPANSION_REVIEW');

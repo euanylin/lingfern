@@ -5,7 +5,7 @@ export const informationSynthesisOperation = 'choice:information-synthesis';
 
 export function corpusInformationSynthesis(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_INFORMATION_SYNTHESIS');
-  // shortcut: four complete inspected contexts; review every integrated claim and its status before extending.
+  // shortcut: four complete contexts; review every integrated claim and its status before extending.
   if (![...scopes.reading, ...scopes.listening].some(s => s.text === text)) return;
   let evidence: RegExpMatchArray | null, others: (RegExpMatchArray | null)[], options: string[], explanations: ReturnType<typeof local>[];
   if (text.startsWith('When a turtle is found stranded')) {

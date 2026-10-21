@@ -8,8 +8,8 @@ export type StoredBatch = { profileId: string; deviceId: string; batchId: string
 export type Clock = { profileId: string; deviceId: string; counter: number; logicalProfileId?: string };
 export type NewEvent = SyncEvent extends infer Event ? Event extends SyncEvent ? Pick<Event, 'type' | 'payload'> : never : never;
 
-// Imported content may use longer IDs than the bounded wire format. Hash only those references,
-// preserving ordinary IDs and avoiding a new restriction on locally valid materials.
+// Hash only imported IDs exceeding wire limits; preserve ordinary IDs and local validity.
+
 export async function boundedReferences(value: NewEvent): Promise<NewEvent> {
   if (value.type === 'preferences' || value.type === 'setting') return value;
   const payload = { ...value.payload } as Record<string, unknown>;
@@ -23,7 +23,7 @@ export async function boundedReferences(value: NewEvent): Promise<NewEvent> {
   return { ...value, payload } as NewEvent;
 }
 
-// These operations are profile scoped. No account selection or remote request is implicit.
+// Scope operations to the profile without implicit account selection or network requests.
 export async function appendSyncEvent(profileId: string, value: NewEvent, database: Dexie = db, identity: { id?: string; occurredAt?: string } = {}) {
   profileIdSchema.parse(profileId);
   return database.transaction('rw', database.table('syncEvents'), database.table('syncClocks'), async () => {
@@ -45,12 +45,12 @@ export async function pendingSyncBatch(profileId: string, database: Dexie = db):
   profileIdSchema.parse(profileId);
   const pending = await database.table('syncBatches').where('[profileId+state]').equals([profileId, 'pending']).first();
   if (pending) return pending;
-  // SHA computation runs outside IndexedDB; the following transaction compares selected rows before sealing.
+  // Hash outside IndexedDB; compare selected rows before sealing the transaction.
   const selected: StoredEvent[] = await database.table('syncEvents').where('profileId').equals(profileId).filter(event => !event.batchId).toArray();
-  // ponytail: scans the pending queue; add a profile/counter index if large offline queues make sealing slow.
+  // shortcut: pending-queue scan; add a profile/counter index if large queues slow sealing.
   selected.sort(compareSyncEvents);
   selected.splice(500);
-  // A concurrent reader may have sealed these events after the first pending lookup.
+  // Recheck for batches sealed concurrently after the initial lookup.
   if (!selected.length) return database.table('syncBatches').where('[profileId+state]').equals([profileId, 'pending']).first();
   const clock: Clock | undefined = await database.table('syncClocks').get(profileId);
   if (!clock) throw new Error('SYNC_CLOCK_MISSING');
@@ -87,7 +87,7 @@ export async function confirmSyncBatch(profileId: string, deviceId: string, batc
   });
 }
 
-// Upload receipts are binding-specific caches, excluded from backups just like download receipts.
+// Exclude binding-specific upload receipts from backups, like download receipts.
 export async function confirmSyncUpload(profileId: string, expected: { scope: SyncDownloadScope; deviceId: string; batchId: string; hash: string }, raw: unknown, database: Dexie = db) {
   profileIdSchema.parse(profileId);
   const scope = syncDownloadScopeSchema.parse(expected.scope), ack = syncAcknowledgementSchema.parse(raw);
@@ -110,7 +110,7 @@ export async function nextSyncUpload(profileId: string, scope: SyncDownloadScope
     const clock: Clock | undefined = await database.table('syncClocks').get(profileId);
     if ((clock?.logicalProfileId ?? profileId) !== scope.profileId) throw new Error('SYNC_SCOPE_CHANGED');
     if (await database.table('syncConflicts').where('profileId').equals(profileId).count()) throw new Error('SYNC_BATCH_CONFLICT');
-    // ponytail: scan one profile's immutable batches; add a per-scope queue index if large archives make selection slow.
+    // shortcut: profile batch scan; add a scoped queue index if large archives slow selection.
     for (const stored of await database.table('syncBatches').where('profileId').equals(profileId).toArray() as StoredBatch[]) {
       if (stored.state === 'conflict') throw new Error('SYNC_BATCH_CONFLICT');
       const validated = await Dexie.waitFor(validateSyncBatch(stored.batch));
@@ -146,7 +146,7 @@ async function receiveValidatedBatch(profileId: string, batch: SyncBatch, hash: 
     catch (error) { if (!(error instanceof Error) || error.message !== 'SYNC_EVENT_CONFLICT') throw error; conflict = true; }
     const stored: StoredBatch = { profileId, deviceId: batch.deviceId, batchId: batch.batchId, batch, hash, state: conflict ? 'conflict' : 'received' };
     await database.table('syncBatches').add(stored);
-    if (conflict) return 'conflict'; // Retain the incoming copy; no part of a conflicting batch is applied.
+    if (conflict) return 'conflict'; // Retain conflicting input without applying any part of its batch.
     for (const event of batch.events) if (!old.some(row => row?.id === event.id)) await database.table('syncEvents').add({ ...event, profileId, batchId: batch.batchId });
     const clock: Clock = await database.table('syncClocks').get(profileId) ?? { profileId, deviceId: crypto.randomUUID(), counter: 0, logicalProfileId: profileId };
     await database.table('syncClocks').put({ ...clock, counter: Math.max(clock.counter, ...batch.events.map(event => event.counter)) });
@@ -158,7 +158,7 @@ export async function readSyncEvents(profileId: string, database: Dexie = db) {
   return mergeSyncEvents([], rows.map(unstored));
 }
 
-// Read-only diagnosis: no choice silently overwrites an immutable batch or original event.
+// Diagnose without overwriting immutable batches or original events.
 export async function syncConflictReport(profileId: string, hash: string, database: Dexie = db) {
   profileIdSchema.parse(profileId);
   if (!/^[a-f0-9]{64}$/.test(hash)) throw new Error('SYNC_INTEGRITY');
@@ -182,7 +182,7 @@ type DownloadProgress = SyncDownloadScope & { profileId: string; commit: string;
 type Receipt = SyncDownloadScope & { profileId: string; deviceId: string; batchId: string; blobSha: string; hash: string };
 const scopeKey = (profileId: string, scope: SyncDownloadScope) => [profileId, scope.accountId, scope.bindingVersion];
 
-// Cursors and receipts are account/binding-specific caches, not backup data. A restore safely redownloads.
+// Exclude account/binding cursor caches from backups; restore by redownloading.
 export async function readSyncDownload(profileId: string, scope: SyncDownloadScope, database: Dexie = db): Promise<DownloadProgress | undefined> {
   profileIdSchema.parse(profileId); syncDownloadScopeSchema.parse(scope);
   return database.table('syncDownloads').get(scopeKey(profileId, scope));
@@ -208,7 +208,7 @@ export async function knownSyncFiles(profileId: string, scope: SyncDownloadScope
   });
 }
 
-// Validate outside IndexedDB. Events, quarantine, receipts and next-page progress commit together.
+// Validate first; atomically commit events, quarantine, receipts, and page progress.
 export async function receiveSyncPage(profileId: string, raw: unknown, database: Dexie = db, context?: DownloadContext, beforeCommit?: () => Promise<void>) {
   profileIdSchema.parse(profileId);
   const page = syncChangesSchema.parse(raw);

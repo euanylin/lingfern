@@ -1,9 +1,4 @@
-"""Source-bound thematic screening; never deletes raw data or grants source rights.
-
-Reuses the existing Wikiquote cleaning/parser helpers. All page and candidate
-outcomes are retained, including uncertain cases. This is not a religion/author
-membership blacklist: ordinary literary metaphors and incidental words remain.
-"""
+"""Screen source-bound themes with existing parsers; retain raw data and all outcomes, including uncertainty. Grant no rights and use no religion/author blacklist; preserve ordinary metaphors and incidental wording."""
 import argparse,collections,hashlib,html,importlib.util,json,pathlib,re
 
 STRONG_CATEGORIES={'founders of religions','religious texts','sacred texts','christian texts','hindu texts','buddhist texts','sikh texts','quran','koran','bible','hebrew bible','new testament','old testament','sermons','prayers','liturgical texts','sayings of jesus'}
@@ -34,7 +29,7 @@ def page_screen(page):
 
 def candidate_screen(page_result,title,section,text,citation=''):
     if page_result['decision']=='exclude':return {k:page_result[k]for k in ['decision','reason','evidence']}
-    # Comparative/editorial references are not the primary quoted source.
+    # Distinguish editorial/comparative references from primary quoted sources.
     primary_citation=re.split(r'(?:^|\s)(?:Compare|Contrast|Cf\.?|See also|Notes?:)\s+',citation,maxsplit=1,flags=re.I)[0]
     source=SCRIPTURE_CITATION.search(primary_citation)
     if source:return {'decision':'exclude','reason':'explicit-scripture-citation','evidence':[evidence('citation-scripture-reference',primary_citation,source.start(),source.end())]}
@@ -44,7 +39,7 @@ def candidate_screen(page_result,title,section,text,citation=''):
     for kind,pattern in [('religious-doctrine',DOCTRINE),('religious-exhortation',EXHORTATION)]:
         match=pattern.search(text)
         if match:signals.append(evidence(kind,text,match.start(),match.end()))
-    # Direct doctrine plus exhortation is strong; a single ambiguous clause stays held.
+    # Require doctrine plus exhortation; hold ambiguous single clauses.
     if len(signals)>=2:return {'decision':'exclude','reason':'explicit-religious-doctrine-and-exhortation','evidence':signals}
     if signals:return {'decision':'uncertain','reason':'possible-religious-doctrine-or-exhortation','evidence':signals}
     if page_result['decision']=='uncertain':return {k:page_result[k]for k in ['decision','reason','evidence']}
@@ -105,7 +100,7 @@ def run(root,output):
             hashers['bullet-block-candidates.jsonl'].update(line.encode());row=json.loads(line);rawhash=sha(row['rawBlock']);identity='wikiquote-'+sha('\0'.join(map(str,[row['pageId'],row['revisionId'],row['start'],row['end'],rawhash])))
             try:text,citation=helper.parse_candidate(row)
             except ValueError:
-                # Keep raw complete first line as evidence; unsupported rendering remains unaccepted upstream.
+                # Retain the full raw first line; leave unsupported rendering unaccepted upstream.
                 text=re.sub(r'^\*\s*','',row['rawBlock'].splitlines()[0]);citation=''
             context=pages[row['pageId']]
             source_genre=literary_evidence.get(prepared_by_id.get(identity,{}).get('rightsEvidence',{}).get('workId'))

@@ -47,10 +47,10 @@ it('uses actual reviewed source packages for distinct-root same-operation applic
   const corpus = { version: 1 as const, failures: [], records: banks.flatMap(bank => bank.records) };
   const candidates = corpus.records.flatMap(source => source.passages.filter(passage => !!corpusAttributionPairs(passage.text, 0)).map(passage => ({ source, passage })));
   expect(candidates).toHaveLength(5); expect(new Set(candidates.map(item => item.source.rootId)).size).toBe(4);
-  // Derive the operation from the actual question, not its internal serialisation.
+  // Infer operations from actual questions, not internal serialization.
   const normal = { ...corpus, records: candidates.filter(item => item.passage.wordCount <= 300).map(item => ({ ...item.source, passages: [item.passage] })) };
   expect(normal.records).toHaveLength(2);
-  // The next passage-selection cycle exposes the matching operation on both roots.
+  // Reach both matching roots through the next passage cycle.
   for (const seed of [2, 3]) expect(corpusLesson(normal, new Set(), seed, 300, 'B2')!.materials.every(material => material.questions[0].prompt === attributionMatchingPrompt)).toBe(true);
   const initial = corpusLesson(corpus, new Set(), 0, 300, 'B2', [], 'matching')!;
   const requested = corpusOperation(initial.materials[0].questions[0])!;

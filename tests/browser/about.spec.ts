@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
-import { copy } from '../../src/app/i18n';
+import { languagePacks } from '../../src/locales';
 import { aboutCopy as t } from '../../src/app/aboutCopy';
 import { localeSchema } from '../../src/shared/locale';
 import quotes from '../../content/daily-quotes.json' with { type: 'json' };
@@ -12,7 +12,7 @@ test('every display language opens the same English About page with local artwor
   await page.setViewportSize({ width: 320, height: 640 });
   let englishText: string | undefined;
   for (const locale of localeSchema.options) {
-    const heading = copy[locale].about;
+    const heading = languagePacks[locale].app.about;
     await page.goto('/settings');
     await selectPicker(page, (await page.locator('.settings-preferences .setting-trigger').first().getAttribute('aria-label'))!, locale);
     await page.getByRole('link', { name: heading, exact: true }).click();
@@ -81,9 +81,9 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`${locale} keeps Abo
   for (const [width, theme] of [[1440, 'light'], [375, 'dark'], [320, 'light']] as const) {
     await page.goto('/settings');
     await page.setViewportSize({ width, height: 812 });
-    await selectPicker(page, copy[locale].theme, theme);
+    await selectPicker(page, languagePacks[locale].app.theme, theme);
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.getByRole('link', { name: copy[locale].about, exact: true }).click();
+    await page.getByRole('link', { name: languagePacks[locale].app.about, exact: true }).click();
     await page.reload();
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('.about-page')).toHaveAttribute('lang', 'en');
@@ -110,6 +110,6 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`${locale} keeps Abo
     await back.focus();
     await expect(back).toBeFocused();
     await back.press('Enter');
-    await expect(page.getByRole('heading', { name: copy[locale].settings, exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: languagePacks[locale].app.settings, exact: true })).toBeVisible();
   }
 });

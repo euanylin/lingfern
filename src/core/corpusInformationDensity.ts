@@ -3,7 +3,7 @@ const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const informationDensityOperation = 'choice:information-density';
 export const informationDensityPrompt = 'Which outline preserves all three linked relationships, including what each qualification applies to?';
 type Relation = { quotes: string[]; faithful: string; changed: string; reason: string };
-// shortcut: these four complete inspected contexts; review relationships and competing mappings before extending.
+// shortcut: four complete contexts; review relationships and competing mappings before extending.
 const contexts: { opening: string; relations: Relation[] }[] = [
   {
     "opening": "Then, there is another point about these candles which will answe",

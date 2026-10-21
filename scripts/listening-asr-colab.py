@@ -1,4 +1,4 @@
-"""GPU/CPU diagnostics for public candidate audio; no automatic approval or transcript rewriting."""
+"""Diagnose public audio on GPU/CPU without approving it or rewriting transcripts."""
 import collections, datetime, hashlib, importlib.metadata, json, os, pathlib, re, subprocess, sys, time
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
 
@@ -23,7 +23,7 @@ def run():
     files = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in model_path.iterdir() if p.is_file()}
     assert 'license: mit' in (model_path / 'README.md').read_text().lower()
     rows = json.loads((ROOT / 'librispeech-candidates.json').read_text())
-    # These complete source-work titles are explicitly religious, even when a clip lacks religious keywords.
+    # Hold explicitly religious work titles even when clips lack religious keywords.
     for row in rows:
         if row['bookId'] in {'1549', '5630'} and 'strong-religious-work' not in row['excludedReasons']:
             row['excludedReasons'].append('strong-religious-work')

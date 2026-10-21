@@ -1,4 +1,4 @@
-"""Fixed public-input Colab preparation driver; never listening acceptance."""
+"""Prepare fixed public Colab inputs without granting listening acceptance."""
 import argparse
 import contextlib
 import datetime

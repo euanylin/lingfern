@@ -19,7 +19,7 @@ export default {
     if (sharing) return sharing;
     const pathname = new URL(request.url).pathname;
     if (/^\/(api|mcp|oauth)(\/|$)/.test(pathname) || pathname.startsWith('/.well-known/')) {
-      // Unknown protocol paths never receive the app shell.
+      // Return real errors for unknown protocol paths.
       return Response.json({ error: 'NOT_AVAILABLE' }, {
         status: 404,
         headers: { 'Cache-Control': 'private, no-store', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'" },

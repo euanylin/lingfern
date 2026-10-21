@@ -7,7 +7,7 @@ import { materialPackageId, type Lesson } from '../shared/content';
 export const communityCacheName = (hash: string) => `lingfern-community-${hash}`;
 export const communityMarker = (hash: string) => `/audio/community-${hash}/ready`;
 
-/** Validate selected immutable recordings before starting a multi-package practice. */
+/** Validate immutable recordings before multi-package practice starts. */
 export async function communityLessonReady(lesson: Lesson, profileId: string) {
   if (!('caches' in window)) return false;
   for (const material of lesson.materials) {

@@ -1,4 +1,4 @@
-/** Reuse current bounded full-sentence rules; all new media stay private/unaccepted. */
+/** Reuse bounded sentence rules; keep new media private and unaccepted. */
 import { readFileSync,writeFileSync,mkdirSync } from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';

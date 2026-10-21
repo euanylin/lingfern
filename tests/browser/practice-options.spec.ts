@@ -244,7 +244,7 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} material c
   await dialog.getByRole('searchbox').fill('');
   await dialog.locator('.practice-material-search>button').click();
   await expect(dialog.getByRole('button', { name: '取消', exact: true })).toBeEnabled();
-  // Give the async save/live-query turn time to run; an erroneous resubscription used to start immediately.
+  // Let saves/live queries settle before checking for duplicate subscriptions.
   await page.waitForTimeout(350);
   expect(await page.evaluate(() => Reflect.get(window, 'materialReads'))).toBe(0);
   await dialog.getByRole('button', { name: '取消', exact: true }).click();

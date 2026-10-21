@@ -5,7 +5,7 @@ export const speakerAttitudeOperation = 'choice:speaker-attitude';
 
 export function corpusSpeakerAttitude(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_SPEAKER_ATTITUDE');
-  // shortcut: four inspected complete contexts; inspect voice, target and competing readings before extending.
+  // shortcut: four complete contexts; review voice, target, and competing readings before extending.
   if (![...scopes.reading, ...scopes.listening].some(s => s.text === text)) return;
   let evidence: RegExpMatchArray | null, others: (RegExpMatchArray | null)[], options: string[], explanations: ReturnType<typeof local>[];
   if (text.startsWith('“Is he married')) {

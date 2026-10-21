@@ -1,9 +1,9 @@
 export const spokenAttributionMatchingPrompt = 'Match each claim to the source named in the recording.';
 
-/** Explicit reported statements only; no inferred truth, agreement or narrator opinion. */
+/** Preserve explicit reports without inferring truth, agreement, or narrator opinion. */
 export function spokenAttributionPairs(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_SPOKEN_ATTRIBUTION');
-  // Only these complete inspected dialogue ranges; no general postposed-name parser.
+  // Use complete inspected dialogue ranges without general postposed-name parsing.
   const dialogue = [
     { text: "I'm going home today,\" said Beth, angrily drying her eyes.\r\n\r\n\"We'll all go home,\" said Patsy, cheerfully.\r\n\r\n\"For my part,\" remarked Uncle John, in a grave voice, \"I have no\r\nhome.\"", statements: [{ name: "Beth", label: "I'm going home today.", statement: "I'm going home today,\" said Beth, angrily drying her eyes." }, { name: "Patsy", label: "We'll all go home.", statement: "\"We'll all go home,\" said Patsy, cheerfully." }] },
     { text: "The attack has failed and the South has won a victory!” “But Grant will come again,” said Dick, speaking his opinion for the first time. “No doubt of it,” said Colonel Woodville, “but likely he will come to the same fate.” He spoke wholly without animosity.", statements: [{ name: "Dick", label: "But Grant will come again.", statement: "“But Grant will come again,” said Dick, speaking his opinion for the first time." }, { name: "Colonel Woodville", label: "No doubt of it, but likely he will come to the same fate.", statement: "“No doubt of it,” said Colonel Woodville, “but likely he will come to the same fate.”" }] },

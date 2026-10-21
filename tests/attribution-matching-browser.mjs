@@ -19,7 +19,7 @@ try {
   const { inspectCommunityPack } = await server.ssrLoadModule('/src/data/communityPack.ts');
   const { reviewedReading } = await server.ssrLoadModule('/src/data/corpus.ts');
   const installed = [];
-  // Dexie profile index traverses the composite primary key in package-hash order.
+  // Dexie traverses profile composite keys in package-hash order.
   const entries = catalogue.packs.filter(pack => sourceIds.includes(pack.id)).sort((a, b) => a.sha256.localeCompare(b.sha256));
   for (const entry of entries) {
     const bytes = readFileSync('public' + entry.path);
@@ -156,7 +156,7 @@ try {
     assert(bounds && bounds.x >= -1 && bounds.x + bounds.width <= width + 1, 'Answer card extends outside the viewport');
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     assert(await controls.evaluate(element => element.scrollWidth <= element.clientWidth));
-    // Layout bounds can settle before Chromium commits the resized backdrop layer.
+    // Wait for backdrop compositing after layout bounds settle.
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     assert.equal(await page.locator('header.session-header').count(), 1);
     if ([1440, 320].includes(width)) await page.screenshot({ path: `output/playwright/${family}-matching-${width}-light-zh-Hans-offline.png` });

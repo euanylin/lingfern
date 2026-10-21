@@ -1,4 +1,4 @@
-"""Hash-bound complete FLEURS retrieval; diagnostics never constitute acceptance."""
+"""Retrieve complete hash-bound FLEURS exports without granting acceptance."""
 import argparse
 import hashlib
 import importlib.util
@@ -83,7 +83,7 @@ def check(directory, destination, expected_hash, original_sources=None):
         raise ValueError('EXPORT_MANIFEST_HASH')
     data = json.loads(path.read_text())
     if data.get('allowlistSha256') == acquisition.HISTORICAL_ALLOWLIST_SHA256:
-        # Read only the exact original scope from the independently hash-bound export.
+        # Read only the original scope from the independently hash-bound export.
         with tempfile.TemporaryDirectory(prefix='lingfern-fleurs-historical-scope-') as temporary:
             temporary = pathlib.Path(temporary).resolve()
             transfer.reconstruct(data['archive'], directory, temporary / 'data.zip')

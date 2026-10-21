@@ -2,7 +2,7 @@ import scopes from '../../content/corpus/c2-complex-pragmatics-scopes.json';
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const complexPragmaticsOperation = 'choice:complex-pragmatics';
 export const complexPragmaticsPrompt = 'Which account is supported for both A and B? Keep literal wording, interactional force, roles and the actual response or commitment in context.';
-// shortcut: exact inspected pragmatic relations; inspect competing interpretations before extending to other contexts.
+// shortcut: inspected pragmatic relations; review competing interpretations before extending.
 const relations = [
   {
     "focus": "Were you asked to tea?",

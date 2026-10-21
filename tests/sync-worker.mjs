@@ -8,8 +8,8 @@ import { chromium } from '@playwright/test';
 import { createServer } from 'vite';
 import { createServer as createHttpServer } from 'node:http';
 
-// Real browser/client -> isolated HTTP workerd/D1 -> synthetic GitHub fixture.
-// Explicit server configuration enables this isolated synthetic candidate only.
+// Connect real browsers to isolated workerd/D1 with a synthetic GitHub provider.
+// Enable only this isolated synthetic candidate through explicit server configuration.
 const root = process.cwd(), directory = await mkdtemp(path.join(tmpdir(), 'lingfern-sync-test-'));
 const origin = 'http://127.0.0.1:8787', address = 'http://127.0.0.1:8791', browserOrigin = 'http://127.0.0.1:5191';
 const state = path.join(directory, 'state'), entry = path.join(directory, 'worker.ts'), configPath = path.join(directory, 'wrangler.json');
@@ -30,11 +30,11 @@ for (const [id, credential] of [[1, cookie], [2, cookie2]]) {
 const server = spawn('npx', [...cli, 'dev', '--local', '--ip', '127.0.0.1', '--port', '8791', '--persist-to', state], { stdio: 'ignore', detached: true });
 let vite, browser, secondOrigin, secondRequests = 0;
 const evidence = { scope: 'Synthetic GitHub, isolated local workerd/D1, two learning profiles within one isolated Chrome context/database; no real provider/two-device/website availability acceptance', availability: 'Real server SYNC_ENABLED=true with synthetic App/credentials in isolated config; no response flag rewriting. Default preview/production config remains disabled.', operations: [] };
-try { const prior = JSON.parse(await readFile('private/verification/sync-worker-integration.json', 'utf8')); evidence.previousRuns = [...(prior.previousRuns ?? []), { status: prior.status, failure: prior.failure, diagnostic: prior.diagnostic }]; } catch { /* First local run. */ }
+try { const prior = JSON.parse(await readFile('private/verification/sync-worker-integration.json', 'utf8')); evidence.previousRuns = [...(prior.previousRuns ?? []), { status: prior.status, failure: prior.failure, diagnostic: prior.diagnostic }]; } catch { /* Allow missing evidence on the first local run. */ }
 async function request(route, body) { return fetch(address + route, { method: body ? 'POST' : 'GET', headers: { Cookie: `lingfern_local_session=${cookie}`, Origin: origin, 'X-CSRF-Token': csrf, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); }
 async function control(mode) { const response = await request('/__fixture?mode=' + mode); assert.equal(response.status, 200); return response.json(); }
 try {
-  for (let i = 0; i < 120; i++) { try { if ((await request('/__fixture?mode=stats')).status === 200) break; } catch { /* Isolated child startup. */ } await new Promise(resolve => setTimeout(resolve, 250)); }
+  for (let i = 0; i < 120; i++) { try { if ((await request('/__fixture?mode=stats')).status === 200) break; } catch { /* Wait for the isolated child to start. */ } await new Promise(resolve => setTimeout(resolve, 250)); }
   const original = await (await request('/api/session')).json();
   if (original.error) evidence.diagnostic = { ...await control('diagnostic'), ...await control('native-redirect') };
   assert.equal(original.syncAvailable, true, JSON.stringify({ original, diagnostic: evidence.diagnostic })); assert.equal(original.account.id, 1);
@@ -119,6 +119,6 @@ try {
 } catch (error) { evidence.status = 'failed'; evidence.failure = String(error); throw error; }
 finally {
   await mkdir('private/verification', { recursive: true }); await writeFile('private/verification/sync-worker-integration.json', JSON.stringify(evidence, null, 2) + '\n');
-  await browser?.close(); await vite?.close(); if (secondOrigin) await new Promise(resolve => secondOrigin.close(resolve)); try { process.kill(-server.pid, 'SIGTERM'); } catch { /* Child already ended. */ } await rm(directory, { recursive: true, force: true });
+  await browser?.close(); await vite?.close(); if (secondOrigin) await new Promise(resolve => secondOrigin.close(resolve)); try { process.kill(-server.pid, 'SIGTERM'); } catch { /* Ignore an already-ended child. */ } await rm(directory, { recursive: true, force: true });
 }
 console.log('Isolated sync client/Worker/D1/synthetic-provider integration passed.');

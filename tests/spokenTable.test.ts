@@ -36,7 +36,7 @@ it('generates timed year tables on all actual eligible recordings while preservi
   const seenTargets = new Set<string>();
   for (const bank of banks) for (const source of bank.records) for (const clip of source.clips.filter(clip => !clip.qualityFlags.length && !!corpusDates(clip.text, 0))) {
     seenTargets.add(clip.id);
-    // Keep both installed recording paths bound to their actual package.
+    // Bind installed recording paths to their actual packages.
     const other = bank.records.find(record => record.rootId !== source.rootId && record.clips.some(clip => !clip.qualityFlags.length && !!corpusDates(clip.text, 0)))
       ?? bank.records.find(record => record.rootId !== source.rootId && record.clips.some(clip => !clip.qualityFlags.length && !!corpusRestoration(clip.text, 0, clip.language)))!;
     const paired = { ...bank, records: [{ ...source, clips: [clip] }, other] };
@@ -154,7 +154,7 @@ describe('bounded default cycles across all24 actual listening packages', () => 
  afterAll(() => {
   expect(totals.size).toBe(24);
   const [sequenceCount,tableCount,semanticCount,matchingCount]=[...totals.values()].reduce((sum,counts)=>sum.map((value,index)=>value+counts[index]),[0,0,0,0]);
- // Six initial-split clips, including U.S. Coast Guard and vs. Homer Simpson, contain only two complete sentences.
+ // Six initial clips, including U.S. Coast Guard and vs. Homer Simpson, have only two full sentences.
  expect(sequenceCount).toBe(145);expect(tableCount).toBe(15);expect(semanticCount).toBe(8);expect(matchingCount).toBe(2);
  });
 });

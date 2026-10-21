@@ -31,15 +31,18 @@ const chunks = [];
 const index = runtime.quotes.map((quote, position) => {
   const chunk = String(Math.floor(position / 64)).padStart(3, '0');
   (chunks[Number(chunk)] ??= []).push(quote);
-  return { id: quote.id, pageTitle: quote.pageTitle, chunk, eligible: !archaic.test(quote.text) && !exclusions.some(exclusion => quote.id === exclusion.id || normalize(quote.text) === normalize(exclusion.text)) };
+  return { id: quote.id.slice(-16), pageTitle: quote.pageTitle, chunk, eligible: !archaic.test(quote.text) && !exclusions.some(exclusion => quote.id === exclusion.id || normalize(quote.text) === normalize(exclusion.text)) };
 });
+// Keep full IDs in quote chunks; verify compact selection keys are collision-free.
+assert(catalogue.quotes.every(quote => /^wikiquote-[a-f0-9]{64}$/.test(quote.id)), 'Unexpected quote ID format');
+assert.equal(new Set(index.map(quote => quote.id)).size, index.length, 'Quote selection key collision');
 const chunkRoot = 'content/daily-quote-chunks';
 if (!process.argv.includes('--check')) await mkdir(chunkRoot, { recursive: true });
 const outputs = chunks.map((quotes, position) => [`${chunkRoot}/${String(position).padStart(3, '0')}.json`, JSON.stringify(quotes) + '\n']);
 outputs.push(['content/daily-quote-index.json', JSON.stringify(index) + '\n']);
 if (process.argv.includes('--check')) assert.deepEqual((await readdir(chunkRoot)).sort(), chunks.map((_, position) => `${String(position).padStart(3, '0')}.json`), 'Unexpected quote chunk files');
-// Full source and rights records stay unchanged and offline; first render loads only the selected chunk.
-// Full source and rights records remain byte-verifiable and offline; only display fields enter the eager JS.
+// Preserve full source/rights evidence offline; initially load the selected display chunk.
+// Keep full evidence byte-verifiable; include display fields only in eager JavaScript.
 for (const [path, content] of [...outputs, ['content/daily-quotes-runtime.json', JSON.stringify(runtime, null, 2) + '\n'], ['public/daily-quotes/catalogue.json', full]]) {
   if (process.argv.includes('--check')) assert(await readFile(path, 'utf8') === content, `${path} is stale; run npm run quotes:runtime`);
   else { await writeFile(path + '.tmp', content); await rename(path + '.tmp', path); }

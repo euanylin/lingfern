@@ -36,7 +36,7 @@ registerRoute(({ request, url }) => request.method === 'GET' && url.origin === s
   return fetch(request);
 });
 
-// @ts-expect-error Workbox replaces this literal during injectManifest.
+// @ts-expect-error Workbox injects this manifest literal.
 precacheAndRoute(self.__WB_MANIFEST);
 registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin === sw.location.origin && (/^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(url.pathname) || url.pathname === '/'), async ({ request }) => await matchPrecache('/index.html') ?? fetch(request));
 sw.addEventListener('message', event => {

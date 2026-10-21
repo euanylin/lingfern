@@ -18,11 +18,11 @@ const sourceSchema = z.object({
 const admitted = { need: sources.need.map(source => sourceSchema.parse(source)), preference: sources.preference.map(source => sourceSchema.parse(source)) };
 const local = (en: string, hans: string, hant: string) => ({ en, 'zh-Hans': hans, 'zh-Hant': hant });
 
-/** Interpret exact requirements/liking on inspected continuous recordings; preserve source conditions. */
+/** Preserve source conditions when interpreting inspected recorded requirements or preferences. */
 export function personalListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number, kind: 'need' | 'preference') {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || kind !== 'need' && kind !== 'preference') throw new Error('INVALID_PERSONAL_LISTENING');
   const parsed = z.array(sourceSchema).max(20).parse(input);
-  // Exact inspected views only; changing text, timestamps, voice, rights or source requires renewed scope review.
+  // Re-review scope after changing inspected text, timing, voice, rights, or source.
   if (parsed.some(source => !admitted[kind].some(reference => JSON.stringify(source) === JSON.stringify(reference)))) throw new Error('UNKNOWN_PERSONAL_LISTENING_SOURCE');
   if (new Set(parsed.map(s => s.rootId)).size !== parsed.length || new Set(parsed.map(s => s.audio.sha256)).size !== parsed.length || new Set(parsed.map(s => s.audio.src)).size !== parsed.length) throw new Error('DUPLICATE_PERSONAL_LISTENING_SOURCE');
   const available = parsed.filter(source => !seen.has(source.audio.sha256));
@@ -76,7 +76,7 @@ export function personalListeningLesson(input: unknown, seen: ReadonlySet<string
 
 const admittedOrder = orderSources.map(source => sourceSchema.parse(source));
 
-/** Before gives temporal order; the inspected continuation must establish the later action. */
+/** Require the inspected continuation to establish the action after "before". */
 export function actionOrderListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_ACTION_ORDER_LISTENING');
   const parsed = z.array(sourceSchema).max(20).parse(input);
@@ -114,7 +114,7 @@ export function actionOrderListeningLesson(input: unknown, seen: ReadonlySet<str
 
 const admittedChange = changeSources.map(source => sourceSchema.parse(source));
 
-/** Retain both states and direction; interpret the recording rather than assert live conditions. */
+/** Preserve both states and their direction without asserting current real-world conditions. */
 export function stateChangeListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_STATE_CHANGE_LISTENING');
   const parsed = z.array(sourceSchema).max(20).parse(input);
@@ -151,7 +151,7 @@ export function stateChangeListeningLesson(input: unknown, seen: ReadonlySet<str
 
 const admittedReason = reasonSources.map(source => sourceSchema.parse(source));
 
-/** Match the stated reason to the asked action or name-part, rather than a nearby true detail. */
+/** Match reasons to the asked action or name part, not a nearby detail. */
 export function statedReasonListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_STATED_REASON_LISTENING');
   const parsed = z.array(sourceSchema).max(20).parse(input);
@@ -187,7 +187,7 @@ export function statedReasonListeningLesson(input: unknown, seen: ReadonlySet<st
 
 const admittedRule = ruleSources.map(source => sourceSchema.parse(source));
 
-/** Preserve required/optional force and the exact condition on inspected game descriptions. */
+/** Preserve required/optional force and the exact recorded condition. */
 export function statedRuleListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('INVALID_STATED_RULE_LISTENING');
   const parsed = z.array(sourceSchema).max(20).parse(input);
@@ -222,7 +222,7 @@ export function statedRuleListeningLesson(input: unknown, seen: ReadonlySet<stri
   });
 }
 
-// Reuse already admitted full recordings; no duplicate audio or additional source admission.
+// Reuse admitted recordings without duplicating audio or admitting new sources.
 export const integrationListeningSources = [...sources.need.filter(source => source.rootId === 'voa-article-3113733'), ...changeSources.filter(source => source.rootId === 'fleurs-work-1b3df646fd1c6e0b98536428d944dc731450501c3b48a99500c8574311931422')];
 const admittedIntegration = integrationListeningSources.map(source => sourceSchema.parse(source));
 export function shortIntegrationListeningLesson(input: unknown, seen: ReadonlySet<string>, seed: number) {

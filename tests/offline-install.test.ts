@@ -3,7 +3,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { OfflineInstall } from '../src/app/OfflineInstall';
 
-// SSR cannot finish the asynchronous installation check; actual readiness/install is checked in the production browser.
+// Check async installation readiness in production browsers, not SSR.
 vi.mock('react', async () => {
   const actual = await vi.importActual<typeof import('react')>('react');
   return { ...actual, useState: <T,>(initial: T) => actual.useState(initial === true ? false : initial) };

@@ -1,4 +1,4 @@
-"""Exact original-book evidence for LibriSpeech; no punctuation invention or cross-file audio joins."""
+"""Bind LibriSpeech to original-book evidence without inventing punctuation or joining audio files."""
 import argparse, concurrent.futures, datetime, hashlib, json, pathlib, re, time, urllib.request
 import tempfile
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
@@ -10,7 +10,7 @@ def validate_book_id(book):
     return book
 
 def validate_original(raw, declared_length=None):
-    """Complete source markers/integrity only; no rights or audio acceptance."""
+    """Verify complete source markers/integrity without granting rights or audio acceptance."""
     if not isinstance(raw, bytes) or not 0 < len(raw) <= MAX_ORIGINAL_BYTES:
         raise ValueError('ORIGINAL_SIZE')
     if declared_length is not None:
@@ -30,7 +30,7 @@ def validate_original(raw, declared_length=None):
     return text
 
 def retain_failed_original(raw, output, book):
-    """Retain observed bytes separately; never imply a complete or accepted source."""
+    """Retain failed source bytes separately without claiming completeness or acceptance."""
     validate_book_id(book)
     if output.is_symlink() or any(parent.is_symlink() for parent in output.parents):
         raise ValueError('ORIGINAL_OUTPUT_SYMLINK')

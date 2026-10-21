@@ -3,7 +3,7 @@ root=pathlib.Path('/content/lingfern-modern-quotes');pages={}
 for line in (root/'private/wikiquote/mainspace-pages.jsonl').open():
  r=json.loads(line);first=re.sub(r'\{\{[^{}]*\}\}','',r['text']).strip();first=re.split(r'\n\s*\n|\n==',first,maxsplit=1)[0];intro=re.sub(r'\[\[([^]|]+)\|([^]]+)\]\]',r'\2',first);intro=re.sub(r'\[\[([^]]+)\]\]',r'\1',intro);intro=re.sub(r'\[https?://\S+\s+([^]]+)\]',r'\1',intro);intro=intro[:1200]
  years=[int(x)for x in re.findall(r'(?<!\d)(1[0-9]{3}|20[0-2][0-9])(?!\d)',intro)]
- # Ancient/early author pages and dated reprints are held; this is era qualification, not rights acceptance.
+ # Hold ancient/early authors and dated reprints for era checks, separate from rights.
  modern=not re.search(r'\b(?:BC|BCE)\b',intro) and bool(years) and max(years)>=1950
  pages[r['pageId']]={'intro':intro,'years':years,'modernEraContext':modern}
 counts=collections.Counter();groups=collections.defaultdict(list)

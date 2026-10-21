@@ -58,7 +58,7 @@ for (const [prompt, bank] of [[concessionPrompt, concession], [attributionPrompt
 
 it('preserves the original unused-source attribution demonstration instead of the fallback', () => {
   const fixture = corpusLesson(attribution, new Set(), 0, 300, 'B2', [], 'evidence', [], `evidence:${attributionPrompt}`)!;
-  // Isolated regression wording, never a distributed source or scored item.
+  // Keep regression wording outside distributed sources and scored items.
   const other = 'According to Dana, the harbour served a nearby town.';
   fixture.materials[0].blocks[0].text += ' ' + other;
   const example = corpusWorkedExample(fixture.materials[0], 0, 'B2');

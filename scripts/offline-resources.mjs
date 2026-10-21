@@ -29,7 +29,7 @@ for (const [id, folder] of folders) {
   }
   await visit(resolve(root, publicRoot, folder.slice('public/'.length)));
   files.sort((a, b) => a.path.localeCompare(b.path, 'en'));
-  // Keep complete source families independently installable within the ZIP expansion budget.
+  // Keep source families independently installable within ZIP expansion limits.
   const parts = id === 'corpus' ? [
     [id, files.filter(file => !/^\/corpus\/open-reading(?:-\d+)?\.json$/.test(file.path))],
     ['corpus-open-reading', files.filter(file => /^\/corpus\/open-reading(?:-\d+)?\.json$/.test(file.path))],

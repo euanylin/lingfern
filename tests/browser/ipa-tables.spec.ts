@@ -63,7 +63,7 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.locator('.ipa-table-consonants').locator('..').focus();
   await expect(page.locator('.ipa-table-consonants').locator('..')).toBeFocused();
-  // Keep short clips playing long enough to observe the pressed state, then verify native completion.
+  // Observe pressed state during short clips, then verify native completion.
   await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.loop = true; });
   await page.getByRole('button', { name: `${t.sound} /w/`, exact: true }).click();
   await expect.poll(() => page.locator('audio').getAttribute('src')).toBe(chart.entries.find((entry: { ipa: string }) => entry.ipa === 'w').soundAudio);

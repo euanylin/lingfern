@@ -30,7 +30,7 @@ import type { GoalReview } from '../data/goalReview';
 import { teachingSupport, type Lesson, type CorpusQuestionKind } from '../shared/content';
 import type { Preferences } from '../shared/preferences';
 
-// Effort bounds for a chosen starting point, not reviewed source difficulty or ability.
+// Bound effort by chosen starting point without claiming source difficulty or ability.
 export const startingBounds = {
   A1: { words: [120, 120, 160], seconds: [8, 8, 12] },
   A2: { words: [120, 160, 220], seconds: [12, 20, 25] },
@@ -40,8 +40,8 @@ export const startingBounds = {
   C2: { words: [700, 1200, 1800], seconds: [60, 91, 91] },
 } as const;
 
-// A new source only tests transfer when it repeats the taught operation.
-// ponytail: fixed generated prompts identify semantic matching/evidence families; richer tasks need explicit operation metadata.
+// Require the taught operation on a new source to test transfer.
+// shortcut: prompt-based operation families; add explicit metadata before supporting richer tasks.
 export const pairedReliancePrompt = 'In the paired statement, match each reliance to what needs it.';
 export const pairedRelianceOperation = `matching:${pairedReliancePrompt}`;
 export const qualificationPrompt = 'Which sentence uses wording that marks a claim as a belief, inference or possibility?';
@@ -134,7 +134,7 @@ export function corpusOperation(question: Lesson['materials'][number]['questions
     ? `${question.kind}:${question.prompt}` : question.kind;
 }
 
-/** Local practice conditions only; never a level or ability estimate. */
+/** Describe local practice conditions without estimating level or ability. */
 export function corpusPracticeHistory(history: Session[], records: Attempt[], profileId: string, skill: 'reading' | 'listening', source: 'voa' | 'gutenberg' | 'wikipedia' | 'all', startingPoint?: Preferences['reading'], reviews: ReadonlyMap<string, Pick<GoalReview, 'state' | 'nextSuggestedAt'>> = new Map(), goalId?: string) {
   const point = startingPoint ?? 'B2';
   if (!Object.hasOwn(startingBounds, point)) throw new Error('INVALID_CORPUS_STARTING_POINT');
@@ -142,7 +142,7 @@ export function corpusPracticeHistory(history: Session[], records: Attempt[], pr
   const seen = new Set(history.filter(session => session.profileId === profileId && session.lesson.generation?.generator === 'corpus-v1')
     .flatMap(session => session.lesson.materials.map(material => material.id))
     .filter(id => id.startsWith('corpus-')).map(id => id.slice('corpus-'.length)));
-  // Only direct overlaps: a seen long clip must not transitively hide an untouched neighbour.
+  // Exclude direct overlaps only; seen long clips must not hide untouched neighbors transitively.
   const originalSeen = new Set(seen);
   for (const scope of shortListeningOverlaps.records) {
     if (originalSeen.has(scope.id)) for (const id of scope.overlappingIds) seen.add(id);
@@ -180,7 +180,7 @@ export function corpusPracticeHistory(history: Session[], records: Attempt[], pr
   const now = Date.now();
   const applicationRoots = new Set<string>();
   const targetOperation = recent && corpusOperation(recent.lesson.materials[0].questions[0]);
-  // ponytail: history scan per application root; index first reservations if large profiles need it.
+  // shortcut: history scan per application root; index first reservations if large profiles need it.
   for (const session of completed) {
     if (!recent || !targetOperation || session.lesson.goalId !== recent.lesson.goalId
       || corpusOperation(session.lesson.materials[0].questions[0]) !== targetOperation) continue;
@@ -189,12 +189,12 @@ export function corpusPracticeHistory(history: Session[], records: Attempt[], pr
     for (const material of session.lesson.materials.slice(1)) {
       const scoredQuestions = material.questions.filter(question => !('kind' in question) || question.kind !== 'response');
       if (!scoredQuestions.length || scoredQuestions.some(question => corpusOperation(question) !== targetOperation)) continue;
-      // Reservations are conservative exposure evidence across reading/listening, including interrupted units.
+      // Count interrupted reservations as cross-skill exposure evidence.
       if (history.some(other => {
         if (other.profileId !== profileId || other.id === session.id
           || !other.lesson.materials.some(prior => prior.rootId === material.rootId)) return false;
         const priorStart = Date.parse(other.startedAt);
-        // An uncertain reservation cannot establish that this source was unfamiliar.
+        // Uncertain reservations cannot prove a source was unfamiliar.
         return !Number.isFinite(priorStart) || priorStart > now + 300000 || priorStart <= startedAt;
       })) continue;
       const required = new Set(material.questions.filter(question => !('kind' in question) || question.kind !== 'response').map(question => question.id));
@@ -270,8 +270,8 @@ export function corpusInterestScore(title: string, text: string, interests: Pref
     return Math.min(3, titleHits) * 4 + Math.min(3, bodyHits) + (interest === desired && titleHits + bodyHits > 0 ? 20 : 0);
   }));
 }
-/** Structural effort proxy only; never a CEFR estimate or a source-approval gate. */
-// ponytail: sentence length and word length approximate effort; reviewed lexical/grammar profiles would replace these signals when available.
+/** Estimate structural effort without CEFR or source-approval claims. */
+// shortcut: sentence/word length proxies; replace with reviewed lexical/grammar profiles when available.
 export function corpusPreferenceScore(title: string, text: string, interests: Preferences['interests'], seed: number, point?: Preferences['reading'], seconds?: number) {
   const words = text.match(/[a-z]+(?:['’][a-z]+)?/gi) ?? [];
   const sentences = Math.max(1, (text.match(/[.!?](?=["'’”)]?(?:\s|$))/g) ?? []).length);
@@ -281,7 +281,7 @@ export function corpusPreferenceScore(title: string, text: string, interests: Pr
   const distance = point ? Math.floor(Math.abs(load - target[point]) / 1.25) : 0;
   return -distance * 100 + Math.min(40, corpusInterestScore(title, text, interests, seed));
 }
-// ponytail: rank a bounded local candidate list; measured mobile cost would justify precomputed source features.
+// shortcut: bounded candidate ranking; precompute features if mobile measurements justify it.
 export function corpusPreferencePool<T>(items: T[], describe: (item: T) => { title: string; text: string; seconds?: number }, interests: Preferences['interests'], seed: number, point?: Preferences['reading']): T[] {
   validateInterests(interests);
   if (!interests.length || !items.length) return items;
@@ -290,13 +290,13 @@ export function corpusPreferencePool<T>(items: T[], describe: (item: T) => { tit
   return ranked.filter(item => item.score === best).map(item => item.item);
 }
 
-// ponytail: exact lexical candidate preference; sense correspondence still requires context review.
+// shortcut: exact lexical preference; review context before asserting sense correspondence.
 export function corpusReviewMatch(text: string, terms: readonly string[] = []) {
   if (terms.length > 100) throw new Error('CORPUS_REVIEW_LIMIT');
   return terms.some(term => /^[a-z][a-z '-]{0,79}$/i.test(term) && new RegExp(`(?<![a-z])${term.replace(/\s+/g, '\\s+')}(?![a-z])`, 'i').test(text));
 }
 
-/** Retain the completed word prerequisite while evaluating short-sentence support separately. */
+/** Preserve completed word prerequisites while checking sentence support separately. */
 export function beginnerSentenceReady(history: Session[], records: Attempt[], profileId: string) {
   const word = corpusPracticeHistory(history, records, profileId, 'listening', 'all', 'A1', undefined, 'heard-word-recognition');
   const sentence = corpusPracticeHistory(history, records, profileId, 'listening', 'all', 'A1', undefined, 'heard-sentence-completion');

@@ -142,7 +142,7 @@ it('clears optional starting choices and reads legacy undefined values without c
   const expected = { interests: ['science'], step: 0, completed: true };
   expect((await projectPreferences(id)).preferences).toEqual(expected);
   expect(Object.keys((await profiles.get(id))!.preferences!)).toEqual(Object.keys(expected));
-  // Older releases stored explicit undefined properties in IndexedDB.
+  // Support legacy IndexedDB rows containing explicit undefined properties.
   await profiles.update(id, { preferences: cleared });
   const event = (await syncEvents.where('profileId').equals(id).toArray()).find(row => row.type === 'preferences' && row.counter === 3)!;
   await syncEvents.update([id, event.id], { payload: cleared });

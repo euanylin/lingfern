@@ -1,10 +1,4 @@
-"""Acquire one allowlisted CC BY 4.0 beginner book on a task-owned Colab CPU.
-
-Official book only: Home and School by Timothy Krause, Open Oregon Educational Resources.
-Homepage https://openoregon.pressbooks.pub/homeandschool/
-Chapter URLs come only from that homepage. No other host is fetched.
-Structural preparation is not rights, level, generator or audio acceptance.
-"""
+"""Acquire Timothy Krause's CC BY 4.0 Home and School on the task-owned Colab CPU. Fetch chapter URLs only from https://openoregon.pressbooks.pub/homeandschool/ on that host. Structural preparation grants no rights, level, generator, or audio acceptance."""
 import hashlib, json, os, pathlib, platform, re, time, zipfile
 import urllib.request
 from html.parser import HTMLParser

@@ -57,7 +57,7 @@ test('hidden and offline states suppress scheduled traffic, and a synthetic task
     await settings.put({ key: 'profile:local-guest:syncAccount', value: JSON.stringify({ accountId: 1, profileId: 'local-guest' }) });
     await appendSyncEvent('local-guest', { type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true, reviewEnabled: false } });
     await allowSyncUpload('local-guest', scope, summary);
-    // Observer contract only; real complete learning flows are covered separately.
+    // Check observer contracts; verify full learning flows separately.
     await db.table('sessions').put({ id: 'synthetic-completion', profileId: 'local-guest', status: 'active' });
     Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'hidden' }); document.dispatchEvent(new Event('visibilitychange'));
   }, { scope, summary });

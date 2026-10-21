@@ -1,4 +1,4 @@
-"""Verify a downloaded public-corpus export before safe extraction; optional research tooling."""
+"""Verify public-corpus exports before safe extraction as optional research tooling."""
 import hashlib, importlib.util, json, pathlib, stat, sys, tarfile, tempfile, zipfile
 
 def sha(path):

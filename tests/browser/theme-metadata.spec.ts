@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
-import { copy } from '../../src/app/i18n';
+import { languagePacks } from '../../src/locales';
 
 test('advertises and updates the active color scheme for browser and dark-mode extensions', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
@@ -27,7 +27,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
   await page.goto('/settings');
   await page.getByRole('button', { name: '语言' }).click();
   await expect(page.locator('.setting-menu')).toHaveCSS('backdrop-filter', 'blur(24px) saturate(1.4)');
-  expect(await page.locator('.setting-menu').evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^(?:rgba\(230, 228, 222, 0\.55\)|color\(srgb 0\.901961 0\.894118 0\.870588 \/ 0\.55\))$/);
+  expect(await page.locator('.setting-menu').evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^(?:rgba\(234, 232, 226, 0\.55\)|color\(srgb 0\.917647 0\.909804 0\.886275 \/ 0\.55\))$/);
   await expect(page.locator('.setting-menu')).toHaveCSS('background-image', 'none');
   const expectPlacement = async () => {
     const placement = await page.locator('.setting-menu').evaluate(menu => {
@@ -90,7 +90,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
   expect(await page.getByRole('listbox', { name: 'Language' }).locator('[role=option]').evaluateAll(options => options.every(option => option.getBoundingClientRect().height >= 44))).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: copy.fr.language })).toHaveAttribute('data-value', 'fr');
+  await expect(page.getByRole('button', { name: languagePacks.fr.app.language })).toHaveAttribute('data-value', 'fr');
   const touch = await browser.newContext({ viewport: { width: 320, height: 640 }, hasTouch: true, isMobile: true });
   try {
     const mobile = await touch.newPage();

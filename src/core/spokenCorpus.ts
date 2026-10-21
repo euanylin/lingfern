@@ -86,7 +86,7 @@ export type SpokenCorpus = z.infer<typeof spokenCorpusSchema>;
 export const maxInstalledSpokenBanks = 384;
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 
-/** Draft exact-word listening and self-assessed interpretation, never an ability estimate. */
+/** Draft exact-word listening and self-assessed interpretation without estimating ability. */
 export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>, seed: number, maxSeconds = 60, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationBanks: readonly SpokenCorpus[] = [], includeResponse = true) {
   if (!bank.communityPackageId || !Number.isInteger(seed) || seed < 0 || seed > 0xffffffff || !Number.isFinite(maxSeconds) || maxSeconds < 8 || maxSeconds > maxQualifiedSpokenSeconds) throw new Error('INVALID_SPOKEN_GENERATION');
   if (applicationBanks.length > maxInstalledSpokenBanks || applicationBanks.some(other => !other.communityPackageId)) throw new Error('INVALID_SPOKEN_APPLICATION');
@@ -351,7 +351,7 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
   const operationPhases = operationKinds.length;
   const operationCycle = Math.max(1, choices.length);
   let selectedKind = focus && operationKinds.includes(focus) ? focus : operationKinds[Math.floor(seed / operationCycle) % operationPhases];
-  // Installing an application partner must not rephase existing operations in the primary bank.
+  // Preserve primary-bank operation phases when installing application partners.
   if (selectedKind === 'choice' && !outcomeAvailable && !referenceAvailable && !comparisonAvailable && !limitedAvailable && !attitudeAvailable && !synthesisAvailable && !viewsAvailable && !implicitAvailable && !densityAvailable && !nuanceAvailable && !rhetoricAvailable && !layersAvailable && !pragmaticsAvailable && !paraphraseAvailable && !disagreementAvailable) {
     if (focus) return;
     selectedKind = operationKinds[Math.floor(seed / operationCycle) % (operationPhases - 1)];
@@ -374,7 +374,7 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
     const conditional = interpretation?.prompt === spokenConditionPrompt;
     const audioSpan = (span: { start: number; end: number }) => {
       let start = span.start, end = span.end;
-      // Preserve existing task snapshots; comparison speech excludes punctuation assigned to an adjacent timed segment.
+      // Preserve snapshots; omit punctuation belonging to adjacent timed comparison segments.
       if (compared) {
         const text = clip.text.slice(start, end), offset = text.search(/[\p{L}\p{N}]/u);
         if (offset < 0) throw new Error('MISSING_SPOKEN_EVIDENCE');
@@ -387,7 +387,7 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
     };
     const word = restore(clip.text, seed + index, clip.language);
     const segment = word ? clip.segments.find(segment => segment.start <= word.evidence.start && segment.end >= word.evidence.end) : undefined;
-    // Hide single printed line wraps from segmentation without changing source offsets or paragraphs.
+    // Ignore printed line wraps during segmentation without shifting offsets or paragraphs.
     const sentence = word ? [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(clip.text.replace(/(?<![\r\n])\r?\n(?!\r?\n)/g, wrap => ' '.repeat(wrap.length)))]
       .find(part => part.index <= word.evidence.start && part.index + part.segment.length >= word.evidence.end) : undefined;
     const offset = word && sentence ? word.evidence.start - sentence.index : 0;

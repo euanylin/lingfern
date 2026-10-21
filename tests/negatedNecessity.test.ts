@@ -148,7 +148,7 @@ it('opens, exposes, saves and advances every actual-source question through data
       for (const [index, { material, question }] of entries.entries()) {
         expect(current.position).toBe(index);
         await expect(markExposure(current)).resolves.toBeUndefined();
-        // This actual transaction catches the cross-schema questionId/variantGroup limit that lessonSchema alone misses.
+        // Exercise actual transactions to catch questionId/variantGroup limits beyond lessonSchema.
         const exposure = (await exposures.get([profileId, material.rootId]))!;
         expect(exposure.contacts).toContainEqual(expect.objectContaining({ sessionId: session.id, materialId: material.id,
           questionId: question.id, variantGroup: question.id }));

@@ -129,7 +129,7 @@ try {
   for (const skill of ['听力', '阅读']) await page.getByRole('group', { name: skill, exact: true }).getByLabel(/^B2 ·/).check();
   await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
-  // Actual current pack017 download through the normal learner flow.
+  // Download actual pack017 through the normal learner flow.
   await page.evaluate(({ packSeed, seed }) => { const original = crypto.getRandomValues.bind(crypto); crypto.getRandomValues = values => values instanceof Uint32Array && values.length === 2 ? (values[0] = packSeed, values[1] = seed, values) : original(values); }, { packSeed: viewpoints ? 2 : 16, seed: practiceSeed });
   await page.locator('.corpus-practice[data-skill=reading]').getByRole('button', { name: '开始', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible({ timeout: 90000 });

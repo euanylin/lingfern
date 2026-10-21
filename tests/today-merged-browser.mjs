@@ -36,7 +36,7 @@ try {
       });
       for (const item of symmetry) { assert(Math.abs(item.title) <= 1); assert(Math.abs(item.button) <= 1); assert(!item.overlap); }
     } else {
-      // Mobile merges the hero using display:contents; check its rendered fern and quotation instead.
+      // Check mobile fern/quote output because display:contents merges the hero.
       const fern = await page.locator('.today-hero .fern').boundingBox();
       const quote = await page.locator('.daily-quote').boundingBox();
       assert(fern && quote && fern.y + fern.height <= quote.y && quote.y + quote.height <= reading.y);

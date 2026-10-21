@@ -39,7 +39,7 @@ it('does not turn different groups, uncertain times or malformed sources into ex
   expect(() => sentenceNumericLesson(sources.time, new Set(), -1, 'time')).toThrow();
   expect(() => sentenceNumericLesson([sources.time[0], sources.time[0]], new Set(), 0, 'time')).toThrow();
   const bad = structuredClone(sources.time); bad[1].audio.license = 'unknown'; expect(() => sentenceNumericLesson(bad, new Set(), 0, 'time')).toThrow();
-  expect(() => sentenceListeningLesson(sources.time, new Set(), 0)).toThrow(); // The older VOA-only parser stays narrow.
+  expect(() => sentenceListeningLesson(sources.time, new Set(), 0)).toThrow(); // Preserve the narrow legacy VOA parser.
 });
 
 it('retains the bundled voice path, author and separate text/audio provenance guards', () => {

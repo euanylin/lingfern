@@ -1,4 +1,4 @@
-"""Four allowlisted public native windows: cloud preparation/diagnostics, never acceptance."""
+"""Prepare four allowlisted public native windows in cloud without accepting them."""
 import datetime, hashlib, shutil, importlib.metadata, json, pathlib, re, subprocess, sys, tarfile, time, urllib.request
 from urllib.parse import urlsplit
 ROOT = pathlib.Path('/content/lingfern-short-gpu-20261013-v2')

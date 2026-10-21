@@ -6,11 +6,11 @@ import {questions,score,asTestLesson} from '../src/shared/content';
 
 it('gives complete reading fallbacks at every non-beginner starting point without changing assessed source operations',()=>{
  const original=corpusSchema.parse(JSON.parse(readFileSync('public/corpus/gutenberg.json','utf8')));
- // Controlled boundary text only in tests: all source sentences are assessed, leaving no unused example.
+ // Use test-only boundary text with no unused teaching sentence.
  const text='The museum opened before 2005. The tram service began around 2010. Visitors followed the guide into the main gallery.';
  const bank={...original,records:original.records.slice(0,2).map((source,index)=>{const wording=index?text.replace('museum','theatre').replace('tram','bus').replace('Visitors','Guests'):text;return {...source,passages:[{id:String(index+1).repeat(64),text:wording,wordCount:wording.split(/\s+/).length}]};})};
  for(const level of ['B1','B2','C1','C2'] as const)for(const kind of ['table','sequence','completion'] as const) {
-  // Longer context meets the existing advanced minimum, with no unused restoration sentence.
+  // Meet advanced context minimums without adding unused restoration sentences.
   const input=level==='C1'||level==='C2'?{...bank,records:bank.records.map(source=>({...source,passages:source.passages.map(passage=>({...passage,text:Array(110).fill('a').join(' ')+'. '+passage.text,wordCount:passage.wordCount+110}))}))}:bank;
   const lesson=corpusLesson(input,new Set(),0,700,level,[],kind)!;
   expect(lesson).toBeDefined();

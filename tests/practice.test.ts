@@ -49,7 +49,7 @@ it('schedules different-material success without advancing for same-day repetiti
   const second = session(lessons[0], 'completed', 'second', '2026-09-28T10:00:00Z');
   const repeat = session(lessons[0], 'completed', 'repeat', '2026-09-28T11:00:00Z');
   const failed = session(lessons[0], 'completed', 'failed', '2026-09-29T10:00:00Z');
-  // Isolated recurrence fixture: two distinct application roots, not the instructed first root.
+  // Test recurrence with two distinct application roots, excluding the taught root.
   second.lesson = { ...second.lesson, materials: second.lesson.materials.map((material, index) => index ? { ...material, rootId: material.rootId + '-second' } : material) };
   repeat.lesson = second.lesson;
   const review = (history: Session[], answers: Attempt[], now: Date) => goalReviews(lessons, history, answers, now).get('reading:A1:place-and-item')!;

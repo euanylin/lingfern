@@ -37,7 +37,7 @@ for (const width of [1440, 900, 375]) test(`task backdrop follows the mouse acro
   await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
   await expect(dialog).toHaveAttribute('data-blur', 'false');
   await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);
-  // A stationary pointer is still inside when the panel slides underneath it.
+  // Keep hover when panels slide beneath a stationary pointer.
   await page.mouse.move(box.x + 60, 200);
   await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
   await expect(dialog).toHaveAttribute('data-blur', 'true');
@@ -130,14 +130,14 @@ for (const [width, theme, locale] of [[1440, 'light', 'zh-Hans'], [900, 'dark', 
   const returning = sample(page); await page.mouse.move(box.x + 60, 200); if (width < 1200) await page.mouse.down(); const restored = await returning;
   expect(new Set(restored.filter(f => f.blur > 0 && f.blur < 3).map(f => f.blur)).size).toBeGreaterThanOrEqual(3);
   await expect.poll(() => dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(3px)');
-  // Move beyond the browser viewport too, without clicking or dismissing the native modal.
+  // Move outside the viewport without dismissing the native dialog.
   await page.mouse.up(); await page.mouse.move(-10, -10);
   await expect(dialog).toHaveAttribute('data-blur', 'false');
   await expect.poll(() => dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(0px)');
   await page.mouse.move(box.x + 60, 200); if (width < 1200) await page.mouse.down();
   await expect.poll(() => dialog.evaluate(el => getComputedStyle(el, '::backdrop').backdropFilter)).toBe('blur(3px)');
   await page.mouse.up(); await page.mouse.move(20, 200); await page.waitForTimeout(80);
-  // Closing during the hover transition must retain the panel through its own full exit.
+  // Complete the full exit when closing during hover transitions.
   const closeDuration = dialog.evaluate(el => new Promise<number>(resolve => {
     let started = 0;
     const observer = new MutationObserver(() => { if (el.getAttribute('data-open') === 'false') started = performance.now(); });
@@ -165,7 +165,7 @@ test.describe('touch input', () => {
     await body.evaluate(el => el.scrollTo(0, el.scrollHeight));
     await expect.poll(() => body.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
     expect(await dialog.evaluate(el => el.scrollTop)).toBe(0);
-    // Scrolling can re-hit-test a stationary mouse without moving it.
+    // Scrolling can re-hit-test stationary pointers.
     await body.dispatchEvent('pointerover', { pointerId: 1, pointerType: 'mouse', bubbles: true });
     await body.dispatchEvent('pointercancel', { pointerId: 4, pointerType: 'touch', bubbles: true });
     await expect(dialog).toHaveAttribute('data-blur', 'false');
@@ -181,7 +181,7 @@ test.describe('touch input', () => {
   });
 });
 
-// Explicit choices override the OS; system follows it without changing the full-screen frame.
+// Respect explicit themes; follow the OS for system mode without changing the frame.
 test('task depth follows explicit and system themes without a hard edge or mobile elevation', async ({ page }) => {
   for (const width of [1024, 375]) for (const [theme, system, dark] of [['system', 'dark', true], ['system', 'light', false], ['dark', 'light', true], ['light', 'dark', false]] as const) {
     await page.setViewportSize({ width, height: 400 });
@@ -198,7 +198,7 @@ test('task depth follows explicit and system themes without a hard edge or mobil
     expect(depth.surface !== depth.page).toBe(dark && width >= 768);
     if (width >= 768) {
       expect(depth.shadow).not.toBe('none');
-      // Every shadow has a nonzero blur; no solid one-pixel shadow outline.
+      // Require blurred shadows without solid one-pixel outlines.
       expect(depth.shadow.split(/, (?=rgba?\()/).every(layer => Number(layer.match(/\)\s+-?[\d.]+px\s+-?[\d.]+px\s+([\d.]+)px/)?.[1]) > 0)).toBe(true);
     } else expect(depth.shadow).toBe('none');
     await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);

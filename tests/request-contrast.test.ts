@@ -115,7 +115,7 @@ it('demonstrates requested and ruled-out actions without replacing unused-source
     const test = asTestLesson(lesson); expect(test.workedExample).toBeUndefined(); expect(test.teaching).toBeUndefined(); expect(test.nextStep).toBeUndefined();
   }
   expect(fallbacks).toBeGreaterThan(0);
-  // Isolated regression wording, never distributed source text or a scored item.
+  // Keep regression wording outside distributed sources and scored items.
   const fixture = corpusLesson(corpus, new Set(), 0, 1200, 'B2', [], 'matching', [], operation)!;
   const other = 'Please refer to the group as "garden club" and not "tree club".';
   fixture.materials[0].blocks[0].text += '\n\n' + other;

@@ -29,7 +29,7 @@ it('blocks foreign-device resume and every direct write without losing active ch
   const before = await sessions.get(copied.id), saved = await attempts.where('sessionId').equals(copied.id).toArray();
   await expect(claimSession(copied.id, 'foreign')).rejects.toThrow('CHECK_DEVICE');
   expect(await sessions.get(copied.id)).toEqual(before);
-  // A stale lease from the original installation cannot bypass the write guard.
+  // Reject stale original-device leases at the write guard.
   for (const action of [() => saveDraft(original.id, 'owner', 0), () => submit(original.id, 'owner', 0), () => advance(original.id, 'owner'), () => beginCheck(original.id, 'owner'), () => endCheck(original.id, 'owner'), () => recordPlayback(original.id, 'owner', original.lesson.materials[0].questions[1].id, false), async () => markExposure((await sessions.get(original.id))!)]) await expect(action()).rejects.toThrow('CHECK_DEVICE');
   expect(await attempts.where('sessionId').equals(copied.id).toArray()).toEqual(saved);
   expect((await sessions.get(copied.id))?.draft).toBe(1);

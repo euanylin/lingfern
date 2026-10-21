@@ -1,8 +1,4 @@
-"""Optional CPU Colab CLI replay of the frozen public Wikiquote processing bundle.
-
-The driver uses no Drive, OAuth, secrets, learner data, package installation or new
-parser. Existing inventory and preparation scripts execute in a fresh workspace.
-"""
+"""Replay the frozen public Wikiquote bundle in a fresh Colab CPU workspace. Reuse existing inventory/parsers without Drive, OAuth, secrets, learner data, installations, or new parsing logic."""
 import hashlib
 import json
 import pathlib
@@ -51,7 +47,7 @@ def verify_bundle(path, expected_bundle=BUNDLE_SHA256, expected_manifest=MANIFES
     return manifest
 
 def extract_verified(path, workspace, manifest):
-    # Re-read and verify every member before the first write, guarding post-verification changes.
+    # Reverify every member immediately before extraction writes.
     workspace = pathlib.Path(workspace)
     assert not workspace.exists() and not workspace.is_symlink(), 'workspace-must-be-new'
     with zipfile.ZipFile(path) as archive:
@@ -86,7 +82,7 @@ def replay(bundle='/content/public-corpus-bundle.zip', workspace=None, cache=Non
         assert not target.exists() and not target.is_symlink(), 'existing-export-must-be-preserved'
     manifest = verify_bundle(bundle)
     if workspace is None:
-        # Reserve a unique name, then remove the empty directory; extraction requires a new path.
+        # Reserve a unique name, then remove the empty directory for fresh-path extraction.
         workspace = pathlib.Path(tempfile.mkdtemp(prefix='lingfern-wikiquote-', dir='/content'))
         workspace.rmdir()
     else: workspace = pathlib.Path(workspace)
@@ -111,7 +107,7 @@ def replay(bundle='/content/public-corpus-bundle.zip', workspace=None, cache=Non
         assert all(actual[a]==entry[a]for a in ['sha1','md5']), 'official-file-hash-mismatch'
         if 'sha256' in entry: assert actual['sha256']==entry['sha256'], 'fixed-source-sha256-mismatch'
         official_inputs.append({**entry,'actualHashes':actual})
-    # The existing disambiguation IDs are tied to the independently verified official SQL input.
+    # Bind disambiguation IDs to the independently verified official SQL input.
     disambiguation=json.loads((public/'disambiguation-pageids.json').read_text())
     props=next(x for x in official_inputs if x['path'].endswith('page_props.sql.gz'))
     assert disambiguation['verifiedOfficialHashes']=={a:props[a]for a in ['sha1','md5']}
@@ -162,7 +158,7 @@ def self_test():
         try:verify_bundle(bundle,expected_bundle=digest(bundle),expected_manifest=hashlib.sha256(fixture_manifest).hexdigest())
         except AssertionError as error:assert str(error)=='member-integrity-mismatch'
         else:raise AssertionError('changed member accepted')
-        # Use the trusted manifest from a valid bundle, then mutate the actual code after verification.
+        # Use a valid manifest, then mutate verified code to test tamper detection.
         with zipfile.ZipFile(bundle,'w')as archive:
             archive.writestr('manifest.json',fixture_manifest)
             for entry in entries:archive.writestr(entry['path'],b'good')

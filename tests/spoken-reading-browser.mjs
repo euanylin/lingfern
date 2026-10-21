@@ -5,7 +5,7 @@ import { createServer } from 'vite';
 import { corpusInterestMatch, corpusPracticeHistory } from '../src/core/corpusPractice.ts';
 import { showLearningPane } from './browser/learning-pane.ts';
 
-// Local-only real bank acceptance; no learner profile or raw source enters CI.
+// Verify real banks locally without sending learner profiles or raw sources to CI.
 const origin = 'http://127.0.0.1:8787';
 const starting = process.argv.find(arg => arg.startsWith('--starting='))?.slice(11);
 const beginner = starting === 'A1' || starting === 'A2';
@@ -285,7 +285,7 @@ try {
   if (dueFallback) {
     assert(due && beginner);
     const roots = JSON.parse(await readFile('public/corpus/voa.json', 'utf8')).records.filter(source => source.passages[0].startingPoints).map(source => source.rootId);
-    // Isolated exposure metadata only: simulate known roots with some unseen passages, not actual reading/review approval.
+    // Simulate exposure only, without granting reading or review approval.
     await page.evaluate(({ profileId, roots }) => new Promise((resolve, reject) => {
       const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
       open.onsuccess = () => {

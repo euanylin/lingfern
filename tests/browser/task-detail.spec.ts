@@ -18,7 +18,7 @@ test('task details confirm metadata without starting, exposing passages or playi
   page.on('request', request => { if (request.url().includes('/audio/')) media.push(request.url()); });
   const row = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '听懂临时变动' }) });
   const trigger = row.getByRole('button', { name: '开始听力' });
-  // Exercise keyboard focus return; Safari pointer activation need not focus a button.
+  // Check keyboard focus return; Safari pointer clicks may not focus buttons.
   await trigger.focus();
   await trigger.press('Enter');
   const dialog = page.getByRole('dialog');

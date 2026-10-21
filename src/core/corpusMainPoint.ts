@@ -4,10 +4,10 @@ export const mainPointPrompt = 'Which statement gives the overall point of this 
 const local = (en: string, hans: string, hant: string) => ({en,'zh-Hans':hans,'zh-Hant':hant});
 const inspected = [...readingScopes.records,...listeningSources];
 
-/** Extract the general statement and concrete supports from the inspected argument structures. */
+/** Extract general claims and concrete support from inspected argument structures. */
 export function corpusMainPoint(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_MAIN_POINT');
-  // shortcut: These four complete inspected argument contexts; review new rhetorical structures before extending.
+  // shortcut: four complete arguments; review new rhetorical structures before extending.
   if (!inspected.some(source=>source.text===text)) return;
   const goals = /The great thing about goals is that they (can include and influence a number of other things that all work toward a much bigger picture)\./.exec(text);
   const audiences = /The originator may have a real audience or an anticipated audience\./.exec(text);

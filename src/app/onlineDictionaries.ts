@@ -16,7 +16,7 @@ export function onlineDictionaryUrl(query: string, id?: string) {
   return onlineDictionaries.find(dictionary => dictionary.id === defaultOnlineDictionary(id))!.url(term);
 }
 
-/** Cambridge's official grammar form uses its grammar dataset, not the English dictionary. */
+/** Use Cambridge's grammar dataset for grammar searches. */
 export function cambridgeGrammarUrl(query: string) {
   const term = query.normalize('NFKC').trim();
   return term ? `https://dictionary.cambridge.org/search/direct/?datasetsearch=british-grammar&q=${encodeTerm(term)}` : 'https://dictionary.cambridge.org/grammar/british-grammar/';

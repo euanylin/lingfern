@@ -24,7 +24,7 @@ async function localScope(profileId: string, scope: SyncDownloadScope) {
   if ((active && active.value !== profileId) || !association || association.accountId !== scope.accountId || association.profileId !== scope.profileId || (clock?.logicalProfileId ?? profileId) !== scope.profileId) throw new Error('SYNC_SCOPE_CHANGED');
 }
 
-// Call only from the user's explicit upload confirmation. Association/binding alone never grants consent.
+// Require explicit upload confirmation; account association/binding is not consent.
 export async function allowSyncUpload(profileId: string, scope: SyncDownloadScope, summary: SessionSummary): Promise<Consent> {
   profileIdSchema.parse(profileId); scope = syncDownloadScopeSchema.parse(scope); sessionScope(summary, scope);
   return db.transaction('rw', settings, syncClocks, async () => {
@@ -54,12 +54,12 @@ async function requireConsent(profileId: string, expected: Consent) {
     await localScope(profileId, expected.scope);
     const row = await settings.get(consentKey(profileId));
     let current: Consent | undefined;
-    try { current = row && consentSchema.parse(JSON.parse(row.value)); } catch { /* Corrupt consent grants no permission. */ }
+    try { current = row && consentSchema.parse(JSON.parse(row.value)); } catch { /* Reject corrupt consent without granting permission. */ }
     if (!current || canonicalJson(current) !== canonicalJson(expected)) throw new Error('SYNC_CONSENT_CHANGED');
   });
 }
 
-// Bound response bytes as well as request duration; never persist website credentials in IndexedDB.
+// Bound response size and duration; never store website credentials in IndexedDB.
 export async function jsonRequest(path: string, signal: AbortSignal, init: RequestInit = {}, limit = 64 * 1024) {
   const response = await fetch(path, { ...init, credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal });
   if (!response.headers.get('content-type')?.includes('application/json') || !response.body) { await response.body?.cancel(); throw new Error(response.ok ? 'SYNC_RESPONSE_INVALID' : `SYNC_HTTP_${response.status}`); }
@@ -90,7 +90,7 @@ export async function jsonRequest(path: string, signal: AbortSignal, init: Reque
   } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
 }
 
-// One bounded batch per call. A later round retries the same immutable ID after a lost acknowledgement.
+// Send one bounded batch; retry its immutable ID after lost acknowledgements.
 async function uploadBatch(profileId: string, rawConsent: unknown, signal?: AbortSignal): Promise<'idle' | 'uploaded'> {
   profileIdSchema.parse(profileId);
   const consent = consentSchema.parse(rawConsent);
@@ -111,7 +111,7 @@ async function uploadBatch(profileId: string, rawConsent: unknown, signal?: Abor
 }
 
 
-// One fixed-commit page per call; metadata lets verified local receipts avoid duplicate blob downloads.
+// Read one fixed-commit page; use verified receipts to avoid duplicate downloads.
 async function downloadPage(profileId: string, scope: SyncDownloadScope, signal?: AbortSignal) {
   profileIdSchema.parse(profileId); scope = syncDownloadScopeSchema.parse(scope);
   const abort = signal ? AbortSignal.any([signal, AbortSignal.timeout(30_000)]) : AbortSignal.timeout(30_000);
@@ -136,7 +136,7 @@ async function downloadPage(profileId: string, scope: SyncDownloadScope, signal?
 }
 
 
-// Explicit rescan resets only the current scoped cursor; installed records and receipts stay intact.
+// Reset only the scoped rescan cursor; preserve installed records and receipts.
 export async function restartSyncDownload(profileId: string, scope: SyncDownloadScope, expectedCursor: string) {
   profileIdSchema.parse(profileId); scope = syncDownloadScopeSchema.parse(scope);
   z.string().min(1).max(4096).parse(expectedCursor);
@@ -149,8 +149,8 @@ export async function restartSyncDownload(profileId: string, scope: SyncDownload
 }
 
 
-// Native locks release on tab closure.
-// ponytail: the 90s fallback lease can overlap after long suspension; immutable IDs/CAS prevent data loss, add renewal if unsupported browsers need longer rounds.
+// Release native locks automatically when tabs close.
+// shortcut: 90s leases may overlap after suspension; immutable IDs/CAS protect data; renew if longer fallback rounds are needed.
 async function syncLock<T>(profileId: string, scope: SyncDownloadScope, signal: AbortSignal | undefined, work: () => Promise<T>): Promise<T> {
   profileIdSchema.parse(profileId); scope = syncDownloadScopeSchema.parse(scope);
   const retryKey = `profile:${profileId}:syncRetry:${scope.accountId}:${scope.bindingVersion}`;

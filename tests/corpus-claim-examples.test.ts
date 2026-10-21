@@ -46,7 +46,7 @@ it('uses complete admitted recordings for the same claim/example operation, with
  for(const bank of banks)expect(spokenCorpusLesson(primary,new Set([bank.records[0].clips[0].id]),0,196,'B2',[],'matching',[],claimExampleOperation,[application])).toBeUndefined();
  const held=structuredClone(application);held.records[0].clips[0].qualityFlags=['Unresolved transcript'];expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',[],claimExampleOperation,[held])).toBeUndefined();
  expect(qualifiedLongSeconds(banks,'B2',60)).toBe(60);expect(qualifiedLongSeconds(banks,'B2',91)).toBe(196);expect(qualifiedLongSeconds([primary,held],'B2',91)).toBe(91);expect(banks).toEqual(before);
- // Default ordinary rotation retains the old reference task on alternate seeds.
+ // Preserve reference tasks on alternate ordinary seeds.
  expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],undefined,[],undefined,[application])!.goalId).toBe('claim-example-link');
  expect(spokenCorpusLesson(primary,new Set(),1,196,'B2',[],undefined,[],undefined,[application])!.goalId).toBe('source-context-reference');
 });

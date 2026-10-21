@@ -5,7 +5,7 @@ import {sha} from './topic-packs.mjs';
 export const shortListeningReviewSha256='416518ebbf934d49283e47be3e8074e555b4956588da5ed5016efbcf285c9ed1';
 export const shortListeningPackSha256='3d085117223e3d6032ba013b79f0e81b97cb5e66e7b76800f32b7988f2c21e65';
 
-/** Merge pinned reviewed native windows; retain every original clip and media byte. */
+/** Merge pinned reviewed windows without changing original clips or media bytes. */
 export function appendShortListening(entries) {
  const previous=appendReviewedWindows(entries,'private/verification/short-listening-window-review-20261013.json',shortListeningReviewSha256,'private/corpus/spoken/short-teaching-packs-headroom-v4/wikipedia-listening-001.zip',shortListeningPackSha256,3);
  const outcome=appendReviewedWindows(entries,'private/verification/short-outcome-review-20261013.json','f50f89fccfacbb73881a1e706d084a4698f58d091ec963a03e24ec4e39ff0161','private/corpus/spoken/short-outcome-packs-20261013/wikipedia-listening-001.zip','dce411c45b34385edd4ca4901d739d5b82089a1c67a4c094ff87d8cd43e21ea2',1);

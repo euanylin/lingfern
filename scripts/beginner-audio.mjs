@@ -23,7 +23,7 @@ const results=await Promise.allSettled(configurations.map(async cfg=>{
  const rawPath=`private/corpus/voa-course/lesson-${cfg.number}.mp3`,asrPath=`private/corpus/voa-course/lesson-${cfg.number}.transcript.json`;
  const raw=await readFile(rawPath),asrBytes=await readFile(asrPath),asr=JSON.parse(asrBytes);
  if(sha(raw)!==approval.rawAudioSha256||sha(asrBytes)!==approval.asrSha256||sha(raw)!==asr._source.sha256||sha(raw)!==(provenance.audioSha256??provenance.sha256))throw Error('RAW_AUDIO_CHANGED');
- // Normalize only typographic apostrophes; words and other punctuation must still match exactly.
+ // Normalize typographic apostrophes only; preserve exact words and other punctuation.
  const sourceText=root.text.replace(/^[A-Za-z]+: /gm,'').replace(/’/g,"'");
  const parts=cfg.ids.map(id=>asr.segments.find(s=>s.id===id));
  if(parts.some(s=>!s||s.start<cfg.start||s.end>cfg.end))throw Error('SEGMENT_OUTSIDE_CLIP');

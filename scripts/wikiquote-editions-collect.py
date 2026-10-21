@@ -1,8 +1,4 @@
-"""Collect explicit official editions for Wikiquote evidence; never approve quotations.
-
-Python standard library only. Run --self-test without network, then --collect in
-the scheduled cloud runtime. Original bytes and all failures are retained.
-"""
+"""Collect explicit official editions without approving quotes. Use Python's standard library, run offline --self-test before cloud --collect, and retain originals and failures."""
 import argparse
 import datetime
 import hashlib

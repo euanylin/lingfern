@@ -1,4 +1,4 @@
-"""Case-preserving exact source discovery. All matches require individual scope review."""
+"""Discover exact case-preserving matches; require individual scope review."""
 import bisect,collections,gzip,hashlib,importlib.util,json,pathlib,re,time,urllib.parse
 BASE=pathlib.Path('/content/lingfern-quote-editions-fast')
 def load(name,path):
@@ -54,7 +54,7 @@ def run():
       try:rights.append((i,h.match_work(text,works[i]['title'],works[i]['title'],[works[i]],''),'page-subject-body-discovery-not-citation-evidence'))
       except ValueError:pass
    if not rights:counts['noExactCitedEdition']+=1;continue
-   # Same edition families stay pending; selecting an edition is not original-work grouping.
+   # Hold edition families; selecting editions does not group original works.
    digest=h.sha(row['rawBlock']);identity='wikiquote-'+h.sha('\0'.join(map(str,[row['pageId'],row['revisionId'],row['start'],row['end'],digest])))
    matches.append({'id':identity,'text':text,'pageTitle':row['title'],'pageId':row['pageId'],'revisionId':row['revisionId'],'section':row['section'],'locator':locator,'citation':citation,'rawBlockSha256':digest,'sourceStart':row['start'],'sourceEnd':row['end'],'row':row,'editionMatches':[{'bookId':i,'rightsEvidence':e,'context':works[i]['text'][max(0,e['matchedStart']-350):e['matchedEnd']+350],'workBindingMethod':method}for i,e,method in rights],'status':'exact-pending-original-author-translation-body-work-root-language-context-review'});counts['exactAppearances']+=1
    if counts['strictCandidates']%10000==0:print(json.dumps(dict(counts)),flush=True)

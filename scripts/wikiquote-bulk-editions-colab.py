@@ -1,4 +1,4 @@
-"""Task-owned public bulk edition acquisition; exact discovery never grants admission."""
+"""Acquire public editions in the owned bulk job; discovery grants no admission."""
 import argparse, datetime, hashlib, importlib.util, json, pathlib, subprocess, tarfile, time, urllib.request, xml.etree.ElementTree as ET, zipfile
 BASE = pathlib.Path('/content/lingfern-quote-editions-fast')
 CATALOG = 'https://www.gutenberg.org/cache/epub/feeds/rdf-files.tar.bz2'

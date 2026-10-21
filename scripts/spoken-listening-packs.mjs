@@ -32,7 +32,7 @@ for (const entry of reading.packs) {
     sources.set(record.rootId, source);
   }
 }
-// Reuse the installed inert browser HTML parser for contributor names; no HTML is rendered in the app.
+// Parse contributor HTML inertly with the installed parser; never render it in the app.
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 let authors;
 try {

@@ -58,7 +58,7 @@ export async function removeSourcePack(ids: string | string[], profileId: string
   const entries = selected.map(id => { const entry = sourcePacks.find(pack => pack.id === id); if (!entry) throw new Error('UNKNOWN_PACKAGE'); return entry; });
   await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
   await communityPacks.bulkDelete(entries.map(entry => [profileId, entry.sha256]));
-  // Media may be shared with another local profile; never remove its installed files.
+  // Preserve installed media shared by other local profiles.
   const shared = new Set((await communityPacks.toCollection().primaryKeys()).map(key => key[1]));
   try {
     for (let offset = 0; offset < entries.length; offset += 4) await Promise.all(entries.slice(offset, offset + 4).map(async entry => {

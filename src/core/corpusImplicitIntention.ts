@@ -4,7 +4,7 @@ export const implicitIntentionPrompt = 'Which interpretation distinguishes the a
 export const implicitIntentionOperation = 'choice:implicit-intention';
 export function corpusImplicitIntention(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_IMPLICIT_INTENTION');
-  // shortcut: exact inspected complete exchanges; review context and competing pragmatic readings before extending.
+  // shortcut: complete inspected exchanges; review context and competing pragmatic readings before extending.
   if (![...scopes.reading, ...scopes.listening].some(scope => scope.text === text)) return;
   let quotes: string[], options: string[], explanations: ReturnType<typeof local>[];
   if (text.startsWith('When I came home to West Egg')) {

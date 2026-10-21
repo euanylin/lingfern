@@ -1,4 +1,4 @@
-"""Final cloud recheck of explicit AI-reviewed public quote/source decisions."""
+"""Recheck explicit AI-reviewed public quotation/source decisions in cloud."""
 import datetime, hashlib, importlib.util, json, pathlib, sys, zipfile
 BASE = pathlib.Path('/content/lingfern-readable-admission')
 SOURCES = {'first': pathlib.Path('/content/lingfern-quote-editions-fast'),

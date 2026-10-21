@@ -1,8 +1,4 @@
-"""Acquire allowlisted pre-2025 OpenStax CC BY 4.0 books until 1000 new paragraphs are prepared.
-
-Only the listed repositories, commits and collection files are fetched. Current NC editions are not used.
-Structural preparation is not CEFR, audio or full-book semantic acceptance.
-"""
+"""Prepare 1,000 new paragraphs from allowlisted pre-2025 OpenStax CC BY 4.0 repositories, commits, and collections. Exclude current NC editions; structural checks grant no CEFR, audio, or whole-book semantic acceptance."""
 import datetime, hashlib, json, os, pathlib, platform, re, shutil, subprocess, time, urllib.request, zipfile, xml.etree.ElementTree as ET
 from collections import Counter
 

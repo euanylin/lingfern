@@ -229,7 +229,7 @@ it('excludes competing named-source reports and malformed evidence alternatives'
   for (const marker of ['[', '["', '[citation needed]']) {
     const malformed = 'The old harbour served another town.' + marker;
     for (let seed = 0; seed < 3; seed++) {
-      // ICU may group citation-needed markup with the following sentence.
+      // ICU may attach citation-needed markup to the next sentence.
       const text = target + ' ' + malformed + ' ' + direct + ' The road follows the northern edge of the shore.';
       const task = corpusEvidence(text, { prompt: 'Find the named source.', evidenceText: target, explanation: 'Read the named attribution.' }, seed);
       expect(task.spans.some(span => span.text.includes(marker))).toBe(false);
@@ -260,7 +260,7 @@ it('uses only credited original VOA texts and preserves distinct article roots',
   expect(corpus.records.filter(record => record.passages[0].startingPoints && !record.id.startsWith('lingfern-dialogue-')).map(record => record.rootId).sort()).toEqual(beginners.map(source => source.rootId).sort());
   const standard = corpus.records.filter(record => !record.passages[0].startingPoints);
   expect(standard).toHaveLength(5 + additional.records.length);
-  // Keep the original sixteen sources byte-bound while adding new source roots.
+  // Preserve the original 16 source hashes when adding roots.
   for (const original of beginners) {
     const retained = corpus.records.find(record => record.rootId === original.rootId)!;
     expect(retained.originalText).toBe(original.text);
@@ -405,7 +405,7 @@ it('generates evidence and sequence tasks even when the source has no restoratio
   for (const source of corpus.records) {
     source.passages = [{ ...source.passages[0], text, wordCount: text.split(/\s+/).length,
       task: { prompt: 'Which sentence says where we sit?', evidenceText: sentences[1], explanation: 'The sentence names our seat.' } }];
-    // Keep the target unique while retaining a bounded short-word excerpt.
+    // Keep one unique target within bounded short-word excerpts.
     source.passages[0].text = text.replaceAll(sentences[1], 'We get on and wait near the back.').replace('We get on and wait near the back.', sentences[1]);
   }
   const validated = corpusSchema.parse(corpus);
@@ -416,7 +416,7 @@ it('generates evidence and sequence tasks even when the source has no restoratio
     if (!('kind' in question) || question.kind !== 'evidence') throw new Error('Expected evidence');
     expect(score(question, question.accepted[0]).correct).toBe(true);
   }
-  // Seed1 selects the second source for sequencing; the first retains its annotation.
+  // Seed 1 sequences the second source while preserving the first source's annotation.
   delete validated.records[1].passages[0].task;
   const sequenceLesson = corpusLesson(validated, new Set(), 1)!;
   const question = sequenceLesson.materials[0].questions[0];
@@ -685,7 +685,7 @@ it('generates exact-year tables with independent examples and rejects ambiguous 
   expect(corpusDates('The library opened in 1991. The library opened in 1991.', 0)).toBeUndefined();
   expect(() => corpusDates(text, -1)).toThrow('INVALID_CORPUS_DATES');
   const corpus = corpusSchema.parse(JSON.parse(readFileSync('content/corpus/gutenberg.json', 'utf8')));
-  // Isolated parser fixture; actual source-bank generation is verified separately.
+  // Test parsing here; verify actual source-bank generation separately.
   corpus.records = corpus.records.slice(0, 2).map(source => ({ ...source, passages: [{ ...source.passages[0], text,
     wordCount: text.split(/\s+/).length }] }));
   let tables = 0;
@@ -808,7 +808,7 @@ it('reserves a distinct apartment fact for teaching without leaking scored rows'
 it('demonstrates qualification on an unused exact sentence without revealing a scored option', () => {
   const text = 'The island is thought to have formed after an eruption. The team mapped the shore in June. The cliff contains three separate layers. The old harbour may have been used by traders. The museum displays tools from the site.';
   const corpus = corpusSchema.parse(JSON.parse(readFileSync('content/corpus/gutenberg.json', 'utf8')));
-  // Isolated extraction fixture; normal source-bank download is checked in the browser.
+  // Test extraction here; verify normal source downloads in browsers.
   corpus.records = corpus.records.slice(0, 2).map(source => ({ ...source, passages: [{ ...source.passages[0], text,
     wordCount: text.split(/\s+/).length, language: undefined, task: undefined }] }));
   for (let seed = 0; seed < 12; seed++) {
@@ -1427,7 +1427,7 @@ it('retains postposed concessions and rejects quoted, nested or incomplete cues'
       expect(score(question, question.accepted[0]).correct).toBe(true);
     }
   }
-  // A title abbreviation must not become a truncated source option.
+  // Do not truncate source options at title abbreviations.
   const abbreviation = 'The market remained difficult, even though records sold well as imports. In 1992, Ivo signed a distribution deal with Warner Bros. Records for the United States. Only a few acts had other recording deals. The label later changed its distribution arrangements.';
   expect(corpusConcession(abbreviation, 0)?.spans.every(span => !span.text.endsWith('Bros.'))).toBe(true);
 });

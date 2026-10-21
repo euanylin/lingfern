@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { paragraphOffsets, sha } from '../scripts/open-reading-corpus.mjs';
 import { recoveredWordSegments } from '../scripts/recovered-listening.mjs';
 
-// Keep portable guards in CI; actual corpus evidence stays in the separate local suite.
+// Run portable guards in CI and private source evidence in the local suite.
 
 test('changed source review fails its hard pin before opening raw sources', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'lingfern-pg-review-'));
@@ -116,4 +116,26 @@ test('source bytes and rewritten manifest remain bound to the frozen manifest di
   await assert.rejects(readFrozenSources(base,sha(manifest)),/OPEN_READING_SOURCE_MANIFEST/);
  } finally { await rm(base,{recursive:true,force:true}); }
  function expectMap(map,bytes) { assert.deepEqual(map.get('prepared.json'),bytes); }
+});
+
+test('compact quote keys reject collisions and invalid IDs before writing outputs', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'lingfern-quote-keys-'));
+  try {
+    await mkdir(join(directory, 'content'), { recursive: true });
+    for (const name of ['daily-quote-exclusions.json', 'quote-language-rules.json']) {
+      await writeFile(join(directory, 'content', name), await readFile('content/' + name));
+    }
+    const original = JSON.parse(await readFile('content/daily-quotes.json', 'utf8'));
+    for (const mode of ['collision', 'invalid']) {
+      const changed = structuredClone(original);
+      changed.quotes[1].id = mode === 'collision'
+        ? 'wikiquote-' + 'f'.repeat(48) + original.quotes[0].id.slice(-16)
+        : 'invalid-quote-id';
+      await writeFile(join(directory, 'content/daily-quotes.json'), JSON.stringify(changed));
+      const result = spawnSync(process.execPath, [new URL('../scripts/daily-quote-runtime.mjs', import.meta.url).pathname], { cwd: directory, encoding: 'utf8' });
+      assert.notEqual(result.status, 0);
+      assert.match(result.stderr, mode === 'collision' ? /Quote selection key collision/ : /Unexpected quote ID format/);
+      await assert.rejects(readFile(join(directory, 'content/daily-quote-index.json')), { code: 'ENOENT' });
+    }
+  } finally { await rm(directory, { recursive: true, force: true }); }
 });

@@ -34,7 +34,7 @@ export async function readableWikiquoteInputs(){
   assert.equal(b.underlyingRootId,e.workId.replace('gutenberg-','gutenberg-book-'));
   assert.equal(b.underlyingCanonicalStart,e.matchedStart);assert.equal(b.underlyingCanonicalEnd,e.matchedEnd);
  }
- // Recheck retrieved originals; Python source positions count Unicode code points.
+ // Reverify originals using Python's Unicode code-point offsets.
  for(const [key,entry]of Object.entries(review.sourceFiles)){
   const [batch,bid]=key.split(':'),base=batch==='first'?'':'second/';
   const raw=batch==='first'?`sources/raw/${bid}/pg${bid}.txt`:`second/sources/pg${bid}.txt`;

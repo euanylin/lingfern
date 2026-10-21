@@ -64,7 +64,7 @@ const cues: Partial<Record<Role, RegExp>> = {
 };
 export function corpusArgumentBoundaries(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_ARGUMENT_BOUNDARIES');
-  // shortcut: exact inspected complete arguments; extend after reviewing premise/conclusion and countercase scope.
+  // shortcut: inspected complete arguments; review premises, conclusions, and countercases before extending.
   const scope = [...scopes.reading, ...scopes.listening].find(s => s.text === text);
   if (!scope) return;
   const all = scope.parts.map(part => ({ ...part, role: boundary(text.slice(part.start, part.end), text) }));

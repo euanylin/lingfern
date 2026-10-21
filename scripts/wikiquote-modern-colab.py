@@ -1,4 +1,4 @@
-"""Full dated Wikiquote snapshot modern-candidate pass; no implicit rights admission."""
+"""Screen modern candidates from the full dated Wikiquote snapshot without admitting rights."""
 import collections, datetime, gzip, hashlib, importlib.util, json, os, pathlib, re, subprocess, sys, time, urllib.parse, urllib.request, zipfile
 BASE = pathlib.Path('/content/lingfern-modern-quotes')
 DUMP_URL = 'https://dumps.wikimedia.org/enwikiquote/20261001/enwikiquote-20261001-pages-articles.xml.bz2'
@@ -22,7 +22,7 @@ def load_module(name, path):
 
 
 def quoted_year(citation, section):
-    # Source citation dates, never page revision timestamps or author birth dates.
+    # Use citation dates, not revision timestamps or author birth dates.
     citation = re.split(r'\b(?:Compare|Cf\.?|See also|Retrieved|Accessed)\b', citation, 1, flags=re.I)[0]
     years = [int(m[0]) for m in YEAR.finditer(citation)]
     if years: return min(years), 'primary-citation'
@@ -94,7 +94,7 @@ def main():
             except ValueError as error:
                 outcome['decision'] = str(error); counts[str(error)] += 1
             decisions.write(json.dumps(outcome)+'\n')
-    # Broad page-balanced sample; collection is not source-rights or semantic acceptance.
+    # Sample broadly across pages without granting rights or semantic acceptance.
     grouped = collections.defaultdict(list)
     for row in modern:
         if row['quotationYear'] >= 1950: grouped[row['pageId']].append(row)

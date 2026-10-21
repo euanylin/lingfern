@@ -144,7 +144,7 @@ it('downloads a fixed page atomically, resumes next cursors and sends only verif
   expect(known).toEqual([[], [{ deviceId: 'remote', batchId: 'remote-one', blobSha: 'b'.repeat(40) }]]);
   expect(await db.table('syncEvents').count()).toBe(3);
   expect(await db.table('syncReceipts').count()).toBe(2);
-  expect(await readSyncConsent('p')).toBeUndefined(); // Reading does not grant upload consent.
+  expect(await readSyncConsent('p')).toBeUndefined(); // Reading does not authorize uploads.
 });
 
 it('failed, foreign or changed download pages do not advance cursors or overwrite local events', async () => {

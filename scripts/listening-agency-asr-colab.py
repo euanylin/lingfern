@@ -1,4 +1,4 @@
-"""Whole-programme automatic ASR and exact-source alignment, with all acceptance still pending."""
+"""Run whole-programme ASR/alignment diagnostics while retaining every acceptance hold."""
 import datetime, hashlib, importlib.util, json, pathlib, re, time
 ROOT=pathlib.Path('/content/lingfern-listening-20261009')
 def run():

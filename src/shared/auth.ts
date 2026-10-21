@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { profileIdSchema, repositoryBindingSchema } from './repository';
 
-// Local association is a user's choice, not proof of a website session or upload permission.
+// Local association proves neither a website session nor upload consent.
 export const syncAccountSchema = z.object({ accountId: z.number().int().positive(), profileId: profileIdSchema }).strict();
 
 export const sessionSummarySchema = z.object({

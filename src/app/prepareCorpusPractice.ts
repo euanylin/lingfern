@@ -119,7 +119,7 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   if (selection) selection = practiceSelectionSchema.parse(selection);
   const topics = topic !== undefined ? [topicSchema.parse(topic)] : selection?.topics ?? [];
   if (topics.length && skill === 'listening' && preferences?.listening === 'A1' && !topics.includes('daily-life')) return { downloadFailed: false };
-  // shortcut: Topics use existing keyword signals; adopt reviewed excerpt labels when available.
+  // shortcut: keyword-based topics; replace with reviewed excerpt labels when available.
   const interests = topics.length ? topics : preferences?.interests;
   const ownHistory = history.filter(session => session.profileId === profileId);
   const { seen: reserved, maxWords, maxSeconds } = corpusPracticeHistory(history, records, profileId, skill, 'all', preferences?.[skill]);
@@ -221,7 +221,7 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
       catch { downloadFailed = true; }
     }
   }
-  // New reading downloads join the available collection; listening retains its bank fallback.
+  // Add downloaded reading sources; preserve the listening-bank fallback.
   for (const source of skill === 'listening' && downloaded ? [downloaded, undefined] : [undefined]) {
     if (next) break;
     if (skill === 'reading') {
@@ -291,7 +291,7 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
         if (next) break;
       }
     }
-    // A new package's unrelated task must not hide an installed focused practice.
+    // Unrelated new tasks must not hide installed focused practice.
     if (source && next && focus && !matchesFocus(next) && !matchesReview(next)) {
       downloadedFallback = next;
       next = undefined;

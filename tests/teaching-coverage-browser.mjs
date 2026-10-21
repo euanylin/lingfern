@@ -64,7 +64,7 @@ try{
     const stored=(await rows(page,'sessions')).find(row=>row.id===session.id);assert.deepEqual(stored.lesson,session.lesson);assert.equal(stored.contentHash,session.contentHash);
     report.matrix.push({name:plan.name,locale,theme,width,reducedMotion});save();
    }
-   // Return to Chinese controls for the complete offline transaction/reload flow.
+   // Restore Chinese controls for full offline save/reload checks.
    await page.goto(origin+'/settings');let control=page.locator('.settings-preferences .setting-trigger').nth(0);await control.click();await page.locator('[role=option][data-value="zh-Hans"]').click();await expect(control).toHaveAttribute('data-value','zh-Hans');await page.goto(origin+'/learn/'+session.id);
    await context.setOffline(true);await page.reload();await expect(page.locator('#learning-question h2').first()).toHaveText(session.lesson.materials[0].questions[0].prompt);
    const questions=session.lesson.materials.flatMap(material=>material.questions);

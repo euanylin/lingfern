@@ -19,7 +19,7 @@ try {
   ]) {
    await page.goto(`http://127.0.0.1:8787/library/${route}`);
    await expect(page.locator(selectors[0])).toBeVisible();
-   // Isolated presentation fixtures check other callers of the shared text-focus selector.
+   // Check shared text-focus callers with isolated presentation fixtures.
    if(route==='dictionary') await page.locator('main').evaluate(main=>main.insertAdjacentHTML('beforeend','<section id="focus-fixtures"><label class="completion-answer">Completion<input></label><div class="answer-table"><label>Table<input></label></div><label class="response-answer">Response<textarea></textarea></label><div class="ai-import"><label>Import<textarea></textarea></label></div></section>'));
    for(const theme of ['light','dark'])for(const width of [1440,375,320])for(const height of [900,480]) {
     await page.setViewportSize({width,height});await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);

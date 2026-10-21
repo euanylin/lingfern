@@ -16,9 +16,27 @@ import hi from './hi/messages.json' with { type: 'json' };
 import id from './id/messages.json' with { type: 'json' };
 import { contentLocale, localeSchema, type Locale } from '../shared/locale';
 
+// Export the full inventory for checks; render only loaded packages.
 export const languagePacks = { en, 'zh-Hans': hans, 'zh-Hant': hant, ja, ko, fr, es, de, pt, it, ru, ar, hi, id } satisfies Record<Locale, typeof en>;
+const loaded: Partial<Record<Locale, typeof en>> = { en };
+const loaders = {
+  'zh-Hans': () => import('./zh-Hans/messages.json'), 'zh-Hant': () => import('./zh-Hant/messages.json'),
+  ja: () => import('./ja/messages.json'), ko: () => import('./ko/messages.json'),
+  fr: () => import('./fr/messages.json'), es: () => import('./es/messages.json'),
+  de: () => import('./de/messages.json'), pt: () => import('./pt/messages.json'),
+  it: () => import('./it/messages.json'), ru: () => import('./ru/messages.json'),
+  ar: () => import('./ar/messages.json'), hi: () => import('./hi/messages.json'), id: () => import('./id/messages.json'),
+};
+const loading = new Map<Locale, Promise<void>>();
+export async function loadUiLocale(locale: Locale) {
+  if (locale === 'en' || loaded[locale]) return;
+  if (!loading.has(locale)) loading.set(locale, loaders[locale]().then(pack => { loaded[locale] = pack.default; }).catch(error => { loading.delete(locale); throw error; }));
+  await loading.get(locale);
+}
+// List languages without downloading their full packages.
+const nativeNames: Record<Locale, string> = { en: 'English', 'zh-Hans': '简体中文', 'zh-Hant': '繁體中文', ja: '日本語', ko: '한국어', fr: 'Français', es: 'Español', de: 'Deutsch', pt: 'Português', it: 'Italiano', ru: 'Русский', ar: 'العربية', hi: 'हिन्दी', id: 'Bahasa Indonesia' };
 const englishLanguageNames = new Intl.DisplayNames('en', { type: 'language', languageDisplay: 'standard' });
-export const languageOptions = localeSchema.options.map(value => ({ value, label: languagePacks[value].meta.nativeName, lang: value }))
+export const languageOptions = localeSchema.options.map(value => ({ value, label: nativeNames[value], lang: value }))
   .sort((a, b) => englishLanguageNames.of(a.value)!.localeCompare(englishLanguageNames.of(b.value)!, 'en'));
 
 function interpolate<T>(value: T, parameters: Record<string, string | number>): T {
@@ -28,13 +46,14 @@ function interpolate<T>(value: T, parameters: Record<string, string | number>): 
 }
 
 export function messages<K extends keyof typeof en>(namespace: K, parameters?: Record<string, string | number>): Record<Locale, typeof en[K]> {
-  return Object.fromEntries(localeSchema.options.map(locale => {
-    const value = languagePacks[locale][namespace];
-    return [locale, parameters ? interpolate(value, parameters) : value];
-  })) as Record<Locale, typeof en[K]>;
+  // Resolve labels lazily so existing references see newly loaded languages.
+  return Object.defineProperties({}, Object.fromEntries(localeSchema.options.map(locale => [locale, { enumerable: true, get: () => {
+    const value = (loaded[locale] ?? en)[namespace];
+    return parameters ? interpolate(value, parameters) : value;
+  } }]))) as Record<Locale, typeof en[K]>;
 }
 
-/** Display translations never mutate or re-hash a saved content snapshot. */
+/** Translate display only without changing saved snapshots or hashes. */
 export function contentText(value: { 'zh-Hans': string; 'zh-Hant': string; en: string }, locale: Locale) {
   return translateInstruction(value[contentLocale(locale)], locale);
 }

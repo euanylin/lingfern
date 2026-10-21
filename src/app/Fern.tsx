@@ -5,9 +5,8 @@ import { advanceFern, fernGrowth, fernShape, type FernGrowth } from '../core/fer
 import { readLookupHistory } from '../data/lookupHistory';
 import { fernActivity, type ProgressEntry } from '../data/progress';
 import type { Locale } from '../shared/content';
-import { lookupHistoryCopy } from './LookupHistory';
 
-// Presentation only: pause the full motion state when leaving Today.
+// Pause all presentation motion when Today is inactive.
 type FernMotion = { growth: FernGrowth; velocity: FernGrowth; seconds: number; lookups: number };
 const shown = new Map<string, FernMotion>();
 
@@ -59,7 +58,7 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
     const element = svg.current!;
     const pinnae = element.querySelectorAll<SVGPathElement>('.fern-pinna');
     const stemPath = element.querySelector<SVGPathElement>('.fern-stem')!;
-    // Only path coordinates change per frame; React still owns labels and errors.
+    // Update path coordinates per frame; let React handle labels and errors.
     const paint = (value: FernGrowth, seconds = motion.current.seconds) => {
       motion.current.growth = value; if (!illustrating) shown.set(profileId, motion.current);
       const shape = fernShape(value, seconds);
@@ -104,5 +103,5 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
     <title>{description}</title>
     <g fill="currentColor">{shape.left.map((d, index) => <path className="fern-pinna" key={`left-${index}`} d={d}/>)}{shape.right.map((d, index) => <path className="fern-pinna" key={`right-${index}`} d={d}/>)}</g>
     <path className="fern-stem" d={shape.stem} fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round"/>
-  </svg>{failed && <p role="alert" className="error">{lookupHistoryCopy[locale].failed}</p>}</>;
+  </svg>{failed && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].failed}</p>}</>;
 }

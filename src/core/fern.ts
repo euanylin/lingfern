@@ -15,7 +15,7 @@ export function advanceFern(growth: FernGrowth, velocity: FernGrowth, target: Fe
 
 export function fernGrowth(reading: number, listening: number, lookups: number): FernGrowth {
   const count = (value: number) => Number.isFinite(value) ? Math.max(0, value) : 0;
-  // Reference history can encourage a small bud, never a mature plant on its own.
+  // Reference activity may grow a small bud, but cannot alone produce a mature fern.
   const reference = Math.min(1, count(lookups) * .02);
   const unfold = (activity: number) => activity / (activity + 24);
   return { stem: unfold(count(reading) + count(listening) + reference), left: unfold(count(reading) + reference / 2), right: unfold(count(listening) + reference / 2) };

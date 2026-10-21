@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { copy } from '../../src/app/i18n';
+import { languagePacks } from '../../src/locales';
 import { localeSchema } from '../../src/shared/locale';
 import { selectPicker } from '../browser/picker';
 
@@ -15,7 +15,7 @@ test('About stays English across every installed language and offline reload', a
   for (const locale of localeSchema.options) {
     await page.goto('/settings');
     await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
-    await page.getByRole('link', { name: copy[locale].about, exact: true }).click();
+    await page.getByRole('link', { name: languagePacks[locale].app.about, exact: true }).click();
     await page.reload();
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('.about-page')).toHaveAttribute('lang', 'en');
@@ -34,6 +34,6 @@ test('About stays English across every installed language and offline reload', a
     expect(notices.status).toBe(200);
     expect(notices.text).toContain('LibriSpeech / LibriVox readers');
     await page.locator('.about-back').click();
-    await expect(page.getByRole('heading', { name: copy[locale].settings, exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: languagePacks[locale].app.settings, exact: true })).toBeVisible();
   }
 });

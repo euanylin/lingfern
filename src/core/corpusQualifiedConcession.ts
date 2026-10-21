@@ -5,7 +5,7 @@ export const qualifiedConcessionOperation = 'choice:qualified-concession';
 
 export function corpusQualifiedConcession(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_QUALIFIED_CONCESSION');
-  // shortcut: four complete inspected contexts only; inspect both clauses, surrounding claims and alternatives before extending.
+  // shortcut: four complete contexts; review clauses, surrounding claims, and alternatives before extending.
   if (![...scopes.reading, ...scopes.listening].some(s => s.text === text)) return;
   let evidence: RegExpMatchArray | null, others: (RegExpMatchArray | null)[], options: string[], explanations: ReturnType<typeof local>[];
   if (text.startsWith('A unique human characteristic')) {

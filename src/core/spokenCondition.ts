@@ -2,13 +2,13 @@ import { corpusEvidence } from './corpus';
 
 export const spokenConditionPrompt = 'Which statement uses “if” or “unless” to state a condition and its outcome?';
 
-/** Select complete quoted conditions, without inferring necessity or unconditional truth. */
+/** Preserve full quoted conditions without inferring necessity or unconditional truth. */
 export function spokenCondition(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_SPOKEN_CONDITION');
   const candidates = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)]
     .map(part => part.segment.trim()).filter(sentence => sentence.length <= 240
       && (/^(?:If|Unless)\b.{10,}, .{10,}[.!]$/.test(sentence)
-        // ponytail: comma-delimited conditions only; wider syntax needs contextual review.
+        // shortcut: comma-delimited conditions; review broader syntax before extending.
         || /^.{10,}, (?:if|unless) .{10,}[.!]$/.test(sentence)
           && !/["“”\[\]]|\b(?:even if|as if|what if|asks?|asked|wonders?|wondered|checks?|checked|see|know|determine)\b/i.test(sentence)
           && (sentence.match(/\b(?:if|unless)\b/gi)?.length ?? 0) === 1)

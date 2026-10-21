@@ -1,10 +1,10 @@
 import scopes from '../../content/corpus/b1-procedure-scopes.json';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
 export const proceduralPlanPrompt='Which complete action plan follows the procedure and all its conditions?';
-/** Apply linked stages and constraints, rather than sorting the source sentences. */
+/** Apply linked stages and constraints rather than merely sort sentences. */
 export function corpusProceduralPlan(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||text.length>12000)throw new Error('INVALID_PROCEDURAL_PLAN');
- // shortcut: two inspected local-import procedures only; review full stages, branches and exceptions before extending.
+ // shortcut: two local-import procedures; review full stages, branches, and exceptions before extending.
  if(!scopes.records.some(s=>s.text===text))return;
  const trouble=text.startsWith('Players may move pieces');
  const action=trouble?text.match(/Players may move pieces out of their home onto their designated start space only when the die lands on (6)\. Getting a 6 at any point in the game also allows the player to take (another turn), even if the player cannot move any of their pieces \(as they cannot land on any of their own pieces\)\./):text.match(/A selection of (nine) tiles is generated in this way, and must contain at least (three) vowels and (four) consonants\./);

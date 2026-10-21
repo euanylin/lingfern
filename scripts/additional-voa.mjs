@@ -25,7 +25,7 @@ export async function prepareAdditionalVOA() {
     corpus.records.push({ id, rootId, title: source.title, authors: [source.author], originalUrl: source.url, downloadUrl: source.url,
       acquiredAt: source.acquiredAt ?? sources.acquiredAt, language: 'en', licence: 'Original VOA Learning English text: public domain with attribution. No agency content or media included.',
       licenceUrl: sources.permissionUrl, attribution: `${source.title} — ${source.author}. VOA Learning English (${source.url}).`,
-      // Held text stays in source evidence, including when it is excluded from every passage.
+      // Preserve held text as evidence even when every passage excludes it.
       sourceHash: source.sha256, ...(!excluded.length ? { originalText: source.text } : {}), reviewStatus: 'draft', editorialReview: 'pending',
       permissionReview: source.permissionReview ?? 'Official VOA own-author text and reuse policy checked2026-10-08. Captured page text only; no agency media or third-party song lyrics included.',
       processing: 'Complete specified official-page prose/conversation capture; SHA binds retained text, not HTML response bytes. Whitespace-normalised contiguous paragraphs only; configured exclusions never spliced. Codex/AI inspected retained text scope. No authored questions or CEFR calibration.', passages });

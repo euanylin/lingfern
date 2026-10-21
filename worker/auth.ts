@@ -10,7 +10,7 @@ export interface AuthEnv {
   GITHUB_WEBHOOK_SECRET?: string;
   GITHUB_APP_SLUG?: string;
 }
-// Missing or malformed configuration never enables remote exchange.
+// Reject remote exchange when configuration is missing or invalid.
 export const syncEnabled = (env: AuthEnv) => env.SYNC_ENABLED === 'true' && Boolean(env.AUTH_DB && env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET && env.TOKEN_ENCRYPTION_KEY && env.GITHUB_WEBHOOK_SECRET);
 export type WebSession = { hash: string; csrf: string; id: number; login: string };
 export class ApiError extends Error {
@@ -115,7 +115,7 @@ export async function githubToken(env: AuthEnv, accountId: number): Promise<stri
     if (!account || account.revoked) throw new Error('REAUTHORISE');
     if (account.refresh_lease) {
       if (account.refresh_until <= now) {
-        // A lost refresh response may already have consumed the old token. Never reuse it.
+        // Never reuse refresh tokens after a lost response; the provider may have consumed them.
         await revokeAccount(db, accountId, account.encrypted_tokens, account.refresh_lease);
         throw new Error('REAUTHORISE');
       }
@@ -136,7 +136,7 @@ export async function githubToken(env: AuthEnv, accountId: number): Promise<stri
       const encrypted = await sealTokens({ ...refreshed, obtainedAt: Math.floor(Date.now() / 1000) }, env.TOKEN_ENCRYPTION_KEY, accountId);
       const saved = await db.prepare('UPDATE accounts SET encrypted_tokens=?,refresh_lease=NULL,refresh_until=0,updated_at=? WHERE id=? AND revoked=0 AND refresh_lease=? AND encrypted_tokens=? RETURNING id').bind(encrypted, now, accountId, lease, account.encrypted_tokens).first();
       if (saved) return refreshed.access_token;
-      // A concurrent login/revocation changed the generation; discard this refresh result.
+      // Discard refresh results after concurrent login or revocation.
     } catch {
       await revokeAccount(db, accountId, account.encrypted_tokens, lease);
       throw new Error('REAUTHORISE');
@@ -181,7 +181,7 @@ export async function authRoute(request: Request, env: AuthEnv): Promise<Respons
       const state = url.searchParams.getAll('state'), code = url.searchParams.getAll('code');
       const browser = cookie(request, name.browser);
       if (state.length !== 1 || !/^[\w-]{43}$/.test(state[0]) || !/^[\w-]{43}$/.test(browser)) return privateJson({ error: 'AUTH_STATE' }, 400);
-      // DELETE RETURNING atomically consumes the state before exchanging a code.
+      // Consume state atomically with DELETE RETURNING before exchanging the code.
       const record = await db.prepare('DELETE FROM auth_states WHERE hash=? AND browser_hash=? AND expires_at>? RETURNING verifier,return_path').bind(await digest(state[0]), await digest(browser), now).first<{ verifier: string; return_path: string }>();
       if (!record) return privateJson({ error: 'AUTH_STATE' }, 400);
       if (url.searchParams.has('error')) return redirect('/settings?auth=cancelled', [setCookie(name.browser, '', 0, local)]);
@@ -210,8 +210,8 @@ export async function authRoute(request: Request, env: AuthEnv): Promise<Respons
         if ((error instanceof GithubError && error.status === 401) || (error instanceof Error && error.message === 'REAUTHORISE')) return privateJson({ account: null, syncAvailable: false });
         throw error;
       }
-      // Provider verification yields to logout, expiry and credential rotation. Renew only
-      // the verified generation, then fence again after the binding read below.
+      // Renew only the verified generation; recheck logout, expiry, and rotation after reading the binding.
+
       const verifiedAt = Math.floor(Date.now() / 1000);
       const renewed = await db.prepare('UPDATE sessions SET expires_at=MIN(?,absolute_expires_at) WHERE hash=? AND account_id=? AND csrf=? AND expires_at>? AND absolute_expires_at>? AND EXISTS(SELECT 1 FROM accounts WHERE id=? AND revoked=0 AND encrypted_tokens=?) RETURNING hash').bind(verifiedAt + 7 * 86400, session.hash, session.id, session.csrf, verifiedAt, verifiedAt, session.id, checkedTokens).first();
       if (!renewed) return privateJson({ account: null, syncAvailable: false });
@@ -234,7 +234,7 @@ export async function authRoute(request: Request, env: AuthEnv): Promise<Respons
         if (response.status >= 300 && response.status < 400) { await response.body?.cancel(); throw new GithubError(response.status); }
         providerRevoked = response.status === 204;
         await response.body?.cancel();
-      } catch { /* Local revocation must still work when GitHub is unavailable. */ }
+      } catch { /* Allow local revocation while GitHub is unavailable. */ }
       await revokeAccount(db, session.id);
       const response = privateJson({ disconnected: true, providerRevoked });
       response.headers.set('Set-Cookie', setCookie(name.session, '', 0, local));

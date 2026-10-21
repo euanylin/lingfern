@@ -160,7 +160,7 @@ for (const [locale, width, theme] of [['zh-Hans', 1440, 'light'], ['zh-Hant', 37
   await expect(page.locator('main > .error')).toHaveCount(0);
   const saved = await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences);
   expect(saved).toEqual({ interests: [], step: 4, completed: true });
-  // Exercise already affected IndexedDB rows; recovery must not rewrite their immutable events.
+  // Recover affected IndexedDB rows without rewriting immutable events.
   const original = await page.evaluate(async () => {
     const { profiles, syncEvents } = await import('/src/data/db.ts' as string);
     const preferences = { interests: [], step: 4, completed: true, purpose: undefined, reading: undefined, listening: undefined };

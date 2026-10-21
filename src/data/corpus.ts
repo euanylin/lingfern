@@ -52,7 +52,7 @@ export async function reviewedExcerpts<T extends { text: string; language?: z.in
     return excerpts.filter(excerpt => {
       const admitted = admittedLongClip(excerpt);
       if (!admitted) return true;
-      // Exact new windows must not turn a review of one scene into a whole-book review that replaces older short-bank evidence.
+      // Keep new window reviews scene-bound without replacing earlier short-bank evidence.
       return !('spokenTranscript' in admitted) && admitted.rootId === source.rootId && admitted.sourceHash === source.sourceHash
         && !!source.originalText && originalHash === admitted.originalTextSha256
         && source.originalText.slice(admitted.originalWindow[0], admitted.originalWindow[1]) === excerpt.text;
@@ -67,7 +67,7 @@ export async function reviewedExcerpts<T extends { text: string; language?: z.in
   return excerpts.filter(excerpt => {
     const admitted = admittedLongClip(excerpt);
     if (admitted && 'spokenTranscript' in admitted && admitted.spokenTranscript) {
-      // Reader headings/captions stay in the continuous recording; never exempt the bound written source from its holds.
+      // Retain recorded headings/captions and all holds on the bound written source.
       return admitted.rootId === source.rootId && admitted.sourceHash === source.sourceHash
         && admitted.originalTextSha256 === review.textSha256 && admitted.spokenTranscript.sourceRanges.length > 0
         && admitted.spokenTranscript.sourceRanges.every(range => Number.isSafeInteger(range.start) && Number.isSafeInteger(range.end)
@@ -120,7 +120,7 @@ export async function reviewedReading(records: Corpus['records'], maxWords = 700
       if (!(passage.quoteProvenance || passage.sourceProvenance) || await textDigest(passage.text) !== (passage.quoteProvenance?.textSha256 ?? passage.sourceProvenance?.textSha256)) throw new Error('CORPUS_INTEGRITY');
       return passage;
     })) : [...reviewed];
-    // Use only inspected complete paragraph scopes when their parent exceeds the current effort bound.
+    // Use inspected complete paragraphs when the parent exceeds effort limits.
     for (const scope of shortReadingScopes.records.filter(scope => scope.rootId === record.rootId && scope.sourceHash === record.sourceHash && scope.words <= maxWords)) {
       const parent = reviewed.find(passage => passage.id === scope.parentId);
       if (!parent || parent.wordCount <= maxWords || parent.startingPoints || parent.task || parent.quoteProvenance || parent.sourceProvenance
@@ -138,7 +138,7 @@ export async function reviewedReading(records: Corpus['records'], maxWords = 700
     }
     const review = reviews.get(record.rootId), original = record.originalText;
     if (maxWords <= 700 || review?.decision !== 'accepted-text' || !original || !passages.length) return { ...record, passages };
-    // Extend only covered adjacent text; headings, exclusions and missing paragraphs break the window.
+    // Extend covered adjacent text only; stop at headings, exclusions, or gaps.
     const located = passages.filter(passage => !passage.startingPoints && !passage.task && passage.wordCount <= 700).flatMap(passage => {
       const start = original.indexOf(passage.text);
       return start >= 0 && start === original.lastIndexOf(passage.text) ? [{ passage, start, end: start + passage.text.length }] : [];
@@ -185,7 +185,7 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
     const banks = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready' && !!pack.corpus).toArray();
     const records = await reviewedReading(banks.flatMap(pack => corpusSchema.parse(pack.corpus).records).filter(record => record.id.startsWith('wikipedia-')));
     if (!records.length || records.length > 3000) throw new Error('MISSING_CORPUS');
-    // ponytail: bounded local bank scan; index only if measured mobile loading warrants it.
+    // shortcut: bounded bank scan; index if measured mobile loading warrants it.
     return { version: 1 as const, records: mergeReadingRecords(records), failures: [] };
   })();
   const existing = loading.get(source);
@@ -247,7 +247,7 @@ export async function loadSpokenCorpora(profileId: string) {
   return ready.filter((bank): bank is NonNullable<typeof bank> => !!bank);
 }
 
-/** Use verified installed texts together; bundled sources can be unavailable offline. */
+/** Combine verified installed text; bundled sources may be unavailable offline. */
 export async function loadReadingCorpus(profileId: string, maxWords = 700): Promise<Corpus> {
   const packs = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready' && !!pack.corpus).toArray();
   if (packs.length > 100) throw new Error('CORPUS_LIMIT');

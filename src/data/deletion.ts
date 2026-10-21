@@ -32,7 +32,7 @@ async function purge(profileId: string) {
   }
 }
 
-// Keep immutable structured batches and the minimal tombstone; erase private answer/feedback text.
+// Retain immutable batches and minimal tombstones; erase private answers and feedback.
 export async function purgeDeletedRecords(profileId: string) {
   profileIdSchema.parse(profileId);
   await db.transaction('rw', [attempts, exposures, feedbackNotes, sessions, syncEvents], () => purge(profileId));
@@ -66,8 +66,8 @@ export async function deleteLearningRecord(profileId: string, recordId: string, 
   });
 }
 
-// Restart removes only the current practice snapshots. Tombstones keep sealed sync
-// batches from restoring their answers or exposure contacts on another device.
+// Remove current practice snapshots only; retain tombstones to prevent synced answer/contact resurrection.
+
 export async function restartPractice(profileId: string, sessionId: string) {
   profileIdSchema.parse(profileId);
   await db.transaction('rw', [attempts, exposures, feedbackNotes, sessions, settings, syncEvents, syncClocks], async () => {
@@ -98,7 +98,7 @@ export async function restartPractice(profileId: string, sessionId: string) {
       const marker = await Dexie.waitFor(boundedReferences({ type: 'deletion', payload: { target: 'record', targetId: recordId } }));
       if (marker.type === 'deletion' && !original.deletedRecords.has(marker.payload.targetId)) await appendSyncEvent(profileId, marker);
     }
-    // Resolve restored contact IDs while their immutable snapshots still exist.
+    // Resolve restored contact IDs before removing immutable snapshots.
     await purge(profileId);
     for (const session of selected) {
       await attempts.where('sessionId').equals(session.id).filter(attempt => attempt.profileId === profileId).delete();

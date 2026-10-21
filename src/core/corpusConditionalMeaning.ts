@@ -1,10 +1,10 @@
 import scopes from '../../content/corpus/b1-condition-scopes.json';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
 export const conditionalMeaningPrompt='Which statement preserves the condition, outcome and degree of certainty in this passage?';
-/** Derive controlled contrasts from complete reviewed source clauses, preserving their causal context. */
+/** Preserve causal context when contrasting complete reviewed clauses. */
 export function corpusConditionalMeaning(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||text.length>12000)throw new Error('INVALID_CONDITIONAL_MEANING');
- // shortcut: two inspected physical/process explanations only; review new contexts before extending.
+ // shortcut: two physical/process explanations; review new contexts before extending.
  if(!scopes.records.some(s=>s.text===text))return;
  const geology=text.startsWith('Most of the minerals');
  const sentence=geology?text.match(/If the cooling process is rapid \(minutes, hours, days, or years\), the components of the minerals will not have time to become ordered and only small crystals can form before the rock becomes solid\./):text.match(/If a person uses a less accurate tool, such as their hand, to measure ingredients rather than a cup, the same result may not be replicated\./);

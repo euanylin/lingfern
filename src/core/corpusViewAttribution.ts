@@ -5,7 +5,7 @@ export const viewAttributionOperation = 'choice:view-attribution';
 
 export function corpusViewAttribution(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_VIEW_ATTRIBUTION');
-  // shortcut: four inspected complete contexts; inspect reported voice, writer stance and omitted-context limits before extending.
+  // shortcut: four complete contexts; review reported voice, stance, and omitted context before extending.
   if (![...scopes.reading, ...scopes.listening].some(s => s.text === text)) return;
   let evidence: RegExpMatchArray | null, others: (RegExpMatchArray | null)[], options: string[], explanations: ReturnType<typeof local>[];
   if (text.startsWith('For a long time, it was thought')) {

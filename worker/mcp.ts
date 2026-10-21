@@ -22,8 +22,8 @@ async function authorize(env: SharingEnv, auth: AuthInfo | undefined, permission
   return identity;
 }
 
-// Only the OAuth Provider's protected handler may call this with its verified authInfo.
-// Catalogue entries must be projected from the public teaching catalogue, never check banks.
+// Require authInfo from the OAuth Provider's protected handler.
+// Project catalogue entries from public teaching data, never check banks.
 export async function mcpFetch(request: Request, env: SharingEnv, auth: AuthInfo, catalogue: readonly TeachingSummary[]) {
   try {
     if (request.url !== `${env.LOCAL_AUTH === 'true' ? 'http://127.0.0.1:8787' : 'https://lingfern.com'}/mcp`) return privateJson({ error: 'NOT_AVAILABLE' }, 404);

@@ -1,4 +1,4 @@
-"""Resumable allowlisted official clean-partition research acquisition; no audio/rights acceptance."""
+"""Resume allowlisted official clean-partition acquisition without granting rights or audio acceptance."""
 import argparse, concurrent.futures, datetime, hashlib, importlib.util, json, os, pathlib, re, tarfile, time, urllib.request, urllib.parse
 ROOT = pathlib.Path('/content/lingfern-listening-scale-20261009')
 URL = 'https://www.openslr.org/resources/12/train-clean-100.tar.gz'
@@ -52,7 +52,7 @@ def fetch(url, destination, limit, expected_md5=None):
         if destination.stat().st_size > limit: raise ValueError('SOURCE_TOO_LARGE')
         if expected_md5 is not None and sha(destination, 'md5') != expected_md5: raise ValueError('EXISTING_SOURCE_CHECKSUM')
         return
-    # Only a trusted caller checksum can establish that a pre-existing partial is complete.
+    # Require a trusted checksum before treating existing partials as complete.
     if partial.exists() and expected_md5 is not None and sha(partial, 'md5') == expected_md5:
         partial.replace(destination); return
     headers = {'User-Agent': 'Lingfern-public-corpus/1.0 (https://lingfern.com)'}
@@ -208,7 +208,7 @@ def original_text():
         print('Text stage already complete; exact input/ledger/matches/code/source bindings verified; failed sources remain held', flush=True); return
     existing = ROOT / 'original-books'
     if existing.exists(): existing.rename(ROOT / ('interrupted-original-books-'+str(time.time_ns())))
-    # The existing helper is reused verbatim, with only ROOT rebound; interrupted attempts remain private.
+    # Reuse the helper unchanged except ROOT; retain interrupted attempts privately.
     module.run()
 
 def require_complete_original(rows, matches):
@@ -262,7 +262,7 @@ def scale_asr(workers=4, limit=0, model_revision=None):
     if not benchmark_path.exists():
         cpu = WhisperModel(str(model_path), device='cpu', compute_type='int8', cpu_threads=2)
         sample = str(ROOT / selected[0]['audioPath'])
-        # Warm-up is explicit, outside timed samples; do not report JIT/initial-load delay as corpus throughput.
+        # Warm up before timing so JIT/load costs do not inflate corpus throughput.
         for model in [cpu,gpu]:
             segments,_ = model.transcribe(sample, **options); list(segments)
         benchmark=[]
@@ -391,7 +391,7 @@ def self_test():
             info=tarfile.TarInfo(name);info.type=kind;info.size=size
             if not size:archive.addfile(info)
             else:
-                # Header-only oversized member is rejected before reading its payload.
+                # Reject oversized headers before reading member payloads.
                 memory.write(info.tobuf())
         memory.seek(0)
         try:

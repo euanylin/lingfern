@@ -75,7 +75,7 @@ it('supplies complete unscored listening-order demonstrations only when unused s
 it('uses only complete unused example sentences without revealing assessed steps', () => {
   for (const point of ['A2', 'B2'] as const) {
     const material = generate(point).materials[0];
-    // Isolated synthetic suffix exercises unused-example selection, never public curriculum.
+    // Test unused-example selection with synthetic suffixes outside public curriculum.
     const withSuffix = (suffix: string) => ({ ...material, blocks: material.blocks.map(block => ({ ...block, text: block.text + '\n\n' + suffix })) });
     const unused = corpusWorkedExample(withSuffix(demo.join(' ')), 0, point, true);
     expect(unused).toBeDefined();

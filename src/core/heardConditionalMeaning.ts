@@ -1,10 +1,10 @@
 import sources from '../../public/audio/b1-speech/CONDITION.json';
 import { conditionalMeaningPrompt, conditionalMeaningSupport } from './corpusConditionalMeaning';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-/** Keep narrated conditions and reasons separate from actual events and the characters' interpretations. */
+/** Separate narrated conditions/reasons from events and character interpretations. */
 export function heardConditionalMeaning(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||text.length>12000)throw new Error('INVALID_HEARD_CONDITIONAL_MEANING');
- // shortcut: two complete inspected utterances only; review other narrated conditions before extending.
+ // shortcut: two complete utterances; review other narrated conditions before extending.
  if(!sources.some(s=>s.text===text))return;
  const anne=text.startsWith('It isn’t heavy.');
  const sentence=anne?text.match(/And if it isn’t carried in just a certain way the handle pulls out--so I’d better keep it because I know the exact knack of it\./):text.match(/If her good-humour flagged at moments it was not because she thought herself ill-used, but because she suddenly felt sorry for Ralph\./);

@@ -143,7 +143,7 @@ it('demonstrates the direction of each reliance without leaking answers or chang
     const test = asTestLesson(lesson); expect(test.workedExample).toBeUndefined(); expect(test.teaching).toBeUndefined(); expect(test.nextStep).toBeUndefined();
   }
   expect(fallbacks).toBeGreaterThan(0);
-  // Isolated regression wording, never a distributed source or scored item.
+  // Keep regression wording outside distributed sources and scored items.
   const fixture = corpusLesson(corpus, new Set(), 0, 300, 'B2', [], 'matching', [], pairedRelianceOperation)!;
   const other = 'The harbour community depends on fishing and farming, and the forest community depends on timber and grazing.';
   fixture.materials[0].blocks[0].text += '\n\n' + other;

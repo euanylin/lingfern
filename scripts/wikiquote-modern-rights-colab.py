@@ -1,4 +1,4 @@
-"""Verify exact modern US presidential quotations against fixed official public sources."""
+"""Verify exact modern US presidential quotes against fixed official public sources."""
 import collections, concurrent.futures, datetime, hashlib, html.parser, json, pathlib, re, time, unicodedata, urllib.parse, urllib.request, zipfile
 ROOT = pathlib.Path('/content/lingfern-modern-quotes')
 OUT = ROOT/'rights'; OUT.mkdir(exist_ok=True)

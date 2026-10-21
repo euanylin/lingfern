@@ -1,8 +1,4 @@
-"""Build a hash-bound upload of public corpus inputs only, for optional cloud replay.
-
-No directory scanning, credentials, learner exports, captured web sessions, or existing
-private processing outputs enter the bundle. Does not execute cloud jobs or publish.
-"""
+"""Bundle explicitly allowlisted public corpus inputs for optional cloud replay. Exclude scans, credentials, learner exports, captured sessions, and private outputs; run no cloud jobs or publication."""
 import hashlib
 import importlib.util
 import json

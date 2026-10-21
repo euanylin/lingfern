@@ -76,7 +76,7 @@ try {
     const entry = sourceCatalogue.packs.find(pack => pack.skill === skill && !installed.has(pack.sha256));
     const files = unzipSync(await readFile('public' + entry.path));
     const corpus = JSON.parse(strFromU8(files[skill === 'reading' ? 'corpus.json' : 'spoken.json']));
-    // Isolated regression state: every excerpt in the next real download has already been encountered.
+    // Simulate prior exposure to every excerpt in the next real download.
     const profileId = (await rows('profiles'))[0].id, now = new Date().toISOString();
     const excluded = corpus.records.map(record => ({ profileId, rootId: record.rootId, firstSeenAt: now, lastSeenAt: now,
       contacts: (record.passages ?? record.clips).map((clip, index) => ({ sessionId: 'exhausted-bank-fixture', materialId: 'corpus-' + clip.id,

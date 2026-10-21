@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { defineConfig } from 'vitest/config';
 import { VitePWA } from 'vite-plugin-pwa';
 
-// Keep complete provenance in the public source files; the page needs only display credits.
+// Preserve full public provenance; load display credits only.
 const audioCredits = (path: string, label: 'word' | 'ipa') => JSON.stringify(JSON.parse(readFileSync(path, 'utf8')).map((item: Record<string, unknown>) => Object.fromEntries([label, 'source', 'author', 'license', 'licenseUrl', 'changes'].map(key => [key, item[key]]))));
 
 const fixtureRoot = process.env.LINGFERN_OFFLINE_FIXTURES === '1' ? '/tmp/lingfern-offline-fixtures-resources' : '/tmp/lingfern-test-fixtures-resources';
@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
   } }, VitePWA({
     strategies: 'injectManifest', srcDir: 'src', filename: 'sw.ts', registerType: 'prompt', injectRegister: null,
     manifest: { id: '/', name: 'Lingfern', short_name: 'Lingfern', description: 'Read, listen, and grow into English.', start_url: '/', scope: '/', display: 'standalone', background_color: '#F7F6F2', theme_color: '#536F5B', icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }, { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }] },
-    // The complete quote catalogue, including source evidence, must remain available offline.
+    // Keep the full quote catalogue and evidence available offline.
     injectManifest: { maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, globPatterns: ['**/*.{html,js,css,svg,png,webmanifest}', 'audio/a1-words/word-*.mp3', 'daily-quotes/*.{md,txt,json}', 'THIRD_PARTY_NOTICES.md', 'ipa/CC-BY-SA-*.txt', 'licenses/**/*', 'corpus/*.{md,txt}', 'dictionary/oewn-2025/{README.md,LICENSE.md,WNDB_License.txt}'] },
   })],
   build: { rolldownOptions: { output: { codeSplitting: { groups: [{ name: 'daily-quotes', test: /content[\\/]daily-quotes-runtime\.json$/ }, { name: 'text-review', test: /content[\\/]corpus[\\/]text-review-rules\.json$/ }] } } } },

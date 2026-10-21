@@ -120,7 +120,7 @@ test('idle foliage moves gently around a fixed root and pauses on visibility eve
   expect(await stem.getAttribute('d')).toBe(paused);
   await fern.scrollIntoViewIfNeeded(); await expect(fern).toHaveAttribute('data-motion', 'active');
   await expect.poll(() => stem.getAttribute('d')).not.toBe(paused);
-  // Headless Chrome keeps both tabs visible; exercise the visibility event explicitly.
+  // Dispatch visibility explicitly because headless Chrome keeps both tabs visible.
   await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, value: true }); document.dispatchEvent(new Event('visibilitychange')); });
   await expect(fern).toHaveAttribute('data-motion', 'paused');
   const background = await stem.getAttribute('d'); await page.waitForTimeout(150);
@@ -176,7 +176,7 @@ test('returning to Today resumes the last drawn shape and growth velocity', asyn
       const paths = [...element.querySelectorAll('path')].map(node => node.getAttribute('d'));
       const start = Number(element.getAttribute('data-growth'));
       const first = await new Promise<number>(requestAnimationFrame);
-      // Chrome can deliver another callback with the same frame timestamp.
+      // Handle repeated callbacks with identical frame timestamps.
       let time = first;
       for (let frame = 0; frame < 12 && time <= first; frame++) time = await new Promise<number>(requestAnimationFrame);
       resolve({ paths, velocity: (Number(element.getAttribute('data-growth')) - start) / ((time - first) / 1000) });

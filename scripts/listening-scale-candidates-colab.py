@@ -1,4 +1,4 @@
-"""Scale version of the existing LibriSpeech candidate branch; never accepts audio."""
+"""Scale the existing LibriSpeech candidate branch without accepting audio."""
 import argparse, concurrent.futures, datetime, hashlib, importlib.util, json, math, pathlib, re, subprocess, time
 ROOT=pathlib.Path('/content/lingfern-listening-scale-20261009');PARTITION='train-clean-100'
 def select_partition(partition):
@@ -49,7 +49,7 @@ def validate_clip(clip,row,source):
     validate_diagnostic(clip['decodeDiagnostics'],clip['duration'])
     if not 0<clip['duration']<=91 or abs(clip['duration']-row['duration'])>.15:raise ValueError('CLIP_DURATION_BINDING')
 def topic(title):
-    # Work-title hints only, without pretending this is a semantic review of every excerpt.
+    # Use work titles as hints without claiming semantic review of every excerpt.
     for label,pattern in [('science',r'\b(science|scientific|astronomy|biology|chemistry|physics)\b'),('technology',r'\b(invention|engineering|technology|machines?)\b'),('history',r'\b(history|historical|biography|memoirs?)\b'),('nature',r'\b(nature|naturalist|birds?|botany|animals?)\b')]:
         if re.search(pattern,title,re.I):return label
     return 'literature'
@@ -93,7 +93,7 @@ def run(workers=4):
           'topicBasis':'Conservative original book-title keyword only; unclassified fiction/prose remains literature.', 'sourceUrl':source['sourceUrl'],'sourceHash':source['sourceHash'],'originalTextSpan':{'start':source['start'],'end':source['end'],'offsetUnit':source['offsetUnit']},'text':source['text'],'textSha256':source['textSha256'],
           'originalAudioPath':row['audioPath'],'originalTranscriptPath':row['transcriptPath'],'originalTranscriptSha256':row['transcriptSha256'],'originalAudioSha256':row['audioSha256'],'originalDecodeDiagnostics':row['decodeDiagnostics'],'originalAudioWindow':{'start':0,'end':row['duration']},'audioPath':path,'audioSha256':helper.sha(ROOT/path),'duration':duration,'decodeDiagnostics':diagnostic,
           'reviewStatus':'pending','canonicalRootAcceptance':'pending-original-work-mapping','audioAcceptance':'not-auditorily-accepted','rightsAcceptance':'pending-exact-original-work-and-regional-scope','boundary':'Whole official utterance only; unique exact original typography, sentence-boundary diagnostic, zero ASR disagreement and full decode are not auditory, source-rights, margin or teaching approval.'}
-    # No per-file ffprobe or redundant ffmpeg decode: one ffmpeg encode + in-process full PyAV decode.
+    # Encode once with ffmpeg, then fully decode in-process with PyAV.
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers)as executor:
         for clip in executor.map(encode,[pair for pair in eligible if pair[0]['id']not in old]):
             clips.append(clip)

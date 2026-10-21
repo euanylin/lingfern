@@ -187,12 +187,12 @@ export const corpusSchema = z.object({
 });
 export type Corpus = z.infer<typeof corpusSchema>;
 
-/** Exposure and transfer follow the original work, even when Wikiquote displays it. */
+/** Track exposure and transfer by original work, including Wikiquote copies. */
 export function corpusMaterialRoot(source: Corpus['records'][number], passage: Corpus['records'][number]['passages'][number]) {
   return passage.quoteProvenance ? passage.quoteProvenance.rightsEvidence.workId.replace('gutenberg-', 'gutenberg-book-') : source.rootId;
 }
 
-/** Keep unfamiliar-work and preview exclusions at the same exposure boundary as saved materials. */
+/** Apply preview and unfamiliar-work exclusions at the saved-material exposure boundary. */
 export function filterCorpusRoots(corpus: Corpus, roots: ReadonlySet<string>, include = false): Corpus {
   return { ...corpus, records: corpus.records.map(source => ({ ...source,
     passages: source.passages.filter(passage => roots.has(corpusMaterialRoot(source, passage)) === include),
@@ -201,7 +201,7 @@ export function filterCorpusRoots(corpus: Corpus, roots: ReadonlySet<string>, in
 
 type SourceRange = { start: number; end: number; long: boolean };
 const shortReadingIds = new Set(shortReadingScopes.records.map(scope => scope.sha256));
-// Saved window sizes may differ from this request; ranges stay local to the loaded source.
+// Keep saved windows source-local even when requested sizes differ.
 const priorCorpusRanges = new WeakMap<Corpus['records'][number], Map<string, SourceRange>>();
 export function registerCorpusSeenText(source: Corpus['records'][number], id: string, text: string) {
   const original = source.originalText, start = original?.indexOf(text) ?? -1;
@@ -222,7 +222,7 @@ function unseenCorpusPassages(source: Corpus['records'][number], seen: ReadonlyS
   }
   if (!original) {
     const known = source.passages.filter(passage => seen.has(passage.id));
-    // ponytail: fixed prepared windows use exact containment; variable windows need verified source offsets.
+    // shortcut: exact containment for fixed windows; verify source offsets before adding variable windows.
     return source.passages.filter(passage => (!passage.quoteProvenance || readableQuotation(passage.text)) && !quoteExclusions.some(exclusion => passage.quoteProvenance && (passage.id === exclusion.textSha256 || passage.text.normalize('NFKC').replace(/\s+/g, ' ').trim().toLocaleLowerCase('en') === exclusion.text.normalize('NFKC').replace(/\s+/g, ' ').trim().toLocaleLowerCase('en'))) && !seen.has(passage.id)
       && !shortReadingScopes.records.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.parentId === passage.id && seen.has(scope.sha256)) && !known.some(prior =>
       (passage.wordCount > 700 || prior.wordCount > 700 || shortReadingIds.has(passage.id) || shortReadingIds.has(prior.id)) && (passage.text.includes(prior.text) || prior.text.includes(passage.text))));
@@ -242,8 +242,8 @@ function unseenCorpusPassages(source: Corpus['records'][number], seen: ReadonlyS
   const allRanges = merge(ranges), longRanges = merge(ranges.filter(range => range.long));
   return source.passages.filter(passage => {
     if (seen.has(passage.id)) return false;
-    // Supported beginner excerpts may overlap one another intentionally. Only
-    // joined long windows extend the existing passage-ID exposure boundary.
+    // Beginner excerpts may overlap; only joined long windows extend passage-ID exposure.
+
     const merged = passage.wordCount > 700 || shortReadingIds.has(passage.id) ? allRanges : longRanges;
     if (!merged.length) return true;
     const start = original.indexOf(passage.text);
@@ -254,7 +254,7 @@ function unseenCorpusPassages(source: Corpus['records'][number], seen: ReadonlyS
   });
 }
 
-/** Local practice candidates only. Excerpts retain their source-book root; no ability inference. */
+/** Keep candidates source-rooted and local; infer no ability. */
 export function selectCorpusPassage(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 500, interests: Preferences['interests'] = [], reviewTerms: readonly string[] = [], startingPoint?: Preferences['reading']) {
   if (!Number.isSafeInteger(seed) || seed < 0 || !Number.isInteger(maxWords) || maxWords < 120 || maxWords > maxCorpusWords) throw new Error('INVALID_CORPUS_SELECTION');
   const candidates = corpus.records.flatMap(source => unseenCorpusPassages(source, seen).map(passage => ({ source, passage })))
@@ -264,7 +264,7 @@ export function selectCorpusPassage(corpus: Corpus, seen: ReadonlySet<string>, s
   const minimum = startingPoint === 'C1' ? 500 : startingPoint === 'C2' ? 700 : 0;
   const substantial = eligible.filter(({ passage }) => passage.wordCount >= minimum);
   const pool = corpusPreferencePool(substantial.length ? substantial : eligible, ({ source, passage }) => ({ title: source.title, text: passage.text }), interests, seed, startingPoint);
-  // ponytail: linear scan of a bounded corpus; index locally if real device timings justify it.
+  // shortcut: bounded linear corpus scan; add an index if device measurements justify it.
   if (!pool.length) return undefined;
   const firstFamily = pool[0].source.id.split('-')[0];
   if (corpus.records.every(source => source.id.split('-')[0] === firstFamily)) return pool[seed % pool.length];
@@ -274,7 +274,7 @@ export function selectCorpusPassage(corpus: Corpus, seen: ReadonlySet<string>, s
   return passages.length ? passages[Math.floor(seed / families.length) % passages.length] : undefined;
 }
 
-/** Exact-source word restoration, not a comprehension score or independently reviewed item. */
+/** Restore exact source words without claiming comprehension or independent item review. */
 export function* restorationWords(text: string, language?: z.infer<typeof corpusLanguageSchema>, beginner = false) {
   if (text.length > 12000) throw new Error('INVALID_CORPUS_GENERATION');
   if (language) {
@@ -306,7 +306,7 @@ function hasSentenceBoundaries(text: string, start: number, sentence: string) {
     && /[.!?]["'”’)]*$/.test(sentence) && !nameEnding.test(sentence);
 }
 
-/** Restore source order only; no inferred chronology or invented sentence rewrites. */
+/** Restore source order without inventing chronology or rewriting sentences. */
 export function corpusSequence(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_SEQUENCE');
   const sentences = sentenceSegments(text);
@@ -323,7 +323,7 @@ export function corpusSequence(text: string, seed: number) {
 }
 
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
-/** Match explicitly labelled dialogue statements; no inferred speaker or rewritten quote. */
+/** Match explicit speaker labels without inferring attribution or rewriting quotes. */
 function corpusSpeakerStatements(text: string, unique = true) {
   const statements = [...text.matchAll(/^([A-Z][a-z]{1,20}(?: [A-Z][a-z]{1,20})?):[ \t]+([^\n]+)/gm)].flatMap(turn =>
     sentenceSegments(turn[2]).map(sentence => {
@@ -333,7 +333,7 @@ function corpusSpeakerStatements(text: string, unique = true) {
     }));
   if (!unique) return statements;
   const normalise = (value: string) => value.replace(/[’‘]/g, "'").replace(/\s+/g, ' ').toLowerCase();
-  // ponytail: duplicate scan is bounded by a 12k-character excerpt; index if source limits grow.
+  // shortcut: duplicate scan capped at 12k characters; index if excerpt limits grow.
   return statements.filter(statement => statement.label.length >= 20 && statement.label.length <= 80
     && !nameEnding.test(statement.label)
     && statement.label.split(/\s+/).length >= 4 && /[.!]$/.test(statement.label) && !/(?:…|\.{2,})$/.test(statement.label)
@@ -356,7 +356,7 @@ export const verificationPrompt = 'Read. Is this detail correct?';
 
 export const timePrompt = 'Read the time stated for this question.';
 
-/** Combine two inspected clues; crossed alternatives require both rather than sentence-order recall. */
+/** Require both inspected clues, rather than sentence-order recall. */
 export function corpusShortIntegration(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_SHORT_INTEGRATION');
   const library = /^Anna: Hello! DC is a city for walking\. In our neighborhood, I can do all my errands\. Marsha, before we get ice cream, I need to return three books to the library\. Where is the library\?$/m.exec(text);
@@ -378,7 +378,7 @@ export function corpusShortIntegration(text: string, seed: number) {
   return { prompt: personalGoalPrompts.integration + '\n' + (library ? 'Which summary combines the books/ice-cream order and the library location?' : 'Which summary combines the party timing and contribution rule?'), options, answer, evidence: { start: first.index, end: first.index + first[0].length }, additionalEvidence: [{ start: second.index, end: second.index + second[0].length }], explanation, hans, hant, optionExplanations };
 }
 
-/** Interpret a stated rule with its alternatives and setting, not an unrestricted prohibition. */
+/** Keep rules bound to their stated alternatives and setting. */
 export function corpusStatedRule(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_STATED_RULE');
   const party = /^Marsha: Everyone has to bring something or do something\. You can bring food, or you can perform\.$/m.exec(text);
@@ -396,7 +396,7 @@ export function corpusStatedRule(text: string, seed: number) {
     hant: party ? '每個人都要為這次聚會出一份力。or連接選擇：帶食物或表演是給出的選項，不是要求每人同時完成兩項。這裡也沒有禁止兩項都做，沒有證明Anna已經貢獻。' : 'Caty要求Anna在The News節目中不能說自己很生氣。規則限制的是在這個節目中表達個人情緒，沒有證明不能感到生氣或在節目外表達情緒。這是對話中的要求，不是所有新聞機構的通則。' };
 }
 
-/** Identify an explicitly stated reason, not a habit or an inferred result. */
+/** Extract the stated reason without inferring habits or results. */
 export function corpusStatedReason(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_STATED_REASON');
   const activity = /^Anna: This is a drum band\. I never listen to a drum band\. But today I am listening to a drum band because (it’s Shakespeare’s birthday)!$/m.exec(text);
@@ -412,7 +412,7 @@ export function corpusStatedReason(text: string, seed: number) {
     hant: activity ? 'Anna用because明說今天聽鼓樂隊是因為莎士比亞生日。never在這裡說平時的習慣，今天的活動是帶有明確原因的例外。「總是聽」既不是她所說的習慣，也不是她給出的原因。' : 'Anna給出的嘗試理由是「it is good for you」。起初的always隨後被改為sometimes，再改為never，不能沿用最初說法作習慣或原因。will try是打算嘗試，沒有證明已經慢跑或普遍健康效果。' };
 }
 
-/** Follow one person's explicit revision; a new reply does not prove an external event changed. */
+/** Track explicit revisions without assuming external events changed. */
 export function corpusPlanUpdate(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_PLAN_UPDATE');
   const invitation = /^Anna: Sorry, I (can’t come with you)\. I have to get my driver’s license\.$/m.exec(text);
@@ -431,14 +431,14 @@ export function corpusPlanUpdate(text: string, seed: number) {
     hant: invitation ? 'Anna起初說不能來。Marsha說明聚會在晚上後，她說週六晚上可以參加。先前的拒絕不是更新後的回覆。這裡沒有說聚會或考試改期、駕照事項取消，或她已經參加。' : 'Jonathan先要蝦，隨後說蝦已售完，改要牛肉。蝦是先前的選擇，不是更新後的要求。這記錄他的選擇與陳述，沒有證明先前有蝦、庫存發生改變，或牛肉已經到手。' };
 }
 
-/** Preserve the named person's explicit requirement or liking; never infer completion or exclusivity. */
+/** Preserve named requirements/preferences without inferring completion or exclusivity. */
 export function corpusPersonalGoal(text: string, seed: number, kind: 'need' | 'preference' | 'update' | 'reason' | 'rule' | 'integration') {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000 || kind !== 'need' && kind !== 'preference' && kind !== 'update' && kind !== 'reason' && kind !== 'rule' && kind !== 'integration') throw new Error('INVALID_CORPUS_PERSONAL_GOAL');
   if (kind === 'update') return corpusPlanUpdate(text, seed);
   if (kind === 'reason') return corpusStatedReason(text, seed);
   if (kind === 'rule') return corpusStatedRule(text, seed);
   if (kind === 'integration') return corpusShortIntegration(text, seed);
-  // shortcut: These four inspected daily-life contexts only; review wider predicates and contexts before extending.
+  // shortcut: four inspected daily-life contexts; review broader predicates and contexts before extending.
   const patterns = kind === 'need' ? [
     /^Anna: Sorry, I can’t come with you\. I have to (get my driver’s license)\.$/m,
     /^Anna: Hello! DC is a city for walking\. In our neighborhood, I can do all my errands\. Marsha, before we (get ice cream), I need to (return three books to the library)\. Where is the library\?$/m,
@@ -463,10 +463,10 @@ export function corpusPersonalGoal(text: string, seed: number, kind: 'need' | 'p
     hant: kind === 'need' ? index ? 'Anna需要先還書，再買冰淇淋。買冰淇淋是稍後的共同計劃，不是這裡需要先做的動作。「需要」不表示已經完成。' : 'Anna說自己必須取得駕照；Marsha說自己必須幫朋友準備聚會，不能把Marsha的需要換給Anna。後來同意參加聚會，沒有取消駕照事項，也不證明事項已完成。' : index ? 'Anna明說自己喜歡Sculpture Garden（雕塑花園）。前文說各種博物館都好，並沒有特別說她喜歡科學博物館。不能據此推斷她討厭其他博物館，或只喜歡花園。' : 'Louis明說自己很喜歡藝術博物館，沒有在這句話中說喜歡歷史博物館。不能據此推斷他討厭歷史博物館、給所有博物館排名，或只喜歡藝術博物館。' };
 }
 
-/** Explicit planned order only; the text position of two actions is insufficient. */
+/** Require explicit planned order; source position alone is insufficient. */
 export function corpusPlannedOrder(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_PLANNED_ORDER');
-  // shortcut: Only the two inspected daily-life constructions; review complete contexts before extending.
+  // shortcut: two inspected daily-life forms; review full contexts before extending.
   const firstThen = /^Anna: I don’t know\. First, I have to (take a test on the computer)\. Then I have to (take a test in the car)\.$/m.exec(text);
   const before = /^Anna: Hello! DC is a city for walking\. In our neighborhood, I can do all my errands\. Marsha, before we (get ice cream), I need to (return three books to the library)\. Where is the library\?$/m.exec(text);
   if (!!firstThen === !!before) return;
@@ -481,7 +481,7 @@ export function corpusPlannedOrder(text: string, seed: number) {
     hant: firstThen ? '「First」把電腦考試放在「Then」引出的車內考試之前。這是計劃中需要做的事，沒有證明考試已完成。另一選項顛倒了先後。' : '「before we get ice cream, I need to return three books」表示先還書，再買冰淇淋。before從句雖然先寫出，其中的動作在計劃中卻較晚。需要還書不證明已經還書；另一選項顛倒先後。' };
 }
 
-/** Keep the asked event, clock digits and explicit period; do not substitute another planned time. */
+/** Preserve the asked event, clock digits, and stated period. */
 export function corpusTime(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_TIME');
   const writing = /^([A-Z][a-z]{1,20}): Hi, [A-Z][a-z]{1,20}\. Yes\. At (\d{1,2}) (a\.m\.|p\.m\.) I am writing\. Every day I do my morning show\. Sorry!$/m.exec(text);
@@ -516,7 +516,7 @@ function correctedSpelling(text: string) {
     evidence: { start: correction.index, end: count.index + count[0].length } };
 }
 
-/** Small written quantities, attached to their stated letters/items rather than an unrelated number. */
+/** Bind written quantities to their stated letters or items. */
 export function corpusQuantity(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_QUANTITY');
   const spelling = correctedSpelling(text);
@@ -531,7 +531,7 @@ export function corpusQuantity(text: string, seed: number) {
     hant: spelling ? `${spelling.correct}有${value}個「${spelling.letter}」。按糾正後的拼寫計數，不用最初問句或街道號碼。` : `${book[1]}需要歸還${book[2]}本書，即${value}本；沒有說明已經歸還或一共擁有多少書。` };
 }
 
-/** Verify a supplied name/number against the explicit correction and role, not a question or misdial. */
+/** Verify names/numbers against explicit corrections and roles, excluding questions and misdials. */
 export function corpusVerification(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_VERIFICATION');
   const spelling = correctedSpelling(text), phone = corpusPhone(text, seed);
@@ -549,7 +549,7 @@ export function corpusVerification(text: string, seed: number) {
 export const locationPrompt = 'Where is the place?';
 export const instructionPrompt = 'What are you asked to do?';
 
-/** Preserve each explicitly named landmark relation, not a place mentioned in a later direction. */
+/** Preserve each named landmark relation without substituting later directions. */
 export function corpusLocation(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_LOCATION');
   const relation = /^([A-Z][a-z]{1,20}): The ([a-z]+) is across from the ([a-z]+)\. It['’]s next to the ([a-z]+)\. Go that way\.$/m.exec(text);
@@ -568,7 +568,7 @@ export function corpusLocation(text: string, seed: number) {
     explanation: relation ? `The ${relation[2]} is across from the ${relation[3]}, and next to the ${relation[4]}. Keep the two places and relations separate.` : `${apartment![1]} says the apartment is near the ${apartment![2]}. The bus station is a later direction landmark, not the stated near-place.` };
 }
 
-/** Inspect the complete direction or request and retain its action and order. */
+/** Keep the complete direction/request with its action and order. */
 export function corpusInstruction(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_INSTRUCTION');
   const direction = /^([A-Z][a-z]{1,20}): Yes\. Exit the Metro and turn (right|left)\. Then at the bus station turn (right|left)\. Then walk straight ahead\.$/m.exec(text);
@@ -587,14 +587,14 @@ export function corpusInstruction(text: string, seed: number) {
 
 export const peopleMatchingPrompt = 'Who? Match each description to a person.';
 
-/** Identify explicit self-descriptions, keeping I with its own speaker rather than a mentioned name. */
+/** Keep first-person descriptions bound to their labelled speaker. */
 export function corpusPeople(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_PEOPLE');
   const turns = [...text.matchAll(/^([A-Z][a-z]{1,20}):[ \t]+([^\n]+)/gm)];
   const unsafe = new Set(turns.filter(turn => /\b(?:not|never|if|unless|sometimes|perhaps|maybe|might|would|could)\b/i.test(turn[2])).map(turn => turn[1]));
   const facts = turns.filter(turn => !unsafe.has(turn[1])).flatMap(turn => sentenceSegments(turn[2]).flatMap(part => {
     const statement = part.segment.trim();
-    // shortcut: Only these inspected simple self-descriptions; review wider predicates and qualifications before adding them.
+    // shortcut: inspected simple self-descriptions; review broader predicates and qualifications before extending.
     const match = /^(?:You know, [A-Z][a-z]{1,20}, |And )?I am (great|new to D\.C|from a small town|in [Aa]partment [A-Z][0-9])[.!]$/.exec(statement);
     if (!match) return [];
     const start = turn.index + turn[0].length - turn[2].length + part.index + part.segment.indexOf(statement);
@@ -611,10 +611,10 @@ export function corpusPeople(text: string, seed: number) {
     evidence: first.evidence, otherEvidence: second.evidence };
 }
 
-/** A requested address is distinct from a person's full self-introduction. */
+/** Distinguish requested forms of address from full introductions. */
 export function corpusAddress(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_ADDRESS');
-  // Narrated self-naming keeps the complete attributed turn and agreeing repeated requests.
+  // Preserve the full attributed self-naming turn and matching repeated requests.
   const narrated = [...text.matchAll(/^“([A-Z][a-z]{1,20}(?: [A-Z][a-z]{1,20}){1,3}),” reluctantly faltered forth the owner of that name, “but, oh, please do call me ([A-Z][a-z]{1,20})\. ([^“”\n]+)”$/gm)];
   if (narrated.length) {
     if (narrated.length !== 1 || !corpusBalancedQuotes(text) || /\b(?:imagin\w*|pretend\w*|examples?|quoted?|reported|suppos\w*)\b/i.test(text)) return;
@@ -631,7 +631,7 @@ export function corpusAddress(text: string, seed: number) {
     return { options, answer: options.indexOf(name), name, fullName,
       evidence: { start: request.index, end: request.index + request[0].length } };
   }
-  // ponytail: one complete self-introduction/request turn; wider address corrections need context review.
+  // shortcut: one complete introduction/request turn; review context before adding address corrections.
   const requests = [...text.matchAll(/^([A-Z][a-z]{1,20}): I am your [a-z]{3,20}, ([A-Z][a-z]+(?: [A-Z][a-z]+){1,3})\. But, please call me ([A-Z][a-z]{1,20})\.$/gm)];
   const request = requests[seed % requests.length];
   if (!request || request[2] === request[3] || request[3] !== request[1]) return;
@@ -642,10 +642,10 @@ export function corpusAddress(text: string, seed: number) {
     evidence: { start: request.index, end: request.index + request[0].length } };
 }
 
-/** Separate an explicitly named work contact from a corrected wrong-number response. */
+/** Distinguish explicit work contacts from corrected wrong numbers. */
 export function corpusPhone(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_PHONE');
-  // ponytail: one explicit work number and wrong-number correction; wider phone dialogue needs context review.
+  // shortcut: one work number/wrong-number correction; review broader phone contexts before extending.
   if ((text.match(/\bwork number\b/gi)?.length ?? 0) !== 1) return;
   const part = sentenceSegments(text).find(part => /^([A-Z][a-z]{1,20})'s work number is ([0-9]{3}-[0-9]{4})\.$/.test(part.segment.trim()));
   if (!part) return;
@@ -658,10 +658,10 @@ export function corpusPhone(text: string, seed: number) {
     otherEvidence: { start: corrections[0].index, end: corrections[0].index + corrections[0][0].length } };
 }
 
-/** Identify what an explicit want-to statement reports, without asserting action or completion. */
+/** Report explicit want-to statements without implying action or completion. */
 export function corpusStatedIntention(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_STATED_INTENTION');
-  // ponytail: one unqualified want-to claim in labelled dialogue; broader intentions need reviewed context rules.
+  // shortcut: one unqualified labelled want-to claim; review broader intention contexts before extending.
   const turns = [...text.matchAll(/^([A-Z][a-z]{1,20}(?: [A-Z][a-z]{1,20})?):[ \t]+([\s\S]*?)(?=^[A-Z][a-z]{1,20}(?: [A-Z][a-z]{1,20})?:[ \t]+|(?![\s\S]))/gm)];
   if (!turns.length || turns[0].index !== text.search(/\S/) || (text.match(/\bwant\b/gi)?.length ?? 0) !== 1) return;
   for (const turn of turns) {
@@ -677,7 +677,7 @@ export function corpusStatedIntention(text: string, seed: number) {
         || text.indexOf(match[2]) !== text.lastIndexOf(match[2])) continue;
       const start = turn.index + turn[0].length - body.length + part.index + part.segment.indexOf(sentence) + sentence.indexOf(match[2]);
       const before = text.slice(turn.index + turn[0].length - body.length, start);
-      // Only uninterrupted first-person paragraphs inherit a preceding speaker label.
+      // Inherit speaker labels only across uninterrupted first-person paragraphs.
       if (before.split(/\n\s*\n/).slice(1).some(paragraph => paragraph.trim() && !/^(?:I|We)\b/.test(paragraph.trim()))) continue;
       if (turns.some(other => other[1] === name && /\b(?:changed? my mind|no longer|not anymore|cancelled|canceled|instead|if|unless|but|although|though|maybe|perhaps)\b/i.test(other[2]))) continue;
       const choices = [`${name} wants to do it.`, `${name} is doing it now.`, `${name} does not want to do it.`];
@@ -691,10 +691,10 @@ export function corpusStatedIntention(text: string, seed: number) {
   }
 }
 
-/** Retrieve a labelled speaker’s explicit self-origin, without inferring birthplace, residence or nationality. */
+/** Extract stated self-origin without inferring birthplace, residence, or nationality. */
 export function corpusStatedOrigin(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_STATED_ORIGIN');
-  // ponytail: inspected place vocabulary and two complete origin exchanges only; capitalisation alone is not geography.
+  // shortcut: inspected place words and two origin exchanges; review geography before expanding.
   const geographicalPlace = (place: string) => /^(?:China|D\.C\.|Washington, D\.C\.|(?:a|the) (?:(?:small|large) )?(?:town|city|village))$/.test(place);
   const placeAtEnd = (tail: string) => !tail.endsWith('.') || /\.{2,}$/.test(tail) ? undefined : tail.endsWith('D.C.') ? tail : tail.slice(0, -1);
   const placeKey = (place: string) => place === 'D.C.' || place === 'Washington, D.C.' ? 'washington-dc' : place.toLowerCase();
@@ -714,7 +714,7 @@ export function corpusStatedOrigin(text: string, seed: number) {
     const denied = denial?.name === turn.name && /^No, I(?: am|['’]m) not\.$/.test(denial.body)
       && asked?.name === question.name ? /^Are you from (.+)\?$/.exec(asked.body) : undefined;
     const welcomePlace = welcome && placeAtEnd(welcome[1]);
-    // Both possible alternative contexts at once are outside this initial, uniquely grounded design.
+    // Reject contexts containing both alternatives because the answer would be ambiguous.
     if (!!welcomePlace === !!denied) return [];
     const alternate = welcomePlace || denied![1];
     if (!geographicalPlace(alternate) || placeKey(place) === placeKey(alternate)) return [];
@@ -732,7 +732,7 @@ export function corpusStatedOrigin(text: string, seed: number) {
 export const roomMatchingPrompt = 'Match each activity to its room.';
 
 function corpusRoomStatements(text: string) {
-  // ponytail: simple stated room activities only; wider place/action syntax needs context review.
+  // shortcut: simple stated room activities; review broader place/action syntax before extending.
   const statements = corpusSpeakerStatements(text, false);
   const pattern = /^(?:I|We) (cook|eat|relax|wash|sleep) in the ([a-z]+(?: [a-z]+)?)[.!]$/;
   if (statements.some(statement => /\b(?:cook|eat|relax|wash|sleep)\b/i.test(statement.label) && !pattern.test(statement.label))) return [];
@@ -755,10 +755,10 @@ export function corpusRooms(text: string, seed: number) {
     choices: seed % 2 ? [first.answer, second.answer] : [second.answer, first.answer],
     evidence: first.evidence, otherEvidence: second.evidence };
 }
-/** Explicit requested/prohibited actions, not inferred general obligations. */
-// ponytail: naming contrasts and bounded quoted Let imperatives; wider actions need tested context parsing.
+/** Extract explicit requests/prohibitions without inferring general duties. */
+// shortcut: naming contrasts and bounded quoted Let imperatives; test broader action parsing before extending.
 function corpusRequestStatements(text: string) {
-  // shortcut: complete inspected narrative/dialogue scopes only; indirect requests stay unscored.
+  // shortcut: inspected complete narrative/dialogue only; validate indirect requests before scoring them.
   if (text === "I could not hope to get a lodging under a roof, and sought it in the wood I have before alluded to. But my night was wretched, my rest broken: the ground was damp, the air cold: besides, intruders passed near me more than once, and I had again and again to change my quarters: no sense of safety or tranquillity befriended me. Towards morning it rained; the whole of the following day was wet. Do not ask me, reader, to give a minute account of that day; as before, I sought work; as before, I was repulsed; as before, I starved; but once did food pass my lips. At the door of a cottage I saw a little girl about to throw a mess of cold porridge into a pig trough. “Will you give me that?” I asked.") return [{ sentence: text, actions: ["give the narrator the porridge (request to the little girl)", "ask the narrator for a minute account of that day (request to the reader)"], evidence: { start: 0, end: text.length } }];
   if (text === "John: Why are you talking to yourself?\n\nAnna: I am a little nervous. When I’m nervous, I talk to myself.\n\nJohn: You don't need to be nervous.\n\nAnna: Listen to that engine!\n\nJohn: Please, stop pushing the gas pedal!\n\nAnna: Sorry.\n\nJohn: Okay, when you are ready, turn.\n\nAnna: Great!\n\nJohn: Not now! You almost hit that car!\n\nAnna: You said “turn!”\n\nJohn: Look first! There were cars in the street.\n\nAnna: Please don’t yell at me!\n\nJohn: I’m sorry! I was afraid.\n\nAnna: You were yelling.\n\nJohn: Look out for that car! Brake! Brake!!\n\nAnna and John: Ahhh!\n\nAnna: Why is everyone honking at us?\n\nJohn: You were driving too slow! Anna, stay on the street!\n\nJohn: Hands on the wheel, Anna.") return [{ sentence: text, actions: ["stop pushing the gas pedal (John’s request to Anna)", "yell at Anna (Anna’s request to John)"], evidence: { start: 0, end: text.length } }];
   return [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)].flatMap(part => {
@@ -769,7 +769,7 @@ function corpusRequestStatements(text: string) {
       const paragraphStart = text.lastIndexOf('\n\n', start), paragraphEnd = text.indexOf('\n\n', start);
       const contextStart = paragraphStart < 0 ? 0 : paragraphStart + 2;
       const context = text.slice(contextStart, paragraphEnd < 0 ? text.length : paragraphEnd);
-      // Keep the complete utterance and its explicit speaker, including an interrupted quotation.
+      // Retain complete utterances and explicit speakers, including interrupted quotes.
       const reply = text.slice(contextStart + context.length + 2).split('\n\n')[0];
       const addressedReply = /^“Thank you\. You have made your statement very clearly\. You will leave the papers here, and remember the advice which I have given you\. Let the whole incident be a sealed book, and do not allow it to affect your life\.”$/.test(context)
         && /^“You are very kind, Mr\. Holmes, but I cannot do that\. I shall be true to Hosmer\. He shall find me ready when he comes back\.”$/.test(reply ?? '');
@@ -788,7 +788,7 @@ function corpusRequestStatements(text: string) {
     if (!match || malformedSourceMarker.test(sentence) || text.indexOf(sentence) !== text.lastIndexOf(sentence)
       || match[3].trim().replace(/[.!]$/, '').toLowerCase() === match[5].trim().replace(/[.!]$/, '').toLowerCase()) return [];
     const start = part.index + part.segment.indexOf(sentence);
-    // English sentence punctuation may sit inside the final quotation marks.
+    // Sentence punctuation may precede closing quotation marks.
     const label = (value: string) => /^[a-z ]+[.!]$/i.test(value) ? value.slice(0, -1) : value;
     const actions = [match[1] + match[2] + label(match[3]) + match[2], match[1] + match[4] + label(match[5]) + match[4]];
     if (actions.some(action => action.length > 80)) return [];
@@ -805,12 +805,12 @@ export function corpusRequests(text: string, seed: number) {
   return { pairs: seed % 2 ? pairs.reverse() : pairs, choices: seed % 2 ? ['Ruled out', 'Requested'] : ['Requested', 'Ruled out'],
     evidence: request.evidence, sentence: request.sentence };
 }
-/** Preserve explicit paired reliance, including reciprocal roles and parallel dependencies. */
-// ponytail: bounded explicit paired clauses; broader syntax needs context review.
+/** Preserve explicit reciprocal roles and parallel dependencies. */
+// shortcut: bounded paired clauses; review broader syntax before extending.
 function corpusRoleStatements(text: string) {
   return [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)].flatMap((part, index, parts) => {
     const sentence = part.segment.trim();
-    // Two adjacent definitions name their own object; "its" cannot inherit an outside referent.
+    // Bind each adjacent definition to its own object, not an external "its" referent.
     const definition = /^([A-Z][a-z]+(?: [a-z]+){0,2}) is a measure of the motion of (an object|a spinning or revolving object) and depends on (.+)\.$/;
     const first = definition.exec(sentence), next = parts[index + 1], second = next && definition.exec(next.segment.trim());
     if (first && second && first[1] !== second[1] && first[2] === 'an object' && second[2] === 'a spinning or revolving object'
@@ -825,9 +825,9 @@ function corpusRoleStatements(text: string) {
       const start = part.index + part.segment.indexOf(sentence), end = next.index + next.segment.trimEnd().length;
       return [{ sentence: text.slice(start, end), pairs: [{ label: first[3], answer: first[1] }, { label: second[3], answer: second[1] }], evidence: { start, end } }];
     }
-    // Two explicit parallel dependencies, not inferred reciprocal cooperation.
+    // Require explicit parallel dependencies without inferring cooperation.
     const dependency = /^The ([a-z-]+(?: [a-z-]+){1,3}) depends (?:on|upon) ([a-z -]{3,100}), and the ([a-z-]+(?: [a-z-]+){1,3}) depends (?:on|upon) ([a-z -]{3,100})\.$/.exec(sentence);
-    // A sentence inside a longer quotation may have no quotation marks of its own.
+    // Sentences within longer quotes may lack their own quotation marks.
     if (dependency && !/["“”‘]|(?<!\p{L})['’]|['’](?!\p{L})/u.test(text)
         && !malformedSourceMarker.test(sentence) && text.indexOf(sentence) === text.lastIndexOf(sentence)
         && dependency[1] !== dependency[3]
@@ -857,10 +857,10 @@ export function corpusRoleActions(text: string, seed: number) {
   return { pairs, choices: pairs.map(pair => pair.answer), evidence: role.evidence, sentence: role.sentence };
 }
 
-/** Select a stated conditional response, keeping action bundles and source conditions intact. */
+/** Preserve full action bundles and stated response conditions. */
 export function corpusActionSelection(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_ACTION');
-  // shortcut: complete inspected source examples only; broader conditional duties need context tests.
+  // shortcut: inspected complete examples; test context before adding broader conditional duties.
   if (text === "To ideate is the step of the creative problem-solving process that involves generating and detailing ideas by the entrepreneur. After collecting all information relevant to the problem, the entrepreneur lists as many causes of the problem as possible. This is the step in which the largest variety of ideas are put forth. Each idea must be evaluated for feasibility and cost as a solution to the problem. If a farm does not have clean water, for example, the entrepreneur must list causes of toxic water and eliminate as many of those causes as possible. The entrepreneur must then move forward investigating solutions to bring the water back to a safe state. If, say, nearby livestock are polluting the water, the livestock should be isolated from the water source.") {
     const sentence = "If a farm does not have clean water, for example, the entrepreneur must list causes of toxic water and eliminate as many of those causes as possible.", otherSentence = "If, say, nearby livestock are polluting the water, the livestock should be isolated from the water source.";
     const action = "list causes of toxic water and eliminate as many of those causes as possible", otherAction = "isolate nearby livestock from the water source";
@@ -879,7 +879,7 @@ export function corpusActionSelection(text: string, seed: number) {
       otherEvidence: { start: text.indexOf(otherSentence), end: text.indexOf(otherSentence) + otherSentence.length },
       explanations: options.map(option => option === action ? `The complete stated condition requires: “${sentence}” This is the source’s example, not advice about a real situation.` : `“${otherSentence}” has a different condition. For the question’s condition, keep: “${sentence}”`) };
   }
-  // Keep both complete named-mode rules and the following reference to Puzzle Mode.
+  // Retain both named-mode rules and the following Puzzle Mode reference.
   const puzzle = 'In Puzzle Mode, the player must clear all the blocks in a preset block arrangement in a set number of moves.';
   const timed = 'Timed Mode challenges the player to score as many points as possible within a two-minute time limit.';
   const modeParagraph = ['Several different gameplay modes are included.', 'Story Mode pits the player against a series of computer-controlled opponents.',
@@ -914,8 +914,8 @@ export function corpusActionSelection(text: string, seed: number) {
       if (other === statement) return [];
       const action = /^(?:The player|From there, the player) must (.{3,180})\.$/.exec(other.sentence)?.[1];
       if (!action || /\b(?:must|unless|except|otherwise)\b|;/.test(action) || action === match[2]) return [];
-      // A preparatory duty needs an explicitly started battle as the other context.
-      // A later escape stage needs the immediately preceding invitation, not an unresolved "there".
+      // Require an explicitly started battle as the preparatory-duty context.
+      // Resolve the escape-stage location through the immediately preceding invitation.
       const before = match[1].startsWith('Before');
       const paragraphBreak = text.lastIndexOf('\n\n', other.evidence.start);
       const previous = sourceSentences.filter(part => part.index + part.segment.trimEnd().length <= other.evidence.start).at(-1);
@@ -954,7 +954,7 @@ export function corpusActionSelection(text: string, seed: number) {
   const actions = [...candidates, ...stages];
   return actions[seed % actions.length];
 }
-/** Collect only explicit first-person apartment codes in labelled dialogue. */
+/** Extract explicit first-person apartment codes from labelled dialogue. */
 function corpusApartmentFacts(text: string) {
   const facts = [...text.matchAll(/^([A-Z][a-z]{1,20}(?: [A-Z][a-z]{1,20})?):[ \t]+([^\n]+)/gm)].flatMap(turn =>
     [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(turn[2])].flatMap(sentence => {
@@ -971,12 +971,12 @@ export function corpusApartments(text: string, seed: number) {
   const facts = corpusApartmentFacts(text);
   if (facts.length < 2) return;
   const offset = seed % facts.length;
-  // Reserve one source fact for teaching when the minimum two scored rows remain.
+  // Reserve a teaching fact only when two scored rows remain.
   const selected = [...facts.slice(offset), ...facts.slice(0, offset)].slice(0, Math.min(4, Math.max(2, facts.length - 1)));
   return { rows: selected.map(({ label, answer }) => ({ label, answer, accepted: [answer] })),
     evidence: selected[0].evidence, otherEvidence: selected.slice(1).map(fact => fact.evidence) };
 }
-/** Extract a single explicitly printed year; do not infer dates or timelines. */
+/** Extract a printed year without inferring dates or chronology. */
 function corpusDateFacts(text: string) {
   if (!/\b(?:1[0-9]{3}|20[0-9]{2})\b/.test(text)) return [];
   const statements = sentenceSegments(text).flatMap(part => {
@@ -1000,14 +1000,14 @@ export function corpusDates(text: string, seed: number) {
   const facts = corpusDateFacts(text);
   if (facts.length < 2) return;
   const offset = seed % facts.length;
-  // Leave one unused fact for teaching where available; never manufacture a row.
+  // Reserve an unused teaching fact when available; never invent rows.
   const selected = [...facts.slice(offset), ...facts.slice(0, offset)].slice(0, Math.min(3, Math.max(2, facts.length - 1)));
   return { rows: selected.map(({ label, answer, accepted }) => ({ label, answer, accepted })),
     evidence: selected[0].evidence, otherEvidence: selected.slice(1).map(fact => fact.evidence) };
 }
 const malformedSourceMarker = /\[(?:["']|citation needed)|\[$/i;
 
-/** Draft source annotations supply meaning; alternatives remain exact source spans. */
+/** Use draft annotations for meaning and exact source spans for alternatives. */
 export function corpusEvidence(text: string, task: { prompt: string; evidenceText: string; explanation: string }, seed: number, excludeAlternative?: (text: string) => boolean) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_EVIDENCE');
   const start = text.indexOf(task.evidenceText);
@@ -1033,14 +1033,14 @@ export function corpusEvidence(text: string, task: { prompt: string; evidenceTex
   return { spans: shuffled, accepted: [shuffled.indexOf(target)], evidence: { start: target.start, end: target.end } };
 }
 
-/** Explicit wording only; this does not infer the author's unstated position. */
+/** Follow explicit wording without inferring the author's unstated position. */
 function corpusQualificationStatements(text: string) {
   const existing = corpusMarkedStatements(text, /\b(?:(?:is|are|was|were) (?:(?:thought|believed|likely) to|(?:thought|believed|suspected) that)|(?:appears?|seems?) to be|(?:may|might) have been)\b/i).filter(statement =>
-    // A counterfactual or a clipped quotation cannot become an unconditional source inference.
+    // Do not turn counterfactuals or clipped quotes into unconditional claims.
     !/^[\s_“"‘']*(?:Had|Were|If)\b/i.test(statement.evidenceText)
     && corpusBalancedQuotes(statement.evidenceText.replace(/\p{L}s['’](?=\s+\p{L})/gu, ''))
     && corpusBalancedQuotes(text.slice(0, statement.evidence.start).replace(/\p{L}s['’](?=\s+\p{L})/gu, '')));
-  // ponytail: two direct scientific-report prefixes with positive present-tense claims; wider or embedded reports need tested context parsing.
+  // shortcut: two affirmative present-tense report prefixes; test broader/embedded contexts before extending.
   const scientific = corpusMarkedStatements(text, /^(?:Scientists estimate that|Research suggests(?:, however,)? that)\b/).filter(statement => {
     const claim = statement.evidenceText.slice(statement.cue.length).trim();
     return /^[A-Za-z][^.!?;:"“”()[\]]+\b(?:is|are|comes|come) [a-z][^.!?]+\.$/.test(claim)
@@ -1052,7 +1052,7 @@ function corpusQualificationStatements(text: string) {
   return [...existing, ...scientific];
 }
 function corpusMarkedStatements(text: string, cue: RegExp, maxLength = 240) {
-  // A sentence-initial cue may occur later in the full passage.
+  // Sentence-initial cues may occur mid-passage.
   if (!new RegExp(cue.source.replace(/^\^/, ''), cue.flags).test(text)) return [];
   return sentenceSegments(text).flatMap(part => {
     const evidenceText = part.segment.trim(), match = cue.exec(evidenceText);
@@ -1063,7 +1063,7 @@ function corpusMarkedStatements(text: string, cue: RegExp, maxLength = 240) {
 }
 export function corpusQualification(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_QUALIFICATION');
-  // ponytail: explicit lexical exclusions; contextual ambiguity still requires source/task review.
+  // shortcut: lexical exclusions only; review contextual ambiguity before admitting tasks.
   const uncertain = /\b(?:may|might|could|would|can|perhaps|maybe|possib\w*|probab\w*|potential\w*|presum\w*|apparently|plausib\w*|tentativ\w*|likely|seem\w*|appear\w*|suggest\w*|believ\w*|thought|alleg\w*|estimat\w*|report\w*|uncertain|unclear|unknown|debate|disput\w*|controvers\w*|assum\w*|hypothes\w*|speculat\w*|suspect\w*)\b/i;
   const candidates = corpusQualificationStatements(text).flatMap(({ evidenceText, cue }) => {
     const task = { prompt: qualificationPrompt, evidenceText,
@@ -1076,9 +1076,9 @@ export function corpusQualification(text: string, seed: number) {
 
 export const conditionPrompt = 'Which sentence states a required condition for an action or outcome?';
 
-/** Preserve a complete necessary-condition statement; never turn it into sufficient permission. */
+/** Preserve necessary conditions without turning them into sufficient permission. */
 function corpusConditionStatements(text: string) {
-  // ponytail: explicit recipient restrictions and two affirmative purpose/must-passive constructions; broader necessities need tested context parsing.
+  // shortcut: recipient restrictions and two purpose/must-passive forms; test broader necessity parsing before extending.
   const existing = corpusMarkedStatements(text, /\bonly (?:if|when)\b|\b(?:is|are|was|were) (?:only (?:issued|given|granted) to|(?:issued|given|granted) only to|open only to)\b/i).filter(statement =>
     !/\bif and only if\b/i.test(statement.evidenceText)
     && !/^[“"‘']\s*Only if\b/i.test(statement.evidenceText)
@@ -1091,7 +1091,7 @@ function corpusConditionStatements(text: string) {
     && /[.!]$/.test(statement.evidenceText.replace(/[”"]$/, ''))
     && (statement.evidenceText.match(/"/g)?.length ?? 0) % 2 === 0
     && (statement.evidenceText.match(/“/g)?.length ?? 0) === (statement.evidenceText.match(/”/g)?.length ?? 0)
-    // A passage-initial reference cannot invent the context omitted by extraction.
+    // Do not invent missing context for passage-initial references.
     && (text.slice(0, statement.evidence.start).trim().length > 0 || !/^[“"‘']?(?:And )?(?:Only (?:if|when) )?(?:he|him|his|she|her|hers|they|them|their|it|its)\b|^.{0,80}\b(?:this|these|those)\b/i.test(statement.evidenceText)));
   const purpose = corpusMarkedStatements(text, /\bmust be (?:pushed through|designed with enough strength to withstand)\b/).filter(statement => {
     const sentence = statement.evidenceText;
@@ -1100,7 +1100,7 @@ function corpusConditionStatements(text: string) {
       || !corpusBalancedQuotes(text.slice(0, statement.evidence.start).replace(/\p{L}s['’](?=\s+\p{L})/gu, ''))) return false;
     const referent = sentence.match(/\bthese ([a-z]+)\.$/)?.[1];
     const previous = sentenceSegments(text.slice(0, statement.evidence.start)).at(-1)?.segment.trim() ?? '';
-    // ponytail: “these” requires one affirmative rotation statement and noun match; this is not general reference resolution.
+    // shortcut: "these" needs an affirmative rotation antecedent and noun match; review broader references before extending.
     return !referent || /^(?:In flight, )?[Tt]he [a-z]+(?: [a-z]+){0,3} rotates [^.!?]+\.$/.test(previous)
       && !/\b(?:not|never|no|none|without|if|when|unless|whether|can|may|might|could|would|must|should|perhaps|apparently|probably|presumably|reportedly|allegedly|likely|seems?|appears?|suggests?|claims?|believes?|said|says|reports?)\b|n['’]t\b/i.test(previous)
       && !corpusQuoteMarkers(previous).length && new RegExp(`\\b${referent}\\b`).test(previous);
@@ -1124,7 +1124,7 @@ export function corpusCondition(text: string, seed: number) {
 }
 
 export const concessionPrompt = 'Which sentence uses “although” or “even though” to connect contrasting ideas?';
-/** Locate an explicit concession; interpretation of its relationship remains unscored. */
+/** Locate explicit concessions; leave relationship interpretation unscored. */
 export function corpusConcession(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_CONCESSION');
   const candidates = corpusMarkedStatements(text, /\b(?:although|even though)\b/i).filter(statement =>
@@ -1134,7 +1134,7 @@ export function corpusConcession(text: string, seed: number) {
         && (statement.evidenceText.match(/\b(?:although|even though)\b/gi)?.length ?? 0) === 1) && !/[\[\]]/.test(statement.evidenceText)
     && (statement.evidenceText.match(/"/g)?.length ?? 0) % 2 === 0
     && (statement.evidenceText.match(/“/g)?.length ?? 0) === (statement.evidenceText.match(/”/g)?.length ?? 0));
-  // ponytail: explicit cues only; postposed clauses require a comma, and contextual interpretation stays unscored.
+  // shortcut: explicit cues and comma-delimited postposed clauses; validate interpretation before scoring it.
   const contrasting = /\b(?:although|though|despite|however|but|yet|nevertheless|nonetheless|whereas|while|contrast|notwithstanding)\b/i;
   const tasks = candidates.flatMap(statement => {
     const explanation = 'The concessive cue connects two contrasting ideas. Keep both complete clauses, their time, attribution and qualifications; this does not establish the writer’s overall attitude or the truth of either claim.';
@@ -1145,7 +1145,7 @@ export function corpusConcession(text: string, seed: number) {
 }
 
 function corpusQuoteMarkers(value: string) {
-  // A decade plural such as 1980’s does not open or close a quotation.
+  // Decade plurals such as 1980's do not delimit quotes.
   return [...value.matchAll(/["“”‘]|(?<!\p{L})['’]|['’](?!\p{L})/gu)]
     .filter(match => !(/[’']/.test(match[0]) && /\b[12][0-9]{2}0$/.test(value.slice(0, match.index)) && /^s\b/.test(value.slice(match.index! + 1))))
     .map(match => match[0]);
@@ -1161,10 +1161,10 @@ function corpusBalancedQuotes(value: string) {
   }
   return closings.length === 0;
 }
-/** Interpret a complete polite request, preserving its action and speaker/listener direction. */
+/** Preserve complete polite requests and speaker/listener direction. */
 export function corpusPoliteRequest(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_POLITE_REQUEST');
-  // ponytail: four inspected dialogue/context frames only; other request forms need separate design validation.
+  // shortcut: four inspected request frames; validate other forms before extending.
   if (!corpusBalancedQuotes(text) || (text.match(/\bwould you (?:mind|kindly|please)\b/gi)?.length ?? 0) !== 1) return;
   const contextual = [...text.matchAll(/(?:^|\n\n)([^\n]+)(?=\n\n|$)/gu)].flatMap(match => {
     const turn = match[1], start = match.index + match[0].indexOf(turn), end = start + turn.length;
@@ -1221,16 +1221,16 @@ export function corpusPoliteRequest(text: string, seed: number) {
   return { ...statement, contextual: 'contextOptions' in statement, prompt: politeRequestPrompt, options: [...options.slice(offset), ...options.slice(0, offset)], answer: (3 - offset) % 3, explanations: [...explanations.slice(offset), ...explanations.slice(0, offset)] };
 }
 
-/** Preserve the source's temporal qualification and its event/participant scope. */
+/** Preserve temporal qualifications and their event/participant scope. */
 export function corpusQualifiedTiming(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_QUALIFIED_TIMING');
-  // ponytail: five inspected finite timing constructions only; new units, predicates and reference anchors need design validation.
+  // shortcut: five inspected timing forms; validate new units, predicates, and anchors before extending.
   const candidates = corpusMarkedStatements(text, /\b(?:an estimated|about the year|a journey of about|written in about|somewhere about)\b/, 400).flatMap(statement => {
     const sentence = statement.evidenceText;
     const journey = sentence.match(/^(The journey from our [a-z]+ to the metropolis was a journey of )about (two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty) hours\.$/);
     const writing = sentence.match(/^The first part of (“[A-Z][A-Za-z ]{1,59}”) was written in about (two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty) days—that is to say, from the beginning to about the middle of (January|February|March|April|May|June|July|August|September|October|November|December) ([1-9][0-9]{3})\.$/);
     const draft = sentence.match(/^_In the first place, the book \(it may be barely necessary to remind the reader\) was in its first shape written very early, somewhere about ([1-9][0-9]{3}), when Miss ([A-Z][a-z]+) was barely (twenty-one|twenty-two|twenty-three|twenty-four|twenty-five); though it was revised and finished at ([A-Z][a-z]+) some (ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty) years later, and was not published till ([1-9][0-9]{3}), only (two|three|four|five|six|seven|eight|nine|ten) years before her death\.$/);
-    // Only the tested work-title quotes are permitted; surrounding reported speech remains guarded.
+    // Admit only tested title quotes; retain guards on surrounding reported speech.
     if (corpusQuoteMarkers(writing ? sentence.replace(writing[1], '') : sentence).length || !corpusBalancedQuotes(text.slice(0, statement.evidence.start))) return [];
     const duration = sentence.match(/^It takes an estimated ([1-9][0-9]{0,2}(?:,[0-9]{3})*|[1-9][0-9]{0,5}) (years?) for (a parcel \(any given cubic meter\) of water) to (complete its journey along the belt)\.$/);
     const date = sentence.match(/^([A-Z][a-z]+) were much valued by ([A-Z][a-z]+(?: [A-Z][a-z]+){0,2}) in ([A-Z][a-z]+(?: [A-Z][a-z]+){0,2}), about the year ([1-9][0-9]{3}); (never less than [1-9][0-9]{0,2}(?:,[0-9]{3})* [a-z]+ were taken with the court)\.$/);
@@ -1252,7 +1252,7 @@ export function corpusQualifiedTiming(text: string, seed: number) {
       options = [sentence.replace(cue, cue.replace('about', 'approximately')), sentence.replace(cue, cue.replace('about', 'exactly')), journey ? sentence.replace('The journey', 'Every journey') : sentence.replace('The first part of', 'The whole of')];
     } else if (draft) {
       const paragraph = text.slice(0, statement.evidence.start).trimEnd().split('\n\n').at(-1);
-      // The complete inspected comparison names the book; an isolated “the book” is insufficient.
+      // Require the complete named-book comparison, not an isolated "the book".
       const anchor = paragraph?.match(/^_I suppose, however, that the majority of at least competent votes would, all things considered, be divided between_ Emma _and the present book; and perhaps the vulgar verdict \(if indeed a fondness for Miss ([A-Z][a-z]+) be not of itself a patent of exemption from any possible charge of vulgarity\) would go for_ Emma\. _It is the larger, the more varied, the more popular; the author had by the time of its composition seen rather more of the world, and had improved her general, though not her most peculiar and characteristic dialogue; such figures as Miss Bates, as the Eltons, cannot but unite the suffrages of everybody\. On the other hand, I, for my part, declare for_ ([A-Z][A-Za-z ]{1,59}) _unhesitatingly\. It seems to me the most perfect, the most characteristic, the most eminently quintessential of its author’s works; and for this contention in such narrow space as is permitted to me, I propose here to show cause\._$/);
       if (!anchor || anchor[1] !== draft[2] || anchor[2].trim() === 'Emma' || corpusQuoteMarkers(paragraph!).length) return [];
       const start = text.lastIndexOf(paragraph!, statement.evidence.start);
@@ -1276,7 +1276,7 @@ export function corpusQualifiedTiming(text: string, seed: number) {
     explanations: [...explanations.slice(offset), ...explanations.slice(0, offset)] };
 }
 
-/** Inspected “In contrast” sentences, each compared with its immediate previous claim. */
+/** Compare each inspected "In contrast" sentence with its preceding claim. */
 const explicitContrastFrames = [
   { previous: 'Prokaryotes are single-celled or colonial organisms that do not have membrane-bound nuclei.', sentence: 'In contrast, the cells of eukaryotes do have membrane-bound organelles and a membrane-bound nucleus.' },
   { previous: 'The U.S. also has an individualistic culture, meaning people place a high value on individuality and independence.', sentence: 'In contrast, many other cultures are collectivist, meaning the welfare of the group takes priority over that of the individual.' },
@@ -1410,10 +1410,10 @@ export function corpusExplicitContrast(text: string, seed: number) {
     explanations: [...explanations.slice(offset), ...explanations.slice(0, offset)] };
 }
 
-/** Compare an asserted concession with an added causal explanation, retaining its explicit antecedent. */
+/** Keep the explicit antecedent when comparing concessions and causal explanations. */
 export function corpusConcessiveRelation(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_CONCESSIVE_RELATION');
-  // ponytail: two inspected adjacent-reference constructions only; broader concession/coreference forms need separate design checks.
+  // shortcut: two adjacent-reference forms; validate broader concession/coreference before extending.
   const candidates = corpusMarkedStatements(text, /\balthough\b/).flatMap(statement => {
     const sentence = statement.evidenceText, preceding = sentenceSegments(text.slice(0, statement.evidence.start));
     const parts = preceding.map(part => ({ text: part.segment.trim(), start: part.index + part.segment.indexOf(part.segment.trim()) }));
@@ -1446,7 +1446,7 @@ export function corpusConcessiveRelation(text: string, seed: number) {
     explanations: [...explanations.slice(offset), ...explanations.slice(0, offset)] };
 }
 
-/** Preserve denial of a guarantee, without converting it into guaranteed occurrence or non-occurrence. */
+/** Preserve denied guarantees without asserting either outcome. */
 export function corpusNegatedNecessity(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_NEGATED_NECESSITY');
   const frames = [
@@ -1484,7 +1484,7 @@ export function corpusNegatedNecessity(text: string, seed: number) {
     { source: 'does not necessarily signal', faithful: 'is not guaranteed to signal', negative: 'necessarily does not signal', positive: 'necessarily does signal', sentence: 'Military brilliance does not necessarily signal political skill, however, and neither Bolívar’s fledgling dream of a representative republican system nor his ideal of pan-American unity were shared by others in the region.' },
     { source: 'is not necessarily required', faithful: 'is not guaranteed to be required', negative: 'is necessarily not required', positive: 'is necessarily required', sentence: 'We wrote this article because we wanted kids to know that their brains need to experience lots of different things to grow and develop in the best possible way, and, having lots of money is not necessarily required for brain development.' },
   ];
-  // ponytail: two inspected abstract relation constructions, plus thirty-one exact prepared sentences; this is not a general modal or coreference parser.
+  // shortcut: two relation forms and 31 prepared sentences; validate general modality/coreference before extending.
   const candidates = corpusMarkedStatements(text, /\b(?:does not necessarily (?:convey|mean|correlate|increase|equate|imply|involve|stand|diminish|indicate|occasion|assess|ensure|lead|signal)|is not necessarily (?:connected|attached|concerned|limited|exactly|bad|true|required|an|a|the))\b/).filter(statement => {
     const sentence = statement.evidenceText;
     const preceding = text.slice(0, statement.evidence.start).replace(/\p{L}s['’](?=\s+\p{L})/gu, '');
@@ -1495,7 +1495,7 @@ export function corpusNegatedNecessity(text: string, seed: number) {
     const connected = /^(?:These cases anyhow show that )?[Vv]ariation is not necessarily connected(?:, as some authors have supposed,)? with [a-z]+(?: [a-z]+){0,6}\.$/.test(sentence);
     const exact = frames.some(frame => 'sentence' in frame && frame.sentence === sentence && frame.source === statement.cue);
     if (!convey && !connected && !exact) return false;
-    // The allowed may/perhaps clause and embedded attribution are retained, not removed to fit an unrestricted predicate.
+    // Retain allowed may/perhaps clauses and attribution without broadening predicates.
     const relation = sentence.slice(sentence.indexOf(statement.cue) + statement.cue.length).replace(', as some authors have supposed,', '');
     if (/\b(?:not|never|no|none|without|if|unless|whether|may|might|could|would|must|need|denied|fails?|failed|necessarily|always|perhaps|probably)\b/i.test(relation)) return false;
     return !/^(?:His|Her|Their|These)\b/.test(sentence) || preceding.trim().length > 0;
@@ -1515,10 +1515,10 @@ export function corpusNegatedNecessity(text: string, seed: number) {
     explanations: [...explanations.slice(offset), ...explanations.slice(0, offset)] };
 }
 
-/** Compare the direction of an explicitly stated development-to-result relation. */
+/** Compare the stated direction from development to result. */
 export function corpusOutcome(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_OUTCOME');
-  // shortcut: two complete inspected narrative scopes; no general pronoun or caused parser.
+  // shortcut: two inspected narratives; validate general pronoun/causation parsing before extending.
   if (text === "His quickness and zeal caused him to be used as a messenger, and he was continually passing back and forth among the Confederate leaders in Charleston. He also came into contact with the Union officers in Fort Sumter. The relations of the town and the garrison were yet on a friendly basis.") {
     const sentence = "His quickness and zeal caused him to be used as a messenger, and he was continually passing back and forth among the Confederate leaders in Charleston.", start = text.indexOf(sentence), offset = seed % 3;
     const options = [' resulted in him being ', ' resulted from him being ', ' did not result in him being '].map(wording => sentence.replace(' caused him to be ', wording));
@@ -1539,7 +1539,7 @@ export function corpusOutcome(text: string, seed: number) {
     const preceding = sentenceSegments(text.slice(0, start)).slice(-2);
     if (preceding.length !== 2) return;
     const [first, second] = preceding.map(part => part.segment.trim());
-    // ponytail: the inspected two-sentence civilization anchor only; lexical matching is not general coreference resolution.
+    // shortcut: one two-sentence civilization anchor; review broader coreference before extending.
     if (!/^Historians studying the ancient period examine the emergence of the first major civilizations in regions such as [A-Z][A-Za-z, ]{10,110}, beginning approximately [1-9][0-9]{3} BCE in some regions\.$/.test(first)
       || second !== 'The new social, economic, and political complexities necessitated the development of writing systems.'
       || /\b(?:if|unless|may|might|could|would|not|never|no|none|said|claimed|supposed)\b/i.test(first)
@@ -1548,7 +1548,7 @@ export function corpusOutcome(text: string, seed: number) {
     const anchorEnd = preceding[1].index + preceding[1].segment.indexOf(second) + second.length;
     return { start: anchorStart, end: anchorEnd };
   };
-  // ponytail: four inspected finite-event constructions and event-result heads; no general verb or reference parser.
+  // shortcut: four finite-event forms and result heads; validate broader verb/reference parsing before extending.
   const candidates = corpusMarkedStatements(text, /, (?:leading to|resulting in) /).filter(statement => {
     const sentence = statement.evidenceText;
     if (!sentence.endsWith('.') || /[:;()[\]?!]|\.{2}/.test(sentence)
@@ -1561,7 +1561,7 @@ export function corpusOutcome(text: string, seed: number) {
     const references = civilizations ? main.replace('these civilizations', 'civilizations') + ' ' + outcome : main + ' ' + outcome;
     if (/\b(?:it|its|this|that|these|those|he|him|his|she|her|they|them|their)\b/i.test(references)
       || civilizations && !civilizationAnchor(statement.evidence.start)) return false;
-    // Definite event nouns are retained literally; this does not resolve or invent an omitted discovery/date/name.
+    // Retain definite event nouns without inventing omitted discoveries, dates, or names.
     const news = /^News of the [a-z]+(?: [a-z]+){0,3} (?:soon )?spread$/.test(main)
       && !/\b(?:has|have|had|do|does|did|is|are|was|were|be|been)\b/.test(main);
     const sequence = /^The [a-z]+(?: [a-z]+){0,2} was followed by (?:a|an|the) [a-z]+(?: [a-z]+){0,3} and (?:an? |the )?[a-z]+(?: [a-z]+){0,3}$/.test(main);
@@ -1573,7 +1573,7 @@ export function corpusOutcome(text: string, seed: number) {
     const socialDevelopment = civilizations && outcome === 'urbanization, the establishment of trade networks, and the emergence of regional empires';
     return proliferation || destruction || arrivals || socialDevelopment;
   });
-  // The complete Ireland/vole sentence retains its colon and explicit overlap restriction.
+  // Preserve the complete Ireland/vole sentence, its colon, and overlap restriction.
   candidates.push(...corpusMarkedStatements(text, / led to /).filter(statement => statement.evidenceText === "In Ireland, the accidental introduction of the bank vole in the 1950s led to a major shift in the barn owl's diet: where their ranges overlap, the vole is now by far the largest prey item."
     && corpusBalancedQuotes(text.slice(0, statement.evidence.start))));
   const statement = candidates[seed % candidates.length];
@@ -1594,7 +1594,7 @@ export function corpusOutcome(text: string, seed: number) {
     explanations: [...explanations.slice(offset), ...explanations.slice(0, offset)] };
 }
 
-/** Distinguish an asserted event from an explicitly tentative explanation, not from verified facts. */
+/** Separate asserted events from tentative explanations without claiming verified truth. */
 export function corpusQualifiedCause(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_QUALIFIED_CAUSE');
   const finiteEvent = /\b(?:[A-Z][a-z]+(?: [A-Z][a-z]+){0,2}|The [a-z]+(?: [a-z]+){0,3}) (?:never )?(?:stopped|halted|closed|failed|withdrew|retired|returned|lost|ended|cancelled|canceled|sent)\b/;
@@ -1607,9 +1607,9 @@ export function corpusQualifiedCause(text: string, seed: number) {
     if (!sentence.endsWith('.') || /["“”‘:;()[\]?!]/.test(sentence) || /['’]/.test(sentence.replace(/\b[a-z]+['’][a-z]+\b/gi, '')) || /^(?:I|You|We|He|She|They|It|This|That|These|Those|His|Her|Their|Its|There)\b/.test(sentence)) return false;
     const paragraphStart = text.lastIndexOf('\n\n', statement.evidence.start);
     const context = text.slice(paragraphStart < 0 ? 0 : paragraphStart + 2, statement.evidence.start);
-    // Only the inspected complete owl scope, retaining place, population and the concession.
+    // Retain the full inspected owl scope, place, population, and concession.
     if (text === "Like most owls, the barn owl is nocturnal, relying on its acute sense of hearing when hunting in complete darkness. It often becomes active shortly before dusk but can sometimes be seen during the day when relocating from one roosting site to another. In Britain, on various Pacific Islands, and perhaps elsewhere, it sometimes hunts by day. The owl's daylight hunting may depend on whether it can avoid being mobbed by other birds during that time. In Britain, some birds continue to hunt by day—even when mobbed by such birds as magpies, rooks, and black-headed gulls—possibly because the previous night has been wet, making night hunting difficult. By contrast, in southern Europe and the tropics, the birds seem to be almost exclusively nocturnal, with the few birds that hunt by day being severely mobbed." && sentence === "In Britain, some birds continue to hunt by day—even when mobbed by such birds as magpies, rooks, and black-headed gulls—possibly because the previous night has been wet, making night hunting difficult.") return true;
-    // These anaphoric observations require their inspected local antecedents.
+    // Require the inspected local antecedents for these observations.
     if (/^After [1-9][0-9]{3} CE, however, this civilization declined—possibly because the area became unable to support the large population\.$/.test(sentence)
       && /At its height in about [1-9][0-9]{3} CE, this five-square-mile city, now called Cahokia, was home to more than ten thousand residents; tens of thousands more lived on farms surrounding the urban center\./.test(context)
       && context.endsWith('Cahokia was the hub of political and trading activities along the Mississippi River. ')) return true;
@@ -1618,7 +1618,7 @@ export function corpusQualifiedCause(text: string, seed: number) {
       && earlier[0] === 'Then, newer tick research resulted in the development of the first anti-tick vaccine to reach the market (TickGARD).'
       && earlier[1] === 'This vaccine used a gut protein (named Bm86) from a type of cattle tick to help the host’s immune system recognize the threat [4].'
       && earlier[2] === 'Interestingly, this vaccine can also protect against some other tick species.') return true;
-    // Explicit past observations; uncertainty stays in the following or preceding cause clause.
+    // Keep uncertainty in the cause clause, separate from past observations.
     if ((/^The (?:trees|plants|seedlings) (?:inside|outside) the [a-z]+ were growing (?:more|less) slowly, (?:probably|possibly) because they (?:are|were) (?:bigger|smaller|older|younger)\.$/.test(sentence)
       || /^Possibly due to its [a-z]+(?: [a-z]+){0,5} motion, the storm became disorganized and weakened\.$/.test(sentence))
       && !/\b(?:not|never|no|without|reported|reportedly|allegedly|according|if|unless|except|whether|may|might|could|would|should|must)\b/i.test(sentence)) return true;
@@ -1627,11 +1627,11 @@ export function corpusQualifiedCause(text: string, seed: number) {
     if (!inset && !trailing) return false;
     const primary = (inset ?? trailing)![1];
     const eventMatch = finiteEvent.exec(primary);
-    // Narrow past-tense statements only; an embedded report or disputed claim is not an asserted event.
+    // Admit narrow past assertions; exclude embedded reports and disputed claims.
     if (!eventMatch || eventMatch.index > 0 && !/^The [a-z]+(?: [a-z]+){0,3} (?:was|were) [^.!?;]+, but $/.test(primary.slice(0, eventMatch.index))
       || /\b(?:reports?|reported|says?|said|claims?|claimed|suggested|thought|that|denies|denied|denial|doubts?|doubted|disputed|challenged|rejected|wondered|pretended|according to)\b/i.test(primary) || modalOrHypothesis.test(primary) || /\b(?:possibly|possible|apparently|because|due to)\b/i.test(primary)) return false;
     if (inset) {
-      // ponytail: only the inspected stoppage-with-fault construction establishes this inset as a proposed cause.
+      // shortcut: one inspected stoppage/fault form; review other proposed-cause contexts before extending.
       if (!/\b(?:stopped|halted)\b[^.!?;–—]*\bwith (?:an? |the )[a-z ]*\b(?:issue|fault|problem)$/.test(primary) || inset[2] !== 'a short circuit') return false;
       if (!nounPhrase.test(inset[2]) || !nounPhrase.test(inset[3]) || !/^ to [a-z]+(?: [a-z0-9'-]+)*\.$/.test(inset[4]) || modalOrHypothesis.test(inset[4]) || /\b(?:stopped|halted|closed|failed|withdrew|retired|returned|lost|ended|cancelled|canceled|sent)\b/i.test(inset[4])) return false;
       if ((sentence.match(/[–—]/g)?.length ?? 0) !== 2 || /\b(?:possibly|possible|apparently)\b/i.test(inset[4])) return false;
@@ -1664,16 +1664,16 @@ export function corpusQualifiedCause(text: string, seed: number) {
 }
 
 export const assignmentPrompt = 'Which sentence explicitly states an assigned task?';
-/** Locate an explicit assignment; do not infer a general duty from causal responsibility. */
+/** Extract explicit assignments without inferring duties from causal responsibility. */
 export function corpusAssignment(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_ASSIGNMENT');
-  // ponytail: inspected infinitive action verbs only; other verbs and unit postings need context review.
+  // shortcut: inspected infinitive action verbs; review other verbs and postings before extending.
   const candidates = corpusMarkedStatements(text, /\b(?:is|are|was|were) (?:tasked with|assigned to (?:build|compose|direct|keep|play|supervise)\b)/i).filter(statement =>
     !/\b(?:not|never|if|unless|might|would|could|should)\b/i.test(statement.evidenceText)
     && /[.!]$/.test(statement.evidenceText) && !/[\[\]]/.test(statement.evidenceText)
     && (statement.evidenceText.match(/"/g)?.length ?? 0) % 2 === 0
     && (statement.evidenceText.match(/“/g)?.length ?? 0) === (statement.evidenceText.match(/”/g)?.length ?? 0)
-    // Keep the new compose construction as an explicit assignment, outside embedded reports or quotations.
+    // Treat the compose form as an explicit assignment outside reports and quotes.
     && (!/\bassigned to compose\b/i.test(statement.cue) || (
       /^[A-Za-z]+(?: [A-Za-z]+){0,6}$/.test(statement.evidenceText.split(',')[0].split(/\b(?:is|are|was|were) assigned to compose\b/i)[0].trim())
       && !/\b(?:may|must|reports?|reported|reportedly|says?|said|claims?|claimed|denies|denied|argues?|argued|suggests?|suggested|believed|allegedly|supposedly|apparently|possibly|probably|seems?|appears?|according to|wrote that)\b/i.test(statement.evidenceText)
@@ -1690,17 +1690,17 @@ export function corpusAssignment(text: string, seed: number) {
 
 export const evaluationPrompt = 'Which sentence directly names a source and reports their praise or criticism?';
 function corpusEvaluationStatements(text: string) {
-  // A parenthetical year may sit between an inspected proper name and the evaluation verb. Initials and generic subjects stay out.
+  // Allow a year after inspected proper names; exclude initials and generic subjects.
   const generic = /^(?:I|You|We|He|She|They|It|Critics|Reviewers|Others|Some|Many|Both|The|These|Those|Players|Readers|Fans|Supporters|Opponents|Experts|Historians|Scholars|People|Observers|Students|Audiences|Journalists|Commentators|Scientists|Politicians|When|While|Although|After|Before|Once|Where|Who|What|How|Why|If|Unless|Since|Until|As|Then|Also|Meanwhile|However|Therefore|Furthermore|Moreover|Nevertheless)\b/;
   return corpusMarkedStatements(text, /^[A-Z][a-z]+(?: [A-Z][a-z]+){0,3}(?: \((?:19|20)\d{2}\))? (?:praised|criticized|criticised|commended|faulted)\b/)
     .filter(statement => !generic.test(statement.cue)
-      // Initials and abbreviations must not create a false new sentence inside a name.
+      // Do not split sentences inside initials or abbreviations.
       && !/\b[A-Z]\.\s+$/.test(text.slice(0, statement.evidence.start))
       && !/:\s*$/.test(statement.evidenceText)
       && (statement.evidenceText.match(/"/g)?.length ?? 0) % 2 === 0
       && (statement.evidenceText.match(/“/g)?.length ?? 0) === (statement.evidenceText.match(/”/g)?.length ?? 0));
 }
-/** Evidence can locate an explicit evaluation; interpretation of tone remains self-assessed. */
+/** Locate explicit evaluations; leave tone self-assessed. */
 export function corpusEvaluation(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_EVALUATION');
   const otherEvaluation = /\b(?:told|happy|unhappy|argu\w*|refut\w*|rebut\w*|disput\w*|contest\w*|contradict\w*|reject\w*|accus\w*|complain\w*|dismiss\w*|disturb\w*|demonstrat\w*|illustrat\w*|lack\w*|prais\w*|critic\w*|commend\w*|fault\w*|appreciat\w*|laud\w*|opin\w*|label\w*|remark\w*|applaud\w*|favour\w*|favor\w*|admir\w*|dislik\w*|loathe\w*|agree\w*|deemed|assess\w*|rated|warn\w*|condemn\w*|approv\w*|disapprov\w*|review\w*|positiv\w*|negativ\w*|excellent|poor|best|worst|good|bad|great|wonderful|liked|enjoyed|felt|called|described|considered|thought|found|wrote|stated|said|says|suggested|argued|reported|recommended|believed|according to)\b/i;
@@ -1720,7 +1720,7 @@ export function corpusEvaluation(text: string, seed: number) {
 
 const attributionPrompt = 'Which sentence explicitly attributes a claim to a named source?';
 function corpusAttributionStatements(text: string) {
-  // ponytail: explicit prefixes and full named that-reports only; a parenthetical year may sit on the name. Wider attribution needs context review.
+  // shortcut: explicit prefixes and named that-reports with optional years; review wider attribution before extending.
   const yearCitation = / \((?:19|20)\d{2}\)/;
   const according = corpusMarkedStatements(text, /^According to [A-Z][a-z]+(?: [A-Z][a-z]+){0,3}(?: \((?:19|20)\d{2}\))?,/)
     .filter(statement => !statement.evidenceText.replace(yearCitation, '').includes('[') && statement.evidenceText.slice(statement.cue.length).trim().split(/\s+/).length >= 5)
@@ -1735,11 +1735,11 @@ function corpusAttributionStatements(text: string) {
       const named = statement.cue.replace(/ [a-z]+ that$/, '');
       return { ...statement, name: named.replace(yearCitation, ''), claim: statement.evidenceText.slice(named.length + 1) };
     }).filter(statement => statement.claim.length <= 240 && statement.evidenceText.slice(statement.cue.length).trim().split(/\s+/).length >= 5) : [];
-  // One inspected narrated identification: retain both antecedent sentences and the complete quoted claim/speaker.
+  // Retain both antecedent sentences and the full inspected claim/speaker.
   const postposed = text === "As he got nearer to the ground, he saw the figure of a lad riding a bicycle along the country highway. Something about the figure struck Tom as being familiar, and he recognized the cyclist a moment later. “It's Andy Foger!” said Tom, in a whisper."
     ? [{ evidenceText: "“It's Andy Foger!” said Tom, in a whisper.", cue: 'said Tom', name: 'Tom', claim: "It's Andy Foger!",
       evidence: { start: text.indexOf('“'), end: text.length } }] : [];
-  // shortcut: exact inspected complete narrated claims only; wider speech needs source-context review.
+  // shortcut: complete inspected narrated claims; review broader speech contexts before extending.
   if (text === "The wind, to which they were sailing very close, was westerly, and it bore to their ears a booming sound which in less experienced ears might have passed for the breaking of surf upon a lee shore. “Guns!” said Pitt, who stood with Blood upon the quarter-deck. Blood nodded, listening.") postposed.push({ evidenceText: "“Guns!” said Pitt, who stood with Blood upon the quarter-deck.", cue: "said Pitt", name: "Pitt", claim: "“Guns!” said Pitt, who stood with Blood upon the quarter-deck.", evidence: { start: text.indexOf("“Guns!” said Pitt, who stood with Blood upon the quarter-deck."), end: text.indexOf("“Guns!” said Pitt, who stood with Blood upon the quarter-deck.") + 62 } });
   if (text === "Robert was beginning to unroll the carpet, but the others stopped him, imploring him not to waste a wish. ‘We asked the carpet to take us where we could get Indian things for bazaars,’ said Anthea, ‘and it will.’ Her faith was justified.") postposed.push({ evidenceText: "‘We asked the carpet to take us where we could get Indian things for bazaars,’ said Anthea, ‘and it will.’", cue: "said Anthea", name: "Anthea", claim: "‘We asked the carpet to take us where we could get Indian things for bazaars,’ said Anthea, ‘and it will.’", evidence: { start: text.indexOf("‘We asked the carpet to take us where we could get Indian things for bazaars,’ said Anthea, ‘and it will.’"), end: text.indexOf("‘We asked the carpet to take us where we could get Indian things for bazaars,’ said Anthea, ‘and it will.’") + 106 } });
   return [...according, ...reports, ...postposed];
@@ -1757,9 +1757,9 @@ export function corpusAttribution(text: string, seed: number) {
 
 export const attributionMatchingPrompt = 'Match each claim to the source named in the passage.';
 
-/** Preserve two inspected complete dialogue-claim pairs without inferring factual truth. */
+/** Preserve both inspected dialogue/claim pairs without inferring truth. */
 function corpusDialogueClaims(text: string) {
-  // ponytail: two inspected adjacent dialogue frames only; broader voices need context validation.
+  // shortcut: two adjacent-dialogue forms; validate broader voices before extending.
   if (!corpusBalancedQuotes(text)) return [];
   return [...text.matchAll(/(?:^|\n\n)([^\n]+)(?=\n\n|$)/gu)].flatMap(match => {
     const turn = match[1], start = match.index + match[0].indexOf(turn), end = start + turn.length;
@@ -1783,7 +1783,7 @@ function corpusDialogueClaims(text: string) {
   });
 }
 
-/** Match exact explicitly attributed wording; never infer agreement, truth or tone. */
+/** Match exact attributed wording without inferring agreement, truth, or tone. */
 export function corpusAttributionPairs(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_ATTRIBUTION_PAIRS');
   const statements = [...corpusAttributionStatements(text), ...corpusDialogueClaims(text)];
@@ -1799,13 +1799,13 @@ export function corpusAttributionPairs(text: string, seed: number) {
     otherEvidence: [ordered[1].evidence] };
 }
 
-/** Open comparison preserves attribution without assuming disagreement or a tone label. */
+/** Preserve attribution in open comparisons without assuming disagreement or tone. */
 export function corpusViewpoints(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || text.length > 12000) throw new Error('INVALID_CORPUS_VIEWPOINTS');
   const statements = [...corpusAttributionStatements(text), ...corpusDialogueClaims(text)];
   const first = statements[seed % statements.length];
   if (!first) return;
-  // ponytail: reject shared surnames conservatively; contextual name resolution needs reviewed metadata.
+  // shortcut: reject shared surnames; add reviewed metadata before broader name resolution.
   const others = statements.filter(statement => statement.name.split(' ').at(-1) !== first.name.split(' ').at(-1));
   const second = others[seed % others.length];
   if (!second) return;
@@ -1838,7 +1838,7 @@ export function corpusDefaultFocus(seed: number, candidateCount: number, startin
   const cycle = startingPoint === 'A1' ? [...beginnerFocus, ['matching', `matching:${peopleMatchingPrompt}`] as const, ['choice', 'choice:stated-location'] as const, ['choice', 'choice:basic-instruction'] as const, ['choice', 'choice:small-quantity'] as const, ['choice', 'choice:detail-verification'] as const, ['choice', 'choice:stated-time'] as const] : startingPoint === 'A2'
     ? [...beginnerFocus, ['choice', 'choice:stated-origin'] as const, ['choice', 'choice:planned-order'] as const, ['choice', 'choice:personal-need'] as const, ['choice', 'choice:personal-preference'] as const, ['choice', 'choice:personal-update'] as const, ['choice', 'choice:personal-reason'] as const, ['choice', 'choice:personal-rule'] as const, ['choice', 'choice:personal-integration'] as const]
     : startingPoint === 'B1' ? b1Focus : startingPoint === 'C1' ? c1Focus : startingPoint === 'C2' ? c2Focus : isAdvanced(startingPoint) ? advancedFocus : startingPoint === 'B2' ? b2Focus : defaultFocus;
-  // Balance question kinds first; additional semantic subtypes must not increase a kind's share.
+  // Balance question kinds before semantic subtypes to preserve kind shares.
   const phase = Math.floor(seed / Math.max(1, candidateCount));
   const kinds = [...new Set(cycle.map(([kind]) => kind))];
   const operations = cycle.filter(([kind]) => kind === kinds[phase % kinds.length]);
@@ -1873,7 +1873,7 @@ function corpusCanFocus(passage: Corpus['records'][number]['passages'][number], 
     : preferred === 'table' ? beginner ? !!corpusApartments(passage.text, value) : !!corpusDates(passage.text, value) : false);
 }
 
-/** Generate one source-bound material; practice adds its separate application afterwards. */
+/** Generate one source-bound material before adding its separate application. */
 export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeof selectCorpusPassage>>, seed: number, startingPoint?: z.infer<typeof levelSchema>, preferred?: CorpusQuestionKind, preferredOperation?: string, attributionCycle = 1, includeResponse = true): Lesson['materials'][number] | undefined {
   if (preferredOperation === indirectStanceOperation && (startingPoint !== 'C1' || !indirectStanceScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
   if (preferredOperation === argumentBoundariesOperation && (startingPoint !== 'C1' || !argumentBoundariesScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
@@ -1913,7 +1913,7 @@ export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeo
   }
   const restoration = corpusRestoration(passage.text, seed, passage.language, beginner);
   const reference = !beginner && !passage.task && requested === 'choice' && preferredOperation === 'choice:reference' ? startingPoint === 'B1' ? corpusB1Reference(passage.text, seed) ?? corpusReference(passage.text, seed) : corpusReference(passage.text, seed) : undefined;
-  // Cycle beginner operations independently of the remaining source count.
+  // Cycle beginner operations independently of source count.
   const operation = Math.floor(seed / attributionCycle) % (startingPoint === 'A2' ? 9 : 8);
   const cycle = isAdvanced(startingPoint) ? advancedFocus : startingPoint === 'B2' ? b2Focus : defaultFocus;
   const defaultOperation = Math.floor(seed / attributionCycle) % cycle.length;
@@ -2188,9 +2188,9 @@ export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeo
   ] };
 }
 
-/** Ordinary material selection and generation; fresh sessions apply the source quota below. */
+/** Apply the session source quota after ordinary material selection and generation. */
 function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
-  // Derived application seeds wrap at the same32-bit boundary as the public seed.
+  // Wrap application seeds at the public seed's 32-bit boundary.
   const nextSeed = (seed + 1) >>> 0;
   const beginner = startingPoint === 'A1' || startingPoint === 'A2';
   if (['choice:main-point', 'choice:condition-outcome', 'choice:narrative-motive', 'choice:specific-intention', 'choice:procedural-plan'].includes(focusOperation ?? '') && startingPoint !== 'B1') return;
@@ -2220,11 +2220,11 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   }) })) });
   const eligible = eligibleFor(corpus);
   const canFocus = (passage: Corpus['records'][number]['passages'][number], value: number, preferred = focus, preferredOperation = focusOperation) => corpusCanFocus(passage, value, startingPoint, preferred, preferredOperation);
-  // Separate this operation cycle from passage selection so every candidate remains reachable.
+  // Cycle operations separately from passages so all candidates remain reachable.
   const attributionCycle = Math.max(1, eligible.records.reduce((count, source) => count + source.passages.length, 0));
   const referenceRoots = new Set(eligible.records.filter(source => source.passages.some(passage => admittedLongText(passage.text))).map(source => source.rootId));
   let rotation = !focus ? corpusDefaultFocus(seed, attributionCycle, startingPoint) : undefined;
-  // Keep the established matching rotation when this collection cannot teach the new operation on two originals.
+  // Preserve matching rotation when fewer than two originals support the new operation.
   if (startingPoint === 'B2' && rotation?.[0] === 'matching'
     && new Set(eligible.records.filter(source => source.passages.some(passage => canFocus(passage, seed, 'matching', claimExampleOperation))).map(source => source.rootId)).size < 2)
     rotation = corpusDefaultFocus(seed, attributionCycle);
@@ -2270,7 +2270,7 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   if (!taught) return;
   const taughtOperation = corpusOperation(taught.questions[0]);
   let target: CorpusQuestionKind | undefined = 'kind' in taught.questions[0] ? taught.questions[0].kind !== 'response' && taught.questions[0].kind !== 'gap-fill' ? taught.questions[0].kind : undefined : 'choice';
-  // Keep the primary teaching source; validated installed texts may supply its application.
+  // Preserve the teaching source; use validated installed text for applications.
   const applicationEligible = applicationCorpus ? eligibleFor({ ...applicationCorpus, records: [...new Map([...applicationCorpus.records, ...corpus.records].map(source => [source.rootId, source])).values()] }) : eligible;
   const firstRoot = corpusMaterialRoot(first.source, first.passage);
   const textKey = (text: string) => text.normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -2314,13 +2314,7 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   }), startingPoint);
 }
 
-/**
- * A complete ordinary session determines availability. With Wikiquote present,
- * reserve four independent low seed bits for its session quota: every group of
- * sixteen seeds has the same ordinary generation seed and success conditions.
- * Only slot zero may replace the application, so even conditional on success a
- * uniform random seed gives at most one Wikiquote session in sixteen.
- */
+/** Reserve four low seed bits for Wikiquote: each 16-seed group shares generation and eligibility; only slot zero may replace the application, keeping successful Wikiquote sessions at most 1/16 for uniform seeds. */
 export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
   const hasQuotes = startingPoint !== 'A1' && startingPoint !== 'A2' && [corpus, applicationCorpus].some(bank => bank?.records.some(source => source.passages.some(passage => passage.quoteProvenance)));
   if (!hasQuotes) return corpusCandidateLesson(corpus, seen, seed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus, includeResponse);
@@ -2355,7 +2349,7 @@ export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: nu
   return savedSeed;
 }
 
-/** Demonstrate the operation on unused source wording, never on a scored answer. */
+/** Teach with unused source wording, never a scored answer. */
 export function corpusWorkedExample(material: Lesson['materials'][number], seed: number, startingPoint?: z.infer<typeof levelSchema>, listening = false) {
   const question = material.questions[0];
   if (!('kind' in question) || (question.kind !== 'completion' && question.kind !== 'sequence' && question.kind !== 'table' && question.kind !== 'matching' && question.kind !== 'evidence')) return;
@@ -2469,7 +2463,7 @@ export function corpusWorkedExample(material: Lesson['materials'][number], seed:
     `示例：「${task.text}」 → 「${task.answer}」。${listening ? '說話者說' : '材料中寫著'}「${sentence}」。核對拼寫和詞尾。`);
 }
 
-/** Saved self-chosen support, separate from source difficulty and proficiency. */
+/** Keep chosen support separate from source difficulty and proficiency. */
 export function corpusStartingPoint(lesson: Lesson, startingPoint?: z.infer<typeof levelSchema>): Lesson {
   if (startingPoint) levelSchema.parse(startingPoint);
   if (!startingPoint && lesson.generation?.generator !== 'corpus-v1') return lesson;

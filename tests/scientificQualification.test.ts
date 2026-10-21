@@ -108,7 +108,7 @@ it('transfers the same scientific inference operation across the two real roots 
       expect(lesson).toEqual(before);
     }
   }
-  // The normal operation cycle must reach the same rule without a caller forcing focus.
+  // Reach the rule through ordinary rotation without forced focus.
   for (const seed of [28, 29, 100, 101]) {
     const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2')!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
@@ -203,7 +203,7 @@ it('teaches complete qualification interpretations without leaking assessed sent
     const tested = asTestLesson(lesson); expect(tested.teaching).toBeUndefined(); expect(tested.workedExample).toBeUndefined(); expect(tested.nextStep).toBeUndefined();
   }
   expect(fallbacks).toBeGreaterThan(0);
-  // Isolated unused-source regression fixture, never a distributed source or scored item.
+  // Keep unused-source regression fixtures outside distributed sources and scored items.
   const fixture = corpusLesson(bank, new Set(), 0, 300, 'B2', [], 'evidence', [], `evidence:${qualificationPrompt}`)!;
   const other = 'The harbour is thought to have opened after a flood.';
   fixture.materials[0].blocks[0].text += ' ' + other;

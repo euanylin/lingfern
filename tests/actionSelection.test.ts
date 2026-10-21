@@ -92,7 +92,7 @@ it('generates and routes actual source actions on two distinct roots without sco
   const history = corpusPracticeHistory([session], attempts, 'test', 'reading', 'all', 'B2');
   expect(history.focus).toMatchObject({ kind: 'choice', operation: 'choice:conditional-action', reason: 'reteach' });
   expect(history.independent).toBe(false);
-  // Unclassified old choices cannot acquire this semantic operation through their option shape alone.
+  // Do not infer semantic operations from legacy choice shapes.
   expect(corpusOperation({ ...lesson.materials[0].questions[0], prompt: 'An unrelated choice' })).toBeUndefined();
 });
 

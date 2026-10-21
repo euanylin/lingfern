@@ -36,7 +36,7 @@ reviewedAudioHolds(original,sentenceClips.records,audioReview);
 const heldAudioBytes=new Set(audioReview.records.map(entry=>entry.clipSha256));
 if(byRoot.size!==original.length)throw Error('DUPLICATE_ACQUIRED_ROOT');
 if(!process.argv.includes('--check'))await mkdir('public/source-packs',{recursive:true});
-// Preserve draft review status and source-specific licences; this is not editorial approval.
+// Preserve draft status and source licences without implying editorial approval.
 
 const topicTitles={campus:{'zh-Hans':'校园与教育','zh-Hant':'校園與教育',en:'Campus and education'},'daily-life':{'zh-Hans':'日常生活','zh-Hant':'日常生活',en:'Daily life'},science:{'zh-Hans':'科学','zh-Hant':'科學',en:'Science'},culture:{'zh-Hans':'文化与艺术','zh-Hant':'文化與藝術',en:'Culture and arts'},travel:{'zh-Hans':'旅行','zh-Hant':'旅行',en:'Travel'},technology:{'zh-Hans':'技术','zh-Hant':'技術',en:'Technology'},nature:{'zh-Hans':'自然','zh-Hant':'自然',en:'Nature'},environment:{'zh-Hans':'环境','zh-Hant':'環境',en:'Environment'},history:{'zh-Hans':'历史','zh-Hant':'歷史',en:'History'},literature:{'zh-Hans':'文学','zh-Hant':'文學',en:'Literature'},music:{'zh-Hans':'音乐','zh-Hant':'音樂',en:'Music'},film:{'zh-Hans':'影视与戏剧','zh-Hant':'影視與戲劇',en:'Film and theatre'},sport:{'zh-Hans':'体育','zh-Hant':'體育',en:'Sport'},health:{'zh-Hans':'健康','zh-Hant':'健康',en:'Health'},business:{'zh-Hans':'商业','zh-Hant':'商業',en:'Business'},society:{'zh-Hans':'社会','zh-Hant':'社會',en:'Society'},language:{'zh-Hans':'语言','zh-Hant':'語言',en:'Language'},food:{'zh-Hans':'饮食','zh-Hant':'飲食',en:'Food'}};
 const topicRecords=(await Promise.all(['source-topics','additional-topics','open-reading-topics'].map(async name=>JSON.parse(await readFile('content/corpus/'+name+'.json','utf8').catch(error=>{if(error.code==='ENOENT')return '{"version":1,"records":[]}';throw error;}))))).flatMap(metadata=>metadata.records);
@@ -101,8 +101,8 @@ for(const [skill,directory] of [['reading','private/corpus/spoken/reviewed-readi
   for(const record of safeAudio.records)topicInputs.push({skill,topic:classify(record),record,sources,media});
  }
 }
-// Keep the owning prepared Gutenberg bank consistent with its public shards.
-// Its exclusions are already counted by the public input pass below.
+// Keep the prepared Gutenberg bank aligned with public shards.
+// Count exclusions once through the public input pass below.
 const preparedGutenbergPath='content/corpus/gutenberg.json';
 const preparedGutenberg=JSON.parse(await readFile(preparedGutenbergPath,'utf8'));
 corpusSchema.parse(preparedGutenberg);
@@ -111,7 +111,7 @@ if(safePreparedGutenberg.excluded.length){
  if(process.argv.includes('--check'))throw Error('UNAVAILABLE_PREPARED_READING: '+preparedGutenbergPath);
  await writeFile(preparedGutenbergPath,JSON.stringify({...preparedGutenberg,records:safePreparedGutenberg.records})+'\n');
 }
-// Only explicit prepared public corpus files enter the new text directory.
+// Admit only explicit prepared public files into the text directory.
 const corpusNames=await readdir('public/corpus');
 const publicCorpusNames=['voa','gutenberg','additional','wikiquote','open-reading'].flatMap(family=>corpusNames.filter(name=>new RegExp(`^${family}(?:-[1-9]\\d*)?\\.json$`).test(name)).sort((a,b)=>Number(b===family+'.json')-Number(a===family+'.json')||a.localeCompare(b,'en',{numeric:true})).map(name=>name.slice(0,-5)));
 for(const name of publicCorpusNames) {
@@ -134,7 +134,7 @@ for(const name of publicCorpusNames) {
 }
 const readingExclusionJournal=excludedUnavailableReading.length?{scope:'Exact current-rule reading preparation exclusions only; raw source, originalText, daily quotes, earlier journals and saved learning retained.',excluded:excludedUnavailableReading}:JSON.parse(await readFile('private/corpus/unavailable-reading-exclusions.json','utf8').catch(error=>{if(error.code==='ENOENT')return '{"excluded":[]}';throw error;}));
 if(!process.argv.includes('--check')&&excludedUnavailableReading.length)await writeFile('private/corpus/unavailable-reading-exclusions.json',JSON.stringify(readingExclusionJournal,null,2)+'\n');
-// Three bounded derived windows augment the same original works, not new original recordings.
+// Add three bounded windows from existing works, without claiming new recordings.
 const shortListening=appendShortListening(topicInputs);
 for(const entry of topicInputs.filter(e=>e.skill==='listening')){
  const clips=entry.record.clips.filter(c=>shortListening.accepted.some(r=>r.id===c.id&&r.rootId===entry.record.rootId));
@@ -200,7 +200,7 @@ for(const pack of themed) {
 }
 if(JSON.stringify(coverageKeys(topicInputs))!==JSON.stringify(packedIdentities.sort()))throw Error('TOPIC_SERIALIZED_EXCERPT_COVERAGE');
 if(!process.argv.includes('--check'))await writeFile('private/corpus/theme-pack-coverage.json',JSON.stringify({verifiedAt:new Date().toISOString(),kind:'Exact source/excerpt/hash conservation; not rights/audio/level approval',inputEqualsSerializedOutput:true,identities:packedIdentities,excludedHeldAudio,packs:catalogue.map(pack=>({id:pack.id,sha256:pack.sha256,path:pack.path}))},null,2)+'\n');
-// Preserve the separately prepared, exact reviewed teaching windows during bulk regeneration.
+// Preserve exact independently prepared teaching windows during regeneration.
 const teachingPacks=JSON.parse(await readFile('content/corpus/teaching-source-packs.json','utf8'));
 if(teachingPacks.version!==1||!Array.isArray(teachingPacks.packs))throw Error('TEACHING_SOURCE_CATALOGUE');
 for(const entry of teachingPacks.packs){
@@ -209,7 +209,7 @@ for(const entry of teachingPacks.packs){
  if(bytes.length!==entry.bytes||pack.hash!==entry.sha256||pack.id!==entry.id||pack.lessons.length||!bank||bank.records.length!==entry.roots||bank.records.reduce((sum,record)=>sum+(record.passages??record.clips).length,0)!==(entry.passages??entry.clips))throw Error('TEACHING_SOURCE_PACK');
  catalogue.push(entry);
 }
-// Delete replaced generated outputs; recovery points are managed by the project backup chain.
+// Replace generated outputs only; manage recovery through the backup chain.
 const obsoleteThemes=previousCatalogue.packs.filter(entry=>/^(?:reading|listening)-[a-z-]+-[a-f0-9]{12}$/.test(entry.id)&&!catalogue.some(current=>current.sha256===entry.sha256));
 const retainedPath='content/corpus/retained-listening-packs.json';
 const retained=JSON.parse(await readFile(retainedPath,'utf8'));

@@ -1,10 +1,10 @@
 import sources from '../../public/audio/b1-speech/PROCEDURE.json';
 import { proceduralPlanPrompt, proceduralPlanSupport } from './corpusProceduralPlan';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
-/** Preserve repetition/exit conditions, stage order and overlapping actions in complete recorded stages. */
+/** Preserve repetition, exit conditions, stage order, and overlapping recorded actions. */
 export function heardProceduralPlan(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||seed>0xffffffff||text.length>12000)throw new Error('INVALID_HEARD_PROCEDURAL_PLAN');
- // shortcut: two inspected whole procedural utterances only; review complete stages and missing context before extending.
+ // shortcut: two whole procedures; review full stages and missing context before extending.
  if(!sources.some(s=>s.text===text))return;
  const fish=text.startsWith('Butter a baking-dish');
  const action=fish?text.match(/Butter a baking-dish, put in a layer of fish, cover with sauce, season with grated nutmeg, and (repeat until the dish is full)\./):text.match(/Put (a little bag of mixed spices), such as are used in making pickles, on to cook with (the fowl)\./);

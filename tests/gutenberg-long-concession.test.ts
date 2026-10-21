@@ -62,7 +62,7 @@ it('reaches long concession through the native no-history C2 cycle and transfers
     const passage = peer.passages.find(passage => passage.id === id)!;
     expect(corpusConcession(passage.text, 0)).toBeDefined();
     const actual = { version: 1 as const, failures: [], records: [{ ...source, passages: [long] }, { ...peer, passages: [passage] }] };
-    // Two actual eligible passages put seed 24 in the ordinary concession cycle.
+    // Use two eligible passages so seed 24 reaches the concession cycle.
     for (const seed of [24, 25]) {
       const lesson = corpusLesson(actual, bound.seen, seed, bound.maxWords, 'C2')!;
       lessonSchema.parse(lesson);

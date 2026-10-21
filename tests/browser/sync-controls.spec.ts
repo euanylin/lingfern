@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
 test('sync controls require upload consent, recover expired scans and remain usable in three languages', async ({ page }) => {
-  // Browser/HTTP simulation only: no real GitHub authorisation or writes.
+  // Simulate browser/HTTP behavior without real GitHub authorization or writes.
   await page.setViewportSize({ width: 375, height: 812 }); await page.emulateMedia({ colorScheme: 'dark' });
   const scope = { accountId: 1, profileId: 'local-guest', bindingVersion: 'a'.repeat(43) };
   const summary = { account: { id: 1, login: 'synthetic' }, csrfToken: 't'.repeat(43), syncAvailable: true, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: scope.profileId, disabled: false, bindingVersion: scope.bindingVersion }] };

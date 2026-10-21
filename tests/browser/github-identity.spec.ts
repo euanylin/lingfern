@@ -13,7 +13,7 @@ test('optional identity reports real unavailable configuration without redirecti
 });
 
 test('identity summary and logout use the current session and never upload a profile', async ({ page }) => {
-  // UI simulation only. Real GitHub authorisation is a separate acceptance gate.
+  // Simulate identity UI only; test real GitHub authorization separately.
   let signedIn = true;
   await page.route('**/api/session', route => route.fulfill({ json: { account: signedIn ? { id: 1234, login: 'test-learner' } : null, ...(signedIn ? { csrfToken: 'c'.repeat(43) } : {}), syncAvailable: false } }));
   await page.route('**/api/auth/logout', async route => {

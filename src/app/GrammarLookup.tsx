@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { cambridgeGrammarUrl } from './onlineDictionaries';
 import type { Locale } from '../shared/content';
 import { recordLookup } from '../data/lookupHistory';
-import { lookupHistoryCopy } from './LookupHistory';
 
 const translated = z.object({ 'zh-Hans': z.string().min(1), 'zh-Hant': z.string().min(1), en: z.string().min(1) }).strict();
 const entrySchema = z.object({ id: z.string().min(1), title: translated, headword: z.string().min(1), question: translated, keywords: z.array(z.string()), summary: translated, usage: translated, pitfall: translated, examples: z.array(z.string().min(1)).min(2), pattern: z.string().min(1), example: z.string().min(1), contrast: z.string().min(1), related: z.array(z.string()) }).strict();
@@ -51,7 +50,7 @@ export function GrammarLookup({ locale, online, profileId, initialQuery = '' }: 
       <p className="muted">{online ? t.privacy : t.offline}</p>
     </section>
     {!entries && !error && <p role="status">{t.loading}</p>}{error && <p role="alert" className="error">{t.failed}</p>}
-    {historyError && <p role="alert" className="error">{lookupHistoryCopy[locale].saveFailed}</p>}
+    {historyError && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].saveFailed}</p>}
     {entries && <><nav className="grammar-index" aria-label={t.index}><button type="button" aria-pressed={!letter && !term} onClick={() => { setQuery(''); setLetter(''); }}>{t.all}</button>{letters.map(char => <button key={char} type="button" aria-pressed={letter === char && !term} onClick={() => { setQuery(''); setLetter(char); }}>{char}</button>)}</nav><p role="status" className="muted">{matches.length} {t.count}</p>{matches.length === 0 && <p>{t.none}</p>}<div className="grammar-results">{matches.map(entry => <GrammarEntry key={entry.id} entry={entry} entries={entries} locale={locale} onRemember={remember} onRelated={showRelated}/>)}</div></>}
   </section>;
 }

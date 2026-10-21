@@ -29,8 +29,13 @@ test('pages and introduction previews share the Settings top spacing', async ({ 
 });
 
 test('first visit introduces the app before existing choices and remembers only explicit Start', async ({ page }) => {
+  await page.addInitScript(() => {
+    const state = window as unknown as { entryNavigationFlashed: boolean }; state.entryNavigationFlashed = false;
+    new MutationObserver(() => { if (location.pathname === '/' && document.querySelector('#root>header,#root>nav.mobile-nav')) state.entryNavigationFlashed = true; }).observe(document, { childList: true, subtree: true });
+  });
   await page.goto('/'); await expect(page).toHaveURL(/\/introduction$/);
   await expect(page.locator('.welcome')).toBeVisible(); await expect(page.locator('.first-run')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { entryNavigationFlashed: boolean }).entryNavigationFlashed)).toBe(false);
   expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBeNull();
   await page.locator('.welcome-start').click(); await expect(page).toHaveURL(/\/start$/); await expect(page.locator('.first-run')).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBe('1');
@@ -75,7 +80,7 @@ test('idle rotation waits until contact, scrolling and keyboard activity end and
   await page.clock.fastForward(15000); await page.clock.runFor(800);
   await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await page.mouse.up();
-  // Native scrolling can continue after contact has ended, including outside the stage.
+  // Native scrolling may continue after contact ends outside the stage.
   for (let i = 0; i < 5; i++) { await page.clock.fastForward(3000); await page.mouse.wheel(0, 40); await page.clock.runFor(100); }
   await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await page.clock.fastForward(5000); await page.clock.runFor(100);
@@ -120,7 +125,7 @@ test('small trackpad deltas move cards continuously before the switch threshold 
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
   await content.hover();
-  // Browser sampling must not turn one continuous gesture into separated wheel bursts.
+  // Preserve continuous gestures across browser sampling gaps.
   await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   const samples: number[] = [];
   for (const delta of [12, 11, 10, 9, 8, 6]) {
@@ -185,7 +190,8 @@ test('reversing a wheel gesture interrupts the release without snapping or repla
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 1 张，共 3 张');
   expect(await first.evaluate(el => el.querySelector('.today-home') === (window as unknown as { originalPreview: Element }).originalPreview)).toBe(true);
   for (const card of await page.locator('.welcome-card').all()) {
-    await expect(card).toHaveCSS('z-index', 'auto'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', (await card.getAttribute('data-current')) === 'true' ? 'blur(0px)' : 'blur(3px)');
+    const current = (await card.getAttribute('data-current')) === 'true';
+    await expect(card).toHaveCSS('z-index', current ? '1500' : '500'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', current ? 'blur(0px)' : 'blur(3px)');
   }
 });
 
@@ -203,18 +209,19 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dar
         const shift = width < 700 ? Math.min(75, box.width * .18) : Math.min(300, Math.max(24, (box.width - cardWidth * .85) / 2));
         const start = { x: box.x + box.width / 2, y: box.y + 4 };
         await page.mouse.move(start.x, start.y); await page.mouse.down();
-        // Hold contact across both depth handoffs, then reverse before releasing.
+        // Reverse held contact after both depth handoffs.
         for (const offset of [.1, .25, .4, .49, .5, .51, .6, .9, 1, .6, .1, -.1, -.4, -.49, -.5, -.51, -.6, -1, -.4, 0]) {
           await page.mouse.move(start.x - offset * Math.max(90, shift * 1.1), start.y); await page.clock.runFor(16);
           const intersections = await page.locator('.welcome-card').evaluateAll(elements => {
             const planes = elements.map(element => {
               const style = getComputedStyle(element), m = new DOMMatrixReadOnly(style.transform), half = (element as HTMLElement).offsetWidth * m.m11 / 2;
-              return { x: m.m41, z: m.m43, slope: m.m13 / m.m11, left: m.m41 - half, right: m.m41 + half, visible: Number(style.opacity) > .01 };
+              return { x: m.m41, z: m.m43, order: Number(style.zIndex), slope: m.m13 / m.m11, left: m.m41 - half, right: m.m41 + half, visible: Number(style.opacity) > .01 };
             });
             const cuts: number[][] = [];
             for (let a = 0; a < planes.length; a++) for (let b = a + 1; b < planes.length; b++) {
               const one = planes[a], two = planes[b], left = Math.max(one.left, two.left), right = Math.min(one.right, two.right);
               if (!one.visible || !two.visible || right <= left) continue;
+              if ((one.z - two.z) * (one.order - two.order) < 0) cuts.push([a, b]);
               const depth = (x: number) => one.z + one.slope * (x - one.x) - two.z - two.slope * (x - two.x);
               if (depth(left) * depth(right) < -.01) cuts.push([a, b]);
             }
@@ -371,6 +378,38 @@ test.describe('native touch carousel', () => {
     await expect.poll(()=>content.evaluate(el=>el.scrollTop)).toBeGreaterThan(0);
     await expect(first).toHaveAttribute('data-current','true');await cdp.detach();
     await test.info().attach('vertical-finger-drift',{body:JSON.stringify(positions),contentType:'application/json'});
+  });
+});
+
+for (const [locale, colorScheme, width] of [['zh-Hans', 'light', 393], ['en', 'dark', 320], ['ar', 'dark', 767]] as const) test.describe(`native preview scrolling ${locale}`, () => {
+  test.use({ locale, colorScheme, hasTouch: true, isMobile: true, deviceScaleFactor: 2.75 });
+  test('every card scrolls in both directions after switching, including over inert controls', async ({ page, context }) => {
+    await page.setViewportSize({ width, height: 851 }); await page.goto('/introduction');
+    const cdp = await context.newCDPSession(page), samples: { card: number; down: number; up: number }[] = [];
+    for (let card = 0; card < 3; card++) {
+      await page.locator('.welcome-dots button').nth(card).tap();
+      const current = page.locator('.welcome-card[data-current=true]');
+      await expect(current).toHaveAttribute('aria-label', languagePacks[locale].onboarding.slideN.replace('{n}', String(card + 1)));
+      await expect(current.locator('.welcome-window')).toHaveCSS('filter', 'blur(0px)');
+      const content = current.locator('.welcome-content'), box = (await content.boundingBox())!;
+      const x = box.x + box.width / 2, y = box.y + box.height * .75, distance = Math.min(140, box.height * .5);
+      for (const direction of [-1, 1]) {
+        const before = await content.evaluate(el => el.scrollTop);
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y: direction < 0 ? y : y - distance }] });
+        for (let step = 1; step <= 8; step++) {
+          await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + 2, y: (direction < 0 ? y : y - distance) + direction * distance * step / 8 }] });
+          await page.waitForTimeout(20);
+        }
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+        if (direction < 0) await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(before + 20);
+        else await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeLessThan(before - 20);
+        samples.push({ card, down: before, up: await content.evaluate(el => el.scrollTop) });
+        await expect(current).toHaveAttribute('data-current', 'true');
+      }
+      await expect(page.getByRole('listbox')).toHaveCount(0);
+    }
+    await cdp.detach();
+    await test.info().attach('native-preview-scroll', { body: JSON.stringify(samples), contentType: 'application/json' });
   });
 });
 

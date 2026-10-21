@@ -2,7 +2,7 @@ import scopes from '../../content/corpus/c2-faithful-paraphrase-scopes.json';
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 export const faithfulParaphraseOperation = 'choice:faithful-paraphrase';
 export const faithfulParaphrasePrompt = 'Which pair of rewrites preserves the meaning of A and B in the complete context? Keep scope, agency, attribution, modal strength and the stated relation.';
-// shortcut: exact inspected paraphrase relations; inspect competing rewrites before extending to other contexts.
+// shortcut: inspected paraphrase relations; review competing rewrites before extending.
 const relations = [
   {
     "focus": "I believe I can guess that",

@@ -8,14 +8,14 @@ import { resolve, basename } from 'node:path';
 const run = promisify(execFile);
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 
-/** Exact source runs only; never join across unmatched spoken/source words. */
+/** Keep exact source runs separate across unmatched words. */
 export function listeningRuns(text, segments, duration, limits = {}) {
   const { minSeconds = 8, maxSeconds = 90, maxWords = 180, maxCharacters = Infinity } = limits;
   if (!Number.isFinite(minSeconds) || !Number.isFinite(maxSeconds) || minSeconds < 8 || maxSeconds < minSeconds || maxSeconds > 480
       || !Number.isInteger(maxWords) || maxWords < 30 || maxWords > 1200 || (limits.maxCharacters !== undefined && (!Number.isInteger(maxCharacters) || maxCharacters < 1 || maxCharacters > 12000))) throw new Error('INVALID_CLIP_LIMITS');
   if (!Number.isFinite(duration) || duration <= 0) throw new Error('ALIGNMENT_INTEGRITY');
   const runs = [];
-  // ponytail: native sentence boundaries are candidates, not grammatical or audio review.
+  // shortcut: sentence boundaries propose candidates; review grammar and audio separately.
   const sentences = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)]
     .filter(part => /[.!?]["'’”)\]]*\s*$/.test(part.segment))
     .map(part => ({ start: part.index + (part.segment.match(/^[^\p{L}\p{N}]*/u)?.[0].length ?? 0),
@@ -26,8 +26,8 @@ export function listeningRuns(text, segments, duration, limits = {}) {
   let group = [];
   const finish = () => {
     if (!group.length) return;
-    // Keep only complete source sentences with exact existing alignment boundaries.
-    // Never infer sub-segment audio times to rescue an incomplete utterance.
+    // Keep complete sentences with exact existing alignment boundaries.
+    // Never invent segment times to rescue incomplete utterances.
     const first = group.findIndex(segment => sentenceStarts.has(segment.start));
     const last = group.findLastIndex(segment => sentenceEnds.has(segment.end));
     if (first >= 0 && last >= first) {
@@ -55,7 +55,7 @@ export function listeningRuns(text, segments, duration, limits = {}) {
   return runs;
 }
 
-/** Short recuts use only the available gap; never include neighbouring speech. */
+/** Recut within available gaps without including neighboring speech. */
 export function shortWindowBounds(excerpt, segments, duration) {
   const first = excerpt.segments[0], last = excerpt.segments.at(-1);
   const index = segments.findIndex(segment => segment.audioStart === first.audioStart && segment.audioEnd === first.audioEnd);
@@ -79,7 +79,7 @@ export async function recording(file, maxSeconds = 91) {
 }
 
 
-/** Long candidates remain private and require an explicit original-root scope. */
+/** Keep long candidates private and require explicit original-root scope. */
 export function clipPreparationOptions(args, previous) {
   const long = args.includes('--long'), short = args.includes('--short-window'), scoped = long || short;
   if (long && short) throw new Error('CLIP_OUTPUT_MODE_MISMATCH');
@@ -96,7 +96,7 @@ export function clipPreparationOptions(args, previous) {
   const target = args.find(arg => arg.startsWith('--output='))?.slice(9) ?? `${directory}/${long ? `listening-long-clips/${roots[0]}` : short ? `listening-short-clips/${roots[0]}` : 'listening-clips'}`;
   if (!target || (scoped && basename(resolve(target)) === 'listening-clips') || (long && basename(resolve(target)) === 'listening-clips') || (!long && basename(resolve(target)) === 'listening-long-clips')
       || (previous && (previous.mode ?? 'short') !== mode)) throw new Error('CLIP_OUTPUT_MODE_MISMATCH');
-  // Reserve the existing edge margins and MP3 frame padding; never trim evidence.
+  // Preserve edge margins, MP3 padding, and all evidence.
   const limits = long ? { minSeconds: 120, maxSeconds: 479.5, maxWords: 1200, maxCharacters: 12000 } : short ? { minSeconds: 8, maxSeconds: 34.5, maxWords: 180, maxCharacters: 12000 } : undefined;
   return { long, short, scoped, mode, roots, target, limits, scope, recordingLimit: long ? 480 : short ? 35 : 91 };
 }
@@ -135,7 +135,7 @@ async function main() {
     if (roots.length && !roots.includes(row.rootId)) continue;
     const source = byRoot.get(row.rootId);
     if (!source || sha(source.text) !== row.textSha256 || source.audioSha256 !== row.audioSha256 || row.offsetUnit !== 'utf16-code-units') throw new Error('SOURCE_INTEGRITY');
-    // ponytail: two bounded draft clips per original root; expand after editorial review and mobile timing checks.
+    // shortcut: two draft clips per root; review content and mobile timings before expanding.
     const segments = scoped ? row.segments.filter(segment => segment.start >= scope.start && segment.end <= scope.end) : row.segments;
     const selected = listeningRuns(source.text, segments, source.decodedDuration, limits).slice(0, 2);
     if (scoped && (selected.length !== 1 || selected[0].start !== scope.start || selected[0].end !== scope.end)) throw new Error('LONG_SPAN_ALIGNMENT');

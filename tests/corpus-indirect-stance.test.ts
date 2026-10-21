@@ -72,7 +72,7 @@ it('bounds new transcript bindings by the unchanged original and remainder holds
   const banks = await listening(); expect(banks.every(b => b.records[0].clips.length === 1)).toBe(true);
   for (const bank of banks) { const source = bank.records[0], clip = source.clips[0], entry = admittedLongClip(clip)!; expect(entry.rootId).toBe(source.rootId);
     expect(admittedLongClip({ text: clip.text })).toBeUndefined();
-    // A literal written excerpt may pass text exclusions; it never acquires qualified audio.
+    // Text eligibility does not grant audio qualification.
     if (!source.originalText!.includes(clip.text)) expect(await reviewedExcerpts(source, [{ text: clip.text }])).toEqual([]);
     for (const edit of [{ rootId: 'wikipedia-article-1' }, { sourceHash: 'f'.repeat(64) }, { originalText: source.originalText + ' Changed.' }]) expect(await reviewedExcerpts({ ...source, ...edit }, [clip])).toEqual([]);
     const review = reviews.records.find(r => r.rootId === source.rootId)!; expect(review.excludedSpans.length).toBeGreaterThan(0); const held = review.excludedSpans[0]; expect(await reviewedExcerpts(source, [{ text: source.originalText!.slice(held.start, held.end) }])).toEqual([]);

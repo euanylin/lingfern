@@ -1,10 +1,10 @@
 import scopes from '../../content/corpus/b1-motive-scopes.json';
 const local=(en:string,hans:string,hant:string)=>({en,'zh-Hans':hans,'zh-Hant':hant});
 export const narrativeMotivePrompt='Which stated reason explains this action or proposal at this point in the narrative?';
-/** Match the narrated action/proposal with its stated purpose, not an invented inner motive or later event. */
+/** Match narrated actions/proposals to stated purposes without inventing motives or later events. */
 export function corpusNarrativeMotive(text:string,seed:number){
  if(!Number.isSafeInteger(seed)||seed<0||text.length>12000)throw new Error('INVALID_NARRATIVE_MOTIVE');
- // shortcut: two inspected narrative constructions only; review other agent/purpose/context relationships before extending.
+ // shortcut: two narrative forms; review agents, purposes, and context before extending.
  if(!scopes.records.some(s=>s.text===text))return;
  const dorothy=text.startsWith('Dorothy came to meet them');
  const action=dorothy?text.match(/away the (Queen) ran, while (Dorothy) held (Toto) tightly lest he should (run after her and frighten her)\./):text.match(/“(Your father will not be easy); why do not you go\?”/);

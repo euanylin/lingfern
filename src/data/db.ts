@@ -62,10 +62,10 @@ export async function saveFeedbackNote(note: FeedbackNote) {
     await feedbackNotes.add(note);
   });
 }
-// ponytail: transactional 15s lease; use Web Locks for immediate crash/reload handoff later.
+// Web Locks allow immediate handoff; the 15s lease protects fallback sessions.
 const LEASE_MS = 15_000;
 
-// A browser-installation ID survives profile/account changes, but is never imported or synced.
+// Keep the installation ID across account/profile changes; never import or sync it.
 const CHECK_DEVICE_KEY = 'check-device-id';
 export async function checkDeviceId() {
   return db.transaction('rw', settings, async () => {
@@ -121,7 +121,7 @@ export async function createCombinedCheck(readingRaw: unknown, listeningRaw: unk
   const roots = new Set(reading.materials.map(material => material.rootId));
   if (reading.mode !== 'check' || listening.mode !== 'check' || reading.skill !== 'reading' || listening.skill !== 'listening'
     || listening.materials.some(material => roots.has(material.rootId))) throw new Error('CHECK_RESTRICTED');
-  // Prepare hashes outside the transaction; both snapshots must be saved together.
+  // Hash before the transaction; save both snapshots atomically.
   const pair: [Session, Session] = [await prepareSession(reading, profileId), await prepareSession(listening, profileId)];
   const checkGroupId = crypto.randomUUID();
   pair.forEach(session => { session.checkGroupId = checkGroupId; });
@@ -294,7 +294,7 @@ function exposureSyncEvent(session: Session, item: ReturnType<typeof questions>[
 
 async function captureExposure(profileId: string, event: Extract<NewEvent, { type: 'exposure' }>, occurredAt: string) {
   const bounded = await Dexie.waitFor(boundedReferences(event));
-  // ponytail: scans profile events; add a contact-key index if large archives slow contact saving.
+  // shortcut: profile-event scan; add a contact-key index if large archives slow saves.
   const existing = await readSyncEvents(profileId);
   if (existing.some(prior => prior.type === 'exposure' && canonicalJson(prior.payload) === canonicalJson(bounded.payload))) return;
   await appendSyncEvent(profileId, bounded, db, { occurredAt });
@@ -407,7 +407,7 @@ export async function saveSetting(profileId: string, key: string, value: string)
   });
 }
 
-// Received preferences never become new outgoing events or change the device's active profile.
+// Apply received preferences without emitting events or switching the active profile.
 export async function projectPreferences(profileId: string) {
   return db.transaction('rw', profiles, settings, syncEvents, async () => {
     const profile = await profiles.get(profileId);
@@ -432,7 +432,7 @@ export async function projectPreferences(profileId: string) {
   });
 }
 
-// Capture existing originals once, before applying remote projections or cloning a backup.
+// Capture originals once before remote projection or backup cloning.
 export async function bootstrapSyncEvents(profileId: string) {
   return db.transaction('rw', [profiles, sessions, attempts, exposures, memories, memoryReviews, settings, syncEvents, syncClocks], async () => {
     const marker = `profile:${profileId}:syncBootstrap`;
@@ -461,7 +461,7 @@ export async function bootstrapSyncEvents(profileId: string) {
       }
       await appendSyncEvent(profileId, event, db, { id, occurredAt });
     }
-    // ponytail: scans one profile in one transaction; paginate capture if large archives become slow.
+    // shortcut: one profile transaction; paginate capture if large archives become slow.
     const localSessions = await sessions.where('profileId').equals(profileId).toArray();
     const sessionById = new Map(localSessions.map(session => [session.id, session]));
     const answers = new Map((await attempts.where('profileId').equals(profileId).toArray()).map(attempt => [attempt.id, attempt]));

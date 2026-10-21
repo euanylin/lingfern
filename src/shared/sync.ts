@@ -20,7 +20,7 @@ const settingPayload = z.discriminatedUnion('key', [
 ]);
 export { settingPayload as syncSettingSchema };
 const base = z.object({ id, deviceId: id, counter: z.number().int().min(1).max(Number.MAX_SAFE_INTEGER), occurredAt: z.iso.datetime() });
-// Only structured summaries cross this boundary; answers, notes and private materials have no field.
+// Sync structured summaries only; exclude private answers, notes, and materials.
 export const syncEventSchema = z.discriminatedUnion('type', [
   base.extend({ type: z.literal('completion'), payload: z.object({ recordId: reference, sessionId: reference, questionId: reference, rootId: reference, goalId: reference, skill: z.enum(['reading', 'listening']), level: levelSchema, mode: z.enum(['practice', 'check']), contentHash: hash, scoringHash: hash.optional(), correct: z.boolean().nullable(), assistance }).strict() }).strict(),
   base.extend({ type: z.literal('exposure'), payload: z.object({ sessionId: reference, rootId: reference, materialId: reference, questionId: reference, variantGroup: reference }).strict() }).strict(),
@@ -52,7 +52,7 @@ export type SyncDownloadScope = z.infer<typeof syncDownloadScopeSchema>;
 export const syncChangesSchema = z.object({ scope: syncDownloadScopeSchema.optional(), commit: blobSha, cursor: z.string().min(1).max(4096), nextCursor: z.string().min(1).max(4096).optional(), total: z.number().int().min(0).max(5000), files: z.array(syncFileSchema).max(10), batches: z.array(z.object({ batch: syncBatchSchema, hash, blobSha }).strict()).max(10) }).strict();
 
 
-// Values have already passed a strict schema: no undefined, executable objects or non-finite numbers.
+// Canonicalize schema-validated values only; reject undefined, executable, or non-finite data.
 export function canonicalJson(value: unknown): string {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
@@ -78,7 +78,7 @@ export async function validateSyncBatch(raw: unknown) {
 }
 
 export function compareSyncEvents(a: SyncEvent, b: SyncEvent) {
-  // Code-unit order is independent of browser locale and device clock.
+  // Sort by code units independently of locale and device clocks.
   const compare = (left: string, right: string) => left < right ? -1 : left > right ? 1 : 0;
   return a.counter - b.counter || compare(a.deviceId, b.deviceId) || compare(a.id, b.id);
 }
@@ -123,6 +123,6 @@ export function projectSyncEvents(raw: readonly SyncEvent[]) {
       case 'memory_review': reviews.push(event); break;
     }
   }
-  // Reviews remain original events. Scheduling must use the existing validated FSRS replay, not logical order.
+  // Replay original reviews through validated FSRS, never logical event order.
   return { completions, exposures, savedItems, settings, installations, reviews, preferences, deletedRecords, deletedExposures, deletedContacts, counter: events.at(-1)?.counter ?? 0 };
 }

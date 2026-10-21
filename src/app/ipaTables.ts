@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const officialIpaChart = 'https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_EI/IPA_charts_EI.html';
 export type IpaCell = readonly (string | null)[];
 export const vowelColumns = ['front', 'near-front', 'central', 'near-back', 'back'] as const;
-// Slots follow IPA ordering: unrounded/rounded vowels, voiceless/voiced consonants.
+// Follow IPA slot order: unrounded/rounded vowels and voiceless/voiced consonants.
 export const vowelRows = [
   { key: 'close', cells: [['i', null], [null, null], [null, null], [null, null], [null, 'u']] },
   { key: 'near-close', cells: [[null, null], ['ɪ', null], [null, null], [null, 'ʊ'], [null, null]] },

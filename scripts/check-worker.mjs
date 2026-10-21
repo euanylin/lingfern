@@ -126,7 +126,7 @@ for (const audio of JSON.parse(await readFile('content/audio-sources.json', 'utf
     assert.equal(bytes.byteLength, 100);
     assert.match(partial.headers.get('content-range'), /^bytes 0-99\/\d+$/);
   } else {
-    // RFC 9110 §14.2 permits a full response; this is not proof of range support (I-010).
+    // RFC 9110 §14.2 allows full responses; they do not prove range support (I-010).
     assert.equal(partial.status, 200);
     assert.equal(createHash('sha256').update(bytes).digest('hex'), audio.sha256);
     console.log(`RANGE NOT SUPPORTED LOCALLY: ${audio.path}; verified complete 200 response.`);

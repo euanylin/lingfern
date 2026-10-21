@@ -1,4 +1,4 @@
-"""Private exact-token alignment candidates; no editorial or proficiency approval."""
+"""Produce private exact-token alignment candidates without editorial or proficiency approval."""
 import hashlib
 import json
 from pathlib import Path

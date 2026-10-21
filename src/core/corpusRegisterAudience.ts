@@ -35,7 +35,7 @@ function interpretation(part: string, whole: string): Role | undefined {
 }
 export function corpusRegisterAudience(text: string, seed: number) {
   if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff || text.length > 12000) throw new Error('INVALID_REGISTER_AUDIENCE');
-  // shortcut: only inspected complete contexts; extend after reviewing competing voices and audience interpretations.
+  // shortcut: complete inspected contexts; review competing voices and audiences before extending.
   const scope = [...scopes.reading, ...scopes.listening].find(s => s.text === text);
   if (!scope) return;
   const all = scope.parts.map(part => ({ ...part, role: interpretation(text.slice(part.start, part.end), text) }));

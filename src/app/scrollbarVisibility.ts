@@ -1,7 +1,7 @@
 const regions = '.question-sheet-content,.selection-dictionary-body,.dictionary-suggestions,.setting-menu,.ipa-table-scroll,.ipa-vowel-scroll,.task-detail-body,.practice-options-body,.update-confirm-dialog,.workspace-card nav,textarea,pre';
 
 export function scrollbarVisibility() {
-  let frame = 0;
+  let frame = 0, task = 0;
   const observed = new Set<Element>();
   const resize = new ResizeObserver(schedule);
   function update() {
@@ -22,7 +22,8 @@ export function scrollbarVisibility() {
       if (element.dataset.scrollbarY !== String(y)) element.dataset.scrollbarY = String(y);
     }
   }
-  function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+  // Measure optional scroll thumbs after paint to avoid blocking layout.
+  function schedule() { if (!frame && !task) frame = requestAnimationFrame(() => { frame = 0; task = window.setTimeout(() => { task = 0; update(); }, 0); }); }
   const mutations = new MutationObserver(schedule);
   mutations.observe(document.body, { subtree: true, childList: true, characterData: true });
   window.addEventListener('resize', schedule);
@@ -31,7 +32,7 @@ export function scrollbarVisibility() {
   document.addEventListener('load', schedule, true);
   schedule();
   return () => {
-    cancelAnimationFrame(frame); resize.disconnect(); mutations.disconnect();
+    cancelAnimationFrame(frame); clearTimeout(task); resize.disconnect(); mutations.disconnect();
     window.removeEventListener('resize', schedule);
     document.removeEventListener('input', schedule, true);
     document.removeEventListener('toggle', schedule, true);

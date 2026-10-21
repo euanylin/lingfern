@@ -1,4 +1,4 @@
--- Explicit MCP business approvals; populated only by the verified OAuth consent flow.
+-- Store explicit MCP approvals from verified OAuth consent only.
 CREATE TABLE IF NOT EXISTS mcp_connections (
   id TEXT PRIMARY KEY, account_id INTEGER NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
   client_id TEXT NOT NULL, name TEXT NOT NULL, created_at INTEGER NOT NULL,

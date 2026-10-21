@@ -31,7 +31,7 @@ it('does not count a joined window containing a seen original component as new',
   const { current, merged, overlapping } = await actual();
   const selected = selectCorpusPassage(bank([{ ...current, passages: [current.passages[0], merged] }]), new Set([ids[0]]), 0, 900, [], [], 'C1');
   expect(selected).toBeUndefined();
-  // The adjacent window starts after the first old component and remains eligible.
+  // Keep adjacent windows after the first old component eligible.
   expect(selectCorpusPassage(bank([current]), new Set([ids[0]]), 0, 900, [], [], 'C1')?.passage.id).toBe(overlapping.id);
 });
 
@@ -77,7 +77,7 @@ it('recognises a saved larger window after a smaller request, with profile and r
   expect(source.passages.some(passage => passage.id === prior.id)).toBe(false);
   const prefix = { ...source, passages: source.passages.filter(passage => prior.text.includes(passage.text)) };
   expect(selectCorpusPassage(bank([source]), seen, 0, 900, [], [], 'C1')?.source.rootId).toBe(rootId);
-  // Keep the original source object for its local historic-interval registration.
+  // Retain the original source object for historical interval registration.
   const prefixes = new Set(prefix.passages.map(passage => passage.id));
   for (let seed = 0; seed < 7; seed++) expect(prefixes.has(selectCorpusPassage(bank([source]), seen, seed, 900, [], [], 'C1')!.passage.id)).toBe(false);
   const other = await loadReadingCorpus('other', 900);
