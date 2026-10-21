@@ -146,7 +146,8 @@ test('matching a new pair of messages works offline and survives reopening', asy
   await page.reload(); await showLearningPane(page, 'question');
   await page.locator('.workspace-card button').first().click();
   await expect(page.locator('.slot-result')).toHaveCount(slots);
-  await expect(page.locator('.workspace-review').first().locator('blockquote')).toHaveText(['at the library', 'at the park']);
+  await expect(page.locator('.workspace-review').first().locator('blockquote')).toHaveText([/^Mia\s*at the library$/, /^Ben\s*at the park$/]);
+  await expect(page.locator('.workspace-review').first().locator('.evidence-source')).toHaveText(['Mia', 'Ben']);
   await expect(page.getByRole('button', { name: '1. Mia', exact: true })).toBeDisabled();
 
 });
