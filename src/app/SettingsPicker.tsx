@@ -59,7 +59,11 @@ export function SettingsPicker(props: Props) {
     };
     update(!props.multiple);
     const reposition = (event: Event) => { if (!(event.target instanceof Node && popup.contains(event.target))) update(); };
-    const dismiss = (event: Event) => { if (!(event.target instanceof Node && popup.contains(event.target))) setOpen(false); };
+    const dismiss = (event: Event) => {
+      if (event.target instanceof Node && popup.contains(event.target)) return;
+      if (popup.contains(document.activeElement)) trigger.current?.focus({ preventScroll: true });
+      setOpen(false);
+    };
     let touchY: number | undefined;
     const touchStart = (event: TouchEvent) => { touchY = event.target instanceof Node && popup.contains(event.target) ? undefined : event.touches[0]?.clientY; };
     const touchMove = (event: TouchEvent) => { if (touchY !== undefined && Math.abs((event.touches[0]?.clientY ?? touchY) - touchY) > 10) dismiss(event); };

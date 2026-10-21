@@ -167,6 +167,7 @@ test('shared menus close on page or drawer scroll but keep their own options scr
   await page.mouse.move(372, 400);
   await page.mouse.wheel(0, 150);
   await expect(menu).toHaveCount(0);
+  await expect(page.locator('.settings-language .setting-trigger')).toBeFocused();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(0);
   await page.evaluate(async () => {
     const path = '/src/data/db.ts', data = await import(path);
@@ -182,6 +183,7 @@ test('shared menus close on page or drawer scroll but keep their own options scr
   await page.mouse.move(372, 400);
   await page.mouse.wheel(0, 180);
   await expect(menu).toHaveCount(0);
+  await expect(dialog.locator('.setting-trigger').last()).toBeFocused();
   await expect.poll(() => dialog.locator('.task-detail-body').evaluate(element => element.scrollTop)).toBeGreaterThan(0);
   await dialog.locator('.setting-trigger').last().click();
   await expect(menu).toBeVisible();
