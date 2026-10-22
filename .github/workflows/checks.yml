@@ -1,55 +1,32 @@
-name: Checks
+name: Fork isolation probe
 
-on:
-  workflow_dispatch:
-  push:
+"on":
   pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 permissions:
   contents: read
 
 jobs:
-  checks:
+  fork-secret-probe:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == 'euanyxlin/lingfern-ci-isolation-20261023'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 3
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
-      - run: npm test
-      - run: npm run release:files -- /tmp/lingfern-source-export
-      - run: npm run build
-      - name: Inspect public build
+      - name: Check secret availability without exposing values
+        env:
+          CI_TOKEN_AVAILABLE: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          CI_ACCOUNT_AVAILABLE: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
         run: |
-          test -f dist/index.html && test -f dist/sw.js
-          test -z "$(find dist -type f -size +20M -print -quit)"
-          du -sh dist
-      - run: npm run deploy:check
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:sync
-      - run: npm run test:mcp
-      - run: npm run test:e2e
-      - run: npm run test:offline
-      - run: npm run test:update
-        timeout-minutes: 5
-      - name: Check local Worker routes and assets
-        run: |
-          set -euo pipefail
-          npm run preview > /tmp/lingfern-preview.log 2>&1 &
-          preview_pid=$!
-          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
-          for attempt in {1..30}; do
-            if curl --fail --silent http://127.0.0.1:8787/sw.js > /dev/null; then
-              npm run test:worker
-              exit 0
-            fi
-            sleep 1
-          done
-          cat /tmp/lingfern-preview.log
-          exit 1
+          test "$CI_TOKEN_AVAILABLE" = false
+          test "$CI_ACCOUNT_AVAILABLE" = false
+
+  production-denial-probe:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == 'euanyxlin/lingfern-ci-isolation-20261023'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    environment: production
+    steps:
+      - name: Fail if the protected environment unexpectedly starts this job
+        run: exit 1
