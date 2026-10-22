@@ -71,6 +71,6 @@ jobs:
       - name: Smoke test production routes
         run: |
           set -euo pipefail
-          test "$(curl --silent --show-error --retry 5 --retry-delay 2 --output /dev/null --write-out '%{http_code}' https://lingfern.com/today)" = 200
+          test "$(curl --silent --show-error --retry 5 --retry-delay 2 --output /dev/null --write-out '%{http_code}' --header 'Accept: text/html' https://lingfern.com/today)" = 200
           test "$(curl --silent --show-error --retry 5 --retry-delay 2 --output /dev/null --write-out '%{http_code}' https://lingfern.com/sw.js)" = 200
           test "$(curl --silent --show-error --retry 5 --retry-delay 2 --output /dev/null --write-out '%{http_code}' https://lingfern.com/api/unknown)" = 404
