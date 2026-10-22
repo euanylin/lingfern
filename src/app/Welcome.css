@@ -52,6 +52,9 @@
   .welcome-controls{grid-column:2;grid-row:1}
   .welcome-start{grid-column:2;grid-row:2}
 }
+@media(min-aspect-ratio:3/2) and (max-height:400px){
+  #root>main.welcome-main{padding-block:8px}
+}
 @media(prefers-reduced-motion:reduce){
   .welcome-card,.welcome-dots span{transition:none;will-change:auto}
   .welcome-shade{display:none}

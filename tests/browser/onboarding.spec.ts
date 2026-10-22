@@ -828,7 +828,7 @@ for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar'
   test('cards have no inner cutoff and controls remain below every slide across layout boundaries', async ({ page }, info) => {
     test.setTimeout(90000);
     await page.goto('/introduction');
-    for (const [width, height] of [[960,600],[900,600],[976,650],[960,650],[960,651],[844,390],[568,320]]) {
+    for (const [width, height] of [[960,600],[900,600],[976,650],[960,650],[960,651],[844,390],[568,320],[568,300]]) {
       await page.setViewportSize({ width, height });
       await expect(page.locator('.welcome-stage')).toHaveCSS('overflow', 'visible');
       for (let index = 0; index < 3; index++) {
