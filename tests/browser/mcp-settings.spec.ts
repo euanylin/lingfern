@@ -45,7 +45,7 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
   expect(repositoryReads).toBe(0); expect(sharingReads).toBe(0);
   await expect(repository.locator('.repository-steps')).toBeHidden();
   const repositoryRow = repository.locator('.repository-select-row');
-  await expect(repositoryRow).toHaveCSS('min-height', '52px');
+  await expect(repositoryRow).toHaveCSS('min-height', '58px');
   await expect(repositoryRow).toHaveCSS('border-radius', '0px');
   await expect(repositoryRow).toHaveCSS('font-size', '15px');
   await expect(repositoryRow).toHaveCSS('font-weight', '400');

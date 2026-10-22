@@ -13,7 +13,7 @@ import type { SpokenCorpus } from '../core/spokenCorpus';
 import type { Corpus } from '../core/corpus';
 import type { CommunityDictionaryEntry, CommunitySource } from './communityPack';
 
-export type Assistance = { hintLevel: number; playbackRequests?: number; audioCompleted?: boolean; dictionaryUsed?: boolean; teachingProvided?: boolean };
+type Assistance = { hintLevel: number; playbackRequests?: number; audioCompleted?: boolean; dictionaryUsed?: boolean; teachingProvided?: boolean };
 export type Session = {
   id: string; syncSessionId?: string; profileId: string; lesson: Lesson; contentHash: string;
   ruleHashes?: { scoring: string; generator?: string };

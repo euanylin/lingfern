@@ -139,7 +139,9 @@ test('invalid lookup history stays intact and does not block Today', async ({ pa
 });
 
 test('returning to Today resumes the last drawn shape and growth velocity', async ({ page }) => {
-  await page.goto('/today');
+  await page.goto('/library');
+  await expect(page.getByRole('heading', { name: '资料库', exact: true })).toBeVisible();
+  await page.locator('.desktop-nav a[href="/today"]').click();
   const fern = page.locator('.fern');
   await expect(fern).toHaveAttribute('data-growth', '0');
   await page.evaluate(async () => {
@@ -157,11 +159,17 @@ test('returning to Today resumes the last drawn shape and growth velocity', asyn
   });
   expect(velocity).toBeGreaterThan(fernGrowth(0, 0, 100).stem / 10);
   await page.evaluate(() => {
-    document.querySelector('.desktop-nav a[href="/library"]')!.addEventListener('click', () => {
-      document.documentElement.dataset.fernBeforeLeave = JSON.stringify([...document.querySelectorAll('.fern path')].map(node => node.getAttribute('d')));
-    }, { capture: true, once: true });
+    const element = document.querySelector('.fern')!;
+    // A suspended navigation keeps drawing until the destination commits.
+    const observer = new MutationObserver(() => {
+      if (element.isConnected) return;
+      observer.disconnect();
+      document.documentElement.dataset.fernBeforeLeave = JSON.stringify([...element.querySelectorAll('path')].map(node => node.getAttribute('d')));
+    });
+    observer.observe(document.getElementById('root')!, { childList: true, subtree: true });
   });
   await page.locator('.desktop-nav a[href="/library"]').click();
+  await expect(page.getByRole('heading', { name: '资料库', exact: true })).toBeVisible();
   const before = await page.evaluate(() => JSON.parse(document.documentElement.dataset.fernBeforeLeave!));
   const returned = page.evaluate(() => new Promise<{ paths: (string | null)[]; velocity: number }>(resolve => {
     const observer = new MutationObserver(async () => {

@@ -4,7 +4,7 @@ Status: **explicitly approved and completed; both local Git libraries fully veri
 
 ## Exact scope
 
-- Live local object database: `.git/` in `<workspace>`.
+- Live local object database: `.git/` in `/Users/euan/Documents/Lingfern`.
 - Historical local Git recovery copy: `private/maintenance/verification-storage-20261017/git/recovery.git`.
 - Remove 69 artwork-bearing blob objects: 35 retired SVG objects and 34 historical screenshot objects displaying handwritten lettering/signatures.
 - Rebuild 1,687 internal tree objects and map 16 live / 15 recovery snapshot references. The live repository currently contains no commit objects and no tracked index entries. This operation creates no source commit and changes no working file.

@@ -2,7 +2,7 @@
 
 final result: passed inspected local scope
 
-Scope: existing desktop/mobile Reading and Listening layouts and interactions;no new visual reference or redesign. Two production focus/scroll paths change;CSS,fonts,tokens,brand assets,translations and player/data modules are byte-identical. Full operation and source boundaries: audit record (`docs/history/2026-10-18-learning-ui-audit.md`; local reference, excluded from public copy).
+Scope: existing desktop/mobile Reading and Listening layouts and interactions;no new visual reference or redesign. Two production focus/scroll paths change;CSS,fonts,tokens,brand assets,translations and player/data modules are byte-identical. Full operation and source boundaries: [audit record](docs/history/2026-10-18-learning-ui-audit.md).
 
 Actual built ordinary screenshots in`private/verification/learning-ui-audit-20261018/`:12Reading and12Listening states at1440/375×900CSSpx,zh-Hans/en/ar,light/dark;plus375×410short-screen captures. `reading-short-focused.png` and `listening-short-settled.png` were visually inspected alongside prior repros. State:isolated generated Practice,existing real source text,Reading selected input and Listening retained controls. English source remainsLTR under Arabic. Responsive cases also cover320/667/768/1199/1200widths;the complete suite covers zh-Hant,keyboard,zoom,reduced motion and44px controls.
 
@@ -82,7 +82,7 @@ Physical-device/screen-reader/platform/provider/network acceptance remains outsi
 
 final result: passed inspected Library/navigation refinements; hardware and full final locale/theme matrix remain unverified
 
-Source: supplied390pt/@2x practice image and `<local-home>/Downloads/design-spec.md`, then maintainer's explicit transparent-menu, independent-History, desktop and mobile quote corrections. Implementation: IAB isolated8790, real normally saved/restored reading1/4, Simplified Chinese/dark/390CSS px. No invented reference progress/themes/duration.
+Source: supplied390pt/@2x practice image and `/Users/euan/Downloads/design-spec.md`, then maintainer's explicit transparent-menu, independent-History, desktop and mobile quote corrections. Implementation: IAB isolated8790, real normally saved/restored reading1/4, Simplified Chinese/dark/390CSS px. No invented reference progress/themes/duration.
 
 Combined comparison input opened the supplied image, `private/verification/practice-card-iab-20261011/practice-ClH2E_02-zh-Hans-dark-390.jpg`, and `today-ClH2E_02-zh-Hans-dark-1440.jpg` together. Source raster780px normalized to390CSS; actual screenshot390px. Full-page fixed navigation appears midway in long capture: this is a viewport-fixed capture artifact, not extra in-flow navigation.
 

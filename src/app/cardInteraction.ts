@@ -1,4 +1,4 @@
-const textEntry = (target: EventTarget | null) => target instanceof Element && !!target.closest('textarea,[contenteditable]:not([contenteditable=false]),input:not([type=checkbox],[type=radio],[type=range],[type=button],[type=submit],[type=reset],[type=file],[type=color])');
+export const textEntry = (target: EventTarget | null) => target instanceof Element && !!target.closest('textarea,[contenteditable]:not([contenteditable=false]),input:not([type=checkbox],[type=radio],[type=range],[type=button],[type=submit],[type=reset],[type=file],[type=color])');
 
 export function cardActivity(changed: (active: boolean) => void) {
   let held = false, timer: ReturnType<typeof setTimeout> | undefined;

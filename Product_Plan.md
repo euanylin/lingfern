@@ -94,6 +94,8 @@ Initially, the product may recommend “Start with A2 everyday-information tasks
 
 ### 1.5 Mainland China Access Goals and Boundaries
 
+Maintainer acceptance update (2026-10-21): physical-device/accessibility and mainland-network use have been tried by the maintainer without problems; both are removed from pending first-launch gates. No additional device/reader/carrier matrix or standalone sign-off is required. Preserve accessible behaviour, the same-origin/offline requirements below and the separate two-device sync, identity/MCP security and release gates. See [the acceptance record](docs/history/2026-10-21-release-gates.md).
+
 “Complete core learning without special network-access tools” is an engineering goal, not a verified availability finding. Cloudflare's ordinary global network is not Cloudflare China Network. Cross-border links may affect latency and reliability; do not infer that this deployment must be faster or more stable than another provider. [20]
 
 Test three layers separately:
@@ -1453,9 +1455,9 @@ One frontend, one main plan, one shared type system, one production Worker with 
 
 ### 19.5 Mainland-China Ordinary-Network Acceptance
 
-Real testers in mainland China use everyday networks without special network tools. Cover China Telecom, China Unicom, and China Mobile, aiming for two regions and both daytime/evening peak periods. Mark unavailable combinations untested rather than invent coverage.
+First-launch acceptance is closed by the maintainer's 2026-10-21 report of successful actual use. The following sampling guide is optional for diagnosing concrete access problems; it is not a remaining release gate or a requirement to collect missing carrier/region/time combinations.
 
-Start with 5 cold starts and 5 cached reopenings for each combination, recording sample/success counts, causes, median time, and slowest result. This detects obvious issues but does not prove long-term nationwide availability. Remote debugging, foreign CI, and cloud probes cannot alone replace these real samples.
+When sampling is useful for a reported defect, record actual network, device, build, actions, timing and failures. Do not invent coverage or present a successful sample as long-term nationwide availability; remote debugging, CI and cloud probes retain their actual scope.
 
 | Layer | Action | Record |
 |---|---|---|
@@ -1471,7 +1473,7 @@ Start with 5 cold starts and 5 cached reopenings for each combination, recording
 
 An initial experience target may be an actionable homepage within about 8 seconds for most representative normal-network samples, and short audio playable after an explicit wait. This is tunable, not a nationwide promise. Investigate, lighten resources, or adjust downloads when exceeded; do not simply delete failed samples.
 
-When external resources, deployment, or audio distribution change, retest at least cold start, listening, and offline operation. Keep one short test record in the actual project with date, region, operator, device, browser, build commit, and results, excluding full public IPs or unrelated identity data.
+When external resources, deployment, or audio distribution change, run relevant cold-start, listening and offline regressions. A new carrier matrix or physical-device sign-off is not required for first launch. Record actual test conditions and results, excluding full public IPs or unrelated identity data.
 
 ### 19.6 Handling Acceptance Failure
 

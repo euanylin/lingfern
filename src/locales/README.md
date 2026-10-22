@@ -1,8 +1,10 @@
 # Language packages
 
+[Lingfern](https://lingfern.com)
+
 Each language has its own directory: `zh-Hans/`, `zh-Hant/`, `en/`, `ja/`, `ko/`, `fr/`, `es/`, `de/`, `pt/`, `it/`, `ru/`, `ar/`, `hi/`, `id/`. `messages.json` contains interface namespaces and the language's native display name. Components read an existing namespace with `messages('taskDetail')[locale]`; do not add language switches or translated text to components. Add the same key/shape to every package. Translate each key in context: navigation “History” and the school subject “History” intentionally use different terms. `tests/locales.test.ts` checks completeness and placeholders.
 
-Maintainer scope (2026-10-17): native-speaker proofreading is not required for existing or future language packages and is not an acceptance/release gate. Use the accepted Codex/AI content review and existing completeness, placeholder, layout, offline and saved-record checks. Preserve historical review provenance without presenting unperformed native-speaker checks as a pending requirement.
+Package maintenance uses Codex/AI content review, key and placeholder completeness, layout, offline and saved-record checks. Record the actual reviewer and inspected text; historical provenance remains unchanged.
 
 Use named placeholders such as `{count}` and pass values to `messages`. Values are substituted literally, never executed or interpreted as HTML. Keep quotation text, names, URLs, author credits, actual licence names and learner input intact. Dates and relative dates use the browser's `Intl` implementation with the selected locale.
 

@@ -67,7 +67,7 @@ function redirect(path: string, cookies: string[]) {
   for (const value of cookies) result.append('Set-Cookie', value);
   return new Response(null, { status: 303, headers: result });
 }
-export const tokenSchema = z.object({ access_token: z.string().min(1).max(4096), token_type: z.literal('bearer'), expires_in: z.number().int().positive().optional(), refresh_token: z.string().min(1).max(4096).optional(), refresh_token_expires_in: z.number().int().positive().optional() });
+const tokenSchema = z.object({ access_token: z.string().min(1).max(4096), token_type: z.literal('bearer'), expires_in: z.number().int().positive().optional(), refresh_token: z.string().min(1).max(4096).optional(), refresh_token_expires_in: z.number().int().positive().optional() });
 const userSchema = z.object({ id: z.number().int().positive(), login: z.string().regex(/^[a-zA-Z0-9-]{1,39}$/) });
 export async function githubJson(url: string, init: RequestInit) {
   const response = await fetch(url, { ...init, redirect: 'manual', signal: AbortSignal.timeout(15_000) });
@@ -85,10 +85,10 @@ export async function boundedBody(body: ReadableStream<Uint8Array> | null, limit
   return combined;
 }
 
-export class GithubError extends Error {
+class GithubError extends Error {
   constructor(public status: number) { super('GITHUB'); }
 }
-export async function openTokens(value: string, secret: string, accountId: number) {
+async function openTokens(value: string, secret: string, accountId: number) {
   const sealed = z.object({ iv: z.string().max(32), data: z.string().max(32768) }).strict().parse(JSON.parse(value));
   const key = await crypto.subtle.importKey('raw', fromBase64(secret), 'AES-GCM', false, ['decrypt']);
   const result = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromBase64(sealed.iv), additionalData: bytes(`github:${accountId}`) }, key, fromBase64(sealed.data));

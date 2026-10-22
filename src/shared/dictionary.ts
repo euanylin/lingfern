@@ -7,7 +7,7 @@ const formsSchema = z.record(z.string(), z.array(z.string().min(1)));
 const headwordsSchema = z.array(z.string().min(1)).min(1).max(150_000);
 const courseSchema = z.object({ reviewStatus: z.literal('draft'), source: z.string(), entries: z.array(z.object({ term: z.string(), senseId: z.string().nullable(), definition: z.string().min(1), example: z.string().min(1) }).strict()) }).strict();
 const courseEntries = courseSchema.parse(course).entries;
-export type DictionarySense = z.infer<typeof senseSchema>;
+type DictionarySense = z.infer<typeof senseSchema>;
 const base = '/dictionary/oewn-2025/';
 const cache = new Map<string, Promise<unknown>>();
 async function asset<T>(name: string, schema: z.ZodType<T>): Promise<T> {

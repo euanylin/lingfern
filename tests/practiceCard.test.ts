@@ -52,9 +52,9 @@ it('shows one progress bar and tag only for saved answers, with topic before the
 });
 
 
-it('keeps empty cards compact and neutral in all locales, even when recommended or given a duration', () => {
+it('keeps empty cards compact and neutral in all locales, even when recommended', () => {
   for (const [locale, label] of [['zh-Hans', '开始'], ['zh-Hant', '開始'], ['en', 'Start']] as const) {
-    const html = renderToStaticMarkup(createElement(PracticeCard, { title: 'Card', locale, records: [], recommended: true, estimatedMinutes: 12, onStart: () => undefined }, createElement('span', null, 'Topic')));
+    const html = renderToStaticMarkup(createElement(PracticeCard, { title: 'Card', locale, records: [], recommended: true, onStart: () => undefined }, createElement('span', null, 'Topic')));
     expect(html).toContain(`>${label}</button>`);
     expect(html).toContain('class="button practice-card-action"');
     expect(html).not.toMatch(/还没开始|還沒開始|Not started|minutes|分鐘|分钟|practice-card-status|progressbar|practice-card-tag/);

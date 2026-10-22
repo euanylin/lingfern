@@ -5,7 +5,7 @@ import { questions } from '../shared/content';
 import type { ResolvedSummary } from './progress';
 import { goalReviews } from './goalReview';
 
-export type PracticeReason = 'resume' | 'reteach' | 'retry' | 'review' | 'new' | 'first' | 'chosen';
+type PracticeReason = 'resume' | 'reteach' | 'retry' | 'review' | 'new' | 'first' | 'chosen';
 
 export function activeCorpusPractice(history: Session[], profileId: string, skill: Lesson['skill']) {
   return history.find(session => session.profileId === profileId && session.lesson.skill === skill

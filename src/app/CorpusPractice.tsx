@@ -4,7 +4,7 @@ import { activeCorpusPractice } from '../data/practice';
 import type { Attempt, Session } from '../data/db';
 import { type Lesson, type Locale } from '../shared/content';
 import type { Preferences } from '../shared/preferences';
-import { TaskDetail, taskMinutes } from './TaskDetail';
+import { TaskDetail } from './TaskDetail';
 import { PracticeCard } from './PracticeCard';
 import { PracticeOptions } from './PracticeOptions';
 import { practiceSelectionMatches, type PracticeSelection } from '../shared/practiceSelection';
@@ -43,7 +43,7 @@ export function CorpusPractice({ locale, profileId, preferences, selection, onSe
     finally { setLoading(false); }
   }
   return <>
-    <PracticeCard title={t.title} locale={locale} dataSkill={skill} sessions={active && !topicChanged ? [active] : []} records={records} recommended={recommended} busy={busy || loading} estimatedMinutes={detail ? taskMinutes(detail) : fallback && !configured ? taskMinutes(fallback.lesson) : undefined} onStart={() => {
+    <PracticeCard title={t.title} locale={locale} dataSkill={skill} sessions={active && !topicChanged ? [active] : []} records={records} recommended={recommended} busy={busy || loading} onStart={() => {
       invoker.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       if (!active || topicChanged) { void choose(); return; }
       if (onCheck && active.lesson.mode !== 'test') { setDetailReason(undefined); setDetail(active.lesson); }

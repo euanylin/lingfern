@@ -38,10 +38,10 @@ export function practiceCardDate(at: string, locale: Locale, now = new Date()) {
   return new Intl.DateTimeFormat(locale, { month: 'numeric', day: 'numeric' }).format(date);
 }
 
-export type PracticeCardProps = {
+type PracticeCardProps = {
   title: string; locale: Locale; sessions?: readonly Session[]; records: readonly Attempt[];
   recommended?: boolean; busy?: boolean; onStart: () => void; onRestart?: () => Promise<void>;
-  children?: ReactNode; status?: string; estimatedMinutes?: number; dataSkill?: 'reading' | 'listening' | 'combined';
+  children?: ReactNode; dataSkill?: 'reading' | 'listening' | 'combined';
 };
 
 export function PracticeCard({ title, locale, sessions = [], records, recommended = false, busy = false, onStart, onRestart, children, dataSkill }: PracticeCardProps) {

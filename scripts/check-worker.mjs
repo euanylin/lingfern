@@ -20,7 +20,7 @@ assert.match(serviceWorker.headers.get('content-type'), /javascript/);
 assert.match(serviceWorker.headers.get('cache-control'), /no-store/);
 const manifest = await fetch(origin + '/manifest.webmanifest');
 assert.equal(manifest.status, 200);
-for (const pack of JSON.parse(await readFile('content/resource-packs.json', 'utf8')).packs) {
+for (const pack of [...JSON.parse(await readFile('content/resource-packs.json', 'utf8')).packs, ...JSON.parse(await readFile('content/retained-resource-packs.json', 'utf8')).packs]) {
   const response = await fetch(origin + pack.path);
   assert.equal(response.status, 200, pack.path);
   assert.equal(createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex'), pack.sha256);

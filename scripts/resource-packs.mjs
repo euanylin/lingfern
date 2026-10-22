@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile, rename, unlink } from 'node:fs/promises';
 import { join } from 'node:path';
 import { zipSync } from 'fflate';
+import assert from 'node:assert/strict';
 
 const publicRoot = process.env.LINGFERN_RESOURCE_PUBLIC_ROOT ?? 'public';
 const catalogueRoot = process.env.LINGFERN_RESOURCE_CATALOGUE_ROOT ?? 'content';
@@ -10,6 +11,15 @@ const output = join(publicRoot, 'packs');
 const cataloguePath = join(catalogueRoot, 'resource-packs.json');
 const previousContent = await readFile(cataloguePath, 'utf8').catch(error => { if (error.code === 'ENOENT') return null; throw error; });
 const previous = previousContent ? JSON.parse(previousContent).packs : [];
+const retained = JSON.parse(await readFile(join(catalogueRoot, 'retained-resource-packs.json'), 'utf8').catch(error => { if (error.code === 'ENOENT') return '{"version":1,"packs":[]}'; throw error; }));
+assert(retained.version === 1 && Array.isArray(retained.packs), 'Invalid retained resource catalogue');
+const retainedPaths = new Set();
+for (const pack of retained.packs) {
+  assert(/^[a-z0-9-]+$/.test(pack.id) && /^[a-f0-9]{16}$/.test(pack.version) && pack.path === `/packs/${pack.id}-${pack.version}.zip` && /^[a-f0-9]{64}$/.test(pack.sha256) && Number.isSafeInteger(pack.bytes) && pack.bytes > 0 && pack.bytes <= 20 * 1024 * 1024 && !retainedPaths.has(pack.path), 'Invalid retained resource package');
+  const bytes = await readFile(join(publicRoot, pack.path));
+  assert(bytes.length === pack.bytes && createHash('sha256').update(bytes).digest('hex') === pack.sha256, `Retained resource package changed: ${pack.path}`);
+  retainedPaths.add(pack.path);
+}
 await mkdir(output, { recursive: true });
 const packs = [];
 for (const group of catalogue.groups) {
@@ -42,7 +52,8 @@ if (process.argv.includes('--check')) {
     if (createHash('sha256').update(bytes).digest('hex') !== pack.sha256) throw new Error(`Previous resource package changed: ${pack.path}`);
     obsolete.push({ file, name: pack.path.slice('/packs/'.length) });
   }
-  for (const { file } of obsolete) await unlink(file);
+  // Published predecessors stay available until their old-client recovery check permits removal.
+  for (const { file, name } of obsolete) if (!retainedPaths.has('/packs/' + name)) await unlink(file);
   await writeFile(cataloguePath + '.tmp', content);
   await rename(cataloguePath + '.tmp', cataloguePath);
 }

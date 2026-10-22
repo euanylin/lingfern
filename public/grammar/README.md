@@ -1,6 +1,8 @@
 # Lingfern 英语用法词典
 
-`entries.json` 是 Lingfern 原创的离线开发版用法词典。当前有 68 条疑问式词条，提供简体中文、繁体中文及英文的问题、简答、详细用法、易错处，以及英文结构、例句和对比。新增 14 条常见易混用法，并加深 10 条已有词条；按英文关键词检索或按首字母浏览。词条不附 CEFR 等级：单项语法现象不能可靠代表整体语言能力，也没有逐条分级验证。内容仍需独立英语教学编辑审阅，不是完整或权威语法词典。
+[Lingfern](https://lingfern.com)
+
+`entries.json` 是 Lingfern 原创的离线英语用法参考。当前有 68 条疑问式词条，提供简体中文、繁体中文及英文的问题、简答、详细用法、易错处，以及英文结构、例句和对比。新增 14 条常见易混用法，并加深 10 条已有词条；按英文关键词检索或按首字母浏览。词条不附 CEFR 等级：单项语法现象不能可靠代表整体语言能力，也没有逐条分级验证。内容是有限范围的原创参考，不表示完整覆盖或权威分级。
 
 ## 可复用资料筛选（2026-09-27）
 
@@ -11,8 +13,8 @@
 | [Brehe’s Grammar Anatomy](https://open.umn.edu/opentextbooks/textbooks/717) | 开放教科书资料页列 CC BY-SA；面向已掌握英语、学习基础语法概念的人，形式为教材而非用法词典 | 未直接复用，未复制 |
 | [College ESL Writers](https://open.umn.edu/opentextbooks/textbooks/568) | 开放教科书资料页列 CC BY-NC-SA；供中高级英语学习者使用 | 非商业与相同方式共享限制不适合当前计划中的许可目标；未复制 |
 
-本轮重点核对了 [Cambridge 的 because/because of](https://dictionary.cambridge.org/grammar/british-grammar/because-because-of-and-cos)、[either/neither](https://dictionary.cambridge.org/grammar/british-grammar/neither-neither-nor-and-not-)、[动词补语结构](https://dictionary.cambridge.org/grammar/british-grammar/verb-ing) 和 [Practical English Usage 出版介绍](https://india.oup.com/product/practical-english-usage-fourth-international-edition-9780194202466/)；新增解释与例句均重新编写。以上资料可用于核查事实与设计选题，不能把“网上可阅读”误作可自由复制。CC BY-SA 改编的同许可要求也见 [Creative Commons 兼容许可说明](https://creativecommons.org/compatible-licenses/)。当前三语问题式内容、例句与解释均为本项目新写；这里的链接是研究记录，不是运行时依赖。发布许可仍以维护者最终确认为准。
+本轮重点核对了 [Cambridge 的 because/because of](https://dictionary.cambridge.org/grammar/british-grammar/because-because-of-and-cos)、[either/neither](https://dictionary.cambridge.org/grammar/british-grammar/neither-neither-nor-and-not-)、[动词补语结构](https://dictionary.cambridge.org/grammar/british-grammar/verb-ing) 和 [Practical English Usage 出版介绍](https://india.oup.com/product/practical-english-usage-fourth-international-edition-9780194202466/)；新增解释与例句均重新编写。以上资料可用于核查事实与设计选题，不能把“网上可阅读”误作可自由复制。CC BY-SA 改编的同许可要求也见 [Creative Commons 兼容许可说明](https://creativecommons.org/compatible-licenses/)。当前三语问题式内容、例句与解释均为本项目新写；这里的链接是研究记录，不是运行时依赖。原创内容适用项目的 CC BY 4.0 许可；所列第三方资料保留各自条款。
 
-## 编辑状态
+## 维护与使用
 
-仍需独立审阅：语法准确性、英美差异、例句自然度、简体及繁体措辞，尤其 C1–C2 的语用判断。审核后逐条记录审阅者、日期、修订和适用范围；未审核前保持 `reviewStatus` 草稿标记。更多词条应按真实查询需求增补，而不是用自动生成内容伪称完整覆盖。
+资料库提供关键词检索、首字母浏览和逐条展开，安装资源后可离线查阅。更新时同时检查英文解释、例句及简繁中文措辞，保留来源边界，不复制商业词典条目。原始 `reviewStatus` 是内容创建时的来源记录，不代表增加一项人工签署要求。新增条目应服务实际查询需求。

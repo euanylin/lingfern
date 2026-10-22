@@ -1,7 +1,7 @@
 {
   "version": 1,
   "offline": {
-    "version": "ed2ee32355a8616a",
+    "version": "a6371ab44ffa7715",
     "groups": [
       {
         "id": "dictionary",
@@ -177,8 +177,8 @@
       },
       {
         "id": "ipa",
-        "version": "cb5ebbfc993dcf02",
-        "bytes": 3997222,
+        "version": "e80442fbb47daa9c",
+        "bytes": 3997458,
         "files": [
           {
             "path": "/ipa/audio/about.mp3",
@@ -1152,8 +1152,8 @@
           },
           {
             "path": "/ipa/README.md",
-            "bytes": 2573,
-            "sha256": "86dcd1e67e2b89ff6c2c3a6c06d08c2780b695f091f0c81f91a8d4ffa64d28e9"
+            "bytes": 2809,
+            "sha256": "475a40f725cea35ff8cc38695c155d103957b87b6c8952e2f44c569f4f5d0e48"
           },
           {
             "path": "/ipa/SOURCES.json",
@@ -1164,8 +1164,8 @@
       },
       {
         "id": "grammar",
-        "version": "6c021fbd1dfd485b",
-        "bytes": 195600,
+        "version": "6c7b15704814fba9",
+        "bytes": 195690,
         "files": [
           {
             "path": "/grammar/entries.json",
@@ -1174,8 +1174,8 @@
           },
           {
             "path": "/grammar/README.md",
-            "bytes": 3452,
-            "sha256": "649d95fc16e99367dc48c8503dd3c7fd579d4757a0e3d00dfb57627aefc0e16f"
+            "bytes": 3542,
+            "sha256": "de4e005da12961b085a9be42a041828d30f3827bdacd415c9ee2d8458b372da2"
           }
         ]
       },
@@ -1432,8 +1432,8 @@
       },
       {
         "id": "audio-a1",
-        "version": "23cd5b5b338d2596",
-        "bytes": 1306992,
+        "version": "89b2522e30289fbf",
+        "bytes": 1307107,
         "files": [
           {
             "path": "/audio/a1-words/CC-BY-SA-3.0.txt",
@@ -1442,8 +1442,8 @@
           },
           {
             "path": "/audio/a1-words/README.md",
-            "bytes": 1377,
-            "sha256": "e4b1f45c96139a00392ad56735290c1d28fe4ce361a33ce5f5ca515425c4aa7c"
+            "bytes": 1492,
+            "sha256": "8808f34200269b55b661828830c906510b3c2e512c3686ba4600a688f101e08a"
           },
           {
             "path": "/audio/a1-words/voa-commute-check.mp3",
@@ -9648,17 +9648,17 @@
       },
       {
         "id": "ipa",
-        "version": "cb5ebbfc993dcf02",
-        "path": "/packs/ipa-cb5ebbfc993dcf02.zip",
-        "bytes": 3596810,
-        "sha256": "d5f6a1673e3682b6024ce79d262051bc5b568f3fc4858a2b844f4ea75ab6cf8b"
+        "version": "e80442fbb47daa9c",
+        "path": "/packs/ipa-e80442fbb47daa9c.zip",
+        "bytes": 3596925,
+        "sha256": "226ecc3362cd799d4baf9d2f20774336c3b41cd374e0e7f0b8fad23acd3453bc"
       },
       {
         "id": "grammar",
-        "version": "6c021fbd1dfd485b",
-        "path": "/packs/grammar-6c021fbd1dfd485b.zip",
-        "bytes": 58352,
-        "sha256": "4269dc54ba293e17bc2b47695e2f9cecda951d9aa56792bd059380b299cfc255"
+        "version": "6c7b15704814fba9",
+        "path": "/packs/grammar-6c7b15704814fba9.zip",
+        "bytes": 58359,
+        "sha256": "9e0283529f544c97504b0332563dbf504d7df561ffb65bddde31e730df2e7eb1"
       },
       {
         "id": "corpus",
@@ -9683,10 +9683,10 @@
       },
       {
         "id": "audio-a1",
-        "version": "23cd5b5b338d2596",
-        "path": "/packs/audio-a1-23cd5b5b338d2596.zip",
-        "bytes": 1273964,
-        "sha256": "d0edb9929f7aa0a28ee5d21c1aedad170af00c6e569744447cf664cde4fc255f"
+        "version": "89b2522e30289fbf",
+        "path": "/packs/audio-a1-89b2522e30289fbf.zip",
+        "bytes": 1274006,
+        "sha256": "fd29bbcfe8fbb4670b9605b44fd4202bc08d896c687ad67d4c7051e296c4840a"
       },
       {
         "id": "audio-a2",

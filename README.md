@@ -1,6 +1,6 @@
 # Lingfern
 
-[English](README.md) · [简体中文](docs/README.zh-CN.md)
+[Website](https://lingfern.com) · [English](README.md) · [简体中文](docs/README.zh-CN.md) · [User guide](docs/user-guide.md)
 
 <img src="public/icon.svg" width="96" alt="Lingfern">
 
@@ -8,14 +8,15 @@ English reading and listening practice that you can keep using offline.
 
 Lingfern is for learners aged 16 and over. Choose a learning goal, work with English texts and recordings, and return to your saved work at your own pace. You do not need an account or an AI service to learn.
 
-**Current availability:** the source is available for local preview. The hosted service has not launched. GitHub sign-in, private-repository sync and MCP connections are still undergoing setup and testing; they are not ready for general use.
-
 ## Learn your way
 
 - **Reading, Listening or Combined:** practise one skill or work through reading followed by listening.
 - **Practice or Test:** use hints and dictionary support in Practice, or answer without assistance in Test and see feedback after finishing. Open responses are not automatically scored.
 - **Keep your work:** revisit saved sessions, answers and feedback in History. Save useful words and expressions for review.
 - **Take it offline:** install the materials, audio and reference resources you need from Library before disconnecting.
+- **Choose your practice:** set the goal, topics, material and question types separately for reading and listening, or leave them on Automatic. Practice is generated locally from eligible source material.
+- **Use reference tools:** look up words, review saved words and expressions, explore the simple or detailed IPA chart with audio, and consult the English usage dictionary. Cambridge lookup opens only when you choose it.
+- **Connect when useful:** sign in with GitHub, synchronise through your selected private data repository, or give an external MCP client access to specific shared snapshots. External AI feedback stays separate from saved answers and formal scores.
 
 Learning goals span A1–C2. Results describe your work on the tasks; they are not a certified CEFR level or an examination score.
 
@@ -23,11 +24,11 @@ Learning goals span A1–C2. Results describe your work on the tasks; they are n
 
 | Page | What you can do |
 |---|---|
-| **Today** | Start reading, listening or combined training; open History to revisit saved work. |
-| **Library** | Download and manage learning materials, audio and reference resources. |
-| **Settings** | Choose an interface language, manage profiles, and export or restore a backup. |
+| **Today** | Read the daily quotation, configure and start training, see saved-activity growth, and open History. |
+| **Library** | Use the dictionary, word review, IPA audio and usage reference; search, install or remove resources and import compatible community packs. |
+| **Settings** | Choose language, theme and navigation appearance; manage profiles, backups, GitHub sync, MCP access and app updates. |
 
-The interface supports 14 languages. English learning material stays in English; beginner guidance has translated support. B1–C2 learning guidance and the About page use English.
+The interface supports Simplified Chinese, Traditional Chinese, English, Japanese, Korean, French, Spanish, German, Portuguese, Italian, Russian, Arabic, Hindi and Indonesian. English learning material stays in English; beginner guidance has translated support. B1–C2 learning guidance and the About page use English. Arabic navigation uses right-to-left layout while English material remains left-to-right.
 
 [Read the user guide](docs/user-guide.md) for practice, offline use, backups and optional connections.
 
@@ -37,7 +38,7 @@ Sessions and answers are saved in your browser on your device. Clearing site dat
 
 Backup ZIPs contain personal learning data and are not encrypted. Keep them private. Installed resource packs and audio are separate from your learning backup.
 
-GitHub sync and AI sharing are optional. When available, sync will use a private data repository you select; MCP will give a connected client access only to snapshots you explicitly share. Signing in will not require you to bind a sync repository. Lingfern has no advertising or default telemetry.
+GitHub sync and AI sharing are optional. Sync uses a private data repository you select; local answers remain saved when a network request fails. MCP gives a connected client access only to snapshots you explicitly share, with expiry and revocation controls. Signing in does not require a sync repository. Revocation prevents later retrieval but cannot erase copies already received by another service. Lingfern has no advertising or default telemetry.
 
 ## Try it locally or contribute
 

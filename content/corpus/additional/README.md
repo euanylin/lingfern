@@ -1,6 +1,8 @@
 # Additional reading sources
 
-`../additional.json` contains 20 NASA Glenn Research Center and 20 NOAA National Ocean Service originals (retained passages counted in the review journal). `../additional-topics.json` maps the same source hashes to the existing `science` and `nature` topics. It contains original text, not authored exercises or audio.
+[Lingfern](https://lingfern.com)
+
+[`additional.json`](../additional.json) contains 20 NASA Glenn Research Center and 20 NOAA National Ocean Service originals (retained passages counted in the review journal). `../additional-topics.json` maps the same source hashes to the existing `science` and `nature` topics. It contains original text, not authored exercises or audio.
 
 Run `node scripts/additional-corpus.mjs` from the project root to rebuild using archived raw files, downloading missing official files only. The collector restricts hosts/paths, maximum sizes and article boundaries; it removes complete paragraphs dependent on missing NASA diagrams/formulas/simulator controls, NOAA video transcripts and external Rachel Carson quotations. It skips seasickness advice. It preserves raw HTML and paragraph wording. Rejected paragraphs are hard boundaries: passages are generated within each consecutive retained paragraph block. Fragmented sources omit originalText; their selected text and blocks remain in provenance, preventing joined long-window generation. Do not label extracted text or generated Lingfern tasks as an official agency publication.
 

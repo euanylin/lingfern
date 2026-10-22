@@ -46,6 +46,9 @@ it('normal public assets and every downloadable ZIP exclude fictional test recor
   const { unzipSync } = await import('fflate');
   const { default: resources } = await import('../content/offline-resources.json');
   const { default: packs } = await import('../content/resource-packs.json');
+  const { default: retained } = await import('../content/retained-resource-packs.json');
+  const { createHash } = await import('node:crypto');
+  const downloadable = [...packs.packs, ...retained.packs];
   expect(fixtureAudioSources).toHaveLength(10);
   const normalLessons = (await Promise.all(['voa-a1', 'voa-a2', 'voa-b1', 'voa-b2', 'archival-c1', 'voa-c1', 'archival-c2', 'eisenhower-c2'].map(async name => JSON.parse(readFileSync(`tests/fixtures/retired-content/${name}.json`, 'utf8')) as unknown[]))).flat().map(raw => lessonSchema.parse(raw));
   for (const material of normalLessons.flatMap(lesson => lesson.materials)) if (material.audio) {
@@ -58,9 +61,12 @@ it('normal public assets and every downloadable ZIP exclude fictional test recor
   for (const path of excluded) expect(existsSync('public' + path)).toBe(false);
   expect(publicAudioSources.every(source => !excluded.has(source.path))).toBe(true);
   expect(resources.groups.flatMap(group => group.files).every(file => !excluded.has(file.path))).toBe(true);
-  expect(readdirSync('public/packs').filter(name => name.endsWith('.zip')).sort()).toEqual(packs.packs.map(pack => pack.path.split('/').at(-1)!).sort());
-  for (const pack of packs.packs) {
-    const files = unzipSync(readFileSync('public' + pack.path));
+  expect(readdirSync('public/packs').filter(name => name.endsWith('.zip')).sort()).toEqual(downloadable.map(pack => pack.path.split('/').at(-1)!).sort());
+  for (const pack of downloadable) {
+    const bytes = readFileSync('public' + pack.path);
+    expect(bytes.length).toBe(pack.bytes);
+    expect(createHash('sha256').update(bytes).digest('hex')).toBe(pack.sha256);
+    const files = unzipSync(bytes);
     expect(Object.keys(files).every(path => !excluded.has('/' + path))).toBe(true);
   }
 });

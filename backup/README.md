@@ -1,6 +1,8 @@
 # Project backups
 
-Run `npm run backup` before changes and delivery. Keep a verified full baseline; later snapshots contain only changed/new files and deletion records. If the protected files have not changed, the command returns the existing recovery point without creating another directory. Snapshots are immutable and written manifest-last. A directory without a manifest is incomplete.
+[Lingfern](https://lingfern.com)
+
+This is the local project recovery procedure. Run `npm run backup` before changes and delivery. Keep a verified full baseline; later snapshots contain only changed/new files and deletion records. If the protected files have not changed, the command returns the existing recovery point without creating another directory. Snapshots are immutable and written manifest-last. A directory without a manifest is incomplete.
 
 Exclude secrets, `private/`, Git history, dependencies, Python `__pycache__/`, generated `dist/`, `output/` screenshots, browser-tool caches and nested backups. Keep original public assets and resource ZIPs: these are required for restoration. Browser IndexedDB, production services and off-site disaster recovery are outside this scope.
 

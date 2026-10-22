@@ -8,13 +8,13 @@ Product_Plan2.3的36目标族×读听共72/72完成逐格本地教学验收。�
 
 59会话UI备份导入新隔离档案、重装40资源、整个Chrome进程关闭后断网重启通过。全部正式会话／答案／辅助／评分／时间字段、115原作根／128接触记录和firstSeen保持；仅归一化导入别名与临时锁，实际恢复重播可更新该接触lastSeen。所有反馈恢复、原生音频解码和完整206.8秒播放通过；是软件播放，不是试听／真机结论。当前/sw.js及渲染今日已核对，8787预览保留。
 
-最终69Node／1152Vitest159文件／152浏览器／19离线、lint、构建、Worker、MCP及SW更新全通过。候选2026-10-17T00-54-44.001Z完整还原1948文件／1,334,714,456字节，与工作区和清单SHA一致；还原构建、154检查13文件及9包检查通过，1906其他基线文件Hash不变。最终文档增量及完整恢复以private/verification/teaching-72-delivery-20261017/delivery/delivery.json的passed收据为准。修改、命令、审阅、失败和交付边界 (`docs/history/2026-10-17-teaching-resource-delivery.md`; local reference, excluded from public copy)。
+最终69Node／1152Vitest159文件／152浏览器／19离线、lint、构建、Worker、MCP及SW更新全通过。候选2026-10-17T00-54-44.001Z完整还原1948文件／1,334,714,456字节，与工作区和清单SHA一致；还原构建、154检查13文件及9包检查通过，1906其他基线文件Hash不变。最终文档增量及完整恢复以private/verification/teaching-72-delivery-20261017/delivery/delivery.json的passed收据为准。[修改、命令、审阅、失败和交付边界](history/2026-10-17-teaching-resource-delivery.md)。
 
 有限原作会随跨目标历史消耗；见过的来源、另一窗口或另一技能不算新的陌生迁移。72格保留各自起始历史／支持条件，不声明同一人可连续完成72次陌生应用，也不增设统一四原作配额。59会话后的初级28路径有15种在所记搜索范围仍可定位陌生应用、13种未定位；这不是全库存穷尽证明。全部来源／旧包／holds／失败保留，无新增采集、云、ASR、GPU、付费、全量权益复审、真实档案、提交、推送或生产部署。真实账号、三网、真机／读屏及正式发布另行跟踪；本目标关闭，不自动恢复此前全部发布准备。
 
 ## 历史教学检查点：70/72（2026-10-17，C2近义改写忠实度读听）
 
-进行中：保留分歧综合已审四完整语境、16综合关系／32错误解释及24组合，接入英文教学和客户端；两连续录音206.8／194.03秒及8评分短语核对完成，95相关检查通过。仍70/72，普通入口／离线／恢复及完整交付待验。范围与未验项 (`docs/history/2026-10-17-c2-disagreement-synthesis.md`; local reference, excluded from public copy)。
+进行中：保留分歧综合已审四完整语境、16综合关系／32错误解释及24组合，接入英文教学和客户端；两连续录音206.8／194.03秒及8评分短语核对完成，95相关检查通过。仍70/72，普通入口／离线／恢复及完整交付待验。[范围与未验项](history/2026-10-17-c2-disagreement-synthesis.md)。
 
 当前70完成／2部分／0缺口，余保留分歧综合读听及同档案72／历史库存／实际资源安装整体审计。新增Alice818词／Call of the Wild1694词完整连续阅读，Technological singularity335词125.49秒双声道／BASL315词147.19秒单声道连续听力。比较改写是否保留范围、行动者、归属、情态、时序及逻辑方向。B1–C2新旧全部教学说明只显示英文，A1–A2及导航操作仍三语，旧快照不覆写。
 
@@ -26,11 +26,11 @@ Product_Plan2.3的36目标族×读听共72/72完成逐格本地教学验收。�
 
 六张实际320px暗色中文界面／英文反馈及进程重开Why图已查看，其余布局为自动检查。8787本地预览保留，最终构建后已重启并核对当前/sw.js和今日。无真实学习档案、提交、推送或生产部署。来源回归ZIP不冒称公开课程；38登记阅读原作与270已取回私有书籍不能互相代替资格。下一步保留分歧综合，再完成整体库存／历史／安装交付审计；真机、读屏、真实账号／三网／生产及教学效果未验，仅报告规则任务表现。
 
-修改、实际审阅、命令、失败与未验项 (`docs/history/2026-10-17-c2-faithful-paraphrase.md`; local reference, excluded from public copy)。
+[修改、实际审阅、命令、失败与未验项](history/2026-10-17-c2-faithful-paraphrase.md)。
 
 ## 历史教学检查点：68/72（2026-10-17，C2复杂语用读听）
 
-进行中：C2近义改写忠实度已审四个连续完整语境、16忠实改写／32错误解释与24组合，接入客户端和英文教学；两份现有原录音完整CPU解码、精确连续窗口及8评分短语核对完成。仍68/72；六普通流程、真实前置、离线与进程恢复已通过，当前浏览器全套及项目恢复尚在进行。本轮范围与未验项 (`docs/history/2026-10-17-c2-faithful-paraphrase.md`; local reference, excluded from public copy)。
+进行中：C2近义改写忠实度已审四个连续完整语境、16忠实改写／32错误解释与24组合，接入客户端和英文教学；两份现有原录音完整CPU解码、精确连续窗口及8评分短语核对完成。仍68/72；六普通流程、真实前置、离线与进程恢复已通过，当前浏览器全套及项目恢复尚在进行。[本轮范围与未验项](history/2026-10-17-c2-faithful-paraphrase.md)。
 
 当前68完成／4部分／0缺口，余近义改写忠实度、保留分歧综合四格继续。新增Wuthering Heights1123词／Treasure Island641词完整阅读，Paradise Mystery536词210.4秒原生双声道／Four Million470词143.75秒原生单声道连续听力。区分字面与交互功能、角色／预设、实际回应和承诺边界，不强制一句话只有一种言语行为。B1–C2新旧全部教学说明仅英文显示，A1–A2和界面操作仍三语，旧快照不改写。
 
@@ -42,7 +42,7 @@ Product_Plan2.3的36目标族×读听共72/72完成逐格本地教学验收。�
 
 下一步近义改写忠实度，随后保留分歧综合；现有38登记阅读原作及270已取回私有书籍定位不能互相代替资格。最终同档案72／历史库存／实际资源安装整体审计仍须完成，回归资源不冒称公开课程。六张实际320px暗色中文界面／英文反馈图已查看，其余布局是自动检查。8787本地预览已保留，当前/sw.js与今日已核对。无真实档案、提交、推送或生产部署；真机、读屏、真实提供商／三网／生产及教学效果未验，仅报告规则任务表现。
 
-修改、实际审阅、命令、失败与未验项 (`docs/history/2026-10-17-c2-complex-pragmatics.md`; local reference, excluded from public copy)。
+[修改、实际审阅、命令、失败与未验项](history/2026-10-17-c2-complex-pragmatics.md)。
 
 ## 历史教学检查点：66/72（2026-10-17，C2多层立场读听）
 
@@ -56,11 +56,11 @@ Product_Plan2.3的36目标族×读听共72/72完成逐格本地教学验收。�
 
 下一步复杂语用，随后忠实改写和保留分歧综合。最终同档案72／历史库存／资源安装交付整体审计仍须完成；Emma根158与历史B1-04示例重叠只是定位点，严格历史排除／耗尽保留，不把见过的原作算陌生应用。四张最终320px暗色中文界面／英文教学反馈图实际查看，其余布局为自动检查。无真实学习档案、提交、推送或生产部署；真机、读屏、真实提供商／三网／生产、试听／音素及教学效果未验，仅报告规则任务表现。
 
-修改、实际审阅、命令与未验项 (`docs/history/2026-10-17-c2-layered-positions.md`; local reference, excluded from public copy)。
+[修改、实际审阅、命令与未验项](history/2026-10-17-c2-layered-positions.md)。
 
 ## 历史教学检查点：64/72（2026-10-17，C2修辞功能读听）
 
-多层立场已接入四完整语境的16层次／32错误解释，107相关检查、16旧完整普通快照和构建通过。六普通流程与进程恢复的初版证据已保留，窄屏发现反馈His指代可能误指，明确父亲后74相关检查／构建通过，正在重验最终普通离线与恢复，暂不增加完成计数；本轮范围与未验项 (`docs/history/2026-10-17-c2-layered-positions.md`; local reference, excluded from public copy)。
+多层立场已接入四完整语境的16层次／32错误解释，107相关检查、16旧完整普通快照和构建通过。六普通流程与进程恢复的初版证据已保留，窄屏发现反馈His指代可能误指，明确父亲后74相关检查／构建通过，正在重验最终普通离线与恢复，暂不增加完成计数；[本轮范围与未验项](history/2026-10-17-c2-layered-positions.md)。
 
 当前64完成、7部分、1缺口，余C2多层立场、复杂语用、近义改写忠实度和保留分歧综合八格继续。新阅读为《双城记》完整开篇章正文1001词／《螺丝在拧紧》完整开场1041词；听力Kennedy就职五段承诺357词209.74秒／Eisenhower告别研究与未来世代304词161.48秒。按具体措辞机制、语境效果与边界比较，不能只认修辞术语、难词或人物名。B1–C2新旧目标及全部教学说明只显示英文，A1–A2及导航操作仍三语，旧快照不改写。
 
@@ -72,11 +72,11 @@ Product_Plan2.3的36目标族×读听共72/72完成逐格本地教学验收。�
 
 下一步先核实多层立场候选完整上下文、原始范围／既有holds与声音，再扩展生成器；不以简单观点归属替代。私有定位已排除Controversy重叠精确hold的上下文，未改hold。随后继续其余六格及同档案72／历史库存／资源安装交付整体审计。无真实学习档案、提交、推送或生产部署。四张实际320px暗色中文界面／英文教学反馈图已查看，其余布局为自动检查；真机、读屏、真实提供商／三网／生产、试听／音素及教学效果未验，仅报告规则任务表现。
 
-修改、实际审阅、命令与未验项 (`docs/history/2026-10-16-c2-rhetorical-function.md`; local reference, excluded from public copy)。
+[修改、实际审阅、命令与未验项](history/2026-10-16-c2-rhetorical-function.md)。
 
 ## 历史教学检查点：62/72（2026-10-16，C2细微意义读听）
 
-本轮修辞读听从缺口进入部分完成：16具体功能与24比较审阅、96组合框架／288错误评分、90相关检查、14旧完整普通快照回归及构建通过；六普通断网／恢复流程正在执行，暂不增加完成计数。原62冻结收据保留，当前工作矩阵为62完成／9部分／1缺口。本轮修改与证据 (`docs/history/2026-10-16-c2-rhetorical-function.md`; local reference, excluded from public copy)。
+本轮修辞读听从缺口进入部分完成：16具体功能与24比较审阅、96组合框架／288错误评分、90相关检查、14旧完整普通快照回归及构建通过；六普通断网／恢复流程正在执行，暂不增加完成计数。原62冻结收据保留，当前工作矩阵为62完成／9部分／1缺口。[本轮修改与证据](history/2026-10-16-c2-rhetorical-function.md)。
 
 当前62完成、9部分、1缺口，余C2五族10格继续。新增完整阅读Time Machine865／War of the Worlds899词、连续听力Logic555词219.06秒／False memory283词101.52秒；比较措辞变化与未改变的上下文限制。B1–C2已有与后续全部教学说明只显示英文，旧快照显示适用且不改写记录；A1–A2和界面操作维持三语。
 
@@ -88,11 +88,11 @@ Product_Plan2.3的36目标族×读听共72/72完成逐格本地教学验收。�
 
 下一步C2修辞功能，随后多层立场、复杂语用、近义改写和保留分歧综合；优先复用未用原作库存。最终仍需同档案72路径／历史库存／资源安装交付整体审计。无真实档案、提交、推送或生产部署；真机／读屏／真实提供商／三网／生产、试听／音素和教学效果未验。仅报告规则任务表现，不报告能力分类或考试分数。
 
-修改、命令、实际审阅与未验项 (`docs/history/2026-10-16-c2-nuanced-meaning.md`; local reference, excluded from public copy)。
+[修改、命令、实际审阅与未验项](history/2026-10-16-c2-nuanced-meaning.md)。
 
 ## 历史教学检查点：60/72（2026-10-16，C1信息密度读听）
 
-C2细微意义正在核验：四个完整原作语境、16措辞变化／48错误解释已逐项审阅并接入；相关67项及构建通过，六普通离线／恢复流程仍在执行，尚未增加完成计数。见当前增量 (`docs/history/2026-10-16-c2-nuanced-meaning.md`; local reference, excluded from public copy)。
+C2细微意义正在核验：四个完整原作语境、16措辞变化／48错误解释已逐项审阅并接入；相关67项及构建通过，六普通离线／恢复流程仍在执行，尚未增加完成计数。见[当前增量](history/2026-10-16-c2-nuanced-meaning.md)。
 
 当前60完成、9部分、3缺口，余C2六族12格继续。C1六族的阅读／听力现有完整语境、英文教学、意义评分、异原作无辅助应用、普通离线与恢复证据。B1–C2已有／后续目标及全部教学说明只显示英文，A1–A2与导航／操作维持三语，旧快照不改写。
 
@@ -102,7 +102,7 @@ C2细微意义正在核验：四个完整原作语境、16措辞变化／48错�
 
 下一步C2细微意义，随后修辞、多层立场、复杂语用、近义改写与保留分歧综合。现有Time Machine／War of the Worlds与Logic／False memory只是已读候选，未计入完成；后者录音中的clock段落顺序不同，必须作完整来源绑定呈现及未决差异核对。最终仍须同档案72路径／历史库存／资源安装交付整体审计。无真实学习档案、提交、推送或生产部署。
 
-修改、命令、实际审阅与未验项 (`docs/history/2026-10-16-c1-information-density.md`; local reference, excluded from public copy)。
+[修改、命令、实际审阅与未验项](history/2026-10-16-c1-information-density.md)。
 
 ## 历史教学检查点：58/72（2026-10-16，C1间接立场读听）
 
@@ -112,7 +112,7 @@ C2细微意义正在核验：四个完整原作语境、16措辞变化／48错�
 
 下一步C1信息密度，随后C2六族；先审现有未用原作中密集命题的关系与限定，不能按长度、难词、人物归属或短窗替代。最终仍须同档案72路径／历史库存及安装交付整体核验，未宣称成熟课程、CEFR能力或学习效果。
 
-修改、逐项证据与验收边界 (`docs/history/2026-10-16-c1-indirect-stance.md`; local reference, excluded from public copy)。
+[修改、逐项证据与验收边界](history/2026-10-16-c1-indirect-stance.md)。
 
 ## 历史教学检查点：56/72（2026-10-16，B1–C2教学说明统一英文）
 
@@ -122,21 +122,21 @@ C2细微意义正在核验：四个完整原作语境、16措辞变化／48错�
 
 覆盖仍56完成、11部分、5缺口，余16格继续，不把语言调整计为新教学验收。下一步C1间接立场：现有书籍697／890词原生完整上下文已读但未准入，JFK候选仍仅定位；之后信息密度及C2六族。来源、旧包、holds及失败证据保留；最终仍须同档案72路径／安装交付整体核验。
 
-修改、命令结果与验收边界 (`docs/history/2026-10-16-instruction-language.md`; local reference, excluded from public copy)。
+[修改、命令结果与验收边界](history/2026-10-16-instruction-language.md)。
 
 ## 历史教学检查点：56/72（2026-10-16，C1论证边界读听）
 
-当前56/72完成、11部分、5缺口，余16格继续；新增C1论证边界读听完成四精确上下文的生成／意义评分／三语支持、陌生应用与实际普通离线恢复。68 Node／1018 Vitest149文件／148浏览器（2workers）／19离线及Worker、MCP、SW更新通过；6普通流程8快照16答案144布局。候选完整1871文件还原、SHA／构建／212检查通过；最终文档完整还原收据另见private/verification/teaching-c1-argument-boundaries-20261016/delivery/delivery.json。8787进程73073保留。原始来源／旧包／holds／ASR分歧及失败证据不变；无真实档案／提交／推送／部署。下一步间接立场、信息密度和C2六族，最终仍须同档案72路径及安装交付整体核验。
+当前56/72完成、11部分、5缺口，余16格继续；新增C1论证边界读听完成四精确上下文的生成／意义评分／三语支持、陌生应用与实际普通离线恢复。68 Node／1018 Vitest149文件／148浏览器（2workers）／19离线及Worker、MCP、SW更新通过；6普通流程8快照16答案144布局。候选完整1871文件还原、SHA／构建／212检查通过；最终文档完整还原收据另见/Users/euan/Documents/Lingfern/private/verification/teaching-c1-argument-boundaries-20261016/delivery/delivery.json。8787进程73073保留。原始来源／旧包／holds／ASR分歧及失败证据不变；无真实档案／提交／推送／部署。下一步间接立场、信息密度和C2六族，最终仍须同档案72路径及安装交付整体核验。
 
-逐项范围、操作、验证及未验项 (`docs/history/2026-10-16-c1-argument-boundaries.md`; local reference, excluded from public copy)。
+[逐项范围、操作、验证及未验项](history/2026-10-16-c1-argument-boundaries.md)。
 
 
 
 ## 历史检查点：54/72（2026-10-16，C1语域／受众读听）
 
-当前54/72完成、13部分、5缺口；新增C1语域／受众读听完成精确源／生成评分／陌生应用／普通离线与恢复。68 Node／1011 Vitest148文件／148浏览器（2workers）／19离线及Worker、MCP、SW更新通过。6普通流程8完整快照16答案144布局；完整1863文件候选还原、构建及205检查通过。最终文档完整还原另见private/verification/teaching-c1-register-20261016/delivery/delivery.json；8787预览进程99409保留。无真实档案／提交／推送／部署。下一步C1论证边界并继续余18格；两个现有听力候选仅定位，不是批准。保留ASR分歧、原holds、地区／设备／提供商／三网边界及全部失败证据，未以计数宣称成熟课程。
+当前54/72完成、13部分、5缺口；新增C1语域／受众读听完成精确源／生成评分／陌生应用／普通离线与恢复。68 Node／1011 Vitest148文件／148浏览器（2workers）／19离线及Worker、MCP、SW更新通过。6普通流程8完整快照16答案144布局；完整1863文件候选还原、构建及205检查通过。最终文档完整还原另见/Users/euan/Documents/Lingfern/private/verification/teaching-c1-register-20261016/delivery/delivery.json；8787预览进程99409保留。无真实档案／提交／推送／部署。下一步C1论证边界并继续余18格；两个现有听力候选仅定位，不是批准。保留ASR分歧、原holds、地区／设备／提供商／三网边界及全部失败证据，未以计数宣称成熟课程。
 
-逐项范围、操作、测试及未验项 (`docs/history/2026-10-16-c1-register-audience.md`; local reference, excluded from public copy)。
+[逐项范围、操作、测试及未验项](history/2026-10-16-c1-register-audience.md)。
 
 
 
@@ -154,7 +154,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 下一步C1语域／受众：先审阅现有未用原作的完整交流／论述语境和自然录音，不能仅凭礼貌词或难词判断；后续证据复用已修正sentenceSegments，保留完整语句和中性标签。继续论证边界、间接立场、信息密度及C2六族。52格限逐格精确范围本地验收，尚未证明同一档案连续72目标路径、成熟全课程、CEFR能力／考试分数／θ／学习效果；本目标未完成。
 
-逐项证据 (`docs/history/2026-10-16-c1-discourse-organization.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-c1-discourse-organization.md)。
 
 
 
@@ -172,7 +172,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 下一步C1篇章组织：先复用已准备的真实长原文及现有整录音，审阅完整论述功能、来源和上下文；普通条件不足时使用真实已保存的隔离练习记录核对支持进阶，不伪造先前表现或仅放宽长度。继续语域／论证边界／间接立场／信息密度与C2六族。50格只表示逐项精确范围本地教学验收，不代表成熟全课程、同一档案连续72目标路径、CEFR能力／考试分数／θ／教学效果。真机／读屏／提供商／三网／生产独立未验；无真实档案、提交、推送或部署。目标尚未完成。
 
-逐项证据 (`docs/history/2026-10-16-c1-implicit-intention.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-c1-implicit-intention.md)。
 
 
 ## 历史检查点：48/72（2026-10-16，B2观点归属读听）
@@ -189,7 +189,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 变更前恢复点2026-10-16T04-05-25.124Z；交付完整恢复、全部保护SHA及恢复构建／104项相关测试以private/verification/teaching-b2-attribution-20261016/delivery/delivery.json实际结果为准。SW测试后重启本任务8787，当前今日及精确/sw.js已核对并保留。复用既有已核对依赖，全新注册表安装和独立私有源准备重放未验，旧ENOTCACHED及18项私有准备输入ENOENT边界／日志保留。无真实档案／提交／推送／部署。下一步C1隐含意图，再推进篇章、语域、论证、立场、信息密度与C2细微意义、修辞、多层立场、复杂语用、忠实改写、保留分歧综合及真实长材料。48格限精确范围本地教学验收，不代表成熟全课程、单档案连续72目标路径、CEFR／考试分数或教学效果；真机／读屏／提供商／三网／生产独立未验，目标尚未完成。
 
-逐项证据 (`docs/history/2026-10-16-b2-view-attribution.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-b2-view-attribution.md)。
 
 
 ## 历史检查点：46/72（2026-10-16，B2信息综合读听）
@@ -206,7 +206,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 变更前恢复点2026-10-16T03-46-19.738Z；交付完整恢复、全部保护SHA与恢复构建／97项相关测试以private/verification/teaching-b2-synthesis-20261016/delivery/delivery.json实际结果为准。SW测试后重启本任务8787，当前今日和精确/sw.js核对并保留。复用既有已核对依赖，全新注册表安装与独立私有源准备重放未验，旧ENOTCACHED及18项私有准备输入ENOENT边界和日志保留。无真实档案／提交／推送／部署；继续B2观点归属与C1–C2意义／篇章／语用、长材料及余下26格。46格仅是逐格精确范围本地教学验收，不代表成熟全课程、单档案连续72目标路径、CEFR／考试分数或教学效果。真机／读屏／提供商／三网／生产独立未验。
 
-逐项证据 (`docs/history/2026-10-16-b2-information-synthesis.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-b2-information-synthesis.md)。
 
 
 ## 历史检查点：44/72（2026-10-16，B2说话者态度读听）
@@ -223,7 +223,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 变更前恢复点2026-10-16T03-31-23.940Z，交付完整恢复／所有保护SHA／恢复构建与相关测试以private/verification/teaching-b2-attitude-20261016/delivery/delivery.json实际结果为准；复用既有已核对依赖，全新注册表安装和独立私有源准备重放未验，旧ENOTCACHED及18项私有输入ENOENT边界和日志保留。8787当前今日与精确/sw.js核对并保留；无真实学习档案、提交、推送或部署。继续B2信息综合／观点归属与C1–C2意义／篇章／语用、长材料及28格，不启动独立发布任务。44格仅是逐格精确本地教学范围，不代表成熟全课程、单档案连续72目标路径、CEFR／考试分数或教学效果；真机／读屏／提供商／三网／生产独立未验。
 
-逐项证据 (`docs/history/2026-10-16-b2-speaker-attitude.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-b2-speaker-attitude.md)。
 
 
 ## 历史检查点：42/72（2026-10-16，B2限定／让步读听）
@@ -238,7 +238,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 变更前恢复点2026-10-16T03-16-03.933Z。交付完整恢复、全部保护文件SHA和恢复目录构建／相关测试以private/verification/teaching-b2-qualification-20261016/delivery/delivery.json实际结果为准；复用已核对既有依赖，全新注册表安装和独立私有源准备重放未验，原ENOTCACHED／18项私有输入ENOENT边界及日志保留。8787当前今日和精确/sw.js已核对并保留，无提交、推送、部署或真实学习档案操作。下一步B2说话者态度，再推进综合／归属及C1–C2意义／篇章／语用与长材料；goal未完成。42格限逐格本地教学范围，不是成熟全课程、单档案72目标路径、CEFR分类、考试成绩或教学效果。真机／读屏／提供商／三网／生产独立未验。
 
-逐项证据 (`docs/history/2026-10-16-b2-qualified-concession.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-b2-qualified-concession.md)。
 
 
 ## 历史检查点：40/72（2026-10-16，B2比较读听）
@@ -253,7 +253,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 变更前恢复点2026-10-16T02-08-38.567Z；交付完整恢复、所有保护文件SHA与恢复目录构建／应用测试以private/verification/teaching-b2-comparisons-20261016/delivery/delivery.json实际结果为准。8787当前今日与精确/sw.js已核对并保留。无提交、推送、部署或真实学习档案操作。下一步B2限定／让步，再推进其余意义／篇章／语用与长材料；goal未完成。40格是逐格精确范围的本地教学验收，不是成熟全课程、单档案连续72目标路径、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验。恢复复用已核对的既有依赖；全新注册表安装与独立源准备重放未验，旧ENOTCACHED和备份排除私有准备证据的18项ENOENT边界保留，不重复采集或弱化断言。
 
-逐项证据 (`docs/history/2026-10-16-b2-comparisons.md`; local reference, excluded from public copy)。
+[逐项证据](history/2026-10-16-b2-comparisons.md)。
 
 
 ## 历史检查点：38/72（2026-10-16，B2主张／例证读听）
@@ -268,7 +268,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 复用未变更的采集时文本与声音许可／署名／NOTICE／原始证据／排除和holds。两长源仍是现有本地明确导入的真实原始资源ZIP（lessons=[]），fullReleaseAccepted:false及具体身份／音频／时间／许可准入不变；未加入公开目录或宣称完整出版许可。前置定位发现Envy归属题歧义、Phil Collins解码超满幅及Sega时长元数据差异，均未用于本次前置，精确问题留在Issues与证据。没有新采集／下载／云任务／ASR／GPU模型计算／付费。
 
-逐项证据 (`docs/history/2026-10-16-b2-claim-examples.md`; local reference, excluded from public copy)；交付前完整项目恢复及所有保护哈希以`private/verification/teaching-b2-claim-examples-20261016/delivery/delivery.json`实际输出为准，变更前点为`2026-10-16T00-56-07.390Z`。8787当前今日与精确sw.js保持；无提交、推送、部署或真实学习档案操作。下一步B2比较，再推进其余意义／篇章／语用与长材料。goal active；38格是精确范围本地教学验收，不是单档案72目标路径、成熟全课程、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，逐SHA恢复不等于恢复目录重装依赖／构建。
+[逐项证据](history/2026-10-16-b2-claim-examples.md)；交付前完整项目恢复及所有保护哈希以`private/verification/teaching-b2-claim-examples-20261016/delivery/delivery.json`实际输出为准，变更前点为`2026-10-16T00-56-07.390Z`。8787当前今日与精确sw.js保持；无提交、推送、部署或真实学习档案操作。下一步B2比较，再推进其余意义／篇章／语用与长材料。goal active；38格是精确范围本地教学验收，不是单档案72目标路径、成熟全课程、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，逐SHA恢复不等于恢复目录重装依赖／构建。
 
 
 交付恢复补充：1,824个源／资源文件与首个交付点逐SHA相同；已安装依赖复制的16,047文件／37符号链接逐项一致，在恢复目录重新构建及947项应用Vitest通过。`npm ci --offline`因zod4.6.5缓存缺失ENOTCACHED失败；恢复目录完整`npm test`的旧源准备Node检查因备份排除的私有准备证据缺失而失败，日志保留，未削弱断言。当前工作区完整68 Node＋947 Vitest通过。后续只需另备既有依赖缓存与私有准备证据路径，不重复采集／权益审核，不上传私有资料到公共CI；不把此结果说成全新注册表安装或独立重放全部源准备。详细输出见同一delivery目录。
@@ -287,7 +287,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 最初Tom Swift0005仅在完整章节gold中，原FLAC不属于已取回成员；首准备在严格成员验证处失败，没有生成／发布该片，失败日志保留。93条gold文本定位中仅4条有实际已取回FLAC，已纠正候选清单并改用Khaki原作，未放宽成员断言或补下载。Fish已生成文件按SHA／完整解码重新核对后复用；Beeton10136未定位到准入来源记录，仍候选，其他精确holds保留。无新采集／下载／云任务／ASR／本地GPU模型计算／付费。
 
-逐项证据 (`docs/history/2026-10-16-b1-multi-step-actions.md`; local reference, excluded from public copy)；交付完整恢复与保护哈希见`private/verification/teaching-b1-procedures-20261016/delivery/delivery.json`，变更前为`2026-10-16T00-18-06.649Z`。旧audio-b1 ZIP逐字节移存，原始语料／音频／旧包／许可／品牌／生产配置保持。当前8787今日与精确sw.js已核对并保留。无真实学习档案、提交、推送或部署。
+[逐项证据](history/2026-10-16-b1-multi-step-actions.md)；交付完整恢复与保护哈希见`private/verification/teaching-b1-procedures-20261016/delivery/delivery.json`，变更前为`2026-10-16T00-18-06.649Z`。旧audio-b1 ZIP逐字节移存，原始语料／音频／旧包／许可／品牌／生产配置保持。当前8787今日与精确sw.js已核对并保留。无真实学习档案、提交、推送或部署。
 
 下一步B2主张／例证，再推进比较、限定／让步、态度、信息综合、观点归属及C1–C2意义／篇章／语用和长材料。已读两篇现有Frontiers阅读候选188／196词及现有History／SEO完整长听力391／299词、195.910023／125.850023秒，拟复用已有精确二原作长窗与条件支持，检验跨上下文例子与主张的关系，不以长度、关键词或资格扫描代替目标验收。新操作仍候选，不计覆盖，证据在`private/verification/teaching-b2-claim-examples-20261016/`。goal active；本轮是精确范围本地教学单元，不是成熟全课程、单档案连续72目标路径、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，逐SHA恢复不等同恢复目录重装依赖／构建。较旧检查点保留历史。
 
@@ -317,7 +317,7 @@ Iowa保留原录音实际读出的目录、标题、地图说明，并与未改�
 
 New Forest此处说话者为Conde而非此前Charles；后来征募问题不在本录音，不据此评分全部对话意图。Aunt Jane后续对场地有异议，当前建议不证明适用、许可、购买或同意。旧自动diagnostic的accepted:false／held不改写，不单独作为当前准入或逐片人工审核；本精确范围由Codex/AI分别检查源、语境、词项、技术与教学，其他具体holds保留。冻结美国公有领域／其他地区未核及Gutenberg条款与John Schell／Sarah Jennings声音CC BY4分别保留；不全量权益重审，不要求实际试听。
 
-逐项证据 (`docs/history/2026-10-16-b1-specific-intentions.md`; local reference, excluded from public copy)；交付完整恢复与保护哈希见`private/verification/teaching-b1-intentions-20261016/delivery/delivery.json`，变更前为`2026-10-15T23-59-04.242Z`。旧audio-b1 ZIP逐字节移存，原始源／音频／旧包／许可／品牌／生产配置保持。8787最终今日与精确sw.js已核对并保留；无提交、推送、部署或真实学习档案操作。
+[逐项证据](history/2026-10-16-b1-specific-intentions.md)；交付完整恢复与保护哈希见`private/verification/teaching-b1-intentions-20261016/delivery/delivery.json`，变更前为`2026-10-15T23-59-04.242Z`。旧audio-b1 ZIP逐字节移存，原始源／音频／旧包／许可／品牌／生产配置保持。8787最终今日与精确sw.js已核对并保留；无提交、推送、部署或真实学习档案操作。
 
 下一步B1多步骤行动，再推进B2–C2意义／篇章／语用与长材料。既有条件动作选择与录音句序仅是工程对应，不能单独充当多步骤执行验收；当前原库存定位结果仍候选。goal active；本轮为精确范围本地教学单元，不是成熟全课程、单档案连续72目标路径、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，逐SHA恢复不等同恢复目录重装依赖／构建。较旧检查点保留历史。
 
@@ -341,7 +341,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 最初South Pole0030／Small House0100的it specially／especially、hand／hands仍未解决，原准备和录音移存held-audio-variants/，不计本轮覆盖。其22050初稿2采样差异、失败日志、原human-reference不准确措辞及纠正收据全部保留；官方逐字参考不称逐片人工核验，实际审阅者Codex/AI。未把未试听作为阻断，也未要求实际试听。New Forest、South Pole0021及其他候选／holds未准入；Tom Sawyer219词仅保留候选，不冒称质量拒绝。
 
-逐项证据 (`docs/history/2026-10-16-b1-narrative-motives.md`; local reference, excluded from public copy)；交付完整恢复与保护哈希见`private/verification/teaching-b1-motives-20261015/delivery/delivery.json`，变更前为`2026-10-15T15-41-56.690Z`。旧audio-b1 ZIP逐字节移存，原源／音频／旧包／许可／品牌／生产配置保持。当前8787今日与精确sw.js已核对并保留，无提交、推送、部署或真实学习档案操作。
+[逐项证据](history/2026-10-16-b1-narrative-motives.md)；交付完整恢复与保护哈希见`private/verification/teaching-b1-motives-20261015/delivery/delivery.json`，变更前为`2026-10-15T15-41-56.690Z`。旧audio-b1 ZIP逐字节移存，原源／音频／旧包／许可／品牌／生产配置保持。当前8787今日与精确sw.js已核对并保留，无提交、推送、部署或真实学习档案操作。
 
 下一步B1具体意图，再推进多步骤行动及B2–C2意义／篇章／语用和长材料。Holmes提出接手调查、VOA主持说明节目意图及旧库存建议／承诺原录音目前仅候选，未计覆盖；不能以字面命令匹配或语句排序代替这两目标。goal active；本轮是精确范围本地教学单元，不是成熟全课程、单档案连续72目标路径、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，逐SHA恢复不等同恢复目录重装依赖／构建。较旧检查点保留历史。
 
@@ -365,7 +365,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 两原书／官方gold／原FLAC／缓存ASR逐SHA及连续完整原句核对通过；仅从已取回原档选择性恢复四个源文件，无新采集／下载／云任务／ASR／GPU／付费。完整CPU解码、相同样本数、波形相关>.9998、无满幅削波及原背景边界齐全，无裁切／填充／拼接／变速。初始准备收据误留上一轮“唯一原作冲突”措辞，新两候选没有该hold，已在prepared-listening-reviewed.json纠正并保留原收据。South Pole指代候选仍未准入；未解除其他holds。冻结原许可、CC BY4原生文字／声音、美国公有领域／其他地区未核及Gutenberg条款分别保留，不做全量权益重审或整书审批。
 
-逐项证据 (`docs/history/2026-10-15-b1-context-reference.md`; local reference, excluded from public copy)；交付完整恢复与保护哈希见`private/verification/teaching-b1-reference-20261015/delivery/delivery.json`。变更前为带校验整合后的独立基线`2026-10-15T15-14-44.350Z`；此前28格已恢复1776文件／1239663472字节，达到30点阈值后按standing授权整合并再次完整恢复，原始收据和私有证据保留，旧时间戳恢复点按规则退役。旧audio-b1 ZIP逐字节移存；原源／音频／旧包／许可／品牌／生产配置保持。当前8787今日／sw.js已核对并保留，无提交、推送、部署或真实学习档案操作。
+[逐项证据](history/2026-10-15-b1-context-reference.md)；交付完整恢复与保护哈希见`private/verification/teaching-b1-reference-20261015/delivery/delivery.json`。变更前为带校验整合后的独立基线`2026-10-15T15-14-44.350Z`；此前28格已恢复1776文件／1239663472字节，达到30点阈值后按standing授权整合并再次完整恢复，原始收据和私有证据保留，旧时间戳恢复点按规则退役。旧audio-b1 ZIP逐字节移存；原源／音频／旧包／许可／品牌／生产配置保持。当前8787今日／sw.js已核对并保留，无提交、推送、部署或真实学习档案操作。
 
 下一步B1叙事动机，再推进具体意图、多步骤行动和B2–C2意义／篇章／语用与长材料。已定位Oz55中Dorothy约束Toto以免吓到鼠后、Tom Sawyer74中照亮景物让Becky欣赏与后来探索欲的连贯段落；听力仅是既有库存候选，均未计新覆盖。目标active；本轮限精确上下文及本地教学单元，不是成熟全课程、单档案连续72目标路径、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，逐SHA恢复不等同恢复目录重装依赖／构建。较旧检查点留作历史。
 
@@ -385,7 +385,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 两原书SHA／既有采集许可、官方FLAC／gold完整SHA及连续原文范围已核对。仅从已取回5.9G原档选择性取出四个源文件，逐个匹配云清单SHA，无新下载／采集／云任务／ASR／GPU／付费。Anne旧missing-unique-complete-original-source只在本精确范围经原文／连字符／换行正规化和上下文审阅解决，其他排除／holds保留；James缓存ASR与原文一致（humour/humor拼写差异），Anne没有独立缓存ASR，依据官方gold与原录音身份，不冒称听审。两原音频与新MP3均完整CPU解码、样本数相同、波形相关>.9999且无满幅削波，原背景低幅边界保留，无裁切／拼接／填充／变速。美国公有领域原文／其他地区未核及Gutenberg条款、声音CC BY4分别保留。原词数／时长、A1/A2校验和历史排除未放宽。
 
-逐项证据 (`docs/history/2026-10-15-b1-condition-cause.md`; local reference, excluded from public copy)；交付完整恢复与保护哈希见`private/verification/teaching-b1-conditions-20261015/delivery/delivery.json`，变更前为`2026-10-15T14-47-22.156Z`。旧audio-b1 ZIP逐字节移存，原始源／音频／旧包／许可／品牌／生产配置保留。首次测试Session类型推断、复制测试路径和原FLAC提取位置错误均已修正并保留失败日志；不改验证门槛求通过。8787当前今日／sw.js已核对并保留。未提交、推送、部署或操作真实学习档案。
+[逐项证据](history/2026-10-15-b1-condition-cause.md)；交付完整恢复与保护哈希见`private/verification/teaching-b1-conditions-20261015/delivery/delivery.json`，变更前为`2026-10-15T14-47-22.156Z`。旧audio-b1 ZIP逐字节移存，原始源／音频／旧包／许可／品牌／生产配置保留。首次测试Session类型推断、复制测试路径和原FLAC提取位置错误均已修正并保留失败日志；不改验证门槛求通过。8787当前今日／sw.js已核对并保留。未提交、推送、部署或操作真实学习档案。
 
 下一步B1指代，再推进叙事动机、具体意图、多步骤行动及B2–C2意义／篇章／语用与长材料。新定位的指代段落仍是候选，前文依赖和多候选歧义未审阅者不计覆盖。目标active；上述是精确范围的本地教学单元，不是成熟全课程、单档案连续72目标路线、能力分类或教学效果。真机／读屏／提供商／三网／生产独立未验；私有证据不在项目备份，恢复逐SHA不等同恢复目录重新安装依赖／构建。下方较旧检查点保留历史范围。
 
@@ -399,7 +399,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 音频原始MP3、缓存转录、原作者区间、源／视图／声波哈希与完整CPU解码证据齐全。Summon最初100.28秒终点仍有活动信号，旧32秒候选held；原波形到100.50附近才稳定静音，新终点100.60位于真实原生静音，32.32秒，不补静音／变速／拼接。选定24.6／32.32秒段落严格在原记录的作者自有区间内，排除开头听众来信、结尾及图片，复用原VOA许可；OpenStax仅冻结版本原生作者段落，原源／父／出处SHA与CC BY4.0署名保留。原69／99秒整片段和其他holds未批量批准；无新采集／下载／云处理／ASR／GPU／付费或听审。
 
-本轮逐项证据 (`docs/history/2026-10-15-b1-main-points.md`; local reference, excluded from public copy)；交付完整恢复／保护哈希见 `private/verification/teaching-b1-main-ideas-20261015/delivery/delivery.json`，变更前为 `2026-10-15T13-37-41.436Z`。旧audio-b1 ZIP逐SHA移存，其他原资料／包／许可／品牌／生产配置保持。当前8787今日／sw.js已核对并保留；未提交、推送、部署或操作真实学习档案。
+[本轮逐项证据](history/2026-10-15-b1-main-points.md)；交付完整恢复／保护哈希见 `private/verification/teaching-b1-main-ideas-20261015/delivery/delivery.json`，变更前为 `2026-10-15T13-37-41.436Z`。旧audio-b1 ZIP逐SHA移存，其他原资料／包／许可／品牌／生产配置保持。当前8787今日／sw.js已核对并保留；未提交、推送、部署或操作真实学习档案。
 
 下一步继续B1条件／因果、指代、叙事动机、具体意图、多步骤行动，再推进B2–C2意义／篇章／语用及长材料。条件／因果不能只用现有两个可能原因样本关格：还需明确条件与结果、反事实与实际、推测与义务的同目标教学及独立应用。目标active；真机／读屏／提供商／三网／生产及教学效果未验，下方旧检查点保留历史范围。
 
@@ -411,7 +411,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 本轮修复两项实际缺陷：已知A2短音频路径的精确元数据不匹配现在不能回退通用VOA来源规则；完整源SHA保留，整合题ID仅后缀改为-int以符合原80上限，修复曝光事务拒绝。新增读听两模式首次曝光／逐答事务／便携备份回归，未放宽校验。首次普通入口ID失败与听力旧脚本仍假定两选项的失败完整保留；脚本改为恰好4项，44×44目标和无横向溢出断言未降低。临时测试Session类型注解失败已修正；39／64／40相关检查及当前全套通过。
 
-本轮逐项证据 (`docs/history/2026-10-15-a2-short-integration.md`; local reference, excluded from public copy)；完整交付恢复与保护哈希见 `private/verification/teaching-a2-integration-20261015/delivery/delivery.json`，变更前为 `2026-10-15T13-11-40.743Z`。既有音频／资源ZIP／目录／权益记录／NOTICE逐字节保持，无新采集、媒体准备、云任务、权益审计、ASR、GPU或付费。精确单换行话轮只有显式标记且源／父／视图SHA全匹配者投影，旧双换行窗口规则保留。实际8787今日／sw.js已核对并保留。无提交、推送、部署或真实学习档案操作。
+[本轮逐项证据](history/2026-10-15-a2-short-integration.md)；完整交付恢复与保护哈希见 `private/verification/teaching-a2-integration-20261015/delivery/delivery.json`，变更前为 `2026-10-15T13-11-40.743Z`。既有音频／资源ZIP／目录／权益记录／NOTICE逐字节保持，无新采集、媒体准备、云任务、权益审计、ASR、GPU或付费。精确单换行话轮只有显式标记且源／父／视图SHA全匹配者投影，旧双换行窗口规则保留。实际8787今日／sw.js已核对并保留。无提交、推送、部署或真实学习档案操作。
 
 下一步B1主旨／细节、条件／因果、指代、叙事动机、具体意图及多步骤行动，再推进B2–C2意义／篇章／语用与长材料。B1历史听力14—20词样本不能代替完整主旨教学；已定位既有VOA69／99秒原片段，超出当前35秒初始／60秒最高预算，原69／99秒片段尚未准入。已只读定位43／69词、24.6／32秒完整论述单元，原文／缓存转录逐词一致；仍需边界／技术／具体holds／生成教学及普通恢复核验，不按时长直接判级。候选见`private/verification/teaching-b1-main-ideas-20261015/coherent-window-candidates.json`。目标active；真机／读屏／提供商／三网／生产独立未验。下方较旧检查点保留历史范围。
 
@@ -423,7 +423,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 两份录音原包的权益待核实状态没有被accepted-text覆盖：本次只核实并准入所列两个精确窗口，官方Commons明确记录者／CC BY-SA3.0／录音对应文章版本，确切文章wikitext及上下文无所选第三方引文／图表或额外限制；保留文本3.0／4.0与录音3.0各自署名、历史和完整许可。原包其他内容／holds仍保留，Trouble／Countdown仍仅候选。原OGG及MP3完整CPU解码、原文件／窗口哈希、波形对应、首尾诊断和缓存ASR逐词核对通过；无新ASR／GPU／听审。整对听力不适配12秒支持预算，未放宽上限；20秒初始预算可用。
 
-本轮逐项证据 (`docs/history/2026-10-15-a2-stated-rules.md`; local reference, excluded from public copy)；交付备份完整恢复及所有保护哈希见 `private/verification/teaching-a2-rules-20261015/delivery/delivery.json`。变更前为 `2026-10-15T12-44-34.078Z`，旧audio-a2 ZIP逐字节移存；保留原始资料、源包、未跟踪文件与失败记录。8787当前今日／sw.js已核对并保留。未采集新语料／运行云任务／付费／提交推送部署／操作真实档案。
+[本轮逐项证据](history/2026-10-15-a2-stated-rules.md)；交付备份完整恢复及所有保护哈希见 `private/verification/teaching-a2-rules-20261015/delivery/delivery.json`。变更前为 `2026-10-15T12-44-34.078Z`，旧audio-a2 ZIP逐字节移存；保留原始资料、源包、未跟踪文件与失败记录。8787当前今日／sw.js已核对并保留。未采集新语料／运行云任务／付费／提交推送部署／操作真实档案。
 
 下一步继续A2短材料整合：从两个相关明说线索组合答案，不以文本排序或单句查找替代；已有VOA日程／图书馆与整段短录音候选，仅作定位，尚未准入。随后B1–C2意义／篇章／语用及长材料。目标active；不声称整体72路径、能力分类或教学效果；真机／读屏／提供商／三网／生产另行未验。下方较旧检查点保持历史范围。
 
@@ -433,7 +433,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 三语主目标／词汇背景／完整无关不计分示例／主3层可选提示→异原作无提示应用。8条真实普通Reading／Listening／Combined Practice／Test、144布局、16目标读听＋8综合答案共24逐答保存刷新／关闭重开／隔离备份恢复及重装原资源播放通过；2事务失败保留输入后重试、Test直接无辅助完成反馈、同目标耗尽通过。阅读4份完整快照与配对当前factory相等，明确复用实际旧流程，不冒称新跑。听力完整双原作不能放入12秒支持预算，未放宽；20秒初始状态提供完整同快照主／应用。
 
-同目标族合并终态：当前68 Node／877 Vitest（123文件）、147浏览器、19离线及types/build/lint／Worker／MCP／SW更新通过，本轮无新增失败；初写prompt换行转义编译失败及修正记录保留。18格SYNC_BUSY原因未知／未复现的记录继续保留，未改锁／同步／断言／超时。8787当前今日／SW字节已核对并保留。精确读听增量 (`docs/history/2026-10-15-a2-stated-reasons.md`; local reference, excluded from public copy)；交付备份、完整恢复与保护SHA见 `private/verification/teaching-a2-heard-reasons-20261015/delivery/delivery.json`。
+同目标族合并终态：当前68 Node／877 Vitest（123文件）、147浏览器、19离线及types/build/lint／Worker／MCP／SW更新通过，本轮无新增失败；初写prompt换行转义编译失败及修正记录保留。18格SYNC_BUSY原因未知／未复现的记录继续保留，未改锁／同步／断言／超时。8787当前今日／SW字节已核对并保留。[精确读听增量](history/2026-10-15-a2-stated-reasons.md)；交付备份、完整恢复与保护SHA见 `private/verification/teaching-a2-heard-reasons-20261015/delivery/delivery.json`。
 
 原采集权益复用；书本文本美国公有领域／其他地区未核、Gutenberg及声音CC BY4.0条件保留，旧第三方NOTICE不改。旧audio-a2 ZIP逐字节移存content/retained-resource-packs；未列旧源／媒体／包／许可／holds／锁／品牌／生产配置保留。无新采集／云任务／GPU／付费／私有上传／提交推送部署／真实档案或账号操作；不声称能力、成熟课程、单档案72路径或教学效果，真机／读屏／提供商／三网／生产独立未验。
 
@@ -445,7 +445,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 三语讲解／必要词汇背景／完整不计分示例／主3层可选提示→异原作无提示应用，4普通Listening／Combined Practice／Test、72布局、8听力＋4综合阅读答案逐答保存刷新／关闭重开／隔离备份恢复及重装原资源播放通过；1事务失败保留输入后重试，Test直接无辅助完成反馈及耗尽通过，12份旧需要／喜好／顺序全快照与当前factory相等，仅复用旧实际证据。
 
-当前完整68 Node／870 Vitest（121文件）、147浏览器、19离线及types/build/lint／Worker／MCP／SW更新通过。首次146浏览器通过、旧同步重试用例出现SYNC_BUSY；证据先保留，同步源／锁／断言／超时不改，整个sync-client三轮9项与单独完整147重跑通过。该单次忙锁原因未确定，不称根因已修复；独立精确记录保留。逐项增量 (`docs/history/2026-10-15-a2-listening-reported-change.md`; local reference, excluded from public copy)；交付备份／完整恢复／保护SHA见 `private/verification/teaching-a2-heard-updates-20261015/delivery/delivery.json`。8787当前今日／SW已核对并保留。
+当前完整68 Node／870 Vitest（121文件）、147浏览器、19离线及types/build/lint／Worker／MCP／SW更新通过。首次146浏览器通过、旧同步重试用例出现SYNC_BUSY；证据先保留，同步源／锁／断言／超时不改，整个sync-client三轮9项与单独完整147重跑通过。该单次忙锁原因未确定，不称根因已修复；独立精确记录保留。[逐项增量](history/2026-10-15-a2-listening-reported-change.md)；交付备份／完整恢复／保护SHA见 `private/verification/teaching-a2-heard-updates-20261015/delivery/delivery.json`。8787当前今日／SW已核对并保留。
 
 原采集权益核实复用，无全量重审；新藏品视图补留原3.0贡献条款／历史URI，原文、FLORES4.0转录与声音BY4.0分开，不改写旧第三方NOTICE。旧audio-a2 ZIP逐字节保留，所有未列原始源／媒体／包／holds／锁／品牌／生产配置保留。无新采集／云任务／ASR／GPU／付费／私有上传／提交推送部署／真实档案或账号操作。
 
@@ -457,7 +457,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 三语讲解／词汇背景／完整不计分示例／主3层可选提示→异原作无提示应用；4条普通Reading／Combined Practice／Test、72布局、8目标阅读＋4综合听写逐答保存刷新／关闭重开／备份新隔离档案恢复与原资源重装播放通过，1事务失败保留输入后重试。来源标签实看发现旧共用反馈误将同材料多证据编号成不同阅读材料，现一处fallback改用真实material.title，原block标题／听力片段时间保持；新恢复页面三处同源标题断言与320px阅读通过，目标完整快照与当前factory相等。
 
-标签修正后完整68 Node／867 Vitest（120文件）、147浏览器、19离线及types/build/lint/Worker/MCP/SW更新重新通过；先前检查和补充截图脚本展开顺序失败保留。逐项证据 (`docs/history/2026-10-15-a2-reading-updated-statements.md`; local reference, excluded from public copy)；交付备份、完整恢复与保护哈希见 `private/verification/teaching-a2-plan-update-20261015/delivery/delivery.json`。8787当前今日／SW核对并保留。全部旧来源／媒体／ZIP／许可／目录／holds／锁／品牌／生产配置保留。
+标签修正后完整68 Node／867 Vitest（120文件）、147浏览器、19离线及types/build/lint/Worker/MCP/SW更新重新通过；先前检查和补充截图脚本展开顺序失败保留。[逐项证据](history/2026-10-15-a2-reading-updated-statements.md)；交付备份、完整恢复与保护哈希见 `private/verification/teaching-a2-plan-update-20261015/delivery/delivery.json`。8787当前今日／SW核对并保留。全部旧来源／媒体／ZIP／许可／目录／holds／锁／品牌／生产配置保留。
 
 下一步A2听力所报告状态变化：既有FLEURS灯泡／藏品候选的源、ASR与技术对应已定位，原低电平录音和静态增益试样分开保留，混合3.0／4.0条款分别保留；候选未接入或验收，不计完成。随后原因／规则／整合及B1–C2。目标active；不声称能力／成熟全课程／单档案72路径／效果；未提交推送部署、操作真实档案、付费／GPU／私有上传，真机／读屏／提供商／三网／生产独立未验。
 
@@ -465,7 +465,7 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 现为16完成、35部分、21缺口，56格开放。Scrooge整段与Philip完整首句两个既有连续录音，按before生成真实动作先后；保留did it／reached实际后续、约五英里及could的可能范围，不把意图／需要改为完成。三语讲解／词汇背景／完整不计分示例／主3层可选提示与异原作无提示应用，普通Listening／Combined Practice／Test四流程、72布局、8听力＋4综合阅读答案保存刷新／关闭重开／备份新隔离档案恢复及原生完整播放通过；事务失败保留输入后重试，错答focus耗尽不新增会话。
 
-当前68 Node／863 Vitest（119文件）、147浏览器、19离线与types/build/lint/Worker/MCP/SW更新通过。首次完整套件仅旧大语料测试20秒限额超时（27.5秒），其他862通过；原失败保留，无改断言／超时，重任务结束后完整原套件重跑863全通过。当前今日／SW字节核对通过，8787保留。精确增量 (`docs/history/2026-10-15-a2-listening-action-order.md`; local reference, excluded from public copy)；交付备份、完整恢复与保护哈希见 `private/verification/teaching-a2-listening-order-20261015/delivery/delivery.json`。前一需要／喜好8份完整快照与当前factory相等，保留原实际证据，不冒称新跑。
+当前68 Node／863 Vitest（119文件）、147浏览器、19离线与types/build/lint/Worker/MCP/SW更新通过。首次完整套件仅旧大语料测试20秒限额超时（27.5秒），其他862通过；原失败保留，无改断言／超时，重任务结束后完整原套件重跑863全通过。当前今日／SW字节核对通过，8787保留。[精确增量](history/2026-10-15-a2-listening-action-order.md)；交付备份、完整恢复与保护哈希见 `private/verification/teaching-a2-listening-order-20261015/delivery/delivery.json`。前一需要／喜好8份完整快照与当前factory相等，保留原实际证据，不冒称新跑。
 
 旧audio-a2 ZIP逐字节保留，原素材／许可／holds不改；书本文本仍保留原USA／其他区域条件。Henry／Jane尾部活跃候选不纳入。无新采集／云处理／ASR／GPU／付费／提交推送部署或真实档案操作；未声称听审、真机、能力／教学效果或单档案72目标路径。下一步A2实际计划／选择更新，Anna邀请回复／Jonathan点餐改变已有精确候选；随后原因、规则、整合与B1–C2。目标active；设备／读屏／提供商／三网／生产独立未验。
 
@@ -473,37 +473,37 @@ New Forest此处说话者为Conde而非此前Charles；后来征募问题不在�
 
 现为15完成、36部分、21缺口，57格开放；此前临时汇总误把听力缺口算作部分，现由72格实际状态重算。A2-02-L复用4份已取回连续录音与原许可／地域条件，保留人物、指代、now／again及非排他喜好；三语讲解／完整不计分示例／主3层可选提示→异原作无提示应用。修复again干扰项：否定另一次录制，不推断整节目从头开始或已完成。4条修正需要流程重新通过；4条未变喜好流程以完整当前生成快照相等保留原实际证据。8条普通Listening/Combined Practice/Test、144布局、18听力目标＋8综合阅读答案保存刷新／关闭重开／隔离备份恢复、2次事务失败重试及原生完整播放通过。
 
-当前68 Node／860 Vitest（118文件）、147浏览器、19离线及types/build/lint/Worker/MCP/SW更新通过；8787今日及当前SW字节已核对。逐项增量 (`docs/history/2026-10-15-a2-listening-needs-preferences.md`; local reference, excluded from public copy)；交付恢复与保护哈希记录在 `private/verification/teaching-a2-listening-personal-20261015/delivery/delivery.json`。原旧ZIP与中间候选分别保留，VOA7未选喜好句I like/I’d like分歧仍held。无新采集／云处理／ASR／GPU／付费／提交推送部署或真实档案操作；软件播放不冒称听审／真机，原USA／其他区域条件不扩张。
+当前68 Node／860 Vitest（118文件）、147浏览器、19离线及types/build/lint/Worker/MCP/SW更新通过；8787今日及当前SW字节已核对。[逐项增量](history/2026-10-15-a2-listening-needs-preferences.md)；交付恢复与保护哈希记录在 `private/verification/teaching-a2-listening-personal-20261015/delivery/delivery.json`。原旧ZIP与中间候选分别保留，VOA7未选喜好句I like/I’d like分歧仍held。无新采集／云处理／ASR／GPU／付费／提交推送部署或真实档案操作；软件播放不冒称听审／真机，原USA／其他区域条件不扩张。
 
 下一步继续A2听力明确动作先后，已有Scrooge完整录音与Philip完整首句候选；随后信息变化、原因、规则与短材料整合，再推进B1–C2。目标active，其他57格不提前关闭；真机／读屏／提供商／三网／生产发布独立未验。
 
 ## Current A2 needs/preferences increment —2026-10-15
 
-[Matrix](teaching-coverage-matrix.md):14 locally complete,36 partial,22 gaps. Actual evidence (`docs/history/2026-10-15-a2-needs-preferences.md`; local reference, excluded from public copy): requirements and liking each have inspected original scopes, same-operation distinct works, three-locale support/fading,8 ordinary Reading/Combined Practice/Test flows/144 layouts/26 answers saved/restored. Current68Node/853Vitest/147browser/19offline and lint/type/build/Worker/MCP/SW-update pass, separately from the verified13-cell checkpoint below.58 cells remain open; lexical listening candidates do not constitute admission, regional clearance or teaching coverage. No new collection, global repeat-rights audit, real profiles or deployment.
+[Matrix](teaching-coverage-matrix.md):14 locally complete,36 partial,22 gaps. [Actual evidence](history/2026-10-15-a2-needs-preferences.md): requirements and liking each have inspected original scopes, same-operation distinct works, three-locale support/fading,8 ordinary Reading/Combined Practice/Test flows/144 layouts/26 answers saved/restored. Current68Node/853Vitest/147browser/19offline and lint/type/build/Worker/MCP/SW-update pass, separately from the verified13-cell checkpoint below.58 cells remain open; lexical listening candidates do not constitute admission, regional clearance or teaching coverage. No new collection, global repeat-rights audit, real profiles or deployment.
 
 ## Current teaching delta — A2 reading planned order,2026-10-15
 
-[72 cells](teaching-coverage-matrix.md):13 locally complete,37 partial,22 gaps. A2 planned-order evidence (`docs/history/2026-10-15-a2-planned-order.md`; local reference, excluded from public copy) uses existing complete VOA3406732/3293986 scopes, exact first/then/before action ordering, source hashes and distinct unseen works. Three-locale teaching/example/fading support and4 ordinary Reading/Combined Practice/Test offline flows pass:72 layouts,8 target/4 Combined word answers saved and restored. The other59 units remain open;27 listening marker candidates are only candidates, with context/teaching/regional conditions retained. Current full command/restoration/preview evidence belongs to that packet's delivery JSON; no new source collection or blanket repeat rights audit, ability/effect or whole-profile72 acceptance, production or real learner changes.
+[72 cells](teaching-coverage-matrix.md):13 locally complete,37 partial,22 gaps. [A2 planned-order evidence](history/2026-10-15-a2-planned-order.md) uses existing complete VOA3406732/3293986 scopes, exact first/then/before action ordering, source hashes and distinct unseen works. Three-locale teaching/example/fading support and4 ordinary Reading/Combined Practice/Test offline flows pass:72 layouts,8 target/4 Combined word answers saved and restored. The other59 units remain open;27 listening marker candidates are only candidates, with context/teaching/regional conditions retained. Current full command/restoration/preview evidence belongs to that packet's delivery JSON; no new source collection or blanket repeat rights audit, ability/effect or whole-profile72 acceptance, production or real learner changes.
 
 ## Current teaching-only continuation — 2026-10-15
 
-[72 cells](teaching-coverage-matrix.md) and [exact evidence](teaching-coverage-matrix.json):12 locally complete,38 partial,22 gaps. Current hearing numeric packet (`docs/history/2026-10-15-a1-listening-counts-and-times.md`; local reference, excluded from public copy) closes A1 hearing counts/time: each style has two original works, full source/evidence/support, actual ordinary modes and recovery; same-profile count→clock uses4 disjoint roots.8 accepted flows,144 layouts,26 related saved-reloaded answers and58 recovered records pass. Explicit hour/minute/day-part and count-group distractors are exercised. Reused base runs match the current full generated snapshot, while new branches have actual delta flows; they are not relabelled as fresh reruns. Full current68Node/842Vitest/147browser/19offline/Worker/MCP/SW checks pass. Existing whole FLEURS audio/source stock reused; exact Montana licence-date reasoning corrected from its collected article-specific public-domain notice, retaining separate transcript/voice licences and old evidence. No new collection/cloud/ASR/GPU or global rights audit. Other60 A2–C2 cells remain open. These are accepted main-goal units, not broad A1 ability, mature whole curriculum, full one-profile72-goal path, physical-device or teaching-effect acceptance. Providers/carriers/production remain separate tasks.
+[72 cells](teaching-coverage-matrix.md) and [exact evidence](teaching-coverage-matrix.json):12 locally complete,38 partial,22 gaps. [Current hearing numeric packet](history/2026-10-15-a1-listening-counts-and-times.md) closes A1 hearing counts/time: each style has two original works, full source/evidence/support, actual ordinary modes and recovery; same-profile count→clock uses4 disjoint roots.8 accepted flows,144 layouts,26 related saved-reloaded answers and58 recovered records pass. Explicit hour/minute/day-part and count-group distractors are exercised. Reused base runs match the current full generated snapshot, while new branches have actual delta flows; they are not relabelled as fresh reruns. Full current68Node/842Vitest/147browser/19offline/Worker/MCP/SW checks pass. Existing whole FLEURS audio/source stock reused; exact Montana licence-date reasoning corrected from its collected article-specific public-domain notice, retaining separate transcript/voice licences and old evidence. No new collection/cloud/ASR/GPU or global rights audit. Other60 A2–C2 cells remain open. These are accepted main-goal units, not broad A1 ability, mature whole curriculum, full one-profile72-goal path, physical-device or teaching-effect acceptance. Providers/carriers/production remain separate tasks.
 
 ## Source-review scope update — 2026-10-14
 
-Reuse collection-time verification for unchanged existing corpora; the maintainer cancelled blanket repeat global-rights review. Existing credits/source hashes and precise holds remain. Only source/version/licence changes or concrete conflicts need a delta check. Pedagogical72-cell acceptance is separate and still open. See scope instruction (`docs/history/2026-10-14-reuse-collected-rights-evidence.md`; local reference, excluded from public copy). Older generic rights-audit statements do not restart a duplicate task.
+Reuse collection-time verification for unchanged existing corpora; the maintainer cancelled blanket repeat global-rights review. Existing credits/source hashes and precise holds remain. Only source/version/licence changes or concrete conflicts need a delta check. Pedagogical72-cell acceptance is separate and still open. See [scope instruction](history/2026-10-14-reuse-collected-rights-evidence.md). Older generic rights-audit statements do not restart a duplicate task.
 
 ## Current A1 meaning delta — 2026-10-14
 
-Recorded polarity (`docs/history/2026-10-14-a1-polarity-and-recovery.md`; local reference, excluded from public copy) adds `choice:heard-polarity` after the actual word-application gate, separately from completion/word recognition. Four available roots have only one actual negative source: one distinct-root pairing is usable, but two disjoint transfer pairs and mature A1 understanding are unaccepted. Real restored history generated kitchen/book on previously unseen roots in both ordinary Practice/Test modes; four target answers saved/refreshed/restored and72 layouts pass. The limited result does not close any of72 full teaching cells or global-rights/device gates. The audit now hashes beginner/word generators and records13 separate polarity samples rather than silently counting them as the prior352 ordinary operation samples.
+[Recorded polarity](history/2026-10-14-a1-polarity-and-recovery.md) adds `choice:heard-polarity` after the actual word-application gate, separately from completion/word recognition. Four available roots have only one actual negative source: one distinct-root pairing is usable, but two disjoint transfer pairs and mature A1 understanding are unaccepted. Real restored history generated kitchen/book on previously unseen roots in both ordinary Practice/Test modes; four target answers saved/refreshed/restored and72 layouts pass. The limited result does not close any of72 full teaching cells or global-rights/device gates. The audit now hashes beginner/word generators and records13 separate polarity samples rather than silently counting them as the prior352 ordinary operation samples.
 
 ## Current ordinary-route delta — 2026-10-14 Combined
 
-Combined/progression/current-build evidence (`docs/history/2026-10-14-combined-progression-and-current-build.md`; local reference, excluded from public copy) adds12 ordinary six-starting-point Practice/Test Combined flows/24sessions/92 saved-restored answers. It does not add a new scored semantic goal or accept72 complete teaching cells. Actual A1 word→short-sentence practice succeeds; the first short VOA root was already shown in reading, so it is not unfamiliar independent transfer. C1 qualified two-root bank exhausts correctly across16 seeds, and Combined creates no partial pair when listening is unavailable. Remaining meaning/discourse/pragmatic source design, independent application and mature long teaching are still required. The normal352-operation inventory and finite long reference design keep their previous scopes.
+[Combined/progression/current-build evidence](history/2026-10-14-combined-progression-and-current-build.md) adds12 ordinary six-starting-point Practice/Test Combined flows/24sessions/92 saved-restored answers. It does not add a new scored semantic goal or accept72 complete teaching cells. Actual A1 word→short-sentence practice succeeds; the first short VOA root was already shown in reading, so it is not unfamiliar independent transfer. C1 qualified two-root bank exhausts correctly across16 seeds, and Combined creates no partial pair when listening is unavailable. Remaining meaning/discourse/pragmatic source design, independent application and mature long teaching are still required. The normal352-operation inventory and finite long reference design keep their previous scopes.
 
 ## Current runtime delta — 2026-10-14 takeover
 
-Long reference and recovery (`docs/history/2026-10-14-long-reference-runtime-and-recovery.md`; local reference, excluded from public copy) supersedes the older “no runtime admission” statement for a strictly local two-root B2/C1 pair. Ordinary180w/91s limits remain; exact full source/audio/rights/segments/notice guards admit only History391w/195.91s and SEO299w/125.85s to the qualified condition. Two inspected grammatical constructions generate reference questions locally; they do not establish general reference, implicit meaning/discourse/pragmatics or C2 transfer. Global publication and physical devices remain unaccepted, and the pair is not in the public download catalogue.
+[Long reference and recovery](history/2026-10-14-long-reference-runtime-and-recovery.md) supersedes the older “no runtime admission” statement for a strictly local two-root B2/C1 pair. Ordinary180w/91s limits remain; exact full source/audio/rights/segments/notice guards admit only History391w/195.91s and SEO299w/125.85s to the qualified condition. Two inspected grammatical constructions generate reference questions locally; they do not establish general reference, implicit meaning/discourse/pragmatics or C2 transfer. Global publication and physical devices remain unaccepted, and the pair is not in the public download catalogue.
 
 Fresh normal shipped-inventory report `private/corpus/teaching-release-takeover-20261014.json` rechecks303 topic packs,36 conditions/352 operation samples and current generator/bundled hashes. The length-band table below describes the shipped normal inventory, excluding private regression ZIPs; its zero long-listening counts must not be confused with the separately installed local pair. Four ordinary Reading/Listening Practice/Test flows,144 layouts,16 saved/refreshed/restored answers and offline original-ZIP media reinstallation pass. All72 complete goal cells and Combined/history/exhaustion/device/global-rights acceptance remain open.
 
@@ -583,6 +583,6 @@ The final fresh report is `private/corpus/teaching-release-final-20261014.json`;
 
 Full cached-ASR comparison also passed for both retained windows:48 intersecting raw segments, no lexical differences after case/apostrophe normalization. Punctuation/capitalization differences were inspected and recorded; adjacent cached speech remains outside each crop. This is source/cached-ASR agreement, not perception or a substitute for remaining source, technical, teaching, package and device requirements (`long-cached-transcript-review.json`).
 
-Current private two-root reference design and source qualification progress: 2026-10-14 packet (`docs/history/2026-10-14-long-source-qualification.md`; local reference, excluded from public copy). This does not change any goal-cell publication status or runtime91-second limit.
+Current private two-root reference design and source qualification progress: [2026-10-14 packet](history/2026-10-14-long-source-qualification.md). This does not change any goal-cell publication status or runtime91-second limit.
 
-Current software inventory after on-demand review: `private/corpus/teaching-release-lazy-review-20261014.json`, all36rows deeply equal to preceding report,303source packs/352operation samples rechecked. Exact performance/change scope (`docs/history/2026-10-14-lazy-review-performance.md`; local reference, excluded from public copy); goal-cell publication status unchanged.
+Current software inventory after on-demand review: `private/corpus/teaching-release-lazy-review-20261014.json`, all36rows deeply equal to preceding report,303source packs/352operation samples rechecked. [Exact performance/change scope](history/2026-10-14-lazy-review-performance.md); goal-cell publication status unchanged.

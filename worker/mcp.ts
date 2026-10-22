@@ -7,8 +7,8 @@ import { listSharedContexts, readSharedContext, sharingLimit, type SharingEnv } 
 
 const identitySchema = z.object({ accountId: z.number().int().positive(), connectionId: shareIdSchema }).strict();
 const annotations = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
-export const searchMaterialsSchema = z.object({ keywords: z.string().trim().min(1).max(160), level: levelSchema.optional(), skill: z.enum(['reading', 'listening']).optional() }).strict();
-export const practiceTemplateSchema = z.object({ goalId: z.string().min(1).max(80), level: levelSchema }).strict();
+const searchMaterialsSchema = z.object({ keywords: z.string().trim().min(1).max(160), level: levelSchema.optional(), skill: z.enum(['reading', 'listening']).optional() }).strict();
+const practiceTemplateSchema = z.object({ goalId: z.string().min(1).max(80), level: levelSchema }).strict();
 export type TeachingSummary = { id: string; title: string; goal: string; goalId: string; level: z.infer<typeof levelSchema>; skill: 'reading' | 'listening'; reviewStatus: 'draft' | 'approved' };
 
 async function authorize(env: SharingEnv, auth: AuthInfo | undefined, permission?: 'contexts' | 'materials') {

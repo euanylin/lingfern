@@ -1875,28 +1875,27 @@ function corpusCanFocus(passage: Corpus['records'][number]['passages'][number], 
 
 /** Generate one source-bound material before adding its separate application. */
 export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeof selectCorpusPassage>>, seed: number, startingPoint?: z.infer<typeof levelSchema>, preferred?: CorpusQuestionKind, preferredOperation?: string, attributionCycle = 1, includeResponse = true): Lesson['materials'][number] | undefined {
-  if (preferredOperation === indirectStanceOperation && (startingPoint !== 'C1' || !indirectStanceScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === argumentBoundariesOperation && (startingPoint !== 'C1' || !argumentBoundariesScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === registerAudienceOperation && (startingPoint !== 'C1' || !registerAudienceScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === discourseOrganizationOperation && (startingPoint !== 'C1' || !discourseOrganizationScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === rhetoricalFunctionOperation && (startingPoint !== 'C2' || !rhetoricalFunctionScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === disagreementSynthesisOperation && (startingPoint !== 'C2' || !disagreementSynthesisScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === faithfulParaphraseOperation && (startingPoint !== 'C2' || !faithfulParaphraseScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === complexPragmaticsOperation && (startingPoint !== 'C2' || !complexPragmaticsScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === layeredPositionOperation && (startingPoint !== 'C2' || !layeredPositionScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === nuancedMeaningOperation && (startingPoint !== 'C2' || !nuancedMeaningScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === informationDensityOperation && (startingPoint !== 'C1' || !informationDensityScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
-  if (preferredOperation === implicitIntentionOperation && (startingPoint !== 'C1' || !implicitIntentionScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl))) return;
+  const matchesReadingScope = (scope: Pick<typeof indirectStanceScopes.reading[number], 'rootId' | 'sourceHash' | 'passageId' | 'text' | 'credit'>) => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.attribution === source.attribution && scope.credit.license === source.licence && scope.credit.sourceUrl === source.originalUrl;
+  if (preferredOperation === indirectStanceOperation && (startingPoint !== 'C1' || !indirectStanceScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === argumentBoundariesOperation && (startingPoint !== 'C1' || !argumentBoundariesScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === registerAudienceOperation && (startingPoint !== 'C1' || !registerAudienceScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === discourseOrganizationOperation && (startingPoint !== 'C1' || !discourseOrganizationScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === rhetoricalFunctionOperation && (startingPoint !== 'C2' || !rhetoricalFunctionScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === disagreementSynthesisOperation && (startingPoint !== 'C2' || !disagreementSynthesisScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === faithfulParaphraseOperation && (startingPoint !== 'C2' || !faithfulParaphraseScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === complexPragmaticsOperation && (startingPoint !== 'C2' || !complexPragmaticsScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === layeredPositionOperation && (startingPoint !== 'C2' || !layeredPositionScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === nuancedMeaningOperation && (startingPoint !== 'C2' || !nuancedMeaningScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === informationDensityOperation && (startingPoint !== 'C1' || !informationDensityScopes.reading.some(matchesReadingScope))) return;
+  if (preferredOperation === implicitIntentionOperation && (startingPoint !== 'C1' || !implicitIntentionScopes.reading.some(matchesReadingScope))) return;
   const beginner = startingPoint === 'A1' || startingPoint === 'A2';
   if ((preferredOperation === viewAttributionOperation || preferredOperation === informationSynthesisOperation || preferredOperation === speakerAttitudeOperation || preferredOperation === qualifiedConcessionOperation || preferredOperation === claimExampleOperation || preferredOperation === comparisonOperation) && startingPoint !== 'B2') return;
-  if (preferredOperation === viewAttributionOperation && !b2ViewAttributionScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.sourceUrl === source.originalUrl && scope.credit.attribution === source.attribution && scope.credit.license === source.licence)) return;
-  if (preferredOperation === informationSynthesisOperation && !b2InformationSynthesisScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.sourceUrl === source.originalUrl && scope.credit.attribution === source.attribution && scope.credit.license === source.licence)) return;
-  if (preferredOperation === speakerAttitudeOperation && !b2SpeakerAttitudeScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.sourceUrl === source.originalUrl && scope.credit.attribution === source.attribution && scope.credit.license === source.licence)) return;
-  if (preferredOperation === qualifiedConcessionOperation && !b2QualifiedConcessionScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.sourceUrl === source.originalUrl && scope.credit.attribution === source.attribution && scope.credit.license === source.licence)) return;
-  if (preferredOperation === comparisonOperation && !b2ComparisonScopes.reading.some(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text && scope.credit.sourceUrl === source.originalUrl && scope.credit.attribution === source.attribution && scope.credit.license === source.licence)) return;
-  if (preferredOperation === claimExampleOperation && !b2ClaimExampleScopes.records.some(scope => scope.rootId === source.rootId
-    && scope.sourceHash === source.sourceHash && scope.passageId === passage.id && scope.text === passage.text
-    && scope.credit.sourceUrl === source.originalUrl && scope.credit.attribution === source.attribution && scope.credit.license === source.licence)) return;
+  if (preferredOperation === viewAttributionOperation && !b2ViewAttributionScopes.reading.some(matchesReadingScope)) return;
+  if (preferredOperation === informationSynthesisOperation && !b2InformationSynthesisScopes.reading.some(matchesReadingScope)) return;
+  if (preferredOperation === speakerAttitudeOperation && !b2SpeakerAttitudeScopes.reading.some(matchesReadingScope)) return;
+  if (preferredOperation === qualifiedConcessionOperation && !b2QualifiedConcessionScopes.reading.some(matchesReadingScope)) return;
+  if (preferredOperation === comparisonOperation && !b2ComparisonScopes.reading.some(matchesReadingScope)) return;
+  if (preferredOperation === claimExampleOperation && !b2ClaimExampleScopes.records.some(matchesReadingScope)) return;
   if (preferredOperation === 'choice:main-point' && startingPoint !== 'B1') return;
   if (preferredOperation?.startsWith('choice:personal-') && startingPoint !== 'A2') return;
   if (preferredOperation === 'choice:planned-order' && startingPoint !== 'A2') return;
@@ -2465,6 +2464,7 @@ export function corpusWorkedExample(material: Lesson['materials'][number], seed:
 
 /** Keep chosen support separate from source difficulty and proficiency. */
 export function corpusStartingPoint(lesson: Lesson, startingPoint?: z.infer<typeof levelSchema>): Lesson {
+  const materialsWithHints = (hints: typeof indirectStanceSupport.hints) => lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = hints; return { ...material, questions: [question] }; });
   if (startingPoint) levelSchema.parse(startingPoint);
   if (!startingPoint && lesson.generation?.generator !== 'corpus-v1') return lesson;
   if (lesson.generation?.generator !== 'corpus-v1') throw new Error('NOT_CORPUS_PRACTICE');
@@ -2485,75 +2485,75 @@ export function corpusStartingPoint(lesson: Lesson, startingPoint?: z.infer<type
   if (!startingPoint) return result;
   if (startingPoint === 'C1' && corpusOperation(lesson.materials[0].questions[0]) === indirectStanceOperation) {
     const support = indirectStanceSupport;
-    return { ...result, targetLevel: 'C1', goalId: 'indirect-stance-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C1', goalId: 'indirect-stance-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C1' && corpusOperation(lesson.materials[0].questions[0]) === argumentBoundariesOperation) {
     const support = argumentBoundariesSupport;
-    return { ...result, targetLevel: 'C1', goalId: 'argument-boundaries-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C1', goalId: 'argument-boundaries-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C1' && corpusOperation(lesson.materials[0].questions[0]) === registerAudienceOperation) {
     const support = registerAudienceSupport;
-    return { ...result, targetLevel: 'C1', goalId: 'register-audience-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C1', goalId: 'register-audience-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C1' && corpusOperation(lesson.materials[0].questions[0]) === discourseOrganizationOperation) {
     const support = lesson.skill === 'listening' ? heardDiscourseOrganizationSupport : readingDiscourseOrganizationSupport;
-    return { ...result, targetLevel: 'C1', goalId: 'discourse-organization-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C1', goalId: 'discourse-organization-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C2' && corpusOperation(lesson.materials[0].questions[0]) === rhetoricalFunctionOperation) {
     const support = lesson.skill === 'listening' ? heardRhetoricalFunctionSupport : rhetoricalFunctionSupport;
-    return { ...result, targetLevel: 'C2', goalId: 'rhetorical-function-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C2', goalId: 'rhetorical-function-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C2' && corpusOperation(lesson.materials[0].questions[0]) === disagreementSynthesisOperation) {
     const support = lesson.skill === 'listening' ? heardDisagreementSynthesisSupport : disagreementSynthesisSupport;
-    return { ...result, targetLevel: 'C2', goalId: 'disagreement-synthesis', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C2', goalId: 'disagreement-synthesis', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C2' && corpusOperation(lesson.materials[0].questions[0]) === faithfulParaphraseOperation) {
     const support = lesson.skill === 'listening' ? heardFaithfulParaphraseSupport : faithfulParaphraseSupport;
-    return { ...result, targetLevel: 'C2', goalId: 'faithful-paraphrase', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C2', goalId: 'faithful-paraphrase', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C2' && corpusOperation(lesson.materials[0].questions[0]) === complexPragmaticsOperation) {
     const support = lesson.skill === 'listening' ? heardComplexPragmaticsSupport : complexPragmaticsSupport;
-    return { ...result, targetLevel: 'C2', goalId: 'complex-pragmatics', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C2', goalId: 'complex-pragmatics', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C2' && corpusOperation(lesson.materials[0].questions[0]) === layeredPositionOperation) {
     const support = lesson.skill === 'listening' ? heardLayeredPositionSupport : layeredPositionSupport;
-    return { ...result, targetLevel: 'C2', goalId: 'layered-positions', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C2', goalId: 'layered-positions', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C2' && corpusOperation(lesson.materials[0].questions[0]) === nuancedMeaningOperation) {
     const support = lesson.skill === 'listening' ? heardNuancedMeaningSupport : nuancedMeaningSupport;
-    return { ...result, targetLevel: 'C2', goalId: 'nuanced-meaning-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C2', goalId: 'nuanced-meaning-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C1' && corpusOperation(lesson.materials[0].questions[0]) === informationDensityOperation) {
     const support = informationDensitySupport;
-    return { ...result, targetLevel: 'C1', goalId: 'information-density-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C1', goalId: 'information-density-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'C1' && corpusOperation(lesson.materials[0].questions[0]) === implicitIntentionOperation) {
     const support = lesson.skill === 'listening' ? heardImplicitIntentionSupport : implicitIntentionSupport;
-    return { ...result, targetLevel: 'C1', goalId: 'implicit-intention-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'C1', goalId: 'implicit-intention-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B2' && corpusOperation(lesson.materials[0].questions[0]) === viewAttributionOperation) {
     const support = lesson.skill === 'listening' ? heardViewAttributionSupport : readingViewAttributionSupport;
-    return { ...result, targetLevel: 'B2', goalId: 'attributed-views-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'B2', goalId: 'attributed-views-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B2' && corpusOperation(lesson.materials[0].questions[0]) === informationSynthesisOperation) {
     const support = lesson.skill === 'listening' ? heardInformationSynthesisSupport : readingInformationSynthesisSupport;
-    return { ...result, targetLevel: 'B2', goalId: 'integrated-source-information', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'B2', goalId: 'integrated-source-information', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B2' && corpusOperation(lesson.materials[0].questions[0]) === speakerAttitudeOperation) {
     const support = lesson.skill === 'listening' ? heardSpeakerAttitudeSupport : readingSpeakerAttitudeSupport;
-    return { ...result, targetLevel: 'B2', goalId: 'speaker-attitude-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'B2', goalId: 'speaker-attitude-in-context', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B2' && corpusOperation(lesson.materials[0].questions[0]) === qualifiedConcessionOperation) {
     const support = lesson.skill === 'listening' ? heardQualifiedConcessionSupport : readingQualifiedConcessionSupport;
-    return { ...result, targetLevel: 'B2', goalId: 'qualified-concession-meaning', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'B2', goalId: 'qualified-concession-meaning', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B2' && corpusOperation(lesson.materials[0].questions[0]) === comparisonOperation) {
     const support = lesson.skill === 'listening' ? heardComparisonSupport : readingComparisonSupport;
-    return { ...result, targetLevel: 'B2', goalId: 'contextual-comparison', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'B2', goalId: 'contextual-comparison', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B2' && corpusOperation(lesson.materials[0].questions[0]) === claimExampleOperation) {
     const support = lesson.skill === 'listening' ? heardClaimExampleSupport : readingClaimExampleSupport;
-    return { ...result, targetLevel: 'B2', goalId: 'claim-example-link', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: lesson.materials.map((material, index) => { const question = { ...material.questions[0] }; if (index) delete question.hints; else question.hints = support.hints; return { ...material, questions: [question] }; }) };
+    return { ...result, targetLevel: 'B2', goalId: 'claim-example-link', goal: support.goal, teaching: support.teaching, workedExample: support.workedExample, nextStep: support.nextStep, materials: materialsWithHints(support.hints) };
   }
   if (startingPoint === 'B1' && lesson.skill === 'reading' && corpusOperation(lesson.materials[0].questions[0]) === 'choice:procedural-plan') return { ...result, targetLevel: 'B1', goalId: 'integrated-procedural-plan',
     goal: proceduralPlanSupport.goal, teaching: proceduralPlanSupport.teaching, workedExample: proceduralPlanSupport.workedExample, nextStep: proceduralPlanSupport.nextStep,

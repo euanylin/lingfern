@@ -1,6 +1,54 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
+test.use({ launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'] } });
+test('short and long pages retain the same document width with classic scrollbars', async ({ page }) => {
+  await page.setViewportSize({ width: 460, height: 772 });
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/src/app/OfflineInstall.tsx*', async route => { await pending; await route.continue(); });
+  await page.goto('/library');
+  await expect(page.locator('main > p[role=status]')).toBeVisible();
+  const box = () => page.locator('body').evaluate(element => ({ x: element.getBoundingClientRect().x, width: element.getBoundingClientRect().width }));
+  const before = await box();
+  release();
+  await expect(page.locator('.offline-search input')).toBeEnabled();
+  expect(await box()).toEqual(before);
+  expect(before.width).toBeLessThan(460);
+});
+
+for (const locale of ['zh-Hans', 'zh-Hant', 'en']) for (const width of [1440, 600, 375]) {
+  test(`Library stays still during resource checks: ${locale}, ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 812 });
+    await page.emulateMedia({ reducedMotion: width === 375 ? 'reduce' : 'no-preference' });
+    await page.goto('/settings');
+    await selectPicker(page, (await page.locator('.setting-trigger').first().getAttribute('aria-label'))!, locale);
+    await selectPicker(page, (await page.locator('.setting-trigger').nth(1).getAttribute('aria-label'))!, width === 1440 ? 'light' : 'dark');
+    await page.evaluate("import('/src/data/runtimeResources.ts').then(module => module.loadRuntimeResources())");
+    const geometry = () => page.locator('.library-page-heading, .library-references, .offline-install, .community-import').evaluateAll(elements => elements.map(element => {
+      const { x, y, width, height } = element.getBoundingClientRect();
+      return { x, y, width, height };
+    }));
+    for (let visit = 0; visit < 3; visit++) {
+      let finishCheck!: () => void;
+      const pending = new Promise<void>(resolve => { finishCheck = resolve; });
+      await page.route('**/resources/catalogue.json', async route => { await pending; if (visit === 2) await route.abort('failed'); else await route.continue(); });
+      await page.locator('nav a[href="/library"]:visible').first().click();
+      await expect(page.locator('.offline-install [role="status"]').first()).toBeAttached();
+      const before = await geometry();
+      const disabled = await page.locator('.offline-install').evaluate(element => element.querySelector('fieldset')?.disabled);
+      finishCheck();
+      await expect(page.locator('.offline-search input')).toBeEnabled();
+      expect(await geometry()).toEqual(before);
+      expect(disabled).toBe(true);
+      await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
+      await page.unroute('**/resources/catalogue.json');
+      await page.locator('nav a[href="/today"]:visible').first().click();
+      await expect(page.locator('.practice-card').first()).toBeVisible();
+    }
+  });
+}
+
 test('offline search preserves selected resources when results change', async ({ page }) => {
   await page.goto('/library');
   const row = page.locator('.package-row').filter({ hasText: '英英词典' });

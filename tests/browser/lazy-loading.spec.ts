@@ -4,6 +4,51 @@ import { languagePacks } from '../../src/locales';
 import { confirmTask } from './task-start';
 import { selectPicker } from './picker';
 
+test('Library navigation keeps the current page until its lazy modules are ready', async ({ page }) => {
+  await page.setViewportSize({ width: 460, height: 772 });
+  await page.goto('/today');
+  const practice = page.locator('.practice-card').first();
+  await expect(practice).toBeVisible();
+  await expect(page.locator('.daily-quote[data-quote-id] blockquote')).toBeVisible();
+  await page.evaluate(() => scrollTo(0, 240));
+  const initialScroll = await page.evaluate(() => scrollY);
+  expect(initialScroll).toBeGreaterThan(0);
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/src/app/OfflineInstall.tsx*', async route => { await pending; await route.continue(); });
+  const loading = page.waitForRequest('**/src/app/OfflineInstall.tsx*');
+  await page.locator('nav a[href="/library"]:visible').first().click();
+  await loading;
+  await expect(practice).toBeVisible();
+  expect(await page.evaluate(() => scrollY)).toBe(initialScroll);
+  await expect(page.locator('main > p[role=status]')).toHaveCount(0);
+  release();
+  await expect(page.locator('.offline-search input')).toBeEnabled();
+  await expect(page.locator('.library-page-heading')).toBeVisible();
+  expect(await page.evaluate(() => scrollY)).toBe(0);
+  await expect(practice).toHaveCount(0);
+});
+
+for (const destination of ['back', 'settings']) test(`a pending Library navigation can be replaced by ${destination}`, async ({ page }) => {
+  await page.goto('/today');
+  await expect(page.locator('.practice-card').first()).toBeVisible();
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/src/app/OfflineInstall.tsx*', async route => { await pending; await route.continue(); });
+  const loading = page.waitForRequest('**/src/app/OfflineInstall.tsx*');
+  await page.locator('nav a[href="/library"]:visible').first().click();
+  await loading;
+  if (destination === 'back') await page.goBack();
+  else await page.locator('nav a[href="/settings"]:visible').first().click();
+  const expected = destination === 'back' ? '/today' : '/settings';
+  await expect(page).toHaveURL(new RegExp(`${expected}$`));
+  release();
+  await page.evaluate("import('/src/app/OfflineInstall.tsx')");
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  await expect(page.locator(destination === 'back' ? '.practice-card' : '.settings-language').first()).toBeVisible();
+  await expect(page.locator('.library-page-heading')).toHaveCount(0);
+});
+
 test('Today loads learning, reference, history and account views only when opened', async ({ page }) => {
   const modules = new Set<string>();
   page.on('request', request => modules.add(new URL(request.url()).pathname));

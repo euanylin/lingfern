@@ -1,8 +1,8 @@
 # Using Lingfern
 
-[Home](../README.md) · [简体中文介绍](README.zh-CN.md)
+[Website](https://lingfern.com) · [Home](../README.md) · [简体中文介绍](README.zh-CN.md)
 
-Lingfern helps you practise English reading and listening, keep your answers, and revisit feedback. You can learn without an account. The hosted service has not launched yet; this guide describes the application available in the local preview.
+Lingfern helps you practise English reading and listening, keep your answers, and revisit feedback. You can learn without an account.
 
 ## Start a session
 
@@ -22,6 +22,14 @@ Draft answers are saved as you work. If a save fails, keep the page open and fol
 **Test** uses the same material and questions without hints, dictionary assistance, teaching examples, self-assessment or AI support. Feedback appears after completion. Normal audio replay and seeking remain available.
 
 Objective questions have task-specific scoring and explanations. Open responses are saved without an automatic score. Results are evidence about these tasks, not a certified language level or a conversion to an examination score.
+
+## Configure practice and use references
+
+Reading and Listening each have a settings control on Today. Choose a goal, topics, materials and question types, or keep Automatic. Choices are saved for the current profile; selecting several topics or types allows the generator to use any eligible selection. Combined uses the reading and listening settings in sequence.
+
+Library contains word lookup, saved-word review, a simple and full IPA chart with pronunciation recordings, the English usage reference and lookup history. Select a sound or example word to play it. Online dictionary links open only when requested. Compatible community ZIPs can be imported through Library; retain the original ZIP if you need its material and audio on another device.
+
+Settings also provides light, dark and system appearance, navigation display choices, and app-update controls. Introduction previews show Today, Library and Settings; selecting a side card brings it forward. The growth fern describes saved reading/listening activity, not an independently measured proficiency level.
 
 ## Prepare for offline use
 
@@ -47,7 +55,7 @@ A backup contains saved sessions, responses and related learning records. It doe
 
 ## Optional online connections
 
-**GitHub sign-in, repository sync and MCP are not ready for general use yet.** They remain optional for learning. The following explains their intended use once the hosted service is available.
+GitHub sign-in, repository sync and MCP are optional. Installed learning continues without these connections.
 
 ### GitHub and sync
 

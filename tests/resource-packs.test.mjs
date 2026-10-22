@@ -43,5 +43,13 @@ test('resource updates delete verified superseded outputs and preserve failed up
     await rm(join(root, 'public/corpus/text.txt'));
     await assert.rejects(run(), /ENOENT/);
     assert.deepEqual(await readFile(join(root, 'content/resource-packs.json')), currentCatalogue);
+    await writeFile(join(root, 'public/corpus/text.txt'), 'Third source revision.');
+    await writeFile(join(root, 'public/packs/corpus-2222222222222222.zip'), currentPack);
+    await writeFile(join(root, 'content/retained-resource-packs.json'), currentCatalogue);
+    await run(); await run('--check');
+    assert.deepEqual(await readFile(join(root, 'public/packs/corpus-2222222222222222.zip')), currentPack);
+    assert.deepEqual((await readdir(join(root, 'public/packs'))).sort(), ['corpus-2222222222222222.zip', 'corpus-3333333333333333.zip', 'unrelated.zip']);
+    await writeFile(join(root, 'public/packs/corpus-2222222222222222.zip'), 'Corrupted retained publication.');
+    await assert.rejects(run('--check'), /Retained resource package changed/);
   } finally { await rm(root, { recursive: true, force: true }); }
 });

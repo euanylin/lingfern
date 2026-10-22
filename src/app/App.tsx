@@ -1,4 +1,4 @@
-import { Component, lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { registerSW } from 'virtual:pwa-register';
 import { version as appVersion } from '../../package.json';
@@ -100,6 +100,8 @@ export function App() {
   const [combinedTopicsChanged, setCombinedTopicsChanged] = useState(false);
   const [history, setHistory] = useState<Session[]>([]);
   const [pageSearch, setPageSearch] = useState(location.search);
+  const resetNavigationScroll = useRef(false);
+  useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; scrollTo(0, 0); } }, [path, pageSearch]);
   const lookupQuery = new URLSearchParams(pageSearch).get('q') ?? '';
   const [records, setRecords] = useState<Attempt[]>([]);
   const [summaries, setSummaries] = useState<ResolvedSummary[]>([]);
@@ -164,7 +166,7 @@ export function App() {
   const syncLoad = useRef(load); syncLoad.current = load;
   useEffect(() => ready ? startSyncSchedule(activeProfile, () => syncLoad.current()) : undefined, [activeProfile, ready]);
   useEffect(() => {
-    const navigate = () => { const next = route(); if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false); setPath(next); setPageSearch(location.search); };
+    const navigate = (event?: PopStateEvent) => { const next = route(); resetNavigationScroll.current = !event; if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false); startTransition(() => { setPath(next); setPageSearch(location.search); }); };
     const click = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || !(event.target instanceof Element)) return;
       const anchor = event.target.closest<HTMLAnchorElement>('a[href^="/"]');
@@ -174,7 +176,7 @@ export function App() {
       event.preventDefault();
       if (url.pathname === location.pathname && url.search === location.search) return;
       window.history.pushState(null, '', url.pathname + url.search);
-      navigate(); scrollTo(0, 0);
+      navigate();
     };
     const network = () => setOnline(navigator.onLine);
     document.addEventListener('click', click); addEventListener('popstate', navigate); addEventListener('online', network); addEventListener('offline', network);
@@ -376,7 +378,7 @@ export function App() {
       {!online && <p className="notice" role="status">{offlineInstalled || localCorpus || localSpoken || communityLessons.length > 0 ? t.offlineInstalled : t.offline}</p>}
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
-      <PageBoundary key={path} locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}>
+      <Suspense fallback={<p role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
       {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={progressRecords([], history, records, summaries).valid} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
@@ -409,7 +411,7 @@ export function App() {
       : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
       : path === '/settings/about' ? <Suspense fallback={<p role="status">{t.loading}</p>}><About/></Suspense>
       : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
-      </Suspense></PageBoundary>
+      </PageBoundary></Suspense>
     </main>
     {confirmUpdate && createPortal(<dialog ref={updateDialog} className="update-confirm-dialog" aria-labelledby="update-confirm-title" aria-describedby="update-confirm-description" onCancel={event => { event.preventDefault(); closeUpdate(); }} onClick={event => { if (event.target === event.currentTarget) closeUpdate(); }}>
       <h2 id="update-confirm-title">{t.updateConfirm}</h2><p id="update-confirm-description">{t.updateConfirmDetail}</p>

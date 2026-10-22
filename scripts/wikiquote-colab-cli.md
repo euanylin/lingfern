@@ -1,6 +1,6 @@
 # Reading and Wikiquote preparation with Colab CLI
 
-Current corpus/privacy/hardware/acceptance rules are in [AGENTS.md](../AGENTS.md); local packaging order is in [community-content.md](../community-content.md). This guide owns cloud execution stages. Historical snapshots, fixed batch hashes, transfer failures and I132/I133 results are retained verbatim in cloud history (`docs/history/wikiquote-colab-cli.md`; local reference, excluded from public copy). Do not reuse a historical runtime name or infer current cloud state from that record.
+Current corpus/privacy/hardware/acceptance rules are in [AGENTS.md](../AGENTS.md); local packaging order is in [community-content.md](../community-content.md). This guide owns cloud execution stages. Historical snapshots, fixed batch hashes, transfer failures and I132/I133 results are retained verbatim in [cloud history](../docs/history/wikiquote-colab-cli.md). Do not reuse a historical runtime name or infer current cloud state from that record.
 
 ## Prepare a scoped public workload
 

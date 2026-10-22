@@ -123,6 +123,7 @@ test('idle rotation waits until contact, scrolling and keyboard activity end and
   await page.clock.fastForward(15000); await page.clock.runFor(800);
   await expect(current).toHaveAttribute('aria-label', '第 3 张，共 3 张');
   await expect(current).toHaveCSS('transform', 'none'); await expect(current.locator('.welcome-window')).toHaveCSS('filter', 'none');
+  await expect(current.locator('.welcome-shade')).toBeHidden();
 });
 
 test('only horizontal trackpad gestures switch cards; wheel and Shift+wheel keep native scrolling', async ({ page }) => {
@@ -220,44 +221,34 @@ test('reversing a wheel gesture interrupts the release without snapping or repla
   expect(await first.evaluate(el => el.querySelector('.today-home') === (window as unknown as { originalPreview: Element }).originalPreview)).toBe(true);
   for (const card of await page.locator('.welcome-card').all()) {
     const current = (await card.getAttribute('data-current')) === 'true';
-    await expect(card).toHaveCSS('z-index', current ? '3' : '1'); await expect(card.locator('.welcome-window')).toHaveCSS('filter', current ? 'blur(0px)' : 'blur(3px)');
+    await expect(card).toHaveCSS('z-index', current ? '3' : '1'); expect(await card.locator('.welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe(current ? '0' : '0.18');
   }
 });
 
 for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test.describe(`whole card surfaces ${locale}/${theme}`, () => {
   test.use({ locale, colorScheme: theme });
-  test('forward, backward and interrupted drags never intersect the visible card planes', async ({ page }, info) => {
+  test('forward, backward and interrupted drags keep cards opaque and separated', async ({ page }, info) => {
     await page.clock.install();
-    const samples: { width: number; selected: number; offset: number; intersections: number[][] }[] = [];
-    for (const [width, height] of [[1440, 900], [390, 844], [844, 390]]) {
+    const samples: { width: number; selected: number; offset: number; gaps: number[] }[] = [];
+    for (const [width, height] of [[1440, 900], [390, 844], [844, 390], [2560, 900]]) {
       await page.setViewportSize({ width, height }); await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
       for (let selected = 0; selected < 3; selected++) {
         await page.locator('.welcome-dots button').nth(selected).click(); await page.clock.runFor(1000);
         const box = (await page.locator('.welcome-stage').boundingBox())!;
         const cardWidth = await page.locator('.welcome-card').first().evaluate(el => (el as HTMLElement).offsetWidth);
-        const shift = width < 700 ? Math.min(75, box.width * .18) : Math.min(300, Math.max(24, (box.width - cardWidth * .85) / 2));
+        const shift = Math.max(cardWidth * .92 + 12, (width + cardWidth * .8 + 64) / 3);
         const start = { x: box.x + box.width / 2, y: box.y + 4 };
         await page.mouse.move(start.x, start.y); await page.mouse.down();
         // Reverse held contact after both depth handoffs.
         for (const offset of [.1, .25, .4, .49, .5, .51, .6, .9, 1, .6, .1, -.1, -.4, -.49, -.5, -.51, -.6, -1, -.4, 0]) {
-          await page.mouse.move(start.x - offset * Math.max(90, shift * 1.1), start.y); await page.clock.runFor(16);
-          const intersections = await page.locator('.welcome-card').evaluateAll(elements => {
-            const planes = elements.map(element => {
-              const style = getComputedStyle(element), m = new DOMMatrixReadOnly(style.transform), half = (element as HTMLElement).offsetWidth * m.m11 / 2;
-              return { x: m.m41, z: m.m43, order: Number(style.zIndex), slope: m.m13 / m.m11, left: m.m41 - half, right: m.m41 + half, visible: Number(style.opacity) > .01 };
-            });
-            const cuts: number[][] = [];
-            for (let a = 0; a < planes.length; a++) for (let b = a + 1; b < planes.length; b++) {
-              const one = planes[a], two = planes[b], left = Math.max(one.left, two.left), right = Math.min(one.right, two.right);
-              if (!one.visible || !two.visible || right <= left) continue;
-              if ((one.z - two.z) * (one.order - two.order) < 0) cuts.push([a, b]);
-              const depth = (x: number) => one.z + one.slope * (x - one.x) - two.z - two.slope * (x - two.x);
-              if (depth(left) * depth(right) < -.01) cuts.push([a, b]);
-            }
-            return cuts;
-          });
-          samples.push({ width, selected, offset, intersections });
-          expect(intersections, `intersecting planes at ${width}px, card ${selected}, drag ${offset}`).toEqual([]);
+          await page.mouse.move(start.x - offset * Math.max(90, shift), start.y); await page.clock.runFor(16);
+          const surfaces = await page.locator('.welcome-card').evaluateAll(elements => elements.map(el => {
+            const r = el.getBoundingClientRect(); return { left: r.left, right: r.right, opacity: getComputedStyle(el).opacity };
+          }).sort((a, b) => a.left - b.left));
+          expect(surfaces.map(card => card.opacity)).toEqual(['1', '1', '1']);
+          const gaps = surfaces.slice(1).map((card, i) => card.left - surfaces[i].right);
+          samples.push({ width, selected, offset, gaps });
+          for (const gap of gaps) expect(gap, `card gap at ${width}px, card ${selected}, drag ${offset}`).toBeGreaterThan(8);
         }
         await page.mouse.up(); await page.clock.runFor(1000);
       }
@@ -265,7 +256,7 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dar
         await expect(card).toHaveCSS('transform-style', 'flat'); await expect(card).toHaveCSS('isolation', 'isolate');
       }
     }
-    await info.attach('sampled-card-planes', { body: JSON.stringify(samples), contentType: 'application/json' });
+    await info.attach('sampled-card-gaps', { body: JSON.stringify(samples), contentType: 'application/json' });
   });
 });
 
@@ -419,7 +410,7 @@ for (const [locale, colorScheme, width] of [['zh-Hans', 'light', 393], ['en', 'd
       await page.locator('.welcome-dots button').nth(card).tap();
       const current = page.locator('.welcome-card[data-current=true]');
       await expect(current).toHaveAttribute('aria-label', languagePacks[locale].onboarding.slideN.replace('{n}', String(card + 1)));
-      await expect(current.locator('.welcome-window')).toHaveCSS('filter', 'blur(0px)');
+      await expect.poll(() => current.locator('.welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe('0');
       const content = current.locator('.welcome-content'), box = (await content.boundingBox())!;
       const x = box.x + box.width / 2, y = box.y + box.height * .75, distance = Math.min(140, box.height * .5);
       for (const direction of [-1, 1]) {
@@ -520,8 +511,8 @@ test('both neighbouring cards stay visible while only quote and navigation contr
     for (const side of await page.locator('.welcome-card[data-current=false]').all()) {
       const box = (await side.boundingBox())!;
       expect(Math.max(front.x - box.x, box.x + box.width - front.x - front.width, front.y - box.y)).toBeGreaterThanOrEqual(14);
-      await expect(side.locator('.welcome-window')).toHaveCSS('filter', 'blur(3px)');
-      await expect(side.locator('.welcome-shade')).toHaveCSS('opacity', '0.18');
+      expect(await side.locator('.welcome-shade').evaluate(el => getComputedStyle(el).backdropFilter)).toBe('none');
+      expect(await side.locator('.welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe('0.18');
     }
     if (width >= 768) {
       await current.locator('.desktop-nav a[href="/library"]').click();
@@ -668,7 +659,7 @@ test.describe('mobile transition follow-up', () => {
       samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
     }
     expect(samples.slice(1).every((value, i) => value < samples[i] - .1)).toBe(true);
-    expect(samples.slice(1).every((value, i) => Math.abs(value - samples[i]) < 20)).toBe(true);
+    for (let i = 1; i < samples.length; i++) expect(samples[i] - samples[i - 1]).toBeCloseTo(-20, 1);
     await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd',touchPoints:[]});
     await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label','第 2 张，共 3 张');
     await expect(page.locator('.welcome-card[data-current=true] .welcome-window')).toHaveJSProperty('inert',false);
@@ -677,21 +668,32 @@ test.describe('mobile transition follow-up', () => {
   });
 });
 
-test('card contents blur continuously with depth and stay inside the rounded window', async ({ page }) => {
+test('opaque cards retain rounded depth shading without full-card backdrop filters', async ({ page }) => {
   for (const [width,height] of [[390,844],[1440,900]]) {
     await page.setViewportSize({width,height}); await page.goto('/introduction');
     const first = page.locator('.welcome-card').first(), stage = (await page.locator('.welcome-stage').boundingBox())!;
-    await expect(first.locator('.welcome-window')).toHaveCSS('filter','blur(0px)');
-    await expect(page.locator('.welcome-card').nth(1).locator('.welcome-window')).toHaveCSS('filter','blur(3px)');
+    await expect(first).toHaveCSS('opacity','1');
+    expect(await first.locator('.welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe('0');
+    expect(await page.locator('.welcome-card').nth(1).locator('.welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe('0.18');
     await page.mouse.move(stage.x + stage.width * .65, stage.y + 25); await page.mouse.down();
     await page.mouse.move(stage.x + stage.width * .65 - (width < 700 ? 80 : 150), stage.y + 25, {steps:4});
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-    const blur = await first.locator('.welcome-window').evaluate(el => parseFloat(getComputedStyle(el).filter.slice(5)));
-    expect(blur).toBeGreaterThan(0); expect(blur).toBeLessThan(3);
-    for (const window of await page.locator('.welcome-window').all()) await expect(window).toHaveCSS('overflow','hidden');
+    const blur = await first.locator('.welcome-shade').evaluate(el => {
+      const style = getComputedStyle(el);
+      return { backdropFilter: style.backdropFilter, opacity: style.opacity };
+    });
+    expect(blur.backdropFilter).toBe('none');
+    const strength = Number(blur.opacity);
+    expect(strength).toBeGreaterThan(0); expect(strength).toBeLessThan(.18);
+    await expect(page.locator('.welcome-stage')).toHaveCSS('perspective','none');
+    await expect(page.locator('.welcome-stage')).toHaveCSS('overflow','visible');
+    for (const window of await page.locator('.welcome-window').all()) {
+      await expect(window).toHaveCSS('overflow','hidden');
+      await expect(window).toHaveCSS('filter','none');
+    }
     await page.screenshot({path:test.info().outputPath(`transition-${width}.png`)});
     await page.mouse.up();
-    await expect(page.locator('.welcome-card[data-current=true] .welcome-window')).toHaveCSS('filter','blur(0px)');
+    await expect.poll(() => page.locator('.welcome-card[data-current=true] .welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe('0');
   }
 });
 
@@ -723,11 +725,180 @@ test('navigation uses the nearest loop copy and a fast release does not overshoo
   expect(await page.locator('.welcome-card').first().evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeGreaterThan(0);
   await page.clock.runFor(1000); await page.locator('.welcome-dots button').first().click(); await page.clock.runFor(1000);
   const stage=(await page.locator('.welcome-stage').boundingBox())!, first=page.locator('.welcome-card').first();
-  const shift=Math.min(300,Math.max(24,(stage.width-(await first.boundingBox())!.width*.85)/2)), distance=Math.max(90,shift*1.1);
+  const distance=Math.max(90,(await first.evaluate(el=>(el as HTMLElement).offsetWidth))*.92+12);
   const x=stage.x+stage.width*.7,y=stage.y+25;
   await page.mouse.move(x,y); await page.mouse.down();
   for(const fraction of [.25,.5,.75,.99]) {await page.clock.runFor(16);await page.mouse.move(x-fraction*distance,y);}
   await page.mouse.up();const positions:number[]=[];
   for(let i=0;i<50;i++){await page.clock.runFor(16);positions.push(await first.evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));}
   expect(Math.min(...positions)).toBeGreaterThanOrEqual(positions.at(-1)!-.1);
+});
+
+for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test.describe(`slow touch ${locale}/${colorScheme}`, () => {
+  test.use({ hasTouch: true, locale, colorScheme });
+  test('held contact stays stable through pauses and reversal, then permits vertical reading', async ({ page, context }, info) => {
+    await page.setViewportSize({ width: 390, height: 700 }); await page.goto('/introduction');
+    await expect(page.locator('html')).toHaveAttribute('lang', locale);
+    await expect(page.locator('html')).toHaveAttribute('dir', locale === 'ar' ? 'rtl' : 'ltr');
+    const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
+    await expect(first).toHaveAttribute('data-current', 'true');
+    await content.evaluate(el => { el.scrollTop = 60; });
+    const scroll = await content.evaluate(el => el.scrollTop), box = (await content.boundingBox())!;
+    const x = box.x + box.width * .85, y = box.y + box.height * .55, rtl = locale === 'ar' ? -1 : 1;
+    const cdp = await context.newCDPSession(page), samples: { dx: number; x: number; width: number; scroll: number }[] = [];
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+    await page.evaluate(() => {
+      (window as unknown as { cancelledTouches: number }).cancelledTouches = 0;
+      document.querySelector('.welcome-stage')!.addEventListener('pointercancel', () => { (window as unknown as { cancelledTouches: number }).cancelledTouches++; });
+    });
+    try {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+      const offsets = Array.from({ length: 33 }, (_, i) => 16 + i * 4);
+      for (const dx of [...offsets, ...offsets.slice(0, -1).reverse()]) {
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - dx * rtl, y: y + 1 }] });
+        await page.waitForTimeout(50);
+        const sample = await first.evaluate(el => { const r = el.getBoundingClientRect(); return { x: r.x, width: r.width, scroll: el.querySelector('.welcome-content')!.scrollTop }; });
+        samples.push({ dx, ...sample });
+        expect(sample.scroll).toBe(scroll);
+        if (dx === 80) {
+          await page.waitForTimeout(220);
+          const held = (await first.boundingBox())!;
+          expect(Math.abs(held.x - sample.x)).toBeLessThan(.1); expect(Math.abs(held.width - sample.width)).toBeLessThan(.1);
+        }
+        if (samples.length === 22) await page.screenshot({ path: info.outputPath('slow-held-contact.png') });
+      }
+      for (let i = 1; i < samples.length; i++) {
+        expect(Math.abs(samples[i].x - samples[i - 1].x)).toBeLessThan(6);
+        expect(Math.abs(samples[i].width - samples[i - 1].width)).toBeLessThan(6);
+      }
+      expect(await page.evaluate(() => (window as unknown as { cancelledTouches: number }).cancelledTouches)).toBe(0);
+      await page.waitForTimeout(220);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await expect.poll(() => first.locator('.welcome-shade').evaluate(el => getComputedStyle(el).opacity)).toBe('0');
+      await expect(first).toHaveAttribute('data-current', 'true');
+      const resting = (await content.boundingBox())!, sx = resting.x + resting.width / 2, sy = resting.y + resting.height - 20;
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: sx, y: sy }] });
+      for (const dy of [30, 60, 100]) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: sx, y: sy - dy }] });
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(scroll);
+      await expect(first).toHaveAttribute('data-current', 'true');
+      await expect(content).toHaveJSProperty('scrollLeft', 0);
+      await info.attach('slow-touch-geometry', { body: JSON.stringify(samples), contentType: 'application/json' });
+    } finally { await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 }); await cdp.detach(); }
+  });
+});
+
+test('cards stay opaque and separate across desktop and mobile loop reversals', async ({page},info)=>{
+  await page.emulateMedia({reducedMotion:'no-preference'}); await page.clock.install();
+  for (const width of [390,1440,2560,3840]) {
+  await page.clock.resume();
+  await page.setViewportSize({width,height:900});
+  await page.goto('/introduction');
+  await expect(page.locator('.welcome')).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now())+1000));
+  const stage=page.locator('.welcome-stage'),box=(await stage.boundingBox())!,cardWidth=await page.locator('.welcome-card').first().evaluate(el=>(el as HTMLElement).offsetWidth);
+  const x=box.x+box.width*.8,y=box.y+8,distance=Math.max(cardWidth*.92+12,(width+cardWidth*.8+64)/3);
+  await page.mouse.move(x,y);await page.mouse.down();
+  const shots:string[]=[];
+  // Compare the same subpixel displacement on either side of the selection boundary.
+  const epsilon = .06 / distance;
+  for(const fraction of [.5-epsilon,.5+epsilon,.5-epsilon,.5+epsilon]){
+    await page.mouse.move(x-fraction*distance,y);await page.clock.runFor(16);
+    const surfaces = await page.locator('.welcome-card').evaluateAll(cards => cards.slice(0,2).map(card => {
+      const r = card.getBoundingClientRect(); return {left:r.left,right:r.right,opacity:getComputedStyle(card).opacity};
+    }));
+    expect(surfaces.map(card=>card.opacity)).toEqual(['1','1']);
+    expect(surfaces[1].left-surfaces[0].right).toBeGreaterThan(8);
+    shots.push((await page.screenshot({clip:{x:0,y:box.y,width,height:box.height}})).toString('base64'));
+  }
+  const diffs=await page.evaluate(async shots=>{
+    const pixels: Uint8ClampedArray[]=[];
+    for(const shot of shots){const img=new Image();img.src='data:image/png;base64,'+shot;await img.decode();const canvas=document.createElement('canvas');canvas.width=img.width;canvas.height=img.height;const context=canvas.getContext('2d')!;context.drawImage(img,0,0);pixels.push(context.getImageData(0,0,img.width,img.height).data);}
+    return pixels.slice(1).map((p,i)=>{let changed=0,total=0;for(let j=0;j<p.length;j+=4){let delta=0;for(let k=0;k<3;k++)delta=Math.max(delta,Math.abs(p[j+k]-pixels[i][j+k]));if(delta>24)changed++;total++;}return changed/total;});
+  },shots);
+  await info.attach('handoff-pixel-differences',{body:JSON.stringify(diffs),contentType:'application/json'});
+  for(let i=0;i<shots.length;i++)await info.attach(`handoff-${i}`,{body:Buffer.from(shots[i],'base64'),contentType:'image/png'});
+  expect(Math.max(...diffs)).toBeLessThan(.02);
+  await page.mouse.up();
+  }
+});
+
+for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test.describe(`short landscape ${locale}`, () => {
+  test.use({ locale, colorScheme });
+  test('cards have no inner cutoff and controls remain below every slide across layout boundaries', async ({ page }, info) => {
+    test.setTimeout(90000);
+    await page.goto('/introduction');
+    for (const [width, height] of [[960,600],[900,600],[976,650],[960,650],[960,651],[844,390],[568,320]]) {
+      await page.setViewportSize({ width, height });
+      await expect(page.locator('.welcome-stage')).toHaveCSS('overflow', 'visible');
+      for (let index = 0; index < 3; index++) {
+        await page.locator('.welcome-dots button').nth(index).click();
+        const current = page.locator('.welcome-card[data-current=true]');
+        await expect(current).toHaveAttribute('aria-label', languagePacks[locale].onboarding.slideN.replace('{n}', String(index + 1)));
+        await expect(current).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        const caption = (await page.locator('.welcome-caption').boundingBox())!;
+        for (const card of await page.locator('.welcome-card').all()) {
+          const box = (await card.boundingBox())!;
+          expect(box.y).toBeGreaterThanOrEqual(0);
+          expect(box.y + box.height).toBeLessThanOrEqual(caption.y);
+        }
+        const start = (await page.locator('.welcome-start').boundingBox())!;
+        expect(start.y + start.height).toBeLessThanOrEqual(height);
+        expect(start.height).toBeGreaterThanOrEqual(44);
+        expect(await page.locator('.welcome-start').evaluate(el => {
+          const r = el.getBoundingClientRect(); return document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2) === el;
+        })).toBe(true);
+        const content = current.locator('.welcome-content');
+        expect(await content.evaluate(el => el.clientHeight)).toBeGreaterThanOrEqual(44);
+        if (await content.evaluate(el => el.scrollHeight > el.clientHeight)) {
+          await content.evaluate(el => { el.scrollTop = 0; });
+          await content.hover(); await page.mouse.wheel(0, 250);
+          await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+        }
+        if (index === 0) {
+          await content.evaluate(el => { el.scrollTop = 0; });
+          await page.screenshot({ path: info.outputPath(`${width}x${height}-${locale}-${colorScheme}.png`) });
+        }
+      }
+    }
+    await page.locator('.welcome-start').click(); await expect(page).toHaveURL(/\/start$/);
+  });
+});
+
+for (const [locale, colorScheme] of [['zh-Hans','light'],['en','dark'],['ar','dark']] as const) for (const hasTouch of [false,true]) test.describe(`side cards ${locale} ${hasTouch ? 'touch' : 'mouse'}`, () => {
+  test.use({ locale, colorScheme, hasTouch });
+  test('select either visible neighbour without activating its inert content', async ({ page }) => {
+    for (const [width,height] of [[1440,900],[390,844],[960,600]]) {
+      await page.setViewportSize({width,height}); await page.goto('/introduction');
+      for (const index of [1,0,2,0]) {
+        const side = page.locator('.welcome-card').nth(index);
+        await expect(side).toHaveAttribute('data-current','false');
+        await expect(side.locator('.welcome-window')).toHaveJSProperty('inert',true);
+        const box = (await side.boundingBox())!;
+        const x = (Math.max(0,box.x) + Math.min(width,box.x + box.width)) / 2, y = box.y + Math.min(80,box.height / 2);
+        if (hasTouch) await page.touchscreen.tap(x,y); else await page.mouse.click(x,y);
+        await expect(side).toHaveAttribute('data-current','true');
+        await expect(side).toHaveCSS('transform','matrix(1, 0, 0, 1, 0, 0)');
+        await expect(side.locator('.welcome-window')).toHaveJSProperty('inert',false);
+        await expect(page).toHaveURL(/\/introduction$/);
+      }
+    }
+  });
+});
+
+test('side card drags do not become clicks and reduced-motion navigation does not bounce back', async ({ page }) => {
+  await page.setViewportSize({width:1440,height:900}); await page.goto('/introduction');
+  const side = page.locator('.welcome-card').nth(1), first = page.locator('.welcome-card').first();
+  for (const [dx,dy] of [[40,0],[0,40]]) {
+    const box = (await side.boundingBox())!, x = (box.x + 1440) / 2, y = box.y + 80;
+    await page.mouse.move(x,y); await page.mouse.down(); await page.mouse.move(x + dx,y + dy,{steps:5});
+    await page.waitForTimeout(150); await page.mouse.up(); await page.waitForTimeout(850);
+    await expect(first).toHaveAttribute('data-current','true');
+  }
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await first.locator('.desktop-nav a[href="/library"]').focus();
+  await page.keyboard.press('Enter');
+  await expect(side).toHaveAttribute('data-current','true');
+  await expect(side).toHaveCSS('transform','none');
+  await expect(page).toHaveURL(/\/introduction$/);
 });

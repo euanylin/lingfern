@@ -1,7 +1,5 @@
-import { cardInteraction } from './cardInteraction';
+import { cardInteraction, textEntry } from './cardInteraction';
 import { useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
-
-const textEntry = (target: EventTarget | null) => target instanceof Element && !!target.closest('textarea,[contenteditable]:not([contenteditable=false]),input:not([type=checkbox],[type=radio],[type=range],[type=button],[type=submit],[type=reset],[type=file],[type=color])');
 
 export function questionSheetSize(viewport: number, headerBottom: number, requested?: number) {
   const maximum = Math.max(0, viewport - headerBottom - 24), minimum = Math.min(220, maximum);

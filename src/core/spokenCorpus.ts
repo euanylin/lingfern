@@ -87,6 +87,15 @@ export const maxInstalledSpokenBanks = 384;
 const english = (en: string) => ({ en, 'zh-Hans': en, 'zh-Hant': en });
 
 /** Draft exact-word listening and self-assessed interpretation without estimating ability. */
+function matchesListeningScope(scope: Pick<typeof indirectStanceScopes.listening[number], 'rootId' | 'sourceHash' | 'sourceCredit' | 'clipId' | 'text' | 'credit' | 'segments'> & { audio: Pick<SpokenCorpus['records'][number]['clips'][number]['audio'], 'sha256' | 'duration' | 'author' | 'license' | 'sourceUrl'> }, source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number]) {
+  return scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
+      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
+      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
+      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
+      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
+      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments);
+}
+
 export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>, seed: number, maxSeconds = 60, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationBanks: readonly SpokenCorpus[] = [], includeResponse = true) {
   if (!bank.communityPackageId || !Number.isInteger(seed) || seed < 0 || seed > 0xffffffff || !Number.isFinite(maxSeconds) || maxSeconds < 8 || maxSeconds > maxQualifiedSpokenSeconds) throw new Error('INVALID_SPOKEN_GENERATION');
   if (applicationBanks.length > maxInstalledSpokenBanks || applicationBanks.some(other => !other.communityPackageId)) throw new Error('INVALID_SPOKEN_APPLICATION');
@@ -113,42 +122,22 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
   const matching = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     const text = clip.text;
     if (startingPoint === 'C1' && (!operation || operation === indirectStanceOperation)) {
-      const scope = indirectStanceScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-        && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-        && scope.clipId === clip.id && scope.text === text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-        && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-        && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-        && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+      const scope = indirectStanceScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
       const frame = scope && corpusIndirectStance(text, value >>> 0);
       if (frame) return { ...frame, claimExamples: false, discourse: false };
     }
     if (startingPoint === 'C1' && (!operation || operation === argumentBoundariesOperation)) {
-      const scope = argumentBoundariesScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-        && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-        && scope.clipId === clip.id && scope.text === text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-        && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-        && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-        && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+      const scope = argumentBoundariesScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
       const frame = scope && corpusArgumentBoundaries(text, value >>> 0);
       if (frame) return { ...frame, claimExamples: false, discourse: false };
     }
     if (startingPoint === 'C1' && (!operation || operation === registerAudienceOperation)) {
-      const scope = registerAudienceScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-        && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-        && scope.clipId === clip.id && scope.text === text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-        && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-        && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-        && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+      const scope = registerAudienceScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
       const frame = scope && corpusRegisterAudience(text, value >>> 0);
       if (frame) return { ...frame, claimExamples: false, discourse: false };
     }
     if (startingPoint === 'C1' && (!operation || operation === discourseOrganizationOperation)) {
-      const scope = discourseOrganizationScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-        && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-        && scope.clipId === clip.id && scope.text === text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-        && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-        && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-        && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+      const scope = discourseOrganizationScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
       const frame = scope && corpusDiscourseOrganization(text, value >>> 0);
       if (frame) return { ...frame, claimExamples: false, discourse: true };
     }
@@ -162,132 +151,67 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
   };
   const rhetoric = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C2' || operation && operation !== rhetoricalFunctionOperation) return;
-    const scope = rhetoricalFunctionScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = rhetoricalFunctionScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusRhetoricalFunction(clip.text, value >>> 0);
   };
   const disagreement = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C2' || operation && operation !== disagreementSynthesisOperation) return;
-    const scope = disagreementSynthesisScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = disagreementSynthesisScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusDisagreementSynthesis(clip.text, value >>> 0);
   };
   const paraphrase = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C2' || operation && operation !== faithfulParaphraseOperation) return;
-    const scope = faithfulParaphraseScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = faithfulParaphraseScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusFaithfulParaphrase(clip.text, value >>> 0);
   };
   const pragmatics = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C2' || operation && operation !== complexPragmaticsOperation) return;
-    const scope = complexPragmaticsScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = complexPragmaticsScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusComplexPragmatics(clip.text, value >>> 0);
   };
   const layers = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C2' || operation && operation !== layeredPositionOperation) return;
-    const scope = layeredPositionScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = layeredPositionScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusLayeredPosition(clip.text, value >>> 0);
   };
   const nuance = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C2' || operation && operation !== nuancedMeaningOperation) return;
-    const scope = nuancedMeaningScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = nuancedMeaningScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusNuancedMeaning(clip.text, value >>> 0);
   };
   const density = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C1' || operation && operation !== informationDensityOperation) return;
-    const scope = informationDensityScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = informationDensityScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusInformationDensity(clip.text, value >>> 0);
   };
   const implicit = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'C1' || operation && operation !== implicitIntentionOperation) return;
-    const scope = implicitIntentionScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = implicitIntentionScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusImplicitIntention(clip.text, value >>> 0);
   };
   const views = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'B2' || operation && operation !== viewAttributionOperation) return;
-    const scope = viewAttributionScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = viewAttributionScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusViewAttribution(clip.text, value >>> 0);
   };
   const synthesis = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'B2' || operation && operation !== informationSynthesisOperation) return;
-    const scope = informationSynthesisScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = informationSynthesisScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusInformationSynthesis(clip.text, value >>> 0);
   };
   const attitude = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'B2' || operation && operation !== speakerAttitudeOperation) return;
-    const scope = speakerAttitudeScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = speakerAttitudeScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusSpeakerAttitude(clip.text, value >>> 0);
   };
   const limited = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'B2' || operation && operation !== qualifiedConcessionOperation) return;
-    const scope = qualifiedConcessionScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = qualifiedConcessionScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusQualifiedConcession(clip.text, value >>> 0);
   };
   const comparison = (source: SpokenCorpus['records'][number], clip: SpokenCorpus['records'][number]['clips'][number], value: number, operation = focusOperation) => {
     if (startingPoint !== 'B2' || operation && operation !== comparisonOperation) return;
-    const scope = comparisonScopes.listening.find(scope => scope.rootId === source.rootId && scope.sourceHash === source.sourceHash
-      && scope.sourceCredit.attribution === source.attribution && scope.sourceCredit.license === source.licence && scope.sourceCredit.sourceUrl === source.originalUrl
-      && scope.clipId === clip.id && scope.text === clip.text && scope.audio.sha256 === clip.audio.sha256 && scope.audio.duration === clip.audio.duration
-      && scope.audio.author === clip.audio.author && scope.audio.license === clip.audio.license && scope.audio.sourceUrl === clip.audio.sourceUrl
-      && scope.credit.attribution === clip.credit.attribution && scope.credit.license === clip.credit.license && scope.credit.sourceUrl === clip.credit.sourceUrl
-      && JSON.stringify(scope.segments) === JSON.stringify(clip.segments));
+    const scope = comparisonScopes.listening.find(scope => matchesListeningScope(scope, source, clip));
     return scope && corpusComparison(clip.text, value >>> 0);
   };
   const choices = bank.records.flatMap(source => source.clips.map(clip => ({ source, clip, packageId: bank.communityPackageId! }))).filter(({ source, clip }) => !clip.qualityFlags.length && !seen.has(clip.id) && permittedDuration(clip) && (!!restore(clip.text, seed, clip.language) || !!sequenceFor(clip.text, seed) || !!semantic(clip.text, seed) || !!dates(clip.text, seed) || !!matching(source, clip, seed) || !!outcome(clip.text, seed) || !!reference(clip.text, seed) || !!comparison(source, clip, seed) || !!limited(source, clip, seed) || !!attitude(source, clip, seed) || !!synthesis(source, clip, seed) || !!views(source, clip, seed) || !!rhetoric(source, clip, seed) || !!disagreement(source, clip, seed) || !!paraphrase(source, clip, seed) || !!pragmatics(source, clip, seed) || !!layers(source, clip, seed) || !!nuance(source, clip, seed) || !!density(source, clip, seed) || !!implicit(source, clip, seed)));

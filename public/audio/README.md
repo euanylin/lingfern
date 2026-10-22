@@ -1,7 +1,9 @@
-# Audio sources
+# Learning audio
 
-A1 word recordings retain their individual Commons CC BY-SA 3.0 terms in `a1-words/README.md`. Author-only original VOA recordings and clips for A1–B2 retain their source-specific notices in each `VOA-LICENSE.txt`. C1–C2 original historical speech recordings retain their public-domain archival records and excerpt processing in each `ARCHIVAL-LICENSE.txt`.
+[Lingfern](https://lingfern.com) serves recordings from its own origin and includes them in the corresponding offline resource packages. Install the required package before listening offline. External source pages open only when selected.
 
-All normal lesson audio is real recorded speech served by this site. Independent listening and editorial review remains pending. Former fictional synthetic examples are isolated under `tests/fixtures`, included only in the explicit test build, and are absent from normal packages.
+- A1 word recordings retain the individual Commons CC BY-SA 3.0 terms in [a1-words/README.md](a1-words/README.md).
+- Author-only original VOA recordings and clips for A1–B2 retain their source-specific `VOA-LICENSE.txt` notices.
+- C1–C2 historical speech recordings retain their public-domain archival records and excerpt processing in `ARCHIVAL-LICENSE.txt`.
 
-External source pages open only when selected by the learner.
+Normal lesson audio is recorded speech. Synthetic regression examples live under `tests/fixtures` and enter only explicit fixture builds. A recording's source, transcript, exact excerpt boundaries, technical diagnostics and teaching evidence are separate records; neither its filename nor successful playback establishes a language level. Preserve every per-source restriction and attribution when reusing audio.

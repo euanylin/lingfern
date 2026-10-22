@@ -1,6 +1,6 @@
 # Run and contribute to Lingfern
 
-[Home](../README.md) · [User guide](user-guide.md)
+[Website](https://lingfern.com) · [Home](../README.md) · [User guide](user-guide.md)
 
 Lingfern has one React and TypeScript frontend, with IndexedDB for learning data and a Service Worker for installed offline resources. A Cloudflare Worker serves the site and optional identity, sync and MCP endpoints.
 
@@ -28,6 +28,12 @@ For frontend development, run `npm run dev`. If you also need the local API, run
 | `npm run build` | Content and resource checks, then the production build. |
 | `npm run test:e2e` | Browser tests with isolated fixtures. |
 | `npm run test:offline` | Built offline fixture tests. |
+| `npm run test:update` | Service Worker update and saved-work recovery. |
+| `npm run test:sync` | Isolated Worker, database and synthetic upstream sync failures. |
+| `npm run test:mcp` | Isolated MCP protocol, authorisation and revocation checks. |
+| `npm run test:worker` | Route, cache and security-header checks against the local preview. |
+| `npm run release:files -- /absolute/new/export` | Export and hash-check the source allowlist without uploading it. |
+| `npm run deploy:check` | Validate and bundle the Worker without deploying it. |
 
 Browser tests require the matching Playwright Chromium installation (`npx playwright install chromium`). Some local tests use retained source evidence that is intentionally absent from the public repository; `npm run test:source-evidence` requires that evidence. Do not replace missing originals with invented data or relax the assertions.
 
@@ -51,8 +57,8 @@ For a bug, describe how to reproduce it and what you expected. For a contributio
 
 Changes to saving, imports, offline resources or sync need checks that existing records survive failures and retries. Changes to text or audio need accurate source credits and the applicable redistribution permission. Do not remove existing rights restrictions to make a check pass.
 
-This repository's Actions are currently disabled. Publishing source is separate from operating a hosted service; the public source does not provide production credentials or a deployment destination. The hosted service has not launched.
+GitHub Actions runs the portable checks. Production deployment uses the separately dispatched workflow, successful checks on protected `main`, a main-only environment and scoped environment secrets. Fork pull requests cannot access those deployment secrets or enter the production environment. The configuration guard excludes local authentication and prevents routine deployment from changing domain ownership. Publishing source and authorising a deployment are separate maintainer actions; credentials are never part of a source export.
 
 ## Reuse
 
-See [LICENSING](../LICENSING.md) for code, documentation and third-party terms, and [BRAND](../BRAND.md) for logos and signature artwork. Standard licence texts and original third-party notices remain authoritative.
+See [LICENSING](../LICENSING.md) for code, documentation and third-party terms, and [BRAND](../BRAND.md) for the sole fern symbol and installation icons. Standard licence texts and original third-party notices remain authoritative.

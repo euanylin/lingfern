@@ -32,5 +32,5 @@ backup/
 __pycache__/
 *.pyc
 Signature/
-logo/*.svg
+logo/
 public/logo/

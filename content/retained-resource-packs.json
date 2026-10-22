@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sourceCommit": "16cfb540e145d5c46aa624b684006d6957f567da",
+  "reason": "Keep published downloads available until old-client update and recovery permit removal.",
+  "packs": [
+    {
+      "id": "ipa",
+      "version": "cb5ebbfc993dcf02",
+      "path": "/packs/ipa-cb5ebbfc993dcf02.zip",
+      "bytes": 3596810,
+      "sha256": "d5f6a1673e3682b6024ce79d262051bc5b568f3fc4858a2b844f4ea75ab6cf8b"
+    },
+    {
+      "id": "grammar",
+      "version": "6c021fbd1dfd485b",
+      "path": "/packs/grammar-6c021fbd1dfd485b.zip",
+      "bytes": 58352,
+      "sha256": "4269dc54ba293e17bc2b47695e2f9cecda951d9aa56792bd059380b299cfc255"
+    },
+    {
+      "id": "audio-a1",
+      "version": "23cd5b5b338d2596",
+      "path": "/packs/audio-a1-23cd5b5b338d2596.zip",
+      "bytes": 1273964,
+      "sha256": "d0edb9929f7aa0a28ee5d21c1aedad170af00c6e569744447cf664cde4fc255f"
+    }
+  ]
+}
