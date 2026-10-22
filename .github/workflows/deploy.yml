@@ -19,7 +19,7 @@ jobs:
     concurrency:
       group: lingfern-production
       cancel-in-progress: false
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -45,6 +45,7 @@ jobs:
       - run: npm run test:e2e
       - run: npm run test:offline
       - run: npm run test:update
+        timeout-minutes: 5
       - name: Check local Worker routes and assets
         run: |
           set -euo pipefail

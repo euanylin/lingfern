@@ -32,12 +32,15 @@ const origin = `http://127.0.0.1:${address.port}`;
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
   const context = await browser.newContext({ locale: 'zh-CN' });
+  context.setDefaultTimeout(30_000);
   const page = await context.newPage();
   await page.goto(`${origin}/today`);
   await page.getByRole('heading', { name: '今日' }).waitFor();
-  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.waitForFunction(async () => !!(await navigator.serviceWorker.ready).active);
   await page.reload();
+  await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   assert.equal(await page.evaluate(() => !!navigator.serviceWorker.controller), true);
+  console.log('Update check: initial worker active.');
   const previousHtml = await readFile(join(previousRoot, 'index.html'), 'utf8');
   const currentHtml = await readFile(join(root, 'index.html'), 'utf8');
   const previousStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(previousHtml)[1];
@@ -54,6 +57,7 @@ try {
   await page.getByRole('button', { name: '检查更新' }).click();
   await page.getByText('检查更新需要联网。').waitFor();
   await context.setOffline(false);
+  console.log('Update check: current and offline checks passed.');
   if (process.argv.includes('--settings-only')) {
     updated = true;
     const section = page.locator('.settings-update');
@@ -117,16 +121,22 @@ try {
   await page.goto(`${origin}/today`);
   await page.locator('.corpus-practice[data-skill=reading]').getByRole('button', { name: '开始', exact: true }).click();
   await page.getByRole('dialog').locator('button[data-mode=practice]').click();
+  await page.locator('.learning-grid,.material-workspace').first().waitFor();
+  console.log('Update check: practice workspace ready.');
   const firstQuestion = await page.evaluate(() => new Promise((resolve, reject) => {
     const open = indexedDB.open('lingfern');
     open.onerror = () => reject(open.error);
     open.onsuccess = () => {
       const db = open.result, request = db.transaction('sessions').objectStore('sessions').getAll();
       request.onerror = () => { db.close(); reject(request.error); };
-      request.onsuccess = () => { db.close(); resolve(request.result[0].lesson.materials[0].questions[0]); };
+      request.onsuccess = () => {
+        db.close();
+        const question = request.result[0]?.lesson.materials[0]?.questions[0];
+        if (question) resolve(question);
+        else reject(new Error('The practice session has no first question.'));
+      };
     };
   }));
-  await page.locator('.learning-grid,.material-workspace').first().waitFor();
   const organized = await page.locator('.material-workspace').count() > 0;
   const inputs = organized ? page.locator('.workspace-question').first() : page;
   let expectedAnswer;
@@ -164,6 +174,7 @@ try {
   const saved = await savedState(page);
   assert.equal(saved.sessions.length, 1); assert.equal(saved.attempts.length, organized ? 0 : 1);
   assert.deepEqual(organized ? saved.sessions[0].drafts[firstQuestion.id] : saved.attempts[0].answer, expectedAnswer);
+  console.log('Update check: answer saved.');
   invalidUpdate = true;
   const failedChecker = await context.newPage();
   await failedChecker.goto(`${origin}/settings`);
@@ -174,6 +185,7 @@ try {
     return { active: registration.active.state, waiting: !!registration.waiting };
   }), { active: 'activated', waiting: false });
   await failedChecker.close();
+  console.log('Update check: invalid update rejected.');
   await context.setOffline(true);
   await page.reload();
   await answerVisible(page); assert.deepEqual(await savedState(page), saved);
@@ -186,6 +198,7 @@ try {
   await checker.evaluate(async () => (await navigator.serviceWorker.ready).update());
   await checker.getByText('立即更新', { exact: true }).waitFor();
   await checker.close();
+  console.log('Update check: valid update waiting.');
   await page.waitForFunction(async () => !!(await navigator.serviceWorker.getRegistration())?.waiting, { timeout: 15000 });
   assert.equal(await page.getByRole('button', { name: '立即更新' }).count(), 0);
   await page.getByRole('link', { name: '离开任务' }).click();
@@ -203,6 +216,7 @@ try {
   await second.getByRole('link', { name: '离开任务' }).click();
   await second.waitForURL(/\/today$/);
   await second.close();
+  console.log('Update check: other learning tab released.');
   const refreshed = page.waitForEvent('load');
   await page.getByRole('dialog').getByRole('button', { name: '立即更新', exact: true }).click();
   await refreshed;
