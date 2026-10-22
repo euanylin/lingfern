@@ -47,7 +47,7 @@
   .welcome-start{justify-self:end}
 }
 @media(max-width:699px) and (min-aspect-ratio:3/2) and (max-height:650px){
-  .welcome-caption{grid-template-columns:minmax(0,1fr) minmax(120px,.7fr);row-gap:0}
+  .welcome-caption{grid-template-columns:minmax(0,1fr) 132px;row-gap:0}
   .welcome-caption-copy{grid-row:1/3}
   .welcome-controls{grid-column:2;grid-row:1}
   .welcome-start{grid-column:2;grid-row:2}

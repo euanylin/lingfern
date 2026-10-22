@@ -828,8 +828,9 @@ for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar'
   test('cards have no inner cutoff and controls remain below every slide across layout boundaries', async ({ page }, info) => {
     test.setTimeout(90000);
     await page.goto('/introduction');
-    for (const [width, height] of [[960,600],[900,600],[976,650],[960,650],[960,651],[844,390],[568,320],[568,300]]) {
+    for (const [width, height, font] of [[960,600],[900,600],[976,650],[960,650],[960,651],[844,390],[568,320],[568,300],[568,300,'Verdana,sans-serif']] as const) {
       await page.setViewportSize({ width, height });
+      await page.locator('.welcome-caption').evaluate((element, font) => { (element as HTMLElement).style.fontFamily = font ?? ''; }, font);
       await expect(page.locator('.welcome-stage')).toHaveCSS('overflow', 'visible');
       for (let index = 0; index < 3; index++) {
         await page.locator('.welcome-dots button').nth(index).click();
@@ -857,7 +858,7 @@ for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar'
         }
         if (index === 0) {
           await content.evaluate(el => { el.scrollTop = 0; });
-          await page.screenshot({ path: info.outputPath(`${width}x${height}-${locale}-${colorScheme}.png`) });
+          await page.screenshot({ path: info.outputPath(`${width}x${height}-${locale}-${colorScheme}${font ? '-wide-font' : ''}.png`) });
         }
       }
     }
