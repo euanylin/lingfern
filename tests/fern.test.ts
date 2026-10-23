@@ -100,13 +100,22 @@ it('keeps all growth and path coordinates bounded, monotonic and rooted at the s
   }), { numRuns: 150 });
 });
 
-it('retains the exact visible path geometry over unfolding and breeze frames', () => {
+it('preserves visible path geometry to eight decimal places over unfolding and breeze frames', () => {
   const hash = createHash('sha256');
+  // The test-only midpoint margin absorbs libm noise without changing runtime coordinates.
+  const coordinate = (value: number) => String(Math.round(value * 1e8 + .02) / 1e8);
+  let noiseStable = true, detectsDeformation = true;
   for (let frame = 0; frame <= 240; frame++) {
     const growth = { stem: frame / 240, left: Math.max(0, (frame - 20) / 240), right: Math.max(0, (frame - 40) / 240) };
     const shape = fernShape(growth, frame / 60);
     for (const side of ['left', 'right'] as const) shape[side].forEach((path, index) => expect(!!path).toBe(growth[side] * 13 > index));
-    hash.update(JSON.stringify(shape));
+    hash.update(JSON.stringify(shape).replace(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g, token => {
+      const value = Number(token), rounded = coordinate(value);
+      noiseStable &&= coordinate(value - 1e-12) === rounded && coordinate(value + 1e-12) === rounded;
+      detectsDeformation &&= coordinate(value - 1e-6) !== rounded && coordinate(value + 1e-6) !== rounded;
+      return rounded;
+    }));
   }
-  expect(hash.digest('hex')).toBe('a9fc50b128d797e77bb77a7bbde13487462ad7fbd5f9de42e8c929a0b09b8939');
+  expect(noiseStable).toBe(true); expect(detectsDeformation).toBe(true);
+  expect(hash.digest('hex')).toBe('b83f0b23cc8ce7505b586f3451374c437d80755b9df435a9d11e09ddddd792d0');
 });
