@@ -9,6 +9,8 @@
 .welcome-site-header{position:relative;isolation:isolate;flex:none;width:100%;margin:0;border-bottom:0}
 .welcome-site-header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--bg);border-bottom:1px solid var(--line);border-radius:16px 16px 0 0}
 @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){.welcome-site-header::before{background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(16px) saturate(120%);backdrop-filter:blur(16px) saturate(120%)}}
+/* The selected pill already sits over the navigation's filtered surface. */
+.welcome-mobile-nav a[aria-current]{-webkit-backdrop-filter:none;backdrop-filter:none}
 .welcome-window>.welcome-mobile-nav{position:relative;inset:auto;flex:none;width:100%;padding:4px 6px;border-radius:0 0 16px 16px;transform:none;will-change:auto}
 .welcome-mobile-nav .nav-label{max-width:100%;white-space:normal;overflow-wrap:anywhere;text-align:center}
 .welcome-shade{position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:light-dark(var(--bg),#000);opacity:0}

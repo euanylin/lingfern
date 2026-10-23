@@ -27,7 +27,8 @@ test('task details confirm metadata without starting, exposing passages or playi
   await expect(dialog).toHaveCSS('width', '520px');
   await expect(dialog).toContainText('Kokoro-82M');
   await expect(dialog).toContainText('合成语音');
-  await expect(dialog.locator('.task-detail-body > dl').first().locator('dt')).toHaveText(['预计用时', '题型', '音频']);
+  await expect(dialog.locator('.task-detail-body > dl').first().locator('dt')).toHaveText(['题型', '音频']);
+  await expect(dialog).not.toContainText('预计用时');
   await expect(dialog).not.toContainText('学习中可暂停');
   await expect(dialog).not.toContainText('资源大小');
   await expect(dialog.locator('audio')).toHaveCount(0);
@@ -67,7 +68,8 @@ test('task detail remains usable in three languages, dark theme, short screens a
     const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
     await expect(dialog).toHaveCSS('opacity', '1');
-    await expect(dialog.locator('.task-detail-body > dl').first().locator('dt')).toHaveText([languagePacks[locale].taskDetail.duration, languagePacks[locale].taskDetail.types]);
+    await expect(dialog.locator('.task-detail-body > dl').first().locator('dt')).toHaveText([languagePacks[locale].taskDetail.types]);
+    await expect(dialog).not.toContainText(languagePacks[locale].taskDetail.duration);
     await page.evaluate(() => document.documentElement.style.fontSize = '200%');
     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
     await dialog.locator('button.primary').scrollIntoViewIfNeeded();
@@ -128,5 +130,24 @@ test('independent listening check retains its playback and preview restriction',
   });
   const dialog = page.getByRole('dialog');
   await expect(dialog).toContainText(languagePacks.en.taskDetail.check);
+  await expect(dialog.locator('audio,.passage')).toHaveCount(0);
+});
+
+test('combined preview omits both estimates while retaining actual audio duration', async ({ page }) => {
+  await page.goto('/today');
+  const seconds = await page.evaluate(async () => {
+    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
+    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
+    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { default: lesson } = await import('/tests/fixtures/content/a1-reading.json' as string);
+    const { default: additionalLesson } = await import('/tests/fixtures/content/a1-listening.json' as string);
+    const host = document.createElement('div'); document.body.appendChild(host);
+    createRoot(host).render(createElement(TaskDetail, { lesson, additionalLesson, locale: 'en', profileId: 'local-guest', action: 'Practice', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => {} }));
+    return Math.round(additionalLesson.materials.reduce((sum: number, material: { audio?: { duration: number } }) => sum + (material.audio?.duration ?? 0), 0));
+  });
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).not.toContainText(languagePacks.en.taskDetail.duration);
+  await expect(dialog.locator('section dl dt')).toHaveText(languagePacks.en.taskDetail.audio);
+  await expect(dialog.locator('section dl dd')).toContainText(`${seconds} ${languagePacks.en.taskDetail.seconds}`);
   await expect(dialog.locator('audio,.passage')).toHaveCount(0);
 });

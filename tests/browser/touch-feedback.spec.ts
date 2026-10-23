@@ -2,6 +2,45 @@ import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 import { readFileSync } from 'node:fs';
 
+for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test(`Test keeps its desktop feedback during touch and keyboard focus: ${locale}/${theme}`, async ({ browser }, info) => {
+  let desktopColor = '';
+  for (const hasTouch of [false, true]) {
+    const context = await browser.newContext({ baseURL: info.project.use.baseURL, locale, colorScheme: theme, hasTouch, viewport: { width: hasTouch ? 390 : 1440, height: 900 } });
+    const page = await context.newPage(); await page.goto('/today');
+    await page.evaluate(async ({ fixture, locale }) => {
+      const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
+      const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
+      const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+      const host = document.createElement('div'); document.body.appendChild(host);
+      createRoot(host).render(createElement(TaskDetail, { lesson: fixture, locale, profileId: 'local-guest', action: 'Practice', available: true, busy: false, startError: '', onStart: async () => {}, onCheck: async () => {}, onClose: () => {} }));
+    }, { fixture: JSON.parse(readFileSync(new URL('../fixtures/content/a1-reading.json', import.meta.url), 'utf8')), locale });
+    const control = page.locator('.task-detail [data-mode=test]');
+    await expect(control).toBeEnabled(); await control.scrollIntoViewIfNeeded();
+    const idle = await control.evaluate(el => getComputedStyle(el).backgroundColor), box = (await control.boundingBox())!;
+    expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
+    if (!hasTouch) {
+      desktopColor = idle; await control.hover(); await expect(control).toHaveCSS('background-color', desktopColor);
+      await page.mouse.down(); await expect(control).toHaveCSS('background-color', desktopColor); await page.mouse.up();
+      await page.screenshot({ path: info.outputPath(`test-desktop-${locale}-${theme}.png`) });
+      await page.mouse.move(0, 0);
+    } else {
+      expect(idle).toBe(desktopColor);
+      const cdp = await context.newCDPSession(page);
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+      await expect(control).toHaveAttribute('data-touch-active', '');
+      await expect(control).toHaveCSS('background-color', desktopColor);
+      await page.screenshot({ path: info.outputPath(`test-touch-${locale}-${theme}.png`) });
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+      await expect(control).not.toHaveAttribute('data-touch-active'); await expect(control).toHaveCSS('background-color', idle);
+      await cdp.detach();
+    }
+    await control.press('Tab'); await page.keyboard.press('Shift+Tab');
+    await expect(control).toBeFocused(); await expect(control).toHaveCSS('text-decoration-line', 'underline');
+    await expect(control).toHaveCSS('background-color', desktopColor);
+    await context.close();
+  }
+});
+
 test.describe('touch feedback', () => {
   test.use({ hasTouch: true });
   test('primary links and both History buttons use their desktop colours during touch contact', async ({ page, context }) => {
