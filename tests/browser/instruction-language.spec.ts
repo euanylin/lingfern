@@ -21,7 +21,7 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
   const id = url.split('/').at(-1)!;
   for (const locale of ['zh-Hans', 'zh-Hant', 'en'] as const) {
     await page.goto('/settings');
-    const label = await page.getByRole('button', { name: /^(语言|語言|Language)$/ }).getAttribute('aria-label');
+    const label = await page.getByRole('button', { name: /^(语言|語言|Language):/ }).getAttribute('aria-label');
     await selectPicker(page, label!, locale);
     await page.goto(url);
     await expect(page.locator('.lead')).toHaveText(lesson.goal.en);

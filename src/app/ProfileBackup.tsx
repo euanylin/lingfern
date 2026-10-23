@@ -1,7 +1,7 @@
 import { messages } from '../locales';
 import { useEffect, useState } from 'react';
 import type { Locale } from '../shared/content';
-import { exportBackup, importBackup, inspectBackup, type BackupInspection } from '../data/backup';
+import type { BackupInspection } from '../data/backup';
 import { profiles, settings, type Profile } from '../data/db';
 import { SettingsPicker } from './SettingsPicker';
 
@@ -19,6 +19,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
   async function download() {
     setBusy(true); setMessage('');
     try {
+      const { exportBackup } = await import('../data/backup');
       const bytes = await exportBackup(activeProfile);
       const url = URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: 'application/zip' }));
       const a = document.createElement('a'); a.href = url; a.download = `lingfern-backup-${new Date().toISOString().replace(/[:.]/g, '-')}.zip`; a.click();
@@ -31,7 +32,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
     if (!file) return;
     if (file.size > 32 * 1024 * 1024) { setMessage(t.bad); return; }
     setBusy(true);
-    try { setInspection(await inspectBackup(new Uint8Array(await file.arrayBuffer()))); }
+    try { const { inspectBackup } = await import('../data/backup'); setInspection(await inspectBackup(new Uint8Array(await file.arrayBuffer()))); }
     catch { setMessage(t.bad); }
     finally { setBusy(false); }
   }
@@ -39,6 +40,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
     if (!inspection) return;
     setBusy(true); setMessage('');
     try {
+      const { importBackup } = await import('../data/backup');
       await importBackup(inspection);
       setItems(await profiles.toArray()); setInspection(undefined); setFileName(''); await onProfileChange(); setMessage(t.done);
     } catch { setMessage(t.failed); }

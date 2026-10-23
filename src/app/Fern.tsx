@@ -58,12 +58,15 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
     const element = svg.current!;
     const pinnae = element.querySelectorAll<SVGPathElement>('.fern-pinna');
     const stemPath = element.querySelector<SVGPathElement>('.fern-stem')!;
+    const paths = [stemPath, ...pinnae], drawn = paths.map(path => path.getAttribute('d'));
     // Update path coordinates per frame; let React handle labels and errors.
     const paint = (value: FernGrowth, seconds = motion.current.seconds) => {
       motion.current.growth = value; if (!illustrating) shown.set(profileId, motion.current);
       const shape = fernShape(value, seconds);
-      stemPath.setAttribute('d', shape.stem);
-      [...shape.left, ...shape.right].forEach((d, index) => pinnae[index].setAttribute('d', d));
+      // Collapsed pinnae have no geometry to redraw during stem motion.
+      [shape.stem, ...shape.left, ...shape.right].forEach((d, index) => {
+        if (drawn[index] !== d) { paths[index].setAttribute('d', d); drawn[index] = d; }
+      });
       element.setAttribute('data-growth', String(value.stem));
     };
     if (!illustrating && !shown.has(profileId)) paint(to, 0);

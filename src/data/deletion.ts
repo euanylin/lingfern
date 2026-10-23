@@ -8,7 +8,8 @@ import { profileIdSchema } from '../shared/repository';
 async function purge(profileId: string) {
   const projected = projectSyncEvents(await readSyncEvents(profileId));
   const deleted = projected.deletedRecords;
-  for (const attempt of await attempts.where('profileId').equals(profileId).toArray()) {
+  // Without tombstones there is nothing to erase or resolve against local IDs.
+  for (const attempt of deleted.size ? await attempts.where('profileId').equals(profileId).toArray() : []) {
     const event = await Dexie.waitFor(boundedReferences({ type: 'deletion', payload: { target: 'record', targetId: attempt.syncRecordId ?? attempt.id } }));
     if (event.type !== 'deletion' || !deleted.has(event.payload.targetId)) continue;
     await feedbackNotes.where('attemptId').equals(attempt.id).filter(note => note.profileId === profileId).delete();
@@ -16,6 +17,7 @@ async function purge(profileId: string) {
     const session = await sessions.get(attempt.sessionId);
     if (session?.profileId === profileId) await sessions.update(session.id, { workspace: undefined, draft: undefined, readingAnnotations: undefined, recordsDeleted: true, owner: undefined, leaseUntil: 0 });
   }
+  if (!projected.deletedExposures.size && !projected.deletedContacts.size) return;
   for (const exposure of await exposures.where('profileId').equals(profileId).toArray()) {
     if (projected.deletedExposures.has(exposure.rootId)) { await exposures.delete([profileId, exposure.rootId]); continue; }
     if (!exposure.contacts?.length) continue;

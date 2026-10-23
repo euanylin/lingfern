@@ -217,7 +217,7 @@ test('picker choices retain touch and keyboard activation without premature blur
   try {
     const page = await context.newPage();
     await page.goto('/settings');
-    const trigger = page.getByRole('button', { name: '外观', exact: true });
+    const trigger = page.getByRole('button', { name: '外观' });
     await trigger.tap();
     await page.getByRole('option', { name: '深色', exact: true }).tap();
     await expect(trigger).toHaveAttribute('data-value', 'dark');

@@ -1,7 +1,7 @@
 import { messages } from '../locales';
 import { notifyResourceChange } from '../data/resourceChanges';
 import { liveQuery } from 'dexie';
-import { installResourcePack, type ResourcePack } from '../data/resourcePack';
+import type { ResourcePack } from '../data/resourcePack';
 import { isSourcePack } from '../data/sourcePacks';
 import { useEffect, useRef, useState } from 'react';
 import type { Locale } from '../shared/content';
@@ -45,7 +45,7 @@ export function CommunityImport({ locale, profileId, onInstalled }: { locale: Lo
         instance.onerror = () => { request.signal.removeEventListener('abort', abort); instance.terminate(); worker.current = null; reject(new Error('COMMUNITY_INVALID')); };
         instance.postMessage(bytes, [bytes.buffer]);
       });
-      if (pack.kind === 'resource') await installResourcePack(pack.pack, profileId, request.signal);
+      if (pack.kind === 'resource') await (await import('../data/resourcePack')).installResourcePack(pack.pack, profileId, request.signal);
       else await installCommunityPack(pack.pack, profileId, request.signal);
       notifyResourceChange();
       }

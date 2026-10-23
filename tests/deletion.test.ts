@@ -1,4 +1,4 @@
-import { beforeEach, expect, it } from 'vitest';
+import { beforeEach, expect, it, vi } from 'vitest';
 import raw from './fixtures/content/a1-reading.json';
 import { advance, attempts, claimSession, createSession, db, exposures, feedbackNotes, markExposure, saveReadingAnnotation, sessions, settings, submit } from '../src/data/db';
 import { deleteLearningRecord, purgeDeletedRecords } from '../src/data/deletion';
@@ -16,6 +16,17 @@ async function completed() {
   await feedbackNotes.put({ id: 'note', profileId: 'p', attemptId: record.id, kind: 'text', content: 'private feedback', unknownReferences: false, createdAt: new Date().toISOString() });
   return { session, record };
 }
+
+it('leaves an archive without tombstones intact without scanning its answers or exposures', async () => {
+  await completed();
+  const answers = await attempts.toArray(), contacts = await exposures.toArray();
+  const answerRead = vi.spyOn(attempts, 'where'), exposureRead = vi.spyOn(exposures, 'where');
+  try {
+    await purgeDeletedRecords('p');
+    expect(answerRead).not.toHaveBeenCalled(); expect(exposureRead).not.toHaveBeenCalled();
+    expect(await attempts.toArray()).toEqual(answers); expect(await exposures.toArray()).toEqual(contacts);
+  } finally { answerRead.mockRestore(); exposureRead.mockRestore(); }
+});
 
 it('deletes private answer/feedback atomically, keeps exposure and immutable batches, and prevents old replay', async () => {
   const { session, record } = await completed();

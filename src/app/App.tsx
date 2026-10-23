@@ -8,6 +8,7 @@ import type { CompletionTime } from '../data/completionTiming';
 import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, profiles, projectPreferences, releaseSession, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
 import { purgeDeletedRecords, restartPractice } from '../data/deletion';
 import { installedOfflineGroups } from '../data/offline';
+import { readInstallationIntents } from '../data/installationIntent';
 import { activeCorpusPractice, selectPractice } from '../data/practice';
 import { mergeLearningRecords, progressRecords, type CompletionSummary, type ResolvedSummary } from '../data/progress';
 import { installedSourcePacks } from '../data/sourcePacks';
@@ -34,6 +35,7 @@ import { SettingsPicker } from './SettingsPicker';
 import { TaskCatalogue } from './TaskCatalogue';
 import { TaskDetail } from './TaskDetail';
 import { touchFeedback } from './touchFeedback';
+import { useGithubSession } from './useGithubSession';
 
 const Welcome = lazy(() => import('./Welcome').then(module => ({ default: module.Welcome })));
 const IpaChart = lazy(() => import('./IpaChart').then(module => ({ default: module.IpaChart })));
@@ -76,6 +78,7 @@ export function App() {
   useEffect(touchFeedback, []);
   useEffect(scrollbarVisibility, []);
   const [path, setPath] = useState(route);
+  const githubSession = useGithubSession(path === '/settings');
   const currentPath = useRef(path); currentPath.current = path;
   const [todayDate, setTodayDate] = useState(() => localDay(new Date()));
   const [unsavedDemo, setUnsavedDemo] = useState(false);
@@ -112,6 +115,7 @@ export function App() {
   const [localCorpus, setLocalCorpus] = useState(false);
   const [localSpoken, setLocalSpoken] = useState(false);
   const [starting, setStarting] = useState(false);
+  const [offlineSnapshot, setOfflineSnapshot] = useState<{ profileId: string; groups: Set<string>; intents: Awaited<ReturnType<typeof readInstallationIntents>> }>();
   const [offlineInstalled, setOfflineInstalled] = useState(false);
   const [installedGroups, setInstalledGroups] = useState<Set<string>>(new Set());
   const [updateAvailable, setUpdateAvailable] = useState(false);
@@ -187,7 +191,20 @@ export function App() {
     registerSW({ onNeedRefresh: () => { setUpdateAvailable(true); setUpdateDismissed(false); } });
   }, []);
   useEffect(() => {
-    void Promise.all([installedOfflineGroups(), installedSourcePacks(activeProfile)]).then(([groups, sources]) => { setInstalledGroups(groups); setOfflineInstalled(groups.size + sources.size > 0); }).catch(() => {});
+    let live = true, revision = 0;
+    const refresh = () => {
+      const current = ++revision;
+      void Promise.all([installedOfflineGroups(), installedSourcePacks(activeProfile), readInstallationIntents(activeProfile)]).then(([groups, sources, intents]) => {
+        if (!live || current !== revision) return;
+        setInstalledGroups(groups); setOfflineInstalled(groups.size + sources.size > 0);
+        setOfflineSnapshot({ profileId: activeProfile, groups: new Set([...groups, ...sources]), intents });
+      }).catch(() => { if (live && current === revision) setOfflineSnapshot(undefined); });
+    };
+    refresh();
+    const channel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('lingfern-resources') : undefined;
+    if (channel) channel.onmessage = refresh;
+    window.addEventListener('lingfern-resources-installed', refresh);
+    return () => { live = false; channel?.close(); window.removeEventListener('lingfern-resources-installed', refresh); };
   }, [activeProfile]);
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -350,11 +367,11 @@ export function App() {
         
         
         <div className="settings-data settings-service-groups">
-          <PageBoundary locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}><GithubIdentity locale={locale} profileId={logicalProfile} localProfileId={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
+          <PageBoundary locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}><GithubIdentity session={githubSession} locale={locale} profileId={logicalProfile} localProfileId={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
           <SyncConflicts locale={locale} profileId={activeProfile}/>
           <PageBoundary locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}><ProfileBackup locale={locale} activeProfile={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
         </div><section className="settings-update settings-card settings-about-update" aria-label={t.softwareUpdate}>
-          <button className="update-action settings-about-row settings-update-row" type="button" disabled={updateCheck === 'checking'} aria-disabled={updateCheck === 'checking'} aria-busy={updateCheck === 'checking'} aria-label={updateAvailable ? t.updateNow : t.checkUpdate} aria-describedby="settings-update-value" data-update-ready={updateAvailable} onClick={event => { if (updateAvailable) requestUpdate(event.currentTarget); else void checkForUpdates(); }}>
+          <button className="update-action settings-about-row settings-update-row" type="button" disabled={updateCheck === 'checking'} aria-disabled={updateCheck === 'checking'} aria-busy={updateCheck === 'checking'} data-update-ready={updateAvailable} onClick={event => { if (updateAvailable) requestUpdate(event.currentTarget); else void checkForUpdates(); }}>
             <span>{t.checkUpdate}</span>
             <span id="settings-update-value" className="settings-update-value" role="status" aria-live="polite" data-update-ready={updateAvailable && !updateBlocked}>
               {updateCheck === 'checking' && <svg className="settings-update-spinner" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="2" opacity=".3"/><path d="M8 2a6 6 0 0 1 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>}
@@ -403,7 +420,7 @@ export function App() {
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(ready, groups) => { setOfflineInstalled(ready); setInstalledGroups(groups); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(ready, groups) => { setOfflineInstalled(ready); setInstalledGroups(groups); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
       : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>

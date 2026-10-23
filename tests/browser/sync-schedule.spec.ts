@@ -15,6 +15,8 @@ test('foreground timer batches pending records after consent and stays idle once
     return route.fulfill({ json: { scope, batchId: value.batch.batchId, hash: value.hash, previouslyWritten: false } });
   });
   await page.goto('/today'); await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  // The shell checks identity before any optional sync traffic.
+  await expect.poll(() => calls).toBe(1); calls = 0;
   await page.clock.fastForward(60000); expect(calls).toBe(0);
   await page.evaluate(async ({ scope, summary }) => {
     const { settings } = await import('/src/data/db.ts' as string);
@@ -50,6 +52,7 @@ test('hidden and offline states suppress scheduled traffic, and a synthetic task
   await page.route('**/api/sync/changes?*', route => { calls++; return route.fulfill({ json: { scope, commit: 'c'.repeat(40), cursor: 'first', total: 0, files: [], batches: [] } }); });
   await page.route('**/api/sync/batches', route => { uploads++; const value = route.request().postDataJSON(); return route.fulfill({ json: { scope, batchId: value.batch.batchId, hash: value.hash, previouslyWritten: false } }); });
   await page.goto('/today'); await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  await expect.poll(() => calls).toBe(1); calls = 0;
   await page.evaluate(async ({ scope, summary }) => {
     const { settings, db } = await import('/src/data/db.ts' as string);
     const { appendSyncEvent } = await import('/src/data/sync.ts' as string);
@@ -82,6 +85,7 @@ test('automatic transient retries stop after two retries and preserve pending ba
   let requests = 0;
   await page.route('**/api/session', route => { requests++; return route.fulfill({ status: 503, json: { error: 'AUTH_UNAVAILABLE' } }); });
   await page.goto('/today'); await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  await expect.poll(() => requests).toBe(1); requests = 0;
   await page.evaluate(async ({ scope, summary }) => {
     const { settings } = await import('/src/data/db.ts' as string);
     const { appendSyncEvent } = await import('/src/data/sync.ts' as string);
@@ -94,6 +98,7 @@ test('automatic transient retries stop after two retries and preserve pending ba
   await expect.poll(async () => page.evaluate(async scope => { const { settings } = await import('/src/data/db.ts' as string); return (await settings.get(`profile:${scope.profileId}:syncSchedule:${scope.accountId}:${scope.bindingVersion}`))?.value; }, scope)).toBe('retry');
   await page.clock.fastForward(120000); await expect.poll(() => requests).toBe(2);
   await page.clock.fastForward(180000); await expect.poll(() => requests).toBe(3);
+  await expect.poll(async () => page.evaluate(async scope => { const { settings } = await import('/src/data/db.ts' as string); return (await settings.get(`profile:${scope.profileId}:syncSchedule:${scope.accountId}:${scope.bindingVersion}`))?.value; }, scope)).toBe('paused');
   await page.clock.fastForward(3600000); expect(requests).toBe(3);
   const state = await page.evaluate(async scope => {
     const { db } = await import('/src/data/db.ts' as string);

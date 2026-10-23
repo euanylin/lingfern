@@ -58,7 +58,7 @@ test('task details confirm metadata without starting, exposing passages or playi
 test('task detail remains usable in three languages, dark theme, short screens and enlarged text', async ({ page }) => {
   for (const locale of ['en', 'zh-Hant', 'zh-Hans'] as const) {
     await page.goto('/settings');
-    const currentLabel = await page.getByRole('button', { name: /^(语言|語言|Language)$/ }).getAttribute('aria-label');
+    const currentLabel = await page.getByRole('button', { name: /^(语言|語言|Language):/ }).getAttribute('aria-label');
     await selectPicker(page, currentLabel!, locale);
     await selectPicker(page, locale === 'en' ? 'Appearance' : locale === 'zh-Hant' ? '外觀' : '外观', 'dark');
     await page.setViewportSize({ width: 320, height: 500 });

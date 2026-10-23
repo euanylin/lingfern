@@ -16,7 +16,7 @@ const libraryLabels = messages('offlineInstall_libraryLabels');
 
 const size = (bytes: number) => bytes < 1_048_576 ? `${Math.ceil(bytes / 1024)} KiB` : `${(bytes / 1_048_576).toFixed(1)} MiB`;
 
-export function OfflineInstall({ locale, online, onReady, profileId }: { profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean, publicGroups: Set<string>) => void }) {
+export function OfflineInstall({ locale, online, onReady, profileId, initialInstalled, initialIntents }: { initialIntents?: Awaited<ReturnType<typeof readInstallationIntents>>; initialInstalled?: Set<string>; profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean, publicGroups: Set<string>) => void }) {
   const t = labels[locale], ui = libraryLabels[locale];
   const sourceById = new Map(sourcePacks.map(pack => [pack.id, pack]));
   const downloadableGroups = [...offlineGroups, ...sourcePacks];
@@ -36,9 +36,9 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
     { id: 'listening' as const, groups: downloadableGroups.filter(group => group.id.startsWith('audio-') || sourceById.get(group.id)?.skill === 'listening') },
     { id: 'reference' as const, groups: offlineGroups.filter(group => !group.id.startsWith('audio-') && group.id !== 'corpus' && group.id !== 'corpus-open-reading') },
   ];
-  const [intents, setIntents] = useState<Awaited<ReturnType<typeof readInstallationIntents>>>({ current: new Set(), unavailable: new Set() });
-  const [checking, setChecking] = useState(true);
-  const [installed, setInstalled] = useState<Set<string>>(new Set());
+  const [intents, setIntents] = useState<Awaited<ReturnType<typeof readInstallationIntents>>>(() => initialIntents ?? { current: new Set(), unavailable: new Set() });
+  const [checking, setChecking] = useState(!initialInstalled);
+  const [installed, setInstalled] = useState<Set<string>>(() => initialInstalled ?? new Set());
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState('');
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
@@ -53,6 +53,7 @@ export function OfflineInstall({ locale, online, onReady, profileId }: { profile
   const [active, setActive] = useState('');
   const [error, setError] = useState('');
   const controller = useRef<AbortController | null>(null), busy = useRef(false), progressTime = useRef(0);
+  useEffect(() => { if (initialInstalled) { setInstalled(initialInstalled); setChecking(false); } }, [initialInstalled]);
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
   useLayoutEffect(() => {

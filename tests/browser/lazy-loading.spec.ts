@@ -57,6 +57,7 @@ test('Today loads learning, reference, history and account views only when opene
   for (const name of ['Learning', 'Dictionary', 'GrammarLookup', 'SavedWords', 'ProfileBackup', 'GithubIdentity', 'ProgressRecords', 'CompletionTiming', 'SessionHistory', 'SyncConflicts', 'OfflineInstall', 'CommunityImport', 'LookupHistory', 'UnsavedDemo']) {
     expect(modules.has(`/src/app/${name}.tsx`), name).toBe(false);
   }
+  expect(modules.has('/src/data/backup.ts')).toBe(false);
   await page.getByRole('link', { name: '资料库', exact: true }).first().click();
   await expect(page.locator('.offline-install')).toBeVisible();
   expect(modules.has('/src/app/OfflineInstall.tsx')).toBe(true);
@@ -124,7 +125,7 @@ test('a failed teaching package cannot persist an unusable locale; a fresh load 
   const label = (await trigger.getAttribute('aria-label'))!;
   await page.route(/\/src\/locales\/ar\/teaching\.json/, route => route.abort('failed'));
   await trigger.click();
-  await page.getByRole('listbox', { name: label }).locator('[data-value="ar"]').click();
+  await page.locator(`[id="${await trigger.getAttribute('aria-controls')}"]`).locator('[data-value="ar"]').click();
   await expect(page.locator('.error')).toBeVisible();
   await expect(trigger).toHaveAttribute('data-value', 'zh-Hans');
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-Hans');

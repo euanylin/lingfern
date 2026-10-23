@@ -9,6 +9,30 @@ const pack = (id: string) => {
   return `/tmp/lingfern-offline-fixtures-resources/public/packs/${id}-${group.version}.zip`;
 };
 
+test('prepared Library state follows installs and removals in another tab', async ({ page, context }) => {
+  await page.goto('/today');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload();
+  const other = await context.newPage(); await other.goto('/library');
+  const otherRow = other.locator('.package-row').filter({ hasText: '英语用法词典' });
+  await other.getByLabel('导入 ZIP').setInputFiles(pack('grammar'));
+  await expect(otherRow).toContainText('已安装');
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/resources/catalogue.json', async route => { await pending; await route.continue(); });
+  await page.locator('nav a[href="/library"]:visible').first().click();
+  const row = page.locator('.package-row').filter({ hasText: '英语用法词典' });
+  await expect(row).toContainText('已安装');
+  await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
+  release(); await page.unrouteAll({ behavior: 'wait' });
+  await otherRow.locator('input').check();
+  await other.getByRole('button', { name: '删除所选资源', exact: true }).click();
+  await other.getByRole('alertdialog').getByRole('button', { name: '删除所选资源', exact: true }).click();
+  await expect(otherRow).not.toContainText('已安装');
+  await expect(row).not.toContainText('已安装');
+  await other.close();
+});
+
 test('imports a verified ZIP offline and leaves an existing package intact after a bad ZIP', async ({ page, context }) => {
   await page.goto('/library');
   await page.locator('.package-row').filter({ hasText: '英语用法词典' }).locator('input').check();

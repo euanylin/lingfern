@@ -34,13 +34,13 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en']) for (const width of [1440, 60
       const pending = new Promise<void>(resolve => { finishCheck = resolve; });
       await page.route('**/resources/catalogue.json', async route => { await pending; if (visit === 2) await route.abort('failed'); else await route.continue(); });
       await page.locator('nav a[href="/library"]:visible').first().click();
-      await expect(page.locator('.offline-install [role="status"]').first()).toBeAttached();
+      await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
       const before = await geometry();
       const disabled = await page.locator('.offline-install').evaluate(element => element.querySelector('fieldset')?.disabled);
       finishCheck();
       await expect(page.locator('.offline-search input')).toBeEnabled();
       expect(await geometry()).toEqual(before);
-      expect(disabled).toBe(true);
+      expect(disabled).toBe(false);
       await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
       await page.unroute('**/resources/catalogue.json');
       await page.locator('nav a[href="/today"]:visible').first().click();

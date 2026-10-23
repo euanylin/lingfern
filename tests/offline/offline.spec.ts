@@ -62,14 +62,14 @@ test('chosen word materials and question type persist, generate and save offline
   const card = page.locator('.primary-task:not(.reading-task):not(.combined-training)').first();
   await card.getByRole('button', { name: '听力设置', exact: true }).click();
   const dialog = page.locator('.practice-options-dialog');
-  await dialog.getByRole('button', { name: '主题', exact: true }).click();
+  await dialog.getByRole('button', { name: /^主题:/ }).click();
   await dialog.locator('[role=option][data-value=science]').click();
   await dialog.locator('[role=option][data-value=daily-life]').click();
-  await dialog.getByRole('button', { name: '主题', exact: true }).click();
-  await dialog.getByRole('button', { name: '题型', exact: true }).click();
+  await dialog.getByRole('button', { name: /^主题:/ }).click();
+  await dialog.getByRole('button', { name: /^题型:/ }).click();
   await dialog.locator('[role=option][data-value=completion]').click();
   await dialog.locator('[role=option][data-value=choice]').click();
-  await dialog.getByRole('button', { name: '题型', exact: true }).click();
+  await dialog.getByRole('button', { name: /^题型:/ }).click();
   for (const word of ['cat', 'bed']) await dialog.getByRole('checkbox', { name: word, exact: true }).check();
   await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await expect(dialog).toHaveCount(0);
@@ -79,9 +79,9 @@ test('chosen word materials and question type persist, generate and save offline
   await context.setOffline(true);
   await page.reload();
   await card.getByRole('button', { name: '听力设置', exact: true }).click();
-  await expect(dialog.getByRole('button', { name: '主题', exact: true })).toHaveAttribute('data-value', 'science,daily-life');
+  await expect(dialog.getByRole('button', { name: /^主题:/ })).toHaveAttribute('data-value', 'science,daily-life');
   for (const word of ['cat', 'bed']) await expect(dialog.getByRole('checkbox', { name: word, exact: true })).toBeChecked();
-  await expect(dialog.getByRole('button', { name: '题型', exact: true })).toHaveAttribute('data-value', 'completion,choice');
+  await expect(dialog.getByRole('button', { name: /^题型:/ })).toHaveAttribute('data-value', 'completion,choice');
   await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await card.getByRole('button', { name: '开始', exact: true }).click();
   await confirmNewTask(page);
@@ -148,7 +148,7 @@ test('matching a new pair of messages works offline and survives reopening', asy
   await expect(page.locator('.slot-result')).toHaveCount(slots);
   await expect(page.locator('.workspace-review').first().locator('blockquote')).toHaveText([/^Mia\s*at the library$/, /^Ben\s*at the park$/]);
   await expect(page.locator('.workspace-review').first().locator('.evidence-source')).toHaveText(['Mia', 'Ben']);
-  await expect(page.getByRole('button', { name: '1. Mia', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: /^1\. Mia:/ })).toBeDisabled();
 
 });
 

@@ -1,7 +1,6 @@
 import { sessionSummarySchema, syncAccountSchema } from '../shared/auth';
 import { profileIdSchema } from '../shared/repository';
 import { db, profiles, settings, syncClocks } from './db';
-import { exportBackup, importBackup, inspectBackup } from './backup';
 
 export async function readSyncAccount(profileId: string) {
   const row = await settings.get(`profile:${profileId}:syncAccount`);
@@ -45,5 +44,6 @@ export async function switchAccountProfile(account: { id: number; login: string 
 export async function copyProfileForAccount(profileId: string, accountId: number) {
   syncAccountSchema.shape.accountId.parse(accountId);
   if (!await profiles.get(profileId)) throw new Error('NOT_FOUND');
+  const { exportBackup, importBackup, inspectBackup } = await import('./backup');
   return importBackup(await inspectBackup(await exportBackup(profileId)), accountId);
 }

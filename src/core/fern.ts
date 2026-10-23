@@ -35,6 +35,7 @@ export function fernShape(growth: FernGrowth, seconds = 0) {
   const stem = `M${points.slice(0,2).join(' ')} C${points.slice(2).join(' ')}`;
   const leaves = (side: -1 | 1, amount: number) => Array.from({ length: 12 }, (_, index) => {
     const reveal = smooth(amount * 13 - index);
+    if (!reveal) return '';
     const position = .2 + index * .13 + (side === 1 ? .025 : 0), segment = Math.floor(position), t = position - segment;
     const coordinate = (axis: number) => {
       const offset = segment * 6 + axis;

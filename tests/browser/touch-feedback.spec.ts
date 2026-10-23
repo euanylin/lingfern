@@ -270,3 +270,36 @@ test.describe('portable touch feedback', () => {
     await info.attach('touch-feedback-frames', { body: JSON.stringify(frames), contentType: 'application/json' });
   });
 });
+
+for (const [locale, theme, width] of [['zh-Hans', 'light', 390], ['en', 'dark', 1440], ['ar', 'dark', 390]] as const) test(`backup restore keeps feedback inside the rounded button: ${locale}/${theme}`, async ({ browser }, info) => {
+  const context = await browser.newContext({ baseURL: info.project.use.baseURL, hasTouch: true, viewport: { width, height: 900 } });
+  const page = await context.newPage(); await page.goto('/settings');
+  await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+  await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+  const label = page.locator('.profile-backup .backup-file-label'), button = label.locator('.backup-file-button'), input = label.locator('input');
+  await button.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  await expect.poll(() => button.evaluate(el => el.getAnimations().length)).toBe(0);
+  const box = (await button.boundingBox())!, idle = await button.evaluate(el => getComputedStyle(el).backgroundColor);
+  expect(box.height).toBeGreaterThanOrEqual(44); expect(box.width).toBeGreaterThanOrEqual(44);
+  const cdp = await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+  await expect(label).toHaveAttribute('data-touch-active', '');
+  await expect(label).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(button).not.toHaveCSS('background-color', idle);
+  await expect.poll(() => button.evaluate(el => el.getAnimations().length)).toBe(0);
+  const active = await button.evaluate(el => getComputedStyle(el).backgroundColor);
+  await page.screenshot({ path: info.outputPath(`restore-touch-${locale}-${theme}.png`) });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await expect(label).not.toHaveAttribute('data-touch-active'); await expect(button).toHaveCSS('background-color', idle);
+  await input.focus(); await input.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await expect(input).toBeFocused(); await expect(button).toHaveCSS('background-color', active);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const chooser = page.waitForEvent('filechooser'); await input.press('Enter'); await (await chooser).setFiles([]);
+  await expect(label).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await input.evaluate(el => { (el as HTMLInputElement).disabled = true; });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+  await expect(label).not.toHaveAttribute('data-touch-active');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await cdp.detach(); await context.close();
+});

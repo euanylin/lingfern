@@ -51,7 +51,7 @@ for (const [locale, profileLabel, exportLabel, importLabel, copyLabel, done] of 
     expect(copied.lesson).toEqual(original.lesson);
     expect(copied.answers).toEqual(original.answers);
     await restore(copied.bytes);
-    const picker = page.getByRole('button', { name: profileLabel, exact: true });
+    const picker = page.getByRole('button', { name: new RegExp(`^${profileLabel}:`) });
     await picker.focus(); await picker.press('Enter');
     expect(await page.getByRole('option', { selected: true }).evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
     await picker.press('Escape'); await expect(picker).toBeFocused();

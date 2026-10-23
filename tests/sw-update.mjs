@@ -45,11 +45,11 @@ try {
   const currentHtml = await readFile(join(root, 'index.html'), 'utf8');
   const previousStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(previousHtml)[1];
   const currentStyle = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/.exec(currentHtml)[1];
-  const previousScript = /<script[^>]+type="module"[^>]+src="([^"]+)"/.exec(previousHtml)[1];
-  const currentScript = /<script[^>]+type="module"[^>]+src="([^"]+)"/.exec(currentHtml)[1];
+  const previousScripts = [...previousHtml.matchAll(/<script[^>]+type="module"[^>]+src="([^"]+)"/g)].map(match => match[1]);
+  const currentScripts = [...currentHtml.matchAll(/<script[^>]+type="module"[^>]+src="([^"]+)"/g)].map(match => match[1]);
   assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), previousStyle);
-  assert.equal(await page.locator('script[type=module]').getAttribute('src'), previousScript);
-  if (previousBuild) assert.notDeepEqual([previousStyle, previousScript], [currentStyle, currentScript], 'The archived predecessor must exercise a real application asset revision');
+  assert.deepEqual(await page.locator('script[type=module]').evaluateAll(scripts => scripts.map(script => script.getAttribute('src'))), previousScripts);
+  if (previousBuild) assert.notDeepEqual([previousStyle, previousScripts], [currentStyle, currentScripts], 'The archived predecessor must exercise a real application asset revision');
   await page.goto(`${origin}/settings`);
   await page.getByRole('button', { name: '检查更新' }).click();
   await page.getByText('已是最新版本。').waitFor();
@@ -61,7 +61,7 @@ try {
   if (process.argv.includes('--settings-only')) {
     updated = true;
     const section = page.locator('.settings-update');
-    await section.getByRole('button', { name: '检查更新', exact: true }).click();
+    await section.getByRole('button', { name: /^检查更新/ }).click();
     await section.getByText('立即更新', { exact: true }).waitFor();
     assert.equal(await section.getByRole('button').count(), 1);
     assert.equal(await section.locator('button[data-update-ready=true]').count(), 1);
@@ -110,9 +110,9 @@ try {
     await refreshed;
     await page.waitForFunction(async () => !(await navigator.serviceWorker.getRegistration())?.waiting);
     await page.getByRole('heading', { name: '设置', exact: true }).waitFor();
-    assert.equal(await page.locator('script[type=module]').getAttribute('src'), currentScript);
+    assert.deepEqual(await page.locator('script[type=module]').evaluateAll(scripts => scripts.map(script => script.getAttribute('src'))), currentScripts);
     assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), currentStyle);
-    await section.getByRole('button', { name: '检查更新', exact: true }).waitFor();
+    await section.getByRole('button', { name: /^检查更新/ }).waitFor();
     await page.setViewportSize({ width: 1280, height: 900 });
     await section.evaluate(element => element.scrollIntoView({ block: 'center' }));
     await page.screenshot({ path: 'private/verification/record-quote-20261012/update-refreshed.png' });
@@ -223,7 +223,7 @@ try {
   await page.waitForFunction(async () => !(await navigator.serviceWorker.getRegistration())?.waiting, { timeout: 15000 });
   await page.getByRole('heading', { name: '今日' }).waitFor();
   assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), currentStyle);
-  assert.equal(await page.locator('script[type=module]').getAttribute('src'), currentScript);
+  assert.deepEqual(await page.locator('script[type=module]').evaluateAll(scripts => scripts.map(script => script.getAttribute('src'))), currentScripts);
   assert.deepEqual(await savedState(page), saved);
   console.log('PASS: invalid update preserved the active worker and offline answer; valid update waited during learning, another active tab blocked activation, exact saved draft/formal answer and lesson snapshot retained.');
   }

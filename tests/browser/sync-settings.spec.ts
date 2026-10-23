@@ -35,7 +35,7 @@ test('received settings apply to their profile and local picker edits remain cap
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `output/playwright/sync-settings-${width}-en-dark.png`, animations: 'disabled' });
   }
-  await page.getByRole('button', { name: 'Appearance', exact: true }).click();
+  await page.getByRole('button', { name: 'Appearance' }).click();
   await page.getByRole('option', { name: 'Light', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.reload();

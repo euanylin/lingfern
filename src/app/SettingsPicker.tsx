@@ -22,6 +22,7 @@ export function SettingsPicker(props: Props) {
   const menu = useRef<HTMLDivElement>(null);
   const isSelected = (option: Option) => props.multiple ? option.value ? props.value.includes(option.value) : !props.value.length : option.value === props.value;
   const selected = Math.max(0, options.findIndex(isSelected));
+  const selectedText = props.multiple ? options.filter(isSelected).map(option => option.label).join(' / ') : options[selected]?.label ?? '';
   const blocked = disabled || options.length === 0;
 
   useEffect(() => {
@@ -111,8 +112,8 @@ export function SettingsPicker(props: Props) {
   }
   return <div className={`setting${variant === 'topic' ? ' topic-picker' : variant === 'field' ? ' setting-field' : ''}`} ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
     <span id={`${id}-label`} className={variant !== 'setting' ? 'sr-only' : undefined}><span>{label}</span>{description && <small id={`${id}-description`} className="setting-description">{description}</small>}</span>
-    <button ref={trigger} className="setting-trigger" type="button" data-value={props.multiple ? props.value.join(',') : value} disabled={blocked} aria-label={label} aria-describedby={`${id}-value${description ? ` ${id}-description` : ''}`} aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} onClick={() => open ? setOpen(false) : show()} onKeyDown={event => { if (!open && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); show(event.key === 'ArrowDown' ? (selected + 1) % options.length : event.key === 'ArrowUp' ? (selected - 1 + options.length) % options.length : event.key === 'Home' ? 0 : options.length - 1); } else move(event, selected); }}>
-      {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}>{variant === 'topic' && <>{displayLabel ?? label}{['zh-Hans', 'zh-Hant', 'ja'].includes(document.documentElement.lang) ? '：' : ': '}</>}<bdi lang={options[selected]?.lang}>{props.multiple ? options.filter(isSelected).map(option => option.label).join(' / ') : options[selected]?.label}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true">›</span>}
+    <button ref={trigger} className="setting-trigger" type="button" data-value={props.multiple ? props.value.join(',') : value} disabled={blocked} aria-label={`${label}: ${variant === 'topic' && displayLabel ? `${displayLabel}: ` : ''}${selectedText}`} aria-describedby={description ? `${id}-description` : undefined} aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} onClick={() => open ? setOpen(false) : show()} onKeyDown={event => { if (!open && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); show(event.key === 'ArrowDown' ? (selected + 1) % options.length : event.key === 'ArrowUp' ? (selected - 1 + options.length) % options.length : event.key === 'Home' ? 0 : options.length - 1); } else move(event, selected); }}>
+      {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}>{variant === 'topic' && <>{displayLabel ?? label}{['zh-Hans', 'zh-Hant', 'ja'].includes(document.documentElement.lang) ? '：' : ': '}</>}<bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true">›</span>}
     </button>
     {open && <div ref={menu} id={`${id}-options`} className="setting-menu" role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
       {/* Keep Safari menus open through pointer focus loss until the option click. */}

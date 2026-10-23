@@ -655,7 +655,7 @@ details[open]:not(.installed-resources)>summary::after{transform:rotateX(180deg)
 :root{--focus-ring-width:0px}
 :is(button,a.button,select)[data-touch-active]:not(:disabled):not(.primary){background:var(--button-hover)}
 .primary[data-touch-active]:not(:disabled){background:var(--primary-hover)}
-:where(a[href]:not(.button),summary,label.option,label.package-row,label.backup-file-label)[data-touch-active]{background:var(--interactive-hover)}
+:where(a[href]:not(.button),summary,label.option,label.package-row)[data-touch-active]{background:var(--interactive-hover)}
 .library-references a.library-reference-tile[data-touch-active]{background:color-mix(in srgb,var(--ink) 4%,transparent)}
 .library-reference-tile[data-touch-active]::before,.library-reference-tile[data-touch-active]+.library-reference-tile::before{opacity:0}
 .backup-file-label[data-touch-active] .backup-file-button{background:var(--button-hover)}

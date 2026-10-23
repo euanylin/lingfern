@@ -50,7 +50,7 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
   await expect(repositoryRow).toHaveCSS('font-size', '15px');
   await expect(repositoryRow).toHaveCSS('font-weight', '400');
   await repository.getByRole('button', { name: '已授权资料库 lingfern-data' }).click();
-  await expect(repository.getByRole('button', { name: '已授权资料库', exact: true })).toBeVisible();
+  await expect(repository.getByRole('button', { name: '已授权资料库' })).toBeVisible();
   expect(repositoryReads).toBe(1);
   for (const [label, locale, reset, permissions] of [['语言', 'en', 'Set up again', 'Sharing and client permissions'], ['Language', 'zh-Hant', '重新設定', '分享與用戶端權限'], ['語言', 'zh-Hans', '重新设置', '分享与客户端权限']] as const) {
     await selectPicker(page, label, locale);

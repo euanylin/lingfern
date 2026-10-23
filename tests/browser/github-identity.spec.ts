@@ -57,8 +57,14 @@ test('disconnect confirmation can cancel and reports upstream revocation failure
 
 test('private repository binding is inspected before confirmation and disconnect stays separate', async ({ page }) => {
   let binding: { name: string; owner: string; profileId: string; disabled: boolean } | undefined;
-  let markerWrites = 0;
-  await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1234, login: 'test-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: binding ? [binding] : [] } }));
+  let markerWrites = 0, sessionReads = 0, release!: () => void, delivered!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  const completed = new Promise<void>(resolve => { delivered = resolve; });
+  await page.route('**/api/session', async route => {
+    const json = { account: { id: 1234, login: 'test-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: binding ? [binding] : [] };
+    if (++sessionReads === 2) { await pending; try { await route.fulfill({ json }); } finally { delivered(); } }
+    else await route.fulfill({ json });
+  });
   await page.route('**/api/sync/repositories', route => route.fulfill({ json: { repositories: [{ name: 'lingfern-data', repositoryId: 21, installationId: 31 }], installationUrl: 'https://github.com/apps/lingfern-test/installations/new' } }));
   await page.route('**/api/sync/inspect', route => {
     expect(route.request().headers()['x-csrf-token']).toBe('c'.repeat(43));
@@ -75,7 +81,9 @@ test('private repository binding is inspected before confirmation and disconnect
     binding = undefined; return route.fulfill({ json: { disconnected: true } });
   });
   await page.setViewportSize({ width: 320, height: 640 });
-  await page.goto('/settings');
+  await page.goto('/today'); await expect.poll(() => sessionReads).toBe(1);
+  await page.locator('nav a[href="/settings"]:visible').first().click();
+  await expect.poll(() => sessionReads).toBe(2);
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
   await page.getByRole('button', { name: '查找已授权资料库' }).click();
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
@@ -85,6 +93,8 @@ test('private repository binding is inspected before confirmation and disconnect
   expect(markerWrites).toBe(0);
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
   await page.getByRole('button', { name: '确认绑定', exact: true }).click();
+  await expect.poll(() => sessionReads).toBe(3);
+  release(); await completed;
   await expect(page.locator('.repository-reset')).not.toHaveAttribute('open', '');
   await expect(page.locator('.repository-steps')).toBeHidden();
   await expect(page.getByRole('button', { name: '已授权资料库', exact: false })).toContainText('lingfern-data');

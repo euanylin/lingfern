@@ -14,23 +14,23 @@ test('account changes require a choice, preserve local originals, and do not upl
   await page.getByRole('button', { name: '保留当前本机档案' }).click();
   await expect(page.locator('.sync-account-choice')).toContainText('不关联此账号');
   await expect(page.locator('.repository-binding')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toHaveAttribute('data-value', 'local-guest');
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).toHaveAttribute('data-value', 'local-guest');
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
   await expect(page.locator('.repository-binding')).toBeVisible();
-  const copied = await page.getByRole('button', { name: '当前档案', exact: true }).getAttribute('data-value');
+  const copied = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('data-value');
   expect(copied).not.toBe('local-guest');
-  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toContainText(' · ');
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).toContainText(' · ');
   accountId = 2;
   await page.reload();
   await expect(page.locator('.sync-account-choice')).toBeVisible();
   await expect(page.locator('.repository-binding')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toHaveAttribute('data-value', copied!);
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).toHaveAttribute('data-value', copied!);
   await selectPicker(page, '账号档案', 'remote:remote-target');
   await page.getByRole('button', { name: '切换到账号档案' }).click();
   await expect(page.locator('.repository-binding')).toBeVisible();
-  const second = await page.getByRole('button', { name: '当前档案', exact: true }).getAttribute('data-value');
+  const second = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('data-value');
   expect(second).not.toBe(copied);
-  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toContainText('learner-2 · 本机档案');
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).toContainText('learner-2 · 本机档案');
   expect(await page.evaluate(async () => {
     const path = '/src/data/db.ts'; const data = await import(path);
     const selected = (await data.settings.get('activeProfile')).value;
@@ -40,7 +40,7 @@ test('account changes require a choice, preserve local originals, and do not upl
   await page.reload();
   await page.getByRole('button', { name: '切换到账号档案' }).click();
   await expect(page.locator('.repository-binding')).toBeVisible();
-  await expect(page.getByRole('button', { name: '当前档案', exact: true })).toHaveAttribute('data-value', copied!);
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).toHaveAttribute('data-value', copied!);
   expect(await page.evaluate(async () => {
     const path = '/src/data/db.ts'; const data = await import(path);
     return { originals: await data.attempts.where('profileId').equals('local-guest').count(), profiles: await data.profiles.count() };
@@ -78,7 +78,7 @@ test('a new account profile is immediately named and keyboard-selectable in the 
     for (const colorScheme of ['light', 'dark'] as const) {
       await page.setViewportSize({ width: colorScheme === 'light' ? 1440 : 375, height: 900 });
       await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
-      const picker = page.getByRole('button', { name: profileLabel, exact: true });
+      const picker = page.getByRole('button', { name: new RegExp(`^${profileLabel}:`) });
       await expect(picker).toContainText(`learner · ${localName}`);
       await picker.focus(); await picker.press('Enter');
       const selected = page.getByRole('option', { selected: true });

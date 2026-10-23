@@ -29,7 +29,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await expect(dialog.getByRole('listbox')).toHaveAttribute('aria-multiselectable', 'true');
   await expect(dialog.locator('[role=option][aria-selected=true]')).toHaveCount(2);
   await topic.click();
-  const kind = dialog.getByRole('button', { name: t.kind, exact: true });
+  const kind = dialog.getByRole('button', { name: t.kind }).and(dialog.locator('.setting-trigger'));
   await kind.click();
   const menu = dialog.getByRole('listbox');
   expect(await menu.evaluate(element => { const menu = element.getBoundingClientRect(), panel = element.closest('.task-detail-body')!.getBoundingClientRect(); return menu.left >= panel.left && menu.right <= panel.right && menu.top >= panel.top && menu.bottom <= panel.bottom; })).toBe(true);
@@ -59,7 +59,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await expect(button.locator('span').first()).toHaveCSS('color', theme === 'light' ? 'rgb(83, 111, 91)' : 'rgb(168, 187, 163)');
   await button.click();
   await expect(topic).toHaveAttribute('data-value', 'science,daily-life');
-  await expect(dialog.getByRole('button', { name: t.kind, exact: true })).toHaveAttribute('data-value', 'completion,choice');
+  await expect(dialog.getByRole('button', { name: t.kind }).and(dialog.locator('.setting-trigger'))).toHaveAttribute('data-value', 'completion,choice');
   await expect(dialog.getByRole('checkbox', { name: 'cat', exact: true })).toBeChecked();
   await expect(dialog.getByRole('checkbox', { name: 'bed', exact: true })).toBeChecked();
   await dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true }).click();

@@ -1,5 +1,6 @@
 import { expect, it } from 'vitest';
 import fc from 'fast-check';
+import { createHash } from 'node:crypto';
 import { advanceFern, fernGrowth, fernShape } from '../src/core/fern';
 
 it('unfolds continuously from the existing bud, with independent reading/listening sides', () => {
@@ -50,10 +51,14 @@ it('preserves smooth motion across frame rates and new growth targets', () => {
 
 it('eases each pinna in and out without a jump in expansion speed', () => {
   const path = (amount: number) => fernShape({ stem: .5, left: amount, right: 0 }).left[3];
-  const coords = (value: string) => value.match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g)!.map(Number);
+  const coords = (value: string) => (value.match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g) ?? []).map(Number);
   for (const threshold of [3 / 13, 4 / 13]) {
     const first = coords(path(threshold - .00001)), last = coords(path(threshold + .00001));
-    expect(Math.max(...first.map((value, index) => Math.abs(value - last[index])))).toBeLessThan(.000001);
+    if (first.length) expect(Math.max(...first.map((value, index) => Math.abs(value - last[index])))).toBeLessThan(.000001);
+    else for (const axis of [0, 1]) {
+      const values = last.filter((_, index) => index % 2 === axis);
+      expect(Math.max(...values) - Math.min(...values)).toBeLessThan(.000001);
+    }
   }
 });
 
@@ -61,7 +66,7 @@ it('adds a gentle rooted breeze independently of growth, with smooth bounded fra
   for (const growth of [fernGrowth(0,0,0), fernGrowth(12,12,30), fernGrowth(80,80,100)]) {
     const baseline = fernShape(growth);
     expect(fernShape(growth, 0)).toEqual(baseline);
-    const numbers = (path: string) => path.match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g)!.map(Number);
+    const numbers = (path: string) => (path.match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g) ?? []).map(Number);
     let previous = numbers(baseline.stem);
     let rooted = true, contained = true, maxStep = 0;
     const states = new Set<string>();
@@ -89,8 +94,19 @@ it('keeps all growth and path coordinates bounded, monotonic and rooted at the s
     expect(shape.left).toHaveLength(12); expect(shape.right).toHaveLength(12);
     for (const path of [shape.stem, ...shape.left, ...shape.right]) {
       expect(path).not.toMatch(/NaN|Infinity/);
-      const coordinates = path.match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g)!.map(Number);
+      const coordinates = (path.match(/-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/g) ?? []).map(Number);
       coordinates.forEach((coordinate, index) => { expect(coordinate).toBeGreaterThanOrEqual(0); expect(coordinate).toBeLessThanOrEqual(index % 2 ? 180 : 240); });
     }
   }), { numRuns: 150 });
+});
+
+it('retains the exact visible path geometry over unfolding and breeze frames', () => {
+  const hash = createHash('sha256');
+  for (let frame = 0; frame <= 240; frame++) {
+    const growth = { stem: frame / 240, left: Math.max(0, (frame - 20) / 240), right: Math.max(0, (frame - 40) / 240) };
+    const shape = fernShape(growth, frame / 60);
+    for (const side of ['left', 'right'] as const) shape[side].forEach((path, index) => expect(!!path).toBe(growth[side] * 13 > index));
+    hash.update(JSON.stringify(shape));
+  }
+  expect(hash.digest('hex')).toBe('a9fc50b128d797e77bb77a7bbde13487462ad7fbd5f9de42e8c929a0b09b8939');
 });
