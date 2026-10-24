@@ -105,7 +105,7 @@ test('small screen, theme and all interface languages', async ({ page }) => {
   expect(await settingsLink.evaluate(el => getComputedStyle(el).backgroundColor)).toBe(navColor);
   expect(await settingsLink.evaluate(el => getComputedStyle(el, '::after').content)).toBe('none');
   expect(await settingsLink.evaluate(el => getComputedStyle(el, '::after').animationName)).toBe('none');
-  expect(await settingsLink.locator('svg').evaluate(el => getComputedStyle(el).transform)).toBe('none');
+  await expect.poll(() => settingsLink.locator('svg').evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m42)).toBe(-2);
   await settingsLink.click();
   const languageSelect = page.getByRole('button', { name: '语言' });
   const settingRow = languageSelect.locator('..');

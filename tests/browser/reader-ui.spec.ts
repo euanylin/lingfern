@@ -193,6 +193,7 @@ test('task drawer owns its edge radii at the existing full-screen breakpoint', a
   await page.goto('/today');
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   const panel = page.locator('.task-detail');
+  await expect(panel).toHaveAttribute('data-open', 'true');
   await expect(panel).toHaveCSS('transform', 'none');
   for (const [width, height] of [[1440, 900], [1024, 768], [768, 600], [767, 812], [375, 812], [320, 500], [812, 375]]) {
     await page.setViewportSize({ width, height });
