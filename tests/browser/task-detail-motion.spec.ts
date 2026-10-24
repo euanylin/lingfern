@@ -158,8 +158,11 @@ test.describe('touch input', () => {
     const trigger = page.locator('.task-row').first().getByRole('button'), dialog = page.locator('.task-detail');
     await trigger.tap(); await expect(dialog).toHaveCSS('opacity', '1');
     await expect(dialog).toHaveCSS('box-shadow', 'none');
-    await expect(dialog).toHaveAttribute('data-blur', 'false');
     const body = dialog.locator('.task-detail-body');
+    // A newly opened panel can re-hit-test a stationary mouse after a touch tap.
+    await body.dispatchEvent('pointerover', { pointerId: 1, pointerType: 'mouse', bubbles: true });
+    await expect(dialog).toHaveAttribute('data-blur', 'false');
+    await page.screenshot({ path: test.info().outputPath('touch-dialog-open.png') });
     await body.dispatchEvent('pointerdown', { pointerId: 4, pointerType: 'touch', bubbles: true });
     await expect(dialog).toHaveAttribute('data-blur', 'true');
     await body.evaluate(el => el.scrollTo(0, el.scrollHeight));

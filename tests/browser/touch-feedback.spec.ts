@@ -1,6 +1,11 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Locator } from '@playwright/test';
 import { selectPicker } from './picker';
 import { readFileSync } from 'node:fs';
+
+async function readyForTouch(control: Locator) {
+  await control.evaluate(el => el.scrollIntoView({ block: 'center' }));
+  await control.click({ trial: true });
+}
 
 for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test(`Test keeps its desktop feedback during touch and keyboard focus: ${locale}/${theme}`, async ({ browser }, info) => {
   let desktopColor = '';
@@ -72,7 +77,7 @@ test.describe('touch feedback', () => {
     const chips = page.locator('.practice-card-topics .setting-trigger'), cdp = await context.newCDPSession(page);
     await expect(chips).toHaveCount(5);
     for (const chip of await chips.all()) {
-      await chip.evaluate(el => el.scrollIntoView({ block: 'center' }));
+      await readyForTouch(chip);
       const idle = await chip.evaluate(el => getComputedStyle(el).backgroundColor), box = (await chip.boundingBox())!;
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
       await expect(chip).toHaveAttribute('data-touch-active', '');
@@ -99,7 +104,7 @@ test.describe('touch feedback', () => {
     await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
     await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
     const trigger = page.locator('.settings-language .setting-trigger');
-    await trigger.evaluate(el => el.scrollIntoView({ block: 'center' }));
+    await readyForTouch(trigger);
     const idle = await trigger.evaluate(el => ({ color: getComputedStyle(el).backgroundColor, width: el.getBoundingClientRect().width }));
     const cdp = await page.context().newCDPSession(page), box = (await trigger.boundingBox())!;
     const point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
@@ -142,7 +147,7 @@ test.describe('touch feedback', () => {
   test('native scrolling and cancellation clear feedback without opening a picker', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/settings');
     const trigger = page.locator('.settings-language .setting-trigger');
-    await trigger.evaluate(el => el.scrollIntoView({ block: 'center' }));
+    await readyForTouch(trigger);
     const box = (await trigger.boundingBox())!, point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
     const cdp = await page.context().newCDPSession(page);
     for (const cancel of [false, true]) {
@@ -188,7 +193,7 @@ test.describe('touch feedback', () => {
   test('touching resource labels keeps native selection and ignores disabled actions', async ({ page, context }) => {
     await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/library');
     const row = page.locator('.package-row').filter({ hasText: '英英词典' });
-    await row.evaluate(el => el.scrollIntoView({ block: 'center' }));
+    await readyForTouch(row);
     const box = (await row.boundingBox())!, point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
     const cdp = await context.newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
@@ -213,7 +218,7 @@ test.describe('touch feedback', () => {
     }, raw);
     await page.goto(`/learn/${id}`);
     const slider = page.locator('.audio-timeline input[type=range]'); await expect(slider).toBeEnabled();
-    await slider.evaluate(el => el.scrollIntoView({ block: 'center' }));
+    await readyForTouch(slider);
     const box = (await slider.boundingBox())!, cdp = await page.context().newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + 8, y: box.y + box.height / 2 }] });
     await expect(slider).toHaveAttribute('data-touch-active', '');
@@ -251,7 +256,7 @@ test.describe('portable touch feedback', () => {
     await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
     await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
     const trigger = page.locator('.settings-language .setting-trigger');
-    await trigger.evaluate(el => el.scrollIntoView({ block: 'center' }));
+    await readyForTouch(trigger);
     const idle = await trigger.evaluate(el => getComputedStyle(el).backgroundColor);
     const samples = trigger.evaluate(el => new Promise<{ active: boolean; shadow: string; background: string }[]>(resolve => {
       const frames: { active: boolean; shadow: string; background: string }[] = [], started = performance.now();

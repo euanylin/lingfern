@@ -22,6 +22,8 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
     return () => { window.removeEventListener('popstate', dismiss); if (window.history.state?.[historyKey] === id) window.history.replaceState(previous, '', location.href); };
   }, [id, historyKey]);
   useEffect(() => {
+    // Inherit the opening gesture before a stationary mouse re-hits the panel.
+    touchInput.current = document.documentElement.hasAttribute('data-touch-input');
     dialog.current?.showModal();
     enterFrame.current = requestAnimationFrame(() => { enterFrame.current = requestAnimationFrame(() => setOpen(true)); });
     const query = matchMedia('(max-width:1199px)');
