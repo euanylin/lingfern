@@ -170,10 +170,12 @@ test.describe('touch feedback', () => {
     await expect(library).toHaveCSS('outline-width', '0px');
     const box = (await library.boundingBox())!, cdp = await context.newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+    await expect.poll(() => library.locator('svg').evaluate(el => { const value = getComputedStyle(el).transform; return value === 'none' ? 0 : new DOMMatrixReadOnly(value).m42; })).toBeCloseTo(-2, 1);
     await expect(library).toHaveCSS('outline-width', '0px');
     await page.screenshot({ path: info.outputPath('touch-navigation-no-ring.png') });
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
     await expect(page).toHaveURL(/\/library$/); await expect(library).toHaveCSS('outline-width', '0px');
+    await expect(library.locator('svg')).toHaveCSS('transform', 'none');
     await page.keyboard.press('Tab');
     await expect(page.locator('.mobile-nav a[href="/settings"]')).toBeFocused();
     await expect(page.locator('.mobile-nav a[href="/settings"]')).toHaveCSS('outline-width', '0px');

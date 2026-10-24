@@ -134,3 +134,26 @@ test.describe('fixed navigation inertia', () => {
     }
   });
 });
+
+for (const [locale, theme, width] of [['zh-Hans', 'light', 375], ['en', 'dark', 767], ['ar', 'dark', 320]] as const) test(`mobile icons lift for mouse hover and keyboard focus: ${locale}/${theme}`, async ({ page }, info) => {
+  await page.setViewportSize({ width, height: 812 }); await page.goto('/settings');
+  await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+  await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+  const link = page.locator('.mobile-nav a[href="/library"]'), icon = link.locator('svg');
+  const height = () => icon.evaluate(el => { const value = getComputedStyle(el).transform; return value === 'none' ? 0 : new DOMMatrixReadOnly(value).m42; });
+  await page.mouse.move(0, 0); await expect(icon).toHaveCSS('transform', 'none');
+  const before = (await link.boundingBox())!;
+  await link.hover(); await expect.poll(height).toBeCloseTo(-2, 1);
+  const hovered = (await link.boundingBox())!;
+  expect(hovered).toEqual(before); expect(hovered.width).toBeGreaterThanOrEqual(44); expect(hovered.height).toBeGreaterThanOrEqual(44);
+  await page.locator('.mobile-nav').screenshot({ path: info.outputPath('mouse-nav-lift.png') });
+  await page.mouse.move(0, 0); await expect(icon).toHaveCSS('transform', 'none');
+  await link.focus(); await link.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await expect(link).toBeFocused(); await expect.poll(height).toBeCloseTo(-2, 1);
+  await link.blur(); await expect(icon).toHaveCSS('transform', 'none');
+  await page.emulateMedia({ reducedMotion: 'reduce' }); await link.hover(); await expect(icon).toHaveCSS('transform', 'none');
+  await page.mouse.move(0, 0); await link.focus(); await link.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await expect(link).toBeFocused(); await expect(icon).toHaveCSS('transform', 'none');
+  await link.press('Enter'); await expect(page).toHaveURL(/\/library$/);
+  await expect(page.locator('.mobile-nav a[aria-current]')).toHaveAttribute('href', '/library');
+});
