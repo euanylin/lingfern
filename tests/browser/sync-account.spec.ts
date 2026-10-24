@@ -18,6 +18,7 @@ test('account changes require a choice, preserve local originals, and do not upl
   const originalLabel = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('aria-label');
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
   await expect(page.locator('.repository-binding')).toBeVisible();
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).not.toHaveAttribute('data-value', 'local-guest');
   const copied = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('data-value');
   expect(copied).not.toBe('local-guest');
   await expect(page.getByRole('button', { name: /^当前档案:/ })).toHaveAttribute('aria-label', originalLabel!);
@@ -29,6 +30,7 @@ test('account changes require a choice, preserve local originals, and do not upl
   await selectPicker(page, '账号档案', 'remote:remote-target');
   await page.getByRole('button', { name: '切换到账号档案' }).click();
   await expect(page.locator('.repository-binding')).toBeVisible();
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).not.toHaveAttribute('data-value', copied!);
   const second = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('data-value');
   expect(second).not.toBe(copied);
   await expect(page.getByRole('button', { name: /^当前档案:/ })).toContainText('learner-2 · 本机档案');

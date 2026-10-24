@@ -35,6 +35,7 @@ test('legacy task and review originals are captured once and their IDs survive a
   await expect(page.locator('.backup-preview')).toBeVisible();
   await page.getByRole('button', { name: '导入为新档案' }).click();
   await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();
+  await expect(page.getByRole('button', { name: '当前档案' })).not.toHaveAttribute('data-value', 'local-guest');
   const restored = await page.getByRole('button', { name: '当前档案' }).getAttribute('data-value');
   expect(restored).not.toBe('local-guest');
   await page.reload();

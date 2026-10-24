@@ -535,9 +535,11 @@ test('downloads and restores three local ZIP generations with stable names and a
     await expect(page.locator('.backup-file-name')).toHaveText('manually-renamed-2030-12-31.zip');
     await expect(page.getByText(`待导入：${selectedName}`)).toBeVisible();
     await expect(page.locator('.backup-preview')).toContainText('任务 1 · 作答 2');
+    const picker = page.getByRole('button', { name: '当前档案' });
+    const previous = await picker.getAttribute('data-value');
     await page.getByRole('button', { name: '导入为新档案' }).click();
     await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();
-    const picker = page.getByRole('button', { name: '当前档案' });
+    await expect(picker).not.toHaveAttribute('data-value', previous!);
     await expect(picker).toHaveAttribute('aria-label', `当前档案: ${selectedName}`);
     const current = await picker.getAttribute('data-value');
     expect(current).not.toBeNull();
