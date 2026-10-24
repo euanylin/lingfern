@@ -195,7 +195,8 @@ export async function projectMemories(profileId: string, now = Date.now()) {
     }
     items.set(memoryId, { ...item, savedAt: problem ? item.savedAt : savedAt, reviewEnabled: latest.payload.reviewEnabled, card: problem ? item.card : card });
   }
-  await db.transaction('rw', memories, memoryReviews, syncEvents, async () => {
+  await db.transaction('rw', memories, memoryReviews, syncEvents, syncClocks, async () => {
+    if ((await syncClocks.get(profileId))?.deleted) throw new Error('PROFILE_DELETED');
     const current = { items: await memories.where('profileId').equals(profileId).toArray(), reviews: await memoryReviews.where('profileId').equals(profileId).toArray(), events: await readSyncEvents(profileId) };
     // shortcut: compare profile snapshots; use revision tokens if large queues slow projection.
     if (JSON.stringify(current) !== JSON.stringify(snapshot)) throw new Error('SYNC_LOCAL_CHANGED');

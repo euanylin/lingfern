@@ -52,6 +52,22 @@ it('round-trips saved meanings and original review events in the private backup'
   expect(await memoryReviews.where('profileId').equals(importedId).count()).toBe(1);
 });
 
+it('preserves same-device review order when timestamps tie across backup restoration', async () => {
+  const memoryId = 'apple%1:13:00::';
+  await memories.put({ profileId: 'p', memoryId, term: 'apple', definition: 'fruit', savedAt: '2026-09-01T10:00:00.000Z', reviewEnabled: true });
+  const first = reviewEvent('z-first', 2), second = reviewEvent('a-second', 3);
+  if (first.type !== 'memory_review' || second.type !== 'memory_review') throw new Error('Expected reviews');
+  first.payload.rating = 1; second.payload.rating = 4;
+  await receive([savedEvent(true), first, second], 'tied-reviews');
+  const original = await projectMemories('p');
+  expect(original.problems).toEqual([]);
+  const reviews = await memoryReviews.where('profileId').equals('p').toArray();
+  const restoredId = await importBackup(await inspectBackup(await exportBackup('p')));
+  expect((await memories.get([restoredId, memoryId]))?.card).toEqual(original.items[0].card);
+  expect(await memoryReviews.where('profileId').equals(restoredId).toArray()).toEqual(reviews.map(review => ({ ...review, profileId: restoredId })));
+  expect((await projectMemories(restoredId)).items[0].card).toEqual(original.items[0].card);
+});
+
 
 afterEach(() => { vi.restoreAllMocks(); });
 async function receive(events: SyncEvent[], batchId: string) {

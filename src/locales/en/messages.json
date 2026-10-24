@@ -421,7 +421,18 @@
     "bad": "The backup could not be verified. It may be damaged, too large or unsupported; existing records were not changed.",
     "failed": "The operation failed. Existing records were not changed.",
     "done": "New profile created and records imported.",
-    "busy": "Working…"
+    "busy": "Working…",
+    "delete": "Delete profile",
+    "deleteTitle": "Delete the current profile?",
+    "deleteDetail": "This removes its learning records, bookmarks, settings and resource associations from this device. Download a backup first; GitHub copies and shared offline resources are kept.",
+    "deleted": "Local profile deleted.",
+    "deleteBusy": "This profile is in use. Close its exercises or wait for downloads and sync to finish, then retry.",
+    "cancel": "Cancel",
+    "exportTitle": "Save backup",
+    "fileName": "File name",
+    "save": "Save",
+    "invalidName": "Enter a valid file name without / \\ : * ? \" < > | or a trailing period.",
+    "shortNote": "Unencrypted learning records; resources and recordings excluded."
   },
   "progressRecords_summaryCopy": {
     "clock": "Record time is ahead. Check the device clock; it is excluded from review scheduling.",

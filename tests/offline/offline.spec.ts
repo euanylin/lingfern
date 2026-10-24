@@ -1,11 +1,47 @@
 import type { Lesson } from '../../src/shared/content';
 import { questionSlots } from '../../src/shared/practiceQuantity';
 import { readFile } from 'node:fs/promises';
+import { unzipSync } from 'fflate';
 import { showLearningPane } from '../browser/learning-pane';
 import { confirmTask as confirmNewTask } from '../browser/task-start';
 import { confirmFixtureTask as confirmTask } from './fixture-session';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from '../browser/picker';
+
+test('backup and Library deletion controls share their normal and keyboard-focus appearance', async ({ page, context }) => {
+  await page.goto('/library');
+  await page.getByRole('button', { name: /^通用材料/ }).last().click();
+  const row = page.locator('.package-row').filter({ hasText: 'IPA 发音与录音' });
+  await row.locator('input').check();
+  await page.getByRole('button', { name: '下载所选资源' }).click();
+  await expect(row).toContainText('已安装', { timeout: 90_000 });
+  await row.locator('input').check();
+  const backup = await context.newPage(); await backup.goto('/settings');
+  const libraryRemove = page.locator('.offline-actions .offline-remove');
+  const profileRemove = backup.locator('.profile-backup .offline-remove');
+  const appearance = (button: import('@playwright/test').Locator) => button.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { color: style.color, background: style.backgroundColor, decoration: style.textDecorationLine, border: style.borderStyle, radius: style.borderRadius, shadow: style.boxShadow, outline: style.outlineWidth };
+  });
+  for (const colorScheme of ['light', 'dark'] as const) {
+    await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' }); await backup.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
+    await page.mouse.move(0, 0); await backup.mouse.move(0, 0);
+    expect(await appearance(profileRemove)).toEqual(await appearance(libraryRemove));
+    await page.keyboard.press('Tab'); await libraryRemove.focus();
+    await backup.keyboard.press('Tab'); await profileRemove.focus();
+    expect(await profileRemove.evaluate(element => element.matches(':focus-visible'))).toBe(true);
+    expect(await appearance(profileRemove)).toEqual(await appearance(libraryRemove));
+    await libraryRemove.click(); await profileRemove.click();
+    const libraryConfirm = page.getByRole('alertdialog').locator('.offline-remove-confirm');
+    const profileConfirm = backup.getByRole('alertdialog').locator('.offline-remove-confirm');
+    expect(await appearance(profileConfirm)).toEqual(await appearance(libraryConfirm));
+    await page.keyboard.press('Tab'); await libraryConfirm.focus();
+    await backup.keyboard.press('Tab'); await profileConfirm.focus();
+    expect(await appearance(profileConfirm)).toEqual(await appearance(libraryConfirm));
+    await page.keyboard.press('Escape'); await backup.keyboard.press('Escape');
+    await libraryRemove.blur(); await profileRemove.blur();
+  }
+});
 
 async function completeWorkspace(page: import('@playwright/test').Page, response = 'The source supports this interpretation, with its stated conditions and limits.') {
   await expect(page.locator('.material-workspace')).toBeVisible();
@@ -468,7 +504,7 @@ test('A2 service instructions save orders and retain course-specific advice offl
 
 });
 
-test('downloads a local ZIP and restores answers into a separate profile while offline', async ({ page, context }) => {
+test('downloads and restores three local ZIP generations with stable names and answers while offline', async ({ page, context }) => {
   await page.goto('/today');
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
@@ -479,25 +515,43 @@ test('downloads a local ZIP and restores answers into a separate profile while o
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.getByRole('link', { name: '设置', exact: true }).click();
   await context.setOffline(true);
-  const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: '下载备份' }).click();
-  const file = await download;
-  expect(file.suggestedFilename()).toMatch(/^lingfern-backup-.*\.zip$/);
-  const bytes = await readFile((await file.path())!);
-  await expect(page.locator('.backup-file-button')).toBeVisible();
-  const chooser = page.waitForEvent('filechooser');
-  await page.locator('.backup-file-button').click();
-  await (await chooser).setFiles({ name: 'saved.zip', mimeType: 'application/zip', buffer: bytes });
-  await expect(page.locator('.backup-file-name')).toHaveText('saved.zip');
-  await expect(page.getByText('待导入：本机档案')).toBeVisible();
-  await expect(page.locator('.backup-preview')).toContainText('任务 1 · 作答 2');
-  await page.getByRole('button', { name: '导入为新档案' }).click();
-  await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();
-  const current = await page.getByRole('button', { name: '当前档案' }).getAttribute('data-value');
-  expect(current).not.toBe('local-guest');
+  const ids = new Set(['local-guest']);
+  for (let round = 0; round < 3; round++) {
+    const download = page.waitForEvent('download');
+    await page.getByRole('button', { name: '下载备份' }).click();
+    if (round) await page.getByRole('dialog').getByRole('textbox').fill('离线档案 2026-10-23');
+    await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
+    const file = await download;
+    if (round) expect(file.suggestedFilename()).toBe('离线档案 2026-10-23.zip');
+    else expect(file.suggestedFilename()).toMatch(/^lingfern-\d{4}-\d{2}-\d{2}\.zip$/);
+    const bytes = await readFile((await file.path())!);
+    const files = unzipSync(bytes);
+    const selectedName = file.suggestedFilename().slice(0, -4);
+    expect(JSON.parse(new TextDecoder().decode(files['manifest.json'])).profileName).toBe(selectedName);
+    await expect(page.locator('.backup-file-button')).toBeVisible();
+    const chooser = page.waitForEvent('filechooser');
+    await page.locator('.backup-file-button').click();
+    await (await chooser).setFiles({ name: 'manually-renamed-2030-12-31.zip', mimeType: 'application/zip', buffer: bytes });
+    await expect(page.locator('.backup-file-name')).toHaveText('manually-renamed-2030-12-31.zip');
+    await expect(page.getByText(`待导入：${selectedName}`)).toBeVisible();
+    await expect(page.locator('.backup-preview')).toContainText('任务 1 · 作答 2');
+    await page.getByRole('button', { name: '导入为新档案' }).click();
+    await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();
+    const picker = page.getByRole('button', { name: '当前档案' });
+    await expect(picker).toHaveAttribute('aria-label', `当前档案: ${selectedName}`);
+    const current = await picker.getAttribute('data-value');
+    expect(current).not.toBeNull();
+    expect(ids.has(current!)).toBe(false);
+    ids.add(current!);
+  }
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
   await expect(page.locator('.totals dd').first()).toHaveText('2');
   await page.getByRole('link', { name: '设置', exact: true }).click();
+  const deleted = await page.locator('.profile-backup .setting-trigger').getAttribute('data-value');
+  await page.locator('.profile-backup').getByRole('button', { name: '删除档案', exact: true }).click();
+  await page.getByRole('alertdialog').getByRole('button', { name: '删除档案', exact: true }).click();
+  await expect(page.getByRole('alertdialog')).toHaveCount(0);
+  await expect(page.locator('.profile-backup .setting-trigger')).not.toHaveAttribute('data-value', deleted!);
   await selectPicker(page, '当前档案', 'local-guest');
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
   await expect(page.locator('.totals dd').first()).toHaveText('2');

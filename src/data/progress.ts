@@ -109,7 +109,7 @@ export async function mergeLearningRecords(lessons: Lesson[], sessions: Session[
   const summaries: ResolvedSummary[] = [], unavailable: CompletionSummary[] = [];
   for (const event of remote) {
     const value = event.payload, lesson = byHash.get(value.contentHash);
-    if (!lesson || lesson.skill !== value.skill || lesson.targetLevel !== value.level || lesson.goalId !== value.goalId || (lesson.mode ?? 'practice') !== value.mode || !questions(lesson).some(item => item.material.rootId === value.rootId && item.question.id === value.questionId)) unavailable.push(event);
+    if (!lesson || lesson.skill !== value.skill || lesson.targetLevel !== value.level || lesson.goalId !== value.goalId || (lesson.mode === 'check' ? 'check' : 'practice') !== value.mode || !questions(lesson).some(item => item.material.rootId === value.rootId && item.question.id === value.questionId)) unavailable.push(event);
     else summaries.push({ event, lesson });
   }
   return { records, summaries, unavailable, timingRows: timing.rows, deletedExposures: merged.deletedExposures, exposedRoots: new Set(merged.exposures.map(event => event.payload.rootId)), conflicting };

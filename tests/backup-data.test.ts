@@ -1,15 +1,143 @@
 import { travelVariant } from './fixtures/variants';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { unzipSync, zipSync } from 'fflate';
 import raw from './fixtures/content/a1-reading.json';
 import matching from './fixtures/content/a1-matching-reading.json';
 import { exportBackup, importBackup, inspectBackup } from '../src/data/backup';
-import { attempts, claimSession, createSession, db, exposures, feedbackNotes, markExposure, profiles, saveDraft, saveFeedbackNote, sessions, settings, submit } from '../src/data/db';
+import { attempts, claimSession, createSession, db, exposures, feedbackNotes, markExposure, profiles, projectPreferences, saveDraft, saveFeedbackNote, saveSetting, sessions, settings, submit } from '../src/data/db';
 import { gutenbergTerms } from '../src/shared/sourceLicence';
+import { deleteLocalProfile } from '../src/data/deletion';
 
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
 
 describe('local ZIP backup', () => {
+  it.each(['rows', 'expanded bytes'])('rejects exports exceeding the import %s limit instead of downloading an unrestorable ZIP', async limit => {
+    const session = await createSession(raw);
+    await claimSession(session.id, 'tab');
+    const attempt = await submit(session.id, 'tab', 1);
+    const rows = Array.from({ length: limit === 'rows' ? 50_001 : 1024 }, () => ({
+      id: crypto.randomUUID(), profileId: 'local-guest', attemptId: attempt.id, kind: 'text' as const,
+      content: limit === 'rows' ? 'Synthetic note' : 'x'.repeat(64 * 1024), unknownReferences: false, createdAt: new Date().toISOString(),
+    }));
+    const query = vi.spyOn(feedbackNotes, 'where').mockReturnValue({ equals: () => ({ toArray: async () => rows }) } as unknown as ReturnType<typeof feedbackNotes.where>);
+    try {
+      const result = await exportBackup('local-guest').catch(error => error as Error);
+      if (result instanceof Uint8Array) await expect(inspectBackup(result)).rejects.toThrow();
+      expect(result instanceof Error).toBe(true);
+      if (result instanceof Error) expect(result.message).toBe('BACKUP_SIZE');
+      expect(await attempts.get(attempt.id)).toEqual(attempt);
+    } finally { query.mockRestore(); }
+  });
+
+  it('rejects restoration if the selected profile changed before the import commits', async () => {
+    await profiles.bulkAdd(['first', 'second'].map(id => ({ id, name: id, createdAt: new Date().toISOString() })));
+    await settings.put({ key: 'activeProfile', value: 'first' });
+    const inspection = await inspectBackup(await exportBackup('first'));
+    await settings.put({ key: 'activeProfile', value: 'second' });
+    const before = await Promise.all(db.tables.map(table => table.toArray()));
+    await expect(importBackup(inspection, undefined, 'first')).rejects.toThrow('SYNC_SCOPE_CHANGED');
+    expect(await Promise.all(db.tables.map(table => table.toArray()))).toEqual(before);
+  });
+
+  it('rejects export when deletion wins before the consistent snapshot is read', async () => {
+    await profiles.add({ id: 'local-guest', name: 'Source', createdAt: new Date().toISOString() });
+    await settings.put({ key: 'activeProfile', value: 'local-guest' });
+    await createSession(raw);
+    const transaction = db.transaction.bind(db);
+    const intercept = vi.spyOn(db, 'transaction');
+    intercept.mockImplementation(((...args: Parameters<typeof db.transaction>) => {
+      if (args[0] === 'r' && Array.isArray(args[1]) && args[1].includes(profiles)) {
+        intercept.mockRestore();
+        return deleteLocalProfile('local-guest', 'Source').then(() => Reflect.apply(transaction, db, args));
+      }
+      return Reflect.apply(transaction, db, args);
+    }) as typeof db.transaction);
+    try { await expect(exportBackup('local-guest')).rejects.toThrow('PROFILE_DELETED'); }
+    finally { intercept.mockRestore(); }
+  });
+
+  it.each(['英语学习', '英语学习 2026-10-23', '英语学习 · 10/23/2026 · 10/23/2026', `${'x'.repeat(78)}𝒜`])('preserves the exact name %s and data through three restores without overwriting same-name profiles', async name => {
+    const preferences = { interests: [], purpose: 'study' as const, reading: 'B2' as const, listening: 'A2' as const, step: 4, completed: true };
+    const originalProfile = { id: 'local-guest', name, preferences, createdAt: new Date().toISOString() };
+    const otherProfile = { id: 'same-name', name, createdAt: new Date().toISOString() };
+    await profiles.bulkAdd([originalProfile, otherProfile]);
+    const otherSession = await createSession(matching, otherProfile.id);
+    const session = await createSession(raw);
+    await claimSession(session.id, 'tab');
+    await markExposure(session);
+    const answer = await submit(session.id, 'tab', 1);
+    await saveDraft(session.id, 'tab', 2);
+    await saveSetting('local-guest', 'theme', 'dark');
+    await saveSetting('local-guest', 'locale', 'zh-Hant');
+    const original = await inspectBackup(await exportBackup('local-guest'));
+    let profileId = 'local-guest';
+    for (let round = 0; round < 3; round++) {
+      const inspected = await inspectBackup(await exportBackup(profileId));
+      expect(inspected.summary.profileName).toBe(name);
+      const restoredId = await importBackup(inspected);
+      expect(restoredId).not.toBe(profileId);
+      expect((await profiles.get(restoredId))?.name).toBe(name);
+      const restored = (await sessions.where('profileId').equals(restoredId).toArray())[0];
+      expect(restored).toEqual({ ...original.records.sessions[0], id: restored.id, profileId: restoredId, syncSessionId: session.id });
+      expect(await attempts.where('profileId').equals(restoredId).toArray()).toEqual([{ ...answer, id: `${restored.id}:${answer.questionId}`, profileId: restoredId, sessionId: restored.id, syncRecordId: answer.id }]);
+      expect(await exposures.where('profileId').equals(restoredId).toArray()).toEqual(original.records.exposures.map(exposure => ({ ...exposure, profileId: restoredId, contacts: exposure.contacts?.map(contact => ({ ...contact, sessionId: restored.id })) })));
+      const projected = await projectPreferences(restoredId);
+      expect(projected.preferences).toEqual(preferences);
+      expect(Object.fromEntries(projected.values)).toMatchObject({ theme: 'dark', locale: 'zh-Hant' });
+      expect((await settings.get('activeProfile'))?.value).toBe(restoredId);
+      profileId = restoredId;
+    }
+    expect(await profiles.count()).toBe(5);
+    expect(await profiles.get('local-guest')).toEqual(originalProfile);
+    expect(await profiles.get(otherProfile.id)).toEqual(otherProfile);
+    expect(await sessions.get(otherSession.id)).toEqual(otherSession);
+  });
+
+  it.each(['20261024010203', '英语学习 2026-10-23', 'Local profile', 'My Local profile 2026-10-23', `${'x'.repeat(78)}𝒜`])('restores the explicit export name %s verbatim through three generations without renaming the source', async selectedName => {
+    const session = await createSession(raw);
+    const source = await profiles.get('local-guest');
+    let id = 'local-guest';
+    for (let round = 0; round < 3; round++) {
+      const inspection = await inspectBackup(await exportBackup(id, round ? undefined : selectedName));
+      expect(inspection.summary.profileName).toBe(selectedName);
+      expect(inspection.summary.nameIsCustom).toBe(selectedName.includes('Local profile') ? true : undefined);
+      expect(inspection.records.sessions[0].lesson).toEqual(session.lesson);
+      id = await importBackup(inspection);
+      expect((await profiles.get(id))?.name).toBe(selectedName);
+      expect((await profiles.get(id))?.nameIsCustom).toBe(selectedName.includes('Local profile') ? true : undefined);
+    }
+    expect(await profiles.get('local-guest')).toEqual(source);
+    expect(await sessions.get(session.id)).toEqual(session);
+  });
+
+  it.each(['', 'x'.repeat(81)])('rejects an invalid explicit export name %s before writing any data', async selectedName => {
+    const before = await Promise.all(db.tables.map(table => table.toArray()));
+    await expect(exportBackup('local-guest', selectedName)).rejects.toThrow();
+    expect(await Promise.all(db.tables.map(table => table.toArray()))).toEqual(before);
+  });
+
+  it('uses the local-profile fallback for a nameless v5 backup without inferring a date', async () => {
+    const session = await createSession(raw);
+    const files = unzipSync(await exportBackup('local-guest'));
+    const manifest = JSON.parse(new TextDecoder().decode(files['manifest.json']));
+    delete manifest.profileName;
+    files['manifest.json'] = new TextEncoder().encode(JSON.stringify(manifest));
+    const inspected = await inspectBackup(zipSync(files));
+    expect(inspected.summary.profileName).toBe('Local profile');
+    const restoredId = await importBackup(inspected);
+    expect((await profiles.get(restoredId))?.name).toBe('Local profile');
+    expect((await sessions.where('profileId').equals(restoredId).first())?.lesson).toEqual(session.lesson);
+  });
+
+  it.each(['', null, 123, 'x'.repeat(81)])('rejects an invalid explicit name %s instead of silently replacing it', async profileName => {
+    const files = unzipSync(await exportBackup('local-guest'));
+    const manifest = JSON.parse(new TextDecoder().decode(files['manifest.json']));
+    manifest.profileName = profileName;
+    files['manifest.json'] = new TextEncoder().encode(JSON.stringify(manifest));
+    await expect(inspectBackup(zipSync(files))).rejects.toThrow();
+    expect(await profiles.count()).toBe(0);
+  });
+
   it.each(['x'.repeat(91), `${'x'.repeat(79)}𝒜`, '𝒜'.repeat(46)])('exports an older overlong profile label without altering its records or weakening imports', async name => {
     const original = await createSession(raw);
     await claimSession(original.id, 'tab', Date.now(), undefined, true);

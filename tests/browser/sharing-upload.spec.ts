@@ -13,6 +13,26 @@ async function openUpload(page: Page) {
 function session(account = 1234) { return { account: { id: account, login: 'synthetic-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false }; }
 function clients(contextsRead = 1) { return { connections: [{ id: connectionId, name: 'Synthetic assistant', createdAt: 100, expiresAt: 2147483647, contextsRead, materialsRead: 1 }] }; }
 
+test('the sharing settings link retains its fragment and reaches the MCP card', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.route('**/api/session', route => route.fulfill({ json: { account: null, syncAvailable: false } }));
+  await page.goto('/settings#mcp');
+  await expect(page.getByRole('heading', { name: 'MCP', exact: true })).toBeInViewport();
+  await expect.poll(() => page.evaluate(() => document.querySelector('#mcp h2')!.getBoundingClientRect().top >= document.querySelector('#root>header')!.getBoundingClientRect().bottom)).toBe(true);
+  await openUpload(page);
+  const learningUrl = page.url();
+  await page.locator('.sharing-upload').first().locator('a[href="/settings#mcp"]').click();
+  await expect(page).toHaveURL('/settings#mcp');
+  await expect(page.getByRole('heading', { name: 'MCP', exact: true })).toBeInViewport();
+  await expect.poll(() => page.evaluate(() => document.querySelector('#mcp h2')!.getBoundingClientRect().top >= document.querySelector('#root>header')!.getBoundingClientRect().bottom)).toBe(true);
+  await page.goBack();
+  await expect(page).toHaveURL(learningUrl);
+  await expect(page.locator('#workspace-result')).toBeVisible();
+  await page.goForward();
+  await expect(page).toHaveURL('/settings#mcp');
+  await expect(page.getByRole('heading', { name: 'MCP', exact: true })).toBeInViewport();
+});
+
 test('only explicitly selected, previewed and confirmed content is uploaded once', async ({ page }) => {
   let reads = 0;
   const uploads: Record<string, unknown>[] = [];

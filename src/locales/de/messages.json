@@ -421,7 +421,18 @@
     "bad": "Backup nicht verifiziert. Beschädigt, zu groß oder nicht unterstützt; bestehende Aufzeichnungen unverändert.",
     "failed": "Vorgang fehlgeschlagen. Bestehende Aufzeichnungen unverändert.",
     "done": "Neues Profil erstellt und Aufzeichnungen importiert.",
-    "busy": "Wird bearbeitet…"
+    "busy": "Wird bearbeitet…",
+    "delete": "Profil löschen",
+    "deleteTitle": "Aktuelles Profil löschen?",
+    "deleteDetail": "Lerndaten, Lesezeichen, Einstellungen und Ressourcenzuordnungen dieses Profils werden von diesem Gerät gelöscht. Lade zuerst eine Sicherung herunter; GitHub-Kopien und gemeinsam genutzte Offline-Ressourcen bleiben erhalten.",
+    "deleted": "Lokales Profil gelöscht.",
+    "deleteBusy": "Dieses Profil wird verwendet. Schließe seine Übungen oder warte auf Downloads und Synchronisierung und versuche es erneut.",
+    "cancel": "Abbrechen",
+    "exportTitle": "Sicherung speichern",
+    "fileName": "Dateiname",
+    "save": "Speichern",
+    "invalidName": "Gib einen Namen ohne / \\ : * ? \" < > | und ohne Punkt am Ende ein.",
+    "shortNote": "Unverschlüsselte Lerndaten, ohne Ressourcen und Aufnahmen."
   },
   "progressRecords_summaryCopy": {
     "clock": "Aufzeichnungszeit liegt in der Zukunft. Geräteuhr prüfen; aus Wiederholungsplanung ausgeschlossen.",

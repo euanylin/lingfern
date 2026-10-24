@@ -421,7 +421,18 @@
     "bad": "Backup não verificado. Pode estar danificado, grande demais ou não ser compatível; registros existentes preservados.",
     "failed": "Operação falhou. Registros existentes preservados.",
     "done": "Novo perfil criado e registros importados.",
-    "busy": "Processando…"
+    "busy": "Processando…",
+    "delete": "Eliminar perfil",
+    "deleteTitle": "Eliminar o perfil atual?",
+    "deleteDetail": "Os registos de aprendizagem, marcadores, definições e associações de recursos deste perfil serão eliminados deste dispositivo. Guarde primeiro uma cópia de segurança; as cópias no GitHub e os recursos offline partilhados serão mantidos.",
+    "deleted": "Perfil local eliminado.",
+    "deleteBusy": "Este perfil está em uso. Feche os exercícios ou aguarde o fim das transferências e da sincronização e tente novamente.",
+    "cancel": "Cancelar",
+    "exportTitle": "Guardar cópia de segurança",
+    "fileName": "Nome do ficheiro",
+    "save": "Guardar",
+    "invalidName": "Introduza um nome sem / \\ : * ? \" < > | e sem ponto final.",
+    "shortNote": "Registos de aprendizagem sem encriptação; não inclui recursos nem gravações."
   },
   "progressRecords_summaryCopy": {
     "clock": "Horário do registro no futuro. Confira o relógio; excluído do agendamento de revisão.",

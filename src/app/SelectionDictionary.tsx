@@ -23,6 +23,8 @@ export function SelectionDictionary({ selected, locale, profileId, online, defau
   const [loading, setLoading] = useState(false);
   const [all, setAll] = useState(false);
   const [menuSize, setMenuSize] = useState({ width: 116, height: 52 });
+  const request = useRef(0);
+  useEffect(() => () => { request.current++; }, []);
 
   useEffect(() => {
     if (open || !root.current) return;
@@ -52,19 +54,27 @@ export function SelectionDictionary({ selected, locale, profileId, online, defau
 
   async function lookup(term: string) {
     if (!lookupEnabled) return;
+    const token = ++request.current;
     setTerm(term);
     setOpen(true); setLoading(true); setError(''); setEntry(undefined); setCommunity([]); setSuggestions([]); setAll(false);
     try {
       const local = await communityDictionary(profileId, term);
+      if (token !== request.current) return;
       const found = await lookupDictionary(term).catch(error => {
         if (!local.length) throw error;
         return { term, matched: term, senses: [], course: [] };
       });
+      // A closed or replaced popup must not mark a later question as assisted.
+      if (token !== request.current) return;
       await onLookup().catch(() => { throw new Error('LOOKUP_RECORD'); });
+      if (token !== request.current) return;
       setEntry(found); setCommunity(local);
-      if (!local.length && !found.course.length && !found.senses.length) setSuggestions((await suggestDictionary(term).catch(() => [])).filter(word => word !== term).slice(0, 3));
-    } catch (cause) { setError(cause instanceof Error && cause.message === 'LOOKUP_RECORD' ? t.recordFailed : t.failed); }
-    finally { setLoading(false); }
+      if (!local.length && !found.course.length && !found.senses.length) {
+        const suggestions = (await suggestDictionary(term).catch(() => [])).filter(word => word !== term).slice(0, 3);
+        if (token === request.current) setSuggestions(suggestions);
+      }
+    } catch (cause) { if (token === request.current) setError(cause instanceof Error && cause.message === 'LOOKUP_RECORD' ? t.recordFailed : t.failed); }
+    finally { if (token === request.current) setLoading(false); }
   }
 
   const width = Math.min(380, window.innerWidth - 24);

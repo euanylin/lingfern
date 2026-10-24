@@ -218,7 +218,7 @@ try {
    await expand();
   }
   if(multi&&index===0){
-   await page.goto(origin+'/settings');const download=page.waitForEvent('download');await page.getByRole('button',{name:'下载备份'}).click();multiBackup=await readFile(await(await download).path());
+   await page.goto(origin+'/settings');const download=page.waitForEvent('download');await page.getByRole('button',{name:'下载备份'}).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();multiBackup=await readFile(await(await download).path());
    await page.goto(origin+'/learn/'+session.id);await expect(page.locator('.feedback')).toContainText('回答正确');await expand();
   }
   if(index<questions.length-1)await page.getByRole('button',{name:'下一题',exact:true}).click();

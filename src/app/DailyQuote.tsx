@@ -5,14 +5,15 @@ import { dailyQuoteOnDemand } from '../core/dailyQuoteOnDemand';
 import type { Locale } from '../shared/content';
 
 const labels = messages('dailyQuote');
+export type DailyQuoteSelection = Awaited<ReturnType<typeof dailyQuoteOnDemand>>;
 
 export function quoteNeedsExpansion(fullHeight: number, lineHeight: number) {
   return Number.isFinite(fullHeight) && Number.isFinite(lineHeight) && lineHeight > 0 && fullHeight > lineHeight * 4 + 1;
 }
 
-export function DailyQuote({ locale, onDayChange }: { locale: Locale; onDayChange: (day: string) => void }) {
-  const [selection, setSelection] = useState<Awaited<ReturnType<typeof dailyQuoteOnDemand>>>();
-  const current = useRef<typeof selection>(undefined);
+export function DailyQuote({ locale, onDayChange, initialSelection, onSelection }: { locale: Locale; onDayChange: (day: string) => void; initialSelection?: DailyQuoteSelection; onSelection?: (selection: DailyQuoteSelection) => void }) {
+  const [selection, setSelection] = useState<DailyQuoteSelection>(initialSelection);
+  const current = useRef(selection);
   const request = useRef(0);
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ export function DailyQuote({ locale, onDayChange }: { locale: Locale; onDayChang
     try { previous ??= localStorage.getItem('lingfern:last-daily-quote') ?? undefined; } catch { /* Allow browsers with disabled storage. */ }
     try {
       const next = await dailyQuoteOnDemand(new Date(), previous);
-      if (token === request.current) { current.current = next; setSelection(next); }
+      if (token === request.current) { current.current = next; setSelection(next); onSelection?.(next); }
     } catch { if (token === request.current) setFailed(true); }
     finally { if (token === request.current) setLoading(false); }
   }

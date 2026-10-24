@@ -29,7 +29,7 @@ test('legacy task and review originals are captured once and their IDs survive a
   expect(original.filter((event: { id: string }) => event.id === reviewId)).toHaveLength(1);
   await page.reload();
   const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: '下载备份' }).click();
+  await page.getByRole('button', { name: '下载备份' }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
   const bytes = await readFile((await (await download).path())!);
   await page.getByLabel('从备份恢复').setInputFiles({ name: 'legacy.zip', mimeType: 'application/zip', buffer: bytes });
   await expect(page.locator('.backup-preview')).toBeVisible();

@@ -5,7 +5,7 @@ import { profileIdSchema } from '../shared/repository';
 
 export type StoredEvent = SyncEvent & { profileId: string; batchId?: string };
 export type StoredBatch = { profileId: string; deviceId: string; batchId: string; hash: string; batch: SyncBatch; state: 'pending' | 'confirmed' | 'received' | 'conflict' };
-export type Clock = { profileId: string; deviceId: string; counter: number; logicalProfileId?: string };
+export type Clock = { profileId: string; deviceId: string; counter: number; logicalProfileId?: string; deleted?: true };
 export type NewEvent = SyncEvent extends infer Event ? Event extends SyncEvent ? Pick<Event, 'type' | 'payload'> : never : never;
 
 // Hash only imported IDs exceeding wire limits; preserve ordinary IDs and local validity.
@@ -28,6 +28,7 @@ export async function appendSyncEvent(profileId: string, value: NewEvent, databa
   profileIdSchema.parse(profileId);
   return database.transaction('rw', database.table('syncEvents'), database.table('syncClocks'), async () => {
     const clock: Clock = await database.table('syncClocks').get(profileId) ?? { profileId, deviceId: crypto.randomUUID(), counter: 0, logicalProfileId: profileId };
+    if (clock.deleted) throw new Error('PROFILE_DELETED');
     const bounded = await Dexie.waitFor(boundedReferences(value));
     const event = syncEventSchema.parse({ ...bounded, id: identity.id ?? crypto.randomUUID(), deviceId: clock.deviceId, counter: clock.counter + 1, occurredAt: identity.occurredAt ?? new Date().toISOString() });
     await database.table('syncEvents').add({ ...event, profileId });
@@ -132,6 +133,7 @@ export async function receiveSyncBatch(profileId: string, raw: unknown, expected
 
 async function receiveValidatedBatch(profileId: string, batch: SyncBatch, hash: string, database: Dexie) {
     const currentClock: Clock | undefined = await database.table('syncClocks').get(profileId);
+    if (currentClock?.deleted) throw new Error('PROFILE_DELETED');
     if (batch.profileId !== (currentClock?.logicalProfileId ?? profileId)) throw new Error('SYNC_INTEGRITY');
     const key = [profileId, batch.deviceId, batch.batchId];
     const prior: StoredBatch | undefined = await database.table('syncBatches').get(key);

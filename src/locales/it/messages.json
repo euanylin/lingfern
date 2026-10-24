@@ -421,7 +421,18 @@
     "bad": "Backup non verificato: forse danneggiato, troppo grande o non supportato. Record esistenti invariati.",
     "failed": "Operazione fallita. Record esistenti invariati.",
     "done": "Nuovo profilo creato e record importati.",
-    "busy": "Elaborazione…"
+    "busy": "Elaborazione…",
+    "delete": "Elimina profilo",
+    "deleteTitle": "Eliminare il profilo attuale?",
+    "deleteDetail": "I dati di apprendimento, i segnalibri, le impostazioni e le associazioni alle risorse di questo profilo saranno eliminati dal dispositivo. Scarica prima un backup; le copie GitHub e le risorse offline condivise saranno conservate.",
+    "deleted": "Profilo locale eliminato.",
+    "deleteBusy": "Questo profilo è in uso. Chiudi gli esercizi o attendi la fine dei download e della sincronizzazione, poi riprova.",
+    "cancel": "Annulla",
+    "exportTitle": "Salva backup",
+    "fileName": "Nome del file",
+    "save": "Salva",
+    "invalidName": "Inserisci un nome senza / \\ : * ? \" < > | né un punto finale.",
+    "shortNote": "Dati di apprendimento non cifrati, senza risorse né registrazioni."
   },
   "progressRecords_summaryCopy": {
     "clock": "Ora del record nel futuro. Controlla l’orologio; esclusa dalla pianificazione.",

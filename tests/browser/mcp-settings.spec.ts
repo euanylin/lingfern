@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
+import { languagePacks } from '../../src/locales';
 
 test('MCP sits below GitHub and renders all languages at narrow widths', async ({ page }) => {
   let sharingRequests = 0;
@@ -7,7 +8,7 @@ test('MCP sits below GitHub and renders all languages at narrow widths', async (
   await page.route('**/api/ai/**', route => { sharingRequests++; return route.fulfill({ status: 503, json: { error: 'SHARING_NOT_CONFIGURED' } }); });
   await page.setViewportSize({ width: 320, height: 640 });
   await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' });
-  for (const [label, value, backupTitle, backupScope] of [['语言', 'en', 'Backup', 'excluding resources and recordings'], ['Language', 'zh-Hant', '備份', '不含資源和錄音'], ['語言', 'zh-Hans', '备份', '不含资源和录音']] as const) {
+  for (const [label, value, backupTitle] of [['语言', 'en', 'Backup'], ['Language', 'zh-Hant', '備份'], ['語言', 'zh-Hans', '备份']] as const) {
     await page.goto('/settings'); await selectPicker(page, label, value);
     await expect(page.getByRole('link', { name: /External assistants|外部助手/ })).toHaveCount(0);
     await expect(page.getByRole('heading', { name: 'MCP', exact: true })).toBeVisible();
@@ -20,8 +21,7 @@ test('MCP sits below GitHub and renders all languages at narrow widths', async (
     await expect(page.locator('.settings-data > h2,.settings-data > p')).toHaveCount(0);
     await expect(page.locator('.profile-backup > h2')).toHaveText(backupTitle);
     await expect(page.locator('.profile-backup > .muted')).toHaveCount(1);
-    await expect(page.locator('.profile-backup > .muted')).toContainText(backupScope);
-    await expect(page.locator('.profile-backup > .muted')).toContainText('ZIP');
+    await expect(page.locator('.profile-backup > .muted')).toHaveText(languagePacks[value].profileBackup.shortNote);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `output/playwright/mcp-settings-320-${value}-dark.png`, fullPage: true });
   }

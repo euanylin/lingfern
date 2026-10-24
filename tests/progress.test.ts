@@ -1,13 +1,15 @@
 import { expect, it } from 'vitest';
 import rawLearning from './fixtures/content/a1-reading.json';
 import rawCheck from './fixtures/content/a1-check-reading.json';
-import { lessonSchema, questions } from '../src/shared/content';
+import { asTestLesson, lessonSchema, questions } from '../src/shared/content';
 import type { Attempt, Session } from '../src/data/db';
 import { fernActivity, progressRecords, mergeLearningRecords } from '../src/data/progress';
 
 import { syncEventSchema, type SyncEvent } from '../src/shared/sync';
 import { goalReviews } from '../src/data/goalReview';
 import { selectPractice } from '../src/data/practice';
+import { advance, claimSession, createSession, db, submit } from '../src/data/db';
+import { readSyncEvents } from '../src/data/sync';
 
 const learning = lessonSchema.parse(rawLearning);
 const check = lessonSchema.parse(rawCheck);
@@ -30,6 +32,27 @@ it('weights complete tests above practice, credits partial saved work and dedupl
   expect(fernActivity([...complete].reverse())).toEqual(fernActivity(complete));
   expect(fernActivity(entries(tested).slice(1)).reading).toBeLessThan(1);
   expect(fernActivity([])).toEqual({ reading: 0, listening: 0, tests: 0 });
+});
+
+it('resolves ordinary Test completion summaries from their exact snapshot without changing the wire mode', async () => {
+  await Promise.all(db.tables.map(table => table.clear()));
+  try {
+    const lesson = asTestLesson(learning), created = await createSession(lesson);
+    await claimSession(created.id, 'test-owner');
+    for (const item of questions(lesson)) {
+      if ('kind' in item.question) throw new Error('Expected choice fixture');
+      await submit(created.id, 'test-owner', item.question.answer);
+      await advance(created.id, 'test-owner');
+    }
+    const events = await readSyncEvents('local-guest');
+    expect(events.filter(event => event.type === 'completion').every(event => event.payload.mode === 'practice')).toBe(true);
+    const remote = await mergeLearningRecords([lesson], [], [], events);
+    expect(remote.unavailable).toEqual([]);
+    expect(remote.summaries).toHaveLength(questions(lesson).length);
+    expect(fernActivity(progressRecords([], [], [], remote.summaries).valid)).toEqual({ reading: 3, listening: 0, tests: 1 });
+    const mismatched = events.map(event => event.type === 'completion' ? { ...event, payload: { ...event.payload, mode: 'check' as const } } : event);
+    expect((await mergeLearningRecords([lesson], [], [], mismatched)).summaries).toEqual([]);
+  } finally { await Promise.all(db.tables.map(table => table.clear())); }
 });
 
 it('groups genuine first responses by goal and root without turning repeats or orphan data into progress', () => {

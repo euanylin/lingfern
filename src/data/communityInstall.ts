@@ -1,5 +1,5 @@
 import { waitForOfflineWorker } from './offline';
-import { communityPacks, type CommunityPackageRecord } from './db';
+import { communityPacks, db, syncClocks, type CommunityPackageRecord } from './db';
 import type { CommunityPack } from './communityPack';
 import { normaliseTerm } from '../shared/dictionary';
 import { materialPackageId, type Lesson } from '../shared/content';
@@ -96,8 +96,12 @@ export async function installCommunityPack(pack: CommunityPack, profileId: strin
   await navigator.storage?.persist?.().catch(() => false);
   const previous = await communityPacks.get([profileId, pack.hash]);
   const name = communityCacheName(pack.hash);
+  const save = (state: 'ready' | 'staged') => db.transaction('rw', communityPacks, syncClocks, async () => {
+    if ((await syncClocks.get(profileId))?.deleted) throw new Error('PROFILE_DELETED');
+    await communityPacks.put({ profileId, hash: pack.hash, id: pack.id, lessons: pack.lessons, sources: pack.sources, dictionary: pack.dictionary, ...(pack.corpus ? { corpus: pack.corpus } : {}), ...(pack.spoken ? { spoken: pack.spoken } : {}), state, installedAt: new Date().toISOString() });
+  });
   if (await communityPackageReady(pack)) {
-    if (previous?.state !== 'ready') await communityPacks.put({ profileId, hash: pack.hash, id: pack.id, lessons: pack.lessons, sources: pack.sources, dictionary: pack.dictionary, ...(pack.corpus ? { corpus: pack.corpus } : {}), ...(pack.spoken ? { spoken: pack.spoken } : {}), state: 'ready', installedAt: new Date().toISOString() });
+    if (previous?.state !== 'ready') await save('ready');
     return;
   }
   for (const [filename, data] of Object.entries(pack.media)) {
@@ -111,9 +115,9 @@ export async function installCommunityPack(pack: CommunityPack, profileId: strin
     if (!expected.length) throw new Error('COMMUNITY_MEDIA');
     await checkRecording(data, expected, signal);
   }
-  await caches.delete(name);
-  await communityPacks.put({ profileId, hash: pack.hash, id: pack.id, lessons: pack.lessons, sources: pack.sources, dictionary: pack.dictionary, ...(pack.corpus ? { corpus: pack.corpus } : {}), ...(pack.spoken ? { spoken: pack.spoken } : {}), state: 'staged', installedAt: new Date().toISOString() });
+  await save('staged');
   try {
+    await caches.delete(name);
     const cache = await caches.open(name);
     for (const [filename, data] of Object.entries(pack.media)) {
       if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');

@@ -29,7 +29,7 @@ export type Attempt = {
   answer: Answer; correct: boolean | null; rule: string; assistance: Assistance; submittedAt: string;
   selfAssessment?: SelfAssessment;
 };
-export type Profile = { id: string; name: string; createdAt: string; preferences?: Preferences };
+export type Profile = { id: string; name: string; nameIsCustom?: true; createdAt: string; preferences?: Preferences };
 export type Memory = { profileId: string; memoryId: string; term: string; definition: string; savedAt: string; reviewEnabled: boolean; card?: Card };
 export type MemoryReview = { id: string; profileId: string; memoryId: string; occurredAt: string; rating: 1 | 2 | 3 | 4; assistance: { answerRevealed: boolean; hintUsed: boolean }; configId: string };
 export type FeedbackNote = { id: string; profileId: string; attemptId: string; kind: 'text' | 'structured'; content: string; unknownReferences: boolean; createdAt: string };
@@ -103,6 +103,7 @@ async function prepareSession(raw: unknown, profileId: string): Promise<Session>
 }
 
 async function addSession(session: Session) {
+  if ((await syncClocks.get(session.profileId))?.deleted) throw new Error('PROFILE_DELETED');
   if (session.lesson.generation) {
     const previous = await sessions.where('profileId').equals(session.profileId).filter(item => item.lesson.id === session.lesson.id && item.lesson.mode === session.lesson.mode).first();
     if (previous) throw new Error('VARIANT_ALREADY_SAVED');
@@ -112,7 +113,7 @@ async function addSession(session: Session) {
 
 export async function createSession(raw: unknown, profileId = 'local-guest') {
   const session = await prepareSession(raw, profileId);
-  await db.transaction('rw', sessions, () => addSession(session));
+  await db.transaction('rw', sessions, syncClocks, () => addSession(session));
   return session;
 }
 
@@ -125,7 +126,7 @@ export async function createCombinedCheck(readingRaw: unknown, listeningRaw: unk
   const pair: [Session, Session] = [await prepareSession(reading, profileId), await prepareSession(listening, profileId)];
   const checkGroupId = crypto.randomUUID();
   pair.forEach(session => { session.checkGroupId = checkGroupId; });
-  await db.transaction('rw', sessions, async () => { for (const session of pair) await addSession(session); });
+  await db.transaction('rw', sessions, syncClocks, async () => { for (const session of pair) await addSession(session); });
   return pair;
 }
 
@@ -135,7 +136,7 @@ export async function createCombinedPractice(readingRaw: unknown, listeningRaw: 
   const pair: [Session, Session] = [await prepareSession(reading, profileId), await prepareSession(listening, profileId)];
   const practiceGroupId = crypto.randomUUID();
   pair.forEach(session => { session.practiceGroupId = practiceGroupId; });
-  await db.transaction('rw', sessions, async () => { for (const session of pair) await addSession(session); });
+  await db.transaction('rw', sessions, syncClocks, async () => { for (const session of pair) await addSession(session); });
   return pair;
 }
 
@@ -434,6 +435,7 @@ export async function projectPreferences(profileId: string) {
 // Capture originals once before remote projection or backup cloning.
 export async function bootstrapSyncEvents(profileId: string) {
   return db.transaction('rw', [profiles, sessions, attempts, exposures, memories, memoryReviews, settings, syncEvents, syncClocks], async () => {
+    if ((await syncClocks.get(profileId))?.deleted) throw new Error('PROFILE_DELETED');
     const marker = `profile:${profileId}:syncBootstrap`;
     if (await settings.get(marker)) return;
     const profile = await profiles.get(profileId);

@@ -421,7 +421,18 @@
     "bad": "La sauvegarde n’a pas pu être vérifiée : elle peut être endommagée, trop volumineuse ou non prise en charge. Les données existantes restent inchangées.",
     "failed": "L’opération a échoué. Les données existantes restent inchangées.",
     "done": "Nouveau profil créé et données importées.",
-    "busy": "Traitement…"
+    "busy": "Traitement…",
+    "delete": "Supprimer le profil",
+    "deleteTitle": "Supprimer le profil actuel ?",
+    "deleteDetail": "Les progrès, favoris, réglages et associations de ressources de ce profil seront supprimés de cet appareil. Téléchargez une sauvegarde avant de continuer ; les copies GitHub et les ressources hors ligne partagées sont conservées.",
+    "deleted": "Profil local supprimé.",
+    "deleteBusy": "Ce profil est utilisé. Fermez ses exercices ou attendez la fin des téléchargements et de la synchronisation, puis réessayez.",
+    "cancel": "Annuler",
+    "exportTitle": "Enregistrer la sauvegarde",
+    "fileName": "Nom du fichier",
+    "save": "Enregistrer",
+    "invalidName": "Saisissez un nom sans / \\ : * ? \" < > | ni point final.",
+    "shortNote": "Sauvegarde non chiffrée des progrès, sans ressources ni enregistrements."
   },
   "progressRecords_summaryCopy": {
     "clock": "L’heure enregistrée est dans le futur. Vérifiez l’horloge de l’appareil ; elle est exclue du calendrier de révision.",

@@ -31,6 +31,43 @@ async function makeZip(corrupt: false | 'manifest' | 'media' | 'image' = false) 
   return Buffer.from(zipSync({ ...files, 'manifest.json': encoder.encode(JSON.stringify(manifest)) }));
 }
 
+test('deleting a profile during a staged installation cannot recreate its owned data', async ({ page, context }) => {
+  await page.goto('/library'); await page.evaluate(() => navigator.serviceWorker.ready); await page.reload();
+  await page.evaluate(() => {
+    const put = Cache.prototype.put;
+    Cache.prototype.put = async function(request, response) {
+      const state = window as unknown as { installationPaused?: boolean; resumeInstallation?: () => void };
+      if (String(request).includes('/images/community-') && !state.installationPaused) {
+        state.installationPaused = true;
+        await new Promise<void>(resolve => { state.resumeInstallation = resolve; });
+      }
+      return put.call(this, request, response);
+    };
+  });
+  const input = page.getByLabel('导入 ZIP');
+  await input.setInputFiles({ name: 'paused-course.zip', mimeType: 'application/zip', buffer: await makeZip() });
+  await expect.poll(() => page.evaluate(() => !!(window as unknown as { installationPaused?: boolean }).installationPaused)).toBe(true);
+  await expect(input).toBeDisabled();
+  const other = await context.newPage(); await other.goto('/settings');
+  await other.getByRole('button', { name: '删除档案', exact: true }).click();
+  await other.getByRole('alertdialog').getByRole('button', { name: '删除档案', exact: true }).click();
+  await expect(other.getByRole('alertdialog')).toHaveCount(0);
+  await expect(other.locator('.profile-backup .setting-trigger')).not.toHaveAttribute('data-value', 'local-guest');
+  await page.evaluate(() => (window as unknown as { resumeInstallation: () => void }).resumeInstallation());
+  await expect(input).toBeEnabled();
+  expect(await page.evaluate(() => new Promise(resolve => {
+    const open = indexedDB.open('lingfern');
+    open.onsuccess = () => {
+      const database = open.result;
+      const transaction = database.transaction(['profiles', 'communityPacks']);
+      const profile = transaction.objectStore('profiles').get('local-guest');
+      const packs = transaction.objectStore('communityPacks').index('profileId').count('local-guest');
+      transaction.oncomplete = () => { resolve({ profile: profile.result ?? null, packs: packs.result }); database.close(); };
+    };
+  }))).toEqual({ profile: null, packs: 0 });
+  expect(await page.pageErrors()).toEqual([]);
+});
+
 test('imports community lessons with offline image and audio, and rejects damaged updates', async ({ page, context }) => {
   await page.goto('/today');
   await page.locator('.reading-task [data-practice-skill=reading]').click();

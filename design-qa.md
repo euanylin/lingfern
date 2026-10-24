@@ -1,3 +1,44 @@
+# Code audit UI regressions — 2026-10-24
+
+final result: passed inspected scope
+
+The final production-build screenshot review caught backup actions overlapping at 320px English and 375px Traditional Chinese despite earlier layout checks. Removed the obsolete 112px minimum-width/padding selector and duplicate spacing; retained three equal columns, shared tokens, Library deletion feedback and GitHub connect sizing. Old-code geometry tests fail at both narrow widths and pass at1440px. Final Chromium and WebKit tests pass all three widths in light/dark, checking button bounds, complete text and44px targets. The built-fixture comparison confirms Library/backup delete controls remain identical in normal and keyboard-focus states, including confirmation dialogs.
+
+Inspected final8787 screenshots: `output/playwright/code-audit-20261024/settings-en-320-light.png`, `settings-zh-Hant-375-dark.png`, `settings-zh-Hans-1440-light.png` (height900, isolated empty profiles, reduced-motion capture). Buttons no longer overlap; text remains inside each control. The MCP fragment target is visible below the fixed header, with no page errors or horizontal overflow. Initial screenshots are retained as failed evidence in `private/verification/code-audit-20261024/preview-before-width-fix/`.
+
+Dictionary/feedback/navigation behavior is covered separately by targeted browser regressions. No branding, content, theme tokens, normal motion timing or persistent user-data schema changed. No new physical-device/provider/production acceptance is claimed. [Full scope and evidence](docs/history/2026-10-24-code-audit.md).
+
+---
+
+# Backup cards — supplied reference adaptation, 2026-10-24
+
+final result: passed
+
+Source visual truth: `private/verification/backup-card-style-20261024/reference/Lingfern-backup-cards/{backup-card,save-backup-dialog,delete-archive-dialog}.png`, with the supplied HTML/Markdown. Latest user steering sets the date-only default, Library-consistent deletion controls and placeholder-only naming. Existing application tokens/fonts override approximate mock values as the reference itself requires. No new prototype/runtime or generated image asset is needed.
+
+Implementation: in-app browser, isolated `http://127.0.0.1:48731/settings`, zh-Hans, system dark appearance, empty local test profile, no user learning data. Raw captures: `iab-card-final.png`, `iab-save-final.png`, `iab-save-focused.png`, `iab-delete-final.png`, `iab-delete-keyboard.png`; all under `private/verification/backup-card-style-20261024/`. The normal update confirmation was exercised only on that isolated origin. Main user preview remains8787.
+
+Full-component paired comparisons were opened together: `card-comparison.png`, `save-comparison.png`, `delete-comparison.png`. Focused input/suffix comparison: `input-detail-comparison.png`. Reference PNG pixels848×462,808×482,808×506 are cropped to the non-page-background surface and normalized from2×. In-app viewport459×770 CSSpx yields453×761 raster captures; measured DOM rectangles and explicit X/Y capture scaling are stored in `visual-comparison.json`. Implementation component CSS sizes: card413×228.09, save400×250.09, delete400×268.88. Reference nominal card420px is treated as the adjacent responsive width, not a claim of identical viewport dimensions. No browser chrome or surrounding canvas is scored as component drift.
+
+## Comparison history
+
+- First render: [P2] placeholder was16px/400 instead of the reference15px/600. `iab-save-qa1.png` and `save-comparison-qa1.png` retain that pass. Corrected the scoped input typography and added computed-style assertions.
+- Final render: refreshed actual native screenshots after applying the built update; the input reports15px/600, empty value, selection0–0 and placeholder `lingfern-2026-10-24`. Paired comparison and input detail were re-opened. No actionable P0/P1/P2 remains.
+
+## Required surfaces
+
+- Fonts/typography: system sans-serif controls and22px/700 backup/dialog headings; placeholder15px/600, body14px. Installed application fonts are retained instead of the mock's unavailable Noto file URLs. No font CDN or extra font download. Text metrics/antialiasing vary between the supplied render and in-app capture; they are not claimed pixel-identical.
+- Spacing/layout: full-width profile row, three equal action columns, shared input/suffix surface and right-aligned dialog actions. Existing16px card/dialog and control token radii are intentional adaptations, including Library consistency requested by the user. The shared primary button/line heights make dialogs slightly taller than the static mocks.320px/375px/1440px browser checks retain all actions and ≥44px targets without overflow.
+- Colors/tokens: existing page/card/primary/muted tokens; the two delete surfaces share Library's tonal danger rule. Actual Library and backup controls match normal and keyboard-focus computed appearance in light/dark. The reference's approximate brown and pill radii do not override these shared controls.
+- Image quality/assets: no imagery is required by these components; no artwork, icons, fonts or logos are invented. The existing picker chevron is reused. Reference rasters are comparison evidence only, not app content.
+- Copy/content: compact card text still says the ZIP is unencrypted and excludes resources/audio; full recovery guidance remains in the import preview. Delete consequences follow the reference; default date and placeholder behavior follow direct user steering. Fourteen locale packages remain complete.
+
+Interactions: direct typing, empty/whitespace fallback, normalized ZIP suffix, custom/default restore name, renamed-file import, cancellation/Escape/focus return, full-row picker click, busy/disabled states, last-profile deletion, account choices and cross-tab safeguards remain covered. Native review opened/cancelled both dialogs without performing any deletion. No native console errors were captured. Actual Library/backup style parity and three offline ZIP generations pass; final production-browser reloads and heading checks pass.
+
+Limits: no new physical-device, screen-reader, real-provider or broad release acceptance. These are deliberate application-token adaptations to approximate mocks, not a pixel-perfect clone. No open design question blocks this scoped change. Follow-up polish: none required for handoff.
+
+---
+
 # Reading/Listening responsive interaction QA — 2026-10-18
 
 final result: passed inspected local scope

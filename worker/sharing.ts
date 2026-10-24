@@ -36,28 +36,28 @@ export async function sharingLimit(db: D1DatabaseSession, accountId: number) {
   if (!value || value.count > 30) throw new ApiError('SHARING_RATE_LIMITED', 429);
 }
 
-// Require OAuth-verified account/client identity, never tool-supplied IDs.
-export async function listSharedContexts(env: SharingEnv, accountId: number, clientId: string, input: unknown = {}) {
-  z.number().int().positive().parse(accountId); z.string().min(1).max(256).parse(clientId);
+// Require the OAuth-verified account, client and connection, never tool-supplied IDs.
+export async function listSharedContexts(env: SharingEnv, accountId: number, clientId: string, connectionId: string, input: unknown = {}) {
+  z.number().int().positive().parse(accountId); z.string().min(1).max(256).parse(clientId); shareIdSchema.parse(connectionId);
   const { cursor, count } = listSharesSchema.parse(input), db = primary(env);
   await sharingLimit(db, accountId);
   const time = now();
   // Use text-free UUID keysets that survive deletion of earlier shares.
-  const values = await db.prepare('SELECT s.id,s.profile_id AS profileId,s.title,s.created_at AS createdAt,s.expires_at AS expiresAt FROM shared_contexts s JOIN mcp_connections c ON c.id=s.connection_id JOIN accounts a ON a.id=s.account_id WHERE s.account_id=? AND c.account_id=s.account_id AND c.client_id=? AND c.revoked=0 AND c.contexts_read=1 AND c.expires_at>? AND s.expires_at>? AND a.revoked=0 AND s.id>? ORDER BY s.id LIMIT ?').bind(accountId, clientId, time, time, cursor ?? '', count + 1).all<{ id: string; profileId: string; title: string; createdAt: number; expiresAt: number }>();
+  const values = await db.prepare('SELECT s.id,s.profile_id AS profileId,s.title,s.created_at AS createdAt,s.expires_at AS expiresAt FROM shared_contexts s JOIN mcp_connections c ON c.id=s.connection_id JOIN accounts a ON a.id=s.account_id WHERE s.account_id=? AND c.account_id=s.account_id AND c.client_id=? AND c.id=? AND c.revoked=0 AND c.contexts_read=1 AND c.expires_at>? AND s.expires_at>? AND a.revoked=0 AND s.id>? ORDER BY s.id LIMIT ?').bind(accountId, clientId, connectionId, time, time, cursor ?? '', count + 1).all<{ id: string; profileId: string; title: string; createdAt: number; expiresAt: number }>();
   const contexts = values.results.slice(0, count);
   return { contexts, ...(values.results.length > count ? { cursor: contexts.at(-1)!.id } : {}) };
 }
 
-// Require OAuth-verified account/client identity, never tool-supplied IDs.
-export async function readSharedContext(env: SharingEnv, accountId: number, clientId: string, id: string) {
-  z.number().int().positive().parse(accountId); z.string().min(1).max(256).parse(clientId); shareIdSchema.parse(id);
+// Require the OAuth-verified account, client and connection, never tool-supplied IDs.
+export async function readSharedContext(env: SharingEnv, accountId: number, clientId: string, connectionId: string, id: string) {
+  z.number().int().positive().parse(accountId); z.string().min(1).max(256).parse(clientId); shareIdSchema.parse(connectionId); shareIdSchema.parse(id);
   const db = primary(env);
   await sharingLimit(db, accountId);
-  const share = await db.prepare('SELECT s.* FROM shared_contexts s JOIN mcp_connections c ON c.id=s.connection_id JOIN accounts a ON a.id=s.account_id WHERE s.id=? AND s.account_id=? AND c.account_id=s.account_id AND c.client_id=? AND c.revoked=0 AND c.contexts_read=1 AND c.expires_at>? AND s.expires_at>? AND a.revoked=0').bind(id, accountId, clientId, now(), now()).first<Share>();
+  const share = await db.prepare('SELECT s.* FROM shared_contexts s JOIN mcp_connections c ON c.id=s.connection_id JOIN accounts a ON a.id=s.account_id WHERE s.id=? AND s.account_id=? AND c.account_id=s.account_id AND c.client_id=? AND c.id=? AND c.revoked=0 AND c.contexts_read=1 AND c.expires_at>? AND s.expires_at>? AND a.revoked=0').bind(id, accountId, clientId, connectionId, now(), now()).first<Share>();
   if (!share) throw new ApiError('SHARE_NOT_FOUND', 404);
   const text = await decrypt(share, env.SHARE_ENCRYPTION_KEY!);
   // Recheck the primary session after decryption to fence concurrent revocation.
-  const live = await primary(env).prepare('SELECT s.id FROM shared_contexts s JOIN mcp_connections c ON c.id=s.connection_id JOIN accounts a ON a.id=s.account_id WHERE s.id=? AND s.account_id=? AND c.account_id=s.account_id AND c.client_id=? AND c.revoked=0 AND c.contexts_read=1 AND c.expires_at>? AND s.expires_at>? AND a.revoked=0 AND s.encrypted_context=?').bind(id, accountId, clientId, now(), now(), share.encrypted_context).first();
+  const live = await primary(env).prepare('SELECT s.id FROM shared_contexts s JOIN mcp_connections c ON c.id=s.connection_id JOIN accounts a ON a.id=s.account_id WHERE s.id=? AND s.account_id=? AND c.account_id=s.account_id AND c.client_id=? AND c.id=? AND c.revoked=0 AND c.contexts_read=1 AND c.expires_at>? AND s.expires_at>? AND a.revoked=0 AND s.encrypted_context=?').bind(id, accountId, clientId, connectionId, now(), now(), share.encrypted_context).first();
   if (!live) throw new ApiError('SHARE_NOT_FOUND', 404);
   return { id: share.id, profileId: share.profile_id, title: share.title, text, createdAt: share.created_at, expiresAt: share.expires_at };
 }

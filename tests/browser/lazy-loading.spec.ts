@@ -90,8 +90,8 @@ test('a failed optional account module leaves local settings and backup usable',
   await expect(page.getByRole('button', { name: '下载备份', exact: true })).toBeVisible();
   await expect(page.locator('.settings-language .setting-trigger')).toBeEnabled();
   const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: '下载备份', exact: true }).click();
-  expect((await download).suggestedFilename()).toMatch(/^lingfern-backup-.*\.zip$/);
+  await page.getByRole('button', { name: '下载备份', exact: true }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
+  expect((await download).suggestedFilename()).toMatch(/^lingfern-\d{4}-\d{2}-\d{2}\.zip$/);
 });
 
 test('reference pages do not load the daily quotation index until Today is opened', async ({ page }) => {

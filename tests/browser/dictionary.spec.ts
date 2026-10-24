@@ -1,4 +1,4 @@
-import { openSnapshot, completeWorkspace } from './workspace';
+import { openSnapshot, completeWorkspace, focusQuestion } from './workspace';
 import { confirmTask } from './task-start';
 import { expect, test, type Page } from '@playwright/test';
 import { selectPicker } from './picker';
@@ -22,6 +22,33 @@ async function highlightPassageWord(page: Page, word: string) {
 async function selectPassageWord(page: Page, word: string) {
   await highlightPassageWord(page, word);
 }
+
+test('a dismissed pending lookup cannot mark the next material as dictionary-assisted', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/dictionary/oewn-2025/l.json', async route => {
+    await pending;
+    await route.fulfill({ json: { library: [{ id: 'library%1:00:00::', pos: 'noun', definition: 'A place where you can read or borrow books.' }] } });
+  });
+  const { id, lesson } = await openSnapshot(page, 'a1-reading', true);
+  await selectPassageWord(page, 'library');
+  const requested = page.waitForRequest('**/dictionary/oewn-2025/l.json');
+  await page.getByRole('button', { name: '查词', exact: true }).click();
+  await requested;
+  try {
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.selection-dictionary')).toHaveCount(0);
+    await focusQuestion(page, lesson, 1);
+    await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).position, id)).toBe(1);
+  } finally { release(); }
+  // Join the shared fetch, then read after any queued assistance transaction.
+  const assistance = await page.evaluate(async id => {
+    await (await import('/src/shared/dictionary.ts' as string)).lookupDictionary('library');
+    return (await (await import('/src/data/db.ts' as string)).sessions.get(id)).assistance;
+  }, id);
+  expect(assistance.dictionaryUsed).not.toBe(true);
+});
 
 test('local suggestions rank exact entries first and support keyboard and touch-sized selection', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });

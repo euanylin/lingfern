@@ -24,7 +24,7 @@ test('bookmarks one dictionary meaning, opts into review and restores it from ZI
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto('/settings');
   const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: '下载备份' }).click();
+  await page.getByRole('button', { name: '下载备份' }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
   const saved = await download;
   const bytes = await (await import('node:fs/promises')).readFile((await saved.path())!);
   await page.getByLabel('从备份恢复').setInputFiles({ name: 'memory.zip', mimeType: 'application/zip', buffer: bytes });
@@ -109,7 +109,7 @@ test('received public sense reviews appear with clock safeguards, without transf
   await page.evaluate(async () => { const path = '/src/data/db.ts'; await (await import(path)).settings.put({ key: 'profile:local-guest:locale', value: 'zh-Hans' }); });
   await page.goto('/settings');
   const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: '下载备份' }).click();
+  await page.getByRole('button', { name: '下载备份' }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
   const saved = await download;
   const bytes = await (await import('node:fs/promises')).readFile((await saved.path())!);
   await page.getByLabel('从备份恢复').setInputFiles({ name: 'received-reviews.zip', mimeType: 'application/zip', buffer: bytes });

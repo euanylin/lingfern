@@ -8,7 +8,7 @@ test('short and long pages retain the same document width with classic scrollbar
   const pending = new Promise<void>(resolve => { release = resolve; });
   await page.route('**/src/app/OfflineInstall.tsx*', async route => { await pending; await route.continue(); });
   await page.goto('/library');
-  await expect(page.locator('main > p[role=status]')).toBeVisible();
+  await expect(page.locator('main > p[role=status]')).toHaveClass('sr-only');
   const box = () => page.locator('body').evaluate(element => ({ x: element.getBoundingClientRect().x, width: element.getBoundingClientRect().width }));
   const before = await box();
   release();

@@ -21,13 +21,14 @@ const optionalNames = [...currentNames, licenceName] as const;
 const MAX_LICENCE = 64 * 1024;
 const MAX_ZIP = 32 * 1024 * 1024;
 const MAX_UNPACKED = 64 * 1024 * 1024;
+const MAX_ROWS = 50_000;
 const MAX_PROFILE_NAME = 80;
 const encoder = new TextEncoder();
 const decoder = new TextDecoder('utf-8', { fatal: true });
 const sessionSchema = z.object({ id: z.string().min(1).max(80), syncSessionId: z.string().min(1).max(80).optional(), profileId: z.string().min(1).max(80), lesson: lessonSchema, ruleHashes: ruleHashesSchema.optional(), itemHashes: z.record(z.string().min(1).max(80), z.string().regex(/^[a-f0-9]{64}$/)).optional(), contentHash: z.string().regex(/^[a-f0-9]{64}$/), recordsDeleted: z.literal(true).optional(), position: z.number().int().nonnegative(), status: z.enum(['active', 'completed', 'ended']), startedAt: z.iso.datetime(), checkDeviceId: z.uuid().optional(), checkGroupId: z.uuid().optional(), practiceGroupId: z.uuid().optional(), checkStartedAt: z.iso.datetime().optional(), checkEndedAt: z.iso.datetime().optional(), workspace: workspaceSchema.optional(), readingAnnotations: readingAnnotationsSchema.optional(), draft: z.union([z.number(), z.string().max(4000), z.array(z.string())]).optional(), assistance: assistanceSchema, leaseUntil: z.number().nonnegative() }).strict();
 const attemptSchema = z.object({ id: z.string().min(1).max(160), syncRecordId: z.string().min(1).max(160).optional(), sessionId: z.string().min(1).max(80), profileId: z.string().min(1).max(80), questionId: z.string().min(1).max(80), rootId: z.string().min(1).max(160), answer: z.union([z.number(), z.string().max(4000), z.array(z.string())]), correct: z.boolean().nullable(), selfAssessment: selfAssessmentSchema.optional(), rule: z.string().min(1).max(120), assistance: assistanceSchema, submittedAt: z.iso.datetime() }).strict();
-const fileSchema = z.object({ bytes: z.number().int().nonnegative().max(MAX_UNPACKED), sha256: z.string().regex(/^[a-f0-9]{64}$/), count: z.number().int().nonnegative().max(50_000) }).strict();
-const manifestSchema = z.object({ format: z.literal('lingfern-local-backup'), version: z.literal(5), createdAt: z.iso.datetime(), sourceProfileId: z.string().min(1).max(80), profileName: z.string().min(1).max(MAX_PROFILE_NAME), preferences: preferencesSchema.optional(), files: z.record(z.string(), fileSchema) }).strict();
+const fileSchema = z.object({ bytes: z.number().int().nonnegative().max(MAX_UNPACKED), sha256: z.string().regex(/^[a-f0-9]{64}$/), count: z.number().int().nonnegative().max(MAX_ROWS) }).strict();
+const manifestSchema = z.object({ format: z.literal('lingfern-local-backup'), version: z.literal(5), createdAt: z.iso.datetime(), sourceProfileId: z.string().min(1).max(80), profileName: z.string().min(1).max(MAX_PROFILE_NAME).default('Local profile'), nameIsCustom: z.literal(true).optional(), preferences: preferencesSchema.optional(), files: z.record(z.string(), fileSchema) }).strict();
 const memorySchema = z.object({ profileId: z.string().min(1).max(80), memoryId: z.string().min(1).max(160), term: z.string().min(1).max(80), definition: z.string().min(1).max(2000), savedAt: z.iso.datetime(), reviewEnabled: z.boolean() }).strict();
 const reviewSchema = z.object({ id: syncIdSchema, profileId: z.string().min(1).max(80), memoryId: z.string().min(1).max(160), occurredAt: z.iso.datetime(), rating: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]), assistance: z.object({ answerRevealed: z.boolean(), hintUsed: z.boolean() }).strict(), configId: z.literal(memoryConfigId) }).strict();
 const feedbackNoteSchema = z.object({ id: z.uuid(), profileId: z.string().min(1).max(80), attemptId: z.string().min(1).max(160), kind: z.enum(['text', 'structured']), content: z.string().min(1).max(64 * 1024), unknownReferences: z.boolean(), createdAt: z.iso.datetime() }).strict();
@@ -42,13 +43,13 @@ async function sha256(bytes: Uint8Array) {
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new Uint8Array(bytes))), value => value.toString(16).padStart(2, '0')).join('');
 }
 
-function backupProfileName(name: string, suffix = '') {
+function backupProfileName(name: string) {
   let prefix = '';
   for (const character of name) {
-    if (prefix.length + character.length + suffix.length > MAX_PROFILE_NAME) break;
+    if (prefix.length + character.length > MAX_PROFILE_NAME) break;
     prefix += character;
   }
-  return `${prefix}${suffix}` || 'Local profile';
+  return prefix || 'Local profile';
 }
 
 // Retain timing rows; pause absent cards until their original events are confirmed.
@@ -63,14 +64,15 @@ async function backupMemoryCard(memory: Memory, reviews: MemoryReview[], events:
     const savedAt = times.get(first?.id ?? '') ?? memory.savedAt;
     const effective = reviews.filter(review => review.memoryId === memory.memoryId).map(review => ({ ...review, occurredAt: times.get(review.id) ?? review.occurredAt }));
     if (Date.parse(savedAt) > Date.now() + 5 * 60_000 || effective.some(review => Date.parse(review.occurredAt) > Date.now() + 5 * 60_000)) return undefined;
-    return replayMemory(savedAt, effective);
+    return replayMemory(savedAt, effective, new Map(source.map(event => [event.id, event.counter])));
   } catch (error) {
     if (error instanceof Error && (error.message === 'REVIEW_TIMING_INVALID' || error.message === 'REVIEW_CLOCK' && source.some(event => event.type === 'review_timing' && event.payload.memoryId === memory.memoryId))) return undefined;
     throw error;
   }
 }
 
-export async function exportBackup(profileId: string) {
+export async function exportBackup(profileId: string, profileName?: string) {
+  const selectedName = profileName === undefined ? undefined : manifestSchema.shape.profileName.parse(profileName);
   await bootstrapSyncEvents(profileId);
   await purgeDeletedRecords(profileId);
   const { profile, ...snapshot } = await db.transaction('r', [profiles, sessions, attempts, exposures, memories, memoryReviews, feedbackNotes, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => ({
@@ -86,6 +88,8 @@ export async function exportBackup(profileId: string) {
       syncClocks: await db.table('syncClocks').where('profileId').equals(profileId).toArray(),
       syncConflicts: await db.table('syncConflicts').where('profileId').equals(profileId).toArray(),
     }));
+  if (snapshot.syncClocks.some((clock: Clock) => clock.deleted)) throw new Error('PROFILE_DELETED');
+  if (Object.values(snapshot).some(rows => rows.length > MAX_ROWS)) throw new Error('BACKUP_SIZE');
   const payload: Record<string, Uint8Array> = {
     'sessions.json': encoder.encode(JSON.stringify(snapshot.sessions)),
     'attempts.json': encoder.encode(JSON.stringify(snapshot.attempts)),
@@ -100,14 +104,16 @@ export async function exportBackup(profileId: string) {
   };
   if (snapshot.sessions.some(session => session.lesson.materials.some(material => isGutenbergSource(material.credit?.sourceUrl)))) payload[licenceName] = encoder.encode(gutenbergTerms);
   const fileEntries = await Promise.all(Object.entries(payload).map(async ([name, bytes]) => [name, { bytes: bytes.length, sha256: await sha256(bytes), count: name === licenceName ? 1 : snapshot[name.slice(0, -5) as keyof typeof snapshot].length }] as const));
-  const manifest = { format: 'lingfern-local-backup', version: 5, createdAt: new Date().toISOString(), sourceProfileId: profileId, profileName: backupProfileName(profile?.name ?? 'Local profile'), preferences: profile?.preferences, files: Object.fromEntries(fileEntries) };
-  const zip = zipSync({ 'manifest.json': encoder.encode(JSON.stringify(manifest)), ...payload }, { level: 6 });
+  const manifest = { format: 'lingfern-local-backup', version: 5, createdAt: new Date().toISOString(), sourceProfileId: profileId, profileName: selectedName ?? backupProfileName(profile?.name ?? 'Local profile'), nameIsCustom: (selectedName === undefined ? profile?.nameIsCustom : selectedName.includes('Local profile')) || undefined, preferences: profile?.preferences, files: Object.fromEntries(fileEntries) };
+  const files = { 'manifest.json': encoder.encode(JSON.stringify(manifest)), ...payload };
+  if (Object.values(files).reduce((total, bytes) => total + bytes.length, 0) > MAX_UNPACKED) throw new Error('BACKUP_SIZE');
+  const zip = zipSync(files, { level: 6 });
   if (zip.length > MAX_ZIP) throw new Error('BACKUP_SIZE');
   return zip;
 }
 
 export type BackupInspection = {
-  summary: { preferences?: Preferences; createdAt: string; profileName: string; sourceProfileId: string; sessions: number; attempts: number; exposures: number; memories: number; memoryReviews: number; feedbackNotes: number; bytes: number };
+  summary: { preferences?: Preferences; createdAt: string; profileName: string; nameIsCustom?: true; sourceProfileId: string; sessions: number; attempts: number; exposures: number; memories: number; memoryReviews: number; feedbackNotes: number; bytes: number };
   records: { sessions: Session[]; attempts: Attempt[]; exposures: Exposure[]; memories: Memory[]; memoryReviews: MemoryReview[]; feedbackNotes: FeedbackNote[]; syncEvents: StoredEvent[]; syncBatches: StoredBatch[]; syncClocks: Clock[]; syncConflicts: SyncConflict[] };
 };
 
@@ -128,7 +134,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
     const file = files[name];
     const expected = manifest.files[name];
     if (file.length !== expected.bytes || await sha256(file) !== expected.sha256) throw new Error('BACKUP_INTEGRITY');
-    const rows = z.array(schema).max(50_000).parse(JSON.parse(decoder.decode(file)));
+    const rows = z.array(schema).max(MAX_ROWS).parse(JSON.parse(decoder.decode(file)));
     if (rows.length !== expected.count) throw new Error('BACKUP_INTEGRITY');
     return rows;
   };
@@ -205,7 +211,6 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
   const attemptIds = new Set(savedAttempts.map(attempt => attempt.id));
   if (new Set(savedFeedback.map(note => note.id)).size !== savedFeedback.length || savedFeedback.some(note => note.profileId !== manifest.sourceProfileId || !attemptIds.has(note.attemptId))) throw new Error('BACKUP_REFERENCE');
   if (savedExposures.some(exposure => exposure.profileId !== manifest.sourceProfileId)) throw new Error('BACKUP_REFERENCE');
-  if (new Set(savedExposures.map(exposure => exposure.rootId)).size !== savedExposures.length) throw new Error('BACKUP_DUPLICATE');
   for (const exposure of savedExposures) for (const contact of exposure.contacts ?? []) {
     const session = byId.get(contact.sessionId);
     const item = session && questions(session.lesson).find(item => item.question.id === contact.questionId);
@@ -215,10 +220,11 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
   if (memoryIds.size !== savedMemories.length || new Set(savedReviews.map(review => review.id)).size !== savedReviews.length) throw new Error('BACKUP_DUPLICATE');
   if (savedMemories.some(memory => memory.profileId !== manifest.sourceProfileId) || savedReviews.some(review => review.profileId !== manifest.sourceProfileId || !memoryIds.has(review.memoryId))) throw new Error('BACKUP_REFERENCE');
   for (const memory of savedMemories) await backupMemoryCard(memory, savedReviews, savedSyncEvents);
-  return { summary: { preferences: manifest.preferences, createdAt: manifest.createdAt, profileName: manifest.profileName, sourceProfileId: manifest.sourceProfileId, sessions: savedSessions.length, attempts: savedAttempts.length, exposures: savedExposures.length, memories: savedMemories.length, memoryReviews: savedReviews.length, feedbackNotes: savedFeedback.length, bytes: bytes.length }, records: { sessions: savedSessions, attempts: savedAttempts, exposures: savedExposures, memories: savedMemories, memoryReviews: savedReviews, feedbackNotes: savedFeedback, syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncClocks: savedSyncClocks, syncConflicts: savedSyncConflicts } };
+  return { summary: { preferences: manifest.preferences, createdAt: manifest.createdAt, profileName: manifest.profileName, ...(manifest.nameIsCustom ? { nameIsCustom: true } : {}), sourceProfileId: manifest.sourceProfileId, sessions: savedSessions.length, attempts: savedAttempts.length, exposures: savedExposures.length, memories: savedMemories.length, memoryReviews: savedReviews.length, feedbackNotes: savedFeedback.length, bytes: bytes.length }, records: { sessions: savedSessions, attempts: savedAttempts, exposures: savedExposures, memories: savedMemories, memoryReviews: savedReviews, feedbackNotes: savedFeedback, syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncClocks: savedSyncClocks, syncConflicts: savedSyncConflicts } };
 }
 
-export async function importBackup(inspection: BackupInspection, accountId?: number) {
+export async function importBackup(inspection: BackupInspection, accountId?: number, expectedActiveProfile?: string) {
+  if (expectedActiveProfile !== undefined) profileIdSchema.parse(expectedActiveProfile);
   const oldClock = inspection.records.syncClocks[0];
   const logicalProfileId = oldClock?.logicalProfileId ?? inspection.summary.sourceProfileId;
   const association = accountId === undefined ? undefined : syncAccountSchema.parse({ accountId, profileId: logicalProfileId });
@@ -232,7 +238,8 @@ export async function importBackup(inspection: BackupInspection, accountId?: num
   const importedReviews = inspection.records.memoryReviews.map(review => ({ ...review, profileId: id }));
   const importedFeedback = inspection.records.feedbackNotes.map(note => ({ ...note, id: crypto.randomUUID(), profileId: id, attemptId: attemptIds.get(note.attemptId)! }));
   await db.transaction('rw', [profiles, sessions, attempts, exposures, memories, memoryReviews, feedbackNotes, settings, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => {
-    await profiles.add({ id, preferences: inspection.summary.preferences, name: backupProfileName(inspection.summary.profileName, ` · ${new Date(inspection.summary.createdAt).toLocaleDateString()}`), createdAt: new Date().toISOString() });
+    if (expectedActiveProfile !== undefined && ((await settings.get('activeProfile'))?.value !== expectedActiveProfile || !await profiles.get(expectedActiveProfile))) throw new Error('SYNC_SCOPE_CHANGED');
+    await profiles.add({ id, preferences: inspection.summary.preferences, name: inspection.summary.profileName, ...(inspection.summary.nameIsCustom ? { nameIsCustom: true } : {}), createdAt: new Date().toISOString() });
     await sessions.bulkAdd(importedSessions);
     await attempts.bulkAdd(importedAttempts);
     await exposures.bulkAdd(importedExposures);

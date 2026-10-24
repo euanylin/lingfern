@@ -61,6 +61,79 @@ test('external feedback is reviewed and saved as a note without changing the ans
   expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).attempts.toArray()).map((attempt: {correct:boolean; answer:number}) => ({correct:attempt.correct,answer:attempt.answer})))).toEqual([{correct:true,answer:1},{correct:true,answer:1}]);
 });
 
+test('pending feedback saves reject duplicate clicks and preserve the approved draft', async ({ page }) => {
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
+  const handoff = page.locator('.ai-handoff').first();
+  await handoff.locator(':scope > summary').click();
+  const pasted = handoff.getByLabel('粘贴纯文本反馈');
+  await pasted.fill('One approved synthetic feedback note.');
+  await handoff.getByRole('button', { name: '检查反馈', exact: true }).click();
+  await page.evaluate(async () => {
+    const { db, feedbackNotes } = await import('/src/data/db.ts' as string);
+    const add = feedbackNotes.add.bind(feedbackNotes);
+    const pending = new Promise<void>(resolve => window.addEventListener('release-feedback-save', () => resolve(), { once: true }));
+    feedbackNotes.add = async (note: unknown) => { await db.constructor.waitFor(pending); return add(note); };
+  });
+  const save = handoff.getByRole('button', { name: '保存为笔记', exact: true });
+  await save.evaluate(button => { (button as HTMLButtonElement).click(); (button as HTMLButtonElement).click(); });
+  try {
+    await expect(save).toBeDisabled();
+    await expect(pasted).toBeDisabled();
+    await expect(handoff.getByRole('button', { name: '检查反馈', exact: true })).toBeDisabled();
+    await expect(handoff.getByLabel('选择 JSON 反馈')).toBeDisabled();
+  } finally { await page.evaluate(() => window.dispatchEvent(new Event('release-feedback-save'))); }
+  await expect(handoff.getByRole('status').filter({ hasText: '反馈已保存为笔记。' })).toBeVisible();
+  await expect(pasted).toBeEnabled();
+  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).feedbackNotes.toArray()).map((note: { content: string }) => note.content))).toEqual(['One approved synthetic feedback note.']);
+  await page.reload();
+  await page.locator('.ai-handoff').first().locator(':scope > summary').click();
+  await expect(page.getByText('One approved synthetic feedback note.', { exact: true })).toHaveCount(1);
+  await expect(page.locator('.slot-result')).toHaveText([/✓/, /✓/]);
+});
+
+test('pending JSON feedback reads cannot save an older preview and unlock after invalid input', async ({ page }) => {
+  const { lesson } = await openSnapshot(page, 'a1-reading', true);
+  await completeWorkspace(page, lesson);
+  const handoff = page.locator('.ai-handoff').first();
+  await handoff.locator(':scope > summary').click();
+  const pasted = handoff.getByLabel('粘贴纯文本反馈');
+  const review = handoff.getByRole('button', { name: '检查反馈', exact: true });
+  const file = handoff.getByLabel('选择 JSON 反馈');
+  await pasted.fill('Previous synthetic plain text preview.');
+  await review.click();
+  await expect(handoff.getByRole('button', { name: '保存为笔记', exact: true })).toBeEnabled();
+  await page.evaluate(() => {
+    const read = File.prototype.text;
+    const pending = new Promise<void>(resolve => window.addEventListener('release-feedback-json', () => resolve(), { once: true }));
+    File.prototype.text = async function () {
+      if (this.name === 'pending-feedback.json') await pending;
+      return read.call(this);
+    };
+  });
+  await file.setInputFiles({ name: 'pending-feedback.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ explanation: 'New synthetic JSON feedback.' })) });
+  try {
+    await expect(handoff.getByRole('button', { name: '保存为笔记', exact: true })).toHaveCount(0);
+    await expect(pasted).toBeDisabled();
+    await expect(review).toBeDisabled();
+    await expect(file).toBeDisabled();
+    expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).feedbackNotes.count())).toBe(0);
+  } finally { await page.evaluate(() => window.dispatchEvent(new Event('release-feedback-json'))); }
+  await expect(handoff.getByText('New synthetic JSON feedback.', { exact: true })).toBeVisible();
+  await expect(pasted).toBeEnabled();
+  await handoff.getByRole('button', { name: '保存为笔记', exact: true }).click();
+  await expect(handoff.getByRole('status').filter({ hasText: '反馈已保存为笔记。' })).toBeVisible();
+  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).feedbackNotes.toArray()).map((note: { content: string }) => note.content))).toEqual(['New synthetic JSON feedback.']);
+  await file.setInputFiles({ name: 'invalid-feedback.json', mimeType: 'application/json', buffer: Buffer.from('{') });
+  await expect(handoff.getByRole('status').filter({ hasText: '反馈无效或过大' })).toBeVisible();
+  await expect(review).toBeEnabled();
+  await expect(file).toBeEnabled();
+  await pasted.fill('Recovered synthetic feedback after invalid JSON.');
+  await review.click();
+  await expect(handoff.getByRole('paragraph').filter({ hasText: 'Recovered synthetic feedback after invalid JSON.' })).toBeVisible();
+  await expect(page.locator('.slot-result')).toHaveText([/✓/, /✓/]);
+});
+
 test('material excerpt is selected from the original text and clearly labelled in export', async ({ page }) => {
   const { lesson } = await openSnapshot(page, 'a1-reading', true);
   await completeWorkspace(page, lesson);

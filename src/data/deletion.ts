@@ -1,9 +1,41 @@
 import Dexie from 'dexie';
-import { attempts, db, exposures, feedbackNotes, sessions, settings, syncClocks, syncEvents } from './db';
+import { attempts, db, exposures, feedbackNotes, profiles, sessions, settings, syncClocks, syncEvents } from './db';
 import { appendSyncEvent, boundedReferences, readSyncEvents } from './sync';
 import { exposureContactKey, projectSyncEvents } from '../shared/sync';
 import { questions } from '../shared/content';
 import { profileIdSchema } from '../shared/repository';
+
+export async function deleteLocalProfile(profileId: string, expectedName: string) {
+  profileIdSchema.parse(profileId);
+  const remove = () => db.transaction('rw', db.tables, async () => {
+    const profile = await profiles.get(profileId);
+    if (!profile || profile.name !== expectedName || (await settings.get('activeProfile'))?.value !== profileId) throw new Error('SYNC_SCOPE_CHANGED');
+    if (await sessions.where('profileId').equals(profileId).filter(session => !!session.owner && session.leaseUntil > Date.now()).count()) throw new Error('BUSY');
+    const lease = await settings.get(`profile:${profileId}:syncLease`);
+    if (lease && JSON.parse(lease.value).expiresAt > Date.now()) throw new Error('BUSY');
+    for (const table of db.tables) {
+      if (table.name === 'profiles' || table.name === 'settings') continue;
+      if (table.name === 'exposures') await table.where('[profileId+rootId]').between([profileId, Dexie.minKey], [profileId, Dexie.maxKey]).delete();
+      else await table.where('profileId').equals(profileId).delete();
+    }
+    await settings.where('key').startsWith(`profile:${profileId}:`).delete();
+    await profiles.delete(profileId);
+    // Keep only an opaque local marker so delayed writes cannot resurrect deleted data.
+    await syncClocks.put({ profileId, deviceId: crypto.randomUUID(), counter: 0, deleted: true });
+    let next = await profiles.toCollection().first();
+    if (!next) {
+      next = { id: crypto.randomUUID(), name: 'Local profile', createdAt: new Date().toISOString() };
+      await profiles.add(next);
+    }
+    await settings.put({ key: 'activeProfile', value: next.id });
+    return next.id;
+  });
+  if (typeof navigator !== 'undefined' && navigator.locks) return navigator.locks.request(`lingfern-sync:${profileId}`, { ifAvailable: true }, lock => {
+    if (!lock) throw new Error('BUSY');
+    return remove();
+  });
+  return remove();
+}
 
 async function purge(profileId: string) {
   const projected = projectSyncEvents(await readSyncEvents(profileId));

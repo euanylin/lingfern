@@ -10,21 +10,23 @@ const labels = messages('syncAccountChoice');
 export function SyncAccountChoice({ locale, localProfileId, profileId, summary, onProfileChange, children }: { locale: Locale; localProfileId: string; profileId: string; summary: SessionSummary; onProfileChange: () => Promise<void>; children: ReactNode }) {
   const t = labels[locale], account = summary.account!;
   const [matched, setMatched] = useState(false), [ready, setReady] = useState(false);
+  const [readFailed, setReadFailed] = useState(false);
   const [choices, setChoices] = useState<{ value: string; label: string; profileId: string; localProfileId?: string }[]>([]), [target, setTarget] = useState('');
   const [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [reload, setReload] = useState(0);
   useEffect(() => {
     let alive = true;
-    setReady(false);
+    setReady(false); setReadFailed(false); setMessage('');
     void Promise.all([readSyncAccount(localProfileId), accountProfiles(account.id)]).then(([association, items]) => {
       if (!alive) return;
-      const options: typeof choices = items.map(item => ({ value: `local:${item.id}`, localProfileId: item.id, profileId: item.logicalProfileId, label: item.name.replace('Local profile', messages('profileBackup')[locale].local) }));
+      const options: typeof choices = items.map(item => ({ value: `local:${item.id}`, localProfileId: item.id, profileId: item.logicalProfileId, label: item.nameIsCustom ? item.name : item.name.replace('Local profile', messages('profileBackup')[locale].local) }));
       for (const binding of summary.bindings ?? []) if (!options.some(option => option.profileId === binding.profileId)) options.push({ value: `remote:${binding.profileId}`, profileId: binding.profileId, label: `${binding.owner}/${binding.name}` });
-      setChoices(options); setTarget(options[0]?.value ?? '');
+      setChoices(options); setTarget(current => options.some(option => option.value === current) ? current : options[0]?.value ?? '');
       setMatched(association?.accountId === account.id && association.profileId === profileId); setReady(true);
-    }).catch(() => { if (alive) { setMessage(t.failed); setReady(true); } });
+    }).catch(() => { if (alive) { setReadFailed(true); setReady(true); } });
     return () => { alive = false; };
   }, [localProfileId, profileId, account.id, summary.bindings, reload, locale, t.failed]);
   async function choose(copy: boolean) {
+    if (!ready || readFailed || busy) return;
     setBusy(true); setMessage('');
     try {
       if (copy) await copyProfileForAccount(localProfileId, account.id);
@@ -33,6 +35,7 @@ export function SyncAccountChoice({ locale, localProfileId, profileId, summary, 
     } catch { setMessage(t.failed); }
     finally { setBusy(false); }
   }
+  if (readFailed) return <section className="sync-account-choice"><h3>{t.title}</h3><p role="status">{t.failed}</p><button type="button" onClick={() => setReload(value => value + 1)}>{t.retry}</button></section>;
   if (!ready && !matched) return <p role="status">{t.loading}</p>;
   if (matched) return <>{children}</>;
   return <section className="sync-account-choice"><h3>{t.title}</h3><p>{t.choose}</p>

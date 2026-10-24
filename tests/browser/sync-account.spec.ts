@@ -15,11 +15,12 @@ test('account changes require a choice, preserve local originals, and do not upl
   await expect(page.locator('.sync-account-choice')).toContainText('不关联此账号');
   await expect(page.locator('.repository-binding')).toHaveCount(0);
   await expect(page.getByRole('button', { name: /^当前档案:/ })).toHaveAttribute('data-value', 'local-guest');
+  const originalLabel = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('aria-label');
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
   await expect(page.locator('.repository-binding')).toBeVisible();
   const copied = await page.getByRole('button', { name: /^当前档案:/ }).getAttribute('data-value');
   expect(copied).not.toBe('local-guest');
-  await expect(page.getByRole('button', { name: /^当前档案:/ })).toContainText(' · ');
+  await expect(page.getByRole('button', { name: /^当前档案:/ })).toHaveAttribute('aria-label', originalLabel!);
   accountId = 2;
   await page.reload();
   await expect(page.locator('.sync-account-choice')).toBeVisible();

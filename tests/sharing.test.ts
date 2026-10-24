@@ -42,16 +42,16 @@ test('shares are encrypted, explicitly approved, scoped, expiring and absent fro
   expect(row.encrypted_context).not.toContain(f.value.text);
   const listed = await (await sharingRoute(f.request('/api/ai/shares'), f.env))!.text();
   expect(listed).toContain(summary.id); expect(listed).not.toContain('encrypted_context'); expect(listed).not.toContain(f.value.text);
-  expect(await readSharedContext(f.env, 1, 'synthetic-client', summary.id)).toMatchObject({ text: f.value.text, profileId: 'local-guest' });
-  await expect(readSharedContext(f.env, 2, 'synthetic-client', summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
-  await expect(readSharedContext(f.env, 1, 'other-client', summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
+  expect(await readSharedContext(f.env, 1, 'synthetic-client', f.value.connectionId, summary.id)).toMatchObject({ text: f.value.text, profileId: 'local-guest' });
+  await expect(readSharedContext(f.env, 2, 'synthetic-client', f.value.connectionId, summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
+  await expect(readSharedContext(f.env, 1, 'other-client', f.value.connectionId, summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
   f.sqlite.exec('UPDATE mcp_connections SET contexts_read=0');
   const managed = await (await sharingRoute(f.request('/api/ai/connections'), f.env))!.json();
   expect(managed).toMatchObject({ connections: [{ id: f.value.connectionId, contextsRead: 0, materialsRead: 0 }] });
-  await expect(readSharedContext(f.env, 1, 'synthetic-client', summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
+  await expect(readSharedContext(f.env, 1, 'synthetic-client', f.value.connectionId, summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
   f.sqlite.exec('UPDATE mcp_connections SET contexts_read=1');
   f.sqlite.exec('UPDATE shared_contexts SET expires_at=0');
-  await expect(readSharedContext(f.env, 1, 'synthetic-client', summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
+  await expect(readSharedContext(f.env, 1, 'synthetic-client', f.value.connectionId, summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
   await cleanupShares(f.env); expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts').get()!.n).toBe(0);
   expect(f.primary.every(value => value === 'first-primary')).toBe(true);
 });
@@ -59,27 +59,27 @@ test('shares are encrypted, explicitly approved, scoped, expiring and absent fro
 test('client snapshot pagination returns only authorized summaries and validates bounded inputs', async () => {
   const f = await fixture();
   for (let i = 0; i < 3; i++) expect((await f.create()).status).toBe(201);
-  const first = await listSharedContexts(f.env, 1, 'synthetic-client', { count: 2 });
+  const first = await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId, { count: 2 });
   expect(first.contexts).toHaveLength(2); expect(first.cursor).toBe(first.contexts[1].id);
   expect(JSON.stringify(first)).not.toContain(f.value.text);
   expect(Object.keys(first.contexts[0]).sort()).toEqual(['createdAt', 'expiresAt', 'id', 'profileId', 'title']);
   f.sqlite.prepare('DELETE FROM shared_contexts WHERE id=?').run(first.contexts[0].id);
-  const last = await listSharedContexts(f.env, 1, 'synthetic-client', { count: 2, cursor: first.cursor });
+  const last = await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId, { count: 2, cursor: first.cursor });
   expect(last.contexts).toHaveLength(1); expect(last.cursor).toBeUndefined();
   expect(first.contexts.map(value => value.id)).not.toContain(last.contexts[0].id);
-  expect((await listSharedContexts(f.env, 2, 'synthetic-client')).contexts).toEqual([]);
-  expect((await listSharedContexts(f.env, 1, 'foreign-client')).contexts).toEqual([]);
-  for (const input of [{ count: 21 }, { count: 0 }, { cursor: 'invalid' }, { accountId: 1 }]) await expect(listSharedContexts(f.env, 1, 'synthetic-client', input)).rejects.toThrow();
+  expect((await listSharedContexts(f.env, 2, 'synthetic-client', f.value.connectionId)).contexts).toEqual([]);
+  expect((await listSharedContexts(f.env, 1, 'foreign-client', f.value.connectionId)).contexts).toEqual([]);
+  for (const input of [{ count: 21 }, { count: 0 }, { cursor: 'invalid' }, { accountId: 1 }]) await expect(listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId, input)).rejects.toThrow();
   f.sqlite.exec('UPDATE mcp_connections SET contexts_read=0');
-  expect((await listSharedContexts(f.env, 1, 'synthetic-client')).contexts).toEqual([]);
+  expect((await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId)).contexts).toEqual([]);
   f.sqlite.exec('UPDATE mcp_connections SET contexts_read=1,revoked=1');
-  expect((await listSharedContexts(f.env, 1, 'synthetic-client')).contexts).toEqual([]);
+  expect((await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId)).contexts).toEqual([]);
   f.sqlite.exec('UPDATE mcp_connections SET revoked=0,expires_at=0');
-  expect((await listSharedContexts(f.env, 1, 'synthetic-client')).contexts).toEqual([]);
+  expect((await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId)).contexts).toEqual([]);
   f.sqlite.exec('UPDATE mcp_connections SET expires_at=2147483647; UPDATE accounts SET revoked=1');
-  expect((await listSharedContexts(f.env, 1, 'synthetic-client')).contexts).toEqual([]);
+  expect((await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId)).contexts).toEqual([]);
   f.sqlite.exec('UPDATE accounts SET revoked=0; UPDATE shared_contexts SET expires_at=0');
-  expect((await listSharedContexts(f.env, 1, 'synthetic-client')).contexts).toEqual([]);
+  expect((await listSharedContexts(f.env, 1, 'synthetic-client', f.value.connectionId)).contexts).toEqual([]);
   expect(f.primary.every(value => value === 'first-primary')).toBe(true);
 });
 
@@ -143,6 +143,27 @@ test('rejects missing confirmation, arbitrary clients/accounts, malformed/oversi
   expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts').get()!.n).toBe(0);
 });
 
+test.each(['search', 'list_shared_contexts', 'fetch', 'read_shared_context'])('MCP %s cannot cross connections belonging to the same client', async name => {
+  const f = await fixture(), summary = await (await f.create()).json() as { id: string };
+  const otherConnection = crypto.randomUUID(), time = Math.floor(Date.now() / 1000);
+  f.sqlite.prepare('INSERT INTO mcp_connections(id,account_id,client_id,name,created_at,expires_at,contexts_read,materials_read) VALUES(?,1,?,?,?,?,1,0)').run(otherConnection, 'synthetic-client', 'Another approval of the same client', time, time + 86400);
+  const call = async (connectionId: string) => {
+    const auth = { token: 'synthetic-verified-token', clientId: 'synthetic-client', scopes: ['mcp:read', 'contexts:read'], expiresAt: time + 3600, resource: new URL('http://127.0.0.1:8787/mcp'), extra: { accountId: 1, connectionId } };
+    const args = name === 'search' ? { query: '' } : name === 'list_shared_contexts' ? {} : { id: summary.id };
+    const response = await mcpFetch(new Request('http://127.0.0.1:8787/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream', 'MCP-Protocol-Version': '2025-11-25' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: args } }) }), f.env, auth, []);
+    expect(response.status).toBe(200);
+    const raw = await response.text();
+    return JSON.parse(raw.startsWith('event:') ? raw.split('\n').find(line => line.startsWith('data: '))!.slice(6) : raw).result;
+  };
+  const authorized = await call(f.value.connectionId);
+  expect(JSON.stringify(authorized)).toContain(summary.id);
+  const unrelated = await call(otherConnection);
+  if (name === 'search') expect(unrelated.structuredContent.results).toEqual([]);
+  else if (name === 'list_shared_contexts') expect(unrelated.structuredContent.contexts).toEqual([]);
+  else expect(unrelated).toMatchObject({ isError: true, content: [{ type: 'text', text: 'SHARE_NOT_FOUND' }] });
+  expect(JSON.stringify(unrelated)).not.toContain(f.value.text);
+});
+
 test('atomic insertion enforces the twenty-share capacity and rejects revocation during encryption', async () => {
   const f = await fixture();
   const responses = await Promise.all(Array.from({ length: 21 }, () => f.create()));
@@ -166,7 +187,7 @@ test('revocation and authenticated deletion block subsequent reads and physicall
   expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts').get()!.n).toBe(1);
 
   f.intercept(sql => { if (sql.startsWith('SELECT s.id FROM shared_contexts')) f.sqlite.exec('UPDATE mcp_connections SET revoked=1'); });
-  await expect(readSharedContext(f.env, 1, 'synthetic-client', summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
+  await expect(readSharedContext(f.env, 1, 'synthetic-client', f.value.connectionId, summary.id)).rejects.toThrow('SHARE_NOT_FOUND');
   f.intercept();
   expect((await sharingRoute(f.request(`/api/ai/shares/${summary.id}`, 'DELETE'), f.env))!.status).toBe(200);
   expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts').get()!.n).toBe(0);
@@ -180,7 +201,7 @@ test('revocation and authenticated deletion block subsequent reads and physicall
 test('ciphertext cannot be transplanted to another snapshot and sharing rate limits fail explicitly', async () => {
   const f = await fixture(), a = await (await f.create()).json() as { id: string }, b = await (await f.create()).json() as { id: string };
   f.sqlite.prepare('UPDATE shared_contexts SET encrypted_context=(SELECT encrypted_context FROM shared_contexts WHERE id=?) WHERE id=?').run(a.id, b.id);
-  await expect(readSharedContext(f.env, 1, 'synthetic-client', b.id)).rejects.toThrow();
+  await expect(readSharedContext(f.env, 1, 'synthetic-client', f.value.connectionId, b.id)).rejects.toThrow();
   f.sqlite.exec("UPDATE auth_limits SET count=30 WHERE key LIKE 'sharing:%'");
   const limited = (await sharingRoute(f.request('/api/ai/shares'), f.env))!;
   expect(limited.status).toBe(429); expect(limited.headers.get('Retry-After')).toBe('60');

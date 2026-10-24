@@ -11,6 +11,9 @@ export function startSyncSchedule(profileId: string, onMerge: () => Promise<void
   let operation: AbortController | undefined, statusKey = '';
   let dirty = true;
   const foreground = () => !stopped && document.visibilityState === 'visible' && navigator.onLine;
+  const reportStatus = (value: string) => db.transaction('rw', settings, db.table('syncClocks'), async () => {
+    if (!(await db.table('syncClocks').get(profileId))?.deleted) await settings.put({ key: statusKey, value });
+  });
   async function run(remote = false) {
     if (!foreground() || running || Date.now() - last < 60000 || Date.now() < retryAt) return;
     running = true;
@@ -33,7 +36,7 @@ export function startSyncSchedule(profileId: string, onMerge: () => Promise<void
       operation.signal.throwIfAborted();
       await uploadSyncBatch(profileId, consent, operation.signal);
       failures = 0; retryAt = 0;
-      await settings.put({ key: statusKey, value: 'done' });
+      await reportStatus('done');
     } catch (error) {
       if (operation?.signal.aborted || stopped) return;
       const code = error instanceof Error ? error.message : '';
@@ -42,7 +45,7 @@ export function startSyncSchedule(profileId: string, onMerge: () => Promise<void
       failures++;
       paused = !retryable || failures > 2;
       retryAt = Date.now() + failures * 60000 + Math.random() * 10000;
-      if (statusKey) await settings.put({ key: statusKey, value: paused ? 'paused' : 'retry' }).catch(() => {});
+      if (statusKey) await reportStatus(paused ? 'paused' : 'retry').catch(() => {});
     } finally { operation = undefined; running = false; }
   }
   const wake = () => { if (foreground()) void run(true); else operation?.abort(); };

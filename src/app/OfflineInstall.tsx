@@ -16,7 +16,7 @@ const libraryLabels = messages('offlineInstall_libraryLabels');
 
 const size = (bytes: number) => bytes < 1_048_576 ? `${Math.ceil(bytes / 1024)} KiB` : `${(bytes / 1_048_576).toFixed(1)} MiB`;
 
-export function OfflineInstall({ locale, online, onReady, profileId, initialInstalled, initialIntents }: { initialIntents?: Awaited<ReturnType<typeof readInstallationIntents>>; initialInstalled?: Set<string>; profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean, publicGroups: Set<string>) => void }) {
+export function OfflineInstall({ locale, online, onReady, onIntentsChange, profileId, initialInstalled, initialIntents }: { initialIntents?: Awaited<ReturnType<typeof readInstallationIntents>>; initialInstalled?: Set<string>; profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean, publicGroups: Set<string>) => void; onIntentsChange?: (intents: Awaited<ReturnType<typeof readInstallationIntents>>) => void }) {
   const t = labels[locale], ui = libraryLabels[locale];
   const sourceById = new Map(sourcePacks.map(pack => [pack.id, pack]));
   const downloadableGroups = [...offlineGroups, ...sourcePacks];
@@ -56,6 +56,8 @@ export function OfflineInstall({ locale, online, onReady, profileId, initialInst
   useEffect(() => { if (initialInstalled) { setInstalled(initialInstalled); setChecking(false); } }, [initialInstalled]);
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
+  const onIntentsChangeRef = useRef(onIntentsChange);
+  onIntentsChangeRef.current = onIntentsChange;
   useLayoutEffect(() => {
     const bar = actions.current, main = bar?.closest('main');
     if (!bar || !main) return;
@@ -73,13 +75,17 @@ export function OfflineInstall({ locale, online, onReady, profileId, initialInst
     return () => { live = false; controller.current?.abort(); };
   }, []);
   useEffect(() => {
-    const observer = liveQuery(() => readInstallationIntents(profileId)).subscribe({ next: setIntents, error: () => setError(t.intentFailed) });
+    const observer = liveQuery(() => readInstallationIntents(profileId)).subscribe({ next: intents => { setIntents(intents); onIntentsChangeRef.current?.(intents); }, error: () => setError(t.intentFailed) });
     return () => observer.unsubscribe();
   }, [profileId, t.intentFailed]);
   const pendingIntents = [...new Set([...intents.current].filter(id => !installed.has(id)).concat([...intents.unavailable]))];
   async function clearPending() {
     setDeleting(true); setError('');
-    try { for (const id of pendingIntents) await saveInstallationIntent(profileId, id, false); }
+    try {
+      for (const id of pendingIntents) await saveInstallationIntent(profileId, id, false);
+      const next = await readInstallationIntents(profileId);
+      setIntents(next); onIntentsChangeRef.current?.(next);
+    }
     catch { setError(t.intentFailed); }
     finally { setDeleting(false); }
   }

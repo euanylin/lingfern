@@ -1,11 +1,12 @@
 import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { liveQuery } from 'dexie';
 import { registerSW } from 'virtual:pwa-register';
 import { version as appVersion } from '../../package.json';
 import { localDay } from '../core/dailyQuoteSelection';
 import { communityPackageReady } from '../data/communityInstall';
 import type { CompletionTime } from '../data/completionTiming';
-import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, profiles, projectPreferences, releaseSession, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
+import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, db, profiles, projectPreferences, releaseSession, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
 import { purgeDeletedRecords, restartPractice } from '../data/deletion';
 import { installedOfflineGroups } from '../data/offline';
 import { readInstallationIntents } from '../data/installationIntent';
@@ -21,7 +22,7 @@ import { localeDirection, localeSchema } from '../shared/locale';
 import { automaticPractice, practiceSelectionMatches, readPracticeSelection, type PracticeSelection } from '../shared/practiceSelection';
 import { preferencesSchema, type Preferences } from '../shared/preferences';
 import { CorpusPractice, prepareCorpusPractice } from './CorpusPractice';
-import { DailyQuote } from './DailyQuote';
+import { DailyQuote, type DailyQuoteSelection } from './DailyQuote';
 import { Fern } from './Fern';
 import { FirstRun, firstRunCopy } from './FirstRun';
 import { copy, initialLocale } from './i18n';
@@ -81,6 +82,7 @@ export function App() {
   const githubSession = useGithubSession(path === '/settings');
   const currentPath = useRef(path); currentPath.current = path;
   const [todayDate, setTodayDate] = useState(() => localDay(new Date()));
+  const todayQuote = useRef<DailyQuoteSelection>(undefined);
   const [unsavedDemo, setUnsavedDemo] = useState(false);
   useEffect(() => { setUnsavedDemo(false); }, [path]);
   const [locale, setLocale] = useState<Locale>(initialLocale);
@@ -105,6 +107,15 @@ export function App() {
   const [pageSearch, setPageSearch] = useState(location.search);
   const resetNavigationScroll = useRef(false);
   useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; scrollTo(0, 0); } }, [path, pageSearch]);
+  useEffect(() => {
+    if (!ready || path !== '/settings' || location.hash !== '#mcp') return;
+    const locate = () => { const target = document.getElementById('mcp'); target?.scrollIntoView(); return !!target; };
+    if (locate()) return;
+    // The lazy identity card may mount after the browser's initial fragment scroll.
+    const observer = new MutationObserver(() => { if (locate()) observer.disconnect(); });
+    observer.observe(document.getElementById('main')!, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [path, ready]);
   const lookupQuery = new URLSearchParams(pageSearch).get('q') ?? '';
   const [records, setRecords] = useState<Attempt[]>([]);
   const [summaries, setSummaries] = useState<ResolvedSummary[]>([]);
@@ -127,26 +138,39 @@ export function App() {
   const [updateCheck, setUpdateCheck] = useState<'idle' | 'checking' | 'current' | 'offline' | 'unavailable' | 'failed'>('idle');
   const t = copy[locale];
   const sessionId = path.startsWith('/learn/') ? path.slice(7) : undefined;
+  const loadRevision = useRef(0);
   async function load() {
+    const current = ++loadRevision.current;
     setError('');
     try {
-      if (!await profiles.get('local-guest')) await profiles.put({ id: 'local-guest', name: 'Local profile', createdAt: new Date().toISOString() });
-      const saved = await settings.toArray();
-      const selectedProfile = saved.find(s => s.key === 'activeProfile')?.value ?? 'local-guest';
-      const profileId = await profiles.get(selectedProfile) ? selectedProfile : 'local-guest';
-      await bootstrapSyncEvents(profileId).catch(() => setError('save'));
+      const profileId = await db.transaction('rw', profiles, settings, async () => {
+        const selected = (await settings.get('activeProfile'))?.value;
+        let profile = selected ? await profiles.get(selected) : undefined;
+        profile ??= await profiles.toCollection().first();
+        if (!profile) {
+          profile = { id: 'local-guest', name: 'Local profile', createdAt: new Date().toISOString() };
+          await profiles.add(profile);
+        }
+        if (selected !== profile.id) await settings.put({ key: 'activeProfile', value: profile.id });
+        return profile.id;
+      });
+      await bootstrapSyncEvents(profileId).catch(() => { if (current === loadRevision.current) setError('save'); });
       await purgeDeletedRecords(profileId);
       const [all, answers, imported] = await Promise.all([sessions.where('profileId').equals(profileId).toArray(), attempts.where('profileId').equals(profileId).toArray(), communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready').toArray()]);
       const available = await Promise.all(imported.map(async pack => ({ pack, ready: await communityPackageReady(pack) })));
+      if (current !== loadRevision.current) return;
       const importedLessons = available.filter(item => item.ready).flatMap(item => item.pack.lessons);
       setCommunityLessons(importedLessons);
       setLocalCorpus(available.some(item => item.ready && !!item.pack.corpus?.records.length));
       setLocalSpoken(available.some(item => item.ready && !!item.pack.spoken?.records.length));
       const effective = await mergeLearningRecords([...catalogue, ...importedLessons], all, answers, await readSyncEvents(profileId));
+      const logicalProfileId = (await syncClocks.get(profileId))?.logicalProfileId ?? profileId;
+      if (current !== loadRevision.current) return;
       setTimingRows(effective.timingRows); setSummaries(effective.summaries); setUnavailableSummaries(effective.unavailable); setSummaryConflicts(effective.conflicting.size);
       setActiveProfile(profileId);
-      setLogicalProfile((await syncClocks.get(profileId))?.logicalProfileId ?? profileId);
+      setLogicalProfile(logicalProfileId);
       const { preferences: storedPreferences, values: savedValues } = await projectPreferences(profileId);
+      if (current !== loadRevision.current) return;
       setPreferences(storedPreferences ? preferencesSchema.parse(storedPreferences) : undefined);
       const showFirstRun = firstEntry && !storedPreferences?.completed && !all.length;
       firstEntry = false;
@@ -155,6 +179,7 @@ export function App() {
       const language = localeSchema.safeParse(savedValues.get('locale'));
       const nextLocale = language.success ? language.data : initialLocale();
       await Promise.all([loadUiLocale(nextLocale), loadInstructionLocale(nextLocale)]);
+      if (current !== loadRevision.current) return;
       setLocale(nextLocale);
       const appearance = savedValues.get('theme');
       setTheme(appearance && ['system','light','dark'].includes(appearance) ? appearance : 'system');
@@ -165,7 +190,7 @@ export function App() {
       setOnlineDictionary(defaultOnlineDictionary(savedValues.get('onlineDictionary')));
       setPracticeSelections({ reading: readPracticeSelection(savedValues.get('readingPractice')), listening: readPracticeSelection(savedValues.get('listeningPractice')) });
       setHistory(all.sort((a,b) => b.startedAt.localeCompare(a.startedAt))); setRecords(effective.records); setReady(true);
-    } catch { setError('read'); setReady(false); }
+    } catch { if (current === loadRevision.current) { setError('read'); setReady(false); } }
   }
   const syncLoad = useRef(load); syncLoad.current = load;
   useEffect(() => ready ? startSyncSchedule(activeProfile, () => syncLoad.current()) : undefined, [activeProfile, ready]);
@@ -176,7 +201,7 @@ export function App() {
       const anchor = event.target.closest<HTMLAnchorElement>('a[href^="/"]');
       if (!anchor || anchor.target || anchor.hasAttribute('download')) return;
       const url = new URL(anchor.href);
-      if (url.origin !== location.origin || !pageRoute(url.pathname)) return;
+      if (url.origin !== location.origin || !pageRoute(url.pathname) || url.hash) return;
       event.preventDefault();
       if (url.pathname === location.pathname && url.search === location.search) return;
       window.history.pushState(null, '', url.pathname + url.search);
@@ -187,6 +212,13 @@ export function App() {
     return () => { document.removeEventListener('click', click); removeEventListener('popstate', navigate); removeEventListener('online', network); removeEventListener('offline', network); };
   }, []);
   useEffect(() => { void load(); }, [path]);
+  useEffect(() => {
+    if (!ready) return;
+    const observer = liveQuery(async () => ({ profile: await profiles.get(activeProfile), selected: (await settings.get('activeProfile'))?.value })).subscribe({ next({ profile, selected }) {
+      if (!profile || selected !== activeProfile) void syncLoad.current();
+    }, error() { setError('read'); } });
+    return () => observer.unsubscribe();
+  }, [activeProfile, ready]);
   useEffect(() => {
     registerSW({ onNeedRefresh: () => { setUpdateAvailable(true); setUpdateDismissed(false); } });
   }, []);
@@ -367,9 +399,9 @@ export function App() {
         
         
         <div className="settings-data settings-service-groups">
-          <PageBoundary locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}><GithubIdentity session={githubSession} locale={locale} profileId={logicalProfile} localProfileId={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
+          <PageBoundary locale={locale}><Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><GithubIdentity session={githubSession} locale={locale} profileId={logicalProfile} localProfileId={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
           <SyncConflicts locale={locale} profileId={activeProfile}/>
-          <PageBoundary locale={locale}><Suspense fallback={<p role="status">{t.loading}</p>}><ProfileBackup locale={locale} activeProfile={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
+          <PageBoundary locale={locale}><Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><ProfileBackup locale={locale} activeProfile={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
         </div><section className="settings-update settings-card settings-about-update" aria-label={t.softwareUpdate}>
           <button className="update-action settings-about-row settings-update-row" type="button" disabled={updateCheck === 'checking'} aria-disabled={updateCheck === 'checking'} aria-busy={updateCheck === 'checking'} data-update-ready={updateAvailable} onClick={event => { if (updateAvailable) requestUpdate(event.currentTarget); else void checkForUpdates(); }}>
             <span>{t.checkUpdate}</span>
@@ -395,8 +427,8 @@ export function App() {
       {!online && <p className="notice" role="status">{offlineInstalled || localCorpus || localSpoken || communityLessons.length > 0 ? t.offlineInstalled : t.offline}</p>}
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
-      <Suspense fallback={<p role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
+      <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={progressRecords([], history, records, summaries).valid} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
@@ -407,7 +439,7 @@ export function App() {
         })}<div className="primary-task combined-training"><PracticeCard title={training.title} locale={locale} records={records} sessions={combinedTopicsChanged ? [] : combinedPeers} recommended={recommendation === 'combined'} busy={starting || combinedPreparing} dataSkill="combined" onStart={() => void openCombined()} onRestart={combinedPracticeSession && !combinedTopicsChanged ? () => restartSelected(combinedPracticeSession) : undefined}>
           {(['reading', 'listening'] as const).map(skill => <PracticeOptions history={history} records={records} key={`${activeProfile}:${skill}`} locale={locale} profileId={activeProfile} skill={skill} preferences={preferences} value={practiceSelections[skill]} disabled={starting || combinedPreparing} onChange={value => savePracticeSelection(skill, value)}/>) }
         </PracticeCard>{combinedError && <p className="practice-status" role="status">{combinedError} <a href="/library">{t.library}</a></p>}</div></div></section></div>
-        <DailyQuote locale={locale} onDayChange={setTodayDate}/></div>
+        <DailyQuote locale={locale} onDayChange={setTodayDate} initialSelection={todayQuote.current} onSelection={selection => { todayQuote.current = selection; }}/></div>
         
         {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue selections={practiceSelections} onSelection={savePracticeSelection} preferences={preferences} key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
         {combinedDetail && <TaskDetail key={combinedDetail[0].id + combinedDetail[1].id} lesson={combinedDetail[0]} additionalLesson={combinedDetail[1]} heading={training.title} locale={locale} profileId={activeProfile} action={training.start} busy={starting} onStart={() => startCombinedPractice()} onCheck={() => startCombinedPractice(true)} onClose={() => { setCombinedDetail(undefined); requestAnimationFrame(() => { if (combinedInvoker.current?.isConnected && !combinedInvoker.current.matches(':disabled')) combinedInvoker.current.focus({ preventScroll: true }); }); }} startError={error === 'save' ? t.saveError : ''} available={true}/>}
@@ -420,13 +452,13 @@ export function App() {
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(ready, groups) => { setOfflineInstalled(ready); setInstalledGroups(groups); }}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(ready, groups) => { setOfflineInstalled(ready); setInstalledGroups(groups); }} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
       : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
-      : path === '/library/ipa' ? <Suspense fallback={<p role="status">{t.loading}</p>}><IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/></Suspense>
+      : path === '/library/ipa' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/></Suspense>
       : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
-      : path === '/settings/about' ? <Suspense fallback={<p role="status">{t.loading}</p>}><About/></Suspense>
+      : path === '/settings/about' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><About/></Suspense>
       : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
       </PageBoundary></Suspense>
     </main>

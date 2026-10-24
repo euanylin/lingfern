@@ -161,7 +161,9 @@ async function syncLock<T>(profileId: string, scope: SyncDownloadScope, signal: 
     try { return await work(); }
     catch (error) {
       const retryAt = error instanceof Error && error.cause && typeof error.cause === 'object' && 'retryAt' in error.cause ? error.cause.retryAt : undefined;
-      if (typeof retryAt === 'number' && Number.isFinite(retryAt)) await settings.put({ key: retryKey, value: String(retryAt) });
+      if (typeof retryAt === 'number' && Number.isFinite(retryAt)) await db.transaction('rw', settings, syncClocks, async () => {
+        if (!(await syncClocks.get(profileId))?.deleted) await settings.put({ key: retryKey, value: String(retryAt) });
+      });
       throw error;
     }
   };

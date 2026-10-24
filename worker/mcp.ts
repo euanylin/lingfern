@@ -30,27 +30,27 @@ export async function mcpFetch(request: Request, env: SharingEnv, auth: AuthInfo
     await authorize(env, auth);
     const handler = createMcpHandler(({ authInfo }) => {
       const server = new McpServer({ name: 'Lingfern', version: '0.1.106' });
-      const tool = async (permission: 'contexts' | 'materials', read: (accountId: number, clientId: string) => Promise<Record<string, unknown>>, limit = false) => {
+      const tool = async (permission: 'contexts' | 'materials', read: (accountId: number, clientId: string, connectionId: string) => Promise<Record<string, unknown>>, limit = false) => {
         try {
           const identity = await authorize(env, authInfo, permission);
           if (limit) await sharingLimit(env.AUTH_DB!.withSession('first-primary'), identity.accountId);
-          const value = await read(identity.accountId, authInfo!.clientId);
+          const value = await read(identity.accountId, authInfo!.clientId, identity.connectionId);
           await authorize(env, authInfo, permission);
           return { structuredContent: value, content: [{ type: 'text' as const, text: JSON.stringify(value) }] };
         } catch (error) { return { isError: true, ...(error instanceof ApiError && error.status === 403 ? { _meta: { 'mcp/www_authenticate': [`Bearer resource_metadata="${new URL('/.well-known/oauth-protected-resource/mcp', request.url)}", error="insufficient_scope", scope="mcp:read ${permission}:read"`] } } : {}), content: [{ type: 'text' as const, text: error instanceof ApiError ? error.message : 'MCP_READ_FAILED' }] }; }
       };
       const sharedUrl = `${env.LOCAL_AUTH === 'true' ? 'http://127.0.0.1:8787' : 'https://lingfern.com'}/settings#mcp`;
-      server.registerTool('search', { description: 'Search titles of unexpired learning contexts explicitly shared with this client. Use fetch to read a result; this never searches the full learning history.', inputSchema: z.object({ query: z.string().trim().max(160) }).strict(), annotations }, input => tool('contexts', async (accountId, clientId) => {
-        const { contexts } = await listSharedContexts(env, accountId, clientId, { count: 20 });
+      server.registerTool('search', { description: 'Search titles of unexpired learning contexts explicitly shared with this client. Use fetch to read a result; this never searches the full learning history.', inputSchema: z.object({ query: z.string().trim().max(160) }).strict(), annotations }, input => tool('contexts', async (accountId, clientId, connectionId) => {
+        const { contexts } = await listSharedContexts(env, accountId, clientId, connectionId, { count: 20 });
         const words = input.query.toLocaleLowerCase('en').split(/\s+/).filter(Boolean);
         return { results: contexts.filter(item => words.every(word => item.title.toLocaleLowerCase('en').includes(word))).map(item => ({ id: item.id, title: item.title, url: sharedUrl })) };
       }));
-      server.registerTool('fetch', { description: 'Read a context returned by search. Requires an explicit, unexpired share for this client. The URL opens authenticated sharing settings, not a public copy.', inputSchema: z.object({ id: shareIdSchema }).strict(), annotations }, input => tool('contexts', async (accountId, clientId) => {
-        const value = await readSharedContext(env, accountId, clientId, input.id);
+      server.registerTool('fetch', { description: 'Read a context returned by search. Requires an explicit, unexpired share for this client. The URL opens authenticated sharing settings, not a public copy.', inputSchema: z.object({ id: shareIdSchema }).strict(), annotations }, input => tool('contexts', async (accountId, clientId, connectionId) => {
+        const value = await readSharedContext(env, accountId, clientId, connectionId, input.id);
         return { id: value.id, title: value.title, text: value.text, url: sharedUrl, metadata: { createdAt: value.createdAt, expiresAt: value.expiresAt } };
       }));
-      server.registerTool('list_shared_contexts', { description: 'List learning contexts explicitly shared with this client, without full text.', inputSchema: listSharesSchema, annotations }, input => tool('contexts', (accountId, clientId) => listSharedContexts(env, accountId, clientId, input)));
-      server.registerTool('read_shared_context', { description: 'Read one explicitly shared, unexpired learning context.', inputSchema: z.object({ id: shareIdSchema }).strict(), annotations }, input => tool('contexts', (accountId, clientId) => readSharedContext(env, accountId, clientId, input.id)));
+      server.registerTool('list_shared_contexts', { description: 'List learning contexts explicitly shared with this client, without full text.', inputSchema: listSharesSchema, annotations }, input => tool('contexts', (accountId, clientId, connectionId) => listSharedContexts(env, accountId, clientId, connectionId, input)));
+      server.registerTool('read_shared_context', { description: 'Read one explicitly shared, unexpired learning context.', inputSchema: z.object({ id: shareIdSchema }).strict(), annotations }, input => tool('contexts', (accountId, clientId, connectionId) => readSharedContext(env, accountId, clientId, connectionId, input.id)));
       server.registerTool('search_materials', { description: 'Search public teaching catalogue summaries; drafts are identified, and check banks are excluded.', inputSchema: searchMaterialsSchema, annotations }, input => tool('materials', async () => ({ materials: catalogue.filter(item => (!input.level || item.level === input.level) && (!input.skill || item.skill === input.skill) && input.keywords.toLocaleLowerCase('en').split(/\s+/).every(word => `${item.title} ${item.goal}`.toLocaleLowerCase('en').includes(word))).slice(0, 10) }), true));
       server.registerTool('get_practice_template', { description: 'Obtain a reviewed practice structure, or an explicit unavailable result. Does not generate validated items.', inputSchema: practiceTemplateSchema, annotations }, () => tool('materials', async () => ({ available: false, reason: 'NO_REVIEWED_TEMPLATE' }), true));
       return server;

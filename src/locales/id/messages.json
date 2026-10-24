@@ -421,7 +421,18 @@
     "bad": "Cadangan tidak dapat diverifikasi: mungkin rusak, terlalu besar, atau tidak didukung. Catatan lama tetap.",
     "failed": "Operasi gagal. Catatan lama tetap.",
     "done": "Profil baru dibuat dan catatan diimpor.",
-    "busy": "Memproses…"
+    "busy": "Memproses…",
+    "delete": "Hapus profil",
+    "deleteTitle": "Hapus profil saat ini?",
+    "deleteDetail": "Catatan belajar, penanda, pengaturan, dan kaitan sumber daya profil ini akan dihapus dari perangkat ini. Unduh cadangan terlebih dahulu; salinan GitHub dan sumber daya offline bersama tetap disimpan.",
+    "deleted": "Profil lokal dihapus.",
+    "deleteBusy": "Profil ini sedang digunakan. Tutup latihannya atau tunggu unduhan dan sinkronisasi selesai, lalu coba lagi.",
+    "cancel": "Batal",
+    "exportTitle": "Simpan cadangan",
+    "fileName": "Nama berkas",
+    "save": "Simpan",
+    "invalidName": "Masukkan nama tanpa / \\ : * ? \" < > | atau titik di akhir.",
+    "shortNote": "Catatan belajar tanpa enkripsi; sumber daya dan rekaman tidak disertakan."
   },
   "progressRecords_summaryCopy": {
     "clock": "Waktu catatan di masa depan. Periksa jam perangkat; tidak digunakan dalam jadwal tinjauan.",

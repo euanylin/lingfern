@@ -20,25 +20,32 @@ export function AiHandoff({ locale, lesson, material, question, attempt }: { loc
   const [message, setMessage] = useState('');
   const [pasted, setPasted] = useState('');
   const [pending, setPending] = useState<{ kind: FeedbackNote['kind']; content: string; unknownReferences: boolean }>();
+  const processing = useRef(false);
+  const [busy, setBusy] = useState(false);
   const [notes, setNotes] = useState<FeedbackNote[]>([]);
   useEffect(() => { void feedbackNotes.where('attemptId').equals(attempt.id).toArray().then(rows => setNotes(rows.filter(row => row.profileId === attempt.profileId))).catch(() => setMessage(t.invalid)); }, [attempt.id, attempt.profileId, t.invalid]);
   function previewPlainText() {
+    if (processing.current) return;
     const content = pasted.trim();
     if (!content || new TextEncoder().encode(content).length > 64 * 1024) { setMessage(t.invalid); return; }
     setPending({ kind: 'text', content, unknownReferences: false }); setMessage('');
   }
   async function previewJson(file?: File) {
-    if (!file) return;
+    if (!file || processing.current) return;
+    processing.current = true; setBusy(true); setPending(undefined); setMessage('');
     try {
       if (file.size > 64 * 1024) throw new Error('FEEDBACK_SIZE');
       setPending({ kind: 'structured', ...prepareFeedback(await file.text(), lesson, material) }); setMessage('');
-    } catch { setPending(undefined); setMessage(t.invalid); }
+    } catch { setMessage(t.invalid); }
+    finally { processing.current = false; setBusy(false); }
   }
   async function saveNote() {
-    if (!pending) return;
+    if (!pending || processing.current) return;
+    processing.current = true; setBusy(true);
     const note: FeedbackNote = { id: crypto.randomUUID(), profileId: attempt.profileId, attemptId: attempt.id, ...pending, createdAt: new Date().toISOString() };
     try { await saveFeedbackNote(note); setNotes(previous => [...previous, note]); setPending(undefined); setPasted(''); setMessage(t.saved); }
     catch { setMessage(t.invalid); }
+    finally { processing.current = false; setBusy(false); }
   }
   const answer = answerText(question, attempt.answer);
   const correct = correctAnswerText(question);
@@ -81,8 +88,8 @@ export function AiHandoff({ locale, lesson, material, question, attempt }: { loc
     {tooLarge && <p role="alert" className="error">{t.tooLarge}</p>}
     <div className="ai-actions"><button type="button" disabled={tooLarge} onClick={() => void (navigator.clipboard?.writeText(markdown) ?? Promise.reject()).then(() => setMessage(t.copied)).catch(() => setMessage(t.failed))}>{t.copy}</button><button type="button" disabled={tooLarge} onClick={() => saveFile('lingfern-context.md', markdown, 'text/markdown;charset=utf-8')}>{t.markdown}</button><button type="button" disabled={tooLarge} onClick={() => saveFile('lingfern-context.json', json, 'application/json')}>{t.json}</button>{typeof navigator.share === 'function' && <button type="button" disabled={tooLarge} onClick={() => void navigator.share({ text: markdown }).catch(() => setMessage(t.failed))}>{t.share}</button>}</div>
     <SharingUpload key={`${attempt.profileId}:${attempt.id}:${contentText(lesson.title, locale)}:${markdown}`} locale={locale} profileId={attempt.profileId} attemptId={attempt.id} title={contentText(lesson.title, locale)} text={markdown}/>
-    <section className="ai-import"><h3>{t.importTitle}</h3><label htmlFor={`ai-paste-${attempt.id}`}>{t.paste}</label><textarea id={`ai-paste-${attempt.id}`} value={pasted} onChange={event => setPasted(event.target.value)} rows={5}/><div className="ai-actions"><button type="button" onClick={previewPlainText}>{t.review}</button><label className="backup-file-label"><input className="sr-only" type="file" accept=".json,application/json" aria-label={t.structured} onChange={event => { void previewJson(event.target.files?.[0]); event.target.value = ''; }}/><span className="button backup-file-button">{t.structured}</span></label></div>
-      {pending && <div className="ai-preview"><h4>{t.review}</h4><p>{pending.content}</p>{pending.unknownReferences && <p className="muted">{t.unknown}</p>}<button type="button" onClick={() => void saveNote()}>{t.save}</button></div>}
+    <section className="ai-import"><h3>{t.importTitle}</h3><label htmlFor={`ai-paste-${attempt.id}`}>{t.paste}</label><textarea id={`ai-paste-${attempt.id}`} disabled={busy} value={pasted} onChange={event => setPasted(event.target.value)} rows={5}/><div className="ai-actions"><button type="button" disabled={busy} onClick={previewPlainText}>{t.review}</button><label className="backup-file-label"><input className="sr-only" type="file" accept=".json,application/json" disabled={busy} aria-label={t.structured} onChange={event => { void previewJson(event.target.files?.[0]); event.target.value = ''; }}/><span className="button backup-file-button">{t.structured}</span></label></div>
+      {pending && <div className="ai-preview"><h4>{t.review}</h4><p>{pending.content}</p>{pending.unknownReferences && <p className="muted">{t.unknown}</p>}<button type="button" disabled={busy} onClick={() => void saveNote()}>{t.save}</button></div>}
       {notes.length > 0 && <div><h4>{t.notes}</h4>{notes.map(note => <div className="ai-preview" key={note.id}><p>{note.content}</p>{note.unknownReferences && <p className="muted">{t.unknown}</p>}</div>)}</div>}
     </section><p role="status" aria-live="polite">{message}</p>
   </details>;

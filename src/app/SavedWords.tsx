@@ -19,15 +19,15 @@ export function SavedWords({ locale, profileId, online, defaultId }: { locale: L
   const [busy, setBusy] = useState(false);
   async function load() { const result = await projectMemories(profileId); setItems(result.items.sort((a, b) => b.savedAt.localeCompare(a.savedAt))); setProblems(result.problems); }
   useEffect(() => { void load().catch(() => setError(t.failed)); }, [profileId, t.failed]);
-  async function act(fn: () => Promise<unknown>) {
+  async function act(fn?: () => Promise<unknown>) {
     setBusy(true); setError('');
-    try { await fn(); await load(); }
+    try { await fn?.(); await load(); }
     catch { setError(t.failed); }
     finally { setBusy(false); }
   }
   return <section className="saved-words"><h1>{t.title}</h1>{error && <p role="alert" className="error">{error}</p>}{!items.length && !problems.length && <p>{t.empty}</p>}{!online && !!items.length && <p role="status" className="muted">{copy[locale].onlineLookupOffline}</p>}
     {problems.length > 0 && <section className="memory-problems" aria-live="polite"><ul>{problems.map(problem => <li key={problem.memoryId}><span>{items.find(item => item.memoryId === problem.memoryId)?.term ?? problem.memoryId}: {problemCopy[locale][problem.code === 'DICTIONARY_UNAVAILABLE' ? 'dictionary' : problem.code === 'REVIEW_TIMING_INVALID' ? 'timing' : problem.code === 'REVIEW_INVALID' ? 'config' : problem.code === 'REVIEW_CONFLICT' ? 'conflict' : 'clock']}</span>{(problem.code === 'REVIEW_CLOCK' || problem.code === 'REVIEW_ORDER' || problem.code === 'REVIEW_TIMING_INVALID') && <ReviewTiming locale={locale} profileId={profileId} memoryId={problem.memoryId} onChange={load}/>}
-      {problem.code === 'DICTIONARY_UNAVAILABLE' && <button type="button" disabled={busy} onClick={() => void act(() => removeSense(profileId, problem.memoryId))}>{t.remove}</button>}</li>)}</ul><button type="button" disabled={busy} onClick={() => void act(load)}>{problemCopy[locale].retry}</button></section>}
+      {problem.code === 'DICTIONARY_UNAVAILABLE' && <button type="button" disabled={busy} onClick={() => void act(() => removeSense(profileId, problem.memoryId))}>{t.remove}</button>}</li>)}</ul><button type="button" disabled={busy} onClick={() => void act()}>{problemCopy[locale].retry}</button></section>}
     {items.map(item => {
       const visible = shown.includes(item.memoryId);
       const blocked = problems.some(problem => problem.memoryId === item.memoryId);

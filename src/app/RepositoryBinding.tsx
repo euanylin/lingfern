@@ -20,7 +20,7 @@ export function RepositoryBinding({ locale, profileId, summary, reload }: { loca
   const [intent, setIntent] = useState<BindingIntent>();
   const [busy, setBusy] = useState(false), [message, setMessage] = useState('');
   async function call(path: string, body?: unknown) {
-    const response = await fetch(path, { credentials: 'same-origin', cache: 'no-store', ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': summary.csrfToken! }, body: JSON.stringify(body) } : {}) });
+    const response = await fetch(path, { credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(30_000), ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': summary.csrfToken! }, body: JSON.stringify(body) } : {}) });
     const result: unknown = await response.json();
     if (!response.ok) throw new Error(typeof result === 'object' && result && 'error' in result ? String(result.error) : 'FAILED');
     return result;

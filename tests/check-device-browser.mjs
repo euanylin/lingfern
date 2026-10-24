@@ -48,7 +48,7 @@ try {
   await expect.poll(async () => (await rows(a, 'sessions')).find(row => row.id === id)?.draft).toBe(1);
   await a.reload(); await expect(a.locator('input[name=answer]').nth(1)).toBeChecked();
   await a.goto(origin + '/settings');
-  const download = a.waitForEvent('download'); await a.getByRole('button', { name: 'Download backup', exact: true }).click();
+  const download = a.waitForEvent('download'); await a.getByRole('button', { name: 'Download backup', exact: true }).click(); await a.getByRole('dialog').getByRole('button', { name: 'Save', exact: true }).click();
   await (await download).saveAs('/tmp/lingfern-check-device-browser.zip');
   await english(b);
   await b.waitForFunction(async () => (await navigator.serviceWorker.getRegistration())?.active?.state === 'activated');

@@ -421,7 +421,18 @@
     "bad": "No se pudo verificar la copia. Puede estar dañada, ser demasiado grande o no compatible; los registros existentes no han cambiado.",
     "failed": "La operación falló. Los registros existentes no han cambiado.",
     "done": "Se creó un perfil nuevo y se importaron los registros.",
-    "busy": "Procesando…"
+    "busy": "Procesando…",
+    "delete": "Eliminar perfil",
+    "deleteTitle": "¿Eliminar el perfil actual?",
+    "deleteDetail": "Se eliminarán de este dispositivo los registros de aprendizaje, marcadores, ajustes y asociaciones de recursos de este perfil. Descarga antes una copia; se conservarán las copias de GitHub y los recursos sin conexión compartidos.",
+    "deleted": "Perfil local eliminado.",
+    "deleteBusy": "Este perfil está en uso. Cierra sus ejercicios o espera a que terminen las descargas y la sincronización e inténtalo de nuevo.",
+    "cancel": "Cancelar",
+    "exportTitle": "Guardar copia de seguridad",
+    "fileName": "Nombre del archivo",
+    "save": "Guardar",
+    "invalidName": "Escribe un nombre sin / \\ : * ? \" < > | ni punto final.",
+    "shortNote": "Copia sin cifrar del aprendizaje, sin recursos ni grabaciones."
   },
   "progressRecords_summaryCopy": {
     "clock": "La hora del registro está en el futuro. Comprueba el reloj del dispositivo; se excluye de la programación del repaso.",
