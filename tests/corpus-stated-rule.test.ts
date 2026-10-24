@@ -11,7 +11,7 @@ const original=corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.jso
 it('generates scoped everyday rules from two inspected originals with true alternatives, exact evidence and unassisted application',async()=>{
  const bank={...original,records:await reviewedReading(original.records,160)};
  fc.assert(fc.property(fc.integer({min:0,max:0xffffffff}),seed=>{
-  const l=corpusLesson(bank,new Set(),seed,160,'A2',[],'choice',[],operation)!;expect(l.goalId).toBe('explicit-stated-rule');expect(l.materials.map(m=>m.rootId).sort()).toEqual(scopes.rule.map(s=>s.rootId).sort());
+  const l=corpusLesson(bank,new Set(),seed,160,'A2',[],'choice',operation)!;expect(l.goalId).toBe('explicit-stated-rule');expect(l.materials.map(m=>m.rootId).sort()).toEqual(scopes.rule.map(s=>s.rootId).sort());
   for(const[i,m]of l.materials.entries()){
    const q=m.questions[0];if('kind'in q)throw new Error('Expected choice');expect(corpusOperation(q)).toBe(operation);expect(q.hints?.length).toBe(i?undefined:3);
    expect(createHash('sha256').update(m.blocks[0].text).digest('hex')).toBe(scopes.rule.find(s=>s.rootId===m.rootId)!.textSha256);
@@ -22,8 +22,8 @@ it('generates scoped everyday rules from two inspected originals with true alter
   }
   const bare=structuredClone(l.materials);bare.forEach(m=>m.questions.forEach(q=>delete q.hints));expect(asTestLesson(l).materials).toEqual(bare);expect(l).toEqual(JSON.parse(JSON.stringify(l)));
  }),{numRuns:150});
- for(const s of scopes.rule){expect(corpusLesson(bank,new Set([s.passageId]),0,120,'A2',[],'choice',[],operation)).toBeUndefined();expect(corpusLesson({...bank,records:bank.records.filter(r=>r.rootId===s.rootId)},new Set(),0,120,'A2',[],'choice',[],operation)).toBeUndefined();}
- for(const point of['A1','B1','B2','C1','C2']as const)expect(corpusLesson(bank,new Set(),0,160,point,[],'choice',[],operation)).toBeUndefined();
+ for(const s of scopes.rule){expect(corpusLesson(bank,new Set([s.passageId]),0,120,'A2',[],'choice',operation)).toBeUndefined();expect(corpusLesson({...bank,records:bank.records.filter(r=>r.rootId===s.rootId)},new Set(),0,120,'A2',[],'choice',operation)).toBeUndefined();}
+ for(const point of['A1','B1','B2','C1','C2']as const)expect(corpusLesson(bank,new Set(),0,160,point,[],'choice',operation)).toBeUndefined();
 });
 it('rejects changed operators, missing scope, duplicate rules and competing contexts rather than inventing a rule',async()=>{
  const bank=await reviewedReading(original.records,120),[news,party]=scopes.rule.map(s=>bank.flatMap(r=>r.passages).find(p=>p.id===s.passageId)!.text);

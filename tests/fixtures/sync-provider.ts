@@ -9,8 +9,8 @@ const blobs = new Map<string, string>();
 const records = new Map<string, { content: string; sha: string }>();
 type Entry = { path: string; type: string; mode: string; sha: string; size: number };
 const snapshots = new Map<string, Entry[]>();
-let marker: string | undefined, serial = 1, writes = 0, lost = false, revokeOnPut = false;
-let lastFailure = '', calls = 0, redirecting = false;
+let marker: string | undefined, head: string | undefined, serial = 1, writes = 0, lost = false, race = false, revokeOnPut = false;
+let lastFailure = '', calls = 0, trees = 0, redirecting = false;
 const sha = () => (++serial).toString(16).padStart(40, '0');
 const json = (body: unknown, status = 200) => Response.json(body, { status });
 
@@ -21,18 +21,28 @@ export async function fixtureControl(request: Request, env: AuthEnv) {
   if (mode === 'native-redirect') { try { await nativeFetch('http://127.0.0.1:8791/__fixture?mode=stats', { redirect: 'error' }); return json({ nativeRedirect: 'accepted' }); } catch (error) { return json({ nativeRedirect: error instanceof Error ? error.message : 'unknown' }); } }
   if (mode === 'diagnostic') return json({ lastFailure, calls });
   if (mode === 'lost') lost = true;
+  else if (mode === 'race') race = true;
   else if (mode === 'redirect') redirecting = true;
   else if (mode === 'clear-redirect') redirecting = false;
   else if (mode === 'revoke-on-put') revokeOnPut = true;
   else if (mode === 'restore') await env.AUTH_DB!.prepare('UPDATE accounts SET revoked=0 WHERE id=1').run();
+  else if (mode === 'legacy') {
+    const base = { deviceId: 'legacy', occurredAt: '2026-10-01T00:00:00.000Z' };
+    const batch = { product: 'Lingfern', formatVersion: 1, profileId: 'integration-shared', deviceId: 'legacy', batchId: 'archive', events: [
+      { ...base, id: 'legacy-save', counter: 1, type: 'saved_item', payload: { memoryId: 'synthetic-legacy', saved: true, reviewEnabled: false } },
+      { ...base, id: 'legacy-review', counter: 2, type: 'memory_review', payload: { memoryId: 'synthetic-legacy', rating: 3, configId: 'legacy-config', assistance: { answerRevealed: false, hintUsed: false } } },
+      { ...base, id: 'legacy-time', counter: 3, type: 'review_timing', payload: { memoryId: 'synthetic-legacy', sourceId: 'legacy-review', sourceHash: 'a'.repeat(64), time: base.occurredAt } },
+    ] };
+    const content = btoa(JSON.stringify(batch)), id = sha(); records.set('records/legacy/archive.json', { content, sha: id }); blobs.set(id, content); head = undefined;
+  }
   else if (mode === 'conflict') {
     const [path, item] = [...records][0];
     const batch = JSON.parse(atob(item.content));
     batch.events[0].payload.correct = !batch.events[0].payload.correct;
     const content = btoa(JSON.stringify(batch)), next = sha();
-    records.set(path, { content, sha: next }); blobs.set(next, content);
+    records.set(path, { content, sha: next }); blobs.set(next, content); head = undefined;
   } else if (mode !== 'stats') return json({ error: 'FIXTURE_MODE' }, 400);
-  return json({ writes, paths: [...records.keys()], serial, calls });
+  return json({ writes, paths: [...records.keys()], serial, calls, trees });
 }
 
 export function installProvider(env: AuthEnv) {
@@ -52,11 +62,11 @@ export function installProvider(env: AuthEnv) {
     if (path === '/repos/synthetic/lingfern-data') return json(repository);
     const prefix = '/repos/synthetic/lingfern-data/';
     if (path.startsWith(prefix + 'commits/')) {
-      const ref = path.slice((prefix + 'commits/').length), commit = ref === 'main' ? sha() : ref;
+      const ref = path.slice((prefix + 'commits/').length), commit = ref === 'main' ? (head ??= sha()) : ref;
       if (ref === 'main') snapshots.set(commit, [{ path: 'README.md', type: 'blob', mode: '100644', sha: 'a'.repeat(40), size: 10 }, ...(marker ? [{ path: 'profile.json', type: 'blob', mode: '100644', sha: 'b'.repeat(40), size: atob(marker).length }] : []), ...[...records].map(([path, item]) => ({ path, type: 'blob', mode: '100644', sha: item.sha, size: atob(item.content).length }))]);
       return snapshots.has(commit) ? json({ sha: commit, commit: { tree: { sha: commit } } }) : json({}, 404);
     }
-    if (path.startsWith(prefix + 'git/trees/')) return json({ truncated: false, tree: snapshots.get(path.slice((prefix + 'git/trees/').length)) ?? [] });
+    if (path.startsWith(prefix + 'git/trees/')) { trees++; return json({ truncated: false, tree: snapshots.get(path.slice((prefix + 'git/trees/').length)) ?? [] }); }
     if (path === prefix + 'git/blobs/' + 'b'.repeat(40) && marker) return json({ encoding: 'base64', content: marker });
     if (path.startsWith(prefix + 'git/blobs/')) {
       const content = blobs.get(path.slice((prefix + 'git/blobs/').length));
@@ -67,11 +77,12 @@ export function installProvider(env: AuthEnv) {
       if (body.sha !== undefined || body.branch !== 'main') throw new Error('SYNTHETIC_PROVIDER_UNSAFE_WRITE');
       if (file === 'profile.json') {
         if (marker) return json({}, 422);
-        marker = body.content; return json({ content: { sha: 'b'.repeat(40) } }, 201);
+        marker = body.content; head = undefined; return json({ content: { sha: 'b'.repeat(40) } }, 201);
       }
       if (!/^records\/[\w-]+\/[\w-]+\.json$/.test(file)) throw new Error('SYNTHETIC_PROVIDER_PATH');
       if (records.has(file)) return json({}, 422);
-      const id = sha(); records.set(file, { content: body.content, sha: id }); blobs.set(id, body.content); writes++;
+      if (race) { race = false; head = undefined; return json({}, 409); }
+      const id = sha(); records.set(file, { content: body.content, sha: id }); blobs.set(id, body.content); writes++; head = undefined;
       if (revokeOnPut) { revokeOnPut = false; await env.AUTH_DB!.prepare('UPDATE accounts SET revoked=1 WHERE id=1').run(); }
       if (lost) { lost = false; throw new Error('SYNTHETIC_PROVIDER_LOST_ACK'); }
       return json({ content: { sha: id } }, 201);

@@ -43,7 +43,7 @@ it('retains the actual complete spoken request, explicit speaker and exact posit
 it('provides the same request operation across real book and Lego roots with scoring, unscored context and Test safeguards', async () => {
   const corpus = await actual();
   for (let seed = 0; seed < 7; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 1200, 'C2', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 1200, 'C2', [], 'matching', operation)!;
     lessonSchema.parse(lesson);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
@@ -61,8 +61,8 @@ it('provides the same request operation across real book and Lego roots with sco
     expect(tested.materials.flatMap(material => material.questions).every(question => question.hints === undefined)).toBe(true);
     expect(tested.materials.map(material => material.questions[0].evidence)).toEqual(lesson.materials.map(material => material.questions[0].evidence));
   }
-  expect(corpusLesson(corpus, new Set(corpus.records.flatMap(source => source.passages.map(passage => passage.id))), 0, 1200, 'C2', [], 'matching', [], operation)).toBeUndefined();
-  expect(corpusLesson({ ...corpus, records: corpus.records.slice(0, 1) }, new Set(), 0, 1200, 'C2', [], 'matching', [], operation)).toBeUndefined();
+  expect(corpusLesson(corpus, new Set(corpus.records.flatMap(source => source.passages.map(passage => passage.id))), 0, 1200, 'C2', [], 'matching', operation)).toBeUndefined();
+  expect(corpusLesson({ ...corpus, records: corpus.records.slice(0, 1) }, new Set(), 0, 1200, 'C2', [], 'matching', operation)).toBeUndefined();
 });
 
 it('rejects detached, reported, malformed, conditional, double-negative and incomplete imperative contrasts', () => {
@@ -90,7 +90,7 @@ it('demonstrates requested and ruled-out actions without replacing unused-source
   const corpus = await actual();
   let fallbacks = 0;
   for (const level of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 1200, level, [], 'matching', [], operation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 1200, level, [], 'matching', operation)!;
     expect(lesson).toBeDefined();
     const unused = corpusWorkedExample(lesson.materials[0], seed, level);
     if (unused) expect(lesson.workedExample).toEqual(unused);
@@ -116,7 +116,7 @@ it('demonstrates requested and ruled-out actions without replacing unused-source
   }
   expect(fallbacks).toBeGreaterThan(0);
   // Keep regression wording outside distributed sources and scored items.
-  const fixture = corpusLesson(corpus, new Set(), 0, 1200, 'B2', [], 'matching', [], operation)!;
+  const fixture = corpusLesson(corpus, new Set(), 0, 1200, 'B2', [], 'matching', operation)!;
   const other = 'Please refer to the group as "garden club" and not "tree club".';
   fixture.materials[0].blocks[0].text += '\n\n' + other;
   const unused = corpusWorkedExample(fixture.materials[0], 0, 'B2');

@@ -17,7 +17,7 @@ it('restores fixed pending batch identity/hash and event IDs into a separate loc
   expect(retry.batch).toEqual(pending.batch);
   expect(retry.hash).toBe(pending.hash);
   await confirmSyncBatch(restored, retry.deviceId, retry.batchId, retry.hash);
-  const event = await appendSyncEvent(restored, { type: 'saved_item', payload: { memoryId: 'sense', saved: false, reviewEnabled: false } });
+  const event = await appendSyncEvent(restored, { type: 'saved_item', payload: { memoryId: 'sense', saved: false } });
   expect(event.deviceId).not.toBe(pending.deviceId);
   expect(event.counter).toBe(2);
   expect((await pendingSyncBatch(restored))?.batch.profileId).toBe('p');

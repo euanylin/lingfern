@@ -1,4 +1,4 @@
-import pathlib,urllib.request,json,hashlib,xml.etree.ElementTree as ET,html.parser,re,zipfile,datetime
+import pathlib,urllib.request,json,hashlib,xml.etree.ElementTree as ET,re,zipfile,datetime
 out=pathlib.Path('/content/lingfern-modern-quotes/science');out.mkdir(exist_ok=True)
 urls=['https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8018278/fullTextXML','https://history.nasa.gov/rogersrep/v2appf.htm','https://www.nasa.gov/about/highlights/what_does_nasa_do.html','https://www.nasa.gov/nasa-brand-center/images-and-media/']
 results=[]

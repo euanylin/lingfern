@@ -23,7 +23,7 @@ it('pins real source/media packages, derives the same reference operation across
   expect(packs.every(pack => !pack.lessons.length)).toBe(true);
   const [primary, application] = packs.map(pack => pack.spoken!);
   for (let seed = 0; seed < 24; seed++) {
-    const lesson = spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], undefined, [], undefined, [application])!;
+    const lesson = spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], undefined, undefined, [application])!;
     expect(lesson).toBeDefined();
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goalId).toBe('source-context-reference');
@@ -40,10 +40,10 @@ it('pins real source/media packages, derives the same reference operation across
       expect(material.audio!.src).toContain(material === lesson.materials[0] ? primary.communityPackageId : application.communityPackageId);
     }
     expect(questions(lesson)).toHaveLength(4);
-    expect(spokenCorpusLesson(primary, new Set([application.records[0].clips[0].id]), seed, 196, 'C1', [], 'choice', [], 'choice:reference', [application])).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set([application.records[0].clips[0].id]), seed, 196, 'C1', [], 'choice', 'choice:reference', [application])).toBeUndefined();
   }
-  expect(spokenCorpusLesson(primary, new Set(), 0, 91, 'C1', [], 'choice', [], 'choice:reference', [application])).toBeUndefined();
-  for (const point of ['A1', 'A2', 'B1', 'C2'] as const) expect(spokenCorpusLesson(primary, new Set(), 0, 196, point, [], 'choice', [], 'choice:reference', [application])).toBeUndefined();
+  expect(spokenCorpusLesson(primary, new Set(), 0, 91, 'C1', [], 'choice', 'choice:reference', [application])).toBeUndefined();
+  for (const point of ['A1', 'A2', 'B1', 'C2'] as const) expect(spokenCorpusLesson(primary, new Set(), 0, 196, point, [], 'choice', 'choice:reference', [application])).toBeUndefined();
   expect(qualifiedLongSeconds([primary, application], 'C1', 75)).toBe(196);
   expect(qualifiedLongSeconds([primary], 'C1', 75)).toBe(75);
   expect(qualifiedLongSeconds([primary, application], 'C1', 35)).toBe(35);
@@ -52,7 +52,7 @@ it('pins real source/media packages, derives the same reference operation across
   expect(qualifiedLongSeconds([primary, application], 'C2', 91)).toBe(91);
   const held = structuredClone(application); held.records[0].clips[0].qualityFlags = ['Unresolved boundary'];
   expect(qualifiedLongSeconds([primary, held], 'C1', 75)).toBe(75);
-  expect(spokenCorpusLesson(primary, new Set(), 0, 196, 'C1', [], 'choice', [], 'choice:reference', [held])).toBeUndefined();
+  expect(spokenCorpusLesson(primary, new Set(), 0, 196, 'C1', [], 'choice', 'choice:reference', [held])).toBeUndefined();
 });
 it('rejects forged long identities/text/times/media/creator/rights and changed original text or offline licence notices', async () => {
   const [pack] = await banks(); const bank = pack.spoken!;

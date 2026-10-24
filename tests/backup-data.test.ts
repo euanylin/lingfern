@@ -1,6 +1,7 @@
 import { travelVariant } from './fixtures/variants';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { unzipSync, zipSync } from 'fflate';
+import Dexie from 'dexie';
 import raw from './fixtures/content/a1-reading.json';
 import matching from './fixtures/content/a1-matching-reading.json';
 import { exportBackup, importBackup, inspectBackup } from '../src/data/backup';
@@ -167,7 +168,7 @@ describe('local ZIP backup', () => {
     const files = unzipSync(await exportBackup('local-guest'));
     expect(new TextDecoder().decode(files['gutenberg-license.txt'])).toBe(gutenbergTerms);
     const manifest = JSON.parse(new TextDecoder().decode(files['manifest.json']));
-    expect(manifest.version).toBe(5);
+    expect(manifest.version).toBe(6);
     expect(manifest.files['gutenberg-license.txt']).toMatchObject({ bytes: new TextEncoder().encode(gutenbergTerms).length, count: 1 });
     const inspection = await inspectBackup(zipSync(files));
     const restoredId = await importBackup(inspection);
@@ -300,7 +301,6 @@ describe('local ZIP backup', () => {
       'attempts.json': new TextEncoder().encode('[]'),
       'exposures.json': new TextEncoder().encode('[]'),
       'memories.json': new TextEncoder().encode('[]'),
-      'memoryReviews.json': new TextEncoder().encode('[]'),
       'feedbackNotes.json': new TextEncoder().encode('[]'),
       'syncEvents.json': new TextEncoder().encode('[]'),
       'syncBatches.json': new TextEncoder().encode('[]'),
@@ -374,8 +374,9 @@ it('reopens the current database without losing snapshots, drafts, answers or se
   const savedSession = await sessions.get(session.id);
   const savedAnswers = await attempts.toArray();
   const schemas = db.tables.map(table => ({ name: table.name, key: table.schema.primKey.src, indexes: table.schema.indexes.map(index => index.src) }));
-  expect(schemas).toHaveLength(16);
-  expect(db.verno).toBe(8);
+  expect(schemas).toHaveLength(15);
+  expect(db.verno).toBe(10);
+  expect(db.table('syncEvents').schema.indexes.map(index => index.src)).toContain('[profileId+type]');
   db.close();
   await db.open();
   expect(db.tables.map(table => ({ name: table.name, key: table.schema.primKey.src, indexes: table.schema.indexes.map(index => index.src) }))).toEqual(schemas);
@@ -383,4 +384,24 @@ it('reopens the current database without losing snapshots, drafts, answers or se
   expect(await attempts.toArray()).toEqual(savedAnswers);
   expect((await profiles.get('local-guest'))?.name).toBe('Local profile');
   expect((await settings.get('locale'))?.value).toBe('en');
+});
+
+
+it('drops the retired review store on upgrade without removing sessions, settings or bookmarks', async () => {
+  const session = await createSession(raw);
+  const schema = Object.fromEntries(db.tables.map(table => [table.name, [table.schema.primKey.src, ...table.schema.indexes.map(index => index.src)].join(', ')]));
+  await db.delete();
+  const previous = new Dexie(db.name);
+  previous.version(8).stores({ ...schema, memoryReviews: '[profileId+id], profileId' });
+  try {
+    await previous.table('sessions').put(session);
+    await previous.table('settings').put({ key: 'locale', value: 'en' });
+    await previous.table('memories').put({ profileId: 'local-guest', memoryId: 'sense', term: 'word', definition: 'meaning', savedAt: '2026-09-01T00:00:00.000Z' });
+    await previous.table('memoryReviews').put({ profileId: 'local-guest', id: 'retired' });
+  } finally { previous.close(); }
+  await db.open();
+  expect(db.tables.map(table => table.name)).not.toContain('memoryReviews');
+  expect(await sessions.get(session.id)).toEqual(session);
+  expect((await settings.get('locale'))?.value).toBe('en');
+  expect(await db.table('memories').get(['local-guest', 'sense'])).toMatchObject({ term: 'word', definition: 'meaning' });
 });

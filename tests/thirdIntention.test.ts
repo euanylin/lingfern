@@ -40,7 +40,7 @@ it('transfers the same intention operation to a genuinely different speaker with
   const mixed = { ...bank, records: [...bank.records, { ...jean, passages: jean.passages.filter(part => part.startingPoints) }] };
   const positions = new Set<number>();
   for (let seed = 0; seed < 48; seed++) {
-    const lesson = corpusLesson(mixed, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(mixed, new Set(), seed, 160, 'A2', [], 'choice', operation)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const test = asTestLesson(lesson);
     lesson.materials.forEach((material, index) => {
@@ -50,10 +50,10 @@ it('transfers the same intention operation to a genuinely different speaker with
       for (let answer = 0; answer < 3; answer++) expect(score(tested, answer)).toEqual(score(question, answer));
       if (material.rootId === jean.rootId) { positions.add(index); expect(question.options[question.answer]).toBe('Jean wants to do it.'); }
     });
-    expect(corpusLesson(mixed, new Set(), seed, 120, 'A1', [], 'choice', [], operation)!.materials.every(material => material.rootId !== jean.rootId)).toBe(true);
+    expect(corpusLesson(mixed, new Set(), seed, 120, 'A1', [], 'choice', operation)!.materials.every(material => material.rootId !== jean.rootId)).toBe(true);
   }
   expect([...positions].sort()).toEqual([0, 1]);
-  expect(corpusLesson(mixed, new Set(jean.passages.map(part => part.id)), 0, 160, 'A2', [], 'choice', [], operation)!.materials.every(material => material.rootId !== jean.rootId)).toBe(true);
+  expect(corpusLesson(mixed, new Set(jean.passages.map(part => part.id)), 0, 160, 'A2', [], 'choice', operation)!.materials.every(material => material.rootId !== jean.rootId)).toBe(true);
 });
 
 it('retains the complete official source and an unchanged A2-only77word prefix with precise scoped evidence', () => {
@@ -76,7 +76,7 @@ it('retains the complete official source and an unchanged A2-only77word prefix w
 it('generates genuine third-root application without adding it to A1 and keeps exact Practice/Test answers and source evidence', () => {
   const seen = new Set<string>();
   for (let seed = 0; seed < 48; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const test = asTestLesson(lesson);
     lesson.materials.forEach((material, index) => {
@@ -88,18 +88,18 @@ it('generates genuine third-root application without adding it to A1 and keeps e
       for (let answer = 0; answer < 3; answer++) expect(score(tested, answer)).toEqual(score(question, answer));
       expect(score(material.questions[1], 'The source reports a wish.').correct).toBeNull();
     });
-    const beginner = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', [], operation)!;
+    const beginner = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', operation)!;
     expect(beginner.materials.every(material => material.rootId !== roots[2])).toBe(true);
   }
   expect([...seen].sort()).toEqual([...roots].sort());
-  expect(corpusLesson(bank, new Set(bank.records.flatMap(record => record.passages.map(part => part.id))), 0, 160, 'A2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(bank.records.flatMap(record => record.passages.map(part => part.id))), 0, 160, 'A2', [], 'choice', operation)).toBeUndefined();
 });
 
 it('retains the two-unfamiliar-application-root gate and rejects prior exposure, help and a failed new-root answer', () => {
   const materials = new Map<string, Session['lesson']['materials'][number]>();
   let template: Session['lesson'] | undefined;
   for (let seed = 0; seed < 24; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!; template = lesson;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!; template = lesson;
     for (const material of lesson.materials) materials.set(material.rootId, material);
   }
   const now = Date.now(), profileId = 'third-root-history';
@@ -123,7 +123,7 @@ it('retains the two-unfamiliar-application-root gate and rejects prior exposure,
 it('saves and restores actual third-root Practice/Test snapshots and unscored responses transactionally', async () => {
   await Promise.all(db.tables.map(table => table.clear()));
   try {
-    const practice = Array.from({ length: 48 }, (_, seed) => corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!)
+    const practice = Array.from({ length: 48 }, (_, seed) => corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!)
       .find(lesson => lesson.materials[1].rootId === roots[2])!;
     expect(practice).toBeDefined();
     for (const lesson of [practice, asTestLesson(practice)]) {

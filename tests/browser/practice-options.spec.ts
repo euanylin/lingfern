@@ -46,7 +46,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   }
   await dialog.getByRole('searchbox', { name: t.search }).fill('');
   expect(await dialog.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight && element.scrollWidth <= element.clientWidth; })).toBe(true);
-  await expect(dialog.getByRole('button', { name: t.save, exact: true })).toHaveCount(0);
+  await expect(dialog.getByRole('button', { name: /^(Save|保存|儲存)$/ })).toHaveCount(0);
   expect(await dialog.locator('.practice-option-fields').evaluate(element => { const [first, second] = [...element.children].map(child => child.getBoundingClientRect()); return Math.abs(first.top - second.top) < 1 && Math.abs(first.left - second.left) > 100; })).toBe(true);
   expect(await dialog.locator('.practice-material-search').evaluate(element => { const [automatic, search] = [...element.children].map(child => child.getBoundingClientRect()); return Math.abs(automatic.top - search.top) < 1 && automatic.height >= 44 && search.height >= 44; })).toBe(true);
   if (width < 768) { const size = await dialog.boundingBox(); expect(size!.width).toBe(width); expect(size!.height).toBe(812); }

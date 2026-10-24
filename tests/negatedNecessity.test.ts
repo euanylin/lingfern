@@ -58,7 +58,7 @@ it('uses actual Smith and Darwin passages, with exact raw, passage and full-sent
 
 it('transfers the operation across the two real roots in forced and ordinary C1/C2 routes and keeps Test scoring', () => {
   for (const point of ['C1', 'C2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 700, point, [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 700, point, [], 'choice', operation)!;
     expect(lesson).toBeDefined(); lessonSchema.parse(lesson);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal.en).toContain('negation scope'); expect(lesson.teaching!.en).toContain('denies a guarantee');
@@ -102,15 +102,15 @@ it('transfers the operation across the two real roots in forced and ordinary C1/
     expect(reached.size).toBe(2);
   }
   for (const point of ['A1', 'A2', 'B1', 'B2'] as const) {
-    expect(corpusLesson(bank, new Set(), 0, 700, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson(bank, new Set(), 0, 700, point, [], 'choice', operation)).toBeUndefined();
     expect(corpusMaterial({ source: bank.records[0], passage: bank.records[0].passages[0] }, 0, point, 'choice', operation)).toBeUndefined();
     for (let seed = 0; seed < 32; seed++) expect(corpusOperation(corpusLesson(bank, new Set(), seed, 700, point)?.materials[0].questions[0])).not.toBe(operation);
   }
-  expect(corpusLesson(bank, new Set(scopes.map(scope => scope.passageId)), 0, 700, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(scopes.map(scope => scope.passageId)), 0, 700, 'C2', [], 'choice', operation)).toBeUndefined();
 });
 
 it('retains stable operation and exposure references in saved snapshots and routes an incorrect choice back to the same operation', () => {
-  const lesson = corpusLesson(bank, new Set(), 0, 700, 'C2', [], 'choice', [], operation)!;
+  const lesson = corpusLesson(bank, new Set(), 0, 700, 'C2', [], 'choice', operation)!;
   const startedAt = new Date(Date.now() - 100000).toISOString(), submittedAt = new Date(Date.now() - 50000).toISOString();
   const session: Session = { id: 'negation-scope-policy', profileId: 'isolated-negation-policy', lesson: lessonSchema.parse(JSON.parse(JSON.stringify(lesson))),
     contentHash: 'a'.repeat(64), position: 3, status: 'completed', startedAt, assistance: { hintLevel: 0 }, leaseUntil: 0 };
@@ -139,7 +139,7 @@ it('retains stable operation and exposure references in saved snapshots and rout
 it('opens, exposes, saves and advances every actual-source question through database transactions in Practice and Test', async () => {
   await Promise.all(db.tables.map(table => table.clear()));
   try {
-    const practice = corpusLesson(bank, new Set(), 0, 700, 'C2', [], 'choice', [], operation)!;
+    const practice = corpusLesson(bank, new Set(), 0, 700, 'C2', [], 'choice', operation)!;
     for (const lesson of [practice, asTestLesson(practice)]) {
       const profileId = `negation-db-${lesson.mode ?? 'practice'}`;
       const session = await createSession(lesson, profileId);
@@ -283,7 +283,7 @@ it('scores thirty-one exact prepared denials of a guarantee and withholds a hedg
   const hedged = bank.records.flatMap(source => source.passages).find(passage => passage.text.includes('does not necessarily mean that it is always prior'))!;
   expect(corpusNegatedNecessity(hedged.text, 0)).toBeUndefined();
   const focused = { version: 1 as const, failures: [] as [], records: [frames[0], frames[2]].map(frame => ({ ...frame.source, passages: [frame.passage] })) };
-  const lesson = corpusLesson(focused, new Set(), 0, 900, 'C1', [], 'choice', [], operation)!;
+  const lesson = corpusLesson(focused, new Set(), 0, 900, 'C1', [], 'choice', operation)!;
   expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
   expect(lesson.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
 });
@@ -301,12 +301,12 @@ it('does not use a passage under 120 words for a C1 negation lesson', () => {
   expect(tiny.passages).toHaveLength(1);
   const mixed = { ...wealth, records: [...hosts, tiny] };
   for (let seed = 0; seed < 12; seed++) {
-    expect(selectCorpusPassage(mixed, new Set(), seed, 900, [], [], 'C1')?.passage.wordCount ?? 0).toBeGreaterThanOrEqual(120);
-    const lesson = corpusLesson(mixed, new Set(), seed, 900, 'C1', [], 'choice', [], operation)!;
+    expect(selectCorpusPassage(mixed, new Set(), seed, 900, [], 'C1')?.passage.wordCount ?? 0).toBeGreaterThanOrEqual(120);
+    const lesson = corpusLesson(mixed, new Set(), seed, 900, 'C1', [], 'choice', operation)!;
     expect(lesson.materials.every(material => material.blocks[0].text !== sentence && corpusOperation(material.questions[0]) === operation)).toBe(true);
   }
   const other = quote.passages.find(passage => passage.text !== sentence)!;
   const onlyShort = { ...quotes, records: [tiny, { ...quote, id: 'wikiquote-189333', rootId: 'wikiquote-page-189333', passages: [other] }] };
-  expect(selectCorpusPassage(onlyShort, new Set(), 0, 900, [], [], 'C1')).toBeUndefined();
-  expect(corpusLesson(onlyShort, new Set(), 0, 900, 'C1', [], 'choice', [], operation)).toBeUndefined();
+  expect(selectCorpusPassage(onlyShort, new Set(), 0, 900, [], 'C1')).toBeUndefined();
+  expect(corpusLesson(onlyShort, new Set(), 0, 900, 'C1', [], 'choice', operation)).toBeUndefined();
 });

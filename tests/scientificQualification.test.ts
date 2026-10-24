@@ -66,7 +66,7 @@ it('transfers the same scientific inference operation across the two real roots 
   const operation = `evidence:${qualificationPrompt}`;
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) {
     for (let seed = 0; seed < 12; seed++) {
-      const lesson = corpusLesson(bank, new Set(), seed, 300, point, [], 'evidence', [], operation)!;
+      const lesson = corpusLesson(bank, new Set(), seed, 300, point, [], 'evidence', operation)!;
       expect(lesson).toBeDefined();
       expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
       const before = structuredClone(lesson), tested = asTestLesson(lesson);
@@ -188,7 +188,7 @@ it('teaches complete qualification interpretations without leaking assessed sent
   const bank = { ...all, records: all.records.filter(source => scopes.some(scope => scope.root === source.rootId)) };
   let fallbacks = 0;
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 300, point, [], 'evidence', [], `evidence:${qualificationPrompt}`)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, point, [], 'evidence', `evidence:${qualificationPrompt}`)!;
     const example = corpusWorkedExample(lesson.materials[0], seed, point);
     if (example) expect(lesson.workedExample).toEqual(example);
     else { fallbacks++; expect(lesson.workedExample!.en).toContain('Example:'); expect(lesson.workedExample!.en).not.toMatch(/made-up|unscored|illustrative|虚构|虛構|不评分|不評分/i); expect(lesson.workedExample!.en).toContain('does not establish'); expect(lesson.workedExample!.en).toContain('not an exact count'); }
@@ -204,7 +204,7 @@ it('teaches complete qualification interpretations without leaking assessed sent
   }
   expect(fallbacks).toBeGreaterThan(0);
   // Keep unused-source regression fixtures outside distributed sources and scored items.
-  const fixture = corpusLesson(bank, new Set(), 0, 300, 'B2', [], 'evidence', [], `evidence:${qualificationPrompt}`)!;
+  const fixture = corpusLesson(bank, new Set(), 0, 300, 'B2', [], 'evidence', `evidence:${qualificationPrompt}`)!;
   const other = 'The harbour is thought to have opened after a flood.';
   fixture.materials[0].blocks[0].text += ' ' + other;
   const unused = corpusWorkedExample(fixture.materials[0], fixture.generation!.seed, 'B2');

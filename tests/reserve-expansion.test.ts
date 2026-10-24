@@ -46,11 +46,11 @@ it.each([['B1',attribution,attributionIds],['B2',attribution,attributionIds],['B
  for(let seed=0;seed<8;seed++){
   const seen=new Set<string>(),roots=new Set<string>();
   for(let group=0;group<2;group++){
-   const lesson=banks.map(bank=>spokenCorpusLesson(bank,seen,seed,level==='B2'?25:20,level,[],operation===attribution?'evidence':operation===matching?'matching':'choice',[],operation,banks)).find(Boolean)!;
+   const lesson=banks.map(bank=>spokenCorpusLesson(bank,seen,seed,level==='B2'?25:20,level,[],operation===attribution?'evidence':operation===matching?'matching':'choice',operation,banks)).find(Boolean)!;
    expect(lesson).toBeTruthy();check(lesson,operation);
    for(const m of lesson.materials){expect(roots.has(m.rootId)).toBe(false);roots.add(m.rootId);seen.add(m.id.replace(/^corpus-/,''));seen.add(m.rootId);expect(m.audio!.duration).toBeLessThanOrEqual(level==='B2'?25:20);}
   }
-  expect(roots.size).toBe(4);for(const bank of banks)expect(spokenCorpusLesson(bank,seen,seed,level==='B2'?25:20,level,[],operation===attribution?'evidence':operation===matching?'matching':'choice',[],operation,banks)).toBeUndefined();
+  expect(roots.size).toBe(4);for(const bank of banks)expect(spokenCorpusLesson(bank,seen,seed,level==='B2'?25:20,level,[],operation===attribution?'evidence':operation===matching?'matching':'choice',operation,banks)).toBeUndefined();
  }
 });
 it.each([
@@ -65,10 +65,10 @@ it.each([
  for(let seed=0;seed<8;seed++){
   const seen=new Set<string>(),used=new Set<string>();
   for(let group=0;group<2;group++){
-   const lesson=corpusLesson(bank,seen,seed,160,'B1',[],kind,[],operation)!;expect(lesson).toBeTruthy();check(lesson,operation);
+   const lesson=corpusLesson(bank,seen,seed,160,'B1',[],kind,operation)!;expect(lesson).toBeTruthy();check(lesson,operation);
    for(const m of lesson.materials){expect(used.has(m.rootId)).toBe(false);used.add(m.rootId);seen.add(m.rootId);seen.add(m.id.replace(/^corpus-/,''));expect(m.blocks[0].text.split(/\s+/).length).toBeLessThanOrEqual(160);}
   }
-  expect(used.size).toBe(4);expect(corpusLesson(bank,seen,seed,160,'B1',[],kind,[],operation)).toBeUndefined();
+  expect(used.size).toBe(4);expect(corpusLesson(bank,seen,seed,160,'B1',[],kind,operation)).toBeUndefined();
  }
 });
 it('does not generalize exact inspected frames to altered, repeated, quoted, missing-context or hypothetical texts',async()=>{

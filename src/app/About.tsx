@@ -20,7 +20,7 @@ export function About() {
     </div>
     <div className="about-credits">
       <p className="about-copyright">© Euan Lin</p>
-      <p className="about-project-terms muted"><a href="https://github.com/euanylin/lingfern" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">Lingfern ↗</a> · <a href="/licenses/lingfern/LICENSE">{t.projectCode}</a> · <a href="/licenses/lingfern/CC-BY-4.0.txt">{t.projectText}</a> · <a href="/licenses/lingfern/NOTICE">{t.projectNotice}</a>. <a href="/licenses/lingfern/BRAND.md">{t.brandTerms}</a>.</p>
+      <p className="about-project-terms muted"><a href="https://github.com/euanylin/lingfern" aria-label="Lingfern on GitHub" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">Lingfern ↗</a> · <a href="/licenses/lingfern/LICENSE">{t.projectCode}</a> · <a href="/licenses/lingfern/CC-BY-4.0.txt">{t.projectText}</a> · <a href="/licenses/lingfern/NOTICE">{t.projectNotice}</a>. <a href="/licenses/lingfern/BRAND.md">{t.brandTerms}</a>.</p>
       <section>
         <h2>{t.openSource}</h2>
         <ul className="about-projects">{credits.software.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>)}</ul>

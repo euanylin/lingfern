@@ -49,13 +49,15 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
     playback.current.id = id;
     setError(''); setPlaying(id);
     audio.src = src;
+    // Record the selection independently of audio availability.
+    void recordLookup(profileId, 'ipa', ipa).then(
+      () => { if (request === playback.current.request) setHistoryError(false); },
+      () => { if (request === playback.current.request) setHistoryError(true); },
+    );
     try { await audio.play(); } catch {
       if (request === playback.current.request) { playback.current.id = ''; setPlaying(''); setError(t.failed); }
       return;
     }
-    if (request !== playback.current.request) return;
-    try { await recordLookup(profileId, 'ipa', ipa); if (request === playback.current.request) setHistoryError(false); }
-    catch { if (request === playback.current.request) setHistoryError(true); }
   }
   const bySymbol = new Map(entries?.map(entry => [entry.ipa, entry]));
   const bySound = new Map(sounds?.map(entry => [entry.ipa, entry]));

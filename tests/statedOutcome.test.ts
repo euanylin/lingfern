@@ -32,7 +32,7 @@ const banks = design.positive.map(entry => {
   return { ...bank, records: bank.records.filter(source => source.rootId === entry.rootId)
     .map(source => ({ ...source, clips: source.clips.filter(clip => clip.id === entry.completeClip.id) })) };
 });
-const generated = (seed = 0, point: 'B1' | 'B2' | 'C1' | 'C2' = 'B2') => spokenCorpusLesson(banks[0], new Set(), seed, 91, point, [], 'choice', [], operation, banks.slice(1))!;
+const generated = (seed = 0, point: 'B1' | 'B2' | 'C1' | 'C2' = 'B2') => spokenCorpusLesson(banks[0], new Set(), seed, 91, point, [], 'choice', operation, banks.slice(1))!;
 
 it('extracts three exact retained packed statements, keeping every qualifier, full chain and source option', () => {
   for (const entry of design.positive) {
@@ -121,8 +121,8 @@ it('uses the same operation across distinct real listening roots and Test snapsh
     }
   }
   expect(roots.size).toBeGreaterThanOrEqual(2);
-  for (const point of ['A1', 'A2'] as const) expect(spokenCorpusLesson(banks[0], new Set(), 0, 91, point, [], 'choice', [], operation, banks.slice(1))).toBeUndefined();
-  expect(spokenCorpusLesson(banks[0], new Set(design.positive.map(entry => entry.completeClip.id)), 0, 91, 'B2', [], 'choice', [], operation, banks.slice(1))).toBeUndefined();
+  for (const point of ['A1', 'A2'] as const) expect(spokenCorpusLesson(banks[0], new Set(), 0, 91, point, [], 'choice', operation, banks.slice(1))).toBeUndefined();
+  expect(spokenCorpusLesson(banks[0], new Set(design.positive.map(entry => entry.completeClip.id)), 0, 91, 'B2', [], 'choice', operation, banks.slice(1))).toBeUndefined();
 });
 
 it('only recommends saved outcome focus in non-beginner listening while preserving history bytes', () => {
@@ -153,17 +153,17 @@ it('keeps ordinary tasks available when effort, seen roots or flagged partners c
     { max: 91, seen: new Set<string>(), foreign: foreign.map(bank => ({ ...bank, records: bank.records.map(source => ({ ...source, clips: source.clips.map(clip => ({ ...clip, qualityFlags: ['Isolated quality-gate mutation'] })) })) })) },
   ];
   for (const scenario of scenarios) {
-    expect(spokenCorpusLesson(primary, scenario.seen, 0, scenario.max, 'B1', [], 'choice', [], operation, scenario.foreign)).toBeUndefined();
+    expect(spokenCorpusLesson(primary, scenario.seen, 0, scenario.max, 'B1', [], 'choice', operation, scenario.foreign)).toBeUndefined();
     let ordinary = 0;
     for (let seed = 0; seed < 20; seed++) {
-      const lesson = spokenCorpusLesson(primary, scenario.seen, seed, scenario.max, 'B1', [], undefined, [], undefined, scenario.foreign);
+      const lesson = spokenCorpusLesson(primary, scenario.seen, seed, scenario.max, 'B1', [], undefined, undefined, scenario.foreign);
       if (lesson) { ordinary++; expect(corpusOperation(lesson.materials[0].questions[0])).not.toBe(operation); }
     }
     expect(ordinary).toBeGreaterThan(0);
   }
   const ordinaryRoots = new Set<string>();
   for (let seed = 0; seed < 10; seed++) {
-    const lesson = spokenCorpusLesson(banks[0], new Set(), seed, 91, 'B2', [], undefined, [], undefined, banks.slice(1));
+    const lesson = spokenCorpusLesson(banks[0], new Set(), seed, 91, 'B2', [], undefined, undefined, banks.slice(1));
     if (corpusOperation(lesson?.materials[0].questions[0]) === operation) {
       expect(lesson!.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
       lesson!.materials.forEach(material => ordinaryRoots.add(material.rootId));
@@ -183,11 +183,11 @@ it('keeps full history-pack primary phases identical when installed outcome part
   const seeds = Array.from({ length: 13 }, (_unused, index) => Math.imul(index + 1, 0x9e3779b1) >>> 0);
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) {
     const maxSeconds = corpusPracticeHistory([], [], 'isolated-history-phases', 'listening', 'all', point).maxSeconds;
-    expect(spokenCorpusLesson(primary, new Set(), seeds[0], maxSeconds, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set(), seeds[0], maxSeconds, point, [], 'choice', operation)).toBeUndefined();
     for (const seed of seeds) {
       const scope = `${point} seed ${seed} maxSeconds ${maxSeconds}`;
       const single = spokenCorpusLesson(primary, new Set(), seed, maxSeconds, point);
-      const installed = spokenCorpusLesson(primary, new Set(), seed, maxSeconds, point, [], undefined, [], undefined, partners);
+      const installed = spokenCorpusLesson(primary, new Set(), seed, maxSeconds, point, [], undefined, undefined, partners);
       expect(single, scope + ': ordinary single-pack entry remains available').toBeDefined();
       expect(installed, scope + ': installed application entry remains available').toBeDefined();
       expect(corpusOperation(single!.materials[0].questions[0]), scope + ': no single-root outcome').not.toBe(operation);
@@ -219,7 +219,7 @@ it('keeps full history-pack primary phases identical when installed outcome part
     let reached = false;
     for (let index = 0; index < 512; index++) {
       const seed = Math.imul(index + 1, 0x9e3779b1) >>> 0;
-      const lesson = spokenCorpusLesson(primary, new Set(), seed, maxSeconds, point, [], undefined, [], undefined, partners);
+      const lesson = spokenCorpusLesson(primary, new Set(), seed, maxSeconds, point, [], undefined, undefined, partners);
       if (corpusOperation(lesson?.materials[0].questions[0]) !== operation) continue;
       const scope = `${point} seed ${seed} maxSeconds ${maxSeconds}`;
       expect(lesson!.materials).toHaveLength(2);

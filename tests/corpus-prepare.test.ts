@@ -11,7 +11,6 @@ vi.mock('../src/data/corpus', async importOriginal => ({ ...await importOriginal
 vi.mock('../src/data/sourcePacks', async importOriginal => ({ ...await importOriginal<typeof import('../src/data/sourcePacks')>(), installedSourcePacks: vi.fn(async () => new Set()), installSourcePack: vi.fn() }));
 // Test actual offline audio installation in browsers, not Node fixtures.
 vi.mock('../src/data/offline', async importOriginal => ({ ...await importOriginal<typeof import('../src/data/offline')>(), offlineGroupReady: vi.fn(async () => false) }));
-vi.mock('../src/data/memory', () => ({ dueMemories: vi.fn(async () => []) }));
 vi.mock('../src/core/spokenCorpus', async importOriginal => ({ ...await importOriginal<typeof import('../src/core/spokenCorpus')>(), spokenCorpusLesson: vi.fn() }));
 vi.mock('../src/core/wordListening', async importOriginal => ({ ...await importOriginal<typeof import('../src/core/wordListening')>(), wordListeningLesson: vi.fn() }));
 import { spokenCorpusLesson, type SpokenCorpus } from '../src/core/spokenCorpus';
@@ -166,7 +165,7 @@ it('filters listening clips and downloads for any selected topic while preservin
   for (const call of vi.mocked(spokenCorpusLesson).mock.calls) {
     expect(call[5]).toEqual(topics);
     expect(call[0].records[0].clips).toEqual(bank.records[0].clips.slice(0, 2));
-    for (const other of call[9] ?? []) expect(other.records[0].clips).toEqual(bank.records[0].clips.slice(0, 2));
+    for (const other of call[8] ?? []) expect(other.records[0].clips).toEqual(bank.records[0].clips.slice(0, 2));
   }
   const chosen = sourcePacks.find(pack => pack.skill === 'listening' && topics.some(topic => topic === pack.topic) && pack.minSeconds !== null && pack.minSeconds <= 90)!;
   expect(installSourcePack).toHaveBeenCalledWith(chosen.id, base.profileId);
@@ -237,7 +236,7 @@ it('filters listening primary and application clips inside their guarded banks w
   expect(spokenCorpusLesson).toHaveBeenCalled();
   for (const call of vi.mocked(spokenCorpusLesson).mock.calls) {
     expect(call[5]).toEqual(['science']);
-    for (const selected of [call[0], ...(call[9] ?? [])]) for (const record of selected.records) for (const item of record.clips) {
+    for (const selected of [call[0], ...(call[8] ?? [])]) for (const record of selected.records) for (const item of record.clips) {
       expect(corpusInterestMatch(record.title + '\n' + item.text, ['science'])).toBe(true);
       expect(bank.records.find(source => source.rootId === record.rootId)!.clips).toContainEqual(item);
     }
@@ -275,7 +274,7 @@ it('preserves unfiltered default listening banks and preference interests when n
   const preferences = { listening: 'B1' as const, interests: ['travel' as const], step: 4, completed: true };
   await prepareCorpusPractice({ ...base, preferences, skill: 'listening' });
   expect(spokenCorpusLesson).toHaveBeenCalled();
-  for (const call of vi.mocked(spokenCorpusLesson).mock.calls) { expect(call[0]).toEqual(bank); expect(call[5]).toEqual(preferences.interests); expect(call[9]).toEqual([bank]); }
+  for (const call of vi.mocked(spokenCorpusLesson).mock.calls) { expect(call[0]).toEqual(bank); expect(call[5]).toEqual(preferences.interests); expect(call[8]).toEqual([bank]); }
 });
 it.each(['reading','listening'] as const)('stops exhausted focused %s entry without changing the requested operation or original history',async skill=>{
  const {corpusLesson:generate,corpusSchema}=await vi.importActual<typeof import('../src/core/corpus')>('../src/core/corpus');
@@ -539,8 +538,8 @@ it('excludes seen original roots across skills for new B2 claim/example practice
   const scopes = (await import('../content/corpus/b2-claim-example-scopes.json')).default;
   const readingBank = { version: 1 as const, failures: [], records: await reviewedReading(corpusSchema.parse(JSON.parse(readFileSync('public/corpus/additional-2.json', 'utf8'))).records.filter(r => scopes.records.some(s => s.rootId === r.rootId)), 300) };
   const banks = await Promise.all(['history', 'seo'].map(async name => (await inspectCommunityPack(new Uint8Array(readFileSync(`tests/fixtures/long-reference-${name}.zip`)))).spoken!));
-  const reading = readingFactory(readingBank, new Set(), 0, 300, 'B2', [], 'matching', [], claimExampleOperation)!;
-  const heard = heardFactory(banks[0], new Set(), 0, 196, 'B2', [], 'matching', [], claimExampleOperation, [banks[1]])!;
+  const reading = readingFactory(readingBank, new Set(), 0, 300, 'B2', [], 'matching', claimExampleOperation)!;
+  const heard = heardFactory(banks[0], new Set(), 0, 196, 'B2', [], 'matching', claimExampleOperation, [banks[1]])!;
   vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0, 0]));
   for (const lesson of [reading, heard]) {
     const skill = lesson.skill as 'reading' | 'listening', profileId = `claim-root-${skill}`;
@@ -553,8 +552,8 @@ it('excludes seen original roots across skills for new B2 claim/example practice
     const result = await prepareCorpusPractice({ locale: 'zh-Hans', profileId, preferences: { reading: 'B2', listening: 'B2', interests: [], step: 4, completed: true }, history: [prior], records: [], online: false, skill });
     expect(result.lesson).toBeUndefined(); expect(factory.mock.calls.length).toBeGreaterThanOrEqual(2);
     const retry = factory.mock.calls[1]; expect(retry[0].records.some(r => r.rootId === lesson.materials[0].rootId)).toBe(false);
-    expect(retry[6]).toBe('matching'); expect(retry[8]).toBe(claimExampleOperation);
-    if (skill === 'listening') expect(vi.mocked(spokenCorpusLesson).mock.calls[1][9]!.every(b => b.records.every(r => r.rootId !== lesson.materials[0].rootId))).toBe(true);
+    expect(retry[6]).toBe('matching'); expect(retry[7]).toBe(claimExampleOperation);
+    if (skill === 'listening') expect(vi.mocked(spokenCorpusLesson).mock.calls[1][8]!.every(b => b.records.every(r => r.rootId !== lesson.materials[0].rootId))).toBe(true);
   }
 });
 
@@ -656,7 +655,7 @@ it('reaches C1 implicit-purpose listening from its actual installed pair at cold
   const banks = await Promise.all(['115022507', '159833654'].map(async id => { const pack = await inspectCommunityPack(new Uint8Array(readFileSync(`tests/fixtures/c1-implicit-${id}.zip`))); return { ...pack.spoken!, records: await Promise.all(pack.spoken!.records.map(async r => ({ ...r, clips: await data.reviewedExcerpts(r, r.clips) }))) }; }));
   vi.mocked(spokenCorpusLesson).mockImplementation(heard.spokenCorpusLesson); vi.mocked(loadSpokenCorpora).mockResolvedValue(banks); vi.spyOn(crypto, 'getRandomValues').mockImplementation(a => { (a as Uint32Array).set([0, 0]); return a; });
   const profileId = 'heard-implicit-ordinary', base = { profileId, locale: 'zh-Hans' as const, skill: 'listening' as const, online: false, preferences: { reading: 'C1' as const, listening: 'C1' as const, interests: [], step: 4, completed: true } };
-  const lesson = (await prepareCorpusPractice({ ...base, history: [], records: [] })).lesson!; expect(lesson?.goalId).toBe('implicit-intention-in-context'); expect(spokenCorpusLesson).toHaveBeenCalledWith(expect.anything(), expect.anything(), 0, 196, 'C1', expect.anything(), undefined, expect.anything(), undefined, expect.anything());
+  const lesson = (await prepareCorpusPractice({ ...base, history: [], records: [] })).lesson!; expect(lesson?.goalId).toBe('implicit-intention-in-context'); expect(spokenCorpusLesson).toHaveBeenCalledWith(expect.anything(), expect.anything(), 0, 196, 'C1', expect.anything(), undefined, undefined, expect.anything());
   const at = new Date(Date.now() - 1000).toISOString(), session: Session = { id: 'heard-implicit-retry', profileId, lesson, status: 'completed', position: 1, startedAt: at, contentHash: 'isolated-heard-history', assistance: { hintLevel: 0 }, leaseUntil: 0 };
   const records: Attempt[] = lesson.materials.map(m => { const q = m.questions[0]; if ('kind' in q) throw Error('Expected choice'); return { id: m.id, profileId, sessionId: session.id, questionId: q.id, rootId: m.rootId, answer: (q.answer + 1) % q.options.length, correct: false, rule: 'isolated-heard-implicit-route-only', assistance: { hintLevel: 0, audioCompleted: true, playbackRequests: 1 }, submittedAt: at }; });
   expect((await prepareCorpusPractice({ ...base, history: [session], records })).lesson).toBeUndefined();
@@ -840,7 +839,7 @@ it('keeps faithful paraphrase within the existing ordinary support condition, ex
     const at = Date.now() - 10000, history: Session[] = [], records: Attempt[] = [];
     if (skill === 'reading') {
       expect((await prepareCorpusPractice({ ...base, history, records })).lesson?.goalId).not.toBe('faithful-paraphrase');
-      const snapshot = core.corpusLesson(reading, new Set(), 0, 1800, 'C2', [], 'choice', [], 'choice:faithful-paraphrase')!;
+      const snapshot = core.corpusLesson(reading, new Set(), 0, 1800, 'C2', [], 'choice', 'choice:faithful-paraphrase')!;
       // Test support thresholds with synthetic history; verify actual Today prerequisites separately.
       for (let n = 0; n < 2; n++) {
         const lesson = structuredClone(snapshot); lesson.goalId = 'source-wording-and-summary';

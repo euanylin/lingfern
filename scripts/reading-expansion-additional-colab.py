@@ -1,5 +1,5 @@
 """Prepare two fixed official CC BY 4.0 books on CPU with the reviewed parser."""
-import pathlib,hashlib,importlib.util,urllib.request,tarfile,io,xml.etree.ElementTree as ET,json,re,zipfile,time,os,platform,collections,datetime
+import pathlib,hashlib,importlib.util,urllib.request,tarfile,io,xml.etree.ElementTree as ET,json,re,zipfile,time,os,platform,collections
 PARSER=pathlib.Path('/content/reading-expansion-colab-scope-reviewed.py')
 assert hashlib.sha256(PARSER.read_bytes()).hexdigest()=='83913a54ff90345a8cfec41d876a5ba38ef7785fc0582ed934d287cba5704b35'
 spec=importlib.util.spec_from_file_location('reviewed_parser',PARSER);parser=importlib.util.module_from_spec(spec);spec.loader.exec_module(parser)

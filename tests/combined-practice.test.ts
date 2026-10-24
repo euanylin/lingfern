@@ -51,7 +51,7 @@ it('retains ordinary-practice shared-root rules but fails closed for unavailable
   await expect(createCombinedPractice(reading, shared)).resolves.toHaveLength(2);
   const primary = await inspectCommunityPack(readSourcePackFixture('wikipedia-listening-010'));
   const application = await inspectCommunityPack(readSourcePackFixture('wikipedia-listening-005'));
-  const unavailable = spokenCorpusLesson(primary.spoken!, new Set(), 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
+  const unavailable = spokenCorpusLesson(primary.spoken!, new Set(), 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
   vi.stubGlobal('window', {});
   await expect(createCombinedPractice(reading, unavailable, 'other')).rejects.toThrow('MISSING_MEDIA');
   expect(await sessions.where('profileId').equals('other').count()).toBe(0);

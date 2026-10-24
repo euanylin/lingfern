@@ -60,7 +60,7 @@ import shortReadingScopes from '../../content/corpus/short-reading-scopes.json';
 import { openReadingEdition, openReadingBookUrl, openReadingDownloadUrl, openReadingLicenceUrl, validOpenReadingChapter, validOpenReadingBeginnerScope } from '../shared/openReading';
 import { z } from 'zod';
 import { spokenAttributionMatchingPrompt } from './spokenAttribution';
-import { corpusPreferencePool, corpusReviewMatch, corpusOperation, pairedReliancePrompt, pairedRelianceOperation, qualificationPrompt, politeRequestPrompt, qualifiedTimingPrompt, concessiveRelationPrompt, explicitContrastPrompt, negatedNecessityPrompt, outcomePrompt, qualifiedCausePrompt, actionSelectionPrompt, stageActionPrompt, requestedAddressPrompt, statedOriginPrompt, statedIntentionPrompt, workPhonePrompt, plannedOrderPrompt, personalGoalPrompts } from './corpusPractice';
+import { corpusPreferencePool, corpusOperation, pairedReliancePrompt, pairedRelianceOperation, qualificationPrompt, politeRequestPrompt, qualifiedTimingPrompt, concessiveRelationPrompt, explicitContrastPrompt, negatedNecessityPrompt, outcomePrompt, qualifiedCausePrompt, actionSelectionPrompt, stageActionPrompt, requestedAddressPrompt, statedOriginPrompt, statedIntentionPrompt, workPhonePrompt, plannedOrderPrompt, personalGoalPrompts } from './corpusPractice';
 import type { Preferences } from '../shared/preferences';
 import { lessonSchema, levelSchema, type Lesson, type CorpusQuestionKind } from '../shared/content';
 
@@ -255,15 +255,13 @@ function unseenCorpusPassages(source: Corpus['records'][number], seen: ReadonlyS
 }
 
 /** Keep candidates source-rooted and local; infer no ability. */
-export function selectCorpusPassage(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 500, interests: Preferences['interests'] = [], reviewTerms: readonly string[] = [], startingPoint?: Preferences['reading']) {
+export function selectCorpusPassage(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 500, interests: Preferences['interests'] = [], startingPoint?: Preferences['reading']) {
   if (!Number.isSafeInteger(seed) || seed < 0 || !Number.isInteger(maxWords) || maxWords < 120 || maxWords > maxCorpusWords) throw new Error('INVALID_CORPUS_SELECTION');
   const candidates = corpus.records.flatMap(source => unseenCorpusPassages(source, seen).map(passage => ({ source, passage })))
     .filter(({ passage }) => passage.wordCount <= maxWords && (startingPoint !== 'C1' && startingPoint !== 'C2' || passage.wordCount >= 120));
-  const review = candidates.filter(({ passage }) => corpusReviewMatch(passage.text, reviewTerms));
-  const eligible = review.length ? review : candidates;
   const minimum = startingPoint === 'C1' ? 500 : startingPoint === 'C2' ? 700 : 0;
-  const substantial = eligible.filter(({ passage }) => passage.wordCount >= minimum);
-  const pool = corpusPreferencePool(substantial.length ? substantial : eligible, ({ source, passage }) => ({ title: source.title, text: passage.text }), interests, seed, startingPoint);
+  const substantial = candidates.filter(({ passage }) => passage.wordCount >= minimum);
+  const pool = corpusPreferencePool(substantial.length ? substantial : candidates, ({ source, passage }) => ({ title: source.title, text: passage.text }), interests, seed, startingPoint);
   // shortcut: bounded linear corpus scan; add an index if device measurements justify it.
   if (!pool.length) return undefined;
   const firstFamily = pool[0].source.id.split('-')[0];
@@ -2188,7 +2186,7 @@ export function corpusMaterial({ source, passage }: NonNullable<ReturnType<typeo
 }
 
 /** Apply the session source quota after ordinary material selection and generation. */
-function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
+function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
   // Wrap application seeds at the public seed's 32-bit boundary.
   const nextSeed = (seed + 1) >>> 0;
   const beginner = startingPoint === 'A1' || startingPoint === 'A2';
@@ -2256,7 +2254,7 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   const reviewedFocusReady = [disagreementSynthesisOperation, faithfulParaphraseOperation, complexPragmaticsOperation, layeredPositionOperation, rhetoricalFunctionOperation, nuancedMeaningOperation, informationDensityOperation, indirectStanceOperation, argumentBoundariesOperation, registerAudienceOperation, discourseOrganizationOperation, implicitIntentionOperation, viewAttributionOperation, informationSynthesisOperation, speakerAttitudeOperation, qualifiedConcessionOperation, comparisonOperation, claimExampleOperation, 'choice:main-point', 'choice:condition-outcome', 'choice:reference', 'choice:narrative-motive', 'choice:specific-intention', 'choice:procedural-plan'].includes(rotation?.[1] ?? '') && new Set(eligible.records.filter(source => source.passages.some(passage => canFocus(passage, seed, rotation?.[0], rotation?.[1]))).map(source => source.rootId)).size >= 2;
   const automatic = !focus ? (reviewedFocusReady ? rotation : !beginner && referenceRoots.size >= 2 ? ['choice', 'choice:reference'] as const : rotation) : undefined;
   const focused = { ...eligible, records: eligible.records.map(source => ({ ...source, passages: source.passages.filter(passage => canFocus(passage, seed, focus ?? automatic?.[0], focusOperation ?? automatic?.[1])) })) };
-  let first = selectCorpusPassage(focused, seen, seed, maxWords, interests, reviewTerms, startingPoint) ?? selectCorpusPassage(eligible, seen, seed, maxWords, interests, reviewTerms, startingPoint);
+  let first = selectCorpusPassage(focused, seen, seed, maxWords, interests, startingPoint) ?? selectCorpusPassage(eligible, seen, seed, maxWords, interests, startingPoint);
   if (!first) return;
   const materialFor = (item: NonNullable<ReturnType<typeof selectCorpusPassage>>, index: number, preferred = focus, preferredOperation = focusOperation) => corpusMaterial(item, (seed + index) >>> 0, startingPoint, preferred, preferredOperation, attributionCycle, includeResponse);
   let taught = materialFor(first, 0, focus ?? automatic?.[0], focusOperation ?? automatic?.[1]);
@@ -2277,15 +2275,15 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
   const applicationSources = (bank: Corpus) => bank.records.map(source => ({ ...source, passages: source.passages.filter(passage =>
     corpusMaterialRoot(source, passage) !== firstRoot && (!(first!.passage.quoteProvenance || passage.quoteProvenance) || textKey(passage.text) !== firstText),
   ) })).filter(source => source.passages.length);
-  let second = selectCorpusPassage({ ...focused, records: applicationSources(focused) }, seen, nextSeed, maxWords, interests, reviewTerms, startingPoint)
-    ?? selectCorpusPassage({ ...applicationEligible, records: applicationSources(applicationEligible) }, seen, nextSeed, maxWords, interests, reviewTerms, startingPoint);
+  let second = selectCorpusPassage({ ...focused, records: applicationSources(focused) }, seen, nextSeed, maxWords, interests, startingPoint)
+    ?? selectCorpusPassage({ ...applicationEligible, records: applicationSources(applicationEligible) }, seen, nextSeed, maxWords, interests, startingPoint);
   if (!second) return;
   let applied = materialFor(second, 1, target, taughtOperation);
   if (corpusOperation(applied?.questions[0]) !== taughtOperation) {
     const application = { ...applicationEligible, records: applicationSources(applicationEligible).map(source => ({ ...source,
       passages: source.passages.filter(passage => canFocus(passage, nextSeed, target, taughtOperation)
         && (target !== 'matching' && target !== 'evidence' && target !== 'choice' || corpusOperation(materialFor({ source, passage }, 1, target, taughtOperation)?.questions[0]) === taughtOperation)) })) };
-    const replacement = selectCorpusPassage(application, seen, nextSeed, maxWords, interests, reviewTerms, startingPoint);
+    const replacement = selectCorpusPassage(application, seen, nextSeed, maxWords, interests, startingPoint);
     if (replacement) { second = replacement; applied = materialFor(second, 1, target, taughtOperation); }
   }
   if (!applied) return;
@@ -2314,15 +2312,15 @@ function corpusCandidateLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: 
 }
 
 // Shared eligibility per 16 seeds limits Wikiquote to slot zero: at most 1/16 with uniform seeds.
-export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
+export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: number, maxWords = 300, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, focusOperation?: string, applicationCorpus?: Corpus, includeResponse = true) {
   const hasQuotes = startingPoint !== 'A1' && startingPoint !== 'A2' && [corpus, applicationCorpus].some(bank => bank?.records.some(source => source.passages.some(passage => passage.quoteProvenance)));
-  if (!hasQuotes) return corpusCandidateLesson(corpus, seen, seed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus, includeResponse);
+  if (!hasQuotes) return corpusCandidateLesson(corpus, seen, seed, maxWords, startingPoint, interests, focus, focusOperation, applicationCorpus, includeResponse);
   if (!Number.isSafeInteger(seed) || seed < 0) throw new Error('INVALID_CORPUS_SELECTION');
   const ordinary = (bank: Corpus): Corpus => ({ ...bank, records: bank.records.map(source => ({ ...source,
     passages: source.passages.filter(passage => !passage.quoteProvenance),
   })).filter(source => source.passages.length) });
   const baseSeed = Math.floor(seed / 16);
-  const baseline = corpusCandidateLesson(ordinary(corpus), seen, baseSeed, maxWords, startingPoint, interests, focus, reviewTerms, focusOperation, applicationCorpus && ordinary(applicationCorpus), includeResponse);
+  const baseline = corpusCandidateLesson(ordinary(corpus), seen, baseSeed, maxWords, startingPoint, interests, focus, focusOperation, applicationCorpus && ordinary(applicationCorpus), includeResponse);
   if (!baseline) return;
   const savedSeed = { ...baseline, generation: { ...baseline.generation!, seed } };
   if (seed % 16) return savedSeed;
@@ -2331,8 +2329,6 @@ export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: nu
   if (target === 'response' || !operation) return savedSeed;
   const textKey = (text: string) => text.normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
   const primaryText = textKey(primary.blocks.map(block => block.text).join('\n'));
-  const matchesReview = (materials: Lesson['materials']) => materials.some(material => corpusReviewMatch(material.blocks.map(block => block.text).join('\n'), reviewTerms));
-  const baselineReview = matchesReview(baseline.materials);
   const sources = [...new Map([...(applicationCorpus?.records ?? []), ...corpus.records].map(source => [source.rootId, source])).values()];
   const candidates = sources.flatMap(source => unseenCorpusPassages(source, seen).filter(passage => passage.quoteProvenance
     && passage.wordCount <= maxWords && (startingPoint !== 'C1' && startingPoint !== 'C2' || passage.wordCount >= 120)
@@ -2340,8 +2336,7 @@ export function corpusLesson(corpus: Corpus, seen: ReadonlySet<string>, seed: nu
   for (let offset = 0; offset < candidates.length; offset++) {
     const candidate = candidates[(baseSeed + offset) % candidates.length];
     const application = corpusMaterial(candidate, baseSeed + 1, startingPoint, target, operation, 1, includeResponse);
-    if (!application || corpusOperation(application.questions[0]) !== operation
-      || matchesReview([primary, application]) !== baselineReview) continue;
+    if (!application || corpusOperation(application.questions[0]) !== operation) continue;
     return lessonSchema.parse({ ...savedSeed, id: `corpus-v1-${primary.id.slice('corpus-'.length, 'corpus-'.length + 16)}-${candidate.passage.id.slice(0, 16)}`,
       sourceId: 'wikiquote-corpus', title: english(`${primary.title} · ${application.title}`), materials: [primary, application] });
   }

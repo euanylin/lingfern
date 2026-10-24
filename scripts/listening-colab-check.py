@@ -1,5 +1,5 @@
 """Verify public-corpus exports before safe extraction as optional research tooling."""
-import hashlib, importlib.util, json, pathlib, stat, sys, tarfile, tempfile, zipfile
+import hashlib, importlib.util, json, pathlib, stat, sys, tarfile, zipfile
 
 def sha(path):
     with path.open('rb') as stream: return hashlib.file_digest(stream,'sha256').hexdigest()

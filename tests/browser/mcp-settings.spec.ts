@@ -44,14 +44,14 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
   await expect(repository).toBeVisible();
   expect(repositoryReads).toBe(0); expect(sharingReads).toBe(0);
   await expect(repository.locator('.repository-steps')).toBeHidden();
-  const repositoryRow = repository.locator('.repository-select-row');
-  await expect(repositoryRow).toHaveCSS('min-height', '58px');
-  await expect(repositoryRow).toHaveCSS('border-radius', '0px');
-  await expect(repositoryRow).toHaveCSS('font-size', '15px');
-  await expect(repositoryRow).toHaveCSS('font-weight', '400');
-  await repository.getByRole('button', { name: '已授权资料库 lingfern-data' }).click();
-  await expect(repository.getByRole('button', { name: '已授权资料库' })).toBeVisible();
+  await expect(repository.locator('bdi')).toHaveText('synthetic-learner/lingfern-data');
+  const resetSummary = repository.locator('.repository-reset>summary');
+  await expect(resetSummary).toHaveCSS('min-height', '56px');
+  await resetSummary.press('Enter');
+  await repository.getByRole('button', { name: languagePacks['zh-Hans'].repositoryBinding.find, exact: true }).click();
+  await expect(repository.locator('.setting-trigger')).toContainText('lingfern-data');
   expect(repositoryReads).toBe(1);
+  await resetSummary.press('Enter');
   for (const [label, locale, reset, permissions] of [['语言', 'en', 'Set up again', 'Sharing and client permissions'], ['Language', 'zh-Hant', '重新設定', '分享與用戶端權限'], ['語言', 'zh-Hans', '重新设置', '分享与客户端权限']] as const) {
     await selectPicker(page, label, locale);
     for (const colorScheme of ['light', 'dark'] as const) {

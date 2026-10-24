@@ -12,7 +12,7 @@ it('demonstrates speaker ownership without replacing unused-source examples or r
   const missing: Record<string, number[]> = { A1: [], A2: [] };
   let sourceExamples = 0;
   for (const level of ['A1', 'A2'] as const) for (let seed = 0; seed < 52; seed++) {
-    const lesson = lessonSchema.parse(corpusLesson(bank, new Set(), seed, 160, level, [], 'matching', [], operation));
+    const lesson = lessonSchema.parse(corpusLesson(bank, new Set(), seed, 160, level, [], 'matching', operation));
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const unused = corpusWorkedExample(lesson.materials[0], seed, level);
     if (unused) { sourceExamples++; expect(lesson.workedExample).toEqual(unused); }
@@ -54,7 +54,7 @@ it('demonstrates room matching when needed and preserves unused-source examples 
   const operation = `matching:${roomMatchingPrompt}`;
   let sourceExamples = 0, fallbacks = 0;
   for (const level of ['A1', 'A2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = lessonSchema.parse(corpusLesson(bank, new Set(), seed, 160, level, [], 'matching', [], operation));
+    const lesson = lessonSchema.parse(corpusLesson(bank, new Set(), seed, 160, level, [], 'matching', operation));
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const unused = corpusWorkedExample(lesson.materials[0], seed, level);
     expect(!!unused).toBe(seed % 2 === 0);
@@ -102,7 +102,7 @@ it('demonstrates requested-name and wrong-number distinctions without using asse
   for (const level of ['A1', 'A2'] as const) for (const operation of ['choice:requested-address', 'choice:work-phone']) {
     const roots = new Set<string>();
     for (let seed = 0; seed < 52; seed++) {
-      const lesson = lessonSchema.parse(corpusLesson(bank, new Set(), seed, 160, level, [], 'choice', [], operation));
+      const lesson = lessonSchema.parse(corpusLesson(bank, new Set(), seed, 160, level, [], 'choice', operation));
       expect(lesson).toBeDefined();
       expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
       for (const material of lesson.materials) {
@@ -135,7 +135,7 @@ it('demonstrates requested-name and wrong-number distinctions without using asse
 
 it('keeps exact material/scoring snapshots and hides support in generated Test', () => {
   for (const operation of ['choice:requested-address', 'choice:work-phone']) {
-    const practice = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)!;
+    const practice = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)!;
     const original = structuredClone(practice);
     const reapplied = corpusStartingPoint(practice, 'A2');
     for (const [index, material] of reapplied.materials.entries()) {

@@ -52,7 +52,7 @@ it('generates reviewed-package evaluation practice and distinct-root application
   for (const seed of [4, 5]) expect(corpusLesson(normal, new Set(), seed, 220, 'B1')!.materials.every(material => material.questions[0].prompt === evaluationPrompt)).toBe(true);
   const operation = `evidence:${evaluationPrompt}`;
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 6; seed++) {
-    const lesson = corpusLesson(full, new Set(), seed, point === 'B1' ? 220 : 700, point, [], 'evidence', [], operation)!;
+    const lesson = corpusLesson(full, new Set(), seed, point === 'B1' ? 220 : 700, point, [], 'evidence', operation)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal.en).toBe(lesson.goal['zh-Hans']);
     for (const material of lesson.materials) {
@@ -74,10 +74,10 @@ it('generates reviewed-package evaluation practice and distinct-root application
       expect(exposureSchema.safeParse({ profileId: 'test', rootId: material.rootId, firstSeenAt: time, lastSeenAt: time, contacts: [{ sessionId: 'test', materialId: material.id, questionId: question.id, variantGroup: question.id, firstSeenAt: time, lastSeenAt: time }] }).success).toBe(true);
     }
     const seen = new Set(lesson.materials.map(material => material.id.slice(7)));
-    const next = corpusLesson(full, seen, seed, 700, point, [], 'evidence', [], operation);
+    const next = corpusLesson(full, seen, seed, 700, point, [], 'evidence', operation);
     expect(next?.materials.some(material => seen.has(material.id.slice(7)))).not.toBe(true);
   }
-  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(full, new Set(), 0, 700, point, [], 'evidence', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(full, new Set(), 0, 700, point, [], 'evidence', operation)).toBeUndefined();
 }, 15000);
 
 it('keeps two inspected Chomsky criticisms and pairs them with a different named evaluation', () => {
@@ -99,7 +99,7 @@ it('keeps two inspected Chomsky criticisms and pairs them with a different named
     if (index < 2) expect(task.cue).toMatch(/Noam Chomsky \((?:1957|1965)\) criticized/);
   }
   const focused = { version: 1 as const, failures: [] as [], records: frames.map(item => ({ ...item.source, passages: [item.passage] })) };
-  const lesson = corpusLesson(focused, new Set(), 0, 220, 'B1', [], 'evidence', [], `evidence:${evaluationPrompt}`)!;
+  const lesson = corpusLesson(focused, new Set(), 0, 220, 'B1', [], 'evidence', `evidence:${evaluationPrompt}`)!;
   expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
   expect(corpusEvaluation('Noam Chomsky (1965) criticized this approach. ' + neutral, 0)?.sourceName).toBe('Noam Chomsky');
   expect(corpusEvaluation('He criticized the incumbent’s increases in taxes. ' + neutral, 0)).toBeUndefined();

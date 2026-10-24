@@ -56,11 +56,13 @@ test('task details confirm metadata without starting, exposing passages or playi
 });
 
 test('task detail remains usable in three languages, dark theme, short screens and enlarged text', async ({ page }) => {
+  await page.goto('/settings');
+  await selectPicker(page, languagePacks['zh-Hans'].app.theme, 'dark');
   for (const locale of ['en', 'zh-Hant', 'zh-Hans'] as const) {
     await page.goto('/settings');
     const currentLabel = await page.getByRole('button', { name: /^(语言|語言|Language):/ }).getAttribute('aria-label');
     await selectPicker(page, currentLabel!, locale);
-    await selectPicker(page, locale === 'en' ? 'Appearance' : locale === 'zh-Hant' ? '外觀' : '外观', 'dark');
+    await expect(page.getByRole('button', { name: languagePacks[locale].app.theme }).and(page.locator('.setting-trigger'))).toHaveAttribute('data-value', 'dark');
     await page.setViewportSize({ width: 320, height: 500 });
     await page.goto('/today');
     const title = { en: 'Preserve disagreement and responsibility', 'zh-Hant': '保留分歧與責任', 'zh-Hans': '保留分歧与责任' }[locale];
@@ -69,7 +71,7 @@ test('task detail remains usable in three languages, dark theme, short screens a
     await expect(dialog).toBeVisible();
     await expect(dialog).toHaveCSS('opacity', '1');
     await expect(dialog.locator('.task-detail-body > dl').first().locator('dt')).toHaveText([languagePacks[locale].taskDetail.types]);
-    await expect(dialog).not.toContainText(languagePacks[locale].taskDetail.duration);
+    await expect(dialog).not.toContainText(/Estimated time|预计用时|預計用時/);
     await page.evaluate(() => document.documentElement.style.fontSize = '200%');
     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
     await dialog.locator('button.primary').scrollIntoViewIfNeeded();
@@ -146,7 +148,7 @@ test('combined preview omits both estimates while retaining actual audio duratio
     return Math.round(additionalLesson.materials.reduce((sum: number, material: { audio?: { duration: number } }) => sum + (material.audio?.duration ?? 0), 0));
   });
   const dialog = page.getByRole('dialog');
-  await expect(dialog).not.toContainText(languagePacks.en.taskDetail.duration);
+  await expect(dialog).not.toContainText(/Estimated time|预计用时|預計用時/);
   await expect(dialog.locator('section dl dt')).toHaveText(languagePacks.en.taskDetail.audio);
   await expect(dialog.locator('section dl dd')).toContainText(`${seconds} ${languagePacks.en.taskDetail.seconds}`);
   await expect(dialog.locator('audio,.passage')).toHaveCount(0);

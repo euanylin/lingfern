@@ -32,7 +32,7 @@ const LibraryPreview = memo(function LibraryPreview({ locale, profileId }: { loc
     <section className="library-references"><h2>{app.references}</h2>
       {(['dictionary', 'ipa', 'grammar'] as const).map(name => <a className="library-reference-tile" href={`/library/${name}`} key={name}>{name === 'dictionary' ? app.dictionaryEntry : app[name]}</a>)}
     </section>
-    <OfflineInstall locale={locale} profileId={profileId} online={navigator.onLine} onReady={() => {}}/><InstalledResources locale={locale} profileId={profileId}/><CommunityImport locale={locale} profileId={profileId} onInstalled={() => {}}/>
+    <OfflineInstall locale={locale} profileId={profileId} online={navigator.onLine} onReady={() => {}} preview/><InstalledResources locale={locale} profileId={profileId}/><CommunityImport locale={locale} profileId={profileId} onInstalled={() => {}}/>
   </div>;
 });
 
@@ -114,28 +114,46 @@ export function Welcome(props: WelcomeProps) {
   useEffect(() => { if (reduced) go(Math.round(current.current)); }, [go, reduced]);
   useEffect(() => {
     if (reduced) return;
-    const timer = window.setInterval(() => {
+    const rotate = () => {
       const root = stage.current;
       if (document.hidden || matchMedia('(prefers-reduced-motion: reduce)').matches || drag.current || pointerHeld.current || performance.now() < idleUntil.current || root?.querySelector('input:focus,textarea:focus,select:focus') || (keyboard.current && root?.closest('.welcome')?.contains(document.activeElement))) return;
       go(Math.round(current.current) + 1);
-    }, 500);
+    };
+    let timer: ReturnType<typeof setInterval> | undefined;
+    const start = () => { if (!document.hidden && timer === undefined) timer = setInterval(rotate, 500); };
+    start();
     const wake = () => { idleUntil.current = performance.now() + 6000; };
     const root = stage.current!.closest('.welcome')!;
     const down = () => { keyboard.current = false; pointerHeld.current = true; wake(); };
     const release = () => { pointerHeld.current = false; wake(); };
+    const visibility = () => {
+      release();
+      if (!document.hidden) { start(); return; }
+      clearInterval(timer); timer = undefined; cancelWheel.current();
+      cancelAnimationFrame(frame.current); cancelAnimationFrame(inputFrame.current);
+      frame.current = 0; inputFrame.current = 0;
+      const held = drag.current;
+      if (held?.axis === 'x') destination.current = Math.round(held.last);
+      if (held?.axis) suppressClick.current = true;
+      drag.current = undefined;
+      if (held && stage.current?.hasPointerCapture(held.id)) stage.current.releasePointerCapture(held.id);
+      // Finish the invisible transition once; resume at its normal resting pose.
+      destination.current = ((Math.round(destination.current) % 3) + 3) % 3;
+      paint(destination.current);
+    };
     root.addEventListener('pointerdown', down, { passive: true, capture: true });
     window.addEventListener('pointerup', release, { passive: true, capture: true });
     window.addEventListener('pointercancel', release, { passive: true, capture: true });
     const events = ['pointermove', 'wheel', 'keydown', 'input', 'change', 'scroll'];
     for (const name of events) window.addEventListener(name, wake, { passive: true, capture: true });
-    document.addEventListener('visibilitychange', release);
+    document.addEventListener('visibilitychange', visibility);
     return () => {
       clearInterval(timer); root.removeEventListener('pointerdown', down, true);
       window.removeEventListener('pointerup', release, true); window.removeEventListener('pointercancel', release, true);
       for (const name of events) window.removeEventListener(name, wake, true);
-      document.removeEventListener('visibilitychange', release);
+      document.removeEventListener('visibilitychange', visibility);
     };
-  }, [go, reduced]);
+  }, [go, paint, reduced]);
   useEffect(() => {
     const root = stage.current!, gestures = WheelGestures({ preventWheelAction: false, reverseSign: false });
     let start = 0, origin = 0, total = 0, velocity = 0, settled = false, lastAt = 0, peak = 0, lastDelta = 0;

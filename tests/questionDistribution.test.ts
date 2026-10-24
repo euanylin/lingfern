@@ -33,16 +33,16 @@ function sparseBank() {
   }) });
 }
 
-it.each(['A2', 'B1', 'C2'] as const)('balances only supported listening kinds at %s and preserves focus/review', point => {
+it.each(['A2', 'B1', 'C2'] as const)('balances only supported listening kinds at %s and preserves operation focus', point => {
   const bank = sparseBank(), counts = new Map<string, number>();
   for (let seed = 0; seed < 64; seed++) {
     const lesson = spokenCorpusLesson(bank, new Set(), seed, 60, point, ['daily-life'])!;
     const operation = corpusOperation(lesson.materials[0].questions[0])!;
     counts.set(operation, (counts.get(operation) ?? 0) + 1);
     expect(lesson.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
-    const focused = spokenCorpusLesson(bank, new Set(), seed, 60, point, [], 'completion', ['garden'])!;
+    const focused = spokenCorpusLesson(bank, new Set(), seed, 60, point, [], 'completion')!;
     expect(focused.materials.every(material => corpusOperation(material.questions[0]) === 'completion')).toBe(true);
-    expect(focused.materials[0].rootId).toBe(bank.records[0].rootId);
+    expect(new Set(focused.materials.map(material => material.rootId)).size).toBe(2);
     expect(spokenCorpusLesson(bank, new Set(bank.records.flatMap(source => source.clips.map(clip => clip.id))), seed, 60, point)).toBeUndefined();
   }
   expect(Object.fromEntries(counts)).toEqual({ sequence: 32, completion: 32 });

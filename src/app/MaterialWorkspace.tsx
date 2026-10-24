@@ -1,3 +1,4 @@
+import './MaterialWorkspace.css';
 import { localeDirection } from '../shared/locale';
 import { useQuestionSheetLayout } from './useQuestionSheetLayout';
 import { QuestionSheetResize } from './QuestionSheetResize';

@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test';
 
+// Exercise transport primitives without starting a competing app coordinator.
+test.beforeEach(async ({ context }) => { await context.route('**/__sync-client-test', route => route.fulfill({ contentType: 'text/html', body: '<!doctype html><title>Isolated sync transport</title>' })); });
+
 test('explicit upload round retries fixed batches and stops after local consent is withdrawn', async ({ page }) => {
   const scope = { accountId: 1, profileId: 'sync-client-browser', bindingVersion: 'a'.repeat(43) };
   const summary = { account: { id: 1, login: 'synthetic' }, csrfToken: 't'.repeat(43), syncAvailable: true, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: scope.profileId, disabled: false, bindingVersion: scope.bindingVersion }] };
@@ -13,15 +16,14 @@ test('explicit upload round retries fixed batches and stops after local consent 
     if (lost) return route.abort('failed');
     await route.fulfill({ json: { scope, batchId: value.batch.batchId, hash: value.hash, previouslyWritten: true } });
   });
-  await page.goto('/today');
-  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  await page.goto('/__sync-client-test');
   const consent = await page.evaluate(async ({ scope, summary }) => {
     const { db } = await import('/src/data/db.ts' as string);
     const { appendSyncEvent } = await import('/src/data/sync.ts' as string);
     const { allowSyncUpload } = await import('/src/data/syncClient.ts' as string);
     await db.table('profiles').put({ id: scope.profileId, name: 'Synthetic profile', createdAt: new Date().toISOString() });
     await db.table('settings').bulkPut([{ key: 'activeProfile', value: scope.profileId }, { key: `profile:${scope.profileId}:syncAccount`, value: JSON.stringify({ accountId: 1, profileId: scope.profileId }) }]);
-    await appendSyncEvent(scope.profileId, { type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true, reviewEnabled: false } });
+    await appendSyncEvent(scope.profileId, { type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true } });
     return allowSyncUpload(scope.profileId, scope, summary);
   }, { scope, summary });
   expect(batches).toHaveLength(0);
@@ -47,13 +49,13 @@ test('download pages commit in Chrome and repeated rounds reuse verified blob re
   const scope = { accountId: 1, profileId: 'sync-download-browser', bindingVersion: 'a'.repeat(43) };
   const summary = { account: { id: 1, login: 'synthetic' }, csrfToken: 't'.repeat(43), syncAvailable: true, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: scope.profileId, disabled: false, bindingVersion: scope.bindingVersion }] };
   await page.route('**/api/session', route => route.fulfill({ json: summary }));
-  await page.goto('/today');
+  await page.goto('/__sync-client-test');
   const remote = await page.evaluate(async scope => {
     const { db } = await import('/src/data/db.ts' as string);
     const { validateSyncBatch } = await import('/src/shared/sync.ts' as string);
     await db.table('profiles').put({ id: scope.profileId, name: 'Synthetic download profile', createdAt: new Date().toISOString() });
     await db.table('settings').bulkPut([{ key: 'activeProfile', value: scope.profileId }, { key: `profile:${scope.profileId}:syncAccount`, value: JSON.stringify({ accountId: scope.accountId, profileId: scope.profileId }) }]);
-    const value = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: scope.profileId, deviceId: 'remote', batchId: 'remote-batch', events: [{ id: 'remote-event', deviceId: 'remote', counter: 1, occurredAt: '2026-01-01T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true, reviewEnabled: false } }] });
+    const value = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: scope.profileId, deviceId: 'remote', batchId: 'remote-batch', events: [{ id: 'remote-event', deviceId: 'remote', counter: 1, occurredAt: '2026-01-01T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true } }] });
     return { scope, commit: 'c'.repeat(40), cursor: 'first', total: 1, files: [{ deviceId: 'remote', batchId: 'remote-batch', blobSha: 'b'.repeat(40), bytes: value.bytes.length }], batches: [{ batch: value.batch, hash: value.hash, blobSha: 'b'.repeat(40) }] };
   }, scope);
   let round = 0;
@@ -84,8 +86,7 @@ test('download pages commit in Chrome and repeated rounds reuse verified blob re
 test('native browser lock prevents another tab from sending a simultaneous sync request', async ({ page, context }) => {
   const scope = { accountId: 1, profileId: 'sync-lock-browser', bindingVersion: 'a'.repeat(43) };
   const summary = { account: { id: 1, login: 'synthetic' }, csrfToken: 't'.repeat(43), syncAvailable: true, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: scope.profileId, disabled: false, bindingVersion: scope.bindingVersion }] };
-  await page.goto('/today');
-  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  await page.goto('/__sync-client-test');
   const consent = await page.evaluate(async ({ scope, summary }) => {
     const { db } = await import('/src/data/db.ts' as string);
     const { allowSyncUpload } = await import('/src/data/syncClient.ts' as string);
@@ -93,7 +94,7 @@ test('native browser lock prevents another tab from sending a simultaneous sync 
     await db.table('settings').bulkPut([{ key: 'activeProfile', value: scope.profileId }, { key: `profile:${scope.profileId}:syncAccount`, value: JSON.stringify({ accountId: 1, profileId: scope.profileId }) }]);
     return allowSyncUpload(scope.profileId, scope, summary);
   }, { scope, summary });
-  const other = await context.newPage(); await other.goto('/today');
+  const other = await context.newPage(); await other.goto('/__sync-client-test');
   await other.evaluate(async profileId => {
     await new Promise<void>(ready => {
       void navigator.locks.request(`lingfern-sync:${profileId}`, async () => {

@@ -57,7 +57,7 @@ it('uses actual reviewed source packages for distinct-root same-operation applic
   expect(initial.materials[0].questions[0].prompt).toBe(attributionMatchingPrompt);
   expect(requested).toContain(attributionMatchingPrompt);
   for (const point of ['B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 8; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, point === 'B2' ? 300 : 700, point, [], 'matching', [], requested)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, point === 'B2' ? 300 : 700, point, [], 'matching', requested)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) {
       const question = material.questions[0];
@@ -78,7 +78,7 @@ it('uses actual reviewed source packages for distinct-root same-operation applic
       expect(score(response, 'A comparison with exact quotations.').correct).toBeNull();
     }
     const seen = new Set(lesson.materials.map(material => material.id.slice(7)));
-    const next = corpusLesson(corpus, seen, seed, 700, point, [], 'matching', [], requested);
+    const next = corpusLesson(corpus, seen, seed, 700, point, [], 'matching', requested);
     expect(next?.materials.some(material => seen.has(material.id.slice(7)))).not.toBe(true);
   }
   for (const point of ['A1', 'A2'] as const) expect(corpusLesson(corpus, new Set(), 0, 700, point, [], 'matching')).toBeUndefined();

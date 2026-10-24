@@ -486,7 +486,7 @@ Use the same natural two-column/single-column responsive layout, 44px targets, k
 
 History is the dedicated `/progress` record view reached from Reading top right, with Today active and a visible back link. It contains actual response/material counts, original responses or summaries, dates, support conditions, saved-session resume/review and existing deletion/recovery controls. Do not expand it inline on Today or add another growth fern, Progress navigation tab or unvalidated proficiency conclusion.
 
-Distinguish material roots, valid responses and qualifying goals. Shared-material questions and repeated attempts do not multiply unfamiliar independent evidence. Self-report is only the chosen starting point. Assisted/answer-exposed/familiar work remains labelled with its conditions; valid faults/missing responses are not wrong answers. Word-sense FSRS and goal review schedules remain separate.
+Distinguish material roots, valid responses and qualifying goals. Shared-material questions and repeated attempts do not multiply unfamiliar independent evidence. Self-report is only the chosen starting point. Assisted/answer-exposed/familiar work remains labelled with its conditions; valid faults/missing responses are not wrong answers. Goal recommendations remain independent of dictionary bookmarks.
 
 Use existing `ProgressRecords` and record controls. Any goal/level matrix or expanded list must use actual current goal metadata and readable headers/labels, not synthetic populated cells. Rows/cells have 44px targets, natural wrapping and keyboard-accessible details. Mobile uses readable lists or explicitly contained tables without whole-page horizontal overflow. Closing details restores focus.
 
@@ -521,7 +521,11 @@ Package rows contain name, target range, skills, actual task count, download/exp
 
 Default to Cancel/Retry. Do not show Pause/Resume without real resumable downloading. Successfully installed independent packages remain when another package fails.
 
-**Saved items:** word/phrase, simple definition, source, inclusion in word-sense review. Saving does not mean mastery; review is opt-in. Sort by recent/alphabetical, open dictionary on selection, and name the remove action clearly.
+**Lookup history:** use one rounded list with full-row links, the query on the left, localized reference category on the right and local-calendar dates without seconds. Mark today's rows with the localized Today label. Record opened/related usage entries and selected IPA sounds independently of audio success; preserve profile boundaries and encoded return destinations.
+
+**Backup copy:** keep Simplified/Traditional Chinese words together when backup notes/actions wrap; retain current copy, equal action targets and input/file behavior.
+
+**Saved items:** one rounded list with separators. Put the word/phrase on the left and muted, un-underlined online lookup, the dictionary's filled/outline star and shared chevron on the right. Definitions align with the word heading and remain English. Each meaning is independently collapsible, initially expanded; collapsed rows retain lookup and star actions. Cancellation persists immediately, while the row stays until refresh or reopening. Keep row order stable through toggles; sort by saved time when building a fresh page list. Pressing nested stars/links must not scale the parent heading. No word-sense review, rating or due date. Saving does not mean mastery.
 
 **Notes:** plain-text first line, task link, date; expand to edit with local-save state. Notes are not synchronised to GitHub by default. Do not silently create cloud notes. Markdown export is user-triggered.
 
@@ -535,7 +539,7 @@ Desktop rows have title, state, and action columns. Mobile uses name, metadata, 
 
 #### Empty / Loading / Error
 
-No content: download through Library or import a supported ZIP. No saved items: explain saving during learning without starting FSRS automatically. No notes: explain that external AI content is not fetched automatically.
+No content: download through Library or import a supported ZIP. No saved items: explain saving during dictionary lookup. No notes: explain that external AI content is not fetched automatically.
 
 If capacity APIs are unavailable, say “Cannot estimate”, while permitting reasonable small-package installation with error handling. Distinguish missing files from hash failures and network failures. Failed imports leave the current profile intact, without automatic reset/rebuild.
 
@@ -589,7 +593,7 @@ Settings → GitHub sync. The main interface shows local saving, pending sync, a
 
 #### Layout
 
-Maximum 560. Connect account → choose dedicated private repository → confirm sync scope. The overview is an open list, with bordered sections only for exceptions. Mobile stacks content; targets remain at least 44.
+Maximum 560. Connect account → choose dedicated private repository → confirm sync scope. The overview is an open list, with bordered sections only for exceptions. After configuration, default to automatic bidirectional sync. Keep one automatic-sync setting, clear syncing/synced/offline-pending/failure text, the last successful time and one Sync now/retry action. Do not show upload/download/overwrite direction controls or recurring confirmations. Mobile stacks content; targets remain at least 44.
 
 #### States and Interaction
 
@@ -601,13 +605,13 @@ GitHub and MCP reuse the setting rows and theme tokens. Unbound repositories sho
 | Authorising | User visits official GitHub pages; return shows the account from the real session. Allow cancellation on timeout, without redirect loops. |
 | No repository bound | External “Create a dedicated private repository on GitHub” plus steps. User creates it manually, authorises only that repository, then returns and refreshes selection. **Do not fake one-click repository creation inside Lingfern.** |
 | Binding confirmation | Account, selected repository, privacy-verification result, and fields to sync. Upload a guest profile only after confirmation. |
-| Initial sync | Validated batch/record counts; no fabricated percentage with an unknown total. |
-| Synced | Last server-confirmed time, separate from local saving; manual sync available. |
+| Initial sync | Syncing while reading/applying all pages and confirming the outbox; pending when a bounded round must resume. No fabricated percentage with an unknown total. |
+| Synced | Last fully completed sync time, separate from local saving; one Sync now action. |
 | Pending/offline | Saved locally, not yet received remotely; retry in the foreground when connectivity and authorisation permit. |
 | Reauthorisation needed | Explain expired remote permission without inferring lost local data; reconnect remains optional. |
 | Conflict | Explain that a batch is not merged and local data is retained. Offer retry, diagnostic export, backup—not whole-device overwrite. |
 
-Describe real data flow: learning summaries enter the user's dedicated private repository; the server retains necessary identity, session, binding, and approved expiring-share state. **Do not say “Lingfern has no server-side data” or “Only you can see the repository”.**
+Describe real data flow: learning summaries, bookmarks, query history and selected preferences enter the user's dedicated private repository; the server retains necessary identity, session, binding, and approved expiring-share state. **Do not say “Lingfern has no server-side data” or “Only you can see the repository”.**
 
 #### Conflict Scope
 
@@ -807,7 +811,7 @@ Ordinary feedback says “Record saved”. Show independent-completion records i
 
 ### G.10 Dictionary Overlays
 
-Popup 320, drawer 420, standalone page 720; see F.9 for complete behaviour. Play controls require real audio. Saving uses a bookmark/text; word-sense review is a separate opt-in action. A Save animation is not a learning result.
+Popup 320, drawer 420, standalone page 720; see F.9 for complete behaviour. Play controls require real audio. Saving uses the same filled/outline star as the saved-item list. A Save animation is not a learning result.
 
 ### G.11 Modals, Drawers, and Sheets
 

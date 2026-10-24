@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
-import { languagePacks } from '../../src/locales';
 
 const account = { account: { id: 1234, login: 'synthetic-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false };
 
@@ -94,6 +93,8 @@ test('changed repository generations discard an earlier verification intent', as
   await page.route('**/api/sync/inspect', route => route.fulfill({ json: { intent: 'i'.repeat(43), name: 'lingfern-data', owner: 'synthetic-learner', profileId: 'local-guest', existing: true, expiresAt: Math.floor(Date.now() / 1000) + 300 } }));
   await page.goto('/settings');
   await page.getByRole('button', { name: '复制当前档案用于此账号', exact: true }).click();
+  await page.locator('.repository-reset summary').click();
+  await page.getByRole('button', { name: '查找已授权资料库', exact: true }).click();
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
   await expect(page.locator('.repository-binding .backup-preview')).toBeVisible();
   version = 'b'.repeat(43);
@@ -116,11 +117,8 @@ test('stalled logout and repository lookup time out and remain retryable after l
   await find.click();
   await page.getByRole('button', { name: '退出本设备的网站会话', exact: true }).evaluate(element => { (element as HTMLButtonElement).click(); (element as HTMLButtonElement).click(); });
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'loading');
-  await expect(find).toBeDisabled();
-  await Promise.all([
-    expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'failed', { timeout: 35_000 }),
-    expect(other.locator('.repository-binding')).toContainText(languagePacks['zh-Hans'].repositoryBinding.failed, { timeout: 35_000 }),
-  ]);
+  await expect(find).not.toBeVisible();
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'failed', { timeout: 35_000 });
   expect(logouts).toBe(1); expect(finds).toBe(1);
   await expect(find).toBeEnabled();
   release();
@@ -148,4 +146,24 @@ test('visibility revalidation remains available without BroadcastChannel and ski
   await context.setOffline(false);
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');
   expect(reads).toBe(2);
+});
+
+test('startup identity retries two temporary failures and then recovers without a foreground gesture', async ({ page }) => {
+  await page.clock.install(); let reads = 0;
+  await page.route('**/api/session', route => { reads++; return route.fulfill(reads <= 2 ? { status: 503, json: { error: 'AUTH_UNAVAILABLE' } } : { json: account }); });
+  await page.goto('/settings'); await expect.poll(() => reads).toBe(1);
+  await page.clock.fastForward(2100); await expect.poll(() => reads).toBe(2);
+  await page.clock.fastForward(4100); await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected');
+  expect(reads).toBe(3); await page.clock.fastForward(60000); expect(reads).toBe(3);
+});
+
+test('an orphaned logout notice pauses foreground refresh and revalidates after its bounded timeout', async ({ page }) => {
+  await page.clock.install(); let reads = 0;
+  await page.route('**/api/session', route => { reads++; return route.fulfill({ json: account }); });
+  await page.goto('/settings'); await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected');
+  await page.evaluate(() => { const channel = new BroadcastChannel('lingfern-identity'); channel.postMessage('ending'); channel.close(); });
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'loading');
+  const before = reads; await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  await page.clock.fastForward(20000); expect(reads).toBe(before);
+  await page.clock.fastForward(16000); await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected'); expect(reads).toBe(before + 1);
 });

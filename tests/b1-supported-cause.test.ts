@@ -25,7 +25,7 @@ it('generates and scores both inspected roots at 160 words, preserves Test and s
   passages:r.passages.filter(p=>p.text===paragraph(r.rootId,cases.find(([root])=>root===r.rootId)![1]))}));
  expect(records.map(r=>r.passages.length)).toEqual([1,1]);
  const bank={version:1 as const,records,failures:[]};
- const lesson=corpusLesson(bank,new Set(),1,160,'B1',[],'choice',[],'choice:qualified-cause')!;
+ const lesson=corpusLesson(bank,new Set(),1,160,'B1',[],'choice','choice:qualified-cause')!;
  expect(lesson).toBeTruthy();expect(new Set(lesson.materials.map(m=>m.rootId))).toEqual(new Set(cases.map(([root])=>root)));
  for(const material of lesson.materials){
   expect(material.blocks[0].text.trim().split(/\s+/).length).toBeLessThanOrEqual(160);
@@ -39,7 +39,7 @@ it('generates and scores both inspected roots at 160 words, preserves Test and s
  for(const material of assessed)for(const q of material.questions){delete q.hints;if('modelAnswer'in q)delete q.modelAnswer;}
  expect(asTestLesson(lesson).materials).toEqual(assessed);
  const seen=new Set(lesson.materials.map(m=>m.id.slice('corpus-'.length)));
- expect(corpusLesson(bank,seen,1,160,'B1',[],'choice',[],'choice:qualified-cause')).toBeUndefined();
+ expect(corpusLesson(bank,seen,1,160,'B1',[],'choice','choice:qualified-cause')).toBeUndefined();
 });
 it.each(cases)('preserves the exact source context and uncertainty at the supported B1 bound: %s',(root,needle)=>{
  const text=paragraph(root,needle);expect(text).toBeTruthy();expect(text.trim().split(/\s+/).length).toBeGreaterThanOrEqual(120);expect(text.trim().split(/\s+/).length).toBeLessThanOrEqual(160);

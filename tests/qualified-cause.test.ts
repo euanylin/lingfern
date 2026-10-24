@@ -56,7 +56,7 @@ it('preserves complete actual sentences and rotates certainty-scope options with
 it('repeats the same operation across distinct real roots and converts it to automatic test without assistance', async () => {
   const corpus = await actual();
   for (let seed = 0; seed < 7; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 1200, 'C1', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 1200, 'C1', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); lessonSchema.parse(lesson);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
@@ -81,7 +81,7 @@ it('keeps ordinary mixed practice available without counting unrelated applicati
   expect(available.length).toBeGreaterThanOrEqual(2);
   const history: Session[] = [], records: Attempt[] = [];
   for (const [index, source] of primary.records.entries()) {
-    const lesson = corpusLesson({ ...primary, records: [source] }, new Set(), 0, 1200, 'C1', [], 'choice', [], operation, { ...primary, records: [available[index]] })!;
+    const lesson = corpusLesson({ ...primary, records: [source] }, new Set(), 0, 1200, 'C1', [], 'choice', operation, { ...primary, records: [available[index]] })!;
     expect(lesson).toBeDefined(); lessonSchema.parse(lesson);
     expect(corpusOperation(lesson.materials[0].questions[0])).toBe(operation);
     expect(corpusOperation(lesson.materials[1].questions[0])).toBe('completion');

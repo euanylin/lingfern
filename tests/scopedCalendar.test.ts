@@ -59,7 +59,7 @@ it('generates deterministic runtime name/date/title slots without hardcoded sour
 it('uses two genuine calendar roots at C1/C2 without changing the advanced cycle or Test scoring', () => {
   for (const point of ['C1', 'C2'] as const) for (const seed of [0, 1, 54, 55, 126, 127]) {
     const eligible = point === 'C1' ? { ...bank, records: [bank.records[0], { ...sources[1], passages: sources[1].passages.filter(part => part.id === '384791af263672c098c013f505cb2dd17ee94cca8a3506c72d4893942696f801') }] } : bank;
-    const lesson = corpusLesson(eligible, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], seed < 2 ? 'choice' : undefined, [], seed < 2 ? operation : undefined)!;
+    const lesson = corpusLesson(eligible, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], seed < 2 ? 'choice' : undefined, seed < 2 ? operation : undefined)!;
     lessonSchema.parse(lesson); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
     expect(lesson.teaching!.en).toContain('later revisions');
@@ -70,8 +70,8 @@ it('uses two genuine calendar roots at C1/C2 without changing the advanced cycle
       else for (let answer = 0; answer < 3; answer++) { expect(score(question, answer).correct).toBe(answer === question.answer); expect(score(tested, answer)).toEqual(score(question, answer)); }
     }
   }
-  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 54, 1200, point, [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(ids), 32, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 54, 1200, point, [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(ids), 32, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
 });
 it('saves actual calendar Practice/Test answers, exposures and full recovery exports', async () => {
   await Promise.all(db.tables.map(table => table.clear()));

@@ -290,12 +290,6 @@ export function corpusPreferencePool<T>(items: T[], describe: (item: T) => { tit
   return ranked.filter(item => item.score === best).map(item => item.item);
 }
 
-// shortcut: exact lexical preference; review context before asserting sense correspondence.
-export function corpusReviewMatch(text: string, terms: readonly string[] = []) {
-  if (terms.length > 100) throw new Error('CORPUS_REVIEW_LIMIT');
-  return terms.some(term => /^[a-z][a-z '-]{0,79}$/i.test(term) && new RegExp(`(?<![a-z])${term.replace(/\s+/g, '\\s+')}(?![a-z])`, 'i').test(text));
-}
-
 /** Preserve completed word prerequisites while checking sentence support separately. */
 export function beginnerSentenceReady(history: Session[], records: Attempt[], profileId: string) {
   const word = corpusPracticeHistory(history, records, profileId, 'listening', 'all', 'A1', undefined, 'heard-word-recognition');

@@ -28,7 +28,7 @@ async function installedRepositories(api: ReturnType<typeof github>, installatio
   if (result.total_count > result.repositories.length) throw new ApiError('REPOSITORY_CAPACITY', 413);
   return result.repositories;
 }
-async function inspect(api: ReturnType<typeof github>, accountId: number, choice: z.infer<typeof inspectRepositorySchema>, fixedCommit?: string) {
+async function inspect(api: ReturnType<typeof github>, accountId: number, choice: z.infer<typeof inspectRepositorySchema>, fixedCommit?: string, sinceCommit?: string) {
   const installation = (await installations(api, accountId)).find(value => value.id === choice.installationId);
   if (!installation || !readyInstallation(installation, accountId)) throw new ApiError('INSTALLATION_SCOPE', 403);
   const selected = (await installedRepositories(api, installation.id)).find(value => value.id === choice.repositoryId && value.name === choice.name);
@@ -40,6 +40,7 @@ async function inspect(api: ReturnType<typeof github>, accountId: number, choice
   try { commit = (await api('GET /repos/{owner}/{repo}/commits/{ref}', { ...path, ref: fixedCommit ?? repository.default_branch })).data; }
   catch (error) { if (error && typeof error === 'object' && 'status' in error && error.status === 409) throw new ApiError('REPOSITORY_UNINITIALISED', 409); throw error; }
   const head = z.object({ sha: shaSchema, commit: z.object({ tree: z.object({ sha: shaSchema }) }) }).parse(commit);
+  if (head.sha === sinceCommit) return { repository, existing: true, head: head.sha, tree: [] as z.infer<typeof treeSchema>['tree'], unchanged: true };
   const tree = treeSchema.parse((await api('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', { ...path, tree_sha: head.commit.tree.sha, recursive: '1' })).data);
   if (tree.truncated || tree.tree.length > 10002 || tree.tree.reduce((size, entry) => size + (entry.size ?? 0), 0) > 20 * 1024 * 1024) throw new ApiError('REPOSITORY_CAPACITY', 413);
   const marker = tree.tree.find(entry => entry.path === 'profile.json');
@@ -120,18 +121,24 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
     generation = { accountId: session.id, encrypted: credential.encrypted };
     const api = github(credential.access);
     if (url.pathname === '/api/sync/changes') {
-      if (url.search.length > 8192 || [...url.searchParams.keys()].some(key => !['profileId', 'cursor', 'metadata', 'known'].includes(key)) || [...url.searchParams.keys()].some(key => url.searchParams.getAll(key).length !== 1)) throw new ApiError('REPOSITORY_INPUT', 400);
+      if (url.search.length > 8192 || [...url.searchParams.keys()].some(key => !['profileId', 'cursor', 'metadata', 'known', 'sinceCommit'].includes(key)) || [...url.searchParams.keys()].some(key => url.searchParams.getAll(key).length !== 1)) throw new ApiError('REPOSITORY_INPUT', 400);
       const profile = profileIdSchema.safeParse(url.searchParams.get('profileId'));
       if (!profile.success) throw new ApiError('REPOSITORY_INPUT', 400);
       const metadata = url.searchParams.get('metadata');
       if (metadata !== null && metadata !== '1') throw new ApiError('REPOSITORY_INPUT', 400);
+      const since = url.searchParams.get('sinceCommit');
+      if (since !== null && (metadata !== '1' || url.searchParams.has('cursor') || !shaSchema.safeParse(since).success)) throw new ApiError('REPOSITORY_INPUT', 400);
       let known: z.infer<typeof syncKnownFilesSchema> = [];
       try { known = syncKnownFilesSchema.parse(JSON.parse(url.searchParams.get('known') ?? '[]')); } catch { throw new ApiError('REPOSITORY_INPUT', 400); }
       const cursor = url.searchParams.has('cursor') ? await openCursor(url.searchParams.get('cursor')!, env.TOKEN_ENCRYPTION_KEY!) : undefined;
       const { binding, allowed } = await syncBinding(request, env, session, profile.data, credential.encrypted);
       if (cursor && (cursor.accountId !== session.id || cursor.profileId !== profile.data || cursor.bindingVersion !== binding.binding_version || cursor.installationVersion !== binding.installation_version || cursor.repositoryVersion !== binding.repository_version)) throw new ApiError('SYNC_CURSOR_INVALID', 400);
       await allowed();
-      const checked = await inspect(api, session.id, { installationId: binding.installation_id, repositoryId: binding.repository_id, name: binding.repository_name, profileId: profile.data }, cursor?.commit);
+      const checked = await inspect(api, session.id, { installationId: binding.installation_id, repositoryId: binding.repository_id, name: binding.repository_name, profileId: profile.data }, cursor?.commit, since ?? undefined);
+      if (checked.unchanged) {
+        await allowed();
+        return privateJson({ scope: { accountId: session.id, profileId: profile.data, bindingVersion: binding.binding_version }, commit: checked.head, unchanged: true });
+      }
       if (!checked.existing || (cursor && checked.head !== cursor.commit)) throw new ApiError('SYNC_REMOTE_INVALID', 409);
       const records = checked.tree.filter(entry => /^records\/[^/]+\/[^/]+\.json$/.test(entry.path)).sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
       if (records.length > 5000) throw new ApiError('REPOSITORY_CAPACITY', 413);

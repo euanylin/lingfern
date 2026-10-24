@@ -3,7 +3,7 @@ import { expect, it } from 'vitest';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { corpusLesson, corpusSchema } from '../src/core/corpus';
-import { PracticeCard, practiceCardDate, practiceCardProgress } from '../src/app/PracticeCard';
+import { PracticeCard, practiceCardProgress } from '../src/app/PracticeCard';
 import { questions } from '../src/shared/content';
 import type { Attempt, Session } from '../src/data/db';
 
@@ -21,13 +21,6 @@ it('counts saved answers once and ignores position, deleted sessions, foreign pr
 it('combines real peer question totals without confusing the same question IDs across sessions', () => {
   const peer = { ...session, id: 'card-listening', lesson: { ...lesson, skill: 'listening' as const } };
   expect(practiceCardProgress([session, peer], [attempt, { ...attempt, id: 'peer-answer', sessionId: peer.id }])).toMatchObject({ answered: 2, total: 2 * questions(lesson).length });
-});
-
-it('uses local calendar dates and rejects invalid dates', () => {
-  const now = new Date(2026, 9, 11, 0, 5);
-  expect(practiceCardDate(new Date(2026, 9, 10, 23, 55).toISOString(), 'en', now)).toBe('Yesterday');
-  expect(practiceCardDate(new Date(2026, 9, 11).toISOString(), 'zh-Hans', now)).toBe('今天');
-  expect(practiceCardDate('invalid', 'en', now)).toBe('');
 });
 
 it('shows one progress bar and tag only for saved answers, with topic before the main action', () => {

@@ -45,7 +45,7 @@ it('generates different structural comparisons while retaining the complete cont
 it('pairs the same reading operation across two independent originals, preserving hypotheses, narrative progression and Test conditions', async () => {
   const corpus = await reading(); expect(corpus.records).toHaveLength(2);
   for (const seed of [0, 1, 2, 3, 0xffffffff]) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 900, 'C1', [], 'matching', [], discourseOrganizationOperation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 900, 'C1', [], 'matching', discourseOrganizationOperation)!;
     expect(lesson.goalId).toBe('discourse-organization-in-context'); lessonSchema.parse(lesson);
     expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2);
     for (const [i, m] of lesson.materials.entries()) { expect(corpusOperation(m.questions[0])).toBe(discourseOrganizationOperation); expect(m.questions[0].hints?.length).toBe(i ? undefined : 3); expect(m.blocks[0].text).toBe(scopes.reading.find(s => s.rootId === m.rootId)!.text); }
@@ -57,9 +57,9 @@ it('pairs the same reading operation across two independent originals, preservin
   const novel = corpusDiscourseOrganization(scopes.reading.find(s => s.rootId.endsWith('-84'))!.text, 0)!;
   expect(novel.pairs.map(p => p.answer).join(' ')).toContain('general reflection');
   for (const source of corpus.records) for (const field of ['rootId', 'sourceHash', 'attribution', 'licence', 'originalUrl'] as const) { const bad = structuredClone(source); bad[field] = 'Changed'; expect(corpusMaterial({ source: bad, passage: bad.passages[0] }, 0, 'C1', 'matching', discourseOrganizationOperation)).toBeUndefined(); }
-  for (const seen of [new Set(corpus.records[0].passages.map(p => p.id)), new Set(corpus.records[1].passages.map(p => p.id))]) expect(corpusLesson(corpus, seen, 0, 900, 'C1', [], 'matching', [], discourseOrganizationOperation)).toBeUndefined();
-  expect(corpusLesson({ ...corpus, records: corpus.records.slice(0, 1) }, new Set(), 0, 900, 'C1', [], 'matching', [], discourseOrganizationOperation)).toBeUndefined();
-  expect(corpusLesson(corpus, new Set(), 0, 700, 'C1', [], 'matching', [], discourseOrganizationOperation)).toBeUndefined();
+  for (const seen of [new Set(corpus.records[0].passages.map(p => p.id)), new Set(corpus.records[1].passages.map(p => p.id))]) expect(corpusLesson(corpus, seen, 0, 900, 'C1', [], 'matching', discourseOrganizationOperation)).toBeUndefined();
+  expect(corpusLesson({ ...corpus, records: corpus.records.slice(0, 1) }, new Set(), 0, 900, 'C1', [], 'matching', discourseOrganizationOperation)).toBeUndefined();
+  expect(corpusLesson(corpus, new Set(), 0, 700, 'C1', [], 'matching', discourseOrganizationOperation)).toBeUndefined();
 });
 it('preserves continuous reader additions separately from the unchanged written source and never exempts a text-only or forged excerpt', async () => {
   const banks = await listening(); expect(banks.every(b => b.records[0].clips.length === 1)).toBe(true);
@@ -85,19 +85,19 @@ it('extends effort only for the same operation on two qualified roots, without r
   const held = structuredClone(banks[1]); held.records[0].clips[0].qualityFlags = ['Boundary unresolved']; expect(qualifiedLongSeconds([banks[0], held], 'C1', 75)).toBe(75);
   const altered = structuredClone(banks[1]); altered.records[0].sourceHash = 'f'.repeat(64); expect(qualifiedLongSeconds([banks[0], altered], 'C1', 75)).toBe(75);
   for (const [primary, application] of [banks, [...banks].reverse()]) for (const seed of [0, 1, 2, 0xffffffff]) {
-    const lesson = spokenCorpusLesson(primary, new Set(), seed, 209, 'C1', [], 'matching', [], discourseOrganizationOperation, [application])!;
+    const lesson = spokenCorpusLesson(primary, new Set(), seed, 209, 'C1', [], 'matching', discourseOrganizationOperation, [application])!;
     expect(lesson.goalId).toBe('discourse-organization-in-context'); lessonSchema.parse(lesson);
     for (const m of lesson.materials) { expect(corpusOperation(m.questions[0])).toBe(discourseOrganizationOperation); for (const e of [m.questions[0].evidence, ...m.questions[0].additionalEvidence!]) { expect(e.audioEnd).toBeGreaterThan(e.audioStart!); expect(e.audioEnd).toBeLessThanOrEqual(m.audio!.duration); } }
     const test = asTestLesson(lesson); expect(test.materials.map(m => m.audio)).toEqual(lesson.materials.map(m => m.audio));
-    expect(spokenCorpusLesson(primary, new Set([application.records[0].clips[0].id]), seed, 209, 'C1', [], 'matching', [], discourseOrganizationOperation, [application])).toBeUndefined();
-    expect(spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', [], discourseOrganizationOperation, [application])).toBeUndefined();
-    expect(spokenCorpusLesson(primary, new Set(), seed, 209, 'C1', [], 'matching', [], discourseOrganizationOperation)).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set([application.records[0].clips[0].id]), seed, 209, 'C1', [], 'matching', discourseOrganizationOperation, [application])).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', discourseOrganizationOperation, [application])).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set(), seed, 209, 'C1', [], 'matching', discourseOrganizationOperation)).toBeUndefined();
   }
 });
 it('commits complete matching answers before advancement and restores the exact lesson into another isolated profile', async () => {
   const { db, createSession, claimSession, markExposure, submit, advance, attempts, sessions } = await import('../src/data/db'); const { exportBackup, inspectBackup, importBackup } = await import('../src/data/backup');
   await Promise.all(db.tables.map(t => t.clear()));
-  try { const lesson = corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', [], discourseOrganizationOperation)!;
+  try { const lesson = corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', discourseOrganizationOperation)!;
     for (const snapshot of [lesson, asTestLesson(lesson)]) {
       const created = await createSession(snapshot, 'discourse-isolated'); let session: import('../src/data/db').Session = await claimSession(created.id, 'owner');
       for (const m of snapshot.materials) { await markExposure(session); const q = m.questions[0]; if (!('pairs' in q)) throw Error('Expected matching'); const answer = q.pairs.map(p => p.answer);
@@ -111,8 +111,8 @@ it('commits complete matching answers before advancement and restores the exact 
 
 it('keeps discourse-organization retries at C1 and clears that incompatible focus after a chosen starting-point change in either skill', async () => {
   const { corpusPracticeHistory } = await import('../src/core/corpusPractice'); const { spokenCorpusLesson } = await import('../src/core/spokenCorpus'); const banks = await listening();
-  const read = corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', [], discourseOrganizationOperation)!;
-  const heard = spokenCorpusLesson(banks[0], new Set(), 0, 209, 'C1', [], 'matching', [], discourseOrganizationOperation, [banks[1]])!;
+  const read = corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', discourseOrganizationOperation)!;
+  const heard = spokenCorpusLesson(banks[0], new Set(), 0, 209, 'C1', [], 'matching', discourseOrganizationOperation, [banks[1]])!;
   for (const lesson of [read, heard]) {
     const profileId = `discourse-retarget-${lesson.skill}`, at = new Date(Date.now() - 1000).toISOString();
     const session: import('../src/data/db').Session = { id: profileId, profileId, lesson, status: 'completed', position: 1, startedAt: at, contentHash: 'isolated-retarget-only', assistance: { hintLevel: 0 }, leaseUntil: 0 };
@@ -134,7 +134,7 @@ it('rejects a changed listening source, credit, creator, original or required no
     (b: typeof banks[number]) => { b.records[0].clips[0].credit.attribution += ' Forged voice.'; },
     (b: typeof banks[number]) => { b.records[0].clips[0].audio.author = 'Unverified narrator'; },
     (b: typeof banks[number]) => { b.records[0].clips[0].audio.duration += .001; },
-  ]) { const broken = structuredClone(banks[0]); edit(broken); expect(spokenCorpusLesson(broken, new Set(), 0, 209, 'C1', [], 'matching', [], discourseOrganizationOperation, [banks[1]])).toBeUndefined(); }
+  ]) { const broken = structuredClone(banks[0]); edit(broken); expect(spokenCorpusLesson(broken, new Set(), 0, 209, 'C1', [], 'matching', discourseOrganizationOperation, [banks[1]])).toBeUndefined(); }
 });
 it('keeps legal initials and both reported experts inside complete evidence sentences, without crossing paragraphs or speaker turns', () => {
   const darwin = scopes.reading.find(s => s.rootId.endsWith('1228'))!, iowa = scopes.listening.find(s => s.rootId.endsWith('76546697'))!;

@@ -42,7 +42,7 @@ export async function saveInstallationIntents(profileId: string, ids: string[], 
 
 export async function readInstallationIntents(profileId: string) {
   // Read Dexie before other awaits so liveQuery tracks its dependencies.
-  const intentions = projectSyncEvents(await readSyncEvents(profileId)).installations;
+  const intentions = projectSyncEvents(await readSyncEvents(profileId, db, ['installation'])).installations;
   await loadRuntimeResources();
   const current = new Set<string>(), unavailable = new Set<string>();
   for (const event of intentions.values()) {

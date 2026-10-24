@@ -5,7 +5,7 @@ import { profileIdSchema } from '../shared/repository';
 
 export type StoredEvent = SyncEvent & { profileId: string; batchId?: string };
 export type StoredBatch = { profileId: string; deviceId: string; batchId: string; hash: string; batch: SyncBatch; state: 'pending' | 'confirmed' | 'received' | 'conflict' };
-export type Clock = { profileId: string; deviceId: string; counter: number; logicalProfileId?: string; deleted?: true };
+export type Clock = { profileId: string; deviceId: string; counter: number; logicalProfileId?: string; localRevision?: number; deleted?: true };
 export type NewEvent = SyncEvent extends infer Event ? Event extends SyncEvent ? Pick<Event, 'type' | 'payload'> : never : never;
 
 // Hash only imported IDs exceeding wire limits; preserve ordinary IDs and local validity.
@@ -32,7 +32,7 @@ export async function appendSyncEvent(profileId: string, value: NewEvent, databa
     const bounded = await Dexie.waitFor(boundedReferences(value));
     const event = syncEventSchema.parse({ ...bounded, id: identity.id ?? crypto.randomUUID(), deviceId: clock.deviceId, counter: clock.counter + 1, occurredAt: identity.occurredAt ?? new Date().toISOString() });
     await database.table('syncEvents').add({ ...event, profileId });
-    await database.table('syncClocks').put({ ...clock, counter: event.counter });
+    await database.table('syncClocks').put({ ...clock, counter: event.counter, localRevision: (clock.localRevision ?? 0) + 1 });
     return event;
   });
 }
@@ -107,7 +107,7 @@ export async function confirmSyncUpload(profileId: string, expected: { scope: Sy
 
 export async function nextSyncUpload(profileId: string, scope: SyncDownloadScope, database: Dexie = db): Promise<StoredBatch | undefined> {
   profileIdSchema.parse(profileId); scope = syncDownloadScopeSchema.parse(scope);
-  const outstanding = await database.transaction('r', database.table('syncBatches'), database.table('syncUploads'), database.table('syncClocks'), database.table('syncConflicts'), async () => {
+  const outstanding = await database.transaction('r', database.table('syncBatches'), database.table('syncUploads'), database.table('syncReceipts'), database.table('syncClocks'), database.table('syncConflicts'), async () => {
     const clock: Clock | undefined = await database.table('syncClocks').get(profileId);
     if ((clock?.logicalProfileId ?? profileId) !== scope.profileId) throw new Error('SYNC_SCOPE_CHANGED');
     if (await database.table('syncConflicts').where('profileId').equals(profileId).count()) throw new Error('SYNC_BATCH_CONFLICT');
@@ -116,6 +116,8 @@ export async function nextSyncUpload(profileId: string, scope: SyncDownloadScope
       if (stored.state === 'conflict') throw new Error('SYNC_BATCH_CONFLICT');
       const validated = await Dexie.waitFor(validateSyncBatch(stored.batch));
       if (validated.hash !== stored.hash || stored.batch.profileId !== scope.profileId || stored.deviceId !== stored.batch.deviceId || stored.batchId !== stored.batch.batchId) throw new Error('SYNC_INTEGRITY');
+      const received = await database.table('syncReceipts').get([profileId, scope.accountId, scope.bindingVersion, stored.deviceId, stored.batchId]);
+      if (received?.hash === stored.hash) continue;
       const receipt = await database.table('syncUploads').get([profileId, scope.accountId, scope.bindingVersion, stored.deviceId, stored.batchId]);
       if (!receipt || receipt.hash !== stored.hash) return stored;
     }
@@ -155,8 +157,9 @@ async function receiveValidatedBatch(profileId: string, batch: SyncBatch, hash: 
     return 'received';
 }
 
-export async function readSyncEvents(profileId: string, database: Dexie = db) {
-  const rows: StoredEvent[] = await database.table('syncEvents').where('profileId').equals(profileId).toArray();
+export async function readSyncEvents(profileId: string, database: Dexie = db, types?: SyncEvent['type'][]) {
+  const table = database.table('syncEvents');
+  const rows: StoredEvent[] = await (types ? table.where('[profileId+type]').anyOf(types.map(type => [profileId, type])) : table.where('profileId').equals(profileId)).toArray();
   return mergeSyncEvents([], rows.map(unstored));
 }
 
@@ -242,8 +245,14 @@ export async function receiveSyncPage(profileId: string, raw: unknown, database:
     }
     const results = [];
     for (const value of validated) {
-      results.push(await receiveValidatedBatch(profileId, value.batch, value.hash, database));
-      if (scope) await database.table('syncReceipts').put({ ...scope, profileId, deviceId: value.batch.deviceId, batchId: value.batch.batchId, blobSha: value.blobSha, hash: value.hash });
+      const result = await receiveValidatedBatch(profileId, value.batch, value.hash, database);
+      results.push(result);
+      if (scope) {
+        await database.table('syncReceipts').put({ ...scope, profileId, deviceId: value.batch.deviceId, batchId: value.batch.batchId, blobSha: value.blobSha, hash: value.hash });
+        const key = [profileId, value.batch.deviceId, value.batch.batchId];
+        // A verified remote copy also confirms a write whose acknowledgement was lost.
+        if (result !== 'conflict' && (await database.table('syncBatches').get(key))?.state === 'pending') await database.table('syncBatches').update(key, { state: 'confirmed' });
+      }
     }
     if (scope) await database.table('syncDownloads').put({ ...scope, profileId, commit: page.commit, cursor: page.cursor, ...(page.nextCursor ? { nextCursor: page.nextCursor } : {}) });
     return { results, commit: page.commit, nextCursor: page.nextCursor };

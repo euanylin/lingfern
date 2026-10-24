@@ -1,5 +1,4 @@
 import { useTaskDialog } from './useTaskDialog';
-import { answerPointCount, readingWordCount } from '../shared/practiceQuantity';
 import { contentLanguage, contentText, messages } from '../locales';
 import { GutenbergLicence } from './GutenbergLicence';
 import { materialPackageId, practiceLocale } from '../shared/content';
@@ -10,10 +9,7 @@ import { communityPacks } from '../data/db';
 import { communityCacheName } from '../data/communityInstall';
 
 const labels = messages('taskDetail');
-// shortcut: estimated duration only; replace with reviewed unit timings when available.
-export const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : readingWordCount(material) / 120) + answerPointCount(material.questions) * .5, 0)));
-
-export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review' | 'vocabulary'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
+export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
   const { open, close, dialogProps, bodyProps } = useTaskDialog(lesson.id, onClose), t = labels[locale];
   const [source, setSource] = useState<{ title: string; author: string; license: string }>();
   const previewLessons = [lesson, ...(additionalLesson ? [additionalLesson] : [])];
@@ -47,7 +43,7 @@ export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, o
   const recordings = lesson.materials.flatMap(material => material.audio ? [material.audio] : []);
   return createPortal(<dialog {...dialogProps} className="task-detail" aria-labelledby="task-detail-title">
     <div className="task-detail-body" {...bodyProps}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>
-      <h2 id="task-detail-title" lang={!heading && contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{heading ?? contentText(lesson.title, locale)}</h2>{heading && <h3 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h3>}<p lang={contentLanguage(lesson.goal, contentLocale)}>{contentText(lesson.goal, contentLocale)}</p>{practiceReason && lesson.generation?.generator === 'corpus-v1' && (practiceReason === 'vocabulary' || lesson.generation.focus) && <p className="muted">{t[practiceReason]}{practiceReason !== 'vocabulary' && lesson.generation.focus && <>: {t.kinds[lesson.generation.focus]}</>}</p>}
+      <h2 id="task-detail-title" lang={!heading && contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{heading ?? contentText(lesson.title, locale)}</h2>{heading && <h3 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h3>}<p lang={contentLanguage(lesson.goal, contentLocale)}>{contentText(lesson.goal, contentLocale)}</p>{practiceReason && lesson.generation?.generator === 'corpus-v1' && lesson.generation.focus && <p className="muted">{t[practiceReason]}{lesson.generation.focus && <>: {t.kinds[lesson.generation.focus]}</>}</p>}
       <dl><dt>{t.types}</dt><dd>{[...new Set(lesson.materials.flatMap(material => material.questions.map(question => t.kinds['gaps' in question ? 'completion' : 'kind' in question ? question.kind : 'choice'])))].join(' / ')}</dd>
         {recordings.length > 0 && <><dt>{t.audio}</dt><dd>{[...new Set(recordings.map(audio => audio.synthetic ? t.synthetic : t.human))].join(' / ')} · {Math.round(recordings.reduce((sum, audio) => sum + audio.duration, 0))} {t.seconds}{lesson.mode === 'check' && <p>{t.check}</p>}</dd></>}
       </dl>

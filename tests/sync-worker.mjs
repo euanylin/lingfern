@@ -44,6 +44,16 @@ try {
   const bound = await request('/api/sync/bind', { intent, confirm: true }); assert.equal(bound.status, 200); assert.equal((await bound.json()).syncAvailable, true);
   const summary = await (await request('/api/session')).json(); assert.equal(summary.syncAvailable, true);
   const scope = { accountId: 1, profileId: logical, bindingVersion: summary.bindings[0].bindingVersion };
+  const firstPage = await (await request(`/api/sync/changes?profileId=${logical}&metadata=1`)).json();
+  assert.equal(firstPage.files.length, 0);
+  const treeCount = (await control('stats')).trees;
+  const unchanged = await request(`/api/sync/changes?profileId=${logical}&metadata=1&sinceCommit=${firstPage.commit}`);
+  assert.equal(unchanged.status, 200); assert.deepEqual(await unchanged.json(), { scope, commit: firstPage.commit, unchanged: true });
+  assert.equal((await control('stats')).trees, treeCount);
+  for (const suffix of [`sinceCommit=${firstPage.commit}`, 'metadata=1&sinceCommit=invalid', `metadata=1&cursor=${encodeURIComponent(firstPage.cursor)}&sinceCommit=${firstPage.commit}`]) assert.equal((await request(`/api/sync/changes?profileId=${logical}&${suffix}`)).status, 400);
+  evidence.operations.push('Conditional current-head metadata skips tree/blob reads, retains verified scope, and rejects invalid SHA/cursor combinations');
+  sql('DELETE FROM auth_limits');
+
   secondOrigin = createHttpServer((_request, response) => { secondRequests++; response.end('forbidden synthetic second origin'); });
   await new Promise(resolve => secondOrigin.listen(8792, '127.0.0.1', resolve));
   assert.equal((await control('native-manual')).status, 302);
@@ -100,14 +110,28 @@ try {
   await drain('local-b'); assert.ok((await client('download')).value); assert.ok((await client('download', 'local-b')).value); await drain('local-a');
   const projected = await page.evaluate(async () => { const { readSyncEvents } = await import('/src/data/sync.ts'); const { projectSyncEvents } = await import('/src/shared/sync.ts'); return Promise.all(['local-a', 'local-b'].map(async id => { const p = projectSyncEvents(await readSyncEvents(id)); return { completions: p.completions.length, deleted: [...p.deletedRecords] }; })); });
   assert.deepEqual(projected, [{ completions: 0, deleted: ['synthetic-record'] }, { completions: 0, deleted: ['synthetic-record'] }]); evidence.operations.push('Second local profile downloads completion and uploads real deletion event; both projections retain tombstone after repeated downloads');
-  await page.evaluate(async () => { const { appendSyncEvent } = await import('/src/data/sync.ts'); await appendSyncEvent('local-a', { type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true, reviewEnabled: false } }); });
+  await page.evaluate(async () => { const { appendSyncEvent } = await import('/src/data/sync.ts'); await appendSyncEvent('local-a', { type: 'saved_item', payload: { memoryId: 'synthetic-sense', saved: true } }); });
   const beforeSwitch = sent.length;
   await context.addCookies([{ name: 'lingfern_local_session', value: cookie2, url: browserOrigin }]);
   assert.equal((await client('upload')).error, 'SYNC_SCOPE_CHANGED'); assert.equal(sent.length, beforeSwitch); evidence.operations.push('Actual second-account session rejected against first-account pending batch/consent/binding before batch dispatch');
   await context.addCookies([{ name: 'lingfern_local_session', value: cookie, url: browserOrigin }]);
   await control('revoke-on-put'); assert.ok((await client('upload')).error);
-  const receiptCount = await page.evaluate(() => globalThis.integration.db.table('syncUploads').where('profileId').equals('local-a').count()); assert.equal(receiptCount, 2);
+  const receiptCount = await page.evaluate(() => globalThis.integration.db.table('syncUploads').where('profileId').equals('local-a').count()); assert.equal(receiptCount, 1);
   assert.equal((await client('upload')).error, 'SYNC_SCOPE_CHANGED'); await control('restore'); assert.equal((await client('upload')).value, 'uploaded'); evidence.operations.push('Revocation after provider write denies acknowledgment and later dispatch; restored synthetic account retries same pending batch without overwrite');
+
+  sql('DELETE FROM auth_limits');
+  await page.evaluate(async () => { const { recordLookup } = await import('/src/data/lookupHistory.ts'); await recordLookup('local-a', 'dictionary', 'apple'); await recordLookup('local-b', 'grammar', 'each / every'); await recordLookup('local-b', 'ipa', 'ɪ'); });
+  await control('legacy'); await control('race');
+  for (const profile of ['local-a', 'local-b', 'local-a']) {
+    const result = await page.evaluate(async profile => { const { db, scope, consents } = globalThis.integration; const { requestSyncNow, synchronize, readSyncState } = await import('/src/data/syncClient.ts'); await db.table('settings').put({ key: 'activeProfile', value: profile }); await requestSyncNow(profile, scope); await synchronize(profile, consents[profile], async () => {}, new AbortController().signal); return readSyncState(profile, scope); }, profile);
+    assert.equal(result.phase, 'synced', JSON.stringify(result)); assert.ok(result.lastSuccessAt);
+  }
+  const lookups = await page.evaluate(async () => { const { readLookupHistory } = await import('/src/data/lookupHistory.ts'); return Promise.all(['local-a', 'local-b'].map(id => readLookupHistory(id))); });
+  assert.deepEqual(lookups[0], lookups[1]); assert.equal(lookups[0].length, 3);
+  const archives = await page.evaluate(async () => { const { readSyncEvents } = await import('/src/data/sync.ts'); return Promise.all(['local-a', 'local-b'].map(async id => (await readSyncEvents(id)).filter(event => event.deviceId === 'legacy'))); });
+  assert.deepEqual(archives[0], archives[1]); assert.equal(archives[0].length, 3); assert.equal(archives[0][0].payload.reviewEnabled, false);
+  evidence.operations.push('Full coordinator round merges three lookup kinds across isolated local profiles, rechecks after upload, handles provider409 by rereading before retry, and preserves original legacy wire events');
+  sql('DELETE FROM auth_limits');
   await control('conflict'); assert.ok((await client('download')).value);
   const conflicts = await page.evaluate(() => globalThis.integration.db.table('syncConflicts').where('profileId').equals('local-a').count()); assert.equal(conflicts, 1); evidence.operations.push('Changed same-path remote batch with new blob SHA is quarantined; no incoming conflicting completion projected');
   const after = await page.evaluate(async () => { const { readSyncEvents } = await import('/src/data/sync.ts'); const { projectSyncEvents } = await import('/src/shared/sync.ts'); const events = await readSyncEvents('local-a'); return { completions: projectSyncEvents(events).completions.length, originalCorrect: events.find(event => event.type === 'completion').payload.correct }; }); assert.deepEqual(after, { completions: 0, originalCorrect: true });

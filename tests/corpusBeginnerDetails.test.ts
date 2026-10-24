@@ -14,9 +14,9 @@ it.each(['quantity', 'verification'] as const)('generates exact native %s meanin
   const operation = family === 'quantity' ? 'choice:small-quantity' : 'choice:detail-verification';
   const meanings = new Set<string>();
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(lesson.targetLevel).toBe('A1'); expect(lesson).toEqual(JSON.parse(JSON.stringify(lesson)));
-    expect(lesson).toEqual(corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', [], operation));
+    expect(lesson).toEqual(corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', operation));
     expect(lesson.materials.map(m => m.rootId).sort()).toEqual(scopes[family].map(s => s.rootId).sort());
     for (const [index, material] of lesson.materials.entries()) {
       const scope = scopes[family].find(s => s.rootId === material.rootId)!;
@@ -43,8 +43,8 @@ it.each(['quantity', 'verification'] as const)('generates exact native %s meanin
   }), { numRuns: 500 });
   expect(meanings.size).toBe(family === 'quantity' ? 2 : 4);
   const one = { ...bank, records: bank.records.filter(r => r.rootId === scopes[family][0].rootId) };
-  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(bank.records.flatMap(r => r.passages.map(p => p.id))), 0, 120, 'A1', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(bank.records.flatMap(r => r.passages.map(p => p.id))), 0, 120, 'A1', [], 'choice', operation)).toBeUndefined();
 });
 
 it('rejects unsupported, inconsistent or insufficient numeric/correction evidence and altered admitted text', async () => {
@@ -64,7 +64,7 @@ it('saves and recovers both detail operations through actual exposure and answer
   const { exportBackup, inspectBackup } = await import('../src/data/backup');
   try {
     for (const operation of ['choice:small-quantity', 'choice:detail-verification']) {
-      const practice = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)!;
+      const practice = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)!;
       for (const lesson of [practice, asTestLesson(practice)]) {
         const profile = operation.replace(':', '-') + (lesson.mode ?? 'practice'), session = await createSession(lesson, profile); await claimSession(session.id, 'detail-owner');
         for (const material of lesson.materials) {
@@ -86,7 +86,7 @@ it('reads literal clock time in two retained native contexts without substitutin
   expect(bank).toEqual(original);
   const roots = scopes.time.map(s => s.rootId).sort();
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(runtime, new Set(), seed, 120, 'A1', [], 'choice', [], 'choice:stated-time')!;
+    const lesson = corpusLesson(runtime, new Set(), seed, 120, 'A1', [], 'choice', 'choice:stated-time')!;
     expect(lesson).toBeDefined(); expect(lesson.materials.map(m => m.rootId).sort()).toEqual(roots);
     expect(lesson).toEqual(JSON.parse(JSON.stringify(lesson)));
     lesson.materials.forEach((material, index) => {
@@ -105,7 +105,7 @@ it('reads literal clock time in two retained native contexts without substitutin
     const expected = structuredClone(lesson.materials); expected.forEach(m => m.questions.forEach(q => delete q.hints)); expect(asTestLesson(lesson).materials).toEqual(expected);
   }), { numRuns: 500 });
   const one = { ...runtime, records: runtime.records.filter(r => r.rootId === roots[0]) };
-  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'choice', [], 'choice:stated-time')).toBeUndefined();
+  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'choice', 'choice:stated-time')).toBeUndefined();
   for (const scope of scopes.time) {
     const source = bank.records.find(r => r.rootId === scope.rootId)!;
     await expect(reviewedReading([{ ...source, passages: source.passages.map(p => p.id === scope.parentId ? { ...p, text: p.text.replace('11:50', '11:05').replace('10 a.m.', '10 p.m.') } : p) }])).rejects.toThrow('CORPUS_INTEGRITY');

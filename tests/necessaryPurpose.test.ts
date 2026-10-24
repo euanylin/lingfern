@@ -46,7 +46,7 @@ it('retains exact necessary-purpose statements and context from two hash-verifie
 
 it('transfers required-condition evidence between the actual roots at ordinary effort and preserves Test scoring', () => {
   for (const seed of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
-    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'evidence', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'evidence', operation)!;
     expect(lesson).toBeDefined();
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const before = structuredClone(lesson), tested = asTestLesson(lesson);
@@ -85,8 +85,8 @@ it('transfers required-condition evidence between the actual roots at ordinary e
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) expect(corpusOperation(material.questions[0])).toBe(operation);
   }
-  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(bank, new Set(), 0, 300, point, [], 'evidence', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(scopes.map(scope => scope.id)), 0, 300, 'B2', [], 'evidence', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(bank, new Set(), 0, 300, point, [], 'evidence', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(scopes.map(scope => scope.id)), 0, 300, 'B2', [], 'evidence', operation)).toBeUndefined();
 });
 
 it('rejects epistemic must, sufficient conditions, reports, incomplete context and ambiguous alternatives', () => {

@@ -46,7 +46,7 @@ it('rejects conflicting, hypothetical, denied, ownerless and truncated requests 
 it('uses two genuine roots with identical Practice/Test scoring and preserves A1 limits and missing-partner fallback', () => {
   const reached = new Set<string>();
   for (let seed = 0; seed < 32; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
     reached.add(lesson.materials[0].rootId);
@@ -64,7 +64,7 @@ it('uses two genuine roots with identical Practice/Test scoring and preserves A1
   expect(reached).toEqual(new Set(['voa-article-3240468', 'gutenberg-book-45']));
   expect(corpusLesson({ ...bank, records: [bank.records[1]] }, new Set(), 0, 120, 'A1')).toBeUndefined();
   const one = { ...bank, records: [bank.records[0], voa.records.find(record => record.rootId === 'voa-article-3111026')!] };
-  expect(corpusLesson(one, new Set(), 0, 160, 'A2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(one, new Set(), 0, 160, 'A2', [], 'choice', operation)).toBeUndefined();
   for (let seed = 0; seed < 16; seed++) {
     const lesson = corpusLesson(one, new Set(), seed, 160, 'A2')!; expect(lesson).toBeDefined();
     expect(lesson.materials.every(material => corpusOperation(material.questions[0]) !== operation)).toBe(true);
@@ -74,7 +74,7 @@ it('uses two genuine roots with identical Practice/Test scoring and preserves A1
 it('saves both actual-source Practice/Test snapshots and restores all responses and exposures', async () => {
   await Promise.all(db.tables.map(table => table.clear()));
   try {
-    const practice = corpusLesson(bank, new Set(), 0, 160, 'A2', [], 'choice', [], operation)!;
+    const practice = corpusLesson(bank, new Set(), 0, 160, 'A2', [], 'choice', operation)!;
     for (const lesson of [practice, asTestLesson(practice)]) {
       const profileId = `address-${lesson.mode ?? 'practice'}`, created = await createSession(lesson, profileId);
       let current: Session = await claimSession(created.id, 'address-owner');

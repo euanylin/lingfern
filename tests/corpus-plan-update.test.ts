@@ -12,7 +12,7 @@ const operation = 'choice:personal-update';
 it('teaches the later personal reply/request with source-bound earlier and intervening evidence, not an invented external change', async () => {
   const bank = { ...original, records: await reviewedReading(original.records, 160) };
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(lesson.goalId).toBe('explicit-personal-update');
     expect(lesson.materials.map(m => m.rootId).sort()).toEqual(scopes.update.map(s => s.rootId).sort());
     for (const [index, m] of lesson.materials.entries()) {
@@ -30,8 +30,8 @@ it('teaches the later personal reply/request with source-bound earlier and inter
     const bare=structuredClone(lesson.materials);bare.forEach(m=>m.questions.forEach(q=>delete q.hints));expect(asTestLesson(lesson).materials).toEqual(bare);
     expect(lesson).toEqual(JSON.parse(JSON.stringify(lesson)));
   }),{numRuns:150});
-  for(const s of scopes.update){expect(corpusLesson(bank,new Set([s.passageId]),0,160,'A2',[],'choice',[],operation)).toBeUndefined();expect(corpusLesson({...bank,records:bank.records.filter(r=>r.rootId===s.rootId)},new Set(),0,160,'A2',[],'choice',[],operation)).toBeUndefined();}
-  for(const point of ['A1','B1','B2','C1','C2'] as const)expect(corpusLesson(bank,new Set(),0,160,point,[],'choice',[],operation)).toBeUndefined();
+  for(const s of scopes.update){expect(corpusLesson(bank,new Set([s.passageId]),0,160,'A2',[],'choice',operation)).toBeUndefined();expect(corpusLesson({...bank,records:bank.records.filter(r=>r.rootId===s.rootId)},new Set(),0,160,'A2',[],'choice',operation)).toBeUndefined();}
+  for(const point of ['A1','B1','B2','C1','C2'] as const)expect(corpusLesson(bank,new Set(),0,160,point,[],'choice',operation)).toBeUndefined();
 });
 it('rejects absent, hypothetical, reversed, duplicated or conflicting update/context frames',async()=>{
  const bank=await reviewedReading(original.records,160),texts=scopes.update.map(s=>bank.flatMap(r=>r.passages).find(p=>p.id===s.passageId)!.text);const [food,party]=texts;

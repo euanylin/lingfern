@@ -7,15 +7,14 @@ import { zipSync } from 'fflate';
 import { unpackZip } from './zip';
 import { z } from 'zod';
 import { lessonSchema, ruleHashesSchema, questions, validateAnswer, selfAssessmentSchema, validateSelfAssessment } from '../shared/content';
-import { attempts, bootstrapSyncEvents, db, exposures, feedbackNotes, memories, memoryReviews, profiles, sessions, settings, type Attempt, type FeedbackNote, type Memory, type MemoryReview, type Session } from './db';
-import { memoryConfigId, replayMemory, reviewTimes } from './memory';
-import { syncBatchSchema, syncEventSchema, syncIdSchema, validateSyncBatch, canonicalJson, compareSyncEvents } from '../shared/sync';
+import { attempts, bootstrapSyncEvents, db, exposures, feedbackNotes, memories, profiles, sessions, settings, type Attempt, type FeedbackNote, type Memory, type Session } from './db';
+import { syncBatchSchema, syncEventSchema, validateSyncBatch, canonicalJson } from '../shared/sync';
 import { profileIdSchema } from '../shared/repository';
 import { syncAccountSchema } from '../shared/auth';
 import type { StoredEvent, StoredBatch, Clock } from './sync';
 import { gutenbergNotice, gutenbergTerms, isGutenbergSource } from '../shared/sourceLicence';
 
-const currentNames = ['manifest.json', 'sessions.json', 'attempts.json', 'exposures.json', 'memories.json', 'memoryReviews.json', 'feedbackNotes.json', 'syncEvents.json', 'syncBatches.json', 'syncClocks.json', 'syncConflicts.json'] as const;
+const currentNames = ['manifest.json', 'sessions.json', 'attempts.json', 'exposures.json', 'memories.json', 'feedbackNotes.json', 'syncEvents.json', 'syncBatches.json', 'syncClocks.json', 'syncConflicts.json'] as const;
 const licenceName = 'gutenberg-license.txt';
 const optionalNames = [...currentNames, licenceName] as const;
 const MAX_LICENCE = 64 * 1024;
@@ -28,14 +27,13 @@ const decoder = new TextDecoder('utf-8', { fatal: true });
 const sessionSchema = z.object({ id: z.string().min(1).max(80), syncSessionId: z.string().min(1).max(80).optional(), profileId: z.string().min(1).max(80), lesson: lessonSchema, ruleHashes: ruleHashesSchema.optional(), itemHashes: z.record(z.string().min(1).max(80), z.string().regex(/^[a-f0-9]{64}$/)).optional(), contentHash: z.string().regex(/^[a-f0-9]{64}$/), recordsDeleted: z.literal(true).optional(), position: z.number().int().nonnegative(), status: z.enum(['active', 'completed', 'ended']), startedAt: z.iso.datetime(), checkDeviceId: z.uuid().optional(), checkGroupId: z.uuid().optional(), practiceGroupId: z.uuid().optional(), checkStartedAt: z.iso.datetime().optional(), checkEndedAt: z.iso.datetime().optional(), workspace: workspaceSchema.optional(), readingAnnotations: readingAnnotationsSchema.optional(), draft: z.union([z.number(), z.string().max(4000), z.array(z.string())]).optional(), assistance: assistanceSchema, leaseUntil: z.number().nonnegative() }).strict();
 const attemptSchema = z.object({ id: z.string().min(1).max(160), syncRecordId: z.string().min(1).max(160).optional(), sessionId: z.string().min(1).max(80), profileId: z.string().min(1).max(80), questionId: z.string().min(1).max(80), rootId: z.string().min(1).max(160), answer: z.union([z.number(), z.string().max(4000), z.array(z.string())]), correct: z.boolean().nullable(), selfAssessment: selfAssessmentSchema.optional(), rule: z.string().min(1).max(120), assistance: assistanceSchema, submittedAt: z.iso.datetime() }).strict();
 const fileSchema = z.object({ bytes: z.number().int().nonnegative().max(MAX_UNPACKED), sha256: z.string().regex(/^[a-f0-9]{64}$/), count: z.number().int().nonnegative().max(MAX_ROWS) }).strict();
-const manifestSchema = z.object({ format: z.literal('lingfern-local-backup'), version: z.literal(5), createdAt: z.iso.datetime(), sourceProfileId: z.string().min(1).max(80), profileName: z.string().min(1).max(MAX_PROFILE_NAME).default('Local profile'), nameIsCustom: z.literal(true).optional(), preferences: preferencesSchema.optional(), files: z.record(z.string(), fileSchema) }).strict();
-const memorySchema = z.object({ profileId: z.string().min(1).max(80), memoryId: z.string().min(1).max(160), term: z.string().min(1).max(80), definition: z.string().min(1).max(2000), savedAt: z.iso.datetime(), reviewEnabled: z.boolean() }).strict();
-const reviewSchema = z.object({ id: syncIdSchema, profileId: z.string().min(1).max(80), memoryId: z.string().min(1).max(160), occurredAt: z.iso.datetime(), rating: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]), assistance: z.object({ answerRevealed: z.boolean(), hintUsed: z.boolean() }).strict(), configId: z.literal(memoryConfigId) }).strict();
+const manifestSchema = z.object({ format: z.literal('lingfern-local-backup'), version: z.literal(6), createdAt: z.iso.datetime(), sourceProfileId: z.string().min(1).max(80), profileName: z.string().min(1).max(MAX_PROFILE_NAME).default('Local profile'), nameIsCustom: z.literal(true).optional(), preferences: preferencesSchema.optional(), files: z.record(z.string(), fileSchema) }).strict();
+const memorySchema = z.object({ profileId: z.string().min(1).max(80), memoryId: z.string().min(1).max(160), term: z.string().min(1).max(80), definition: z.string().min(1).max(2000), savedAt: z.iso.datetime() }).strict();
 const feedbackNoteSchema = z.object({ id: z.uuid(), profileId: z.string().min(1).max(80), attemptId: z.string().min(1).max(160), kind: z.enum(['text', 'structured']), content: z.string().min(1).max(64 * 1024), unknownReferences: z.boolean(), createdAt: z.iso.datetime() }).strict();
 
 const syncEventRecordSchema = z.object({ profileId: profileIdSchema, batchId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/).optional(), event: syncEventSchema }).strict().transform(({ profileId, batchId, event }) => ({ ...event, profileId, ...(batchId ? { batchId } : {}) }));
 const syncBatchRecordSchema = z.object({ profileId: profileIdSchema, deviceId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), batchId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), hash: z.string().regex(/^[a-f0-9]{64}$/), batch: syncBatchSchema, state: z.enum(['pending', 'confirmed', 'received', 'conflict']) }).strict();
-const syncClockSchema = z.object({ profileId: profileIdSchema, deviceId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), counter: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER), logicalProfileId: profileIdSchema.optional() }).strict();
+const syncClockSchema = z.object({ profileId: profileIdSchema, deviceId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), counter: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER), logicalProfileId: profileIdSchema.optional(), localRevision: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER).optional() }).strict();
 const syncConflictSchema = z.object({ profileId: profileIdSchema, hash: z.string().regex(/^[a-f0-9]{64}$/), batch: syncBatchSchema, reason: z.literal('SYNC_BATCH_CONFLICT') }).strict();
 type SyncConflict = z.infer<typeof syncConflictSchema>;
 
@@ -52,36 +50,16 @@ function backupProfileName(name: string) {
   return prefix || 'Local profile';
 }
 
-// Retain timing rows; pause absent cards until their original events are confirmed.
-
-async function backupMemoryCard(memory: Memory, reviews: MemoryReview[], events: StoredEvent[]) {
-  const source = events.map(({ profileId: _profile, batchId: _batch, ...event }) => { void _profile; void _batch; return event; });
-  try {
-    const times = await reviewTimes(memory.memoryId, source);
-    const changes = source.filter(event => event.type === 'saved_item').filter(event => event.payload.memoryId === memory.memoryId).sort(compareSyncEvents);
-    const reset = changes.filter(event => !event.payload.saved).at(-1);
-    const first = changes.find(event => event.payload.saved && (!reset || compareSyncEvents(event, reset) > 0));
-    const savedAt = times.get(first?.id ?? '') ?? memory.savedAt;
-    const effective = reviews.filter(review => review.memoryId === memory.memoryId).map(review => ({ ...review, occurredAt: times.get(review.id) ?? review.occurredAt }));
-    if (Date.parse(savedAt) > Date.now() + 5 * 60_000 || effective.some(review => Date.parse(review.occurredAt) > Date.now() + 5 * 60_000)) return undefined;
-    return replayMemory(savedAt, effective, new Map(source.map(event => [event.id, event.counter])));
-  } catch (error) {
-    if (error instanceof Error && (error.message === 'REVIEW_TIMING_INVALID' || error.message === 'REVIEW_CLOCK' && source.some(event => event.type === 'review_timing' && event.payload.memoryId === memory.memoryId))) return undefined;
-    throw error;
-  }
-}
-
 export async function exportBackup(profileId: string, profileName?: string) {
   const selectedName = profileName === undefined ? undefined : manifestSchema.shape.profileName.parse(profileName);
   await bootstrapSyncEvents(profileId);
   await purgeDeletedRecords(profileId);
-  const { profile, ...snapshot } = await db.transaction('r', [profiles, sessions, attempts, exposures, memories, memoryReviews, feedbackNotes, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => ({
+  const { profile, ...snapshot } = await db.transaction('r', [profiles, sessions, attempts, exposures, memories, feedbackNotes, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => ({
       profile: await profiles.get(profileId),
       sessions: (await sessions.where('profileId').equals(profileId).toArray()).map(session => ({ ...session, owner: undefined, leaseUntil: 0, lockMode: undefined })),
       attempts: await attempts.where('profileId').equals(profileId).toArray(),
       exposures: await exposures.where('profileId').equals(profileId).toArray(),
-      memories: (await memories.where('profileId').equals(profileId).toArray()).map(memory => ({ profileId: memory.profileId, memoryId: memory.memoryId, term: memory.term, definition: memory.definition, savedAt: memory.savedAt, reviewEnabled: memory.reviewEnabled })),
-      memoryReviews: await memoryReviews.where('profileId').equals(profileId).toArray(),
+      memories: (await memories.where('profileId').equals(profileId).toArray()).map(memory => ({ profileId: memory.profileId, memoryId: memory.memoryId, term: memory.term, definition: memory.definition, savedAt: memory.savedAt })),
       feedbackNotes: await feedbackNotes.where('profileId').equals(profileId).toArray(),
       syncEvents: (await db.table('syncEvents').where('profileId').equals(profileId).toArray()).map(({ profileId, batchId, ...event }: StoredEvent) => ({ profileId, batchId, event })),
       syncBatches: await db.table('syncBatches').where('profileId').equals(profileId).toArray(),
@@ -95,7 +73,6 @@ export async function exportBackup(profileId: string, profileName?: string) {
     'attempts.json': encoder.encode(JSON.stringify(snapshot.attempts)),
     'exposures.json': encoder.encode(JSON.stringify(snapshot.exposures)),
     'memories.json': encoder.encode(JSON.stringify(snapshot.memories)),
-    'memoryReviews.json': encoder.encode(JSON.stringify(snapshot.memoryReviews)),
     'feedbackNotes.json': encoder.encode(JSON.stringify(snapshot.feedbackNotes)),
     'syncEvents.json': encoder.encode(JSON.stringify(snapshot.syncEvents)),
     'syncBatches.json': encoder.encode(JSON.stringify(snapshot.syncBatches)),
@@ -104,7 +81,7 @@ export async function exportBackup(profileId: string, profileName?: string) {
   };
   if (snapshot.sessions.some(session => session.lesson.materials.some(material => isGutenbergSource(material.credit?.sourceUrl)))) payload[licenceName] = encoder.encode(gutenbergTerms);
   const fileEntries = await Promise.all(Object.entries(payload).map(async ([name, bytes]) => [name, { bytes: bytes.length, sha256: await sha256(bytes), count: name === licenceName ? 1 : snapshot[name.slice(0, -5) as keyof typeof snapshot].length }] as const));
-  const manifest = { format: 'lingfern-local-backup', version: 5, createdAt: new Date().toISOString(), sourceProfileId: profileId, profileName: selectedName ?? backupProfileName(profile?.name ?? 'Local profile'), nameIsCustom: (selectedName === undefined ? profile?.nameIsCustom : selectedName.includes('Local profile')) || undefined, preferences: profile?.preferences, files: Object.fromEntries(fileEntries) };
+  const manifest = { format: 'lingfern-local-backup', version: 6, createdAt: new Date().toISOString(), sourceProfileId: profileId, profileName: selectedName ?? backupProfileName(profile?.name ?? 'Local profile'), nameIsCustom: (selectedName === undefined ? profile?.nameIsCustom : selectedName.includes('Local profile')) || undefined, preferences: profile?.preferences, files: Object.fromEntries(fileEntries) };
   const files = { 'manifest.json': encoder.encode(JSON.stringify(manifest)), ...payload };
   if (Object.values(files).reduce((total, bytes) => total + bytes.length, 0) > MAX_UNPACKED) throw new Error('BACKUP_SIZE');
   const zip = zipSync(files, { level: 6 });
@@ -113,8 +90,8 @@ export async function exportBackup(profileId: string, profileName?: string) {
 }
 
 export type BackupInspection = {
-  summary: { preferences?: Preferences; createdAt: string; profileName: string; nameIsCustom?: true; sourceProfileId: string; sessions: number; attempts: number; exposures: number; memories: number; memoryReviews: number; feedbackNotes: number; bytes: number };
-  records: { sessions: Session[]; attempts: Attempt[]; exposures: Exposure[]; memories: Memory[]; memoryReviews: MemoryReview[]; feedbackNotes: FeedbackNote[]; syncEvents: StoredEvent[]; syncBatches: StoredBatch[]; syncClocks: Clock[]; syncConflicts: SyncConflict[] };
+  summary: { preferences?: Preferences; createdAt: string; profileName: string; nameIsCustom?: true; sourceProfileId: string; sessions: number; attempts: number; exposures: number; memories: number; feedbackNotes: number; bytes: number };
+  records: { sessions: Session[]; attempts: Attempt[]; exposures: Exposure[]; memories: Memory[]; feedbackNotes: FeedbackNote[]; syncEvents: StoredEvent[]; syncBatches: StoredBatch[]; syncClocks: Clock[]; syncConflicts: SyncConflict[] };
 };
 
 export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection> {
@@ -143,7 +120,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
   ]);
   for (const session of savedSessions) if (session.readingAnnotations) validateReadingAnnotations(session.lesson, session.readingAnnotations);
   if (!hasLicence && savedSessions.some(session => session.lesson.materials.some(material => isGutenbergSource(material.credit?.sourceUrl)))) throw new Error('BACKUP_INTEGRITY');
-  const [savedMemories, savedReviews] = await Promise.all([read('memories.json', memorySchema), read('memoryReviews.json', reviewSchema)]);
+  const savedMemories = await read('memories.json', memorySchema);
   const savedFeedback = await read('feedbackNotes.json', feedbackNoteSchema);
   const [savedSyncEvents, savedSyncBatches, savedSyncClocks, savedSyncConflicts] = await Promise.all([
     read('syncEvents.json', syncEventRecordSchema), read('syncBatches.json', syncBatchRecordSchema), read('syncClocks.json', syncClockSchema), read('syncConflicts.json', syncConflictSchema),
@@ -217,10 +194,9 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
     if (!item || item.material.rootId !== exposure.rootId || item.material.id !== contact.materialId || contact.variantGroup !== ('variantGroup' in item.question && item.question.variantGroup ? item.question.variantGroup : item.question.id)) throw new Error('BACKUP_REFERENCE');
   }
   const memoryIds = new Set(savedMemories.map(memory => memory.memoryId));
-  if (memoryIds.size !== savedMemories.length || new Set(savedReviews.map(review => review.id)).size !== savedReviews.length) throw new Error('BACKUP_DUPLICATE');
-  if (savedMemories.some(memory => memory.profileId !== manifest.sourceProfileId) || savedReviews.some(review => review.profileId !== manifest.sourceProfileId || !memoryIds.has(review.memoryId))) throw new Error('BACKUP_REFERENCE');
-  for (const memory of savedMemories) await backupMemoryCard(memory, savedReviews, savedSyncEvents);
-  return { summary: { preferences: manifest.preferences, createdAt: manifest.createdAt, profileName: manifest.profileName, ...(manifest.nameIsCustom ? { nameIsCustom: true } : {}), sourceProfileId: manifest.sourceProfileId, sessions: savedSessions.length, attempts: savedAttempts.length, exposures: savedExposures.length, memories: savedMemories.length, memoryReviews: savedReviews.length, feedbackNotes: savedFeedback.length, bytes: bytes.length }, records: { sessions: savedSessions, attempts: savedAttempts, exposures: savedExposures, memories: savedMemories, memoryReviews: savedReviews, feedbackNotes: savedFeedback, syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncClocks: savedSyncClocks, syncConflicts: savedSyncConflicts } };
+  if (memoryIds.size !== savedMemories.length) throw new Error('BACKUP_DUPLICATE');
+  if (savedMemories.some(memory => memory.profileId !== manifest.sourceProfileId)) throw new Error('BACKUP_REFERENCE');
+  return { summary: { preferences: manifest.preferences, createdAt: manifest.createdAt, profileName: manifest.profileName, ...(manifest.nameIsCustom ? { nameIsCustom: true } : {}), sourceProfileId: manifest.sourceProfileId, sessions: savedSessions.length, attempts: savedAttempts.length, exposures: savedExposures.length, memories: savedMemories.length, feedbackNotes: savedFeedback.length, bytes: bytes.length }, records: { sessions: savedSessions, attempts: savedAttempts, exposures: savedExposures, memories: savedMemories, feedbackNotes: savedFeedback, syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncClocks: savedSyncClocks, syncConflicts: savedSyncConflicts } };
 }
 
 export async function importBackup(inspection: BackupInspection, accountId?: number, expectedActiveProfile?: string) {
@@ -234,17 +210,15 @@ export async function importBackup(inspection: BackupInspection, accountId?: num
   const importedAttempts = inspection.records.attempts.map(attempt => ({ ...attempt, id: `${ids.get(attempt.sessionId)}:${attempt.questionId}`, syncRecordId: attempt.syncRecordId ?? attempt.id, sessionId: ids.get(attempt.sessionId)!, profileId: id }));
   const attemptIds = new Map(inspection.records.attempts.map((attempt, index) => [attempt.id, importedAttempts[index].id]));
   const importedExposures = inspection.records.exposures.map(exposure => ({ ...exposure, profileId: id, ...(exposure.contacts ? { contacts: exposure.contacts.map(contact => ({ ...contact, sessionId: ids.get(contact.sessionId)! })) } : {}) }));
-  const importedMemories = await Promise.all(inspection.records.memories.map(async memory => ({ ...memory, profileId: id, card: await backupMemoryCard(memory, inspection.records.memoryReviews, inspection.records.syncEvents) })));
-  const importedReviews = inspection.records.memoryReviews.map(review => ({ ...review, profileId: id }));
+  const importedMemories = inspection.records.memories.map(memory => ({ ...memory, profileId: id }));
   const importedFeedback = inspection.records.feedbackNotes.map(note => ({ ...note, id: crypto.randomUUID(), profileId: id, attemptId: attemptIds.get(note.attemptId)! }));
-  await db.transaction('rw', [profiles, sessions, attempts, exposures, memories, memoryReviews, feedbackNotes, settings, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => {
+  await db.transaction('rw', [profiles, sessions, attempts, exposures, memories, feedbackNotes, settings, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => {
     if (expectedActiveProfile !== undefined && ((await settings.get('activeProfile'))?.value !== expectedActiveProfile || !await profiles.get(expectedActiveProfile))) throw new Error('SYNC_SCOPE_CHANGED');
     await profiles.add({ id, preferences: inspection.summary.preferences, name: inspection.summary.profileName, ...(inspection.summary.nameIsCustom ? { nameIsCustom: true } : {}), createdAt: new Date().toISOString() });
     await sessions.bulkAdd(importedSessions);
     await attempts.bulkAdd(importedAttempts);
     await exposures.bulkAdd(importedExposures);
     await memories.bulkAdd(importedMemories);
-    await memoryReviews.bulkAdd(importedReviews);
     await feedbackNotes.bulkAdd(importedFeedback);
     await db.table('syncEvents').bulkAdd(inspection.records.syncEvents.map(row => ({ ...row, profileId: id })));
     // Do not inherit another account's acknowledgement during explicit imports.

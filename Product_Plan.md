@@ -377,7 +377,7 @@ A practice branch may insert a short explanation after an error and then return 
 
 Implement `selectPractice()` and `selectCheckModule()` in two ordinary TypeScript modules. They share item and exposure data, but have different purposes, eligibility rules, and returned explanations.
 
-See Section 20 for assessment reuse: mirt calibrates in a separate local research environment; catsim simulates and cross-checks. The browser reads reviewed parameters and runs lightweight calculations only. Without real calibration results, the rule-based checks below remain fully usable. Installing a statistical library does not change score claims. Use ts-fsrs for word-sense memory, separately from goal-level recommendations; see Section 21.2.
+See Section 20 for assessment reuse: mirt calibrates in a separate local research environment; catsim simulates and cross-checks. The browser reads reviewed parameters and runs lightweight calculations only. Without real calibration results, the rule-based checks below remain fully usable. Installing a statistical library does not change score claims. Dictionary bookmarks are separate from goal-level recommendations; see Section 21.2.
 
 Do not build a general-purpose rule language, plug-in algorithm marketplace, multidimensional psychometric scale, or online model-training service. Keep configuration in ordinary TypeScript objects. Unit tests must be able to inject a fixed clock and random seed.
 
@@ -435,7 +435,7 @@ Initial rules:
 
 These intervals and thresholds are testable starting points, not a claimed optimal memory algorithm. Users may review early, pause, or ignore recommendations.
 
-These intervals govern recurrence of listening-and-reading goals in different contexts. For specific word senses/expressions selected for review, use ts-fsrs to manage memory state and due dates; do not repeatedly overwrite it with this section's fixed intervals. FSRS difficulty and stability are not item IRT parameters or English proficiency.
+These intervals govern recurrence of listening-and-reading goals in different contexts. Dictionary bookmarks have no separate review schedule.
 
 ### 6.7 Conditions for Enabling Measurement Research
 
@@ -778,7 +778,7 @@ Lingfern/
 
 These directories represent responsibilities, not a requirement to create class, interface, and factory layers for every feature. Define shared structures in `src/shared`, using Zod for runtime validation and inferred types rather than manually maintaining separate TypeScript, standalone schemas, and equivalent JSON definitions.
 
-Reuse: Dexie/fflate in `data`; ts-fsrs for word-sense review in `core`; MiniSearch for catalogue search when needed; PWA/Workbox in `sw.ts`; required Octokit functions, the official MCP SDK, and OAuth Provider in the Worker. Create local R/Python scripts under `scripts` only when research or editing genuinely requires them. Models, real responses, environments, and analysis reports must not enter `public`, `dist`, or the online Worker.
+Reuse: Dexie/fflate in `data`; MiniSearch for catalogue search when needed; PWA/Workbox in `sw.ts`; required Octokit functions, the official MCP SDK, and OAuth Provider in the Worker. Create local R/Python scripts under `scripts` only when research or editing genuinely requires them. Models, real responses, environments, and analysis reports must not enter `public`, `dist`, or the online Worker.
 
 ### 10.3 Main Data Objects
 
@@ -790,7 +790,7 @@ Reuse: Dexie/fflate in `data`; ts-fsrs for word-sense review in `core`; MiniSear
 | Session | ID, mode, material hashes, actual question snapshots, start time, current question position, status |
 | Response | ID, session, question-snapshot reference, original answer, score, support conditions, submission time |
 | Goal-learning state | Distinct practised materials, recent performance, last date, next goal-revisit date |
-| Word-sense memory | memoryId, FSRS state, review events, assistance, configuration ID; not a proficiency value |
+| Dictionary bookmark | memoryId, term, definition and savedAt; not a proficiency value |
 | Calibration parameters | Question/content hashes, skill, model and parameterisation, parameters, applicable conditions, review evidence; absent if unavailable |
 | Exposure | Root material, question/variant group, first/last exposure times, related sessions |
 | Saved item | Stable entry/expression ID, saved date, deletion state |
@@ -848,7 +848,7 @@ When multiple tabs open the same profile, use browser locking; if unavailable, p
 
 ### 11.2 Suggested Local Tables
 
-`settings`, `sessions`, `attempts`, `targets`, `exposures`, `favorites`, `packs`, `files`, `outbox`, `receivedBatches`, `drafts`. When word-sense review is enabled, add `memories` and necessary original review records. Reuse existing event storage rather than creating another database for FSRS.
+`settings`, `sessions`, `attempts`, `targets`, `exposures`, `favorites`, `packs`, `files`, `outbox`, `receivedBatches`, `drafts`. Use `memories` for saved dictionary meanings and existing event storage for save/remove operations.
 
 Isolate data by local profile. Switching accounts switches profiles; do not “merge” by changing every record's ownership. Binding a temporary guest profile to an account requires explicit confirmation.
 
@@ -981,7 +981,7 @@ Sync exchanges completed learning records and settings; it is not a real-time co
 | Synchronised by default | Kept on this device by default |
 |---|---|
 | Completed tasks and objective scoring summaries | Original recordings |
-| Goal-review evidence and explicitly enabled word-sense review events | Full private materials and attachments |
+| Goal-review evidence | Full private materials and attachments |
 | Saved-item IDs, interests, settings | Full writing, dictation, and other user-entered text |
 | Material exposure and variant-group records | Unfinished independent checks |
 | Official content hashes and installation intentions | Downloaded audio and complete corpus packages |
@@ -1001,9 +1001,9 @@ records/
 
 `deviceId` is a random device identifier for the profile; `batchId` is a persisted random ID. Do not use hardware fingerprints. On restoration to a new device, generate a new deviceId but retain event IDs for deduplication.
 
-A batch contains at most 500 events and no more than 250 KiB decoded. Each event has an ID, logical order, type, and constrained payload. Types need cover only task completion, exposure, saved-item changes, settings changes, record deletion, and similar actions. Enabling word-sense review adds one `memory_review` type with stable sense ID, explicit rating, assistance markers, event time, and scheduler configuration ID, excluding complete private example sentences.
+A batch contains at most 500 events and no more than 250 KiB decoded. Each event has an ID, logical order, type, and constrained payload. Types cover task completion, exposure, bookmark changes, preferences/settings, installation intentions, completion-time corrections, query history and deletion markers. Query events preserve the existing kind, normalized term and original lookup time; the current view retains the latest100 distinct kind/term pairs. New bookmark events contain only a stable sense ID and save/remove state, excluding private definitions. Valid historical review fields/events remain strictly validated and byte-preserved for sync/backup integrity; the retired review interface and calculations stay removed.
 
-Schedule a sync after task completion, or batch at intervals of at least 60 seconds while the page is active in the foreground with pending data. Foreground opening, network recovery, and a manual button may also trigger it. Do not guarantee background sync after the page closes.
+After explicit account/profile association and private-repository configuration, enable automatic bidirectional sync by default, preserving explicit scoped opt-out. Debounce local changes for2seconds with a10second maximum wait; coordinate foreground rounds across tabs, with a15second minimum automatic request gap and a2minute remote poll. Check on startup, sign-in, online recovery and foreground return; keep one Sync now/retry action. Read and merge every remote page before upload, then recheck remote state after writes. A bounded partial round remains pending and resumes from its persisted cursor; only a fully read/applied/drained round updates the success time. Offline events survive reload. Use finite backoff and respect rate limits; closed pages do not promise background execution.
 
 ### 13.3 Upload Flow
 
@@ -1023,7 +1023,7 @@ Read the current repository head and file list under `records/`, then fetch only
 
 Directory listings may have limits. A truncated result is not a complete record set. Check truncation through the Git Trees API; walk directories individually when necessary, or pause and show a capacity message.[7][8]
 
-Initial sync may be paginated, saving a cursor after each page so interruptions resume rather than re-importing from the beginning. Each round reads against a fixed remote commit, catching later commits in the next round.
+Initial sync may be paginated, saving a cursor after each page so interruptions resume rather than re-importing from the beginning. Each page sequence reads against a fixed remote commit. Recheck after uploads; a complete unchanged-head metadata response can skip tree/blob transfers. Verify current authorisation, private ownership and binding even for unchanged responses. Missing fields in valid older events do not clear local data; migrate legacy local query arrays before event capture.
 
 Compute progress from merged records. If the other device lacks corresponding materials, show summaries and required materials, without promising complete replay of unsynchronised private content.
 
@@ -1036,8 +1036,8 @@ Compute progress from merged records. If the other device lacks corresponding ma
 | Same event ID, different content | Stop the batch, show a conflict, retain both copies for diagnosis |
 | Settings/saved-item changes | Compare stable logical counter, device ID, and event ID ordering, not only system time |
 | Deletion | Tombstone wins over normal updates to the deleted object; old devices cannot resurrect it |
-| Review state/goal summaries | Recompute from merged valid events; do not overwrite another device's cache directly |
-| FSRS word-sense state | Replay deduplicated review events in the valid time order defined in Section 21.2; flag abnormal clocks for confirmation, not device upload order |
+| Goal summaries | Recompute from merged valid events; do not overwrite another device's cache directly |
+| Query history | Union stable event IDs, then choose the latest logical version per normalized kind/term. Remove/clear observed per-device versions; retain concurrent unseen and later lookups. Replayed old versions remain removed. |
 | Repeated practice of the same item on different devices | Keep both genuine records; mark familiarity using exposure, not two independent novel observations |
 
 For each new event, a device increments the largest known logical counter. Offline devices may be concurrent; device IDs and other stable fields break ties. This ensures consistent merging, not knowledge of actual chronological order.
@@ -1420,7 +1420,6 @@ Delivery procedure, commands, backup and preview are consolidated in [AGENT_WORK
 | Uncalibrated item bank | Rule checks remain; no synthetic ability or parameters reverse-engineered from teaching levels |
 | Same parameterisation as reference tools | Probability, information, and selected estimator agree under specified conditions |
 | Calibration export includes unadministered items | Missing values, not errors; do not concatenate six independent scales |
-| Duplicate FSRS events across devices | Apply once; deterministic replay; abnormal clocks never yield negative intervals |
 | Rich text/evidence ranges | Malicious HTML rejected/sanitised; UTF-16 ranges match text |
 | Third-party licences | Packages, data, models documented separately; original licences and attribution retained |
 | Fresh experience with all non-site requests blocked | Retrieve examples/audio/dictionary and learn from the site without external CDNs |
@@ -1790,7 +1789,6 @@ The following commits/releases were traceable during screening. Recency is not a
 | mirtCAT | [Repository commit, 2025-06-16](https://github.com/philchalmers/mirtCAT/commit/e92f7d157046439ede5b0516d98478af11b642c1) | Match installed mirt and actual design parameters |
 | catR | CRAN-mirror DESCRIPTION release dated 2022-06-24 [40][41] | Mature statistical tools' lower update frequency does not alone imply unusability; test current R |
 | GIRTH | [Discoverable commit, 2022-01-31](https://github.com/eribean/girth/commit/daf22773aa9cd1c819bf732e1061ebf5cc4dc40e) | Greater maintenance/dependency risk; alternative, not default |
-| ts-fsrs | [Repository commit, 2026-09-02](https://github.com/open-spaced-repetition/ts-fsrs/commit/c8ca282edc3fe1cdfa1c24912437938b63a25cb3) | Separate scheduler from optional training bindings; only scheduler needed |
 
 On adoption, Codex records actual release/commit, licence, lockfile, entry API, bundle size, and tests. Research and web npm environments stay separate; ordinary web builds require no user's R/Python. Current repository readability is not a promise of future maintenance.
 
@@ -1804,7 +1802,6 @@ Prefer general infrastructure capabilities, not another learning platform. “Ad
 
 | Project and GitHub | Reusable part | Licence declaration | Location/decision |
 |---|---|---|---|
-| [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs) | Spaced review of vocabulary/expressions | MIT | Adopt for sense-memory scheduling, not proficiency assessment [52][53] |
 | [Dexie.js](https://github.com/dexie/Dexie.js) | IndexedDB, transactions, migrations | Apache-2.0 | Local data; no Dexie Cloud [58] |
 | [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) | Manifest and Service Worker build | MIT | Offline build [59][76] |
 | [Workbox](https://github.com/GoogleChrome/workbox) | Precise precaching/offline resources | MIT | Required subpackages only; no caching private APIs site-wide [60] |
@@ -1823,34 +1820,9 @@ Prefer general infrastructure capabilities, not another learning platform. “Ad
 
 Continue React, TypeScript, Vite, Vitest, Playwright, and other foundations under Sections 10/17. Do not create a replacement framework for each. Inspect actual direct/transitive licences alongside the lockfile.
 
-### 21.2 ts-fsrs: Schedule Memory Objects, Not English Proficiency
+### 21.2 Dictionary Bookmarks
 
-**Fit.** `ts-fsrs` directly supplies a TypeScript scheduler with card-state/review-log persistence. It schedules one memory object, not reading level, CEFR, or IRT item difficulty. Optional parameter-training bindings exist, but no trainer, Rust/WASM, or online optimisation by default.[52][53]
-
-**Objects.** Each sense, stable expression, or explicit language point has a `memoryId`. Two senses of one word must not share memory indiscriminately; the same sense in a new material must not create another card each time. Create records only when the user saves and opts into review, or the course provides an explicit recall task.
-
-**Basic call.** After recall, the user selects “Did not recall / Recalled with difficulty / Recalled / Recalled easily”, mapped to `Again/Hard/Good/Easy`. Preserve explanations, hints, and disclosed answers as assistance. One correct reading multiple-choice answer does not automatically rate every related word `Good`.
-
-```ts
-import { createEmptyCard, fsrs, Rating } from 'ts-fsrs';
-
-const scheduler = fsrs({
-  request_retention: 0.90,  // Product starting point, not a proven optimum.
-  enable_fuzz: false      // Initially supports deterministic replay and cross-device checks.
-});
-
-const occurredAt = new Date('2026-09-27T08:00:00Z');
-const previous = createEmptyCard(occurredAt);
-const result = scheduler.next(previous, occurredAt, Rating.Good);
-// In real use, Rating comes from this explicit user evaluation, not a fixed Good.
-// Save result.card, result.log, and the original review event in one IndexedDB transaction.
-```
-
-**Learning recommendations.** Section 6 still selects the listening/reading operation to practise. The vocabulary layer supplies due memory objects to material filtering. Prefer new contexts containing those senses at suitable difficulty, not a Today page consisting only of flashcards. The goal layer's 1/3/7/14/30-day intervals are task-revisit defaults; one word sense has one FSRS-driven due date, not two competing schedules.
-
-**Storage/sync.** Save `memoryId`, card fields, review-event ID, actual response time, rating, assistance, and configuration hash. Sync original events; card state is a recomputable cache. Sort by valid event time, then logical counter/ID to break ties, without negative intervals. Mark clearly wrong clocks or indeterminate cross-device ordering for confirmation instead of silently rewriting times. Replay with fixed package/configuration; scheduler upgrades do not silently rewrite displayed historical results.
-
-**Acceptance.** The same event set yields identical replayed state regardless of upload order. Retries do not add reviews; old devices do not resurrect removed entries; revealed-answer tasks are not independent recall; private example text is not uploaded by default. Personal parameter optimisation requires a genuine need.
+Maintainer update (2026-10-24): save/remove dictionary meanings only, using stable sense IDs. The filled/outline star sits left of the definition. Cancelled rows remain visible until refresh or reopening and can be saved again. There is no word-sense review, rating, scheduler, due date or vocabulary-driven practice routing. Keep bookmark operations transactional and sync only IDs/save state, without private definitions. Backup preserves term, definition and saved time. Retired review tables and old backup formats need no restoration. Valid historical sync-event shapes remain only for wire/hash integrity under Section13; they do not restore review behaviour. Goal-level recommendations in Section 6 remain separate and unchanged.
 
 ### 21.3 Dexie: Local Transactions and Recoverable Data
 
@@ -2078,7 +2050,7 @@ A project's UI, sample items, images, audio, models, and dictionary are not auto
 
 **Web foundation:** adopt Dexie, Zod, PWA/Workbox, fflate according to existing needs; MiniSearch when needed. Bundle dependencies from the site and first pass offline listening/reading and import-security checks.
 
-**Review:** ts-fsrs for senses/expressions, independent goal recommendations, event replay/cross-device tests; no parameter-training bindings.
+**Bookmarks:** sense save/remove, private backup and deduplicated sync; keep goal recommendations separate.
 
 **Sync/MCP:** necessary Octokit functions, official SDK, OAuth Provider in the Worker. Keep one Worker/four read-only tools; test real grants, refusals, revocation.
 

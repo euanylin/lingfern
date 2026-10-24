@@ -45,7 +45,7 @@ it('uses the same source-derived rule in reading generation and refuses exposed 
   expect(pack.lessons).toHaveLength(0);
   const bank = pack.corpus!;
   for (let seed = 0; seed < 24; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 500, 'B2', [], 'choice', [], 'choice:reference')!;
+    const lesson = corpusLesson(bank, new Set(), seed, 500, 'B2', [], 'choice', 'choice:reference')!;
     expect(lesson).toBeDefined(); expect(lesson.goalId).toBe('source-context-reference');
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const m of lesson.materials) expect(corpusOperation(m.questions[0])).toBe('choice:reference');
@@ -60,7 +60,7 @@ it('uses the same source-derived rule in reading generation and refuses exposed 
       expect((await exposures.get(['long-reference-regression', claimed.lesson.materials[0].rootId]))?.contacts?.[0].questionId).toBe(q.id);
     }
   }
-  expect(corpusLesson(bank, new Set([bank.records[0].passages[0].id]), 0, 500, 'B2', [], 'choice', [], 'choice:reference')).toBeUndefined();
+  expect(corpusLesson(bank, new Set([bank.records[0].passages[0].id]), 0, 500, 'B2', [], 'choice', 'choice:reference')).toBeUndefined();
   const changed = structuredClone(bank); changed.records[0].passages[0].text = changed.records[0].passages[0].text.replace('these civilizations', 'these objects');
-  expect(corpusLesson(changed, new Set(), 0, 500, 'B2', [], 'choice', [], 'choice:reference')).toBeUndefined();
+  expect(corpusLesson(changed, new Set(), 0, 500, 'B2', [], 'choice', 'choice:reference')).toBeUndefined();
 });

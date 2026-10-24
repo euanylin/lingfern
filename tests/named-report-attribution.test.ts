@@ -91,7 +91,7 @@ it('generates actual two-root practice and identical assistance-free Test scorin
   const corpus = await actual();
   expect(corpus.records[0].passages[0].text).toContain(report);
   for (let seed = 0; seed < 7; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 300, 'B2', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 300, 'B2', [], 'matching', operation)!;
     lessonSchema.parse(lesson); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) {
       const question = material.questions[0], response = material.questions[1];
@@ -114,9 +114,9 @@ it('generates actual two-root practice and identical assistance-free Test scorin
       expect(score(material.questions[1], 'A source-supported interpretation.').correct).toBeNull();
     }
     const seen = new Set(lesson.materials.map(material => material.id.slice(7)));
-    expect(corpusLesson(corpus, seen, seed, 300, 'B2', [], 'matching', [], operation)).toBeUndefined();
+    expect(corpusLesson(corpus, seen, seed, 300, 'B2', [], 'matching', operation)).toBeUndefined();
   }
-  for (const level of ['A1', 'A2'] as const) expect(corpusLesson(corpus, new Set(), 0, 300, level, [], 'matching', [], operation)).toBeUndefined();
+  for (const level of ['A1', 'A2'] as const) expect(corpusLesson(corpus, new Set(), 0, 300, level, [], 'matching', operation)).toBeUndefined();
 });
 
 it('supports topic, references and limits on the actual short two-root pair without changing Test operations', async () => {
@@ -135,7 +135,7 @@ it('supports topic, references and limits on the actual short two-root pair with
   }
   const corpus = corpusSchema.parse({ version: 1, failures: [], records });
   for (let seed = 0; seed < 7; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 200, 'B1', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 200, 'B1', [], 'matching', operation)!;
     lessonSchema.parse(lesson);
     expect(lesson.teaching?.en).toContain('each complete claim to its named source');
     expect(lesson.teaching?.en).toContain('rejects a guarantee');
@@ -184,6 +184,6 @@ it('accepts a year citation on a proper name and withholds editorial brackets an
     if (task) expect(item.passage.text.slice(task.evidence.start, task.evidence.end)).not.toContain(needle);
   }
   const focused = { version: 1 as const, failures: [] as [], records: [frames[0], frames[1]].map(item => ({ ...item.source, passages: [item.passage] })) };
-  const lesson = corpusLesson(focused, new Set(), 0, 300, 'B1', [], 'evidence', [], 'evidence:Which sentence explicitly attributes a claim to a named source?')!;
+  const lesson = corpusLesson(focused, new Set(), 0, 300, 'B1', [], 'evidence', 'evidence:Which sentence explicitly attributes a claim to a named source?')!;
   expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
 });

@@ -18,7 +18,7 @@ test('task lists use available width without spilling on smaller screens', async
   }
 });
 
-test('history cards remain separate without duplicate borders', async ({ page }) => {
+test('history cards retain their single divider and rounded surfaces', async ({ page }) => {
   await page.goto('/today');
   const { lesson } = await openSnapshot(page, 'a1-reading', true); await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
@@ -33,7 +33,7 @@ test('history cards remain separate without duplicate borders', async ({ page })
     await page.setViewportSize({ width, height: 900 });
     const layout = await page.locator('.history').evaluateAll(elements => {
       const [first, second] = elements.map(element => element.getBoundingClientRect());
-      return { columns: Math.abs(first.top - second.top) < 1 ? 2 : 1, borders: elements.every(element => getComputedStyle(element).borderTopWidth === '0px' && getComputedStyle(element).borderRadius === '16px' && getComputedStyle(element).borderBottomWidth === '0px'), overflow: document.documentElement.scrollWidth > innerWidth };
+      return { columns: Math.abs(first.top - second.top) < 1 ? 2 : 1, borders: elements.every(element => getComputedStyle(element).borderTopWidth === '1px' && getComputedStyle(element).borderRadius === '16px' && getComputedStyle(element).borderBottomWidth === '0px'), overflow: document.documentElement.scrollWidth > innerWidth };
     });
     expect(layout).toEqual({ columns, borders: true, overflow: false });
   }

@@ -1,5 +1,44 @@
 import { expect, test } from '@playwright/test';
 
+test('introduction reuses the startup catalogue while Library still revalidates on each visit', async ({ page }) => {
+  let catalogues = 0;
+  page.on('request', request => { if (new URL(request.url()).pathname === '/resources/catalogue.json') catalogues++; });
+  await page.goto('/introduction');
+  await expect(page.locator('.welcome-card .offline-categories')).toBeAttached();
+  await page.waitForLoadState('networkidle');
+  expect(catalogues).toBe(1);
+  for (let visit = 2; visit <= 3; visit++) {
+    await page.evaluate(() => { history.pushState(null, '', '/library'); dispatchEvent(new PopStateEvent('popstate')); });
+    await expect(page.locator('.library-page-heading')).toBeVisible();
+    await expect.poll(() => catalogues).toBe(visit);
+    await page.waitForLoadState('networkidle');
+    expect(catalogues).toBe(visit);
+    await page.locator('.desktop-nav a[href="/today"]').click();
+    await expect(page.locator('.today-home')).toBeVisible();
+  }
+});
+
+for (const width of [390, 1440]) test(`hidden introduction settles its selected card and resumes navigation at ${width}px`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 844 });
+  await page.goto('/introduction');
+  await expect(page.locator('.welcome-start')).toBeVisible();
+  const hidden = await page.evaluate(() => {
+    document.querySelectorAll<HTMLButtonElement>('.welcome-dots button')[1].click();
+    Object.defineProperty(document, 'hidden', { configurable: true, get: () => true });
+    Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' });
+    document.dispatchEvent(new Event('visibilitychange'));
+    return { selected: document.querySelector('.welcome-card[data-current=true]')?.getAttribute('aria-label'), transform: getComputedStyle(document.querySelectorAll('.welcome-card')[1]).transform };
+  });
+  expect(hidden.selected).toBe(languagePacks['zh-Hans'].onboarding.slideN.replace('{n}', '2'));
+  expect(hidden.transform).toBe('matrix(1, 0, 0, 1, 0, 0)');
+  await page.waitForTimeout(700);
+  await expect(page.locator('.welcome-card').nth(1)).toHaveCSS('transform', hidden.transform);
+  await page.evaluate(() => { Reflect.deleteProperty(document, 'hidden'); Reflect.deleteProperty(document, 'visibilityState'); document.dispatchEvent(new Event('visibilitychange')); });
+  await page.locator('.welcome-dots button').first().click();
+  await expect(page.locator('.welcome-card').first()).toHaveAttribute('data-current', 'true');
+  await expect(page.locator('.welcome-card').first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+});
+
 for (const [width, height] of [[1440, 900], [390, 844], [900, 1100]]) test(`introduction card geometry is stable before the first resize observation at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height });
   await page.addInitScript(() => {
@@ -298,6 +337,31 @@ test('the same fern reverses its growth when Today leaves and resumes on return'
 
 test.describe('native touch carousel', () => {
   test.use({ hasTouch: true });
+  test('backgrounding held contact releases capture and restores native scrolling', async ({ page, context, browserName }) => {
+    test.skip(browserName !== 'chromium', 'Native touch injection uses CDP.');
+    await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
+    const stage = page.locator('.welcome-stage');
+    await stage.evaluate(el => el.addEventListener('gotpointercapture', event => el.setAttribute('data-test-pointer', String((event as PointerEvent).pointerId))));
+    const cdp = await context.newCDPSession(page), box = (await page.locator('.welcome-card[data-current=true] .welcome-content').boundingBox())!;
+    const x = box.x + box.width * .8, y = box.y + box.height * .5;
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+    for (const dx of [20, 50, 100]) { await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - dx, y }] }); await page.waitForTimeout(20); }
+    await expect.poll(() => stage.evaluate(el => el.hasPointerCapture(Number(el.getAttribute('data-test-pointer'))))).toBe(true);
+    await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => true }); document.dispatchEvent(new Event('visibilitychange')); });
+    expect(await stage.evaluate(el => el.hasPointerCapture(Number(el.getAttribute('data-test-pointer'))))).toBe(false);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await page.evaluate(() => { Reflect.deleteProperty(document, 'hidden'); document.dispatchEvent(new Event('visibilitychange')); });
+    await page.locator('.welcome-dots button').nth(1).click();
+    const current = page.locator('.welcome-card[data-current=true]');
+    await expect(current).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+    const content = current.locator('.welcome-content'), next = (await content.boundingBox())!, sx = next.x + next.width / 2, sy = next.y + next.height * .8;
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: sx, y: sy }] });
+    for (const dy of [20, 60, 120]) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: sx, y: sy - dy }] });
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+    await expect(current).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+    await cdp.detach();
+  });
   test('a short fast flick advances while the same held displacement returns to rest', async ({ page, context }) => {
     await page.clock.install(); await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
     await expect(page.locator('.welcome')).toBeVisible();

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { beginCheck, claimSession, markExposure, releaseSession, sessions, type Session } from '../data/db';
 import { contentLanguage, contentText } from '../locales';
 import { practiceLocale, type Locale } from '../shared/content';
@@ -6,7 +6,7 @@ import { deletionCopy } from './DeleteRecord';
 import { copy } from './i18n';
 import type { OnlineDictionaryId } from './onlineDictionaries';
 
-const MaterialWorkspace = lazy(() => import('./MaterialWorkspace'));
+import MaterialWorkspace from './MaterialWorkspace';
 
 function acquireSessionLock(id: string): Promise<(() => void) | undefined> {
   if (!navigator.locks) return Promise.resolve(undefined);
@@ -69,5 +69,5 @@ export default function Learning({ owner, id, profileId, locale, online, onlineD
     <dl><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{session.lesson.skill === 'listening' ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl>
     <button className="primary" disabled={busy} onClick={async () => { setBusy(true); try { setSession(await beginCheck(id, owner)); } catch (cause) { setError(cause instanceof Error ? cause.message : 'READ'); } finally { setBusy(false); } }}>{t.checkBegin}</button>
   </section>;
-  return <Suspense fallback={<p role="status">{t.loading}</p>}><MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions}/></Suspense>;
+  return <MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions}/>;
 }

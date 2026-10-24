@@ -1,69 +1,50 @@
 import { messages } from '../locales';
 import { liveQuery } from 'dexie';
-import { settings } from '../data/db';
-import { useEffect, useRef, useState } from 'react';
-import { allowSyncUpload, downloadSyncPage, readSyncConsent, restartSyncDownload, stopSyncUpload, uploadSyncBatch } from '../data/syncClient';
-import { readSyncDownload } from '../data/sync';
+import { settings, syncClocks } from '../data/db';
+import { useEffect, useState } from 'react';
+import { allowSyncUpload, prepareAutoSync, storedSyncConsent, readSyncState, requestSyncNow, stopSyncUpload, syncConfigurationPending, syncConnectionError, type SyncState } from '../data/syncClient';
+import { canonicalJson, type SyncDownloadScope } from '../shared/sync';
 import type { SessionSummary } from '../shared/auth';
-import type { SyncDownloadScope } from '../shared/sync';
 import type { Locale } from '../shared/content';
+import { SettingsPicker } from './SettingsPicker';
 
 const labels = messages('syncControls');
 
-export function SyncControls({ locale, profileId, scope, summary, onChange, refresh }: { locale: Locale; profileId: string; scope: SyncDownloadScope; summary: SessionSummary; onChange: () => Promise<void>; refresh: () => void }) {
+export function SyncControls({ locale, profileId, scope, summary, refresh }: { locale: Locale; profileId: string; scope: SyncDownloadScope; summary: SessionSummary; refresh: () => void }) {
   const t = labels[locale];
-  const [consent, setConsent] = useState<Awaited<ReturnType<typeof readSyncConsent>>>();
-  const [ready, setReady] = useState(false), [busy, setBusy] = useState(false), [more, setMore] = useState(false);
-  const [message, setMessage] = useState<keyof typeof t>(), [expiredCursor, setExpiredCursor] = useState<string>();
-  const operation = useRef<AbortController>(undefined);
+  const [data, setData] = useState<{ enabled: boolean; state?: SyncState; revision: number; configuring: boolean }>();
+  const [failed, setFailed] = useState(false), [saving, setSaving] = useState(false), [online, setOnline] = useState(navigator.onLine);
   useEffect(() => {
-    let alive = true;
-    void Promise.all([readSyncConsent(profileId), readSyncDownload(profileId, scope)]).then(([saved, progress]) => {
+    let alive = true, observer: { unsubscribe(): void } | undefined;
+    void prepareAutoSync(profileId, summary).then(() => {
       if (!alive) return;
-      if (saved && saved.scope.accountId === scope.accountId && saved.scope.profileId === scope.profileId && saved.scope.bindingVersion === scope.bindingVersion) setConsent(saved);
-      setMore(Boolean(progress?.nextCursor)); setReady(true);
-    }).catch(() => { if (alive) { setMessage('failed'); setReady(true); } });
-    return () => { alive = false; operation.current?.abort(); };
-  }, [profileId, scope.accountId, scope.profileId, scope.bindingVersion]);
-  useEffect(() => {
-    const observer = liveQuery(() => settings.get(`profile:${profileId}:syncSchedule:${scope.accountId}:${scope.bindingVersion}`)).subscribe({ next(row) { if (row?.value === 'paused' || row?.value === 'retry') setMessage('failed'); else if (row?.value === 'done') setMessage('roundDone'); }, error() { setMessage('failed'); } });
-    return () => observer.unsubscribe();
-  }, [profileId, scope.accountId, scope.bindingVersion]);
-  async function run(action: 'allow' | 'upload' | 'download' | 'rescan') {
-    const abort = new AbortController(); operation.current = abort;
-    setBusy(true); setMessage(undefined);
-    try {
-      if (action === 'allow') { const allowed = await allowSyncUpload(profileId, scope, summary); abort.signal.throwIfAborted(); setConsent(allowed); setMessage('allowed'); }
-      else if (action === 'upload' && consent) { const result = await uploadSyncBatch(profileId, consent, abort.signal); abort.signal.throwIfAborted(); setMessage(result); }
-      else {
-        if (action === 'rescan' && expiredCursor) { await restartSyncDownload(profileId, scope, expiredCursor); setExpiredCursor(undefined); }
-        const result = await downloadSyncPage(profileId, scope, abort.signal);
-        abort.signal.throwIfAborted();
-        setMore(Boolean(result.nextCursor)); setMessage(result.results.includes('conflict') ? 'conflict' : result.nextCursor ? 'more' : 'downloaded');
-        await onChange();
-      }
-    } catch (error) {
-      if (abort.signal.aborted) return;
-      const code = error instanceof Error ? error.message : '';
-      if (code === 'SYNC_CURSOR_INVALID') {
-        try { setExpiredCursor((await readSyncDownload(profileId, scope))?.cursor); setMessage('expired'); } catch { setMessage('failed'); }
-      }
-      else setMessage(['SYNC_RETRY_LATER', 'RATE_LIMITED', 'SYNC_RATE_LIMITED', 'SYNC_HTTP_429'].includes(code) ? 'limited' : code === 'SYNC_BUSY' ? 'locked' : code === 'SYNC_BATCH_CONFLICT' ? 'conflict' : ['SYNC_UNAVAILABLE', 'SYNC_SCOPE_CHANGED', 'SYNC_CONSENT_CHANGED', 'AUTHORISATION_CHANGED', 'UNAUTHENTICATED'].includes(code) ? 'changed' : 'failed');
-    } finally { if (!abort.signal.aborted) setBusy(false); }
+      observer = liveQuery(async () => {
+        const consent = storedSyncConsent((await settings.get(`profile:${profileId}:syncConsent`))?.value);
+        return { enabled: Boolean(consent && canonicalJson(consent.scope) === canonicalJson(scope)), state: await readSyncState(profileId, scope), revision: (await syncClocks.get(profileId))?.localRevision ?? 0, configuring: await syncConfigurationPending(profileId) };
+      }).subscribe({ next(value) { setData(value); setFailed(false); }, error() { setFailed(true); } });
+    }).catch(() => { if (alive) setFailed(true); });
+    const connection = () => setOnline(navigator.onLine);
+    window.addEventListener('online', connection); window.addEventListener('offline', connection);
+    return () => { alive = false; observer?.unsubscribe(); window.removeEventListener('online', connection); window.removeEventListener('offline', connection); };
+  }, [profileId, scope.accountId, scope.profileId, scope.bindingVersion, summary]);
+  async function toggle(value: string) {
+    setSaving(true); setFailed(false);
+    try { if (value === 'on') await allowSyncUpload(profileId, scope, summary); else await stopSyncUpload(profileId, scope); }
+    catch { setFailed(true); }
+    finally { setSaving(false); }
   }
-  async function stop() {
-    operation.current?.abort(); setBusy(false);
-    try { await stopSyncUpload(profileId); setConsent(undefined); setMessage('stopped'); }
-    catch { setMessage('failed'); }
+  async function request() {
+    try { await requestSyncNow(profileId, scope); setFailed(false); }
+    catch { setFailed(true); }
   }
-  return <section className="sync-controls"><h3>{t.title}</h3><p className="muted">{consent ? t.allowed : t.detail}</p>
-    <div className="backup-actions">{!consent && <button type="button" disabled={!ready || busy} onClick={() => void run('allow')}>{t.allow}</button>}
-      <button type="button" disabled={!ready || busy || !consent} onClick={() => void run('upload')}>{t.upload}</button>
-      <button type="button" disabled={!ready || busy} onClick={() => void run('download')}>{more ? t.next : t.download}</button>
-      {(consent || busy) && <button type="button" onClick={() => void stop()}>{t.stop}</button>}
-      {expiredCursor && <button type="button" disabled={busy} onClick={() => void run('rescan')}>{t.rescan}</button>}
-    </div>
-    {(busy || message) && <p role="status">{busy ? t.busy : message && t[message]}</p>}
-    {message === 'changed' && <button type="button" onClick={refresh}>{t.refresh}</button>}
+  const state = data?.state, changed = syncConnectionError(state?.error);
+  const phase = !data?.enabled ? 'disabled' : !online ? 'offline' : data.configuring || state?.phase === 'synced' && data.revision > (state.localRevision ?? -1) ? 'pending' : state?.phase ?? 'pending';
+  const problem = changed ? t.changed : state?.error?.includes('CONFLICT') || state?.error === 'SYNC_REMOTE_INVALID' || state?.error === 'SYNC_INTEGRITY' ? t.conflict : state?.error?.includes('CAPACITY') || state?.error === 'SYNC_RESPONSE_LIMIT' ? t.capacity : state?.error?.includes('LIMIT') || state?.error === 'SYNC_HTTP_429' ? t.limited : t.failed;
+  return <section className="sync-controls"><h3 className="sr-only">{t.title}</h3><p className="muted">{t.detail}</p>
+    <SettingsPicker label={t.auto} value={data?.enabled === false ? 'off' : 'on'} options={[{ value: 'on', label: t.on }, { value: 'off', label: t.off }]} disabled={!data || data.configuring || saving} onChange={value => void toggle(value)}/>
+    {data && <p role="status" data-sync-status={failed ? 'error' : phase}>{failed || phase === 'error' ? problem : t[phase]}</p>}
+    {!data && failed && <p role="status">{t.failed}</p>}
+    {state?.lastSuccessAt && <p className="muted">{t.lastSuccess}: <time dateTime={state.lastSuccessAt}><bdi>{new Intl.DateTimeFormat(locale, { dateStyle: 'short', timeStyle: 'short' }).format(new Date(state.lastSuccessAt))}</bdi></time></p>}
+    <div className="backup-actions"><button type="button" disabled={!data?.enabled || data.configuring || !online || state?.phase === 'syncing' || saving} onClick={() => void request()}>{state?.phase === 'error' ? t.retry : t.sync}</button>{changed && <button type="button" onClick={refresh}>{t.refresh}</button>}</div>
   </section>;
 }

@@ -34,7 +34,7 @@ it('closes exact B1 short action/request and supported matching/assignment pairs
   [160,'matching','matching:Match each claim to the source named in the passage.',['voa-article-3574029','gutenberg-book-2814']],
   [160,'evidence','evidence:Which sentence explicitly states an assigned task?',['wikipedia-article-2639573','openstax-book-introduction-philosophy']],
  ] as const){const records=(await reviewedReading(original,maxWords)).filter(s=>expectedRoots.includes(s.rootId as never));const bank={version:1 as const,failures:[],records};
-  for(let seed=0;seed<8;seed++){const lesson=corpusLesson(bank,new Set(),seed,maxWords,'B1',[],kind,[],operation)!;expect(lesson).toBeDefined();expect(lesson.materials.map(m=>m.rootId).sort()).toEqual([...expectedRoots].sort());
+  for(let seed=0;seed<8;seed++){const lesson=corpusLesson(bank,new Set(),seed,maxWords,'B1',[],kind,operation)!;expect(lesson).toBeDefined();expect(lesson.materials.map(m=>m.rootId).sort()).toEqual([...expectedRoots].sort());
    expect(lesson.teaching!.en).toBeTruthy();expect(lesson.workedExample!.en).toContain('Example:');
    for(const {material,question:q}of questions(lesson)){expect(material.blocks[0].text.split(/\s+/).length).toBeLessThanOrEqual(maxWords);const evidence=material.blocks[0].text.slice(q.evidence.start,q.evidence.end);expect(evidence).toBeTruthy();
     if('kind' in q&&q.kind==='response'){expect(score(q,'Source-supported interpretation.').correct).toBeNull();continue;}
@@ -42,7 +42,7 @@ it('closes exact B1 short action/request and supported matching/assignment pairs
     const wrong='kind' in q&&q.kind==='matching'?[...q.pairs.map(p=>p.answer)].reverse():'kind' in q&&q.kind==='evidence'?q.spans.findIndex((_,i)=>!q.accepted.includes(i)):1-(q as {answer:number}).answer;expect(score(q,wrong).correct).toBe(false);
    }
    const test=asTestLesson(lesson);expect(test.teaching).toBeUndefined();expect(test.workedExample).toBeUndefined();expect(test.materials.map(m=>m.blocks)).toEqual(lesson.materials.map(m=>m.blocks));expect(test.materials.flatMap(m=>m.questions).every(q=>!q.hints)).toBe(true);
-   const seen=new Set(lesson.materials.map(m=>m.rootId));expect(corpusLesson(filterCorpusRoots(bank,seen),new Set(),seed,maxWords,'B1',[],kind,[],operation)).toBeUndefined();
+   const seen=new Set(lesson.materials.map(m=>m.rootId));expect(corpusLesson(filterCorpusRoots(bank,seen),new Set(),seed,maxWords,'B1',[],kind,operation)).toBeUndefined();
   }
  }
 });

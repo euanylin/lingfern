@@ -48,7 +48,7 @@ it('withholds real permission, self-delay, past-inference and ambiguous feasibil
 });
 it('generates normal C1/C2 same-operation application, identical Test scoring and safe missing-partner fallback', () => {
   for (const point of ['C1', 'C2'] as const) for (const seed of [0, 1, 66, 67, 138, 139]) {
-    const forced = seed < 2, lesson = corpusLesson(bank, new Set(), seed, 700, point, [], forced ? 'choice' : undefined, [], forced ? operation : undefined)!;
+    const forced = seed < 2, lesson = corpusLesson(bank, new Set(), seed, 700, point, [], forced ? 'choice' : undefined, forced ? operation : undefined)!;
     lessonSchema.parse(lesson); expect(lesson.materials.map(m => corpusOperation(m.questions[0]))).toEqual([operation, operation]); expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2);
     expect(lesson.teaching!.en).toContain('hypothetical “would say”'); expect(lesson.workedExample!.en).toContain('The listener is asked to read the note to the speaker'); expect(lesson.workedExample!.en).not.toContain('If a warning'); const test = asTestLesson(lesson); expect(test.workedExample).toBeUndefined();
     expect(test.materials.map(m => m.blocks)).toEqual(lesson.materials.map(m => m.blocks));
@@ -58,14 +58,14 @@ it('generates normal C1/C2 same-operation application, identical Test scoring an
       else for (let answer = 0; answer < 3; answer++) { expect(score(question, answer).correct).toBe(answer === question.answer); expect(score(tested, answer)).toEqual(score(question, answer)); }
     }
   }
-  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 66, 1200, point, [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(ids), 34, 700, 'C2', [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(), 66, 250, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 66, 1200, point, [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(ids), 34, 700, 'C2', [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(), 66, 250, 'C2', [], 'choice', operation)).toBeUndefined();
   const substitute = corpus.records.find(r => r.rootId === 'gutenberg-book-1228')!;
   const missing = { ...bank, records: [records[0], { ...substitute, passages: substitute.passages.slice(0, 1) }] };
   const ordinary = corpusLesson(missing, new Set(), 66, 700, 'C2')!; expect(ordinary.materials[0].rootId).toBe(roots[0]); expect(ordinary.materials.map(m => corpusOperation(m.questions[0]))).toEqual(['completion', 'completion']);
-  expect(corpusLesson(missing, new Set(), 66, 700, 'C2', [], 'choice', [], operation)).toBeUndefined();
-  const installed = corpusLesson(missing, new Set(), 66, 700, 'C2', [], undefined, [], undefined, bank)!; expect(installed.materials.map(m => corpusOperation(m.questions[0]))).toEqual([operation, operation]); expect(installed.materials[0].rootId).toBe(roots[0]);
+  expect(corpusLesson(missing, new Set(), 66, 700, 'C2', [], 'choice', operation)).toBeUndefined();
+  const installed = corpusLesson(missing, new Set(), 66, 700, 'C2', [], undefined, undefined, bank)!; expect(installed.materials.map(m => corpusOperation(m.questions[0]))).toEqual([operation, operation]); expect(installed.materials[0].rootId).toBe(roots[0]);
 });
 it('saves both actual Practice/Test snapshots transactionally, exposes their roots and exports full recovery data', async () => {
   await Promise.all(db.tables.map(table => table.clear()));

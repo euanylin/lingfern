@@ -65,7 +65,7 @@ try {
    // Sample the full 32-bit seed space to cover long operation cycles.
    const seed=samplingPhase==='initial'?index:Math.imul(index+1,0x9e3779b1)>>>0;
    const installed=samplingPhase==='installed-dispersed';
-   const lesson=skill==='reading'?corpusLesson(bank,new Set(),seed,bounds.maxWords,level,[],undefined,[],undefined,installed?reading.application:undefined):level==='A1'?wordListeningLesson(bank,new Set(),seed):spokenCorpusLesson(bank,new Set(),seed,bounds.maxSeconds,level,[],undefined,[],undefined,installed?applicationListening:[]);
+   const lesson=skill==='reading'?corpusLesson(bank,new Set(),seed,bounds.maxWords,level,[],undefined,undefined,installed?reading.application:undefined):level==='A1'?wordListeningLesson(bank,new Set(),seed):spokenCorpusLesson(bank,new Set(),seed,bounds.maxSeconds,level,[],undefined,undefined,installed?applicationListening:[]);
    if(!lesson)continue;
    if(installed) {
     // Compare identical ordinary seeds when installed sources enable the Wikiquote quota.

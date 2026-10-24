@@ -20,7 +20,7 @@ const attribution = { ...open, records: ['d7401fc92dfe88dbccc6d9fa8f4da936aaf312
 for (const [prompt, bank] of [[concessionPrompt, concession], [attributionPrompt, attribution]] as const) it(`demonstrates ${prompt} with complete unscored examples and unchanged exact tasks`, () => {
   let fallbacks = 0;
   for (const level of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 300, level, [], 'evidence', [], `evidence:${prompt}`)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, level, [], 'evidence', `evidence:${prompt}`)!;
     for (const source of bank.records) for (const passage of source.passages) expect(createHash('sha256').update(passage.text).digest('hex')).toBe(attributionHashes[passage.id] ?? passage.id);
     expect(lesson).toBeDefined(); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const unused = corpusWorkedExample(lesson.materials[0], seed, level);
@@ -57,7 +57,7 @@ for (const [prompt, bank] of [[concessionPrompt, concession], [attributionPrompt
 });
 
 it('preserves the original unused-source attribution demonstration instead of the fallback', () => {
-  const fixture = corpusLesson(attribution, new Set(), 0, 300, 'B2', [], 'evidence', [], `evidence:${attributionPrompt}`)!;
+  const fixture = corpusLesson(attribution, new Set(), 0, 300, 'B2', [], 'evidence', `evidence:${attributionPrompt}`)!;
   // Keep regression wording outside distributed sources and scored items.
   const other = 'According to Dana, the harbour served a nearby town.';
   fixture.materials[0].blocks[0].text += ' ' + other;

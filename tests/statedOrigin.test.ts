@@ -64,7 +64,7 @@ it('finds exactly two supported A2 roots and one supported A1 root without chang
 
 it('transfers the same stated-origin relation with simple three-language teaching and identical Test scoring', () => {
   for (let seed = 0; seed < 8; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const before = structuredClone(lesson), tested = asTestLesson(lesson);
     expect(lesson.goal).toEqual({ en: 'Find the place the person says they are from.', 'zh-Hans': '找到这个人说自己来自的地方。', 'zh-Hant': '找到這個人說自己來自的地方。' });
@@ -99,11 +99,11 @@ it('transfers the same stated-origin relation with simple three-language teachin
   }
   for (const seed of [38, 39, 148, 149]) expect(corpusLesson(bank, new Set(), seed, 160, 'A2')!.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
   for (const point of ['A1', 'B1', 'B2', 'C1', 'C2'] as const) {
-    expect(corpusLesson(bank, new Set(), 0, 160, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson(bank, new Set(), 0, 160, point, [], 'choice', operation)).toBeUndefined();
     expect(corpusMaterial({ source: bank.records[0], passage: bank.records[0].passages[0] }, 0, point, 'choice', operation)).toBeUndefined();
   }
-  expect(corpusLesson(bank, new Set(bank.records.map(source => source.passages[0].id)), 0, 160, 'A2', [], 'choice', [], operation)).toBeUndefined();
-  for (const source of bank.records) expect(corpusLesson(bank, new Set([source.passages[0].id]), 0, 160, 'A2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(bank.records.map(source => source.passages[0].id)), 0, 160, 'A2', [], 'choice', operation)).toBeUndefined();
+  for (const source of bank.records) expect(corpusLesson(bank, new Set([source.passages[0].id]), 0, 160, 'A2', [], 'choice', operation)).toBeUndefined();
 });
 
 it('rejects all21 isolated actual-passage mutations through helper and product focus rather than another task fallback', () => {
@@ -121,7 +121,7 @@ it('rejects all21 isolated actual-passage mutations through helper and product f
       const material = corpusMaterial({ source, passage }, seed, 'A2', 'choice', operation);
       expect(corpusOperation(material?.questions[0]), negative.name).not.toBe(operation);
       const altered = { ...bank, records: [{ ...source, passages: [passage] }, bank.records[0]] };
-      const lesson = corpusLesson(altered, new Set(), seed, 160, 'A2', [], 'choice', [], operation);
+      const lesson = corpusLesson(altered, new Set(), seed, 160, 'A2', [], 'choice', operation);
       expect(lesson?.materials.some(material => material.rootId === source.rootId && corpusOperation(material.questions[0]) === operation), negative.name).not.toBe(true);
     }
   }
@@ -151,7 +151,7 @@ it('fails closed for place aliases, arbitrary capitalised names, identity, adjac
 });
 
 it('keeps saved history intact but recommends this operation only at its supported A2 route after a starting-point switch', () => {
-  const lesson = corpusLesson(bank, new Set(), 0, 160, 'A2', [], 'choice', [], operation)!;
+  const lesson = corpusLesson(bank, new Set(), 0, 160, 'A2', [], 'choice', operation)!;
   const session: Session = { id: 'origin-history', profileId: 'origin-policy', lesson, contentHash: 'a'.repeat(64), position: 3, status: 'completed',
     startedAt: new Date(Date.now() - 100000).toISOString(), assistance: { hintLevel: 0 }, leaseUntil: 0 };
   const records: Attempt[] = lesson.materials.map(material => {
@@ -173,7 +173,7 @@ it('keeps saved history intact but recommends this operation only at its support
 it('saves every actual Practice/Test answer and exposure, finishes both roots and validates the portable backup', async () => {
   await Promise.all(db.tables.map(table => table.clear()));
   try {
-    const practice = corpusLesson(bank, new Set(), 0, 160, 'A2', [], 'choice', [], operation)!;
+    const practice = corpusLesson(bank, new Set(), 0, 160, 'A2', [], 'choice', operation)!;
     for (const lesson of [practice, asTestLesson(practice)]) {
       const profileId = `origin-db-${lesson.mode ?? 'practice'}`;
       const session = await createSession(lesson, profileId);

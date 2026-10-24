@@ -98,7 +98,7 @@ it('uses actual source packages for the same condition operation on unfamiliar r
   const full = { ...all, records: candidates.map(item => ({ ...item.source, passages: [item.passage] })) };
   const operation = `evidence:${conditionPrompt}`;
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 6; seed++) {
-    const lesson = corpusLesson(full, new Set(), seed, point === 'B1' ? 220 : 700, point, [], 'evidence', [], operation)!;
+    const lesson = corpusLesson(full, new Set(), seed, point === 'B1' ? 220 : 700, point, [], 'evidence', operation)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal.en).toBe(lesson.goal['zh-Hans']);
     expect(lesson.workedExample!.en).toContain('ticket');
@@ -121,7 +121,7 @@ it('uses actual source packages for the same condition operation on unfamiliar r
   const narrow = { ...full, records: candidates.filter(item => item.passage.wordCount <= 220).map(item => ({ ...item.source, passages: [item.passage] })) };
   expect(narrow.records).toHaveLength(2);
   for (const seed of [6, 7]) expect(corpusLesson(narrow, new Set(), seed, 220, 'B1')!.materials.every(material => material.questions[0].prompt === conditionPrompt)).toBe(true);
-  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(full, new Set(), 0, 700, point, [], 'evidence', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(full, new Set(), 0, 700, point, [], 'evidence', operation)).toBeUndefined();
 }, 20000);
 
 
@@ -139,7 +139,7 @@ it('retains actual recipient and program eligibility restrictions with relative 
   const bank = { version: 1 as const, failures: [], records };
   const operation = `evidence:${conditionPrompt}`;
   for (const seed of [0, 1, 2, 7, 31, 127, 65535]) {
-    const lesson = corpusLesson(bank, new Set(), seed, 500, 'B2', [], 'evidence', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 500, 'B2', [], 'evidence', operation)!;
     expect(new Set(lesson.materials.map(material => material.rootId))).toEqual(new Set(roots));
     expect(lesson.teaching?.en).toContain('recipient restriction');
     for (const material of lesson.materials) {

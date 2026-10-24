@@ -12,9 +12,9 @@ it('binds reviewed claim/example material to its original identity, source hash 
  ]){
   const changed={...bank,records:bank.records.map(r=>r===record?{...r,...change}:r)};
   corpusSchema.parse(changed);
-  for(const seed of[0,1,0xffffffff])expect(corpusLesson(changed,new Set(),seed,300,'B2',[],'matching',[],claimExampleOperation)).toBeUndefined();
+  for(const seed of[0,1,0xffffffff])expect(corpusLesson(changed,new Set(),seed,300,'B2',[],'matching',claimExampleOperation)).toBeUndefined();
  }
- expect(corpusLesson(bank,new Set(),0,300,'B2',[],'matching',[],claimExampleOperation)!.goalId).toBe('claim-example-link');
+ expect(corpusLesson(bank,new Set(),0,300,'B2',[],'matching',claimExampleOperation)!.goalId).toBe('claim-example-link');
 });
 it('maps each locally framed example with intact scope, independent source evidence and genuine wrong-map failures',()=>{
  const retained=longAdmission.records.filter(s=>['wikipedia-article-10772350','wikipedia-article-187946'].includes(s.rootId));expect(retained.map(s=>s.rootId).sort()).toEqual(['wikipedia-article-10772350','wikipedia-article-187946'].sort());for(const source of longAdmission.records.filter(s=>!retained.includes(s)))expect(corpusClaimExamples(source.clip.text,0)).toBeUndefined();
@@ -27,7 +27,7 @@ async function longBanks(){return Promise.all(['history','seo'].map(async name=>
 it('uses complete admitted recordings for the same claim/example operation, with exact segment evidence, both source orders and focused exhaustion',async()=>{
  const banks=await longBanks(),before=structuredClone(banks);
  for(const[primary,application]of[banks,[...banks].reverse()])fc.assert(fc.property(fc.integer({min:0,max:0xffffffff}),seed=>{
-  const lesson=spokenCorpusLesson(primary,new Set(),seed,196,'B2',[],'matching',[],claimExampleOperation,[application])!;
+  const lesson=spokenCorpusLesson(primary,new Set(),seed,196,'B2',[],'matching',claimExampleOperation,[application])!;
   expect(lesson.goalId).toBe('claim-example-link');expect(new Set(lesson.materials.map(m=>m.rootId)).size).toBe(2);
   for(const[i,m]of lesson.materials.entries()){
    const bank=i?application:primary,clip=bank.records[0].clips[0],q=m.questions[0];
@@ -40,20 +40,20 @@ it('uses complete admitted recordings for the same claim/example operation, with
  }),{numRuns:100});
  const[primary,application]=banks;
  for(const bank of banks)expect(spokenCorpusSchema.parse(bank)).toEqual(bank);
- for(const seconds of[25,60,91,125])expect(spokenCorpusLesson(primary,new Set(),0,seconds,'B2',[],'matching',[],claimExampleOperation,[application])).toBeUndefined();
- for(const point of['A1','A2','B1','C1','C2']as const)expect(spokenCorpusLesson(primary,new Set(),0,196,point,[],'matching',[],claimExampleOperation,[application])).toBeUndefined();
- expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',[],claimExampleOperation)).toBeUndefined();
- for(const bank of banks)expect(spokenCorpusLesson(primary,new Set([bank.records[0].clips[0].id]),0,196,'B2',[],'matching',[],claimExampleOperation,[application])).toBeUndefined();
- const held=structuredClone(application);held.records[0].clips[0].qualityFlags=['Unresolved transcript'];expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',[],claimExampleOperation,[held])).toBeUndefined();
+ for(const seconds of[25,60,91,125])expect(spokenCorpusLesson(primary,new Set(),0,seconds,'B2',[],'matching',claimExampleOperation,[application])).toBeUndefined();
+ for(const point of['A1','A2','B1','C1','C2']as const)expect(spokenCorpusLesson(primary,new Set(),0,196,point,[],'matching',claimExampleOperation,[application])).toBeUndefined();
+ expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',claimExampleOperation)).toBeUndefined();
+ for(const bank of banks)expect(spokenCorpusLesson(primary,new Set([bank.records[0].clips[0].id]),0,196,'B2',[],'matching',claimExampleOperation,[application])).toBeUndefined();
+ const held=structuredClone(application);held.records[0].clips[0].qualityFlags=['Unresolved transcript'];expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',claimExampleOperation,[held])).toBeUndefined();
  expect(qualifiedLongSeconds(banks,'B2',60)).toBe(60);expect(qualifiedLongSeconds(banks,'B2',91)).toBe(196);expect(qualifiedLongSeconds([primary,held],'B2',91)).toBe(91);expect(banks).toEqual(before);
  // Preserve reference tasks on alternate ordinary seeds.
- expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],undefined,[],undefined,[application])!.goalId).toBe('claim-example-link');
- expect(spokenCorpusLesson(primary,new Set(),1,196,'B2',[],undefined,[],undefined,[application])!.goalId).toBe('source-context-reference');
+ expect(spokenCorpusLesson(primary,new Set(),0,196,'B2',[],undefined,undefined,[application])!.goalId).toBe('claim-example-link');
+ expect(spokenCorpusLesson(primary,new Set(),1,196,'B2',[],undefined,undefined,[application])!.goalId).toBe('source-context-reference');
 });
 it('saves whole matching vectors atomically in reading/listening Practice/Test and preserves them in a new-profile backup restore',async()=>{
  const{advance,attempts,claimSession,createSession,db,communityPacks,markExposure,recordPlayback,sessions,submit}=await import('../src/data/db');const{exportBackup,importBackup,inspectBackup}=await import('../src/data/backup');
  await Promise.all(db.tables.map(t=>t.clear()));try{
-  const bank={version:1 as const,failures:[],records:await reviewedReading(originals,300)},reading=corpusLesson(bank,new Set(),0,300,'B2',[],'matching',[],claimExampleOperation)!,[primary,application]=await longBanks(),heard=spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',[],claimExampleOperation,[application])!;
+  const bank={version:1 as const,failures:[],records:await reviewedReading(originals,300)},reading=corpusLesson(bank,new Set(),0,300,'B2',[],'matching',claimExampleOperation)!,[primary,application]=await longBanks(),heard=spokenCorpusLesson(primary,new Set(),0,196,'B2',[],'matching',claimExampleOperation,[application])!;
   for(const lesson of[reading,asTestLesson(reading),heard,asTestLesson(heard)]){
    const profileId=`cx-${lesson.skill}-${lesson.mode??'practice'}`;
    if(lesson.skill==='listening'){
@@ -72,8 +72,8 @@ it('rejects changed or uninspected framing, whole-context additions and unsuppor
 });
 it('generates one supported matching target and same-goal unfamiliar application, with three locales, strict Test and focused exhaustion',async()=>{
  expect(originals).toHaveLength(2);const snapshot=structuredClone(originals);const bank={version:1 as const,failures:[],records:await reviewedReading(originals,300)};expect(originals).toEqual(snapshot);
- fc.assert(fc.property(fc.integer({min:0,max:0xffffffff}),seed=>{const l=corpusLesson(bank,new Set(),seed,300,'B2',[],'matching',[],claimExampleOperation)!;expect(l.goalId).toBe('claim-example-link');expect(new Set(l.materials.map(m=>m.rootId)).size).toBe(2);for(const[i,m]of l.materials.entries()){const q=m.questions[0];expect(corpusOperation(q)).toBe(claimExampleOperation);expect(m.questions).toHaveLength(1);expect(q.id.length).toBeLessThanOrEqual(80);expect(q.hints?.length).toBe(i?undefined:3);if(!('pairs'in q))throw Error('Expected matching');expect(score(q,q.pairs.map(p=>p.answer)).correct).toBe(true);const s=scopes.records.find(s=>s.rootId===m.rootId)!;expect(m.blocks[0].text).toBe(s.text);expect(createHash('sha256').update(s.text).digest('hex')).toBe(s.textSha256);for(const locale of['en','zh-Hans','zh-Hant']as const){expect(practiceLocale(l,locale)).toBe('en');expect(l.teaching![locale].length).toBeGreaterThan(100);expect(l.workedExample![locale]).toContain('Mina');expect(l.workedExample![locale]).not.toMatch(/mussel|carp|echogram|Buddhism|PageRank/);}}
+ fc.assert(fc.property(fc.integer({min:0,max:0xffffffff}),seed=>{const l=corpusLesson(bank,new Set(),seed,300,'B2',[],'matching',claimExampleOperation)!;expect(l.goalId).toBe('claim-example-link');expect(new Set(l.materials.map(m=>m.rootId)).size).toBe(2);for(const[i,m]of l.materials.entries()){const q=m.questions[0];expect(corpusOperation(q)).toBe(claimExampleOperation);expect(m.questions).toHaveLength(1);expect(q.id.length).toBeLessThanOrEqual(80);expect(q.hints?.length).toBe(i?undefined:3);if(!('pairs'in q))throw Error('Expected matching');expect(score(q,q.pairs.map(p=>p.answer)).correct).toBe(true);const s=scopes.records.find(s=>s.rootId===m.rootId)!;expect(m.blocks[0].text).toBe(s.text);expect(createHash('sha256').update(s.text).digest('hex')).toBe(s.textSha256);for(const locale of['en','zh-Hans','zh-Hant']as const){expect(practiceLocale(l,locale)).toBe('en');expect(l.teaching![locale].length).toBeGreaterThan(100);expect(l.workedExample![locale]).toContain('Mina');expect(l.workedExample![locale]).not.toMatch(/mussel|carp|echogram|Buddhism|PageRank/);}}
  const bare=structuredClone(l.materials);bare.forEach(m=>m.questions.forEach(q=>delete q.hints));expect(asTestLesson(l).materials).toEqual(bare);expect(asTestLesson(l).teaching).toBeUndefined();
  }),{numRuns:150});
- for(const s of scopes.records){expect(corpusLesson(bank,new Set([s.passageId]),0,300,'B2',[],'matching',[],claimExampleOperation)).toBeUndefined();const r=originals.find(r=>r.rootId===s.rootId)!;await expect(reviewedReading([{...r,sourceHash:'0'.repeat(64)}],300)).rejects.toThrow('CORPUS_INTEGRITY');}expect(corpusLesson({...bank,records:bank.records.slice(0,1)},new Set(),0,300,'B2',[],'matching',[],claimExampleOperation)).toBeUndefined();expect(corpusLesson(bank,new Set(),0,160,'B2',[],'matching',[],claimExampleOperation)).toBeUndefined();for(const point of['A1','A2','B1','C1','C2']as const)expect(corpusLesson(bank,new Set(),0,500,point,[],'matching',[],claimExampleOperation)).toBeUndefined();
+ for(const s of scopes.records){expect(corpusLesson(bank,new Set([s.passageId]),0,300,'B2',[],'matching',claimExampleOperation)).toBeUndefined();const r=originals.find(r=>r.rootId===s.rootId)!;await expect(reviewedReading([{...r,sourceHash:'0'.repeat(64)}],300)).rejects.toThrow('CORPUS_INTEGRITY');}expect(corpusLesson({...bank,records:bank.records.slice(0,1)},new Set(),0,300,'B2',[],'matching',claimExampleOperation)).toBeUndefined();expect(corpusLesson(bank,new Set(),0,160,'B2',[],'matching',claimExampleOperation)).toBeUndefined();for(const point of['A1','A2','B1','C1','C2']as const)expect(corpusLesson(bank,new Set(),0,500,point,[],'matching',claimExampleOperation)).toBeUndefined();
 });

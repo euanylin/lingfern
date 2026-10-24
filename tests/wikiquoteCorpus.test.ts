@@ -104,7 +104,7 @@ it('rejects apparent transfer to the same original Gutenberg work and identical 
 it.each(['B1', 'B2', 'C1', 'C2'] as const)('caps the whole successful session at one independent Wikiquote slot in sixteen for every focus and training entry at %s', level => {
   const corpus = withOrdinary(bank(source(1, 100), source(2, 74, 'Readers consider thoughtful descriptions and preserve complete evidence.')));
   for (const focus of [undefined, 'completion', 'sequence', 'evidence', 'matching', 'table', 'choice'] as const) for (const base of [0, 1, 7, 268435455]) for (const separate of [false, true]) {
-    const lessons = Array.from({ length: 16 }, (_, slot) => corpusLesson(separate ? ordinaryBank() : corpus, new Set(), base * 16 + slot, 400, level, [], focus, [], undefined, separate ? corpus : undefined));
+    const lessons = Array.from({ length: 16 }, (_, slot) => corpusLesson(separate ? ordinaryBank() : corpus, new Set(), base * 16 + slot, 400, level, [], focus, undefined, separate ? corpus : undefined));
     const successful = lessons.filter(lesson => lesson !== undefined);
     expect(successful.length === 0 || successful.length === 16).toBe(true);
     if (!successful.length) continue;
@@ -130,7 +130,7 @@ it('preserves actual beginner primary teaching and operation cycles when ineligi
     const seed = Math.imul(index + 1, 0x9e3779b1) >>> 0, maxWords = level === 'A1' ? 120 : 160;
     const baseline = corpusLesson(voa, new Set(), seed, maxWords, level)!;
     expect(baseline).toBeDefined();
-    for (const installed of [corpusLesson(mixed, new Set(), seed, maxWords, level), corpusLesson(voa, new Set(), seed, maxWords, level, [], undefined, [], undefined, mixed)]) {
+    for (const installed of [corpusLesson(mixed, new Set(), seed, maxWords, level), corpusLesson(voa, new Set(), seed, maxWords, level, [], undefined, undefined, mixed)]) {
       expect(installed!.materials[0]).toEqual(baseline.materials[0]);
       expect(installed!.materials).toEqual(baseline.materials);
       expect(installed!.generation!.seed).toBe(seed);
@@ -147,7 +147,7 @@ it('retains malformed-seed rejection with quotation sampling and beginner exclus
   }
 });
 
-it('keeps real ordinary fallback and review routing when quotations are unsupported, seen, or the only available sources', () => {
+it('keeps real ordinary fallback when quotations are unsupported, seen, or the only available sources', () => {
   const quoted = bank(source(1, 100, 'It is.'));
   expect(corpusMaterial({ source: quoted.records[0], passage: quoted.records[0].passages[0] }, 0, 'B1', 'completion')).toBeUndefined();
   for (let seed = 0; seed < 32; seed++) {
@@ -157,8 +157,6 @@ it('keeps real ordinary fallback and review routing when quotations are unsuppor
     expect(result.materials.every(material => !material.sourceId?.startsWith('wikiquote-'))).toBe(true);
   }
   const reviewQuote = bank(source(1, 100, 'An unfamiliar keyword enters the discussion. Readers examine its meaningful implications and preserve evidence.'));
-  const reviewed = corpusLesson(withOrdinary(reviewQuote), new Set(), 0, 400, 'B1', [], 'completion', ['keyword'])!;
-  expect(reviewed.materials.every(material => !material.blocks[0].text.includes('keyword'))).toBe(true);
   const seen = new Set([reviewQuote.records[0].passages[0].id]);
   expect(corpusLesson(withOrdinary(reviewQuote), seen, 0, 400, 'B1', [], 'completion')!.materials.every(material => !material.sourceId?.startsWith('wikiquote-'))).toBe(true);
 });
@@ -237,7 +235,7 @@ it('generates and scores unchanged modern source wording, and recovers its saved
  const primary=corpusSchema.parse(JSON.parse(readFileSync('public/corpus/gutenberg.json','utf8')));
  let lesson: ReturnType<typeof corpusLesson>;
  for(let base=0;base<100 && !lesson;base++){
-  const candidate=corpusLesson(primary,new Set(),base*16,300,'B2',[],'completion',[],undefined,bank);
+  const candidate=corpusLesson(primary,new Set(),base*16,300,'B2',[],'completion',undefined,bank);
   if(candidate?.materials.some(material=>material.blocks[0].text===selected.passage.text))lesson=candidate;
  }
  expect(lesson).toBeDefined();

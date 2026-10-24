@@ -24,7 +24,7 @@ it.each([
  const bank={version:1 as const,failures:[],records:selected.map(r=>({...r,passages:r.passages.filter(p=>p.text===text(r.rootId))}))};
  expect(bank.records.map(r=>r.passages.length)).toEqual([1,1]);
  for(let seed=0;seed<6;seed++){
-  const lesson=corpusLesson(bank,new Set(),seed,160,'B1',[],kind,[],operation)!;expect(lesson).toBeTruthy();
+  const lesson=corpusLesson(bank,new Set(),seed,160,'B1',[],kind,operation)!;expect(lesson).toBeTruthy();
   expect(new Set(lesson.materials.map(m=>m.rootId))).toEqual(new Set([first,second]));
   expect(lesson.teaching).toBeTruthy();expect(lesson.workedExample).toBeTruthy();
   for(const m of lesson.materials){expect(m.blocks[0].text.split(/\s+/).length).toBeLessThanOrEqual(160);expect(corpusOperation(m.questions[0])).toBe(operation);}
@@ -35,7 +35,7 @@ it.each([
   }
   const assessed=structuredClone(lesson.materials);for(const m of assessed)for(const q of m.questions){delete q.hints;if('modelAnswer'in q)delete q.modelAnswer;}
   expect(asTestLesson(lesson).materials).toEqual(assessed);
-  expect(corpusLesson(bank,new Set(lesson.materials.map(m=>m.id.slice(7))),seed,160,'B1',[],kind,[],operation)).toBeUndefined();
+  expect(corpusLesson(bank,new Set(lesson.materials.map(m=>m.id.slice(7))),seed,160,'B1',[],kind,operation)).toBeUndefined();
  }
 });
 it('retains all move/time limits and refuses missing, changed, repeated, hypothetical or quoted mode rules',()=>{

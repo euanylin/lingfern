@@ -37,13 +37,13 @@ it('generates exact timed conditions from the actual catalogue, preserving scori
     for (const source of bank.records) for (const clip of source.clips) {
       if (clip.qualityFlags.length || !spokenCondition(clip.text, 0)) continue;
       if (clip.audio.duration > 91) {
-        const bounded = spokenCorpusLesson(bank, new Set(), 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`);
+        const bounded = spokenCorpusLesson(bank, new Set(), 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`);
         expect(bounded?.materials.some(part => part.id === `corpus-${clip.id}`) ?? false).toBe(false);
         continue;
       }
       count++;
       const seen = new Set(bank.records.flatMap(record => record.clips.filter(other => other.id !== clip.id && record.rootId === source.rootId).map(other => other.id)));
-      const lesson = spokenCorpusLesson(bank, seen, 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`)!;
+      const lesson = spokenCorpusLesson(bank, seen, 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`)!;
       const material = lesson.materials.find(part => part.id === `corpus-${clip.id}`)!;
       expect(material).toBeDefined();
       expect(new Set(lesson.materials.map(part => part.rootId)).size).toBe(2);
@@ -59,7 +59,7 @@ it('generates exact timed conditions from the actual catalogue, preserving scori
       expect('kind' in response && response.kind).toBe('response');
       expect(response.prompt).toContain('other requirements');
       expect(score(response, 'A learner interpretation.').correct).toBeNull();
-      const excluded = spokenCorpusLesson(bank, new Set([clip.id]), 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`);
+      const excluded = spokenCorpusLesson(bank, new Set([clip.id]), 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`);
       expect(excluded?.materials.some(part => part.id === material.id) ?? false).toBe(false);
       for (const level of ['A1', 'A2'] as const) expect(spokenCorpusLesson(bank, new Set(), 0, 91, level)?.materials.some(part => part.questions[0].prompt === spokenConditionPrompt) ?? false).toBe(false);
     }
@@ -71,11 +71,11 @@ it('applies the same conditional operation to two actual package005 roots withou
   const { inspectCommunityPack } = await import('../src/data/communityPack');
   const bank = (await inspectCommunityPack(readSourcePackFixture('wikipedia-listening-005'))).spoken!;
   for (let seed = 0; seed < 8; seed++) {
-    const lesson = spokenCorpusLesson(bank, new Set(), seed, 60, 'B2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`)!;
+    const lesson = spokenCorpusLesson(bank, new Set(), seed, 60, 'B2', [], 'evidence', `evidence:${spokenConditionPrompt}`)!;
     expect(lesson.materials.map(material => material.title).sort()).toEqual(['Colocation centre', 'Cookie Clicker']);
     for (const material of lesson.materials) expect(material.questions[0].prompt).toBe(spokenConditionPrompt);
     const seen = new Set(lesson.materials.map(material => material.id.slice('corpus-'.length)));
-    const next = spokenCorpusLesson(bank, seen, seed, 60, 'B2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`);
+    const next = spokenCorpusLesson(bank, seen, seed, 60, 'B2', [], 'evidence', `evidence:${spokenConditionPrompt}`);
     expect(next?.materials.every(material => !seen.has(material.id.slice('corpus-'.length))) ?? true).toBe(true);
     expect(next?.materials.some(material => material.questions[0].prompt === spokenConditionPrompt) ?? false).toBe(false);
   }

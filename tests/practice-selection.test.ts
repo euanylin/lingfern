@@ -7,12 +7,10 @@ import { practiceSelectionSchema, practiceSelectionMatches, readPracticeSelectio
 import { practiceMaterials, prepareCorpusPractice } from '../src/app/prepareCorpusPractice';
 import { loadReadingCorpus } from '../src/data/corpus';
 import { installSourcePack } from '../src/data/sourcePacks';
-import { dueMemories } from '../src/data/memory';
 import personal from '../public/audio/a2-speech/PERSONAL.json';
 
 vi.mock('../src/data/corpus', () => ({ loadReadingCorpus: vi.fn(), loadSpokenCorpora: vi.fn(async () => []) }));
 vi.mock('../src/data/sourcePacks', () => ({ installSourcePack: vi.fn(), sourcePacks: [], installedSourcePacks: vi.fn(async () => new Set()) }));
-vi.mock('../src/data/memory', () => ({ dueMemories: vi.fn(async () => []) }));
 vi.mock('../src/data/offline', () => ({ offlineGroupReady: vi.fn(async () => true) }));
 
 const corpus = corpusSchema.parse(JSON.parse(readFileSync('content/corpus/gutenberg.json', 'utf8')));
@@ -20,7 +18,6 @@ const base = { locale: 'en' as const, profileId: 'isolated-selection', history: 
 beforeEach(async () => {
   await Promise.all(db.tables.map(table => table.clear()));
   vi.mocked(loadReadingCorpus).mockResolvedValue(corpus);
-  vi.mocked(dueMemories).mockResolvedValue([]);
   vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0, 0]));
 });
 

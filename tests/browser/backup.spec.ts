@@ -221,3 +221,33 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`backup filename dia
   expect(filenames).toHaveLength(6);
   expect(await page.pageErrors()).toEqual([]);
 });
+
+for (const locale of ['zh-Hans', 'zh-Hant'] as const) test(`backup copy wraps complete Chinese words: ${locale}`, async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 812 });
+  await page.goto('/settings');
+  if (locale === 'zh-Hant') await selectPicker(page, '语言', locale);
+  const backup = page.locator('.profile-backup');
+  await expect(backup).toBeVisible();
+  const split = await backup.evaluate((element, traditional) => {
+    const problems: string[] = [];
+    for (const [selector, word] of [['>p.muted', traditional ? '錄音' : '录音'], ['.backup-file-button', traditional ? '還原' : '恢复']]) {
+      const target = selector.startsWith('>') ? element.querySelector(':scope ' + selector) : element.querySelector(selector);
+      if (!target) throw new Error('Missing backup copy');
+      const start = target.textContent!.indexOf(word); if (start < 0) throw new Error('Missing word');
+      const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT), range = document.createRange();
+      let node: Node | null, offset = 0;
+      while ((node = walker.nextNode())) {
+        const length = node.textContent!.length;
+        if (start >= offset && start < offset + length) range.setStart(node, start - offset);
+        if (start + word.length > offset && start + word.length <= offset + length) { range.setEnd(node, start + word.length - offset); break; }
+        offset += length;
+      }
+      const lines = new Set([...range.getClientRects()].filter(rect => rect.width > 0).map(rect => Math.round(rect.top)));
+      if (lines.size !== 1) problems.push(word);
+    }
+    return problems;
+  }, locale === 'zh-Hant');
+  expect(split).toEqual([]);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: `output/playwright/backup-word-wrap-${locale}-320.png`, fullPage: true });
+});

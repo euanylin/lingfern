@@ -30,7 +30,7 @@ it('preserves the actual 924-word continuous Darwin scope, all short texts and c
   expect(selectCorpusPassage(bank, new Set(), 0, 700)?.passage.id).not.toBe(long.id);
   expect(selectCorpusPassage(bank, new Set([long.id]), 0, 1200)).toBeUndefined();
   for (const passage of short) {
-    const next = selectCorpusPassage(bank, new Set([passage.id]), 0, 1200, [], [], 'C2');
+    const next = selectCorpusPassage(bank, new Set([passage.id]), 0, 1200, [], 'C2');
     expect(next).toBeDefined(); expect(next?.passage.id).not.toBe(long.id);
   }
 });

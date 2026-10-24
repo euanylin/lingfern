@@ -62,7 +62,7 @@ it('changes only the unique cue and preserves the exact asserted clauses and com
 it('transfers one actual operation across both short and long roots at existing advanced bounds and preserves Test scoring', () => {
   for (const actual of [shortBank, bank]) for (const point of ['C1', 'C2'] as const) for (const seed of [0, 1, 2, 42, 43, 114, 115]) {
     const forced = seed < 3;
-    const lesson = corpusLesson(actual, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], forced ? 'choice' : undefined, [], forced ? operation : undefined)!;
+    const lesson = corpusLesson(actual, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], forced ? 'choice' : undefined, forced ? operation : undefined)!;
     lessonSchema.parse(lesson); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal.en).toContain('concession'); expect(lesson.teaching!.en).toContain('both clauses and their references'); expect(lesson.teaching!.en).not.toContain('action that follows');
     const original = structuredClone(lesson), tested = asTestLesson(lesson);
@@ -81,11 +81,11 @@ it('transfers one actual operation across both short and long roots at existing 
     expect(lesson).toEqual(original);
   }
   for (const point of ['A1', 'A2', 'B1', 'B2'] as const) {
-    expect(corpusLesson(bank, new Set(), 0, 1200, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson(bank, new Set(), 0, 1200, point, [], 'choice', operation)).toBeUndefined();
     expect(corpusMaterial({ source: bank.records[0], passage: bank.records[0].passages[0] }, 0, point, 'choice', operation)).toBeUndefined();
   }
-  expect(corpusLesson({ ...bank, records: [bank.records[0]] }, new Set(), 0, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(ids), 0, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson({ ...bank, records: [bank.records[0]] }, new Set(), 0, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(ids), 0, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
 });
 
 it('withholds missing, mismatched, quoted, conditional, duplicate and unsupported reference frames', () => {
@@ -130,8 +130,8 @@ it('keeps ordinary practice usable without a same-operation partner while explic
   const lesson = corpusLesson(one, new Set(), 42, 1200, 'C2')!;
   expect(lesson).toBeDefined(); expect(lesson.materials[0].rootId).toBe(bank.records[0].rootId);
   expect(lesson.materials.every(material => corpusOperation(material.questions[0]) === 'completion')).toBe(true);
-  expect(corpusLesson(one, new Set(), 42, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
-  const installed = corpusLesson(one, new Set(), 42, 1200, 'C2', [], undefined, [], undefined, bank)!;
+  expect(corpusLesson(one, new Set(), 42, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
+  const installed = corpusLesson(one, new Set(), 42, 1200, 'C2', [], undefined, undefined, bank)!;
   expect(installed.materials[0].rootId).toBe(lesson.materials[0].rootId);
   expect(installed.materials[0].blocks).toEqual(lesson.materials[0].blocks);
   expect(installed.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);

@@ -1,4 +1,5 @@
 import { contentLocale } from '../shared/locale';
+import { answerPointCount, readingWordCount } from '../shared/practiceQuantity';
 import { contentText, messages } from '../locales';
 import { useEffect, useState } from 'react';
 import type { Attempt, Session } from '../data/db';
@@ -9,10 +10,12 @@ import { CorpusPractice } from './CorpusPractice';
 import { copy } from './i18n';
 import { firstRunCopy } from './FirstRun';
 import { SettingsPicker } from './SettingsPicker';
-import { TaskDetail, taskMinutes } from './TaskDetail';
+import { TaskDetail } from './TaskDetail';
 import { GeneratedPractice, generatedPracticeLabels } from '../../tests/fixtures/GeneratedPractice';
 
 const labels = messages('taskCatalogue');
+// shortcut: estimated duration only; replace with reviewed unit timings when available.
+const taskMinutes = (lesson: Lesson) => lesson.expectedMinutes ?? Math.max(1, Math.ceil(lesson.materials.reduce((sum, material) => sum + (material.audio ? material.audio.duration / 60 : readingWordCount(material) / 120) + answerPointCount(material.questions) * .5, 0)));
 export function TaskCatalogue({ selections, onSelection, preferences, locale, lessons, history, records, online, installedGroups, localCorpus = false, localSpoken = false, busy, onStart, profileId, startError }: { selections: Record<'reading' | 'listening', PracticeSelection>; onSelection: (skill: 'reading' | 'listening', value: PracticeSelection) => Promise<void>; preferences?: Preferences; localCorpus?: boolean; localSpoken?: boolean; startError: string; profileId: string; locale: Locale; lessons: readonly Lesson[]; history: Session[]; records: Attempt[]; online: boolean; installedGroups: ReadonlySet<string>; busy: boolean; onStart: (lesson: Lesson) => Promise<void> }) {
   const t = labels[locale], c = copy[locale];
   const [query, setQuery] = useState('');
@@ -27,10 +30,9 @@ export function TaskCatalogue({ selections, onSelection, preferences, locale, le
   const local = (lesson: Lesson) => lesson.skill === 'reading' || !!lesson.communityPackageId || installedGroups.has(`audio-${lesson.targetLevel.toLowerCase()}`);
   const actionFor = (lesson: Lesson) => !online && !local(lesson) ? t.install : history.some(session => session.lesson.id === lesson.id && session.status === 'active') ? c.resume : lesson.skill === 'reading' ? c.start : c.startListening;
   useEffect(() => { if (detail && !lessons.some(item => JSON.stringify(item) === JSON.stringify(detail))) setDetail(undefined); }, [detail, lessons]);
-  const all = lessons;
   function matching(filters: typeof empty) {
     const { skill, theme, downloaded } = filters;
-    return all.filter(lesson => (skill === 'all' || lesson.skill === skill) && (theme === 'all' || lesson.themes?.includes(theme as typeof topicSchema.options[number])) && (downloaded === 'all' || local(lesson)) && query.trim().toLocaleLowerCase(locale).split(/\s+/).every(word => `${contentText(lesson.title, locale)} ${contentText(lesson.goal, practiceLocale(lesson, locale))}`.toLocaleLowerCase(locale).includes(word)));
+    return lessons.filter(lesson => (skill === 'all' || lesson.skill === skill) && (theme === 'all' || lesson.themes?.includes(theme as typeof topicSchema.options[number])) && (downloaded === 'all' || local(lesson)) && query.trim().toLocaleLowerCase(locale).split(/\s+/).every(word => `${contentText(lesson.title, locale)} ${contentText(lesson.goal, practiceLocale(lesson, locale))}`.toLocaleLowerCase(locale).includes(word)));
   }
   const matches = matching(applied).sort((a, b) => (online ? 0 : Number(local(b)) - Number(local(a))) || levelSchema.options.indexOf(a.targetLevel) - levelSchema.options.indexOf(b.targetLevel));
   function clear() { setQuery(''); setApplied(empty); setDraft(empty); }
@@ -43,7 +45,6 @@ export function TaskCatalogue({ selections, onSelection, preferences, locale, le
       <button type="button" onClick={() => desktop ? clear() : setDraft(empty)}>{t.clear}</button>{!desktop && <div className="backup-actions"><button type="button" onClick={() => { setApplied(draft); setOpen(false); }}>{t.apply} ({matching(draft).length})</button><button type="button" onClick={() => { setDraft(applied); setOpen(false); }}>{t.cancel}</button></div>}
     </details><div className="task-catalogue-list"><p role="status" aria-live="polite">{matches.length} {t.count}</p>
       {!matches.length && <><p>{t.empty}</p><button type="button" onClick={clear}>{t.clear}</button>{!online && <a href="/library">{t.install}</a>}</>}
-      {/* shortcut: estimate 120 words/minute plus 30 seconds/response; replace with reviewed timings when available. */}
       {matches.map(lesson => { const completed = history.some(session => session.lesson.id === lesson.id && session.status === 'completed'); const estimated = taskMinutes(lesson); return <section className={`task-row${lesson.communityPackageId ? ' community-task' : ''}`} key={lesson.id}><p className="eyebrow">{lesson.skill.toUpperCase()} · {t.learning}</p><h2 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h2><p lang={practiceLocale(lesson, locale)}>{contentText(lesson.goal, practiceLocale(lesson, locale))}</p><p className="muted">{lesson.communityPackageId && <>{c.communityLessons} · </>}{estimated} {t.minutes} · {local(lesson) ? t.ready : t.missing} · {completed ? t.done : t.fresh}{lesson.themes?.length ? ` · ${lesson.themes.map(value => firstRunCopy[locale].themes[topicSchema.options.indexOf(value)]).join(' / ')}` : ''}</p><button type="button" className="primary" disabled={busy} onClick={() => setDetail(lesson)}>{actionFor(lesson)}</button></section>; })}
     </div></div>
     {detail && <TaskDetail key={detail.id} lesson={detail} action={actionFor(detail)} available={online || local(detail)} locale={locale} profileId={profileId} busy={busy} startError={startError} onStart={onStart} onClose={() => setDetail(undefined)}/>}

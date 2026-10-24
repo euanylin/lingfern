@@ -1,3 +1,4 @@
+import './MaterialWorkspace.css';
 import { type Answer, type Question } from '../shared/content';
 import { localeDirection, type Locale } from '../shared/locale';
 import { messages } from '../locales';

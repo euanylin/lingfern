@@ -38,7 +38,7 @@ it('matches actual parallel dependence and reciprocal reliance across two roots 
       ]));
       else expect(task.sentence).toBe(reciprocal);
     }
-    const lesson = corpusLesson(corpus, new Set(), seed, 700, 'B2', [], 'matching', [], pairedRelianceOperation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 700, 'B2', [], 'matching', pairedRelianceOperation)!;
     lessonSchema.parse(lesson); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.teaching!.en).toContain('Do not infer reciprocal dependence');
     for (const material of lesson.materials) {
@@ -96,7 +96,7 @@ it('keeps ordinary mixed application available without counting it as same-opera
   expect(available.length).toBeGreaterThanOrEqual(2);
   const history: Session[] = [], records: Attempt[] = [];
   for (const [index, source] of corpus.records.entries()) {
-    const lesson = corpusLesson({ ...corpus, records: [source] }, new Set(), 0, 700, 'B2', [], 'matching', [], pairedRelianceOperation, { ...corpus, records: [available[index]] })!;
+    const lesson = corpusLesson({ ...corpus, records: [source] }, new Set(), 0, 700, 'B2', [], 'matching', pairedRelianceOperation, { ...corpus, records: [available[index]] })!;
     expect(lesson).toBeDefined(); lessonSchema.parse(lesson);
     expect(corpusOperation(lesson.materials[0].questions[0])).toBe(pairedRelianceOperation);
     expect(corpusOperation(lesson.materials[1].questions[0])).not.toBe(pairedRelianceOperation);
@@ -118,7 +118,7 @@ it('demonstrates the direction of each reliance without leaking answers or chang
   const corpus = await actual();
   let fallbacks = 0;
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 300, point, [], 'matching', [], pairedRelianceOperation)!;
+    const lesson = corpusLesson(corpus, new Set(), seed, 300, point, [], 'matching', pairedRelianceOperation)!;
     expect(lesson).toBeDefined();
     const example = corpusWorkedExample(lesson.materials[0], seed, point);
     if (example) expect(lesson.workedExample).toEqual(example);
@@ -144,7 +144,7 @@ it('demonstrates the direction of each reliance without leaking answers or chang
   }
   expect(fallbacks).toBeGreaterThan(0);
   // Keep regression wording outside distributed sources and scored items.
-  const fixture = corpusLesson(corpus, new Set(), 0, 300, 'B2', [], 'matching', [], pairedRelianceOperation)!;
+  const fixture = corpusLesson(corpus, new Set(), 0, 300, 'B2', [], 'matching', pairedRelianceOperation)!;
   const other = 'The harbour community depends on fishing and farming, and the forest community depends on timber and grazing.';
   fixture.materials[0].blocks[0].text += '\n\n' + other;
   const example = corpusWorkedExample(fixture.materials[0], 0, 'B2');

@@ -123,14 +123,6 @@ Source: https://github.com/react/react.git
 
 - [LICENSE](licenses/scheduler@0.28.0/LICENSE)
 
-## ts-fsrs 5.4.2
-
-Scope: runtime. License: MIT.
-
-Source: git+https://github.com/open-spaced-repetition/ts-fsrs.git
-
-- [LICENSE](licenses/ts-fsrs@5.4.2/LICENSE)
-
 ## universal-user-agent 7.0.3
 
 Scope: runtime. License: ISC.

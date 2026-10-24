@@ -24,7 +24,7 @@ it('generates exact timed named-source matching from the actual catalogue, prese
       if (clip.qualityFlags.length || !spokenAttributionPairs(clip.text, 0)) continue;
       inspected.add(source.rootId + ':' + clip.id);
       const seen = new Set(bank.records.flatMap(record => record.clips.filter(other => other.id !== clip.id && record.rootId === source.rootId).map(other => other.id)));
-      const lesson = spokenCorpusLesson(bank, seen, 0, 91, 'C2', [], 'matching', [], `matching:${spokenAttributionMatchingPrompt}`)!;
+      const lesson = spokenCorpusLesson(bank, seen, 0, 91, 'C2', [], 'matching', `matching:${spokenAttributionMatchingPrompt}`)!;
       const material = lesson.materials.find(part => part.id === `corpus-${clip.id}`)!;
       expect(material).toBeDefined();
       expect(new Set(lesson.materials.map(part => part.rootId)).size).toBe(2);
@@ -46,7 +46,7 @@ it('generates exact timed named-source matching from the actual catalogue, prese
       expect('kind' in response && response.kind).toBe('response');
       expect(response.prompt).toContain('surrounding context');
       expect(score(response, 'A learner interpretation.').correct).toBeNull();
-      const excluded = spokenCorpusLesson(bank, new Set([clip.id]), 0, 91, 'C2', [], 'matching', [], `matching:${spokenAttributionMatchingPrompt}`);
+      const excluded = spokenCorpusLesson(bank, new Set([clip.id]), 0, 91, 'C2', [], 'matching', `matching:${spokenAttributionMatchingPrompt}`);
       expect(excluded?.materials.some(part => part.id === material.id) ?? false).toBe(false);
       for (const level of ['A1', 'A2'] as const) expect(spokenCorpusLesson(bank, new Set(), 0, 91, level)?.materials.some(part => part.questions[0].prompt === spokenAttributionMatchingPrompt) ?? false).toBe(false);
     }

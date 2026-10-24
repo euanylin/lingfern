@@ -11,7 +11,7 @@ const bank = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json'
 it.each(['need', 'preference'] as const)('generates inspected %s with exact people/context, both scoring outcomes and unfamiliar same-goal application', kind => {
   const operation = `choice:personal-${kind}`;
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, 'A2', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(lesson.targetLevel).toBe('A2'); expect(lesson.goalId).toBe(kind === 'need' ? 'explicit-stated-need' : 'explicit-stated-preference');
     expect(lesson.materials.map(m => m.rootId).sort()).toEqual(scopes[kind].map(s => s.rootId).sort());
     for (const [index, material] of lesson.materials.entries()) {
@@ -35,10 +35,10 @@ it.each(['need', 'preference'] as const)('generates inspected %s with exact peop
     expect(lesson).toEqual(JSON.parse(JSON.stringify(lesson)));
   }), { numRuns: 200 });
   for (const scope of scopes[kind]) {
-    expect(corpusLesson({ ...bank, records: bank.records.filter(r => r.rootId === scope.rootId) }, new Set(), 0, 160, 'A2', [], 'choice', [], operation)).toBeUndefined();
-    expect(corpusLesson(bank, new Set([scope.passageId]), 0, 160, 'A2', [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson({ ...bank, records: bank.records.filter(r => r.rootId === scope.rootId) }, new Set(), 0, 160, 'A2', [], 'choice', operation)).toBeUndefined();
+    expect(corpusLesson(bank, new Set([scope.passageId]), 0, 160, 'A2', [], 'choice', operation)).toBeUndefined();
   }
-  expect(corpusLesson(bank, new Set(), 0, 160, 'A1', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(), 0, 160, 'A1', [], 'choice', operation)).toBeUndefined();
 });
 
 it('rejects negation, changed contexts, hypothetical preferences, duplicated/conflicting frames and absent other-speaker context', () => {

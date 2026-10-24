@@ -38,7 +38,7 @@ import { spokenCondition, spokenConditionPrompt } from './spokenCondition';
 import { corpusReference, referenceSupport } from './corpusReference';
 import { admittedLongClip, admittedLongText, maxQualifiedSpokenWords, maxQualifiedSpokenSeconds } from './spokenLongAdmission';
 import { z } from 'zod';
-import { corpusPreferencePool, corpusReviewMatch, corpusOperation } from './corpusPractice';
+import { corpusPreferencePool, corpusOperation } from './corpusPractice';
 import type { Preferences } from '../shared/preferences';
 import { corpusSchema, corpusRestoration, corpusSequence, corpusLanguageSchema, validCorpusLanguage, validCorpusSource, corpusStartingPoint, corpusQualification, corpusAttribution, corpusDates, corpusOutcome } from './corpus';
 import { lessonSchema, recordingSchema, sourceCreditSchema, levelSchema, type CorpusQuestionKind, type Lesson } from '../shared/content';
@@ -96,7 +96,7 @@ function matchesListeningScope(scope: Pick<typeof indirectStanceScopes.listening
       && JSON.stringify(scope.segments) === JSON.stringify(clip.segments);
 }
 
-export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>, seed: number, maxSeconds = 60, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, reviewTerms: readonly string[] = [], focusOperation?: string, applicationBanks: readonly SpokenCorpus[] = [], includeResponse = true) {
+export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>, seed: number, maxSeconds = 60, startingPoint?: z.infer<typeof levelSchema>, interests: Preferences['interests'] = [], focus?: CorpusQuestionKind, focusOperation?: string, applicationBanks: readonly SpokenCorpus[] = [], includeResponse = true) {
   if (!bank.communityPackageId || !Number.isInteger(seed) || seed < 0 || seed > 0xffffffff || !Number.isFinite(maxSeconds) || maxSeconds < 8 || maxSeconds > maxQualifiedSpokenSeconds) throw new Error('INVALID_SPOKEN_GENERATION');
   if (applicationBanks.length > maxInstalledSpokenBanks || applicationBanks.some(other => !other.communityPackageId)) throw new Error('INVALID_SPOKEN_APPLICATION');
   const beginner = startingPoint === 'A1' || startingPoint === 'A2';
@@ -282,9 +282,7 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
   }
   const focused = choices.filter(({ source, clip }) => selectedKind === 'completion' ? !!restore(clip.text, seed, clip.language) : selectedKind === 'sequence' ? !!sequenceFor(clip.text, seed) : selectedKind === 'table' ? !!dates(clip.text, seed) : selectedKind === 'matching' ? !!matching(source, clip, seed) : selectedKind === 'choice' ? !!outcome(clip.text, seed) || referenceAvailable && !!reference(clip.text, seed) || comparisonAvailable && !!comparison(source, clip, seed) || limitedAvailable && !!limited(source, clip, seed) || attitudeAvailable && !!attitude(source, clip, seed) || synthesisAvailable && !!synthesis(source, clip, seed) || viewsAvailable && !!views(source, clip, seed) || !!rhetoric(source, clip, seed) || !!disagreement(source, clip, seed) || !!paraphrase(source, clip, seed) || !!pragmatics(source, clip, seed) || !!layers(source, clip, seed) || !!nuance(source, clip, seed) || !!density(source, clip, seed) || !!implicit(source, clip, seed) : selectedKind === 'evidence' && !!semantic(clip.text, seed));
   const candidates = focused.length ? focused : choices;
-  const review = candidates.filter(({ clip }) => corpusReviewMatch(clip.text, reviewTerms));
-  const eligible = review.length ? review : candidates;
-  const pool = corpusPreferencePool(eligible, ({ source, clip }) => ({ title: source.title, text: clip.text, seconds: clip.audio.duration }), interests, seed, startingPoint);
+  const pool = corpusPreferencePool(candidates, ({ source, clip }) => ({ title: source.title, text: clip.text, seconds: clip.audio.duration }), interests, seed, startingPoint);
   const first = pool[seed % pool.length];
   if (!first) return;
   const materialFor = ({ source, clip, packageId }: (typeof choices)[number], index: number, preferred = focus, operation = focusOperation): Lesson['materials'][number] => {
@@ -373,9 +371,7 @@ export function spokenCorpusLesson(bank: SpokenCorpus, seen: ReadonlySet<string>
   const focusedOther = other.filter(({ source, clip }) => target === 'completion' ? !!restore(clip.text, seed + 1, clip.language) : target === 'sequence' ? !!sequenceFor(clip.text, seed + 1) : target === 'table' ? !!dates(clip.text, seed + 1) : target === 'matching' ? !!matching(source, clip, seed + 1, targetOperation) : target === 'choice' ? !!outcome(clip.text, seed + 1, targetOperation) || !!reference(clip.text, seed + 1, targetOperation) || !!comparison(source, clip, seed + 1, targetOperation) || !!limited(source, clip, seed + 1, targetOperation) || !!attitude(source, clip, seed + 1, targetOperation) || !!synthesis(source, clip, seed + 1, targetOperation) || !!views(source, clip, seed + 1, targetOperation) || !!rhetoric(source, clip, seed + 1, targetOperation) || !!disagreement(source, clip, seed + 1, targetOperation) || !!paraphrase(source, clip, seed + 1, targetOperation) || !!pragmatics(source, clip, seed + 1, targetOperation) || !!layers(source, clip, seed + 1, targetOperation) || !!nuance(source, clip, seed + 1, targetOperation) || !!density(source, clip, seed + 1, targetOperation) || !!implicit(source, clip, seed + 1, targetOperation) : target === 'evidence' && !!semantic(clip.text, seed + 1, targetOperation));
   if ((target === 'choice' || targetOperation === claimExampleOperation) && !focusedOther.length) return;
   const otherCandidates = focusedOther.length ? focusedOther : choices.filter(item => item.source.rootId !== first.source.rootId);
-  const reviewOther = otherCandidates.filter(({ clip }) => corpusReviewMatch(clip.text, reviewTerms));
-  const otherEligible = reviewOther.length ? reviewOther : otherCandidates;
-  const secondPool = corpusPreferencePool(otherEligible, ({ source, clip }) => ({ title: source.title, text: clip.text, seconds: clip.audio.duration }), interests, seed + 1, startingPoint);
+  const secondPool = corpusPreferencePool(otherCandidates, ({ source, clip }) => ({ title: source.title, text: clip.text, seconds: clip.audio.duration }), interests, seed + 1, startingPoint);
   const second = secondPool[(seed + 1) % secondPool.length];
   if (!second) return;
   const materials = [taught, materialFor(second, 1, target, targetOperation)];

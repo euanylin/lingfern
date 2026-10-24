@@ -1,5 +1,5 @@
 """Acquire five fixed official programme/audio pairs, preserving credits and rights/audio holds."""
-import traceback, datetime, hashlib, importlib.util, json, pathlib, re, subprocess, time, urllib.request
+import traceback, datetime, hashlib, json, pathlib, re, subprocess, time, urllib.request
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
 SOURCES = [
  ('noaa-rip-currents','noaa','oceans-water','https://oceanservice.noaa.gov/podcast/june23/nop66-rip-currents.html','https://oceanservice.noaa.gov/podcast/june23/nop66-rip-currents.mp3'),

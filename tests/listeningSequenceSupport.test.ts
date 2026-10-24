@@ -20,7 +20,7 @@ const banks = sourceBanks.map(entry => {
   return spokenCorpusSchema.parse(value);
 });
 const generate = (point: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2', seed = 0) => {
-  const lesson = spokenCorpusLesson(banks[0], new Set(), seed, 91, point, [], 'sequence', [], undefined, banks.slice(1))!;
+  const lesson = spokenCorpusLesson(banks[0], new Set(), seed, 91, point, [], 'sequence', undefined, banks.slice(1))!;
   lessonSchema.parse(lesson);
   return lesson;
 };

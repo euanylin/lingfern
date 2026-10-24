@@ -61,13 +61,13 @@ it('derives runtime role names and deterministic rotations while withholding uns
 });
 it('uses the same existing operation on two actual C1/C2 contexts, with unchanged scoring and direct Test snapshot', () => {
   for (const point of ['C1', 'C2'] as const) for (const seed of [0, 1, 66, 67, 138, 139]) {
-    const forced = seed < 2, lesson = corpusLesson(bank, new Set(), seed, 700, point, [], forced ? 'choice' : undefined, [], forced ? operation : undefined)!;
+    const forced = seed < 2, lesson = corpusLesson(bank, new Set(), seed, 700, point, [], forced ? 'choice' : undefined, forced ? operation : undefined)!;
     lessonSchema.parse(lesson); expect(lesson.materials.map(m => corpusOperation(m.questions[0]))).toEqual([operation, operation]); expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2);
     expect(lesson.teaching!.en).toContain('custody or transport restrictions'); expect(lesson.workedExample!.en).toContain('The listener is asked to read the note to the speaker'); expect(lesson.workedExample!.en).not.toContain('If a warning'); const test = asTestLesson(lesson); expect(test.workedExample).toBeUndefined(); expect(test.materials.map(m => m.blocks)).toEqual(lesson.materials.map(m => m.blocks));
     for (const [i, { question }] of questions(lesson).entries()) { const tested = [...questions(test)][i].question; expect(tested.hints).toBeUndefined(); if ('kind' in question) expect(score(question, 'I retain the narrated knowledge and constraint.').correct).toBeNull(); else for (let answer = 0; answer < 3; answer++) { expect(score(question, answer).correct).toBe(answer === question.answer); expect(score(tested, answer)).toEqual(score(question, answer)); } }
   }
-  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 66, 700, point, [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(ids), 34, 700, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 66, 700, point, [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(ids), 34, 700, 'C2', [], 'choice', operation)).toBeUndefined();
 });
 it('saves actual contextual Practice/Test responses and full recovery exports without replacing saved earlier mind snapshots', async () => {
   await Promise.all(db.tables.map(table => table.clear()));

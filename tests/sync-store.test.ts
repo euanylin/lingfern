@@ -14,7 +14,7 @@ afterEach(async () => { await Promise.all(databases.splice(0).map(database => da
 
 it('persists one immutable batch across concurrent tabs, reopening and lost acknowledgement', async () => {
   const database = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, database);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, database);
   const [a, b] = await Promise.all([pendingSyncBatch('p', database), pendingSyncBatch('p', database)]);
   expect(a).toEqual(b);
   database.close(); await database.open();
@@ -28,8 +28,8 @@ it('persists one immutable batch across concurrent tabs, reopening and lost ackn
 
 it('two separate databases converge and increment the largest merged counter', async () => {
   const a = device(), b = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, a);
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'other', saved: true, reviewEnabled: false } }, b);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, a);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'other', saved: true } }, b);
   const ba = (await pendingSyncBatch('p', a))!, bb = (await pendingSyncBatch('p', b))!;
   expect(ba.deviceId).not.toBe(bb.deviceId);
   expect(await receiveSyncBatch('p', ba.batch, ba.hash, b)).toBe('received');
@@ -37,7 +37,7 @@ it('two separate databases converge and increment the largest merged counter', a
   expect(await receiveSyncBatch('p', ba.batch, ba.hash, b)).toBe('duplicate');
   expect(await readSyncEvents('p', a)).toEqual(await readSyncEvents('p', b));
   await confirmSyncBatch('p', bb.deviceId, bb.batchId, bb.hash, b);
-  const next = await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: false, reviewEnabled: false } }, b);
+  const next = await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: false } }, b);
   expect(next.counter).toBe(2);
   const change = (await pendingSyncBatch('p', b))!;
   await receiveSyncBatch('p', change.batch, change.hash, a);
@@ -47,7 +47,7 @@ it('two separate databases converge and increment the largest merged counter', a
 
 it('retains both conflicting payloads and applies none of a conflicting batch', async () => {
   const a = device(), b = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, a);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, a);
   const original = (await pendingSyncBatch('p', a))!;
   await receiveSyncBatch('p', original.batch, original.hash, b);
   const altered = { ...original.batch, events: original.batch.events.map(event => ({ ...event, occurredAt: '2026-01-01T00:00:00.000Z' })) };
@@ -65,14 +65,14 @@ it('transaction failure saves neither event nor logical counter', async () => {
   const database = device();
   const fail = () => { throw new Error('STORAGE_FAILURE'); };
   database.table('syncEvents').hook('creating', fail);
-  await expect(appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, database)).rejects.toThrow('STORAGE_FAILURE');
+  await expect(appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, database)).rejects.toThrow('STORAGE_FAILURE');
   expect(await database.table('syncClocks').count()).toBe(0);
   expect(await database.table('syncEvents').count()).toBe(0);
 });
 
 it('rolls back the complete downloaded batch and clock when an event write fails', async () => {
   const a = device(), b = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, a);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, a);
   const batch = (await pendingSyncBatch('p', a))!;
   b.table('syncEvents').hook('creating', () => { throw new Error('STORAGE_FAILURE'); });
   await expect(receiveSyncBatch('p', batch.batch, batch.hash, b)).rejects.toThrow('STORAGE_FAILURE');
@@ -84,8 +84,8 @@ it('rolls back the complete downloaded batch and clock when an event write fails
 
 it('commits a complete page atomically, retries duplicates and quarantines conflicts', async () => {
   const a = device(), b = device(), destination = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'first', saved: true, reviewEnabled: false } }, a);
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'second', saved: true, reviewEnabled: false } }, b);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'first', saved: true } }, a);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'second', saved: true } }, b);
   const batches = [(await pendingSyncBatch('p', a))!, (await pendingSyncBatch('p', b))!];
   const page = { commit: 'a'.repeat(40), cursor: 'current', nextCursor: 'next', total: 2,
     files: batches.map(batch => ({ deviceId: batch.deviceId, batchId: batch.batchId, blobSha: 'b'.repeat(40), bytes: 2000 })),
@@ -119,7 +119,7 @@ it('commits a complete page atomically, retries duplicates and quarantines confl
 
 it('persists account-bound receipts and progress with page data, rejects stale tabs and missing cached batches', async () => {
   const source = device(), destination = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, source);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, source);
   const stored = (await pendingSyncBatch('p', source))!;
   const scope = { accountId: 1, profileId: 'p', bindingVersion: 'a'.repeat(43) };
   const file = { deviceId: stored.deviceId, batchId: stored.batchId, blobSha: 'b'.repeat(40), bytes: 2000 };
@@ -154,7 +154,7 @@ it('persists account-bound receipts and progress with page data, rejects stale t
 
 it('checks restored logical profiles and retained conflict payloads before skipping immutable files', async () => {
   const source = device(), destination = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, source);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, source);
   const original = (await pendingSyncBatch('p', source))!;
   const changed = await validateSyncBatch({ ...original.batch, events: original.batch.events.map(event => ({ ...event, occurredAt: '2026-01-01T00:00:00.000Z' })) });
   await destination.table('syncClocks').put({ profileId: 'restored', logicalProfileId: 'p', deviceId: 'restored-device', counter: 0 });
@@ -174,7 +174,7 @@ it('checks restored logical profiles and retained conflict payloads before skipp
 
 it('persists scoped upload receipts without trusting another account or binding generation', async () => {
   const database = device(), scope = { accountId: 1, profileId: 'p', bindingVersion: 'a'.repeat(43) };
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, database);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, database);
   const stored = (await nextSyncUpload('p', scope, database))!;
   const expected = { scope, deviceId: stored.deviceId, batchId: stored.batchId, hash: stored.hash };
   const ack = { scope, batchId: stored.batchId, hash: stored.hash, previouslyWritten: false };
@@ -203,7 +203,7 @@ it('persists scoped upload receipts without trusting another account or binding 
 
 it('does not upload quarantined profiles and does not inherit another destination receipt for received batches', async () => {
   const source = device(), destination = device(), scope = { accountId: 1, profileId: 'p', bindingVersion: 'a'.repeat(43) };
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, source);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, source);
   const stored = (await nextSyncUpload('p', scope, source))!;
   await receiveSyncBatch('p', stored.batch, stored.hash, destination);
   expect((await nextSyncUpload('p', scope, destination))?.batch).toEqual(stored.batch);
@@ -215,7 +215,7 @@ it('does not upload quarantined profiles and does not inherit another destinatio
 
 it('exports both validated conflict copies without mutations or foreign-profile access', async () => {
   const database = device();
-  const event = { id: 'conflicting-event', deviceId: 'remote', counter: 1, occurredAt: '2026-09-30T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } };
+  const event = { id: 'conflicting-event', deviceId: 'remote', counter: 1, occurredAt: '2026-09-30T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense', saved: true } };
   const original = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'p', deviceId: 'remote', batchId: 'fixed', events: [event] });
   await receiveSyncBatch('p', original.batch, original.hash, database);
   for (const batchId of ['fixed', 'different']) {
@@ -236,7 +236,7 @@ it('exports both validated conflict copies without mutations or foreign-profile 
 
 it('returns the immutable batch another reader seals between the pending and event queries', async () => {
   const database = device();
-  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }, database);
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'sense', saved: true } }, database);
   const first = database.Collection.prototype.first;
   let interleaved = false, concurrent: Awaited<ReturnType<typeof pendingSyncBatch>>;
   const query = vi.spyOn(database.Collection.prototype, 'first').mockImplementation(function (this: Dexie.Collection) {

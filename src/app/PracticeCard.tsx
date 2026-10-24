@@ -26,18 +26,6 @@ export function practiceCardProgress(sessions: readonly Session[], records: read
   return { answered, total, lastActivityAt };
 }
 
-export function practiceCardDate(at: string, locale: Locale, now = new Date()) {
-  const date = new Date(at);
-  if (!Number.isFinite(date.getTime())) return '';
-  // Use the device's calendar day across daylight-saving changes.
-  const localDay = (value: Date) => Date.UTC(value.getFullYear(), value.getMonth(), value.getDate());
-  const days = Math.round((localDay(now) - localDay(date)) / 86400000);
-  if (days === 0) return messages('practiceCard_today')[locale];
-  if (days === 1) return messages('practiceCard_yesterday')[locale];
-  if (days > 1 && days <= 6) return new Intl.RelativeTimeFormat(locale).format(-days, 'day');
-  return new Intl.DateTimeFormat(locale, { month: 'numeric', day: 'numeric' }).format(date);
-}
-
 type PracticeCardProps = {
   title: string; locale: Locale; sessions?: readonly Session[]; records: readonly Attempt[];
   recommended?: boolean; busy?: boolean; onStart: () => void; onRestart?: () => Promise<void>;

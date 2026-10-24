@@ -4,10 +4,10 @@ import { profileIdSchema } from './repository';
 import { preferencesSchema } from './preferences';
 import { levelSchema } from './content';
 import { readPracticeSelection } from './practiceSelection';
+import { lookupKey, lookupRecordSchema } from './lookupHistory';
 
 export const syncByteLimit = 250 * 1024;
 const id = z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/);
-export { id as syncIdSchema };
 const reference = z.string().min(1).max(160);
 const hash = z.string().regex(/^[a-f0-9]{64}$/);
 const assistance = z.object({ hintLevel: z.number().int().min(0).max(3), dictionaryUsed: z.boolean(), audioCompleted: z.boolean(), playbackRequests: z.number().int().min(0).max(10000), teachingProvided: z.boolean().optional() }).strict();
@@ -20,18 +20,23 @@ const settingPayload = z.discriminatedUnion('key', [
 ]);
 export { settingPayload as syncSettingSchema };
 const base = z.object({ id, deviceId: id, counter: z.number().int().min(1).max(Number.MAX_SAFE_INTEGER), occurredAt: z.iso.datetime() });
-// Sync structured summaries only; exclude private answers, notes, and materials.
+const lookupContext = z.record(id, z.number().int().min(1).max(Number.MAX_SAFE_INTEGER)).refine(value => Object.keys(value).length <= 256);
+// Sync summaries, preferences and lookups; exclude private answers, notes and materials.
 export const syncEventSchema = z.discriminatedUnion('type', [
   base.extend({ type: z.literal('completion'), payload: z.object({ recordId: reference, sessionId: reference, questionId: reference, rootId: reference, goalId: reference, skill: z.enum(['reading', 'listening']), level: levelSchema, mode: z.enum(['practice', 'check']), contentHash: hash, scoringHash: hash.optional(), correct: z.boolean().nullable(), assistance }).strict() }).strict(),
   base.extend({ type: z.literal('exposure'), payload: z.object({ sessionId: reference, rootId: reference, materialId: reference, questionId: reference, variantGroup: reference }).strict() }).strict(),
-  base.extend({ type: z.literal('saved_item'), payload: z.object({ memoryId: reference, saved: z.boolean(), reviewEnabled: z.boolean() }).strict() }).strict(),
+  base.extend({ type: z.literal('saved_item'), payload: z.object({ memoryId: reference, saved: z.boolean(), reviewEnabled: z.boolean().optional() }).strict() }).strict(),
   base.extend({ type: z.literal('preferences'), payload: preferencesSchema }).strict(),
   base.extend({ type: z.literal('setting'), payload: settingPayload }).strict(),
   base.extend({ type: z.literal('deletion'), payload: z.union([z.object({ target: z.enum(['record', 'exposure']), targetId: reference }).strict(), z.object({ target: z.literal('exposure_contact'), targetId: reference, sessionId: reference, questionId: reference }).strict()]) }).strict(),
   base.extend({ type: z.literal('installation'), payload: z.object({ contentId: reference, contentHash: hash, wanted: z.boolean() }).strict() }).strict(),
   base.extend({ type: z.literal('completion_timing'), payload: z.object({ sourceId: id, sourceHash: hash, time: z.iso.datetime() }).strict() }).strict(),
+  // Preserve legacy wire bytes without restoring the retired review feature.
   base.extend({ type: z.literal('review_timing'), payload: z.object({ memoryId: reference, sourceId: id, sourceHash: hash, time: z.iso.datetime() }).strict() }).strict(),
   base.extend({ type: z.literal('memory_review'), payload: z.object({ memoryId: reference, rating: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]), configId: reference, assistance: z.object({ answerRevealed: z.boolean(), hintUsed: z.boolean() }).strict() }).strict() }).strict(),
+  base.extend({ type: z.literal('lookup'), payload: lookupRecordSchema }).strict(),
+  base.extend({ type: z.literal('lookup_remove'), payload: lookupRecordSchema.pick({ kind: true, term: true }).extend({ seen: lookupContext }).strict() }).strict(),
+  base.extend({ type: z.literal('lookup_clear'), payload: z.object({ seen: lookupContext }).strict() }).strict(),
 ]);
 export type SyncEvent = z.infer<typeof syncEventSchema>;
 export const syncBatchSchema = z.object({ product: z.literal('Lingfern'), formatVersion: z.literal(1), profileId: profileIdSchema, deviceId: id, batchId: id, events: z.array(syncEventSchema).min(1).max(500) }).strict().superRefine((batch, ctx) => {
@@ -50,6 +55,7 @@ const syncFileSchema = z.object({ deviceId: id, batchId: id, blobSha, bytes: z.n
 export const syncKnownFilesSchema = z.array(syncFileSchema.pick({ deviceId: true, batchId: true, blobSha: true })).max(10);
 export type SyncDownloadScope = z.infer<typeof syncDownloadScopeSchema>;
 export const syncChangesSchema = z.object({ scope: syncDownloadScopeSchema.optional(), commit: blobSha, cursor: z.string().min(1).max(4096), nextCursor: z.string().min(1).max(4096).optional(), total: z.number().int().min(0).max(5000), files: z.array(syncFileSchema).max(10), batches: z.array(z.object({ batch: syncBatchSchema, hash, blobSha }).strict()).max(10) }).strict();
+export const syncMetadataSchema = z.union([syncChangesSchema, z.object({ scope: syncDownloadScopeSchema, commit: blobSha, unchanged: z.literal(true) }).strict()]);
 
 
 // Canonicalize validated data only; reject undefined, code and non-finite numbers.
@@ -94,6 +100,26 @@ export function mergeSyncEvents(existing: readonly SyncEvent[], incoming: readon
   return [...events.values()].sort(compareSyncEvents);
 }
 
+export function projectLookupHistory(raw: readonly SyncEvent[]) {
+  // Clear observed versions without erasing concurrent or later lookups.
+  const events = mergeSyncEvents([], raw);
+  const cleared = new Map<string, number>(), removed = new Map<string, Map<string, number>>();
+  for (const event of events) {
+    if (event.type !== 'lookup_clear' && event.type !== 'lookup_remove') continue;
+    const key = event.type === 'lookup_remove' ? lookupKey(event.payload) : undefined;
+    const context = key === undefined ? cleared : removed.get(key) ?? new Map<string, number>();
+    if (key !== undefined) removed.set(key, context);
+    for (const [device, counter] of Object.entries(event.payload.seen)) context.set(device, Math.max(context.get(device) ?? 0, counter));
+  }
+  const latest = new Map<string, Extract<SyncEvent, { type: 'lookup' }>>();
+  for (const event of events) if (event.type === 'lookup') {
+    const key = lookupKey(event.payload);
+    if (event.counter > Math.max(cleared.get(event.deviceId) ?? 0, removed.get(key)?.get(event.deviceId) ?? 0)) latest.set(key, event);
+  }
+  return [...latest.values()].sort((a, b) => b.payload.lookedUpAt.localeCompare(a.payload.lookedUpAt) || compareSyncEvents(b, a))
+    .slice(0, 100).map(event => ({ ...event.payload, id: event.id }));
+}
+
 export const exposureContactKey = (value: { rootId: string; sessionId: string; questionId: string }) => canonicalJson([value.rootId, value.sessionId, value.questionId]);
 
 export function projectSyncEvents(raw: readonly SyncEvent[]) {
@@ -110,7 +136,6 @@ export function projectSyncEvents(raw: readonly SyncEvent[]) {
   const savedItems = new Map<string, Extract<SyncEvent, { type: 'saved_item' }>>();
   const settings = new Map<string, Extract<SyncEvent, { type: 'setting' }>>();
   const installations = new Map<string, Extract<SyncEvent, { type: 'installation' }>>();
-  const reviews: Extract<SyncEvent, { type: 'memory_review' }>[] = [];
   let preferences: Extract<SyncEvent, { type: 'preferences' }> | undefined;
   for (const event of events) {
     switch (event.type) {
@@ -120,9 +145,7 @@ export function projectSyncEvents(raw: readonly SyncEvent[]) {
       case 'setting': settings.set(event.payload.key, event); break;
       case 'installation': installations.set(event.payload.contentId, event); break;
       case 'preferences': preferences = event; break;
-      case 'memory_review': reviews.push(event); break;
     }
   }
-  // Replay original reviews through validated FSRS, never logical event order.
-  return { completions, exposures, savedItems, settings, installations, reviews, preferences, deletedRecords, deletedExposures, deletedContacts, counter: events.at(-1)?.counter ?? 0 };
+  return { completions, exposures, savedItems, settings, installations, preferences, deletedRecords, deletedExposures, deletedContacts, counter: events.at(-1)?.counter ?? 0 };
 }

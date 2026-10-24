@@ -21,6 +21,7 @@ test('every display language opens the same English About page with local artwor
     await expect(page.locator('.about-page')).toHaveAttribute('dir', 'ltr');
     expect(await page.locator('.about-page').evaluate(el => getComputedStyle(el).direction)).toBe('ltr');
     await expect(page.locator('.about-back')).toHaveText('← Settings');
+    await expect(page.getByRole('link', { name: 'Lingfern on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/euanylin/lingfern');
     const text = await page.locator('.about-page').innerText();
     englishText ??= text;
     expect(text).toBe(englishText);

@@ -335,7 +335,7 @@ it('uses the complete Louis interview for A2 speaker transfer across actual root
   const paired = { ...bank, records: [{ ...louis, passages: [passage] }, introduction] };
   const roots = new Set<string>();
   for (const seed of [...Array(32).keys(), 0xffffffff]) {
-    const lesson = corpusLesson(paired, new Set(), seed, 160, 'A2', [], 'matching', [], 'matching:Who says each sentence? Match it to a person.')!;
+    const lesson = corpusLesson(paired, new Set(), seed, 160, 'A2', [], 'matching', 'matching:Who says each sentence? Match it to a person.')!;
     lessonSchema.parse(lesson);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) {
@@ -611,22 +611,6 @@ it('generates apartment tables from explicit dialogue with exact evidence and sc
   for (const other of ['Pete: I am not in apartment B2.', 'Pete: She is in apartment B2.', 'Pete: “I am in apartment B2.”', 'Anna: I am in apartment B2.', 'Pete: I am in apartment A1.'])
     expect(corpusApartments(first + '\n' + other, 0)).toBeUndefined();
   expect(() => corpusApartments(text, -1)).toThrow('INVALID_CORPUS_APARTMENTS');
-});
-
-
-it('prefers due vocabulary forms before interests without bypassing exposure or length eligibility', () => {
-  const corpus = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
-  const target = corpus.records.find(source => source.rootId === 'voa-article-3113733')!;
-  const passage = target.passages[0];
-  expect(passage.text).toContain('apartment');
-  const selected = selectCorpusPassage(corpus, new Set(), 0, 700, ['science'], ['apartment'])!;
-  expect(selected.passage.text.toLowerCase()).toContain('apartment');
-  const lesson = corpusLesson(corpus, new Set(), 0, 120, 'A1', ['science'], undefined, ['apartment'])!;
-  expect(lesson.materials[0].blocks[0].text.toLowerCase()).toContain('apartment');
-  expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
-  const seen = new Set(corpus.records.flatMap(source => source.passages.filter(p => /apartment/i.test(p.text)).map(p => p.id)));
-  expect(selectCorpusPassage(corpus, seen, 0, 700, [], ['apartment'])?.passage.text.toLowerCase()).not.toContain('apartment');
-  expect(selectCorpusPassage(corpus, new Set(), 0, 700, [], ['unmatched-review-term'])).toEqual(selectCorpusPassage(corpus, new Set(), 0, 700));
 });
 
 
@@ -948,7 +932,7 @@ it('matches only explicit room activities and keeps them separate from speaker m
   expect(() => corpusRooms(text, -1)).toThrow('INVALID_CORPUS_ROOMS');
   const bank = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
   for (const point of ['A1', 'A2'] as const) {
-    const lesson = corpusLesson(bank, new Set(), 0, point === 'A1' ? 120 : 160, point, [], 'matching', [], `matching:${roomMatchingPrompt}`)!;
+    const lesson = corpusLesson(bank, new Set(), 0, point === 'A1' ? 120 : 160, point, [], 'matching', `matching:${roomMatchingPrompt}`)!;
     const material = lesson.materials[0], question = material.questions[0];
     expect(material.rootId === 'voa-article-3168971' || material.rootId.startsWith('lingfern-dialogue-')).toBe(true);
     if (!('kind' in question) || question.kind !== 'matching') throw new Error('Expected room matching');
@@ -959,9 +943,9 @@ it('matches only explicit room activities and keeps them separate from speaker m
     expect(lesson.materials[1].questions[0].prompt).toBe(roomMatchingPrompt);
     expect(lesson.workedExample!.en).toMatch(/^Example: “.+” → (?:rest|wash|sleep): .+\./);
     for (const pair of question.pairs) expect(lesson.workedExample!.en).not.toContain(pair.answer);
-    const excluded = corpusLesson(bank, new Set([material.id.slice(7)]), 0, 160, point, [], 'matching', [], `matching:${roomMatchingPrompt}`);
+    const excluded = corpusLesson(bank, new Set([material.id.slice(7)]), 0, 160, point, [], 'matching', `matching:${roomMatchingPrompt}`);
     expect(excluded?.materials.some(part => part.id === material.id) ?? false).toBe(false);
-    const speaker = corpusLesson(bank, new Set(), 0, 160, point, [], 'matching', [], 'matching:Who says each sentence? Match it to a person.')!;
+    const speaker = corpusLesson(bank, new Set(), 0, 160, point, [], 'matching', 'matching:Who says each sentence? Match it to a person.')!;
     expect(speaker.materials.every(part => part.questions[0].prompt === 'Who says each sentence? Match it to a person.')).toBe(true);
   }
 });
@@ -980,7 +964,7 @@ it('separates a beginner requested address from a full introduction and unrelate
   expect(() => corpusAddress(text, -1)).toThrow('INVALID_CORPUS_ADDRESS');
   const bank = corpusSchema.parse(JSON.parse(readFileSync('public/corpus/voa.json', 'utf8')));
   for (const point of ['A1', 'A2'] as const) for (let seed = 0; seed < 4; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 160, point, [], 'choice', [], 'choice:requested-address')!;
+    const lesson = corpusLesson(bank, new Set(), seed, 160, point, [], 'choice', 'choice:requested-address')!;
     const material = lesson.materials[0], question = material.questions[0];
     expect(material.rootId === 'voa-article-3240468' || material.rootId.startsWith('lingfern-dialogue-')).toBe(true);
     if ('kind' in question) throw new Error('Expected requested-address choice');
@@ -996,7 +980,7 @@ it('separates a beginner requested address from a full introduction and unrelate
     expect(lesson.workedExample!.en).not.toContain('Caty');
     expect(lesson.goal.en).toBe('Find the requested name.');
     expect(question.hints?.[2]['zh-Hans']).toContain('不是打电话');
-    const excluded = corpusLesson(bank, new Set([material.id.slice(7)]), seed, 160, point, [], 'choice', [], 'choice:requested-address');
+    const excluded = corpusLesson(bank, new Set([material.id.slice(7)]), seed, 160, point, [], 'choice', 'choice:requested-address');
     expect(excluded?.materials.some(part => part.id === material.id) ?? false).toBe(false);
   }
 });
@@ -1047,9 +1031,9 @@ it('keeps the teaching source while finding a same-operation reading application
   const installed = { ...bank, records: [source(0, unrelated), source(2, attributed)] };
   const operation = 'evidence:Which sentence explicitly attributes a claim to a named source?';
   for (let seed = 0; seed < 6; seed++) {
-    const previous = corpusLesson(primary, new Set(), seed, 300, 'B2', [], 'evidence', [], operation)!;
+    const previous = corpusLesson(primary, new Set(), seed, 300, 'B2', [], 'evidence', operation)!;
     expect(previous.materials[1].questions[0].prompt).not.toBe(previous.materials[0].questions[0].prompt);
-    const lesson = corpusLesson(primary, new Set(), seed, 300, 'B2', [], 'evidence', [], operation, installed)!;
+    const lesson = corpusLesson(primary, new Set(), seed, 300, 'B2', [], 'evidence', operation, installed)!;
     expect(lesson.materials[0].rootId).toBe(bank.records[0].rootId);
     expect(lesson.materials[0].blocks[0].text).toBe(attributed);
     expect(lesson.materials[1].rootId).toBe(bank.records[2].rootId);
@@ -1061,14 +1045,14 @@ it('keeps the teaching source while finding a same-operation reading application
       expect(score(question, question.accepted[0]).correct).toBe(true);
       expect(score(question, (question.accepted[0] + 1) % 3).correct).toBe(false);
     }
-    const excluded = corpusLesson(primary, new Set([installed.records[1].passages[0].id]), seed, 300, 'B2', [], 'evidence', [], operation, installed)!;
+    const excluded = corpusLesson(primary, new Set([installed.records[1].passages[0].id]), seed, 300, 'B2', [], 'evidence', operation, installed)!;
     expect(excluded.materials[1].rootId).not.toBe(bank.records[2].rootId);
     const long = { ...installed, records: [{ ...installed.records[1], passages: [{ ...installed.records[1].passages[0], wordCount: 301 }] }] };
-    expect(corpusLesson(primary, new Set(), seed, 300, 'B2', [], 'evidence', [], operation, long)!.materials[1].rootId).not.toBe(bank.records[2].rootId);
+    expect(corpusLesson(primary, new Set(), seed, 300, 'B2', [], 'evidence', operation, long)!.materials[1].rootId).not.toBe(bank.records[2].rootId);
   }
   const alone = { ...primary, records: primary.records.slice(0, 1) };
-  expect(corpusLesson(alone, new Set(), 0, 300, 'B2', [], 'evidence', [], operation)).toBeUndefined();
-  expect(corpusLesson(alone, new Set(), 0, 300, 'B2', [], 'evidence', [], operation, installed)?.materials).toHaveLength(2);
+  expect(corpusLesson(alone, new Set(), 0, 300, 'B2', [], 'evidence', operation)).toBeUndefined();
+  expect(corpusLesson(alone, new Set(), 0, 300, 'B2', [], 'evidence', operation, installed)?.materials).toHaveLength(2);
 });
 
 it('respects exact matching focus when a passage supports several semantic families', async () => {
@@ -1078,7 +1062,7 @@ it('respects exact matching focus when a passage supports several semantic famil
   bank.records = bank.records.slice(0, 2).map(source => ({ ...source, passages: [{ ...source.passages[0], text, wordCount: text.split(/\s+/).length, language: undefined, task: undefined }] }));
   for (const prompt of ['Match each action to what the request asks for or rules out.', 'In the paired statement, match each reliance to what needs it.', 'Match each claim to the source named in the passage.']) for (let seed = 0; seed < 6; seed++) {
     const operation = `matching:${prompt}`;
-    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', operation)!;
     for (const material of lesson.materials) {
       const question = material.questions[0];
       expect(corpusOperation(question)).toBe(operation);
@@ -1175,7 +1159,7 @@ it('locates complete explicit assignments without inferring causal duties or com
   }
   const bank = { version: 1 as const, failures: [], records };
   for (let seed = 0; seed < 8; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'evidence', [], `evidence:${assignmentPrompt}`)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'evidence', `evidence:${assignmentPrompt}`)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal.en).toContain('assigned task');
     expect(lesson.teaching!.en).toContain('proof that it was completed');
@@ -1218,7 +1202,7 @@ it('locates reviewed infinitive assignments without mistaking a unit posting for
       expect(task.spans.filter((_, index) => !task.accepted.includes(index)).every(span => !/assign|task|dut|request/i.test(span.text))).toBe(true);
     }
   }
-  const lesson = corpusLesson({ version: 1, failures: [], records }, new Set(), 0, 300, 'B2', [], 'evidence', [], `evidence:${assignmentPrompt}`)!;
+  const lesson = corpusLesson({ version: 1, failures: [], records }, new Set(), 0, 300, 'B2', [], 'evidence', `evidence:${assignmentPrompt}`)!;
   expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
   expect(lesson.materials.every(material => material.questions[0].prompt === assignmentPrompt)).toBe(true);
 });
@@ -1263,7 +1247,7 @@ it('transfers compose assignment across actual roots with exact scoring and assi
   }
   const operation = `evidence:${assignmentPrompt}`, bank = { version: 1 as const, failures: [], records };
   for (let seed = 0; seed < 7; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'evidence', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'evidence', operation)!;
     lessonSchema.parse(lesson); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) {
       const question = material.questions[0], response = material.questions[1];
@@ -1285,7 +1269,7 @@ it('transfers compose assignment across actual roots with exact scoring and assi
       expect(material.questions[0].prompt).toBe(assignmentPrompt);
       expect(material.questions[0].evidence).toEqual(lesson.materials[index].questions[0].evidence);
     }
-    expect(corpusLesson(bank, new Set(lesson.materials.map(material => material.id.slice(7))), seed, 300, 'B2', [], 'evidence', [], operation)).toBeUndefined();
+    expect(corpusLesson(bank, new Set(lesson.materials.map(material => material.id.slice(7))), seed, 300, 'B2', [], 'evidence', operation)).toBeUndefined();
   }
 });
 
@@ -1329,7 +1313,7 @@ it('distinguishes the actual beginner work contact from the wrong answered numbe
     expect(task.options[1-task.answer]).toBe('555-8689');
     expect(text.slice(task.evidence.start, task.evidence.end)).toBe("Marsha's work number is 555-8986.");
     for (const level of ['A1','A2'] as const) {
-      const lesson = corpusLesson(bank, new Set(), seed, 160, level, [], 'choice', [], 'choice:work-phone')!;
+      const lesson = corpusLesson(bank, new Set(), seed, 160, level, [], 'choice', 'choice:work-phone')!;
       const question = lesson.materials[0].questions[0];
       if ('kind' in question) throw Error('Expected phone choice');
       expect(question.prompt).toBe(workPhonePrompt);
@@ -1364,7 +1348,7 @@ it('locates complete explicit concessive clauses without inventing tone or remov
   const { reviewedReading } = await import('../src/data/corpus');
   const records = (await reviewedReading((await inspectCommunityPack(readSourcePackFixture(entry.id))).corpus!.records)).filter(r=>['wikipedia-article-1308988','wikipedia-article-40685706'].includes(r.rootId)).map(r=>({...r,passages:r.passages.filter(p=>['b070ae93015667ae7f73824e41a3953daaad96ff8e46bcba428d115482d9a202','1296ca9b8b54ecfe7a08fbe94a0508cd7d98956db2a0e79b9636b0a0b4bf9dd2'].includes(p.id))}));
   for(let seed=0;seed<6;seed++) {
-    const lesson=corpusLesson({version:1,failures:[],records},new Set(),seed,300,'B2',[],'evidence',[],`evidence:${concessionPrompt}`)!;
+    const lesson=corpusLesson({version:1,failures:[],records},new Set(),seed,300,'B2',[],'evidence',`evidence:${concessionPrompt}`)!;
     expect(new Set(lesson.materials.map(m=>m.rootId)).size).toBe(2);
     for(const material of lesson.materials) {
       const q=material.questions[0],response=material.questions[1];
@@ -1417,7 +1401,7 @@ it('retains postposed concessions and rejects quoted, nested or incomplete cues'
       .flatMap(record => record.passages.some(passage => passage.id === passageId) ? [{ ...record, passages: record.passages.filter(passage => passage.id === passageId) }] : []));
   }
   for (let seed = 0; seed < 7; seed++) {
-    const lesson = corpusLesson({ version: 1, failures: [], records }, new Set(), seed, 300, 'B2', [], 'evidence', [], `evidence:${concessionPrompt}`)!;
+    const lesson = corpusLesson({ version: 1, failures: [], records }, new Set(), seed, 300, 'B2', [], 'evidence', `evidence:${concessionPrompt}`)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) {
       const question = material.questions[0];

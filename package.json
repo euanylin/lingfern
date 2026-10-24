@@ -59,7 +59,6 @@
     "fflate": "0.8.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "ts-fsrs": "5.4.2",
     "wheel-gestures": "2.3.0",
     "zod": "4.6.5"
   },

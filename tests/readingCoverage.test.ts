@@ -93,13 +93,13 @@ function verifyRepresentatives(bank: Corpus, supporting: Candidate[], operation?
  }
  const ordinary = ordinaryBank(bank);
  if (availableOrdinaryRoots(bank).size < 2) {
-  for (const seed of [0, 1, 16]) expect(corpusLesson(bank, new Set(), seed, 700, 'C2', [], focus, [], operation)).toBeUndefined();
+  for (const seed of [0, 1, 16]) expect(corpusLesson(bank, new Set(), seed, 700, 'C2', [], focus, operation)).toBeUndefined();
   return;
  }
  supporting = supporting.filter(item => !item.passage.quoteProvenance);
  if (!supporting.length) {
-  const baseline = corpusLesson(ordinary, new Set(), 0, 700, 'C2', [], focus, [], operation);
-  const fresh = corpusLesson(bank, new Set(), freshSeed(bank, 0), 700, 'C2', [], focus, [], operation);
+  const baseline = corpusLesson(ordinary, new Set(), 0, 700, 'C2', [], focus, operation);
+  const fresh = corpusLesson(bank, new Set(), freshSeed(bank, 0), 700, 'C2', [], focus, operation);
   expect(fresh?.materials).toEqual(baseline?.materials);
   if (fresh) for (const material of fresh.materials) checkMaterial(material, bank);
   return;
@@ -121,7 +121,7 @@ function verifyRepresentatives(bank: Corpus, supporting: Candidate[], operation?
   expect(selected).toBeDefined();
   const singleFamily = ordinary.records.every(source => familyOf({source, passage: source.passages[0]}) === families[0]);
   const seed = singleFamily ? pool.indexOf(selected) : sameFamily.indexOf(selected) * families.length + families.indexOf(familyOf(selected));
-  const lesson = corpusLesson(bank, seen, freshSeed(bank, seed), 700, 'C2', [], focus, [], operation)!;
+  const lesson = corpusLesson(bank, seen, freshSeed(bank, seed), 700, 'C2', [], focus, operation)!;
   const distinctSupportingRoots = new Set(remaining.map(item => item.source.rootId));
   if (operation === `matching:${attributionMatchingPrompt}` && distinctSupportingRoots.size < 2) { expect(lesson, operation).toBeUndefined(); continue; }
   expect(lesson, operation).toBeDefined();
@@ -132,9 +132,9 @@ function verifyRepresentatives(bank: Corpus, supporting: Candidate[], operation?
   if (operation && distinctSupportingRoots.size >= 2) expect(corpusOperation(lesson.materials[1].questions[0])).toBe(operation);
   for (const material of lesson.materials) checkMaterial(material, bank);
   if (hasQuotes(bank)) {
-   const baseline = corpusLesson(ordinary, seen, seed, 700, 'C2', [], focus, [], operation)!;
+   const baseline = corpusLesson(ordinary, seen, seed, 700, 'C2', [], focus, operation)!;
    expect(lesson.materials).toEqual(baseline.materials);
-   const quotaSlot = corpusLesson(bank, seen, freshSeed(bank, seed, 0), 700, 'C2', [], focus, [], operation)!;
+   const quotaSlot = corpusLesson(bank, seen, freshSeed(bank, seed, 0), 700, 'C2', [], focus, operation)!;
    expect(quotaSlot.materials[0]).toEqual(baseline.materials[0]);
    expect(new Set(quotaSlot.materials.map(material => material.rootId)).size).toBe(2);
    for (const material of quotaSlot.materials) checkMaterial(material, bank);

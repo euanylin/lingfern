@@ -1,7 +1,25 @@
 import { seedLegacyAnswers } from './workspace';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { selectPicker } from './picker';
 import { fernGrowth } from '../../src/core/fern';
+
+async function seedLookups(page: Page, count: number) {
+  await page.evaluate(async count => {
+    const { db } = await import('/src/data/db.ts' as string);
+    const { appendSyncEvent } = await import('/src/data/sync.ts' as string);
+    await db.transaction('rw', ['syncEvents', 'syncClocks'], async () => {
+      for (let index = 0; index < count; index++) await appendSyncEvent('local-guest', { type: 'lookup', payload: { kind: 'dictionary', term: `synthetic ${index}`, lookedUpAt: new Date().toISOString() } });
+    });
+  }, count);
+}
+
+async function corruptLookup(page: Page) {
+  return page.evaluate(async () => {
+    const { syncEvents } = await import('/src/data/db.ts' as string), id = crypto.randomUUID();
+    await syncEvents.put({ profileId: 'local-guest', id, deviceId: 'synthetic-corruption', counter: 1, occurredAt: new Date().toISOString(), type: 'lookup', payload: { kind: 'dictionary', term: '', lookedUpAt: new Date().toISOString() } });
+    return id;
+  });
+}
 
 test('saved practice and unique lookups grow the same SVG through intermediate shapes', async ({ page, context }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -132,10 +150,11 @@ test('idle foliage moves gently around a fixed root and pauses on visibility eve
 
 test('invalid lookup history stays intact and does not block Today', async ({ page }) => {
   await page.goto('/today');
-  await page.evaluate(async () => { await (await import('/src/data/db.ts' as string)).settings.put({ key: 'profile:local-guest:lookupHistory', value: 'invalid' }); });
+  await expect(page.locator('.fern')).toHaveAttribute('aria-busy', 'false');
+  const invalid = await corruptLookup(page);
   await expect(page.getByRole('alert')).toContainText('查询记录无法读取');
   await expect(page.locator('.reading-task button').first()).toBeEnabled();
-  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).settings.get('profile:local-guest:lookupHistory')).value)).toBe('invalid');
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).syncEvents.get(['local-guest', id])).payload.term, invalid)).toBe('');
 });
 
 test('returning to Today resumes the last drawn shape and growth velocity', async ({ page }) => {
@@ -144,9 +163,7 @@ test('returning to Today resumes the last drawn shape and growth velocity', asyn
   await page.locator('.desktop-nav a[href="/today"]').click();
   const fern = page.locator('.fern');
   await expect(fern).toHaveAttribute('data-growth', '0');
-  await page.evaluate(async () => {
-    await (await import('/src/data/db.ts' as string)).settings.put({ key: 'profile:local-guest:lookupHistory', value: JSON.stringify(Array.from({ length: 100 }, (_, index) => ({ kind: 'dictionary', term: `synthetic ${index}`, lookedUpAt: new Date().toISOString() }))) });
-  });
+  await seedLookups(page, 100);
   await expect(fern).toHaveAttribute('aria-label', /查询 100 项/);
   const velocity = await fern.evaluate(async el => {
     const samples: { growth: number; time: number }[] = [];
@@ -195,20 +212,18 @@ test('returning to Today resumes the last drawn shape and growth velocity', asyn
 
 test('unreadable reference history preserves the last known growth across navigation', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/today');
-  await page.evaluate(async () => {
-    await (await import('/src/data/db.ts' as string)).settings.put({ key: 'profile:local-guest:lookupHistory', value: JSON.stringify(Array.from({ length: 40 }, (_, index) => ({ kind: 'dictionary', term: `synthetic ${index}`, lookedUpAt: new Date().toISOString() }))) });
-  });
+  await seedLookups(page, 40);
   const fern = page.locator('.fern');
   await expect.poll(async () => Number(await fern.getAttribute('data-growth'))).toBeCloseTo(fernGrowth(0, 0, 40).stem, 12);
   const before = await fern.locator('.fern-stem').getAttribute('d');
-  await page.evaluate(async () => { await (await import('/src/data/db.ts' as string)).settings.put({ key: 'profile:local-guest:lookupHistory', value: 'invalid' }); });
+  const invalid = await corruptLookup(page);
   await expect(page.getByRole('alert')).toContainText('查询记录无法读取');
   await expect(fern).toHaveAttribute('aria-label', /查询 40 项/);
   await expect(fern.locator('.fern-stem')).toHaveAttribute('d', before!);
   await page.locator('.desktop-nav a[href="/library"]').click(); await page.locator('.desktop-nav a[href="/today"]').click();
   await expect(page.getByRole('alert')).toContainText('查询记录无法读取');
   await expect(fern.locator('.fern-stem')).toHaveAttribute('d', before!);
-  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).settings.get('profile:local-guest:lookupHistory')).value)).toBe('invalid');
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).syncEvents.get(['local-guest', id])).payload.term, invalid)).toBe('');
 });
 
 test('a cold reload reserves the fern space and paints complete records before revealing it', async ({ page }) => {

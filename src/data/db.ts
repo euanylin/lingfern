@@ -5,9 +5,9 @@ import { communityLessonReady } from './communityInstall';
 import { preferencesSchema, type Preferences } from '../shared/preferences';
 import { exposureSchema, type Exposure } from '../shared/exposure';
 import { appendSyncEvent, boundedReferences, readSyncEvents, type NewEvent } from './sync';
+import { migrateLookupHistory } from './lookupHistory';
 import { canonicalJson, exposureContactKey, projectSyncEvents, syncSettingSchema } from '../shared/sync';
 import Dexie, { type Table } from 'dexie';
-import type { Card } from 'ts-fsrs';
 import { teachingSupport, lessonSchema, questions, score, validateAnswer, validateSelfAssessment, type Answer, type Lesson, type SelfAssessment } from '../shared/content';
 import type { SpokenCorpus } from '../core/spokenCorpus';
 import type { Corpus } from '../core/corpus';
@@ -30,19 +30,19 @@ export type Attempt = {
   selfAssessment?: SelfAssessment;
 };
 export type Profile = { id: string; name: string; nameIsCustom?: true; createdAt: string; preferences?: Preferences };
-export type Memory = { profileId: string; memoryId: string; term: string; definition: string; savedAt: string; reviewEnabled: boolean; card?: Card };
-export type MemoryReview = { id: string; profileId: string; memoryId: string; occurredAt: string; rating: 1 | 2 | 3 | 4; assistance: { answerRevealed: boolean; hintUsed: boolean }; configId: string };
+export type Memory = { profileId: string; memoryId: string; term: string; definition: string; savedAt: string };
 export type FeedbackNote = { id: string; profileId: string; attemptId: string; kind: 'text' | 'structured'; content: string; unknownReferences: boolean; createdAt: string };
 export type CommunityPackageRecord = { profileId: string; hash: string; id: string; lessons: Lesson[]; sources: CommunitySource[]; dictionary?: CommunityDictionaryEntry[]; corpus?: Corpus; spoken?: SpokenCorpus; state: 'staged' | 'ready'; installedAt: string };
 export const db = new Dexie('lingfern');
-db.version(8).stores({
+db.version(9).stores({
   sessions: 'id, profileId, status', attempts: 'id, sessionId, profileId', exposures: '[profileId+rootId]', settings: 'key', profiles: 'id',
-  memories: '[profileId+memoryId], profileId', memoryReviews: '[profileId+id], [profileId+memoryId], profileId', feedbackNotes: 'id, profileId, attemptId',
+  memories: '[profileId+memoryId], profileId', feedbackNotes: 'id, profileId, attemptId',
   communityPacks: '[profileId+hash], profileId, id, state', syncEvents: '[profileId+id], profileId',
   syncBatches: '[profileId+deviceId+batchId], profileId, [profileId+state]', syncClocks: 'profileId', syncConflicts: '[profileId+hash], profileId',
   syncDownloads: '[profileId+accountId+bindingVersion], profileId', syncReceipts: '[profileId+accountId+bindingVersion+deviceId+batchId], profileId',
   syncUploads: '[profileId+accountId+bindingVersion+deviceId+batchId], profileId',
 });
+db.version(10).stores({ syncEvents: '[profileId+id], profileId, [profileId+type]' });
 export const syncEvents = db.table('syncEvents');
 export const syncClocks = db.table('syncClocks');
 export const sessions = db.table('sessions') as Table<Session, string>;
@@ -51,7 +51,6 @@ export const exposures = db.table('exposures') as Table<Exposure, [string, strin
 export const settings = db.table('settings') as Table<{ key: string; value: string }, string>;
 export const profiles = db.table('profiles') as Table<Profile, string>;
 export const memories = db.table('memories') as Table<Memory, [string, string]>;
-export const memoryReviews = db.table('memoryReviews') as Table<MemoryReview, [string, string]>;
 export const feedbackNotes = db.table('feedbackNotes') as Table<FeedbackNote, string>;
 export const communityPacks = db.table('communityPacks') as Table<CommunityPackageRecord, [string, string]>;
 
@@ -412,13 +411,13 @@ export async function projectPreferences(profileId: string) {
   return db.transaction('rw', profiles, settings, syncEvents, async () => {
     const profile = await profiles.get(profileId);
     if (!profile) throw new Error('NOT_FOUND');
-    const merged = projectSyncEvents(await readSyncEvents(profileId));
+    const merged = projectSyncEvents(await readSyncEvents(profileId, db, ['preferences', 'setting']));
     const preferences = merged.preferences?.payload ?? profile.preferences;
     if (merged.preferences && canonicalJson(preferences) !== canonicalJson(profile.preferences ? preferencesSchema.parse(profile.preferences) : null)) await profiles.update(profileId, { preferences });
     const values = new Map<string, string>();
-    const rows = await settings.toArray();
-    const stored = new Map(rows.map(row => [row.key, row.value]));
     const prefix = `profile:${profileId}:`;
+    const rows = await settings.where('key').startsWith(prefix).toArray();
+    const stored = new Map(rows.map(row => [row.key, row.value]));
     for (const row of rows) if (row.key.startsWith(prefix)) {
       const key = row.key.slice(prefix.length);
       if (syncSettingSchema.safeParse({ key, value: row.value }).success) values.set(key, row.value);
@@ -434,7 +433,8 @@ export async function projectPreferences(profileId: string) {
 
 // Capture originals once before remote projection or backup cloning.
 export async function bootstrapSyncEvents(profileId: string) {
-  return db.transaction('rw', [profiles, sessions, attempts, exposures, memories, memoryReviews, settings, syncEvents, syncClocks], async () => {
+  await migrateLookupHistory(profileId);
+  return db.transaction('rw', [profiles, sessions, attempts, exposures, memories, settings, syncEvents, syncClocks], async () => {
     if ((await syncClocks.get(profileId))?.deleted) throw new Error('PROFILE_DELETED');
     const marker = `profile:${profileId}:syncBootstrap`;
     if (await settings.get(marker)) return;
@@ -488,14 +488,9 @@ export async function bootstrapSyncEvents(profileId: string) {
       }
     }
     for (const memory of await memories.where('profileId').equals(profileId).toArray()) {
-      const saved: NewEvent = await Dexie.waitFor(boundedReferences({ type: 'saved_item', payload: { memoryId: memory.memoryId, saved: true, reviewEnabled: memory.reviewEnabled } }));
+      const saved: NewEvent = await Dexie.waitFor(boundedReferences({ type: 'saved_item', payload: { memoryId: memory.memoryId, saved: true } }));
       if (saved.type !== 'saved_item') throw new Error('SYNC_EVENT_CONFLICT');
       await queue(saved, memory.savedAt);
-      const current = merged.savedItems.get(saved.payload.memoryId);
-      if (!memory.reviewEnabled || (current && (!current.payload.saved || !current.payload.reviewEnabled))) continue;
-      const originals = await memoryReviews.where('[profileId+memoryId]').equals([profileId, memory.memoryId]).toArray();
-      originals.sort((a, b) => a.occurredAt < b.occurredAt ? -1 : a.occurredAt > b.occurredAt ? 1 : a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
-      for (const review of originals) await queue({ type: 'memory_review', payload: { memoryId: review.memoryId, rating: review.rating, configId: review.configId, assistance: review.assistance } }, review.occurredAt, review.id);
     }
     if (profile?.preferences && !merged.preferences) await queue({ type: 'preferences', payload: preferencesSchema.parse(profile.preferences) });
     const values = new Map<string, string>();

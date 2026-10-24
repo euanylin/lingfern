@@ -13,7 +13,7 @@ afterEach(() => vi.unstubAllGlobals());
 async function actualPractice() {
   const primary = await inspectCommunityPack(readSourcePackFixture('wikipedia-listening-010'));
   const application = await inspectCommunityPack(readSourcePackFixture('wikipedia-listening-005'));
-  const lesson = spokenCorpusLesson(primary.spoken!, new Set(), 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
+  const lesson = spokenCorpusLesson(primary.spoken!, new Set(), 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
   return { primary, application, lesson };
 }
 
@@ -42,13 +42,13 @@ it('retains two actual package owners and the taught operation, rejecting forged
   const approved = { ...lesson, reviewStatus: 'approved' };
   expect(lessonSchema.safeParse(approved).success).toBe(false);
   const seen = new Set([lesson.materials[1].id.slice(7)]);
-  const fallback = spokenCorpusLesson(primary.spoken!, seen, 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
+  const fallback = spokenCorpusLesson(primary.spoken!, seen, 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
   expect(fallback.materials.some(material => material.id === lesson.materials[1].id)).toBe(false);
   expect(lessonPackageIds(fallback)).toEqual([primary.hash, application.hash]);
   expect([lesson.materials[1].title, fallback.materials[1].title].sort()).toEqual(['Colocation centre', 'Cookie Clicker']);
   expect(corpusOperation(fallback.materials[1].questions[0])).toBe(`evidence:${spokenConditionPrompt}`);
   seen.add(fallback.materials[1].id.slice(7));
-  const exhausted = spokenCorpusLesson(primary.spoken!, seen, 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
+  const exhausted = spokenCorpusLesson(primary.spoken!, seen, 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
   expect(exhausted.materials.every(material => !seen.has(material.id.slice(7)))).toBe(true);
   expect(lessonPackageIds(exhausted)).toEqual([primary.hash]);
 });
@@ -93,8 +93,8 @@ it('parses a real singleton topic bank without inventing a second root, then tra
   const root = primary.spoken!.records.find(record => record.rootId === original.materials[0].rootId)!;
   const singleton = spokenCorpusSchema.parse({ ...primary.spoken!, records: [root] });
   expect(singleton.records).toHaveLength(1);
-  expect(spokenCorpusLesson(singleton, new Set(), 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`)).toBeUndefined();
-  const lesson = spokenCorpusLesson(singleton, new Set(), 0, 91, 'C2', [], 'evidence', [], `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
+  expect(spokenCorpusLesson(singleton, new Set(), 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`)).toBeUndefined();
+  const lesson = spokenCorpusLesson(singleton, new Set(), 0, 91, 'C2', [], 'evidence', `evidence:${spokenConditionPrompt}`, [application.spoken!])!;
   expect(lesson).toBeDefined();
   expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
   expect(lesson.materials[0].rootId).toBe(root.rootId);
@@ -128,7 +128,7 @@ it('saves and restores a real newly installed sentence practice and test entirel
   const entries = sourcePacks.filter(pack => pack.skill === 'listening' && pack.sourceFamilies.includes('fleurs'));
   const packs = await Promise.all(entries.map(entry => inspectCommunityPack(new Uint8Array(readFileSync('public' + entry.path)))));
   const primary = packs[0], peers = packs.slice(1).map(pack => pack.spoken!);
-  const practice = spokenCorpusLesson(primary.spoken!, new Set(), 0, 91, 'B2', [], 'completion', [], undefined, peers)!;
+  const practice = spokenCorpusLesson(primary.spoken!, new Set(), 0, 91, 'B2', [], 'completion', undefined, peers)!;
   expect(practice).toBeDefined();
   const profileId = 'continued-sentence-offline-regression';
   await profiles.put({ id: profileId, name: 'Isolated regression', createdAt: new Date().toISOString() });

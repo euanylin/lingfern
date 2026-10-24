@@ -93,11 +93,11 @@ it('retries the requested semantic matching operation through actual source-pack
   ];
   expect(new Set(operations).size).toBe(2);
   for (const operation of operations) for (let seed = 0; seed < 8; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', operation)!;
     expect(corpusOperation(lesson.materials[0].questions[0])).toBe(operation);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     const seen = new Set([lesson.materials[0].id.slice('corpus-'.length)]);
-    const next = corpusLesson(bank, seen, seed, 300, 'B2', [], 'matching', [], operation);
+    const next = corpusLesson(bank, seen, seed, 300, 'B2', [], 'matching', operation);
     expect(next?.materials.some(material => seen.has(material.id.slice('corpus-'.length)))).not.toBe(true);
   }
 });
@@ -291,16 +291,6 @@ it('prioritizes verified due recurrence below repeated errors and above assistan
 });
 
 
-it('matches review candidates by whole lexical forms, not regex input or asserted word senses', async () => {
-  const { corpusReviewMatch } = await import('../src/core/corpusPractice');
-  expect(corpusReviewMatch('A bank by the river.', ['bank'])).toBe(true);
-  expect(corpusReviewMatch('banking', ['bank'])).toBe(false);
-  expect(corpusReviewMatch('They take   off.', ['take off'])).toBe(true);
-  expect(corpusReviewMatch('anything', ['.*'])).toBe(false);
-  expect(() => corpusReviewMatch('bank', Array(101).fill('bank'))).toThrow('CORPUS_REVIEW_LIMIT');
-});
-
-
 it('requires two fresh complete application roots and never counts taught or previously reserved contexts', () => {
   for (const skill of ['reading', 'listening'] as const) {
     const first = session('first', skill, transferLesson), second = session('second', skill, transferLesson);
@@ -390,10 +380,8 @@ it('selects eligible reading source families before their differently sized pass
     const corpus = { ...original, records: [make('voa', 1), make('gutenberg', 7), make('wikipedia', count)] };
     const selected = Array.from({ length: 300 }, (_, seed) => selectCorpusPassage(corpus, new Set(), seed, 300)!);
     for (const family of ['voa', 'gutenberg', 'wikipedia']) expect(selected.filter(item => item.source.id === `${family}-1`)).toHaveLength(100);
-    const reviewed = { ...corpus, records: corpus.records.map(record => record.id === 'voa-1' ? { ...record, passages: record.passages.map(item => ({ ...item, text: item.text + ' orchidmarker' })) } : record) };
     const bounded = { ...corpus, records: corpus.records.map(record => record.id === 'voa-1' ? { ...record, passages: record.passages.map(item => ({ ...item, wordCount: 301 })) } : record) };
     for (let seed = 0; seed < 20; seed++) {
-      expect(selectCorpusPassage(reviewed, new Set(), seed, 300, [], ['orchidmarker'])?.source.id).toBe('voa-1');
       expect(selectCorpusPassage(bounded, new Set(), seed, 300)?.source.id).not.toBe('voa-1');
     }
     const seen = new Set(['voa-0']);

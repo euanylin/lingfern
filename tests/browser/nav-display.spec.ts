@@ -1,6 +1,31 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
+for (const [locale, theme, width] of [['zh-Hans', 'dark', 375], ['en', 'light', 1440], ['zh-Hant', 'light', 320]] as const) test(`header logo stays static during touch: ${locale}/${theme}/${width}`, async ({ page, context }) => {
+  await page.setViewportSize({ width, height: 812 }); await page.goto('/settings');
+  await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+  await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+  const logo = page.locator(`#root>header>.${width < 768 ? 'mobile-brand' : 'home-mark'}`);
+  const idle = await logo.evaluate(el => getComputedStyle(el).backgroundColor), box = (await logo.boundingBox())!;
+  expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
+  const cdp = await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+  await expect(page.locator('html')).toHaveAttribute('data-touch-input', '');
+  await expect(logo).toHaveAttribute('data-touch-active', '');
+  await expect(logo).toHaveCSS('background-color', idle);
+  await expect(logo).toHaveCSS('transform', 'none');
+  expect(await logo.boundingBox()).toEqual(box);
+  await page.screenshot({ path: `output/playwright/header-logo-touch-${width}-${locale}.png` });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] }); await cdp.detach();
+  await expect(page).toHaveURL(/\/settings$/);
+  await logo.focus(); await logo.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await expect(logo).toBeFocused(); await expect(logo).toHaveCSS('text-decoration-line', 'underline');
+  await expect(page.locator('html')).not.toHaveAttribute('data-touch-input');
+  await logo.hover(); await expect(logo).toHaveCSS('transform', 'matrix(1.025, 0, 0, 1.025, 0, 0)');
+  await logo.press('Enter'); await expect(page).toHaveURL(/\/today$/);
+  await expect(page.getByRole('heading', { name: locale === 'en' ? 'Today' : '今日', exact: true })).toBeVisible();
+});
+
 test('desktop and mobile navigation display modes are independent and persist', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/settings');
@@ -135,23 +160,41 @@ test.describe('fixed navigation inertia', () => {
   });
 });
 
-for (const [locale, theme, width] of [['zh-Hans', 'light', 375], ['en', 'dark', 767], ['ar', 'dark', 320]] as const) test(`mobile icons lift for mouse hover and keyboard focus: ${locale}/${theme}`, async ({ page }, info) => {
+for (const [locale, theme, width] of [['zh-Hans', 'light', 375], ['en', 'dark', 767], ['ar', 'dark', 320]] as const) test(`mobile icons lift and highlight for mouse hover: ${locale}/${theme}`, async ({ page, context }, info) => {
   await page.setViewportSize({ width, height: 812 }); await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
   await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
+  await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
   const link = page.locator('.mobile-nav a[href="/library"]'), icon = link.locator('svg');
   const height = () => icon.evaluate(el => { const value = getComputedStyle(el).transform; return value === 'none' ? 0 : new DOMMatrixReadOnly(value).m42; });
   await page.mouse.move(0, 0); await expect(icon).toHaveCSS('transform', 'none');
   const before = (await link.boundingBox())!;
+  const idle = await link.evaluate(el => getComputedStyle(el).backgroundColor);
+  const selected = page.locator('.mobile-nav a[aria-current]');
+  await selected.evaluate(el => Promise.allSettled(el.getAnimations().map(animation => animation.finished)));
+  const selectedBackground = await selected.evaluate(el => getComputedStyle(el).backgroundColor);
+  const cdp = await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: before.x + before.width / 2, y: before.y + before.height / 2 }] });
+  await expect(link).toHaveAttribute('data-touch-active', '');
+  await link.evaluate(el => Promise.allSettled(el.getAnimations().map(animation => animation.finished)));
+  const touchBackground = await link.evaluate(el => getComputedStyle(el).backgroundColor);
+  expect(touchBackground).not.toBe(idle);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] }); await cdp.detach();
+  await expect(link).not.toHaveAttribute('data-touch-active'); await expect(link).toHaveCSS('background-color', idle);
   await link.hover(); await expect.poll(height).toBeCloseTo(-2, 1);
+  await expect(link).toHaveCSS('background-color', touchBackground);
   const hovered = (await link.boundingBox())!;
   expect(hovered).toEqual(before); expect(hovered.width).toBeGreaterThanOrEqual(44); expect(hovered.height).toBeGreaterThanOrEqual(44);
   await page.locator('.mobile-nav').screenshot({ path: info.outputPath('mouse-nav-lift.png') });
   await page.mouse.move(0, 0); await expect(icon).toHaveCSS('transform', 'none');
+  await expect(link).toHaveCSS('background-color', idle);
+  await selected.hover(); await expect(selected).toHaveCSS('background-color', selectedBackground);
+  await page.mouse.move(0, 0);
   await link.focus(); await link.press('Tab'); await page.keyboard.press('Shift+Tab');
   await expect(link).toBeFocused(); await expect.poll(height).toBeCloseTo(-2, 1);
   await link.blur(); await expect(icon).toHaveCSS('transform', 'none');
   await page.emulateMedia({ reducedMotion: 'reduce' }); await link.hover(); await expect(icon).toHaveCSS('transform', 'none');
+  await expect(link).toHaveCSS('background-color', touchBackground);
   await page.mouse.move(0, 0); await link.focus(); await link.press('Tab'); await page.keyboard.press('Shift+Tab');
   await expect(link).toBeFocused(); await expect(icon).toHaveCSS('transform', 'none');
   await link.press('Enter'); await expect(page).toHaveURL(/\/library$/);

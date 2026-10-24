@@ -10,11 +10,10 @@ import orderListeningSources from '../../public/audio/a2-speech/ORDER.json';
 import personalListeningSources from '../../public/audio/a2-speech/PERSONAL.json';
 import { sourcePacks, installedSourcePacks, installSourcePack } from '../data/sourcePacks';
 import { goalReviews } from '../data/goalReview';
-import { dueMemories } from '../data/memory';
 import { spokenCorpusLesson } from '../core/spokenCorpus';
 import { qualifiedLongSeconds } from '../core/spokenLongAdmission';
 import { filterCorpusRoots, corpusLesson } from '../core/corpus';
-import { beginnerSentenceReady, corpusInterestMatch, corpusPreferenceScore, corpusOperation, corpusPracticeHistory, corpusReviewMatch } from '../core/corpusPractice';
+import { beginnerSentenceReady, corpusInterestMatch, corpusPreferenceScore, corpusOperation, corpusPracticeHistory } from '../core/corpusPractice';
 import { wordListeningLesson, wordListeningWords } from '../core/wordListening';
 import { sentenceListeningLesson, sentencePolarityLesson, sentenceDescriptionLesson, sentenceMeaningLesson, sentenceNumericLesson } from '../core/beginnerListening';
 import sentenceSources from '../../public/audio/a1-sentences/SENTENCES.json';
@@ -36,7 +35,7 @@ const unfamiliarGoals = new Set(["argument-boundaries-in-context", "attributed-v
 
 const sourceTopics = new Map(__LINGFERN_SOURCE_TOPICS__.map(record => [record.rootId, record]));
 
-type PracticeReason = 'reteach' | 'retry' | 'review' | 'vocabulary';
+type PracticeReason = 'reteach' | 'retry' | 'review';
 
 function shortSources(level: Preferences['listening']) {
   const groups: { level: string; kind: 'choice' | 'completion'; group: string; sources: { rootId: string; title: string; audio: { duration: number } }[]; generate: (input: unknown, seen: ReadonlySet<string>, seed: number) => Lesson | undefined }[] = [];
@@ -91,7 +90,7 @@ async function selectedPractice(selection: PracticeSelection, input: { profileId
     if (!lesson) {
       const loaded = await loadReadingCorpus(profileId, maxWords);
       const corpus = { ...loaded, records: loaded.records.map(record => ({ ...record, passages: record.passages.filter(passage => allowed(record.rootId, record.title + '\n' + passage.text)) })).filter(record => record.passages.length) };
-      lesson = corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, kind, [], undefined, undefined, !selection.kinds.length);
+      lesson = corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, kind, undefined, undefined, !selection.kinds.length);
     }
   } else {
     for (const group of shortSources(preferences?.listening)) {
@@ -103,7 +102,7 @@ async function selectedPractice(selection: PracticeSelection, input: { profileId
       for (const bank of await loadSpokenCorpora(profileId)) banks.push({ ...bank, records: bank.records.map(record => ({ ...record, clips: record.clips.filter(clip => allowed(record.rootId, record.title + '\n' + clip.text)) })).filter(record => record.clips.length) });
       const seconds = qualifiedLongSeconds(banks, preferences?.listening, maxSeconds);
       for (const bank of banks) {
-        lesson = spokenCorpusLesson(bank, seen, seed, seconds, preferences?.listening, interests, kind, [], undefined, banks, !selection.kinds.length);
+        lesson = spokenCorpusLesson(bank, seen, seed, seconds, preferences?.listening, interests, kind, undefined, banks, !selection.kinds.length);
         if (lesson) break;
       }
     }
@@ -126,10 +125,8 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   const reviews = goalReviews(ownHistory.map(session => session.lesson), ownHistory, records.filter(record => record.profileId === profileId));
   const { focus } = corpusPracticeHistory(history, records, profileId, skill, 'all', preferences?.[skill], reviews);
   const matchesFocus = (lesson: Lesson) => !!focus && corpusOperation(lesson.materials[0].questions[0]) === focus.operation;
-  const reviewTerms = [...new Set((await dueMemories(profileId)).slice(0, 100).map(item => item.term))];
-  const matchesReview = (lesson: Lesson) => lesson.materials.some(material => corpusReviewMatch(material.blocks.map(block => block.text).join('\n'), reviewTerms));
-  const requestedFocus = focus?.reason === 'retry' && reviewTerms.length ? undefined : focus?.kind;
-  const freshReview = focus?.reason === 'review' || reviewTerms.length > 0 && focus?.reason !== 'reteach';
+  const requestedFocus = focus?.kind;
+  const freshReview = focus?.reason === 'review';
   const contacts = await exposures.where('profileId').equals(profileId).toArray();
   const seen = new Set([...reserved, ...previewIds, ...new Set([...contacts.flatMap(exposure => (exposure.contacts ?? []).map(contact => contact.materialId))].filter(id => id.startsWith('corpus-')).map(id => id.slice('corpus-'.length)))]);
   const seenRoots = qualifiedKnownRoots([...ownHistory.flatMap(session => session.lesson.materials.map(material => material.rootId)), ...contacts.map(contact => contact.rootId)], ownHistory.flatMap(session => session.lesson.materials));
@@ -157,52 +154,52 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   const personalKinds = ['need', 'preference'] as const;
   const personalKind = skill === 'listening' && preferences?.listening === 'A2'
     ? requestedFocus === 'choice' ? personalKinds.find(kind => focus?.operation === `choice:heard-personal-${kind}`)
-      : !requestedFocus && !reviewTerms.length ? personalKinds[seed % 12 - 5] : undefined
+      : !requestedFocus ? personalKinds[seed % 12 - 5] : undefined
     : undefined;
   if (personalKind && (online || await offlineGroupReady('audio-a2'))) next = personalListeningLesson(personalListeningSources[personalKind].filter(availableShortSource), seen, seed, personalKind);
   if (personalKind && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const actionOrderRequested = skill === 'listening' && preferences?.listening === 'A2'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-action-order' : !requestedFocus && !reviewTerms.length && seed % 12 === 7);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-action-order' : !requestedFocus && seed % 12 === 7);
   if (actionOrderRequested && (online || await offlineGroupReady('audio-a2'))) next = actionOrderListeningLesson(orderListeningSources.filter(availableShortSource), seen, seed);
   if (actionOrderRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const stateChangeRequested = skill === 'listening' && preferences?.listening === 'A2'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-state-change' : !requestedFocus && !reviewTerms.length && seed % 12 === 8);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-state-change' : !requestedFocus && seed % 12 === 8);
   if (stateChangeRequested && (online || await offlineGroupReady('audio-a2'))) next = stateChangeListeningLesson(changeListeningSources.filter(availableShortSource), seen, seed);
   if (stateChangeRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const statedReasonRequested = skill === 'listening' && preferences?.listening === 'A2'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-stated-reason' : !requestedFocus && !reviewTerms.length && seed % 12 === 9);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-stated-reason' : !requestedFocus && seed % 12 === 9);
   if (statedReasonRequested && (online || await offlineGroupReady('audio-a2'))) next = statedReasonListeningLesson(reasonListeningSources.filter(availableShortSource), seen, seed);
   if (statedReasonRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const statedRuleRequested = skill === 'listening' && preferences?.listening === 'A2'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-stated-rule' : !requestedFocus && !reviewTerms.length && seed % 12 === 10);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-stated-rule' : !requestedFocus && seed % 12 === 10);
   if (statedRuleRequested && (online || await offlineGroupReady('audio-a2'))) next = statedRuleListeningLesson(ruleListeningSources.filter(availableShortSource), seen, seed);
   if (statedRuleRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const shortIntegrationRequested = skill === 'listening' && preferences?.listening === 'A2'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-short-integration' : !requestedFocus && !reviewTerms.length && seed % 12 === 11);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:heard-short-integration' : !requestedFocus && seed % 12 === 11);
   if (shortIntegrationRequested && (online || await offlineGroupReady('audio-a2'))) next = shortIntegrationListeningLesson(integrationListeningSources.filter(availableShortSource), seen, seed);
   if (shortIntegrationRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const mainPointRequested = skill === 'listening' && preferences?.listening === 'B1'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:main-point' : !requestedFocus && !reviewTerms.length && seed % 12 === 6);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:main-point' : !requestedFocus && seed % 12 === 6);
   if (mainPointRequested && (online || await offlineGroupReady('audio-b1'))) next = mainPointListeningLesson(mainPointListeningSources.filter(availableShortSource), seen, seed);
   if (mainPointRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const conditionRequested = skill === 'listening' && preferences?.listening === 'B1'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:condition-outcome' : !requestedFocus && !reviewTerms.length && seed % 12 === 7);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:condition-outcome' : !requestedFocus && seed % 12 === 7);
   if (conditionRequested && (online || await offlineGroupReady('audio-b1'))) next = conditionListeningLesson(conditionListeningSources.filter(availableShortSource), seen, seed);
   if (conditionRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const referenceRequested = skill === 'listening' && preferences?.listening === 'B1'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:reference' : !requestedFocus && !reviewTerms.length && seed % 12 === 8);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:reference' : !requestedFocus && seed % 12 === 8);
   if (referenceRequested && (online || await offlineGroupReady('audio-b1'))) next = referenceListeningLesson(referenceListeningSources.filter(availableShortSource), seen, seed);
   if (referenceRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const motiveRequested = skill === 'listening' && preferences?.listening === 'B1'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:narrative-motive' : !requestedFocus && !reviewTerms.length && seed % 12 === 9);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:narrative-motive' : !requestedFocus && seed % 12 === 9);
   if (motiveRequested && (online || await offlineGroupReady('audio-b1'))) next = motiveListeningLesson(motiveListeningSources.filter(availableShortSource), seen, seed);
   if (motiveRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const intentionRequested = skill === 'listening' && preferences?.listening === 'B1'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:specific-intention' : !requestedFocus && !reviewTerms.length && seed % 12 === 10);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:specific-intention' : !requestedFocus && seed % 12 === 10);
   if (intentionRequested && (online || await offlineGroupReady('audio-b1'))) next = intentionListeningLesson(intentionListeningSources.filter(availableShortSource), seen, seed);
   if (intentionRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
   const procedureRequested = skill === 'listening' && preferences?.listening === 'B1'
-    && (requestedFocus === 'choice' ? focus?.operation === 'choice:procedural-plan' : !requestedFocus && !reviewTerms.length && seed % 12 === 11);
+    && (requestedFocus === 'choice' ? focus?.operation === 'choice:procedural-plan' : !requestedFocus && seed % 12 === 11);
   if (procedureRequested && (online || await offlineGroupReady('audio-b1'))) next = procedureListeningLesson(procedureListeningSources.filter(availableShortSource), seen, seed);
   if (procedureRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
 
@@ -228,7 +225,7 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
     if (next) break;
     if (skill === 'reading') {
       const polarityRequested = requestedFocus === 'choice' && focus?.operation === 'choice:stated-polarity';
-      if (preferences?.reading === 'A1' && (polarityRequested || !requestedFocus && !reviewTerms.length && seed % 2 === 1)
+      if (preferences?.reading === 'A1' && (polarityRequested || !requestedFocus && seed % 2 === 1)
         && (!topics.length || topics.includes('daily-life')) && (!interests?.length || interests.includes('daily-life'))) {
         next = sentencePolarityLesson(sentenceSources.filter(source => !previewRoots.has(source.rootId) && !seenRoots.has(source.rootId)), seen, seed, 'reading');
       }
@@ -236,11 +233,9 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
       if (!next) {
         const loaded = await loadReadingCorpus(profileId, maxWords);
         const corpus = filterCorpusRoots(topics.length ? { ...loaded, records: loaded.records.map(record => ({ ...record, passages: record.passages.filter(passage => corpusInterestMatch(record.title + '\n' + passage.text, topics)) })).filter(record => record.passages.length) } : loaded, previewRoots);
-        if (freshReview) next = corpusLesson(filterCorpusRoots(corpus, seenRoots), seen, seed, maxWords, preferences?.reading, interests, requestedFocus, reviewTerms, requestedFocus ? focus?.operation : undefined);
-        if (next && focus?.reason !== 'review' && reviewTerms.length && !matchesReview(next)) next = undefined;
-        next ??= corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, requestedFocus, reviewTerms, requestedFocus ? focus?.operation : undefined);
-        if (next && focus?.reason === 'retry' && reviewTerms.length && !matchesReview(next)) next = corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, focus.kind, [], focus.operation);
-        if (next && unfamiliarGoals.has(next.goalId) && next.materials.some(material => seenRoots.has(material.rootId))) next = corpusLesson(filterCorpusRoots(corpus, seenRoots), seen, seed, maxWords, preferences?.reading, interests, ['explicit-person-description', 'claim-example-link', 'discourse-organization-in-context', 'register-audience-in-context', 'argument-boundaries-in-context', 'indirect-stance-in-context'].includes(next.goalId) ? 'matching' : 'choice', reviewTerms, corpusOperation(next.materials[0].questions[0]));
+        if (freshReview) next = corpusLesson(filterCorpusRoots(corpus, seenRoots), seen, seed, maxWords, preferences?.reading, interests, requestedFocus, requestedFocus ? focus?.operation : undefined);
+        next ??= corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, requestedFocus, requestedFocus ? focus?.operation : undefined);
+        if (next && unfamiliarGoals.has(next.goalId) && next.materials.some(material => seenRoots.has(material.rootId))) next = corpusLesson(filterCorpusRoots(corpus, seenRoots), seen, seed, maxWords, preferences?.reading, interests, ['explicit-person-description', 'claim-example-link', 'discourse-organization-in-context', 'register-audience-in-context', 'argument-boundaries-in-context', 'indirect-stance-in-context'].includes(next.goalId) ? 'matching' : 'choice', corpusOperation(next.materials[0].questions[0]));
       }
     }
     else if (preferences?.listening === 'A1') {
@@ -275,35 +270,32 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
           const bank = banks[(packSeed + offset) % banks.length];
           const applicationBanks = installedBanks.map(other => ({ ...other, records: other.records.filter(record => !previewRoots.has(record.rootId) && (!freshOnly || !seenRoots.has(record.rootId))) }));
           const eligible = freshOnly ? { ...bank, records: bank.records.filter(source => !seenRoots.has(source.rootId)) } : bank;
-          let candidate = spokenCorpusLesson(eligible, seen, seed, qualifiedSeconds, preferences?.listening, interests, requestedFocus, reviewTerms, requestedFocus ? focus?.operation : undefined, applicationBanks);
-          if (candidate && focus?.reason === 'retry' && reviewTerms.length && !matchesReview(candidate)) candidate = spokenCorpusLesson(eligible, seen, seed, qualifiedSeconds, preferences?.listening, interests, focus.kind, [], focus.operation, applicationBanks);
+          let candidate = spokenCorpusLesson(eligible, seen, seed, qualifiedSeconds, preferences?.listening, interests, requestedFocus, requestedFocus ? focus?.operation : undefined, applicationBanks);
           if (candidate && unfamiliarGoals.has(candidate.goalId) && candidate.materials.some(material => seenRoots.has(material.rootId))) {
             const unseen = { ...eligible, records: eligible.records.filter(record => !seenRoots.has(record.rootId)) };
             const unseenApplications = applicationBanks.map(other => ({ ...other, records: other.records.filter(record => !seenRoots.has(record.rootId)) }));
-            candidate = spokenCorpusLesson(unseen, seen, seed, qualifiedSeconds, preferences?.listening, interests, ['claim-example-link', 'discourse-organization-in-context', 'register-audience-in-context', 'argument-boundaries-in-context', 'indirect-stance-in-context'].includes(candidate.goalId) ? 'matching' : 'choice', reviewTerms, corpusOperation(candidate.materials[0].questions[0]), unseenApplications);
+            candidate = spokenCorpusLesson(unseen, seen, seed, qualifiedSeconds, preferences?.listening, interests, ['claim-example-link', 'discourse-organization-in-context', 'register-audience-in-context', 'argument-boundaries-in-context', 'indirect-stance-in-context'].includes(candidate.goalId) ? 'matching' : 'choice', corpusOperation(candidate.materials[0].questions[0]), unseenApplications);
           }
           if (!candidate) continue;
           const preference = (lesson: Lesson) => corpusPreferenceScore(lesson.materials[0].title, lesson.materials[0].blocks.map(block => block.text).join('\n'), interests ?? [], seed, preferences?.listening, lesson.materials[0].audio?.duration);
-          if (!next || matchesReview(next) === matchesReview(candidate) && preference(candidate) > preference(next) || !matchesReview(next) && matchesReview(candidate)) next = candidate;
-          if (focus && (focus.reason === 'reteach' || !reviewTerms.length) && matchesFocus(candidate)) { next = candidate; break; }
-          if (reviewTerms.length && matchesReview(candidate)) { next = candidate; break; }
-          if (!focus && !reviewTerms.length && !interests?.length) { next = candidate; break; }
+          if (!next || preference(candidate) > preference(next)) next = candidate;
+          if (focus && matchesFocus(candidate)) { next = candidate; break; }
+          if (!focus && !interests?.length) { next = candidate; break; }
         }
-        if (next && freshOnly && focus?.reason !== 'review' && reviewTerms.length && !matchesReview(next)) next = undefined;
         if (next) break;
       }
     }
     // Unrelated new tasks must not hide installed focused practice.
-    if (source && next && focus && !matchesFocus(next) && !matchesReview(next)) {
+    if (source && next && focus && !matchesFocus(next)) {
       downloadedFallback = next;
       next = undefined;
       continue;
     }
     if (next) break;
   }
-  if (downloadedFallback && (!next || !matchesFocus(next) && !matchesReview(next))) next = downloadedFallback;
+  if (downloadedFallback && (!next || !matchesFocus(next))) next = downloadedFallback;
   if (next && requestedFocus && focus?.operation && next.materials.some(material => corpusOperation(material.questions[0]) !== focus.operation)) next = undefined;
-  const reason = next && (matchesReview(next) && focus?.reason !== 'reteach' && focus?.reason !== 'review' ? 'vocabulary' : focus && matchesFocus(next) && (focus.reason !== 'review' || next.materials.every(material => !seenRoots.has(material.rootId))) ? focus.reason : undefined);
+  const reason = next && focus && matchesFocus(next) && (focus.reason !== 'review' || next.materials.every(material => !seenRoots.has(material.rootId))) ? focus.reason : undefined;
   return { lesson: next ? organizePractice(next, alignmentBanks) : undefined, reason, downloadFailed };
 }
 

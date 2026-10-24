@@ -66,7 +66,7 @@ it('uses runtime slots and deterministic rotations without a source-ID approval 
 });
 it('transfers the same operation at C1/C2 with identical Test snapshots and safe lower-level withholding', () => {
   for (const point of ['C1', 'C2'] as const) for (const seed of [0, 1, 54, 55, 126, 127]) {
-    const lesson = corpusLesson(bank, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], seed < 2 ? 'choice' : undefined, [], seed < 2 ? operation : undefined)!;
+    const lesson = corpusLesson(bank, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], seed < 2 ? 'choice' : undefined, seed < 2 ? operation : undefined)!;
     lessonSchema.parse(lesson); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
     expect(lesson.teaching!.en).toContain('participant, quantity, clarifying timeline');
@@ -77,8 +77,8 @@ it('transfers the same operation at C1/C2 with identical Test snapshots and safe
       else for (let answer = 0; answer < 3; answer++) { expect(question.hints![1].en).toContain('“about”'); expect(score(question, answer).correct).toBe(answer === question.answer); expect(score(tested, answer)).toEqual(score(question, answer)); }
     }
   }
-  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 54, 1200, point, [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(ids), 32, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 54, 1200, point, [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(ids), 32, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
 });
 it('saves both actual generated modes transactionally and exports complete recoverable answers', async () => {
   await Promise.all(db.tables.map(table => table.clear()));

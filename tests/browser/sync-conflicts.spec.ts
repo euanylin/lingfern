@@ -5,7 +5,7 @@ test('conflict diagnosis downloads both copies and leaves quarantine intact', as
   await page.goto('/today');
   await page.evaluate(async () => {
     const path = '/src/data/sync.ts', shared = '/src/shared/sync.ts'; const sync = await import(path), schema = await import(shared);
-    const batch = { product: 'Lingfern', formatVersion: 1, profileId: 'local-guest', deviceId: 'remote', batchId: 'fixed', events: [{ id: 'same-event', deviceId: 'remote', counter: 1, occurredAt: '2026-09-30T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense', saved: true, reviewEnabled: false } }] };
+    const batch = { product: 'Lingfern', formatVersion: 1, profileId: 'local-guest', deviceId: 'remote', batchId: 'fixed', events: [{ id: 'same-event', deviceId: 'remote', counter: 1, occurredAt: '2026-09-30T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense', saved: true } }] };
     const first = await schema.validateSyncBatch(batch); await sync.receiveSyncBatch('local-guest', first.batch, first.hash);
     batch.events[0].payload.saved = false;
     const second = await schema.validateSyncBatch(batch); await sync.receiveSyncBatch('local-guest', second.batch, second.hash);

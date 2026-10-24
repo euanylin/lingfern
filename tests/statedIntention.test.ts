@@ -85,7 +85,7 @@ it('rejects qualification, questions, quoted or inherited unknown speakers, canc
 
 it('uses simple three-language intention teaching, preserves source evidence and identical Practice/Test scoring on two actual roots', () => {
   for (const point of ['A1', 'A2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 120, point, [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 120, point, [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal!['zh-Hans']).toBe('找到这个人想做的事。'); expect(lesson.goal!['zh-Hant']).toBe('找到這個人想做的事。');
     expect(lesson.teaching!['zh-Hans']).toContain('想做不等于正在做或已经完成'); expect(lesson.workedExample!.en).toContain('read a book');
@@ -118,19 +118,19 @@ it('reaches both new beginner default slots and withholds missing/exposed partne
       const lesson = corpusLesson(bank, new Set(), seed, 120, point)!;
       expect(lesson.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
     }
-    for (const scope of scopes) expect(corpusLesson(bank, new Set([scope.id]), 0, 120, point, [], 'choice', [], operation)).toBeUndefined();
+    for (const scope of scopes) expect(corpusLesson(bank, new Set([scope.id]), 0, 120, point, [], 'choice', operation)).toBeUndefined();
     const one = { ...bank, records: [bank.records[0]] };
-    expect(corpusLesson(one, new Set(), 0, 120, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson(one, new Set(), 0, 120, point, [], 'choice', operation)).toBeUndefined();
     const partner = corpus.records.find(source => source.rootId === 'voa-article-3113733')!;
     const missing = { ...bank, records: [bank.records[0], partner] };
-    expect(corpusLesson(missing, new Set(), 0, 120, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson(missing, new Set(), 0, 120, point, [], 'choice', operation)).toBeUndefined();
     for (const seed of [index * 2, index * 2 + 1]) {
       const lesson = corpusLesson(missing, new Set(), seed, 120, point)!;
       expect(lesson.materials.map(material => corpusOperation(material.questions[0]))).toEqual(['completion', 'completion']);
     }
   }
   for (const point of ['B1','B2','C1','C2'] as const) {
-    expect(corpusLesson(bank, new Set(), 0, 300, point, [], 'choice', [], operation)).toBeUndefined();
+    expect(corpusLesson(bank, new Set(), 0, 300, point, [], 'choice', operation)).toBeUndefined();
     expect(corpusMaterial({ source: bank.records[0], passage: bank.records[0].passages[0] }, 0, point, 'choice', operation)).toBeUndefined();
   }
   const originalFetch = globalThis.fetch;
@@ -141,7 +141,7 @@ it('reaches both new beginner default slots and withholds missing/exposed partne
 });
 
 it('keeps saved history unchanged and recommends intention only on the supported reading routes', () => {
-  const lesson = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)!;
+  const lesson = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)!;
   const session: Session = { id: 'intent-history', profileId: 'intent-policy', lesson, contentHash: 'a'.repeat(64), position: 3, status: 'completed',
     startedAt: new Date(Date.now() - 100000).toISOString(), assistance: { hintLevel: 0 }, leaseUntil: 0 };
   const records: Attempt[] = lesson.materials.map(material => {
@@ -165,7 +165,7 @@ it('saves all Practice/Test responses, exposure and recovery while retaining an 
   try {
     const earlier = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'completion')!;
     const previous = await createSession(earlier, 'intent-earlier'), original = JSON.stringify(previous.lesson);
-    for (const lesson of [corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)!, asTestLesson(corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)!)]) {
+    for (const lesson of [corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)!, asTestLesson(corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)!)]) {
       const profileId = `intent-db-${lesson.mode ?? 'practice'}`, session = await createSession(lesson, profileId);
       let current: Session = await claimSession(session.id, 'intent-owner');
       for (const [position, { material, question }] of questions(lesson).entries()) {

@@ -83,7 +83,7 @@ it('rejects real non-temporal about/second and the attributed conflicting earlie
 
 it('uses genuine same-operation roots at C1/C2, identical Test scoring and unscored interpretation', () => {
   for (const point of ['C1', 'C2'] as const) for (const actual of point === 'C1' ? [bank] : [bank, longBank]) for (const seed of [0, 1, 2, 54, 55, 126, 127]) {
-    const forced = seed < 3, lesson = corpusLesson(actual, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], forced ? 'choice' : undefined, [], forced ? operation : undefined)!;
+    const forced = seed < 3, lesson = corpusLesson(actual, new Set(), seed, point === 'C1' ? 900 : 1200, point, [], forced ? 'choice' : undefined, forced ? operation : undefined)!;
     lessonSchema.parse(lesson); expect(lesson.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.teaching!.en).toContain('minimum bounds'); expect(lesson.goal.en).toContain('timing qualification');
@@ -98,9 +98,9 @@ it('uses genuine same-operation roots at C1/C2, identical Test scoring and unsco
   }
   const emptyNlp = { ...bank, records: bank.records.map(source => ({ ...source, passages: source.passages.map(passage => ({ ...passage, language: { generator: 'spacy-3.8.16/en_core_web_sm-3.8.0' as const, modelSha256: '0'.repeat(64), reviewStatus: 'pending' as const, tokens: [] } })) })) };
   corpusSchema.parse(emptyNlp);
-  expect(corpusLesson(emptyNlp, new Set(), 54, 1200, 'C2', [], 'choice', [], operation)!.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
-  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 54, 1200, point, [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(shortIds), 32, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(emptyNlp, new Set(), 54, 1200, 'C2', [], 'choice', operation)!.materials.map(material => corpusOperation(material.questions[0]))).toEqual([operation, operation]);
+  for (const point of ['A1', 'A2', 'B1', 'B2'] as const) expect(corpusLesson(bank, new Set(), 54, 1200, point, [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(shortIds), 32, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
 });
 
 it('keeps ordinary practice usable without a timing partner and installed application preserves the primary', () => {
@@ -108,8 +108,8 @@ it('keeps ordinary practice usable without a timing partner and installed applic
   const one = { ...bank, records: [bank.records[0], other] }, lesson = corpusLesson(one, new Set(), 54, 1200, 'C2')!;
   expect(lesson).toBeDefined(); expect(lesson.materials[0].rootId).toBe(bank.records[0].rootId);
   expect(lesson.materials.every(material => corpusOperation(material.questions[0]) === 'completion')).toBe(true);
-  expect(corpusLesson(one, new Set(), 54, 1200, 'C2', [], 'choice', [], operation)).toBeUndefined();
-  const installed = corpusLesson(one, new Set(), 54, 1200, 'C2', [], undefined, [], undefined, bank)!;
+  expect(corpusLesson(one, new Set(), 54, 1200, 'C2', [], 'choice', operation)).toBeUndefined();
+  const installed = corpusLesson(one, new Set(), 54, 1200, 'C2', [], undefined, undefined, bank)!;
   expect(installed.materials[0].rootId).toBe(lesson.materials[0].rootId); expect(installed.materials[0].blocks).toEqual(lesson.materials[0].blocks);
   expect(installed.materials.every(material => corpusOperation(material.questions[0]) === operation)).toBe(true);
 });

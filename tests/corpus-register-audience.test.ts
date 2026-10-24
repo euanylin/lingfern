@@ -49,7 +49,7 @@ it('derives four contextual comparisons per original, rejects all wrong matches 
 it('preserves complete native letters, exact independent originals, no leaked target examples and Practice/Test snapshots', async () => {
   const corpus = await reading(); expect(corpus.records).toHaveLength(2);
   for (const seed of [0, 1, 2, 3, 0xffffffff]) {
-    const lesson = corpusLesson(corpus, new Set(), seed, 900, 'C1', [], 'matching', [], registerAudienceOperation)!; expect(lesson.goalId).toBe('register-audience-in-context'); lessonSchema.parse(lesson);
+    const lesson = corpusLesson(corpus, new Set(), seed, 900, 'C1', [], 'matching', registerAudienceOperation)!; expect(lesson.goalId).toBe('register-audience-in-context'); lessonSchema.parse(lesson);
     expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2);
     for (const [i, m] of lesson.materials.entries()) { expect(corpusOperation(m.questions[0])).toBe(registerAudienceOperation); expect(m.questions[0].hints?.length).toBe(i ? undefined : 3); expect(m.blocks[0].text).toBe(scopes.reading.find(s => s.rootId === m.rootId)!.text); expect(lesson.workedExample!.en).not.toContain(m.blocks[0].text.slice(0, 30)); }
     for (const l of ['en', 'zh-Hans', 'zh-Hant'] as const) { expect(practiceLocale(lesson, l)).toBe('en'); for (const field of ['goal', 'teaching', 'workedExample', 'nextStep'] as const) expect(lesson[field]![l].length).toBeGreaterThan(30); }
@@ -57,9 +57,9 @@ it('preserves complete native letters, exact independent originals, no leaked ta
   }
   expect(corpus.records[0].passages[0].text).toContain('(Unopened by her.)'); expect(corpus.records[1].passages[0].text).toContain('read it again and again');
   for (const source of corpus.records) for (const field of ['rootId', 'sourceHash', 'attribution', 'licence', 'originalUrl'] as const) { const bad = structuredClone(source); bad[field] = 'Changed'; expect(corpusMaterial({ source: bad, passage: bad.passages[0] }, 0, 'C1', 'matching', registerAudienceOperation)).toBeUndefined(); }
-  for (const source of corpus.records) expect(corpusLesson(corpus, new Set(source.passages.map(p => p.id)), 0, 900, 'C1', [], 'matching', [], registerAudienceOperation)).toBeUndefined();
-  expect(corpusLesson({ ...corpus, records: corpus.records.slice(0, 1) }, new Set(), 0, 900, 'C1', [], 'matching', [], registerAudienceOperation)).toBeUndefined();
-  expect(corpusLesson(corpus, new Set(), 0, 500, 'C1', [], 'matching', [], registerAudienceOperation)).toBeUndefined();
+  for (const source of corpus.records) expect(corpusLesson(corpus, new Set(source.passages.map(p => p.id)), 0, 900, 'C1', [], 'matching', registerAudienceOperation)).toBeUndefined();
+  expect(corpusLesson({ ...corpus, records: corpus.records.slice(0, 1) }, new Set(), 0, 900, 'C1', [], 'matching', registerAudienceOperation)).toBeUndefined();
+  expect(corpusLesson(corpus, new Set(), 0, 500, 'C1', [], 'matching', registerAudienceOperation)).toBeUndefined();
 });
 it('bounds new transcript bindings by the unchanged original and remainder holds, preserves holds and never grants audio identity to text-only input', async () => {
   const banks = await listening(); expect(banks.every(b => b.records[0].clips.length === 1)).toBe(true);
@@ -86,14 +86,14 @@ it('uses the same listening operation only on two exact usable originals and pre
   for (const point of ['A1', 'A2', 'B1', 'B2', 'C2']) expect(qualifiedLongSeconds(banks, point, 91)).toBe(91);
   const held = structuredClone(banks[1]); held.records[0].clips[0].qualityFlags = ['Boundary unresolved']; expect(qualifiedLongSeconds([banks[0], held], 'C1', 75)).toBe(75);
   for (const [primary, application] of [banks, [...banks].reverse()]) for (const seed of [0, 1, 2, 0xffffffff]) {
-    const lesson = spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', [], registerAudienceOperation, [application])!;
+    const lesson = spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', registerAudienceOperation, [application])!;
     expect(lesson.goalId).toBe('register-audience-in-context'); lessonSchema.parse(lesson);
     for (const m of lesson.materials) { expect(corpusOperation(m.questions[0])).toBe(registerAudienceOperation); for (const e of [m.questions[0].evidence, ...m.questions[0].additionalEvidence!]) { expect(e.audioEnd).toBeGreaterThan(e.audioStart!); expect(e.audioEnd).toBeLessThanOrEqual(m.audio!.duration); } }
     expect(asTestLesson(lesson).materials.map(m => m.audio)).toEqual(lesson.materials.map(m => m.audio));
-    expect(spokenCorpusLesson(primary, new Set([application.records[0].clips[0].id]), seed, 196, 'C1', [], 'matching', [], registerAudienceOperation, [application])).toBeUndefined();
-    expect(spokenCorpusLesson(primary, new Set(), seed, 120, 'C1', [], 'matching', [], registerAudienceOperation, [application])).toBeUndefined();
-    expect(spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', [], registerAudienceOperation)).toBeUndefined();
-    const altered = structuredClone(application); altered.records[0].attribution += ' Changed'; expect(spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', [], registerAudienceOperation, [altered])).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set([application.records[0].clips[0].id]), seed, 196, 'C1', [], 'matching', registerAudienceOperation, [application])).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set(), seed, 120, 'C1', [], 'matching', registerAudienceOperation, [application])).toBeUndefined();
+    expect(spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', registerAudienceOperation)).toBeUndefined();
+    const altered = structuredClone(application); altered.records[0].attribution += ' Changed'; expect(spokenCorpusLesson(primary, new Set(), seed, 196, 'C1', [], 'matching', registerAudienceOperation, [altered])).toBeUndefined();
   }
 });
 it('recognizes prior work identities without mutating saved snapshots or treating a formerly exposed work as unfamiliar', () => {
@@ -107,7 +107,7 @@ it('recognizes prior work identities without mutating saved snapshots or treatin
 it('commits full answers transactionally, preserves failed-save input and recovers exact snapshots in an isolated new profile', async () => {
   const { db, createSession, claimSession, markExposure, submit, advance, attempts, sessions } = await import('../src/data/db'); const { exportBackup, inspectBackup, importBackup } = await import('../src/data/backup');
   await Promise.all(db.tables.map(t => t.clear()));
-  try { const lesson = corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', [], registerAudienceOperation)!;
+  try { const lesson = corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', registerAudienceOperation)!;
     for (const snapshot of [lesson, asTestLesson(lesson)]) {
       const created = await createSession(snapshot, 'register-isolated'); let session: import('../src/data/db').Session = await claimSession(created.id, 'owner');
       for (const m of snapshot.materials) { await markExposure(session); const q = m.questions[0]; if (!('pairs' in q)) throw Error('Expected matching'); const answer = q.pairs.map(p => p.answer);
@@ -119,7 +119,7 @@ it('commits full answers transactionally, preserves failed-save input and recove
   } finally { await Promise.all(db.tables.map(t => t.clear())); }
 });
 it('clears the goal focus when the chosen starting point changes away from C1 in either skill', async () => {
-  const banks = await listening(), lessons = [corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', [], registerAudienceOperation)!, spokenCorpusLesson(banks[0], new Set(), 0, 196, 'C1', [], 'matching', [], registerAudienceOperation, [banks[1]])!];
+  const banks = await listening(), lessons = [corpusLesson(await reading(), new Set(), 0, 900, 'C1', [], 'matching', registerAudienceOperation)!, spokenCorpusLesson(banks[0], new Set(), 0, 196, 'C1', [], 'matching', registerAudienceOperation, [banks[1]])!];
   for (const lesson of lessons) { const profileId = 'register-retarget-'+lesson.skill, at = new Date(Date.now() - 1000).toISOString();
     const session: import('../src/data/db').Session = { id: profileId, profileId, lesson, status: 'completed', position: 1, startedAt: at, contentHash: 'isolated-retarget-only', assistance: { hintLevel: 0 }, leaseUntil: 0 };
     const records: import('../src/data/db').Attempt[] = lesson.materials.map(m => { const q = m.questions[0]; if (!('pairs' in q)) throw Error('Expected matching'); return { id: q.id, profileId, sessionId: session.id, questionId: q.id, rootId: m.rootId, answer: q.pairs.map(p => q.choices.find(c => c !== p.answer)!), correct: false, rule: 'isolated-retarget-only', assistance: { hintLevel: 0, ...(lesson.skill === 'listening' ? { audioCompleted: true, playbackRequests: 1 } : {}) }, submittedAt: at }; });

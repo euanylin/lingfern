@@ -1,5 +1,5 @@
 """Run whole-programme ASR/alignment diagnostics while retaining every acceptance hold."""
-import datetime, hashlib, importlib.util, json, pathlib, re, time
+import datetime, hashlib, importlib.util, json, pathlib, time
 ROOT=pathlib.Path('/content/lingfern-listening-20261009')
 def run():
     from faster_whisper import WhisperModel

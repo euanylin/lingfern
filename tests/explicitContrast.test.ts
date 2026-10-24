@@ -186,7 +186,7 @@ it('keeps inspected contrasts and rejects a conditional antecedent', () => {
 it('transfers the contrast across the inspected books at B2 and keeps Practice/Test scoring', () => {
   const reached = new Set<string>();
   for (let seed = 0; seed < 400; seed++) {
-    const lesson = corpusLesson(bank, new Set(), seed, 500, 'B2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 500, 'B2', [], 'choice', operation)!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.goal.en).toContain('explicit contrast');
     reached.add(lesson.materials[0].rootId);
@@ -206,14 +206,14 @@ it('transfers the contrast across the inspected books at B2 and keeps Practice/T
     }
   }
   expect(reached).toEqual(new Set(frames.map(item => item.source.rootId)));
-  expect(corpusLesson({ ...bank, records: [bank.records[0]] }, new Set(), 0, 300, 'B2', [], 'choice', [], operation)).toBeUndefined();
-  for (const point of ['A2', 'B1', 'C1'] as const) expect(corpusLesson(bank, new Set(), 0, 700, point, [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson({ ...bank, records: [bank.records[0]] }, new Set(), 0, 300, 'B2', [], 'choice', operation)).toBeUndefined();
+  for (const point of ['A2', 'B1', 'C1'] as const) expect(corpusLesson(bank, new Set(), 0, 700, point, [], 'choice', operation)).toBeUndefined();
 });
 
 it('saves the B2 contrast and its Test snapshot without changing the score', async () => {
   await Promise.all(db.tables.map(table => table.clear()));
   try {
-    const practice = corpusLesson(bank, new Set(), 0, 300, 'B2', [], 'choice', [], operation)!;
+    const practice = corpusLesson(bank, new Set(), 0, 300, 'B2', [], 'choice', operation)!;
     for (const lesson of [practice, asTestLesson(practice)]) {
       const created = await createSession(lesson, `contrast-${lesson.mode ?? 'practice'}`);
       let current: Session = await claimSession(created.id, 'contrast-owner');

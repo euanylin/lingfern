@@ -25,7 +25,7 @@ const tables = (lesson: Lesson) => lesson.materials.map(material => {
 
 it('demonstrates numeric table entries while retaining approximate and boundary wording', () => {
   for (const point of ['B1', 'B2', 'C1', 'C2'] as const) {
-    const lesson = spokenCorpusLesson(banks[1], new Set(), 0, 91, point, [], 'table', [], undefined, [banks[0], banks[2]])!;
+    const lesson = spokenCorpusLesson(banks[1], new Set(), 0, 91, point, [], 'table', undefined, [banks[0], banks[2]])!;
     lessonSchema.parse(lesson);
     expect(corpusWorkedExample(lesson.materials[0], 0, point, true)).toBeUndefined();
     const example = lesson.workedExample!.en;

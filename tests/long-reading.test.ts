@@ -90,7 +90,7 @@ it('loads advanced text only on opt-in and saves exact long evidence through ful
   const advanced = await loadReadingCorpus('local-guest', 1800);
   const record = advanced.records.find(source => source.rootId === rootId)!;
   const passages = longOnly([record]).filter(passage => passage.wordCount === 782);
-  const lesson = corpusLesson(bank([{ ...record, passages }]), new Set(), 0, 1800, 'C2', [], 'completion', [], undefined, advanced)!;
+  const lesson = corpusLesson(bank([{ ...record, passages }]), new Set(), 0, 1800, 'C2', [], 'completion', undefined, advanced)!;
   expect(lesson).toBeDefined(); lessonSchema.parse(lesson);
   const material = lesson.materials[0], question = material.questions[0];
   if (!('kind' in question) || question.kind !== 'completion') throw new Error('Expected long-text completion');

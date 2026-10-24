@@ -1,5 +1,5 @@
 """Acquire and decode public candidates in Colab without granting listening acceptance."""
-import concurrent.futures, datetime, hashlib, json, os, pathlib, platform, re, subprocess, tarfile, time, urllib.request
+import concurrent.futures, datetime, hashlib, json, pathlib, platform, re, subprocess, tarfile, time, urllib.request
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
 URL = 'https://www.openslr.org/resources/12/test-clean.tar.gz'
 MD5 = '32fa31d27d2e1cad72775fee3f4849a9'

@@ -1,5 +1,5 @@
 """Diagnose public audio on GPU/CPU without approving it or rewriting transcripts."""
-import collections, datetime, hashlib, importlib.metadata, json, os, pathlib, re, subprocess, sys, time
+import datetime, hashlib, importlib.metadata, json, pathlib, re, time
 ROOT = pathlib.Path('/content/lingfern-listening-20261009')
 
 def tokens(text): return re.findall(r"[a-z]+(?:'[a-z]+)?|\d+", text.lower().replace('’', "'"))

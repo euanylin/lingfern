@@ -13,7 +13,7 @@ it.each(['location', 'instruction'] as const)('teaches actual inspected A1 %s me
   const operation = family === 'location' ? 'choice:stated-location' : 'choice:basic-instruction';
   const roots = scopes[family].map(scope => scope.rootId).sort();
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'choice', operation)!;
     expect(lesson).toBeDefined(); expect(lesson.targetLevel).toBe('A1');
     expect(lesson).toEqual(JSON.parse(JSON.stringify(lesson)));
     expect(lesson.materials.map(m => m.rootId).sort()).toEqual(roots);
@@ -43,8 +43,8 @@ it.each(['location', 'instruction'] as const)('teaches actual inspected A1 %s me
     expect(asTestLesson(lesson).teaching).toBeUndefined();
   }), { numRuns: 500 });
   const one = { ...bank, records: bank.records.filter(r => r.rootId === roots[0]) };
-  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(bank.records.flatMap(r => r.passages.map(p => p.id))), 0, 120, 'A1', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(bank.records.flatMap(r => r.passages.map(p => p.id))), 0, 120, 'A1', [], 'choice', operation)).toBeUndefined();
 });
 
 it('rejects incomplete, ambiguous and uninspected direction/location scopes rather than widening source admission', async () => {
@@ -65,7 +65,7 @@ it('saves generated meaning snapshots through the actual exposure, answer and ba
   const { questions } = await import('../src/shared/content');
   try {
     for (const operation of ['choice:stated-location', 'choice:basic-instruction']) {
-      const practice = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)!;
+      const practice = corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)!;
       for (const lesson of [practice, asTestLesson(practice)]) {
         const profile = operation.replace(':', '-') + (lesson.mode ?? 'practice'), session = await createSession(lesson, profile);
         await claimSession(session.id, 'meaning-owner');

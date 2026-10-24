@@ -27,7 +27,7 @@ try {
  const corpus=(await inspectCommunityPack(await readFile('public/source-packs/'+packId+'.zip'))).spoken;
  const applications=multi?[(await inspectCommunityPack(await readFile('tests/fixtures/source-packs/wikipedia-listening-005.zip'))).spoken]:[];
  for(let seed=0;seed<300;seed++) {
-  const lesson=spokenCorpusLesson(corpus,new Set(),seed,focusedFallback?91:60,focusedFallback?'C2':'B2',interests,undefined,[],undefined,applications);
+  const lesson=spokenCorpusLesson(corpus,new Set(),seed,focusedFallback?91:60,focusedFallback?'C2':'B2',interests,undefined,undefined,applications);
   if(lesson&&(matching?lesson.materials.every(material=>material.questions[0].kind==='matching'):postposed?lesson.materials.every(material=>material.questions[0].prompt.includes('uses “if” or “unless”')):condition?lesson.materials[0].questions[0].prompt.includes('uses “if” or “unless”'):sequence?lesson.materials.every(material=>material.questions[0].kind==='sequence'):table?lesson.materials.every(material=>material.questions[0].kind==='table'):attribution
    ?lesson.materials[0].questions[0].kind==='evidence'&&lesson.materials[0].questions[0].prompt.includes('attributes')&&lesson.materials[1].questions[0].kind==='completion'
    :lesson.materials.every(material=>material.questions[0].kind==='evidence'&&material.questions[0].prompt.includes('inference')))) {

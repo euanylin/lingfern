@@ -26,10 +26,10 @@ function bank() {
 it('supports the expanded installed listening catalogue while bounding application banks and ownership', () => {
   const corpus = bank();
   const peers = Array.from({ length: 104 }, () => ({ ...corpus, records: [] }));
-  expect(spokenCorpusLesson(corpus, new Set(), 0, 60, undefined, [], undefined, [], undefined, peers)).toBeDefined();
-  expect(() => spokenCorpusLesson(corpus, new Set(), 0, 60, undefined, [], undefined, [], undefined,
+  expect(spokenCorpusLesson(corpus, new Set(), 0, 60, undefined, [], undefined, undefined, peers)).toBeDefined();
+  expect(() => spokenCorpusLesson(corpus, new Set(), 0, 60, undefined, [], undefined, undefined,
     Array.from({ length: maxInstalledSpokenBanks + 1 }, () => corpus))).toThrow('INVALID_SPOKEN_APPLICATION');
-  expect(() => spokenCorpusLesson(corpus, new Set(), 0, 60, undefined, [], undefined, [], undefined,
+  expect(() => spokenCorpusLesson(corpus, new Set(), 0, 60, undefined, [], undefined, undefined,
     [{ ...corpus, communityPackageId: undefined }])).toThrow('INVALID_SPOKEN_APPLICATION');
 });
 
@@ -278,26 +278,11 @@ it('generates the requested listening task within eligible clips and records the
 });
 
 
-it('prefers due vocabulary forms in playable eligible clips without changing review state', () => {
-  const corpus = bank();
-  const term = corpus.records[1].clips[0].text.match(/\b[a-z]{6,14}\b/)![0];
-  corpus.records[0].clips[0].text = corpus.records[0].clips[0].text.replaceAll(term, 'example');
-  corpus.records[0].clips[0].wordCount = corpus.records[0].clips[0].text.split(/\s+/).length;
-  corpus.records[0].clips[0].segments[0] = { ...corpus.records[0].clips[0].segments[0], text: corpus.records[0].clips[0].text, end: corpus.records[0].clips[0].text.length };
-  const before = structuredClone(corpus);
-  const lesson = spokenCorpusLesson(corpus, new Set(), 0, 60, 'B1', [], undefined, [term])!;
-  expect(lesson.materials[0].rootId).toBe(corpus.records[1].rootId);
-  expect(corpus).toEqual(before);
-  corpus.records[1].clips[0].qualityFlags = ['unresolved'];
-  expect(spokenCorpusLesson(corpus, new Set(), 0, 60, 'B1', [], undefined, [term])).toBeUndefined();
-});
-
-
 it('generates exact semantic listening evidence with a different-root same-operation application from current recordings', async () => {
   const corpus = (await inspectCommunityPack(readSourcePackFixture('wikipedia-listening-001'))).spoken!;
   const operation = `evidence:${qualificationPrompt}`;
   for (let seed = 0; seed < 12; seed++) {
-    const lesson = spokenCorpusLesson(corpus, new Set(), seed, 35, 'B2', [], 'evidence', [], operation)!;
+    const lesson = spokenCorpusLesson(corpus, new Set(), seed, 35, 'B2', [], 'evidence', operation)!;
     for (const { material, question } of questions(lesson)) expect(exposureSchema.safeParse({ profileId: 'test-profile', rootId: material.rootId, firstSeenAt: '2026-10-03T00:00:00.000Z', lastSeenAt: '2026-10-03T00:00:00.000Z', contacts: [{ sessionId: 'test-session', materialId: material.id, questionId: question.id, variantGroup: question.id, firstSeenAt: '2026-10-03T00:00:00.000Z', lastSeenAt: '2026-10-03T00:00:00.000Z' }] }).success).toBe(true);
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     for (const material of lesson.materials) {
@@ -315,7 +300,7 @@ it('generates exact semantic listening evidence with a different-root same-opera
       }
     }
     const seen = new Set(lesson.materials.map(material => material.id.slice('corpus-'.length)));
-    expect(spokenCorpusLesson(corpus, seen, seed, 35, 'B2', [], 'evidence', [], operation)?.materials.some(material => seen.has(material.id.slice('corpus-'.length)))).not.toBe(true);
+    expect(spokenCorpusLesson(corpus, seen, seed, 35, 'B2', [], 'evidence', operation)?.materials.some(material => seen.has(material.id.slice('corpus-'.length)))).not.toBe(true);
   }
   const beginner = spokenCorpusLesson(corpus, new Set(), 2, 35, 'A2', [], 'evidence')!;
   expect(beginner.materials.every(material => !('kind' in material.questions[0]) || material.questions[0].kind !== 'evidence')).toBe(true);
@@ -327,7 +312,7 @@ it('follows actual qualified and attributed recordings with contextual unscored 
   const attribution = 'evidence:Which sentence explicitly attributes a claim to a named source?';
   const inspected = new Set<string>();
   for (const operation of [qualification, attribution]) for (const point of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 12; seed++) {
-    const lesson = spokenCorpusLesson(corpus, new Set(), seed, 60, point, [], 'evidence', [], operation)!;
+    const lesson = spokenCorpusLesson(corpus, new Set(), seed, 60, point, [], 'evidence', operation)!;
     expect(corpusOperation(lesson.materials[0].questions[0])).toBe(operation);
     expect(lesson.goal.en).toBe(lesson.goal['zh-Hans']);
     expect(lesson.teaching!.en).toBe(lesson.teaching!['zh-Hant']);

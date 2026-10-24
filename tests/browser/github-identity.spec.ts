@@ -97,10 +97,10 @@ test('private repository binding is inspected before confirmation and disconnect
   release(); await completed;
   await expect(page.locator('.repository-reset')).not.toHaveAttribute('open', '');
   await expect(page.locator('.repository-steps')).toBeHidden();
-  await expect(page.getByRole('button', { name: '已授权资料库', exact: false })).toContainText('lingfern-data');
+  await expect(page.locator('.repository-binding>.muted')).toContainText('lingfern-data');
   await page.locator('.repository-reset>summary').click();
   await expect(page.getByRole('button', { name: '断开资料库同步绑定' })).toBeVisible();
-  await expect(page.locator('.repository-binding')).toContainText('批次同步尚未开放');
+  await expect(page.locator('.repository-binding')).toContainText('同步暂时不可用');
   expect(markerWrites).toBe(1);
   for (const width of [1440, 1200, 1024, 768, 375, 320]) {
     await page.setViewportSize({ width, height: 900 });
@@ -170,11 +170,15 @@ test('verifying a bound repository reads current choices and never substitutes a
   });
   await page.goto('/settings');
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
+  await page.locator('.repository-reset>summary').click();
+  await page.getByRole('button', { name: '查找已授权资料库', exact: true }).click();
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
   await expect(page.locator('.backup-preview')).toContainText('已有匹配的档案标记');
   expect(inspections).toBe(1);
   available = false; await page.reload();
-  await page.getByRole('button', { name: '核验资料库', exact: true }).click();
+  await page.locator('.repository-reset>summary').click();
+  await page.getByRole('button', { name: '查找已授权资料库', exact: true }).click();
+  await expect(page.getByRole('button', { name: '核验资料库', exact: true })).toBeDisabled();
   await expect(page.locator('.repository-binding')).toContainText('资料库不存在或暂不可访问');
   expect(inspections).toBe(1);
 });

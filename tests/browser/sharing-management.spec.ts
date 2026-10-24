@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
+import { languagePacks } from '../../src/locales';
 
 const clientId = '7c57514e-a61f-4f0b-9e97-12d33535cb89', shareId = 'c1bbacdd-0775-44a4-a744-74943d92349c';
 test('sharing management is explicit, retains native confirmation, and fences account changes', async ({ page }) => {
@@ -23,7 +24,7 @@ test('sharing management is explicit, retains native confirmation, and fences ac
   await management.locator('summary').click();
 
   await expect(management.getByRole('heading', { name: 'Synthetic material client' })).toBeVisible();
-  await expect(management).toContainText('搜索公开教材');
+  await expect(management).toContainText(languagePacks['zh-Hans'].sharingManagement.material);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: 'output/playwright/sharing-management-320-light-zh-Hans.png' });
   page.once('dialog', dialog => dialog.dismiss());

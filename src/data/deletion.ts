@@ -38,7 +38,7 @@ export async function deleteLocalProfile(profileId: string, expectedName: string
 }
 
 async function purge(profileId: string) {
-  const projected = projectSyncEvents(await readSyncEvents(profileId));
+  const projected = projectSyncEvents(await readSyncEvents(profileId, db, ['deletion']));
   const deleted = projected.deletedRecords;
   // Without tombstones there is nothing to erase or resolve against local IDs.
   for (const attempt of deleted.size ? await attempts.where('profileId').equals(profileId).toArray() : []) {

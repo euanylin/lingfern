@@ -36,7 +36,7 @@ it.each([
  const other=banks.find(b=>b.records.some(r=>r.rootId===otherRoot&&r.clips.some(c=>c.audio.duration<=bound&&(kind==='choice'?corpusOutcome(c.text,0):corpusAttribution(c.text,0)))))!;
  const application={...other,records:other.records.filter(r=>r.rootId===otherRoot).map(r=>({...r,clips:r.clips.filter(c=>c.audio.duration<=bound&&(kind==='choice'?corpusOutcome(c.text,0):corpusAttribution(c.text,0)))}))};
  for(let seed=0;seed<6;seed++){
-  const lesson=spokenCorpusLesson(primary,new Set(),seed,bound,level,[],kind,[],operation,[application])!;expect(lesson).toBeTruthy();
+  const lesson=spokenCorpusLesson(primary,new Set(),seed,bound,level,[],kind,operation,[application])!;expect(lesson).toBeTruthy();
   expect(new Set(lesson.materials.map(m=>m.rootId))).toEqual(new Set([row.rootId,otherRoot]));
   for(const m of lesson.materials){expect(m.audio!.duration).toBeLessThanOrEqual(bound);expect(m.communityPackageId??lesson.communityPackageId).toBe(m.rootId===row.rootId?primary.communityPackageId:application.communityPackageId);expect(corpusOperation(m.questions[0])).toBe(operation);}
   for(const {question:q} of questions(lesson)){
@@ -48,14 +48,14 @@ it.each([
   const assessed=structuredClone(lesson.materials);for(const m of assessed)for(const q of m.questions){delete q.hints;if('modelAnswer'in q)delete q.modelAnswer;}
   expect(asTestLesson(lesson).materials).toEqual(assessed);
   const seen=new Set([...primary.records,...application.records].flatMap(r=>r.clips.map(c=>c.id)));
-  expect(spokenCorpusLesson(primary,seen,seed,bound,level,[],kind,[],operation,[application])).toBeUndefined();
+  expect(spokenCorpusLesson(primary,seen,seed,bound,level,[],kind,operation,[application])).toBeUndefined();
   const at='2026-10-13T13:50:00.000Z';
   const session:Session={id:'supported-history-test',profileId:'synthetic-test',lesson,contentHash:'a'.repeat(64),position:4,status:'completed',startedAt:at,assistance:{hintLevel:0},leaseUntil:0};
   const attempts:Attempt[]=questions(lesson).map(({material,question:q},i)=>({id:'supported-answer-'+i,profileId:session.profileId,sessionId:session.id,questionId:q.id,rootId:material.rootId,
    answer:'kind'in q&&q.kind==='response'?'Synthetic interpretation':0,correct:'kind'in q&&q.kind==='response'?null:false,rule:'synthetic-history-only',assistance:{hintLevel:0,audioCompleted:true,playbackRequests:1},submittedAt:at}));
   const history=corpusPracticeHistory([session],attempts,session.profileId,'listening','all',level);
   expect(history.needsSupport).toBe(true);expect(history.maxSeconds).toBe(bound);
-  expect(spokenCorpusLesson(primary,history.seen,seed,history.maxSeconds,level,[],kind,[],operation,[application])).toBeUndefined();
+  expect(spokenCorpusLesson(primary,history.seen,seed,history.maxSeconds,level,[],kind,operation,[application])).toBeUndefined();
  }
 });
 it('locates the complete named company allegation with two distinct complete source alternatives',()=>{

@@ -1,3 +1,78 @@
+# Bookmark list and toggle stability — 2026-10-24
+
+final result: passed
+
+Source: four supplied bookmark PNGs, mockups.html and proposal, safely extracted under private/verification/bookmarks-design-20261024/reference/. Provenance is in reference-hashes.json. The later recording is behavior evidence, not instruction authority.
+
+Final comparison-final-{desktop,mobile}-{dark,light}.png inputs place normalized source and final implementation together; all four were opened and reviewed. Match dad expanded and ephemeral/affect collapsed, synthetic English definitions, Simplified Chinese,1440/375px, both themes. Actual native in-app production proof: compiled-mobile-dark-final.png at375x812/dark. Current tokens/fonts/navigation,760px desktop width and44px targets intentionally supersede mock values. Definitions align with headings; muted lookup/star/chevron stay readable; one rounded card and separators remain.
+
+An initial comparison included an unintended hovered last row; matched captures move the pointer outside. The later recording revealed functional P2 row exchanges after re-saving. Ordered Map merging fixes that; nested star/link active states no longer scale the summary. The pre-fix regression fails; final10 cases pass. Three actual compiled cycles preserve row positions (0px displacement) and collapsed states. Keyboard/touch/mouse, three locales, narrow widths, offline/backup/persistence and selected/disabled behavior pass. Final console clean; normal update retains synthetic bookmarks. No outstanding scoped P0/P1/P2.
+
+No full-site/live-site/new physical-device comparison or deployment. No old/new pixel-identity claim. Earlier QA is retained below.
+
+---
+
+# Lookup history and backup word wrapping — 2026-10-24
+
+final result: passed
+
+Source visual truth: the four PNGs and mockups.html in `private/verification/lookup-history-20261024/reference/Lingfern-search-history/`, from the maintainer's ZIP; backup-wrap reference is the supplied2026-10-24 22.28.35 screenshot. Reference hashes are in reference-hashes.json. Reference text is design input, not operational permission.
+
+Implementation evidence: `output/playwright/lookup-history-list-{1440,375}-{light,dark}-zh-Hans.png` and matching card captures;375px Traditional Chinese and320px English; `private/verification/lookup-history-20261024/iab-375-dark.png`, `iab-1440-dark.png`, `compiled-proof.png`, `compiled-backup-wrap.png` and result-preview.png. In-app browser checks used isolated local source/compiled origins; final asset hashes match the kept8787 build.
+
+## Comparison and findings
+
+- Full views were compared in the same combined images for mobile/dark and desktop/light. Focused source/implementation cards were compared side by side in all four themes/layouts (`comparison-*-card.png`). Typography, row padding, hierarchy and labels are readable there; full-page chrome was not mistaken for app-owned content.
+- Source density is2×: desktop1488×941, phone882×1475. Normalized source cards are624×284 desktop and330×284 mobile. Actual1× cards are760×287 at1440×812 and335×287 at375×812. Metadata/crops are in comparison-metadata.json. Width differences retain the existing app760px/gutter rules, and navigation/back links remain. No P0/P1/P2 deviation is hidden by rescaling the actual UI.
+- Fonts/typography: existing system/CJK/heading stacks are retained, matching the product rather than installing mockup Linux fonts. Query16px/600, category13px/500 and time12.5px/500 provide the intended hierarchy; no row underline or middle dot. Long text wraps without horizontal overflow.
+- Spacing/layout: single rounded surface, full-width links,18px side padding,5px text gap and1px separators reproduce the list rhythm. Links remain at least44px. Existing760px layout and navigation are intentional product constraints. The optional Clear control in the proposal is omitted.
+- Colors/tokens: app card/ink/muted/line/hover variables are reused. Dark card separation follows the reference. The lighter/darker balance of the existing light-theme palette is retained instead of replacing site colors with approximate mockup hex values.
+- Assets: the reference contains no new app-owned raster artwork; existing sole fern/logo and navigation are retained. Mock phone/desktop framing is not recreated. No generated or third-party image/font dependency is introduced.
+- Copy/content: exact synthetic terms and dates match reference examples in the fixture captures. Today and date order are localized; seconds are absent. CJK backup copy is unchanged but grouped by words. Comparison-backup-wrap.png normalizes the supplied558×474 screenshot to279×237 next to the actual282×258 compiled card: 录音/恢复 now remain complete across lines. Restore labels remain fully accessible.
+
+No actionable P0/P1/P2 findings remain. This first visual comparison pass required no visual repair; duplicate test names and a missing metadata-request Accept header were verification setup fixes, not hidden design iterations. Final compiled screenshot confirms the wrapping addition and normal-update retention of three synthetic history rows. No console errors captured. Thirteen history/audio and five backup cases pass across the checked input/locale/theme states. New physical-device/full-site/provider/production checks were not run.
+
+## Implementation checklist
+
+- Single list, hierarchy, compact dates and original destinations verified.
+- Native/related usage and failed-playback history verified.
+- Mouse/keyboard/touch, reduced motion, narrow widths and grouped words verified.
+- Main8787 build kept; temporary previews/tabs closed. No deployment or real-data cleanup.
+
+---
+
+# Bookmark definition disclosure — 2026-10-24
+
+final result: passed inspected scope
+
+Inspected375px dark compiled expanded/folded dad meaning,320px English/light and375px Traditional Chinese/dark folded source views. Shared chevron and44px heading/lookup targets remain clear; expanded stars retain Dictionary alignment. Native mouse/touch/keyboard folding works independently without changing saved state or resetting another row. Existing reduced-motion/focus handling is reused. [Scope and limits](docs/history/2026-10-24-bookmark-collapse.md).
+
+---
+
+# Dictionary bookmark position and simplified actions — 2026-10-24
+
+final result: passed inspected scope
+
+Inspected the actual375px dark Simplified Chinese dad definition with its filled star on the left, plus320px English/light and375px Traditional Chinese/dark checked/unchecked source views. Both pages share44px stars,8px gap and7px paragraph offset. Long definitions wrap beside the star; the former review action row is gone. Toggle, keyboard/touch, offline loaded-page actions, refresh/reopen and backup restore pass. No visual tokens or motion timing changed. [Scope and limits](docs/history/2026-10-24-bookmark-simplification.md).
+
+---
+
+# Mobile-layout mouse navigation highlight — 2026-10-24
+
+final result: passed inspected scope
+
+An inactive mobile-nav link now uses the same interactive-hover background for mouse hover and native touch press, with its existing icon lift. Inspected the compiled375×812 Simplified Chinese/dark bottom bar: Library is visibly highlighted/lifted, Settings retains its current-page surface and link geometry stays fixed. Three locale/width/theme regressions compare actual native touch and mouse colors, retain44px targets and test leave/reset and reduced motion. The compiled preview confirms both inputs produce rgb(58,57,54). No production or new physical-device acceptance is claimed. [Scope/evidence](docs/history/2026-10-24-mobile-nav-highlight.md).
+
+---
+
+# Saved-word bookmark stars — 2026-10-24
+
+final result: passed inspected scope
+
+SavedWords reuses Dictionary’s filled/outline star with the same computed size, padding, border, font and selected/unselected colors. Inspected1440px Simplified Chinese/light,375px Traditional Chinese/dark and320px English/light; controls remain44px, selected states are clear and narrow layouts do not overflow. Mouse, touch, keyboard and reduced-motion cases pass. Cancelled rows stay visible with outline stars and disabled review enrollment until refresh; re-add and persistence pass. The actual compiled375px/dark touch preview also passes. No production or new physical-device acceptance is claimed. [Scope/evidence](docs/history/2026-10-24-saved-word-stars.md).
+
+---
+
 # Code audit UI regressions — 2026-10-24
 
 final result: passed inspected scope

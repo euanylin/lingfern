@@ -28,14 +28,6 @@
       ]
     },
     {
-      "name": "ts-fsrs",
-      "license": "MIT",
-      "url": "https://github.com/open-spaced-repetition/ts-fsrs",
-      "packages": [
-        "ts-fsrs"
-      ]
-    },
-    {
       "name": "wheel-gestures",
       "license": "MIT",
       "url": "https://github.com/xiel/wheel-gestures",

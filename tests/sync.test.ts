@@ -3,7 +3,7 @@ import fc from 'fast-check';
 import { canonicalJson, mergeSyncEvents, projectSyncEvents, validateSyncBatch, type SyncEvent } from '../src/shared/sync';
 
 const time = '2026-09-30T00:00:00.000Z';
-const saved = (id: string, counter: number, deviceId = 'a', enabled = true): Extract<SyncEvent, { type: 'saved_item' }> => ({ id, counter, deviceId, occurredAt: time, type: 'saved_item', payload: { memoryId: 'sense-1', saved: enabled, reviewEnabled: false } });
+const saved = (id: string, counter: number, deviceId = 'a', enabled = true): Extract<SyncEvent, { type: 'saved_item' }> => ({ id, counter, deviceId, occurredAt: time, type: 'saved_item', payload: { memoryId: 'sense-1', saved: enabled } });
 const batch = (events: unknown[]) => ({ product: 'Lingfern', formatVersion: 1, profileId: 'p', deviceId: 'a', batchId: 'fixed-batch', events });
 
 it('hashes canonical UTF-8 identically across object key order and rejects private fields', async () => {
@@ -12,7 +12,7 @@ it('hashes canonical UTF-8 identically across object key order and rejects priva
   expect((await validateSyncBatch(value)).hash).toBe((await validateSyncBatch(reordered)).hash);
   expect(canonicalJson({ z: '词', a: 1 })).toBe('{"a":1,"z":"词"}');
   await expect(validateSyncBatch({ ...value, token: 'secret' })).rejects.toThrow();
-  await expect(validateSyncBatch(batch([{ ...saved('e', 1), payload: { memoryId: 'sense-1', saved: true, reviewEnabled: false, answer: 'private writing' } }]))).rejects.toThrow();
+  await expect(validateSyncBatch(batch([{ ...saved('e', 1), payload: { memoryId: 'sense-1', saved: true, answer: 'private writing' } }]))).rejects.toThrow();
 });
 
 it('bounds event count, decoded UTF-8 bytes, IDs and per-batch device ownership', async () => {
@@ -21,7 +21,7 @@ it('bounds event count, decoded UTF-8 bytes, IDs and per-batch device ownership'
   await expect(validateSyncBatch(batch([saved('e', 1), saved('e', 1)]))).rejects.toThrow();
   await expect(validateSyncBatch({ ...batch([saved('e', 1)]), deviceId: '../escape' })).rejects.toThrow();
   await expect(validateSyncBatch(batch(Array.from({ length: 501 }, (_, i) => saved(`e${i}`, i + 1))))).rejects.toThrow();
-  const events: SyncEvent[] = Array.from({ length: 500 }, (_, i) => ({ ...saved(`e${i}`, i + 1), payload: { memoryId: '词'.repeat(160), saved: true, reviewEnabled: false } }));
+  const events: SyncEvent[] = Array.from({ length: 500 }, (_, i) => ({ ...saved(`e${i}`, i + 1), payload: { memoryId: '词'.repeat(160), saved: true } }));
   await expect(validateSyncBatch(batch(events))).rejects.toThrow('SYNC_CAPACITY');
 });
 

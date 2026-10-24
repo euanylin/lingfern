@@ -113,7 +113,7 @@ it('uses intact native paragraphs and original rights, rather than stitching the
   }
 });
 it('pairs the same goal on independent originals, provides the shared three optional hints then none, and preserves the complete Test snapshot', async () => {
-  const corpus = await bank(); const lesson = corpusLesson(corpus, new Set(), 0, 1800, 'C2', [], 'choice', [], faithfulParaphraseOperation)!;
+  const corpus = await bank(); const lesson = corpusLesson(corpus, new Set(), 0, 1800, 'C2', [], 'choice', faithfulParaphraseOperation)!;
   expect(lesson).toBeDefined(); lessonSchema.parse(lesson); expect(lesson.goalId).toBe('faithful-paraphrase');
   expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2);
   expect(lesson.materials.map(m => corpusOperation(m.questions[0]))).toEqual([faithfulParaphraseOperation, faithfulParaphraseOperation]);
@@ -124,7 +124,7 @@ it('pairs the same goal on independent originals, provides the shared three opti
   for (const m of lesson.materials) expect(lesson.workedExample!.en).not.toContain(m.blocks[0].text.slice(0, 40));
 });
 it('fails closed for unavailable independent applications, changed source identity, insufficient context, budgets, seen roots and wrong levels', async () => {
-  const corpus = await bank(); const before = structuredClone(corpus); const generate = (c = corpus, seen = new Set<string>(), max = 1800, point: 'C1' | 'B2' | 'C2' = 'C2') => corpusLesson(c, seen, 0, max, point, [], 'choice', [], faithfulParaphraseOperation);
+  const corpus = await bank(); const before = structuredClone(corpus); const generate = (c = corpus, seen = new Set<string>(), max = 1800, point: 'C1' | 'B2' | 'C2' = 'C2') => corpusLesson(c, seen, 0, max, point, [], 'choice', faithfulParaphraseOperation);
   expect(generate({ ...corpus, records: [corpus.records[0]] })).toBeUndefined(); expect(generate(corpus, new Set(), 700)).toBeUndefined(); expect(generate(corpus, new Set(), 1200)).toBeUndefined();
   for (const point of ['B2', 'C1'] as const) expect(generate(corpus, new Set(), 1800, point)).toBeUndefined();
   for (const source of corpus.records) { expect(generate(corpus, new Set([source.passages[0].id]))).toBeUndefined(); for (const field of ['sourceHash', 'rootId', 'attribution', 'licence', 'originalUrl'] as const) { const bad = structuredClone(source); bad[field] = 'Changed'; expect(corpusMaterial({ source: bad, passage: bad.passages[0] }, 0, 'C2', 'choice', faithfulParaphraseOperation)).toBeUndefined(); } }
@@ -133,7 +133,7 @@ it('fails closed for unavailable independent applications, changed source identi
 it('saves each answer transactionally and restores exact source/assistance/scoring snapshots into another isolated profile', async () => {
   const { advance, attempts, claimSession, createSession, db, markExposure, sessions, submit } = await import('../src/data/db');
   const { exportBackup, inspectBackup, importBackup } = await import('../src/data/backup'); await Promise.all(db.tables.map(t => t.clear()));
-  try { const lesson = corpusLesson(await bank(), new Set(), 0, 1800, 'C2', [], 'choice', [], faithfulParaphraseOperation)!;
+  try { const lesson = corpusLesson(await bank(), new Set(), 0, 1800, 'C2', [], 'choice', faithfulParaphraseOperation)!;
     for (const snapshot of [lesson, asTestLesson(lesson)]) { const profileId = `paraphrase-${snapshot.mode ?? 'practice'}`; const created = await createSession(snapshot, profileId); let current: import('../src/data/db').Session = await claimSession(created.id, 'owner');
       for (const m of snapshot.materials) { await markExposure(current); const q = m.questions[0]; if ('kind' in q) throw Error('Expected choice'); const beforeCount = await attempts.where('sessionId').equals(created.id).count(); const failure = vi.spyOn(attempts, 'add').mockRejectedValueOnce(Error('QuotaExceededError')); await expect(submit(created.id, 'owner', q.answer)).rejects.toThrow('QuotaExceededError'); failure.mockRestore(); expect((await sessions.get(created.id))!.position).toBe(current.position); expect(await attempts.where('sessionId').equals(created.id).count()).toBe(beforeCount); const result = await submit(created.id, 'owner', q.answer); expect(result.correct).toBe(true); expect((await attempts.get(result.id))!.answer).toBe(q.answer); current = await advance(created.id, 'owner'); }
       expect(current.status).toBe('completed'); const backup = await inspectBackup(await exportBackup(profileId)); expect(backup.records.sessions[0].lesson).toEqual(snapshot); const restored = await importBackup(backup); expect((await sessions.where('profileId').equals(restored).toArray())[0].lesson).toEqual(snapshot); expect(await attempts.where('profileId').equals(restored).count()).toBe(2);
@@ -166,24 +166,24 @@ it('preserves faithful attributed predictions and constrained group tendencies i
     }), { numRuns: 100 });
   }
   for (const seed of [0, 1, 2, 0xffffffff]) {
-    const lesson = spokenCorpusLesson(banks[0], new Set(), seed, 196, 'C2', [], 'choice', [], faithfulParaphraseOperation, [banks[1]])!;
+    const lesson = spokenCorpusLesson(banks[0], new Set(), seed, 196, 'C2', [], 'choice', faithfulParaphraseOperation, [banks[1]])!;
     expect(lesson).toBeDefined(); expect(lesson.goalId).toBe('faithful-paraphrase'); lessonSchema.parse(lesson); expect(lesson.workedExample!.en).toContain('At an archive meeting'); expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2);
     expect(lesson.materials.every(m => corpusOperation(m.questions[0]) === faithfulParaphraseOperation)).toBe(true);
     for (const [i, m] of lesson.materials.entries()) { expect(m.questions[0].hints?.length).toBe(i ? undefined : 3); const q = m.questions[0]; for (const e of [q.evidence, ...q.additionalEvidence!]) { expect(e.audioStart).toBeGreaterThanOrEqual(0); expect(e.audioEnd).toBeLessThanOrEqual(m.audio!.duration); expect(e.audioEnd).toBeGreaterThan(e.audioStart!); } }
     for (const locale of ['en', 'zh-Hans', 'zh-Hant'] as const) expect(practiceLocale(lesson, locale)).toBe('en');
     const test = asTestLesson(lesson); expect(test.materials.map(m => m.blocks)).toEqual(lesson.materials.map(m => m.blocks)); expect(test.materials.map(m => m.audio)).toEqual(lesson.materials.map(m => m.audio));
-    expect(spokenCorpusLesson(banks[0], new Set(), seed, 75, 'C2', [], 'choice', [], faithfulParaphraseOperation, [banks[1]])).toBeUndefined();
-    expect(spokenCorpusLesson(banks[0], new Set(), seed, 196, 'C2', [], 'choice', [], faithfulParaphraseOperation)).toBeUndefined();
-    for (const point of ['B2', 'C1'] as const) expect(spokenCorpusLesson(banks[0], new Set(), seed, 196, point, [], 'choice', [], faithfulParaphraseOperation, [banks[1]])).toBeUndefined();
+    expect(spokenCorpusLesson(banks[0], new Set(), seed, 75, 'C2', [], 'choice', faithfulParaphraseOperation, [banks[1]])).toBeUndefined();
+    expect(spokenCorpusLesson(banks[0], new Set(), seed, 196, 'C2', [], 'choice', faithfulParaphraseOperation)).toBeUndefined();
+    for (const point of ['B2', 'C1'] as const) expect(spokenCorpusLesson(banks[0], new Set(), seed, 196, point, [], 'choice', faithfulParaphraseOperation, [banks[1]])).toBeUndefined();
   }
 });
 it('retains exact listening identity and rejects changed audio, segment times, text, credits, excluded or exposed applications', async () => {
   const { spokenCorpusLesson } = await import('../src/core/spokenCorpus'); const banks = await heardBanks(), before = structuredClone(banks);
   const application = banks[1], original = application.records[0].clips[0];
   for (const edit of [(c: typeof original) => { c.text += ' Another claim.'; }, (c: typeof original) => { c.audio.sha256 = '0'.repeat(64); }, (c: typeof original) => { c.audio.duration += .01; }, (c: typeof original) => { c.audio.author = 'Another voice'; }, (c: typeof original) => { c.audio.license = 'Public domain'; }, (c: typeof original) => { c.segments[0].audioEnd -= .01; }, (c: typeof original) => { c.credit.attribution = 'Wrong credit'; }, (c: typeof original) => { c.qualityFlags.push('Unresolved source conflict'); }]) {
-    const bad = structuredClone(application); edit(bad.records[0].clips[0]); expect(spokenCorpusLesson(banks[0], new Set(), 0, 196, 'C2', [], 'choice', [], faithfulParaphraseOperation, [bad])).toBeUndefined();
+    const bad = structuredClone(application); edit(bad.records[0].clips[0]); expect(spokenCorpusLesson(banks[0], new Set(), 0, 196, 'C2', [], 'choice', faithfulParaphraseOperation, [bad])).toBeUndefined();
   }
-  expect(spokenCorpusLesson(banks[0], new Set([original.id]), 0, 196, 'C2', [], 'choice', [], faithfulParaphraseOperation, [application])).toBeUndefined(); expect(banks).toEqual(before);
+  expect(spokenCorpusLesson(banks[0], new Set([original.id]), 0, 196, 'C2', [], 'choice', faithfulParaphraseOperation, [application])).toBeUndefined(); expect(banks).toEqual(before);
 });
 it('checks source-specific offline notices without breaking the original two long-source packages', async () => {
   const { unzipSync, zipSync } = await import('fflate');
@@ -196,8 +196,8 @@ it('checks source-specific offline notices without breaking the original two lon
 
 it('keeps paraphrase retries at C2 and clears that incompatible focus after a chosen starting-point change in either skill', async () => {
   const { corpusPracticeHistory } = await import('../src/core/corpusPractice'); const { spokenCorpusLesson } = await import('../src/core/spokenCorpus'); const banks = await heardBanks();
-  const reading = corpusLesson(await bank(), new Set(), 0, 1800, 'C2', [], 'choice', [], faithfulParaphraseOperation)!;
-  const heard = spokenCorpusLesson(banks[0], new Set(), 0, 196, 'C2', [], 'choice', [], faithfulParaphraseOperation, [banks[1]])!;
+  const reading = corpusLesson(await bank(), new Set(), 0, 1800, 'C2', [], 'choice', faithfulParaphraseOperation)!;
+  const heard = spokenCorpusLesson(banks[0], new Set(), 0, 196, 'C2', [], 'choice', faithfulParaphraseOperation, [banks[1]])!;
   for (const lesson of [reading, heard]) {
     const profileId = `paraphrase-retarget-${lesson.skill}`, at = new Date(Date.now() - 1000).toISOString();
     const session: import('../src/data/db').Session = { id: profileId, profileId, lesson, status: 'completed', position: 1, startedAt: at, contentHash: 'isolated-retarget-only', assistance: { hintLevel: 0 }, leaseUntil: 0 };

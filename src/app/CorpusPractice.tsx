@@ -24,7 +24,7 @@ export function CorpusPractice({ locale, profileId, preferences, selection, onSe
   const invoker = useRef<HTMLElement | null>(null);
   const preview = useRef<string[]>([]);
   const previewRoots = useRef(new Set<string>());
-  const [detailReason, setDetailReason] = useState<'reteach' | 'retry' | 'review' | 'vocabulary'>();
+  const [detailReason, setDetailReason] = useState<'reteach' | 'retry' | 'review'>();
   const previous = activeCorpusPractice(history, profileId, skill);
   const configured = !!(selection.topics.length || selection.kinds.length || selection.materials.length);
   const active = previous && practiceSelectionMatches(previous.lesson, selection) ? previous : !configured ? fallback?.session : undefined;

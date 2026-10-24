@@ -29,7 +29,7 @@ describe('independent language packages', () => {
     const value = messages('practiceCard', { p0: 2, p1: 7 });
     expect(value.en.progress).toBe('2/7 answered');
     expect(value.ja.progress).toContain('2/7');
-    expect(messages('additional', { reading: '$&', listening: '{tests}' }).en.coverage).toContain('$&');
+    expect(messages('additional', { reading: '$&', listening: '{tests}' }).en.activity).toContain('$&');
   });
   it('negotiates regional browser languages with an English fallback', () => {
     for (const [input, output] of [['ja-JP', 'ja'], ['ko-KR', 'ko'], ['fr-CA', 'fr'], ['es-MX', 'es'], ['zh-HK', 'zh-Hant'], ['zh-Hans-CN', 'zh-Hans'], ['zh-Hans-TW', 'zh-Hans'], ['en-GB', 'en'], ['de-AT', 'de'], ['pt-BR', 'pt'], ['it-IT', 'it'], ['ru-RU', 'ru'], ['ar-EG', 'ar'], ['hi-IN', 'hi'], ['id-ID', 'id']] as const) expect(browserLocale([input])).toBe(output);
@@ -49,6 +49,13 @@ describe('independent language packages', () => {
       expect(contentText(text, practiceLocale({ targetLevel: 'C2' }, locale))).toBe(text.en);
     }
     expect(text).toEqual(before);
+  });
+  it('distinguishes revoking access from cancelling an action in every language', () => {
+    for (const locale of localeSchema.options) {
+      const revoke = languagePacks[locale].sharingManagement.revoke;
+      const cancel = languagePacks[locale].profileBackup.cancel;
+      expect(revoke, locale).not.toBe(cancel);
+    }
   });
 });
 

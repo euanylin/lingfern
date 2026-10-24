@@ -29,7 +29,7 @@ it('preserves opinion denial, limited agreement and complete conditional/possess
   for (let seed = 0; seed < 12; seed++) for (const [i, text] of texts.entries()) {
     const task = corpusAttributionPairs(text, seed)!; expect(task).toEqual(corpusAttributionPairs(text, seed)); expect(new Set(task.choices).size).toBe(2); expect(new Set(task.pairs.map(p => p.label)).size).toBe(2);
     expect(task.pairs.find(p => p.answer === (i ? 'Alice' : 'Anna'))!.label).toBe(i ? 'but I’m not looking for eggs, as it happens; and if I was, I shouldn’t want _yours_: I don’t like them raw.' : "But I don't think city people are rude. I think they're just busy.");
-    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 300, 'B2', [], 'matching', operation)!;
     for (const material of lesson.materials) {
       const question = material.questions[0]; if (!('kind' in question) || question.kind !== 'matching') throw Error('Expected attribution matching');
       expect(score(question, question.pairs.map(p => p.answer)).correct).toBe(true); expect(score(question, question.pairs.map(p => p.answer).reverse()).correct).toBe(false);
@@ -65,15 +65,15 @@ it('uses existing default slots for genuine B2/C1/C2 transfer with identical Tes
     expect(lesson.teaching!.en).toContain('named source'); const test = asTestLesson(lesson); expect(test.workedExample).toBeUndefined(); expect(test.materials.map(m => m.blocks)).toEqual(lesson.materials.map(m => m.blocks));
     for (const [i, { question }] of questions(lesson).entries()) { const tested = [...questions(test)][i].question; expect(tested.hints).toBeUndefined(); if ('kind' in question && question.kind === 'matching') expect(score(tested, question.pairs.map(p => p.answer))).toEqual(score(question, question.pairs.map(p => p.answer))); else expect(score(tested, 'A comparison with quotations.').correct).toBeNull(); }
   }
-  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(bank, new Set(), 0, 300, point, [], 'matching', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(), 0, 220, 'B1', [], 'matching', [], operation)).toBeUndefined(); expect(corpusLesson(bank, new Set(), 0, 300, 'B1', [], 'matching', [], operation)?.materials).toHaveLength(2);
+  for (const point of ['A1', 'A2'] as const) expect(corpusLesson(bank, new Set(), 0, 300, point, [], 'matching', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(), 0, 220, 'B1', [], 'matching', operation)).toBeUndefined(); expect(corpusLesson(bank, new Set(), 0, 300, 'B1', [], 'matching', operation)?.materials).toHaveLength(2);
   expect(corpusLesson(bank, new Set(ids), 2, 300, 'B2')).toBeUndefined();
 });
 it('withholds explicit matching without a partner and uses common completion for ordinary practice', () => {
   const original = corpora[1].records.find(r => r.rootId === roots[1])!, unrelated = original.passages.find(p => p.id === '74375eb5b38cf800400db4d1475e11e3d90cb29662bb2c1ed39d8073431393e2')!;
   const missing = { ...bank, records: [records[0], { ...original, passages: [unrelated] }] };
   expect(corpusAttributionPairs(unrelated.text, 0)).toBeUndefined();
-  expect(corpusLesson(missing, new Set(), 0, 300, 'B2', [], 'matching', [], operation)).toBeUndefined();
+  expect(corpusLesson(missing, new Set(), 0, 300, 'B2', [], 'matching', operation)).toBeUndefined();
   for (const seed of [2, 3]) { const lesson = corpusLesson(missing, new Set(), seed, 300, 'B2')!; expect(lesson.materials.map(m => corpusOperation(m.questions[0]))).toEqual(['completion', 'completion']); expect(new Set(lesson.materials.map(m => m.rootId)).size).toBe(2); }
 });
 it('saves actual dialogue Practice/Test and recovery snapshots without replacing earlier saved source claims', async () => {

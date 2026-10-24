@@ -2,22 +2,18 @@ import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
-test('legacy task and review originals are captured once and their IDs survive actual ZIP restoration', async ({ page }) => {
+test('task and bookmark originals are captured once and their IDs survive actual ZIP restoration', async ({ page }) => {
   const { lesson } = await openSnapshot(page, 'a1-reading');
   await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
   await page.goto('/settings');
-  const reviewId = await page.evaluate(async () => {
+  await page.evaluate(async () => {
     const path = '/src/data/db.ts', memoryPath = '/src/data/memory.ts';
     const data = await import(path), memory = await import(memoryPath);
     await memory.saveSense('local-guest', 'apple%1:13:00::', 'apple', 'Fruit with red, yellow or green skin.');
-    await memory.enableReview('local-guest', 'apple%1:13:00::');
-    const id = crypto.randomUUID();
-    await memory.rateMemory('local-guest', 'apple%1:13:00::', 3, id);
     // Upgrade an archive predating sync events.
     await data.syncEvents.clear(); await data.syncClocks.clear();
     await data.settings.delete('profile:local-guest:syncBootstrap');
-    return id;
   });
   await page.reload();
   await expect(page.getByRole('heading', { name: '设置', exact: true })).toBeVisible();
@@ -26,7 +22,7 @@ test('legacy task and review originals are captured once and their IDs survive a
   });
   expect(original.filter((event: { type: string }) => event.type === 'completion')).toHaveLength(4);
   expect(original.filter((event: { type: string }) => event.type === 'exposure')).toHaveLength(4);
-  expect(original.filter((event: { id: string }) => event.id === reviewId)).toHaveLength(1);
+  expect(original.filter((event: { type: string }) => event.type === 'saved_item')).toHaveLength(1);
   await page.reload();
   const download = page.waitForEvent('download');
   await page.getByRole('button', { name: '下载备份' }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();

@@ -99,6 +99,18 @@ try {
     await section.locator('button[data-update-ready=true]').click();
     const confirmation = page.getByRole('dialog', { name: '现在更新？' });
     await confirmation.waitFor();
+    for (const theme of ['light', 'dark']) for (const width of [1440, 375]) {
+      await page.setViewportSize({ width, height: 812 });
+      await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
+      assert.equal(await confirmation.evaluate(dialog => getComputedStyle(dialog, '::backdrop').backdropFilter), 'blur(3px)');
+      assert.equal(await confirmation.evaluate(dialog => getComputedStyle(dialog).filter), 'none');
+      await page.screenshot({ path: `output/playwright/update-confirm-${width}-${theme}.png` });
+    }
+    const media = await context.newCDPSession(page);
+    await media.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-transparency', value: 'reduce' }] });
+    assert.equal(await confirmation.evaluate(dialog => getComputedStyle(dialog, '::backdrop').backdropFilter), 'none');
+    await media.send('Emulation.setEmulatedMedia', { features: [] });
+    await media.detach();
     assert.equal(await confirmation.getByRole('button', { name: '取消', exact: true }).evaluate(button => button === document.activeElement), true);
     assert.equal(await page.evaluate(async () => !!(await navigator.serviceWorker.getRegistration())?.waiting), true);
     await page.keyboard.press('Escape');
@@ -119,6 +131,10 @@ try {
     console.log('PASS: real waiting service worker updated from the same Settings row at six widths/light and dark/200% text; current/offline checks passed.');
   } else {
   await page.goto(`${origin}/today`);
+  if (previousBuild) await page.evaluate(() => new Promise((resolve, reject) => {
+    const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
+    open.onsuccess = () => { const db = open.result, tx = db.transaction('settings', 'readwrite'); tx.objectStore('settings').put({ key: 'profile:local-guest:lookupHistory', value: JSON.stringify([{ kind: 'grammar', term: 'each / every', lookedUpAt: '2026-10-01T00:00:00.000Z' }]) }); tx.oncomplete = () => { db.close(); resolve(); }; tx.onerror = () => reject(tx.error); };
+  }));
   await page.locator('.corpus-practice[data-skill=reading]').getByRole('button', { name: '开始', exact: true }).click();
   await page.getByRole('dialog').locator('button[data-mode=practice]').click();
   await page.locator('.learning-grid,.material-workspace').first().waitFor();
@@ -225,6 +241,12 @@ try {
   assert.equal(await page.locator('link[rel=stylesheet]').getAttribute('href'), currentStyle);
   assert.deepEqual(await page.locator('script[type=module]').evaluateAll(scripts => scripts.map(script => script.getAttribute('src'))), currentScripts);
   assert.deepEqual(await savedState(page), saved);
+  if (previousBuild) {
+    await page.goto(`${origin}/library/history`);
+    await expect(page.locator('.history')).toContainText(['each / every']);
+    const migrated = await page.evaluate(() => new Promise((resolve, reject) => { const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error); open.onsuccess = () => { const db = open.result, read = db.transaction('syncEvents').objectStore('syncEvents').getAll(); read.onsuccess = () => { db.close(); resolve(read.result.filter(event => event.type === 'lookup').map(event => event.payload)); }; read.onerror = () => reject(read.error); }; }));
+    assert.deepEqual(migrated, [{ kind: 'grammar', term: 'each / every', lookedUpAt: '2026-10-01T00:00:00.000Z' }]);
+  }
   console.log('PASS: invalid update preserved the active worker and offline answer; valid update waited during learning, another active tab blocked activation, exact saved draft/formal answer and lesson snapshot retained.');
   }
 } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }

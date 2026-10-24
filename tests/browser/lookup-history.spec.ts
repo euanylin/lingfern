@@ -75,11 +75,79 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en']) test(`history entry matches T
 test('a failed history write preserves lookup results and reports the save failure', async ({ page }) => {
   await page.goto('/library/dictionary');
   await page.evaluate(async () => {
-    const { settings } = await import('/src/data/db.ts' as string);
-    const put = settings.put.bind(settings);
-    settings.put = async (row: { key: string; value: string }) => { if (row.key.endsWith(':lookupHistory')) throw new Error('WRITE_FAILED'); return put(row); };
+    const { syncEvents } = await import('/src/data/db.ts' as string);
+    syncEvents.hook('creating', () => { throw new Error('WRITE_FAILED'); });
   });
   await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
   await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
   await expect(page.locator('.dictionary [role=alert]')).toContainText('查询记录未保存');
 });
+
+test('native usage expansion records the displayed entry', async ({ page }) => {
+  await page.goto('/library/grammar?q=each%20%2F%20every');
+  await expect(page.locator('#grammar-each-every')).toHaveAttribute('open', '');
+  await expect.poll(() => page.evaluate(async () => (await (await import('/src/data/lookupHistory.ts' as string)).readLookupHistory('local-guest')).some((row: { kind: string; term: string }) => row.kind === 'grammar' && row.term === 'each / every'))).toBe(true);
+});
+
+test('related usage navigation records its destination', async ({ page }) => {
+  await page.goto('/library/grammar');
+  const entry = page.locator('#grammar-each-every');
+  await entry.locator('summary').click();
+  const related = entry.locator('.grammar-related').first(), target = (await related.innerText()).trim();
+  await related.click();
+  await expect(page.getByRole('searchbox')).toHaveValue(target);
+  await expect.poll(() => page.evaluate(async term => (await (await import('/src/data/lookupHistory.ts' as string)).readLookupHistory('local-guest')).some((row: { kind: string; term: string }) => row.kind === 'grammar' && row.term === term), target)).toBe(true);
+});
+
+test('IPA selections enter history even when playback fails', async ({ page }) => {
+  await page.goto('/library/ipa');
+  await page.evaluate(() => { HTMLMediaElement.prototype.play = async () => { throw new DOMException('Playback unavailable', 'NotAllowedError'); }; });
+  await page.locator('.ipa-entry[data-ipa=i] button').first().click();
+  await expect(page.locator('.ipa-page [role=alert]')).toBeVisible();
+  await expect.poll(() => page.evaluate(async () => (await (await import('/src/data/lookupHistory.ts' as string)).readLookupHistory('local-guest')).some((row: { kind: string; term: string }) => row.kind === 'ipa' && row.term === 'i'))).toBe(true);
+});
+
+for (const [locale, width, theme] of [['zh-Hans', 1440, 'light'], ['zh-Hans', 1440, 'dark'], ['zh-Hans', 375, 'light'], ['zh-Hans', 375, 'dark'], ['zh-Hant', 375, 'dark'], ['en', 320, 'light']] as const) {
+  test(`history rows share one card with concise dates: ${locale}/${width}/${theme}`, async ({ browser }) => {
+    const context = await browser.newContext({ baseURL: 'http://127.0.0.1:5173', viewport: { width, height: 812 }, colorScheme: theme, locale: 'zh-CN', timezoneId: 'Asia/Shanghai', hasTouch: width === 375, isMobile: width === 375, reducedMotion: 'reduce' });
+    try {
+      const page = await context.newPage();
+      await page.clock.setFixedTime(new Date('2026-10-24T13:23:23.000Z'));
+      await page.goto('/today');
+      await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+      await page.evaluate(async locale => {
+        const path = '/src/data/db.ts', { settings } = await import(path);
+        await settings.bulkPut([
+          { key: 'profile:local-guest:locale', value: locale },
+          { key: 'profile:local-guest:lookupHistory', value: JSON.stringify([
+            { kind: 'dictionary', term: 'dad', lookedUpAt: '2026-10-24T13:23:23.000Z' },
+            { kind: 'dictionary', term: 'ephemeral', lookedUpAt: '2026-10-23T10:02:23.000Z' },
+            { kind: 'ipa', term: 'æ', lookedUpAt: '2026-10-22T01:15:23.000Z' },
+            { kind: 'grammar', term: 'affect', lookedUpAt: '2026-10-20T06:40:23.000Z' },
+          ]) },
+        ]);
+      }, locale);
+      await page.goto('/library/history');
+      const list = page.locator('.lookup-history-list'), rows = list.locator('.history');
+      await expect(rows).toHaveCount(4);
+      await expect(page.locator('.lookup-history .history-grid')).toHaveCount(0);
+      await expect(rows.first().locator('time')).toHaveText(`${locale === 'en' ? 'Today' : '今天'} 21:23`);
+      await expect(rows.nth(1).locator('time')).toContainText('18:02');
+      if (locale !== 'en') await expect(rows.nth(1).locator('time')).toHaveText('2026/10/23 18:02');
+      for (const row of await rows.all()) {
+        const link = row.locator('a');
+        await expect(link).toHaveCSS('text-decoration-line', 'none');
+        expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+        expect(await row.locator('time').innerText()).not.toMatch(/\d{2}:\d{2}:\d{2}/);
+      }
+      await expect(rows.nth(1)).toHaveCSS('border-top-width', '1px');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await page.screenshot({ path: `output/playwright/lookup-history-list-${width}-${theme}-${locale}.png`, fullPage: true });
+      await list.screenshot({ path: `output/playwright/lookup-history-card-${width}-${theme}-${locale}.png` });
+      const link = rows.first().locator('a');
+      await link.focus(); await expect(link).toHaveCSS('outline-style', 'solid');
+      await link.press('Enter');
+      await expect(page.getByRole('combobox')).toHaveValue('dad');
+    } finally { await context.close(); }
+  });
+}

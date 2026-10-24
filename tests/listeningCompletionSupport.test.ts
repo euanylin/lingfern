@@ -20,7 +20,7 @@ const banks = sourceBanks.map(entry => {
     clip.audio.src = `/audio/community-${hash}/${clip.audio.src.split('/').at(-1)}`;
   return spokenCorpusSchema.parse(value);
 });
-const generate = (point: 'A2' | 'B2', seed = 9) => spokenCorpusLesson(banks[0], new Set(), seed, 91, point, [], 'completion', [], undefined, banks.slice(1))!;
+const generate = (point: 'A2' | 'B2', seed = 9) => spokenCorpusLesson(banks[0], new Set(), seed, 91, point, [], 'completion', undefined, banks.slice(1))!;
 const assertDemo = (lesson: Lesson) => {
   for (const locale of ['en', 'zh-Hans', 'zh-Hant'] as const) {
     const example = lesson.workedExample![locale];

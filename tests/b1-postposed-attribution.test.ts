@@ -35,7 +35,7 @@ it('refuses changed/missing/quoted/hypothetical context, repeated claims, speake
 it('generates two distinct supported B1 original works at20s with exact evidence, scoring, teaching and Test equality',()=>{
  for(let seed=0;seed<8;seed++){
   const operation='evidence:Which sentence explicitly attributes a claim to a named source?';
-  const lesson=spokenCorpusLesson(book,new Set(),seed,20,'B1',[],'evidence',[],operation,[sega])!;expect(lesson).toBeTruthy();
+  const lesson=spokenCorpusLesson(book,new Set(),seed,20,'B1',[],'evidence',operation,[sega])!;expect(lesson).toBeTruthy();
   expect(new Set(lesson.materials.map(m=>m.rootId))).toEqual(new Set(['gutenberg-book-1282','wikipedia-article-24495502']));
   expect(lesson.teaching!.en).toContain('character making the claim');expect(lesson.workedExample!.en).toContain('Mira makes a claim about Leo');expect(lesson.workedExample!.en).not.toMatch(/Tom|Foger|Accolade/);
   for(const m of lesson.materials){expect(m.audio!.duration).toBeLessThanOrEqual(20);expect(corpusOperation(m.questions[0])).toBe(operation);expect(m.communityPackageId??lesson.communityPackageId).toBe(m.rootId==='gutenberg-book-1282'?book.communityPackageId:sega.communityPackageId);}
@@ -50,7 +50,7 @@ it('generates two distinct supported B1 original works at20s with exact evidence
   const at='2026-10-13T14:00:00.000Z';const session:Session={id:'postposed-test',profileId:'synthetic-test',lesson,contentHash:'a'.repeat(64),position:4,status:'completed',startedAt:at,assistance:{hintLevel:0},leaseUntil:0};
   const attempts:Attempt[]=questions(lesson).map(({material,question},i)=>({id:'postposed-'+i,profileId:session.profileId,sessionId:session.id,questionId:question.id,rootId:material.rootId,answer:'kind'in question&&question.kind==='response'?'Synthetic explanation':0,correct:'kind'in question&&question.kind==='response'?null:false,rule:'synthetic-test-only',assistance:{hintLevel:0,audioCompleted:true,playbackRequests:1},submittedAt:at}));
   const history=corpusPracticeHistory([session],attempts,session.profileId,'listening','all','B1');expect(history.needsSupport).toBe(true);expect(history.maxSeconds).toBe(20);
-  expect(spokenCorpusLesson(book,history.seen,seed,history.maxSeconds,'B1',[],'evidence',[],operation,[sega])).toBeUndefined();
-  expect(spokenCorpusLesson(book,new Set(),seed,15,'B1',[],'evidence',[],operation,[sega])).toBeUndefined();
+  expect(spokenCorpusLesson(book,history.seen,seed,history.maxSeconds,'B1',[],'evidence',operation,[sega])).toBeUndefined();
+  expect(spokenCorpusLesson(book,new Set(),seed,15,'B1',[],'evidence',operation,[sega])).toBeUndefined();
  }
 });

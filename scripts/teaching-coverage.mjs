@@ -73,11 +73,11 @@ export async function teachingCoverage({server,readingForBounds,applicationListe
      let lesson;
      if(skill==='reading') {
       const bank={version:1,failures:[],records:pair.map(item=>({...item.source,passages:[item.excerpt]}))};
-      lesson=c.corpusLesson(bank,new Set(),1,bounds.maxWords,level,[],kind,[],operation);
+      lesson=c.corpusLesson(bank,new Set(),1,bounds.maxWords,level,[],kind,operation);
      } else {
       const primary=first.bank;
       const other={...second.bank,records:[{...second.source,clips:[second.excerpt]}]};
-      lesson=spokenCorpusLesson(primary,new Set(),0,bounds.maxSeconds,level,[],kind,[],operation,[other]);
+      lesson=spokenCorpusLesson(primary,new Set(),0,bounds.maxSeconds,level,[],kind,operation,[other]);
      }
      if(lesson) {sample=checkLesson(lesson,operation);if(operation)assert.equal(sample.operation,operation,`${level} ${skill} ${name}: requested operation fell back`);}
     }

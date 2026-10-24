@@ -33,7 +33,7 @@ it('copies originals explicitly without transferring another account acknowledge
   await saveSense('p', 'sense', 'private term', 'private definition');
   const batch = (await pendingSyncBatch('p'))!;
   await confirmSyncBatch('p', batch.deviceId, batch.batchId, batch.hash);
-  const incoming = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'p', deviceId: 'remote', batchId: 'remote-batch', events: [{ type: 'saved_item', id: 'received', deviceId: 'remote', counter: 2, occurredAt: '2020-01-01T00:00:00.000Z', payload: { memoryId: 'remote-sense', saved: true, reviewEnabled: false } }] });
+  const incoming = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'p', deviceId: 'remote', batchId: 'remote-batch', events: [{ type: 'saved_item', id: 'received', deviceId: 'remote', counter: 2, occurredAt: '2020-01-01T00:00:00.000Z', payload: { memoryId: 'remote-sense', saved: true } }] });
   await receiveSyncBatch('p', incoming.batch, incoming.hash);
   const originals = await readSyncEvents('p');
   expect(await accountProfiles(2)).toEqual([]);

@@ -1,5 +1,5 @@
 """Research public corpora through Colab CLI without adding website dependencies."""
-import hashlib, html, io, json, pathlib, re, tarfile, urllib.request, xml.etree.ElementTree as ET, zipfile, time, os, platform, shutil, subprocess
+import hashlib, io, json, pathlib, re, tarfile, urllib.request, xml.etree.ElementTree as ET, zipfile, time, os, platform, shutil, subprocess
 from html.parser import HTMLParser
 ROOT = pathlib.Path('/content/lingfern-reading-expansion-20261009')
 OUT = ROOT / 'prepared-lossless'

@@ -38,7 +38,7 @@ Sessions and answers are saved in your browser on your device. Clearing site dat
 
 Backup ZIPs contain personal learning data and are not encrypted. Keep them private. Installed resource packs and audio are separate from your learning backup.
 
-GitHub sync and AI sharing are optional. Sync uses a private data repository you select; local answers remain saved when a network request fails. MCP gives a connected client access only to snapshots you explicitly share, with expiry and revocation controls. Signing in does not require a sync repository. Revocation prevents later retrieval but cannot erase copies already received by another service. Lingfern has no advertising or default telemetry.
+GitHub sync and AI sharing are optional. After setup, automatic sync merges learning summaries, bookmarks, query history and selected preferences through the private data repository you choose. You can turn automatic sync off; local answers remain saved when a network request fails. MCP gives a connected client access only to snapshots you explicitly share, with expiry and revocation controls. Signing in does not require a sync repository. Revocation prevents later retrieval but cannot erase copies already received by another service. Lingfern has no advertising or default telemetry.
 
 ## Try it locally or contribute
 

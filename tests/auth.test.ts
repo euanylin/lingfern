@@ -604,7 +604,7 @@ test('a repository change during first inspection is remembered before any inten
 
 
 async function uploadValue() {
-  const result = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'local-guest', deviceId: 'device-a', batchId: 'fixed-batch', events: [{ id: 'saved-1', deviceId: 'device-a', counter: 1, occurredAt: '2026-09-30T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense-词', saved: true, reviewEnabled: false } }] });
+  const result = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'local-guest', deviceId: 'device-a', batchId: 'fixed-batch', events: [{ id: 'saved-1', deviceId: 'device-a', counter: 1, occurredAt: '2026-09-30T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense-词', saved: true } }] });
   return { batch: result.batch, hash: result.hash };
 }
 async function boundEnvironment() {

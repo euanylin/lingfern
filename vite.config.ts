@@ -11,6 +11,7 @@ const fixtureRoot = process.env.LINGFERN_OFFLINE_FIXTURES === '1' ? '/tmp/lingfe
 
 export default defineConfig(({ mode }) => ({
   publicDir: mode === 'test-fixtures' ? `${fixtureRoot}/public` : 'public',
+  optimizeDeps: { entries: ['index.html'] },
   define: {
     __LINGFERN_SOURCE_TOPICS__: JSON.stringify(JSON.parse(readFileSync('content/corpus/runtime-audit.json', 'utf8')).topicCoverage.decisions.map(({ rootId, sourceHash, topic }: { rootId: string; sourceHash: string; topic: string }) => ({ rootId, sourceHash, topic }))),
     __LINGFERN_IPA_WORD_SOURCES__: audioCredits('public/ipa/SOURCES.json', 'word'),

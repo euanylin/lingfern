@@ -1,5 +1,5 @@
 """Discover exact case-preserving matches; require individual scope review."""
-import bisect,collections,gzip,hashlib,importlib.util,json,pathlib,re,time,urllib.parse
+import bisect,collections,importlib.util,json,pathlib,re,time,urllib.parse
 BASE=pathlib.Path('/content/lingfern-quote-editions-fast')
 def load(name,path):
  s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m

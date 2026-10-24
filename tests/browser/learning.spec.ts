@@ -69,6 +69,8 @@ test('small screen, theme and all interface languages', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/today');
   const start = page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true });
   await expect(start).toBeVisible();
+  await expect(start).toBeEnabled();
+  await expect(page.locator('.daily-quote blockquote')).toBeVisible();
   const mobileBrand = page.locator('header .mobile-brand');
   await expect(mobileBrand).toBeVisible();
   await expect(page.locator('footer .footer-wordmark')).toHaveCount(0);
@@ -102,7 +104,7 @@ test('small screen, theme and all interface languages', async ({ page }) => {
   const settingsLink = mobileNav.getByRole('link', { name: '设置', exact: true });
   const navColor = await settingsLink.evaluate(el => getComputedStyle(el).backgroundColor);
   await settingsLink.hover();
-  expect(await settingsLink.evaluate(el => getComputedStyle(el).backgroundColor)).toBe(navColor);
+  await expect.poll(() => settingsLink.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(navColor);
   expect(await settingsLink.evaluate(el => getComputedStyle(el, '::after').content)).toBe('none');
   expect(await settingsLink.evaluate(el => getComputedStyle(el, '::after').animationName)).toBe('none');
   await expect.poll(() => settingsLink.locator('svg').evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m42)).toBe(-2);

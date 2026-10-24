@@ -38,7 +38,7 @@ it('keeps word bounds and blocks known long/short containment without changing o
     for (const limit of [120, 300, 700]) expect(selectCorpusPassage(scoped, new Set(), 0, limit)?.passage.wordCount ?? 0).toBeLessThanOrEqual(limit);
     expect(selectCorpusPassage(scoped, new Set([long.id]), 0, 1200)).toBeUndefined();
     for (const passage of short) {
-      const next = selectCorpusPassage(scoped, new Set([passage.id]), 0, 1200, [], [], 'C2');
+      const next = selectCorpusPassage(scoped, new Set([passage.id]), 0, 1200, [], 'C2');
       expect(next?.passage.id).not.toBe(long.id);
       expect(next).toBeDefined();
     }

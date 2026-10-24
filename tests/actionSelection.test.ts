@@ -55,7 +55,7 @@ it('generates and routes actual source actions on two distinct roots without sco
   expect(candidates.map(row => row.source.title).sort()).toEqual(['Mario Party (video game)', 'Perfect Dark']);
   const scoped = { ...all, records: candidates.map(({ source, passage }) => ({ ...source, passages: [passage] })) };
   for (const level of ['B1', 'B2', 'C1', 'C2'] as const) for (let seed = 0; seed < 6; seed++) {
-    const lesson = corpusLesson(scoped, new Set(), seed, 300, level, [], 'choice', [], 'choice:conditional-action')!;
+    const lesson = corpusLesson(scoped, new Set(), seed, 300, level, [], 'choice', 'choice:conditional-action')!;
     expect(lesson.generation?.generator).toBe('corpus-v1');
     if (lesson.generation?.generator !== 'corpus-v1') throw Error('Expected corpus generation');
     expect(lesson.generation.focus).toBe('choice');
@@ -129,7 +129,7 @@ it('generates stage choices from two actual sources with full action bundles and
   expect(targets.map(source => source.title).sort()).toEqual(['Gotcha Force', 'I Spy Spooky Mansion']);
   const bank = { version: 1 as const, failures: [], records: targets };
   for (const seed of [0, 1, 2, 3, 4, 5]) for (const level of ['B1', 'B2', 'C1', 'C2'] as const) {
-    const lesson = corpusLesson(bank, new Set(), seed, 500, level, [], 'choice', [], 'choice:conditional-action')!;
+    const lesson = corpusLesson(bank, new Set(), seed, 500, level, [], 'choice', 'choice:conditional-action')!;
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.teaching!.en).toContain('condition or stage');
     for (const material of lesson.materials) {

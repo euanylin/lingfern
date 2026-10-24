@@ -2,6 +2,7 @@ import { openSnapshot, completeWorkspace, focusQuestion } from './workspace';
 import { confirmTask } from './task-start';
 import { expect, test, type Page } from '@playwright/test';
 import { selectPicker } from './picker';
+import { languagePacks } from '../../src/locales';
 
 async function highlightPassageWord(page: Page, word: string) {
   await page.locator('.passage').first().scrollIntoViewIfNeeded();
@@ -169,7 +170,7 @@ test('dictionary finds course, WordNet, inflected, multiword and missing terms',
   await expect(page.getByText('A set of pages with words or pictures that you can read.')).toBeVisible();
   await expect(page.getByText('其他可能的词义')).toBeVisible();
   await lookup('children');
-  await expect(page.getByText('词形对应: child')).toBeVisible();
+  await expect(page.getByText(`${languagePacks['zh-Hans'].dictionary.lemma}: child`)).toBeVisible();
   await lookup('front desk');
   await expect(page.getByText('The place near an entrance where staff help visitors.')).toBeVisible();
   await lookup('zzzxxyyqq');

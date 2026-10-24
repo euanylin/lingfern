@@ -13,7 +13,7 @@ const paragraphs = scopes.records.map(scope => sources.flatMap(s => s.passages).
 
 it('generates same-goal plans on two inspected originals, preserving action order rather than page order', () => {
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A2', [], 'choice', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A2', [], 'choice', operation)!;
     expect(lesson?.goalId).toBe('explicit-planned-order'); expect(lesson.targetLevel).toBe('A2');
     expect(lesson.materials.map(m => m.rootId).sort()).toEqual(scopes.records.map(s => s.rootId).sort());
     for (const [i, m] of lesson.materials.entries()) {
@@ -40,16 +40,16 @@ it('generates same-goal plans on two inspected originals, preserving action orde
 it('rejects missing, duplicated, ambiguous and qualified frames instead of inferring order', () => {
   for (const text of ['Anna: I take a test on the computer. I take a test in the car.', paragraphs.join('\n'), paragraphs[0] + '\n' + paragraphs[0], paragraphs[0].replace('First, I have to', 'First, I might'), paragraphs[1].replace('before we get ice cream', 'after we get ice cream'), paragraphs[1].replace('I need to return', 'I do not need to return')]) expect(corpusPlannedOrder(text, 0)).toBeUndefined();
   expect(() => corpusPlannedOrder('', -1)).toThrow(); expect(() => corpusPlannedOrder('a'.repeat(12001), 0)).toThrow();
-  for (const record of sources) expect(corpusLesson({ ...bank, records: [record] }, new Set(), 0, 120, 'A2', [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(bank.records.flatMap(r => r.passages.map(p => p.id))), 0, 120, 'A2', [], 'choice', [], operation)).toBeUndefined();
-  expect(corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', [], operation)).toBeUndefined();
+  for (const record of sources) expect(corpusLesson({ ...bank, records: [record] }, new Set(), 0, 120, 'A2', [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(bank.records.flatMap(r => r.passages.map(p => p.id))), 0, 120, 'A2', [], 'choice', operation)).toBeUndefined();
+  expect(corpusLesson(bank, new Set(), 0, 120, 'A1', [], 'choice', operation)).toBeUndefined();
 });
 
 it('reaches planned order from the ordinary A2 operation cycle and never substitutes another application', () => {
   const count = bank.records.reduce((sum, r) => sum + r.passages.filter(p => p.startingPoints?.includes('A2') && p.wordCount <= 120).length, 0);
   expect(Array.from({ length: 100 }, (_, n) => corpusDefaultFocus(n * count, count, 'A2')[1])).toContain(operation);
   const exhaustedApplication = { ...bank, records: bank.records.map(r => ({ ...r, passages: r.passages.filter(p => p.id !== scopes.records[1].passageId) })) };
-  expect(corpusLesson(exhaustedApplication, new Set(), 0, 120, 'A2', [], 'choice', [], operation)).toBeUndefined();
+  expect(corpusLesson(exhaustedApplication, new Set(), 0, 120, 'A2', [], 'choice', operation)).toBeUndefined();
 });
 
 it('protects reviewed order scopes against altered context and source identity', async () => {

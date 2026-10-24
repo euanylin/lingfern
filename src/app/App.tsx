@@ -139,7 +139,7 @@ export function App() {
   const t = copy[locale];
   const sessionId = path.startsWith('/learn/') ? path.slice(7) : undefined;
   const loadRevision = useRef(0);
-  async function load() {
+  async function load(rejectFailure = false) {
     const current = ++loadRevision.current;
     setError('');
     try {
@@ -163,7 +163,7 @@ export function App() {
       setCommunityLessons(importedLessons);
       setLocalCorpus(available.some(item => item.ready && !!item.pack.corpus?.records.length));
       setLocalSpoken(available.some(item => item.ready && !!item.pack.spoken?.records.length));
-      const effective = await mergeLearningRecords([...catalogue, ...importedLessons], all, answers, await readSyncEvents(profileId));
+      const effective = await mergeLearningRecords([...catalogue, ...importedLessons], all, answers, await readSyncEvents(profileId, db, ['completion', 'completion_timing', 'deletion']));
       const logicalProfileId = (await syncClocks.get(profileId))?.logicalProfileId ?? profileId;
       if (current !== loadRevision.current) return;
       setTimingRows(effective.timingRows); setSummaries(effective.summaries); setUnavailableSummaries(effective.unavailable); setSummaryConflicts(effective.conflicting.size);
@@ -190,10 +190,13 @@ export function App() {
       setOnlineDictionary(defaultOnlineDictionary(savedValues.get('onlineDictionary')));
       setPracticeSelections({ reading: readPracticeSelection(savedValues.get('readingPractice')), listening: readPracticeSelection(savedValues.get('listeningPractice')) });
       setHistory(all.sort((a,b) => b.startedAt.localeCompare(a.startedAt))); setRecords(effective.records); setReady(true);
-    } catch { if (current === loadRevision.current) { setError('read'); setReady(false); } }
+    } catch { if (current === loadRevision.current) { setError('read'); setReady(false); } if (rejectFailure) throw new Error('SYNC_APPLY_FAILED'); }
   }
   const syncLoad = useRef(load); syncLoad.current = load;
-  useEffect(() => ready ? startSyncSchedule(activeProfile, () => syncLoad.current()) : undefined, [activeProfile, ready]);
+  useEffect(() => {
+    const summary = githubSession.summary;
+    return ready && githubSession.status === 'ready' && summary?.account ? startSyncSchedule(activeProfile, () => syncLoad.current(true), summary) : undefined;
+  }, [activeProfile, ready, githubSession.status, githubSession.summary]);
   useEffect(() => {
     const navigate = (event?: PopStateEvent) => { const next = route(); resetNavigationScroll.current = !event; if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false); startTransition(() => { setPath(next); setPageSearch(location.search); }); };
     const click = (event: MouseEvent) => {

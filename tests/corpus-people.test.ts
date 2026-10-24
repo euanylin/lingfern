@@ -13,11 +13,11 @@ it('identifies the speaker of real self-descriptions, including a different pers
   expect(corpusPeople(book.text, 0)?.pairs).toEqual([{ label: 'Says they are great.', answer: 'Marsha' }, { label: 'Says they are new to D.C.', answer: 'Anna' }]);
   expect(corpusPeople(intro.text, 0)?.choices).toEqual(['Anna', 'Pete', 'Jonathan']);
   fc.assert(fc.property(fc.integer({ min: 0, max: 0xffffffff }), seed => {
-    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'matching', [], operation)!;
+    const lesson = corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'matching', operation)!;
     expect(lesson).toBeDefined(); expect(lesson.targetLevel).toBe('A1');
     expect(lesson.goalId).toBe('explicit-person-description');
     expect(lesson).toEqual(JSON.parse(JSON.stringify(lesson)));
-    expect(lesson).toEqual(corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'matching', [], operation));
+    expect(lesson).toEqual(corpusLesson(bank, new Set(), seed, 120, 'A1', [], 'matching', operation));
     expect(new Set(lesson.materials.map(material => material.rootId)).size).toBe(2);
     expect(lesson.materials.map(material => material.rootId).sort()).toEqual(['voa-article-3113733', 'voa-article-3168920']);
     for (const [index, material] of lesson.materials.entries()) {
@@ -55,11 +55,11 @@ it('rejects ambiguity, uncertain/negative speakers, missing evidence and missing
   for (const text of ['Mira: I am great.\nLeo: I am great.', 'Mira: If it is Monday, I am great.\nLeo: I am new to D.C.', 'Mira: I am great.\nMira: I am not great.\nLeo: I am new to D.C.', 'I am great.\nI am from a small town.', 'Mira: I am hungry.\nLeo: I am asleep.']) expect(corpusPeople(text, 0)).toBeUndefined();
   expect(() => corpusPeople('Mira: I am great.', -1)).toThrow();
   const one = { ...bank, records: bank.records.filter(source => source.rootId === 'voa-article-3168920') };
-  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'matching', [], operation)).toBeUndefined();
+  expect(corpusLesson(one, new Set(), 0, 120, 'A1', [], 'matching', operation)).toBeUndefined();
   const seen = new Set(bank.records.flatMap(source => source.passages.map(p => p.id)));
-  expect(corpusLesson(bank, seen, 0, 120, 'A1', [], 'matching', [], operation)).toBeUndefined();
+  expect(corpusLesson(bank, seen, 0, 120, 'A1', [], 'matching', operation)).toBeUndefined();
   const different = { ...bank, records: [...one.records, bank.records.find(source => source.rootId === 'voa-article-3168971')!] };
-  expect(corpusLesson(different, new Set(), 0, 120, 'A1', [], 'matching', [], operation)).toBeUndefined();
+  expect(corpusLesson(different, new Set(), 0, 120, 'A1', [], 'matching', operation)).toBeUndefined();
 });
 
 it('binds admitted person scopes to their exact source and text before client generation', async () => {

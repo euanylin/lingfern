@@ -1,5 +1,5 @@
 """Validate frozen public parents and diagnose GPU batch duplicates without granting qualification."""
-import pathlib,json,hashlib,re,time,zipfile,collections,subprocess
+import pathlib,json,hashlib,re,time,zipfile,collections
 ROOT=pathlib.Path('/content/lingfern-b1-reading-batch-20261013')
 INPUT=pathlib.Path('/content/lingfern-b1-reading-input.json')
 INPUT_SHA='20faab9e9c69a0dca5515bd2d892516ac822827fabfc08d3845177f364a4bb85'

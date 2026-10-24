@@ -1,73 +1,95 @@
 import { liveQuery } from 'dexie';
-import { db, settings } from './db';
-import { nextSyncUpload, readSyncDownload } from './sync';
-import { downloadSyncPage, readSyncConsent, uploadSyncBatch } from './syncClient';
+import { db, settings, syncClocks } from './db';
+import { prepareAutoSync, storedSyncConsent, syncConfigurationPending, syncControlKey, synchronize } from './syncClient';
+import type { SessionSummary } from '../shared/auth';
 import { profileIdSchema } from '../shared/repository';
 
-// Run one page/batch per foreground round, at least one minute apart.
-export function startSyncSchedule(profileId: string, onMerge: () => Promise<void>) {
+export function startSyncSchedule(profileId: string, onMerge: () => Promise<void>, summary: SessionSummary) {
   profileIdSchema.parse(profileId);
-  let stopped = false, running = false, last = -Infinity, retryAt = 0, failures = 0, paused = false, consentId = '';
-  let operation: AbortController | undefined, statusKey = '';
-  let dirty = true;
+  let stopped = false, running = false, again = false, waking = false;
+  let operation: AbortController | undefined, consentId = '';
+  let debounce: ReturnType<typeof setTimeout> | undefined, dirtySince = 0;
+  let deferredWake: ReturnType<typeof setTimeout> | undefined;
+  let applied = 0, merging: Promise<void> | undefined;
+  const received = () => db.table('syncBatches').where('[profileId+state]').equals([profileId, 'received']).count();
+  const baseline = received().then(count => { applied = count; });
   const foreground = () => !stopped && document.visibilityState === 'visible' && navigator.onLine;
-  const reportStatus = (value: string) => db.transaction('rw', settings, db.table('syncClocks'), async () => {
-    if (!(await db.table('syncClocks').get(profileId))?.deleted) await settings.put({ key: statusKey, value });
-  });
-  async function run(remote = false) {
-    if (!foreground() || running || Date.now() - last < 60000 || Date.now() < retryAt) return;
+  const apply = async () => {
+    if (merging) return merging;
+    merging = (async () => {
+      await baseline;
+      while (!stopped) {
+        const count = await received();
+        if (count === applied) return;
+        await onMerge(); applied = count;
+      }
+    })().finally(() => { merging = undefined; });
+    return merging;
+  };
+  async function run(wake = false) {
+    if (!foreground()) { operation?.abort(); return; }
+    if (running) { again = true; waking ||= wake; return; }
     running = true;
     try {
-      const consent = await readSyncConsent(profileId);
+      await baseline;
+      if (await syncConfigurationPending(profileId)) return;
+      const consent = await prepareAutoSync(profileId, summary);
       if (!consent || !foreground()) return;
-      if (consent.id !== consentId) { consentId = consent.id; paused = false; failures = 0; retryAt = 0; }
-      if (paused) return;
-      statusKey = `profile:${profileId}:syncSchedule:${consent.scope.accountId}:${consent.scope.bindingVersion}`;
-      const progress = await readSyncDownload(profileId, consent.scope);
-      if (!dirty && !progress?.nextCursor && !remote) return;
-      const pending = await nextSyncUpload(profileId, consent.scope);
-      if (!pending) dirty = false;
-      if (!pending && !progress?.nextCursor && !remote) return;
-      if (!foreground()) return;
-      last = Date.now(); operation = new AbortController();
-      const page = await downloadSyncPage(profileId, consent.scope, operation.signal);
-      if (page.results.includes('conflict')) throw new Error('SYNC_BATCH_CONFLICT');
-      if (page.results.includes('received')) await onMerge();
-      operation.signal.throwIfAborted();
-      await uploadSyncBatch(profileId, consent, operation.signal);
-      failures = 0; retryAt = 0;
-      await reportStatus('done');
-    } catch (error) {
-      if (operation?.signal.aborted || stopped) return;
-      const code = error instanceof Error ? error.message : '';
-      if (['SYNC_BUSY', 'SYNC_RETRY_LATER'].includes(code)) return;
-      const retryable = error instanceof TypeError || ['SYNC_HTTP_500', 'SYNC_HTTP_502', 'SYNC_HTTP_503', 'SYNC_HTTP_504', 'SYNC_PENDING', 'RATE_LIMITED', 'SYNC_RATE_LIMITED', 'REPOSITORY_FAILED', 'AUTH_UNAVAILABLE'].includes(code) || (error instanceof Error && error.name === 'TimeoutError');
-      failures++;
-      paused = !retryable || failures > 2;
-      retryAt = Date.now() + failures * 60000 + Math.random() * 10000;
-      if (statusKey) await reportStatus(paused ? 'paused' : 'retry').catch(() => {});
-    } finally { operation = undefined; running = false; }
+      consentId = consent.id;
+      operation = new AbortController();
+      const result = await synchronize(profileId, consent, apply, operation.signal, wake);
+      if (result) {
+        clearTimeout(deferredWake);
+        deferredWake = setTimeout(() => void run(true), Math.max(0, result.wakeAt - Date.now()));
+      }
+    } catch {
+      // The coordinator retains scoped failure/retry state; local learning stays available.
+    } finally {
+      operation = undefined; running = false;
+      if (again && !stopped) {
+        const wakeAgain = waking; again = false; waking = false;
+        void run(wakeAgain);
+      }
+    }
   }
   const wake = () => { if (foreground()) void run(true); else operation?.abort(); };
-  const timer = setInterval(() => { void run(); }, 60000);
-  let completed: number | undefined, savedConsent: string | undefined, eventCount: number | undefined;
-  const observer = liveQuery(async () => ({
-    completed: await db.table('sessions').where('profileId').equals(profileId).filter(session => session.status === 'completed').count(),
-    events: await db.table('syncEvents').where('profileId').equals(profileId).count(),
-    consent: (await settings.get(`profile:${profileId}:syncConsent`))?.value,
-    active: (await settings.get('activeProfile'))?.value,
-  })).subscribe({
+  let revision: number | undefined, requested: string | undefined, storedConsent: string | undefined, association: string | undefined, configuring = false, observed = false;
+  const observer = liveQuery(async () => {
+    const consent = (await settings.get(`profile:${profileId}:syncConsent`))?.value;
+    const stored = storedSyncConsent(consent);
+    return {
+      consent, consentId: stored?.id,
+      request: stored ? (await settings.get(syncControlKey(profileId, stored.scope, 'request')))?.value : undefined,
+      active: (await settings.get('activeProfile'))?.value,
+      association: (await settings.get(`profile:${profileId}:syncAccount`))?.value,
+      configuring: await syncConfigurationPending(profileId),
+      revision: (await syncClocks.get(profileId))?.localRevision ?? 0,
+      received: await received(),
+    };
+  }).subscribe({
     next(value) {
-      if (value.active && value.active !== profileId || savedConsent !== undefined && savedConsent !== value.consent) operation?.abort();
-      if (eventCount !== undefined && eventCount !== value.events) dirty = true;
-      eventCount = value.events;
-      const changed = completed !== undefined && value.completed > completed;
-      completed = value.completed; savedConsent = value.consent;
-      if (changed) void run();
+      if (value.configuring || value.active && value.active !== profileId || operation && (value.consentId !== consentId || observed && value.association !== association)) operation?.abort();
+      if (value.received !== applied) void apply().catch(() => {});
+      if (!observed || requested !== value.request || association !== value.association || configuring !== value.configuring || storedConsent !== value.consent && (!operation || value.consentId !== consentId)) void run(!observed || requested === value.request);
+      storedConsent = value.consent; requested = value.request;
+      association = value.association;
+      configuring = value.configuring;
+      observed = true;
+      if (revision !== undefined && value.revision !== revision) {
+        dirtySince ||= Date.now();
+        clearTimeout(debounce);
+        debounce = setTimeout(() => { dirtySince = 0; void run(); }, Math.max(0, Math.min(2000, dirtySince + 10000 - Date.now())));
+      }
+      revision = value.revision;
     },
-    error() { operation?.abort(); paused = true; },
+    error() { operation?.abort(); },
   });
-  document.addEventListener('visibilitychange', wake); window.addEventListener('online', wake); window.addEventListener('offline', wake);
-  void run(true);
-  return () => { stopped = true; operation?.abort(); clearInterval(timer); observer.unsubscribe(); document.removeEventListener('visibilitychange', wake); window.removeEventListener('online', wake); window.removeEventListener('offline', wake); };
+  const timer = setInterval(() => { void run(); }, 15000);
+  document.addEventListener('visibilitychange', wake);
+  window.addEventListener('online', wake); window.addEventListener('offline', wake);
+  return () => {
+    stopped = true; operation?.abort(); clearInterval(timer); clearTimeout(debounce); clearTimeout(deferredWake); observer.unsubscribe();
+    document.removeEventListener('visibilitychange', wake);
+    window.removeEventListener('online', wake); window.removeEventListener('offline', wake);
+  };
 }
