@@ -415,6 +415,7 @@ for (const [locale, colorScheme, width] of [['zh-Hans', 'light', 393], ['en', 'd
       const x = box.x + box.width / 2, y = box.y + box.height * .75, distance = Math.min(140, box.height * .5);
       for (const direction of [-1, 1]) {
         const before = await content.evaluate(el => el.scrollTop);
+        await content.evaluate(el => { el.setAttribute('data-scroll-ended', 'false'); el.addEventListener('scrollend', () => el.setAttribute('data-scroll-ended', 'true'), { once: true }); });
         await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y: direction < 0 ? y : y - distance }] });
         for (let step = 1; step <= 8; step++) {
           await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + 2, y: (direction < 0 ? y : y - distance) + direction * distance * step / 8 }] });
@@ -425,6 +426,8 @@ for (const [locale, colorScheme, width] of [['zh-Hans', 'light', 393], ['en', 'd
         else await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeLessThan(before - 20);
         samples.push({ card, down: before, up: await content.evaluate(el => el.scrollTop) });
         await expect(current).toHaveAttribute('data-current', 'true');
+        // Keep independent gestures outside the browser's native fling window.
+        await expect(content).toHaveAttribute('data-scroll-ended', 'true');
       }
       await expect(page.getByRole('listbox')).toHaveCount(0);
     }

@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   deploy:
@@ -29,8 +30,6 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm run lint
-      - run: npm test
       - run: npm run release:files -- /tmp/lingfern-source-export
       - run: npm run build
       - name: Inspect public build
@@ -39,13 +38,6 @@ jobs:
           test -z "$(find dist -type f -size +20M -print -quit)"
           du -sh dist
       - run: npm run deploy:check
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:sync
-      - run: npm run test:mcp
-      - run: npm run test:e2e
-      - run: npm run test:offline
-      - run: npm run test:update
-        timeout-minutes: 5
       - name: Check local Worker routes and assets
         run: |
           set -euo pipefail
@@ -61,6 +53,10 @@ jobs:
           done
           cat /tmp/lingfern-preview.log
           exit 1
+      - name: Require verified source on protected main
+        run: node scripts/ci-verification.mjs --require-main
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Require configured first-launch integrations
         run: node scripts/release-config.mjs --ci /tmp/lingfern-ci-deployment.json
       - name: Deploy the checked source and assets

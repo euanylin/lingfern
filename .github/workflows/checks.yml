@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   checks:
@@ -20,25 +21,44 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      - name: Reuse verification for the identical source
+        id: verification
+        run: node scripts/ci-verification.mjs --reuse
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - run: npm ci
+        if: steps.verification.outputs.run_id == ''
       - run: npm run lint
+        if: steps.verification.outputs.run_id == ''
       - run: npm test
+        if: steps.verification.outputs.run_id == ''
       - run: npm run release:files -- /tmp/lingfern-source-export
+        if: steps.verification.outputs.run_id == ''
       - run: npm run build
+        if: steps.verification.outputs.run_id == ''
       - name: Inspect public build
+        if: steps.verification.outputs.run_id == ''
         run: |
           test -f dist/index.html && test -f dist/sw.js
           test -z "$(find dist -type f -size +20M -print -quit)"
           du -sh dist
       - run: npm run deploy:check
+        if: steps.verification.outputs.run_id == ''
       - run: npx playwright install --with-deps chromium
+        if: steps.verification.outputs.run_id == ''
       - run: npm run test:sync
+        if: steps.verification.outputs.run_id == ''
       - run: npm run test:mcp
+        if: steps.verification.outputs.run_id == ''
       - run: npm run test:e2e
+        if: steps.verification.outputs.run_id == ''
       - run: npm run test:offline
+        if: steps.verification.outputs.run_id == ''
       - run: npm run test:update
+        if: steps.verification.outputs.run_id == ''
         timeout-minutes: 5
       - name: Check local Worker routes and assets
+        if: steps.verification.outputs.run_id == ''
         run: |
           set -euo pipefail
           npm run preview > /tmp/lingfern-preview.log 2>&1 &
