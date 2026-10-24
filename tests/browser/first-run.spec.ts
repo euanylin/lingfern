@@ -110,11 +110,13 @@ test('first run supports Traditional Chinese, dark mode, six widths and enlarged
 
 test('storage failure offers an explicitly unsaved example without creating a profile or response', async ({ page }) => {
   await page.addInitScript(() => {
-    const put = IDBObjectStore.prototype.put;
-    IDBObjectStore.prototype.put = function(...args) {
-      if (this.name === 'profiles') throw new DOMException('Synthetic storage failure', 'QuotaExceededError');
-      return put.apply(this, args);
-    };
+    for (const method of ['add', 'put'] as const) {
+      const write = IDBObjectStore.prototype[method];
+      IDBObjectStore.prototype[method] = function(...args) {
+        if (this.name === 'profiles') throw new DOMException('Synthetic storage failure', 'QuotaExceededError');
+        return write.apply(this, args);
+      };
+    }
   });
   await page.goto('/start');
   await page.getByRole('button', { name: '试用不保存的阅读示例', exact: true }).click();

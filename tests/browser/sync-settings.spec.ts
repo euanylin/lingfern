@@ -12,6 +12,8 @@ test('received settings apply to their profile and local picker edits remain cap
     { id: 'preferences', deviceId: 'remote', counter: 6, occurredAt: '2020-01-01T00:00:00.000Z', type: 'preferences', payload: { interests: ['travel'], reading: 'C2', step: 4, completed: true } },
   ] });
   await page.goto('/settings');
+  await expect(page.locator('.profile-backup .setting-trigger')).toBeEnabled();
+  await expect(page.locator('.profile-backup .setting-trigger')).toHaveAttribute('data-value', 'local-guest');
   await page.evaluate(async ({ batch, hash }) => {
     const dbPath = '/src/data/db.ts'; const syncPath = '/src/data/sync.ts';
     const data = await import(dbPath);
