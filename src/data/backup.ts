@@ -179,6 +179,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
     const session = byId.get(attempt.sessionId);
     const item = session && questions(session.lesson).find(item => item.question.id === attempt.questionId);
     if (attempt.profileId !== manifest.sourceProfileId || attempt.id !== `${attempt.sessionId}:${attempt.questionId}` || !item || item.material.rootId !== attempt.rootId) throw new Error('BACKUP_REFERENCE');
+    if (session!.workspace?.skipped?.includes(attempt.questionId)) throw new Error('BACKUP_REFERENCE');
     validateAnswer(item.question, attempt.answer);
     if ('criteria' in item.question) {
       if (attempt.correct !== null || attempt.rule !== 'open-response-unscored-v1') throw new Error('BACKUP_REFERENCE');

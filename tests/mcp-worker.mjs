@@ -198,6 +198,15 @@ try {
   for (const method of ['GET', 'DELETE']) assert.equal((await request('/mcp', { method, headers: { Authorization: `Bearer ${token.access_token}`, 'MCP-Protocol-Version': '2025-11-25' } }, new Map())).status, 405);
   const refreshed = await json(await request('/oauth/token', post({ grant_type: 'refresh_token', refresh_token: token.refresh_token, client_id: registered.client_id, resource: `${origin}/mcp` })), 200);
   assert.ok(refreshed.access_token);
+  // An active website account must not revive an already-revoked MCP connection.
+  sql(`UPDATE mcp_connections SET revoked=1 WHERE id='${connection.id}'`);
+  assert.equal((await rpc('tools/list', {}, refreshed.access_token)).response.status, 401);
+  const inactiveRefresh = await json(await request('/oauth/token', post({ grant_type: 'refresh_token', refresh_token: refreshed.refresh_token, client_id: registered.client_id, resource: `${origin}/mcp` })), 400);
+  assert.equal(inactiveRefresh.error, 'invalid_grant');
+  assert.equal(inactiveRefresh.error_description, 'Authorization has been revoked or expired.');
+  assert.equal((await json(await request('/api/ai/connections'), 200)).connections.some(item => item.id === connection.id), false);
+  // Restore this isolated fixture for the separate normal revocation path below.
+  sql(`UPDATE mcp_connections SET revoked=0 WHERE id='${connection.id}'`);
   const revoked = await request(`/api/ai/connections/${connection.id}`, { method: 'DELETE', headers: { Origin: origin, 'X-CSRF-Token': csrf } }); assert.equal(revoked.status, 200);
   assert.equal((await rpc('tools/list', {}, refreshed.access_token)).response.status, 401);
   assert.equal((await request('/oauth/token', post({ grant_type: 'refresh_token', refresh_token: refreshed.refresh_token, client_id: registered.client_id, resource: `${origin}/mcp` }))).status, 400);

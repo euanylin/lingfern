@@ -1,6 +1,6 @@
 import { messages } from '../locales';
 import { liveQuery } from 'dexie';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { advanceFern, fernGrowth, fernShape, type FernGrowth } from '../core/fern';
 import { readLookupHistory } from '../data/lookupHistory';
 import { fernActivity, type ProgressEntry } from '../data/progress';
@@ -16,9 +16,11 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
   const [failed, setFailed] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [visible, setVisible] = useState(() => !document.hidden);
-  const reading = new Set(entries.filter(entry => entry.session.lesson.skill === 'reading').map(entry => entry.session.id)).size;
-  const listening = new Set(entries.filter(entry => entry.session.lesson.skill === 'listening').map(entry => entry.session.id)).size;
-  const activity = fernActivity(entries);
+  const { reading, listening, activity } = useMemo(() => ({
+    reading: new Set(entries.filter(entry => entry.session.lesson.skill === 'reading').map(entry => entry.session.id)).size,
+    listening: new Set(entries.filter(entry => entry.session.lesson.skill === 'listening').map(entry => entry.session.id)).size,
+    activity: fernActivity(entries),
+  }), [entries]);
   const target = illustrating ? illustrationActive ? fernGrowth(10, 8, 15) : fernGrowth(0, 0, 0) : fernGrowth(activity.reading, activity.listening, lookups ?? 0);
   const initial = useRef((illustrating ? undefined : shown.get(profileId)) ?? { growth: illustrating ? fernGrowth(0, 0, 0) : target, velocity: { stem: 0, left: 0, right: 0 }, seconds: 0, lookups: lookups ?? 0 });
   const illustration = useRef({ phase: 0, target: 0 });

@@ -30,6 +30,8 @@ Validate question-type design with rules, answers, exact source evidence, option
 
 Maintainer first-release scope update (2026-10-18): GitHub sign-in, GitHub repository synchronisation and MCP must all be available and accepted at the first public launch. They remain optional actions for learners; unsigned/offline learning must still work. They cannot be deferred or shipped disabled to declare the first public launch complete. Real provider/two-device/client acceptance is a required launch gate. This scope decision does not authorise real-account/repository/resource/domain changes, secret entry, uploads or deployment.
 
+Maintainer MCP acceptance update (2026-10-25): do not require observing a share for24hours. Accept a controlled five-minute synthetic-share expiry test, with a valid connection checked before/after, exact empty-list/SHARE_NOT_FOUND, and normal connection revocation/old-bearer rejection. Keep the normal product share lifetime at24hours. Earlier unobserved/interrupted24-hour tests remain historical, not pending release gates.
+
 ## Training modes and navigation
 
 Main navigation is Today / Library / Settings only. Today has Reading, Listening and Combined training (综合训练 / 綜合訓練). Each opens the shared `TaskDetail` preview with equal Practice/Test actions. Combined ordinary practice runs Reading then Listening and preserves both saved sessions. No separate Tasks/Test page or extra Library jump beside practice.

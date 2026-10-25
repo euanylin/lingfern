@@ -1,4 +1,5 @@
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
+import * as reviewModule from '../src/data/goalReview';
 import a1Reading from './fixtures/content/a1-reading.json';
 import a2Reading from './fixtures/content/a2-reading.json';
 import a1Listening from './fixtures/content/a1-listening.json';
@@ -18,6 +19,16 @@ const responses = (source: Session, material = 0, correct = true, hintLevel = 0)
   answer: 0, correct, rule: 'exact-option-v1', assistance: { hintLevel }, submittedAt: new Date(Date.parse(source.startedAt) + (index + 1) * 60_000).toISOString(),
 }));
 const tomorrow = new Date('2026-09-28T12:00:00Z');
+
+it('skips history analysis when no eligible catalogue lesson can be selected', () => {
+  const review = vi.spyOn(reviewModule, 'goalReviews'), done = session(), answers = responses(done);
+  try {
+    expect(selectPractice([], [done], answers, 'reading')).toBeUndefined();
+    expect(selectPractice([lessons[1]], [done], answers, 'reading')).toBeUndefined();
+    expect(selectPractice(lessons, [done], answers, 'reading', () => false)).toBeUndefined();
+    expect(review).not.toHaveBeenCalled();
+  } finally { review.mockRestore(); }
+});
 
 it('keeps reading and listening choices separate, preferring a saved task', () => {
   const reading = session(lessons[0], 'active');

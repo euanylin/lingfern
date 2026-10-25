@@ -3,7 +3,7 @@ import catalogue from '../../content/daily-quotes-runtime.json';
 import exclusions from '../../content/daily-quote-exclusions.json';
 
 import { selectDailyQuote } from './dailyQuoteSelection';
-export { localDay, quotePreview, quoteSourceUrl } from './dailyQuoteSelection';
+export { localDay, quoteSourceUrl } from './dailyQuoteSelection';
 
 export function dailyQuote(date: Date, previous?: string, draw?: () => number) {
   const previousText = catalogue.quotes.find(quote => quote.id === previous)?.text;

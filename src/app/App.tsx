@@ -1,4 +1,4 @@
-import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { liveQuery } from 'dexie';
 import { registerSW } from 'virtual:pwa-register';
@@ -157,30 +157,35 @@ export function App() {
       });
       await bootstrapSyncEvents(profileId).catch(() => { if (current === loadRevision.current) setError('save'); });
       await purgeDeletedRecords(profileId);
-      const [all, answers, imported] = await Promise.all([sessions.where('profileId').equals(profileId).toArray(), attempts.where('profileId').equals(profileId).toArray(), communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready').toArray()]);
+      const [all, answers, imported, context, clock, events] = await Promise.all([
+        sessions.where('profileId').equals(profileId).toArray(), attempts.where('profileId').equals(profileId).toArray(),
+        communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready').toArray(),
+        projectPreferences(profileId).then(async snapshot => {
+          const language = localeSchema.safeParse(snapshot.values.get('locale'));
+          const nextLocale = language.success ? language.data : initialLocale();
+          await Promise.all([loadUiLocale(nextLocale), loadInstructionLocale(nextLocale)]);
+          return { ...snapshot, nextLocale };
+        }),
+        syncClocks.get(profileId), readSyncEvents(profileId, db, ['completion', 'completion_timing', 'deletion']),
+      ]);
       const available = await Promise.all(imported.map(async pack => ({ pack, ready: await communityPackageReady(pack) })));
       if (current !== loadRevision.current) return;
       const importedLessons = available.filter(item => item.ready).flatMap(item => item.pack.lessons);
       setCommunityLessons(importedLessons);
       setLocalCorpus(available.some(item => item.ready && !!item.pack.corpus?.records.length));
       setLocalSpoken(available.some(item => item.ready && !!item.pack.spoken?.records.length));
-      const effective = await mergeLearningRecords([...catalogue, ...importedLessons], all, answers, await readSyncEvents(profileId, db, ['completion', 'completion_timing', 'deletion']));
-      const logicalProfileId = (await syncClocks.get(profileId))?.logicalProfileId ?? profileId;
+      const effective = await mergeLearningRecords([...catalogue, ...importedLessons], all, answers, events);
+      const logicalProfileId = clock?.logicalProfileId ?? profileId;
       if (current !== loadRevision.current) return;
       setTimingRows(effective.timingRows); setSummaries(effective.summaries); setUnavailableSummaries(effective.unavailable); setSummaryConflicts(effective.conflicting.size);
       setActiveProfile(profileId);
       setLogicalProfile(logicalProfileId);
-      const { preferences: storedPreferences, values: savedValues } = await projectPreferences(profileId);
-      if (current !== loadRevision.current) return;
+      const { preferences: storedPreferences, values: savedValues, nextLocale } = context;
       setPreferences(storedPreferences ? preferencesSchema.parse(storedPreferences) : undefined);
       const showFirstRun = firstEntry && !storedPreferences?.completed && !all.length;
       firstEntry = false;
       if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; window.history.replaceState(null, '', next); setPath(next); }
       else if (location.pathname === '/') { window.history.replaceState(null, '', '/today'); setPath('/today'); }
-      const language = localeSchema.safeParse(savedValues.get('locale'));
-      const nextLocale = language.success ? language.data : initialLocale();
-      await Promise.all([loadUiLocale(nextLocale), loadInstructionLocale(nextLocale)]);
-      if (current !== loadRevision.current) return;
       setLocale(nextLocale);
       const appearance = savedValues.get('theme');
       setTheme(appearance && ['system','light','dark'].includes(appearance) ? appearance : 'system');
@@ -367,6 +372,7 @@ export function App() {
     await load();
   }
   const nav = ['today','library','settings'] as const;
+  const todayEntries = useMemo(() => path === '/today' ? progressRecords([], history, records, summaries).valid : [], [path, history, records, summaries]);
   const activeNav = path === '/progress' ? 'today' : path.startsWith('/library/') ? 'library' : path.startsWith('/settings/') ? 'settings' : path.slice(1);
   const introducing = path === '/introduction';
   const entryPending = location.pathname === '/' && !ready && !error;
@@ -431,7 +437,7 @@ export function App() {
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
       {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
-        <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={progressRecords([], history, records, summaries).valid} locale={locale}/><h1>{t.today}</h1></section>
+        <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
           const choice = skill === 'reading' ? todayReading : todayListening;

@@ -5,7 +5,7 @@ import catalogueData from '../content/daily-quotes.json';
 import displayData from '../content/daily-quotes-runtime.json';
 import { readFileSync } from 'node:fs';
 import calendarData from '../content/quote-calendar.json';
-import { dailyQuote, localDay, quotePreview, quoteSourceUrl } from '../src/core/dailyQuote';
+import { dailyQuote, localDay, quoteSourceUrl } from '../src/core/dailyQuote';
 
 type Quote = { quotationYear?: number; id: string; text: string; pageTitle: string; pageId: number; revisionId: number; section: string; locator: string; url: string };
 type Event = { date: string; labels: Record<string, string>; url: string; pages: string[] };
@@ -58,11 +58,8 @@ describe('English Wikiquote daily quotations', () => {
     const blockedOnly = await fixture(records.slice(0, 2), [event('10-12', ['Mecca'])]);
     expect(blockedOnly(new Date(2026, 9, 12), undefined, () => 0)).toBeUndefined();
   });
-  it('bounds previews and links the complete quote without losing the fixed revision or section', () => {
-    expect(quotePreview('a'.repeat(240))).toBe('a'.repeat(240));
-    expect(quotePreview('a'.repeat(241))).toBe(`${'a'.repeat(239)}…`);
+  it('links the complete quote without losing the fixed revision or section', () => {
     for (const item of catalogue.quotes) {
-      expect(quotePreview(item.text).length).toBeLessThanOrEqual(240);
       const url = new URL(quoteSourceUrl(item));
       expect(url.search).toBe(new URL(item.url).search);
       expect(url.hash.split(':~:')[0]).toBe(new URL(item.url).hash || '#');

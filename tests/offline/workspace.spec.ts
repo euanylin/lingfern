@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
-import { multiGapListening } from '../fixtures/workspace-lessons';
+import { groupedListening, multiGapListening } from '../fixtures/workspace-lessons';
 import type { Lesson } from '../../src/shared/content';
 
 async function seed(page: import('@playwright/test').Page, lesson: Lesson) {
@@ -59,4 +59,44 @@ test('installed offline workspace preserves arbitrary reading answers and multi-
   await page.getByRole('button', { name: '提交练习', exact: true }).click(); await expect(page.locator('#workspace-result')).toBeVisible();
   await expect(page.locator('.workspace-review').first().locator('.slot-result')).toHaveText(['1: ✓ 回答正确', '2: ✓ 回答正确']);
   await page.reload(); await expect(page.locator('.workspace-review')).toHaveCount(3);
+});
+
+
+test.describe('compiled touch navigation', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  test('keeps all same-recording groups and drafts available offline without reopening inputs', async ({ page, context }) => {
+    await page.goto('/library');
+    await page.getByRole('button', { name: /^通用材料/ }).last().click();
+    const pack = page.locator('.package-row').filter({ hasText: 'C2 听力录音' }); await pack.locator('input').check();
+    await page.getByRole('button', { name: '下载所选资源' }).click(); await expect(pack).toContainText('已安装', { timeout: 90_000 });
+    await page.evaluate(() => navigator.serviceWorker.ready); await page.reload();
+    const lesson = groupedListening(), id = await seed(page, lesson);
+    await context.setOffline(true); await page.goto(`/learn/${id}`);
+    await expect(page.locator('.workspace-question')).toHaveCount(4);
+    const audio = page.locator('audio');
+    await audio.evaluate((audio: HTMLAudioElement) => { audio.muted = true; (window as unknown as { originalAudio: HTMLAudioElement }).originalAudio = audio; });
+    await page.locator('.audio-play').tap();
+    await expect.poll(() => audio.evaluate((audio: HTMLAudioElement) => !audio.paused && audio.currentTime > .1)).toBe(true);
+    await page.locator('.workspace-card button').nth(6).tap();
+    await expect(page.locator('#prompt-same-audio-matching')).toBeFocused();
+    await expect(page.getByRole('listbox')).toHaveCount(0);
+    await page.locator('.workspace-question textarea').first().fill('Offline retained answer.');
+    await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+    await page.locator('.workspace-card summary').tap(); await page.locator('.workspace-card summary').tap();
+    await page.locator('.workspace-card button').nth(2).tap();
+    await expect(page.locator('#prompt-same-audio-word')).toBeFocused();
+    expect(await page.evaluate(() => document.activeElement?.matches('input,textarea,[contenteditable=true]'))).toBe(false);
+    expect(await audio.evaluate((audio: HTMLAudioElement) => audio === (window as unknown as { originalAudio: HTMLAudioElement }).originalAudio && !audio.paused && audio.currentTime > .1)).toBe(true);
+    await page.reload(); await expect(page.locator('.workspace-question')).toHaveCount(4);
+    await expect(page.locator('.workspace-question textarea').first()).toHaveValue('Offline retained answer.');
+    const response = page.locator('#prompt-same-audio-parts').locator('..');
+    await response.getByRole('button', { name: '跳过此题', exact: true }).tap();
+    await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+    await page.reload(); await expect(response.locator('textarea').first()).toBeDisabled();
+    await expect(response.locator('textarea').first()).toHaveValue('Offline retained answer.');
+    await response.getByRole('button', { name: '继续作答', exact: true }).tap();
+    await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
+    await page.reload(); await expect(response.locator('textarea').first()).toBeEnabled();
+    await expect(response.locator('textarea').first()).toHaveValue('Offline retained answer.');
+  });
 });

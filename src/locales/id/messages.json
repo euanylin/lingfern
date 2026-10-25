@@ -307,10 +307,7 @@
     "failed": "Gagal menyalin. Pilih alamat dan salin secara manual."
   },
   "offlineInstall": {
-    "clearPending": "Hapus rencana yang belum terpasang",
     "wanted": "Direncanakan dipasang",
-    "intentions": "Sebagian paket yang direncanakan belum terpasang. Pilih sumber daya untuk diunduh.",
-    "unavailableIntent": "Sebagian rencana merujuk versi tak tersedia. Periksa dan pilih sumber daya terbaru.",
     "intentFailed": "Pilihan pemasangan tidak disimpan. Coba lagi; berkas lokal tidak diubah lebih lanjut.",
     "categories": {
       "reading": "Membaca",
@@ -817,7 +814,10 @@
     "score": "Skor",
     "groups": "Kelompok soal",
     "blank": "Isian kosong",
-    "slots": "Kolom jawaban"
+    "slots": "Kolom jawaban",
+    "skip": "Lewati soal",
+    "resumeAnswer": "Lanjutkan menjawab",
+    "skipped": "Dilewati · tidak dinilai"
   },
   "onboarding": {
     "subToday": "Kutipan harian dan latihan membaca serta menyimak",

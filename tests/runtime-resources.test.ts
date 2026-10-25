@@ -4,6 +4,17 @@ const hash = 'a'.repeat(64);
 const fixture = () => ({ version: 1, offline: { version: 'r1', groups: [{ id: 'future-dictionary', version: 'v1', bytes: 5, files: [{ path: '/resources/new-book.txt', bytes: 5, sha256: hash }] }] }, sources: { version: 1, packs: [] }, downloads: { version: 1, packs: [{ id: 'future-dictionary', version: 'v1', path: '/packs/future-v1.zip', bytes: 4, sha256: hash }] } });
 afterEach(() => { vi.unstubAllGlobals(); vi.resetModules(); });
 describe('runtime resource catalogue trust boundary', () => {
+  it('validates network input once while retaining validation for direct application', async () => {
+    vi.stubGlobal('caches', undefined);
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixture()))));
+    const { resourceCatalogueSchema: schema } = await import('../src/shared/resourceCatalogue');
+    const parse = vi.spyOn(schema, 'parse');
+    try {
+      const module = await import('../src/data/runtimeResources');
+      await module.loadRuntimeResources(true); expect(parse).toHaveBeenCalledTimes(1);
+      expect(() => module.applyRuntimeCatalogue({})).toThrow(); expect(parse).toHaveBeenCalledTimes(2);
+    } finally { parse.mockRestore(); }
+  });
   it('accepts future groups, rejects injection, private paths and metadata mismatch', () => {
     expect(resourceCatalogueSchema.safeParse(fixture()).success).toBe(true);
     for (const path of ['/api/x.json', '/oauth/x', '/mcp/x', '/private/x', '/users/a', '/.well-known/x', '//other.test/x', '/resources/%2e%2e/x', '/resources/../x', '/resources/a?x=1', '/resources/catalogue.json']) {

@@ -307,10 +307,7 @@
     "failed": "Copie impossible. Sélectionnez l’adresse et copiez-la manuellement."
   },
   "offlineInstall": {
-    "clearPending": "Effacer les intentions non installées",
     "wanted": "Installation souhaitée",
-    "intentions": "Certains paquets souhaités ne sont pas installés sur cet appareil. Sélectionnez ceux à télécharger.",
-    "unavailableIntent": "Certaines intentions concernent des versions indisponibles. Vérifiez et sélectionnez les ressources actuelles.",
     "intentFailed": "Le choix d’installation n’a pas été enregistré. Réessayez ; les fichiers locaux n’ont pas été modifiés davantage.",
     "categories": {
       "reading": "Lecture",
@@ -817,7 +814,10 @@
     "score": "Score",
     "groups": "Groupes de questions",
     "blank": "Blancs",
-    "slots": "Champs de réponse"
+    "slots": "Champs de réponse",
+    "skip": "Passer cette question",
+    "resumeAnswer": "Reprendre la réponse",
+    "skipped": "Question passée · non notée"
   },
   "onboarding": {
     "subToday": "Citation du jour et exercices de lecture et d’écoute",

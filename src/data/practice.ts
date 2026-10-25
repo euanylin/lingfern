@@ -23,6 +23,7 @@ export function selectPractice(
   const purposeTheme = { 'daily-life': 'daily-life', study: 'campus', work: undefined, travel: 'travel', pleasure: 'culture' };
   const preferred = new Set([...(preferences?.interests ?? []), ...(preferences?.purpose ? [purposeTheme[preferences.purpose]] : [])]);
   const candidates = lessons.filter(lesson => lesson.skill === skill && available(lesson));
+  if (!candidates.length) return;
   if (preferences) candidates.sort((a, b) => Math.abs(levels.indexOf(a.targetLevel) - levels.indexOf(target)) - Math.abs(levels.indexOf(b.targetLevel) - levels.indexOf(target)) || Number(b.themes?.some(theme => preferred.has(theme)) ?? false) - Number(a.themes?.some(theme => preferred.has(theme)) ?? false));
   const latest = (lesson: Lesson, status: Session['status']) => history
     .filter(session => session.lesson.id === lesson.id && session.status === status)

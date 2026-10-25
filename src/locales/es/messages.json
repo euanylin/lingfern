@@ -307,10 +307,7 @@
     "failed": "No se pudo copiar. Selecciona la dirección y cópiala manualmente."
   },
   "offlineInstall": {
-    "clearPending": "Borrar intenciones sin instalar",
     "wanted": "Instalación solicitada",
-    "intentions": "Algunos paquetes solicitados no están instalados en este dispositivo. Selecciona los que quieras descargar.",
-    "unavailableIntent": "Algunas intenciones se refieren a versiones no disponibles. Comprueba y selecciona los recursos actuales.",
     "intentFailed": "No se guardó la selección de instalación. Inténtalo de nuevo; no se hicieron más cambios en los archivos locales.",
     "categories": {
       "reading": "Lectura",
@@ -817,7 +814,10 @@
     "score": "Puntuación",
     "groups": "Grupos de preguntas",
     "blank": "Huecos",
-    "slots": "Campos de respuesta"
+    "slots": "Campos de respuesta",
+    "skip": "Omitir pregunta",
+    "resumeAnswer": "Continuar respondiendo",
+    "skipped": "Omitida · sin calificar"
   },
   "onboarding": {
     "subToday": "Cita del día y práctica de lectura y comprensión auditiva",

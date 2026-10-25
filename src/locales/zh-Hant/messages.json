@@ -307,10 +307,7 @@
     "failed": "複製失敗，請選取位址手動複製。"
   },
   "offlineInstall": {
-    "clearPending": "清除未安裝的意向",
     "wanted": "已記下安裝意向",
-    "intentions": "已記錄的安裝意向尚未在本機安裝。請選擇所需資源下載。",
-    "unavailableIntent": "部分安裝意向來自目前無法使用的內容版本，請核對後選擇目前資源。",
     "intentFailed": "此資源的安裝選擇未儲存，請重試；未繼續變更其本機檔案。",
     "categories": {
       "reading": "閱讀",
@@ -817,7 +814,10 @@
     "score": "得分",
     "groups": "題組",
     "blank": "空格",
-    "slots": "作答位置"
+    "slots": "作答位置",
+    "skip": "跳過此題",
+    "resumeAnswer": "繼續作答",
+    "skipped": "已跳過（不計分）"
   },
   "onboarding": {
     "subToday": "每日一句和聽讀練習",

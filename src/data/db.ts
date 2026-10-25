@@ -1,4 +1,4 @@
-import { validateWorkspace, type Workspace } from '../shared/practiceWorkspace';
+import { sameAudio, validateWorkspace, workspaceAssistance, type Workspace } from '../shared/practiceWorkspace';
 import { localeSchema } from '../shared/locale';
 import { validateReadingAnnotations, type ReadingAnnotation } from '../shared/readingAnnotations';
 import { communityLessonReady } from './communityInstall';
@@ -200,9 +200,11 @@ async function writeExposure(session: Session) {
 export async function markExposure(session: Session) {
   await db.transaction('rw', sessions, settings, exposures, syncEvents, syncClocks, async () => {
     const saved = await sessions.get(session.id);
-    if (!saved || saved.profileId !== session.profileId || saved.position !== session.position || saved.contentHash !== session.contentHash) throw new Error('CONFLICT');
+    if (!saved || saved.profileId !== session.profileId || saved.contentHash !== session.contentHash) throw new Error('CONFLICT');
+    const all = questions(saved.lesson), original = all[session.position];
+    if (saved.position !== session.position && (saved.lesson.skill !== 'listening' || !original || !sameAudio(all[saved.position].material, original.material))) throw new Error('CONFLICT');
     await assertCheckDevice(saved);
-    await writeExposure(saved);
+    await writeExposure({ ...saved, position: session.position });
   });
 }
 
@@ -257,11 +259,12 @@ export async function revealHint(id: string, owner: string) {
 }
 
 export async function recordPlayback(id: string, owner: string, questionId: string, completed: boolean) {
-  return db.transaction('rw', sessions, settings, attempts, async () => {
+  return db.transaction('rw', sessions, settings, async () => {
     const session = await owned(id, owner);
     if (session.status === 'ended' || (session.lesson.mode === 'check' && !session.checkStartedAt)) throw new Error('CHECK_RESTRICTED');
-    if (session.lesson.skill !== 'listening' || questions(session.lesson)[session.position].question.id !== questionId) throw new Error('CONFLICT');
-    if (await attempts.get(`${id}:${questionId}`)) return session.assistance;
+    const all = questions(session.lesson), played = all.find(item => item.question.id === questionId);
+    if (session.lesson.skill !== 'listening' || !played || !sameAudio(played.material, all[session.position].material)) throw new Error('CONFLICT');
+    if (session.status === 'completed') return session.assistance;
     if (completed && !session.assistance.playbackRequests) throw new Error('NO_AUDIO');
     const assistance = { ...session.assistance,
       playbackRequests: (session.assistance.playbackRequests ?? 0) + (completed ? 0 : 1),
@@ -273,11 +276,11 @@ export async function recordPlayback(id: string, owner: string, questionId: stri
 }
 
 export async function recordDictionaryUse(id: string, owner: string, questionId: string) {
-  return db.transaction('rw', sessions, settings, attempts, async () => {
+  return db.transaction('rw', sessions, settings, async () => {
     const session = await owned(id, owner);
     if (session.lesson.mode) throw new Error('CHECK_RESTRICTED');
     if (questions(session.lesson)[session.position].question.id !== questionId) throw new Error('CONFLICT');
-    if (await attempts.get(`${id}:${questionId}`)) return session.assistance;
+    if (session.status === 'completed') return session.assistance;
     const assistance = { ...session.assistance, dictionaryUsed: true };
     await sessions.update(id, { assistance });
     return assistance;
@@ -479,10 +482,11 @@ export async function bootstrapSyncEvents(profileId: string) {
       const all = questions(lessonSchema.parse(session.lesson));
       if (!all.every(item => {
         const attempt = answers.get(`${session.id}:${item.question.id}`);
-        return attempt?.sessionId === session.id && attempt.rootId === item.material.rootId;
+        return attempt?.sessionId === session.id && attempt.rootId === item.material.rootId || 'criteria' in item.question && session.workspace?.skipped?.includes(item.question.id);
       })) continue;
       for (const item of all) {
-        const attempt = answers.get(`${session.id}:${item.question.id}`)!;
+        const attempt = answers.get(`${session.id}:${item.question.id}`);
+        if (!attempt) continue;
         for (const event of taskSyncEvents(session, attempt, item)) await queue(event, attempt.submittedAt);
       }
     }
@@ -518,6 +522,19 @@ export async function saveWorkspaceDraft(id: string, owner: string, questionId: 
   });
 }
 
+export async function skipWorkspaceQuestion(id: string, owner: string, questionId: string, skipped: boolean) {
+  return db.transaction('rw', sessions, settings, attempts, async () => {
+    const session = await owned(id, owner);
+    if (session.status !== 'active' || session.lesson.mode === 'check') throw new Error('CONFLICT');
+    const item = questions(session.lesson).find(item => item.question.id === questionId);
+    if (!item || !('criteria' in item.question) || await attempts.get(`${id}:${questionId}`)) throw new Error('INVALID_ANSWER');
+    const workspace = session.workspace ?? { drafts: {}, assistance: {} }, ids = new Set(workspace.skipped);
+    if (skipped) ids.add(questionId); else ids.delete(questionId);
+    if (ids.size) workspace.skipped = [...ids]; else delete workspace.skipped;
+    await sessions.update(id, { workspace });
+  });
+}
+
 export async function selectWorkspaceQuestion(id: string, owner: string, questionId: string) {
   return db.transaction('rw', sessions, settings, async () => {
     const session = await owned(id, owner), all = questions(session.lesson);
@@ -526,10 +543,12 @@ export async function selectWorkspaceQuestion(id: string, owner: string, questio
     if (!target) throw new Error('INVALID_ANSWER');
     const previous = all[session.position].material;
     const workspace = session.workspace ?? { drafts: {}, assistance: {} };
+    const currentQuestion = all[session.position].question.id;
+    if (session.draft !== undefined) { workspace.drafts[currentQuestion] ??= session.draft; delete session.draft; }
     workspace.assistance[previous.id] = session.assistance; workspace.selected = questionId;
     if (previous.id !== target.material.id) {
       session.position = all.findIndex(item => item.material.id === target.material.id);
-      session.assistance = workspace.assistance[target.material.id] ?? { hintLevel: 0, ...(!session.lesson.mode && target.material.id === session.lesson.materials[0].id ? { teachingProvided: true } : {}) };
+      session.assistance = { ...(!workspace.assistance[target.material.id] && !session.lesson.mode && target.material.id === session.lesson.materials[0].id ? { teachingProvided: true } : {}), ...workspaceAssistance(session.lesson, workspace, target.material) };
     }
     session.workspace = workspace;
     await sessions.put(session);
@@ -547,9 +566,10 @@ export async function submitWorkspace(id: string, owner: string) {
     const saved: Attempt[] = [];
     for (const item of all) {
       const recordId = `${id}:${item.question.id}`, existing = await attempts.get(recordId);
+      if (workspace.skipped?.includes(item.question.id)) { if (existing) throw new Error('CONFLICT'); continue; }
       const answer = workspace.drafts[item.question.id] ?? existing?.answer ?? (all[session.position].question.id === item.question.id ? session.draft : undefined);
       if (answer === undefined) throw new Error('UNSAVED');
-      const result = score(item.question, answer), assistance = workspace.assistance[item.material.id] ?? { hintLevel: 0 };
+      const result = score(item.question, answer), assistance = workspaceAssistance(session.lesson, workspace, item.material);
       workspace.drafts[item.question.id] = answer;
       if (existing) {
         if (JSON.stringify(existing.answer) !== JSON.stringify(answer)) throw new Error('CONFLICT');
@@ -560,9 +580,9 @@ export async function submitWorkspace(id: string, owner: string) {
         questionId: item.question.id, rootId: item.material.rootId, answer, ...result, assistance, submittedAt: new Date().toISOString() };
       await attempts.add(attempt); saved.push(attempt);
     }
-    if (session.status !== 'completed') for (const [index, item] of all.entries()) for (const event of taskSyncEvents(session, saved[index], item)) {
-      if (event.type === 'exposure') await captureExposure(session.profileId, event, saved[index].submittedAt);
-      else await appendSyncEvent(session.profileId, event, db, { occurredAt: saved[index].submittedAt });
+    if (session.status !== 'completed') for (const record of saved) for (const event of taskSyncEvents(session, record, all.find(item => item.question.id === record.questionId)!)) {
+      if (event.type === 'exposure') await captureExposure(session.profileId, event, record.submittedAt);
+      else await appendSyncEvent(session.profileId, event, db, { occurredAt: record.submittedAt });
     }
     session.status = 'completed'; session.workspace = workspace;
     if (session.lesson.mode === 'check') session.checkEndedAt ??= new Date().toISOString();

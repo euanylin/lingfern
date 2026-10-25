@@ -66,39 +66,6 @@ test('cold Library does not enable unchecked content before its first resource r
 for (const [locale, width, colorScheme] of [['zh-Hans', 390, 'dark'], ['en', 1440, 'light'], ['ar', 375, 'dark']] as const) test.describe(`navigation state: ${locale}, ${width}px`, () => {
   test.use({ viewport: { width, height: 844 }, locale: locale === 'zh-Hans' ? 'zh-CN' : locale, colorScheme, reducedMotion: locale === 'ar' ? 'reduce' : 'no-preference' });
 
-test('cleared installation intentions do not reappear during repeated Library navigation', async ({ page }) => {
-  await page.goto('/today');
-  await page.evaluate(async () => {
-    const path = '/src/data/installationIntent.ts';
-    const { saveInstallationIntent } = await import(path);
-    await saveInstallationIntent('local-guest', 'grammar', true);
-  });
-  await page.reload();
-  await expect(page.locator('.daily-quote[data-quote-id]')).toBeVisible();
-  await page.locator('nav a[href="/library"]:visible').first().click();
-  await expect(page.locator('.installation-intent-notice')).toBeVisible();
-  await page.getByRole('button', { name: languagePacks[locale].offlineInstall.clearPending, exact: true }).click();
-  await expect(page.locator('.installation-intent-notice')).toHaveCount(0);
-  await page.evaluate(() => {
-    const flashes: string[] = [];
-    Object.assign(window, { intentionFlashes: flashes });
-    new MutationObserver(records => {
-      for (const record of records) for (const node of record.addedNodes) {
-        if (node instanceof Element && (node.matches('.installation-intent-notice') || node.querySelector('.installation-intent-notice'))) flashes.push(node.textContent ?? '');
-      }
-    }).observe(document.body, { childList: true, subtree: true });
-  });
-  for (let visit = 0; visit < 3; visit++) {
-    await page.locator('nav a[href="/today"]:visible').first().click();
-    await expect(page.locator('.daily-quote[data-quote-id]')).toBeVisible();
-    await page.locator('nav a[href="/library"]:visible').first().click();
-    await expect(page.locator('.offline-search input')).toBeEnabled();
-    await expect(page.locator('.installation-intent-notice')).toHaveCount(0);
-  }
-  expect(await page.evaluate(() => (window as unknown as { intentionFlashes: string[] }).intentionFlashes)).toEqual([]);
-  await page.screenshot({ path: `output/playwright/video-bug-${locale}-library.png`, fullPage: true, animations: 'disabled' });
-});
-
 test('Today retains its chosen quotation across navigation while refresh and day changes still work', async ({ page }) => {
   await page.clock.setSystemTime(new Date('2026-10-23T12:00:00Z'));
   await page.goto('/today');

@@ -19,13 +19,15 @@ async function readCatalogue(response: Response) {
   for (const chunk of chunks) { body.set(chunk, offset); offset += chunk.length; }
   return resourceCatalogueSchema.parse(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(body)));
 }
-export function applyRuntimeCatalogue(input: unknown) {
-  const value = resourceCatalogueSchema.parse(input);
+function applyCatalogue(value: ResourceCatalogue) {
   runtimeResources.offline.version = value.offline.version;
   runtimeResources.offline.groups.splice(0, runtimeResources.offline.groups.length, ...value.offline.groups);
   runtimeResources.sources.packs.splice(0, runtimeResources.sources.packs.length, ...value.sources.packs);
   runtimeResources.downloads.packs.splice(0, runtimeResources.downloads.packs.length, ...value.downloads.packs);
   loaded = true; return runtimeResources;
+}
+export function applyRuntimeCatalogue(input: unknown) {
+  return applyCatalogue(resourceCatalogueSchema.parse(input));
 }
 export async function loadRuntimeResources(force = false, signal?: AbortSignal): Promise<ResourceCatalogue> {
   signal?.throwIfAborted();
@@ -44,12 +46,12 @@ export async function loadRuntimeResources(force = false, signal?: AbortSignal):
         await cache.put(cataloguePath, new Response(JSON.stringify(value), { headers: { 'Content-Type': 'application/json' } }));
         if (typeof navigator !== 'undefined') navigator.serviceWorker?.controller?.postMessage({ type: 'RESOURCES_CATALOGUE_UPDATED' });
       }
-      return applyRuntimeCatalogue(value);
+      return applyCatalogue(value);
     } catch (error) {
       if (signal?.aborted) throw error;
       if (typeof caches !== 'undefined') {
         const cached = await (await caches.open(catalogueCacheName)).match(cataloguePath);
-        if (cached) return applyRuntimeCatalogue(await readCatalogue(cached));
+        if (cached) return applyCatalogue(await readCatalogue(cached));
       }
       throw error;
     }

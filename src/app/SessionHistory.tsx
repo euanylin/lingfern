@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { contentText, instructionLanguage, translateInstruction } from '../locales';
+import { contentText, messages, instructionLanguage, translateInstruction } from '../locales';
 import { answerText, explanationText, practiceLocale, questions, teachingSupport, type Locale } from '../shared/content';
 import type { Attempt, Session } from '../data/db';
 import { isGutenbergSource } from '../shared/sourceLicence';
@@ -33,6 +33,7 @@ function HistoryEntry({ session: s, records, locale, profileId, onChange }: Omit
         const item = items.find(item => item.question.id === r.questionId);
         return item && <section key={r.id}>{s.status !== 'active' && <DeleteRecord locale={locale} profileId={profileId} recordId={r.syncRecordId ?? r.id} onChange={onChange}/>}<h3 lang="en">{item.question.prompt}</h3><p>{t.yourAnswer}: <span lang="en">{answerText(item.question, r.answer)}</span> · <span className="result-status" data-result={r.correct === null ? undefined : r.correct ? 'correct' : 'incorrect'}>{r.correct === null ? t.unscored : r.correct ? `✓ ${t.correct}` : `× ${t.incorrect}`}</span></p><p lang={instructionLanguage(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}>{translateInstruction(explanationText(item.question, r.answer, practiceLocale(s.lesson, locale)), practiceLocale(s.lesson, locale))}</p><p>{t.conditions}: {r.assistance.hintLevel}/3{teachingSupport(s.lesson, r.rootId, r.assistance.teachingProvided) ? ` · ${t.teachingProvided}` : ''}{r.assistance.dictionaryUsed ? ` · ${t.dictionaryUsed}` : ''}</p>{s.lesson.skill === 'listening' && <p>{t.playbackRequests}: {r.assistance.playbackRequests ?? 0}</p>}<time>{new Date(r.submittedAt).toLocaleString(locale)}</time></section>;
       })}
+      {items.filter(item => s.workspace?.skipped?.includes(item.question.id)).map(item => <section key={item.question.id}><h3 lang="en">{item.question.prompt}</h3><p>{messages('workspace')[locale].skipped}</p></section>)}
       <GutenbergLicence sourceUrl={s.lesson.materials.find(material => isGutenbergSource(material.credit?.sourceUrl))?.credit?.sourceUrl} locale={locale}/>
     </>}</details>
   </article>;

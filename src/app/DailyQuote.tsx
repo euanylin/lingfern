@@ -49,11 +49,9 @@ export function DailyQuote({ locale, onDayChange, initialSelection, onSelection 
       if (width !== undefined && (observedWidth === undefined || Math.abs(width - observedWidth) > .1)) { observedWidth = width; measure(); }
     });
     observer.observe(element);
-    window.addEventListener('resize', measure);
-    window.visualViewport?.addEventListener('resize', measure);
     document.fonts?.addEventListener('loadingdone', measure);
     void document.fonts?.ready.then(measure);
-    return () => { disposed = true; observer.disconnect(); window.removeEventListener('resize', measure); window.visualViewport?.removeEventListener('resize', measure); document.fonts?.removeEventListener('loadingdone', measure); };
+    return () => { disposed = true; observer.disconnect(); document.fonts?.removeEventListener('loadingdone', measure); };
   }, [selection?.quote.id, locale]);
   useEffect(() => {
     setExpandedId(undefined);

@@ -21,3 +21,17 @@ export function multiGapListening() {
   lesson.id = 'isolated-multi-gap-audio'; lesson.organization = 'material-v1';
   return lesson;
 }
+
+/** Exercise one recording split into question groups, plus a different recording. */
+export function groupedListening() {
+  const lesson = multiGapListening(), first = lesson.materials[0], gap = first.questions[0];
+  if (!('gaps' in gap)) throw new Error('NO_GAPS');
+  const completion = { kind: 'completion' as const, id: 'same-audio-word', blockId: gap.blockId, prompt: 'Complete with one word from the recording.', answer: gap.gaps[0].answer, accepted: gap.gaps[0].accepted, evidence: gap.gaps[0].evidence, hints: gap.hints, explanation: gap.explanation };
+  first.questions.push(completion);
+  lesson.materials.splice(1, 0, { ...structuredClone(first), id: 'isolated-second-group', rootId: 'isolated-second-group-root', questions: [
+    { kind: 'response', id: 'same-audio-parts', blockId: gap.blockId, prompt: 'Summarize the two statements.', parts: ['What does the first speaker say?', 'What does the second speaker say?'], criteria: [gap.explanation, gap.explanation], evidence: gap.evidence, hints: gap.hints, explanation: gap.explanation },
+    { kind: 'matching', id: 'same-audio-matching', blockId: gap.blockId, prompt: 'Match each point to its recorded word.', choices: gap.gaps.map(item => item.answer), pairs: gap.gaps.map((item, index) => ({ label: `Point ${index + 1}`, answer: item.answer })), evidence: gap.evidence, explanation: gap.explanation, hints: gap.hints },
+  ] });
+  lesson.id = 'isolated-grouped-listening';
+  return lesson;
+}

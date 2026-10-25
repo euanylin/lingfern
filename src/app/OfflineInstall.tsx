@@ -4,7 +4,7 @@ import { loadRuntimeResources, runtimeResources } from '../data/runtimeResources
 import { sourcePacks, installedSourcePacks, installSourcePack, removeSourcePack } from '../data/sourcePacks';
 import { liveQuery } from 'dexie';
 import { createPortal } from 'react-dom';
-import { readInstallationIntents, saveInstallationIntent } from '../data/installationIntent';
+import { readInstallationIntents } from '../data/installationIntent';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { topicSchema, type Locale } from '../shared/content';
 import { firstRunCopy } from './FirstRun';
@@ -78,17 +78,6 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     const observer = liveQuery(() => readInstallationIntents(profileId)).subscribe({ next: intents => { setIntents(intents); onIntentsChangeRef.current?.(intents); }, error: () => setError(t.intentFailed) });
     return () => observer.unsubscribe();
   }, [profileId, t.intentFailed]);
-  const pendingIntents = [...new Set([...intents.current].filter(id => !installed.has(id)).concat([...intents.unavailable]))];
-  async function clearPending() {
-    setDeleting(true); setError('');
-    try {
-      for (const id of pendingIntents) await saveInstallationIntent(profileId, id, false);
-      const next = await readInstallationIntents(profileId);
-      setIntents(next); onIntentsChangeRef.current?.(next);
-    }
-    catch { setError(t.intentFailed); }
-    finally { setDeleting(false); }
-  }
   const chosen = downloadableGroups.filter(group => selected.has(group.id) && !installed.has(group.id));
   const removable = downloadableGroups.filter(group => selected.has(group.id) && installed.has(group.id));
   const chosenBytes = chosen.reduce((sum, group) => sum + group.bytes, 0);
@@ -194,8 +183,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     return () => window.removeEventListener('lingfern-resources-installed', changed);
   }, [profileId, t.failed]);
   return <section className="offline-install" aria-label={t.title} aria-busy={checking}>
-    <h2>{t.title}</h2>{!checking && !installing && !deleting && [...intents.current].some(id => !installed.has(id)) && <p className="muted installation-intent-notice">{t.intentions}</p>}{!checking && intents.unavailable.size > 0 && <p className="muted" role="status">{t.unavailableIntent}</p>}
-    {!checking && !installing && !deleting && pendingIntents.length > 0 && <button type="button" disabled={installing || deleting} onClick={() => void clearPending()}>{t.clearPending}</button>}
+    <h2>{t.title}</h2>
     {checking && <p className="sr-only" role="status">{t.checking}</p>}
     <div className="offline-package-details">
       <fieldset disabled={checking || installing || deleting || confirmingRemoval} aria-label={t.select}>

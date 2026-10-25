@@ -18,7 +18,8 @@ export function practiceCardProgress(sessions: readonly Session[], records: read
     const saved = records.filter(record => record.sessionId === session.id && record.profileId === session.profileId && roots.get(record.questionId) === record.rootId), committed = new Set(saved.map(record => record.questionId));
     for (const { question } of items) {
       const slots = questionSlots(question); total += slots;
-      answered += committed.has(question.id) ? slots : Array.from({ length: slots }, (_, index) => slotAnswered(question, session.workspace?.drafts[question.id], index)).filter(Boolean).length;
+      const answer = session.workspace?.drafts[question.id] ?? (items[session.position]?.question.id === question.id ? session.draft : undefined);
+      answered += committed.has(question.id) || session.workspace?.skipped?.includes(question.id) ? slots : Array.from({ length: slots }, (_, index) => slotAnswered(question, answer, index)).filter(Boolean).length;
     }
     latest(session.startedAt);
     saved.forEach(record => latest(record.submittedAt));

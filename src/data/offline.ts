@@ -31,9 +31,13 @@ export async function offlineGroupReady(id: string) {
   const name = offlineCacheName(id);
   if (!await caches.has(name)) return false;
   const cache = await caches.open(name);
-  if (!await cache.match(offlineMarker(id))) return false;
-  for (const file of item.files) if (!await cache.match(file.path)) return false;
-  return true;
+  return cachedFilesPresent(cache, [offlineMarker(id), ...item.files.map(file => file.path)]);
+}
+
+export async function cachedFilesPresent(cache: Cache, paths: readonly string[]) {
+  // Installers store canonical GET URLs without Vary; avoid opening every media body.
+  const urls = new Set((await cache.keys()).map(request => request.url));
+  return paths.every(path => urls.has(new URL(path, location.origin).href));
 }
 
 export async function installedOfflineGroups() {

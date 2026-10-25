@@ -96,3 +96,19 @@ it('generates combined topic and kind choices and matches untagged saved materia
   expect(practiceSelectionMatches(saved, selection)).toBe(true);
   expect(practiceSelectionMatches({ ...saved, materials: saved.materials.map(material => ({ ...material, title: 'A neutral heading', blocks: material.blocks.map(block => ({ ...block, text: 'No selected subject appears here.' })) })) }, selection)).toBe(false);
 });
+
+it('keeps both automatic and material-filtered reading objective on the ordinary seed branch', async () => {
+  const random = vi.spyOn(crypto, 'getRandomValues');
+  try {
+    for (const selection of [undefined, { topics: [], kinds: [], materials: corpus.records.slice(0, 32).map(record => record.rootId) }]) {
+      let found = false;
+      for (let offset = 0; offset < 10 && !found; offset++) {
+        random.mockReturnValue(new Uint32Array([0, 65536 + offset]));
+        const result = await prepareCorpusPractice({ ...base, skill: 'reading', preferences: { reading: 'B2', interests: [], step: 4, completed: true }, selection });
+        if (!result.lesson) continue;
+        expect(result.lesson.materials.flatMap(material => material.questions).every(question => !('criteria' in question))).toBe(true); found = true;
+      }
+      expect(found).toBe(true);
+    }
+  } finally { random.mockRestore(); }
+});

@@ -28,7 +28,7 @@ import type { Attempt, Session } from '../data/db';
 import type { Lesson, Locale, CorpusQuestionKind } from '../shared/content';
 import { topicSchema } from '../shared/content';
 import type { Preferences } from '../shared/preferences';
-import { practiceSelectionMatches, practiceSelectionSchema, type PracticeSelection } from '../shared/practiceSelection';
+import { automaticQuestionKinds, practiceSelectionMatches, practiceSelectionSchema, type PracticeSelection } from '../shared/practiceSelection';
 
 
 const unfamiliarGoals = new Set(["argument-boundaries-in-context", "attributed-views-in-context", "claim-example-link", "complex-pragmatics", "contextual-comparison", "disagreement-synthesis", "discourse-organization-in-context", "explicit-basic-instruction", "explicit-detail-verification", "explicit-person-description", "explicit-personal-update", "explicit-place-relation", "explicit-planned-order", "explicit-small-count", "explicit-stated-need", "explicit-stated-preference", "explicit-stated-reason", "explicit-stated-time", "faithful-paraphrase", "implicit-intention-in-context", "indirect-stance-in-context", "information-density-in-context", "integrated-source-information", "layered-positions", "nuanced-meaning-in-context", "qualified-concession-meaning", "register-audience-in-context", "rhetorical-function-in-context", "speaker-attitude-in-context"]);
@@ -108,7 +108,7 @@ async function selectedPractice(selection: PracticeSelection, input: { profileId
     }
   }
   if (!lesson || unfamiliarGoals.has(lesson.goalId) && lesson.materials.some(material => seenRoots.has(material.rootId))) return;
-  const result = organizePractice(lesson, banks, selection.kinds);
+  const result = organizePractice(lesson, banks, automaticQuestionKinds(seed, selection.kinds));
   return practiceSelectionMatches(result, selection) ? result : undefined;
 }
 
@@ -296,6 +296,6 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   if (downloadedFallback && (!next || !matchesFocus(next))) next = downloadedFallback;
   if (next && requestedFocus && focus?.operation && next.materials.some(material => corpusOperation(material.questions[0]) !== focus.operation)) next = undefined;
   const reason = next && focus && matchesFocus(next) && (focus.reason !== 'review' || next.materials.every(material => !seenRoots.has(material.rootId))) ? focus.reason : undefined;
-  return { lesson: next ? organizePractice(next, alignmentBanks) : undefined, reason, downloadFailed };
+  return { lesson: next ? organizePractice(next, alignmentBanks, automaticQuestionKinds(seed)) : undefined, reason, downloadFailed };
 }
 

@@ -4,6 +4,10 @@ import { App } from './app/App';
 import './app/style.css';
 import { loadUiLocale } from './locales';
 import { initialLocale } from './app/i18n';
+import { db } from './data/db';
+
+// Open local storage while the required interface language is downloading.
+void db.open().catch(() => { /* App.load reports storage failures with its normal retry. */ });
 
 try { await loadUiLocale(initialLocale()); } catch { /* Let App.load display loading errors and offer retry. */ }
 createRoot(document.getElementById('root')!).render(<App />);

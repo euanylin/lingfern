@@ -1146,6 +1146,7 @@ Actually implement handshake, `tools/list`, calls, and required HTTP methods. Sh
 After selecting “Make available to a connected assistant”, the user explicitly chooses content and destination client. Store a small temporary server-side snapshot:
 
 - Default lifetime 24 hours; check expiry on every read.
+- Maintainer acceptance update (2026-10-25): verify expiry using one explicitly approved five-minute synthetic share while its connection remains valid, then verify normal revocation and old-bearer rejection. A full24-hour observation is not a release gate; the normal24-hour product lifetime remains unchanged.
 - Maximum 32 KiB each and 20 active snapshots per user.
 - Store in a temporary D1 sharing table, not Git commit history.
 - Bind to account, profile, and approved client; knowing its ID does not grant access.

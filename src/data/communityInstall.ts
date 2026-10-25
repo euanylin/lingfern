@@ -1,4 +1,4 @@
-import { waitForOfflineWorker } from './offline';
+import { cachedFilesPresent, waitForOfflineWorker } from './offline';
 import { communityPacks, db, syncClocks, type CommunityPackageRecord } from './db';
 import type { CommunityPack } from './communityPack';
 import { normaliseTerm } from '../shared/dictionary';
@@ -45,10 +45,9 @@ export async function communityPackageReady(pack: Pick<CommunityPackageRecord, '
   if (!('caches' in window)) return false;
   if (!await caches.has(communityCacheName(pack.hash))) return false;
   const cache = await caches.open(communityCacheName(pack.hash));
-  if (!await cache.match(communityMarker(pack.hash))) return false;
   const media = new Set(pack.lessons.flatMap(lesson => lesson.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((src): src is string => !!src))));
   for (const record of pack.spoken?.records ?? []) for (const clip of record.clips) media.add(clip.audio.src);
-  return (await Promise.all([...media].map(path => cache.match(path)))).every(Boolean);
+  return cachedFilesPresent(cache, [communityMarker(pack.hash), ...media]);
 }
 
 async function checkIllustration(bytes: Uint8Array, signal?: AbortSignal) {

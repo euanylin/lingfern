@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { openSnapshot, focusQuestion, completeWorkspace, verifyWorkspace } from './workspace';
-import { selectPicker } from './picker';
+import { expectPickerAlignment, selectPicker } from './picker';
 
 test('matching preserves partial answers, supports keyboards and cites both messages', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
@@ -20,11 +20,12 @@ test('matching preserves partial answers, supports keyboards and cites both mess
 
 test('matching uses translated instructions and full-size touch options', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
-  for (const [locale, label] of [['en', '语言'], ['zh-Hant', 'Language'], ['zh-Hans', '語言']]) {
+  for (const [locale, label] of [['en', '语言'], ['zh-Hant', 'Language'], ['zh-Hans', '語言'], ['ar', '语言']]) {
     await page.goto('/settings'); await selectPicker(page, label, locale);
     const { lesson } = await openSnapshot(page, 'a1-matching-reading');
     const section = await focusQuestion(page, lesson, 0);
     await section.getByRole('button', { name: /Mia:/ }).click();
+    await expectPickerAlignment(section.getByRole('button', { name: /Mia:/ }));
     const options = page.getByRole('option');
     for (const option of await options.all()) {
       const box = (await option.boundingBox())!; expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);

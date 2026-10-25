@@ -34,10 +34,11 @@ test('failed audio never permits scoring and recovers on an explicit replay', as
   await page.locator('.audio-play').click();
   await expect(page.getByRole('alert')).toContainText('音频播放失败');
   await expect.poll(() => page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
+  await focusQuestion(page, lesson, lesson.materials.length - 1);
   await page.locator('button[type=submit]').click();
   await expect(page.getByRole('alert').filter({ hasText: '播放' })).toBeVisible();
   expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
-  await page.unroute('**/audio/**/*.mp3'); await playMaterial(page);
+  await page.unroute('**/audio/**/*.mp3'); await focusQuestion(page, lesson, 0); await playMaterial(page);
   for (let index = 1; index < lesson.materials.length; index++) { await fillQuestion(await focusQuestion(page, lesson, index), lesson.materials[index].questions[0]); await playMaterial(page); }
   await submitWorkspace(page);
   const records = await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).attempts.where('sessionId').equals(id).toArray()), id);
@@ -70,7 +71,8 @@ test('listening answers share the player page and playback waits, cancels and st
   await play.click();
   await expect.poll(() => page.locator('audio').getAttribute('data-delay')).not.toBeNull();
   expect(Number(await page.locator('audio').getAttribute('data-delay'))).toBeGreaterThanOrEqual(1400);
-  await expect(page.locator('button[type=submit]')).toBeEnabled();
+  await expect(page.locator('button[type=submit]')).toHaveCount(0);
+  await expect(page.locator('.workspace-questions form>button[type=button]')).toBeEnabled();
   await play.click();
   await page.getByRole('link', { name: '离开任务', exact: true }).click();
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();

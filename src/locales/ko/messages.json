@@ -307,10 +307,7 @@
     "failed": "복사하지 못했습니다. 주소를 선택하여 직접 복사하세요."
   },
   "offlineInstall": {
-    "clearPending": "미설치 항목의 설치 의향 지우기",
     "wanted": "설치 의향 있음",
-    "intentions": "설치하려던 일부 패키지가 이 기기에 없습니다. 다운로드할 자료를 선택하세요.",
-    "unavailableIntent": "일부 설치 의향이 사용할 수 없는 버전을 참조합니다. 현재 자료를 확인하고 선택하세요.",
     "intentFailed": "이 패키지의 설치 선택을 저장하지 못했습니다. 다시 시도하세요. 로컬 파일은 추가로 변경되지 않았습니다.",
     "categories": {
       "reading": "읽기",
@@ -817,7 +814,10 @@
     "score": "점수",
     "groups": "문항 그룹",
     "blank": "빈칸",
-    "slots": "답안 칸"
+    "slots": "답안 칸",
+    "skip": "문제 건너뛰기",
+    "resumeAnswer": "답변 계속하기",
+    "skipped": "건너뜀 · 채점 제외"
   },
   "onboarding": {
     "subToday": "오늘의 문장과 읽기·듣기 연습",

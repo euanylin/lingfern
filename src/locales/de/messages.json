@@ -307,10 +307,7 @@
     "failed": "Kopieren fehlgeschlagen. Adresse markieren und manuell kopieren."
   },
   "offlineInstall": {
-    "clearPending": "Nicht installierte Vormerkungen löschen",
     "wanted": "Installation vorgemerkt",
-    "intentions": "Vorgemerkte Pakete fehlen auf diesem Gerät. Gewünschte Downloads wählen.",
-    "unavailableIntent": "Einige Vormerkungen betreffen nicht verfügbare Versionen. Aktuelle Ressourcen prüfen und wählen.",
     "intentFailed": "Installationswahl nicht gespeichert. Erneut versuchen; lokale Dateien nicht weiter verändert.",
     "categories": {
       "reading": "Lesen",
@@ -817,7 +814,10 @@
     "score": "Punkte",
     "groups": "Fragengruppen",
     "blank": "Lücken",
-    "slots": "Antwortfelder"
+    "slots": "Antwortfelder",
+    "skip": "Frage überspringen",
+    "resumeAnswer": "Antwort fortsetzen",
+    "skipped": "Übersprungen · unbewertet"
   },
   "onboarding": {
     "subToday": "Tageszitat und Lese- und Hörübungen",

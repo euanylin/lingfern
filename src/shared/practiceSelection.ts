@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { corpusQuestionKindSchema, topicSchema, type Lesson } from './content';
+import { corpusQuestionKindSchema, topicSchema, type Lesson, type CorpusQuestionKind } from './content';
 import { exposureRootIdSchema } from './exposure';
 import { corpusInterestMatch } from './topicMatch';
 
@@ -28,4 +28,9 @@ export function readPracticeSelection(value?: string): PracticeSelection {
   if (value === undefined) return automaticPractice;
   try { return practiceSelectionSchema.parse(JSON.parse(value)); }
   catch { throw new Error('INVALID_PRACTICE_SELECTION'); }
+}
+
+// Keep occasional reflection, using high seed bits independently of short task rotations.
+export function automaticQuestionKinds(seed: number, kinds: readonly CorpusQuestionKind[] = []) {
+  return kinds.length || (seed >>> 16) % 10 === 0 ? kinds : corpusQuestionKindSchema.options;
 }

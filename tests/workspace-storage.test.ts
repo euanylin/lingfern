@@ -7,7 +7,7 @@ import { exportBackup, importBackup, inspectBackup } from '../src/data/backup';
 import { quantityFixture } from './fixtures/quantity-lessons';
 import { questionSlots } from '../src/shared/practiceQuantity';
 import { practiceCardProgress } from '../src/app/PracticeCard';
-const answerFor = (question: Question): Answer => 'gaps' in question ? question.gaps.map(gap => gap.answer) : 'rows' in question ? question.rows.map(row => row.answer) : 'pairs' in question ? question.pairs.map(pair => pair.answer) : 'steps' in question ? question.acceptedOrders[0] : 'spans' in question ? question.accepted[0] : 'criteria' in question ? 'A supported response.' : question.answer;
+const answerFor = (question: Question): Answer => 'gaps' in question ? question.gaps.map(gap => gap.answer) : 'rows' in question ? question.rows.map(row => row.answer) : 'pairs' in question ? question.pairs.map(pair => pair.answer) : 'steps' in question ? question.acceptedOrders[0] : 'spans' in question ? question.accepted[0] : 'criteria' in question ? question.parts ? question.parts.map(() => 'A supported response.') : 'A supported response.' : question.answer;
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
 it('leaves old snapshots intact and saves independent response parts transactionally', async () => {
   const old = lessonSchema.parse(raw), frozen = await createSession(old, 'p');
@@ -140,4 +140,80 @@ it('opens saved per-question records in the shared workspace without rewriting o
   expect(result.attempts[0]).toEqual(first);
   expect(result.session.workspace?.drafts).toEqual(Object.fromEntries(all.map(item => [item.question.id, answerFor(item.question)])));
   expect((await inspectBackup(await exportBackup('p'))).records.attempts).toHaveLength(all.length);
+});
+
+it('shares completed playback only between exact recordings while preserving group assistance and frozen answers', async () => {
+  const { groupedListening } = await import('./fixtures/workspace-lessons');
+  const { sameAudio } = await import('../src/shared/practiceWorkspace');
+  const { recordPlayback } = await import('../src/data/db');
+  const lesson = lessonSchema.parse(groupedListening()), [first, second, other] = lesson.materials;
+  expect(sameAudio(first, second)).toBe(true);
+  expect(sameAudio(first, { ...second, audio: { ...second.audio!, sha256: '0'.repeat(64) } })).toBe(false);
+  expect(sameAudio(first, { ...second, audio: other.audio })).toBe(false);
+  const current = await createSession(lesson, 'p'); await claimSession(current.id, 'owner');
+  for (const item of questions(lesson)) await saveWorkspaceDraft(current.id, 'owner', item.question.id, answerFor(item.question));
+  await recordPlayback(current.id, 'owner', first.questions[0].id, false);
+  const changed = await selectWorkspaceQuestion(current.id, 'owner', second.questions[0].id);
+  expect(changed.assistance).toMatchObject({ playbackRequests: 1, audioCompleted: false, hintLevel: 0 });
+  await recordPlayback(current.id, 'owner', second.questions[0].id, true);
+  await expect(submitWorkspace(current.id, 'owner')).rejects.toThrow('NO_AUDIO');
+  expect(await attempts.count()).toBe(0);
+  const back = await selectWorkspaceQuestion(current.id, 'owner', first.questions[0].id);
+  expect(back.assistance).toMatchObject({ playbackRequests: 1, audioCompleted: true, teachingProvided: true });
+  expect((await selectWorkspaceQuestion(current.id, 'owner', other.questions[0].id)).assistance.audioCompleted).toBe(false);
+  await recordPlayback(current.id, 'owner', other.questions[0].id, false); await recordPlayback(current.id, 'owner', other.questions[0].id, true);
+  const result = await submitWorkspace(current.id, 'owner');
+  expect(result.attempts).toHaveLength(questions(lesson).length);
+  expect(result.attempts.every(attempt => attempt.assistance.audioCompleted && attempt.correct !== false)).toBe(true);
+  expect(result.attempts.find(attempt => attempt.questionId === second.questions[0].id)!.assistance.teachingProvided).toBeUndefined();
+  expect((await sessions.get(current.id))!.lesson).toEqual(lesson);
+  expect((await inspectBackup(await exportBackup('p'))).records.sessions[0].workspace?.drafts).toEqual(result.session.workspace?.drafts);
+});
+
+it('keeps an existing single-question draft attached to its question when navigating materials', async () => {
+  const { saveDraft } = await import('../src/data/db');
+  const lesson = lessonSchema.parse(raw), current = await createSession(lesson, 'p'); await claimSession(current.id, 'owner');
+  const all = questions(lesson), answer = answerFor(all[0].question);
+  await saveDraft(current.id, 'owner', answer);
+  const changed = await selectWorkspaceQuestion(current.id, 'owner', all.at(-1)!.question.id);
+  expect(changed.workspace?.drafts[all[0].question.id]).toEqual(answer);
+  expect(changed.draft).toBeUndefined();
+  for (const item of all.slice(1)) await saveWorkspaceDraft(current.id, 'owner', item.question.id, answerFor(item.question));
+  const submitted = await submitWorkspace(current.id, 'owner');
+  expect(submitted.attempts[0].answer).toEqual(answer);
+  expect(submitted.attempts.every(attempt => attempt.correct)).toBe(true);
+  expect(submitted.session.lesson).toEqual(lesson);
+  const archive = await inspectBackup(await exportBackup('p')), restored = await importBackup(archive);
+  expect((await sessions.where('profileId').equals(restored).toArray())[0].workspace?.drafts).toEqual(submitted.session.workspace?.drafts);
+  expect(submitted.session.contentHash).toBe(current.contentHash);
+});
+
+it('can replay unfinished listening groups beside an immutable previously submitted question', async () => {
+  const { default: rawListening } = await import('./fixtures/content/c2-listening.json');
+  const { submit, recordPlayback, recordDictionaryUse } = await import('../src/data/db');
+  const lesson = lessonSchema.parse(rawListening), current = await createSession(lesson, 'p'); await claimSession(current.id, 'owner');
+  const [first, second] = lesson.materials;
+  await recordPlayback(current.id, 'owner', first.questions[0].id, false); await recordPlayback(current.id, 'owner', first.questions[0].id, true);
+  const committed = await submit(current.id, 'owner', answerFor(first.questions[0]));
+  await selectWorkspaceQuestion(current.id, 'owner', first.questions[1].id);
+  await recordPlayback(current.id, 'owner', first.questions[0].id, false);
+  await recordPlayback(current.id, 'owner', first.questions[0].id, true);
+  await recordDictionaryUse(current.id, 'owner', first.questions[0].id);
+  expect((await sessions.get(current.id))!.assistance).toMatchObject({ playbackRequests: 2, audioCompleted: true, dictionaryUsed: true });
+  expect(await attempts.get(committed.id)).toEqual(committed);
+  for (const item of questions(lesson).slice(1)) await saveWorkspaceDraft(current.id, 'owner', item.question.id, answerFor(item.question));
+  await selectWorkspaceQuestion(current.id, 'owner', second.questions[0].id);
+  await recordPlayback(current.id, 'owner', second.questions[0].id, false); await recordPlayback(current.id, 'owner', second.questions[0].id, true);
+  const result = await submitWorkspace(current.id, 'owner');
+  expect(result.attempts).toHaveLength(4); expect(result.attempts[0]).toEqual(committed);
+  expect(result.attempts[1].assistance).toMatchObject({ audioCompleted: true, dictionaryUsed: true });
+});
+
+
+it('counts the persisted single-question draft in the Today progress before the first workspace navigation', async () => {
+  const { saveDraft } = await import('../src/data/db');
+  const lesson = lessonSchema.parse(raw), current = await createSession(lesson, 'p'); await claimSession(current.id, 'owner');
+  const question = questions(lesson)[0].question;
+  await saveDraft(current.id, 'owner', answerFor(question));
+  expect(practiceCardProgress([(await sessions.get(current.id))!], []).answered).toBe(questionSlots(question));
 });

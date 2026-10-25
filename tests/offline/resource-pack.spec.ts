@@ -92,7 +92,6 @@ test('download and local removal capture intentions without treating them as cac
   await expect(row).not.toContainText('已安装');
   await expect(grammar).not.toContainText('已安装');
   await test.info().attach('batch-resource-operation', { body: JSON.stringify({ viewport: '320x812', progressBarHeights: [...new Set(heights)], removalMs: Date.now() - began }), contentType: 'application/json' });
-  await expect(page.locator('.installation-intent-notice')).toHaveCount(0);
   const events = await page.evaluate(() => new Promise<{ type: string; payload: { contentId: string; contentHash: string; wanted: boolean } }[]>((resolve, reject) => {
     const request = indexedDB.open('lingfern');
     request.onerror = () => reject(request.error);

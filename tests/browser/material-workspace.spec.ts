@@ -12,6 +12,7 @@ import { languagePacks } from '../../src/locales';
 
 async function start(page: Page, raw: unknown, testMode = false) {
   await page.goto('/today');
+  await expect(page.getByRole('heading', { name: /^(练习|練習|Practice|تدريب)$/ })).toBeVisible();
   const result = await page.evaluate(async ({ raw, testMode }) => {
     const { organizePractice } = await import('/src/core/practiceOrganization.ts' as string);
     const { asTestLesson } = await import('/src/shared/content.ts' as string);
@@ -369,11 +370,13 @@ test('mobile reading navigation reveals the selected input inside the sheet with
     const input = (await page.locator('.workspace-question[data-selected=true] input').first().boundingBox())!;
     return input.y >= frame.y && input.y + input.height <= frame.y + frame.height;
   };
+  await page.locator('.workspace-question[data-selected=true] input').first().click();
   await expect.poll(visibleInput).toBe(true);
   const position = await page.evaluate(() => scrollY);
   await page.locator('.workspace-card button').last().click();
   const focused = page.locator('.workspace-question[data-selected=true] input').first();
-  await expect(focused).toBeFocused();
+  await expect(page.locator('.workspace-question[data-selected=true] h2')).toBeFocused();
+  await focused.click(); await expect(focused).toBeFocused();
   await page.screenshot({ path: testInfo.outputPath('selected-input.png') });
   const frame = (await page.locator('.workspace-questions .question-sheet-content').boundingBox())!;
   const input = (await focused.boundingBox())!;
@@ -384,7 +387,7 @@ test('mobile reading navigation reveals the selected input inside the sheet with
   await page.locator('.workspace-questions .question-close').click();
   await page.locator('.workspace-questions .question-sheet-toggle').click();
   await expect(focused).toHaveValue('retained-short-screen-answer');
-  await expect.poll(visibleInput).toBe(true);
+  await focused.click(); await expect.poll(visibleInput).toBe(true);
   expect(await page.evaluate(() => scrollY)).toBe(position);
 });
 
@@ -395,7 +398,7 @@ test('choosing an input during sheet expansion keeps the learner focus and draft
   await panel.locator('.question-sheet-toggle').click();
   await page.locator('.workspace-card button').last().click();
   const field = page.locator('.workspace-question[data-selected=true] input').first();
-  await expect(field).toBeFocused();
+  await field.click(); await expect(field).toBeFocused();
   await panel.locator('.question-close').click();
   await expect.poll(() => panel.evaluate(el => el.getAnimations().some(animation => animation.playState === 'running'))).toBe(false);
   await page.addStyleTag({ content: '.workspace-questions { transition-duration: 800ms !important; }' });
@@ -417,7 +420,7 @@ test('opening mobile reading keeps the editor unfocused until the learner choose
   await toggle.click();
   await panel.locator('.workspace-card button').last().click();
   const input = panel.locator('.workspace-question[data-selected=true] input').first();
-  await expect(input).toBeFocused();
+  await input.click(); await expect(input).toBeFocused();
   await input.fill('retained-without-opening-keyboard');
   await panel.locator('.question-close').click();
   for (const keyboard of [false, true]) {
@@ -473,7 +476,7 @@ for (const width of [1440, 375]) test(`cross-material focus waits for the parent
   if (width < 1200) await toggle.click();
   await panel.locator('.workspace-card button').last().click();
   const input = panel.locator('.workspace-question[data-selected=true] input').first();
-  await expect(input).toBeFocused();
+  await input.click(); await expect(input).toBeFocused();
   await input.fill('retained-after-deferred-material');
   await expect.poll(() => page.evaluate(async () => {
     const { sessions } = await import('/src/data/db.ts' as string);
@@ -504,7 +507,7 @@ for (const raw of [worksheet, listening]) test(`responsive learning controls sta
       if (width < 1200 && await panel.getAttribute('data-open') === 'false') await panel.locator('.question-sheet-toggle').click();
       await panel.locator('.workspace-card button').last().click();
       const input = panel.locator('.workspace-question[data-selected=true] input').first();
-      await expect(input).toBeFocused();
+      await input.click(); await expect(input).toBeFocused();
       await expect.poll(async () => {
         const box = (await input.boundingBox())!, frame = (await panel.locator('.question-sheet-content').boundingBox())!;
         return box.y >= frame.y && box.y + box.height <= frame.y + frame.height;
@@ -635,7 +638,7 @@ test('stable mobile sheet still clears the software keyboard and restores its or
   await panel.locator('.question-sheet-toggle').click();
   await panel.locator('.workspace-card button').last().click();
   const input = panel.locator('.workspace-question[data-selected=true] input').first();
-  await expect(input).toBeFocused();
+  await input.click(); await expect(input).toBeFocused();
   const geometry = await panel.evaluate(element => {
     const viewport = window.visualViewport!;
     try {
@@ -802,7 +805,8 @@ test('reference completion hierarchy preserves exact prompt text, saved snapshot
       await expect(block.locator('h2')).toContainText(split > 0 ? prompt.slice(0, split) : prompt);
       if (split > 0) await expect(block.locator('.question-sentence')).toHaveText(prompt.slice(split + 1));
       else await expect(block.locator('.question-sentence')).toHaveCount(0);
-      await expect(block.locator('input')).toBeFocused();
+      await expect(block.locator('h2')).toBeFocused();
+      await block.locator('input').click(); await expect(block.locator('input')).toBeFocused();
       await expect(block.locator('input')).toHaveCSS('box-shadow', 'none');
       await expect(block.locator('input')).toHaveCSS('outline-style', 'none');
       await expect(block.locator('input')).toHaveCSS('direction', 'ltr');

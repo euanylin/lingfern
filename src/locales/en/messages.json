@@ -307,10 +307,7 @@
     "failed": "Could not copy. Select the address and copy it manually."
   },
   "offlineInstall": {
-    "clearPending": "Clear uninstalled intentions",
     "wanted": "Installation intended",
-    "intentions": "Some intended packages are not installed on this device. Select the resources you want to download.",
-    "unavailableIntent": "Some installation intentions refer to unavailable content versions. Check and select current resources.",
     "intentFailed": "This package’s installation choice was not saved. Try again; its local files were not changed further.",
     "categories": {
       "reading": "Reading",
@@ -817,7 +814,10 @@
     "score": "Score",
     "groups": "Question groups",
     "blank": "Blanks",
-    "slots": "Response slots"
+    "slots": "Response slots",
+    "skip": "Skip question",
+    "resumeAnswer": "Resume answering",
+    "skipped": "Skipped · not scored"
   },
   "onboarding": {
     "subToday": "Daily quote and reading/listening practice",
