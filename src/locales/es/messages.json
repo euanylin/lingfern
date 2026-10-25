@@ -185,7 +185,6 @@
     "title": "Identidad de GitHub",
     "description": "Sincroniza tus dispositivos con tu repositorio privado.",
     "connect": "Conectar GitHub",
-    "logout": "Cerrar la sesión web de este dispositivo",
     "loading": "Comprobando la sesión web…",
     "unavailable": "El inicio de sesión con GitHub no está configurado.",
     "failed": "No se pudo comprobar el estado de conexión.",
@@ -447,7 +446,6 @@
     "marker": "La confirmación crea un marcador de perfil. Los registros se sincronizan automáticamente si la sincronización automática está activada.",
     "existing": "Ya existe una marca de perfil coincidente y no se sobrescribirá.",
     "boundary": "Si haces público el repositorio más adelante, su historial de Git también puede hacerse público.",
-    "bound": "Vinculado",
     "pending": "La sincronización no está disponible temporalmente.",
     "disabled": "La vinculación está desactivada. Vuelve a autorizar y verificar.",
     "disconnect": "Desconectar la sincronización del repositorio",
@@ -465,17 +463,6 @@
     "limited": "Demasiadas solicitudes. Inténtalo más tarde.",
     "reset": "Configurar de nuevo",
     "newWindow": "Se abre en una ventana nueva"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Eliminar historial remoto",
-    "boundary": "Eliminar registros locales o archivos remotos no borra el historial de Git. Desconectar la sincronización no elimina el repositorio.",
-    "steps": [
-      "Exporta la copia local que quieras conservar y después desconecta la sincronización del repositorio.",
-      "Comprueba el propietario y el nombre del repositorio en GitHub y sigue la guía oficial para eliminarlo por completo. Se eliminarán su contenido y los permisos asociados.",
-      "Para reanudar la sincronización, crea un nuevo repositorio privado dedicado con un README, autorízalo, verifícalo y vincúlalo. Los eventos de sincronización conservados, incluidos los marcadores de eliminación, se volverán a subir."
-    ],
-    "limits": "Lingfern no solicita permisos para eliminar repositorios ni puede garantizar la eliminación de copias de GitHub, copias descargadas o copias locales antiguas.",
-    "guide": "Guía oficial de eliminación de GitHub"
   },
   "savedWords_problemCopy": {
     "dictionary": "El significado necesario no está instalado.",
@@ -795,8 +782,8 @@
     "empty": "Aún no hay respuestas guardadas. Aquí aparecen las respuestas completadas desde Hoy.",
     "history": "Tus actividades guardadas",
     "conditions": "Niveles de pistas utilizados",
-    "offline": "Sin conexión. No están instalados todos los recursos sin conexión; algunas actividades pueden no estar disponibles.",
-    "offlineInstalled": "Sin conexión",
+    "offline": "Sin conexión",
+    "online": "Conexión restablecida",
     "updateNow": "Actualizar ahora",
     "updateLater": "Más tarde",
     "updateCancel": "Cancelar",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Actualización del software",
     "checkUpdate": "Buscar actualizaciones",
     "updateChecking": "Comprobando…",
+    "updatePreparing": "Preparando la actualización…",
     "updateReady": "Hay una actualización lista.",
     "updateCurrent": "Estás al día.",
     "updateOffline": "Conéctate para buscar actualizaciones.",

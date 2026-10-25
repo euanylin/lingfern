@@ -3,6 +3,50 @@ import { languagePacks } from '../../src/locales';
 import { selectPicker } from './picker';
 
 for (const [locale, width, colorScheme] of [['zh-Hans', 390, 'dark'], ['en', 1440, 'light'], ['ar', 375, 'dark']] as const) {
+  test(`network status stays outside content and clears after each change: ${locale}`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.emulateMedia({ colorScheme, reducedMotion: locale === 'ar' ? 'reduce' : 'no-preference' });
+    await page.goto('/settings');
+    await expect(page.locator('.settings-language .setting-trigger')).toBeVisible();
+    if (locale !== 'zh-Hans') await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+    const status = page.locator('.network-status');
+    await expect(status).toBeEmpty();
+    await page.addInitScript(() => Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }));
+    await page.reload();
+    await expect(status).toHaveText(languagePacks[locale].app.offline);
+    await expect(page.locator('main > .notice:not(.update-notice)')).toHaveCount(0);
+    const headingTop = (await page.locator('main h1').boundingBox())!.y;
+    expect(await status.evaluate(element => getComputedStyle(element).position)).toBe('fixed');
+    expect((await status.locator('.network-status-content').boundingBox())!.width).toBeLessThan(width - 32);
+    if (locale === 'ar') await expect(status.locator('.network-status-content')).toHaveCSS('animation-name', 'none');
+    const bar = (await status.boundingBox())!;
+    if (width < 768) expect(bar.y + bar.height).toBeLessThanOrEqual((await page.locator('.mobile-nav').boundingBox())!.y);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.waitForTimeout(220);
+    await page.screenshot({ path: `output/playwright/network-status-${locale}-offline.png` });
+    const network = async (online: boolean) => page.evaluate(value => {
+      Object.defineProperty(navigator, 'onLine', { configurable: true, value });
+      window.dispatchEvent(new Event(value ? 'online' : 'offline'));
+    }, online);
+    await network(true);
+    await expect(status).toHaveText(languagePacks[locale].app.online);
+    expect((await page.locator('main h1').boundingBox())!.y).toBe(headingTop);
+    await page.waitForTimeout(220);
+    await page.screenshot({ path: `output/playwright/network-status-${locale}-online.png` });
+    await network(false);
+    await expect(status).toHaveText(languagePacks[locale].app.offline);
+    await page.waitForTimeout(3100);
+    await expect(status).toHaveText(languagePacks[locale].app.offline);
+    await expect(status).toBeEmpty({ timeout: 2000 });
+    await page.getByRole('link', { name: languagePacks[locale].app.library, exact: true }).filter({ visible: true }).click();
+    await expect(page.locator('main h1')).toHaveText(languagePacks[locale].app.library);
+    await expect(status).toBeEmpty();
+    await network(true);
+    await expect(status).toHaveText(languagePacks[locale].app.online);
+    await expect(status).toBeEmpty({ timeout: 5000 });
+    expect(await page.pageErrors()).toEqual([]);
+  });
+
   test(`refresh keeps the record-reading status accessible without visible text: ${locale}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
     await page.emulateMedia({ colorScheme, reducedMotion: locale === 'ar' ? 'reduce' : 'no-preference' });

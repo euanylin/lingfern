@@ -185,7 +185,6 @@
     "title": "GitHub identity",
     "description": "Sync across devices using your own private repository.",
     "connect": "Connect GitHub",
-    "logout": "Sign out of this device’s web session",
     "loading": "Checking the web session…",
     "unavailable": "GitHub sign-in is not configured.",
     "failed": "Could not check the connection status.",
@@ -447,7 +446,6 @@
     "marker": "Confirmation creates a profile marker. Records sync automatically when automatic sync is on.",
     "existing": "A matching profile marker exists and will not be overwritten.",
     "boundary": "If you later make the repository public, its Git history may also become public.",
-    "bound": "Bound",
     "pending": "Sync is temporarily unavailable.",
     "disabled": "Binding disabled. Reauthorise and verify again.",
     "disconnect": "Disconnect repository sync binding",
@@ -465,17 +463,6 @@
     "limited": "Too many requests. Try again later.",
     "reset": "Set up again",
     "newWindow": "Opens in a new window"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Remove remote history",
-    "boundary": "Deleting local records or remote files does not erase Git history. Disconnecting sync does not delete the repository.",
-    "steps": [
-      "Export any local backup you want to keep, then disconnect the repository sync binding.",
-      "Check the dedicated repository’s owner and name on GitHub, then follow the official guide to delete the whole repository yourself. This removes its contents and associated permissions.",
-      "To resume sync, create a new dedicated private repository with a README, then authorise, verify and bind it. Retained sync events, including deletion markers, will be uploaded again."
-    ],
-    "limits": "Lingfern requests no repository-deletion permission and cannot guarantee removal of GitHub backups, downloaded copies or old local backups.",
-    "guide": "Official GitHub deletion guide"
   },
   "savedWords_problemCopy": {
     "dictionary": "Required meaning is not installed.",
@@ -795,8 +782,8 @@
     "empty": "No saved responses yet. Completed answers from Today appear here.",
     "history": "Your saved tasks",
     "conditions": "Hint layers used",
-    "offline": "Network disconnected. Full offline resources are not installed; some tasks may be unavailable.",
-    "offlineInstalled": "Offline",
+    "offline": "Offline",
+    "online": "Back online",
     "updateNow": "Update now",
     "updateLater": "Later",
     "updateCancel": "Cancel",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Software update",
     "checkUpdate": "Check for updates",
     "updateChecking": "Checking…",
+    "updatePreparing": "Preparing update…",
     "updateReady": "An update is ready.",
     "updateCurrent": "You’re up to date.",
     "updateOffline": "Connect to the internet to check for updates.",

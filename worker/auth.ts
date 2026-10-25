@@ -71,8 +71,10 @@ const tokenSchema = z.object({ access_token: z.string().min(1).max(4096), token_
 const userSchema = z.object({ id: z.number().int().positive(), login: z.string().regex(/^[a-zA-Z0-9-]{1,39}$/) });
 export async function githubJson(url: string, init: RequestInit) {
   const response = await fetch(url, { ...init, redirect: 'manual', signal: AbortSignal.timeout(15_000) });
-  if (response.status >= 300 && response.status < 400) { await response.body?.cancel(); throw new GithubError(response.status); }
-  if (!response.ok) throw new GithubError(response.status);
+  if (!response.ok) {
+    await response.body?.cancel().catch(() => {});
+    throw new GithubError(response.status);
+  }
   return JSON.parse(new TextDecoder().decode(await boundedBody(response.body, 65536)));
 }
 export async function boundedBody(body: ReadableStream<Uint8Array> | null, limit: number) {

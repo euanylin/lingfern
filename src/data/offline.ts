@@ -74,18 +74,23 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
       if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
       const response = await fetch(`${file.path}?offline-install=${item.version}`, { cache: 'no-store', credentials: 'omit', redirect: 'error', signal });
       const type = response.headers.get('content-type') ?? '';
-      if (response.status !== 200 || response.type !== 'basic' || response.url && new URL(response.url).origin !== location.origin || /text\/html/i.test(type) || (file.path.endsWith('.json') && !/json/i.test(type)) || (file.path.endsWith('.mp3') && !/audio\//i.test(type))) throw new Error(`HTTP_OR_TYPE:${file.path}`);
+      if (response.status !== 200 || response.type !== 'basic' || response.url && new URL(response.url).origin !== location.origin || /text\/html/i.test(type) || (file.path.endsWith('.json') && !/json/i.test(type)) || (file.path.endsWith('.mp3') && !/audio\//i.test(type))) {
+        await response.body?.cancel().catch(() => {});
+        throw new Error(`HTTP_OR_TYPE:${file.path}`);
+      }
       if (!response.body) throw new Error(`NO_BODY:${file.path}`);
       const reader = response.body.getReader();
       const chunks: Uint8Array[] = [];
       let length = 0;
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        length += value.byteLength;
-        if (length > file.bytes) { await reader.cancel(); throw new Error(`SIZE:${file.path}`); }
-        chunks.push(value); onProgress(completed + length);
-      }
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          length += value.byteLength;
+          if (length > file.bytes) throw new Error(`SIZE:${file.path}`);
+          chunks.push(value); onProgress(completed + length);
+        }
+      } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
       if (length !== file.bytes) throw new Error(`SIZE:${file.path}`);
       const body = new Uint8Array(length);
       let offset = 0;

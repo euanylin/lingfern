@@ -5,41 +5,52 @@ import { materialPackageId, practiceLocale } from '../shared/content';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Lesson, Locale } from '../shared/content';
-import { communityPacks } from '../data/db';
+import { communityPacks, type CommunityPackageRecord } from '../data/db';
 import { communityCacheName } from '../data/communityInstall';
 
 const labels = messages('taskDetail');
 export function TaskDetail({ lesson, locale, profileId, action, busy, onStart, onCheck, onClose, startError, available, practiceReason, additionalLesson, heading }: { additionalLesson?: Lesson; heading?: string; practiceReason?: 'reteach' | 'retry' | 'review'; available: boolean; startError: string; lesson: Lesson; locale: Locale; profileId: string; action: string; busy: boolean; onStart: (lesson: Lesson) => Promise<void>; onCheck?: (lesson: Lesson) => Promise<void>; onClose: () => void }) {
   const { open, close, dialogProps, bodyProps } = useTaskDialog(lesson.id, onClose), t = labels[locale];
   const [source, setSource] = useState<{ title: string; author: string; license: string }>();
-  const previewLessons = [lesson, ...(additionalLesson ? [additionalLesson] : [])];
-  const paths = [...new Set(previewLessons.flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path))))];
-  const [bytes, setBytes] = useState<number | undefined>(() => paths.length ? undefined : 0);
+  const [mediaLoaded, setMediaLoaded] = useState(() => ![lesson, ...(additionalLesson ? [additionalLesson] : [])].some(preview => preview.materials.some(material => material.audio?.src || material.illustration?.src)));
   const [failed, setFailed] = useState(false);
   useEffect(() => {
     let disposed = false;
+    const controller = new AbortController();
+    const owners = new Map<string, Promise<CommunityPackageRecord | undefined>>();
+    const readOwner = (hash: string) => {
+      const pending = owners.get(hash) ?? communityPacks.get([profileId, hash]);
+      owners.set(hash, pending);
+      return pending;
+    };
     void (async () => {
       const builtin = !lesson.communityPackageId && !lesson.generation ? (await import('../../content/sources.json')).default.find(item => item.id === lesson.sourceId) : undefined;
-      const pack = lesson.communityPackageId ? await communityPacks.get([profileId, lesson.communityPackageId]) : undefined;
+      const pack = lesson.communityPackageId ? await readOwner(lesson.communityPackageId) : undefined;
       const record = pack?.sources.find(item => `community:${pack.hash}:${item.id}` === lesson.sourceId) ?? (pack?.spoken && (lesson.generation?.generator === 'corpus-v1' || lesson.generation?.generator === 'corpus-check-v1') ? { title: lesson.materials.map(material => material.title).join(' · '), author: [...new Set(lesson.materials.map(material => material.audio!.author))].join('; '), license: [...new Set(lesson.materials.map(material => material.credit!.license))].join('; ') } : undefined);
       if (lesson.communityPackageId && !record) throw new Error('MISSING_SOURCE');
-      const sizes = await Promise.all([lesson, ...(additionalLesson ? [additionalLesson] : [])].flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path).map(async path => {
+      controller.signal.throwIfAborted();
+      await Promise.all([lesson, ...(additionalLesson ? [additionalLesson] : [])].flatMap(preview => preview.materials.flatMap(material => [material.audio?.src, material.illustration?.src].filter((path): path is string => !!path).map(async path => {
         const hash = materialPackageId(preview, material);
-        if (!hash) { const response = await fetch(path); if (!response.ok) throw new Error('MISSING_MEDIA'); return (await response.blob()).size; }
-        const owner = await communityPacks.get([profileId, hash]);
+        if (!hash) {
+          const response = await fetch(path, { signal: controller.signal });
+          if (!response.ok) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_MEDIA'); }
+          await response.blob(); return;
+        }
+        const owner = await readOwner(hash);
+        controller.signal.throwIfAborted();
         const name = communityCacheName(hash);
         if (!owner || owner.state !== 'ready' || !await caches.has(name)) throw new Error('MISSING_MEDIA');
         const response = await (await caches.open(name)).match(path);
         if (!response) throw new Error('MISSING_MEDIA');
-        return (await response.blob()).size;
+        await response.blob();
       }))));
-      if (!disposed) { setSource(record ?? builtin); setBytes(sizes.reduce((sum, size) => sum + size, 0)); }
-    })().catch(() => { if (!disposed) setFailed(true); });
-    return () => { disposed = true; };
+      if (!disposed) { setSource(record ?? builtin); setMediaLoaded(true); }
+    })().catch(() => { controller.abort(); if (!disposed) setFailed(true); });
+    return () => { disposed = true; controller.abort(); };
   // Keep one immutable lesson snapshot per keyed dialog opening.
   }, [lesson, additionalLesson, profileId]);
   const contentLocale = practiceLocale(lesson, locale);
-  const mediaReady = !failed && bytes !== undefined;
+  const mediaReady = !failed && mediaLoaded;
   const recordings = lesson.materials.flatMap(material => material.audio ? [material.audio] : []);
   return createPortal(<dialog {...dialogProps} className="task-detail" aria-labelledby="task-detail-title">
     <div className="task-detail-body" {...bodyProps}><header><p className="eyebrow">{lesson.skill.toUpperCase()}</p><button type="button" onClick={close}>{t.close}</button></header>

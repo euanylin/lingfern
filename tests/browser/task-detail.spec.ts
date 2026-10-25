@@ -153,3 +153,79 @@ test('combined preview omits both estimates while retaining actual audio duratio
   await expect(dialog.locator('section dl dd')).toContainText(`${seconds} ${languagePacks.en.taskDetail.seconds}`);
   await expect(dialog.locator('audio,.passage')).toHaveCount(0);
 });
+
+test('community preview reads each owner once while retaining every media and profile check', async ({ page }) => {
+  await page.goto('/today');
+  const count = await page.evaluate(async () => {
+    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
+    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
+    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { communityPacks } = await import('/src/data/db.ts' as string);
+    const { default: raw } = await import('/tests/fixtures/content/a1-listening.json' as string);
+    const hash = 'd'.repeat(64), profileId = 'synthetic-preview-profile', lesson = structuredClone(raw);
+    lesson.communityPackageId = hash; lesson.sourceId = `community:${hash}:synthetic`;
+    lesson.materials.forEach((material: { audio: { src: string } }, index: number) => { material.audio.src = `/audio/community-${hash}/synthetic-${index}.mp3`; });
+    const pack = { profileId, hash, id: 'synthetic-preview', lessons: [], sources: [{ id: 'synthetic', title: 'Synthetic source', author: 'Synthetic author', license: 'CC0' }], state: 'ready', installedAt: '2026-10-25T00:00:00Z' };
+    await communityPacks.put(pack);
+    const cache = await caches.open(`lingfern-community-${hash}`);
+    for (const material of lesson.materials) await cache.put(material.audio.src, new Response(new Uint8Array([1, 2, 3]), { headers: { 'Content-Type': 'audio/mpeg' } }));
+    const get = communityPacks.get.bind(communityPacks), match = Cache.prototype.match;
+    Reflect.set(window, 'previewReads', { owners: 0, media: 0 });
+    communityPacks.get = (key: unknown) => { if (Array.isArray(key) && key[0] === profileId && key[1] === hash) Reflect.get(window, 'previewReads').owners++; return get(key); };
+    Cache.prototype.match = async function (...args) {
+      const response = await match.apply(this, args);
+      if (response && String(args[0]).includes(hash)) { const blob = response.blob.bind(response); response.blob = () => { Reflect.get(window, 'previewReads').media++; return blob(); }; }
+      return response;
+    };
+    const host = document.createElement('div'); document.body.appendChild(host); const root = createRoot(host);
+    const mount = (key: string) => root.render(createElement(TaskDetail, { key, lesson, locale: 'en', profileId, action: 'Synthetic start', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => root.unmount() }));
+    Reflect.set(window, 'changePreview', async (state: string) => {
+      if (state === 'missing') await cache.delete(lesson.materials[0].audio.src);
+      else { await communityPacks.delete([profileId, hash]); await communityPacks.put({ ...pack, profileId: 'other-synthetic-profile' }); }
+      mount(state);
+    });
+    mount('ready'); return lesson.materials.length;
+  });
+  const dialog = page.getByRole('dialog'), start = dialog.getByRole('button', { name: 'Synthetic start', exact: true });
+  await expect(start).toBeEnabled();
+  expect(await page.evaluate(() => Reflect.get(window, 'previewReads'))).toEqual({ owners: 1, media: count });
+  await expect(dialog).toContainText('Synthetic source');
+  await page.evaluate(() => Reflect.get(window, 'changePreview')('missing'));
+  await expect(dialog.locator('.error')).toBeVisible(); await expect(start).toBeDisabled();
+  await page.evaluate(() => Reflect.get(window, 'changePreview')('different-owner'));
+  await expect(dialog.locator('.error')).toBeVisible(); await expect(start).toBeDisabled();
+});
+
+test('closing preview aborts pending media and failed media responses release their bodies', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/today');
+  const count = await page.evaluate(async () => {
+    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
+    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
+    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { default: lesson } = await import('/tests/fixtures/content/a1-listening.json' as string);
+    const media = new Set(lesson.materials.map((material: { audio: { src: string } }) => material.audio.src)), fetchMedia = window.fetch;
+    Reflect.set(window, 'previewNetwork', { requests: 0, aborted: 0, cancelled: 0, fail: false });
+    window.fetch = async (input, init) => {
+      if (!media.has(String(input))) return fetchMedia(input, init);
+      const state = Reflect.get(window, 'previewNetwork'); state.requests++;
+      if (state.fail) return new Response(new ReadableStream({ cancel() { state.cancelled++; } }), { status: 503 });
+      return new Promise<Response>((_resolve, reject) => init?.signal?.addEventListener('abort', () => { state.aborted++; reject(init.signal!.reason); }, { once: true }));
+    };
+    const mount = () => {
+      const host = document.createElement('div'); document.body.appendChild(host); const root = createRoot(host);
+      root.render(createElement(TaskDetail, { lesson, locale: 'en', profileId: 'local-guest', action: 'Synthetic start', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => { root.unmount(); host.remove(); } }));
+    };
+    Reflect.set(window, 'mountPreview', mount); mount(); return lesson.materials.length;
+  });
+  const dialog = page.getByRole('dialog');
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, 'previewNetwork').requests)).toBe(count);
+  await expect(dialog.getByRole('button', { name: 'Synthetic start', exact: true })).toBeDisabled();
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click(); await expect(dialog).toHaveCount(0);
+  expect(await page.evaluate(() => Reflect.get(window, 'previewNetwork').aborted)).toBe(count);
+  await page.evaluate(() => { Reflect.get(window, 'previewNetwork').fail = true; Reflect.get(window, 'mountPreview')(); });
+  await expect(dialog.locator('.error')).toBeVisible();
+  await expect(dialog.getByRole('button', { name: 'Synthetic start', exact: true })).toBeDisabled();
+  expect(await page.evaluate(() => Reflect.get(window, 'previewNetwork').cancelled)).toBe(count);
+  expect(errors).toEqual([]);
+});

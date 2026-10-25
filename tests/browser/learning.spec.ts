@@ -47,7 +47,8 @@ test('an already open task saves while offline without claiming offline installa
   await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   await expect(page.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
   await context.setOffline(true);
-  await expect(page.getByRole('status').filter({ hasText: '尚未确认资源完整安装' })).toBeVisible();
+  await expect(page.locator('.network-status')).toHaveAttribute('data-state', 'offline');
+  await expect(page.getByText('尚未确认资源完整安装', { exact: false })).toHaveCount(0);
   await page.getByRole('radio', { name: 'At the library.' }).check();
   await completeWorkspace(page);
   await expect(page.locator('.slot-result').first()).toContainText('✓');
@@ -204,4 +205,18 @@ test('full browser refresh releases its tab lock and immediately recovers the sa
   await page.reload();
   await expect(page.locator('.slot-result').first()).toContainText('✓');
   await expect(page.getByRole('alert')).toHaveCount(0);
+});
+
+
+test('a session ownership failure keeps retry and exit separated and retryable', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 320, height: 812 });
+  await openSnapshot(page, 'a1-reading', true);
+  await page.evaluate(async () => {
+    const { sessions } = await import('/src/data/db.ts' as string); const get = sessions.get.bind(sessions);
+    let fail = true; sessions.get = (...args: Parameters<typeof get>) => { if (fail) { fail = false; return Promise.reject(new Error('BUSY')); } return get(...args); };
+  });
+  await page.clock.fastForward(5000);
+  const actions = page.locator('main .action-row'); await expect(actions).toHaveCSS('gap', '12px');
+  await expect(actions.locator('a')).toHaveAttribute('href', '/today');
+  await actions.getByRole('button').click(); await expect(page.locator('.material-workspace')).toBeVisible();
 });

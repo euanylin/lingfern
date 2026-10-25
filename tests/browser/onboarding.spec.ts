@@ -58,6 +58,25 @@ for (const [width, height] of [[1440, 900], [390, 844], [900, 1100]]) test(`intr
 });
 import { languagePacks } from '../../src/locales';
 
+for (const [from, to] of [[390, 1440], [1440, 390], [900, 1440], [1440, 900]]) test(`introduction keeps current spacing when resized from ${from}px to ${to}px during a transition`, async ({ page }) => {
+  await page.setViewportSize({ width: from, height: 900 });
+  await page.clock.install(); await page.goto('/introduction');
+  await expect(page.locator('.welcome-start')).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const positions = () => page.locator('.welcome-card').evaluateAll(cards => cards.map(card => new DOMMatrixReadOnly(getComputedStyle(card).transform).m41));
+  await page.locator('.welcome-dots button').nth(1).evaluate(button => (button as HTMLButtonElement).click());
+  await page.clock.runFor(100);
+  await page.setViewportSize({ width: to, height: 900 });
+  await page.clock.runFor(1000);
+  const resized = await positions();
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
+  // Reselecting the same card must not repair stale geometry from a queued frame.
+  await page.locator('.welcome-dots button').nth(1).evaluate(button => (button as HTMLButtonElement).click());
+  await page.clock.runFor(1000);
+  const settled = await positions();
+  for (let index = 0; index < settled.length; index++) expect(Math.abs(resized[index] - settled[index])).toBeLessThanOrEqual(.1);
+});
+
 for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`desktop Today heading fits fully in the introduction at ${locale}`, async ({ browser }) => {
   const context = await browser.newContext({ baseURL: test.info().project.use.baseURL, locale, reducedMotion: 'reduce', colorScheme: 'dark' });
   const page = await context.newPage();

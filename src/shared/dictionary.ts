@@ -11,8 +11,8 @@ type DictionarySense = z.infer<typeof senseSchema>;
 const base = '/dictionary/oewn-2025/';
 const cache = new Map<string, Promise<unknown>>();
 async function asset<T>(name: string, schema: z.ZodType<T>): Promise<T> {
-  if (!cache.has(name)) cache.set(name, fetch(base + name).then(response => {
-    if (!response.ok) throw new Error('DICTIONARY_UNAVAILABLE');
+  if (!cache.has(name)) cache.set(name, fetch(base + name).then(async response => {
+    if (!response.ok) { await response.body?.cancel().catch(() => {}); throw new Error('DICTIONARY_UNAVAILABLE'); }
     return response.json();
   }).then(value => schema.parse(value)).catch(error => { cache.delete(name); throw error; }));
   return cache.get(name) as Promise<T>;

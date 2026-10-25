@@ -1,5 +1,6 @@
 import { createMcpHandler, McpServer, type AuthInfo } from '@modelcontextprotocol/server';
 import { z } from 'zod';
+import { version } from '../package.json';
 import { levelSchema } from '../src/shared/content';
 import { listSharesSchema, shareIdSchema } from '../src/shared/sharing';
 import { ApiError, privateJson } from './auth';
@@ -29,7 +30,7 @@ export async function mcpFetch(request: Request, env: SharingEnv, auth: AuthInfo
     if (request.url !== `${env.LOCAL_AUTH === 'true' ? 'http://127.0.0.1:8787' : 'https://lingfern.com'}/mcp`) return privateJson({ error: 'NOT_AVAILABLE' }, 404);
     await authorize(env, auth);
     const handler = createMcpHandler(({ authInfo }) => {
-      const server = new McpServer({ name: 'Lingfern', version: '0.1.106' });
+      const server = new McpServer({ name: 'Lingfern', version });
       const tool = async (permission: 'contexts' | 'materials', read: (accountId: number, clientId: string, connectionId: string) => Promise<Record<string, unknown>>, limit = false) => {
         try {
           const identity = await authorize(env, authInfo, permission);

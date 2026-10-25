@@ -94,3 +94,49 @@ test('a new account profile is immediately named and keyboard-selectable in the 
     }
   }
 });
+
+for (const change of ['disconnect', 'account'] as const) test(`a delayed account copy is cancelled after ${change} without changing the local profile`, async ({ page }) => {
+  let account: { id: number; login: string } | null = { id: 1, login: 'synthetic-first' }, syncWrites = 0;
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('request', request => { if (request.method() === 'POST' && new URL(request.url()).pathname.startsWith('/api/sync/')) syncWrites++; });
+  await page.route('**/api/session', route => route.fulfill({ json: { account, syncAvailable: false, ...(account ? { csrfToken: 'c'.repeat(43), bindings: [] } : {}) } }));
+  await page.route('**/api/auth/disconnect', route => { account = null; return route.fulfill({ json: { disconnected: true, providerRevoked: true } }); });
+  await page.route(/\/src\/data\/backup\.ts(?:\?|$)/, async route => {
+    const response = await route.fetch(), body = await response.text();
+    const pattern = /async function exportBackup\([^)]*\)\s*\{/;
+    expect(body).toMatch(pattern);
+    await route.fulfill({ response, body: body.replace(pattern, '$&\nwindow.__copyExportStarted=true; await new Promise(resolve=>{window.__releaseCopyExport=resolve;});') });
+  });
+  await page.route(/\/src\/data\/syncAccount\.ts(?:\?|$)/, async route => {
+    const response = await route.fetch(), body = await response.text();
+    const pattern = /return importBackup\(([^;]+)\);/;
+    expect(body).toMatch(pattern);
+    await route.fulfill({ response, body: body.replace(pattern, 'try { return await importBackup($1); } finally { window.__copyOperationDone=true; }') });
+  });
+  const snapshot = () => page.evaluate(async () => {
+    const d = await new Promise<IDBDatabase>((resolve, reject) => { const request = indexedDB.open('lingfern'); request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
+    const tx = d.transaction(['profiles', 'settings'], 'readonly');
+    const read = <T,>(request: IDBRequest<T>) => new Promise<T>((resolve, reject) => { request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); });
+    const [profiles, settings] = await Promise.all([read(tx.objectStore('profiles').getAll()), read(tx.objectStore('settings').getAll())]);
+    d.close(); return { profiles, active: settings.find(row => row.key === 'activeProfile')?.value, associations: settings.filter(row => row.key.endsWith(':syncAccount')) };
+  });
+  await page.goto('/settings');
+  await page.getByRole('button', { name: '复制当前档案用于此账号', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, '__copyExportStarted'))).toBe(true);
+  const original = await snapshot();
+  if (change === 'disconnect') {
+    page.once('dialog', dialog => dialog.accept());
+    await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
+    await expect(page.locator('.github-connect')).toBeVisible();
+  } else {
+    account = { id: 2, login: 'synthetic-second' };
+    await page.evaluate(() => { const channel = new BroadcastChannel('lingfern-identity'); channel.postMessage('changed'); channel.close(); });
+    await expect(page.locator('.github-status')).toContainText('synthetic-second');
+  }
+  expect(await snapshot()).toEqual(original);
+  await page.evaluate(() => Reflect.get(window, '__releaseCopyExport')());
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, '__copyOperationDone'))).toBe(true);
+  expect(await snapshot()).toEqual(original);
+  expect(syncWrites).toBe(0); expect(errors).toEqual([]);
+});

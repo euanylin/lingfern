@@ -1,12 +1,47 @@
-import { beforeEach, expect, it } from 'vitest';
+import { beforeEach, expect, it, vi } from 'vitest';
 import { db, profiles, settings, syncClocks } from '../src/data/db';
 import { saveSense } from '../src/data/memory';
 import { accountProfiles, copyProfileForAccount, readSyncAccount, switchAccountProfile } from '../src/data/syncAccount';
 import { confirmSyncBatch, pendingSyncBatch, readSyncEvents, receiveSyncBatch } from '../src/data/sync';
 import { validateSyncBatch } from '../src/shared/sync';
 import { exportBackup, importBackup, inspectBackup } from '../src/data/backup';
+import * as backup from '../src/data/backup';
 
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
+
+it('allows an explicit copy of an inactive source when the active profile stays unchanged', async () => {
+  await profiles.bulkPut(['source', 'active'].map(id => ({ id, name: id, createdAt: new Date().toISOString() })));
+  await settings.put({ key: 'activeProfile', value: 'active' });
+  await saveSense('source', 'sense', 'word', 'definition');
+  const copied = await copyProfileForAccount('source', 2);
+  expect((await settings.get('activeProfile'))?.value).toBe(copied);
+  expect(await readSyncAccount(copied)).toEqual({ accountId: 2, profileId: 'source' });
+  expect(await db.table('memories').get([copied, 'sense'])).toBeDefined();
+  expect(await profiles.get('active')).toBeDefined();
+});
+
+it.each([
+  { initial: 'source', next: 'other' },
+  { initial: null, next: 'other' },
+  { initial: 'source', next: null },
+])('does not replace active profile changes during export: $initial -> $next', async ({ initial, next }) => {
+  await profiles.bulkPut(['source', 'other'].map(id => ({ id, name: id, createdAt: new Date().toISOString() })));
+  if (initial) await settings.put({ key: 'activeProfile', value: initial });
+  await saveSense('source', 'sense', 'word', 'definition');
+  const originalExport = backup.exportBackup;
+  const exporting = vi.spyOn(backup, 'exportBackup').mockImplementation(async profileId => {
+    const bytes = await originalExport(profileId);
+    if (next) await settings.put({ key: 'activeProfile', value: next });
+    else await settings.delete('activeProfile');
+    return bytes;
+  });
+  try { await expect(copyProfileForAccount('source', 2)).rejects.toThrow('SYNC_SCOPE_CHANGED'); }
+  finally { exporting.mockRestore(); }
+  expect((await settings.get('activeProfile'))?.value ?? null).toBe(next);
+  expect(await profiles.count()).toBe(2);
+  expect(await accountProfiles(2)).toEqual([]);
+  expect(await db.table('memories').get(['source', 'sense'])).toBeDefined();
+});
 
 it.each(['学'.repeat(80), '𝒜'.repeat(40)])('keeps repeated restores and account copies exportable at the profile-name boundary', async name => {
   await profiles.put({ id: 'p', name, createdAt: new Date().toISOString() });
@@ -90,4 +125,36 @@ it('rolls back account switch and copy completely when metadata cannot be stored
   expect((await settings.get('activeProfile'))?.value).toBe('p');
   expect(await readSyncEvents('p')).toEqual(originals);
   expect(await readSyncAccount('p')).toBeUndefined();
+});
+
+it('cancels an account copy after export without changing the active profile or creating an association', async () => {
+  await profiles.put({ id: 'p', name: 'Original', createdAt: new Date().toISOString() });
+  await settings.put({ key: 'activeProfile', value: 'p' });
+  await saveSense('p', 'sense', 'word', 'definition');
+  const abort = new AbortController(), originalExport = backup.exportBackup;
+  const exporting = vi.spyOn(backup, 'exportBackup').mockImplementation(async profileId => {
+    const bytes = await originalExport(profileId); abort.abort(); return bytes;
+  });
+  try { await expect(copyProfileForAccount('p', 2, abort.signal)).rejects.toMatchObject({ name: 'AbortError' }); }
+  finally { exporting.mockRestore(); }
+  expect((await settings.get('activeProfile'))?.value).toBe('p');
+  expect(await profiles.count()).toBe(1);
+  expect(await accountProfiles(2)).toEqual([]);
+  expect(await db.table('memories').get(['p', 'sense'])).toBeDefined();
+});
+
+it.each(['copy', 'switch'] as const)('rolls back a cancelled account %s even during its final active-profile write', async action => {
+  await profiles.put({ id: 'p', name: 'Original', createdAt: new Date().toISOString() });
+  await settings.put({ key: 'activeProfile', value: 'p' });
+  await saveSense('p', 'sense', 'word', 'definition');
+  await exportBackup('p');
+  const original = await Promise.all(db.tables.map(table => table.toArray()));
+  const abort = new AbortController(), cancel = () => { abort.abort(); };
+  settings.hook('updating', cancel);
+  try {
+    const pending = action === 'copy' ? copyProfileForAccount('p', 2, abort.signal) : switchAccountProfile({ id: 2, login: 'learner' }, undefined, undefined, abort.signal);
+    await expect(pending).rejects.toMatchObject({ name: 'AbortError' });
+  } finally { settings.hook('updating').unsubscribe(cancel); }
+  expect(abort.signal.aborted).toBe(true);
+  expect(await Promise.all(db.tables.map(table => table.toArray()))).toEqual(original);
 });

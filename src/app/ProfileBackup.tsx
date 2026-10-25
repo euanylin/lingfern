@@ -110,7 +110,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
   return <section className="profile-backup"><h2>{t.title}</h2>
     <p className="muted">{wrapWords(t.shortNote)}</p>
     <div className="backup-profile-row">
-    <SettingsPicker variant="field" showChevron label={t.profile} value={activeProfile} disabled={busy} options={items.map(profile => ({ value: profile.id, label: name(profile.name, profile.nameIsCustom) }))} onChange={value => void switchProfile(value)}/>
+    <SettingsPicker label={t.profile} value={activeProfile} disabled={busy} options={items.map(profile => ({ value: profile.id, label: name(profile.name, profile.nameIsCustom) }))} onChange={value => void switchProfile(value)}/>
     </div>
     <div className="backup-actions offline-actions"><button ref={downloadButton} className="primary backup-download" type="button" disabled={busy} onClick={startExport}>{wrapWords(busy ? t.busy : t.export)}</button>
     <label className="backup-file-label"><input className="sr-only" type="file" accept=".zip,application/zip" aria-label={t.choose} disabled={busy} onChange={event => { void choose(event.target.files?.[0]); event.target.value = ''; }}/><span className="button backup-file-button">{wrapWords(t.choose)}</span></label>

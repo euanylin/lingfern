@@ -46,6 +46,6 @@ export function SyncControls({ locale, profileId, scope, summary, refresh }: { l
     <div className="sync-summary">{data && <p role="status" data-sync-status={failed ? 'error' : phase}>{failed || phase === 'error' ? problem : t[phase]}</p>}
     {!data && failed && <p role="status">{t.failed}</p>}
     {state?.lastSuccessAt && <p className="muted">{t.lastSuccess}: <time dateTime={state.lastSuccessAt}><bdi>{new Intl.DateTimeFormat(locale, { dateStyle: 'short', timeStyle: 'short' }).format(new Date(state.lastSuccessAt))}</bdi></time></p>}</div>
-    <div className="backup-actions"><button className={canSync ? 'primary' : undefined} type="button" disabled={!canSync} onClick={() => void request()}>{state?.phase === 'error' ? t.retry : t.sync}</button>{changed && <button type="button" onClick={refresh}>{t.refresh}</button>}</div>
+    {data?.enabled && !data.configuring && online && <div className="backup-actions"><button className={canSync ? 'primary' : undefined} type="button" disabled={!canSync} onClick={() => void request()}>{state?.phase === 'error' ? t.retry : t.sync}</button>{changed && <button type="button" onClick={refresh}>{t.refresh}</button>}</div>}
   </section>;
 }

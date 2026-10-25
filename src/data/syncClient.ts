@@ -145,7 +145,7 @@ async function requireConsent(profileId: string, expected: Consent) {
 // Bound response size and duration; never store website credentials in IndexedDB.
 export async function jsonRequest(path: string, signal: AbortSignal, init: RequestInit = {}, limit = 64 * 1024) {
   const response = await fetch(path, { ...init, credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal });
-  if (!response.headers.get('content-type')?.includes('application/json') || !response.body) { await response.body?.cancel(); throw new Error(response.ok ? 'SYNC_RESPONSE_INVALID' : `SYNC_HTTP_${response.status}`); }
+  if (!response.headers.get('content-type')?.includes('application/json') || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error(response.ok ? 'SYNC_RESPONSE_INVALID' : `SYNC_HTTP_${response.status}`); }
   const reader = response.body.getReader(), chunks: Uint8Array[] = [];
   let length = 0;
   try {

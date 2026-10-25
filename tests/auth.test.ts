@@ -150,6 +150,23 @@ test.each([301, 302, 303, 307, 308])('GitHub adapters refuse %i without followin
   expect(sqlite.prepare('SELECT count(*) AS n FROM sessions').get()!.n).toBe(0);
 });
 
+test.each([401, 403, 429, 500, 503])('GitHub JSON errors release the unread %i response body', async status => {
+  const cancel = vi.fn();
+  const body = new ReadableStream({
+    start(controller) { controller.enqueue(new TextEncoder().encode('synthetic upstream error')); },
+    cancel,
+  });
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(body, { status })));
+  await expect(githubJson('https://api.github.com/user', {})).rejects.toMatchObject({ status });
+  expect(cancel).toHaveBeenCalledTimes(1);
+});
+
+test('canceling a failed GitHub response cannot obscure its authorization status', async () => {
+  const body = new ReadableStream({ start(controller) { controller.error(new Error('upstream body failure')); } });
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(body, { status: 401 })));
+  await expect(githubJson('https://api.github.com/user', {})).rejects.toMatchObject({ status: 401 });
+});
+
 test.each(['logout', 'revocation', 'idle-expiry', 'absolute-expiry', 'new-login', 'account-switch', 'binding-read'])('session summary fences %s during upstream verification', async mode => {
   const { env, sqlite } = environment();
   await tokenAccount(env, sqlite, 1, false);

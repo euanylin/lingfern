@@ -16,20 +16,20 @@ type MaterialGroup = { group: string; items: Material[] };
 
 export function PracticeOptions(props: Props) {
   const { locale, profileId, skill, preferences, history, records, value, disabled } = props, t = messages('practiceOptions')[locale];
-  const [open, setOpen] = useState(false), [requested, setRequested] = useState(false), invoker = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false), invoker = useRef<HTMLButtonElement>(null);
   const [materials, setMaterials] = useState<Material[]>([]), [loading, setLoading] = useState(true), [loadError, setLoadError] = useState('');
   const [resources, setResources] = useState(0);
   useEffect(() => {
-    if (!requested) return;
+    if (!open) return;
     const refresh = () => setResources(value => value + 1);
     const channel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('lingfern-resources') : undefined;
     if (channel) channel.onmessage = refresh;
     for (const event of ['lingfern-resources-installed', 'focus', 'online', 'offline']) window.addEventListener(event, refresh);
     document.addEventListener('visibilitychange', refresh);
     return () => { channel?.close(); for (const event of ['lingfern-resources-installed', 'focus', 'online', 'offline']) window.removeEventListener(event, refresh); document.removeEventListener('visibilitychange', refresh); };
-  }, [requested]);
+  }, [open]);
   useEffect(() => {
-    if (!requested) return;
+    if (!open) return;
     let current = true, dispose = () => {};
     void import('./prepareCorpusPractice').then(module => {
       if (!current) return;
@@ -40,9 +40,9 @@ export function PracticeOptions(props: Props) {
       dispose = () => subscription.unsubscribe();
     }).catch(() => { if (current) { setLoadError(t.failed); setLoading(false); } });
     return () => { current = false; dispose(); };
-  }, [requested, profileId, skill, preferences, history, records, t.failed, resources]);
+  }, [open, profileId, skill, preferences, history, records, t.failed, resources]);
   return <>
-    <div className="setting topic-picker"><button ref={invoker} className="setting-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} data-practice-skill={skill} data-configured={!!(value.topics.length || value.kinds.length || value.materials.length)} disabled={disabled} onClick={() => { setRequested(true); setOpen(true); }}><span>{t[skill === 'reading' ? 'readingSettings' : 'listeningSettings']}</span><span className="setting-chevron" aria-hidden="true">›</span></button></div>
+    <div className="setting topic-picker"><button ref={invoker} className="setting-trigger" type="button" aria-haspopup="dialog" aria-expanded={open} data-practice-skill={skill} data-configured={!!(value.topics.length || value.kinds.length || value.materials.length)} disabled={disabled} onClick={() => setOpen(true)}><span>{t[skill === 'reading' ? 'readingSettings' : 'listeningSettings']}</span><span className="setting-chevron" aria-hidden="true">›</span></button></div>
     {open && <PracticeOptionsPanel {...props} materials={materials} loading={loading} loadError={loadError} onRefresh={() => setResources(value => value + 1)} onClose={() => { setOpen(false); requestAnimationFrame(() => invoker.current?.focus({ preventScroll: true })); }}/>}
   </>;
 }

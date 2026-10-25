@@ -91,7 +91,9 @@ export function Welcome(props: WelcomeProps) {
         dot.style.transform = `scaleX(${(7 + 19 * weight) / 26})`; dot.style.opacity = String(.4 + .6 * weight); dot.style.borderRadius = `${3.5 * 26 / (7 + 19 * weight)}px / 3.5px`; }
     });
   }, [reduced, rtl, shift]);
-  useLayoutEffect(() => { paint(current.current); }, [paint]);
+  // Keep queued frames on current geometry without restarting their spring.
+  const livePaint = useRef(paint);
+  useLayoutEffect(() => { livePaint.current = paint; paint(current.current); }, [paint]);
   const go = useCallback((target: number, velocity = 0) => {
     idleUntil.current = performance.now() + 6000;
     cancelAnimationFrame(frame.current);
@@ -100,17 +102,17 @@ export function Welcome(props: WelcomeProps) {
     const offset = current.current - target, toward = Math.sign(-offset);
     const speed = toward * velocity > 0 ? toward * Math.min(6, Math.abs(velocity), 18 * Math.abs(offset)) : Math.max(-6, Math.min(6, velocity)), began = performance.now();
     destination.current = target;
-    const finish = () => { frame.current = 0; destination.current = ((Math.round(target) % 3) + 3) % 3; paint(destination.current); };
+    const finish = () => { frame.current = 0; destination.current = ((Math.round(target) % 3) + 3) % 3; livePaint.current(destination.current); };
     if (reduced || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
     // Preserve release velocity with an interruptible critically damped spring.
     const animate = (now: number) => {
       const seconds = (now - began) / 1000, decay = Math.exp(-18 * seconds);
       const value = target + (offset + (speed + 18 * offset) * seconds) * decay;
-      paint(value);
+      livePaint.current(value);
       if (seconds < .8 && Math.abs(value - target) > .0005) frame.current = requestAnimationFrame(animate); else finish();
     };
     frame.current = requestAnimationFrame(animate);
-  }, [paint, reduced]);
+  }, [reduced]);
   useEffect(() => { if (reduced) go(Math.round(current.current)); }, [go, reduced]);
   useEffect(() => {
     if (reduced) return;
@@ -223,7 +225,7 @@ export function Welcome(props: WelcomeProps) {
           held.velocity = (value - held.last) * 1000 / Math.max(8, now - held.at);
           held.at = now; held.last = value;
           // Paint once per frame while retaining the final touch position.
-          if (!inputFrame.current) inputFrame.current = requestAnimationFrame(() => { inputFrame.current = 0; if (drag.current === held) paint(held.last); });
+          if (!inputFrame.current) inputFrame.current = requestAnimationFrame(() => { inputFrame.current = 0; if (drag.current === held) livePaint.current(held.last); });
         }
       }} onPointerUp={end} onPointerCancel={end}
       onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; if (event.detail > 0) { event.preventDefault(); event.stopPropagation(); } } }}>

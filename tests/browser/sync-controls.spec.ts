@@ -3,8 +3,8 @@ import { selectPicker } from './picker';
 import { autoSyncFixture, connectSync, lookup, syncNow, syncState, synced } from './autoSyncFixture';
 import { languagePacks } from '../../src/locales';
 
-test('GitHub card keeps compact rows, full-width sync and separate session actions across themes and directions', async ({ page, context }) => {
-  test.setTimeout(60000);
+test('GitHub card keeps compact rows, full-width sync and one identity disconnect action across themes and directions', async ({ page, context }) => {
+  test.setTimeout(120000);
   const server = autoSyncFixture(); await server.attach(context); await connectSync(page); await synced(page);
   await page.goto('/settings');
   const card = page.locator('.github-identity'), controls = card.locator('.sync-controls');
@@ -16,13 +16,52 @@ test('GitHub card keeps compact rows, full-width sync and separate session actio
       await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' }); await page.setViewportSize({ width, height: 900 });
       const sync = controls.getByRole('button', { name: t.syncControls.sync, exact: true });
       await expect(sync).toBeEnabled(); await expect(sync).toHaveClass('primary');
+      await sync.hover(); const active = await sync.evaluate(el => getComputedStyle(el).backgroundColor);
+      await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await sync.focus(); await expect(sync).toHaveCSS('background-color', active);
+      await sync.evaluate(el => (el as HTMLElement).blur());
+      await sync.dispatchEvent('pointerdown', { isPrimary: true, pointerType: 'touch', pointerId: 1, clientX: 10, clientY: 10 });
+      await expect(sync).toHaveAttribute('data-touch-active', ''); await expect(sync).toHaveCSS('background-color', active);
+      await sync.dispatchEvent('pointercancel', { pointerId: 1 });
+
       expect(await sync.evaluate(el => Math.abs(el.getBoundingClientRect().width - el.parentElement!.getBoundingClientRect().width))).toBeLessThan(1);
       await expect(card.getByText(t.syncControls.detail, { exact: true })).toBeHidden();
+      await expect(card.getByText(t.repositoryBinding.reset, { exact: true })).toBeHidden();
+      await expect(card.locator('.repository-history')).toHaveCount(0);
+      await expect(card.locator('.repository-reset')).toHaveCSS('border-bottom-width', '0px');
       const geometry = await card.locator('.github-session-actions button').evaluateAll(buttons => buttons.map(button => { const r = button.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, width: r.width, height: r.height }; }));
-      expect(geometry).toHaveLength(2); expect(geometry[1].top).toBeGreaterThanOrEqual(geometry[0].bottom);
+      expect(geometry).toHaveLength(1);
+      await expect(card.locator('.github-session-actions button')).toHaveText(t.githubIdentity_disconnectLabels.action);
       expect(geometry.every(box => box.width >= 44 && box.height >= 44)).toBe(true);
       expect(await card.locator('.repository-reset>summary').evaluate(el => getComputedStyle(el, '::after').content)).toBe('"›"');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      const reference = page.locator('.settings-start-link');
+      await reference.hover();
+      const feedback = await reference.evaluate(el => { const s = getComputedStyle(el); return { background: s.backgroundColor, radius: s.borderRadius }; });
+      await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await reference.focus();
+      const keyboardFeedback = await reference.evaluate(el => getComputedStyle(el).backgroundColor);
+      await reference.evaluate(el => (el as HTMLElement).blur());
+      const rows = card.locator('.service-disclosure>summary:visible,.github-session-actions>button,.sync-controls .setting-trigger');
+      for (const row of await rows.all()) {
+        await row.hover();
+        await expect(row).toHaveCSS('background-color', feedback.background);
+        await expect(row).toHaveCSS('border-radius', feedback.radius);
+        await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await row.focus();
+        await expect(row).toHaveCSS('background-color', keyboardFeedback);
+        await row.evaluate(el => (el as HTMLElement).blur());
+        await row.dispatchEvent('pointerdown', { pointerType: 'touch', isPrimary: true, pointerId: 1, clientX: 10, clientY: 10 });
+        await expect(row).toHaveAttribute('data-touch-active', '');
+        await expect(row).toHaveCSS('background-color', feedback.background);
+        await row.dispatchEvent('pointercancel', { pointerType: 'touch', pointerId: 1 });
+        await expect(row).not.toHaveAttribute('data-touch-active', '');
+      }
+      const reset = card.locator('.repository-reset>summary');
+      await reset.click();
+      const actions = card.locator('.repository-reset .repository-actions');
+      await expect(actions.locator('button')).toHaveCount(1);
+      await expect(actions.getByRole('button', { name: t.repositoryBinding.inspect, exact: true })).toHaveCount(0);
+      const danger = actions.locator('.service-danger');
+      await expect(danger).toHaveCSS('color', await card.locator('.github-session-actions .service-danger').evaluate(el => getComputedStyle(el).color));
+      await reset.click();
       await page.mouse.move(0, 0);
       await card.screenshot({ path: `output/playwright/github-reference-${locale}-${theme}-${width}.png`, animations: 'disabled' });
     }
@@ -54,8 +93,13 @@ test('automatic controls use one retry and an enduring opt-out in three language
   expect(await controls.getByRole('button').count()).toBe(2);
   await page.evaluate(async () => { const { pauseSyncConfiguration } = await import('/src/data/syncClient.ts' as string); (window as unknown as { resumeSyncTest: () => Promise<void> }).resumeSyncTest = await pauseSyncConfiguration('local-guest'); });
   await expect(controls.locator('.setting-trigger')).toBeDisabled();
+  await expect(controls.locator('.backup-actions')).toHaveCount(0);
   await page.evaluate(() => (window as unknown as { resumeSyncTest: () => Promise<void> }).resumeSyncTest());
   await expect(controls.locator('.setting-trigger')).toBeEnabled();
+  await context.setOffline(true);
+  await expect(controls.locator('[data-sync-status]')).toHaveAttribute('data-sync-status', 'offline');
+  await expect(controls.locator('.backup-actions')).toHaveCount(0);
+  await context.setOffline(false); await expect(controls.locator('.backup-actions')).toBeVisible();
 
   server.loseAck(); await lookup(page, 'test'); await syncNow(page);
   await expect(controls.locator('[data-sync-status]')).toHaveAttribute('data-sync-status', 'error');
@@ -64,6 +108,7 @@ test('automatic controls use one retry and an enduring opt-out in three language
   expect(new Set(server.uploads.map(batch => batch.batchId)).size).toBe(1);
   await selectPicker(page, '自动同步', 'off');
   await expect(controls.locator('[data-sync-status]')).toHaveAttribute('data-sync-status', 'disabled');
+  await expect(controls.locator('.backup-actions')).toHaveCount(0);
   const controlsNode = await controls.elementHandle();
   for (const [locale, name, width, theme] of [['zh-Hans', '语言', 375, 'dark'], ['zh-Hant', '语言', 320, 'light'], ['en', '語言', 1440, 'dark']] as const) {
     await page.setViewportSize({ width, height: 900 }); await page.emulateMedia({ colorScheme: theme });

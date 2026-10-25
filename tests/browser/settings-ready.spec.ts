@@ -30,7 +30,7 @@ test('identity preloads on Today, stays visible during revalidation, and removes
   await expect(page.locator('.github-identity')).not.toContainText('synthetic-learner');
 });
 
-test('a late background session response cannot restore an account after logout', async ({ page }) => {
+test('a late background session response cannot restore an account after disconnect', async ({ page }) => {
   let requests = 0, release!: () => void, delivered!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
   const completed = new Promise<void>(resolve => { delivered = resolve; });
@@ -39,11 +39,12 @@ test('a late background session response cannot restore an account after logout'
     await pending;
     try { await route.fulfill({ json: account }); } finally { delivered(); }
   });
-  await page.route('**/api/auth/logout', route => route.fulfill({ status: 204 }));
+  await page.route('**/api/auth/disconnect', route => route.fulfill({ json: { disconnected: true, providerRevoked: true } }));
   await page.goto('/today'); await expect.poll(() => requests).toBe(1);
   await page.locator('nav a[href="/settings"]:visible').first().click();
   await expect.poll(() => requests).toBe(2);
-  await page.getByRole('button', { name: '退出本设备的网站会话', exact: true }).click();
+  page.once('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');
   release(); await completed;
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');

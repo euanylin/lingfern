@@ -9,6 +9,7 @@ const previousBuild = process.argv.find(argument => argument.startsWith('--previ
 const previousRoot = previousBuild ? resolve(previousBuild) : root;
 let updated = false;
 let invalidUpdate = false;
+let installDelay = 0;
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.json': 'application/json' };
 const server = createServer(async (request, response) => {
   const pathname = new URL(request.url ?? '/', 'http://localhost').pathname;
@@ -19,7 +20,7 @@ const server = createServer(async (request, response) => {
   try {
     const original = await readFile(file);
     const body = pathname === '/sw.js' && invalidUpdate ? Buffer.from('This is deliberately invalid JavaScript for an isolated update failure.')
-      : pathname === '/sw.js' && updated ? Buffer.concat([original, Buffer.from('\n// verified-update-2\n')]) : original;
+      : pathname === '/sw.js' && updated ? Buffer.concat([original, Buffer.from(`\n// verified-update-2\n${installDelay ? `self.addEventListener('install', event => event.waitUntil(new Promise(resolve => setTimeout(resolve, ${installDelay}))));` : ''}\n`)]) : original;
     const extension = file.slice(file.lastIndexOf('.'));
     response.writeHead(200, { 'Content-Type': mime[extension] ?? 'application/octet-stream', 'Cache-Control': pathname === '/sw.js' ? 'no-store' : 'no-cache', 'Content-Length': body.byteLength });
     response.end(body);
@@ -59,9 +60,34 @@ try {
   await context.setOffline(false);
   console.log('Update check: current and offline checks passed.');
   if (process.argv.includes('--settings-only')) {
+    installDelay = previousBuild ? 0 : 8000;
     updated = true;
     const section = page.locator('.settings-update');
     await section.getByRole('button', { name: /^检查更新/ }).click();
+    if (!previousBuild) {
+      await section.getByText('正在准备更新…', { exact: true }).waitFor();
+      assert.equal(await section.locator('button[aria-busy=true][data-update-ready=false]').count(), 1);
+      assert.equal(await page.evaluate(async () => !!(await navigator.serviceWorker.getRegistration())?.waiting), false);
+      assert.equal(await section.getByText('已是最新版本。', { exact: true }).count(), 0);
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      assert.equal(await section.locator('.settings-update-spinner').evaluate(element => getComputedStyle(element).animationName), 'none');
+      await page.emulateMedia({ reducedMotion: 'no-preference' });
+      for (const locale of ['en', 'ar', 'zh-Hans']) {
+        await page.locator('.settings-language .setting-trigger').click();
+        await page.locator(`[role=option][data-value="${locale}"]`).click();
+        await expect(page.locator('html')).toHaveAttribute('lang', locale);
+        const label = JSON.parse(await readFile(`src/locales/${locale}/messages.json`, 'utf8')).app.updatePreparing;
+        await section.getByText(label, { exact: true }).waitFor();
+        for (const [width, theme] of [[320, 'dark'], [1440, 'light']]) {
+          await page.setViewportSize({ width, height: 900 });
+          await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
+          const geometry = await section.evaluate(element => { const row = element.querySelector('button').getBoundingClientRect(), value = element.querySelector('[role=status]').getBoundingClientRect(); return { inside: value.top >= row.top && value.bottom <= row.bottom && value.left >= row.left && value.right <= row.right, overflow: document.documentElement.scrollWidth > innerWidth }; });
+          assert.deepEqual(geometry, { inside: true, overflow: false });
+          await section.screenshot({ path: `output/playwright/update-preparing-${locale}-${theme}-${width}.png` });
+        }
+      }
+
+    }
     await section.getByText('立即更新', { exact: true }).waitFor();
     assert.equal(await section.getByRole('button').count(), 1);
     assert.equal(await section.locator('button[data-update-ready=true]').count(), 1);
@@ -127,8 +153,15 @@ try {
     await section.getByRole('button', { name: /^检查更新/ }).waitFor();
     await page.setViewportSize({ width: 1280, height: 900 });
     await section.evaluate(element => element.scrollIntoView({ block: 'center' }));
-    await page.screenshot({ path: 'private/verification/record-quote-20261012/update-refreshed.png' });
-    console.log('PASS: real waiting service worker updated from the same Settings row at six widths/light and dark/200% text; current/offline checks passed.');
+    await page.screenshot({ path: 'output/playwright/update-refreshed.png' });
+    invalidUpdate = true;
+    await section.getByRole('button', { name: /^检查更新/ }).click();
+    await section.getByText('检查更新失败，请重试。', { exact: true }).waitFor();
+    assert.equal(await page.evaluate(async () => (await navigator.serviceWorker.getRegistration())?.active?.state), 'activated');
+    assert.equal(await page.evaluate(async () => !!(await navigator.serviceWorker.getRegistration())?.waiting), false);
+    await context.setOffline(true); await page.reload();
+    await page.getByRole('heading', { name: '设置', exact: true }).waitFor();
+    console.log('PASS: preparation is distinct from checking; the real waiting worker activates after confirmation; failed next update preserves the active offline application; six widths/themes and200% text pass.');
   } else {
   await page.goto(`${origin}/today`);
   if (previousBuild) await page.evaluate(() => new Promise((resolve, reject) => {

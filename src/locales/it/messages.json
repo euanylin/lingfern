@@ -185,7 +185,6 @@
     "title": "Identità GitHub",
     "description": "Sincronizza i tuoi dispositivi con il tuo repository privato.",
     "connect": "Collega GitHub",
-    "logout": "Esci dalla sessione web di questo dispositivo",
     "loading": "Verifica della sessione web…",
     "unavailable": "Accesso GitHub non configurato.",
     "failed": "Impossibile verificare la connessione.",
@@ -447,7 +446,6 @@
     "marker": "La conferma crea un marcatore del profilo. I dati vengono sincronizzati automaticamente se la sincronizzazione automatica è attiva.",
     "existing": "Marcatore corrispondente presente; non verrà sovrascritto.",
     "boundary": "Se rendi pubblico il repository, anche la cronologia Git può diventarlo.",
-    "bound": "Collegato",
     "pending": "La sincronizzazione è temporaneamente non disponibile.",
     "disabled": "Collegamento disattivato. Autorizza e verifica di nuovo.",
     "disconnect": "Scollega sincronizzazione repository",
@@ -465,17 +463,6 @@
     "limited": "Troppe richieste. Riprova più tardi.",
     "reset": "Configura di nuovo",
     "newWindow": "Si apre in una nuova finestra"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Rimuovi cronologia remota",
-    "boundary": "Eliminare dati locali o file remoti non cancella la cronologia Git. Scollegare la sincronizzazione non elimina il repository.",
-    "steps": [
-      "Esporta i backup da conservare, poi scollega il repository.",
-      "Verifica proprietario e nome su GitHub, poi segui la guida ufficiale per eliminare l’intero repository. Contenuti e permessi associati saranno rimossi.",
-      "Per riprendere la sincronizzazione, crea un nuovo repository privato dedicato con README, autorizzalo, verificalo e collegalo. Gli eventi di sincronizzazione conservati, compresi gli indicatori di eliminazione, verranno caricati di nuovo."
-    ],
-    "limits": "Lingfern non richiede permessi di eliminazione repository e non garantisce la rimozione da backup GitHub, copie scaricate o backup locali precedenti.",
-    "guide": "Guida ufficiale eliminazione GitHub"
   },
   "savedWords_problemCopy": {
     "dictionary": "Significato richiesto non installato.",
@@ -795,8 +782,8 @@
     "empty": "Nessuna risposta salvata. Le risposte completate in Oggi appaiono qui.",
     "history": "Le tue attività salvate",
     "conditions": "Livelli di aiuto usati",
-    "offline": "Rete disconnessa. Risorse offline complete non installate; alcune attività potrebbero mancare.",
-    "offlineInstalled": "Offline",
+    "offline": "Offline",
+    "online": "Connessione ripristinata",
     "updateNow": "Aggiorna ora",
     "updateLater": "Più tardi",
     "updateCancel": "Annulla",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Aggiornamento software",
     "checkUpdate": "Cerca aggiornamenti",
     "updateChecking": "Controllo…",
+    "updatePreparing": "Preparazione dell’aggiornamento…",
     "updateReady": "Aggiornamento pronto.",
     "updateCurrent": "Tutto aggiornato.",
     "updateOffline": "Connettiti per cercare aggiornamenti.",

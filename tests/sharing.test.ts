@@ -1,6 +1,7 @@
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync, readdirSync } from 'node:fs';
 import { expect, test } from 'vitest';
+import { version } from '../package.json';
 import { digest, revokeAccount } from '../worker/auth';
 import { webhookRoute } from '../worker/webhook';
 import { mcpFetch } from '../worker/mcp';
@@ -95,7 +96,7 @@ test('official stateless SDK serves initialization and six read-only tools with 
     const body = JSON.parse(raw.startsWith('event:') ? raw.split('\n').find(line => line.startsWith('data: '))!.slice(6) : raw);
     return { status: response.status, body };
   };
-  expect((await call('initialize', { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'Synthetic protocol client', version: '1' } })).body.result.serverInfo.name).toBe('Lingfern');
+  expect((await call('initialize', { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'Synthetic protocol client', version: '1' } })).body.result.serverInfo).toMatchObject({ name: 'Lingfern', version });
   const tools = (await call('tools/list')).body.result.tools;
   expect(tools.map((tool: { name: string }) => tool.name).sort()).toEqual(['fetch', 'get_practice_template', 'list_shared_contexts', 'read_shared_context', 'search', 'search_materials']);
   expect(tools.every((tool: { annotations: { readOnlyHint: boolean } }) => tool.annotations.readOnlyHint)).toBe(true);

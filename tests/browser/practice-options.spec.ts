@@ -220,7 +220,7 @@ test('automatic saves report a failed write and retry the latest rapid multi-sel
   await expect(dialog.getByRole('alert')).toHaveCount(0);
 });
 
-for (const skill of ['reading', 'listening'] as const) test(`${skill} material choices do not rescan the corpus while saving or searching`, async ({ page }) => {
+for (const skill of ['reading', 'listening'] as const) test(`${skill} material choices pause closed observers and avoid rescans while saving or searching`, async ({ page }) => {
   await page.goto('/settings');
   await expect(page.locator('.settings-page')).toBeVisible();
   await page.evaluate(async () => {
@@ -250,11 +250,20 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} material c
   expect(await page.evaluate(() => Reflect.get(window, 'materialReads'))).toBe(0);
   await dialog.getByRole('button', { name: '关闭', exact: true }).click();
   await expect(dialog).toHaveCount(0);
+  await page.evaluate(() => {
+    window.dispatchEvent(new Event('focus'));
+    window.dispatchEvent(new Event('online'));
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await page.waitForTimeout(350);
+  expect(await page.evaluate(() => Reflect.get(window, 'materialReads'))).toBe(0);
   await page.locator(`[data-practice-skill=${skill}]`).first().click();
   await expect(group).toBeVisible();
   if (await group.getAttribute('aria-expanded') === 'false') await group.click();
   await expect(dialog.getByRole('checkbox').first()).toBeVisible();
-  expect(await page.evaluate(() => Reflect.get(window, 'materialReads'))).toBe(0);
+  // Refresh on reopening because resources may have changed while unsubscribed.
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, 'materialReads'))).toBeGreaterThan(0);
+  await page.evaluate(() => Reflect.set(window, 'materialReads', 0));
   await page.evaluate(() => window.dispatchEvent(new Event('lingfern-resources-installed')));
   await expect.poll(() => page.evaluate(() => Reflect.get(window, 'materialReads'))).toBeGreaterThan(0);
   await expect(dialog.getByRole('checkbox').first()).toBeVisible();

@@ -185,7 +185,6 @@
     "title": "GitHub 身分",
     "description": "綁定自己的私人儲存庫，在裝置間同步。",
     "connect": "連接 GitHub",
-    "logout": "登出本裝置的網站會話",
     "loading": "正在檢查網站會話…",
     "unavailable": "GitHub 登入尚未設定。",
     "failed": "暫時無法檢查連接狀態。",
@@ -447,7 +446,6 @@
     "marker": "確認後會建立檔案標記。開啟自動同步時，學習紀錄會隨之同步。",
     "existing": "已有相符的檔案標記，不會覆蓋。",
     "boundary": "若你日後將資料庫設為公開，Git 歷史中的內容也可能公開。",
-    "bound": "已綁定",
     "pending": "同步暫時無法使用。",
     "disabled": "綁定已停用，請重新授權並核驗。",
     "disconnect": "中斷資料庫同步綁定",
@@ -465,17 +463,6 @@
     "limited": "請求過於頻繁，請稍後重試。",
     "reset": "重新設定",
     "newWindow": "在新視窗開啟"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "清除遠端歷史",
-    "boundary": "刪除本機紀錄或遠端檔案不會清除 Git 歷史；中斷同步也不會刪除資料庫。",
-    "steps": [
-      "先匯出需要保留的本機備份，然後中斷資料庫同步綁定。",
-      "在 GitHub 核對專用資料庫的擁有者與名稱，按官方指南自行刪除整個資料庫。此操作會刪除資料庫內容及相關權限。",
-      "若要恢復同步，請新建含 README 的專用私人儲存庫，重新授權、驗證並綁定。保留的同步事件（含刪除標記）會再次上傳。"
-    ],
-    "limits": "Lingfern 不申請刪除資料庫的權限，也無法保證清除 GitHub 的備份、已下載副本或舊的本機備份。",
-    "guide": "GitHub 官方刪除指南"
   },
   "savedWords_problemCopy": {
     "dictionary": "所需詞義尚未安裝。",
@@ -795,8 +782,8 @@
     "empty": "還沒有作答紀錄。在「今日」完成的作答會顯示在這裡。",
     "history": "已儲存任務",
     "conditions": "使用提示層數",
-    "offline": "網路已中斷。尚未確認資源完整安裝，部分任務可能不可用。",
-    "offlineInstalled": "離線",
+    "offline": "離線",
+    "online": "已恢復連線",
     "updateNow": "立即更新",
     "updateLater": "稍後",
     "updateCancel": "取消",
@@ -805,6 +792,7 @@
     "softwareUpdate": "軟體更新",
     "checkUpdate": "檢查更新",
     "updateChecking": "正在檢查…",
+    "updatePreparing": "正在準備更新…",
     "updateReady": "新版本已就緒",
     "updateCurrent": "已是最新版本。",
     "updateOffline": "檢查更新需要連線。",

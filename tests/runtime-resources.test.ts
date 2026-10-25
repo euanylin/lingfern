@@ -41,4 +41,28 @@ describe('runtime resource catalogue trust boundary', () => {
     vi.stubGlobal('fetch', vi.fn(async () => new Response('{}', { headers: { 'Content-Length': String(catalogueMaxBytes + 1) } })));
     await expect(module.loadRuntimeResources(true)).rejects.toThrow('RESOURCE_CATALOGUE_SIZE');
   });
+  it.each([
+    [{ status: 503 }, 'RESOURCE_CATALOGUE_HTTP'],
+    [{ headers: { 'Content-Type': 'text/html' } }, 'RESOURCE_CATALOGUE_HTTP'],
+    [{ headers: { 'Content-Length': String(catalogueMaxBytes + 1) } }, 'RESOURCE_CATALOGUE_SIZE'],
+    [{ headers: { 'Content-Length': 'invalid' } }, 'RESOURCE_CATALOGUE_SIZE'],
+  ] as const)('cancels a rejected catalogue response before reading its body: %j', async (init, error) => {
+    const cancel = vi.fn();
+    vi.stubGlobal('caches', undefined);
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(new ReadableStream({ cancel }), init)));
+    const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
+    await expect(module.loadRuntimeResources(true)).rejects.toThrow(error);
+    expect(cancel).toHaveBeenCalledTimes(1);
+  });
+  it('cancels a foreign-origin response without hiding its validation error', async () => {
+    const cancel = vi.fn(() => { throw new Error('cancel failed'); });
+    const response = new Response(new ReadableStream({ cancel }));
+    Object.defineProperty(response, 'url', { value: 'https://other.test/resources/catalogue.json' });
+    vi.stubGlobal('location', { origin: 'https://lingfern.com' });
+    vi.stubGlobal('caches', undefined);
+    vi.stubGlobal('fetch', vi.fn(async () => response));
+    const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
+    await expect(module.loadRuntimeResources(true)).rejects.toThrow('RESOURCE_CATALOGUE_ORIGIN');
+    expect(cancel).toHaveBeenCalledTimes(1);
+  });
 });

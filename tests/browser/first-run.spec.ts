@@ -75,6 +75,10 @@ test('skipped choices stay unspecified and the English demonstration starts a re
   await selectPicker(page, '界面语言', 'en');
   for (let index = 0; index < 4; index++) await page.getByRole('button', { name: 'Skip this step' }).click();
   await expect(page.getByRole('heading', { name: 'Try a short task' })).toBeVisible();
+  await page.setViewportSize({ width: 320, height: 640 });
+  await expect(page.locator('.first-run-choices .action-row')).toHaveCSS('gap', '12px');
+  await expect(page.locator('.first-run-choices .action-row button')).toHaveCount(2);
+  await page.setViewportSize({ width: 1440, height: 900 });
   await page.getByRole('button', { name: 'Try reading', exact: true }).click();
   const { lesson } = await openSnapshot(page, 'a1-reading', true);
   await expect(page.getByRole('heading', { name: /Where do we meet\?/  })).toBeVisible();

@@ -152,7 +152,8 @@ test('checking updates keeps the action and status layout stable', async ({ page
       expect(settled!.width).toBe(actionBox!.width);
       expect(settled!.height).toBeGreaterThanOrEqual(44);
       await context.setOffline(true);
-      await expect(page.locator('main > .notice')).toBeVisible();
+      await expect(page.locator('.network-status')).toHaveAttribute('data-state', 'offline');
+      await expect(page.locator('main > .notice:not(.update-notice)')).toHaveCount(0);
       await action.evaluate(element => element.scrollIntoView({ block: 'center' }));
       const offlineBox = await action.boundingBox();
       await action.click();
@@ -163,7 +164,8 @@ test('checking updates keeps the action and status layout stable', async ({ page
       expect(offline!.height).toBeGreaterThanOrEqual(44);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await context.setOffline(false);
-      await expect(page.locator('main > .notice')).toBeHidden();
+      await expect(page.locator('.network-status')).toHaveAttribute('data-state', 'online');
+      await expect(page.locator('main > .notice:not(.update-notice)')).toHaveCount(0);
     }
   }
 });

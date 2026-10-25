@@ -42,7 +42,9 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) test(`general 
   await page.getByRole('checkbox', { name: `${t.categories.listening} · ${ui.general}`, exact: true }).check();
   await search.fill('no-library-resource-47201');
   await expect(page.locator('.offline-package-heading')).toContainText(t.selectedCount.replace('{count}', '1'));
+  await expect(page.locator('.offline-select-all')).toHaveCount(0);
   await search.fill('');
+  await expect(page.locator('.offline-select-all')).toBeVisible();
   await expect(page.getByRole('checkbox', { name: t.names['audio-a1'], exact: true })).toBeChecked();
   await context.setOffline(true);
   await expect(page.getByRole('button', { name: t.start, exact: true })).toBeDisabled();

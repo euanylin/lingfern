@@ -15,6 +15,7 @@ test('actual catalogue counts, search and desktop filters preserve unavailable c
   await page.getByLabel('搜索任务', { exact: true }).fill('不存在的任务');
   await expect(rows).toHaveCount(0);
   await expect(page.locator('.task-catalogue-list')).toContainText('没有符合当前筛选');
+  await expect(page.getByRole('button', { name: '清除筛选', exact: true })).toHaveCount(1);
   await page.locator('.task-filters').getByRole('button', { name: '清除筛选' }).click();
   await expect(rows).toHaveCount(16);
   await expect(page.locator('[aria-label=模式]')).toHaveCount(0);
@@ -48,6 +49,9 @@ test('mobile filters apply or cancel explicitly and remain selected offline', as
   await selectPicker(page, '本机内容', 'local');
   await filters.getByRole('button', { name: /应用筛选/ }).click();
   await expect(rows).toHaveCount(0);
+  const emptyActions = page.locator('.task-catalogue-list .action-row');
+  await expect(emptyActions).toHaveCSS('gap', '12px');
+  await expect(emptyActions.locator('a[href="/library"]')).toBeVisible();
   await filters.locator('summary').click();
   await filters.getByRole('button', { name: '清除筛选' }).click();
   await filters.getByRole('button', { name: '取消', exact: true }).click();

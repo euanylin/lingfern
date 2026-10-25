@@ -31,7 +31,7 @@ export function SavedWords({ locale, profileId, online, defaultId }: { locale: L
   }
   useEffect(() => {
     let live = true;
-    const observer = liveQuery(() => syncEvents.where('profileId').equals(profileId).count()).subscribe({ next() { if (live) void load().catch(() => { if (live) setError(t.failed); }); }, error() { if (live) setError(t.failed); } });
+    const observer = liveQuery(() => syncEvents.where('[profileId+type]').equals([profileId, 'saved_item']).count()).subscribe({ next() { if (live) void load().catch(() => { if (live) setError(t.failed); }); }, error() { if (live) setError(t.failed); } });
     return () => { live = false; observer.unsubscribe(); };
   }, [profileId, t.failed]);
   async function act(fn?: () => Promise<unknown>) {

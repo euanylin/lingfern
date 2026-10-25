@@ -63,7 +63,7 @@ export default function Learning({ owner, id, profileId, locale, online, onlineD
   if (!session) return <section><h1>{t.learning}</h1>{error ? <div className="error" role="alert"><p>{message}</p><button onClick={() => void load()}>{t.retry}</button></div> : <p>{t.loading}</p>}</section>;
   const instructionLocale = practiceLocale(session.lesson, locale), title = <h1 lang={contentLanguage(session.lesson.title, instructionLocale)}>{contentText(session.lesson.title, instructionLocale)}</h1>;
   if (session.recordsDeleted) return <>{title}<p>{deletionCopy[locale].archived}</p><a className="button" href="/progress">{t.progress}</a></>;
-  if (error) return <section>{title}<p role="alert">{message}</p><button onClick={() => void load()}>{t.retry}</button><a className="button" href="/today">{t.finish}</a></section>;
+  if (error) return <section>{title}<p role="alert">{message}</p><div className="action-row"><button onClick={() => void load()}>{t.retry}</button><a className="button" href="/today">{t.finish}</a></div></section>;
   if (session.lesson.mode === 'check' && session.status === 'active' && !session.checkStartedAt) return <section className="narrow check-intro">
     {title}<p lang={contentLanguage(session.lesson.goal, instructionLocale)}>{contentText(session.lesson.goal, instructionLocale)}</p><p>{t.checkUnseen}</p>
     <dl><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{session.lesson.skill === 'listening' ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl>

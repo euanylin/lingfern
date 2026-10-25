@@ -7,14 +7,13 @@ import { SettingsPicker } from './SettingsPicker';
 import { jsonRequest, pauseSyncConfiguration } from '../data/syncClient';
 
 const labels = messages('repositoryBinding');
-const historyLabels = messages('repositoryBinding_historyLabels');
 const syncLabels = messages('syncControls');
-export function RepositorySetup({ locale, installationUrl = 'https://github.com/settings/installations', busy = false, onFind }: { locale: Locale; installationUrl?: string; busy?: boolean; onFind?: () => void }) {
+function RepositorySetup({ locale, installationUrl = 'https://github.com/settings/installations', busy = false, onFind }: { locale: Locale; installationUrl?: string; busy?: boolean; onFind?: () => void }) {
   const t = labels[locale];
   return <ol className="repository-steps"><li><a href="https://github.com/new?name=lingfern-data" target="_blank" rel="noopener noreferrer" aria-label={`${t.create} (${t.newWindow})`}>{t.create} <span aria-hidden="true">↗</span></a><p className="muted">{t.setup}</p></li><li><a href={installationUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.install} (${t.newWindow})`}>{t.install} <span aria-hidden="true">↗</span></a></li><li><button type="button" disabled={busy || !onFind} onClick={onFind}>{t.find}</button></li></ol>;
 }
 export function RepositoryBinding({ locale, profileId, localProfileId, summary, reload }: { locale: Locale; profileId: string; localProfileId: string; summary: SessionSummary; reload: () => Promise<void> }) {
-  const h = historyLabels[locale], id = useId();
+  const id = useId();
   const t = labels[locale], binding = summary.bindings?.find(value => value.profileId === profileId);
   const [choices, setChoices] = useState<RepositoryChoice[]>();
   const [selected, setSelected] = useState('');
@@ -65,15 +64,23 @@ export function RepositoryBinding({ locale, profileId, localProfileId, summary, 
     catch (error) { fail(error); } finally { await resume?.().catch(() => setMessage(t.failed)); setBusy(false); }
   }
   const connected = binding && !binding.disabled;
+  const canInspect = choices?.some(choice => String(choice.repositoryId) === selected);
+  const disconnectButton = <button className="service-danger" type="button" disabled={busy} onClick={() => void disconnect()}>{t.disconnect}</button>;
   const setup = <RepositorySetup locale={locale} installationUrl={installationUrl} busy={busy} onFind={() => void find()}/>;
-  const configuration = <>{Boolean(choices?.length) && <SettingsPicker label={t.select} value={selected} disabled={busy} options={[...(!selected ? [{ value: '', label: t.select }] : []), ...choices!.map(value => ({ value: String(value.repositoryId), label: value.name }))]} onChange={value => { setSelected(value); setIntent(undefined); }}/>}<button type="button" disabled={busy || !choices?.length || !selected} onClick={() => void verify()}>{t.inspect}</button>
+  const configuration = <>{Boolean(choices?.length) && <SettingsPicker label={t.select} value={selected} disabled={busy} options={[...(!selected ? [{ value: '', label: t.select }] : []), ...choices!.map(value => ({ value: String(value.repositoryId), label: value.name }))]} onChange={value => { setSelected(value); setIntent(undefined); }}/>}{(canInspect || binding) && <div className="repository-actions">{canInspect && <button type="button" disabled={busy} onClick={() => void verify()}>{t.inspect}</button>}{binding && disconnectButton}</div>}
     {intent && <div className="backup-preview"><strong>{intent.owner}/{intent.name}</strong><p>{t.verified}</p><p>{intent.existing ? t.existing : t.marker}</p><p className="muted">{t.boundary}</p><div className="backup-actions"><button type="button" disabled={busy} onClick={() => setIntent(undefined)}>{t.cancel}</button><button type="button" disabled={busy} onClick={() => void bind()}>{t.confirm}</button></div></div>}</>;
+  const setupPanel = <>{binding && <h4>{t.reset}</h4>}<p className="muted">{syncLabels[locale].detail}</p>{setup}{configuration}{choices?.length === 0 && <p role="status">{t.empty}</p>}</>;
   return <section className="repository-binding"><h3 className="sr-only">{t.title}</h3>
-    {binding && <p className="muted"><span className="sr-only">{t.bound}: </span><bdi>{binding.owner}/{binding.name}</bdi>{(binding.disabled || !summary.syncAvailable) && <> · {binding.disabled ? t.disabled : t.pending}</>}</p>}
-    {!connected && <>{setup}{configuration}</>}
-    {choices?.length === 0 && <p role="status">{t.empty}</p>}
-    {binding && <details className="repository-reset service-disclosure"><summary aria-controls={`${id}-setup`}>{t.reset}</summary><div id={`${id}-setup`}><p className="muted">{syncLabels[locale].detail}</p>{connected && <>{setup}{configuration}</>}<button className="service-danger" type="button" disabled={busy} onClick={() => void disconnect()}>{t.disconnect}</button></div></details>}
-    <details className="repository-history service-disclosure"><summary aria-controls={`${id}-history`}>{h.title}</summary><div id={`${id}-history`}><p>{h.boundary}</p><ol>{h.steps.map(step => <li key={step}>{step}</li>)}</ol><p className="muted">{h.limits}</p><a className="service-external" href="https://docs.github.com/en/repositories/creating-and-managing-repositories/deleting-a-repository" target="_blank" rel="noopener noreferrer">{h.guide} <span aria-hidden="true">↗</span></a></div></details>
+    {connected ? <>
+      <details className="repository-reset service-disclosure" onToggle={() => setIntent(undefined)}>
+        <summary aria-controls={`${id}-setup`}><span>{t.title}</span><bdi>{binding.owner}/{binding.name}</bdi></summary>
+        <div id={`${id}-setup`}>{setupPanel}</div>
+      </details>
+      {!summary.syncAvailable && <p className="muted" role="status">{t.pending}</p>}
+    </> : <>
+      {binding && <p className="muted" role="status"><bdi>{binding.owner}/{binding.name}</bdi> · {t.disabled}</p>}
+      <div className="repository-configuration">{setupPanel}</div>
+    </>}
     {(busy || message) && <p role="status">{busy ? t.busy : message}</p>}
   </section>;
 }

@@ -185,7 +185,6 @@
     "title": "Identitas GitHub",
     "description": "Sinkronkan perangkat melalui repositori pribadi Anda.",
     "connect": "Hubungkan GitHub",
-    "logout": "Keluar dari sesi web perangkat ini",
     "loading": "Memeriksa sesi web…",
     "unavailable": "Masuk GitHub belum dikonfigurasi.",
     "failed": "Status koneksi tidak dapat diperiksa.",
@@ -447,7 +446,6 @@
     "marker": "Konfirmasi membuat penanda profil. Catatan disinkronkan otomatis jika sinkronisasi otomatis aktif.",
     "existing": "Penanda profil sesuai sudah ada; tidak akan ditimpa.",
     "boundary": "Jika repositori dijadikan publik, riwayat Git juga dapat menjadi publik.",
-    "bound": "Tertaut",
     "pending": "Sinkronisasi sementara tidak tersedia.",
     "disabled": "Tautan dinonaktifkan. Otorisasi dan periksa ulang.",
     "disconnect": "Putuskan sinkronisasi repositori",
@@ -465,17 +463,6 @@
     "limited": "Terlalu banyak permintaan. Coba lagi nanti.",
     "reset": "Atur ulang",
     "newWindow": "Terbuka di jendela baru"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Hapus riwayat jarak jauh",
-    "boundary": "Menghapus catatan lokal atau berkas jarak jauh tidak menghapus riwayat Git. Memutus sinkronisasi tidak menghapus repositori.",
-    "steps": [
-      "Ekspor cadangan lokal yang ingin disimpan, lalu putuskan tautan repositori.",
-      "Periksa pemilik dan nama di GitHub, lalu ikuti panduan resmi untuk menghapus seluruh repositori sendiri. Konten dan izin terkait terhapus.",
-      "Untuk melanjutkan sinkronisasi, buat repositori privat khusus yang baru dengan README, lalu beri otorisasi, periksa, dan tautkan. Peristiwa sinkronisasi yang disimpan, termasuk penanda penghapusan, akan diunggah kembali."
-    ],
-    "limits": "Lingfern tidak meminta izin menghapus repositori dan tidak menjamin penghapusan cadangan GitHub, salinan unduhan, atau cadangan lokal lama.",
-    "guide": "Panduan resmi penghapusan GitHub"
   },
   "savedWords_problemCopy": {
     "dictionary": "Makna yang diperlukan belum terpasang.",
@@ -795,8 +782,8 @@
     "empty": "Belum ada jawaban tersimpan. Jawaban selesai dari Hari Ini muncul di sini.",
     "history": "Tugas tersimpan Anda",
     "conditions": "Tingkat petunjuk digunakan",
-    "offline": "Jaringan terputus. Sumber daya luring lengkap belum terpasang; sebagian tugas mungkin tidak tersedia.",
-    "offlineInstalled": "Luring",
+    "offline": "Luring",
+    "online": "Koneksi pulih",
     "updateNow": "Perbarui sekarang",
     "updateLater": "Nanti",
     "updateCancel": "Batal",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Pembaruan perangkat lunak",
     "checkUpdate": "Periksa pembaruan",
     "updateChecking": "Memeriksa…",
+    "updatePreparing": "Menyiapkan pembaruan…",
     "updateReady": "Pembaruan siap.",
     "updateCurrent": "Sudah terbaru.",
     "updateOffline": "Hubungkan internet untuk memeriksa pembaruan.",

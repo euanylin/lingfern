@@ -199,7 +199,7 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
     const banks: Corpus[] = [];
     for (const file of files) {
       const response = await fetch(file.path, { credentials: 'omit' });
-      if (!response.ok || !response.body) throw new Error('MISSING_CORPUS');
+      if (!response.ok || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_CORPUS'); }
       const reader = response.body.getReader(), chunks: Uint8Array[] = [];
       let length = 0;
       try {
@@ -210,7 +210,7 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
           if (length > file.bytes) throw new Error('CORPUS_INTEGRITY');
           chunks.push(value);
         }
-      } finally { await reader.cancel(); }
+      } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
       const bytes = new Uint8Array(length);
       let offset = 0;
       for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }

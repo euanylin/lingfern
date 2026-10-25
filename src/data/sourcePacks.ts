@@ -22,7 +22,7 @@ export async function installSourcePack(id: string, profileId: string, signal?: 
   if (!entry) throw new Error('UNKNOWN_PACKAGE');
   await (await import('./installationIntent')).saveInstallationIntent(profileId, entry.id, true);
   const response = await fetch(entry.path, { cache: 'no-cache', redirect: 'error', credentials: 'omit', signal });
-  if (!response.ok || !response.body) throw new Error('MISSING_CORPUS');
+  if (!response.ok || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_CORPUS'); }
   const reader = response.body.getReader(), chunks: Uint8Array[] = [];
   let length = 0;
   try {
@@ -33,7 +33,7 @@ export async function installSourcePack(id: string, profileId: string, signal?: 
       if (length > entry.bytes) throw new Error('CORPUS_INTEGRITY');
       chunks.push(value); onProgress(length);
     }
-  } finally { await reader.cancel(); }
+  } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
   if (length !== entry.bytes) throw new Error('CORPUS_INTEGRITY');
   const bytes = new Uint8Array(length);
   let offset = 0;

@@ -31,7 +31,7 @@ import { defaultOnlineDictionary, onlineDictionaries, type OnlineDictionaryId } 
 import { PracticeCard, practiceCardProgress } from './PracticeCard';
 import { PracticeOptions } from './PracticeOptions';
 import { scrollbarVisibility } from './scrollbarVisibility';
-import { activateWaitingUpdate } from './serviceWorkerUpdate';
+import { activateWaitingUpdate, checkServiceWorkerUpdate } from './serviceWorkerUpdate';
 import { SettingsPicker } from './SettingsPicker';
 import { TaskCatalogue } from './TaskCatalogue';
 import { TaskDetail } from './TaskDetail';
@@ -127,7 +127,6 @@ export function App() {
   const [localSpoken, setLocalSpoken] = useState(false);
   const [starting, setStarting] = useState(false);
   const [offlineSnapshot, setOfflineSnapshot] = useState<{ profileId: string; groups: Set<string>; intents: Awaited<ReturnType<typeof readInstallationIntents>> }>();
-  const [offlineInstalled, setOfflineInstalled] = useState(false);
   const [installedGroups, setInstalledGroups] = useState<Set<string>>(new Set());
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const [updateBlocked, setUpdateBlocked] = useState(false);
@@ -135,7 +134,9 @@ export function App() {
   const [confirmUpdate, setConfirmUpdate] = useState(false);
   const [applyingUpdate, setApplyingUpdate] = useState(false);
   const updateDialog = useRef<HTMLDialogElement>(null), updateCancel = useRef<HTMLButtonElement>(null), updateTrigger = useRef<HTMLButtonElement | null>(null);
-  const [updateCheck, setUpdateCheck] = useState<'idle' | 'checking' | 'current' | 'offline' | 'unavailable' | 'failed'>('idle');
+  const [updateCheck, setUpdateCheck] = useState<'idle' | 'checking' | 'preparing' | 'current' | 'offline' | 'unavailable' | 'failed'>('idle');
+  const updateOperation = useRef<AbortController | undefined>(undefined);
+  const updateBusy = updateCheck === 'checking' || updateCheck === 'preparing';
   const t = copy[locale];
   const sessionId = path.startsWith('/learn/') ? path.slice(7) : undefined;
   const loadRevision = useRef(0);
@@ -223,7 +224,8 @@ export function App() {
     return () => observer.unsubscribe();
   }, [activeProfile, ready]);
   useEffect(() => {
-    registerSW({ onNeedRefresh: () => { setUpdateAvailable(true); setUpdateDismissed(false); } });
+    registerSW({ onNeedRefresh: () => { updateOperation.current?.abort(); setUpdateCheck('idle'); setUpdateAvailable(true); setUpdateDismissed(false); } });
+    return () => updateOperation.current?.abort();
   }, []);
   useEffect(() => {
     let live = true, revision = 0;
@@ -231,7 +233,7 @@ export function App() {
       const current = ++revision;
       void Promise.all([installedOfflineGroups(), installedSourcePacks(activeProfile), readInstallationIntents(activeProfile)]).then(([groups, sources, intents]) => {
         if (!live || current !== revision) return;
-        setInstalledGroups(groups); setOfflineInstalled(groups.size + sources.size > 0);
+        setInstalledGroups(groups);
         setOfflineSnapshot({ profileId: activeProfile, groups: new Set([...groups, ...sources]), intents });
       }).catch(() => { if (live && current === revision) setOfflineSnapshot(undefined); });
     };
@@ -324,22 +326,20 @@ export function App() {
     } catch { setUpdateCheck('failed'); } finally { setApplyingUpdate(false); }
   }
   async function checkForUpdates() {
+    if (updateOperation.current) return;
     if (!navigator.onLine) { setUpdateCheck('offline'); return; }
-    setUpdateCheck('checking');
+    const operation = new AbortController();
+    updateOperation.current = operation; setUpdateCheck('checking');
     try {
       const registration = await navigator.serviceWorker?.getRegistration('/');
+      if (operation.signal.aborted) return;
       if (!registration?.active) { setUpdateCheck('unavailable'); return; }
-      await registration.update();
-      if (registration.installing) await new Promise<void>((resolve, reject) => {
-        const worker = registration.installing!;
-        const timeout = setTimeout(() => { worker.removeEventListener('statechange', changed); reject(new Error('UPDATE_TIMEOUT')); }, 15000);
-        const changed = () => { if (worker.state === 'installed' || worker.state === 'redundant' || worker.state === 'activated') { clearTimeout(timeout); worker.removeEventListener('statechange', changed); resolve(); } };
-        worker.addEventListener('statechange', changed);
-        changed();
-      });
-      if (registration.waiting) setUpdateAvailable(true);
-      setUpdateCheck('current');
-    } catch { setUpdateCheck('failed'); }
+      const available = await checkServiceWorkerUpdate(registration, () => setUpdateCheck('preparing'), operation.signal);
+      if (operation.signal.aborted) return;
+      if (available) { setUpdateAvailable(true); setUpdateDismissed(false); setUpdateCheck('idle'); }
+      else setUpdateCheck('current');
+    } catch { if (!operation.signal.aborted) setUpdateCheck(navigator.onLine ? 'failed' : 'offline'); }
+    finally { if (updateOperation.current === operation) updateOperation.current = undefined; }
   }
   const individualHistory = history.filter(item => !item.practiceGroupId || item.status !== 'active');
   const todayReading = selectPractice(catalogue, individualHistory, records, 'reading', undefined, new Date(), preferences, summaries);
@@ -406,11 +406,11 @@ export function App() {
           <SyncConflicts locale={locale} profileId={activeProfile}/>
           <PageBoundary locale={locale}><Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><ProfileBackup locale={locale} activeProfile={activeProfile} onProfileChange={load}/></Suspense></PageBoundary>
         </div><section className="settings-update settings-card settings-about-update" aria-label={t.softwareUpdate}>
-          <button className="update-action settings-about-row settings-update-row" type="button" disabled={updateCheck === 'checking'} aria-disabled={updateCheck === 'checking'} aria-busy={updateCheck === 'checking'} data-update-ready={updateAvailable} onClick={event => { if (updateAvailable) requestUpdate(event.currentTarget); else void checkForUpdates(); }}>
+          <button className="update-action settings-about-row settings-update-row" type="button" disabled={updateBusy} aria-disabled={updateBusy} aria-busy={updateBusy} data-update-ready={updateAvailable} onClick={event => { if (updateAvailable) requestUpdate(event.currentTarget); else void checkForUpdates(); }}>
             <span>{t.checkUpdate}</span>
             <span id="settings-update-value" className="settings-update-value" role="status" aria-live="polite" data-update-ready={updateAvailable && !updateBlocked}>
-              {updateCheck === 'checking' && <svg className="settings-update-spinner" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="2" opacity=".3"/><path d="M8 2a6 6 0 0 1 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>}
-              {updateCheck === 'checking' ? t.updateChecking : updateBlocked ? t.updateBlocked : updateAvailable ? t.updateNow : updateCheck === 'current' ? t.updateCurrent : updateCheck === 'offline' ? t.updateOffline : updateCheck === 'unavailable' ? t.updateUnavailable : updateCheck === 'failed' ? t.updateFailed : `v${appVersion.split('.').slice(0, 2).join('.')}`}
+              {updateBusy && <svg className="settings-update-spinner" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="2" opacity=".3"/><path d="M8 2a6 6 0 0 1 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>}
+              {updateCheck === 'checking' ? t.updateChecking : updateCheck === 'preparing' ? t.updatePreparing : updateBlocked ? t.updateBlocked : updateAvailable ? t.updateNow : updateCheck === 'current' ? t.updateCurrent : updateCheck === 'offline' ? t.updateOffline : updateCheck === 'unavailable' ? t.updateUnavailable : updateCheck === 'failed' ? t.updateFailed : `v${appVersion.split('.').slice(0, 2).join('.')}`}
             </span>
           </button>
           <a className="settings-about-row settings-about-link" href="/settings/about"><span>{t.about}</span><span aria-hidden="true">→</span></a>
@@ -427,7 +427,6 @@ export function App() {
       </>}
     </header>}
     <main id="main" tabIndex={-1} className={introducing ? 'welcome-main' : undefined}>
-      {!online && <p className="notice" role="status">{offlineInstalled || localCorpus || localSpoken || communityLessons.length > 0 ? t.offlineInstalled : t.offline}</p>}
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
@@ -455,7 +454,7 @@ export function App() {
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(ready, groups) => { setOfflineInstalled(ready); setInstalledGroups(groups); }} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(_ready, groups) => setInstalledGroups(groups)} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
       : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
@@ -472,7 +471,25 @@ export function App() {
       <div className="update-confirm-actions"><button ref={updateCancel} type="button" disabled={applyingUpdate} onClick={closeUpdate}>{t.updateCancel}</button><button className="primary" type="button" disabled={applyingUpdate} aria-busy={applyingUpdate} onClick={() => void applyUpdate()}>{t.updateNow}</button></div>
     </dialog>, document.body)}
     {!sessionId && !introducing && !entryPending && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
+    <NetworkStatus online={online} locale={locale}/>
   </>;
+}
+
+function NetworkStatus({ online, locale }: { online: boolean; locale: Locale }) {
+  const wasOnline = useRef(online);
+  const [state, setState] = useState<'offline' | 'online' | undefined>(online ? undefined : 'offline');
+  useEffect(() => {
+    if (online && wasOnline.current) return;
+    wasOnline.current = online;
+    setState(online ? 'online' : 'offline');
+    const timer = setTimeout(() => setState(undefined), 3500);
+    return () => clearTimeout(timer);
+  }, [online]);
+  const t = copy[locale];
+  return <div className="network-status" data-state={state} role="status" aria-live="polite" aria-atomic="true">{state && <div className="service-toast network-status-content" key={state}>
+    <span className="network-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{state === 'online' ? <path d="m5 12 4 4L19 6"/> : <><path d="m2 2 20 20M2 8.8a16 16 0 0 1 3.7-2.4M10.7 5A16 16 0 0 1 22 8.8M5 12.5a11 11 0 0 1 4-2.2M14 10.2a11 11 0 0 1 5 2.3M8.5 16a5.5 5.5 0 0 1 7 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></>}</svg></span>
+    <span>{state === 'online' ? t.online : t.offline}</span>
+  </div>}</div>;
 }
 
 class PageBoundary extends Component<{ locale: Locale; children: ReactNode }, { failed: boolean }> {

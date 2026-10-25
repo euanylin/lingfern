@@ -695,7 +695,7 @@ Use `public/icon.svg` as the sole logo source, directly or as a CSS mask in the 
 
 Save all responses before showing feedback. Initial rendering must not wait for GitHub, MCP, or the online dictionary. Distinguish offline status, unconfigured remote features, save failures, read failures, and missing content. Temporary defaults after settings-read failure must not automatically overwrite the profile.
 
-Deliver all fourteen interface languages together and identify unknown results as unknown. Implement repository setup, signing out of the current session, disconnecting sync, disconnecting GitHub, and revoking MCP separately under Sections 12–15; do not collapse them through one ambiguous “Disconnect” label.
+Deliver all fourteen interface languages together and identify unknown results as unknown. Implement repository setup, disconnecting sync, disconnecting GitHub, and revoking MCP separately under Sections 12–15; do not collapse them through one ambiguous “Disconnect” label. Settings retains only Disconnect GitHub identity (maintainer update, 2026-10-25), with its explicit all-device/provider confirmation; the separate server session-logout endpoint remains available.
 
 Manual and browser acceptance covers the current routes and training/record/reference/settings surfaces, widths from 320 to 1440, short 640px-high screens, 200% text enlargement, 400% page zoom, keyboard/screen reader, both themes, real media, offline use, and failure states. The final section of `Interface_Design.md` contains visual acceptance checks; unperformed tests must not be reported as passed.
 

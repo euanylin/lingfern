@@ -294,8 +294,7 @@ function exposureSyncEvent(session: Session, item: ReturnType<typeof questions>[
 
 async function captureExposure(profileId: string, event: Extract<NewEvent, { type: 'exposure' }>, occurredAt: string) {
   const bounded = await Dexie.waitFor(boundedReferences(event));
-  // shortcut: profile-event scan; add a contact-key index if large archives slow saves.
-  const existing = await readSyncEvents(profileId);
+  const existing = await readSyncEvents(profileId, db, ['exposure']);
   if (existing.some(prior => prior.type === 'exposure' && canonicalJson(prior.payload) === canonicalJson(bounded.payload))) return;
   await appendSyncEvent(profileId, bounded, db, { occurredAt });
 }

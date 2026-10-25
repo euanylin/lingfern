@@ -28,7 +28,7 @@ export async function saveInstallationIntents(profileId: string, ids: string[], 
     await db.transaction('rw', settings, syncEvents, syncClocks, async () => {
       const active = await settings.get('activeProfile');
       if (active && active.value !== profileId) throw new Error('SYNC_SCOPE_CHANGED');
-      const installations = projectSyncEvents(await readSyncEvents(profileId)).installations;
+      const installations = projectSyncEvents(await readSyncEvents(profileId, db, ['installation'])).installations;
       for (const { id, currentHash } of choices) {
         const previous = installations.get(id);
         const contentHash = !wanted && previous ? previous.payload.contentHash : currentHash;

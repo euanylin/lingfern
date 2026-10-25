@@ -597,7 +597,7 @@ Maximum 560. Connect account → choose dedicated private repository → confirm
 
 #### States and Interaction
 
-GitHub and MCP reuse the setting rows and theme tokens. Unbound repositories show the setup steps;bound repositories put them in Set up again. Repository rows remain flat,52px high with regular15px text,without a second inherited section border. Use one divider per boundary and regular-weight footer actions. Expanded MCP lists use quiet subheadings and empty text,with no trailing empty divider. Keep actual account/profile choice,repository verification,expiry,CSRF,confirmation and independent sign-out/disconnect/revoke actions intact.
+GitHub and MCP reuse the setting rows and theme tokens. Unbound repositories show the setup steps;bound repositories put them in Set up again. Repository rows remain flat,52px high with regular15px text,without a second inherited section border. Use one divider per boundary and regular-weight footer actions. Expanded MCP lists use quiet subheadings and empty text,with no trailing empty divider. Keep actual account/profile choice,repository verification,expiry,CSRF,confirmation and independent sync-disconnect/identity-disconnect/revoke actions intact. Settings has no separate website-session sign-out entry (maintainer update, 2026-10-25).
 
 | State | Page and action |
 |---|---|
@@ -691,7 +691,7 @@ Desktop: left section index 200–220, right content maximum 560, gap 48. Mobile
 | Motion | System/Reduce motion. Do not default to forced large motion when the system requests reduction. |
 | Keyboard | Task shortcuts off/on, off by default; explain scope and disabling. |
 | Offline content | Storage estimate and management; show size and confirm download. Do not promise reliable mobile-data detection or unenforceable “Wi-Fi only”. |
-| GitHub sync | Identity, selected repository, actual state, and separate sign-out/sync-disconnection/identity-disconnection controls. |
+| GitHub sync | Identity, selected repository, actual state, and separate sync-disconnection/identity-disconnection controls. |
 | AI connections | Authorised clients, temporary shares, expiry, revocation; no third-party chat credentials. |
 | Backup | Ordinary ZIP export/encrypted backup when implemented, restore, last backup. Optional reminders when the app opens, no email/background service. |
 | Privacy | Actual data flow, sharing scope, research export, deletion; not “Everything stays local forever”. |
@@ -1049,7 +1049,7 @@ Do not create another design framework, UI tool platform, or plant simulation en
 | Plant | Zero records, self-reported C2, asymmetric records, repeated materials, hints, sync deduplication, deletion recalculation |
 | Modes | Shared-preview generated Test, no second preview/assistance/early feedback; retained strict checks keep no-preview/unfamiliar-root/recovery conditions |
 | Data | No advancement before save success; local/pending/remote-confirmed states distinguishable |
-| Sync | Official creation guidance, binding validation, conflict isolation, distinct sign-out/disconnection |
+| Sync | Official creation guidance, binding validation, conflict isolation, distinct sync/identity disconnection |
 | Sharing | Copy/download local; MCP upload scope/client/expiry explicit; revocation does not falsely recall external copies |
 | Dictionary | Missing entries/IPA/audio, unreachable Cambridge, offline queries have truthful states |
 | Content | All three languages, understandable A1, C2 not reduced to obscure vocabulary; sample numbers not actual results |

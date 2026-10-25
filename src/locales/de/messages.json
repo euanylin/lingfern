@@ -185,7 +185,6 @@
     "title": "GitHub-Identität",
     "description": "Synchronisiere deine Geräte über dein privates Repository.",
     "connect": "GitHub verbinden",
-    "logout": "Websitzung dieses Geräts abmelden",
     "loading": "Websitzung prüfen…",
     "unavailable": "GitHub-Anmeldung ist nicht eingerichtet.",
     "failed": "Verbindungsstatus nicht prüfbar.",
@@ -447,7 +446,6 @@
     "marker": "Die Bestätigung erstellt eine Profilmarkierung. Bei eingeschalteter automatischer Synchronisierung werden die Aufzeichnungen automatisch synchronisiert.",
     "existing": "Passende Profilmarkierung vorhanden; wird nicht überschrieben.",
     "boundary": "Wird das Repository öffentlich, kann auch sein Git-Verlauf öffentlich werden.",
-    "bound": "Verknüpft",
     "pending": "Die Synchronisierung ist vorübergehend nicht verfügbar.",
     "disabled": "Verknüpfung deaktiviert. Erneut autorisieren und prüfen.",
     "disconnect": "Repository-Synchronisierung trennen",
@@ -465,17 +463,6 @@
     "limited": "Zu viele Anfragen. Später erneut versuchen.",
     "reset": "Erneut einrichten",
     "newWindow": "Öffnet ein neues Fenster"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Remote-Verlauf entfernen",
-    "boundary": "Lokale Aufzeichnungen oder Remote-Dateien löschen entfernt keinen Git-Verlauf. Trennen der Synchronisierung löscht kein Repository.",
-    "steps": [
-      "Gewünschtes lokales Backup exportieren, dann Repository-Verknüpfung trennen.",
-      "Besitzer und Namen auf GitHub prüfen, dann Repository nach offizieller Anleitung selbst löschen. Inhalte und Berechtigungen werden entfernt.",
-      "Zum Fortsetzen ein neues eigenes privates Repository mit README erstellen, autorisieren, prüfen und verknüpfen. Gespeicherte Synchronisierungsereignisse einschließlich Löschmarkierungen werden erneut hochgeladen."
-    ],
-    "limits": "Lingfern fordert keine Löschberechtigung für Repositorys und garantiert keine Entfernung aus GitHub-Backups, Downloads oder alten lokalen Backups.",
-    "guide": "Offizielle GitHub-Löschanleitung"
   },
   "savedWords_problemCopy": {
     "dictionary": "Benötigte Bedeutung nicht installiert.",
@@ -795,8 +782,8 @@
     "empty": "Noch keine gespeicherten Antworten. Abgeschlossene Antworten aus Heute erscheinen hier.",
     "history": "Ihre gespeicherten Aufgaben",
     "conditions": "Verwendete Hinweisebenen",
-    "offline": "Netzwerk getrennt. Vollständige Offline-Ressourcen fehlen; manche Aufgaben eventuell nicht verfügbar.",
-    "offlineInstalled": "Offline",
+    "offline": "Offline",
+    "online": "Wieder online",
     "updateNow": "Jetzt aktualisieren",
     "updateLater": "Später",
     "updateCancel": "Abbrechen",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Software-Update",
     "checkUpdate": "Nach Updates suchen",
     "updateChecking": "Prüfen…",
+    "updatePreparing": "Update wird vorbereitet…",
     "updateReady": "Update bereit.",
     "updateCurrent": "Aktuell.",
     "updateOffline": "Zum Prüfen auf Updates Internet verbinden.",

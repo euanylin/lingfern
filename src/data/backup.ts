@@ -199,8 +199,9 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
   return { summary: { preferences: manifest.preferences, createdAt: manifest.createdAt, profileName: manifest.profileName, ...(manifest.nameIsCustom ? { nameIsCustom: true } : {}), sourceProfileId: manifest.sourceProfileId, sessions: savedSessions.length, attempts: savedAttempts.length, exposures: savedExposures.length, memories: savedMemories.length, feedbackNotes: savedFeedback.length, bytes: bytes.length }, records: { sessions: savedSessions, attempts: savedAttempts, exposures: savedExposures, memories: savedMemories, feedbackNotes: savedFeedback, syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncClocks: savedSyncClocks, syncConflicts: savedSyncConflicts } };
 }
 
-export async function importBackup(inspection: BackupInspection, accountId?: number, expectedActiveProfile?: string) {
-  if (expectedActiveProfile !== undefined) profileIdSchema.parse(expectedActiveProfile);
+export async function importBackup(inspection: BackupInspection, accountId?: number, expectedActiveProfile?: string | null, signal?: AbortSignal) {
+  signal?.throwIfAborted();
+  if (expectedActiveProfile != null) profileIdSchema.parse(expectedActiveProfile);
   const oldClock = inspection.records.syncClocks[0];
   const logicalProfileId = oldClock?.logicalProfileId ?? inspection.summary.sourceProfileId;
   const association = accountId === undefined ? undefined : syncAccountSchema.parse({ accountId, profileId: logicalProfileId });
@@ -213,7 +214,8 @@ export async function importBackup(inspection: BackupInspection, accountId?: num
   const importedMemories = inspection.records.memories.map(memory => ({ ...memory, profileId: id }));
   const importedFeedback = inspection.records.feedbackNotes.map(note => ({ ...note, id: crypto.randomUUID(), profileId: id, attemptId: attemptIds.get(note.attemptId)! }));
   await db.transaction('rw', [profiles, sessions, attempts, exposures, memories, feedbackNotes, settings, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => {
-    if (expectedActiveProfile !== undefined && ((await settings.get('activeProfile'))?.value !== expectedActiveProfile || !await profiles.get(expectedActiveProfile))) throw new Error('SYNC_SCOPE_CHANGED');
+    signal?.throwIfAborted();
+    if (expectedActiveProfile !== undefined && (((await settings.get('activeProfile'))?.value ?? null) !== expectedActiveProfile || expectedActiveProfile !== null && !await profiles.get(expectedActiveProfile))) throw new Error('SYNC_SCOPE_CHANGED');
     await profiles.add({ id, preferences: inspection.summary.preferences, name: inspection.summary.profileName, ...(inspection.summary.nameIsCustom ? { nameIsCustom: true } : {}), createdAt: new Date().toISOString() });
     await sessions.bulkAdd(importedSessions);
     await attempts.bulkAdd(importedAttempts);
@@ -227,6 +229,7 @@ export async function importBackup(inspection: BackupInspection, accountId?: num
     await db.table('syncClocks').add({ profileId: id, deviceId: crypto.randomUUID(), counter: oldClock?.counter ?? 0, logicalProfileId });
     if (association) await settings.put({ key: `profile:${id}:syncAccount`, value: JSON.stringify(association) });
     await settings.put({ key: 'activeProfile', value: id });
+    signal?.throwIfAborted();
   });
   return id;
 }

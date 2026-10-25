@@ -22,7 +22,7 @@ test('unchanged session revalidation preserves the chosen account profile', asyn
   await expect(page.locator('.sync-account-choice .setting-trigger')).toHaveAttribute('data-value', 'remote:remote-second');
 });
 
-test('logout invalidates other open tabs and ignores an older in-flight session response', async ({ page, context }) => {
+test('disconnect invalidates other open tabs and ignores an older in-flight session response', async ({ page, context }) => {
   let signedIn = true, hold = false, release!: () => void, delivered!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
   const completed = new Promise<void>(resolve => { delivered = resolve; });
@@ -33,14 +33,15 @@ test('logout invalidates other open tabs and ignores an older in-flight session 
       try { await route.fulfill({ json }); } finally { delivered(); }
     } else await route.fulfill({ json });
   });
-  await context.route('**/api/auth/logout', route => { signedIn = false; return route.fulfill({ status: 204 }); });
+  await context.route('**/api/auth/disconnect', route => { signedIn = false; return route.fulfill({ json: { disconnected: true, providerRevoked: true } }); });
   await page.goto('/settings');
   const other = await context.newPage(); await other.goto('/settings');
   await expect(other.locator('.github-status-line')).toHaveAttribute('data-status', 'connected');
   hold = true;
   const started = other.waitForRequest('**/api/session');
   await other.evaluate(() => document.dispatchEvent(new Event('visibilitychange'))); await started;
-  await page.getByRole('button', { name: '退出本设备的网站会话', exact: true }).click();
+  page.once('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');
   await expect(other.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');
   release(); await completed;
@@ -93,8 +94,13 @@ test('changed repository generations discard an earlier verification intent', as
   await page.route('**/api/sync/inspect', route => route.fulfill({ json: { intent: 'i'.repeat(43), name: 'lingfern-data', owner: 'synthetic-learner', profileId: 'local-guest', existing: true, expiresAt: Math.floor(Date.now() / 1000) + 300 } }));
   await page.goto('/settings');
   await page.getByRole('button', { name: '复制当前档案用于此账号', exact: true }).click();
-  await page.locator('.repository-reset summary').click();
+  await page.locator('.repository-reset>summary').click();
   await page.getByRole('button', { name: '查找已授权资料库', exact: true }).click();
+  await page.getByRole('button', { name: '核验资料库', exact: true }).click();
+  await expect(page.locator('.repository-binding .backup-preview')).toBeVisible();
+  await page.locator('.repository-reset>summary').click();
+  await page.locator('.repository-reset>summary').click();
+  await expect(page.locator('.repository-binding .backup-preview')).toHaveCount(0);
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
   await expect(page.locator('.repository-binding .backup-preview')).toBeVisible();
   version = 'b'.repeat(43);
@@ -103,23 +109,24 @@ test('changed repository generations discard an earlier verification intent', as
   await expect(page.locator('.repository-binding .backup-preview')).toHaveCount(0);
 });
 
-test('stalled logout and repository lookup time out and remain retryable after late responses', async ({ page, context }) => {
+test('stalled disconnect and repository lookup time out and remain retryable after late responses', async ({ page, context }) => {
   test.setTimeout(45_000);
-  let signedIn = true, logouts = 0, finds = 0, release!: () => void;
+  let signedIn = true, disconnects = 0, finds = 0, release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
   await context.route('**/api/session', route => route.fulfill({ json: signedIn ? account : { account: null, syncAvailable: false } }));
-  await context.route('**/api/auth/logout', async route => { logouts++; await pending; await route.fulfill({ status: 204 }); });
+  await context.route('**/api/auth/disconnect', async route => { disconnects++; await pending; await route.fulfill({ json: { disconnected: true, providerRevoked: true } }); });
   await context.route('**/api/sync/repositories', async route => { finds++; await pending; await route.fulfill({ json: { repositories: [{ name: 'late-choice', repositoryId: 21, installationId: 31 }] } }); });
   await page.goto('/settings');
   await page.getByRole('button', { name: '复制当前档案用于此账号', exact: true }).click();
   const other = await context.newPage(); await other.goto('/settings');
   const find = other.getByRole('button', { name: '查找已授权资料库', exact: true });
   await find.click();
-  await page.getByRole('button', { name: '退出本设备的网站会话', exact: true }).evaluate(element => { (element as HTMLButtonElement).click(); (element as HTMLButtonElement).click(); });
+  page.on('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).evaluate(element => { (element as HTMLButtonElement).click(); (element as HTMLButtonElement).click(); });
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'loading');
   await expect(find).not.toBeVisible();
   await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'failed', { timeout: 35_000 });
-  expect(logouts).toBe(1); expect(finds).toBe(1);
+  expect(disconnects).toBe(1); expect(finds).toBe(1);
   await expect(find).toBeEnabled();
   release();
   // Flush a browser task after the late network replies; no old result may reopen access.
@@ -157,7 +164,7 @@ test('startup identity retries two temporary failures and then recovers without 
   expect(reads).toBe(3); await page.clock.fastForward(60000); expect(reads).toBe(3);
 });
 
-test('an orphaned logout notice pauses foreground refresh and revalidates after its bounded timeout', async ({ page }) => {
+test('an orphaned disconnect notice pauses foreground refresh and revalidates after its bounded timeout', async ({ page }) => {
   await page.clock.install(); let reads = 0;
   await page.route('**/api/session', route => { reads++; return route.fulfill({ json: account }); });
   await page.goto('/settings'); await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected');

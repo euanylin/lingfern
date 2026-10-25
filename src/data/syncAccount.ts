@@ -22,11 +22,13 @@ export async function accountProfiles(accountId: number) {
 }
 
 // Require explicit choices; make no remote requests here.
-export async function switchAccountProfile(account: { id: number; login: string }, target?: string, localProfileId?: string) {
+export async function switchAccountProfile(account: { id: number; login: string }, target?: string, localProfileId?: string, signal?: AbortSignal) {
+  signal?.throwIfAborted();
   account = sessionSummarySchema.shape.account.unwrap().parse(account);
   if (target) profileIdSchema.parse(target);
   if (localProfileId) profileIdSchema.parse(localProfileId);
   return db.transaction('rw', profiles, settings, syncClocks, async () => {
+    signal?.throwIfAborted();
     const existing = (await accountProfiles(account.id)).find(profile => (!localProfileId || profile.id === localProfileId) && (!target || profile.logicalProfileId === target));
     if (localProfileId && !existing) throw new Error('NOT_FOUND');
     const id = existing?.id ?? crypto.randomUUID();
@@ -37,13 +39,16 @@ export async function switchAccountProfile(account: { id: number; login: string 
       await settings.put({ key: `profile:${id}:syncAccount`, value: JSON.stringify(syncAccountSchema.parse({ accountId: account.id, profileId: logicalProfileId })) });
     }
     await settings.put({ key: 'activeProfile', value: id });
+    signal?.throwIfAborted();
     return id;
   });
 }
 
-export async function copyProfileForAccount(profileId: string, accountId: number) {
+export async function copyProfileForAccount(profileId: string, accountId: number, signal?: AbortSignal) {
+  signal?.throwIfAborted();
   syncAccountSchema.shape.accountId.parse(accountId);
+  const expectedActiveProfile = (await settings.get('activeProfile'))?.value ?? null;
   if (!await profiles.get(profileId)) throw new Error('NOT_FOUND');
   const { exportBackup, importBackup, inspectBackup } = await import('./backup');
-  return importBackup(await inspectBackup(await exportBackup(profileId)), accountId);
+  return importBackup(await inspectBackup(await exportBackup(profileId)), accountId, expectedActiveProfile, signal);
 }

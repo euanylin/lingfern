@@ -185,7 +185,6 @@
     "title": "Identité GitHub",
     "description": "Synchronisez vos appareils avec votre dépôt privé.",
     "connect": "Connecter GitHub",
-    "logout": "Fermer la session web de cet appareil",
     "loading": "Vérification de la session web…",
     "unavailable": "La connexion GitHub n’est pas configurée.",
     "failed": "Impossible de vérifier la connexion.",
@@ -447,7 +446,6 @@
     "marker": "La confirmation crée un marqueur de profil. Les données sont synchronisées automatiquement si la synchronisation automatique est activée.",
     "existing": "Un marqueur de profil correspondant existe et ne sera pas écrasé.",
     "boundary": "Si vous rendez le dépôt public, son historique Git peut aussi devenir public.",
-    "bound": "Associé",
     "pending": "La synchronisation est temporairement indisponible.",
     "disabled": "Association désactivée. Autorisez et vérifiez à nouveau.",
     "disconnect": "Dissocier la synchronisation du dépôt",
@@ -465,17 +463,6 @@
     "limited": "Trop de requêtes. Réessayez plus tard.",
     "reset": "Reconfigurer",
     "newWindow": "Ouvre une nouvelle fenêtre"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Supprimer l’historique distant",
-    "boundary": "Supprimer les données locales ou les fichiers distants n’efface pas l’historique Git. Déconnecter la synchronisation ne supprime pas le dépôt.",
-    "steps": [
-      "Exportez la sauvegarde locale à conserver, puis dissociez la synchronisation du dépôt.",
-      "Vérifiez le propriétaire et le nom du dépôt sur GitHub, puis suivez le guide officiel pour supprimer vous-même le dépôt entier. Son contenu et les droits associés seront supprimés.",
-      "Pour reprendre la synchronisation, créez un nouveau dépôt privé dédié avec un README, puis autorisez-le, vérifiez-le et liez-le. Les événements de synchronisation conservés, y compris les marqueurs de suppression, seront à nouveau envoyés."
-    ],
-    "limits": "Lingfern ne demande pas le droit de supprimer des dépôts et ne peut garantir l’effacement des sauvegardes GitHub, des copies téléchargées ou des anciennes sauvegardes locales.",
-    "guide": "Guide officiel de suppression GitHub"
   },
   "savedWords_problemCopy": {
     "dictionary": "Le sens requis n’est pas installé.",
@@ -795,8 +782,8 @@
     "empty": "Aucune réponse enregistrée. Les réponses terminées depuis Aujourd’hui apparaissent ici.",
     "history": "Vos activités enregistrées",
     "conditions": "Niveaux d’indices utilisés",
-    "offline": "Connexion interrompue. Les ressources hors ligne ne sont pas toutes installées ; certaines activités peuvent être indisponibles.",
-    "offlineInstalled": "Hors ligne",
+    "offline": "Hors ligne",
+    "online": "Connexion rétablie",
     "updateNow": "Mettre à jour",
     "updateLater": "Plus tard",
     "updateCancel": "Annuler",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Mise à jour du logiciel",
     "checkUpdate": "Rechercher des mises à jour",
     "updateChecking": "Vérification…",
+    "updatePreparing": "Préparation de la mise à jour…",
     "updateReady": "Une mise à jour est prête.",
     "updateCurrent": "Vous êtes à jour.",
     "updateOffline": "Connectez-vous pour rechercher des mises à jour.",

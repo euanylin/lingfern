@@ -30,7 +30,7 @@ export function useGithubSession(active: boolean) {
     } catch { if (!abort.signal.aborted) setState(previous => ({ ...previous, status: 'failed' })); }
     finally { if (request.current === abort) request.current = undefined; }
   }, []);
-  const endSession = useCallback(async (action: 'logout' | 'disconnect'): Promise<'done' | 'partial' | 'failed' | undefined> => {
+  const endSession = useCallback(async (): Promise<'done' | 'partial' | 'failed' | undefined> => {
     const { summary, status } = state;
     if (mutating.current || status !== 'ready' || !summary?.csrfToken) return;
     request.current?.abort();
@@ -39,14 +39,14 @@ export function useGithubSession(active: boolean) {
     channel.current?.postMessage('ending');
     setState({ summary, status: 'loading' });
     try {
-      const response = await fetch(`/api/auth/${action}`, { method: 'POST', credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal: AbortSignal.any([abort.signal, AbortSignal.timeout(30_000)]), headers: { 'X-CSRF-Token': summary.csrfToken, ...(action === 'disconnect' && { 'Content-Type': 'application/json' }) }, ...(action === 'disconnect' && { body: JSON.stringify({ confirm: true }) }) });
+      const response = await fetch('/api/auth/disconnect', { method: 'POST', credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal: AbortSignal.any([abort.signal, AbortSignal.timeout(30_000)]), headers: { 'X-CSRF-Token': summary.csrfToken, 'Content-Type': 'application/json' }, body: JSON.stringify({ confirm: true }) });
       if (!response.ok) throw new Error('SESSION_END');
-      const result = action === 'disconnect' ? disconnectSummarySchema.parse(await response.json()) : undefined;
+      const result = disconnectSummarySchema.parse(await response.json());
       if (abort.signal.aborted) return;
       ending.current = false;
       setState({ summary: { account: null, syncAvailable: false }, status: 'ready' });
       channel.current?.postMessage('ended');
-      return result?.providerRevoked === false ? 'partial' : 'done';
+      return result.providerRevoked === false ? 'partial' : 'done';
     } catch { if (!abort.signal.aborted) { setState({ summary, status: 'failed' }); channel.current?.postMessage('changed'); return 'failed'; } }
     finally { if (request.current === abort) { request.current = undefined; mutating.current = false; } }
   }, [state]);

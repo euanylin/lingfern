@@ -185,7 +185,6 @@
     "title": "Identidade GitHub",
     "description": "Sincronize seus dispositivos com seu repositório privado.",
     "connect": "Conectar GitHub",
-    "logout": "Sair da sessão web deste dispositivo",
     "loading": "Verificando sessão web…",
     "unavailable": "Login GitHub não configurado.",
     "failed": "Não foi possível verificar a conexão.",
@@ -447,7 +446,6 @@
     "marker": "A confirmação cria um marcador de perfil. Os registros são sincronizados automaticamente se a sincronização automática estiver ativada.",
     "existing": "Já existe um marcador correspondente; não será sobrescrito.",
     "boundary": "Se tornar o repositório público, o histórico Git também poderá ficar público.",
-    "bound": "Vinculado",
     "pending": "A sincronização está temporariamente indisponível.",
     "disabled": "Vínculo desativado. Autorize e verifique novamente.",
     "disconnect": "Desconectar sincronização do repositório",
@@ -465,17 +463,6 @@
     "limited": "Muitas solicitações. Tente mais tarde.",
     "reset": "Configurar novamente",
     "newWindow": "Abre numa nova janela"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "Remover histórico remoto",
-    "boundary": "Excluir registros locais ou arquivos remotos não apaga o histórico Git. Desconectar sincronização não exclui repositório.",
-    "steps": [
-      "Exporte o backup que quiser manter e desconecte o vínculo do repositório.",
-      "Confira dono e nome no GitHub e siga o guia oficial para excluir o repositório inteiro. Isso remove conteúdo e permissões associadas.",
-      "Para retomar a sincronização, crie um novo repositório privado dedicado com README, autorize, verifique e vincule. Os eventos de sincronização mantidos, incluindo marcas de exclusão, serão enviados novamente."
-    ],
-    "limits": "Lingfern não pede permissão de excluir repositórios e não garante remoção de backups GitHub, cópias baixadas ou backups locais antigos.",
-    "guide": "Guia oficial de exclusão GitHub"
   },
   "savedWords_problemCopy": {
     "dictionary": "Sentido necessário não instalado.",
@@ -795,8 +782,8 @@
     "empty": "Nenhuma resposta salva. Respostas concluídas em Hoje aparecem aqui.",
     "history": "Suas tarefas salvas",
     "conditions": "Níveis de dica usados",
-    "offline": "Sem conexão. Recursos offline completos não instalados; algumas tarefas podem faltar.",
-    "offlineInstalled": "Offline",
+    "offline": "Offline",
+    "online": "Conexão restabelecida",
     "updateNow": "Atualizar agora",
     "updateLater": "Depois",
     "updateCancel": "Cancelar",
@@ -805,6 +792,7 @@
     "softwareUpdate": "Atualização de software",
     "checkUpdate": "Buscar atualizações",
     "updateChecking": "Verificando…",
+    "updatePreparing": "A preparar a atualização…",
     "updateReady": "Atualização pronta.",
     "updateCurrent": "Tudo atualizado.",
     "updateOffline": "Conecte-se para buscar atualizações.",

@@ -185,7 +185,6 @@
     "title": "GitHub 身份",
     "description": "绑定自己的私有仓库，在设备间同步。",
     "connect": "连接 GitHub",
-    "logout": "退出本设备的网站会话",
     "loading": "正在检查网站会话…",
     "unavailable": "GitHub 登录尚未配置。",
     "failed": "暂时无法检查连接状态。",
@@ -447,7 +446,6 @@
     "marker": "确认后会创建档案标记。开启自动同步时，学习记录会随之同步。",
     "existing": "已有匹配的档案标记，不会覆盖。",
     "boundary": "若你以后将资料库设为公开，Git 历史中的内容也可能公开。",
-    "bound": "已绑定",
     "pending": "同步暂时不可用。",
     "disabled": "绑定已停用，请重新授权并核验。",
     "disconnect": "断开资料库同步绑定",
@@ -465,17 +463,6 @@
     "limited": "请求过于频繁，请稍后重试。",
     "reset": "重新设置",
     "newWindow": "在新窗口打开"
-  },
-  "repositoryBinding_historyLabels": {
-    "title": "清除远程历史",
-    "boundary": "删除本机记录或远程文件不会清除 Git 历史；断开同步也不会删除资料库。",
-    "steps": [
-      "先导出需要保留的本机备份，然后断开资料库同步绑定。",
-      "在 GitHub 核对专用资料库的所有者与名称，按官方指南自行删除整个资料库。此操作会删除资料库内容及相关权限。",
-      "若要恢复同步，请新建含 README 的专用私有仓库，重新授权、验证并绑定。保留的同步事件（含删除标记）会再次上传。"
-    ],
-    "limits": "Lingfern 不申请删除资料库的权限，也无法保证清除 GitHub 的备份、已下载副本或旧的本机备份。",
-    "guide": "GitHub 官方删除指南"
   },
   "savedWords_problemCopy": {
     "dictionary": "所需词义尚未安装。",
@@ -795,8 +782,8 @@
     "empty": "还没有作答记录。在“今日”完成的作答会显示在这里。",
     "history": "已保存任务",
     "conditions": "使用提示层数",
-    "offline": "网络已断开。尚未确认资源完整安装，部分任务可能不可用。",
-    "offlineInstalled": "离线",
+    "offline": "离线",
+    "online": "已恢复连接",
     "updateNow": "立即更新",
     "updateLater": "稍后",
     "updateCancel": "取消",
@@ -805,6 +792,7 @@
     "softwareUpdate": "软件更新",
     "checkUpdate": "检查更新",
     "updateChecking": "正在检查…",
+    "updatePreparing": "正在准备更新…",
     "updateReady": "新版本已就绪",
     "updateCurrent": "已是最新版本。",
     "updateOffline": "检查更新需要联网。",

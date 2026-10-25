@@ -6,28 +6,32 @@ test('optional identity reports real unavailable configuration without redirecti
   await page.goto('/settings');
   await expect(page.locator('.github-identity')).toContainText('GitHub 登录尚未配置');
   await expect(page.getByRole('link', { name: '连接 GitHub', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '连接 GitHub', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: '连接 GitHub', exact: true })).toHaveCount(0);
   await expect(page.locator('.github-identity').getByRole('button', { name: '重试', exact: true })).toHaveCount(0);
   await page.goto('/today');
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
 });
 
-test('identity summary and logout use the current session and never upload a profile', async ({ page }) => {
+test('identity summary and disconnect use the current session and never upload a profile', async ({ page }) => {
   // Simulate identity UI only; test real GitHub authorization separately.
   let signedIn = true;
   await page.route('**/api/session', route => route.fulfill({ json: { account: signedIn ? { id: 1234, login: 'test-learner' } : null, ...(signedIn ? { csrfToken: 'c'.repeat(43) } : {}), syncAvailable: false } }));
-  await page.route('**/api/auth/logout', async route => {
+  await page.route('**/api/auth/disconnect', async route => {
     expect(route.request().method()).toBe('POST');
     expect(route.request().headers()['x-csrf-token']).toBe('c'.repeat(43));
-    expect(route.request().postData()).toBe(null);
+    expect(route.request().postDataJSON()).toEqual({ confirm: true });
     signedIn = false;
-    await route.fulfill({ status: 204 });
+    await route.fulfill({ json: { disconnected: true, providerRevoked: true } });
   });
   await page.goto('/settings');
   await expect(page.locator('.github-identity')).toContainText('test-learner');
-  await page.getByRole('button', { name: '退出本设备的网站会话' }).click();
+  await expect(page.locator('.github-session-actions button')).toHaveCount(1);
+  await expect(page.getByRole('button', { name: '退出本设备的网站会话', exact: true })).toHaveCount(0);
+  page.once('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
   await expect(page.getByRole('link', { name: '连接 GitHub', exact: true })).toBeVisible();
   await expect(page.locator('.github-identity')).not.toContainText('test-learner');
+  await expect(page.locator('.github-identity .repository-steps')).toHaveCount(0);
 });
 
 test('disconnect confirmation can cancel and reports upstream revocation failure without clearing local records', async ({ page }) => {
@@ -85,6 +89,8 @@ test('private repository binding is inspected before confirmation and disconnect
   await page.locator('nav a[href="/settings"]:visible').first().click();
   await expect.poll(() => sessionReads).toBe(2);
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
+  await expect(page.getByRole('button', { name: '核验资料库', exact: true })).toHaveCount(0);
+  await expect(page.locator('.repository-actions')).toHaveCount(0);
   await page.getByRole('button', { name: '查找已授权资料库' }).click();
   await page.getByRole('button', { name: '核验资料库', exact: true }).click();
   await expect(page.locator('.repository-binding')).toContainText('Git 历史中的内容也可能公开');
@@ -97,7 +103,7 @@ test('private repository binding is inspected before confirmation and disconnect
   release(); await completed;
   await expect(page.locator('.repository-reset')).not.toHaveAttribute('open', '');
   await expect(page.locator('.repository-steps')).toBeHidden();
-  await expect(page.locator('.repository-binding>.muted')).toContainText('lingfern-data');
+  await expect(page.locator('.repository-reset>summary')).toContainText('lingfern-data');
   await page.locator('.repository-reset>summary').click();
   await expect(page.getByRole('button', { name: '断开资料库同步绑定' })).toBeVisible();
   await expect(page.locator('.repository-binding')).toContainText('同步暂时不可用');
@@ -125,13 +131,8 @@ test('repository guidance and controls remain readable in all three languages on
     await expect(page.locator('.repository-binding h3')).toHaveText(title);
     await page.getByRole('button', { name: find, exact: true }).click();
     await expect(page.getByRole('button', { name: inspect, exact: true })).toBeVisible();
-    const history = page.locator('.repository-history');
-    await history.locator('summary').click();
-    await expect(history.locator('li')).toHaveCount(3);
-    await expect(history.locator('a')).toHaveAttribute('href', 'https://docs.github.com/en/repositories/creating-and-managing-repositories/deleting-a-repository');
-    await expect(history.getByRole('button')).toHaveCount(0);
-    await page.screenshot({ path: `output/playwright/remote-history-320-${value}-dark.png`, fullPage: true });
-    await history.locator('summary').click();
+    await expect(page.locator('.repository-history')).toHaveCount(0);
+    await page.screenshot({ path: `output/playwright/repository-guidance-320-${value}-dark.png`, fullPage: true });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
 });
@@ -149,13 +150,14 @@ test('a failed initial session read offers explicit connection without starting 
   expect(authorisations).toBe(0);
 });
 
-test('a failed logout of a known account keeps retry instead of offering a second identity connection', async ({ page }) => {
+test('a failed disconnect of a known account keeps retry instead of offering a second identity connection', async ({ page }) => {
   await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1234, login: 'test-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false } }));
-  await page.route('**/api/auth/logout', route => route.fulfill({ status: 500 }));
+  await page.route('**/api/auth/disconnect', route => route.fulfill({ status: 500 }));
   await page.goto('/settings');
   const identity = page.locator('.github-identity');
   await expect(identity).toContainText('test-learner');
-  await identity.getByRole('button', { name: '退出本设备的网站会话', exact: true }).click();
+  page.once('dialog', dialog => dialog.accept());
+  await identity.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
   await expect(identity.getByRole('button', { name: '重试', exact: true })).toBeVisible();
   await expect(identity.getByRole('link', { name: '连接 GitHub', exact: true })).toHaveCount(0);
 });
@@ -178,7 +180,7 @@ test('verifying a bound repository reads current choices and never substitutes a
   available = false; await page.reload();
   await page.locator('.repository-reset>summary').click();
   await page.getByRole('button', { name: '查找已授权资料库', exact: true }).click();
-  await expect(page.getByRole('button', { name: '核验资料库', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: '核验资料库', exact: true })).toHaveCount(0);
   await expect(page.locator('.repository-binding')).toContainText('资料库不存在或暂不可访问');
   expect(inspections).toBe(1);
 });
@@ -192,17 +194,34 @@ test('unbound repository setup keeps its divider and separate full-row session a
   for (const width of [1440, 375, 320]) {
     await page.setViewportSize({ width, height: 900 });
     const geometry = await repository.evaluate(element => {
-      const style = getComputedStyle(element), steps = element.querySelector('.repository-steps')!, link = steps.querySelector('a')!;
+      const style = getComputedStyle(element), steps = element.querySelector('.repository-steps')!, configuration = element.querySelector('.repository-configuration')!;
       const status = document.querySelector('.github-status-line')!, actions = document.querySelector('.github-session-actions')!;
-      return { border: style.borderTopWidth, padding: style.paddingTop, gap: link.getBoundingClientRect().top - status.getBoundingClientRect().bottom, footerBorder: getComputedStyle(actions).borderTopWidth, stepBorder: getComputedStyle(steps).borderTopWidth };
+      return { border: style.borderTopWidth, padding: style.paddingTop, gap: configuration.getBoundingClientRect().top - status.getBoundingClientRect().bottom, footerBorder: getComputedStyle(actions).borderTopWidth, stepBorder: getComputedStyle(steps).borderTopWidth, configurationBorder: getComputedStyle(configuration).borderTopWidth };
     });
     expect(geometry.border).toBe('0px'); expect(geometry.padding).toBe('0px');
-    expect(geometry.gap).toBeGreaterThanOrEqual(28); expect(geometry.gap).toBeLessThanOrEqual(52);
-    expect(geometry.stepBorder).toBe('1px'); expect(geometry.footerBorder).toBe('1px');
+    expect(geometry.gap).toBeGreaterThanOrEqual(44);
+    expect(geometry.stepBorder).toBe('0px'); expect(geometry.configurationBorder).toBe('1px'); expect(geometry.footerBorder).toBe('1px');
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.mouse.move(0, 0);
     await expect(repository.locator('.repository-steps button')).toHaveCSS('background-color', 'rgb(48, 48, 46)');
     await expect(repository.locator('.repository-steps button')).toHaveCSS('color', 'rgb(245, 244, 238)');
     await page.locator('.github-identity').screenshot({ path: `output/playwright/github-setup-refined-${width}-dark.png` });
   }
+});
+
+
+test('a disabled repository opens repair configuration without duplicate reset rows or automatic writes', async ({ page }) => {
+  let writes = 0;
+  await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1234, login: 'synthetic' }, csrfToken: 'c'.repeat(43), syncAvailable: true, bindings: [{ name: 'lingfern-data', owner: 'synthetic', profileId: 'local-guest', disabled: true }] } }));
+  page.on('request', request => { if (request.method() === 'POST' && new URL(request.url()).pathname.startsWith('/api/sync/')) writes++; });
+  await page.goto('/settings'); await page.getByRole('button', { name: '复制当前档案用于此账号', exact: true }).click();
+  const card = page.locator('.github-identity');
+  await expect(card.locator('.github-profile-row')).toContainText('本机档案');
+  await expect(card.locator('.repository-binding>[role=status]')).toContainText('绑定已停用');
+  await expect(card.locator('.repository-steps')).toHaveCount(1); await expect(card.locator('.repository-steps')).toBeVisible();
+  await expect(card.locator('.repository-reset')).toHaveCount(0); await expect(card.locator('.sync-controls')).toHaveCount(0);
+  await expect(card.locator('.repository-history')).toHaveCount(0);
+  await expect(card.getByRole('button', { name: '断开资料库同步绑定', exact: true })).toBeVisible();
+  await expect(card.getByRole('button', { name: '核验资料库', exact: true })).toHaveCount(0);
+  expect(writes).toBe(0);
 });

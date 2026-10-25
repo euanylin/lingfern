@@ -74,15 +74,46 @@ it('rolls back projection writes and permits removing an unavailable meaning', a
   expect((await projectMemories('p')).problems).toEqual([]);
 });
 
-it('a concurrent event during public-sense resolution prevents stale projection writes', async () => {
+it('a concurrent bookmark removal during public-sense resolution prevents stale projection writes', async () => {
   await receive([savedEvent(true)], 'new');
   vi.spyOn(dictionary, 'lookupDictionarySense').mockImplementation(async () => {
-    await appendSyncEvent('p', { type: 'setting', payload: { key: 'theme', value: 'dark' } });
+    await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'apple%1:13:00::', saved: false } });
     return { term: 'word', definition: 'meaning' };
   });
   await expect(projectMemories('p')).rejects.toThrow('SYNC_LOCAL_CHANGED');
   expect(await memories.count()).toBe(0);
   expect(await db.table('syncEvents').count()).toBe(2);
+});
+
+it('permits unrelated setting changes during public-sense resolution', async () => {
+  await receive([savedEvent(true)], 'new');
+  vi.spyOn(dictionary, 'lookupDictionarySense').mockImplementation(async () => {
+    await appendSyncEvent('p', { type: 'setting', payload: { key: 'theme', value: 'dark' } });
+    return { term: 'apple', definition: 'fruit' };
+  });
+  expect((await projectMemories('p')).items).toEqual([{ profileId: 'p', memoryId: 'apple%1:13:00::', term: 'apple', definition: 'fruit', savedAt: savedEvent(true).occurredAt }]);
+  expect((await readSyncEvents('p')).map(event => event.type)).toEqual(['saved_item', 'setting']);
+});
+
+it('does not rewrite unchanged bookmarks or repeat persisted removals', async () => {
+  await saveSense('p', 'sense-1', 'apple', 'fruit');
+  await saveSense('p', 'sense-2', 'tree', 'plant');
+  await removeSense('p', 'sense-2');
+  const writes = vi.spyOn(memories, 'put');
+  const removals = vi.spyOn(memories, 'delete');
+  expect((await projectMemories('p')).items.map(item => item.memoryId)).toEqual(['sense-1']);
+  expect(writes).not.toHaveBeenCalled();
+  expect(removals).not.toHaveBeenCalled();
+});
+
+it('does not recreate a profile deleted while resolving a public sense', async () => {
+  await receive([savedEvent(true)], 'new');
+  vi.spyOn(dictionary, 'lookupDictionarySense').mockImplementation(async () => {
+    await db.table('syncClocks').update('p', { deleted: true });
+    return { term: 'apple', definition: 'fruit' };
+  });
+  await expect(projectMemories('p')).rejects.toThrow('PROFILE_DELETED');
+  expect(await memories.count()).toBe(0);
 });
 
 it('preserves valid legacy wire fields and archives review events without restoring review state', async () => {
