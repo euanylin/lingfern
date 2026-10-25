@@ -19,6 +19,9 @@ async function configure(page: Page, legacy = false) {
     };
   }), legacy);
   await page.goto('/library/history');
+  await expect(page.getByRole('heading', { name: '查询历史', exact: true })).toBeVisible();
+  // Navigation can interrupt the first round inside the existing 15-second coalescing window.
+  await page.clock.fastForward(16000);
 }
 async function settled(page: Page) {
   await expect.poll(async () => {
