@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdtemp, mkdir, writeFile, symlink, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, symlink, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { buildManifest, verifyPublicBuild, publishVerified, capturePublicEntry, redactCommandOutput } from '../scripts/deploy-verified.mjs';
+import { ciDeploymentConfig } from '../scripts/release-config.mjs';
 
 const old = '11111111-1111-4111-8111-111111111111', next = '22222222-2222-4222-8222-222222222222';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -164,4 +165,21 @@ test('failed recovery stays failed and never records acceptance', async () => {
 test('CLI rejects ordinary/local/fork execution before reading config or credentials', () => {
   const child = spawnSync(process.execPath, ['scripts/deploy-verified.mjs', '/nonexistent-config.json'], { env: { ...process.env, GITHUB_REPOSITORY: 'foreign/repo', GITHUB_REF: 'refs/heads/main', GITHUB_EVENT_NAME: 'workflow_dispatch', CLOUDFLARE_API_TOKEN: 'synthetic-secret-must-not-leak' } });
   assert.notEqual(child.status, 0); assert.match(child.stderr.toString(), /PROTECTED_MANUAL_MAIN_ONLY/); assert(!child.stderr.includes('synthetic-secret-must-not-leak'));
+});
+
+test('CLI accepts the exact CI-transformed config before credentials, and rejects a changed config', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'lingfern-ci-config-'));
+  try {
+    const root = JSON.parse(await readFile('wrangler.jsonc', 'utf8'));
+    const config = ciDeploymentConfig(root, process.cwd());
+    assert(path.isAbsolute(config.d1_databases[0].migrations_dir));
+    const configPath = path.join(dir, 'deployment.json');
+    const env = { ...process.env, GITHUB_REPOSITORY: 'euanylin/lingfern', GITHUB_REF: 'refs/heads/main', GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_SHA: 'a'.repeat(40), GITHUB_RUN_ID: '99', CLOUDFLARE_ACCOUNT_ID: root.account_id, CLOUDFLARE_API_TOKEN: '' };
+    for (const changed of [false, true]) {
+      await writeFile(configPath, JSON.stringify(changed ? { ...config, assets: { ...config.assets, directory: '/unreviewed' } } : config));
+      const child = spawnSync(process.execPath, ['scripts/deploy-verified.mjs', configPath], { env });
+      assert.notEqual(child.status, 0);
+      assert.match(child.stderr.toString(), changed ? /CI_CONFIG_MISMATCH/ : /CLOUDFLARE_CREDENTIALS_REQUIRED/);
+    }
+  } finally { await rm(dir, { recursive: true }); }
 });

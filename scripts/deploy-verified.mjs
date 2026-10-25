@@ -5,7 +5,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { checkReleaseConfig } from './release-config.mjs';
+import { ciDeploymentConfig } from './release-config.mjs';
 
 const origin = 'https://lingfern.com';
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
@@ -171,9 +171,11 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
   assert(process.env.GITHUB_REPOSITORY === 'euanylin/lingfern' && process.env.GITHUB_REF === 'refs/heads/main' && process.env.GITHUB_EVENT_NAME === 'workflow_dispatch', 'PROTECTED_MANUAL_MAIN_ONLY');
   assert(/^[a-f0-9]{40}$/.test(process.env.GITHUB_SHA ?? '') && /^\d+$/.test(process.env.GITHUB_RUN_ID ?? ''), 'CI_SOURCE_REQUIRED');
   const configPath = path.resolve(process.argv[2]);
-  const config = JSON.parse(await readFile(configPath, 'utf8')); checkReleaseConfig(config);
+  const config = JSON.parse(await readFile(configPath, 'utf8'));
+  const reviewed = ciDeploymentConfig(JSON.parse(await readFile('wrangler.jsonc', 'utf8')), process.cwd());
+  assert.deepEqual(config, reviewed, 'CI_CONFIG_MISMATCH');
   assert(/^[a-f0-9]{32}$/.test(config.account_id) && process.env.CLOUDFLARE_ACCOUNT_ID === config.account_id);
-  const token = process.env.CLOUDFLARE_API_TOKEN; assert(token && !/[\r\n]/.test(token));
+  const token = process.env.CLOUDFLARE_API_TOKEN; assert(token && !/[\r\n]/.test(token), 'CLOUDFLARE_CREDENTIALS_REQUIRED');
   const files = await buildManifest(config.assets.directory);
   await writeFile('/tmp/lingfern-deployment-assets.json', JSON.stringify(files), { flag: 'wx' });
   await writeFile('/tmp/lingfern-version-output.ndjson', '', { flag: 'wx' });
