@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "GitHub 身分",
-    "description": "綁定自己的私有倉庫，在裝置間同步學習摘要。",
+    "description": "綁定自己的私人儲存庫，在裝置間同步。",
     "connect": "連接 GitHub",
     "logout": "登出本裝置的網站會話",
     "loading": "正在檢查網站會話…",

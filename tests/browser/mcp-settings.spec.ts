@@ -72,8 +72,8 @@ test('connected service cards keep setup folded, keyboard controls usable, and t
         expect(await management.locator('h3').first().evaluate(element => getComputedStyle(element).fontSize)).toBe('13px');
         expect(await management.locator('.sharing-empty').last().evaluate(element => getComputedStyle(element).marginBottom)).toBe('4px');
         const footer = page.locator('.github-session-actions');
-        expect(await footer.evaluate(element => getComputedStyle(element).borderTopWidth)).toBe('0px');
-        await expect(footer.locator('button').first()).toHaveCSS('font-weight', '400');
+        expect(await footer.evaluate(element => getComputedStyle(element).borderTopWidth)).toBe('1px');
+        await expect(footer.locator('button').first()).toHaveCSS('font-weight', '500');
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
         const smallTargets = await page.locator('.github-identity button,.github-identity a,.mcp-settings button,.mcp-settings summary').evaluateAll(elements => elements.filter(element => {
           const box = element.getBoundingClientRect();

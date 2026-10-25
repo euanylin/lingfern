@@ -40,11 +40,12 @@ export function SyncControls({ locale, profileId, scope, summary, refresh }: { l
   const state = data?.state, changed = syncConnectionError(state?.error);
   const phase = !data?.enabled ? 'disabled' : !online ? 'offline' : data.configuring || state?.phase === 'synced' && data.revision > (state.localRevision ?? -1) ? 'pending' : state?.phase ?? 'pending';
   const problem = changed ? t.changed : state?.error?.includes('CONFLICT') || state?.error === 'SYNC_REMOTE_INVALID' || state?.error === 'SYNC_INTEGRITY' ? t.conflict : state?.error?.includes('CAPACITY') || state?.error === 'SYNC_RESPONSE_LIMIT' ? t.capacity : state?.error?.includes('LIMIT') || state?.error === 'SYNC_HTTP_429' ? t.limited : t.failed;
-  return <section className="sync-controls"><h3 className="sr-only">{t.title}</h3><p className="muted">{t.detail}</p>
-    <SettingsPicker label={t.auto} value={data?.enabled === false ? 'off' : 'on'} options={[{ value: 'on', label: t.on }, { value: 'off', label: t.off }]} disabled={!data || data.configuring || saving} onChange={value => void toggle(value)}/>
-    {data && <p role="status" data-sync-status={failed ? 'error' : phase}>{failed || phase === 'error' ? problem : t[phase]}</p>}
+  const canSync = data?.enabled && !data.configuring && online && state?.phase !== 'syncing' && !saving;
+  return <section className="sync-controls"><h3 className="sr-only">{t.title}</h3>
+    <SettingsPicker variant="field" showChevron label={t.auto} value={data?.enabled === false ? 'off' : 'on'} options={[{ value: 'on', label: t.on }, { value: 'off', label: t.off }]} disabled={!data || data.configuring || saving} onChange={value => void toggle(value)}/>
+    <div className="sync-summary">{data && <p role="status" data-sync-status={failed ? 'error' : phase}>{failed || phase === 'error' ? problem : t[phase]}</p>}
     {!data && failed && <p role="status">{t.failed}</p>}
-    {state?.lastSuccessAt && <p className="muted">{t.lastSuccess}: <time dateTime={state.lastSuccessAt}><bdi>{new Intl.DateTimeFormat(locale, { dateStyle: 'short', timeStyle: 'short' }).format(new Date(state.lastSuccessAt))}</bdi></time></p>}
-    <div className="backup-actions"><button type="button" disabled={!data?.enabled || data.configuring || !online || state?.phase === 'syncing' || saving} onClick={() => void request()}>{state?.phase === 'error' ? t.retry : t.sync}</button>{changed && <button type="button" onClick={refresh}>{t.refresh}</button>}</div>
+    {state?.lastSuccessAt && <p className="muted">{t.lastSuccess}: <time dateTime={state.lastSuccessAt}><bdi>{new Intl.DateTimeFormat(locale, { dateStyle: 'short', timeStyle: 'short' }).format(new Date(state.lastSuccessAt))}</bdi></time></p>}</div>
+    <div className="backup-actions"><button className={canSync ? 'primary' : undefined} type="button" disabled={!canSync} onClick={() => void request()}>{state?.phase === 'error' ? t.retry : t.sync}</button>{changed && <button type="button" onClick={refresh}>{t.refresh}</button>}</div>
   </section>;
 }

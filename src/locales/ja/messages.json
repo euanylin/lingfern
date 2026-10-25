@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "GitHubアカウント",
-    "description": "自分の非公開リポジトリを接続して、端末間で学習概要を同期できます。",
+    "description": "自分の非公開リポジトリで、端末間のデータを同期します。",
     "connect": "GitHubに接続",
     "logout": "この端末のWebセッションからログアウト",
     "loading": "Webセッションを確認中…",

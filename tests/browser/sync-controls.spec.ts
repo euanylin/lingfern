@@ -1,6 +1,51 @@
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 import { autoSyncFixture, connectSync, lookup, syncNow, syncState, synced } from './autoSyncFixture';
+import { languagePacks } from '../../src/locales';
+
+test('GitHub card keeps compact rows, full-width sync and separate session actions across themes and directions', async ({ page, context }) => {
+  test.setTimeout(60000);
+  const server = autoSyncFixture(); await server.attach(context); await connectSync(page); await synced(page);
+  await page.goto('/settings');
+  const card = page.locator('.github-identity'), controls = card.locator('.sync-controls');
+  for (const [label, locale] of [['语言', 'zh-Hans'], ['语言', 'en'], ['Language', 'ar']] as const) {
+    await selectPicker(page, label, locale);
+    const t = languagePacks[locale];
+    await controls.getByRole('button', { name: t.syncControls.sync, exact: true }).click(); await synced(page);
+    for (const theme of ['light', 'dark'] as const) for (const width of [1440, 375, 320]) {
+      await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' }); await page.setViewportSize({ width, height: 900 });
+      const sync = controls.getByRole('button', { name: t.syncControls.sync, exact: true });
+      await expect(sync).toBeEnabled(); await expect(sync).toHaveClass('primary');
+      expect(await sync.evaluate(el => Math.abs(el.getBoundingClientRect().width - el.parentElement!.getBoundingClientRect().width))).toBeLessThan(1);
+      await expect(card.getByText(t.syncControls.detail, { exact: true })).toBeHidden();
+      const geometry = await card.locator('.github-session-actions button').evaluateAll(buttons => buttons.map(button => { const r = button.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, width: r.width, height: r.height }; }));
+      expect(geometry).toHaveLength(2); expect(geometry[1].top).toBeGreaterThanOrEqual(geometry[0].bottom);
+      expect(geometry.every(box => box.width >= 44 && box.height >= 44)).toBe(true);
+      expect(await card.locator('.repository-reset>summary').evaluate(el => getComputedStyle(el, '::after').content)).toBe('"›"');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await page.mouse.move(0, 0);
+      await card.screenshot({ path: `output/playwright/github-reference-${locale}-${theme}-${width}.png`, animations: 'disabled' });
+    }
+  }
+  await controls.locator('.setting-field-label').click(); await expect(page.getByRole('listbox')).toBeVisible(); await page.keyboard.press('Escape');
+  await card.locator('.repository-reset>summary').focus(); await page.keyboard.press('Enter');
+  await expect(card.getByText(languagePacks.ar.syncControls.detail, { exact: true })).toBeVisible();
+  await card.locator('.repository-reset>summary').press('Enter');
+  let release!: () => void; const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/api/sync/changes**', async route => { await pending; await route.fallback(); });
+  await controls.getByRole('button', { name: languagePacks.ar.syncControls.sync, exact: true }).click();
+  try {
+    await expect(controls.locator('[data-sync-status]')).toHaveAttribute('data-sync-status', 'syncing');
+    const sync = controls.getByRole('button', { name: languagePacks.ar.syncControls.sync, exact: true });
+    await expect(sync).toBeDisabled(); await expect(sync).not.toHaveClass('primary');
+    await card.screenshot({ path: 'output/playwright/github-reference-ar-dark-320-syncing.png', animations: 'disabled' });
+  } finally { release(); }
+  await synced(page);
+  server.summary.account.login = 'x'.repeat(39); await page.reload();
+  await expect(card).toContainText('x'.repeat(39));
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.pageErrors()).toEqual([]);
+});
 
 test('automatic controls use one retry and an enduring opt-out in three languages and widths', async ({ page, context }) => {
   await page.setViewportSize({ width: 375, height: 812 }); await page.emulateMedia({ colorScheme: 'dark' }); await page.clock.install();

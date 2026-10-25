@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "Identità GitHub",
-    "description": "Collega il tuo repository privato per sincronizzare i riepiloghi tra dispositivi.",
+    "description": "Sincronizza i tuoi dispositivi con il tuo repository privato.",
     "connect": "Collega GitHub",
     "logout": "Esci dalla sessione web di questo dispositivo",
     "loading": "Verifica della sessione web…",

@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "Identidade GitHub",
-    "description": "Vincule seu repositório privado para sincronizar resumos de aprendizagem entre dispositivos.",
+    "description": "Sincronize seus dispositivos com seu repositório privado.",
     "connect": "Conectar GitHub",
     "logout": "Sair da sessão web deste dispositivo",
     "loading": "Verificando sessão web…",

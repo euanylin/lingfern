@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "GitHub identity",
-    "description": "Bind your own private repository to sync learning summaries across devices.",
+    "description": "Sync across devices using your own private repository.",
     "connect": "Connect GitHub",
     "logout": "Sign out of this device’s web session",
     "loading": "Checking the web session…",

@@ -183,7 +183,7 @@ test('verifying a bound repository reads current choices and never substitutes a
   expect(inspections).toBe(1);
 });
 
-test('unbound repository setup has one divider and no empty nested section or footer strip', async ({ page }) => {
+test('unbound repository setup keeps its divider and separate full-row session actions', async ({ page }) => {
   await page.route('**/api/session', route => route.fulfill({ json: { account: { id: 1234, login: 'synthetic-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false, bindings: [] } }));
   await page.goto('/settings');
   await page.getByRole('button', { name: '复制当前档案用于此账号' }).click();
@@ -198,7 +198,7 @@ test('unbound repository setup has one divider and no empty nested section or fo
     });
     expect(geometry.border).toBe('0px'); expect(geometry.padding).toBe('0px');
     expect(geometry.gap).toBeGreaterThanOrEqual(28); expect(geometry.gap).toBeLessThanOrEqual(52);
-    expect(geometry.stepBorder).toBe('1px'); expect(geometry.footerBorder).toBe('0px');
+    expect(geometry.stepBorder).toBe('1px'); expect(geometry.footerBorder).toBe('1px');
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.mouse.move(0, 0);
     await expect(repository.locator('.repository-steps button')).toHaveCSS('background-color', 'rgb(48, 48, 46)');

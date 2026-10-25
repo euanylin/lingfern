@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "GitHub-Identität",
-    "description": "Eigenes privates Repository verknüpfen, um Lernzusammenfassungen zwischen Geräten zu synchronisieren.",
+    "description": "Synchronisiere deine Geräte über dein privates Repository.",
     "connect": "GitHub verbinden",
     "logout": "Websitzung dieses Geräts abmelden",
     "loading": "Websitzung prüfen…",

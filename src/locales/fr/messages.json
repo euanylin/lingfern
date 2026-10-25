@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "Identité GitHub",
-    "description": "Associez votre dépôt privé pour synchroniser vos résumés d’apprentissage entre appareils.",
+    "description": "Synchronisez vos appareils avec votre dépôt privé.",
     "connect": "Connecter GitHub",
     "logout": "Fermer la session web de cet appareil",
     "loading": "Vérification de la session web…",

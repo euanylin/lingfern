@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "Identitas GitHub",
-    "description": "Tautkan repositori pribadi untuk menyinkronkan ringkasan belajar antarperangkat.",
+    "description": "Sinkronkan perangkat melalui repositori pribadi Anda.",
     "connect": "Hubungkan GitHub",
     "logout": "Keluar dari sesi web perangkat ini",
     "loading": "Memeriksa sesi web…",

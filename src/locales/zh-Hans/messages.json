@@ -183,7 +183,7 @@
   },
   "githubIdentity": {
     "title": "GitHub 身份",
-    "description": "绑定自己的私有仓库，在设备间同步学习摘要。",
+    "description": "绑定自己的私有仓库，在设备间同步。",
     "connect": "连接 GitHub",
     "logout": "退出本设备的网站会话",
     "loading": "正在检查网站会话…",

@@ -469,19 +469,18 @@ details[open]:not(.installed-resources)>summary::after{transform:rotateX(180deg)
 .github-status-line[data-status=signed-out]{align-items:flex-start;flex-direction:column;gap:16px}
 .github-identity :where(button,a.button),.mcp-settings button{font-size:14px;font-weight:500;border-radius:12px;min-height:44px}
 .github-identity :where(button,a.button):hover,.mcp-settings button:hover{transform:none}
-.github-session-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.github-identity>:is(.sync-account-choice,.sync-controls)+.github-session-actions{border-top:1px solid var(--line);padding-top:12px}
-.github-session-actions button{padding:8px 10px;background:none;color:var(--muted);font-weight:400;margin-inline-start:-10px}
-.github-session-actions button+button{margin-inline-start:0}
+.github-session-actions{display:flex;flex-direction:column;gap:0;margin-top:20px;border-top:1px solid var(--line)}
+.github-session-actions button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:14px 0;background:none;color:var(--ink);font-weight:500;text-align:start;border-radius:0}
+.github-session-actions button+button{border-top:1px solid var(--line)}
+.github-session-actions .setting-chevron{padding:0;background:none;color:var(--muted)}
 .github-identity .service-danger,.mcp-settings .service-danger{color:var(--error)}
 .github-session-actions button:hover{background:var(--interactive-hover);color:var(--ink)}
 .github-session-actions .service-danger:hover{color:var(--error)}
-.repository-binding{margin-top:28px}.repository-binding>h3{margin:0}.repository-binding>.muted{font-size:13px;margin:0 0 16px}
+.repository-binding{margin-top:8px}.repository-binding>h3{margin:0}.repository-binding>.muted{font-size:13px;margin:0 0 20px;padding-inline-start:16px}
 .repository-binding .setting{color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:58px;padding:16px 0;margin:0 0 16px;border-block:1px solid var(--line);border-radius:0;background:none;font-size:15px;line-height:24px;font-weight:400;text-align:start}
 .repository-binding .setting>span{min-width:0}.repository-binding .setting-trigger{flex:1;justify-content:flex-end;min-width:44px;background:none;padding-inline:0;font-size:15px;font-weight:400}.repository-binding .setting-trigger bdi{overflow-wrap:anywhere}
 /* Let the 44px picker target share the row's text clearance. */
 .repository-binding .setting .setting-trigger{margin-block:-10px;line-height:24px}
-.github-identity>.repository-binding+.sync-controls{margin-top:0}
 .repository-binding>.service-disclosure:first-of-type{margin-top:16px}
 .repository-binding>.service-disclosure>summary{min-height:56px;padding-block:16px;line-height:24px}
 .repository-binding>button:not(.service-danger){color:var(--ink)}.repository-binding .setting-trigger .setting-chevron{background:none;width:auto;height:auto;padding:0;color:var(--muted)}
@@ -517,8 +516,9 @@ details[open]:not(.installed-resources)>summary::after{transform:rotateX(180deg)
 @media(prefers-reduced-transparency:reduce){.service-toast{background:var(--button-surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
 @keyframes sharing-refresh{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.github-identity *,.mcp-settings *{transition:none!important;animation:none!important}.github-identity :is(button,a):active,.mcp-settings button:active{transform:none}}
-.github-identity .backup-actions>button{padding:8px 18px;background:var(--button-surface);color:var(--ink);text-decoration:none;font-weight:500}
-.github-identity .backup-actions>button:hover{background:var(--button-hover);text-decoration:none}
+.github-identity .backup-actions>button{padding:8px 18px;text-decoration:none;font-weight:500}
+.github-identity .backup-actions>button:not(.primary){background:var(--button-surface);color:var(--ink)}
+.github-identity .backup-actions>button:not(.primary):hover{background:var(--button-hover);text-decoration:none}
 
 @media(max-width:1199px){
   :root{-webkit-tap-highlight-color:transparent}
@@ -602,3 +602,24 @@ html:has(#root>main.welcome-main){overflow:hidden}
 }
 
 .slot-result[data-correct=true]{color:var(--accent)}.slot-result[data-correct=false]{color:var(--error)}
+
+.github-identity .github-status-line[data-status=connected] .github-status-dot{background:var(--primary-surface)}
+.github-identity .service-disclosure>summary::after{content:'›';position:static;flex:none;margin:0;line-height:1;color:var(--muted);transform:none}
+.github-identity .service-disclosure[open]>summary::after{transform:rotate(90deg)}
+[dir=rtl] .github-identity .service-disclosure:not([open])>summary::after{transform:scaleX(-1)}
+.settings-service-groups .github-identity .sync-controls{border-top:1px solid var(--line);padding-top:16px;margin-top:0}
+.github-identity .sync-controls>.setting{margin:0;background:none;padding:0;min-height:52px}
+.github-identity .sync-controls .setting-trigger{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;width:100%;max-width:100%;min-height:52px;padding:12px 0;background:none;font-weight:400;color:var(--muted)}
+.github-identity .sync-controls .setting-field-label{color:var(--ink);font-weight:600}
+.github-identity .sync-controls [id$="-value"]{text-align:end}
+.github-identity .sync-controls .setting-chevron{padding:0;background:none;color:var(--muted)}
+.sync-summary{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:8px 0 16px;color:var(--muted);font-size:13px}
+.sync-summary:empty{display:none}.sync-summary p{margin:0;font-size:inherit}.sync-summary [data-sync-status=error]{color:var(--error)}
+.sync-controls>.backup-actions{flex-direction:column;margin:0;gap:8px}
+.github-identity .sync-controls .backup-actions>button{width:100%;min-height:48px;border-radius:16px;font-size:15px;font-weight:600}
+.github-identity .sync-controls .backup-actions>.primary{background:var(--primary-surface);color:var(--primary-ink)}
+.github-identity .sync-controls .backup-actions>.primary:hover{background:var(--primary-hover);color:var(--on-accent)}
+
+.repository-binding:has(>.repository-steps){margin-top:12px}
+
+.github-identity .github-status{min-width:0;max-width:100%;overflow-wrap:anywhere}
