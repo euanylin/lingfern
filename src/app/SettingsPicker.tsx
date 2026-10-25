@@ -59,32 +59,44 @@ export function SettingsPicker(props: Props) {
       popup.style.top = `${placement.top - origin.top}px`;
     };
     update(!props.multiple);
+    const openingScroll = new Map<EventTarget, { owner: Element; left: number; top: number }>();
+    for (let owner: Element | null = root.current; owner; owner = owner.parentElement) openingScroll.set(owner, { owner, left: owner.scrollLeft, top: owner.scrollTop });
+    const page = document.scrollingElement;
+    if (page) openingScroll.set(document, { owner: page, left: page.scrollLeft, top: page.scrollTop });
+    const visual = window.visualViewport, visualLeft = visual?.offsetLeft, visualTop = visual?.offsetTop;
     const reposition = (event: Event) => { if (!(event.target instanceof Node && popup.contains(event.target))) update(); };
     const dismiss = (event: Event) => {
       if (event.target instanceof Node && popup.contains(event.target)) return;
       if (popup.contains(document.activeElement)) trigger.current?.focus({ preventScroll: true });
       setOpen(false);
     };
+    const scrolled = (event: Event) => {
+      // Focus may finish scrolling before its queued notification arrives.
+      const initial = event.target && openingScroll.get(event.target);
+      if (initial && initial.owner.scrollLeft === initial.left && initial.owner.scrollTop === initial.top) return;
+      if (event.target === visual && visual?.offsetLeft === visualLeft && visual?.offsetTop === visualTop) return;
+      dismiss(event);
+    };
     let touchY: number | undefined;
     const touchStart = (event: TouchEvent) => { touchY = event.target instanceof Node && popup.contains(event.target) ? undefined : event.touches[0]?.clientY; };
     const touchMove = (event: TouchEvent) => { if (touchY !== undefined && Math.abs((event.touches[0]?.clientY ?? touchY) - touchY) > 10) dismiss(event); };
     window.addEventListener('resize', reposition);
     // Start scroll dismissal after the trigger finishes scrolling into view.
-    const frame = requestAnimationFrame(() => { update(); window.addEventListener('scroll', dismiss, true); });
+    const frame = requestAnimationFrame(() => { update(); window.addEventListener('scroll', scrolled, true); });
     window.addEventListener('wheel', dismiss, { capture: true, passive: true });
     window.addEventListener('touchstart', touchStart, { capture: true, passive: true });
     window.addEventListener('touchmove', touchMove, { capture: true, passive: true });
     window.visualViewport?.addEventListener('resize', reposition);
-    window.visualViewport?.addEventListener('scroll', dismiss);
+    window.visualViewport?.addEventListener('scroll', scrolled);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', reposition);
-      window.removeEventListener('scroll', dismiss, true);
+      window.removeEventListener('scroll', scrolled, true);
       window.removeEventListener('wheel', dismiss, true);
       window.removeEventListener('touchstart', touchStart, true);
       window.removeEventListener('touchmove', touchMove, true);
       window.visualViewport?.removeEventListener('resize', reposition);
-      window.visualViewport?.removeEventListener('scroll', dismiss);
+      window.visualViewport?.removeEventListener('scroll', scrolled);
     };
   }, [open, selected, options, props.multiple]);
   useLayoutEffect(() => {

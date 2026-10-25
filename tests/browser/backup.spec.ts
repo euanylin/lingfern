@@ -139,7 +139,9 @@ for (const [locale, profileLabel, exportLabel, importLabel, copyLabel, done] of 
     await restore(copied.bytes);
     const picker = page.getByRole('button', { name: new RegExp(`^${profileLabel}:`) });
     await picker.focus(); await picker.press('Enter');
-    expect(await page.getByRole('option', { selected: true }).evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
+    const selected = page.getByRole('option', { selected: true });
+    await expect(selected).toBeVisible();
+    await expect.poll(() => selected.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
     await picker.press('Escape'); await expect(picker).toBeFocused();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `output/playwright/backup-long-name-${locale}-${colorScheme}.png`, fullPage: true });
