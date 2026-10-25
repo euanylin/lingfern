@@ -26,7 +26,10 @@ export default {
       });
     }
     if (/^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname) && ['GET', 'HEAD'].includes(request.method) && request.headers.get('Accept')?.includes('text/html')) {
-      return env.ASSETS.fetch(new Request(new URL('/', request.url), request));
+      const asset = await env.ASSETS.fetch(new Request(new URL('/', request.url), request));
+      const response = new Response(asset.body, asset);
+      response.headers.set('X-Lingfern-Version', env.CF_VERSION_METADATA.id);
+      return response;
     }
     return env.ASSETS.fetch(request);
   },

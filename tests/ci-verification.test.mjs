@@ -61,8 +61,10 @@ test('workflow stages agree with the verification contract and deployment gate p
   }
   const deploy = await readFile(new URL('../.github/workflows/deploy.yml', import.meta.url), 'utf8');
   const gate = deploy.indexOf('node scripts/ci-verification.mjs --require-main');
-  assert(gate >= 0 && gate < deploy.indexOf('npx wrangler deploy'));
+  assert(gate >= 0 && gate < deploy.indexOf('node scripts/deploy-verified.mjs'));
   assert(deploy.includes('environment: production') && deploy.includes("github.ref == 'refs/heads/main'"));
+  const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+  assert.equal(pkg.scripts.deploy, 'node scripts/deploy-verified.mjs /tmp/lingfern-ci-deployment.json');
 });
 
 test('forks, pull requests and unavailable credentials fall back to full checks; foreign deployment is denied', async () => {

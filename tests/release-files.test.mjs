@@ -9,7 +9,7 @@ test('publication allowlist excludes original/private/credential/diagnostic path
 
 test('release guard refuses unconfigured and local-only settings before any real deployment', async () => {
   const { checkReleaseConfig, ciDeploymentConfig } = await import('../scripts/release-config.mjs');
-  const config={name:'lingfern',workers_dev:false,preview_urls:false,vars:{GITHUB_CLIENT_ID:'synthetic-app',SYNC_ENABLED:'true'},d1_databases:[{binding:'AUTH_DB',database_id:'11111111-1111-1111-1111-111111111111',migrations_dir:'worker/migrations'}],kv_namespaces:[{binding:'OAUTH_KV',id:'1'.repeat(32)}],assets:{not_found_handling:'none',run_worker_first:['/api/*','/mcp']}};
+  const config={name:'lingfern',workers_dev:false,preview_urls:false,version_metadata:{binding:'CF_VERSION_METADATA'},vars:{GITHUB_CLIENT_ID:'synthetic-app',SYNC_ENABLED:'true'},d1_databases:[{binding:'AUTH_DB',database_id:'11111111-1111-1111-1111-111111111111',migrations_dir:'worker/migrations'}],kv_namespaces:[{binding:'OAUTH_KV',id:'1'.repeat(32)}],assets:{not_found_handling:'none',run_worker_first:['/api/*','/mcp']}};
   assert.doesNotThrow(()=>checkReleaseConfig(config));
   const local=structuredClone(config); local.env={local:{routes:[]}}; assert.doesNotThrow(()=>checkReleaseConfig(local));
   for (const routes of [undefined,[{pattern:'lingfern.com',custom_domain:true}]]) { local.env.local.routes=routes; assert.throws(()=>checkReleaseConfig(local)); }
@@ -19,8 +19,8 @@ test('release guard refuses unconfigured and local-only settings before any real
   assert.equal(ci.main,'/tmp/lingfern-source/worker/index.ts'); assert.equal(ci.assets.directory,'/tmp/lingfern-source/dist');
   assert.deepEqual(ci.vars,production.vars); assert.deepEqual(ci.kv_namespaces,production.kv_namespaces);
   assert.deepEqual(ci.d1_databases,[{...production.d1_databases[0],migrations_dir:'/tmp/lingfern-source/worker/migrations'}]);
-  assert.equal(ci.workers_dev,false); assert.equal(ci.preview_urls,false);
+  assert.deepEqual(ci.version_metadata,production.version_metadata); assert.equal(ci.workers_dev,false); assert.equal(ci.preview_urls,false);
   assert.throws(()=>ciDeploymentConfig({...production,vars:{...production.vars,LOCAL_AUTH:'true'}},'/tmp/lingfern-source'));
 
-  for(const change of [c=>{c.vars.SYNC_ENABLED='false';},c=>{c.vars.LOCAL_AUTH='true';},c=>{c.vars.TOKEN_ENCRYPTION_KEY='synthetic';},c=>{c.d1_databases[0].database_id='00000000-0000-0000-0000-000000000000';},c=>{c.kv_namespaces=[];},c=>{c.assets.run_worker_first=['/*'];}]){const bad=structuredClone(config);change(bad);assert.throws(()=>checkReleaseConfig(bad));}
+  for(const change of [c=>{delete c.version_metadata;},c=>{c.vars.SYNC_ENABLED='false';},c=>{c.vars.LOCAL_AUTH='true';},c=>{c.vars.TOKEN_ENCRYPTION_KEY='synthetic';},c=>{c.d1_databases[0].database_id='00000000-0000-0000-0000-000000000000';},c=>{c.kv_namespaces=[];},c=>{c.assets.run_worker_first=['/*'];}]){const bad=structuredClone(config);change(bad);assert.throws(()=>checkReleaseConfig(bad));}
 });

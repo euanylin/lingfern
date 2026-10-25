@@ -8,6 +8,7 @@
   ],
   "workers_dev": false,
   "preview_urls": false,
+  "version_metadata": { "binding": "CF_VERSION_METADATA" },
   "send_metrics": false,
   "triggers": {
     "crons": [
@@ -66,6 +67,7 @@
   "env": {
     "local": {
       "name": "lingfern-local",
+      "version_metadata": { "binding": "CF_VERSION_METADATA" },
       "vars": {
         "LOCAL_AUTH": "true"
       },

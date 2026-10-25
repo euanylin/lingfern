@@ -5,6 +5,7 @@ import path from 'node:path';
 export function checkReleaseConfig(config) {
   assert.equal(config.name, 'lingfern');
   assert.equal(config.workers_dev, false); assert.equal(config.preview_urls, false);
+  assert.equal(config.version_metadata?.binding, 'CF_VERSION_METADATA', 'Verified releases require the actual Worker version');
   assert(!config.vars?.LOCAL_AUTH, 'LOCAL_AUTH must never reach production');
   if (config.env?.local) assert.deepEqual(config.env.local.routes, [], 'Local environment must not inherit production domain routes');
   assert.equal(config.vars?.SYNC_ENABLED, 'true', 'First launch requires accepted and enabled sync');
