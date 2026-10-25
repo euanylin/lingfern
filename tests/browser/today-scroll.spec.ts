@@ -1,11 +1,33 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+const catalogue = JSON.parse(readFileSync('content/daily-quotes-runtime.json', 'utf8')) as { quotes: { id: string; text: string }[] };
+const index = JSON.parse(readFileSync('content/daily-quote-index.json', 'utf8')) as { id: string; pageTitle: string; eligible: boolean }[];
+async function recordedQuote(page: Page, predicate: (quote: { text: string }) => boolean) {
+  const quote = catalogue.quotes.find(predicate)!;
+  expect(quote).toBeDefined();
+  const eligible = index.filter(row => row.eligible), selected = eligible.find(row => row.id === quote.id.slice(-16))!;
+  expect(selected).toBeDefined();
+  const pages = [...new Set(eligible.map(row => row.pageTitle))], pool = eligible.filter(row => row.pageTitle === selected.pageTitle);
+  const draws = [(pages.indexOf(selected.pageTitle) + .5) / pages.length, (pool.indexOf(selected) + .5) / pool.length].map(value => Math.floor(value * 0x100000000));
+  expect(JSON.parse(readFileSync('content/quote-calendar.json', 'utf8')).some((event: { date: string }) => event.date === '07-02')).toBe(false);
+  await page.clock.setFixedTime('2026-07-02T12:00:00');
+  await page.addInitScript(draws => {
+    const random = crypto.getRandomValues.bind(crypto); let draw = 0;
+    crypto.getRandomValues = array => {
+      if (array instanceof Uint32Array && array.length === 1) { array[0] = draws[Math.min(draw++, draws.length - 1)]; return array; }
+      return random(array);
+    };
+  }, draws);
+  return quote;
+}
+
+
 for (const width of [375, 768, 1440]) test(`quote measurement leaves page position and full-quote controls stable at ${width}px`, async ({ page }) => {
+  const recorded = await recordedQuote(page, quote => quote.text.length > 1500);
   await page.setViewportSize({ width, height: 812 }); await page.goto('/today');
   const quote = page.locator('.daily-quote blockquote'); await expect(quote).toBeVisible();
-  // Use a long quote to expose temporary scroll-anchor unclamping.
-  await quote.evaluate(el => { el.textContent = 'Synthetic scrolling regression sentence with enough words to wrap naturally. '.repeat(80); window.dispatchEvent(new Event('resize')); });
+  await expect(quote).toHaveText(recorded.text);
   const expand = page.locator('.daily-quote .update-action'); await expect(expand).toBeVisible();
   const result = await page.evaluate(async () => {
     const quote = document.querySelector('.daily-quote blockquote')!, practice = document.querySelector('.practice-section')!;
@@ -39,12 +61,10 @@ for (const width of [375, 768, 1440]) test(`quote measurement leaves page positi
 test.describe('rapid native Today scrolling', () => {
   test.use({ hasTouch: true });
   test('fast alternating swipes and browser-bar resizing keep content anchors stable', async ({ page }) => {
+    const recorded = await recordedQuote(page, quote => quote.text.startsWith('There is a limit to the legitimate interference'));
     await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/today');
     const quote = page.locator('.daily-quote blockquote'); await expect(quote).toBeVisible();
-    const catalogue = JSON.parse(readFileSync('public/daily-quotes/catalogue.json', 'utf8')) as { quotes: { text: string }[] };
-    const recorded = catalogue.quotes.find(item => item.text.startsWith('There is a limit to the legitimate interference'))!;
-    expect(recorded).toBeDefined();
-    await quote.evaluate((el, text) => { el.textContent = text; window.dispatchEvent(new Event('resize')); }, recorded.text);
+    await expect(quote).toHaveText(recorded.text);
     await expect(page.locator('.daily-quote .update-action')).toHaveAttribute('aria-expanded', 'false');
     await page.evaluate(() => {
       const quote = document.querySelector('.daily-quote blockquote')!, practice = document.querySelector('.practice-section')!;

@@ -143,6 +143,9 @@ test('settings controls share pointer, keyboard and touch feedback without highl
       await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await control.focus();
       await expect(control).toHaveCSS('background-color', entryKeyboard.background);
       await control.evaluate(el => (el as HTMLElement).blur());
+      // Finish focus scrolling before starting the next touch.
+      await control.scrollIntoViewIfNeeded();
+      await control.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
       await control.dispatchEvent('pointerdown', { isPrimary: true, pointerType: 'touch', pointerId: 1, clientX: 10, clientY: 10 });
       await expect(control).toHaveAttribute('data-touch-active', ''); await expect(control).toHaveCSS('background-color', feedback);
       if (await control.evaluate(el => el.classList.contains('setting-trigger'))) expect(await control.evaluate(el => getComputedStyle(el.parentElement!).backgroundColor)).toBe(rowFeedback);
