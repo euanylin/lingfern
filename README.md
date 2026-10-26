@@ -12,7 +12,7 @@ English reading and listening practice, online or offline. For learners aged 16 
 |---|---|
 | **Reading, Listening and Combined** | Generate practice locally from source texts and recordings. Set goals, interests, topics, materials and question types; Combined runs reading followed by listening. |
 | **Practice and Test** | Use examples, three hints, dictionary support and self-assessment in Practice. Test keeps assistance off and reveals feedback after completion. Objective answers are scored; open responses can be skipped and remain unscored. |
-| **Reading and audio controls** | Read beside the questions, use the answer card to locate a question, and scroll through all questions for the current recording. Audio supports pause, replay and seeking. |
+| **Reading and audio controls** | Highlight passages, save material notes, locate questions with the answer card, and scroll through all questions for the current recording. Audio supports pause, replay and seeking. |
 | **Saved work** | Resume drafts, revisit answers and feedback, delete saved responses, and view reading/listening progress and the activity fern. Today also offers daily quotations. |
 | **Reference tools** | English dictionary, collapsible bookmarks, simple/full IPA charts with recordings, English usage reference and query history across all three reference tools. Choose an external dictionary for online lookup. |
 | **Offline resources** | Search, install, update or remove resource packs in Library. Import compatible community ZIPs with their text and audio. |

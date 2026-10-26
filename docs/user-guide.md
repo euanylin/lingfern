@@ -9,6 +9,8 @@
 3. Work through the questions. Drafts save as you answer. Use the answer card to locate a question, then select its answer area to start typing or choosing an option.
 4. Submit after the final question to save the completed answers and see feedback. In listening, all question groups for the current recording appear in one scrollable list; subsequent recordings follow in order. Pause, replay and seek using the player.
 
+In reading, select text to add/remove highlights and use **Notes** to save material notes. On mobile, expand or resize the answer panel with its handle.
+
 Resume from Today or **History**, at the top of Today's Reading section; **Restart** begins a replacement session. For save errors, keep the page open and follow the recovery action.
 
 | Mode | Available support |
