@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { successfulChecks, fullChecksJob, findVerification, verificationSteps } from '../scripts/ci-verification.mjs';
+import { successfulChecks, fullChecksJob, findVerification, verificationSteps, fullSteps, uiSteps, scopedChecksJob } from '../scripts/ci-verification.mjs';
 
 const repository = 'euanylin/lingfern', sha = 'a'.repeat(40);
 const run = { id: 1, repository: { full_name: repository }, head_sha: sha, head_branch: 'codex/repair', path: '.github/workflows/checks.yml', name: 'Checks', event: 'push', status: 'completed', conclusion: 'success', run_attempt: 1, updated_at: '2026-10-24T00:00:01Z' };
@@ -23,7 +23,7 @@ test('later unsuccessful checks invalidate old success until fresh full checks p
   const get = async path => path.includes('?head_sha=') ? { workflow_runs: [failed, refresh ? { ...run, updated_at: '2026-10-24T00:00:03Z' } : run] } : { total_count: 1, jobs: [job] };
   assert.deepEqual(await findVerification(get, repository, sha, 99), {});
   refresh = true;
-  assert.deepEqual(await findVerification(get, repository, sha, 99), { full: 1, main: undefined });
+  assert.deepEqual(await findVerification(get, repository, sha, 99), { verified: 1, scope: 'full', main: undefined });
   for (const conclusion of ['cancelled', 'timed_out', 'action_required']) {
     failed.conclusion = conclusion; refresh = false;
     assert.deepEqual(await findVerification(get, repository, sha, 99), {});
@@ -34,7 +34,7 @@ test('another unfinished verification blocks reuse and manual full verification 
   const pending = { ...run, id: 2, status: 'in_progress', conclusion: null };
   const get = async path => path.includes('?head_sha=') ? { workflow_runs: [pending, { ...run, event: 'workflow_dispatch', head_branch: 'main' }] } : { total_count: 1, jobs: [job] };
   assert.deepEqual(await findVerification(get, repository, sha, 99), {});
-  assert.deepEqual(await findVerification(get, repository, sha, 2), { full: 1, main: 1 });
+  assert.deepEqual(await findVerification(get, repository, sha, 2), { verified: 1, scope: 'full', main: 1 });
 });
 
 test('full proof rejects skipped, missing, failed, foreign and incomplete stages', () => {
@@ -43,9 +43,12 @@ test('full proof rejects skipped, missing, failed, foreign and incomplete stages
 });
 
 test('reused main success needs an independent full run for the identical source', async () => {
-  const main = { ...run, id: 2, head_branch: 'main' }, reused = { ...job, run_id: 2, steps: job.steps.map(step => ({ ...step, conclusion: 'skipped' })) };
+  const main = { ...run, id: 2, head_branch: 'main' }, reused = { ...job, run_id: 2, steps: [{ name: 'Reuse verification for the identical source', status: 'completed', conclusion: 'success' }, ...job.steps.map(step => ({ ...step, conclusion: 'skipped' }))] };
   const get = async path => path.includes('?head_sha=') ? { workflow_runs: [main, run] } : { total_count: 1, jobs: [path.includes('/runs/2/') ? reused : job] };
-  assert.deepEqual(await findVerification(get, repository, sha, 99), { full: 1, main: 2 });
+  assert.deepEqual(await findVerification(get, repository, sha, 99), { verified: 1, scope: 'full', main: 2 });
+  reused.steps[0].conclusion = 'skipped';
+  assert.deepEqual(await findVerification(get, repository, sha, 99), { verified: 1, scope: 'full', main: undefined });
+  reused.steps[0].conclusion = 'success';
   assert.deepEqual(await findVerification(get, repository, sha, 1), {});
   assert.deepEqual(await findVerification(async () => ({ workflow_runs: [{ ...run, head_sha: 'b'.repeat(40) }] }), repository, sha, 99), {});
   await assert.rejects(findVerification(async () => { throw Error('API unavailable'); }, repository, sha, 99));
@@ -54,15 +57,25 @@ test('reused main success needs an independent full run for the identical source
 test('workflow stages agree with the verification contract and deployment gate precedes upload', async () => {
   const checks = await readFile(new URL('../.github/workflows/checks.yml', import.meta.url), 'utf8');
   const blocks = checks.split(/\n      - /).slice(1);
-  for (const name of verificationSteps) {
+  for (const name of [...new Set([...fullSteps, ...uiSteps])]) {
     const block = blocks.find(value => value.startsWith(`name: ${name}\n`) || value.startsWith(`run: ${name.slice(4)}\n`) && name.startsWith('Run '));
     assert(block, name);
-    assert(block.includes("if: steps.verification.outputs.run_id == ''"), name);
+    assert(block.includes("if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind"), name);
+    assert(!block.includes('continue-on-error'), name);
   }
   const deploy = await readFile(new URL('../.github/workflows/deploy.yml', import.meta.url), 'utf8');
   const gate = deploy.indexOf('node scripts/ci-verification.mjs --require-main');
   assert(gate >= 0 && gate < deploy.indexOf('node scripts/deploy-verified.mjs'));
   assert(deploy.includes('environment: production') && deploy.includes("github.ref == 'refs/heads/main'"));
+  assert(gate < deploy.indexOf('- run: npm ci'));
+  assert(checks.includes("cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}"));
+  assert(!checks.includes('paths-ignore:') && !checks.includes('pull_request_target:'));
+  assert(checks.includes('run: node tests/sw-update.mjs') && !checks.includes('run: npm run test:update'));
+  const deployBlocks = deploy.split(/\n      - /).slice(1);
+  for (const name of ['Run npm ci', 'Check public source', 'Run npm run build', 'Deploy the checked source and assets']) {
+    const block = deployBlocks.find(value => value.startsWith(`name: ${name}\n`) || name.startsWith('Run ') && value.startsWith(`run: ${name.slice(4)}\n`));
+    assert(block?.includes("if: steps.verification.outputs.scope != 'docs'"), name);
+  }
   const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
   assert.equal(pkg.scripts.deploy, 'node scripts/deploy-verified.mjs /tmp/lingfern-ci-deployment.json');
 });
@@ -74,8 +87,53 @@ test('forks, pull requests and unavailable credentials fall back to full checks;
       const output = join(temp, String(index));
       const child = spawnSync(process.execPath, [fileURLToPath(new URL('../scripts/ci-verification.mjs', import.meta.url)), mode], { env: { ...process.env, GITHUB_REPOSITORY: repo, GITHUB_EVENT_NAME: event, GITHUB_SHA: sha, GITHUB_RUN_ID: '99', GITHUB_RUN_ATTEMPT: index === 4 ? '2' : '1', GITHUB_OUTPUT: output, GITHUB_TOKEN: '' }, timeout: 5000 });
       assert.equal(child.status === 0, accepted);
-      if (accepted) assert.equal(await readFile(output, 'utf8'), 'run_id=\nmain_run_id=\n');
+      if (accepted) assert.equal(await readFile(output, 'utf8'), 'run_id=\nmain_run_id=\nscope=full\n');
       if (index === 4) assert.equal(child.stderr.toString(), '');
     }
   } finally { await rm(temp, { recursive: true }); }
+});
+
+test('scoped proof reclassifies all changes against an independently successful main', async () => {
+  const base = 'b'.repeat(40), baseline = { ...run, id: 10, head_branch: 'main', head_sha: base };
+  const scoped = kind => ({ ...job, steps: ['Select verification scope', `Verify ${kind} scope from ${base}`, ...(kind === 'ui' ? uiSteps : kind === 'full' ? fullSteps : [])].map(name => ({ name, status: 'completed', conclusion: 'success' })) });
+  let files = [{ filename: 'README.md', status: 'modified' }], main = baseline;
+  const get = async path => path.includes('compare/') ? { status: 'ahead', merge_base_commit: { sha: base }, files } : { workflow_runs: [main] };
+  assert.equal(await scopedChecksJob(scoped('docs'), run, get, repository), 'docs');
+  files = [{ filename: 'src/app/modal.ts', status: 'modified' }];
+  assert.equal(await scopedChecksJob(scoped('ui'), run, get, repository), 'ui');
+  await assert.rejects(scopedChecksJob(scoped('docs'), run, get, repository), /complete source change/);
+  files.push({ filename: 'src/data/db.ts', status: 'modified' });
+  await assert.rejects(scopedChecksJob(scoped('ui'), run, get, repository), /complete source change/);
+  assert.equal(await scopedChecksJob(scoped('full'), run, () => { throw Error('Full checks need no scope API'); }, repository), 'full');
+  main = { ...baseline, head_branch: 'codex/fake' };
+  await assert.rejects(scopedChecksJob(scoped('docs'), run, get, repository), /verified main baseline/);
+});
+
+test('missing, skipped or failed required scoped stages cannot become verified proof', async () => {
+  const fullJob = { ...job, steps: ['Select verification scope', `Verify full scope from ${'0'.repeat(40)}`, ...fullSteps].map(name => ({ name, status: 'completed', conclusion: 'success' })) };
+  assert.equal(await scopedChecksJob(fullJob, run), 'full');
+  for (const conclusion of ['skipped', 'failure', 'cancelled']) {
+    for (let index = 0; index < fullJob.steps.length; index++) {
+      const steps = fullJob.steps.map((step, i) => i === index ? { ...step, conclusion } : step);
+      assert.equal(await scopedChecksJob({ ...fullJob, steps }, run), undefined);
+    }
+  }
+  assert.equal(await scopedChecksJob({ ...fullJob, steps: fullJob.steps.slice(1) }, run), undefined);
+  assert.equal(await scopedChecksJob({ ...fullJob, steps: [...fullJob.steps, fullJob.steps[1]] }, run), undefined);
+});
+
+test('a real scoped branch proof and exact-source main reuse satisfy the deployment gate', async () => {
+  const base = 'b'.repeat(40), baseline = { ...run, id: 10, head_sha: base, head_branch: 'main' };
+  const main = { ...run, id: 2, head_branch: 'main' };
+  const scoped = { ...job, steps: ['Select verification scope', `Verify ui scope from ${base}`, ...uiSteps].map(name => ({ name, status: 'completed', conclusion: 'success' })) };
+  const reused = { ...job, run_id: main.id, steps: [{ name: 'Reuse verification for the identical source', status: 'completed', conclusion: 'success' }] };
+  const get = async path => {
+    if (path.includes('/compare/')) return { status: 'ahead', merge_base_commit: { sha: base }, files: [{ filename: 'src/app/modal.ts', status: 'modified' }] };
+    if (path.includes('head_sha=' + base)) return { workflow_runs: [baseline] };
+    if (path.includes('?head_sha=')) return { workflow_runs: [main, run] };
+    return { total_count: 1, jobs: [path.includes('/runs/2/') ? reused : scoped] };
+  };
+  assert.deepEqual(await findVerification(get, repository, sha, 99), { verified: 1, scope: 'ui', main: 2 });
+  scoped.steps.find(step => step.name === 'Run safety guards').conclusion = 'skipped';
+  assert.deepEqual(await findVerification(get, repository, sha, 99), {});
 });

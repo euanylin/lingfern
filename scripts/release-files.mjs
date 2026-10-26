@@ -32,6 +32,11 @@ export async function inventory(base) {
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
   const target = process.argv[2];
+  if (target === '--check') {
+    const entries = await inventory(process.cwd());
+    console.log(`Checked ${entries.length} public source files without copying them`);
+    process.exit(0);
+  }
   assert(target && path.isAbsolute(target), 'Provide a new absolute local export directory');
   const entries = await inventory(process.cwd());
   await mkdir(target); // Never overwrite an export or source directory.

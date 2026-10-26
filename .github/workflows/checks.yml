@@ -5,6 +5,10 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 permissions:
   contents: read
   actions: read
@@ -26,39 +30,57 @@ jobs:
         run: node scripts/ci-verification.mjs --reuse
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - name: Select verification scope
+        id: scope
+        if: steps.verification.outputs.run_id == ''
+        run: node scripts/ci-scope.mjs --select
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CI_HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+      - name: Verify ${{ steps.scope.outputs.kind }} scope from ${{ steps.scope.outputs.base }}
+        if: steps.verification.outputs.run_id == ''
+        run: node scripts/ci-scope.mjs --assert
       - run: npm ci
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
       - run: npm run lint
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
       - run: npm test
-        if: steps.verification.outputs.run_id == ''
-      - run: npm run release:files -- /tmp/lingfern-source-export
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'full'
+      - name: Check public source
+        run: node scripts/release-files.mjs --check
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
+      - name: Run safety guards
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'ui'
+        run: node --test tests/ci-scope.test.mjs tests/ci-verification.test.mjs tests/deployment.test.mjs tests/release-files.test.mjs
       - run: npm run build
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
       - name: Inspect public build
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
         run: |
           test -f dist/index.html && test -f dist/sw.js
           test -z "$(find dist -type f -size +20M -print -quit)"
           du -sh dist
       - run: npm run deploy:check
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
       - run: npx playwright install --with-deps chromium
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
+      - name: Run scoped UI checks
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'ui'
+        run: node scripts/ci-scope.mjs --run-ui
       - run: npm run test:sync
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'full'
       - run: npm run test:mcp
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'full'
       - run: npm run test:e2e
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'full'
       - run: npm run test:offline
-        if: steps.verification.outputs.run_id == ''
-      - run: npm run test:update
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'full'
+      - name: Service Worker update safety
+        run: node tests/sw-update.mjs
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind == 'full'
         timeout-minutes: 5
       - name: Check local Worker routes and assets
-        if: steps.verification.outputs.run_id == ''
+        if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind != 'docs'
         run: |
           set -euo pipefail
           npm run preview > /tmp/lingfern-preview.log 2>&1 &

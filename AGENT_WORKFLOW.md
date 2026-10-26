@@ -90,7 +90,7 @@ Run resource generation and tests reading those outputs sequentially. Coordinate
 
 ### Routine update budget — maintainer update,2026-10-26
 
-Select the smallest sufficient path before editing. The table is the default local scope, not a limit on necessary safety or a relaxation of protected CI.
+Select the smallest sufficient path before editing. The table is the default local scope; protected CI also selects conservative scopes below. Necessary safety checks still take priority.
 
 | Change | Default verification |
 |---|---|
@@ -112,9 +112,23 @@ Stop after the relevant checks pass. Repeat only tests affected by a subsequent 
 - Keep one concise verification record and the necessary screenshots/logs. Prefer links from current handoff/status/issues over copying the detailed report into each file. Remove task-owned idle scratch copies after verification; preserve current preview state and necessary evidence.
 
 
-Protected CI reuses successful full Checks only for the identical commit in this repository. A skipped, incomplete, failed, foreign or different-source run is not full proof. Pending verification blocks reuse; completed unsuccessful runs invalidate older success until fresh full Checks pass. Explicit reruns execute tests, and fully executed manual Checks can refresh the proof. Main retains its required `checks` job; Deploy requires both that exact-source full proof and successful protected-main Checks, then rebuilds, checks local routes/configuration and verifies production. Missing evidence falls back to full Checks or blocks deployment; never bypass branch/environment protection. This avoids repeating an unchanged full suite on the candidate, main and Deploy.
+### Scoped GitHub CI and publication
 
-Maintainer update (2026-10-26): documentation-only updates need no CI, application tests, type/lint/build/browser/offline runs, deployment or extra validation scripts. Ordinary content review suffices. Do not manually dispatch or repeat CI for documentation. If GitHub automatically starts a required check, distinguish that platform constraint from documentation validation; do not bypass protection or silently change workflows. For code/UI/data changes, choose checks by affected behaviour and the requirements above. Mark checks not run explicitly.
+`Checks` keeps the required `checks` job and selects its scope automatically in `scripts/ci-scope.mjs`, relative to the latest successful protected-main source. The comparison includes the whole branch change, including old and new names. Missing/failed/pending baseline evidence, API failure, a truncated comparison, an unknown path, explicit manual Checks or a rerun selects full checks.
+
+| GitHub scope | Checks |
+|---|---|
+| Documentation only | Source comparison/certification and successful required status; no dependency install, lint, build, application tests or Deploy |
+| Allowlisted UI/CSS/locales, relevant UI tests, version-only release metadata | Lint, build/type/content/resource checks, release/security guard units, mapped browser/unit regressions, deploy dry run and local Worker routes |
+| Storage/backup/auth/sync/MCP/shared contracts, generation/content/resources/SW/build/dependencies/workflows/scripts, or anything unrecognized | Existing complete units, browser/offline/update/sync/MCP and Worker checks |
+
+The finite UI-to-test map is intentionally conservative. Identity/backup/answer-saving components remain full scope because they own sensitive data or permission behavior. A version bump alone does not force full CI; a package script, dependency, lock entry or build setting change does. Broad CSS selects representative navigation, layout, picker, modal, reference and learning regressions. Extend the map only with relevant tests and classifier/verification tests.
+
+`scripts/ci-verification.mjs` validates the exact repository/SHA/workflow/job and all scope-required successful stages. For reduced scopes it independently recomputes the complete change against the successful main baseline; a skipped stage is not evidence it ran. Unfinished or later unsuccessful exact-source runs block reuse. Main may reuse the identical source's real successful verification, not another reused/wholly skipped run. Legacy complete Checks remain valid in their original scope. Manual runs and reruns still execute the full path.
+
+Deploy checks exact-source proof and current protected main before installing/building. Documentation exits without upload/traffic changes. Application releases build once, retain configuration/local-route/dry-run checks and existing all-resource/version/header/missing-route checks before/after promotion, concurrent-operator protection and limited failure recovery. Source export scans in place rather than making an unused full copy; full CI's update test reuses its existing build. Obsolete branch Checks may be cancelled; protected-main Checks and production Deploy are not cancelled. No new Action, token permission, secret or branch/environment bypass is needed.
+
+Maintainer update (2026-10-26): documentation-only updates need no CI, application tests, type/lint/build/browser/offline runs, deployment or extra validation scripts. Ordinary content review suffices. Do not manually dispatch or repeat CI for documentation. GitHub keeps a minimal successful required status for documentation; do not bypass protection or manually run application checks for it. For code/UI/data changes, choose checks by affected behaviour and the requirements above. Mark checks not run explicitly.
 
 After verified website changes, restart only the identified preview process after rebuilding `dist/` so its asset inventory is fresh. Keep `http://127.0.0.1:8787/` running, verify `/sw.js` and the rendered 今日 heading in an isolated browser profile, and offer the exact preview follow-up in `AGENTS.md`. An HTTP 200 shell alone is not heading verification. Do not open/focus the maintainer's browser or alter their real learning data.
 
