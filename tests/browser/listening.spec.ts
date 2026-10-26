@@ -36,7 +36,7 @@ test('failed audio never permits scoring and recovers on an explicit replay', as
   await expect.poll(() => page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
   await focusQuestion(page, lesson, lesson.materials.length - 1);
   await page.locator('button[type=submit]').click();
-  await expect(page.getByRole('alert').filter({ hasText: '播放' })).toBeVisible();
+  await expect(page.getByRole('alert').filter({ hasText: '请先完整播放录音，再保存答案。' })).toBeVisible();
   expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
   await page.unroute('**/audio/**/*.mp3'); await focusQuestion(page, lesson, 0); await playMaterial(page);
   for (let index = 1; index < lesson.materials.length; index++) { await fillQuestion(await focusQuestion(page, lesson, index), lesson.materials[index].questions[0]); await playMaterial(page); }
