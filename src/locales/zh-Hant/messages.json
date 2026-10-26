@@ -779,7 +779,7 @@
     "empty": "還沒有作答紀錄。在「今日」完成的作答會顯示在這裡。",
     "history": "已儲存任務",
     "conditions": "使用提示層數",
-    "offline": "離線",
+    "offline": "已離線",
     "online": "已恢復連線",
     "updateNow": "立即更新",
     "updateLater": "稍後",

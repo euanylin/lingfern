@@ -7,11 +7,15 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { buildManifest, verifyPublicBuild, publishVerified, capturePublicEntry, redactCommandOutput } from '../scripts/deploy-verified.mjs';
 import { ciDeploymentConfig } from '../scripts/release-config.mjs';
+import { prerenderPath, publicPages, renderPageHtml } from '../src/shared/seo.ts';
 
 const old = '11111111-1111-4111-8111-111111111111', next = '22222222-2222-4222-8222-222222222222';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
-const contents = { 'index.html': Buffer.from('exact HTML'), 'sw.js': Buffer.alloc(120142, 7), 'source-packs/listening.zip': Buffer.from('exact ZIP') };
+const htmlTemplate = '<!doctype html><head><!--seo:start--><title>Lingfern</title><!--seo:end--></head><body>exact HTML</body>';
+const pageTemplates = Object.fromEntries(Object.keys(publicPages).map(path => [path, renderPageHtml(htmlTemplate.replace('exact HTML', `exact public content ${path}`), path)]));
+const contents = { 'index.html': Buffer.from(htmlTemplate), 'sw.js': Buffer.alloc(120142, 7), 'source-packs/listening.zip': Buffer.from('exact ZIP'), ...Object.fromEntries(Object.entries(pageTemplates).map(([path, html]) => [prerenderPath(path).slice(1), Buffer.from(html)])) };
 const files = Object.entries(contents).map(([path, bytes]) => ({ path, bytes: bytes.length, sha256: hash(bytes) }));
+const verify = (input, options) => verifyPublicBuild(input, { htmlTemplate, pageTemplates, ...options });
 
 test('retained successful and failed command diagnostics never print the bearer token', () => {
   const token = 'synthetic+token.with$metacharacters';
@@ -30,7 +34,7 @@ function fetchFixture({ version = next, change = () => undefined } = {}) {
     const pathname = new URL(url).pathname;
     if (pathname === '/api/unknown' || pathname.includes('release-missing') || pathname === '/_headers') return new Response('not found', { status: 404 });
     const file = pathname === '/' ? 'index.html' : pathname.slice(1);
-    const body = contents[file] ?? contents['index.html'];
+    const body = contents[file] ?? Buffer.from(renderPageHtml(pageTemplates[pathname] ?? htmlTemplate, pathname));
     const response = change(pathname, body);
     return response ?? new Response(body, { headers: { 'x-lingfern-version': version, 'cache-control': 'no-store', 'content-security-policy': "frame-ancestors 'none'", 'cf-ray': 'synthetic-TPE' } });
   };
@@ -52,10 +56,18 @@ test('build manifest seals every file including listening ZIPs, excludes headers
 test('pinned and ordinary full checks read exact bytes without credentials or writes', async () => {
   for (const pin of [true, false]) {
     const fixture = fetchFixture();
-    const result = await verifyPublicBuild(files, { version: next, pin, fetcher: fixture.fetcher });
+    const result = await verify(files, { version: next, pin, fetcher: fixture.fetcher });
     assert.equal(result.files, files.length); assert.equal(result.pages, 13); assert.equal(result.missingPaths, 4);
     for (const { options } of fixture.requests) assert.equal(options.headers['Cloudflare-Workers-Version-Overrides'], pin ? `lingfern="${next}"` : undefined);
   }
+});
+
+test('page proofs require the sealed HTML template and reject changed metadata', async () => {
+  const fixture = fetchFixture();
+  await assert.rejects(verify(files, { htmlTemplate: 'different source', version: next, fetcher: fixture.fetcher }), /HTML_TEMPLATE_MISMATCH/);
+  assert.equal(fixture.requests.length, 0);
+  const changed = fetchFixture({ change: (pathname, body) => pathname === '/library/ipa' ? new Response(body.toString().replace('IPA pronunciation chart', 'Wrong title'), { headers: { 'x-lingfern-version': next, 'content-security-policy': "frame-ancestors 'none'" } }) : undefined });
+  await assert.rejects(verify(files, { version: next, fetcher: changed.fetcher }));
 });
 
 test('recovery checkpoint preserves a real-sized SW over64KiB and rejects an unhealthy old version', async () => {
@@ -64,42 +76,62 @@ test('recovery checkpoint preserves a real-sized SW over64KiB and rejects an unh
   await assert.rejects(capturePublicEntry(async () => new Response(null, { status: 500 })), /PUBLIC_STATUS/);
 });
 
+test('header failures release unread bodies without replacing the verification error', async () => {
+  for (const [pathname, status, headers, error] of [
+    ['/today', 200, {}, /content-security-policy/],
+    ['/sw.js', 200, {}, /cache-control/],
+    ['/today', 500, {}, /PUBLIC_STATUS/],
+  ]) {
+    let cancelled = 0;
+    const fixture = fetchFixture({ change: path => path === pathname ? new Response(new ReadableStream({ cancel() { cancelled++; throw Error('CANCEL_FAILED'); } }), { status, headers }) : undefined });
+    await assert.rejects(capturePublicEntry(fixture.fetcher), error);
+    assert.equal(cancelled, 1);
+  }
+});
+
+test('unsealed public content fails before any publication request', async () => {
+  const fixture = fetchFixture();
+  await assert.rejects(verify(files, { pageTemplates: { ...pageTemplates, '/library/ipa': pageTemplates['/library/ipa'] + 'changed body' }, version: next, fetcher: fixture.fetcher }), /PUBLIC_TEMPLATE_MISMATCH/);
+  await assert.rejects(verify(files, { pageTemplates: {}, version: next, fetcher: fixture.fetcher }), /PUBLIC_TEMPLATE_MISMATCH/);
+  assert.equal(fixture.requests.length, 0);
+});
+
 test('waits only for bounded version propagation; status failures never retry', async () => {
   const fixture = fetchFixture(); let waiting = 0, calls = 0;
   const fetcher = (url, options) => ++calls <= 2 ? Promise.resolve(new Response(contents['index.html'], { headers: { 'x-lingfern-version': old } })) : fixture.fetcher(url, options);
-  await verifyPublicBuild(files, { version: next, pin: true, fetcher, pause: async () => { waiting++; } });
+  await verify(files, { version: next, pin: true, fetcher, pause: async () => { waiting++; } });
   assert.equal(waiting, 2);
   let failures = 0;
-  await assert.rejects(verifyPublicBuild(files, { version: next, fetcher: async () => { failures++; return new Response(null, { status: 500 }); }, pause: async () => assert.fail('No status retry') }), /PUBLIC_STATUS/);
+  await assert.rejects(verify(files, { version: next, fetcher: async () => { failures++; return new Response(null, { status: 500 }); }, pause: async () => assert.fail('No status retry') }), /PUBLIC_STATUS/);
   assert.equal(failures, 1);
 });
 
 test('a ZIP500 fails immediately with ray evidence; no retry or HTML fallback can pass', async () => {
   const reported = [];
   const fixture = fetchFixture({ change: pathname => pathname.endsWith('.zip') ? new Response(null, { status: 500, headers: { 'cf-ray': 'synthetic-failure-TPE' } }) : undefined });
-  await assert.rejects(verifyPublicBuild(files, { version: next, pin: true, fetcher: fixture.fetcher, report: row => reported.push(row) }), /PUBLIC_STATUS.*500/);
+  await assert.rejects(verify(files, { version: next, pin: true, fetcher: fixture.fetcher, report: row => reported.push(row) }), /PUBLIC_STATUS.*500/);
   assert.equal(fixture.requests.filter(r => r.url.endsWith('/source-packs/listening.zip')).length, 1);
   assert(reported.some(r => r.failed && r.cfRay === 'synthetic-failure-TPE'));
   const fallback = fetchFixture({ change: pathname => pathname.endsWith('.zip') ? new Response(Buffer.alloc(contents['source-packs/listening.zip'].length)) : undefined });
-  await assert.rejects(verifyPublicBuild(files, { version: next, fetcher: fallback.fetcher }));
+  await assert.rejects(verify(files, { version: next, fetcher: fallback.fetcher }));
 });
 
 test('a lost resource stream records partial bytes and fails without retry', async () => {
   const reports = []; let chunks = 0;
   const fixture = fetchFixture({ change: pathname => pathname.endsWith('.zip') ? new Response(new ReadableStream({ pull(controller) { if (chunks++ === 0) controller.enqueue(new Uint8Array([1, 2])); else controller.error(Error('STREAM_LOST')); } })) : undefined });
-  await assert.rejects(verifyPublicBuild(files, { version: next, fetcher: fixture.fetcher, report: row => reports.push(row) }), /STREAM_LOST/);
+  await assert.rejects(verify(files, { version: next, fetcher: fixture.fetcher, report: row => reports.push(row) }), /STREAM_LOST/);
   assert(reports.some(row => row.failed && row.receivedBytes === 2));
   assert.equal(fixture.requests.filter(r => r.url.endsWith('/source-packs/listening.zip')).length, 1);
 });
 
 test('ignored overrides with identical HTML, unsafe manifests, redirects and truncated resources fail closed', async () => {
-  await assert.rejects(verifyPublicBuild(files, { version: next, pin: true, fetcher: fetchFixture({ version: old }).fetcher, pause: async () => {} }), /WRONG_WORKER_VERSION/);
+  await assert.rejects(verify(files, { version: next, pin: true, fetcher: fetchFixture({ version: old }).fetcher, pause: async () => {} }), /WRONG_WORKER_VERSION/);
   for (const bad of [[...files, files[0]], files.map((f, i) => i ? f : { ...f, path: '../outside' }), files.map((f, i) => i ? f : { ...f, path: 'api/auth/start' }), files.map((f, i) => i ? f : { ...f, path: 'assets/line\n::error' }), files.map((f, i) => i ? f : { ...f, bytes: Infinity })]) {
-    const fixture = fetchFixture(); await assert.rejects(verifyPublicBuild(bad, { version: next, fetcher: fixture.fetcher })); assert.equal(fixture.requests.length, 0);
+    const fixture = fetchFixture(); await assert.rejects(verify(bad, { version: next, fetcher: fixture.fetcher })); assert.equal(fixture.requests.length, 0);
   }
   for (const response of [() => new Response(null, { status: 307, headers: { location: 'https://foreign.example/' } }), () => new Response('short')]) {
     const fixture = fetchFixture({ change: pathname => pathname.endsWith('.zip') ? response() : undefined });
-    await assert.rejects(verifyPublicBuild(files, { version: next, fetcher: fixture.fetcher }));
+    await assert.rejects(verify(files, { version: next, fetcher: fixture.fetcher }));
   }
 });
 

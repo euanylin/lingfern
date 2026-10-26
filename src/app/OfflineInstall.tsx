@@ -17,7 +17,7 @@ const libraryLabels = messages('offlineInstall_libraryLabels');
 
 const size = (bytes: number) => bytes < 1_048_576 ? `${Math.ceil(bytes / 1024)} KiB` : `${(bytes / 1_048_576).toFixed(1)} MiB`;
 
-export function OfflineInstall({ locale, online, onReady, onIntentsChange, profileId, initialInstalled, initialIntents, preview = false }: { preview?: boolean; initialIntents?: Awaited<ReturnType<typeof readInstallationIntents>>; initialInstalled?: Set<string>; profileId: string; locale: Locale; online: boolean; onReady: (ready: boolean, publicGroups: Set<string>) => void; onIntentsChange?: (intents: Awaited<ReturnType<typeof readInstallationIntents>>) => void }) {
+export function OfflineInstall({ locale, online, onReady, onIntentsChange, profileId, initialInstalled, initialIntents, preview = false }: { preview?: boolean; initialIntents?: Awaited<ReturnType<typeof readInstallationIntents>>; initialInstalled?: Set<string>; profileId: string; locale: Locale; online: boolean; onReady: (publicGroups: Set<string>) => void; onIntentsChange?: (intents: Awaited<ReturnType<typeof readInstallationIntents>>) => void }) {
   const t = labels[locale], ui = libraryLabels[locale];
   const sourceById = new Map(sourcePacks.map(pack => [pack.id, pack]));
   const downloadableGroups = [...offlineGroups, ...sourcePacks];
@@ -72,7 +72,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
   }, [actionsVisible]);
   useEffect(() => {
     let live = true;
-    void loadRuntimeResources(!preview).then(() => Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)])).then(([publicGroups, sourceGroups]) => { const found = new Set([...publicGroups, ...sourceGroups]); if (live) { setInstalled(found); setChecking(false); onReadyRef.current(found.size > 0, publicGroups); } }).catch(() => { if (live) { setChecking(false); setError(t.failed); } });
+    void loadRuntimeResources(!preview).then(() => Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)])).then(([publicGroups, sourceGroups]) => { const found = new Set([...publicGroups, ...sourceGroups]); if (live) { setInstalled(found); setChecking(false); onReadyRef.current(publicGroups); } }).catch(() => { if (live) { setChecking(false); setError(t.failed); } });
     return () => { live = false; controller.current?.abort(); };
   }, []);
   useEffect(() => {
@@ -175,7 +175,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     try {
       const [publicGroups, sourceGroups] = await Promise.all([installedOfflineGroups(), installedSourcePacks(profileId)]);
       const found = new Set([...publicGroups, ...sourceGroups]);
-      setInstalled(found); onReadyRef.current(found.size > 0, publicGroups); return found;
+      setInstalled(found); onReadyRef.current(publicGroups); return found;
     } catch { setError(t.failed); }
   }
   useEffect(() => {

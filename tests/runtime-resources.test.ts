@@ -38,7 +38,7 @@ describe('runtime resource catalogue trust boundary', () => {
     const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
     const identity = module.runtimeResources.offline.groups;
     await Promise.all([module.loadRuntimeResources(true), module.loadRuntimeResources(true)]); expect(fetcher).toHaveBeenCalledTimes(1); expect(put).toHaveBeenCalledTimes(1);
-    expect(fetcher.mock.calls[0]).toEqual(['/resources/catalogue.json', { cache: 'no-cache', credentials: 'omit', redirect: 'error', signal: undefined }]);
+    expect(fetcher.mock.calls[0]).toEqual(['/resources/catalogue.json', { cache: 'no-cache', credentials: 'omit', redirect: 'error' }]);
     const next = fixture(); next.offline.groups.push({ id: 'new-group', version: 'v2', bytes: 1, files: [{ path: '/resources/another.txt', bytes: 1, sha256: hash }] });
     fetcher.mockImplementation(async () => new Response(JSON.stringify(next))); await module.loadRuntimeResources(true);
     expect(module.runtimeResources.offline.groups).toBe(identity); expect(identity).toHaveLength(2);
@@ -51,6 +51,18 @@ describe('runtime resource catalogue trust boundary', () => {
     await expect(module.loadRuntimeResources(true)).rejects.toThrow(); expect(module.runtimeResources.offline.groups).toEqual([]);
     vi.stubGlobal('fetch', vi.fn(async () => new Response('{}', { headers: { 'Content-Length': String(catalogueMaxBytes + 1) } })));
     await expect(module.loadRuntimeResources(true)).rejects.toThrow('RESOURCE_CATALOGUE_SIZE');
+  });
+  it.each(['open', 'put', 'notify'])('keeps a validated network catalogue when cache %s fails', async phase => {
+    const previous = fixture(), next = fixture();
+    next.offline.version = 'r2';
+    const failure = () => { throw new DOMException('Storage unavailable', 'QuotaExceededError'); };
+    const cache = { put: vi.fn(async () => { if (phase === 'put') failure(); }), match: vi.fn(async () => new Response(JSON.stringify(previous))) };
+    vi.stubGlobal('caches', { open: vi.fn(async () => { if (phase === 'open') failure(); return cache; }) });
+    vi.stubGlobal('navigator', { serviceWorker: { controller: { postMessage: () => { if (phase === 'notify') failure(); } } } });
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(next))));
+    const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
+    expect((await module.loadRuntimeResources(true)).offline.version).toBe('r2');
+    expect(cache.match).not.toHaveBeenCalled();
   });
   it.each([
     [{ status: 503 }, 'RESOURCE_CATALOGUE_HTTP'],

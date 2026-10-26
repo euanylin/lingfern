@@ -3,7 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import catalogue from '../content/daily-quotes-runtime.json';
 import index from '../content/daily-quote-index.json';
 import calendar from '../content/quote-calendar.json';
-import { dailyQuote } from '../src/core/dailyQuote';
+import { dailyQuote } from './fixtures/dailyQuoteReference';
 import { dailyQuoteOnDemand } from '../src/core/dailyQuoteOnDemand';
 import { readableQuotation } from '../src/shared/quoteLanguage';
 import exclusions from '../content/daily-quote-exclusions.json';

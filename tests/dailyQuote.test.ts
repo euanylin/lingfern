@@ -5,7 +5,8 @@ import catalogueData from '../content/daily-quotes.json';
 import displayData from '../content/daily-quotes-runtime.json';
 import { readFileSync } from 'node:fs';
 import calendarData from '../content/quote-calendar.json';
-import { dailyQuote, localDay, quoteSourceUrl } from '../src/core/dailyQuote';
+import { dailyQuote } from './fixtures/dailyQuoteReference';
+import { localDay, quoteSourceUrl } from '../src/core/dailyQuoteSelection';
 
 type Quote = { quotationYear?: number; id: string; text: string; pageTitle: string; pageId: number; revisionId: number; section: string; locator: string; url: string };
 type Event = { date: string; labels: Record<string, string>; url: string; pages: string[] };
@@ -22,7 +23,7 @@ async function fixture(quotes: Quote[], events: Event[] = []) {
   vi.resetModules();
   vi.doMock('../content/daily-quotes-runtime.json', () => ({ default: { source: { url: 'https://en.wikiquote.org/' }, quotes } }));
   vi.doMock('../content/quote-calendar.json', () => ({ default: events }));
-  return (await import('../src/core/dailyQuote')).dailyQuote as unknown as (date: Date, previous?: string, draw?: () => number) => Selection;
+  return (await import('./fixtures/dailyQuoteReference')).dailyQuote as unknown as (date: Date, previous?: string, draw?: () => number) => Selection;
 }
 afterEach(() => {
   vi.doUnmock('../content/daily-quotes-runtime.json');

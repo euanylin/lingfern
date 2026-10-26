@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { pageSeo, prerenderPath, renderPageHtml } from '../src/shared/seo.ts';
 
 const origin = 'http://127.0.0.1:8787';
 const home = await fetch(origin);
@@ -13,9 +14,23 @@ for (const pathname of ['/introduction', '/start', '/today', '/progress', '/libr
   assert.equal(response.status, 200, pathname);
   assert.match(response.headers.get('content-type'), /text\/html/);
   assert.match(response.headers.get('x-lingfern-version'), /^[a-f0-9-]{36}$/);
-  assert.equal(await response.text(), html);
+  const file = prerenderPath(pathname);
+  const template = file ? await readFile('dist' + file, 'utf8') : html;
+  assert.equal(await response.text(), renderPageHtml(template, pathname));
+  assert.equal(response.headers.get('x-robots-tag'), pageSeo(pathname).robots);
 }
 const serviceWorker = await fetch(origin + '/sw.js');
+const sitemapXml = await readFile('public/sitemap.xml', 'utf8');
+for (const pathname of ['/sitemap', '/sitemap.xml']) {
+  const response = await fetch(origin + pathname, { headers: { Accept: 'text/html' } });
+  assert.equal(response.status, 200, pathname);
+  assert.match(response.headers.get('content-type'), /^application\/xml/);
+  assert.equal(await response.text(), sitemapXml);
+}
+const robots = await fetch(origin + '/robots.txt');
+assert.equal(robots.status, 200);
+assert.match(robots.headers.get('content-type'), /^text\/plain/);
+assert.equal(await robots.text(), await readFile('public/robots.txt', 'utf8'));
 assert.equal(serviceWorker.status, 200);
 assert.match(serviceWorker.headers.get('content-type'), /javascript/);
 assert.match(serviceWorker.headers.get('cache-control'), /no-store/);

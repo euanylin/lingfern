@@ -29,26 +29,26 @@ function applyCatalogue(value: ResourceCatalogue) {
 export function applyRuntimeCatalogue(input: unknown) {
   return applyCatalogue(resourceCatalogueSchema.parse(input));
 }
-export async function loadRuntimeResources(force = false, signal?: AbortSignal): Promise<ResourceCatalogue> {
-  signal?.throwIfAborted();
+export async function loadRuntimeResources(force = false): Promise<ResourceCatalogue> {
   if (inflight) return inflight;
   if (loaded && !force) return runtimeResources;
   inflight = (async () => {
     try {
-      const response = await fetch(cataloguePath, { cache: 'no-cache', credentials: 'omit', redirect: 'error', signal });
+      const response = await fetch(cataloguePath, { cache: 'no-cache', credentials: 'omit', redirect: 'error' });
       if (response.url && typeof location !== 'undefined' && new URL(response.url).origin !== location.origin) {
         await response.body?.cancel().catch(() => {});
         throw new Error('RESOURCE_CATALOGUE_ORIGIN');
       }
-      const value = await readCatalogue(response); signal?.throwIfAborted();
+      const value = await readCatalogue(response);
       if (typeof caches !== 'undefined') {
-        const cache = await caches.open(catalogueCacheName);
-        await cache.put(cataloguePath, new Response(JSON.stringify(value), { headers: { 'Content-Type': 'application/json' } }));
-        if (typeof navigator !== 'undefined') navigator.serviceWorker?.controller?.postMessage({ type: 'RESOURCES_CATALOGUE_UPDATED' });
+        try {
+          const cache = await caches.open(catalogueCacheName);
+          await cache.put(cataloguePath, new Response(JSON.stringify(value), { headers: { 'Content-Type': 'application/json' } }));
+          if (typeof navigator !== 'undefined') navigator.serviceWorker?.controller?.postMessage({ type: 'RESOURCES_CATALOGUE_UPDATED' });
+        } catch { /* A cache failure must not discard the validated online catalogue. */ }
       }
       return applyCatalogue(value);
     } catch (error) {
-      if (signal?.aborted) throw error;
       if (typeof caches !== 'undefined') {
         const cached = await (await caches.open(catalogueCacheName)).match(cataloguePath);
         if (cached) return applyCatalogue(await readCatalogue(cached));

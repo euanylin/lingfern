@@ -13,10 +13,10 @@ const labels = messages('ipaChart');
 // Common mobile fonts lack these compound accents.
 const toneAccents: Record<string, string> = { '᷄': 'M2 9H9L16 2', '᷅': 'M2 2L9 9H16', '᷈': 'M2 2L7 9L12 2L17 9' };
 
-export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Locale; profileId: string; initialQuery?: string }) {
+export function IpaChart({ locale, profileId, initialQuery = '', initialEntries, initialSounds, disabled = false }: { locale: Locale; profileId: string; initialQuery?: string; initialEntries?: unknown; initialSounds?: unknown; disabled?: boolean }) {
   const t = labels[locale];
-  const [entries, setEntries] = useState<IpaEntry[]>();
-  const [sounds, setSounds] = useState<FullIpaSound[]>();
+  const [entries, setEntries] = useState<IpaEntry[] | undefined>(() => initialEntries ? ipaChartSchema.parse(initialEntries).entries : undefined);
+  const [sounds, setSounds] = useState<FullIpaSound[] | undefined>(() => initialSounds ? fullIpaAudioSchema.parse(initialSounds).entries : undefined);
   const [fullError, setFullError] = useState(false);
   const [error, setError] = useState('');
   const [playing, setPlaying] = useState('');
@@ -28,10 +28,10 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
   const focusedEntry = useRef<HTMLElement>(null);
   useEffect(() => {
     let live = true;
-    fetch('/ipa/entries.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return ipaChartSchema.parse(await response.json()); }).then(data => { if (live) setEntries(data.entries); }).catch(() => { if (live) setError(t.failed); });
-    fetch('/ipa/full-sounds.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return fullIpaAudioSchema.parse(await response.json()); }).then(data => { if (live) setSounds(data.entries); }).catch(() => { if (live) setFullError(true); });
+    if (!initialEntries) fetch('/ipa/entries.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return ipaChartSchema.parse(await response.json()); }).then(data => { if (live) setEntries(data.entries); }).catch(() => { if (live) setError(t.failed); });
+    if (!initialSounds) fetch('/ipa/full-sounds.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return fullIpaAudioSchema.parse(await response.json()); }).then(data => { if (live) setSounds(data.entries); }).catch(() => { if (live) setFullError(true); });
     return () => { live = false; playback.current.request++; playback.current.id = ''; player.current?.pause(); };
-  }, [t.failed]);
+  }, [t.failed, initialEntries, initialSounds]);
   useEffect(() => {
     if (initialQuery && focusedEntry.current) {
       focusedEntry.current.scrollIntoView({ block: 'center' });
@@ -39,6 +39,7 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
     }
   }, [entries, sounds, initialQuery]);
   async function play(ipa: string, src: string, kind: 'sound' | 'word') {
+    if (disabled) return;
     const audio = player.current;
     if (!audio) return;
     const id = `${ipa}-${kind}`, request = ++playback.current.request;
@@ -75,7 +76,7 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
         </span>;
       }
       return <article className="ipa-entry ipa-reference-entry" key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
-        <button type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, sound.soundAudio, 'sound')}>
+        <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, sound.soundAudio, 'sound')}>
           <span className={englishVariants.includes(symbol) ? 'ipa-english-variant' : undefined} lang="en" dir="ltr" title={englishVariants.includes(symbol) ? 'English accent variant or allophone' : undefined}>{symbol}</span><PlaybackIcon state={playing === `${symbol}-sound` ? 'stop' : 'play'}/>
         </button>
       </article>;
@@ -83,12 +84,12 @@ export function IpaChart({ locale, profileId, initialQuery = '' }: { locale: Loc
     return <article className="ipa-entry" key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
       {view === 'simple' ? <>
         <span className="ipa-symbol" lang="en" dir="ltr">/{symbol}/</span>
-        <button type="button" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, entry.soundAudio, 'sound')}><PlaybackIcon state={playing === `${symbol}-sound` ? 'stop' : 'play'}/></button>
+        <button disabled={disabled} type="button" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, entry.soundAudio, 'sound')}><PlaybackIcon state={playing === `${symbol}-sound` ? 'stop' : 'play'}/></button>
         <span lang="en" dir="ltr">{entry.before}<strong>{entry.bold}</strong>{entry.after}</span>
-        <button type="button" aria-label={`${chartLabels.word} ${entry.example}`} aria-pressed={playing === `${symbol}-word`} onClick={() => void play(symbol, entry.audio, 'word')}><PlaybackIcon state={playing === `${symbol}-word` ? 'stop' : 'play'}/></button>
+        <button disabled={disabled} type="button" aria-label={`${chartLabels.word} ${entry.example}`} aria-pressed={playing === `${symbol}-word`} onClick={() => void play(symbol, entry.audio, 'word')}><PlaybackIcon state={playing === `${symbol}-word` ? 'stop' : 'play'}/></button>
       </> : <>
-        <button type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, entry.soundAudio, 'sound')}><span className="ipa-english-circle" lang="en" dir="ltr">{symbol}</span><PlaybackIcon state={playing === `${symbol}-sound` ? 'stop' : 'play'}/></button>
-        <button type="button" className="ipa-word" aria-label={`${chartLabels.word} ${entry.example}`} aria-pressed={playing === `${symbol}-word`} onClick={() => void play(symbol, entry.audio, 'word')}><span lang="en" dir="ltr">{entry.before}<strong>{entry.bold}</strong>{entry.after}</span><PlaybackIcon state={playing === `${symbol}-word` ? 'stop' : 'play'}/></button>
+        <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === `${symbol}-sound`} onClick={() => void play(symbol, entry.soundAudio, 'sound')}><span className="ipa-english-circle" lang="en" dir="ltr">{symbol}</span><PlaybackIcon state={playing === `${symbol}-sound` ? 'stop' : 'play'}/></button>
+        <button disabled={disabled} type="button" className="ipa-word" aria-label={`${chartLabels.word} ${entry.example}`} aria-pressed={playing === `${symbol}-word`} onClick={() => void play(symbol, entry.audio, 'word')}><span lang="en" dir="ltr">{entry.before}<strong>{entry.bold}</strong>{entry.after}</span><PlaybackIcon state={playing === `${symbol}-word` ? 'stop' : 'play'}/></button>
       </>}
     </article>;
   }

@@ -6,6 +6,7 @@ import { promisify } from 'node:util';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ciDeploymentConfig } from './release-config.mjs';
+import { prerenderPath, publicPages, renderPageHtml } from '../src/shared/seo.ts';
 
 const origin = 'https://lingfern.com';
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
@@ -51,12 +52,12 @@ async function publicGet(pathname, { version, pin, fetcher, expected, status = 2
   if (pin) headers['Cloudflare-Workers-Version-Overrides'] = `lingfern="${version}"`;
   const row = { path: pathname, version, pin, receivedBytes: 0 };
   const started = performance.now();
+  let response;
   try {
-    const response = await fetcher(origin + pathname, { method: 'GET', headers, credentials: 'omit', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(60000)]) });
+    response = await fetcher(origin + pathname, { method: 'GET', headers, credentials: 'omit', redirect: 'error', signal: AbortSignal.any([signal, AbortSignal.timeout(60000)]) });
     Object.assign(row, { status: response.status, cfRay: response.headers.get('cf-ray'), cache: response.headers.get('cf-cache-status') });
-    if (response.status !== status) { await response.body?.cancel(); assert.fail(`PUBLIC_STATUS ${pathname}: ${response.status}`); }
+    if (response.status !== status) assert.fail(`PUBLIC_STATUS ${pathname}: ${response.status}`);
     if (html && version && response.headers.get('x-lingfern-version') !== version) {
-      await response.body?.cancel();
       throw Object.assign(Error('WRONG_WORKER_VERSION'), { code: 'WRONG_WORKER_VERSION' });
     }
     if (html) assert(response.headers.get('content-security-policy')?.includes("frame-ancestors 'none'"));
@@ -73,28 +74,38 @@ async function publicGet(pathname, { version, pin, fetcher, expected, status = 2
     row.elapsedMs = performance.now() - started;
     report(row); return row;
   } catch (error) {
+    if (response?.body && !response.body.locked) await response.body.cancel().catch(() => {});
     report({ ...row, elapsedMs: performance.now() - started, expected, failed: true, error: error.message });
     throw error;
   }
 }
 
-export async function verifyPublicBuild(files, { version, pin = false, fetcher = fetch, report = () => {}, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) } = {}) {
+export async function verifyPublicBuild(files, { version, htmlTemplate, pageTemplates, pin = false, fetcher = fetch, report = () => {}, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) } = {}) {
   assert(uuid.test(version));
   assert(Array.isArray(files) && files.length > 0);
   files.forEach(validFile);
   assert.equal(new Set(files.map(file => file.path)).size, files.length, 'DUPLICATE_ASSET');
   const index = files.find(file => file.path === 'index.html'); assert(index);
+  assert(typeof htmlTemplate === 'string' && Buffer.byteLength(htmlTemplate) === index.bytes && digest(htmlTemplate) === index.sha256, 'HTML_TEMPLATE_MISMATCH');
+  for (const path of Object.keys(publicPages)) {
+    const file = files.find(file => file.path === prerenderPath(path).slice(1)), template = pageTemplates?.[path];
+    assert(file && typeof template === 'string' && Buffer.byteLength(template) === file.bytes && digest(template) === file.sha256, 'PUBLIC_TEMPLATE_MISMATCH');
+  }
+  const pageFile = pathname => {
+    const html = renderPageHtml(pageTemplates[pathname] ?? htmlTemplate, pathname);
+    return { bytes: Buffer.byteLength(html), sha256: digest(html) };
+  };
   assert(files.some(file => file.path === 'sw.js'));
   const options = { version, pin, fetcher, report, signal: AbortSignal.timeout(15 * 60000) };
   // The header proves the override reached the candidate even when its HTML is unchanged.
   for (let attempt = 0; ; attempt++) {
-    try { await publicGet('/today', { ...options, expected: index, html: true }); break; }
+    try { await publicGet('/today', { ...options, expected: pageFile('/today'), html: true }); break; }
     catch (error) {
       if (error.code !== 'WRONG_WORKER_VERSION' || attempt === 9) throw error;
       await pause(1000);
     }
   }
-  for (const page of pages) await publicGet('/' + page, { ...options, expected: index, html: true });
+  for (const page of pages) await publicGet('/' + page, { ...options, expected: pageFile('/' + page), html: true });
   for (const pathname of ['/api/unknown', '/assets/release-missing.js', '/resources/release-missing.zip', '/_headers']) await publicGet(pathname, { ...options, status: 404 });
   let cursor = 0, stopped = false;
   async function worker() {
@@ -177,6 +188,8 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
   assert(/^[a-f0-9]{32}$/.test(config.account_id) && process.env.CLOUDFLARE_ACCOUNT_ID === config.account_id);
   const token = process.env.CLOUDFLARE_API_TOKEN; assert(token && !/[\r\n]/.test(token), 'CLOUDFLARE_CREDENTIALS_REQUIRED');
   const files = await buildManifest(config.assets.directory);
+  const htmlTemplate = await readFile(path.join(config.assets.directory, 'index.html'), 'utf8');
+  const pageTemplates = Object.fromEntries(await Promise.all(Object.keys(publicPages).map(async pathname => [pathname, await readFile(path.join(config.assets.directory, prerenderPath(pathname)), 'utf8')])));
   await writeFile('/tmp/lingfern-deployment-assets.json', JSON.stringify(files), { flag: 'wx' });
   await writeFile('/tmp/lingfern-version-output.ndjson', '', { flag: 'wx' });
   const events = [];
@@ -209,7 +222,7 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
       return outputs[0].version_id;
     },
     deploy: (versions, message) => run(['versions', 'deploy', ...versions.map(value => `${value.version_id}@${value.percentage}`), '--env=', '--config', configPath, '--name', 'lingfern', '--message', message, '--yes']),
-    verify: (version, pin) => verifyPublicBuild(files, { version, pin, report: row => { if (row.failed) console.error(JSON.stringify(row)); } }),
+    verify: (version, pin) => verifyPublicBuild(files, { version, htmlTemplate, pageTemplates, pin, report: row => { if (row.failed) console.error(JSON.stringify(row)); } }),
     verifyRecovery: async expected => {
       const actual = await captureCurrent();
       assert.deepEqual(actual.map(({ path, bytes, sha256 }) => ({ path, bytes, sha256 })), expected.map(({ path, bytes, sha256 }) => ({ path, bytes, sha256 })), 'RECOVERY_ENTRY_OR_SW_CHANGED');

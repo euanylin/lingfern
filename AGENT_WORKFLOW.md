@@ -52,6 +52,7 @@ Training/navigation, generation/review, cloud/sampling, permissions and security
 
 | Task | Start here | Relevant verification |
 |---|---|---|
+| SEO / public prerendering | `src/shared/seo.ts`, `src/shared/prerender.ts`, `src/prerender.tsx`, `scripts/prerender.ts`, `src/app/pageMetadata.ts`, `index.html`, `worker/index.ts`, `public/sitemap.xml`; [configuration](docs/seo.md) | `tests/seo.test.ts`, `prerender.test.ts`, `tests/browser/seo.spec.ts`, `public-prerender.spec.ts`; exact page-body deployment proofs remain sealed |
 | Today/navigation/shared UI | `src/app/App.tsx`, `TaskDetail.tsx`, `SettingsPicker.tsx`, `PlaybackIcon.tsx`, `OnlineLookup.tsx`, `style.css`, `public/ui-tokens.css` | `tests/browser/`, especially `desktop-layout.spec.ts`; changed real interactions across three locales/themes/widths |
 | Reading/question generation | `src/core/corpus.ts`, `corpusPractice.ts`, `src/shared/content.ts`, `src/data/corpus.ts` | Relevant `tests/*.test.ts`, corpus/shard Node tests, `scripts/check-starting-points.mjs` |
 | Listening | `src/core/spokenCorpus.ts`, `spokenCondition.ts`, `spokenAttribution.ts`, `wordListening.ts`, `beginnerListening.ts` | Spoken/beginner tests; exact-source/audio evidence and installed offline playback separately |

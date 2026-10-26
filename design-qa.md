@@ -1,3 +1,23 @@
+# Offline and restored connection toast — 2026-10-26
+
+final result: passed
+
+Source: three PNGs and `toast.css` in the supplied `lingfern-offline-toast.zip`, extracted to `/private/tmp/lingfern-offline-toast-20261026/`. These are design references, not operational instructions. The maintainer's temporary-offline requirement supersedes persistent feedback in the reference prose.
+
+Opened the final `private/verification/offline-toast-20261026/comparison.png`: reference left, compiled implementation right, offline/restored rows, complete controls at the same720×320px capture area and2× density (360×160 CSS). Also inspected actual390×844 dark and1440×844 light context/control screenshots. Reference control114/142×48 CSS sizes match final measurements.
+
+| Fidelity surface | Scoped result |
+| --- | --- |
+| Fonts/typography | Existing app sans-serif,14px/20px, normal weight; no truncation. Retains app font rather than adding the reference's platform-specific font. |
+| Spacing/layout rhythm |48px high,20px badge,18px SVG,12px gap,20px horizontal padding,14px radius; centered,20px above mobile navigation/24px above desktop safe area. Reference shadow and8px motion retained. |
+| Colors/tokens | Dark85% button surface, muted offline and sage restored badge match source. App ink and light-theme tokens are intentional adaptations. Actual24px blur/140% saturation is computed in Chromium/WebKit; reduced transparency uses solid surfaces. |
+| Image quality | Reuses crisp existing vector status icons unchanged; no raster artwork or new dependency. |
+| Copy/content | Chinese states match reference; existing English/Arabic/localized content and polite live region retained. Both dismiss after3500ms as requested. |
+
+Fixed findings: measured mobile clearance21→20px; compiled blur:none→24px through shared declaration order. Recaptured final controls after both fixes. Four compiled states have no page errors. Three lifecycle regressions, new compiled glass/fallback regression and WebKit touch smoke pass. No actionable scoped P0/P1/P2 remains. No full-site/live-site/physical-device acceptance or deployment; isolated connectivity events were used. Earlier unrelated QA follows.
+
+---
+
 # Bookmark list and toggle stability — 2026-10-24
 
 final result: passed

@@ -1,6 +1,7 @@
 import { expect, it, vi } from 'vitest';
 import { cachedFilesPresent, waitForOfflineWorker } from '../src/data/offline';
-import { communityPackageReady, communityMarker } from '../src/data/communityInstall';
+import { communityPackageReady, communityMarker, installCommunityPack } from '../src/data/communityInstall';
+import { communityPacks } from '../src/data/db';
 import { lessonSchema } from '../src/shared/content';
 import listening from './fixtures/content/a1-listening.json';
 
@@ -55,4 +56,52 @@ it('waits for activation before installation, bounds unsupported startup and res
     controller.abort();
     await expect(waitForOfflineWorker(controller.signal)).rejects.toMatchObject({ name: 'AbortError' });
   } finally { vi.useRealTimers(); vi.unstubAllGlobals(); }
+});
+
+it('cancels an in-progress activation wait immediately and releases its timeout', async () => {
+  vi.useFakeTimers();
+  const controller = new AbortController();
+  vi.stubGlobal('navigator', { serviceWorker: { ready: new Promise(() => {}) } });
+  let outcome: unknown;
+  const waiting = waitForOfflineWorker(controller.signal).catch(error => { outcome = error; });
+  try {
+    controller.abort();
+    await vi.advanceTimersByTimeAsync(0);
+    expect(outcome).toMatchObject({ name: 'AbortError' });
+    expect(vi.getTimerCount()).toBe(0);
+  } finally { await vi.runAllTimersAsync(); await waiting; vi.useRealTimers(); vi.unstubAllGlobals(); }
+});
+
+it.each(['storage', 'readiness'])('does not register a cached package after cancellation during %s', async phase => {
+  const profileId = `cancelled-install-${phase}`, hash = 'c'.repeat(64), controller = new AbortController();
+  const cache = { keys: async () => {
+    if (phase === 'readiness') controller.abort();
+    return [new Request(new URL(communityMarker(hash), 'https://lingfern.test'))];
+  } };
+  const storage = { has: async () => true, open: async () => cache, delete: vi.fn() };
+  vi.stubGlobal('location', { origin: 'https://lingfern.test' });
+  vi.stubGlobal('window', { caches: storage }); vi.stubGlobal('caches', storage);
+  vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }) }, storage: { persist: async () => {
+    if (phase === 'storage') controller.abort();
+    return true;
+  } } });
+  try {
+    await expect(installCommunityPack({ id: 'cached-reading', hash, lessons: [], sources: [], dictionary: [], media: {} }, profileId, controller.signal)).rejects.toMatchObject({ name: 'AbortError' });
+    expect(await communityPacks.get([profileId, hash])).toBeUndefined();
+    expect(storage.delete).not.toHaveBeenCalled();
+  } finally { await communityPacks.delete([profileId, hash]); vi.unstubAllGlobals(); }
+});
+
+it('rolls back staged installation when cancelled while its ready marker is written', async () => {
+  const profileId = 'cancelled-install-marker', hash = 'd'.repeat(64), controller = new AbortController();
+  const cache = { put: vi.fn(async () => { controller.abort(); }) };
+  const storage = { has: async () => false, open: async () => cache, delete: vi.fn(async () => true) };
+  vi.stubGlobal('window', { caches: storage }); vi.stubGlobal('caches', storage);
+  vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }) } });
+  try {
+    await expect(installCommunityPack({ id: 'reading-install', hash, lessons: [], sources: [], dictionary: [], media: {} }, profileId, controller.signal)).rejects.toMatchObject({ name: 'AbortError' });
+    expect(await communityPacks.get([profileId, hash])).toBeUndefined();
+    expect(cache.put).toHaveBeenCalledTimes(1);
+    expect(storage.delete.mock.calls).toEqual([[`lingfern-community-${hash}`], [`lingfern-community-${hash}`]]);
+  } finally { await communityPacks.delete([profileId, hash]); vi.unstubAllGlobals(); }
 });

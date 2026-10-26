@@ -31,7 +31,9 @@ export async function installResourcePack(pack: ResourcePack, profileId: string,
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
   await waitForOfflineWorker(signal);
   await (await import('./installationIntent')).saveInstallationIntent(profileId, group.id, true);
-  if (await offlineGroupReady(group.id)) return group.id;
+  const ready = await offlineGroupReady(group.id);
+  signal?.throwIfAborted();
+  if (ready) return group.id;
   const name = offlineCacheName(group.id);
   const cache = await caches.open(name);
   try {
@@ -43,7 +45,9 @@ export async function installResourcePack(pack: ResourcePack, profileId: string,
     }
     if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
     await cache.put(offlineMarker(group.id), new Response(group.version));
+    signal?.throwIfAborted();
     if (!await offlineGroupReady(group.id)) throw new Error('PACKAGE_INCOMPLETE');
+    signal?.throwIfAborted();
     return group.id;
   } catch (error) {
     await caches.delete(name);

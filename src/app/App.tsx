@@ -1,5 +1,5 @@
 import { showModal } from './modal';
-import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type ComponentType, type ComponentProps } from 'react';
 import { createPortal } from 'react-dom';
 import { liveQuery } from 'dexie';
 import { registerSW } from 'virtual:pwa-register';
@@ -28,6 +28,8 @@ import { Fern } from './Fern';
 import { FirstRun, firstRunCopy } from './FirstRun';
 import { copy, initialLocale } from './i18n';
 import { NavIcon } from './NavIcon';
+import { updatePageMetadata } from './pageMetadata';
+import type { PublicPageState } from '../shared/prerender';
 import { defaultOnlineDictionary, onlineDictionaries, type OnlineDictionaryId } from './onlineDictionaries';
 import { PracticeCard, practiceCardProgress } from './PracticeCard';
 import { PracticeOptions } from './PracticeOptions';
@@ -39,24 +41,50 @@ import { TaskDetail } from './TaskDetail';
 import { touchFeedback } from './touchFeedback';
 import { useGithubSession } from './useGithubSession';
 
-const Welcome = lazy(() => import('./Welcome').then(module => ({ default: module.Welcome })));
-const IpaChart = lazy(() => import('./IpaChart').then(module => ({ default: module.IpaChart })));
-const About = lazy(() => import('./About').then(module => ({ default: module.About })));
+const publicViews = {
+  '/introduction': () => import('./Welcome').then(module => ({ default: module.Welcome })),
+  '/library/ipa': () => import('./IpaChart').then(module => ({ default: module.IpaChart })),
+  '/settings/about': () => import('./About').then(module => ({ default: module.About })),
+  '/library/dictionary': () => import('./Dictionary').then(module => ({ default: module.Dictionary })),
+  '/library/grammar': () => import('./GrammarLookup').then(module => ({ default: module.GrammarLookup })),
+};
+let Welcome: ComponentType<ComponentProps<typeof import('./Welcome').Welcome>> = lazy(publicViews['/introduction']);
+let IpaChart: ComponentType<ComponentProps<typeof import('./IpaChart').IpaChart>> = lazy(publicViews['/library/ipa']);
+let About: ComponentType<ComponentProps<typeof import('./About').About>> = lazy(publicViews['/settings/about']);
+let Dictionary: ComponentType<ComponentProps<typeof import('./Dictionary').Dictionary>> = lazy(publicViews['/library/dictionary']);
+let GrammarLookup: ComponentType<ComponentProps<typeof import('./GrammarLookup').GrammarLookup>> = lazy(publicViews['/library/grammar']);
 const Learning = lazy(() => import('./Learning'));
-const GithubIdentity = lazy(() => import('./GithubIdentity').then(module => ({ default: module.GithubIdentity })));
-const ProfileBackup = lazy(() => import('./ProfileBackup').then(module => ({ default: module.ProfileBackup })));
-const Dictionary = lazy(() => import('./Dictionary').then(module => ({ default: module.Dictionary })));
-const GrammarLookup = lazy(() => import('./GrammarLookup').then(module => ({ default: module.GrammarLookup })));
+const loadGithubIdentity = () => import('./GithubIdentity').then(module => ({ default: module.GithubIdentity }));
+let GithubIdentity: ComponentType<ComponentProps<typeof import('./GithubIdentity').GithubIdentity>> = lazy(loadGithubIdentity);
+const loadProfileBackup = () => import('./ProfileBackup').then(module => ({ default: module.ProfileBackup }));
+let ProfileBackup: ComponentType<ComponentProps<typeof import('./ProfileBackup').ProfileBackup>> = lazy(loadProfileBackup);
 const SavedWords = lazy(() => import('./SavedWords').then(module => ({ default: module.SavedWords })));
 const ProgressRecords = lazy(() => import('./ProgressRecords').then(module => ({ default: module.ProgressRecords })));
 const CompletionTiming = lazy(() => import('./CompletionTiming').then(module => ({ default: module.CompletionTiming })));
 const SessionHistory = lazy(() => import('./SessionHistory').then(module => ({ default: module.SessionHistory })));
-const SyncConflicts = lazy(() => import('./SyncConflicts').then(module => ({ default: module.SyncConflicts })));
+const loadSyncConflicts = () => import('./SyncConflicts').then(module => ({ default: module.SyncConflicts }));
+let SyncConflicts: ComponentType<ComponentProps<typeof import('./SyncConflicts').SyncConflicts>> = lazy(loadSyncConflicts);
 const OfflineInstall = lazy(() => import('./OfflineInstall').then(module => ({ default: module.OfflineInstall })));
 const CommunityImport = lazy(() => import('./CommunityImport').then(module => ({ default: module.CommunityImport })));
 const InstalledResources = lazy(() => import('./CommunityImport').then(module => ({ default: module.InstalledResources })));
 const LookupHistory = lazy(() => import('./LookupHistory').then(module => ({ default: module.LookupHistory })));
 const UnsavedDemo = lazy(() => import('./UnsavedDemo').then(module => ({ default: module.UnsavedDemo })));
+export async function preloadPublicPage(path: string) {
+  switch (path) {
+    case '/introduction': {
+      Welcome = (await publicViews[path]()).default;
+      const [identity, backup, conflicts] = await Promise.all([loadGithubIdentity(), loadProfileBackup(), loadSyncConflicts()]);
+      GithubIdentity = identity.default; ProfileBackup = backup.default; SyncConflicts = conflicts.default;
+      break;
+    }
+    case '/library/ipa': IpaChart = (await publicViews[path]()).default; break;
+    case '/settings/about': About = (await publicViews[path]()).default; break;
+    case '/library/dictionary': Dictionary = (await publicViews[path]()).default; break;
+    case '/library/grammar': GrammarLookup = (await publicViews[path]()).default; break;
+    default: throw Error('PUBLIC_PAGE_MISMATCH');
+  }
+}
+
 const lookupHistoryCopy = messages('lookupHistory_lookupHistoryCopy');
 const unsavedCopy = messages('unsavedDemo_unsavedCopy');
 
@@ -66,7 +94,7 @@ const { catalogue } = import.meta.env.MODE === 'test-fixtures'
 const lesson = catalogue.find(item => item.targetLevel === 'A1' && item.skill === 'reading');
 const listeningLesson = catalogue.find(item => item.targetLevel === 'A1' && item.skill === 'listening');
 const owner = crypto.randomUUID();
-let firstEntry = location.pathname === '/';
+let firstEntry = typeof location !== 'undefined' && location.pathname === '/';
 const route = () => location.pathname === '/' ? '/today' : location.pathname;
 const pageRoute = (path: string) => /^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(path);
 type NavDisplay = 'text' | 'icon' | 'both';
@@ -76,17 +104,17 @@ function welcomeSeen() {
   catch { return true; }
 }
 
-export function App() {
+export function App({ initialPage }: { initialPage?: PublicPageState }) {
   useEffect(touchFeedback, []);
   useEffect(scrollbarVisibility, []);
-  const [path, setPath] = useState(route);
+  const [path, setPath] = useState(() => initialPage?.path ?? route());
   const githubSession = useGithubSession(path === '/settings');
   const currentPath = useRef(path); currentPath.current = path;
-  const [todayDate, setTodayDate] = useState(() => localDay(new Date()));
+  const [todayDate, setTodayDate] = useState(() => initialPage?.day ?? localDay(new Date()));
   const todayQuote = useRef<DailyQuoteSelection>(undefined);
   const [unsavedDemo, setUnsavedDemo] = useState(false);
   useEffect(() => { setUnsavedDemo(false); }, [path]);
-  const [locale, setLocale] = useState<Locale>(initialLocale);
+  const [locale, setLocale] = useState<Locale>(() => initialPage ? 'en' : initialLocale());
   const localeRequest = useRef(0);
   const [theme, setTheme] = useState('system');
   const [desktopNavDisplay, setDesktopNavDisplay] = useState<NavDisplay>('text');
@@ -95,17 +123,23 @@ export function App() {
   const [preferences, setPreferences] = useState<Preferences>();
   const [activeProfile, setActiveProfile] = useState('local-guest');
   const [logicalProfile, setLogicalProfile] = useState('local-guest');
-  const [online, setOnline] = useState(navigator.onLine);
+  const [online, setOnline] = useState(() => initialPage ? true : navigator.onLine);
   const [error, setError] = useState('');
   const [ready, setReady] = useState(false);
   const [combinedDetail, setCombinedDetail] = useState<[Lesson, Lesson]>();
   const combinedInvoker = useRef<HTMLElement | null>(null);
   const [combinedPreparing, setCombinedPreparing] = useState(false);
   const [combinedError, setCombinedError] = useState('');
+  const combinedRequest = useRef(0);
+  useEffect(() => {
+    combinedRequest.current++;
+    setCombinedPreparing(false); setCombinedDetail(undefined); setCombinedError('');
+  }, [path, activeProfile]);
   const [practiceSelections, setPracticeSelections] = useState<Record<'reading' | 'listening', PracticeSelection>>({ reading: automaticPractice, listening: automaticPractice });
   const [combinedTopicsChanged, setCombinedTopicsChanged] = useState(false);
   const [history, setHistory] = useState<Session[]>([]);
-  const [pageSearch, setPageSearch] = useState(location.search);
+  const [pageSearch, setPageSearch] = useState(initialPage ? '' : location.search);
+  useLayoutEffect(() => { updatePageMetadata(path, pageSearch); }, [path, pageSearch]);
   const resetNavigationScroll = useRef(false);
   useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; scrollTo(0, 0); } }, [path, pageSearch]);
   useEffect(() => {
@@ -145,6 +179,8 @@ export function App() {
     const current = ++loadRevision.current;
     setError('');
     try {
+      // Reopen after a transient IndexedDB failure instead of retrying a closed connection.
+      await db.open();
       const profileId = await db.transaction('rw', profiles, settings, async () => {
         const selected = (await settings.get('activeProfile'))?.value;
         let profile = selected ? await profiles.get(selected) : undefined;
@@ -218,6 +254,7 @@ export function App() {
       navigate();
     };
     const network = () => setOnline(navigator.onLine);
+    network();
     document.addEventListener('click', click); addEventListener('popstate', navigate); addEventListener('online', network); addEventListener('offline', network);
     return () => { document.removeEventListener('click', click); removeEventListener('popstate', navigate); removeEventListener('online', network); removeEventListener('offline', network); };
   }, []);
@@ -282,27 +319,32 @@ export function App() {
     catch { setError('save'); } finally { setStarting(false); }
   }
   async function savePracticeSelection(skill: 'reading' | 'listening', value: PracticeSelection) {
+    combinedRequest.current++; setCombinedPreparing(false); setCombinedDetail(undefined); setCombinedError('');
     await saveSetting(activeProfile, `${skill}Practice`, JSON.stringify(value));
     setPracticeSelections(previous => ({ ...previous, [skill]: value }));
-    setCombinedTopicsChanged(true); setCombinedDetail(undefined); setCombinedError('');
+    setCombinedTopicsChanged(true);
   }
-  async function openCombined(reselect = false) {
+  async function openCombined() {
+    const request = ++combinedRequest.current;
     combinedInvoker.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setCombinedPreparing(true); setCombinedError('');
     try {
-      if (combinedPracticeSession?.lesson.mode === 'test' && !reselect && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
+      if (combinedPracticeSession?.lesson.mode === 'test' && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
         window.history.pushState(null, '', `/learn/${combinedPracticeSession.id}`); setPath(route()); scrollTo(0, 0);
-      } else if (combinedPracticeSession && !reselect && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
+      } else if (combinedPracticeSession && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
         const pair = history.filter(item => item.practiceGroupId === combinedPracticeSession.practiceGroupId);
         setCombinedDetail([pair.find(item => item.lesson.skill === 'reading')!.lesson, pair.find(item => item.lesson.skill === 'listening')!.lesson]);
       } else {
         const reading = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'reading', selection: practiceSelections.reading });
+        if (request !== combinedRequest.current) return;
         if (!reading.lesson) { setCombinedError(practiceSelections.reading.kinds.length || practiceSelections.reading.materials.length ? messages('practiceOptions')[locale].unsuitable : practiceSelections.reading.topics.length ? training.readingEmpty : t.checkInsufficient); return; }
         const listening = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'listening', selection: practiceSelections.listening, previewRoots: new Set(reading.lesson.materials.map(material => material.rootId)) });
+        if (request !== combinedRequest.current) return;
         if (!listening.lesson) { setCombinedError(practiceSelections.listening.kinds.length || practiceSelections.listening.materials.length ? messages('practiceOptions')[locale].unsuitable : practiceSelections.listening.topics.length ? training.listeningEmpty : t.checkInsufficient); return; }
         setCombinedDetail([reading.lesson, listening.lesson]);
       }
-    } catch { setCombinedError(t.checkInsufficient); } finally { setCombinedPreparing(false); }
+    } catch { if (request === combinedRequest.current) setCombinedError(t.checkInsufficient); }
+    finally { if (request === combinedRequest.current) setCombinedPreparing(false); }
   }
   async function startCombinedPractice(test = false) {
     if (!combinedDetail) return;
@@ -376,7 +418,8 @@ export function App() {
   const todayEntries = useMemo(() => path === '/today' ? progressRecords([], history, records, summaries).valid : [], [path, history, records, summaries]);
   const activeNav = path === '/progress' ? 'today' : path.startsWith('/library/') ? 'library' : path.startsWith('/settings/') ? 'settings' : path.slice(1);
   const introducing = path === '/introduction';
-  const entryPending = location.pathname === '/' && !ready && !error;
+  const entryPending = !initialPage && location.pathname === '/' && !ready && !error;
+  const pageReady = ready || initialPage?.path === path;
   useLayoutEffect(() => {
     const header = document.querySelector<HTMLElement>('#root>header'), root = document.documentElement;
     if (!header) return;
@@ -437,7 +480,7 @@ export function App() {
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !ready ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
@@ -461,12 +504,12 @@ export function App() {
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={(_ready, groups) => setInstalledGroups(groups)} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={setInstalledGroups} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
-      : path === '/library/dictionary' ? <div className="library-page"><Dictionary key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} standalone/></div>
+      : path === '/library/dictionary' ? <div className="library-page"><Dictionary disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
-      : path === '/library/ipa' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><IpaChart key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/></Suspense>
-      : path === '/library/grammar' ? <GrammarLookup key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/>
+      : path === '/library/ipa' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><IpaChart disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery} initialEntries={initialPage?.ipa} initialSounds={initialPage?.sounds}/></Suspense>
+      : path === '/library/grammar' ? <GrammarLookup disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} initialData={initialPage?.grammar}/>
       : path === '/settings/about' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><About/></Suspense>
       : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
       </PageBoundary></Suspense>

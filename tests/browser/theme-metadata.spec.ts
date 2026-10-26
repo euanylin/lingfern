@@ -101,3 +101,25 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
     await touch.close();
   }
 });
+
+test('production glass survives CSS minification and respects reduced transparency', async ({ page, context, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Media-feature injection uses Chromium CDP.');
+  await page.emulateMedia({ colorScheme: 'dark' });
+  const cdp = await context.newCDPSession(page);
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'dark' }, { name: 'prefers-reduced-transparency', value: 'no-preference' }] });
+  await page.goto('http://127.0.0.1:8787/settings');
+  await page.getByRole('button', { name: '语言' }).click();
+  const menu = page.locator('.setting-menu');
+  await expect(menu).toHaveCSS('backdrop-filter', 'blur(24px) saturate(1.4)');
+  await page.keyboard.press('Escape');
+  await page.evaluate(() => { Object.defineProperty(navigator, 'onLine', { configurable: true, value: false }); dispatchEvent(new Event('offline')); });
+  const toast = page.locator('.network-status-content');
+  await expect(toast).toBeVisible();
+  await expect(toast).toHaveCSS('backdrop-filter', 'blur(24px) saturate(1.4)');
+  await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'dark' }, { name: 'prefers-reduced-transparency', value: 'reduce' }] });
+  await expect(toast).toHaveCSS('backdrop-filter', 'none');
+  await expect(toast).toHaveCSS('background-color', 'rgb(48, 48, 46)');
+  await page.getByRole('button', { name: '语言' }).click();
+  await expect(menu).toHaveCSS('backdrop-filter', 'none');
+  await cdp.detach();
+});

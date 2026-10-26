@@ -18,11 +18,16 @@ export async function waitForOfflineWorker(signal?: AbortSignal) {
   signal?.throwIfAborted();
   if (!('serviceWorker' in navigator)) throw new Error('UNSUPPORTED');
   let timeout: ReturnType<typeof setTimeout> | undefined;
+  let abort: (() => void) | undefined;
   try {
-    const registration = await Promise.race([navigator.serviceWorker.ready, new Promise<never>((_, reject) => { timeout = setTimeout(() => reject(new Error('UNSUPPORTED')), 10_000); })]);
+    const registration = await Promise.race([navigator.serviceWorker.ready, new Promise<never>((_, reject) => {
+      timeout = setTimeout(() => reject(new Error('UNSUPPORTED')), 10_000);
+      abort = () => reject(signal?.reason);
+      signal?.addEventListener('abort', abort, { once: true });
+    })]);
     signal?.throwIfAborted();
     if (!registration.active) throw new Error('UNSUPPORTED');
-  } finally { clearTimeout(timeout); }
+  } finally { clearTimeout(timeout); if (abort) signal?.removeEventListener('abort', abort); }
 }
 
 export async function offlineGroupReady(id: string) {
@@ -69,7 +74,9 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
   await waitForOfflineWorker(signal);
   await (await import('./installationIntent')).saveInstallationIntent(profileId, id, true);
   await navigator.storage?.persist?.().catch(() => false);
-  if (await offlineGroupReady(id)) return true;
+  const ready = await offlineGroupReady(id);
+  signal.throwIfAborted();
+  if (ready) return true;
   const name = offlineCacheName(id);
   const cache = await caches.open(name);
   let completed = 0;
@@ -106,8 +113,11 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
     }
     if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
     await cache.put(offlineMarker(id), new Response(item.version));
+    signal.throwIfAborted();
+    const complete = await offlineGroupReady(id);
+    signal.throwIfAborted();
     notifyResourceChange();
-    return await offlineGroupReady(id);
+    return complete;
   } catch (error) {
     await caches.delete(name);
     notifyResourceChange();

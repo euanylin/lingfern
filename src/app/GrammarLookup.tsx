@@ -13,24 +13,25 @@ type Entry = z.infer<typeof entrySchema>;
 const labels = messages('grammarLookup');
 const initial = (headword: string) => headword.match(/[a-z]/i)?.[0].toUpperCase() ?? '#';
 
-export function GrammarLookup({ locale, online, profileId, initialQuery = '' }: { locale: Locale; online: boolean; profileId: string; initialQuery?: string }) {
+export function GrammarLookup({ locale, online, profileId, initialQuery = '', initialData, disabled = false }: { locale: Locale; online: boolean; profileId: string; initialQuery?: string; initialData?: unknown; disabled?: boolean }) {
   const t = labels[locale];
-  const [entries, setEntries] = useState<Entry[]>();
+  const [entries, setEntries] = useState<Entry[] | undefined>(() => initialData ? referenceSchema.parse(initialData).entries : undefined);
   const [query, setQuery] = useState(initialQuery.slice(0, 80));
   const [letter, setLetter] = useState('');
   const [error, setError] = useState(false);
   const [historyError, setHistoryError] = useState(false);
   const remember = useCallback(async (term: string) => {
-    if (!term.trim()) return;
+    if (disabled || !term.trim()) return;
     try { await recordLookup(profileId, 'grammar', term); setHistoryError(false); }
     catch { setHistoryError(true); }
-  }, [profileId]);
+  }, [profileId, disabled]);
   const showRelated = useCallback((entry: Entry) => { setQuery(entry.headword); setLetter(''); void remember(entry.headword); }, [remember]);
   useEffect(() => {
+    if (initialData) return;
     let live = true;
     fetch('/grammar/entries.json').then(async response => { if (!response.ok) throw new Error('GRAMMAR_UNAVAILABLE'); return referenceSchema.parse(await response.json()); }).then(data => { if (live) setEntries(data.entries); }).catch(() => { if (live) setError(true); });
     return () => { live = false; };
-  }, []);
+  }, [initialData]);
   useEffect(() => {
     const entry = entries?.find(item => item.headword === initialQuery);
     const detail = entry && document.getElementById(`grammar-${entry.id}`);
@@ -44,7 +45,7 @@ export function GrammarLookup({ locale, online, profileId, initialQuery = '' }: 
     .sort((a, b) => term ? Number(b.headword === term) - Number(a.headword === term) || Number(b.headword.startsWith(term)) - Number(a.headword.startsWith(term)) : 0).map(item => item.entry);
   const letters = [...new Set(indexed.map(item => item.initial))].sort();
   return <section className="reference-page grammar-page"><h1>{t.title}</h1>
-    <label className="reference-search">{t.search}<input type="search" value={query} onChange={event => { setQuery(event.target.value); setLetter(''); }} onBlur={() => void remember(query)} onKeyDown={event => { if (event.key === 'Enter') void remember(query); }} maxLength={80}/></label>
+    <label className="reference-search">{t.search}<input disabled={disabled} type="search" value={query} onChange={event => { setQuery(event.target.value); setLetter(''); }} onBlur={() => void remember(query)} onKeyDown={event => { if (event.key === 'Enter') void remember(query); }} maxLength={80}/></label>
     <section className="online-lookup" aria-label={t.online}>
       <div className="online-lookup-links">{online ? <a href={cambridgeGrammarUrl(query)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" onClick={() => void remember(query)}>{t.online} <span aria-hidden="true">↗</span></a> : <span className="online-lookup-disabled" aria-disabled="true">{t.online} ↗</span>}</div>
       <p className="muted">{online ? t.privacy : t.offline}</p>

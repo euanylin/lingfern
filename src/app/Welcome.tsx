@@ -25,24 +25,24 @@ const TodayPreview = memo(function TodayPreview({ locale, profileId, date, onDay
   </div>;
 });
 
-const LibraryPreview = memo(function LibraryPreview({ locale, profileId }: { locale: Locale; profileId: string }) {
+const LibraryPreview = memo(function LibraryPreview({ locale, profileId, online }: { locale: Locale; profileId: string; online: boolean }) {
   const app = messages('app')[locale];
   return <div className="library-page">
     <div className="library-page-heading"><h1>{app.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{messages('lookupHistory_lookupHistoryCopy')[locale].entry}</a></div></div>
     <section className="library-references"><h2>{app.references}</h2>
       {(['dictionary', 'ipa', 'grammar'] as const).map(name => <a className="library-reference-tile" href={`/library/${name}`} key={name}>{name === 'dictionary' ? app.dictionaryEntry : app[name]}</a>)}
     </section>
-    <OfflineInstall locale={locale} profileId={profileId} online={navigator.onLine} onReady={() => {}} preview/><InstalledResources locale={locale} profileId={profileId}/><CommunityImport locale={locale} profileId={profileId} onInstalled={() => {}}/>
+    <OfflineInstall locale={locale} profileId={profileId} online={online} onReady={() => {}} preview/><InstalledResources locale={locale} profileId={profileId}/><CommunityImport locale={locale} profileId={profileId} onInstalled={() => {}}/>
   </div>;
 });
 
-type WelcomeProps = { locale: Locale; profileId: string; date: string; onDayChange: (day: string) => void; onContinue: () => void; settings: ReactNode };
+type WelcomeProps = { locale: Locale; profileId: string; online: boolean; date: string; onDayChange: (day: string) => void; onContinue: () => void; settings: ReactNode };
 export function Welcome(props: WelcomeProps) {
   const { locale, onContinue } = props, t = messages('onboarding')[locale], app = messages('app')[locale];
   const titles = [app.today, app.library, app.settings], subtitles = [t.subToday, t.subLibrary, `${app.preferences} · ${t.subSync}`];
   const [active, setActive] = useState(0), [fernActive, setFernActive] = useState(true);
-  const [width, setWidth] = useState(0), [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [viewport, setViewport] = useState(() => ({ width: innerWidth, height: innerHeight }));
+  const [width, setWidth] = useState(0), [reduced, setReduced] = useState(false);
+  const [viewport, setViewport] = useState({ width: 0, height: 1 });
   const screenRatio = viewport.width / viewport.height;
   const inputFrame = useRef(0);
   const stage = useRef<HTMLDivElement>(null), frame = useRef(0), current = useRef(0), destination = useRef(0);
@@ -55,6 +55,7 @@ export function Welcome(props: WelcomeProps) {
   useLayoutEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)'), update = () => setReduced(media.matches);
     const resize = () => setViewport({ width: innerWidth, height: innerHeight });
+    update(); resize();
     media.addEventListener('change', update);
     window.addEventListener('resize', resize);
     const observer = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width)); observer.observe(stage.current!);
@@ -234,7 +235,7 @@ export function Welcome(props: WelcomeProps) {
           <div className="welcome-shadow"/>
           <div className="welcome-window" inert={index !== 0}>
             <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><nav className="desktop-nav" data-display="text" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><span className="nav-label">{app[name]}</span></a>)}</nav></header>
-            <div className="welcome-content">{index === 0 ? <TodayPreview {...props} active={fernActive}/> : index === 1 ? <div inert><LibraryPreview locale={locale} profileId={props.profileId}/></div> : <div inert>{props.settings}</div>}</div>
+            <div className="welcome-content">{index === 0 ? <TodayPreview {...props} active={fernActive}/> : index === 1 ? <div inert><LibraryPreview locale={locale} profileId={props.profileId} online={props.online}/></div> : <div inert>{props.settings}</div>}</div>
             <nav className="mobile-nav welcome-mobile-nav" data-display="both" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><NavIcon name={name}/><span className="nav-label">{app[name]}</span></a>)}</nav>
             <div className="welcome-shade"/>
           </div>

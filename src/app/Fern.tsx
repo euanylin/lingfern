@@ -14,8 +14,8 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
   const illustrating = illustrationActive !== undefined;
   const [lookups, setLookups] = useState<number | undefined>(() => illustrating ? 0 : shown.get(profileId)?.lookups);
   const [failed, setFailed] = useState(false);
-  const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [visible, setVisible] = useState(() => !document.hidden);
+  const [reduced, setReduced] = useState(false);
+  const [visible, setVisible] = useState(true);
   const { reading, listening, activity } = useMemo(() => ({
     reading: new Set(entries.filter(entry => entry.session.lesson.skill === 'reading').map(entry => entry.session.id)).size,
     listening: new Set(entries.filter(entry => entry.session.lesson.skill === 'listening').map(entry => entry.session.id)).size,
@@ -44,9 +44,10 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
     });
     return () => observer.unsubscribe();
   }, [profileId, illustrating]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const change = () => setReduced(media.matches);
+    change();
     media.addEventListener('change', change);
     return () => media.removeEventListener('change', change);
   }, []);

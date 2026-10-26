@@ -96,10 +96,14 @@ export async function installCommunityPack(pack: CommunityPack, profileId: strin
   const previous = await communityPacks.get([profileId, pack.hash]);
   const name = communityCacheName(pack.hash);
   const save = (state: 'ready' | 'staged') => db.transaction('rw', communityPacks, syncClocks, async () => {
+    signal?.throwIfAborted();
     if ((await syncClocks.get(profileId))?.deleted) throw new Error('PROFILE_DELETED');
     await communityPacks.put({ profileId, hash: pack.hash, id: pack.id, lessons: pack.lessons, sources: pack.sources, dictionary: pack.dictionary, ...(pack.corpus ? { corpus: pack.corpus } : {}), ...(pack.spoken ? { spoken: pack.spoken } : {}), state, installedAt: new Date().toISOString() });
+    signal?.throwIfAborted();
   });
-  if (await communityPackageReady(pack)) {
+  const ready = await communityPackageReady(pack);
+  signal?.throwIfAborted();
+  if (ready) {
     if (previous?.state !== 'ready') await save('ready');
     return;
   }
@@ -125,7 +129,11 @@ export async function installCommunityPack(pack: CommunityPack, profileId: strin
     }
     if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
     await cache.put(communityMarker(pack.hash), new Response('ready'));
-    await communityPacks.update([profileId, pack.hash], { state: 'ready' });
+    await db.transaction('rw', communityPacks, async () => {
+      signal?.throwIfAborted();
+      await communityPacks.update([profileId, pack.hash], { state: 'ready' });
+      signal?.throwIfAborted();
+    });
   } catch (error) {
     await caches.delete(name);
     await communityPacks.delete([profileId, pack.hash]);
