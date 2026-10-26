@@ -1,3 +1,4 @@
+import { showModal } from './modal';
 import { messages } from '../locales';
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
@@ -40,7 +41,7 @@ export function PracticeCard({ title, locale, sessions = [], records, recommende
   const [confirming, setConfirming] = useState(false), [restarting, setRestarting] = useState(false), [error, setError] = useState('');
   const dialog = useRef<HTMLDialogElement>(null), cancel = useRef<HTMLButtonElement>(null), trigger = useRef<HTMLButtonElement>(null), action = useRef<HTMLButtonElement>(null), focusAction = useRef(false);
   const headingId = useId(), confirmId = useId();
-  useEffect(() => { if (confirming) { dialog.current?.showModal(); cancel.current?.focus(); } else if (focusAction.current) { focusAction.current = false; action.current?.focus(); } }, [confirming]);
+  useEffect(() => { if (confirming) { showModal(dialog.current); cancel.current?.focus(); } else if (focusAction.current) { focusAction.current = false; action.current?.focus(); } }, [confirming]);
   function close() { if (restarting) return; dialog.current?.close(); setConfirming(false); setError(''); trigger.current?.focus(); }
   async function restart() {
     if (!onRestart || restarting) return;

@@ -1,3 +1,4 @@
+import { showModal } from './modal';
 import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { liveQuery } from 'dexie';
@@ -314,7 +315,7 @@ export function App() {
       setCombinedDetail(undefined); setCombinedTopicsChanged(false); setPath(route()); scrollTo(0, 0);
     } catch { setError('save'); } finally { setStarting(false); }
   }
-  useEffect(() => { if (confirmUpdate) { updateDialog.current?.showModal(); updateCancel.current?.focus(); } }, [confirmUpdate]);
+  useEffect(() => { if (confirmUpdate) { showModal(updateDialog.current); updateCancel.current?.focus(); } }, [confirmUpdate]);
   function requestUpdate(trigger: HTMLButtonElement) { updateTrigger.current = trigger; setUpdateBlocked(false); setConfirmUpdate(true); }
   function closeUpdate() { if (applyingUpdate) return; updateDialog.current?.close(); setConfirmUpdate(false); updateTrigger.current?.focus(); }
   async function applyUpdate() {

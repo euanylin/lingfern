@@ -1,3 +1,4 @@
+import { showModal } from './modal';
 import './MaterialWorkspace.css';
 import { localeDirection } from '../shared/locale';
 import { useQuestionSheetLayout } from './useQuestionSheetLayout';
@@ -61,7 +62,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   }, [material.id, listening, mobile]);
   useEffect(() => {
     const dialog = validationDialog.current!;
-    if (error === t.invalidAnswer && !dialog.open) { validationInvoker.current?.focus({ preventScroll: true }); dialog.showModal(); validationClose.current?.focus(); }
+    if (error === t.invalidAnswer && !dialog.open) { validationInvoker.current?.focus({ preventScroll: true }); showModal(dialog); validationClose.current?.focus(); }
     else if (error !== t.invalidAnswer && dialog.open) { dialog.close(); validationInvoker.current?.focus({ preventScroll: true }); }
   }, [error, t.invalidAnswer]);
   function openQuestionCard() {

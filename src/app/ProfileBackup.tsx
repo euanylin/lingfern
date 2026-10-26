@@ -1,3 +1,4 @@
+import { showModal } from './modal';
 import { messages } from '../locales';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -31,9 +32,9 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
     const observer = liveQuery(() => profiles.toArray()).subscribe({ next: setItems, error: () => setMessage(t.failed) });
     return () => observer.unsubscribe();
   }, [t.failed]);
-  useEffect(() => { if (confirming) { dialog.current?.showModal(); cancel.current?.focus(); } }, [confirming]);
+  useEffect(() => { if (confirming) { showModal(dialog.current); cancel.current?.focus(); } }, [confirming]);
   // React autoFocus runs before showModal; the native attribute controls its initial focus.
-  useEffect(() => { if (exporting) { exportCancel.current?.setAttribute('autofocus', ''); exportDialog.current?.showModal(); } }, [exporting]);
+  useEffect(() => { if (exporting) { exportCancel.current?.setAttribute('autofocus', ''); showModal(exportDialog.current); } }, [exporting]);
   useEffect(() => { revision.current++; dialog.current?.close(); setConfirming(undefined); setDeleteError(''); exportDialog.current?.close(); setExporting(undefined); setInspection(undefined); setFileName(''); setBusy(false); }, [activeProfile]);
   useEffect(() => () => { revision.current++; }, []);
   function closeExport() { if (busy) return; exportDialog.current?.close(); setExporting(undefined); downloadButton.current?.focus(); }

@@ -83,10 +83,20 @@ test.describe('native touch scrolling', () => {
     await page.locator('.backup-download').click();
     const before = await page.evaluate(() => scrollY);
     const cdp = await context.newCDPSession(page);
-    await cdp.send('Input.synthesizeScrollGesture', { x: 4, y: 600, yDistance: 300, speed: 1200, gestureSourceType: 'touch' });
+    const swipe = async () => {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 150, y: 580 }] });
+      for (let step = 1; step <= 8; step++) {
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 150, y: 580 + step * 24 }] });
+        await page.waitForTimeout(20);
+      }
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    };
+    await swipe();
     expect(await page.evaluate(() => scrollY)).toBe(before);
     await page.keyboard.press('Escape');
-    await cdp.send('Input.synthesizeScrollGesture', { x: 4, y: 600, yDistance: 300, speed: 1200, gestureSourceType: 'touch' });
+    await expect(page.locator('.backup-export-dialog')).toHaveCount(0);
+    await expect(page.locator('html')).not.toHaveCSS('overflow-y', 'hidden');
+    await swipe();
     await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(before);
     await cdp.detach();
   });
@@ -113,4 +123,25 @@ test('offline removal uses the same blurred, frozen confirmation surface', async
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
   await expect(remove).toBeFocused();
+});
+
+for (const locale of ['en', 'ar'] as const) test(`a reserved scrollbar does not move the page or shrink a full-width drawer: ${locale}`, async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/settings');
+  await selectPicker(page, '语言', locale);
+  await page.goto('/today');
+  const trigger = page.locator('[data-practice-skill=reading]').first();
+  await expect(trigger).toBeVisible();
+  await page.evaluate(() => { document.documentElement.style.scrollbarGutter = 'stable'; });
+  const before = await page.evaluate(() => ({ gutter: innerWidth - document.documentElement.clientWidth, left: document.querySelector('main')!.getBoundingClientRect().left }));
+  test.skip(!before.gutter, 'This engine provides overlay scrollbars without a reserved gutter.');
+  await trigger.click();
+  const dialog = page.locator('.practice-options-dialog');
+  await expect(dialog).toHaveCSS('opacity', '1');
+  await expect.poll(() => dialog.evaluate(element => element.getAnimations().every(animation => animation.playState !== 'running'))).toBe(true);
+  const box = (await dialog.boundingBox())!;
+  expect(box.x).toBe(0); expect(box.width).toBe(375);
+  expect(await page.locator('main').evaluate(element => element.getBoundingClientRect().left)).toBe(before.left);
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
 });

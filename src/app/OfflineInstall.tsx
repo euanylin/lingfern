@@ -1,3 +1,4 @@
+import { showModal } from './modal';
 import { contentLocale } from '../shared/locale';
 import { messages } from '../locales';
 import { loadRuntimeResources, runtimeResources } from '../data/runtimeResources';
@@ -94,7 +95,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
       return next;
     });
   }
-  useEffect(() => { if (confirmingRemoval) { removalDialog.current?.showModal(); removalCancel.current?.focus(); } }, [confirmingRemoval]);
+  useEffect(() => { if (confirmingRemoval) { showModal(removalDialog.current); removalCancel.current?.focus(); } }, [confirmingRemoval]);
   function closeRemoval() { if (deleting) return; removalDialog.current?.close(); setConfirmingRemoval(false); removalTrigger.current?.focus(); }
   function row(group: typeof downloadableGroups[number]) {
     const pack = sourceById.get(group.id);

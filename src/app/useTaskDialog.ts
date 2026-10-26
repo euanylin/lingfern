@@ -1,3 +1,4 @@
+import { showModal } from './modal';
 import { useEffect, useRef, useState } from 'react';
 import { cardInteraction } from './cardInteraction';
 
@@ -24,7 +25,7 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
   useEffect(() => {
     // Inherit the opening gesture before a stationary mouse re-hits the panel.
     touchInput.current = document.documentElement.hasAttribute('data-touch-input');
-    dialog.current?.showModal();
+    showModal(dialog.current);
     enterFrame.current = requestAnimationFrame(() => { enterFrame.current = requestAnimationFrame(() => setOpen(true)); });
     const query = matchMedia('(max-width:1199px)');
     let interaction: ReturnType<typeof cardInteraction> | undefined;
