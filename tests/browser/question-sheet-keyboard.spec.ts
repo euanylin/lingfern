@@ -8,6 +8,32 @@ material.questions[0] = { kind: 'completion', id: original.id, blockId: original
   prompt: 'Complete the meeting place.', answer: 'library', accepted: ['library'], evidence: { start, end: start + 7 },
   explanation: original.explanations[original.answer], hints: original.hints };
 
+test('closing answer validation returns to its submitter without re-entering the previous input', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/today');
+  const id = await page.evaluate(async raw => {
+    const lesson = structuredClone(raw); lesson.materials.reverse(); lesson.organization = 'material-v1';
+    return (await (await import('/src/data/db.ts' as string)).createSession(lesson)).id;
+  }, raw);
+  await page.goto(`/learn/${id}`);
+  await page.locator('.question-sheet-toggle').click();
+  await page.locator('.workspace-card button').last().click();
+  const input = page.locator('.workspace-question input:not([type=radio],[type=checkbox])').first();
+  await input.fill('library');
+  await input.evaluate(element => element.addEventListener('focus', () => { (element as HTMLElement).dataset.reentered = 'true'; }));
+  const submit = page.locator('button[type=submit]');
+  await submit.click();
+  const dialog = page.locator('.update-confirm-dialog');
+  await expect(dialog).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(submit).toBeFocused();
+  await expect(input).not.toHaveAttribute('data-reentered', 'true');
+  await input.click();
+  await expect(input).toBeFocused();
+  await expect(input).toHaveValue('library');
+});
+
 
 async function editingAboveKeyboard(page: Page, workspace: boolean, width: number) {
   await page.setViewportSize({ width, height: 640 }); await page.goto('/today');

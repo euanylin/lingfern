@@ -14,6 +14,10 @@ node scripts/backup.mjs --restore <UTC-snapshot-name> /tmp/lingfern-restored
 
 Restoration verifies SHA-256, replays deletions and never overwrites the working project. Reinstall dependencies and run the build/tests there; configure credentials separately.
 
+## Verification scope
+
+Routine documentation, UI and focused code updates use the backup command's built-in source/copy SHA-256 checks; they do not require a separate full-project restore on every delivery. Independently restore and compare hashes when backup/restore/retention logic or protected-file exclusions change, when old recovery points are retired, or when an affected release/data-recovery procedure requires it. Consolidation still verifies its complete replacement before deleting the old chain. This changes repeated verification work, not snapshot integrity, the retention limit or deletion permissions.
+
 ## Retention limit
 
 Keep at most **30 complete recovery points**, counting the full baseline and incremental snapshots together. Unchanged backup calls do not consume a recovery point. Before a changed backup would create point31, run the verified consolidation command below, then create the new incremental snapshot. This resets the retained history to one full baseline plus the subsequent changes; it does not retain the latest30 historical versions. Thirty points cover roughly15 before/after edit cycles without allowing unlimited accumulation.

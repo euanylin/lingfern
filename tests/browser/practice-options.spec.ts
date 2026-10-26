@@ -23,6 +23,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveCSS('opacity', '1');
   const topic = dialog.locator('.practice-option-fields .setting-trigger').first();
+  await expect(dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true })).toBeFocused();
   await topic.click();
   await dialog.locator('[role=option][data-value=science]').click();
   await dialog.locator('[role=option][data-value=daily-life]').click();
@@ -59,6 +60,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await expect(button.locator('span').first()).toHaveCSS('color', theme === 'light' ? 'rgb(83, 111, 91)' : 'rgb(168, 187, 163)');
   await button.click();
   await expect(topic).toHaveAttribute('data-value', 'science,daily-life');
+  await expect(dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true })).toBeFocused();
   await expect(dialog.getByRole('button', { name: t.kind }).and(dialog.locator('.setting-trigger'))).toHaveAttribute('data-value', 'completion,choice');
   await expect(dialog.getByRole('checkbox', { name: 'cat', exact: true })).toBeChecked();
   await expect(dialog.getByRole('checkbox', { name: 'bed', exact: true })).toBeChecked();

@@ -61,7 +61,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   }, [material.id, listening, mobile]);
   useEffect(() => {
     const dialog = validationDialog.current!;
-    if (error === t.invalidAnswer && !dialog.open) { dialog.showModal(); validationClose.current?.focus(); }
+    if (error === t.invalidAnswer && !dialog.open) { validationInvoker.current?.focus({ preventScroll: true }); dialog.showModal(); validationClose.current?.focus(); }
     else if (error !== t.invalidAnswer && dialog.open) { dialog.close(); validationInvoker.current?.focus({ preventScroll: true }); }
   }, [error, t.invalidAnswer]);
   function openQuestionCard() {
@@ -248,9 +248,9 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
       await recordPlayback(session.id, owner, current.question.id, true); await refresh();
     } catch { if (audio.current === player) setError(t.saveError); }
   }
-  async function submitAll() {
+  async function submitAll(invoker: EventTarget | null = document.activeElement) {
     if (busy) return;
-    validationInvoker.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    validationInvoker.current = invoker instanceof HTMLElement ? invoker : null;
     setBusy(true); setError('');
     try {
       await pending.current;
@@ -298,8 +298,8 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
         <details ref={questionCard} className="workspace-card" open onFocus={() => { focusRequest.current = undefined; }}><summary><span>{w.card}</span></summary><nav id="workspace-question-nav" aria-label={w.card}>{numbered.flatMap(item => Array.from({ length: questionSlots(item.question) }, (_, slot) => <button type="button" key={`${item.question.id}:${slot}`} aria-label={`${item.start + slot}. ${skipped.has(item.question.id) ? w.skipped : slotAnswered(item.question, answers[item.question.id], slot) ? w.answered : w.unanswered}`} aria-current={displayedNumber === item.start + slot ? 'step' : undefined} data-skipped={skipped.has(item.question.id)} data-answered={skipped.has(item.question.id) || slotAnswered(item.question, answers[item.question.id], slot)} onClick={() => void navigate(item.question.id, slot)}>{item.start + slot}</button>))}</nav></details>
 
         <p className="saved workspace-save-status sr-only" role="status">{saving ? t.saving : unsaved.current.size ? t.saveError : t.saved}</p>
-        {error && error !== t.invalidAnswer && <div className="error" role="alert"><p>{error}</p><button type="button" disabled={busy} onClick={() => { for (const change of unsaved.current.values()) persist(change); if (!unsaved.current.size) void submitAll(); }}>{t.retry}</button><button type="button" onClick={download}>{t.export}</button></div>}
-        <form onSubmit={event => { event.preventDefault(); if (!nextMaterial) void submitAll(); }}>
+        {error && error !== t.invalidAnswer && <div className="error" role="alert"><p>{error}</p><button type="button" disabled={busy} onClick={event => { for (const change of unsaved.current.values()) persist(change); if (!unsaved.current.size) void submitAll(event.currentTarget); }}>{t.retry}</button><button type="button" onClick={download}>{t.export}</button></div>}
+        <form onSubmit={event => { event.preventDefault(); if (!nextMaterial) void submitAll((event.nativeEvent as SubmitEvent).submitter ?? event.currentTarget.querySelector('button[type=submit]')); }}>
           {visible.map(item => {
             const split = 'kind' in item.question && item.question.kind === 'completion' ? item.question.prompt.indexOf('\n') : -1;
             const canSkip = 'criteria' in item.question && !finished && !saved.some(record => record.questionId === item.question.id);

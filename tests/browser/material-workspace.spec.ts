@@ -60,6 +60,7 @@ for (const [locale, width, theme] of [['en', 375, 'light'], ['ar', 1440, 'dark']
     await page.locator('button[type=submit]').click();
     const dialog = page.getByRole('dialog', { name: languagePacks[locale].workspace.submitAll });
     await expect(dialog).toBeVisible(); await expect(dialog.locator('[role=alert]')).toHaveText(languagePacks[locale].app.invalidAnswer);
+    expect(await dialog.evaluate(element => getComputedStyle(element, '::backdrop').backdropFilter)).toBe('blur(3px)');
     await expect(dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true })).toBeFocused();
     const downloaded = page.waitForEvent('download'); await dialog.getByRole('button', { name: languagePacks[locale].app.export, exact: true }).click();
     expect((await downloaded).suggestedFilename()).toBe('lingfern-answer-drafts.json');

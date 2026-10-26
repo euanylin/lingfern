@@ -152,6 +152,9 @@ for (const [locale, profileLabel, exportLabel, importLabel, copyLabel, done] of 
 
 for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`backup filename dialog supports time defaults, custom names and cancellation: ${locale}`, async ({ page }) => {
   const t = languagePacks[locale].profileBackup;
+  await page.addInitScript(() => document.addEventListener('focusin', event => {
+    if (event.target instanceof HTMLInputElement && event.target.id === 'backup-export-name') event.target.dataset.entered = 'true';
+  }));
   await page.goto('/settings');
   await expect(page.locator('.profile-backup .setting-trigger')).toBeVisible();
   if (locale !== 'zh-Hans') await selectPicker(page, '语言', locale);
@@ -172,7 +175,8 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`backup filename dia
     await expect(input).toHaveAttribute('placeholder', 'lingfern-2026-10-24');
     expect(await input.evaluate(element => ({ start: (element as HTMLInputElement).selectionStart, end: (element as HTMLInputElement).selectionEnd }))).toEqual({ start: 0, end: 0 });
     await expect(input).toHaveAttribute('data-default', 'true');
-    await expect(input).toBeFocused();
+    await expect(dialog.getByRole('button', { name: t.cancel, exact: true })).toBeFocused();
+    await expect(input).not.toHaveAttribute('data-entered', 'true');
     expect(await input.evaluate(element => getComputedStyle(element, '::placeholder').color)).toBe(await dialog.locator('.muted').evaluate(element => getComputedStyle(element).color));
     expect(await input.evaluate(element => getComputedStyle(element).borderTopWidth)).toBe('0px');
     await expect(input).toHaveCSS('font-size', '15px');
@@ -180,6 +184,10 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`backup filename dia
     expect(await dialog.getByRole('button').evaluateAll(buttons => buttons.every(button => button.getBoundingClientRect().height >= 44))).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `output/playwright/backup-export-${locale}-${width}-${colorScheme}.png` });
+    await page.keyboard.press('Shift+Tab');
+    await expect(input).toBeFocused();
+    await input.pressSequentially('My backup');
+    await expect(input).toHaveValue('My backup');
     if (width === 1440) await page.keyboard.press('Escape');
     else await dialog.getByRole('button', { name: t.cancel, exact: true }).click();
     await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
@@ -187,7 +195,7 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`backup filename dia
   expect(filenames).toEqual([]);
   const save = async (value?: string) => {
     await trigger.click();
-    if (value !== undefined) await input.pressSequentially(value);
+    if (value !== undefined) { await input.click(); await input.pressSequentially(value); }
     const pending = page.waitForEvent('download');
     await dialog.getByRole('button', { name: t.save, exact: true }).click();
     const download = await pending;

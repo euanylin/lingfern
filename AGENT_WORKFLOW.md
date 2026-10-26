@@ -88,11 +88,33 @@ For broad application/source acceptance, run both `npm test` and `npm run test:s
 
 Run resource generation and tests reading those outputs sequentially. Coordinate servers and ports; reuse only a verified matching server. Do not run concurrent jobs that rewrite the same fixtures, manifests or evidence output. Parallel read-only checks are fine when they have no shared output. Preserve failed evidence and repair causes; never relax exact-primary/hash/security assertions to obtain a pass.
 
-Maintainer update (2026-10-24): use risk-based verification for small updates. Copy/style-only work checks affected views/controls and applicable types/lint; a focused behavior fix runs its relevant unit/browser cases. Storage/import, sync, identity/MCP permissions and offline upgrades expand to their actual failure/recovery risks. Do not default to full-site local suites for every small change. Broad or cross-cutting acceptance still uses the full applicable suites above.
+### Routine update budget — maintainer update,2026-10-26
 
-Protected CI reuses successful full Checks only for the identical commit in this repository. A skipped, incomplete, failed, foreign or different-source run is not full proof. Pending verification blocks reuse; completed unsuccessful runs invalidate older success until fresh full Checks pass. Reruns execute tests, and fully executed manual Checks can refresh the proof. Another pending run blocks reuse; a completed unsuccessful run invalidates older success until fresh full Checks pass. Explicit reruns execute tests, and fully executed manual Checks can refresh the proof. Main retains its required `checks` job; Deploy requires both that exact-source full proof and successful protected-main Checks, then rebuilds, checks local routes/configuration and verifies production. Missing evidence falls back to full Checks or blocks deployment; never bypass branch/environment protection. This avoids repeating an unchanged full suite on the candidate, main and Deploy.
+Select the smallest sufficient path before editing. The table is the default local scope, not a limit on necessary safety or a relaxation of protected CI.
 
-For a documentation-only change, check local links, referenced paths, command names and instruction consistency; no application rebuild or browser suite is required. For code/UI/data changes, choose checks by affected behaviour and the requirements above. Mark checks not run explicitly.
+| Change | Default verification |
+|---|---|
+| Documentation only | Ordinary content review; no CI, build, app tests, extra validators or restore drill |
+| CSS or small visual change | One affected view/control; no standalone TypeScript/ESLint checks for CSS-only edits |
+| Focused TypeScript/behaviour fix | Changed-file ESLint, one typecheck and the directly relevant existing unit/browser cases |
+| Shared responsive/platform UI | Representative narrow/desktop cases; another engine, theme or locale only for a concrete affected risk |
+| Storage/import/sync/auth/MCP/SW change | Relevant integrity, conflict, failure, permission and recovery cases; expand beyond the focused set where these risks require it |
+| Broad refactor or requested full audit | Applicable broad suites and representative product coverage |
+
+Stop after the relevant checks pass. Repeat only tests affected by a subsequent edit, a failure or a concrete unresolved concern. A new status note, screenshot or final summary is not a reason to rerun application checks.
+
+- Build once after the code settles when a compiled preview or release needs it. `npm run build` already runs typecheck and content/resource/notices guards; do not separately repeat those same commands around it.
+- If the current build is fresh, use `node tests/sw-update.mjs` (with the existing focused options when applicable), not `npm run test:update`, which builds again. Do not run update/offline/MCP/sync suites for unrelated copy or CSS changes.
+- Use Vite fixtures for ordinary UI tests and compiled/SW-controlled pages for installation, offline or update paths. Reuse one matching fixture server across focused runs; do not run another runner against a server its owner is about to tear down, or regenerate the same fixture tree concurrently.
+- Test the reported defect first, then one representative use of a shared fix. Do not turn an unchanged translation/colour/browser matrix into the default for every caller. Add a specific regression only when the existing cases cannot catch the failure.
+- Reuse unchanged exact-source evidence within its original scope. Preserve failed attempts, but distinguish harness limitations from product failures before expanding application edits. Never replace a failing assertion with a weaker one merely to pass.
+- Keep before/after incremental snapshots. Full independent restoration is conditional as described below; do not make whole-project copies, source archives or recovery repositories for every small UI fix.
+- Keep one concise verification record and the necessary screenshots/logs. Prefer links from current handoff/status/issues over copying the detailed report into each file. Remove task-owned idle scratch copies after verification; preserve current preview state and necessary evidence.
+
+
+Protected CI reuses successful full Checks only for the identical commit in this repository. A skipped, incomplete, failed, foreign or different-source run is not full proof. Pending verification blocks reuse; completed unsuccessful runs invalidate older success until fresh full Checks pass. Explicit reruns execute tests, and fully executed manual Checks can refresh the proof. Main retains its required `checks` job; Deploy requires both that exact-source full proof and successful protected-main Checks, then rebuilds, checks local routes/configuration and verifies production. Missing evidence falls back to full Checks or blocks deployment; never bypass branch/environment protection. This avoids repeating an unchanged full suite on the candidate, main and Deploy.
+
+Maintainer update (2026-10-26): documentation-only updates need no CI, application tests, type/lint/build/browser/offline runs, deployment or extra validation scripts. Ordinary content review suffices. Do not manually dispatch or repeat CI for documentation. If GitHub automatically starts a required check, distinguish that platform constraint from documentation validation; do not bypass protection or silently change workflows. For code/UI/data changes, choose checks by affected behaviour and the requirements above. Mark checks not run explicitly.
 
 After verified website changes, restart only the identified preview process after rebuilding `dist/` so its asset inventory is fresh. Keep `http://127.0.0.1:8787/` running, verify `/sw.js` and the rendered 今日 heading in an isolated browser profile, and offer the exact preview follow-up in `AGENTS.md`. An HTTP 200 shell alone is not heading verification. Do not open/focus the maintainer's browser or alter their real learning data.
 
@@ -108,7 +130,7 @@ Preserve I137/I142's strict installed-primary equality, cross-package ownership/
 
 ## 7. Backup, permissions and finish
 
-Run the required before-change/delivery backup; follow the threshold authorisation in `AGENTS.md` and the exact chain/count/lock/exclusion/restoration procedure in [backup/README.md](backup/README.md). Restore into a nonexistent destination and compare hashes. Permissions are owned by `AGENTS.md`; console setup is in [worker/identity-setup.md](worker/identity-setup.md).
+Run the required before-change/delivery incremental backup; follow the threshold authorisation in `AGENTS.md` and the chain/count/lock/exclusion procedure in [backup/README.md](backup/README.md). Its source/copy hash verification is sufficient for routine documentation, UI and focused code updates. Perform an independent full restore into a nonexistent destination only when changing backup/restore/retention logic, changing protected-file exclusions, retiring recovery points or when the affected release/data-recovery procedure requires it. Compare hashes and remove successful scratch restores. Permissions are owned by `AGENTS.md`; console setup is in [worker/identity-setup.md](worker/identity-setup.md).
 
 Keep current handoff/status/issues concise. Store dated detailed evidence in `docs/history/` or the existing private verification scope with these fields:
 

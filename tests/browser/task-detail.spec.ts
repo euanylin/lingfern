@@ -25,6 +25,7 @@ test('task details confirm metadata without starting, exposing passages or playi
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveCSS('opacity', '1');
   await expect(dialog).toHaveCSS('width', '520px');
+  await expect(dialog.getByRole('button', { name: '关闭', exact: true })).toBeFocused();
   await expect(dialog).toContainText('Kokoro-82M');
   await expect(dialog).toContainText('合成语音');
   await expect(dialog.locator('.task-detail-body > dl').first().locator('dt')).toHaveText(['题型', '音频']);
