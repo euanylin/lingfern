@@ -2,79 +2,76 @@
 
 [Website](https://lingfern.com) · [Home](../README.md) · [简体中文介绍](README.zh-CN.md)
 
-Lingfern helps you practise English reading and listening, keep your answers, and revisit feedback. You can learn without an account.
+## Start, answer and resume
 
-## Start a session
+1. Choose your starting points and interests. On **Today**, configure Reading and Listening separately by goal, topic, material and question type, or keep **Automatic**.
+2. Select **Reading**, **Listening** or **Combined**, review the goal, and choose **Practice** or **Test**. Combined runs reading followed by listening and keeps both sessions.
+3. Work through the questions. Drafts save as you answer. Use the answer card to locate a question, then select its answer area to start typing or choosing an option.
+4. Submit after the final question to save the completed answers and see feedback. In listening, all question groups for the current recording appear in one scrollable list; subsequent recordings follow in order. Pause, replay and seek using the player.
 
-1. Open **Today** and choose **Reading**, **Listening** or **Combined**.
-2. Review the learning goal and choose **Practice** or **Test**.
-3. Work through the material and questions. You can move between questions and edit answers before finishing.
-4. Finish the session to save the completed answers and view feedback.
+Resume from Today or **History**, at the top of Today's Reading section; **Restart** begins a replacement session. For save errors, keep the page open and follow the recovery action.
 
-Combined training runs Reading followed by Listening and keeps both sessions. To return to saved work, use **History** at the top of Today's Reading section.
+| Mode | Available support |
+|---|---|
+| **Practice** | Teaching examples, dictionary lookup, three hints (goal, clue, language) and self-assessment where available. |
+| **Test** | The same material and questions, without hints, dictionary, examples, self-assessment or AI. Feedback appears after completion; replay and seeking remain available. |
 
-Draft answers are saved as you work. If a save fails, keep the page open and follow the error message before leaving or clearing anything.
+Open-response groups offer **Skip this question** and **Resume answering**. Skipping keeps existing drafts and does not count as a correct or completed answer. Objective questions receive task-specific scores and explanations; open responses are saved without automatic scores.
 
-## Practice and Test
+## History and progress
 
-**Practice** offers hints and dictionary support. Hints can remind you of the goal, point towards a clue or explain language. Feedback appears after you finish.
+**History** shows sessions, answers, feedback, assistance used and reading/listening progress. Open a session to continue or revisit it; delete completed responses after confirmation. Confirm completion times when clock-correction controls appear.
 
-**Test** uses the same material and questions without hints, dictionary assistance, teaching examples, self-assessment or AI support. Feedback appears after completion. Normal audio replay and seeking remain available.
+Today's fern reflects saved activity, not certified proficiency. The daily quotation includes its source and a control to choose another quotation.
 
-Objective questions have task-specific scoring and explanations. Open responses are saved without an automatic score. Results are evidence about these tasks, not a certified language level or a conversion to an examination score.
+## References and bookmarks
 
-## Configure practice and use references
+Open **Library** for:
 
-Reading and Listening each have a settings control on Today. Choose a goal, topics, materials and question types, or keep Automatic. Choices are saved for the current profile; selecting several topics or types allows the generator to use any eligible selection. Combined uses the reading and listening settings in sequence.
+- **English dictionary:** search words and definitions, or select a word in reading practice to look it up.
+- **Bookmarks:** use ★/☆ beside a definition to save or remove it. Collapse definitions from the entry heading. An unchecked entry stays until you reopen or refresh the bookmark page, so you can restore it immediately.
+- **IPA chart:** switch between Simple and Detailed views; search or browse sounds and play their recordings or English example words where provided.
+- **English usage reference:** search by keyword or browse alphabetically, then expand an explanation.
+- **Query history:** reopen dictionary, usage-reference and IPA lookups, with their source and time shown.
 
-Library contains word lookup, saved-word review, a simple and full IPA chart with pronunciation recordings, the English usage reference and lookup history. Select a sound or example word to play it. Online dictionary links open only when requested. Compatible community ZIPs can be imported through Library; retain the original ZIP if you need its material and audio on another device.
+Set Cambridge, Oxford Learner’s Dictionaries, Wiktionary or Merriam-Webster as your online dictionary in Settings. Online lookup opens that website; usage-reference links use Cambridge Grammar.
 
-Settings also provides light, dark and system appearance, navigation display choices, and app-update controls. Introduction previews show Today, Library and Settings; selecting a side card brings it forward. The growth fern describes saved reading/listening activity, not an independently measured proficiency level.
+## Offline and community resources
 
-## Prepare for offline use
+In Library, search for text, audio and references and wait for installation to finish. Installed learning, saving, bookmarks and references work offline. Downloads, GitHub and external websites require a connection.
 
-While connected, open **Library**, select the materials, audio and reference resources you want, and wait for installation to finish. Opening a page alone does not install every resource.
+Import compatible community ZIPs or update/remove installed packages from Library. Retain original ZIPs for other devices. Before travelling, check installed material and audio; for failed downloads, check storage and connectivity, then retry.
 
-After the application and required resources are installed, reading, listening, answers, review and local backups work offline. Materials you have not installed still need a connection. Downloads, external dictionary websites, GitHub connections and external AI services also need their own network access.
+## Profiles and backup ZIPs
 
-If a download fails, check your connection and available storage, then retry. Before a trip or a period without access, open the installed material and check that its audio plays on the device you will use.
+In **Settings → Backup**, select a profile and choose:
 
-## Back up and move your work
+- **Export:** accept the suggested `lingfern-YYYY-MM-DD` name by leaving the field blank, or type your own name. `.zip` is added automatically. This name is also saved inside the backup for the restored profile.
+- **Restore:** select the ZIP, check its profile name and record counts, then import. A separate profile is created and selected; existing profiles are kept. Renaming the ZIP externally does not change the name stored inside it.
+- **Delete:** confirm the displayed profile before deleting its local records. Other profiles and remote repository copies are not deleted. A replacement local profile is created if none remains.
 
-Learning data belongs to the current browser profile and site address. Another browser, device or local preview address has separate storage. Private browsing and browser storage cleanup can make that data temporary or remove it.
+Backups contain sessions, answers, drafts, bookmarks, query history, feedback and preferences; reinstall resources and audio separately. ZIPs are unencrypted: keep them private and back up before clearing site data or changing devices. Each browser profile/site address has separate storage.
 
-To make a backup:
+## GitHub automatic sync
 
-1. In **Settings**, find the profile and backup controls and select the profile you want to preserve.
-2. Export its backup ZIP and keep it somewhere private.
-3. Keep another copy before clearing browser data or changing devices.
+1. Sign in from **Settings → GitHub identity**, then choose the account profile to use or copy your local profile into it.
+2. Follow setup to create a dedicated private data repository with a README, grant the GitHub App access to that repository, and select and verify it in Lingfern.
+3. Automatic sync uploads changes and retrieves updates. Check sync status and the last successful time; use **Sync now** or **Retry** when needed.
 
-To restore, choose the backup ZIP in Settings, review the displayed profile and record counts, and confirm the import. Lingfern restores it into a new profile and switches to that profile. Existing profiles are kept.
+Sync covers learning summaries, bookmarks, query history, preferences, installation choices and deletions. Offline changes survive refreshes and resume on reconnection. Summaries may appear without a local lesson; transfer full sessions/answers by backup and install resources separately.
 
-A backup contains saved sessions, responses and related learning records. It does not include installed resource packs or audio; install those separately on the destination device. Backup ZIPs are not encrypted and may contain your answers and material text. Do not attach them to a public issue.
+Turn **Automatic sync** off to pause it, or disconnect the binding in repository setup. **Disconnect GitHub identity** ends website sessions on all devices and revokes GitHub authorisation. Local records and repository files remain; follow the displayed instructions if revocation cannot be confirmed.
 
-## Optional online connections
+## AI handoff and MCP
 
-GitHub sign-in, repository sync and MCP are optional. Installed learning continues without these connections.
+For an eligible saved response, choose the goal, material/excerpt, task, answer and feedback to include. Preview, then copy, download Markdown/JSON or use the supported system share action. Paste returned feedback or import its JSON, then review and save a separate note; answers and scores stay unchanged.
 
-### GitHub and sync
+Connect a compatible MCP client at `https://lingfern.com/mcp`, authorise it, then select it when sharing a snapshot. Shares expire after 24 hours or the earlier connection expiry. Manage/revoke shares and clients in Settings. Access covers only explicitly shared snapshots; revocation cannot erase copies already received.
 
-Signing in identifies your account; it does not require you to bind a repository. Sync uses a dedicated **private** data repository that you select separately. This is different from the public Lingfern source repository. Give the GitHub App access only to that selected data repository.
+## Preferences, updates and help
 
-If sync fails, local learning stays saved; keep the local profile and pending work while resolving the error. Signing out, disconnecting sync and disconnecting your GitHub identity are separate actions. Disconnecting does not remove content already stored in a repository or its Git history.
+Settings offers 14 languages, light/dark/system themes, separate desktop/mobile text/icon navigation, online dictionary choice and **Adjust starting points and interests**. English material stays English. A1–A2 guidance has translated support; B1–C2 guidance and About use English. Arabic navigation uses RTL; English content stays LTR.
 
-### MCP and external AI
+Use **Check for updates → Update now** to reload with saved progress retained. **About** contains project links and credits; material details show source attribution.
 
-MCP lets a compatible external client request the snapshots you explicitly share. A connection does not grant access to your entire learning history. Review the content, permissions and expiry before confirming a share. You can revoke shares and client access from Settings.
-
-Revocation stops further access through Lingfern. It cannot erase a copy that a client or external service has already received; that service has its own data policy. AI feedback remains separate from your original answers and task scores.
-
-## Language and material credits
-
-Choose the interface language in Settings. Navigation and controls support 14 languages. English passages, recordings and answers remain English. Reviewed beginner guidance has display translations; B1–C2 guidance and About use English.
-
-Material details show the relevant source and credit. Texts, recordings and dictionaries can have different reuse terms; do not assume the application's code licence covers them. See the [licensing guide](../LICENSING.md) for reuse.
-
-## Get help
-
-If something goes wrong, note the page, steps, error message, browser and operating system. [Open an issue](https://github.com/euanylin/lingfern/issues) with a small example that does not contain private data. Redact account details and learning text from screenshots. Never post passwords, tokens, backup ZIPs or private repository contents.
+For a problem, [open an issue](https://github.com/euanylin/lingfern/issues) with steps, the error and browser details, excluding private learning data and credentials. For reuse terms, see [Licensing](../LICENSING.md).
