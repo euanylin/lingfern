@@ -51,15 +51,16 @@ export async function findVerification(get, repository, sha, currentRun) {
   const failedAt = Math.max(0, ...matching.filter(run => run.conclusion !== 'success').map(updated));
   const runs = matching.filter(run => successfulChecks(run, repository, sha) && updated(run) > failedAt);
   const main = runs.find(run => run.head_branch === 'main');
-  let checkedMain;
+  let checkedMain, mainResult;
   if (main) {
-    const { jobs, total_count: count } = await get(`/repos/${repository}/actions/runs/${main.id}/jobs?per_page=100`);
+    mainResult = await get(`/repos/${repository}/actions/runs/${main.id}/jobs?per_page=100`);
+    const { jobs, total_count: count } = mainResult;
     assert(Array.isArray(jobs) && count === jobs.length);
     const job = jobs[0];
     if (jobs.length === 1 && (fullChecksJob(job, main) || completedJob(job, main, true) && job.steps.some(step => step.name === 'Reuse verification for the identical source' && step.conclusion === 'success'))) checkedMain = main.id;
   }
   for (const run of runs) {
-    const { jobs, total_count: count } = await get(`/repos/${repository}/actions/runs/${run.id}/jobs?per_page=100`);
+    const { jobs, total_count: count } = run === main ? mainResult : await get(`/repos/${repository}/actions/runs/${run.id}/jobs?per_page=100`);
     assert(Array.isArray(jobs) && count === jobs.length);
     // Reused or wholly skipped stages are never independent verification.
     if (jobs.length === 1) {

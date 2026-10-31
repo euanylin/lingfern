@@ -4,6 +4,55 @@ import { selectPicker } from './picker';
 import { confirmTask } from './task-start';
 import { currentSnapshot, fillQuestion, focusQuestion } from './workspace';
 
+test.use({ launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'] } });
+
+test.describe('visible native scrollbar geometry', () => {
+  for (const [width, locale] of [[1512, 'zh-Hans'], [375, 'ar']] as const) test(`repeated reading settings preserve background geometry at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 812 });
+    await page.goto('/settings');
+    if (locale !== 'zh-Hans') await selectPicker(page, '语言', locale);
+    await page.goto('/today');
+    await expect(page.locator('.daily-quote[data-quote-id]')).toBeAttached();
+    await page.evaluate(() => document.fonts.ready);
+    const trigger = page.locator('.reading-task [data-practice-skill=reading]');
+    await trigger.scrollIntoViewIfNeeded();
+    // Finish WebKit's positioning overscroll before measuring the modal transition.
+    await page.evaluate(() => scrollTo(0, Math.min(scrollY, Math.max(0, document.documentElement.scrollHeight - innerHeight))));
+    await page.evaluate(() => {
+      const trace = { frame: 0, rows: [] as number[][] };
+      (window as unknown as { modalTrace: typeof trace }).modalTrace = trace;
+      const capture = () => {
+        trace.rows.push([scrollX, scrollY, ...['#root>header', 'main', '.today-grid', '.daily-quote', '#root>.mobile-nav'].flatMap(selector => {
+          const box = document.querySelector(selector)?.getBoundingClientRect();
+          return box ? [box.x, box.y, box.width] : [];
+        })]);
+        trace.frame = requestAnimationFrame(capture);
+      };
+      capture();
+    });
+    for (let i = 0; i < 2; i++) {
+      await trigger.click();
+      const dialog = page.locator('.practice-options-dialog');
+      await expect(dialog).toHaveCSS('opacity', '1');
+      const box = (await dialog.boundingBox())!;
+      expect(box.x + box.width).toBeCloseTo(width, 1);
+      if (width < 768) expect(box.width).toBe(width);
+      await page.keyboard.press('Escape');
+      await expect(dialog).toHaveCount(0);
+    }
+    const rows = await page.evaluate(() => {
+      const trace = (window as unknown as { modalTrace: { frame: number; rows: number[][] } }).modalTrace;
+      cancelAnimationFrame(trace.frame); return trace.rows;
+    });
+    expect(rows.length).toBeGreaterThan(5);
+    await test.info().attach('background-geometry', { body: JSON.stringify(rows), contentType: 'application/json' });
+    const changed = rows.find(row => row.some((value, index) => Math.abs(value - rows[0][index]) >= .02));
+    expect(Math.max(...rows.flatMap(row => row.map((value, index) => Math.abs(value - rows[0][index])))), JSON.stringify({ initial: rows[0], changed })).toBeLessThan(.02);
+    await expect(trigger).toBeFocused();
+    expect(await page.pageErrors()).toEqual([]);
+  });
+});
+
 async function expectFrozenBackground(page: Page, dialog: Locator, position: number) {
   await expect(dialog).toBeVisible();
   expect(await dialog.evaluate(element => {
@@ -125,13 +174,15 @@ test('offline removal uses the same blurred, frozen confirmation surface', async
   await expect(remove).toBeFocused();
 });
 
-for (const locale of ['en', 'ar'] as const) test(`a reserved scrollbar does not move the page or shrink a full-width drawer: ${locale}`, async ({ page }) => {
+for (const locale of ['en', 'ar'] as const) test(`a reserved scrollbar does not move the page or shrink a full-width drawer: ${locale}`, async ({ page, browserName }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto('/settings');
   await selectPicker(page, '语言', locale);
   await page.goto('/today');
   const trigger = page.locator('[data-practice-skill=reading]').first();
   await expect(trigger).toBeVisible();
+  // Keep a real classic gutter on macOS as well as Linux while testing the drawer frame.
+  if (browserName === 'chromium') await page.addStyleTag({ content: 'html::-webkit-scrollbar{width:15px}html{overflow-y:scroll!important;scrollbar-gutter:stable!important}' });
   await page.evaluate(() => { document.documentElement.style.scrollbarGutter = 'stable'; });
   const before = await page.evaluate(() => ({ gutter: innerWidth - document.documentElement.clientWidth, left: document.querySelector('main')!.getBoundingClientRect().left }));
   test.skip(!before.gutter, 'This engine provides overlay scrollbars without a reserved gutter.');

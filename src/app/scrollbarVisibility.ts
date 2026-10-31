@@ -1,4 +1,4 @@
-const regions = '.question-sheet-content,.selection-dictionary-body,.dictionary-suggestions,.setting-menu,.ipa-table-scroll,.ipa-vowel-scroll,.task-detail-body,.practice-options-body,.update-confirm-dialog,.workspace-card nav,textarea,pre';
+const regions = '.welcome-content,.question-sheet-content,.selection-dictionary-body,.dictionary-suggestions,.setting-menu,.ipa-table-scroll,.ipa-vowel-scroll,.task-detail-body,.practice-options-body,.update-confirm-dialog,.workspace-card nav,textarea,pre';
 
 export function scrollbarVisibility() {
   let frame = 0, task = 0;

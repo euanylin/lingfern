@@ -1,7 +1,7 @@
 import { afterEach, expect, it, vi } from 'vitest';
 import Dexie from 'dexie';
 import { syncConflictReport, appendSyncEvent, confirmSyncUpload, nextSyncUpload, confirmSyncBatch, pendingSyncBatch, readSyncEvents, readSyncDownload, knownSyncFiles, receiveSyncPage, receiveSyncBatch } from '../src/data/sync';
-import { projectSyncEvents, validateSyncBatch } from '../src/shared/sync';
+import { canonicalJson, projectSyncEvents, syncByteLimit, validateSyncBatch, type SyncEvent } from '../src/shared/sync';
 
 const databases: Dexie[] = [];
 function device() {
@@ -253,4 +253,50 @@ it('returns the immutable batch another reader seals between the pending and eve
     expect(interleaved).toBe(true); expect(concurrent).toBeDefined();
     expect(selected).toEqual(concurrent);
   } finally { query.mockRestore(); }
+});
+
+it.each([
+  { boundary: 'UTF-8 bytes', memoryId: '词'.repeat(140) + '😀"\\'.repeat(5) },
+  { boundary: '500 events', memoryId: 'sense' },
+])('seals the same ordered prefix at the $boundary boundary and retains the remainder', async ({ boundary, memoryId }) => {
+  const database = device();
+  const events: SyncEvent[] = Array.from({ length: 501 }, (_, index) => ({ id: `event-${String(index).padStart(4, '0')}`, deviceId: 'source-device', counter: index + 1, occurredAt: '2026-01-01T00:00:00.000Z', type: 'saved_item', payload: { memoryId, saved: index % 2 === 0 } }));
+  await database.table('syncClocks').put({ profileId: 'p', deviceId: 'source-device', counter: events.length });
+  await database.table('syncEvents').bulkAdd(events.map(event => ({ ...event, profileId: 'p' })));
+  const first = (await pendingSyncBatch('p', database))!;
+  expect(first.batch.events).toEqual(events.slice(0, first.batch.events.length));
+  const validated = await validateSyncBatch(first.batch);
+  expect(validated.hash).toBe(first.hash);
+  expect(validated.bytes.length).toBeLessThanOrEqual(syncByteLimit);
+  if (boundary === 'UTF-8 bytes') {
+    expect(first.batch.events.length).toBeGreaterThan(0);
+    expect(first.batch.events.length).toBeLessThan(500);
+    const extended = { ...first.batch, events: events.slice(0, first.batch.events.length + 1) };
+    expect(new TextEncoder().encode(canonicalJson(extended)).byteLength).toBeGreaterThan(syncByteLimit);
+  } else expect(first.batch.events).toHaveLength(500);
+  expect(await pendingSyncBatch('p', database)).toEqual(first);
+  await confirmSyncBatch('p', first.deviceId, first.batchId, first.hash, database);
+  const second = (await pendingSyncBatch('p', database))!;
+  expect(second.batch.events).toEqual(events.slice(first.batch.events.length));
+  expect(await database.table('syncEvents').where('profileId').equals('p').filter(event => !event.batchId).count()).toBe(0);
+  await confirmSyncBatch('p', second.deviceId, second.batchId, second.hash, database);
+  expect(await pendingSyncBatch('p', database)).toBeUndefined();
+});
+
+it('rolls back fresh events in a mixed duplicate batch when a later bulk write fails', async () => {
+  const source = device(), destination = device();
+  await appendSyncEvent('p', { type: 'saved_item', payload: { memoryId: 'original', saved: true } }, source);
+  const original = (await pendingSyncBatch('p', source))!;
+  await receiveSyncBatch('p', original.batch, original.hash, destination);
+  const fresh = [2, 3].map(counter => ({ ...original.batch.events[0], id: `fresh-${counter}`, counter, payload: { memoryId: `sense-${counter}`, saved: true } }));
+  const incoming = await validateSyncBatch({ ...original.batch, batchId: 'mixed-batch', events: [...original.batch.events, ...fresh] });
+  const before = await Promise.all(['syncEvents', 'syncBatches', 'syncClocks'].map(name => destination.table(name).toArray()));
+  const fail = (_key: unknown, value: { id: string }) => { if (value.id === 'fresh-3') throw new Error('STORAGE_FAILURE'); };
+  destination.table('syncEvents').hook('creating', fail);
+  await expect(receiveSyncBatch('p', incoming.batch, incoming.hash, destination)).rejects.toThrow('STORAGE_FAILURE');
+  expect(await Promise.all(['syncEvents', 'syncBatches', 'syncClocks'].map(name => destination.table(name).toArray()))).toEqual(before);
+  destination.table('syncEvents').hook('creating').unsubscribe(fail);
+  expect(await receiveSyncBatch('p', incoming.batch, incoming.hash, destination)).toBe('received');
+  expect(await readSyncEvents('p', destination)).toEqual(incoming.batch.events);
+  expect(await destination.table('syncClocks').get('p')).toMatchObject({ counter: 3 });
 });

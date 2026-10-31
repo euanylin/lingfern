@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => ({
     injectManifest: { maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, globIgnores: ['prerender/**'], globPatterns: ['**/*.{html,js,css,svg,png,webmanifest}', 'audio/a1-words/word-*.mp3', 'daily-quotes/*.{md,txt,json}', 'THIRD_PARTY_NOTICES.md', 'ipa/CC-BY-SA-*.txt', 'licenses/**/*', 'corpus/*.{md,txt}', 'dictionary/oewn-2025/{README.md,LICENSE.md,WNDB_License.txt}'] },
   })],
   // Keep shared validation outside the entry to avoid its async catalogue cycle.
-  build: { sourcemap: true, rolldownOptions: { output: { codeSplitting: { groups: [{ name: id => `messages-${id.split(/[\\/]/).at(-2)}`, test: /src[\\/]locales[\\/](?!en[\\/])[^/\\]+[\\/]messages\.json$/ }, { name: 'content', test: /src[\\/]shared[\\/]content\.ts$/ }, { name: 'app-shell', tags: ['$initial'] }, { name: 'daily-quotes', test: /content[\\/]daily-quotes-runtime\.json$/ }, { name: 'text-review', test: /content[\\/]corpus[\\/]text-review-rules\.json$/ }] } } } },
+  build: { sourcemap: true, rolldownOptions: { output: { codeSplitting: { groups: [{ name: id => `messages-${id.split(/[\\/]/).at(-2)}`, test: /src[\\/]locales[\\/](?!en[\\/])[^/\\]+[\\/]messages\.json$/ }, { name: 'content', test: /src[\\/]shared[\\/]content\.ts$/ }, { name: 'app-shell', tags: ['$initial'] }, { name: 'text-review', test: /content[\\/]corpus[\\/]text-review-rules\.json$/ }] } } } },
   server: { proxy: Object.fromEntries(['/api', '/mcp', '/oauth', '/.well-known'].map(route => [route, 'http://127.0.0.1:8787'])) },
   test: { include: ['tests/*.test.ts'], setupFiles: ['fake-indexeddb/auto', 'tests/runtime-resources-setup.ts'], maxWorkers: 1 },
 }));

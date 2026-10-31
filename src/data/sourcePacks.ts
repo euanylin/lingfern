@@ -2,6 +2,7 @@ import { loadRuntimeResources, runtimeResources } from './runtimeResources';
 import { communityPacks } from './db';
 import { communityCacheName, communityPackageReady, installCommunityPack } from './communityInstall';
 import { notifyResourceChange } from './resourceChanges';
+import { mutateResourceCache } from './resourceMutation';
 
 export const sourcePacks = runtimeResources.sources.packs;
 export function listeningSourcePack(hash?: string) {
@@ -57,15 +58,17 @@ export async function removeSourcePack(ids: string | string[], profileId: string
   const selected = [...new Set(typeof ids === 'string' ? [ids] : ids)];
   const entries = selected.map(id => { const entry = sourcePacks.find(pack => pack.id === id); if (!entry) throw new Error('UNKNOWN_PACKAGE'); return entry; });
   await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
-  await communityPacks.bulkDelete(entries.map(entry => [profileId, entry.sha256]));
-  // Preserve installed media shared by other local profiles.
-  const shared = new Set((await communityPacks.toCollection().primaryKeys()).map(key => key[1]));
   try {
-    for (let offset = 0; offset < entries.length; offset += 4) await Promise.all(entries.slice(offset, offset + 4).map(async entry => {
-      if (shared.has(entry.sha256)) return;
+    for (let offset = 0; offset < entries.length; offset += 4) await Promise.all(entries.slice(offset, offset + 4).map(entry => {
       const name = communityCacheName(entry.sha256);
-      await caches.delete(name);
-      if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+      return mutateResourceCache(name, async assertActive => {
+        await communityPacks.delete([profileId, entry.sha256]);
+        // Recheck shared ownership while installations of this hash are excluded.
+        if ((await communityPacks.toCollection().primaryKeys()).some(key => key[1] === entry.sha256)) return;
+        assertActive();
+        await caches.delete(name);
+        if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+      });
     }));
   } finally { notifyResourceChange(); }
 }

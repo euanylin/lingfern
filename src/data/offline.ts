@@ -1,5 +1,6 @@
 import { loadRuntimeResources, runtimeResources } from './runtimeResources';
 import { notifyResourceChange } from './resourceChanges';
+import { mutateResourceCache } from './resourceMutation';
 
 export const offlineGroups = runtimeResources.offline.groups;
 const group = (id: string) => offlineGroups.find(item => item.id === id);
@@ -58,10 +59,13 @@ export async function removeOfflineResources(ids: string | string[], profileId: 
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
   await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
   try {
-    for (let offset = 0; offset < selected.length; offset += 4) await Promise.all(selected.slice(offset, offset + 4).map(async id => {
+    for (let offset = 0; offset < selected.length; offset += 4) await Promise.all(selected.slice(offset, offset + 4).map(id => {
       const name = offlineCacheName(id);
-      await caches.delete(name);
-      if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+      return mutateResourceCache(name, async assertActive => {
+        assertActive();
+        await caches.delete(name);
+        if (await caches.has(name)) throw new Error('REMOVE_FAILED');
+      });
     }));
   } finally { notifyResourceChange(); }
 }
@@ -77,8 +81,8 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
   const ready = await offlineGroupReady(id);
   signal.throwIfAborted();
   if (ready) return true;
-  const name = offlineCacheName(id);
-  const cache = await caches.open(name);
+  const name = offlineCacheName(id), stagedName = `${name}-staged-${crypto.randomUUID()}`;
+  const cache = await caches.open(stagedName);
   let completed = 0;
   try {
     for (const file of item.files) {
@@ -112,15 +116,28 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
       completed += length; onProgress(completed);
     }
     if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
-    await cache.put(offlineMarker(id), new Response(item.version));
-    signal.throwIfAborted();
-    const complete = await offlineGroupReady(id);
-    signal.throwIfAborted();
+    const complete = await mutateResourceCache(name, async assertActive => {
+      const ready = await offlineGroupReady(id);
+      signal.throwIfAborted(); assertActive();
+      if (ready) return true;
+      const destination = await caches.open(name);
+      for (const file of item.files) {
+        signal.throwIfAborted(); assertActive();
+        const response = await cache.match(file.path);
+        if (!response) throw new Error('INCOMPLETE_PACKAGE');
+        assertActive(); await destination.put(file.path, response);
+      }
+      signal.throwIfAborted(); assertActive();
+      await destination.put(offlineMarker(id), new Response(item.version));
+      signal.throwIfAborted(); assertActive();
+      const complete = await offlineGroupReady(id);
+      signal.throwIfAborted(); assertActive();
+      return complete;
+    }, signal);
     notifyResourceChange();
     return complete;
   } catch (error) {
-    await caches.delete(name);
     notifyResourceChange();
     throw error;
-  }
+  } finally { await caches.delete(stagedName); }
 }

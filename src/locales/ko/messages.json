@@ -240,55 +240,17 @@
       "fricative": "마찰음",
       "affricate": "파찰음",
       "nasal": "비음",
-      "approximant": "접근음",
-      "lateral-approximant": "설측 접근음"
+      "approximant": "접근음"
     },
     "failed": "발음표나 녹음을 읽지 못했습니다. 인터넷에 연결하거나 자료실에서 IPA 패키지를 설치하세요.",
     "loading": "발음표 불러오는 중…",
     "scope": "영어 음만 수록합니다(일반 미국 영어의 간략한 발음 표기). 전체 국제음성기호 표는 아닙니다.",
     "officialChart": "IPA 공식 표",
-    "vowelLegend": "각 칸의 왼쪽은 비원순, 오른쪽은 원순입니다.",
-    "consonantLegend": "각 칸의 왼쪽은 무성음, 오른쪽은 유성음입니다.",
-    "vowelPositionNote": "위치는 IPA 기호를 따릅니다. 영어 /ʌ/는 실제로 중설인 경우가 많습니다.",
-    "consonantNote": "/w/는 양순연구개 이중 조음이며 /tʃ dʒ/는 파찰음입니다.",
-    "stressed": "강세 있음",
-    "unstressed": "강세 없음",
-    "ending": "끝점",
-    "frontness": {
-      "front": "전설",
-      "near-front": "근전설",
-      "central": "중설",
-      "near-back": "근후설",
-      "back": "후설"
-    },
     "heights": {
-      "close": "고모음 (폐)",
-      "near-close": "근고모음",
       "close-mid": "중고모음",
-      "mid": "중모음",
       "open-mid": "중저모음",
-      "near-open": "근저모음",
       "open": "저모음 (개)"
     },
-    "places": {
-      "bilabial": "양순",
-      "labiodental": "순치",
-      "dental": "치",
-      "alveolar": "치경",
-      "postalveolar": "후치경",
-      "palatal": "경구개",
-      "velar": "연구개",
-      "glottal": "성문",
-      "labial-velar": "양순연구개"
-    },
-    "axes": {
-      "height": "높이",
-      "frontness": "혀의 전후 위치",
-      "manner": "조음 방법",
-      "place": "조음 위치"
-    },
-    "start": "시작",
-    "stress": "강세",
     "view": "보기",
     "simple": "간단히",
     "detailed": "자세히"
@@ -364,7 +326,6 @@
     "general": "공통 자료"
   },
   "practiceCard_today": "오늘",
-  "practiceCard_yesterday": "어제",
   "practiceCard": {
     "start": "시작",
     "resume": "계속",

@@ -140,7 +140,7 @@ for (const [locale, width, theme, input] of [['zh-Hans', 1440, 'light', 'mouse']
       await expect(page.locator('.saved-word h2')).toBeVisible();
       await expect(page.locator('.saved-word-lookup')).toBeVisible();
       await expect(savedStar).toBeVisible();
-      expect((await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+      await expect.poll(async () => (await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);
       await page.screenshot({ path: `output/playwright/saved-word-collapse-${width}-${theme}-${locale}.png`, fullPage: true });
       await toggleDefinition();
       await expect(definition).toBeVisible();

@@ -240,55 +240,17 @@
       "fricative": "Fricatives",
       "affricate": "Affricates",
       "nasal": "Nasals",
-      "approximant": "Approximants",
-      "lateral-approximant": "Lateral approximants"
+      "approximant": "Approximants"
     },
     "failed": "The chart or recording could not be read. Connect to the internet or install the IPA package in Library.",
     "loading": "Loading the sound chart…",
     "scope": "English sounds only: broad General American transcription, not the full IPA.",
     "officialChart": "Official IPA chart",
-    "vowelLegend": "In each cell: unrounded on the left, rounded on the right.",
-    "consonantLegend": "In each cell: voiceless on the left, voiced on the right.",
-    "vowelPositionNote": "Positions follow the IPA symbols; English /ʌ/ is often central.",
-    "consonantNote": "/w/ has combined labial–velar articulation; /tʃ dʒ/ are affricates.",
-    "stressed": "Stressed",
-    "unstressed": "Unstressed",
-    "ending": "Ending",
-    "frontness": {
-      "front": "Front",
-      "near-front": "Near-front",
-      "central": "Central",
-      "near-back": "Near-back",
-      "back": "Back"
-    },
     "heights": {
-      "close": "Close (high)",
-      "near-close": "Near-close",
       "close-mid": "Close-mid",
-      "mid": "Mid",
       "open-mid": "Open-mid",
-      "near-open": "Near-open",
       "open": "Open (low)"
     },
-    "places": {
-      "bilabial": "Bilabial",
-      "labiodental": "Labiodental",
-      "dental": "Dental",
-      "alveolar": "Alveolar",
-      "postalveolar": "Postalveolar",
-      "palatal": "Palatal",
-      "velar": "Velar",
-      "glottal": "Glottal",
-      "labial-velar": "Labial–velar"
-    },
-    "axes": {
-      "height": "Height",
-      "frontness": "Tongue position",
-      "manner": "Manner",
-      "place": "Place"
-    },
-    "start": "Start",
-    "stress": "Stress",
     "view": "View",
     "simple": "Simple",
     "detailed": "Detailed"
@@ -364,7 +326,6 @@
     "general": "General materials"
   },
   "practiceCard_today": "Today",
-  "practiceCard_yesterday": "Yesterday",
   "practiceCard": {
     "start": "Start",
     "resume": "Continue",

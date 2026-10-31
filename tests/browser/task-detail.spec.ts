@@ -103,12 +103,9 @@ test('uninstalled offline audio opens metadata with a library action and creates
 test('isolated draft check detail renders metadata only without approving it for the catalogue', async ({ page }) => {
   await page.goto('/today');
   const text = await page.evaluate(async () => {
-    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
     const { default: lesson } = await import('/tests/fixtures/content/a1-check-reading.json' as string);
-    const host = document.createElement('div'); document.body.appendChild(host);
-    createRoot(host).render(createElement(TaskDetail, { lesson, locale: 'en', profileId: 'local-guest', action: 'Test fixture', available: false, busy: false, startError: '', onStart: async () => {}, onClose: () => {} }));
+    mountTaskDetail({ lesson, locale: 'en', profileId: 'local-guest', action: 'Test fixture', available: false, busy: false, startError: '', onStart: async () => {}, onClose: () => {} });
     return lesson.materials.flatMap((material: { blocks: { text: string }[]; questions: { prompt: string; options: string[] }[] }) => [...material.blocks.map(block => block.text), ...material.questions.flatMap(question => [question.prompt, ...question.options])]);
   });
   const dialog = page.getByRole('dialog');
@@ -124,12 +121,9 @@ test('isolated draft check detail renders metadata only without approving it for
 test('independent listening check retains its playback and preview restriction', async ({ page }) => {
   await page.goto('/today');
   await page.evaluate(async () => {
-    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
     const { default: lessons } = await import('/tests/fixtures/retired-content/voa-listening-checks.json' as string);
-    const host = document.createElement('div'); document.body.appendChild(host);
-    createRoot(host).render(createElement(TaskDetail, { lesson: lessons[0], locale: 'en', profileId: 'local-guest', action: 'Test fixture', available: false, busy: false, startError: '', onStart: async () => {}, onClose: () => {} }));
+    mountTaskDetail({ lesson: lessons[0], locale: 'en', profileId: 'local-guest', action: 'Test fixture', available: false, busy: false, startError: '', onStart: async () => {}, onClose: () => {} });
   });
   const dialog = page.getByRole('dialog');
   await expect(dialog).toContainText(languagePacks.en.taskDetail.check);
@@ -139,13 +133,10 @@ test('independent listening check retains its playback and preview restriction',
 test('combined preview omits both estimates while retaining actual audio duration', async ({ page }) => {
   await page.goto('/today');
   const seconds = await page.evaluate(async () => {
-    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
     const { default: lesson } = await import('/tests/fixtures/content/a1-reading.json' as string);
     const { default: additionalLesson } = await import('/tests/fixtures/content/a1-listening.json' as string);
-    const host = document.createElement('div'); document.body.appendChild(host);
-    createRoot(host).render(createElement(TaskDetail, { lesson, additionalLesson, locale: 'en', profileId: 'local-guest', action: 'Practice', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => {} }));
+    mountTaskDetail({ lesson, additionalLesson, locale: 'en', profileId: 'local-guest', action: 'Practice', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => {} });
     return Math.round(additionalLesson.materials.reduce((sum: number, material: { audio?: { duration: number } }) => sum + (material.audio?.duration ?? 0), 0));
   });
   const dialog = page.getByRole('dialog');
@@ -158,9 +149,7 @@ test('combined preview omits both estimates while retaining actual audio duratio
 test('community preview reads each owner once while retaining every media and profile check', async ({ page }) => {
   await page.goto('/today');
   const count = await page.evaluate(async () => {
-    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
     const { communityPacks } = await import('/src/data/db.ts' as string);
     const { default: raw } = await import('/tests/fixtures/content/a1-listening.json' as string);
     const hash = 'd'.repeat(64), profileId = 'synthetic-preview-profile', lesson = structuredClone(raw);
@@ -178,14 +167,15 @@ test('community preview reads each owner once while retaining every media and pr
       if (response && String(args[0]).includes(hash)) { const blob = response.blob.bind(response); response.blob = () => { Reflect.get(window, 'previewReads').media++; return blob(); }; }
       return response;
     };
-    const host = document.createElement('div'); document.body.appendChild(host); const root = createRoot(host);
-    const mount = (key: string) => root.render(createElement(TaskDetail, { key, lesson, locale: 'en', profileId, action: 'Synthetic start', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => root.unmount() }));
+    const props = { lesson, locale: 'en', profileId, action: 'Synthetic start', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => mounted.root.unmount() };
+    const mounted = mountTaskDetail({ ...props, key: 'ready' });
+    const mount = (key: string) => mounted.render({ ...props, key });
     Reflect.set(window, 'changePreview', async (state: string) => {
       if (state === 'missing') await cache.delete(lesson.materials[0].audio.src);
       else { await communityPacks.delete([profileId, hash]); await communityPacks.put({ ...pack, profileId: 'other-synthetic-profile' }); }
       mount(state);
     });
-    mount('ready'); return lesson.materials.length;
+    return lesson.materials.length;
   });
   const dialog = page.getByRole('dialog'), start = dialog.getByRole('button', { name: 'Synthetic start', exact: true });
   await expect(start).toBeEnabled();
@@ -201,9 +191,7 @@ test('closing preview aborts pending media and failed media responses release th
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await page.goto('/today');
   const count = await page.evaluate(async () => {
-    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
     const { default: lesson } = await import('/tests/fixtures/content/a1-listening.json' as string);
     const media = new Set(lesson.materials.map((material: { audio: { src: string } }) => material.audio.src)), fetchMedia = window.fetch;
     Reflect.set(window, 'previewNetwork', { requests: 0, aborted: 0, cancelled: 0, fail: false });
@@ -214,8 +202,7 @@ test('closing preview aborts pending media and failed media responses release th
       return new Promise<Response>((_resolve, reject) => init?.signal?.addEventListener('abort', () => { state.aborted++; reject(init.signal!.reason); }, { once: true }));
     };
     const mount = () => {
-      const host = document.createElement('div'); document.body.appendChild(host); const root = createRoot(host);
-      root.render(createElement(TaskDetail, { lesson, locale: 'en', profileId: 'local-guest', action: 'Synthetic start', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => { root.unmount(); host.remove(); } }));
+      const { root, host } = mountTaskDetail({ lesson, locale: 'en', profileId: 'local-guest', action: 'Synthetic start', available: true, busy: false, startError: '', onStart: async () => {}, onClose: () => { root.unmount(); host.remove(); } });
     };
     Reflect.set(window, 'mountPreview', mount); mount(); return lesson.materials.length;
   });
@@ -223,7 +210,7 @@ test('closing preview aborts pending media and failed media responses release th
   await expect.poll(() => page.evaluate(() => Reflect.get(window, 'previewNetwork').requests)).toBe(count);
   await expect(dialog.getByRole('button', { name: 'Synthetic start', exact: true })).toBeDisabled();
   await dialog.getByRole('button', { name: 'Close', exact: true }).click(); await expect(dialog).toHaveCount(0);
-  expect(await page.evaluate(() => Reflect.get(window, 'previewNetwork').aborted)).toBe(count);
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, 'previewNetwork').aborted)).toBe(count);
   await page.evaluate(() => { Reflect.get(window, 'previewNetwork').fail = true; Reflect.get(window, 'mountPreview')(); });
   await expect(dialog.locator('.error')).toBeVisible();
   await expect(dialog.getByRole('button', { name: 'Synthetic start', exact: true })).toBeDisabled();

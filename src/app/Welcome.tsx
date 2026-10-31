@@ -46,7 +46,7 @@ export function Welcome(props: WelcomeProps) {
   const screenRatio = viewport.width / viewport.height;
   const inputFrame = useRef(0);
   const stage = useRef<HTMLDivElement>(null), frame = useRef(0), current = useRef(0), destination = useRef(0);
-  const cards = useRef<(HTMLElement | null)[]>([]), dots = useRef<(HTMLSpanElement | null)[]>([]);
+  const cards = useRef<({ card: HTMLElement; window: HTMLElement; shadow: HTMLElement; shade: HTMLElement } | null)[]>([]), dots = useRef<(HTMLSpanElement | null)[]>([]);
   const selected = useRef(0), growing = useRef(true);
   const drag = useRef<{ id: number; x: number; y: number; position: number; at: number; last: number; velocity: number; axis?: 'x' | 'y' } | undefined>(undefined), suppressClick = useRef(false);
   const pointerHeld = useRef(false), cancelWheel = useRef(() => {});
@@ -54,7 +54,11 @@ export function Welcome(props: WelcomeProps) {
   const rtl = locale === 'ar' ? -1 : 1;
   useLayoutEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)'), update = () => setReduced(media.matches);
-    const resize = () => setViewport({ width: innerWidth, height: innerHeight });
+    const resize = () => {
+      const width = innerWidth, height = innerHeight;
+      // Narrow card geometry already follows CSS viewport units during browser-bar motion.
+      setViewport(current => current.width === width && (width < 700 || current.height === height) ? current : { width, height });
+    };
     update(); resize();
     media.addEventListener('change', update);
     window.addEventListener('resize', resize);
@@ -71,8 +75,9 @@ export function Welcome(props: WelcomeProps) {
     if (next !== selected.current) { selected.current = next; setActive(next); }
     const todayActive = Math.abs(((value + 4.5) % 3 + 3) % 3 - 1.5) < .25;
     if (todayActive !== growing.current) { growing.current = todayActive; setFernActive(todayActive); }
-    cards.current.forEach((card, index) => {
-      if (!card) return;
+    cards.current.forEach((layers, index) => {
+      if (!layers) return;
+      const { card, window, shadow, shade } = layers;
       const distance = ((index - value + 4.5) % 3 + 3) % 3 - 1.5, away = Math.abs(distance);
       const x = distance * shift * rtl;
       const scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
@@ -80,10 +85,9 @@ export function Welcome(props: WelcomeProps) {
       const projection = 1600 / (1600 + 100 * away);
       card.style.transform = reduced ? 'none' : `translate(${x}px,0) scale(${scale * projection})`;
       if (card.dataset.current !== String(index === next)) { card.dataset.current = String(index === next); card.setAttribute('aria-hidden', String(index !== next)); }
-      const window = card.querySelector<HTMLElement>('.welcome-window')!, inert = index !== next || drag.current?.axis === 'x';
+      const inert = index !== next || drag.current?.axis === 'x';
       if (window.inert !== inert) window.inert = inert;
-      card.querySelector<HTMLElement>('.welcome-shadow')!.style.opacity = String(reduced ? 1 : 1 - .8 * Math.min(away, 1));
-      const shade = card.querySelector<HTMLElement>('.welcome-shade')!;
+      shadow.style.opacity = String(reduced ? 1 : 1 - .8 * Math.min(away, 1));
       shade.style.opacity = String(reduced ? 0 : Math.min(.25, away * .18));
       const dot = dots.current[index], weight = Math.max(0, 1 - away);
       if (dot) {
@@ -209,7 +213,7 @@ export function Welcome(props: WelcomeProps) {
     } else paint(current.current);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': Math.max(.9, Math.min(1.85, screenRatio)) } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
+  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': viewport.width > 0 ? Math.max(.9, Math.min(1.85, screenRatio)) : undefined } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
     <div className="welcome-stage" ref={stage} role="region" aria-roledescription={t.carousel} aria-label={t.carousel}
       onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { cancelWheel.current(); cancelAnimationFrame(inputFrame.current); inputFrame.current = 0; cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, at: performance.now(), last: current.current, velocity: 0 }; } }}
       onPointerMove={event => {
@@ -230,7 +234,10 @@ export function Welcome(props: WelcomeProps) {
         }
       }} onPointerUp={end} onPointerCancel={end}
       onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; if (event.detail > 0) { event.preventDefault(); event.stopPropagation(); } } }}>
-      {titles.map((_, index) => <div key={index} ref={node => { cards.current[index] = node; }} className="welcome-card" data-current={index === 0} role="group" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-hidden={index !== 0}
+      {titles.map((_, index) => <div key={index} ref={node => {
+        // These layers share the card's lifetime; keep lookups out of animation frames.
+        cards.current[index] = node ? { card: node, window: node.querySelector<HTMLElement>('.welcome-window')!, shadow: node.querySelector<HTMLElement>('.welcome-shadow')!, shade: node.querySelector<HTMLElement>('.welcome-shade')! } : null;
+      }} className="welcome-card" data-current={index === 0} role="group" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-hidden={index !== 0}
           onClick={event => { if (event.target === event.currentTarget && index !== selected.current) { cancelWheel.current(); go(index); } }}>
           <div className="welcome-shadow"/>
           <div className="welcome-window" inert={index !== 0}>

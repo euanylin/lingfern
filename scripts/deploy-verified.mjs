@@ -106,7 +106,7 @@ export async function verifyPublicBuild(files, { version, htmlTemplate, pageTemp
     }
   }
   for (const page of pages) await publicGet('/' + page, { ...options, expected: pageFile('/' + page), html: true });
-  for (const pathname of ['/api/unknown', '/assets/release-missing.js', '/resources/release-missing.zip', '/_headers']) await publicGet(pathname, { ...options, status: 404 });
+  for (const pathname of ['/api/unknown', '/assets/release-missing.js', '/resources/release-missing.zip', '/_headers', '/sitemap']) await publicGet(pathname, { ...options, status: 404 });
   let cursor = 0, stopped = false;
   async function worker() {
     try {
@@ -120,7 +120,7 @@ export async function verifyPublicBuild(files, { version, htmlTemplate, pageTemp
   const results = await Promise.allSettled([worker(), worker()]);
   const failed = results.find(result => result.status === 'rejected');
   if (failed) throw failed.reason;
-  return { version, pin, files: files.length, pages: pages.length, missingPaths: 4 };
+  return { version, pin, files: files.length, pages: pages.length, missingPaths: 5 };
 }
 
 export async function capturePublicEntry(fetcher = fetch) {

@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { chromium, expect } from '@playwright/test';
 
-const output = process.env.LINGFERN_FIRST_SCREEN_OUTPUT ?? 'private/verification/first-screen-20261017';
+const output = process.env.LINGFERN_FIRST_SCREEN_OUTPUT ?? `private/verification/first-screen-${new Date().toISOString().replace(/[:.]/g, '-')}-${randomUUID()}`;
 const origin = 'http://127.0.0.1:8787';
 const locales = ['zh-Hans', 'zh-Hant', 'en', 'ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi', 'id'];
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -70,5 +70,5 @@ try {
   report.passed = true;
   await mkdir(output, { recursive: true });
   await writeFile(output + '/first-screen.json', JSON.stringify(report, null, 2) + '\n');
-  console.log(`PASS:14 locales; maximum observed ${Math.max(...report.runs.map(run => run.total))} bytes; conservative all-quote/all-teaching bound ${Math.max(...report.runs.map(run => run.worstCase))} bytes <=1MiB. Gzip estimates, local Chrome, no production/mobile claim.`);
+  console.log(`PASS:14 locales; maximum observed ${Math.max(...report.runs.map(run => run.total))} bytes; conservative all-quote/all-teaching bound ${Math.max(...report.runs.map(run => run.worstCase))} bytes <=1MiB. Gzip estimates, local Chrome, no production/mobile claim. Report: ${output}/first-screen.json`);
 } finally { await browser.close(); }

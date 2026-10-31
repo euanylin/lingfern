@@ -10,7 +10,7 @@ describe('runtime resource catalogue trust boundary', () => {
     const { resourceCatalogueSchema: schema } = await import('../src/shared/resourceCatalogue');
     const parse = vi.spyOn(schema, 'parse');
     try {
-      const module = await import('../src/data/runtimeResources');
+      const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
       await module.loadRuntimeResources(true); expect(parse).toHaveBeenCalledTimes(1);
       expect(() => module.applyRuntimeCatalogue({})).toThrow(); expect(parse).toHaveBeenCalledTimes(2);
     } finally { parse.mockRestore(); }

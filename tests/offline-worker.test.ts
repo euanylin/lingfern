@@ -4,6 +4,7 @@ import { communityPackageReady, communityMarker, installCommunityPack } from '..
 import { communityPacks } from '../src/data/db';
 import { lessonSchema } from '../src/shared/content';
 import listening from './fixtures/content/a1-listening.json';
+import Dexie from 'dexie';
 
 it('checks complete cached URL sets once without opening media responses or accepting another origin', async () => {
   vi.stubGlobal('location', { origin: 'https://lingfern.test' });
@@ -92,7 +93,7 @@ it.each(['storage', 'readiness'])('does not register a cached package after canc
   } finally { await communityPacks.delete([profileId, hash]); vi.unstubAllGlobals(); }
 });
 
-it('rolls back staged installation when cancelled while its ready marker is written', async () => {
+it('removes its unregistered new cache when cancelled while its ready marker is written', async () => {
   const profileId = 'cancelled-install-marker', hash = 'd'.repeat(64), controller = new AbortController();
   const cache = { put: vi.fn(async () => { controller.abort(); }) };
   const storage = { has: async () => false, open: async () => cache, delete: vi.fn(async () => true) };
@@ -102,6 +103,88 @@ it('rolls back staged installation when cancelled while its ready marker is writ
     await expect(installCommunityPack({ id: 'reading-install', hash, lessons: [], sources: [], dictionary: [], media: {} }, profileId, controller.signal)).rejects.toMatchObject({ name: 'AbortError' });
     expect(await communityPacks.get([profileId, hash])).toBeUndefined();
     expect(cache.put).toHaveBeenCalledTimes(1);
-    expect(storage.delete.mock.calls).toEqual([[`lingfern-community-${hash}`], [`lingfern-community-${hash}`]]);
+    expect(storage.delete.mock.calls).toEqual([[`lingfern-community-${hash}`]]);
   } finally { await communityPacks.delete([profileId, hash]); vi.unstubAllGlobals(); }
+});
+
+it('preserves a completed package when another concurrent installer is cancelled', async () => {
+  const profileId = 'concurrent-install-cancellation', hash = 'e'.repeat(64), controller = new AbortController();
+  const name = `lingfern-community-${hash}`, marker = communityMarker(hash);
+  const entries = new Map<string, Map<string, Response>>();
+  let release!: () => void, reached!: () => void, first = true;
+  const stalled = new Promise<void>(resolve => { release = resolve; });
+  const writing = new Promise<void>(resolve => { reached = resolve; });
+  const storage = {
+    has: async (name: string) => entries.has(name),
+    delete: async (name: string) => entries.delete(name),
+    open: async (name: string) => {
+      const values = entries.get(name) ?? new Map<string, Response>(); entries.set(name, values);
+      return {
+        keys: async () => [...values.keys()].map(path => new Request(new URL(path, 'https://lingfern.test'))),
+        put: async (path: string, response: Response) => {
+          if (path === marker && first) { first = false; reached(); await stalled; }
+          values.set(path, response);
+        },
+      };
+    },
+  };
+  vi.stubGlobal('location', { origin: 'https://lingfern.test' });
+  vi.stubGlobal('window', { caches: storage }); vi.stubGlobal('caches', storage);
+  vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }) } });
+  const pack = { id: 'concurrent-reading', hash, lessons: [], sources: [], dictionary: [], media: {} };
+  const cancelled = installCommunityPack(pack, profileId, controller.signal);
+  const rejected = expect(cancelled).rejects.toMatchObject({ name: 'AbortError' });
+  try {
+    await writing;
+    const completed = Dexie.ignoreTransaction(() => installCommunityPack(pack, profileId));
+    await new Promise(resolve => setTimeout(resolve, 10));
+    controller.abort(); release(); await rejected;
+    await completed;
+    expect(entries.has(name)).toBe(true);
+    expect(await communityPackageReady(pack)).toBe(true);
+    expect((await communityPacks.get([profileId, hash]))?.state).toBe('ready');
+  } finally { release(); await cancelled.catch(() => {}); await communityPacks.delete([profileId, hash]); vi.unstubAllGlobals(); }
+});
+
+it('does not erase a later successful installation when an aborted transaction finishes a late marker write', async () => {
+  const profileId = 'aborted-install-late-marker', hash = 'a'.repeat(64), name = `lingfern-community-${hash}`, marker = communityMarker(hash);
+  const entries = new Map<string, Map<string, Response>>();
+  let release!: () => void, reached!: () => void, transaction!: IDBTransaction, first = true;
+  const original = IDBDatabase.prototype.transaction;
+  const transactionSpy = vi.spyOn(IDBDatabase.prototype, 'transaction').mockImplementation(function(this: IDBDatabase, ...args: Parameters<IDBDatabase['transaction']>) {
+    const current = Reflect.apply(original, this, args) as IDBTransaction;
+    if (this.name === 'lingfern-resource-mutations' && current.mode === 'readwrite') transaction = current;
+    return current;
+  });
+  const stalled = new Promise<void>(resolve => { release = resolve; }), writing = new Promise<void>(resolve => { reached = resolve; });
+  const storage = {
+    has: async (name: string) => entries.has(name),
+    delete: vi.fn(async (name: string) => entries.delete(name)),
+    open: async (name: string) => {
+      const values = entries.get(name) ?? new Map<string, Response>(); entries.set(name, values);
+      return {
+        keys: async () => [...values.keys()].map(path => new Request(new URL(path, 'https://lingfern.test'))),
+        put: async (path: string, response: Response) => {
+          if (path === marker && first) { first = false; reached(); await stalled; }
+          values.set(path, response);
+        },
+      };
+    },
+  };
+  vi.stubGlobal('location', { origin: 'https://lingfern.test' });
+  vi.stubGlobal('window', { caches: storage }); vi.stubGlobal('caches', storage);
+  vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }) } });
+  const pack = { id: 'late-marker-reading', hash, lessons: [], sources: [], dictionary: [], media: {} };
+  const aborted = installCommunityPack(pack, profileId).catch(error => error);
+  try {
+    await writing; transaction.abort();
+    expect(await aborted).toBeInstanceOf(Error);
+    await Dexie.ignoreTransaction(() => installCommunityPack(pack, profileId));
+    const deletions = storage.delete.mock.calls.length;
+    release(); await new Promise(resolve => setTimeout(resolve, 0));
+    expect(storage.delete).toHaveBeenCalledTimes(deletions);
+    expect(entries.has(name)).toBe(true);
+    expect(await communityPackageReady(pack)).toBe(true);
+    expect((await communityPacks.get([profileId, hash]))?.state).toBe('ready');
+  } finally { release(); await aborted; await communityPacks.delete([profileId, hash]); transactionSpy.mockRestore(); vi.unstubAllGlobals(); }
 });

@@ -16,21 +16,18 @@ test('isolated practice snapshot uses the shared detail action and test restrict
   await selectPicker(page, '语言', 'en');
   const before = await page.evaluate(async () => (await import('/src/data/db.ts' as string)).sessions.count());
   await page.evaluate(async fixture => {
-    const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-    const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-    const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
+    const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
     // Keep valid practice fixtures outside normal curriculum installs.
     const practice = fixture;
     const { asTestLesson } = await import('/src/shared/content.ts' as string);
-    const host = document.createElement('div'); document.body.appendChild(host);
-    createRoot(host).render(createElement(TaskDetail, {
+    mountTaskDetail({
       lesson: practice, locale: 'en', profileId: 'local-guest', action: 'Start listening', available: true,
       busy: false, startError: '',
       onStart: async () => { throw new Error('Practice callback must not run for Test'); },
       // Pass the exact preview snapshot without selecting another source.
       onCheck: async (snapshot: typeof practice) => { const session = await (await import('/src/data/db.ts' as string)).createSession(asTestLesson(snapshot)); location.assign(`/learn/${session.id}`); },
       onClose: () => {},
-    }));
+    });
   }, JSON.parse(readFileSync(new URL('../../tests/fixtures/content/a1-listening.json', import.meta.url), 'utf8')));
   const dialog = page.getByRole('dialog');
   await expect(dialog.locator('[data-mode=practice]')).toHaveText('Practice');

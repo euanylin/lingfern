@@ -25,9 +25,6 @@ export default {
     const sharing = await sharingRoute(request, env);
     if (sharing) return unindexed(sharing);
     const pathname = new URL(request.url).pathname;
-    if (pathname === '/sitemap' && ['GET', 'HEAD'].includes(request.method)) {
-      return env.ASSETS.fetch(new Request(new URL('/sitemap.xml', request.url), request));
-    }
     if (/^\/(api|mcp|oauth)(\/|$)/.test(pathname) || pathname.startsWith('/.well-known/')) {
       // Return real errors for unknown protocol paths.
       return Response.json({ error: 'NOT_AVAILABLE' }, {

@@ -584,6 +584,22 @@ test('repository API 401 disables only the checked credential generation and res
   expect((await fresh.invoke('/api/sync/repositories')).status).toBe(429);
 });
 
+test('repository throttling retries at the next minute without making provider requests while limited', async () => {
+  const now = Date.parse('2026-10-31T04:02:59.000Z');
+  const clock = vi.spyOn(Date, 'now').mockReturnValue(now);
+  try {
+    const { invoke, sqlite, upstream } = await repositoryEnvironment();
+    sqlite.prepare('INSERT INTO auth_limits(key,count,expires_at) VALUES(?,?,?)').run(await digest(`repository:1:${Math.floor(now / 60000)}`), 20, Math.floor(now / 1000) + 120);
+    const limited = await invoke('/api/sync/repositories');
+    expect(limited.status).toBe(429);
+    expect(limited.headers.get('Retry-After')).toBe('1');
+    expect(upstream).not.toHaveBeenCalled();
+    clock.mockReturnValue(now + 1000);
+    expect((await invoke('/api/sync/repositories')).status).toBe(200);
+    expect(upstream).toHaveBeenCalled();
+  } finally { clock.mockRestore(); }
+});
+
 test('a marker created concurrently for another profile is never overwritten', async () => {
   const { invoke, verify, fixture, upstream, sqlite } = await repositoryEnvironment();
   const intent = await verify();

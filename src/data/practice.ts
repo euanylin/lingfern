@@ -13,6 +13,19 @@ export function activeCorpusPractice(history: Session[], profileId: string, skil
     && session.status === 'active' && !session.recordsDeleted && !session.practiceGroupId);
 }
 
+export function activeCombinedPractice(history: readonly Session[]) {
+  const active = history.filter(session => session.practiceGroupId && session.status === 'active' && !session.recordsDeleted);
+  if (!active.length) return;
+  const groups = new Map(active.map(session => [session.practiceGroupId!, [] as Session[]]));
+  for (const session of history) if (session.practiceGroupId) groups.get(session.practiceGroupId)?.push(session);
+  for (const session of active) {
+    const peers = groups.get(session.practiceGroupId!)!;
+    if (peers.length !== 2 || peers.some(peer => peer.recordsDeleted || peer.lesson.mode === 'check' || peer.lesson.mode !== session.lesson.mode)) continue;
+    const reading = peers.find(peer => peer.lesson.skill === 'reading');
+    if (reading && peers.some(peer => peer.lesson.skill === 'listening') && (session.lesson.skill === 'reading' || reading.status === 'completed')) return { session, peers };
+  }
+}
+
 export function selectPractice(
   lessons: Lesson[], history: Session[], attempts: Attempt[], skill: Lesson['skill'],
   available: (lesson: Lesson) => boolean = () => true,

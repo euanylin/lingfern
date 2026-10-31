@@ -21,12 +21,11 @@ for (const pathname of ['/introduction', '/start', '/today', '/progress', '/libr
 }
 const serviceWorker = await fetch(origin + '/sw.js');
 const sitemapXml = await readFile('public/sitemap.xml', 'utf8');
-for (const pathname of ['/sitemap', '/sitemap.xml']) {
-  const response = await fetch(origin + pathname, { headers: { Accept: 'text/html' } });
-  assert.equal(response.status, 200, pathname);
-  assert.match(response.headers.get('content-type'), /^application\/xml/);
-  assert.equal(await response.text(), sitemapXml);
-}
+const sitemap = await fetch(origin + '/sitemap.xml', { headers: { Accept: 'text/html' } });
+assert.equal(sitemap.status, 200);
+assert.match(sitemap.headers.get('content-type'), /^application\/xml/);
+assert.equal(await sitemap.text(), sitemapXml);
+for (const method of ['GET', 'HEAD']) assert.equal((await fetch(origin + '/sitemap', { method })).status, 404);
 const robots = await fetch(origin + '/robots.txt');
 assert.equal(robots.status, 200);
 assert.match(robots.headers.get('content-type'), /^text\/plain/);

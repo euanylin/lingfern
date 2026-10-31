@@ -240,55 +240,17 @@
       "fricative": "Frikative",
       "affricate": "Affrikaten",
       "nasal": "Nasale",
-      "approximant": "Approximanten",
-      "lateral-approximant": "Laterale Approximanten"
+      "approximant": "Approximanten"
     },
     "failed": "Tabelle oder Aufnahme nicht lesbar. Mit dem Internet verbinden oder IPA-Paket in der Bibliothek installieren.",
     "loading": "Lauttabelle laden…",
     "scope": "Nur englische Laute: breite Transkription des allgemeinen amerikanischen Englisch, kein vollständiges IPA.",
     "officialChart": "Offizielle IPA-Tafel",
-    "vowelLegend": "Je Feld: links ungerundet, rechts gerundet.",
-    "consonantLegend": "Je Feld: links stimmlos, rechts stimmhaft.",
-    "vowelPositionNote": "Die Positionen folgen den IPA-Zeichen; englisches /ʌ/ ist oft zentral.",
-    "consonantNote": "/w/ wird labial-velar doppelt artikuliert; /tʃ dʒ/ sind Affrikaten.",
-    "stressed": "Betont",
-    "unstressed": "Unbetont",
-    "ending": "Endpunkt",
-    "frontness": {
-      "front": "Vorn",
-      "near-front": "Fast vorn",
-      "central": "Zentral",
-      "near-back": "Fast hinten",
-      "back": "Hinten"
-    },
     "heights": {
-      "close": "Geschlossen (hoch)",
-      "near-close": "Fast geschlossen",
       "close-mid": "Halbgeschlossen",
-      "mid": "Mittel",
       "open-mid": "Halboffen",
-      "near-open": "Fast offen",
       "open": "Offen (tief)"
     },
-    "places": {
-      "bilabial": "Bilabial",
-      "labiodental": "Labiodental",
-      "dental": "Dental",
-      "alveolar": "Alveolar",
-      "postalveolar": "Postalveolar",
-      "palatal": "Palatal",
-      "velar": "Velar",
-      "glottal": "Glottal",
-      "labial-velar": "Labial-velar"
-    },
-    "axes": {
-      "height": "Öffnungsgrad",
-      "frontness": "Zungenlage",
-      "manner": "Artikulationsart",
-      "place": "Artikulationsort"
-    },
-    "start": "Ausgangspunkt",
-    "stress": "Betonung",
     "view": "Ansicht",
     "simple": "Einfach",
     "detailed": "Detailliert"
@@ -364,7 +326,6 @@
     "general": "Allgemeine Materialien"
   },
   "practiceCard_today": "Heute",
-  "practiceCard_yesterday": "Gestern",
   "practiceCard": {
     "start": "Starten",
     "resume": "Fortsetzen",

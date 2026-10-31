@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
 import admission from '../content/corpus/long-listening-admission.json';
 import raw from './fixtures/content/a1-reading.json';
-import { alignedGapQuestion, listeningGapSpacing, organizePractice, readingQuestionPlan } from '../src/core/practiceOrganization';
-import { answerPointCount, quantityBudget } from '../src/shared/practiceQuantity';
+import { alignedGapQuestion, organizePractice, readingQuestionPlan } from '../src/core/practiceOrganization';
+import { answerPointCount, listeningSpacing, quantityBudget } from '../src/shared/practiceQuantity';
 import { asTestLesson, lessonSchema, score, scoreParts, validateAnswer } from '../src/shared/content';
 
 const reading = lessonSchema.parse(raw);
@@ -47,7 +47,7 @@ it('uses exact segment bounds and adequate spaces, never interpolates word times
     expect(material.blocks[0].text.slice(gap.evidence.start, gap.evidence.end)).toBe(gap.answer);
     expect(segments.some(segment => gap.evidence.audioStart === segment.audioStart && gap.evidence.audioEnd === segment.audioEnd)).toBe(true);
   }
-  for (let index = 1; index < question.gaps.length; index++) expect(question.gaps[index].evidence.audioStart! - question.gaps[index - 1].evidence.audioEnd!).toBeGreaterThanOrEqual(listeningGapSpacing(material.blocks[0].text.split(/\s+/).length, 91, 'B1'));
+  for (let index = 1; index < question.gaps.length; index++) expect(question.gaps[index].evidence.audioStart! - question.gaps[index - 1].evidence.audioEnd!).toBeGreaterThanOrEqual(listeningSpacing('B1').minimum);
   const answers = question.gaps.map(gap => gap.answer);
   expect(score(question, answers).correct).toBe(true);
   const partial = [...answers]; partial[1] = 'incorrect';
@@ -57,7 +57,7 @@ it('uses exact segment bounds and adequate spaces, never interpolates word times
   expect(alignedGapQuestion(material, [], 'B1', 0)).toBeUndefined();
   expect(alignedGapQuestion({ ...material, audio: { ...material.audio!, duration: 5 } }, segments, 'B1', 0)).toBeUndefined();
   expect(alignedGapQuestion(material, segments.map(segment => ({ ...segment, text: 'forged' })), 'B1', 0)).toBeUndefined();
-  expect(listeningGapSpacing(250, 60, 'A1')).toBeGreaterThan(listeningGapSpacing(90, 60, 'C2'));
+  expect(listeningSpacing('A1').minimum).toBeGreaterThan(listeningSpacing('C2').minimum);
 });
 
 it('does not let a full-passage unscored response suppress distinct source-bound questions', () => {

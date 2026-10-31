@@ -18,6 +18,17 @@ import fixtureAudioSources from './fixtures/audio-sources.json';
 const allAudioSources = [...publicAudioSources, ...fixtureAudioSources];
 const audioFile = (src: string) => (fixtureAudioSources.some(source => source.path === src) ? 'tests/fixtures/public' : 'public') + src;
 
+it('keeps bundled short recording paths unique for exact source lookup', async () => {
+  const { readFileSync, readdirSync } = await import('node:fs');
+  type Source = { audio: { src: string } };
+  const paths = ['a2-speech', 'b1-speech'].flatMap(directory => readdirSync(`public/audio/${directory}`).filter(file => file.endsWith('.json')).flatMap(file => {
+    const source = JSON.parse(readFileSync(`public/audio/${directory}/${file}`, 'utf8')) as Source[] | { need: Source[]; preference: Source[] };
+    return (Array.isArray(source) ? source : [...source.need, ...source.preference]).map(item => item.audio.src);
+  }));
+  expect(paths.length).toBeGreaterThan(0);
+  expect(new Set(paths).size).toBe(paths.length);
+});
+
 it('ships one fern source and no handwritten wordmarks or personal artwork', async () => {
   const { existsSync, readFileSync } = await import('node:fs');
   for (const directory of ['logo', 'Signature', 'public/logo']) expect(existsSync(directory)).toBe(false);

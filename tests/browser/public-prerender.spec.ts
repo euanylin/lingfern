@@ -5,19 +5,109 @@ import { publicPages, prerenderPath } from '../../src/shared/seo';
 const origin = 'http://127.0.0.1:8787';
 const paths = Object.keys(publicPages);
 
+test('public preview chunks download while the main view is pending', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', serviceWorkers: 'block' });
+  const page = await context.newPage(), requested = new Set<string>(), errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/assets/*.js', async route => {
+    const name = new URL(route.request().url()).pathname.split('/').at(-1)!;
+    for (const chunk of ['messages-zh-Hans', 'Welcome', 'GithubIdentity', 'ProfileBackup', 'SyncConflicts']) if (name.startsWith(chunk + '-')) requested.add(chunk);
+    if (name.startsWith('Welcome-')) await pending;
+    await route.continue();
+  });
+  try {
+    await page.goto(origin + '/introduction', { waitUntil: 'commit' });
+    await expect(page.locator('.welcome-caption')).toBeVisible();
+    await expect.poll(() => [...requested].sort()).toEqual(['GithubIdentity', 'ProfileBackup', 'SyncConflicts', 'Welcome', 'messages-zh-Hans']);
+    release();
+    await expect(page.locator('#root')).not.toHaveAttribute('data-public-page');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-Hans');
+    await page.locator('.welcome-start').click();
+    await expect(page).toHaveURL(/\/start$/);
+    expect(errors).toEqual([]);
+  } finally { release(); await page.unrouteAll({ behavior: 'wait' }); await context.close(); }
+});
+
+test('reference and settings pages keep quotation data unloaded', async ({ browser }) => {
+  for (const path of ['/library/dictionary', '/library/ipa', '/library/grammar', '/settings', '/settings/about']) {
+    const context = await browser.newContext({ locale: 'en-US', serviceWorkers: 'block' });
+    const page = await context.newPage(), quotes: string[] = [];
+    page.on('request', request => { if (/\/assets\/(?:dailyQuoteOnDemand|daily-quote-index|\d{3})-/.test(new URL(request.url()).pathname)) quotes.push(request.url()); });
+    try {
+      await page.goto(origin + path);
+      await page.waitForLoadState('networkidle');
+      await expect(page.locator('head link[rel="modulepreload"][href*="/daily-quote-index-"]')).toHaveCount(0);
+      await expect(page.locator('#root')).not.toHaveAttribute('data-public-page');
+      expect(quotes, path).toEqual([]);
+    } finally { await context.close(); }
+  }
+});
+
 test('a failed public route chunk keeps the existing retry and recovers after reload', async ({ browser }) => {
   const context = await browser.newContext({ locale: 'zh-CN', serviceWorkers: 'block' });
   const page = await context.newPage();
   let blocked = true;
-  await page.route('**/assets/Dictionary-*.js', route => blocked ? route.abort('failed') : route.continue());
+  const requests: { url: string; type: string; blocked: boolean }[] = [];
+  await page.route('**/assets/Dictionary-*.js', route => {
+    requests.push({ url: route.request().url(), type: route.request().resourceType(), blocked });
+    return blocked ? route.abort('failed') : route.continue();
+  });
+  const theme = (write = false) => page.evaluate(write => new Promise<string | undefined>((resolve, reject) => {
+    const request = indexedDB.open('lingfern'); request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const database = request.result, transaction = database.transaction('settings', write ? 'readwrite' : 'readonly');
+      const store = transaction.objectStore('settings'), key = 'profile:local-guest:theme';
+      let value: string | undefined;
+      if (write) { store.put({ key, value: 'dark' }); value = 'dark'; }
+      else { const result = store.get(key); result.onsuccess = () => { value = result.result?.value; }; }
+      transaction.oncomplete = () => { database.close(); resolve(value); };
+      transaction.onerror = transaction.onabort = () => { database.close(); reject(transaction.error); };
+    };
+  }), write);
   try {
     await page.goto(origin + '/library/dictionary');
     await expect(page.getByRole('alert')).toContainText('重试');
+    expect(requests.some(request => request.blocked)).toBe(true);
+    expect(await theme(true)).toBe('dark');
     blocked = false;
     await page.getByRole('button', { name: '重试', exact: true }).click();
     await page.getByRole('combobox').fill('apple');
     await page.getByRole('combobox').press('Enter');
     await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
+    expect(requests.some(request => !request.blocked && request.type === 'fetch')).toBe(true);
+    expect(new Set(requests.map(request => request.url)).size).toBe(1);
+    expect(await theme()).toBe('dark');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page).toHaveURL(origin + '/library/dictionary');
+  } finally { await context.close(); }
+});
+
+test('a continuing module failure keeps its error until another explicit retry and preserves the current URL', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', serviceWorkers: 'block' }), page = await context.newPage();
+  const url = origin + '/library/dictionary?from=synthetic-module-retry#preserved';
+  let blocked = true, navigations = 0, recoveryRequests = 0;
+  page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations++; });
+  await page.route('**/assets/Dictionary-*.js', route => {
+    if (route.request().resourceType() === 'fetch') recoveryRequests++;
+    return blocked ? route.fulfill({ status: 503, contentType: 'text/javascript', headers: { 'Cache-Control': 'no-store' }, body: '/* Synthetic temporary failure. */' }) : route.continue();
+  });
+  try {
+    await page.goto(url);
+    await expect(page.getByRole('alert')).toContainText('重试');
+    const retry = page.getByRole('button', { name: '重试', exact: true });
+    await retry.focus(); await page.keyboard.press('Enter');
+    await expect.poll(() => recoveryRequests).toBe(1);
+    await expect(retry).toBeEnabled();
+    await expect(page.getByRole('alert')).toBeVisible();
+    expect(navigations).toBe(1); await expect(page).toHaveURL(url);
+    blocked = false;
+    await retry.focus(); await page.keyboard.press('Enter');
+    await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
+    await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
+    expect(recoveryRequests).toBe(2); expect(navigations).toBe(2);
+    await expect(page).toHaveURL(url);
   } finally { await context.close(); }
 });
 
@@ -166,4 +256,116 @@ for (const path of paths) test(`public markup hydrates without replacement or er
     }
     expect(errors).toEqual([]);
   } finally { release(); await page.unrouteAll({ behavior: 'wait' }); await context.close(); }
+});
+
+for (const [part, asset] of [
+  ['index', /\/assets\/(?:dailyQuoteOnDemand|daily-quote-index)-[^/?]+\.js(?:\?.*)?$/],
+  ['chunk', /\/assets\/\d{3}-[^/?]+\.js(?:\?.*)?$/],
+] as const) test(`a failed Introduction quotation ${part} keeps welcome controls usable and recovers through its retry`, async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', reducedMotion: 'reduce', serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
+  const page = await context.newPage(), errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  let blocked = true, failedRequests = 0, recoveredRequests = 0;
+  await page.route(asset, route => {
+    if (blocked) { failedRequests++; return route.abort('failed'); }
+    recoveredRequests++; return route.continue();
+  });
+  try {
+    await page.goto(origin + '/introduction');
+    await expect(page.locator('#root')).not.toHaveAttribute('data-public-page');
+    const quote = page.locator('.daily-quote');
+    await expect(quote.getByRole('status')).toHaveText('引文加载失败，请重新加载页面。');
+    expect(errors).toEqual([]);
+    expect(failedRequests).toBeGreaterThan(0);
+    await expect(page.locator('.welcome-start')).toBeEnabled();
+    await page.locator('.welcome-dots button').nth(1).click();
+    await expect(page.locator('.welcome-card[data-current=true] .library-page')).toBeVisible();
+    await page.locator('.welcome-dots button').first().click();
+    await expect(quote.getByRole('status')).toBeVisible();
+    blocked = false;
+    await quote.getByRole('button', { name: '重试', exact: true }).click();
+    await expect(quote).toHaveAttribute('data-quote-id', /^wikiquote-[a-f0-9]{64}$/);
+    expect(recoveredRequests).toBeGreaterThan(0);
+    const catalogue = JSON.parse(readFileSync('content/daily-quotes-runtime.json', 'utf8')) as { quotes: { id: string; text: string; pageTitle: string; locator?: string }[] };
+    const id = await quote.getAttribute('data-quote-id'), displayed = catalogue.quotes.find(entry => entry.id === id);
+    expect(displayed).toBeDefined();
+    expect(await quote.locator('blockquote').textContent()).toBe(displayed!.text);
+    await expect(quote.locator('.daily-quote-attribution a')).toHaveText(displayed!.pageTitle + (displayed!.locator ? ` · ${displayed!.locator}` : ''));
+    await expect(quote.getByRole('status')).toHaveCount(0);
+    await page.locator('.welcome-start').click();
+    await expect(page).toHaveURL(/\/start$/);
+    expect(errors).toEqual([]);
+  } finally { await context.close(); }
+});
+
+for (const [entry, gate] of [['/introduction', 'messages-zh-Hans'], ['/introduction', 'Welcome'], ['/', 'Welcome']]) test(`${entry === '/' ? 'First-visit root' : 'Introduction'} prepares its complete quotation while ${gate} is pending without delaying controls`, async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', reducedMotion: 'reduce', serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
+  const page = await context.newPage(), requested = new Set<string>(), errors: string[] = [];
+  const catalogue = JSON.parse(readFileSync('content/daily-quotes-runtime.json', 'utf8')) as { quotes: { id: string; text: string; pageTitle: string; locator?: string }[] };
+  const previous = catalogue.quotes[0];
+  const index = JSON.parse(readFileSync('content/daily-quote-index.json', 'utf8')) as { id: string; pageTitle: string; eligible: boolean }[];
+  const calendar = JSON.parse(readFileSync('content/quote-calendar.json', 'utf8')) as { date: string; pages: string[] }[];
+  const expectedDraws = 2 + Number(calendar.some(event => event.date === '10-30' && index.some(quote => quote.eligible && quote.id !== previous.id.slice(-16) && event.pages.includes(quote.pageTitle))));
+  await page.clock.setSystemTime(new Date(2026, 9, 30, 12));
+  await page.addInitScript(id => {
+    localStorage.setItem('lingfern:last-daily-quote', id);
+    let draws = 0, previousReads = 0;
+    Object.assign(window, { quoteDrawCount: () => draws, quotePreviousReads: () => previousReads });
+    const getItem = Storage.prototype.getItem;
+    Storage.prototype.getItem = function (key) {
+      if (key === 'lingfern:last-daily-quote') previousReads++;
+      return getItem.call(this, key);
+    };
+    const random = crypto.getRandomValues.bind(crypto);
+    crypto.getRandomValues = values => values instanceof Uint32Array && values.length === 1 ? (draws++, values[0] = 1349303770, values) : random(values);
+  }, previous.id);
+  page.on('pageerror', error => errors.push(error.message));
+  let releaseView!: () => void, releaseQuote!: () => void;
+  const viewPending = new Promise<void>(resolve => { releaseView = resolve; }), quotePending = new Promise<void>(resolve => { releaseQuote = resolve; });
+  await page.route('**/assets/*.js', async route => {
+    const name = new URL(route.request().url()).pathname.split('/').at(-1)!;
+    if (/^(?:dailyQuoteOnDemand|daily-quote-index)-/.test(name)) requested.add('loader');
+    if (/^\d{3}-/.test(name)) { requested.add('chunk'); await quotePending; }
+    if (name.startsWith(gate + '-')) { requested.add('gate'); await viewPending; }
+    await route.continue();
+  });
+  try {
+    await page.goto(origin + entry, { waitUntil: 'commit' });
+    if (entry === '/introduction') await expect(page.locator('.welcome-caption')).toBeVisible();
+    else await expect(page).toHaveURL(/\/introduction$/);
+    await expect.poll(() => [...requested].sort()).toEqual(['chunk', 'gate', 'loader']);
+    if (entry === '/introduction') await expect(page.locator('#root')).toHaveAttribute('data-public-page', /introduction/);
+    expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBeNull();
+    releaseView();
+    await expect(page.locator('#root')).not.toHaveAttribute('data-public-page');
+    const quote = page.locator('.daily-quote');
+    await expect(quote.getByRole('status')).toHaveText('正在加载引文…');
+    if (entry === '/introduction' && gate === 'Welcome') {
+      await expect.poll(() => page.evaluate(() => (window as unknown as { quotePreviousReads: () => number }).quotePreviousReads())).toBe(2);
+      expect(await page.evaluate(() => (window as unknown as { quoteDrawCount: () => number }).quoteDrawCount())).toBe(expectedDraws);
+      await page.evaluate(async () => {
+        for (let count = 0; count < 3; count++) document.dispatchEvent(new Event('visibilitychange'));
+        await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      });
+      expect(await page.evaluate(() => (window as unknown as { quoteDrawCount: () => number }).quoteDrawCount())).toBe(expectedDraws);
+    }
+    await expect(page.locator('.welcome-start')).toBeEnabled();
+    await page.locator('.welcome-dots button').nth(1).click();
+    await expect(page.locator('.welcome-card[data-current=true] .library-page')).toBeVisible();
+    await page.locator('.welcome-dots button').first().click();
+    releaseQuote();
+    await expect(quote).toHaveAttribute('data-quote-id', /^wikiquote-[a-f0-9]{64}$/);
+    const id = await quote.getAttribute('data-quote-id'), displayed = catalogue.quotes.find(entry => entry.id === id);
+    expect(displayed).toBeDefined(); expect(id).not.toBe(previous.id);
+    expect(await quote.locator('blockquote').textContent()).toBe(displayed!.text);
+    expect(displayed!.text).not.toBe(previous.text);
+    await expect(quote.locator('.daily-quote-attribution a')).toHaveText(displayed!.pageTitle + (displayed!.locator ? ` · ${displayed!.locator}` : ''));
+    await expect.poll(() => page.evaluate(() => localStorage.getItem('lingfern:last-daily-quote'))).toBe(id);
+    expect(await page.evaluate(() => (window as unknown as { quoteDrawCount: () => number }).quoteDrawCount())).toBe(expectedDraws);
+    expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBeNull();
+    await page.locator('.welcome-start').click();
+    await expect(page).toHaveURL(/\/start$/);
+    expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBe('1');
+    expect(errors).toEqual([]);
+  } finally { releaseView(); releaseQuote(); await page.unrouteAll({ behavior: 'wait' }); await context.close(); }
 });

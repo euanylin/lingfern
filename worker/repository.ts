@@ -111,7 +111,7 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
     const key = await digest(`repository:${session.id}:${Math.floor(now / 60)}`);
     await db.prepare('DELETE FROM auth_limits WHERE expires_at<?').bind(now).run();
     const limit = await db.prepare('INSERT INTO auth_limits(key,count,expires_at) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count').bind(key, now + 120).first<{ count: number }>();
-    if (!limit || limit.count > 20) { const response = privateJson({ error: 'RATE_LIMITED' }, 429); response.headers.set('Retry-After', '60'); return response; }
+    if (!limit || limit.count > 20) { const response = privateJson({ error: 'RATE_LIMITED' }, 429); response.headers.set('Retry-After', String(60 - now % 60)); return response; }
     if (url.pathname === '/api/sync/disconnect') {
       const value = await input(request, z.object({ profileId: profileIdSchema, confirm: z.literal(true) }).strict());
       await db.batch([db.prepare('DELETE FROM repository_bindings WHERE account_id=? AND profile_id=?').bind(session.id, value.profileId), db.prepare('DELETE FROM binding_intents WHERE account_id=? AND profile_id=?').bind(session.id, value.profileId)]);

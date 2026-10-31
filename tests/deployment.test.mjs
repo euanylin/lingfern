@@ -32,7 +32,7 @@ function fetchFixture({ version = next, change = () => undefined } = {}) {
     assert.equal(options.method, 'GET'); assert.equal(options.credentials, 'omit'); assert.equal(options.redirect, 'error');
     assert(!options.headers.Authorization && !options.headers.Cookie);
     const pathname = new URL(url).pathname;
-    if (pathname === '/api/unknown' || pathname.includes('release-missing') || pathname === '/_headers') return new Response('not found', { status: 404 });
+    if (pathname === '/api/unknown' || pathname.includes('release-missing') || pathname === '/_headers' || pathname === '/sitemap') return new Response('not found', { status: 404 });
     const file = pathname === '/' ? 'index.html' : pathname.slice(1);
     const body = contents[file] ?? Buffer.from(renderPageHtml(pageTemplates[pathname] ?? htmlTemplate, pathname));
     const response = change(pathname, body);
@@ -57,7 +57,8 @@ test('pinned and ordinary full checks read exact bytes without credentials or wr
   for (const pin of [true, false]) {
     const fixture = fetchFixture();
     const result = await verify(files, { version: next, pin, fetcher: fixture.fetcher });
-    assert.equal(result.files, files.length); assert.equal(result.pages, 13); assert.equal(result.missingPaths, 4);
+    assert.equal(result.files, files.length); assert.equal(result.pages, 13); assert.equal(result.missingPaths, 5);
+    assert(fixture.requests.some(({ url }) => url === 'https://lingfern.com/sitemap'));
     for (const { options } of fixture.requests) assert.equal(options.headers['Cloudflare-Workers-Version-Overrides'], pin ? `lingfern="${next}"` : undefined);
   }
 });

@@ -1,11 +1,12 @@
-.welcome{flex:1;min-height:0;width:100%;max-width:1120px;margin:auto;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-content:center;gap:20px}
+.welcome{flex:1;min-height:0;width:100%;max-width:1120px;margin:auto;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-content:center;gap:20px;--welcome-card-ratio:.9}
+/* Use viewport geometry until hydration supplies the existing measured inline ratio. */
+@supports(aspect-ratio:calc(100vw / 100dvh)){.welcome{--welcome-card-ratio:clamp(.9,calc(100vw / 100dvh),1.85)}}
 .welcome-stage{position:relative;display:grid;grid-template-columns:minmax(0,900px);grid-template-rows:minmax(0,1fr);height:100%;min-height:0;justify-content:center;align-items:end;padding:20px 0;touch-action:pan-y;transform-style:flat;container-type:inline-size}
 .welcome-card{grid-area:1/1;position:relative;width:100%;height:min(100%,var(--welcome-window-height));min-width:0;align-self:end;transform-origin:50% 100%;will-change:transform;container-type:inline-size;--welcome-window-height:clamp(260px,calc(var(--welcome-card-width,900px) / var(--welcome-card-ratio) + 72px),min(72svh,800px));--welcome-card-width:min(100cqw,900px);transform-style:flat;isolation:isolate;cursor:pointer;z-index:1}
 .welcome-card[data-current=true]{cursor:auto;z-index:3}
 .welcome-window{position:relative;overflow:hidden;display:flex;flex-direction:column;height:100%;border-radius:16px;background:var(--bg);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ink) 6%,transparent)}
 .welcome-shadow{position:absolute;inset:0;border-radius:16px;box-shadow:0 2px 4px light-dark(rgb(24 29 24 / .06),rgb(0 0 0 / .12)),0 12px 28px -10px light-dark(rgb(24 29 24 / .18),rgb(0 0 0 / .24));pointer-events:none}
-.welcome-content{position:relative;flex:1;min-height:0;min-width:0;padding:var(--page-top-space) 20px var(--page-bottom-space);overflow:auto;touch-action:pan-y;overscroll-behavior-x:contain;scrollbar-width:none;border-radius:0 0 16px 16px}
-.welcome-content::-webkit-scrollbar{display:none}
+.welcome-content{position:relative;flex:1;min-height:0;min-width:0;padding:var(--page-top-space) 20px var(--page-bottom-space);overflow:auto;touch-action:pan-y;overscroll-behavior-x:contain;border-radius:0 0 16px 16px}
 .welcome-site-header{position:relative;isolation:isolate;flex:none;width:100%;margin:0;border-bottom:0}
 .welcome-site-header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--bg);border-bottom:1px solid var(--line);border-radius:16px 16px 0 0}
 @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){.welcome-site-header::before{background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(16px) saturate(120%);backdrop-filter:blur(16px) saturate(120%)}}

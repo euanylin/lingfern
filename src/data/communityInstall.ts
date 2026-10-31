@@ -3,6 +3,7 @@ import { communityPacks, db, syncClocks, type CommunityPackageRecord } from './d
 import type { CommunityPack } from './communityPack';
 import { normaliseTerm } from '../shared/dictionary';
 import { materialPackageId, type Lesson } from '../shared/content';
+import { mutateResourceCache } from './resourceMutation';
 
 export const communityCacheName = (hash: string) => `lingfern-community-${hash}`;
 export const communityMarker = (hash: string) => `/audio/community-${hash}/ready`;
@@ -32,12 +33,12 @@ export async function communityLessonReady(lesson: Lesson, profileId: string) {
 export async function communityDictionary(profileId: string, raw: string) {
   const term = normaliseTerm(raw);
   if (!term) return [];
-  const packs = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready').toArray();
+  const packs = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready' && !!pack.dictionary?.length).toArray();
   return packs.flatMap(pack => (pack.dictionary ?? []).filter(entry => normaliseTerm(entry.term) === term).map(entry => ({ ...entry, source: pack.sources.find(source => source.id === entry.sourceId)?.title ?? pack.id })));
 }
 
 export async function communityDictionaryTerms(profileId: string) {
-  const packs = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready').toArray();
+  const packs = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready' && !!pack.dictionary?.length).toArray();
   return [...new Set(packs.flatMap(pack => (pack.dictionary ?? []).map(entry => normaliseTerm(entry.term))))];
 }
 
@@ -93,21 +94,16 @@ export async function installCommunityPack(pack: CommunityPack, profileId: strin
   if (!('caches' in window) || !('serviceWorker' in navigator)) throw new Error('UNSUPPORTED');
   await waitForOfflineWorker(signal);
   await navigator.storage?.persist?.().catch(() => false);
-  const previous = await communityPacks.get([profileId, pack.hash]);
   const name = communityCacheName(pack.hash);
-  const save = (state: 'ready' | 'staged') => db.transaction('rw', communityPacks, syncClocks, async () => {
+  const save = () => db.transaction('rw', communityPacks, syncClocks, async () => {
     signal?.throwIfAborted();
     if ((await syncClocks.get(profileId))?.deleted) throw new Error('PROFILE_DELETED');
-    await communityPacks.put({ profileId, hash: pack.hash, id: pack.id, lessons: pack.lessons, sources: pack.sources, dictionary: pack.dictionary, ...(pack.corpus ? { corpus: pack.corpus } : {}), ...(pack.spoken ? { spoken: pack.spoken } : {}), state, installedAt: new Date().toISOString() });
+    await communityPacks.put({ profileId, hash: pack.hash, id: pack.id, lessons: pack.lessons, sources: pack.sources, dictionary: pack.dictionary, ...(pack.corpus ? { corpus: pack.corpus } : {}), ...(pack.spoken ? { spoken: pack.spoken } : {}), state: 'ready', installedAt: new Date().toISOString() });
     signal?.throwIfAborted();
   });
   const ready = await communityPackageReady(pack);
   signal?.throwIfAborted();
-  if (ready) {
-    if (previous?.state !== 'ready') await save('ready');
-    return;
-  }
-  for (const [filename, data] of Object.entries(pack.media)) {
+  if (!ready) for (const [filename, data] of Object.entries(pack.media)) {
     if (filename.endsWith('.png')) { await checkIllustration(data, signal); continue; }
     const path = `/audio/community-${pack.hash}/${filename}`;
     const expected = pack.lessons.flatMap(lesson => lesson.materials.filter(material => material.audio?.src === path).map(material => ({
@@ -118,25 +114,33 @@ export async function installCommunityPack(pack: CommunityPack, profileId: strin
     if (!expected.length) throw new Error('COMMUNITY_MEDIA');
     await checkRecording(data, expected, signal);
   }
-  await save('staged');
+  let created = false;
   try {
-    await caches.delete(name);
-    const cache = await caches.open(name);
-    for (const [filename, data] of Object.entries(pack.media)) {
-      if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
-      const image = filename.endsWith('.png');
-      await cache.put(`/${image ? 'images' : 'audio'}/community-${pack.hash}/${filename}`, new Response(new Uint8Array(data), { headers: { 'Content-Type': image ? 'image/png' : 'audio/mpeg', 'Content-Length': String(data.length) } }));
-    }
-    if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
-    await cache.put(communityMarker(pack.hash), new Response('ready'));
-    await db.transaction('rw', communityPacks, async () => {
-      signal?.throwIfAborted();
-      await communityPacks.update([profileId, pack.hash], { state: 'ready' });
-      signal?.throwIfAborted();
-    });
+    return await mutateResourceCache(name, async assertActive => {
+      const previous = await communityPacks.get([profileId, pack.hash]);
+      const ready = await communityPackageReady(pack);
+      signal?.throwIfAborted(); assertActive();
+      if (ready) { if (previous?.state !== 'ready') await save(); return; }
+      created = !await caches.has(name);
+      signal?.throwIfAborted(); assertActive();
+      const cache = await caches.open(name);
+      for (const [filename, data] of Object.entries(pack.media)) {
+        signal?.throwIfAborted(); assertActive();
+        const image = filename.endsWith('.png');
+        await cache.put(`/${image ? 'images' : 'audio'}/community-${pack.hash}/${filename}`, new Response(new Uint8Array(data), { headers: { 'Content-Type': image ? 'image/png' : 'audio/mpeg', 'Content-Length': String(data.length) } }));
+      }
+      signal?.throwIfAborted(); assertActive();
+      await cache.put(communityMarker(pack.hash), new Response('ready'));
+      assertActive(); await save();
+      if (!await communityPackageReady(pack)) throw new Error('INCOMPLETE_PACKAGE');
+      signal?.throwIfAborted(); assertActive();
+    }, signal);
   } catch (error) {
-    await caches.delete(name);
-    await communityPacks.delete([profileId, pack.hash]);
+    if (created) await mutateResourceCache(name, async assertActive => {
+      const referenced = (await communityPacks.toCollection().primaryKeys()).some(key => key[1] === pack.hash);
+      assertActive();
+      if (!referenced) await caches.delete(name);
+    });
     throw error;
   }
 }

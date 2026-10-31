@@ -56,12 +56,16 @@ export async function pendingSyncBatch(profileId: string, database: Dexie = db):
   const clock: Clock | undefined = await database.table('syncClocks').get(profileId);
   if (!clock) throw new Error('SYNC_CLOCK_MISSING');
   const batch: SyncBatch = { product: 'Lingfern', formatVersion: 1, profileId: clock.logicalProfileId ?? profileId, deviceId: selected[0].deviceId, batchId: crypto.randomUUID(), events: [] };
+  // Count canonical events and separators without re-encoding the growing batch.
+  const encoder = new TextEncoder();
+  let byteLength = encoder.encode(canonicalJson(batch)).byteLength;
   for (const row of selected) {
     if (row.deviceId !== batch.deviceId) continue;
     const event = unstored(row);
-    const candidate = { ...batch, events: [...batch.events, event] };
-    if (new TextEncoder().encode(canonicalJson(candidate)).byteLength > syncByteLimit) break;
+    const addedBytes = encoder.encode(canonicalJson(event)).byteLength + (batch.events.length ? 1 : 0);
+    if (byteLength + addedBytes > syncByteLimit) break;
     batch.events.push(event);
+    byteLength += addedBytes;
   }
   if (!batch.events.length) throw new Error('SYNC_CAPACITY');
   const validated = await validateSyncBatch(batch);
@@ -151,7 +155,8 @@ async function receiveValidatedBatch(profileId: string, batch: SyncBatch, hash: 
     const stored: StoredBatch = { profileId, deviceId: batch.deviceId, batchId: batch.batchId, batch, hash, state: conflict ? 'conflict' : 'received' };
     await database.table('syncBatches').add(stored);
     if (conflict) return 'conflict'; // Retain conflicting input without applying any part of its batch.
-    for (const event of batch.events) if (!old.some(row => row?.id === event.id)) await database.table('syncEvents').add({ ...event, profileId, batchId: batch.batchId });
+    const existingIds = new Set(old.filter(Boolean).map(row => row.id));
+    await database.table('syncEvents').bulkAdd(batch.events.filter(event => !existingIds.has(event.id)).map(event => ({ ...event, profileId, batchId: batch.batchId })));
     const clock: Clock = await database.table('syncClocks').get(profileId) ?? { profileId, deviceId: crypto.randomUUID(), counter: 0, logicalProfileId: profileId };
     await database.table('syncClocks').put({ ...clock, counter: Math.max(clock.counter, ...batch.events.map(event => event.counter)) });
     return 'received';

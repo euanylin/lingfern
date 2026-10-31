@@ -5,12 +5,31 @@ import { selectPicker } from './picker';
 const sample = (page: Page) => page.evaluate(() => new Promise<{ present: boolean; open: boolean; blur: number; opacity: number }[]>(resolve => {
   const frames: { present: boolean; open: boolean; blur: number; opacity: number }[] = [], began = performance.now();
   let start: number | undefined;
-  const frame = () => {
+  const capture = () => {
     const dialog = document.querySelector<HTMLDialogElement>('.task-detail');
     if (dialog && start === undefined) start = performance.now();
     const backdrop = dialog && getComputedStyle(dialog, '::backdrop');
     frames.push({ present: !!dialog, open: !!dialog?.open, blur: Number(/blur\(([\d.]+)px\)/.exec(backdrop?.backdropFilter || backdrop?.getPropertyValue('-webkit-backdrop-filter') || '')?.[1] ?? 0), opacity: dialog ? Number(getComputedStyle(dialog).opacity) : 0 });
-    if ((start === undefined || performance.now() - start < 650) && performance.now() - began < 10_000) requestAnimationFrame(frame); else resolve(frames);
+  };
+  const sampled = new WeakSet<Animation>();
+  // Sample native interpolation directly when a busy runner misses animation frames.
+  const observer = new MutationObserver(() => {
+    const dialog = document.querySelector<HTMLDialogElement>('.task-detail');
+    for (const animation of dialog?.getAnimations({ subtree: true }) ?? []) {
+      const effect = animation.effect;
+      if (sampled.has(animation) || !(animation instanceof CSSTransition) || !(effect instanceof KeyframeEffect) || effect.target !== dialog || !['opacity', 'backdrop-filter', '-webkit-backdrop-filter'].includes(animation.transitionProperty)) continue;
+      sampled.add(animation);
+      const time = animation.currentTime, duration = Number(effect.getTiming().duration);
+      animation.pause();
+      for (const fraction of [.2, .4, .6, .8]) { animation.currentTime = duration * fraction; capture(); }
+      animation.currentTime = time; animation.play();
+    }
+  });
+  observer.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['data-open', 'data-blur'] });
+  const frame = () => {
+    capture();
+    if ((start === undefined || performance.now() - start < 650) && performance.now() - began < 10_000) requestAnimationFrame(frame);
+    else { observer.disconnect(); resolve(frames); }
   };
   requestAnimationFrame(frame);
 }));
@@ -83,6 +102,27 @@ for (const [width, theme, locale, action] of [[1440, 'light', 'zh-Hans', 'escape
   expect(exited.some(frame => frame.present && frame.open && frame.blur > 0 && frame.blur < 3)).toBe(true);
   await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
   await test.info().attach('task-detail-native-frames', { body: JSON.stringify({ opened, entered, exited }), contentType: 'application/json' });
+});
+
+for (const selector of ['.reading-task .practice-card-action', '.reading-task [data-practice-skill=reading]']) test(`repeated cancel queues one history navigation: ${selector}`, async ({ page }) => {
+  await page.goto('/today');
+  const trigger = page.locator(selector);
+  await trigger.focus(); await trigger.press('Enter');
+  const dialog = page.locator('dialog');
+  await expect(dialog).toHaveCSS('opacity', '1');
+  const requests = await dialog.evaluate(element => {
+    const back = history.back;
+    let calls = 0;
+    history.back = () => { calls++; };
+    try {
+      element.dispatchEvent(new Event('cancel', { cancelable: true }));
+      element.dispatchEvent(new Event('cancel', { cancelable: true }));
+    } finally { history.back = back; }
+    return calls;
+  });
+  expect(requests).toBe(1);
+  await page.goBack();
+  await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused(); await expect(page).toHaveURL(/\/today$/);
 });
 
 test('browser back, interrupted entry, missing transition events and reduced motion all close safely', async ({ page }) => {

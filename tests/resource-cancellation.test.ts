@@ -14,12 +14,35 @@ const installers = [
 ];
 
 it.each(installers.flatMap(installer => ['cached', 'marker', 'final readiness'].map(phase => ({ ...installer, phase }))))('rejects $name cancellation during $phase without deleting an existing complete cache', async ({ install, phase }) => {
-  const controller = new AbortController(), paths = new Set(phase === 'cached' ? [offlineMarker(group.id), ...group.files.map(file => file.path)] : []);
-  const cache = {
-    put: vi.fn(async (path: string) => { paths.add(path); if (path === offlineMarker(group.id) && phase === 'marker') controller.abort(); }),
-    keys: async () => { if (phase === 'cached' || phase === 'final readiness') controller.abort(); return [...paths].map(path => new Request(new URL(path, 'https://lingfern.test'))); },
+  const controller = new AbortController(), name = offlineCacheName(group.id), marker = offlineMarker(group.id);
+  const entries = new Map<string, Map<string, Response>>();
+  const key = (request: RequestInfo | URL) => new URL(request instanceof Request ? request.url : String(request), 'https://lingfern.test').pathname;
+  let cancelledAt: string | undefined;
+  const cancel = () => { cancelledAt = phase; controller.abort(); };
+  if (phase === 'cached') entries.set(name, new Map([
+    ...group.files.map(file => [file.path, new Response(new Uint8Array(files[file.path.slice(1)]))] as const),
+    [marker, new Response(group.version)],
+  ]));
+  const put = vi.fn(async (cacheName: string, request: RequestInfo | URL, response: Response) => {
+    const path = key(request);
+    entries.get(cacheName)!.set(path, response.clone());
+    if (cacheName === name && path === marker && phase === 'marker') cancel();
+  });
+  const storage = {
+    open: async (cacheName: string) => {
+      const values = entries.get(cacheName) ?? new Map<string, Response>(); entries.set(cacheName, values);
+      return {
+        put: (request: RequestInfo | URL, response: Response) => put(cacheName, request, response),
+        match: async (request: RequestInfo | URL) => values.get(key(request))?.clone(),
+        keys: async () => {
+          if (cacheName === name && (phase === 'cached' || phase === 'final readiness' && values.has(marker))) cancel();
+          return [...values.keys()].map(path => new Request(new URL(path, 'https://lingfern.test')));
+        },
+      };
+    },
+    has: async (cacheName: string) => entries.has(cacheName),
+    delete: vi.fn(async (cacheName: string) => entries.delete(cacheName)),
   };
-  const storage = { open: async () => cache, has: async () => paths.size > 0, delete: vi.fn(async () => { paths.clear(); return true; }) };
   vi.stubGlobal('location', { origin: 'https://lingfern.test' });
   vi.stubGlobal('window', { caches: storage, dispatchEvent: vi.fn() }); vi.stubGlobal('caches', storage);
   vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }), getRegistration: async () => ({ active: {} }) } });
@@ -29,7 +52,17 @@ it.each(installers.flatMap(installer => ['cached', 'marker', 'final readiness'].
   }));
   try {
     await expect(install(controller.signal)).rejects.toMatchObject({ name: 'AbortError' });
-    if (phase === 'cached') { expect(storage.delete).not.toHaveBeenCalled(); expect(cache.put).not.toHaveBeenCalled(); expect(paths.size).toBe(group.files.length + 1); }
-    else { expect(storage.delete).toHaveBeenCalledExactlyOnceWith(offlineCacheName(group.id)); expect(paths.size).toBe(0); }
+    expect(cancelledAt).toBe(phase);
+    expect(storage.delete.mock.calls.some(([deleted]) => deleted === name)).toBe(false);
+    expect([...entries.keys()]).toEqual([name]);
+    const retained = entries.get(name)!;
+    expect(retained.size).toBe(group.files.length + 1);
+    expect(await retained.get(marker)!.clone().text()).toBe(group.version);
+    for (const file of group.files) expect(new Uint8Array(await retained.get(file.path)!.clone().arrayBuffer())).toEqual(files[file.path.slice(1)]);
+    if (phase === 'cached') {
+      expect(storage.delete).not.toHaveBeenCalled(); expect(put).not.toHaveBeenCalled(); expect(fetch).not.toHaveBeenCalled();
+    } else if (install === installers[0].install) {
+      expect(storage.delete).toHaveBeenCalledExactlyOnceWith(expect.stringMatching(new RegExp(`^${name}-staged-`)));
+    } else expect(storage.delete).not.toHaveBeenCalled();
   } finally { vi.unstubAllGlobals(); }
 });

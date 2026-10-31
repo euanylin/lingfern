@@ -240,55 +240,17 @@
       "fricative": "أصوات احتكاكية",
       "affricate": "أصوات مزجية",
       "nasal": "أصوات أنفية",
-      "approximant": "أصوات تقاربية",
-      "lateral-approximant": "أصوات تقريبية جانبية"
+      "approximant": "أصوات تقاربية"
     },
     "failed": "تعذرت قراءة الجدول أو التسجيل. اتصل بالإنترنت أو ثبّت حزمة IPA من المكتبة.",
     "loading": "جارٍ تحميل جدول الأصوات…",
     "scope": "أصوات الإنجليزية فقط: نسخ واسع للإنجليزية الأمريكية العامة، وليس جدول الأبجدية الصوتية الدولية الكامل.",
     "officialChart": "جدول IPA الرسمي",
-    "vowelLegend": "في كل خلية: غير مدور يسارًا ومدور يمينًا.",
-    "consonantLegend": "في كل خلية: مهموس يسارًا ومجهور يمينًا.",
-    "vowelPositionNote": "المواضع تتبع رموز IPA؛ وغالبًا ما يكون /ʌ/ الإنجليزي مركزيًا.",
-    "consonantNote": "للصوت /w/ نطق شفوي طبقي مزدوج، والصوتان /tʃ dʒ/ مزجيان.",
-    "stressed": "منبور",
-    "unstressed": "غير منبور",
-    "ending": "النهاية",
-    "frontness": {
-      "front": "أمامي",
-      "near-front": "شبه أمامي",
-      "central": "مركزي",
-      "near-back": "شبه خلفي",
-      "back": "خلفي"
-    },
     "heights": {
-      "close": "مغلق (عالٍ)",
-      "near-close": "شبه مغلق",
       "close-mid": "نصف مغلق",
-      "mid": "متوسط",
       "open-mid": "نصف مفتوح",
-      "near-open": "شبه مفتوح",
       "open": "مفتوح (منخفض)"
     },
-    "places": {
-      "bilabial": "ثنائي الشفتين",
-      "labiodental": "شفوي أسناني",
-      "dental": "أسناني",
-      "alveolar": "لثوي",
-      "postalveolar": "ما بعد لثوي",
-      "palatal": "حنكي",
-      "velar": "طبقي",
-      "glottal": "حنجري",
-      "labial-velar": "شفوي طبقي"
-    },
-    "axes": {
-      "height": "الارتفاع",
-      "frontness": "موضع اللسان",
-      "manner": "الطريقة",
-      "place": "الموضع"
-    },
-    "start": "البداية",
-    "stress": "النبر",
     "view": "طريقة العرض",
     "simple": "مبسّط",
     "detailed": "مفصّل"
@@ -364,7 +326,6 @@
     "general": "مواد عامة"
   },
   "practiceCard_today": "اليوم",
-  "practiceCard_yesterday": "أمس",
   "practiceCard": {
     "start": "ابدأ",
     "resume": "متابعة",
