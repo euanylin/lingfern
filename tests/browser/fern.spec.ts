@@ -113,14 +113,19 @@ test('idle foliage moves gently around a fixed root and pauses on visibility eve
   await expect(fern).toHaveAttribute('data-motion', 'active');
   const samples = await fern.evaluate(async el => {
     const roots: number[][] = [], tips: number[] = [], leaves = new Set<string>();
+    let growthMutations = 0;
+    const observer = new MutationObserver(records => { growthMutations += records.length; });
+    observer.observe(el, { attributes: true, attributeFilter: ['data-growth'] });
     const path = el.querySelector<SVGPathElement>('.fern-stem')!;
     for (let frame = 0; frame < 90; frame++) {
       await new Promise(requestAnimationFrame);
       const root = path.getPointAtLength(0), tip = path.getPointAtLength(path.getTotalLength());
       roots.push([root.x,root.y]); tips.push(tip.x); leaves.add(el.querySelector('.fern-pinna')!.getAttribute('d')!);
     }
-    return { roots, tips, leaves: leaves.size };
+    growthMutations += observer.takeRecords().length; observer.disconnect();
+    return { roots, tips, leaves: leaves.size, growthMutations };
   });
+  expect(samples.growthMutations).toBe(0);
   expect(samples.roots.every(root => root[0] === 120 && root[1] === 171)).toBe(true);
   expect(Math.max(...samples.tips) - Math.min(...samples.tips)).toBeGreaterThan(.1);
   expect(Math.max(...samples.tips) - Math.min(...samples.tips)).toBeLessThan(8);

@@ -23,19 +23,17 @@ test('page links use clean URLs and support direct entry, refresh, back', async 
 test('search-engine sitemap returns XML without a user-facing page', async ({ page, context }) => {
   const origin = 'http://127.0.0.1:8787';
   const xml = await readFile('public/sitemap.xml', 'utf8');
-  for (const path of ['/sitemap', '/sitemap.xml']) {
-    for (const accept of ['text/html', 'application/xml']) {
-      const response = await context.request.get(origin + path, { headers: { Accept: accept } });
-      expect(response.status()).toBe(200);
-      expect(response.headers()['content-type']).toMatch(/^application\/xml/);
-      expect(response.headers()['cache-control']).toContain('max-age=3600');
-      expect(await response.text()).toBe(xml);
-    }
-    const head = await context.request.head(origin + path);
-    expect(head.status()).toBe(200);
-    expect(head.headers()['content-type']).toMatch(/^application\/xml/);
-    expect(await head.text()).toBe('');
+  for (const accept of ['text/html', 'application/xml']) {
+    const response = await context.request.get(origin + '/sitemap.xml', { headers: { Accept: accept } });
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toMatch(/^application\/xml/);
+    expect(response.headers()['cache-control']).toContain('max-age=3600');
+    expect(await response.text()).toBe(xml);
   }
+  const head = await context.request.head(origin + '/sitemap.xml');
+  expect(head.status()).toBe(200);
+  expect(head.headers()['content-type']).toMatch(/^application\/xml/);
+  expect(await head.text()).toBe('');
   const parsed = await page.evaluate(source => {
     const document = new DOMParser().parseFromString(source, 'application/xml');
     return {
@@ -52,9 +50,10 @@ test('search-engine sitemap returns XML without a user-facing page', async ({ pa
   expect(robots.status()).toBe(200);
   expect(robots.headers()['content-type']).toMatch(/^text\/plain/);
   expect(await robots.text()).toBe('Sitemap: https://lingfern.com/sitemap.xml\n');
-  for (const path of ['/sitemap/missing', '/sitemap.xml/missing', '/sitemaps']) {
+  for (const path of ['/sitemap', '/sitemap/missing', '/sitemap.xml/missing', '/sitemaps']) {
     expect((await context.request.get(origin + path, { headers: { Accept: 'text/html' } })).status()).toBe(404);
   }
+  expect((await context.request.head(origin + '/sitemap')).status()).toBe(404);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(origin + '/settings');
   await expect(page.locator('.settings-update a')).toHaveAttribute('href', '/settings/about');

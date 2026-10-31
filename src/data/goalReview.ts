@@ -9,8 +9,6 @@ export type GoalReview = {
   practicedMaterials: number;
   independentMaterials: number;
   lastPracticedAt?: string;
-  lastSupportLevel?: number;
-  lastUsedDictionary?: boolean;
   nextSuggestedAt?: string;
   lastResult?: Result;
   recent: Performance[];
@@ -25,14 +23,14 @@ export function goalReviews(lessons: Lesson[], sessions: Session[], attempts: At
   const { goals, valid } = progressRecords(lessons, sessions, attempts, summaries);
   const grouped = new Map<string, typeof valid>();
   const clockAnomalies = new Set<string>();
-  const practice = new Map<string, { roots: Set<string>; at: string; support: number; dictionaryUsed: boolean }>();
+  const practice = new Map<string, { roots: Set<string>; at: string }>();
   for (const entry of valid) {
     const lesson = entry.session.lesson;
     const goalKey = `${lesson.skill}:${lesson.targetLevel}:${lesson.goalId}`;
     if (Date.parse(entry.attempt.submittedAt) > now.getTime() + 5 * 60_000) { clockAnomalies.add(goalKey); continue; }
-    const previous = practice.get(goalKey) ?? { roots: new Set<string>(), at: '', support: 0, dictionaryUsed: false };
+    const previous = practice.get(goalKey) ?? { roots: new Set<string>(), at: '' };
     previous.roots.add(entry.attempt.rootId);
-    if (entry.attempt.submittedAt >= previous.at) { previous.at = entry.attempt.submittedAt; previous.support = entry.attempt.assistance.hintLevel; previous.dictionaryUsed = !!entry.attempt.assistance.dictionaryUsed; }
+    if (entry.attempt.submittedAt >= previous.at) previous.at = entry.attempt.submittedAt;
     practice.set(goalKey, previous);
     const key = `${goalKey}:${entry.session.id}:${entry.attempt.rootId}`;
     const group = grouped.get(key) ?? [];
@@ -99,7 +97,7 @@ export function goalReviews(lessons: Lesson[], sessions: Session[], attempts: At
       lastResult = undefined;
     }
     const state = !lastResult ? nextSuggestedAt && now.getTime() >= Date.parse(nextSuggestedAt) ? 'review_due' : 'new' : nextSuggestedAt && now.getTime() >= Date.parse(nextSuggestedAt) ? 'review_due' : lastResult === 'independent' ? 'independent' : 'with_help';
-    reviews.set(goal.key, { clockAnomaly: clockAnomalies.has(goal.key), state, practicedMaterials: practice.get(goal.key)?.roots.size ?? 0, independentMaterials: independentRoots.size, lastPracticedAt, lastSupportLevel: practice.get(goal.key)?.support, lastUsedDictionary: practice.get(goal.key)?.dictionaryUsed, nextSuggestedAt, lastResult, recent: timeline.slice(-5), recentlyConsistent: lastResult === 'independent' && streakRoots.size >= 3 });
+    reviews.set(goal.key, { clockAnomaly: clockAnomalies.has(goal.key), state, practicedMaterials: practice.get(goal.key)?.roots.size ?? 0, independentMaterials: independentRoots.size, lastPracticedAt, nextSuggestedAt, lastResult, recent: timeline.slice(-5), recentlyConsistent: lastResult === 'independent' && streakRoots.size >= 3 });
   }
   return reviews;
 }

@@ -240,55 +240,17 @@
       "fricative": "Fricativas",
       "affricate": "Africadas",
       "nasal": "Nasales",
-      "approximant": "Aproximantes",
-      "lateral-approximant": "Aproximantes laterales"
+      "approximant": "Aproximantes"
     },
     "failed": "No se pudo leer la tabla o la grabación. Conéctate a Internet o instala el paquete IPA en la biblioteca.",
     "loading": "Cargando la tabla fonética…",
     "scope": "Solo sonidos del inglés: transcripción amplia del inglés americano general, no el AFI completo.",
     "officialChart": "Tabla oficial del AFI",
-    "vowelLegend": "En cada casilla: no redondeada a la izquierda y redondeada a la derecha.",
-    "consonantLegend": "En cada casilla: sorda a la izquierda y sonora a la derecha.",
-    "vowelPositionNote": "Las posiciones siguen los símbolos del AFI; /ʌ/ en inglés suele ser central.",
-    "consonantNote": "/w/ tiene articulación labiovelar doble; /tʃ dʒ/ son africadas.",
-    "stressed": "Con acento",
-    "unstressed": "Sin acento",
-    "ending": "Final",
-    "frontness": {
-      "front": "Anterior",
-      "near-front": "Casi anterior",
-      "central": "Central",
-      "near-back": "Casi posterior",
-      "back": "Posterior"
-    },
     "heights": {
-      "close": "Cerrada (alta)",
-      "near-close": "Casi cerrada",
       "close-mid": "Semicerrada",
-      "mid": "Media",
       "open-mid": "Semiabierta",
-      "near-open": "Casi abierta",
       "open": "Abierta (baja)"
     },
-    "places": {
-      "bilabial": "Bilabial",
-      "labiodental": "Labiodental",
-      "dental": "Dental",
-      "alveolar": "Alveolar",
-      "postalveolar": "Postalveolar",
-      "palatal": "Palatal",
-      "velar": "Velar",
-      "glottal": "Glotal",
-      "labial-velar": "Labiovelar"
-    },
-    "axes": {
-      "height": "Abertura",
-      "frontness": "Posición de la lengua",
-      "manner": "Modo",
-      "place": "Lugar"
-    },
-    "start": "Inicio",
-    "stress": "Acento",
     "view": "Vista",
     "simple": "Simple",
     "detailed": "Detallada"
@@ -364,7 +326,6 @@
     "general": "Materiales generales"
   },
   "practiceCard_today": "Hoy",
-  "practiceCard_yesterday": "Ayer",
   "practiceCard": {
     "start": "Comenzar",
     "resume": "Continuar",

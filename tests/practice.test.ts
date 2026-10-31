@@ -1,10 +1,11 @@
 import { expect, it, vi } from 'vitest';
+import fc from 'fast-check';
 import * as reviewModule from '../src/data/goalReview';
 import a1Reading from './fixtures/content/a1-reading.json';
 import a2Reading from './fixtures/content/a2-reading.json';
 import a1Listening from './fixtures/content/a1-listening.json';
 import { lessonSchema } from '../src/shared/content';
-import { selectPractice } from '../src/data/practice';
+import { activeCombinedPractice, selectPractice } from '../src/data/practice';
 import { goalReviews } from '../src/data/goalReview';
 import type { Attempt, Session } from '../src/data/db';
 
@@ -19,6 +20,51 @@ const responses = (source: Session, material = 0, correct = true, hintLevel = 0)
   answer: 0, correct, rule: 'exact-option-v1', assistance: { hintLevel }, submittedAt: new Date(Date.parse(source.startedAt) + (index + 1) * 60_000).toISOString(),
 }));
 const tomorrow = new Date('2026-09-28T12:00:00Z');
+
+it('resumes the first eligible combined skill without changing its saved pair order', () => {
+  const reading = { ...session(lessons[0], 'active', 'reading'), practiceGroupId: 'pair' };
+  const listening = { ...session(lessons[1], 'active', 'listening'), practiceGroupId: 'pair' };
+  expect(activeCombinedPractice([listening, reading])).toEqual({ session: reading, peers: [listening, reading] });
+  reading.status = 'completed';
+  expect(activeCombinedPractice([listening, reading])).toEqual({ session: listening, peers: [listening, reading] });
+  listening.status = 'completed';
+  expect(activeCombinedPractice([listening, reading])).toBeUndefined();
+});
+
+it('keeps combined recovery restrictions equivalent across incomplete, deleted and mixed groups', () => {
+  fc.assert(fc.property(fc.array(fc.record({
+    group: fc.option(fc.integer({ min: 0, max: 5 }), { nil: undefined }),
+    status: fc.constantFrom('active' as const, 'completed' as const, 'ended' as const),
+    listening: fc.boolean(), deleted: fc.boolean(),
+    mode: fc.constantFrom(undefined, 'test' as const, 'check' as const),
+  }), { maxLength: 50 }), rows => {
+    const history = rows.map((row, index): Session => ({
+      ...session(lessons[row.listening ? 1 : 0], row.status, String(index)),
+      lesson: { ...lessons[row.listening ? 1 : 0], mode: row.mode },
+      practiceGroupId: row.group === undefined ? undefined : `group-${row.group}`,
+      recordsDeleted: row.deleted ? true : undefined,
+    }));
+    const expected = history.find(item => item.practiceGroupId && item.status === 'active' && !item.recordsDeleted
+      && history.filter(peer => peer.practiceGroupId === item.practiceGroupId).length === 2
+      && history.filter(peer => peer.practiceGroupId === item.practiceGroupId).every(peer => !peer.recordsDeleted && peer.lesson.mode !== 'check' && peer.lesson.mode === item.lesson.mode)
+      && history.some(peer => peer.practiceGroupId === item.practiceGroupId && peer.lesson.skill === 'reading')
+      && history.some(peer => peer.practiceGroupId === item.practiceGroupId && peer.lesson.skill === 'listening')
+      && (item.lesson.skill === 'reading' || history.some(peer => peer.practiceGroupId === item.practiceGroupId && peer.lesson.skill === 'reading' && peer.status === 'completed')));
+    const result = activeCombinedPractice(Object.freeze(history));
+    expect(result?.session).toBe(expected);
+    if (expected) expect(result?.peers).toEqual(history.filter(item => item.practiceGroupId === expected.practiceGroupId));
+  }), { seed: 20261030, numRuns: 500 });
+});
+
+it('bounds history traversal when deleted reading records leave many inactive combined pairs', () => {
+  let reads = 0;
+  const history = Array.from({ length: 1000 }, (_, index): Session => ({
+    ...session(lessons[index % 2], 'active', String(index)), recordsDeleted: index % 2 ? undefined : true,
+    get practiceGroupId() { reads++; return `pair-${Math.floor(index / 2)}`; },
+  }));
+  expect(activeCombinedPractice(history)).toBeUndefined();
+  expect(reads).toBeLessThan(history.length * 8);
+});
 
 it('skips history analysis when no eligible catalogue lesson can be selected', () => {
   const review = vi.spyOn(reviewModule, 'goalReviews'), done = session(), answers = responses(done);

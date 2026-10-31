@@ -54,6 +54,25 @@ test('metadata follows navigation and back without duplicates, private details o
   expect(errors).toEqual([]); expect(external).toEqual([]);
 });
 
+test('metadata route loops keep head text bounded while preserving public and private tags', async ({ page }) => {
+  await page.goto('/library');
+  await expect(page.locator('.library-page-heading')).toBeVisible();
+  const textNodes = () => page.evaluate(() => [...document.head.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).length);
+  const before = await textNodes();
+  for (let round = 0; round < 6; round++) for (const path of ['/library/dictionary', '/library']) {
+    await page.evaluate(path => { history.pushState(null, '', path); dispatchEvent(new PopStateEvent('popstate')); }, path);
+    await expect(page.locator(path === '/library' ? '.library-page-heading' : '.dictionary-heading')).toBeVisible();
+    const seo = pageSeo(path);
+    await expect(page).toHaveTitle(seo.title);
+    await expect(page.locator('head title')).toHaveCount(1);
+    await expect(page.locator('head meta[name=description]')).toHaveCount(1);
+    await expect(page.locator('head meta[name=robots]')).toHaveAttribute('content', seo.robots);
+    await expect(page.locator('head link[rel=canonical]')).toHaveCount(seo.canonical ? 1 : 0);
+    if (seo.canonical) await expect(page.locator('head link[rel=canonical]')).toHaveAttribute('href', seo.canonical);
+  }
+  expect(await textNodes()).toBe(before);
+});
+
 test('cached shell restores correct public and private metadata while offline', async ({ page, context }) => {
   await page.goto(origin + '/settings');
   await page.evaluate(() => navigator.serviceWorker.ready);

@@ -1,6 +1,22 @@
 # Using Lingfern
 
-[Website](https://lingfern.com) · [Home](../README.md) · [简体中文介绍](README.zh-CN.md)
+**[Open Lingfern ↗](https://lingfern.com)**
+
+[Project overview](../README.md) · [Other languages](../README.md#readme-languages)
+
+<details>
+<summary>Contents</summary>
+
+1. [Start, answer and resume](#start-answer-and-resume)
+2. [History and progress](#history-and-progress)
+3. [References and bookmarks](#references-and-bookmarks)
+4. [Offline and community resources](#offline-and-community-resources)
+5. [Profiles and backup ZIPs](#profiles-and-backup-zips)
+6. [GitHub automatic sync](#github-automatic-sync)
+7. [AI handoff and MCP](#ai-handoff-and-mcp)
+8. [Preferences, updates and help](#preferences-updates-and-help)
+
+</details>
 
 ## Start, answer and resume
 
@@ -42,7 +58,7 @@ Set Cambridge, Oxford Learner’s Dictionaries, Wiktionary or Merriam-Webster as
 
 In Library, search for text, audio and references and wait for installation to finish. Installed learning, saving, bookmarks and references work offline. Downloads, GitHub and external websites require a connection.
 
-Import compatible community ZIPs or update/remove installed packages from Library. Retain original ZIPs for other devices. Before travelling, check installed material and audio; for failed downloads, check storage and connectivity, then retry.
+Where supported, install Lingfern through the browser’s app/home-screen command. Import compatible community ZIPs or update/remove installed packages from Library. Retain original ZIPs for other devices. Before travelling, check installed material and audio; for failed downloads, check storage and connectivity, then retry.
 
 ## Profiles and backup ZIPs
 
@@ -62,7 +78,7 @@ Backups contain sessions, answers, drafts, bookmarks, query history, feedback an
 
 Sync covers learning summaries, bookmarks, query history, preferences, installation choices and deletions. Offline changes survive refreshes and resume on reconnection. Summaries may appear without a local lesson; transfer full sessions/answers by backup and install resources separately.
 
-Turn **Automatic sync** off to pause it, or disconnect the binding in repository setup. **Disconnect GitHub identity** ends website sessions on all devices and revokes GitHub authorisation. Local records and repository files remain; follow the displayed instructions if revocation cannot be confirmed.
+Turn **Automatic sync** off to pause it, or disconnect the binding in repository setup. **Disconnect GitHub identity** ends website sessions on all devices, disables sync bindings, removes active shares and revokes MCP connections. Local records and repository files remain; follow the displayed instructions if GitHub-side revocation cannot be confirmed. Individual MCP shares/connections can also be revoked without disconnecting identity.
 
 ## AI handoff and MCP
 

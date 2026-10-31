@@ -21,7 +21,7 @@ export function touchFeedback() {
     }
     if (!event.isPrimary || !['touch', 'pen'].includes(event.pointerType) || !(event.target instanceof Element)) return;
     const control = event.target.closest<HTMLElement>('button,a[href],summary,select,[role=option],label.option,label.package-row,label.backup-file-label,input[type=range]');
-    if (!control || control.matches(':disabled,[aria-disabled=true],.question-sheet-scrim,.welcome-side') || control.closest('[inert],[aria-disabled=true]') || control.querySelector('input:disabled')) return;
+    if (!control || control.matches(':disabled,[aria-disabled=true],.question-sheet-scrim') || control.closest('[inert],[aria-disabled=true]') || control.querySelector('input:disabled')) return;
     target = control; pointer = { id: event.pointerId, x: event.clientX, y: event.clientY }; state.start();
   };
   const move = (event: PointerEvent) => {

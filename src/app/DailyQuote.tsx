@@ -1,11 +1,63 @@
 import { contentText, messages } from '../locales';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { localDay, quoteSourceUrl } from '../core/dailyQuoteSelection';
-import { dailyQuoteOnDemand } from '../core/dailyQuoteOnDemand';
+import { localDay, quoteSourceUrl } from '../core/dailyQuoteFormat';
+import type { dailyQuoteOnDemand } from '../core/dailyQuoteOnDemand';
 import type { Locale } from '../shared/content';
+import { retryPage } from './retryPage';
 
 const labels = messages('dailyQuote');
 export type DailyQuoteSelection = Awaited<ReturnType<typeof dailyQuoteOnDemand>>;
+let preparedQuote: { day: string; previous?: string; promise: Promise<DailyQuoteSelection>; cancel?: () => void } | undefined;
+function discardPreparedQuote() {
+  preparedQuote?.cancel?.();
+  preparedQuote = undefined;
+  window.removeEventListener('popstate', discardPreparedQuote);
+  window.removeEventListener('pagehide', discardPreparedQuote);
+}
+
+export function prepareDailyQuote() {
+  if (typeof window === 'undefined' || location.pathname !== '/introduction' || location.search || preparedQuote) return;
+  let previous: string | undefined;
+  try { previous = localStorage.getItem('lingfern:last-daily-quote') ?? undefined; } catch { /* Allow disabled storage. */ }
+  const date = new Date();
+  const load = () => import('../core/dailyQuoteOnDemand').then(module => module.dailyQuoteOnDemand(date, previous));
+  let cancel: (() => void) | undefined;
+  // Let the existing SSR body paint first when the entry arrives before FCP.
+  const promise = performance.getEntriesByName('first-contentful-paint', 'paint').length ? load() : new Promise<DailyQuoteSelection>((resolve, reject) => {
+    let frame = 0, task = 0, started = false, observer: PerformanceObserver | undefined;
+    const start = () => {
+      if (started) return;
+      started = true; observer?.disconnect();
+      if (location.pathname !== '/introduction' || location.search) { reject(new DOMException('Cancelled', 'AbortError')); return; }
+      void load().then(resolve, reject);
+    };
+    cancel = () => { started = true; observer?.disconnect(); cancelAnimationFrame(frame); clearTimeout(task); reject(new DOMException('Cancelled', 'AbortError')); };
+    // The first-visit shell has no content to paint before Welcome arrives.
+    if (document.getElementById('root')?.dataset.publicPage && typeof PerformanceObserver !== 'undefined' && PerformanceObserver.supportedEntryTypes?.includes('paint')) {
+      try {
+        observer = new PerformanceObserver(list => { if (list.getEntries().some(entry => entry.name === 'first-contentful-paint')) start(); });
+        observer.observe({ type: 'paint', buffered: true });
+        return;
+      } catch { observer?.disconnect(); observer = undefined; }
+    }
+    frame = requestAnimationFrame(() => { frame = 0; task = window.setTimeout(() => {
+      task = 0;
+      start();
+    }, 0); });
+  });
+  // Handle early failures now; the consuming component still receives the original rejection.
+  void promise.catch(() => {});
+  preparedQuote = { day: localDay(date), previous, promise, cancel };
+  window.addEventListener('popstate', discardPreparedQuote, { once: true });
+  window.addEventListener('pagehide', discardPreparedQuote, { once: true });
+}
+
+export function takePreparedDailyQuote(date: Date, previous?: string) {
+  const prepared = preparedQuote;
+  const matches = prepared && typeof window !== 'undefined' && location.pathname === '/introduction' && !location.search && prepared.day === localDay(date) && prepared.previous === previous;
+  if (prepared) { if (matches) prepared.cancel = undefined; discardPreparedQuote(); }
+  return matches ? prepared.promise : undefined;
+}
 
 export function quoteNeedsExpansion(fullHeight: number, lineHeight: number) {
   return Number.isFinite(fullHeight) && Number.isFinite(lineHeight) && lineHeight > 0 && fullHeight > lineHeight * 4 + 1;
@@ -15,18 +67,33 @@ export function DailyQuote({ locale, onDayChange, initialSelection, onSelection 
   const [selection, setSelection] = useState<DailyQuoteSelection>(initialSelection);
   const current = useRef(selection);
   const request = useRef(0);
+  const pendingDay = useRef<string | undefined>(undefined);
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [retrying, setRetrying] = useState(false);
+  const retryController = useRef<AbortController | undefined>(undefined);
+  useEffect(() => () => retryController.current?.abort(), []);
+  async function retry() {
+    if (retryController.current) return;
+    const controller = new AbortController(); retryController.current = controller;
+    setRetrying(true);
+    try { await retryPage(controller.signal); }
+    catch { /* Keep the existing error visible for another explicit retry. */ }
+    finally { retryController.current = undefined; if (!controller.signal.aborted) setRetrying(false); }
+  }
   async function choose() {
     const token = ++request.current;
     setLoading(true); setFailed(false);
     let previous = current.current?.quote.id;
     try { previous ??= localStorage.getItem('lingfern:last-daily-quote') ?? undefined; } catch { /* Allow browsers with disabled storage. */ }
     try {
-      const next = await dailyQuoteOnDemand(new Date(), previous);
+      const date = new Date();
+      pendingDay.current = localDay(date);
+      const prepared = takePreparedDailyQuote(date, previous);
+      const next = prepared ? await prepared : await (await import('../core/dailyQuoteOnDemand')).dailyQuoteOnDemand(date, previous);
       if (token === request.current) { current.current = next; setSelection(next); onSelection?.(next); }
     } catch { if (token === request.current) setFailed(true); }
-    finally { if (token === request.current) setLoading(false); }
+    finally { if (token === request.current) { pendingDay.current = undefined; setLoading(false); } }
   }
   const chooseRef = useRef(choose); chooseRef.current = choose;
   const t = labels[locale];
@@ -60,18 +127,18 @@ export function DailyQuote({ locale, onDayChange, initialSelection, onSelection 
   useEffect(() => {
     const refresh = () => {
       const day = localDay(new Date()); onDayChange(day);
-      if (day !== current.current?.day) void chooseRef.current();
+      if (day !== current.current?.day && day !== pendingDay.current) void chooseRef.current();
     };
     refresh();
     const timer = window.setInterval(refresh, 60000);
     document.addEventListener('visibilitychange', refresh);
-    return () => { request.current++; clearInterval(timer); document.removeEventListener('visibilitychange', refresh); };
+    return () => { request.current++; pendingDay.current = undefined; clearInterval(timer); document.removeEventListener('visibilitychange', refresh); };
   }, [onDayChange]);
-  if (!selection) return <section className="daily-quote"><p role="status">{failed ? t.loadError : t.loading}</p>{failed && <button onClick={() => location.reload()}>{messages('app')[locale].retry}</button>}</section>;
+  if (!selection) return <section className="daily-quote"><p role="status">{failed ? t.loadError : t.loading}</p>{failed && <button disabled={retrying} aria-busy={retrying} onClick={() => void retry()}>{messages('app')[locale].retry}</button>}</section>;
   const expanded = expandedId === selection.quote.id;
   const canExpand = overflow && overflow.id === selection.quote.id && overflow.needed;
   return <section className="daily-quote" aria-labelledby="daily-quote-title" data-quote-id={selection.quote.id}>
-    {failed && <p role="status">{t.loadError} <button onClick={() => location.reload()}>{messages('app')[locale].retry}</button></p>}
+    {failed && <p role="status">{t.loadError} <button disabled={retrying} aria-busy={retrying} onClick={() => void retry()}>{messages('app')[locale].retry}</button></p>}
     <div className="daily-quote-heading"><h2 id="daily-quote-title" className="sr-only">{t.title}</h2></div>
     <blockquote ref={quoteElement} data-expanded={expanded} key={selection.quote.id} id="daily-quote-text" lang="en-US" dir="ltr" aria-live="polite">{selection.quote.text}</blockquote>
     {canExpand && <button type="button" className="update-action" aria-expanded={expanded} aria-controls="daily-quote-text" onClick={() => setExpandedId(expanded ? undefined : selection.quote.id)}>{expanded ? t.collapse : t.expand}</button>}

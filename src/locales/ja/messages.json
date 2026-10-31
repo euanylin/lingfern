@@ -240,55 +240,17 @@
       "fricative": "摩擦音",
       "affricate": "破擦音",
       "nasal": "鼻音",
-      "approximant": "接近音",
-      "lateral-approximant": "側面接近音"
+      "approximant": "接近音"
     },
     "failed": "発音表または音声を読めませんでした。インターネットに接続するか、資料室でIPAパッケージをインストールしてください。",
     "loading": "発音表を読み込み中…",
     "scope": "英語の音のみ（一般米語の簡略表記）で、完全な国際音声記号表ではありません。",
     "officialChart": "IPA 公式音声記号表",
-    "vowelLegend": "各セルの左は非円唇、右は円唇です。",
-    "consonantLegend": "各セルの左は無声音、右は有声音です。",
-    "vowelPositionNote": "位置は IPA 記号に従います。英語の /ʌ/ は実際には中舌になることが多くあります。",
-    "consonantNote": "/w/ は両唇と軟口蓋の二重調音、/tʃ dʒ/ は破擦音です。",
-    "stressed": "強勢あり",
-    "unstressed": "強勢なし",
-    "ending": "終点",
-    "frontness": {
-      "front": "前舌",
-      "near-front": "準前舌",
-      "central": "中舌",
-      "near-back": "準後舌",
-      "back": "後舌"
-    },
     "heights": {
-      "close": "狭（高）",
-      "near-close": "準狭",
       "close-mid": "半狭",
-      "mid": "中",
       "open-mid": "半広",
-      "near-open": "準広",
       "open": "広（低）"
     },
-    "places": {
-      "bilabial": "両唇",
-      "labiodental": "唇歯",
-      "dental": "歯",
-      "alveolar": "歯茎",
-      "postalveolar": "後部歯茎",
-      "palatal": "硬口蓋",
-      "velar": "軟口蓋",
-      "glottal": "声門",
-      "labial-velar": "両唇軟口蓋"
-    },
-    "axes": {
-      "height": "開口度",
-      "frontness": "舌の前後位置",
-      "manner": "調音方法",
-      "place": "調音位置"
-    },
-    "start": "始点",
-    "stress": "強勢",
     "view": "表示形式",
     "simple": "簡易版",
     "detailed": "詳細版"
@@ -364,7 +326,6 @@
     "general": "共通教材"
   },
   "practiceCard_today": "今日",
-  "practiceCard_yesterday": "昨日",
   "practiceCard": {
     "start": "開始",
     "resume": "続ける",

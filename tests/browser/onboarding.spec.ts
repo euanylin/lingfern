@@ -39,23 +39,54 @@ for (const width of [390, 1440]) test(`hidden introduction settles its selected 
   await expect(page.locator('.welcome-card').first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
 });
 
-for (const [width, height] of [[1440, 900], [390, 844], [900, 1100]]) test(`introduction card geometry is stable before the first resize observation at ${width}px`, async ({ page }) => {
+for (const [width, height] of [[1440, 900], [390, 844], [900, 1100], [1920, 1080]]) test(`introduction card geometry is stable before the first resize observation at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height });
   await page.addInitScript(() => {
     const NativeObserver = window.ResizeObserver;
     window.ResizeObserver = class extends NativeObserver {
       constructor(callback: ResizeObserverCallback) { super((entries, observer) => setTimeout(() => callback(entries, observer), 500)); }
+      observe(...args: Parameters<ResizeObserver['observe']>) {
+        if (args[0].matches('.welcome-stage')) (window as unknown as { introStageObserved: boolean }).introStageObserved = true;
+        super.observe(...args);
+      }
     };
   });
   await page.goto('/introduction');
   const card = page.locator('.welcome-card[data-current=true]');
   await expect(card).toBeVisible();
+  await page.waitForFunction(() => (window as unknown as { introStageObserved?: boolean }).introStageObserved);
   const initial = await card.boundingBox();
   await page.waitForTimeout(650);
   const measured = await card.boundingBox();
   expect(Math.abs(measured!.height - initial!.height)).toBeLessThanOrEqual(1);
   expect(Math.abs(measured!.y - initial!.y)).toBeLessThanOrEqual(1);
 });
+
+test('introduction SSR card geometry matches hydration before the main script is released at 1920px', async ({ browser }) => {
+  const context = await browser.newContext({ baseURL: 'http://127.0.0.1:8787', viewport: { width: 1920, height: 1080 }, locale: 'en', serviceWorkers: 'block' });
+  const page = await context.newPage();
+  let releaseMain: () => void = () => undefined;
+  const main = new Promise<void>(resolve => { releaseMain = resolve; });
+  await page.route('**/assets/index-*.js', async route => { await main; await route.continue(); });
+  try {
+    await page.goto('/introduction', { waitUntil: 'commit' });
+    const card = page.locator('.welcome-card[data-current=true]');
+    await expect(card).toBeVisible();
+    expect(await page.evaluate(() => CSS.supports('aspect-ratio', 'calc(100vw / 100dvh)'))).toBe(true);
+    await expect(card).toHaveCSS('height', '578.25px');
+    expect(await page.locator('.welcome').evaluate(element => (element as HTMLElement).style.getPropertyValue('--welcome-card-ratio'))).toBe('');
+    const initial = await card.boundingBox();
+    await test.info().attach('introduction-ssr-before-main.png', { body: await page.screenshot(), contentType: 'image/png' });
+    releaseMain();
+    await expect.poll(() => page.locator('.welcome').evaluate(element => (element as HTMLElement).style.getPropertyValue('--welcome-card-ratio'))).toBe(String(1920 / 1080));
+    const hydrated = await card.boundingBox();
+    expect(Math.abs(hydrated!.height - initial!.height)).toBeLessThanOrEqual(1);
+    expect(Math.abs(hydrated!.y - initial!.y)).toBeLessThanOrEqual(1);
+    await test.info().attach('introduction-ssr-hydration-geometry', { body: JSON.stringify({ initial, hydrated }), contentType: 'application/json' });
+    await test.info().attach('introduction-after-main.png', { body: await page.screenshot(), contentType: 'image/png' });
+  } finally { releaseMain(); await page.unrouteAll({ behavior: 'wait' }); await context.close(); }
+});
+
 import { languagePacks } from '../../src/locales';
 
 for (const [from, to] of [[390, 1440], [1440, 390], [900, 1440], [1440, 900]]) test(`introduction keeps current spacing when resized from ${from}px to ${to}px during a transition`, async ({ page }) => {
@@ -75,6 +106,27 @@ for (const [from, to] of [[390, 1440], [1440, 390], [900, 1440], [1440, 900]]) t
   await page.clock.runFor(1000);
   const settled = await positions();
   for (let index = 0; index < settled.length; index++) expect(Math.abs(resized[index] - settled[index])).toBeLessThanOrEqual(.1);
+});
+
+test('mobile browser-bar resizing stays in CSS while desktop height and orientation still update card geometry', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/introduction');
+  await expect(page.locator('.welcome-start')).toBeVisible();
+  const ratio = () => page.locator('.welcome').evaluate(element => (element as HTMLElement).style.getPropertyValue('--welcome-card-ratio'));
+  const initialRatio = await ratio(), initialHeight = (await page.locator('.welcome-stage').boundingBox())!.height;
+  for (const height of [744, 400, 844]) {
+    await page.setViewportSize({ width: 390, height });
+    await expect(page.locator('.welcome-start')).toBeInViewport({ ratio: 1 });
+    expect(await ratio()).toBe(initialRatio);
+    expect((await page.locator('.welcome-stage').boundingBox())!.height).toBeCloseTo(initialHeight + height - 844, 1);
+  }
+  await page.setViewportSize({ width: 699, height: 400 });
+  await expect.poll(ratio).toBe(String(699 / 400));
+  await page.setViewportSize({ width: 700, height: 844 });
+  await expect.poll(ratio).toBe('0.9');
+  await page.setViewportSize({ width: 700, height: 400 });
+  await expect.poll(ratio).toBe('1.75');
+  await expect(page.locator('.welcome-start')).toBeInViewport({ ratio: 1 });
 });
 
 for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`desktop Today heading fits fully in the introduction at ${locale}`, async ({ browser }) => {
@@ -524,7 +576,10 @@ test('keyboard direction follows RTL and preview-only controls cannot receive fo
   const { selectPicker } = await import('./picker');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, 'ar');
   await page.goto('/introduction'); await expect(page.locator('.welcome')).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   const current = page.locator('.welcome-card[data-current=true]');
+  await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '1'));
   await page.locator('.welcome-dots button').first().focus(); await page.keyboard.press('ArrowLeft');
   await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '2'));
   await page.keyboard.press('ArrowRight'); await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '1'));
@@ -635,12 +690,27 @@ for (const width of [390, 1440]) test(`preview keeps the same practice appearanc
   await expect(page.locator('.welcome .practice-card')).toHaveCount(3);
   const scroll = page.locator('.welcome-card[data-current=true] .welcome-content');
   expect(await scroll.evaluate(el => el.scrollHeight)).toBeGreaterThan(await scroll.evaluate(el => el.clientHeight));
-  expect(await scroll.evaluate(el => getComputedStyle(el).scrollbarWidth === 'none' || getComputedStyle(el, '::-webkit-scrollbar').display === 'none')).toBe(true);
+  await expect(scroll).toHaveAttribute('data-scrollbar-y', 'true');
+  const contentWidth = await scroll.evaluate(el => el.clientWidth), scrollbarColor = await scroll.evaluate(el => getComputedStyle(el).scrollbarColor);
+  expect(scrollbarColor).not.toBe('rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)');
   await scroll.hover(); await page.mouse.wheel(0, 120);
   await expect.poll(() => scroll.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  expect(await scroll.evaluate(el => getComputedStyle(el).scrollbarColor)).toBe(scrollbarColor);
+  expect(await scroll.evaluate(el => el.clientWidth)).toBe(contentWidth);
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 1 张，共 3 张');
   await scroll.evaluate(el => el.scrollTop = el.scrollHeight); await expect(preview.locator('.practice-card-action')).not.toHaveAttribute('disabled');
   await normal.close();
+  await scroll.evaluate(el => {
+    el.style.padding = '0';
+    const content = el.firstElementChild as HTMLElement;
+    content.style.cssText = `display:block;height:${el.clientHeight + 40}px;overflow:hidden`;
+    el.scrollTop = 0;
+  });
+  await expect(scroll).toHaveAttribute('data-scrollbar-y', 'false');
+  expect(await scroll.evaluate(el => el.scrollHeight - el.clientHeight)).toBe(40);
+  await scroll.evaluate(el => el.scrollTop = 20);
+  await expect.poll(() => scroll.evaluate(el => el.scrollTop)).toBe(20);
+  expect(await scroll.evaluate(el => getComputedStyle(el).scrollbarColor)).toBe('rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)');
 });
 
 for (const [locale, theme, width] of [['zh-Hans','light',390],['en','dark',1440],['ar','dark',375]] as const) test.describe(`complete Settings preview ${locale}`, () => {

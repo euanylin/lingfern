@@ -1,6 +1,7 @@
 import { offlineCacheName, offlineGroupReady, offlineGroups, offlineMarker, waitForOfflineWorker } from './offline';
 import { unpackZip } from './zip';
 import { loadRuntimeResources, runtimeResources } from './runtimeResources';
+import { mutateResourceCache } from './resourceMutation';
 
 const decoder = new TextDecoder('utf-8', { fatal: true });
 
@@ -34,23 +35,22 @@ export async function installResourcePack(pack: ResourcePack, profileId: string,
   const ready = await offlineGroupReady(group.id);
   signal?.throwIfAborted();
   if (ready) return group.id;
-  const name = offlineCacheName(group.id);
-  const cache = await caches.open(name);
-  try {
+  return mutateResourceCache(offlineCacheName(group.id), async assertActive => {
+    const ready = await offlineGroupReady(group.id);
+    signal?.throwIfAborted(); assertActive();
+    if (ready) return group.id;
+    const cache = await caches.open(offlineCacheName(group.id));
     for (const file of group.files) {
-      if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
+      signal?.throwIfAborted(); assertActive();
       const data = pack.files[file.path.slice(1)];
       const type = file.path.endsWith('.mp3') ? 'audio/mpeg' : file.path.endsWith('.json') ? 'application/json' : 'text/plain; charset=utf-8';
       await cache.put(file.path, new Response(new Uint8Array(data), { headers: { 'Content-Type': type, 'Content-Length': String(data.length) } }));
     }
-    if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
+    signal?.throwIfAborted(); assertActive();
     await cache.put(offlineMarker(group.id), new Response(group.version));
-    signal?.throwIfAborted();
-    if (!await offlineGroupReady(group.id)) throw new Error('PACKAGE_INCOMPLETE');
-    signal?.throwIfAborted();
+    const complete = await offlineGroupReady(group.id);
+    signal?.throwIfAborted(); assertActive();
+    if (!complete) throw new Error('PACKAGE_INCOMPLETE');
     return group.id;
-  } catch (error) {
-    await caches.delete(name);
-    throw error;
-  }
+  }, signal);
 }

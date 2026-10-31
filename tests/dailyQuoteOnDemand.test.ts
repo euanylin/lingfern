@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import catalogue from '../content/daily-quotes-runtime.json';
 import index from '../content/daily-quote-index.json';
@@ -19,6 +19,20 @@ it('retains every full display record exactly once and derives the same eligibil
 });
 
 describe('on-demand selection preserves current calendar, random draws, previous exclusion and complete credits', () => {
+  it('uses the same ordered random draws for ordinary and exact-calendar selections', async () => {
+    for (const date of [new Date(2026, 0, 1, 12), new Date(2026, 2, 1, 12), new Date(2026, 9, 30, 12)]) {
+      const previous = dailyQuote(date, undefined, () => .37)?.quote.id;
+      for (const prior of [undefined, previous]) {
+        const values = [0, .73, .19, .99];
+        let directIndex = 0, demandIndex = 0;
+        const directDraw = vi.fn(() => values[directIndex++]), demandDraw = vi.fn(() => values[demandIndex++]);
+        const expected = dailyQuote(date, prior, directDraw);
+        expect(await dailyQuoteOnDemand(date, prior, demandDraw)).toEqual(expected);
+        expect(demandDraw).toHaveBeenCalledTimes(directDraw.mock.calls.length);
+        expect(demandIndex).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
   for (let month = 0; month < 12; month++) it(`month ${month + 1} has identical selections`, async () => {
     const dates = new Set([`${String(month + 1).padStart(2, '0')}-01`, ...calendar.filter(event => Number(event.date.slice(0, 2)) === month + 1).map(event => event.date)]);
     for (const date of dates) for (const draw of [0, .37, .999999]) {

@@ -92,7 +92,23 @@ it('bounds a stalled installation without making it available', async () => {
   vi.useFakeTimers();
   const { check } = checking(true);
   const result = expect(check()).rejects.toThrow('UPDATE_TIMEOUT');
-  await vi.advanceTimersByTimeAsync(15000); await result; expect(vi.getTimerCount()).toBe(0);
+  await vi.advanceTimersByTimeAsync(120000); await result; expect(vi.getTimerCount()).toBe(0);
+});
+it.each([false, true])('lets a real installation finish beyond the check deadline (already installing=%s)', async installing => {
+  vi.useFakeTimers();
+  const { registration, worker, check, preparing } = checking(installing);
+  let release!: () => void;
+  if (!installing) registration.update.mockImplementation(() => new Promise<void>(resolve => { release = resolve; }));
+  let outcome = 'pending';
+  const result = check().then(value => { outcome = value ? 'ready' : 'current'; }, () => { outcome = 'failed'; });
+  if (!installing) {
+    await vi.advanceTimersByTimeAsync(14000);
+    registration.installing = worker; registration.dispatchEvent(new Event('updatefound')); release();
+  }
+  await vi.advanceTimersByTimeAsync(20000);
+  expect(preparing).toHaveBeenCalledOnce(); expect(outcome).toBe('pending');
+  registration.waiting = worker; registration.installing = null; worker.state = 'installed'; worker.dispatchEvent(new Event('statechange'));
+  await result; expect(outcome).toBe('ready'); expect(vi.getTimerCount()).toBe(0);
 });
 it.each([false, true])('cancels listeners and timers during an update (installing=%s)', async installing => {
   vi.useFakeTimers();

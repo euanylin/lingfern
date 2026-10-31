@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
 test.use({ launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'] } });
-test('short and long pages retain the same document width with classic scrollbars', async ({ page }) => {
+test('short and long pages retain the same document width with native scrollbars', async ({ page }) => {
   await page.setViewportSize({ width: 460, height: 772 });
   let release!: () => void;
   const pending = new Promise<void>(resolve => { release = resolve; });
@@ -14,7 +14,8 @@ test('short and long pages retain the same document width with classic scrollbar
   release();
   await expect(page.locator('.offline-search input')).toBeEnabled();
   expect(await box()).toEqual(before);
-  expect(before.width).toBeLessThan(460);
+  expect(before.width).toBe(await page.evaluate(() => document.documentElement.clientWidth));
+  await expect(page.locator('html')).toHaveCSS('scrollbar-width', 'auto');
 });
 
 for (const locale of ['zh-Hans', 'zh-Hant', 'en']) for (const width of [1440, 600, 375]) {

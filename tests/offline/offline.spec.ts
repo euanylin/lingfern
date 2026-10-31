@@ -402,7 +402,9 @@ test('first-run choices persist and route to available reading while disconnecte
   expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   await context.setOffline(true);
   await page.goto('/introduction'); await expect(page).toHaveURL(/\/introduction$/); await expect(page.locator('.welcome')).toBeVisible();
+  await expect(page.locator('.daily-quote[data-quote-id] blockquote')).toBeVisible();
   await page.reload(); await expect(page.locator('.welcome')).toBeVisible();
+  await expect(page.locator('.daily-quote[data-quote-id] blockquote')).toBeVisible();
   for (const index of [1, 2, 0]) {
     await page.locator('.welcome-dots button').nth(index).click();
     await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', `第 ${index + 1} 张，共 3 张`);

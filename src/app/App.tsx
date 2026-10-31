@@ -4,14 +4,14 @@ import { createPortal } from 'react-dom';
 import { liveQuery } from 'dexie';
 import { registerSW } from 'virtual:pwa-register';
 import { version as appVersion } from '../../package.json';
-import { localDay } from '../core/dailyQuoteSelection';
+import { localDay } from '../core/dailyQuoteFormat';
 import { communityPackageReady } from '../data/communityInstall';
 import type { CompletionTime } from '../data/completionTiming';
 import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, db, profiles, projectPreferences, releaseSession, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
 import { purgeDeletedRecords, restartPractice } from '../data/deletion';
 import { installedOfflineGroups } from '../data/offline';
 import { readInstallationIntents } from '../data/installationIntent';
-import { activeCorpusPractice, selectPractice } from '../data/practice';
+import { activeCombinedPractice, activeCorpusPractice, selectPractice } from '../data/practice';
 import { mergeLearningRecords, progressRecords, type CompletionSummary, type ResolvedSummary } from '../data/progress';
 import { installedSourcePacks } from '../data/sourcePacks';
 import { readSyncEvents } from '../data/sync';
@@ -23,7 +23,7 @@ import { localeDirection, localeSchema } from '../shared/locale';
 import { automaticPractice, practiceSelectionMatches, readPracticeSelection, type PracticeSelection } from '../shared/practiceSelection';
 import { preferencesSchema, type Preferences } from '../shared/preferences';
 import { CorpusPractice, prepareCorpusPractice } from './CorpusPractice';
-import { DailyQuote, type DailyQuoteSelection } from './DailyQuote';
+import { DailyQuote, prepareDailyQuote, type DailyQuoteSelection } from './DailyQuote';
 import { Fern } from './Fern';
 import { FirstRun, firstRunCopy } from './FirstRun';
 import { copy, initialLocale } from './i18n';
@@ -40,6 +40,7 @@ import { TaskCatalogue } from './TaskCatalogue';
 import { TaskDetail } from './TaskDetail';
 import { touchFeedback } from './touchFeedback';
 import { useGithubSession } from './useGithubSession';
+import { retryPage } from './retryPage';
 
 const publicViews = {
   '/introduction': () => import('./Welcome').then(module => ({ default: module.Welcome })),
@@ -72,8 +73,8 @@ const UnsavedDemo = lazy(() => import('./UnsavedDemo').then(module => ({ default
 export async function preloadPublicPage(path: string) {
   switch (path) {
     case '/introduction': {
-      Welcome = (await publicViews[path]()).default;
-      const [identity, backup, conflicts] = await Promise.all([loadGithubIdentity(), loadProfileBackup(), loadSyncConflicts()]);
+      const [welcome, identity, backup, conflicts] = await Promise.all([publicViews[path](), loadGithubIdentity(), loadProfileBackup(), loadSyncConflicts()]);
+      Welcome = welcome.default;
       GithubIdentity = identity.default; ProfileBackup = backup.default; SyncConflicts = conflicts.default;
       break;
     }
@@ -221,7 +222,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       setPreferences(storedPreferences ? preferencesSchema.parse(storedPreferences) : undefined);
       const showFirstRun = firstEntry && !storedPreferences?.completed && !all.length;
       firstEntry = false;
-      if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; window.history.replaceState(null, '', next); setPath(next); }
+      if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; window.history.replaceState(null, '', next); if (next === '/introduction') prepareDailyQuote(); setPath(next); }
       else if (location.pathname === '/') { window.history.replaceState(null, '', '/today'); setPath('/today'); }
       setLocale(nextLocale);
       const appearance = savedValues.get('theme');
@@ -332,8 +333,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       if (combinedPracticeSession?.lesson.mode === 'test' && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
         window.history.pushState(null, '', `/learn/${combinedPracticeSession.id}`); setPath(route()); scrollTo(0, 0);
       } else if (combinedPracticeSession && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
-        const pair = history.filter(item => item.practiceGroupId === combinedPracticeSession.practiceGroupId);
-        setCombinedDetail([pair.find(item => item.lesson.skill === 'reading')!.lesson, pair.find(item => item.lesson.skill === 'listening')!.lesson]);
+        setCombinedDetail([combinedPeers.find(item => item.lesson.skill === 'reading')!.lesson, combinedPeers.find(item => item.lesson.skill === 'listening')!.lesson]);
       } else {
         const reading = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'reading', selection: practiceSelections.reading });
         if (request !== combinedRequest.current) return;
@@ -351,7 +351,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
     setStarting(true); setError('');
     try {
       const pair: [Lesson, Lesson] = test ? [asTestLesson(combinedDetail[0]), asTestLesson(combinedDetail[1])] : combinedDetail;
-      const resume = combinedPracticeSession && combinedPracticeSession.lesson.mode === pair[0].mode && history.filter(item => item.practiceGroupId === combinedPracticeSession.practiceGroupId).every(item => pair.some(lesson => JSON.stringify(lesson) === JSON.stringify(item.lesson)));
+      const resume = combinedPracticeSession && combinedPracticeSession.lesson.mode === pair[0].mode && combinedPeers.every(item => pair.some(lesson => JSON.stringify(lesson) === JSON.stringify(item.lesson)));
       const destination = resume ? combinedPracticeSession! : (await createCombinedPractice(pair[0], pair[1], activeProfile))[0];
       if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${destination.id}`); else window.history.pushState(null, '', `/learn/${destination.id}`);
       setCombinedDetail(undefined); setCombinedTopicsChanged(false); setPath(route()); scrollTo(0, 0);
@@ -392,14 +392,10 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const individualHistory = history.filter(item => !item.practiceGroupId || item.status !== 'active');
   const todayReading = selectPractice(catalogue, individualHistory, records, 'reading', undefined, new Date(), preferences, summaries);
   const todayListening = selectPractice(catalogue, individualHistory, records, 'listening', item => online || installedGroups.has(`audio-${item.targetLevel.toLowerCase()}`), new Date(), preferences, summaries);
-  const combinedPracticeSession = history.find(item => item.practiceGroupId && item.status === 'active' && !item.recordsDeleted
-    && history.filter(peer => peer.practiceGroupId === item.practiceGroupId).length === 2
-    && history.filter(peer => peer.practiceGroupId === item.practiceGroupId).every(peer => !peer.recordsDeleted && peer.lesson.mode !== 'check' && peer.lesson.mode === item.lesson.mode)
-    && history.some(peer => peer.practiceGroupId === item.practiceGroupId && peer.lesson.skill === 'reading')
-    && history.some(peer => peer.practiceGroupId === item.practiceGroupId && peer.lesson.skill === 'listening')
-    && (item.lesson.skill === 'reading' || history.some(peer => peer.practiceGroupId === item.practiceGroupId && peer.lesson.skill === 'reading' && peer.status === 'completed')));
+  const combinedPractice = useMemo(() => activeCombinedPractice(history), [history]);
+  const combinedPracticeSession = combinedPractice?.session;
   const training = messages('app_training')[locale];
-  const combinedPeers = combinedPracticeSession ? history.filter(item => item.practiceGroupId === combinedPracticeSession.practiceGroupId) : [];
+  const combinedPeers = combinedPractice?.peers ?? [];
   const individualSessions = {
     reading: todayReading?.session ?? activeCorpusPractice(individualHistory, activeProfile, 'reading'),
     listening: todayListening?.session ?? activeCorpusPractice(individualHistory, activeProfile, 'listening'),
@@ -542,11 +538,21 @@ function NetworkStatus({ online, locale }: { online: boolean; locale: Locale }) 
   </div>}</div>;
 }
 
-class PageBoundary extends Component<{ locale: Locale; children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
+class PageBoundary extends Component<{ locale: Locale; children: ReactNode }, { failed: boolean; retrying: boolean }> {
+  state = { failed: false, retrying: false };
+  private retryController?: AbortController;
   static getDerivedStateFromError() { return { failed: true }; }
+  componentWillUnmount() { this.retryController?.abort(); }
+  retry = async () => {
+    if (this.retryController) return;
+    const controller = new AbortController(); this.retryController = controller;
+    this.setState({ retrying: true });
+    try { await retryPage(controller.signal); }
+    catch { /* Keep the existing error visible for another explicit retry. */ }
+    finally { this.retryController = undefined; if (!controller.signal.aborted) this.setState({ retrying: false }); }
+  };
   render() {
     const t = copy[this.props.locale];
-    return this.state.failed ? <div className="error" role="alert">{t.readError} <button onClick={() => location.reload()}>{t.retry}</button></div> : this.props.children;
+    return this.state.failed ? <div className="error" role="alert">{t.readError} <button disabled={this.state.retrying} aria-busy={this.state.retrying} onClick={() => void this.retry()}>{t.retry}</button></div> : this.props.children;
   }
 }

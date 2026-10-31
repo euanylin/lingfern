@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
-import { selectPicker } from './picker';
+import { expect, test, type Locator } from '@playwright/test';
+import { expectPickerAlignment, selectPicker } from './picker';
 import { autoSyncFixture, connectSync, lookup, syncNow, syncState, synced } from './autoSyncFixture';
 import { languagePacks } from '../../src/locales';
 
@@ -40,7 +40,7 @@ test('GitHub card keeps compact rows, full-width sync and one identity disconnec
       await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await reference.focus();
       const keyboardFeedback = await reference.evaluate(el => getComputedStyle(el).backgroundColor);
       await reference.evaluate(el => (el as HTMLElement).blur());
-      const rows = card.locator('.service-disclosure>summary:visible,.github-session-actions>button,.sync-controls .setting-trigger');
+      const rows = card.locator('.service-disclosure>summary:visible,.github-session-actions>button');
       for (const row of await rows.all()) {
         await row.hover();
         await expect(row).toHaveCSS('background-color', feedback.background);
@@ -66,7 +66,7 @@ test('GitHub card keeps compact rows, full-width sync and one identity disconnec
       await card.screenshot({ path: `output/playwright/github-reference-${locale}-${theme}-${width}.png`, animations: 'disabled' });
     }
   }
-  await controls.locator('.setting-field-label').click(); await expect(page.getByRole('listbox')).toBeVisible(); await page.keyboard.press('Escape');
+  await controls.locator('.setting-trigger').click(); await expect(page.getByRole('listbox')).toBeVisible(); await page.keyboard.press('Escape');
   await card.locator('.repository-reset>summary').focus(); await page.keyboard.press('Enter');
   await expect(card.getByText(languagePacks.ar.syncControls.detail, { exact: true })).toBeVisible();
   await card.locator('.repository-reset>summary').press('Enter');
@@ -136,4 +136,58 @@ test('availability withdrawal preserves pending data and consent while offering 
   const retained = await page.evaluate(async () => { const { db, settings } = await import('/src/data/db.ts' as string); return { events: await db.table('syncEvents').count(), uploads: await db.table('syncUploads').count(), consent: Boolean(await settings.get('profile:local-guest:syncConsent')) }; });
   expect(retained.events).toBeGreaterThan(0); expect(retained.uploads).toBe(0); expect(retained.consent).toBe(true);
   expect((await syncState(page)).lastSuccessAt).toBeDefined();
+});
+
+
+for (const [width, locale, theme] of [[390, 'zh-Hans', 'dark'], [1440, 'en', 'light'], [375, 'ar', 'dark']] as const) test.describe(`automatic sync picker ${width}/${locale}/${theme}`, () => {
+  test.use({ viewport: { width, height: 900 }, colorScheme: theme, reducedMotion: 'reduce', isMobile: width < 768, hasTouch: width < 768 });
+  test('matches the language row, feedback and logical-end menu while preserving selection', async ({ page, context }, info) => {
+    const server = autoSyncFixture(); await server.attach(context); await connectSync(page); await synced(page);
+    await page.goto('/settings');
+    if (locale !== 'zh-Hans') await selectPicker(page, '语言', locale);
+    const controls = page.locator('.sync-controls'), language = page.locator('.settings-language .setting-trigger'), automatic = controls.locator('.setting-trigger');
+    await expect(automatic).toBeEnabled();
+    await expect(controls.locator('.setting')).not.toHaveClass(/setting-field/);
+    await expect(controls.locator('.setting>span')).toHaveText(languagePacks[locale].syncControls.auto);
+    const properties = ['display', 'min-height', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'border-radius', 'background-color', 'color', 'font-size', 'font-weight', 'line-height', 'gap', 'text-align', 'text-decoration-line', 'box-shadow', 'transform'];
+    const appearance = (element: Locator) => element.evaluate((element, properties) => properties.map(property => getComputedStyle(element).getPropertyValue(property)), properties);
+    const rows = await page.locator('.settings-language>.setting,.sync-controls>.setting').evaluateAll(rows => rows.map(row => { const s = getComputedStyle(row); return [s.backgroundColor, s.borderRadius, s.fontSize, s.fontWeight, s.minHeight, s.padding, s.gap]; }));
+    expect(rows[1]).toEqual(rows[0]);
+    await language.scrollIntoViewIfNeeded(); await language.hover(); const hover = await appearance(language);
+    await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await language.focus(); const focus = await appearance(language);
+    await language.press('Enter'); const languageMenu = page.getByRole('listbox'); await expect(languageMenu).toBeVisible();
+    await expectPickerAlignment(language);
+    const open = await appearance(language), menu = await appearance(languageMenu);
+    await page.keyboard.press('Escape'); await expect(language).toBeFocused();
+    await language.evaluate(element => (element as HTMLElement).blur());
+    await language.dispatchEvent('pointerdown', { pointerType: 'touch', isPrimary: true, pointerId: 16 });
+    await expect(language).toHaveAttribute('data-touch-active', ''); const touch = await appearance(language);
+    await language.dispatchEvent('pointercancel', { pointerType: 'touch', pointerId: 16 });
+    await automatic.scrollIntoViewIfNeeded(); await automatic.hover(); expect(await appearance(automatic)).toEqual(hover);
+    await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await automatic.focus(); expect(await appearance(automatic)).toEqual(focus);
+    await automatic.press('Enter'); const options = controls.getByRole('listbox'); await expect(options).toBeVisible();
+    expect(await appearance(automatic)).toEqual(open); expect(await appearance(options)).toEqual(menu);
+    await expectPickerAlignment(automatic);
+    const target = await automatic.boundingBox(), row = await controls.locator('.setting').boundingBox();
+    expect(target!.width).toBeGreaterThanOrEqual(44); expect(target!.height).toBeGreaterThanOrEqual(44);
+    expect(target!.width).toBeLessThan(row!.width / 2);
+    const optionHeights = await options.getByRole('option').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().height));
+    expect(optionHeights.every(height => height >= 44)).toBe(true);
+    await page.screenshot({ path: info.outputPath('automatic-menu.png'), animations: 'disabled' });
+    await page.keyboard.press('End'); await expect(options.getByRole('option').last()).toBeFocused(); await page.keyboard.press('Enter');
+    await expect(automatic).toHaveAttribute('data-value', 'off'); await expect(automatic).toBeEnabled();
+    await expect(controls.locator('[data-sync-status]')).toHaveAttribute('data-sync-status', 'disabled');
+    await automatic.focus(); await expect(automatic).toBeFocused(); await automatic.press('Enter');
+    await options.getByRole('option', { name: languagePacks[locale].syncControls.on, exact: true }).click();
+    await controls.getByRole('button', { name: languagePacks[locale].syncControls.sync, exact: true }).click(); await synced(page);
+    await expect(automatic).toHaveAttribute('data-value', 'on');
+    await automatic.evaluate(element => (element as HTMLElement).blur()); await page.mouse.move(0, 0);
+    await automatic.dispatchEvent('pointerdown', { pointerType: 'touch', isPrimary: true, pointerId: 17 });
+    await expect(automatic).toHaveAttribute('data-touch-active', ''); expect(await appearance(automatic)).toEqual(touch);
+    await automatic.dispatchEvent('pointercancel', { pointerType: 'touch', pointerId: 17 });
+    await expect(automatic).not.toHaveAttribute('data-touch-active', '');
+    await automatic.press('Enter'); await expect(options).toBeVisible(); await page.keyboard.press('Escape'); await expect(automatic).toBeFocused();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await page.pageErrors()).toEqual([]);
+  });
 });

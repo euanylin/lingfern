@@ -1,6 +1,6 @@
 # Search metadata
 
-Public search entries are defined in `src/shared/seo.ts` and `public/sitemap.xml`. The current five entries are Introduction, Dictionary, IPA, English usage and About. `/sitemap` returns the same XML as `/sitemap.xml`; `robots.txt` declares the latter. The sitemap does not enumerate learner state or practice identifiers.
+Public search entries are defined in `src/shared/seo.ts` and `public/sitemap.xml`. The current five entries are Introduction, Dictionary, IPA, English usage and About. `/sitemap.xml` is the only sitemap endpoint and is declared in `robots.txt`; `/sitemap` returns404. The sitemap does not enumerate learner state or practice identifiers.
 
 ## HTML and navigation
 

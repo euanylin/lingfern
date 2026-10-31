@@ -132,12 +132,12 @@ export const lessonSchema = z.object({
     if (material.communityPackageId && (!lesson.communityPackageId || lesson.generation?.generator !== 'corpus-v1' || lesson.skill !== 'listening' || !material.audio || material.illustration || lesson.materials.length !== 2 || lesson.materials[0] === material && material.communityPackageId !== lesson.communityPackageId)) ctx.addIssue({ code: 'custom', message: 'Material package ownership is restricted to generated listening application' });
     if (material.illustration && (!lesson.communityPackageId || !new RegExp(`^/images/community-${lesson.communityPackageId}/[a-z0-9-]+\\.png$`).test(material.illustration.src))) ctx.addIssue({ code: 'custom', message: 'Illustration source is invalid' });
     if ((lesson.skill === 'listening') !== !!material.audio) ctx.addIssue({ code: 'custom', message: 'Audio must match the task skill' });
-    const bundledPersonal = !!material.audio && bundledShortListeningSources.some(source =>
-      source.rootId === material.rootId && source.audio.src === material.audio!.src && source.audio.sha256 === material.audio!.sha256
-      && source.audio.duration === material.audio!.duration && source.audio.author === material.audio!.author && source.audio.sourceUrl === material.audio!.sourceUrl
-      && source.audio.license === material.audio!.license && material.audio!.synthetic === false && material.blocks.length === 1 && material.blocks[0].text === source.text
-      && material.credit?.attribution === source.credit.attribution && material.credit.license === source.credit.license && material.credit.sourceUrl === source.credit.sourceUrl);
-    if (material.audio && bundledShortListeningSources.some(source => source.audio.src === material.audio!.src) && !bundledPersonal) ctx.addIssue({ code: 'custom', message: 'Known short recording metadata must match its inspected source' });
+    const bundledSource = material.audio && bundledShortListeningSources.find(source => source.audio.src === material.audio!.src);
+    const bundledPersonal = !!bundledSource && bundledSource.rootId === material.rootId && bundledSource.audio.sha256 === material.audio!.sha256
+      && bundledSource.audio.duration === material.audio!.duration && bundledSource.audio.author === material.audio!.author && bundledSource.audio.sourceUrl === material.audio!.sourceUrl
+      && bundledSource.audio.license === material.audio!.license && material.audio!.synthetic === false && material.blocks.length === 1 && material.blocks[0].text === bundledSource.text
+      && material.credit?.attribution === bundledSource.credit.attribution && material.credit.license === bundledSource.credit.license && material.credit.sourceUrl === bundledSource.credit.sourceUrl;
+    if (bundledSource && !bundledPersonal) ctx.addIssue({ code: 'custom', message: 'Known short recording metadata must match its inspected source' });
     const bundledFleurs = !!material.audio && /^fleurs-work-[a-f0-9]{64}$/.test(material.rootId)
       && /^\/audio\/a1-sentences\/fleurs-[a-z-]+\.mp3$/.test(material.audio.src) && material.audio.sourceUrl === 'https://huggingface.co/datasets/google/fleurs'
       && material.audio.author === 'FLEURS English volunteer speaker' && material.audio.license === 'CC BY 4.0' && material.audio.synthetic === false

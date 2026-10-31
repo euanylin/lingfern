@@ -25,7 +25,6 @@ export function readingQuestionPlan(material: Material, level: Lesson['targetLev
   return { words: tokens.length, paragraphs: body.length, complexity, relations, facts, genre, useful, minutes: level === 'A1' || level === 'A2' ? 12 : 30, ...budget, target: budget.baseline };
 }
 
-export function listeningGapSpacing(_words: number, _duration: number, level: Lesson['targetLevel']) { return listeningSpacing(level).minimum; }
 function spread<T>(items: readonly T[], maximum: number): T[] { return items.length <= maximum ? [...items] : Array.from({ length: maximum }, (_, index) => items[Math.round(index * (items.length - 1) / (maximum - 1))]); }
 function responseParts(question: Question): Question {
   if (!('criteria' in question) || question.parts) return question;

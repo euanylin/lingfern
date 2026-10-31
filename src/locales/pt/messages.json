@@ -240,55 +240,17 @@
       "fricative": "Fricativas",
       "affricate": "Africadas",
       "nasal": "Nasais",
-      "approximant": "Aproximantes",
-      "lateral-approximant": "Aproximantes laterais"
+      "approximant": "Aproximantes"
     },
     "failed": "Tabela ou gravação indisponível. Ligue-se à Internet ou instale IPA na Biblioteca.",
     "loading": "Carregando tabela de sons…",
     "scope": "Apenas sons do inglês: transcrição ampla do inglês americano geral, não o AFI completo.",
     "officialChart": "Tabela oficial do AFI",
-    "vowelLegend": "Em cada célula: não arredondada à esquerda e arredondada à direita.",
-    "consonantLegend": "Em cada célula: surda à esquerda e sonora à direita.",
-    "vowelPositionNote": "As posições seguem os símbolos do AFI; /ʌ/ em inglês é frequentemente central.",
-    "consonantNote": "/w/ tem articulação labiovelar dupla; /tʃ dʒ/ são africadas.",
-    "stressed": "Tônica",
-    "unstressed": "Átona",
-    "ending": "Final",
-    "frontness": {
-      "front": "Anterior",
-      "near-front": "Quase anterior",
-      "central": "Central",
-      "near-back": "Quase posterior",
-      "back": "Posterior"
-    },
     "heights": {
-      "close": "Fechada (alta)",
-      "near-close": "Quase fechada",
       "close-mid": "Semifechada",
-      "mid": "Média",
       "open-mid": "Semiaberta",
-      "near-open": "Quase aberta",
       "open": "Aberta (baixa)"
     },
-    "places": {
-      "bilabial": "Bilabial",
-      "labiodental": "Labiodental",
-      "dental": "Dental",
-      "alveolar": "Alveolar",
-      "postalveolar": "Pós-alveolar",
-      "palatal": "Palatal",
-      "velar": "Velar",
-      "glottal": "Glotal",
-      "labial-velar": "Labiovelar"
-    },
-    "axes": {
-      "height": "Abertura",
-      "frontness": "Posição da língua",
-      "manner": "Modo",
-      "place": "Ponto"
-    },
-    "start": "Início",
-    "stress": "Acento",
     "view": "Visualização",
     "simple": "Simples",
     "detailed": "Detalhada"
@@ -364,7 +326,6 @@
     "general": "Materiais gerais"
   },
   "practiceCard_today": "Hoje",
-  "practiceCard_yesterday": "Ontem",
   "practiceCard": {
     "start": "Iniciar",
     "resume": "Continuar",

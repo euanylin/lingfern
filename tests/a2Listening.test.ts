@@ -66,4 +66,14 @@ it('keeps the new built-in LibriSpeech exception limited to the exact four admit
   }
   const wrongText = structuredClone(lesson); wrongText.materials[0].blocks[0].text += '\nExtra unreviewed context.'; expect(lessonSchema.safeParse(wrongText).success).toBe(false);
   const wrongRights = structuredClone(lesson); wrongRights.materials[0].credit!.license = 'Worldwide waiver'; expect(lessonSchema.safeParse(wrongRights).success).toBe(false);
+  for (const mutate of [
+    (value: typeof lesson) => { value.materials[0].rootId = 'synthetic-forged-root'; },
+    (value: typeof lesson) => { value.materials[0].audio!.duration += .1; },
+    (value: typeof lesson) => { value.materials[0].audio!.synthetic = true; },
+    (value: typeof lesson) => { value.materials[0].credit!.attribution += ' Forged.'; },
+    (value: typeof lesson) => { value.materials[0].credit!.sourceUrl = 'https://example.com/forged'; },
+  ]) {
+    const altered = structuredClone(lesson); mutate(altered);
+    expect(lessonSchema.safeParse(altered).error?.issues.some(issue => issue.message === 'Known short recording metadata must match its inspected source')).toBe(true);
+  }
 });

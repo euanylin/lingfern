@@ -1,11 +1,11 @@
 import type catalogue from '../../content/daily-quotes-runtime.json';
+import index from '../../content/daily-quote-index.json';
 import { selectDailyQuote } from './dailyQuoteSelection';
 
 type Quote = typeof catalogue.quotes[number];
 const chunks = import.meta.glob<{ default: Quote[] }>('../../content/daily-quote-chunks/*.json');
 
 export async function dailyQuoteOnDemand(date: Date, previous?: string, draw?: () => number) {
-  const { default: index } = await import('../../content/daily-quote-index.json');
   const prior = previous && /^wikiquote-[a-f0-9]{64}$/.test(previous) ? previous.slice(-16) : undefined;
   const selected = selectDailyQuote(index.filter(quote => quote.eligible && quote.id !== prior), date, draw);
   if (!selected) return undefined;

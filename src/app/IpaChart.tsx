@@ -93,13 +93,12 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
       </>}
     </article>;
   }
-  function table({ id, title, axis, columns, rows, legend, note }: { id: string; title: string; axis: string; columns: { key: string; label: string }[]; rows: { key: string; label: string; cells: readonly IpaCell[] }[]; legend?: string; note?: string }) {
+  function table({ id, title, axis, columns, rows, note }: { id: string; title: string; axis: string; columns: { key: string; label: string }[]; rows: { key: string; label: string; cells: readonly IpaCell[] }[]; note?: string }) {
     return <section className="ipa-category" key={id}>
       <h3 id={`${id}-title`}>{title}</h3>
-      {legend && <p id={`${id}-legend`} className="muted">{legend}</p>}
       {note && <p className="muted">{note}</p>}
       <div className="ipa-table-scroll" role="region" aria-labelledby={`${id}-title`} tabIndex={0}>
-        <table className={`ipa-table ipa-table-${id}`} dir="ltr" aria-labelledby={`${id}-title`} aria-describedby={legend ? `${id}-legend` : undefined}>
+        <table className={`ipa-table ipa-table-${id}`} dir="ltr" aria-labelledby={`${id}-title`}>
           <thead><tr><th scope="col"><bdi>{axis}</bdi></th>{columns.map(column => <th scope="col" key={column.key}><bdi>{column.label}</bdi></th>)}</tr></thead>
           <tbody>{rows.map(row => <tr key={row.key} data-row={row.key}><th scope="row"><bdi>{row.label}</bdi></th>{row.cells.map((cell, index) => <td key={columns[index].key} data-column={columns[index].key}><div className={`ipa-cell${cell.length === 2 ? ' ipa-cell-pair' : ''}`}>{cell.map((symbol, slot) => symbol ? renderEntry(symbol) : <span key={slot} aria-hidden="true"/>)}</div></td>)}</tr>)}</tbody>
         </table>

@@ -26,12 +26,15 @@ export function checkServiceWorkerUpdate(registration: ServiceWorkerRegistration
       if (next && next !== worker) {
         worker?.removeEventListener('statechange', changed);
         worker = next; worker.addEventListener('statechange', changed);
+        // Downloading a discovered update needs its own budget after the quick version check.
+        clearTimeout(timeout);
+        timeout = setTimeout(() => complete(new Error('UPDATE_TIMEOUT')), 120000);
         preparing();
       }
       changed();
     };
     const aborted = () => complete(signal.reason);
-    const timeout = setTimeout(() => complete(new Error('UPDATE_TIMEOUT')), 15000);
+    let timeout = setTimeout(() => complete(new Error('UPDATE_TIMEOUT')), 15000);
     registration.addEventListener('updatefound', observe);
     signal.addEventListener('abort', aborted, { once: true });
     observe();

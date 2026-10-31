@@ -6,12 +6,14 @@ import { loadUiLocale } from './locales';
 import { initialLocale } from './app/i18n';
 import { db } from './data/db';
 import { publicPageStateSchema } from './shared/prerender';
+import { prepareDailyQuote } from './app/DailyQuote';
 
 // Open local storage while the required interface language is downloading.
 void db.open().catch(() => { /* App.load reports storage failures with its normal retry. */ });
 
 // Route chunks import this shell; finish module evaluation before awaiting them.
 async function boot() {
+  if (location.pathname === '/introduction' && !location.search) prepareDailyQuote();
   try { await loadUiLocale(initialLocale()); } catch { /* App.load offers retry. */ }
   const root = document.getElementById('root')!;
   const initial = root.dataset.publicPage;

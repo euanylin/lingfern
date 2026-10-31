@@ -62,6 +62,7 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
     const pinnae = element.querySelectorAll<SVGPathElement>('.fern-pinna');
     const stemPath = element.querySelector<SVGPathElement>('.fern-stem')!;
     const paths = [stemPath, ...pinnae], drawn = paths.map(path => path.getAttribute('d'));
+    let drawnGrowth = element.getAttribute('data-growth');
     // Update path coordinates per frame; let React handle labels and errors.
     const paint = (value: FernGrowth, seconds = motion.current.seconds) => {
       motion.current.growth = value; if (!illustrating) shown.set(profileId, motion.current);
@@ -70,7 +71,8 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
       [shape.stem, ...shape.left, ...shape.right].forEach((d, index) => {
         if (drawn[index] !== d) { paths[index].setAttribute('d', d); drawn[index] = d; }
       });
-      element.setAttribute('data-growth', String(value.stem));
+      const growth = String(value.stem);
+      if (drawnGrowth !== growth) { element.setAttribute('data-growth', growth); drawnGrowth = growth; }
     };
     if (!illustrating && !shown.has(profileId)) paint(to, 0);
     illustration.current.target = illustrationActive ? 1.6 : 0;

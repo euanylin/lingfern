@@ -240,55 +240,17 @@
       "fricative": "擦音",
       "affricate": "塞擦音",
       "nasal": "鼻音",
-      "approximant": "近音",
-      "lateral-approximant": "边近音"
+      "approximant": "近音"
     },
     "failed": "发音表或录音无法读取。请联网或在资料库安装 IPA 资源。",
     "loading": "正在读取发音表…",
     "scope": "仅列英语音（通用美式英语宽式转写），不是完整的国际音标表。",
     "officialChart": "IPA 官方图表",
-    "vowelLegend": "同格内左侧不圆唇，右侧圆唇。",
-    "consonantLegend": "同格内左侧为清音，右侧为浊音。",
-    "vowelPositionNote": "位置按 IPA 符号标示；英语 /ʌ/ 实际常为央元音。",
-    "consonantNote": "/w/ 为唇软腭双重发音；/tʃ dʒ/ 为塞擦音。",
-    "stressed": "重读",
-    "unstressed": "非重读",
-    "ending": "终点",
-    "frontness": {
-      "front": "前",
-      "near-front": "近前",
-      "central": "央",
-      "near-back": "近后",
-      "back": "后"
-    },
     "heights": {
-      "close": "闭（高）",
-      "near-close": "次闭",
       "close-mid": "半闭",
-      "mid": "中",
       "open-mid": "半开",
-      "near-open": "次开",
       "open": "开（低）"
     },
-    "places": {
-      "bilabial": "双唇",
-      "labiodental": "唇齿",
-      "dental": "齿",
-      "alveolar": "齿龈",
-      "postalveolar": "龈后",
-      "palatal": "硬腭",
-      "velar": "软腭",
-      "glottal": "声门",
-      "labial-velar": "唇软腭"
-    },
-    "axes": {
-      "height": "高低",
-      "frontness": "舌位前后",
-      "manner": "发音方式",
-      "place": "发音部位"
-    },
-    "start": "起点",
-    "stress": "重音",
     "view": "显示方式",
     "simple": "简易版",
     "detailed": "详细版"
@@ -364,7 +326,6 @@
     "general": "通用材料"
   },
   "practiceCard_today": "今天",
-  "practiceCard_yesterday": "昨天",
   "practiceCard": {
     "start": "开始",
     "resume": "继续",

@@ -38,6 +38,12 @@ const goalKey = (lesson: Lesson) => `${lesson.skill}:${lesson.targetLevel}:${les
 
 export function progressRecords(lessons: Lesson[], sessions: Session[], attempts: Attempt[], summaries: ResolvedSummary[] = []) {
   const sessionById = new Map(sessions.map(session => [session.id, session]));
+  const lessonItems = new Map<Lesson, ReturnType<typeof questions>>();
+  const items = (lesson: Lesson) => {
+    let result = lessonItems.get(lesson);
+    if (!result) { result = questions(lesson); lessonItems.set(lesson, result); }
+    return result;
+  };
   const goals = new Map<string, ProgressGoal>();
   for (const lesson of [...lessons, ...sessions.map(session => session.lesson)]) {
     const key = goalKey(lesson);
@@ -50,7 +56,7 @@ export function progressRecords(lessons: Lesson[], sessions: Session[], attempts
     seenIds.add(attempt.id);
     const session = sessionById.get(attempt.sessionId);
     if (!session || attempt.profileId !== session.profileId) continue;
-    const item = questions(session.lesson).find(item => item.question.id === attempt.questionId && item.material.rootId === attempt.rootId);
+    const item = items(session.lesson).find(item => item.question.id === attempt.questionId && item.material.rootId === attempt.rootId);
     if (!item) continue;
     const assisted = attempt.assistance.hintLevel > 0 || !!attempt.assistance.dictionaryUsed || teachingSupport(session.lesson, attempt.rootId, attempt.assistance.teachingProvided);
     const mark = 'criteria' in item.question || attempt.correct === null ? '◇' : !attempt.correct ? '×' : assisted ? '○' : session.lesson.mode === 'check' ? '●' : '◐';
@@ -60,7 +66,7 @@ export function progressRecords(lessons: Lesson[], sessions: Session[], attempts
   for (const { event, lesson } of summaries) {
     const value = event.payload;
     if (localIds.has(value.recordId)) continue;
-    const item = questions(lesson).find(item => item.question.id === value.questionId && item.material.rootId === value.rootId);
+    const item = items(lesson).find(item => item.question.id === value.questionId && item.material.rootId === value.rootId);
     if (!item) continue;
     const assisted = value.assistance.hintLevel > 0 || value.assistance.dictionaryUsed || teachingSupport(lesson, value.rootId, value.assistance.teachingProvided);
     const mark = 'criteria' in item.question || value.correct === null ? '◇' : !value.correct ? '×' : assisted ? '○' : value.mode === 'check' ? '●' : '◐';

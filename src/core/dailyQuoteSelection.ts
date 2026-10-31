@@ -1,14 +1,8 @@
 import calendar from '../../content/quote-calendar.json';
+import { localDay } from './dailyQuoteFormat';
+export { localDay, quoteSourceUrl } from './dailyQuoteFormat';
 
 const random = () => crypto.getRandomValues(new Uint32Array(1))[0] / 0x100000000;
-export const localDay = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-
-export function quoteSourceUrl(quote: { url: string; text: string }) {
-  const url = new URL(quote.url);
-  // Preserve text-directive punctuation within its original range/context.
-  url.hash = `${url.hash.slice(1).split(':~:')[0]}:~:text=${encodeURIComponent(quote.text).replace(/-/g, '%2D')}`;
-  return url.href;
-}
 
 export function selectDailyQuote<T extends { id: string; pageTitle: string }>(available: T[], date: Date, draw = random) {
   const pick = <U,>(items: U[]) => items[Math.min(items.length - 1, Math.max(0, Math.floor(draw() * items.length)))];

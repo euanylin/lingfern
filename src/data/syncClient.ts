@@ -301,9 +301,10 @@ export async function synchronize(profileId: string, consent: Consent, onMerge: 
     const drained = !requested && !wake && state.phase === 'synced' && revision === state.localRevision;
     if (!requested && !wake && state.phase === 'error' && (!transientCodes.has(state.error ?? '') || (state.retryAt ?? Infinity) > now)) return;
     if (!requested && now < (state.retryAt ?? 0)) return;
-    if (!requested && now - (state.checkedAt ?? -Infinity) < 15000) return wake ? { wakeAt: state.checkedAt! + 15000 } : undefined;
+    const continuing = state.phase === 'pending' && state.nextCheckAt !== undefined;
+    if (!requested && continuing && now < state.nextCheckAt!) return { wakeAt: state.nextCheckAt! };
+    if (!requested && !continuing && now - (state.checkedAt ?? -Infinity) < 15000) return wake ? { wakeAt: state.checkedAt! + 15000 } : undefined;
     if (!requested && !wake && state.phase === 'synced' && revision === state.localRevision && now < (state.nextCheckAt ?? 0)) return;
-    if (!requested && !wake && state.phase === 'pending' && now < (state.nextCheckAt ?? 0)) return;
     const save = async (patch: Partial<SyncState>, failed = false) => {
       const next = syncStateSchema.parse({ ...state, ...patch });
       await db.transaction('rw', settings, syncClocks, async () => {
@@ -320,7 +321,10 @@ export async function synchronize(profileId: string, consent: Consent, onMerge: 
     };
     const partial = async () => {
       await apply();
-      await save({ phase: 'pending', nextCheckAt: Date.now() + 60000, error: undefined, retryAt: undefined, attempts: 0 });
+      // Yield between bounded rounds without leaving a healthy backlog idle for a minute.
+      const wakeAt = Date.now() + 1000;
+      await save({ phase: 'pending', nextCheckAt: wakeAt, error: undefined, retryAt: undefined, attempts: 0 });
+      return { wakeAt };
     };
     try {
       await save({ phase: 'syncing', checkedAt: now, requestId, error: undefined, retryAt: undefined });
@@ -331,7 +335,7 @@ export async function synchronize(profileId: string, consent: Consent, onMerge: 
       let steps = 0, resetCursor = false;
       while (true) {
         while (true) {
-          if (steps >= 6 || Date.now() >= deadline) { await partial(); return; }
+          if (steps >= 6 || Date.now() >= deadline) return await partial();
           await requireConsent(profileId, consent); abort.throwIfAborted();
           let page;
           try { page = await downloadPage(profileId, consent.scope, abort, summary, consent); }
@@ -361,7 +365,7 @@ export async function synchronize(profileId: string, consent: Consent, onMerge: 
             });
             return;
           }
-          if (steps >= 6 || Date.now() >= deadline) { await partial(); return; }
+          if (steps >= 6 || Date.now() >= deadline) return await partial();
           await uploadBatch(profileId, consent, abort, summary); steps++; uploaded = true;
         }
       }

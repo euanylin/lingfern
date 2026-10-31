@@ -240,55 +240,17 @@
       "fricative": "Frikatif",
       "affricate": "Afrikat",
       "nasal": "Nasal",
-      "approximant": "Aproksiman",
-      "lateral-approximant": "Aproksiman lateral"
+      "approximant": "Aproksiman"
     },
     "failed": "Bagan atau rekaman tidak terbaca. Hubungkan ke internet atau pasang IPA di Pustaka.",
     "loading": "Memuat bagan bunyi…",
     "scope": "Hanya bunyi bahasa Inggris: transkripsi luas bahasa Inggris Amerika Umum, bukan seluruh IPA.",
     "officialChart": "Bagan IPA resmi",
-    "vowelLegend": "Dalam tiap sel: tak bulat di kiri, bulat di kanan.",
-    "consonantLegend": "Dalam tiap sel: nirsuara di kiri, bersuara di kanan.",
-    "vowelPositionNote": "Posisi mengikuti lambang IPA; /ʌ/ bahasa Inggris sering merupakan vokal tengah.",
-    "consonantNote": "/w/ memiliki artikulasi ganda labial–velar; /tʃ dʒ/ adalah afrikat.",
-    "stressed": "Bertekanan",
-    "unstressed": "Tak bertekanan",
-    "ending": "Akhir",
-    "frontness": {
-      "front": "Depan",
-      "near-front": "Hampir depan",
-      "central": "Tengah",
-      "near-back": "Hampir belakang",
-      "back": "Belakang"
-    },
     "heights": {
-      "close": "Tertutup (tinggi)",
-      "near-close": "Hampir tertutup",
       "close-mid": "Setengah tertutup",
-      "mid": "Tengah",
       "open-mid": "Setengah terbuka",
-      "near-open": "Hampir terbuka",
       "open": "Terbuka (rendah)"
     },
-    "places": {
-      "bilabial": "Bilabial",
-      "labiodental": "Labiodental",
-      "dental": "Dental",
-      "alveolar": "Alveolar",
-      "postalveolar": "Postalveolar",
-      "palatal": "Palatal",
-      "velar": "Velar",
-      "glottal": "Glotal",
-      "labial-velar": "Labial–velar"
-    },
-    "axes": {
-      "height": "Ketinggian",
-      "frontness": "Posisi lidah",
-      "manner": "Cara",
-      "place": "Tempat"
-    },
-    "start": "Awal",
-    "stress": "Tekanan",
     "view": "Tampilan",
     "simple": "Sederhana",
     "detailed": "Terperinci"
@@ -364,7 +326,6 @@
     "general": "Materi umum"
   },
   "practiceCard_today": "Hari Ini",
-  "practiceCard_yesterday": "Kemarin",
   "practiceCard": {
     "start": "Mulai",
     "resume": "Lanjutkan",

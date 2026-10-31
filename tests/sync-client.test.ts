@@ -298,6 +298,7 @@ it('rejects withdrawn consent before a busy native lock and makes no network req
 
 it('resumes a bounded multi-page read before sending any local batch and never marks a partial round successful', async () => {
   let reads = 0, posts = 0;
+  const now = Date.now(), clock = vi.spyOn(Date, 'now').mockReturnValue(now);
   const remote = await Promise.all(Array.from({ length: 4 }, (_, i) => validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'p', deviceId: 'remote', batchId: `page-${i}`, events: [{ id: `entry-${i}`, deviceId: 'remote', counter: i + 1, occurredAt: '2026-10-01T00:00:00.000Z', type: 'lookup', payload: { kind: 'dictionary', term: `word-${i}`, lookedUpAt: '2026-10-01T00:00:00.000Z' } }] })));
   vi.stubGlobal('fetch', vi.fn(async (path: string, init: RequestInit) => {
     if (path === '/api/session') return Response.json(summary);
@@ -313,11 +314,15 @@ it('resumes a bounded multi-page read before sending any local batch and never m
     const value = JSON.parse(init.body as string); return Response.json({ scope, batchId: value.batch.batchId, hash: value.hash, previouslyWritten: false });
   }));
   const consent = (await prepareAutoSync('p', summary))!;
-  await synchronize('p', consent, async () => {}, new AbortController().signal);
+  const continuation = await synchronize('p', consent, async () => {}, new AbortController().signal);
   expect(reads).toBe(6); expect(posts).toBe(0);
   expect(await readSyncState('p', scope)).toMatchObject({ phase: 'pending' });
   expect((await readSyncState('p', scope))?.lastSuccessAt).toBeUndefined();
-  await requestSyncNow('p', scope); await synchronize('p', consent, async () => {}, new AbortController().signal);
+  expect(continuation).toEqual({ wakeAt: now + 1000 });
+  expect(await synchronize('p', consent, async () => {}, new AbortController().signal, true)).toEqual(continuation);
+  expect(reads).toBe(6);
+  clock.mockReturnValue(continuation!.wakeAt);
+  await synchronize('p', consent, async () => {}, new AbortController().signal, true);
   expect(reads).toBe(9); expect(posts).toBe(1); expect((await readSyncState('p', scope))?.phase).toBe('synced');
 });
 

@@ -13,11 +13,8 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dar
     const context = await browser.newContext({ baseURL: info.project.use.baseURL, locale, colorScheme: theme, hasTouch, viewport: { width: hasTouch ? 390 : 1440, height: 900 } });
     const page = await context.newPage(); await page.goto('/today');
     await page.evaluate(async ({ fixture, locale }) => {
-      const { createElement } = (await import('/node_modules/.vite/deps/react.js' as string)).default;
-      const { createRoot } = (await import('/node_modules/.vite/deps/react-dom_client.js' as string)).default;
-      const { TaskDetail } = await import('/src/app/TaskDetail.tsx' as string);
-      const host = document.createElement('div'); document.body.appendChild(host);
-      createRoot(host).render(createElement(TaskDetail, { lesson: fixture, locale, profileId: 'local-guest', action: 'Practice', available: true, busy: false, startError: '', onStart: async () => {}, onCheck: async () => {}, onClose: () => {} }));
+      const { mountTaskDetail } = await import('/tests/fixtures/mountTaskDetail.ts' as string);
+      mountTaskDetail({ lesson: fixture, locale, profileId: 'local-guest', action: 'Practice', available: true, busy: false, startError: '', onStart: async () => {}, onCheck: async () => {}, onClose: () => {} });
     }, { fixture: JSON.parse(readFileSync(new URL('../fixtures/content/a1-reading.json', import.meta.url), 'utf8')), locale });
     const control = page.locator('.task-detail [data-mode=test]');
     await expect(control).toBeEnabled(); await control.scrollIntoViewIfNeeded();

@@ -37,6 +37,22 @@ test('another unfinished verification blocks reuse and manual full verification 
   assert.deepEqual(await findVerification(get, repository, sha, 2), { verified: 1, scope: 'full', main: 1 });
 });
 
+test('main job evidence is read once per verification and refreshed by the next invocation', async () => {
+  const main = { ...run, head_branch: 'main' }, requests = [];
+  let failed = false;
+  const get = async path => {
+    requests.push(path);
+    if (path.includes('?head_sha=')) return { workflow_runs: [main] };
+    assert.equal(path, `/repos/${repository}/actions/runs/${main.id}/jobs?per_page=100`);
+    return { total_count: 1, jobs: [failed ? { ...job, conclusion: 'failure' } : job] };
+  };
+  assert.deepEqual(await findVerification(get, repository, sha, 99), { verified: 1, scope: 'full', main: 1 });
+  assert.equal(requests.filter(path => path.includes('/jobs?')).length, 1);
+  failed = true;
+  assert.deepEqual(await findVerification(get, repository, sha, 99), {});
+  assert.equal(requests.filter(path => path.includes('/jobs?')).length, 2);
+});
+
 test('full proof rejects skipped, missing, failed, foreign and incomplete stages', () => {
   assert(fullChecksJob(job, run));
   for (const change of [{ name: 'deploy' }, { run_id: 2 }, { head_sha: 'b'.repeat(40) }, { run_attempt: 2 }, { conclusion: 'failure' }, { steps: job.steps.slice(1) }, { steps: job.steps.map((step, index) => index ? step : { ...step, conclusion: 'skipped' }) }, { steps: [...job.steps, { name: 'extra', status: 'in_progress', conclusion: null }] }]) assert(!fullChecksJob({ ...job, ...change }, run));
@@ -52,6 +68,19 @@ test('reused main success needs an independent full run for the identical source
   assert.deepEqual(await findVerification(get, repository, sha, 1), {});
   assert.deepEqual(await findVerification(async () => ({ workflow_runs: [{ ...run, head_sha: 'b'.repeat(40) }] }), repository, sha, 99), {});
   await assert.rejects(findVerification(async () => { throw Error('API unavailable'); }, repository, sha, 99));
+});
+
+test('automatic Checks cover main pushes and main pull requests without skipping the required job', async () => {
+  const checks = await readFile(new URL('../.github/workflows/checks.yml', import.meta.url), 'utf8');
+  const triggers = checks.match(/^on:\n([\s\S]*?)(?=^\S)/m)?.[1].trimEnd();
+  assert.equal(triggers, '  workflow_dispatch:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]');
+  const permissions = checks.match(/^permissions:\n([\s\S]*?)(?=^\S)/m)?.[1].trimEnd();
+  assert.equal(permissions, '  contents: read\n  actions: read');
+  assert(!/^    (?:if|permissions):/m.test(checks));
+  assert(checks.includes('group: checks-${{ github.ref }}'));
+  assert(checks.includes("cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}"));
+  assert(checks.includes('persist-credentials: false'));
+  assert(!checks.includes('pull_request_target:') && !checks.includes('secrets.'));
 });
 
 test('workflow stages agree with the verification contract and deployment gate precedes upload', async () => {

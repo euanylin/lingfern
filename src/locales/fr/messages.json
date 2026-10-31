@@ -240,55 +240,17 @@
       "fricative": "Fricatives",
       "affricate": "Affriquées",
       "nasal": "Nasales",
-      "approximant": "Approximantes",
-      "lateral-approximant": "Approximantes latérales"
+      "approximant": "Approximantes"
     },
     "failed": "Impossible de lire le tableau ou l’enregistrement. Connectez-vous à Internet ou installez le paquet IPA dans la bibliothèque.",
     "loading": "Chargement du tableau phonétique…",
     "scope": "Sons anglais uniquement : transcription large de l’anglais américain général, pas l’API complet.",
     "officialChart": "Tableau officiel de l’API",
-    "vowelLegend": "Dans chaque case : non arrondie à gauche, arrondie à droite.",
-    "consonantLegend": "Dans chaque case : sourde à gauche, sonore à droite.",
-    "vowelPositionNote": "Les positions suivent les symboles de l’API ; le /ʌ/ anglais est souvent central.",
-    "consonantNote": "/w/ a une articulation labio-vélaire double ; /tʃ dʒ/ sont des affriquées.",
-    "stressed": "Accentuée",
-    "unstressed": "Non accentuée",
-    "ending": "Arrivée",
-    "frontness": {
-      "front": "Antérieure",
-      "near-front": "Quasi antérieure",
-      "central": "Centrale",
-      "near-back": "Quasi postérieure",
-      "back": "Postérieure"
-    },
     "heights": {
-      "close": "Fermée (haute)",
-      "near-close": "Préfermée",
       "close-mid": "Mi-fermée",
-      "mid": "Moyenne",
       "open-mid": "Mi-ouverte",
-      "near-open": "Préouverte",
       "open": "Ouverte (basse)"
     },
-    "places": {
-      "bilabial": "Bilabiale",
-      "labiodental": "Labiodentale",
-      "dental": "Dentale",
-      "alveolar": "Alvéolaire",
-      "postalveolar": "Postalvéolaire",
-      "palatal": "Palatale",
-      "velar": "Vélaire",
-      "glottal": "Glottale",
-      "labial-velar": "Labio-vélaire"
-    },
-    "axes": {
-      "height": "Aperture",
-      "frontness": "Position de la langue",
-      "manner": "Mode",
-      "place": "Lieu"
-    },
-    "start": "Départ",
-    "stress": "Accent",
     "view": "Affichage",
     "simple": "Simple",
     "detailed": "Détaillé"
@@ -364,7 +326,6 @@
     "general": "Documents généraux"
   },
   "practiceCard_today": "Aujourd’hui",
-  "practiceCard_yesterday": "Hier",
   "practiceCard": {
     "start": "Commencer",
     "resume": "Continuer",
