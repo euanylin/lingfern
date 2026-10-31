@@ -174,13 +174,15 @@ test('offline removal uses the same blurred, frozen confirmation surface', async
   await expect(remove).toBeFocused();
 });
 
-for (const locale of ['en', 'ar'] as const) test(`a reserved scrollbar does not move the page or shrink a full-width drawer: ${locale}`, async ({ page }) => {
+for (const locale of ['en', 'ar'] as const) test(`a reserved scrollbar does not move the page or shrink a full-width drawer: ${locale}`, async ({ page, browserName }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto('/settings');
   await selectPicker(page, '语言', locale);
   await page.goto('/today');
   const trigger = page.locator('[data-practice-skill=reading]').first();
   await expect(trigger).toBeVisible();
+  // Keep a real classic gutter on macOS as well as Linux while testing the drawer frame.
+  if (browserName === 'chromium') await page.addStyleTag({ content: 'html::-webkit-scrollbar{width:15px}html{overflow-y:scroll!important;scrollbar-gutter:stable!important}' });
   await page.evaluate(() => { document.documentElement.style.scrollbarGutter = 'stable'; });
   const before = await page.evaluate(() => ({ gutter: innerWidth - document.documentElement.clientWidth, left: document.querySelector('main')!.getBoundingClientRect().left }));
   test.skip(!before.gutter, 'This engine provides overlay scrollbars without a reserved gutter.');

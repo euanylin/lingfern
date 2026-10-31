@@ -5,12 +5,31 @@ import { selectPicker } from './picker';
 const sample = (page: Page) => page.evaluate(() => new Promise<{ present: boolean; open: boolean; blur: number; opacity: number }[]>(resolve => {
   const frames: { present: boolean; open: boolean; blur: number; opacity: number }[] = [], began = performance.now();
   let start: number | undefined;
-  const frame = () => {
+  const capture = () => {
     const dialog = document.querySelector<HTMLDialogElement>('.task-detail');
     if (dialog && start === undefined) start = performance.now();
     const backdrop = dialog && getComputedStyle(dialog, '::backdrop');
     frames.push({ present: !!dialog, open: !!dialog?.open, blur: Number(/blur\(([\d.]+)px\)/.exec(backdrop?.backdropFilter || backdrop?.getPropertyValue('-webkit-backdrop-filter') || '')?.[1] ?? 0), opacity: dialog ? Number(getComputedStyle(dialog).opacity) : 0 });
-    if ((start === undefined || performance.now() - start < 650) && performance.now() - began < 10_000) requestAnimationFrame(frame); else resolve(frames);
+  };
+  const sampled = new WeakSet<Animation>();
+  // Sample native interpolation directly when a busy runner misses animation frames.
+  const observer = new MutationObserver(() => {
+    const dialog = document.querySelector<HTMLDialogElement>('.task-detail');
+    for (const animation of dialog?.getAnimations({ subtree: true }) ?? []) {
+      const effect = animation.effect;
+      if (sampled.has(animation) || !(animation instanceof CSSTransition) || !(effect instanceof KeyframeEffect) || effect.target !== dialog || !['opacity', 'backdrop-filter', '-webkit-backdrop-filter'].includes(animation.transitionProperty)) continue;
+      sampled.add(animation);
+      const time = animation.currentTime, duration = Number(effect.getTiming().duration);
+      animation.pause();
+      for (const fraction of [.2, .4, .6, .8]) { animation.currentTime = duration * fraction; capture(); }
+      animation.currentTime = time; animation.play();
+    }
+  });
+  observer.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['data-open', 'data-blur'] });
+  const frame = () => {
+    capture();
+    if ((start === undefined || performance.now() - start < 650) && performance.now() - began < 10_000) requestAnimationFrame(frame);
+    else { observer.disconnect(); resolve(frames); }
   };
   requestAnimationFrame(frame);
 }));

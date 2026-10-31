@@ -25,7 +25,9 @@ test('automatic debounce batches edits; idle polling is conditional and opt-out 
   expect(server.uploads[0].events.filter(event => event.type === 'lookup')).toHaveLength(3);
   const before = server.calls.length;
   await page.clock.fastForward(60000); expect(server.calls.length).toBe(before);
-  await page.clock.fastForward(65000); await expect.poll(() => server.calls.length).toBe(before + 2);
+  // The 15s coordinator tick can follow the saved two-minute deadline by a full interval.
+  const untilPoll = (await syncState(page)).nextCheckAt - await page.evaluate(() => Date.now());
+  await page.clock.fastForward(untilPoll + 15000); await expect.poll(() => server.calls.length).toBe(before + 2);
   expect(server.uploads).toHaveLength(1); expect(before - initial).toBe(5);
   await page.evaluate(async () => { const { stopSyncUpload } = await import('/src/data/syncClient.ts' as string); await stopSyncUpload('local-guest'); });
   await lookup(page, 'offline-choice'); await page.reload();
