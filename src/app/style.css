@@ -628,4 +628,4 @@ html:has(#root>main.welcome-main){overflow:hidden}
 
 /* Keep the document still while native modal surfaces own scrolling. */
 html:has(dialog:modal){overflow:hidden;scrollbar-gutter:var(--modal-gutter,auto)}dialog:modal{overscroll-behavior:contain}
-dialog::backdrop{left:calc(0px - var(--modal-left-gutter,0px));right:calc(0px - var(--modal-right-gutter,0px))}.task-detail:modal{right:calc(0px - var(--modal-right-gutter,0px))}@media(max-width:767px){.task-detail:modal{width:100vw;max-width:100vw}}
+dialog::backdrop{left:calc(0px - var(--modal-left-gutter,0px));right:calc(0px - var(--modal-right-gutter,0px))}.task-detail:modal{right:calc(0px - var(--modal-right-gutter,0px))}@media(max-width:767px){.task-detail:modal{inset:0;width:auto;max-width:none}}
