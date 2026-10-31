@@ -4,9 +4,11 @@ import { cardInteraction } from './cardInteraction';
 
 export function useTaskDialog(id: string, onClose: () => void, historyKey = 'practicePreview') {
   const dialog = useRef<HTMLDialogElement>(null), enterFrame = useRef(0), closeTimer = useRef<number | undefined>(undefined), touchInput = useRef(false);
+  const closing = useRef(false);
   const [open, setOpen] = useState(false), [contact, setContact] = useState(false), [hovered, setHovered] = useState(false);
   function finishClose() { clearTimeout(closeTimer.current); closeTimer.current = undefined; dialog.current?.close(); }
   function dismiss() {
+    closing.current = true;
     cancelAnimationFrame(enterFrame.current);
     if (closeTimer.current !== undefined || !dialog.current?.open) return;
     setOpen(false);
@@ -15,7 +17,12 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
     if (duration > 0) closeTimer.current = window.setTimeout(finishClose, duration + 50);
     else finishClose();
   }
-  function close() { if (window.history.state?.[historyKey] === id) window.history.back(); else dismiss(); }
+  function close() {
+    if (closing.current) return;
+    // Browser Back is asynchronous; repeated input must not queue another navigation.
+    closing.current = true;
+    if (window.history.state?.[historyKey] === id) window.history.back(); else dismiss();
+  }
   useEffect(() => {
     const previous = window.history.state;
     window.history.pushState({ ...previous, [historyKey]: id }, '', location.href);

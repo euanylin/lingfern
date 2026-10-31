@@ -104,6 +104,27 @@ for (const [width, theme, locale, action] of [[1440, 'light', 'zh-Hans', 'escape
   await test.info().attach('task-detail-native-frames', { body: JSON.stringify({ opened, entered, exited }), contentType: 'application/json' });
 });
 
+for (const selector of ['.reading-task .practice-card-action', '.reading-task [data-practice-skill=reading]']) test(`repeated cancel queues one history navigation: ${selector}`, async ({ page }) => {
+  await page.goto('/today');
+  const trigger = page.locator(selector);
+  await trigger.focus(); await trigger.press('Enter');
+  const dialog = page.locator('dialog');
+  await expect(dialog).toHaveCSS('opacity', '1');
+  const requests = await dialog.evaluate(element => {
+    const back = history.back;
+    let calls = 0;
+    history.back = () => { calls++; };
+    try {
+      element.dispatchEvent(new Event('cancel', { cancelable: true }));
+      element.dispatchEvent(new Event('cancel', { cancelable: true }));
+    } finally { history.back = back; }
+    return calls;
+  });
+  expect(requests).toBe(1);
+  await page.goBack();
+  await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused(); await expect(page).toHaveURL(/\/today$/);
+});
+
 test('browser back, interrupted entry, missing transition events and reduced motion all close safely', async ({ page }) => {
   await page.goto('/today');
   const trigger = page.locator('.task-row').first().getByRole('button'), dialog = page.locator('.task-detail');

@@ -1,5 +1,7 @@
 # Release and recovery runbook
 
+**LOCAL CI / REMOTE HOLD — 2026-10-31:** Current0.1.150 candidate passes local units/build/source/dry-run,sync/MCP,674 browser,42 offline,update/Worker and affected WebKit checks. Per maintainer request, further remote operations are stopped; PR2 remains the last publication packet, with newer fixes local and no merge/deployment performed. Prefer local failure diagnosis and a frozen final candidate, completion notifications and300s polling only if needed. Preserve required remote source/main and production guards. [Current evidence and resumption boundaries](history/2026-10-31-local-ci-release.md).
+
 ## Current routine updates — 2026-10-31
 
 Use [the current scoped workflow](../AGENT_WORKFLOW.md#scoped-github-ci-and-publication). Prepare one coherent local change, publish one authorised branch/PR, wait for its required checks, merge once, and obtain current-main proof before the one separately authorised Deploy. Ordinary branch/tag pushes no longer start another automatic Checks run. Do not dispatch manual checks alongside an automatic run. Documentation keeps the minimal required status and needs no website deployment. Source/protection/fork-isolation and deployment/recovery guards remain mandatory; select application regressions by the actual change.

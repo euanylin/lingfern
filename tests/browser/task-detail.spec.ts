@@ -210,7 +210,7 @@ test('closing preview aborts pending media and failed media responses release th
   await expect.poll(() => page.evaluate(() => Reflect.get(window, 'previewNetwork').requests)).toBe(count);
   await expect(dialog.getByRole('button', { name: 'Synthetic start', exact: true })).toBeDisabled();
   await dialog.getByRole('button', { name: 'Close', exact: true }).click(); await expect(dialog).toHaveCount(0);
-  expect(await page.evaluate(() => Reflect.get(window, 'previewNetwork').aborted)).toBe(count);
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, 'previewNetwork').aborted)).toBe(count);
   await page.evaluate(() => { Reflect.get(window, 'previewNetwork').fail = true; Reflect.get(window, 'mountPreview')(); });
   await expect(dialog.locator('.error')).toBeVisible();
   await expect(dialog.getByRole('button', { name: 'Synthetic start', exact: true })).toBeDisabled();
