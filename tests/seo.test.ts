@@ -10,6 +10,7 @@ describe('page metadata', () => {
     expect(new Set(Object.values(publicPages).map(page => page.description)).size).toBe(5);
     for (const path of Object.keys(publicPages)) expect(pageSeo(path).robots).toBe('index, follow');
     expect(pageSeo('/').canonical).toBe(siteOrigin + '/introduction');
+    for (const path of ['/', '/introduction', '/today']) expect(pageSeo(path).title).toBe('Lingfern');
   });
 
   it('omits private identifiers and query text from every metadata field', () => {

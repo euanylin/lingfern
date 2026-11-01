@@ -74,7 +74,7 @@ Soal objektif mendapat penilaian dan penjelasan sesuai jenisnya. Jawaban terbuka
 ## Kontrol membaca dan audio
 
 - Pilih teks untuk membuka kamus atau menyorotnya, lalu simpan catatan bahan.
-- Kartu jawaban hanya menuju soal tanpa mengaktifkan pengetikan. Panel jawaban membaca pada ponsel dapat dibuka dan diubah ukurannya; panel desktop bergulir terpisah.
+- Kartu jawaban hanya menuju soal tanpa mengaktifkan pengetikan. Panel jawaban membaca pada ponsel dapat dibuka dan diubah ukurannya; di desktop, teks bergulir bersama halaman dan panel jawaban bergulir sendiri.
 - Semua kelompok dan soal untuk rekaman saat ini ditampilkan berurutan. Jeda, putar ulang, pencarian posisi audio, dan perpindahan soal mempertahankan pemutaran serta draf.
 - Draf disimpan saat menjawab. Kirim setelah soal terakhir, lanjutkan sesi yang belum selesai, atau konfirmasi **Mulai ulang** untuk menggantinya. Jika penyimpanan gagal, gunakan coba lagi, pemulihan, atau ekspor draf sebelum meninggalkan halaman.
 

@@ -6,7 +6,7 @@ Each language has its own directory: `zh-Hans/`, `zh-Hant/`, `en/`, `ja/`, `ko/`
 
 Package maintenance uses Codex/AI content review, key and placeholder completeness, layout, offline and saved-record checks. Record the actual reviewer and inspected text; historical provenance remains unchanged.
 
-The [2026-10-25 package review](../../docs/history/2026-10-25-locale-review.md) covers every interface string and all eleven teaching packs. Keep workflow explanations aligned with configured automatic sync; do not promise that profile selection or repository confirmation cannot upload. Distinguish signing out from being offline, and revoking access from cancelling an action. Teaching translations must retain uncertainty, conditions and the difference between required, planned and completed actions.
+The 2026-10-25 package review (local evidence: `docs/history/2026-10-25-locale-review.md`) covers every interface string and all eleven teaching packs. Keep workflow explanations aligned with configured automatic sync; do not promise that profile selection or repository confirmation cannot upload. Distinguish signing out from being offline, and revoking access from cancelling an action. Teaching translations must retain uncertainty, conditions and the difference between required, planned and completed actions.
 
 Use named placeholders such as `{count}` and pass values to `messages`. Values are substituted literally, never executed or interpreted as HTML. Keep quotation text, names, URLs, author credits, actual licence names and learner input intact. Dates and relative dates use the browser's `Intl` implementation with the selected locale.
 

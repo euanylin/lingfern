@@ -1,22 +1,22 @@
-# Historical evidence
+# Historical decisions and verification
 
 [Lingfern](https://lingfern.com)
 
-This directory stores dated operations and immutable evidence for Lingfern. The six frozen documents listed below retain the exact pre-consolidation bytes from 2026-10-10. They record past operations, failures, source decisions and limitations; they are not executable requirements or the current setup guide. Local paths/relative links inside them retain their original document locations. Resolve them relative to the original path shown below. Source archives, precise private journals and recovery backups remain in their existing locations.
+These dated records preserve useful decisions, acceptance evidence, incident causes and limits. They are not the current setup guide or authorization to repeat an operation. A historical “pending”, “latest” or “local only” statement describes that record's date.
 
-Current requirements: [AGENTS.md](../../AGENTS.md). Operations: [AGENT_WORKFLOW.md](../../AGENT_WORKFLOW.md). Current state: [DEVELOPMENT_HANDOFF.md](../../DEVELOPMENT_HANDOFF.md). Current issue index: [Issues.md](../../Issues.md).
+Current entry points: [requirements](../../AGENTS.md), [workflow](../../AGENT_WORKFLOW.md), [handoff](../../DEVELOPMENT_HANDOFF.md), [implementation](../../IMPLEMENTATION_STATUS.md), [issues](../../Issues.md). Source snapshots and duplicate journal copies are not maintained as documentation. An old private recovery path is not a promise that the payload still exists.
 
-| Frozen evidence | Original location | SHA-256 |
-|---|---|---|
-| [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) | `DEVELOPMENT_HANDOFF.md` | `587d78bb69e864f62232585e1ca37e7f203513a47b8f00e5ae631591aac3b41d` |
-| [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) | `IMPLEMENTATION_STATUS.md` | `41b0198b1aa129dbcfc3cbaa2bbfe21de981f1e76ce45ea8991f07d84bdb4d04` |
-| [Issues.md](Issues.md) | `Issues.md` | `9c56c47773611123db420d32587c5d5777d415c1c5a7a6c637c7b98eecb56138` |
-| [wikiquote-colab-cli.md](wikiquote-colab-cli.md) | `scripts/wikiquote-colab-cli.md` | `95305c1b3fb69df8c0685c4e1b8ca7d7307b6c20e0679453afa2d07ca7b97985` |
-| [listening-colab.md](listening-colab.md) | `scripts/listening-colab.md` | `de53d94f60a37d397c6b0c812df7241eb85e74bec1bef0225e9a9586d901aad2` |
-| [identity-setup.md](identity-setup.md) | `worker/identity-setup.md` | `4b6be0d2cb4b4d38a6c3795fc60b79b395e81b9ea4ef5f1096b60195c94403af` |
+## Release and policy evidence
 
-Future handoffs update the compact current-state files and append dated evidence here or in the existing private verification scope. Keep original issue IDs, hashes, failed attempts and exact acceptance limits. An old OPEN/Latest/next-action label describes that checkpoint, not a command to resume retired work. Do not use old session names to stop a runtime or old production examples to deploy.
+- Current release and source-sync receipts: `private/verification/release-0.1.153-20261101/`. The preceding 0.1.152 records remain local historical evidence in `2026-11-01-cloudflare-0.1.152.md` and `2026-11-01-github-source-0.1.152-no-ci.md`.
+- Long-term disabled workflows (local evidence: `docs/history/2026-11-01-disabled-github-workflows.md`); the current execution procedure lives in the workflow above.
+- First public launch (local evidence: `docs/history/2026-10-26-first-public-launch.md`), maintainer device/network acceptance (local evidence: `docs/history/2026-10-21-release-gates.md`), real two-device sync (local evidence: `docs/history/2026-10-22-real-two-device-sync.md`), provider/recovery acceptance (local evidence: `docs/history/2026-10-23-release-completion.md`), MCP expiry/revocation (local evidence: `docs/history/2026-10-25-mcp-refresh.md`).
+- GitHub support/process investigation (local evidence: `docs/history/2026-10-31-github-update-process.md`), static-asset failure guard (local evidence: `docs/history/2026-10-25-static-assets-guard.md`).
 
-## 2026-10-17 workspace journal consolidation
+## Recent implementation evidence
 
-The later accumulated root journals are frozen separately in [workspace cleanup archive](2026-10-17-workspace-cleanup/README.md), with original paths, full bytes and SHA-256 manifest. The six2026-10-10 frozen files above remain unchanged. See [cleanup operations](2026-10-17-workspace-cleanup.md) for removed duplicates and retained recovery evidence.
+- Broad local audit and data-format compatibility (local evidence: `docs/history/2026-11-01-full-local-audit.md`).
+- Mobile fern lifecycle (local evidence: `docs/history/2026-11-01-mobile-intro-fern.md`), refresh-title repair (local evidence: `docs/history/2026-11-01-refresh-title-flash.md`), CSS/reference cleanup (local evidence: `docs/history/2026-11-01-code-cleanup.md`).
+- Trackpad root causes (local evidence: `docs/history/2026-11-01-trackpad-recording.md`), Safari/Firefox interaction scope (local evidence: `docs/history/2026-10-31-safari-compatibility.md`), sync responsiveness (local evidence: `docs/history/2026-10-31-sync-review.md`), practical performance work (local evidence: `docs/history/2026-10-31-practical-performance.md`).
+
+Other retained source/teaching/licensing, security, release and bug records remain searchable by topic or date. Preserve exact evidence and failed-attempt limits where they explain a current guard or decision; do not append duplicate full journals to current-state documents.

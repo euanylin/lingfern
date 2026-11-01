@@ -32,7 +32,7 @@ For frontend development, run `npm run dev`. If you also need the local API, run
 | `npm run test:sync` | Isolated Worker, database and synthetic upstream sync failures. |
 | `npm run test:mcp` | Isolated MCP protocol, authorisation and revocation checks. |
 | `npm run test:worker` | Route, cache and security-header checks against the local preview. |
-| `npm run release:files -- /absolute/new/export` | Export and hash-check the source allowlist without uploading it. |
+| `npm run release:files -- --check` | Check the current public-source boundary without copying or uploading it. |
 | `npm run deploy:check` | Validate and bundle the Worker without deploying it. |
 
 Browser tests require the matching Playwright Chromium installation (`npx playwright install chromium`). Some local tests use retained source evidence that is intentionally absent from the public repository; `npm run test:source-evidence` requires that evidence. Do not replace missing originals with invented data or relax the assertions.
@@ -48,6 +48,8 @@ Browser tests require the matching Playwright Chromium installation (`npx playwr
 | `worker/` | Server endpoints and identity migrations. |
 | `content/`, `public/` | Prepared source inputs, distributable resources and their notices. |
 | `tests/` | Isolated unit and browser fixtures. |
+| `scripts/` | Existing preparation, verification, backup and release tooling. |
+| `docs/` | User, development, release and source-evidence documentation. |
 
 Prepared source records are not all eligible learning materials. Preserve source-specific exclusions, rights restrictions and notices. The public repository does not contain private source evidence or personal learning data.
 
@@ -57,7 +59,9 @@ For a bug, describe how to reproduce it and what you expected. For a contributio
 
 Changes to saving, imports, offline resources or sync need checks that existing records survive failures and retries. Changes to text or audio need accurate source credits and the applicable redistribution permission. Do not remove existing rights restrictions to make a check pass.
 
-GitHub Actions runs the portable checks. Production deployment uses the separately dispatched workflow, successful checks on protected `main`, a main-only environment and scoped environment secrets. Fork pull requests cannot access those deployment secrets or enter the production environment. The configuration guard excludes local authentication and prevents routine deployment from changing domain ownership. Publishing source and authorising a deployment are separate maintainer actions; credentials are never part of a source export.
+Routine releases use applicable local tests → direct Cloudflare acceptance → identical-source GitHub synchronization without GitHub CI. The [release runbook](release-runbook.md) owns authorization, exact-source proofs, staged resource verification, recovery and branch protection. Checks and Deploy remain disabled until a later explicit maintainer instruction; a local-only request does not authorize publication. `npm run deploy` is retained Actions-only tooling, not the local-login release command.
+
+Use the [agent workflow](../AGENT_WORKFLOW.md) for check selection and implementation entry points, [identity setup](../worker/identity-setup.md) for optional API configuration, and [project backups](project-backups.md) for source recovery. User profile backups are separate and are described in the [user guide](user-guide.md).
 
 ## Reuse
 

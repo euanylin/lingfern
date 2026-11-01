@@ -976,7 +976,7 @@ Maintainer update (2026-10-16): B1–C2 instructional goals, before-start guidan
 
 All fourteen languages include privacy, errors, authorisation, fern legends, and empty states—not navigation only. Review Traditional Chinese properly, not mechanical conversion. A1 users may choose any interface language; do not assume a Chinese native language. Teaching still includes simple English/examples rather than relying on online AI for beginner support.
 
-Maintainer acceptance update (2026-10-21): physical-device/accessibility use was tried without problems and is removed from pending first-launch acceptance. Preserve keyboard, zoom, touch, named audio controls and relevant UI regressions; no additional standalone device or screen-reader sign-off is required. Attribute the acceptance to the maintainer and retain earlier agent evidence at its actual scope; it does not establish formal WCAG compliance. See [the acceptance record](docs/history/2026-10-21-release-gates.md).
+Maintainer acceptance update (2026-10-21): physical-device/accessibility use was tried without problems and is removed from pending first-launch acceptance. Preserve keyboard, zoom, touch, named audio controls and relevant UI regressions; no additional standalone device or screen-reader sign-off is required. Attribute the acceptance to the maintainer and retain earlier agent evidence at its actual scope; it does not establish formal WCAG compliance. See the acceptance record (local evidence: `docs/history/2026-10-21-release-gates.md`).
 
 ---
 

@@ -34,3 +34,9 @@ __pycache__/
 Signature/
 logo/
 public/logo/
+
+# Local editor/recovery copies; keep real fixtures under their source names.
+*.bak
+*.old
+*.orig
+*~

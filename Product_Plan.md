@@ -47,7 +47,7 @@ The basic product flow is:
 
 **Understand the goal → study the material → obtain necessary support → respond → examine evidence and feedback → practise in a new context → review at intervals.**
 
-The site uses **Cloudflare Workers Static Assets**. One production Worker serves both static pages and necessary endpoints at `https://lingfern.com`. GitHub stores source code; GitHub Actions performs checks, builds, and deployments. Browser-based learning does not retrieve application code, dictionary data, or course audio from GitHub in real time. Static Assets and Worker code can be deployed together, with separate routing for static resources and dynamic endpoints. [4][5]
+The site uses **Cloudflare Workers Static Assets**. One production Worker serves both static pages and necessary endpoints at `https://lingfern.com`. GitHub stores source code. Routine releases complete tests/builds locally, deploy directly to Cloudflare, then synchronize the verified source to GitHub without GitHub CI (maintainer update,2026-11-01). Browser-based learning does not retrieve application code, dictionary data, or course audio from GitHub in real time. Static Assets and Worker code can be deployed together, with separate routing for static resources and dynamic endpoints. [4][5]
 
 Learning data is saved in the browser first. Users may sign in with GitHub to synchronise progress through their own dedicated private repository. External ChatGPT and Claude clients provide optional tutoring; Lingfern does not manage their accounts, models, or usage allowances. Do not add R2 by default. Add a public-content bucket only when public files genuinely do not fit Static Assets.
 
@@ -62,7 +62,7 @@ Maintainer first-release scope update (2026-10-18): GitHub sign-in, GitHub repos
 | Adaptation | Implement learning recommendations and ability checks separately; neither depends on AI |
 | Offline use | Once the application and required materials are downloaded, learning, scoring, review, and saving work without a network |
 | Cross-platform use | Responsive website, installable as a PWA; the same product on desktop and mobile |
-| Deployment | One Cloudflare Worker with Static Assets, published through GitHub Actions; lingfern.com is the single production entry point |
+| Deployment | One Cloudflare Worker with Static Assets, published after local validation through the local Cloudflare login; GitHub source follows acceptance without hosted CI; lingfern.com is the single production entry point |
 | Mainland access | Core learning requires only the main site, not external sign-in, online fonts, source-code sites, or AI; test ordinary mainland China networks separately |
 | GitHub synchronisation | Optional sign-in; merge learning records, favourites, settings, and material exposure across devices |
 | AI interoperability | Copy, download, or share context; import feedback; offer an authorised remote MCP service |
@@ -94,7 +94,7 @@ Initially, the product may recommend “Start with A2 everyday-information tasks
 
 ### 1.5 Mainland China Access Goals and Boundaries
 
-Maintainer acceptance update (2026-10-21): physical-device/accessibility and mainland-network use have been tried by the maintainer without problems; both are removed from pending first-launch gates. No additional device/reader/carrier matrix or standalone sign-off is required. Preserve accessible behaviour, the same-origin/offline requirements below and the separate two-device sync, identity/MCP security and release gates. See [the acceptance record](docs/history/2026-10-21-release-gates.md).
+Maintainer acceptance update (2026-10-21): physical-device/accessibility and mainland-network use have been tried by the maintainer without problems; both are removed from pending first-launch gates. No additional device/reader/carrier matrix or standalone sign-off is required. Preserve accessible behaviour, the same-origin/offline requirements below and the separate two-device sync, identity/MCP security and release gates. See the acceptance record (local evidence: `docs/history/2026-10-21-release-gates.md`).
 
 “Complete core learning without special network-access tools” is an engineering goal, not a verified availability finding. Cloudflare's ordinary global network is not Cloudflare China Network. Cross-border links may affect latency and reliability; do not infer that this deployment must be faster or more stable than another provider. [20]
 
@@ -712,7 +712,7 @@ Manual and browser acceptance covers the current routes and training/record/refe
 | Local structured data | IndexedDB through Dexie |
 | Offline app and public media | Service Worker and Cache Storage using an established Workbox/PWA integration |
 | Tests | TypeScript, Vitest, Playwright, local Worker runtime tests |
-| Source and CI/CD | GitHub repository, GitHub Actions, npm lockfile |
+| Source and release | GitHub repository, local checks/build and direct Cloudflare release, npm lockfile; existing Actions retained as optional tooling |
 | Pages and APIs | One production Cloudflare Worker; frontend served by Workers Static Assets |
 | Production origin | `https://lingfern.com`; relative browser API paths `/api/...` |
 | Limited server-side data | One D1 database: identity, sessions, repository bindings, expiring shares, revocation state |
@@ -1285,22 +1285,15 @@ The live configuration is [wrangler.jsonc](wrangler.jsonc); inspect it rather th
 Unknown API/script/ZIP/MCP paths cannot return homepage HTML 200. Worker-generated headers and static `_headers` are checked separately. Add R2/controlled downloads only for a demonstrated file/scale need. Static requests and dynamic execution have separate quota/billing rules; do not force identity/database logic before every asset or promise automatic fallback after Worker quota exhaustion.[5][25]
 
 
-### 17.3 GitHub Actions
+### 17.3 Local Verification, Cloudflare Release and GitHub Synchronization
 
-Retain two main workflows:
+Maintainer update (2026-11-01): routine updates run applicable tests locally, deploy the exact verified build directly to the existing Cloudflare Worker, accept production, then synchronize the same source to GitHub without running GitHub CI. Use the detailed budget and guarded sequence in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md#local-first-release-and-github-synchronization). Reuse identical-source evidence and build once; do not repeat complete suites for unchanged small changes.
 
-- `checks.yml`: pull requests and branch pushes run types, lint, unit tests, content checks, and necessary browser tests.
-- `deploy.yml`: protected release branch or maintainer-triggered execution builds the same commit, runs release checks, obtains approval, and uses Wrangler to deploy assets and Worker.
+Keep source/build hashes, resource/HTML/header/404 verification before and after promotion, concurrency/ownership checks, old-client/local-data recovery and verified backups. Production-resource, credential, domain, incompatible-data or destructive changes still require their own precise scope. Source synchronization uses a forward commit and `[skip ci]`. Retain main protection; a bounded temporary required-check exception and exact restoration are authorized as part of a routine release, without administrator bypass, force-push or a fabricated CI result.
 
-Release sequence: install from lockfile → validate/package content → test → Vite build → inspect public output and file sizes → perform necessary compatible database migrations → Wrangler deploy → production-domain smoke tests.
+The maintainer explicitly approved long-term disabling of Checks and Deploy on GitHub (2026-11-01). Keep `checks.yml` and `deploy.yml` intact as optional tooling, but do not re-enable, dispatch or rerun them without a later explicit maintainer instruction. Preserve least-privilege permissions, protected secrets, fork isolation and pinned third-party Actions. They do not form an automatic second deployment path competing with the accepted Cloudflare release.[19][28]
 
-Configure `CLOUDFLARE_API_TOKEN` and account identifier in production. Scope deployment tokens to the required account and Worker/binding operations. Prefer one-time maintainer creation of resources and domain binding. Routine deployments must not request a global API key or automatically modify all DNS.
-
-Default workflow permission is `contents: read`, without unrelated repository writes for static-site deployment. Keep production secrets in a protected environment; fork PRs receive none. Pin third-party Actions to verified full commit SHAs. Never check out and execute untrusted PR code in privileged workflows or publish PR artefacts without validation.[19][28]
-
-Builds run on GitHub, but deployed pages do not depend on Actions per user request. CI does not run user sync jobs, persistent MCP services, or per-question generation. Avoid a second auto-deployment pipeline competing to overwrite the same commit.
-
-Content production uses reviewed inputs, not full-site rescraping on every deployment. Add a controlled manual content-publishing command as needed. Without demonstrated repetitive work, do not add a separate content backend or multiple workflow systems.
+Content production uses reviewed inputs, not full-site rescraping on every deployment. Without demonstrated repetitive work, do not add a separate content backend or multiple workflow systems. User sync jobs, persistent MCP services and per-question generation remain outside release validation.
 
 ### 17.4 Fixed Production Domain and Origin
 
@@ -1327,7 +1320,7 @@ Before deployment, inspect existing DNS, email MX/TXT records, certificates, and
 | OAuth state | `OAUTH_KV` configured for the selected library, not primary learning storage |
 | Worker public variables | `GITHUB_CLIENT_ID` and optional verified `GITHUB_APP_SLUG`; production origin is fixed in the current Worker, not an `APP_ORIGIN` setup variable |
 | Worker secrets | Exact names and entry procedure are maintained in `worker/identity-setup.md`; separate token/share encryption keys, no `VITE_*` secrets |
-| CI credentials | Scoped `CLOUDFLARE_API_TOKEN`, account identifier; no token committed or placed in VITE parameters |
+| Optional Actions credentials | Scoped `CLOUDFLARE_API_TOKEN`, account identifier; no token committed or placed in VITE parameters; not required for the routine local-login release path |
 | MCP | Production `/mcp`, actual discovery endpoints, and authorisation callbacks reachable without HTML challenges |
 | R2 | Public-content bucket/binding only if actually adopted; not mandatory at first deployment |
 | Test identities | At least two users, two device types, and their dedicated private test repositories; no genuine learner private data |

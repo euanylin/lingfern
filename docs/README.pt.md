@@ -74,7 +74,7 @@ As perguntas objetivas recebem correção e explicações. As respostas abertas 
 ## Leitura e controlos de áudio
 
 - Selecione texto para consultar o dicionário ou destacar e guarde notas do material.
-- O cartão de respostas localiza perguntas sem ativar a escrita. No telemóvel, o painel de leitura expande-se e muda de tamanho; no computador, os painéis deslocam-se separadamente.
+- O cartão de respostas localiza perguntas sem ativar a escrita. No telemóvel, o painel de leitura expande-se e muda de tamanho; no computador, o texto desloca-se com a página e o painel de respostas separadamente.
 - Todos os grupos e perguntas da gravação atual aparecem por ordem. Pausa, repetição, pesquisa no áudio e mudança de pergunta mantêm reprodução e rascunhos.
 - Os rascunhos são guardados ao responder. Submeta após a última pergunta, retome sessões incompletas ou confirme **Recomeçar** para as substituir. Se a gravação de dados falhar, use nova tentativa, recuperação ou exportação do rascunho antes de sair.
 

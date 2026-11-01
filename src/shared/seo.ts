@@ -1,7 +1,7 @@
 export const siteOrigin = 'https://lingfern.com';
 const description = 'Read and listen to English at your own pace with Lingfern. Practice offline, save your progress, and optionally sync through GitHub.';
 export const publicPages: Readonly<Record<string, { title: string; description: string }>> = {
-  '/introduction': { title: 'Lingfern — Read and listen to English', description },
+  '/introduction': { title: 'Lingfern', description },
   '/library/dictionary': { title: 'English dictionary | Lingfern', description: 'Look up English words with Open English WordNet, explore definitions and save bookmarks. Download the dictionary for offline use.' },
   '/library/ipa': { title: 'IPA pronunciation chart | Lingfern', description: 'Explore the International Phonetic Alphabet with vowel and consonant charts, articulation guides and pronunciation examples.' },
   '/library/grammar': { title: 'English usage dictionary | Lingfern', description: 'Explore English usage with explanations, examples, common pitfalls and related entries. Download the reference for offline use.' },

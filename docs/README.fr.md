@@ -74,7 +74,7 @@ Les questions objectives reçoivent une correction et une explication. Les répo
 ## Lecture et commandes audio
 
 - Sélectionnez un passage pour consulter le dictionnaire ou surligner ; enregistrez des notes sur le support.
-- La grille de réponses localise une question sans activer la saisie. Sur mobile, le panneau de lecture se déplie et se redimensionne ; sur ordinateur, les volets défilent séparément.
+- La grille de réponses localise une question sans activer la saisie. Sur mobile, le panneau de lecture se déplie et se redimensionne ; sur ordinateur, le texte défile avec la page et le panneau de réponses séparément.
 - Toutes les questions et tous les groupes de l’enregistrement courant apparaissent dans l’ordre. Pause, réécoute, déplacement audio et navigation préservent lecture et brouillons.
 - Les brouillons sont enregistrés pendant la réponse. Validez après la dernière question, reprenez une session inachevée ou confirmez **Recommencer** pour la remplacer. En cas d’échec de sauvegarde, utilisez les actions de réessai, récupération ou export du brouillon avant de quitter.
 

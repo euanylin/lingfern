@@ -15,7 +15,7 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
   const [lookups, setLookups] = useState<number | undefined>(() => illustrating ? 0 : shown.get(profileId)?.lookups);
   const [failed, setFailed] = useState(false);
   const [reduced, setReduced] = useState(false);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(!illustrating);
   const { reading, listening, activity } = useMemo(() => ({
     reading: new Set(entries.filter(entry => entry.session.lesson.skill === 'reading').map(entry => entry.session.id)).size,
     listening: new Set(entries.filter(entry => entry.session.lesson.skill === 'listening').map(entry => entry.session.id)).size,
@@ -29,7 +29,7 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
   const frame = useRef(0);
   const svg = useRef<SVGSVGElement>(null);
   useEffect(() => {
-    let inView = true;
+    let inView = !illustrating;
     const update = () => setVisible(inView && !document.hidden);
     const observer = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; update(); });
     observer.observe(svg.current!);
@@ -79,6 +79,10 @@ export function Fern({ profileId, entries, locale, illustrationActive }: { profi
     if (reduced || !visible) {
       cancelAnimationFrame(frame.current); frame.current = 0;
       if (reduced) { motion.current.seconds = 0; motion.current.velocity = { stem: 0, left: 0, right: 0 }; paint(to, 0); }
+      else if (illustrating && !illustrationActive) {
+        // An offscreen card cannot finish reversing before its next entrance.
+        illustration.current.phase = 0; paint(to, 0);
+      }
       return;
     }
     if (frame.current) return;

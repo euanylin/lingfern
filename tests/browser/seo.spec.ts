@@ -86,6 +86,29 @@ test('cached shell restores correct public and private metadata while offline', 
   await expect(page.locator('head link[rel=canonical]')).toHaveCount(0);
 });
 
+test('cached navigation has destination metadata before client scripts can change the title', async ({ page, context }) => {
+  await page.goto(origin + '/settings');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+  for (const offline of [false, true]) {
+    await context.setOffline(offline);
+    for (const path of ['/today', '/settings', '/progress', '/settings/about', '/library/dictionary?q=synthetic-secret-query', '/introduction']) {
+      const response = (await page.goto(origin + path))!;
+      expect(response.fromServiceWorker()).toBe(true);
+      const source = await response.text(), url = new URL(path, origin), seo = pageSeo(url.pathname, url.search);
+      const metadata = await page.evaluate(source => {
+        const document = new DOMParser().parseFromString(source, 'text/html');
+        return { title: document.title, robots: document.querySelector('meta[name=robots]')?.getAttribute('content'), canonical: document.querySelector('link[rel=canonical]')?.getAttribute('href') ?? null };
+      }, source);
+      expect(metadata).toEqual({ title: seo.title, robots: seo.robots, canonical: seo.canonical ?? null });
+      expect(response.headers()['x-robots-tag']).toBe(seo.robots);
+      expect(response.headers()['cache-control']).toBe(seo.robots.startsWith('noindex') ? 'private, no-store' : 'no-cache');
+      expect(source).not.toContain('synthetic-secret-query');
+      await expect(page).toHaveTitle(seo.title);
+    }
+  }
+});
+
 test('protocol responses preserve errors and forbid indexing', async ({ context }) => {
   for (const [path, status] of [['/api/session', 503], ['/mcp', 503], ['/.well-known/oauth-protected-resource/mcp', 503], ['/api/unknown', 404], ['/oauth/missing', 404]] as const) {
     const response = await context.request.get(origin + path);

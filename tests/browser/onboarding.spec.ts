@@ -652,7 +652,39 @@ test('narrow-view trackpad gestures belong to the cards while normal browser Bac
   await page.goBack(); await expect(page).toHaveURL(/\/today$/); await expect(page.getByRole('heading',{name:'今日',exact:true})).toBeVisible();
 });
 
-test('the same fern reverses its growth when Today leaves and resumes on return', async ({ page }) => {
+test('mobile introduction waits for its first visible observation before growing the fern', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => {
+    const NativeObserver = window.IntersectionObserver;
+    window.IntersectionObserver = class extends NativeObserver {
+      constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+        let held = true;
+        super((entries, observer) => {
+          if (held && entries.some(entry => entry.target.matches('.welcome .fern'))) {
+            (window as unknown as { revealIntroFern: () => void }).revealIntroFern = () => { held = false; callback(entries, observer); };
+          } else callback(entries, observer);
+        }, options);
+      }
+    };
+  });
+  await page.goto('/introduction');
+  const fern = page.locator('.welcome .fern');
+  await page.waitForFunction(() => typeof (window as unknown as { revealIntroFern?: () => void }).revealIntroFern === 'function');
+  await page.waitForTimeout(1800);
+  await expect(fern).toHaveAttribute('data-growth', '0');
+  await expect(fern).toHaveAttribute('data-motion', 'paused');
+  await page.evaluate(() => (window as unknown as { revealIntroFern: () => void }).revealIntroFern());
+  const values = await fern.evaluate(el => new Promise<number[]>(resolve => {
+    const values: number[] = [], start = performance.now();
+    const sample = () => { values.push(Number(el.getAttribute('data-growth'))); if (performance.now() - start < 1800) requestAnimationFrame(sample); else resolve(values); }; requestAnimationFrame(sample);
+  }));
+  expect(values[0]).toBeLessThan(.01);
+  expect(new Set(values).size).toBeGreaterThan(30);
+  expect(values.at(-1)).toBeGreaterThan(.3);
+});
+
+for (const width of [1440, 390]) test(`the same fern reverses its growth when Today leaves and resumes on return: ${width}`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 844 });
   await page.goto('/'); await expect(page.locator('.welcome')).toBeVisible();
   const fern = page.locator('.welcome .fern');
   await expect.poll(() => fern.getAttribute('data-growth').then(Number)).toBeGreaterThan(.3);
@@ -662,13 +694,13 @@ test('the same fern reverses its growth when Today leaves and resumes on return'
     const values: number[] = [], start = performance.now();
     const sample = () => { values.push(Number(el.getAttribute('data-growth'))); if (performance.now() - start < 2200) requestAnimationFrame(sample); else resolve(values); }; requestAnimationFrame(sample);
   }));
+  await test.info().attach('reverse-fern-growth', { body: JSON.stringify(values), contentType: 'application/json' });
   const descending = values.slice(values.findIndex((v, i) => i > 0 && v < values[i - 1]));
   expect(descending.length).toBeGreaterThan(10); expect(descending.at(-1)).toBe(0);
   expect(descending.every((v, i) => i === 0 || v <= descending[i - 1] + .000001)).toBe(true);
   expect(await fern.evaluate(el => el === (window as unknown as { introFern: Element }).introFern)).toBe(true);
   await page.locator('.welcome-dots button').nth(0).click();
   await expect.poll(() => fern.getAttribute('data-growth').then(Number)).toBeGreaterThan(.3);
-  await test.info().attach('reverse-fern-growth', { body: JSON.stringify(values), contentType: 'application/json' });
 });
 
 test.describe('native touch carousel', () => {

@@ -74,7 +74,7 @@ Objective answers receive task-specific scores and explanations. Open responses 
 ## Reading and listening controls
 
 - Read the passage, select text for dictionary lookup or highlighting, and save material notes.
-- Use the answer card to locate questions without opening input. Mobile reading has an expandable, resizable answer panel; desktop panes scroll independently.
+- Use the answer card to locate questions without opening input. Mobile reading has an expandable, resizable answer panel; on desktop, the passage scrolls with the page and the answer panel scrolls separately.
 - Listening shows every group/question for the current recording in order. Pause, replay or seek while answering; navigating questions retains playback and drafts.
 - Drafts save as you answer. Submit after the final question, resume unfinished sessions, or confirm **Restart** to replace a session. If saving fails, use the displayed retry/recovery action or draft export before leaving.
 
