@@ -28,7 +28,6 @@ try {
   await page.goto(origin + '/start');
   for (let step = 0; step < 3; step++) await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
   for (const skill of ['听力', '阅读']) await page.getByRole('group', { name: skill, exact: true }).getByLabel(new RegExp('^' + (skill === '听力' ? starting : 'B2') + ' ·')).check();
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
   await expect(page.locator('.task-catalogue-list > .task-row')).toHaveCount(0);
   await page.evaluate(() => { const original = crypto.getRandomValues.bind(crypto); crypto.getRandomValues = values => values instanceof Uint32Array && values.length === 2 ? (values.fill(0), values) : original(values); });

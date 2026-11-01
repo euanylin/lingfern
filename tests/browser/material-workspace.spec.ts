@@ -29,6 +29,33 @@ const facts = ['butterflies', 'containers', 'vegetables', 'waterfalls', 'archite
 for (const material of expanded.materials) material.blocks[0].text += '\n\n' + facts.map((word, index) => `The ${word} appeared in the local report on day ${index + 1}. This separate observation has its own careful description and clear context.`).join('\n\n');
 const worksheet = expanded;
 
+test('a delayed assistance refresh cannot restore the previous material after navigation', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const { id, lesson } = await start(page, worksheet);
+  await page.evaluate(async id => {
+    const data = await import('/src/data/db.ts' as string);
+    const get = data.sessions.get.bind(data.sessions);
+    data.sessions.get = (...args: unknown[]) => {
+      if (args[0] !== id || data.db.constructor.currentTransaction) return get(...args);
+      data.sessions.get = get;
+      return get(...args).then((snapshot: unknown) => new Promise(resolve => {
+        Reflect.set(window, 'releaseAssistanceRefresh', () => resolve(snapshot));
+      }));
+    };
+  }, id);
+  await page.locator('.workspace-question .hint').first().click();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releaseAssistanceRefresh'))).toBe('function');
+  await page.locator('.workspace-questions form > button').click();
+  const currentQuestion = page.locator('.workspace-question h2').first();
+  await expect(currentQuestion).toContainText(lesson.materials[1].questions[0].prompt);
+  const savedPosition = await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).position, id);
+  expect(savedPosition).toBeGreaterThan(0);
+  await page.evaluate(() => Reflect.get(window, 'releaseAssistanceRefresh')());
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await expect(currentQuestion).toContainText(lesson.materials[1].questions[0].prompt);
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).position, id)).toBe(savedPosition);
+});
+
 test.describe('native reading sheet scrolling', () => {
   test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
   test('touch scrolling reaches later questions without moving the article', async ({ page, context }) => {

@@ -129,14 +129,13 @@
       "Langue de l’interface",
       "Pour quoi souhaitez-vous utiliser l’anglais ?",
       "Choisir vos thèmes préférés",
-      "Vos points de départ en lecture et en écoute",
-      "Essayer une courte activité"
+      "Vos points de départ en lecture et en écoute"
     ],
     "back": "Retour",
     "next": "Enregistrer et continuer",
     "skip": "Passer cette étape",
     "today": "Enregistrer et aller à Aujourd’hui",
-    "step": "Étape {n} sur 5",
+    "step": "Étape {n} sur 4",
     "error": "Enregistrement impossible. Réessayez.",
     "reading": "Lecture",
     "listening": "Écoute",
@@ -176,10 +175,7 @@
       "Points de vue et arguments dans des contenus plus longs",
       "Sens implicites dans des contenus complexes",
       "Sens précis et nuances de ton dans un discours étendu"
-    ],
-    "read": "Essayer la lecture",
-    "listen": "Essayer l’écoute",
-    "unavailable": "L’audio d’écoute n’est pas installé hors ligne."
+    ]
   },
   "githubIdentity": {
     "title": "Identité GitHub",

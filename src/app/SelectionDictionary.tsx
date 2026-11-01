@@ -77,16 +77,18 @@ export function SelectionDictionary({ selected, locale, profileId, online, defau
     finally { if (token === request.current) setLoading(false); }
   }
 
-  const width = Math.min(380, window.innerWidth - 24);
-  const left = Math.max(12, Math.min(selected.rect.left, window.innerWidth - width - 12));
+  const viewport = window.visualViewport;
+  const viewportLeft = viewport?.offsetLeft ?? 0, viewportTop = viewport?.offsetTop ?? 0;
+  const viewportWidth = viewport?.width ?? window.innerWidth, viewportBottom = viewportTop + (viewport?.height ?? window.innerHeight);
+  // Pinch zoom pans a smaller visible viewport inside the layout viewport.
+  const width = Math.min(380, viewportWidth - 24);
+  const left = Math.max(viewportLeft + 12, Math.min(selected.rect.left, viewportLeft + viewportWidth - width - 12));
   const tip = Math.max(24, Math.min(width - 24, (selected.rect.left + selected.rect.right) / 2 - left - 7));
-  const below = window.innerHeight - selected.rect.bottom >= selected.rect.top;
-  const availableHeight = Math.max(100, (below ? window.innerHeight - selected.rect.bottom : selected.rect.top) - 26);
+  const below = viewportBottom - selected.rect.bottom >= selected.rect.top - viewportTop;
+  const availableHeight = Math.max(100, (below ? viewportBottom - selected.rect.bottom : selected.rect.top - viewportTop) - 26);
   const popupStyle: CSSProperties & { '--lookup-tip-x': string; '--lookup-height': string } = { left, width, '--lookup-height': `${availableHeight}px`, '--lookup-tip-x': `${tip}px`, ...(below ? { top: selected.rect.bottom + 14 } : { bottom: window.innerHeight - selected.rect.top + 14 }) };
-  const viewportTop = window.visualViewport?.offsetTop ?? 0;
-  const viewportBottom = viewportTop + (window.visualViewport?.height ?? window.innerHeight);
   const menuBelow = viewportBottom - selected.rect.bottom >= menuSize.height + 10;
-  return <div ref={root} className={open ? 'selection-dictionary' : 'selection-dictionary-menu'} data-placement={below ? 'below' : 'above'} data-input={selected.input} style={open ? popupStyle : { left: Math.max(8, Math.min(selected.x - menuSize.width / 2, window.innerWidth - menuSize.width - 8)), top: Math.max(viewportTop + 8, Math.min(menuBelow ? selected.rect.bottom + 10 : selected.rect.top - menuSize.height - 10, viewportBottom - menuSize.height - 8)), maxWidth: 'calc(100vw - 16px)', maxHeight: `${Math.max(44, viewportBottom - viewportTop - 16)}px`, overflowY: 'auto' }}>
+  return <div ref={root} className={open ? 'selection-dictionary' : 'selection-dictionary-menu'} data-placement={below ? 'below' : 'above'} data-input={selected.input} style={open ? popupStyle : { left: Math.max(viewportLeft + 8, Math.min(selected.x - menuSize.width / 2, viewportLeft + viewportWidth - menuSize.width - 8)), top: Math.max(viewportTop + 8, Math.min(menuBelow ? selected.rect.bottom + 10 : selected.rect.top - menuSize.height - 10, viewportBottom - menuSize.height - 8)), maxWidth: `${viewportWidth - 16}px`, maxHeight: `${Math.max(44, viewportBottom - viewportTop - 16)}px`, overflowY: 'auto' }}>
     {!open ? <>{lookupEnabled && <button type="button" onPointerDown={event => event.preventDefault()} onClick={() => void lookup(selected.term)}>{t.lookup}</button>}{actions}</> : <section role="dialog" aria-modal="false" aria-label={`${t.lookup}: ${term}`}>
       <div className="selection-dictionary-heading"><h2 lang="en">{term}</h2><button type="button" aria-label={t.close} onClick={() => dismiss(true)}>×</button></div>
       <div className="selection-dictionary-body" aria-live="polite">

@@ -129,14 +129,13 @@
       "Bahasa antarmuka",
       "Untuk apa Anda ingin menggunakan bahasa Inggris?",
       "Pilih topik yang Anda sukai",
-      "Titik awal membaca dan menyimak pilihan Anda",
-      "Coba tugas singkat"
+      "Titik awal membaca dan menyimak pilihan Anda"
     ],
     "back": "Kembali",
     "next": "Simpan dan lanjutkan",
     "skip": "Lewati langkah ini",
     "today": "Simpan dan buka Hari Ini",
-    "step": "Langkah {n} dari 5",
+    "step": "Langkah {n} dari 4",
     "error": "Gagal menyimpan. Coba lagi.",
     "reading": "Membaca",
     "listening": "Menyimak",
@@ -176,10 +175,7 @@
       "Pandangan dan argumen dalam konten panjang",
       "Makna tersirat dalam konten kompleks",
       "Makna tepat dan nada halus dalam wacana panjang"
-    ],
-    "read": "Coba membaca",
-    "listen": "Coba menyimak",
-    "unavailable": "Audio menyimak belum terpasang luring."
+    ]
   },
   "githubIdentity": {
     "title": "Identitas GitHub",

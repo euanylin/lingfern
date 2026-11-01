@@ -175,7 +175,8 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
     if (url.pathname === '/api/sync/batches') {
       const value = await input(request, syncUploadSchema, syncByteLimit + 4096);
       let payload: Awaited<ReturnType<typeof validateSyncBatch>>;
-      try { payload = await validateSyncBatch(value.batch); } catch { throw new ApiError('SYNC_CAPACITY', 413); }
+      try { payload = await validateSyncBatch(value.batch); }
+      catch (error) { const capacity = error instanceof Error && error.message === 'SYNC_CAPACITY'; throw new ApiError(capacity ? 'SYNC_CAPACITY' : 'SYNC_INTEGRITY', capacity ? 413 : 400); }
       if (payload.hash !== value.hash) throw new ApiError('SYNC_INTEGRITY', 400);
       const { binding, allowed } = await syncBinding(request, env, session, payload.batch.profileId, credential.encrypted);
       if (value.scope.accountId !== session.id || value.scope.profileId !== payload.batch.profileId || value.scope.bindingVersion !== binding.binding_version) throw new ApiError('AUTHORISATION_CHANGED', 409);

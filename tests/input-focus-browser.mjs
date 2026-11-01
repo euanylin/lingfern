@@ -6,7 +6,6 @@ try {
  const page=await browser.newPage({viewport:{width:1440,height:900}});
  await page.goto('http://127.0.0.1:8787/start');
  for(let i=0;i<3;i++)await page.getByRole('button',{name:'跳过这一步',exact:true}).click();
- await page.getByRole('button',{name:'保存并继续',exact:true}).click();
  await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
  const checks=[];
  for(const locale of ['zh-Hans','zh-Hant','en']) {

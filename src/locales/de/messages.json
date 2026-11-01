@@ -129,14 +129,13 @@
       "Oberflächensprache",
       "Wofür möchten Sie Englisch nutzen?",
       "Interessante Themen wählen",
-      "Gewählte Startpunkte für Lesen und Hören",
-      "Kurze Aufgabe versuchen"
+      "Gewählte Startpunkte für Lesen und Hören"
     ],
     "back": "Zurück",
     "next": "Speichern und weiter",
     "skip": "Schritt überspringen",
     "today": "Speichern und zu Heute",
-    "step": "Schritt {n} von 5",
+    "step": "Schritt {n} von 4",
     "error": "Speichern fehlgeschlagen. Erneut versuchen.",
     "reading": "Lesen",
     "listening": "Hören",
@@ -176,10 +175,7 @@
       "Standpunkte und Argumente in längeren Inhalten",
       "Implizite Bedeutungen in komplexen Inhalten",
       "Präzise Bedeutung und feiner Ton in längeren Texten"
-    ],
-    "read": "Lesen ausprobieren",
-    "listen": "Hören ausprobieren",
-    "unavailable": "Höraudio ist nicht offline installiert."
+    ]
   },
   "githubIdentity": {
     "title": "GitHub-Identität",

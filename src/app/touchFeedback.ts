@@ -7,15 +7,18 @@ export function touchFeedback() {
     else { target?.removeAttribute('data-touch-active'); target = undefined; }
   });
   const cancel = () => { pointer = undefined; state.cancel(); };
+  const visibility = () => { if (document.hidden) cancel(); };
   const keyboard = (event: KeyboardEvent) => {
     if (event.isComposing || ['Shift', 'Control', 'Alt', 'Meta'].includes(event.key)) return;
     // Soft-keyboard input must not activate keyboard-navigation focus rings.
     if (event.target instanceof Element && event.target.closest('input,textarea,[contenteditable]:not([contenteditable=false])') && !['Tab', 'Escape'].includes(event.key)) return;
     delete document.documentElement.dataset.touchInput;
+    delete document.documentElement.dataset.pointerInput;
   };
   const start = (event: PointerEvent) => {
     cancel();
     if (event.isPrimary) {
+      document.documentElement.dataset.pointerInput = '';
       if (['touch', 'pen'].includes(event.pointerType)) document.documentElement.dataset.touchInput = '';
       else delete document.documentElement.dataset.touchInput;
     }
@@ -37,9 +40,11 @@ export function touchFeedback() {
   document.addEventListener('scroll', cancel, true);
   window.addEventListener('blur', cancel);
   window.addEventListener('pagehide', cancel);
+  document.addEventListener('visibilitychange', visibility);
   return () => {
     cancel(); state.dispose();
     delete document.documentElement.dataset.touchInput;
+    delete document.documentElement.dataset.pointerInput;
     document.removeEventListener('pointerdown', start, true);
     document.removeEventListener('keydown', keyboard, true);
     document.removeEventListener('pointermove', move);
@@ -48,5 +53,6 @@ export function touchFeedback() {
     document.removeEventListener('scroll', cancel, true);
     window.removeEventListener('blur', cancel);
     window.removeEventListener('pagehide', cancel);
+    document.removeEventListener('visibilitychange', visibility);
   };
 }

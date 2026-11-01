@@ -1,4 +1,5 @@
 import type Dexie from 'dexie';
+import { maxSyncCounter, type SyncCounter } from '../shared/syncCounter';
 import { db } from './db';
 import { profileIdSchema } from '../shared/repository';
 import { lookupHistorySchema, lookupRecordSchema, type LookupRecord as Lookup } from '../shared/lookupHistory';
@@ -41,8 +42,8 @@ export async function recordLookup(profileId: string, kind: Lookup['kind'], term
 }
 
 function observedLookups(events: SyncEvent[]) {
-  const seen = new Map<string, number>();
-  for (const event of events) if (event.type === 'lookup') seen.set(event.deviceId, Math.max(seen.get(event.deviceId) ?? 0, event.counter));
+  const seen = new Map<string, SyncCounter>();
+  for (const event of events) if (event.type === 'lookup') seen.set(event.deviceId, maxSyncCounter(seen.get(event.deviceId) ?? 0, event.counter));
   return Object.fromEntries(seen);
 }
 

@@ -1,3 +1,4 @@
+import { compareSyncCounters, maxSyncCounter, syncCounterSchema } from '../shared/syncCounter';
 import { assistanceSchema, workspaceSchema, validateWorkspace } from '../shared/practiceWorkspace';
 import { readingAnnotationsSchema, validateReadingAnnotations } from '../shared/readingAnnotations';
 import { purgeDeletedRecords } from './deletion';
@@ -8,7 +9,7 @@ import { unpackZip } from './zip';
 import { z } from 'zod';
 import { lessonSchema, ruleHashesSchema, questions, validateAnswer, selfAssessmentSchema, validateSelfAssessment } from '../shared/content';
 import { attempts, bootstrapSyncEvents, db, exposures, feedbackNotes, memories, profiles, sessions, settings, type Attempt, type FeedbackNote, type Memory, type Session } from './db';
-import { syncBatchSchema, syncEventSchema, validateSyncBatch, canonicalJson } from '../shared/sync';
+import { syncBatchSchema, syncEventSchema, validateSyncBatch, canonicalJson, hasExtendedSyncCounter, assertSyncObservation } from '../shared/sync';
 import { profileIdSchema } from '../shared/repository';
 import { syncAccountSchema } from '../shared/auth';
 import type { StoredEvent, StoredBatch, Clock } from './sync';
@@ -27,13 +28,13 @@ const decoder = new TextDecoder('utf-8', { fatal: true });
 const sessionSchema = z.object({ id: z.string().min(1).max(80), syncSessionId: z.string().min(1).max(80).optional(), profileId: z.string().min(1).max(80), lesson: lessonSchema, ruleHashes: ruleHashesSchema.optional(), itemHashes: z.record(z.string().min(1).max(80), z.string().regex(/^[a-f0-9]{64}$/)).optional(), contentHash: z.string().regex(/^[a-f0-9]{64}$/), recordsDeleted: z.literal(true).optional(), position: z.number().int().nonnegative(), status: z.enum(['active', 'completed', 'ended']), startedAt: z.iso.datetime(), checkDeviceId: z.uuid().optional(), checkGroupId: z.uuid().optional(), practiceGroupId: z.uuid().optional(), checkStartedAt: z.iso.datetime().optional(), checkEndedAt: z.iso.datetime().optional(), workspace: workspaceSchema.optional(), readingAnnotations: readingAnnotationsSchema.optional(), draft: z.union([z.number(), z.string().max(4000), z.array(z.string())]).optional(), assistance: assistanceSchema, leaseUntil: z.number().nonnegative() }).strict();
 const attemptSchema = z.object({ id: z.string().min(1).max(160), syncRecordId: z.string().min(1).max(160).optional(), sessionId: z.string().min(1).max(80), profileId: z.string().min(1).max(80), questionId: z.string().min(1).max(80), rootId: z.string().min(1).max(160), answer: z.union([z.number(), z.string().max(4000), z.array(z.string())]), correct: z.boolean().nullable(), selfAssessment: selfAssessmentSchema.optional(), rule: z.string().min(1).max(120), assistance: assistanceSchema, submittedAt: z.iso.datetime() }).strict();
 const fileSchema = z.object({ bytes: z.number().int().nonnegative().max(MAX_UNPACKED), sha256: z.string().regex(/^[a-f0-9]{64}$/), count: z.number().int().nonnegative().max(MAX_ROWS) }).strict();
-const manifestSchema = z.object({ format: z.literal('lingfern-local-backup'), version: z.literal(6), createdAt: z.iso.datetime(), sourceProfileId: z.string().min(1).max(80), profileName: z.string().min(1).max(MAX_PROFILE_NAME).default('Local profile'), nameIsCustom: z.literal(true).optional(), preferences: preferencesSchema.optional(), files: z.record(z.string(), fileSchema) }).strict();
+const manifestSchema = z.object({ format: z.literal('lingfern-local-backup'), version: z.union([z.literal(6), z.literal(7)]), createdAt: z.iso.datetime(), sourceProfileId: z.string().min(1).max(80), profileName: z.string().min(1).max(MAX_PROFILE_NAME).default('Local profile'), nameIsCustom: z.literal(true).optional(), preferences: preferencesSchema.optional(), files: z.record(z.string(), fileSchema) }).strict();
 const memorySchema = z.object({ profileId: z.string().min(1).max(80), memoryId: z.string().min(1).max(160), term: z.string().min(1).max(80), definition: z.string().min(1).max(2000), savedAt: z.iso.datetime() }).strict();
 const feedbackNoteSchema = z.object({ id: z.uuid(), profileId: z.string().min(1).max(80), attemptId: z.string().min(1).max(160), kind: z.enum(['text', 'structured']), content: z.string().min(1).max(64 * 1024), unknownReferences: z.boolean(), createdAt: z.iso.datetime() }).strict();
 
 const syncEventRecordSchema = z.object({ profileId: profileIdSchema, batchId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/).optional(), event: syncEventSchema }).strict().transform(({ profileId, batchId, event }) => ({ ...event, profileId, ...(batchId ? { batchId } : {}) }));
 const syncBatchRecordSchema = z.object({ profileId: profileIdSchema, deviceId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), batchId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), hash: z.string().regex(/^[a-f0-9]{64}$/), batch: syncBatchSchema, state: z.enum(['pending', 'confirmed', 'received', 'conflict']) }).strict();
-const syncClockSchema = z.object({ profileId: profileIdSchema, deviceId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), counter: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER), logicalProfileId: profileIdSchema.optional(), localRevision: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER).optional() }).strict();
+const syncClockSchema = z.object({ profileId: profileIdSchema, deviceId: z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/), counter: syncCounterSchema, logicalProfileId: profileIdSchema.optional(), localRevision: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER).optional() }).strict();
 const syncConflictSchema = z.object({ profileId: profileIdSchema, hash: z.string().regex(/^[a-f0-9]{64}$/), batch: syncBatchSchema, reason: z.literal('SYNC_BATCH_CONFLICT') }).strict();
 type SyncConflict = z.infer<typeof syncConflictSchema>;
 
@@ -81,7 +82,8 @@ export async function exportBackup(profileId: string, profileName?: string) {
   };
   if (snapshot.sessions.some(session => session.lesson.materials.some(material => isGutenbergSource(material.credit?.sourceUrl)))) payload[licenceName] = encoder.encode(gutenbergTerms);
   const fileEntries = await Promise.all(Object.entries(payload).map(async ([name, bytes]) => [name, { bytes: bytes.length, sha256: await sha256(bytes), count: name === licenceName ? 1 : snapshot[name.slice(0, -5) as keyof typeof snapshot].length }] as const));
-  const manifest = { format: 'lingfern-local-backup', version: 6, createdAt: new Date().toISOString(), sourceProfileId: profileId, profileName: selectedName ?? backupProfileName(profile?.name ?? 'Local profile'), nameIsCustom: (selectedName === undefined ? profile?.nameIsCustom : selectedName.includes('Local profile')) || undefined, preferences: profile?.preferences, files: Object.fromEntries(fileEntries) };
+  const extended = snapshot.syncClocks.some((clock: Clock) => typeof clock.counter === 'string') || snapshot.syncEvents.some(({ event }) => hasExtendedSyncCounter(event)) || [snapshot.syncBatches, snapshot.syncConflicts].some(rows => rows.some((row: { batch: StoredBatch['batch'] }) => row.batch.formatVersion === 2));
+  const manifest = { format: 'lingfern-local-backup', version: extended ? 7 : 6, createdAt: new Date().toISOString(), sourceProfileId: profileId, profileName: selectedName ?? backupProfileName(profile?.name ?? 'Local profile'), nameIsCustom: (selectedName === undefined ? profile?.nameIsCustom : selectedName.includes('Local profile')) || undefined, preferences: profile?.preferences, files: Object.fromEntries(fileEntries) };
   const files = { 'manifest.json': encoder.encode(JSON.stringify(manifest)), ...payload };
   if (Object.values(files).reduce((total, bytes) => total + bytes.length, 0) > MAX_UNPACKED) throw new Error('BACKUP_SIZE');
   const zip = zipSync(files, { level: 6 });
@@ -93,6 +95,13 @@ export type BackupInspection = {
   summary: { preferences?: Preferences; createdAt: string; profileName: string; nameIsCustom?: true; sourceProfileId: string; sessions: number; attempts: number; exposures: number; memories: number; feedbackNotes: number; bytes: number };
   records: { sessions: Session[]; attempts: Attempt[]; exposures: Exposure[]; memories: Memory[]; feedbackNotes: FeedbackNote[]; syncEvents: StoredEvent[]; syncBatches: StoredBatch[]; syncClocks: Clock[]; syncConflicts: SyncConflict[] };
 };
+
+function assertBackupObservations(records: Pick<BackupInspection['records'], 'syncEvents' | 'syncBatches' | 'syncConflicts'>) {
+  for (const event of records.syncEvents) assertSyncObservation(event);
+  for (const batches of [records.syncBatches, records.syncConflicts]) for (const row of batches) {
+    for (const event of row.batch.events) assertSyncObservation(event);
+  }
+}
 
 export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection> {
   const files = unpackZip(bytes, { maxCompressed: MAX_ZIP, maxExpanded: MAX_UNPACKED, maxFiles: optionalNames.length, validCounts: [currentNames.length, optionalNames.length], allowName: name => optionalNames.some(allowed => allowed === name), error: 'BACKUP' });
@@ -125,6 +134,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
   const [savedSyncEvents, savedSyncBatches, savedSyncClocks, savedSyncConflicts] = await Promise.all([
     read('syncEvents.json', syncEventRecordSchema), read('syncBatches.json', syncBatchRecordSchema), read('syncClocks.json', syncClockSchema), read('syncConflicts.json', syncConflictSchema),
   ]);
+  if (manifest.version === 6 && (savedSyncClocks.some(clock => typeof clock.counter === 'string') || savedSyncEvents.some(hasExtendedSyncCounter) || [...savedSyncBatches, ...savedSyncConflicts].some(row => row.batch.formatVersion === 2))) throw new Error('BACKUP_REFERENCE');
   if (savedSyncClocks.length > 1 || [...savedSyncEvents, ...savedSyncBatches, ...savedSyncClocks, ...savedSyncConflicts].some(row => row.profileId !== manifest.sourceProfileId)) throw new Error('BACKUP_REFERENCE');
   const logicalProfileId = savedSyncClocks[0]?.logicalProfileId ?? manifest.sourceProfileId;
   if (new Set(savedSyncEvents.map(event => event.id)).size !== savedSyncEvents.length || new Set(savedSyncBatches.map(row => `${row.deviceId}/${row.batchId}`)).size !== savedSyncBatches.length || new Set(savedSyncConflicts.map(row => row.hash)).size !== savedSyncConflicts.length) throw new Error('BACKUP_DUPLICATE');
@@ -139,7 +149,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
     }
   }
   for (const event of savedSyncEvents) if (event.batchId && !savedSyncBatches.some(row => row.deviceId === event.deviceId && row.batchId === event.batchId && row.batch.events.some(item => item.id === event.id))) throw new Error('BACKUP_REFERENCE');
-  if (savedSyncEvents.length && (!savedSyncClocks.length || savedSyncClocks[0].counter < Math.max(...savedSyncEvents.map(event => event.counter)))) throw new Error('BACKUP_REFERENCE');
+  if (savedSyncEvents.length && (!savedSyncClocks.length || compareSyncCounters(savedSyncClocks[0].counter, savedSyncEvents.reduce((counter, event) => maxSyncCounter(counter, event.counter), 0 as Clock['counter'])) < 0)) throw new Error('BACKUP_REFERENCE');
   const byId = new Map(savedSessions.map(session => [session.id, session]));
   const checkGroups = new Map<string, Session[]>(), practiceGroups = new Map<string, Session[]>();
   if (byId.size !== savedSessions.length || new Set(savedAttempts.map(attempt => attempt.id)).size !== savedAttempts.length || new Set(savedExposures.map(exposure => exposure.rootId)).size !== savedExposures.length) throw new Error('BACKUP_DUPLICATE');
@@ -197,6 +207,7 @@ export async function inspectBackup(bytes: Uint8Array): Promise<BackupInspection
   const memoryIds = new Set(savedMemories.map(memory => memory.memoryId));
   if (memoryIds.size !== savedMemories.length) throw new Error('BACKUP_DUPLICATE');
   if (savedMemories.some(memory => memory.profileId !== manifest.sourceProfileId)) throw new Error('BACKUP_REFERENCE');
+  assertBackupObservations({ syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncConflicts: savedSyncConflicts });
   return { summary: { preferences: manifest.preferences, createdAt: manifest.createdAt, profileName: manifest.profileName, ...(manifest.nameIsCustom ? { nameIsCustom: true } : {}), sourceProfileId: manifest.sourceProfileId, sessions: savedSessions.length, attempts: savedAttempts.length, exposures: savedExposures.length, memories: savedMemories.length, feedbackNotes: savedFeedback.length, bytes: bytes.length }, records: { sessions: savedSessions, attempts: savedAttempts, exposures: savedExposures, memories: savedMemories, feedbackNotes: savedFeedback, syncEvents: savedSyncEvents, syncBatches: savedSyncBatches, syncClocks: savedSyncClocks, syncConflicts: savedSyncConflicts } };
 }
 
@@ -217,6 +228,7 @@ export async function importBackup(inspection: BackupInspection, accountId?: num
   await db.transaction('rw', [profiles, sessions, attempts, exposures, memories, feedbackNotes, settings, db.table('syncEvents'), db.table('syncBatches'), db.table('syncClocks'), db.table('syncConflicts')], async () => {
     signal?.throwIfAborted();
     if (expectedActiveProfile !== undefined && (((await settings.get('activeProfile'))?.value ?? null) !== expectedActiveProfile || expectedActiveProfile !== null && !await profiles.get(expectedActiveProfile))) throw new Error('SYNC_SCOPE_CHANGED');
+    assertBackupObservations(inspection.records);
     await profiles.add({ id, preferences: inspection.summary.preferences, name: inspection.summary.profileName, ...(inspection.summary.nameIsCustom ? { nameIsCustom: true } : {}), createdAt: new Date().toISOString() });
     await sessions.bulkAdd(importedSessions);
     await attempts.bulkAdd(importedAttempts);

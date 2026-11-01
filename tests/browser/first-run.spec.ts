@@ -1,4 +1,3 @@
-import { openSnapshot, completeWorkspace } from './workspace';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 import { languagePacks } from '../../src/locales';
@@ -13,7 +12,7 @@ test('first site visit opens starting choices once, then Settings owns the edit 
   await expect(page.getByRole('heading', { name: '你想用英语做什么？' })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('heading', { name: '你想用英语做什么？' })).toBeVisible();
-  for (let index = 0; index < 4; index++) await page.getByRole('button', { name: '跳过这一步' }).click();
+  for (let index = 0; index < 3; index++) await page.getByRole('button', { name: '跳过这一步' }).click();
   await expect(page).toHaveURL(/\/today$/);
   await expect(page.getByRole('link', { name: /调整起点与兴趣/ })).toHaveCount(0);
   await page.goto('/');
@@ -50,16 +49,16 @@ test('first run saves optional choices, resumes and changes separate task recomm
       return put.apply(this, args);
     };
   });
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
+  await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('未能保存');
   await expect(page.getByRole('heading', { name: '你选择的阅读与听力起点' })).toBeVisible();
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '试一份简短任务' })).toBeVisible();
+  await expect(page).toHaveURL(/\/start$/);
   await page.getByRole('button', { name: '上一步' }).click();
+  await expect(page.getByRole('checkbox', { name: '科学', exact: true })).toBeChecked();
+  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await expect(page.getByRole('group', { name: '阅读', exact: true }).getByRole('radio', { name: /^C2/ })).toBeChecked();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: 'output/playwright/first-run-320-light-zh-Hans-step4.png' });
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('button', { name: '保存并前往今日' }).click();
   await expect(page).toHaveURL(/\/today$/);
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
@@ -70,23 +69,62 @@ test('first run saves optional choices, resumes and changes separate task recomm
   expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
 });
 
-test('skipped choices stay unspecified and the English demonstration starts a real task', async ({ page }) => {
+test('skipped choices stay unspecified and the fourth English step finishes on Today', async ({ page }) => {
   await page.goto('/start');
   await selectPicker(page, '界面语言', 'en');
   for (let index = 0; index < 4; index++) await page.getByRole('button', { name: 'Skip this step' }).click();
-  await expect(page.getByRole('heading', { name: 'Try a short task' })).toBeVisible();
-  await page.setViewportSize({ width: 320, height: 640 });
-  await expect(page.locator('.first-run-choices .action-row')).toHaveCSS('gap', '12px');
-  await expect(page.locator('.first-run-choices .action-row button')).toHaveCount(2);
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.getByRole('button', { name: 'Try reading', exact: true }).click();
-  const { lesson } = await openSnapshot(page, 'a1-reading', true);
-  await expect(page.getByRole('heading', { name: /Where do we meet\?/  })).toBeVisible();
-  await page.getByRole('radio', { name: 'At the library.', exact: true }).check();
-  await completeWorkspace(page, lesson);
-  await expect(page.locator('.slot-result').first()).toContainText('Correct');
+  await expect(page).toHaveURL(/\/today$/);
+  await expect(page.getByRole('heading', { name: 'Today', exact: true })).toBeVisible();
   const preferences = await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences);
   expect(preferences.reading).toBeUndefined(); expect(preferences.listening).toBeUndefined(); expect(preferences.purpose).toBeUndefined();
+  expect(preferences).toMatchObject({ interests: [], step: 3, completed: true });
+});
+
+test('a completed starting-choice save does not navigate back after the learner leaves', async ({ page }) => {
+  await page.goto('/settings');
+  await page.getByRole('link', { name: /调整起点与兴趣/ }).click();
+  for (let index = 0; index < 3; index++) await page.locator('.first-run > .primary').click();
+  await expect(page.locator('.first-run-top span')).toHaveText('第 4 步，共 4 步');
+  await page.evaluate(async () => {
+    const data = await import('/src/data/db.ts' as string), transaction = data.db.transaction.bind(data.db);
+    data.db.transaction = (...args: unknown[]) => {
+      if (!args.includes(data.syncClocks) || !args.includes(data.profiles)) return transaction(...args);
+      data.db.transaction = transaction;
+      // Delay notification only; the authorized isolated-profile write still commits.
+      return transaction(...args).then((result: unknown) => new Promise(resolve => {
+        Reflect.set(window, 'releasePreferenceSave', () => resolve(result));
+      }));
+    };
+  });
+  await page.locator('.first-run > .primary').click();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releasePreferenceSave'))).toBe('function');
+  await page.goBack(); await expect(page).toHaveURL(/\/settings$/); await expect(page.locator('.first-run')).toHaveCount(0);
+  await page.evaluate(() => Reflect.get(window, 'releasePreferenceSave')());
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await expect(page).toHaveURL(/\/settings$/);
+  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences.completed)).toBe(true);
+});
+
+for (const skip of [false, true]) test(`legacy trial-step drafts retain their choices before ${skip ? 'skipping' : 'saving'} the final step`, async ({ page }) => {
+  await page.goto('/start');
+  await expect(page.getByRole('heading', { name: '界面语言', exact: true })).toBeVisible();
+  const original = await page.evaluate(async () => {
+    const { savePreferences, syncEvents } = await import('/src/data/db.ts' as string);
+    await savePreferences('local-guest', { purpose: 'work', interests: ['science'], reading: 'B2', listening: 'A2', step: 4, completed: false }, 'zh-Hans');
+    return syncEvents.where('profileId').equals('local-guest').toArray();
+  });
+  await page.reload();
+  await expect(page.getByRole('heading', { name: '你选择的阅读与听力起点', exact: true })).toBeVisible();
+  await expect(page.locator('.first-run-top span')).toHaveText('第 4 步，共 4 步');
+  await expect(page.getByRole('group', { name: '阅读', exact: true }).getByRole('radio', { name: /^B2/ })).toBeChecked();
+  await expect(page.getByRole('group', { name: '听力', exact: true }).getByRole('radio', { name: /^A2/ })).toBeChecked();
+  expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).syncEvents.where('profileId').equals('local-guest').toArray())).toEqual(original);
+  await page.getByRole('button', { name: skip ? '跳过这一步' : '保存并前往今日', exact: true }).click();
+  await expect(page).toHaveURL(/\/today$/);
+  await page.reload();
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  const saved = await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences);
+  expect(saved).toEqual({ purpose: 'work', interests: ['science'], ...(!skip && { reading: 'B2', listening: 'A2' }), step: 3, completed: true });
 });
 
 test('first run supports Traditional Chinese, dark mode, six widths and enlarged text', async ({ page }) => {
@@ -96,7 +134,7 @@ test('first run supports Traditional Chinese, dark mode, six widths and enlarged
   await page.goto('/start');
   for (let index = 0; index < 3; index++) {
     await page.getByRole('button', { name: '跳過這一步' }).click();
-    await expect(page.locator('.first-run-top span')).toHaveText(`第 ${index + 2} 步，共 5 步`);
+    await expect(page.locator('.first-run-top span')).toHaveText(`第 ${index + 2} 步，共 4 步`);
   }
   for (const width of [1440, 1200, 1024, 768, 375, 320]) {
     await page.setViewportSize({ width, height: 720 });
@@ -105,8 +143,8 @@ test('first run supports Traditional Chinese, dark mode, six widths and enlarged
   }
   await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.getByRole('button', { name: '儲存並繼續', exact: true }).scrollIntoViewIfNeeded();
-  await expect(page.getByRole('button', { name: '儲存並繼續', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '儲存並前往今日', exact: true }).scrollIntoViewIfNeeded();
+  await expect(page.getByRole('button', { name: '儲存並前往今日', exact: true })).toBeVisible();
   await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
   await page.getByRole('heading', { name: '你選擇的閱讀與聽力起點' }).scrollIntoViewIfNeeded();
   await page.screenshot({ path: 'output/playwright/first-run-320-dark-zh-Hant-step4.png' });
@@ -149,7 +187,6 @@ for (const [locale, width, theme] of [['zh-Hans', 1440, 'light'], ['zh-Hant', 37
   await page.getByRole('button', { name: t.next, exact: true }).click();
   await page.getByRole('group', { name: t.reading, exact: true }).getByRole('radio', { name: /^B2/ }).check();
   await page.getByRole('group', { name: t.listening, exact: true }).getByRole('radio', { name: /^A2/ }).check();
-  await page.getByRole('button', { name: t.next, exact: true }).click();
   await page.getByRole('button', { name: t.today, exact: true }).click();
   await expect(page.getByRole('heading', { name: languagePacks[locale].app.today, exact: true })).toBeVisible();
   await page.getByRole('link', { name: languagePacks[locale].app.settings, exact: true }).first().click();
@@ -160,21 +197,21 @@ for (const [locale, width, theme] of [['zh-Hans', 1440, 'light'], ['zh-Hant', 37
   await page.locator('.first-run-choices input[type=checkbox]').first().uncheck();
   await page.getByRole('button', { name: t.next, exact: true }).click();
   for (const skill of ['reading', 'listening'] as const) await page.getByRole('group', { name: t[skill], exact: true }).getByRole('radio', { name: t.unsure, exact: true }).check();
-  await page.getByRole('button', { name: t.next, exact: true }).click();
   await page.getByRole('button', { name: t.today, exact: true }).click();
   await expect(page).toHaveURL(/\/today$/);
   await page.reload();
   await expect(page.getByRole('heading', { name: languagePacks[locale].app.today, exact: true })).toBeVisible();
   await expect(page.locator('main > .error')).toHaveCount(0);
   const saved = await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).profiles.get('local-guest')).preferences);
-  expect(saved).toEqual({ interests: [], step: 4, completed: true });
+  expect(saved).toEqual({ interests: [], step: 3, completed: true });
   // Recover affected IndexedDB rows without rewriting immutable events.
   const original = await page.evaluate(async () => {
     const { profiles, syncEvents } = await import('/src/data/db.ts' as string);
     const preferences = { interests: [], step: 4, completed: true, purpose: undefined, reading: undefined, listening: undefined };
     await profiles.update('local-guest', { preferences });
     const rows: import('../../src/data/sync').StoredEvent[] = await syncEvents.where('profileId').equals('local-guest').toArray();
-    const event = rows.filter(row => row.type === 'preferences').sort((a, b) => b.counter - a.counter)[0];
+    const { compareSyncEvents } = await import('/src/shared/sync.ts' as string);
+    const event = rows.filter(row => row.type === 'preferences').sort((a, b) => compareSyncEvents(b, a))[0];
     await syncEvents.update(['local-guest', event.id], { payload: preferences });
     return await syncEvents.where('profileId').equals('local-guest').toArray();
   });

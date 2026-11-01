@@ -95,6 +95,41 @@ for (const width of [1440, 900, 375]) test(`settings keep full-card mouse hover 
   await expect(dialog).toHaveCount(0);
 });
 
+test('pending settings close cannot hide a newer failed selection', async ({ page }) => {
+  await page.goto('/today');
+  const trigger = page.locator('.reading-task [data-practice-skill=reading]');
+  await trigger.click();
+  const dialog = page.locator('.practice-options-dialog'), topic = dialog.locator('.practice-option-fields .setting-trigger').first();
+  await expect(dialog).toHaveCSS('opacity', '1');
+  await page.evaluate(async () => {
+    const data = await import('/src/data/db.ts' as string), transaction = data.db.transaction.bind(data.db);
+    let writes = 0;
+    data.db.transaction = (...args: unknown[]) => {
+      if (!args.includes(data.syncClocks) || !args.includes(data.profiles)) return transaction(...args);
+      if (++writes === 1) return transaction(...args).then((result: unknown) => new Promise(resolve => {
+        Reflect.set(window, 'releasePracticeSave', () => resolve(result));
+      }));
+      data.db.transaction = transaction;
+      return Promise.reject(new DOMException('Synthetic second selection failure', 'QuotaExceededError'));
+    };
+  });
+  await topic.click(); await dialog.locator('[role=option][data-value=science]').click(); await topic.click();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releasePracticeSave'))).toBe('function');
+  await page.keyboard.press('Escape');
+  // Continue editing while Escape waits for the first pending write.
+  await topic.click(); await dialog.locator('[role=option][data-value=daily-life]').click(); await topic.click();
+  await page.evaluate(() => Reflect.get(window, 'releasePracticeSave')());
+  await expect(dialog.getByRole('alert')).toBeVisible();
+  await page.waitForTimeout(400);
+  await expect(dialog).toHaveAttribute('data-open', 'true');
+  await expect(topic).toHaveAttribute('data-value', 'science,daily-life');
+  await dialog.getByRole('alert').getByRole('button').click();
+  await expect(dialog.getByRole('alert')).toHaveCount(0);
+  await dialog.locator('header button').click(); await expect(dialog).toHaveCount(0);
+  const saved = await page.evaluate(async () => JSON.parse((await (await import('/src/data/db.ts' as string)).settings.get('profile:local-guest:readingPractice')).value));
+  expect(saved.topics).toEqual(['science', 'daily-life']);
+});
+
 test('unavailable choices remain visible and can be cleared without changing another skill', async ({ page }) => {
   await page.goto('/settings');
   await expect(page.locator('.settings-page')).toBeVisible();
@@ -164,7 +199,7 @@ test('shared menus close on page or drawer scroll but keep their own options scr
   const menu = page.getByRole('listbox');
   await menu.hover();
   await page.mouse.wheel(0, 160);
-  await expect.poll(() => menu.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
+  await expect.poll(() => menu.locator('.setting-menu-scroll').evaluate(element => element.scrollTop)).toBeGreaterThan(0);
   await expect(menu).toBeVisible();
   await page.mouse.move(372, 400);
   await page.mouse.wheel(0, 150);

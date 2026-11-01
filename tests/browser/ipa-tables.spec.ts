@@ -28,6 +28,20 @@ test('IPA playback ignores superseded requests and the active button stops playb
   expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true);
 });
 
+test('IPA playback clears an external pause and restarts with one click', async ({ page }) => {
+  await page.goto('/library/ipa');
+  const now = page.getByRole('button', { name: /now$/ });
+  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.loop = true; });
+  await now.click();
+  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.currentTime)).toBeGreaterThan(.1);
+  await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.pause());
+  await expect(now).toHaveAttribute('aria-pressed', 'false');
+  await now.click();
+  await expect(now).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(false);
+  await expect(page.getByRole('alert')).toHaveCount(0);
+});
+
 test('now retains audible onset headroom and plays from the beginning through native completion', async ({ page }) => {
   await page.goto('/library/ipa');
   await expect(page.locator('.ipa-entry')).toHaveCount(41);

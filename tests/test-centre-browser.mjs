@@ -79,7 +79,7 @@ try {
  for (const name of ['阅读语料', 'IPA 发音与录音']) await expect(page.locator('.package-row').filter({ hasText: name })).toContainText('已安装', { timeout: 90000 });
  await page.goto(origin + '/start'); for (let step = 0; step < 3; step++) await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
  for (const skill of ['阅读', '听力']) await page.getByRole('group', { name: skill, exact: true }).getByLabel(/^A1 ·/).check();
- await page.getByRole('button', { name: '保存并继续', exact: true }).click(); await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
+ await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
  await context.setOffline(true);
  for (const locale of ['zh-Hans', 'zh-Hant', 'en']) {
   await page.goto(origin + '/settings'); await page.getByRole('button', { name: /^(语言|語言|Language)$/ }).click(); await page.getByRole('listbox').locator(`[data-value="${locale}"]`).click(); await expect(page.locator('html')).toHaveAttribute('lang', locale);

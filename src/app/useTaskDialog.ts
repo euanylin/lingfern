@@ -37,10 +37,13 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
     const query = matchMedia('(max-width:1199px)');
     let interaction: ReturnType<typeof cardInteraction> | undefined;
     const leave = () => setHovered(false);
+    const visibility = () => { if (document.hidden) leave(); };
     const update = () => { interaction?.dispose(); setContact(false); const body = dialog.current?.querySelector<HTMLElement>('.task-detail-body'); interaction = body ? cardInteraction(body, setContact, !query.matches) : undefined; };
     update(); query.addEventListener('change', update);
     window.addEventListener('blur', leave);
-    return () => { cancelAnimationFrame(enterFrame.current); clearTimeout(closeTimer.current); interaction?.dispose(); query.removeEventListener('change', update); window.removeEventListener('blur', leave); };
+    window.addEventListener('pagehide', leave);
+    document.addEventListener('visibilitychange', visibility);
+    return () => { cancelAnimationFrame(enterFrame.current); clearTimeout(closeTimer.current); interaction?.dispose(); query.removeEventListener('change', update); window.removeEventListener('blur', leave); window.removeEventListener('pagehide', leave); document.removeEventListener('visibilitychange', visibility); };
   }, []);
   return {
     open, close,

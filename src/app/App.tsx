@@ -93,7 +93,6 @@ const { catalogue } = import.meta.env.MODE === 'test-fixtures'
   ? await import('../../tests/fixtures/catalogue')
   : { catalogue: [] as Lesson[] };
 const lesson = catalogue.find(item => item.targetLevel === 'A1' && item.skill === 'reading');
-const listeningLesson = catalogue.find(item => item.targetLevel === 'A1' && item.skill === 'listening');
 const owner = crypto.randomUUID();
 let firstEntry = typeof location !== 'undefined' && location.pathname === '/';
 const route = () => location.pathname === '/' ? '/today' : location.pathname;
@@ -107,7 +106,6 @@ function welcomeSeen() {
 
 export function App({ initialPage }: { initialPage?: PublicPageState }) {
   useEffect(touchFeedback, []);
-  useEffect(scrollbarVisibility, []);
   const [path, setPath] = useState(() => initialPage?.path ?? route());
   const githubSession = useGithubSession(path === '/settings');
   const currentPath = useRef(path); currentPath.current = path;
@@ -123,6 +121,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const [onlineDictionary, setOnlineDictionary] = useState<OnlineDictionaryId>('cambridge');
   const [preferences, setPreferences] = useState<Preferences>();
   const [activeProfile, setActiveProfile] = useState('local-guest');
+  const currentProfile = useRef(activeProfile); currentProfile.current = activeProfile;
   const [logicalProfile, setLogicalProfile] = useState('local-guest');
   const [online, setOnline] = useState(() => initialPage ? true : navigator.onLine);
   const [error, setError] = useState('');
@@ -131,15 +130,16 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const combinedInvoker = useRef<HTMLElement | null>(null);
   const [combinedPreparing, setCombinedPreparing] = useState(false);
   const [combinedError, setCombinedError] = useState('');
-  const combinedRequest = useRef(0);
+  const practiceRequest = useRef(0);
   useEffect(() => {
-    combinedRequest.current++;
+    practiceRequest.current++;
     setCombinedPreparing(false); setCombinedDetail(undefined); setCombinedError('');
   }, [path, activeProfile]);
   const [practiceSelections, setPracticeSelections] = useState<Record<'reading' | 'listening', PracticeSelection>>({ reading: automaticPractice, listening: automaticPractice });
   const [combinedTopicsChanged, setCombinedTopicsChanged] = useState(false);
   const [history, setHistory] = useState<Session[]>([]);
   const [pageSearch, setPageSearch] = useState(initialPage ? '' : location.search);
+  useEffect(scrollbarVisibility, [path, pageSearch]);
   useLayoutEffect(() => { updatePageMetadata(path, pageSearch); }, [path, pageSearch]);
   const resetNavigationScroll = useRef(false);
   useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; scrollTo(0, 0); } }, [path, pageSearch]);
@@ -175,9 +175,9 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const updateBusy = updateCheck === 'checking' || updateCheck === 'preparing';
   const t = copy[locale];
   const sessionId = path.startsWith('/learn/') ? path.slice(7) : undefined;
-  const loadRevision = useRef(0);
-  async function load(rejectFailure = false) {
-    const current = ++loadRevision.current;
+  const loadRevision = useRef(0), localPreferenceRevision = useRef(0);
+  async function load(rejectFailure = false): Promise<void> {
+    const current = ++loadRevision.current, preferencesAtStart = localPreferenceRevision.current;
     setError('');
     try {
       // Reopen after a transient IndexedDB failure instead of retrying a closed connection.
@@ -215,8 +215,10 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       const effective = await mergeLearningRecords([...catalogue, ...importedLessons], all, answers, events);
       const logicalProfileId = clock?.logicalProfileId ?? profileId;
       if (current !== loadRevision.current) return;
+      // A completed local save takes precedence over an earlier projected snapshot.
+      if (preferencesAtStart !== localPreferenceRevision.current) return load(rejectFailure);
       setTimingRows(effective.timingRows); setSummaries(effective.summaries); setUnavailableSummaries(effective.unavailable); setSummaryConflicts(effective.conflicting.size);
-      setActiveProfile(profileId);
+      currentProfile.current = profileId; setActiveProfile(profileId);
       setLogicalProfile(logicalProfileId);
       const { preferences: storedPreferences, values: savedValues, nextLocale } = context;
       setPreferences(storedPreferences ? preferencesSchema.parse(storedPreferences) : undefined);
@@ -242,7 +244,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
     return ready && githubSession.status === 'ready' && summary?.account ? startSyncSchedule(activeProfile, () => syncLoad.current(true), summary) : undefined;
   }, [activeProfile, ready, githubSession.status, githubSession.summary]);
   useEffect(() => {
-    const navigate = (event?: PopStateEvent) => { const next = route(); resetNavigationScroll.current = !event; if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false); startTransition(() => { setPath(next); setPageSearch(location.search); }); };
+    const navigate = (event?: PopStateEvent) => { practiceRequest.current++; const next = route(); resetNavigationScroll.current = !event; if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false); startTransition(() => { setPath(next); setPageSearch(location.search); }); };
     const click = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || !(event.target instanceof Element)) return;
       const anchor = event.target.closest<HTMLAnchorElement>('a[href^="/"]');
@@ -303,10 +305,22 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   }, [locale, theme]);
   async function setting(key: string, value: string) {
     const request = key === 'locale' ? ++localeRequest.current : undefined;
-    try { if (key === 'locale') { await Promise.all([loadUiLocale(value as Locale), loadInstructionLocale(value as Locale)]); if (request !== localeRequest.current) return; } await saveSetting(activeProfile, key, value); if (key === 'locale') setLocale(value as Locale); else if (key === 'theme') setTheme(value); else if (key === 'desktopNavDisplay' && navDisplay(value)) setDesktopNavDisplay(value); else if (key === 'mobileNavDisplay' && navDisplay(value)) setMobileNavDisplay(value); else if (key === 'onlineDictionary') setOnlineDictionary(defaultOnlineDictionary(value)); if (key !== 'locale' || request === localeRequest.current) setError(''); }
-    catch { if (key !== 'locale' || request === localeRequest.current) setError('save'); }
+    try {
+      if (key === 'locale') { await Promise.all([loadUiLocale(value as Locale), loadInstructionLocale(value as Locale)]); if (request !== localeRequest.current) return; }
+      await saveSetting(activeProfile, key, value);
+      localPreferenceRevision.current++;
+      if (activeProfile !== currentProfile.current || (key === 'locale' && request !== localeRequest.current)) return;
+      if (key === 'locale') setLocale(value as Locale);
+      else if (key === 'theme') setTheme(value);
+      else if (key === 'desktopNavDisplay' && navDisplay(value)) setDesktopNavDisplay(value);
+      else if (key === 'mobileNavDisplay' && navDisplay(value)) setMobileNavDisplay(value);
+      else if (key === 'onlineDictionary') setOnlineDictionary(defaultOnlineDictionary(value));
+      setError('');
+    }
+    catch { if (activeProfile === currentProfile.current && (key !== 'locale' || request === localeRequest.current)) setError('save'); }
   }
   async function start(selected: Lesson) {
+    const request = ++practiceRequest.current;
     setStarting(true); setError('');
     try {
       if (selected.mode === 'check') throw new Error('CHECK_UNAVAILABLE');
@@ -314,19 +328,23 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       const frozenTest = selected.mode === 'test' && history.some(s => !s.lesson.mode && s.lesson.id === selected.id && JSON.stringify(asTestLesson(s.lesson)) === JSON.stringify(selected));
       const prepared = prior || frozenTest ? selected : (await import('../core/practiceOrganization')).organizePractice(selected);
       const session = prior ?? await createSession(prepared, activeProfile);
+      // Keep the saved session available without undoing a later dismissal/navigation.
+      if (request !== practiceRequest.current || activeProfile !== currentProfile.current) { await syncLoad.current(); return; }
       if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${session.id}`); else window.history.pushState(null, '', `/learn/${session.id}`);
       setCombinedDetail(undefined); setPath(route()); scrollTo(0, 0);
     }
-    catch { setError('save'); } finally { setStarting(false); }
+    catch { if (request === practiceRequest.current && activeProfile === currentProfile.current) setError('save'); } finally { setStarting(false); }
   }
   async function savePracticeSelection(skill: 'reading' | 'listening', value: PracticeSelection) {
-    combinedRequest.current++; setCombinedPreparing(false); setCombinedDetail(undefined); setCombinedError('');
+    practiceRequest.current++; setCombinedPreparing(false); setCombinedDetail(undefined); setCombinedError('');
     await saveSetting(activeProfile, `${skill}Practice`, JSON.stringify(value));
+    localPreferenceRevision.current++;
+    if (activeProfile !== currentProfile.current) return;
     setPracticeSelections(previous => ({ ...previous, [skill]: value }));
     setCombinedTopicsChanged(true);
   }
   async function openCombined() {
-    const request = ++combinedRequest.current;
+    const request = ++practiceRequest.current;
     combinedInvoker.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setCombinedPreparing(true); setCombinedError('');
     try {
@@ -336,26 +354,28 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
         setCombinedDetail([combinedPeers.find(item => item.lesson.skill === 'reading')!.lesson, combinedPeers.find(item => item.lesson.skill === 'listening')!.lesson]);
       } else {
         const reading = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'reading', selection: practiceSelections.reading });
-        if (request !== combinedRequest.current) return;
+        if (request !== practiceRequest.current) return;
         if (!reading.lesson) { setCombinedError(practiceSelections.reading.kinds.length || practiceSelections.reading.materials.length ? messages('practiceOptions')[locale].unsuitable : practiceSelections.reading.topics.length ? training.readingEmpty : t.checkInsufficient); return; }
         const listening = await prepareCorpusPractice({ locale, profileId: activeProfile, preferences, history, records, online, skill: 'listening', selection: practiceSelections.listening, previewRoots: new Set(reading.lesson.materials.map(material => material.rootId)) });
-        if (request !== combinedRequest.current) return;
+        if (request !== practiceRequest.current) return;
         if (!listening.lesson) { setCombinedError(practiceSelections.listening.kinds.length || practiceSelections.listening.materials.length ? messages('practiceOptions')[locale].unsuitable : practiceSelections.listening.topics.length ? training.listeningEmpty : t.checkInsufficient); return; }
         setCombinedDetail([reading.lesson, listening.lesson]);
       }
-    } catch { if (request === combinedRequest.current) setCombinedError(t.checkInsufficient); }
-    finally { if (request === combinedRequest.current) setCombinedPreparing(false); }
+    } catch { if (request === practiceRequest.current) setCombinedError(t.checkInsufficient); }
+    finally { if (request === practiceRequest.current) setCombinedPreparing(false); }
   }
   async function startCombinedPractice(test = false) {
     if (!combinedDetail) return;
+    const request = ++practiceRequest.current;
     setStarting(true); setError('');
     try {
       const pair: [Lesson, Lesson] = test ? [asTestLesson(combinedDetail[0]), asTestLesson(combinedDetail[1])] : combinedDetail;
       const resume = combinedPracticeSession && combinedPracticeSession.lesson.mode === pair[0].mode && combinedPeers.every(item => pair.some(lesson => JSON.stringify(lesson) === JSON.stringify(item.lesson)));
       const destination = resume ? combinedPracticeSession! : (await createCombinedPractice(pair[0], pair[1], activeProfile))[0];
+      if (request !== practiceRequest.current || activeProfile !== currentProfile.current) { await syncLoad.current(); return; }
       if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${destination.id}`); else window.history.pushState(null, '', `/learn/${destination.id}`);
       setCombinedDetail(undefined); setCombinedTopicsChanged(false); setPath(route()); scrollTo(0, 0);
-    } catch { setError('save'); } finally { setStarting(false); }
+    } catch { if (request === practiceRequest.current && activeProfile === currentProfile.current) setError('save'); } finally { setStarting(false); }
   }
   useEffect(() => { if (confirmUpdate) { showModal(updateDialog.current); updateCancel.current?.focus(); } }, [confirmUpdate]);
   function requestUpdate(trigger: HTMLButtonElement) { updateTrigger.current = trigger; setUpdateBlocked(false); setConfirmUpdate(true); }
@@ -476,7 +496,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={setPreferences} onStart={start} reading={lesson} listening={listeningLesson} listeningReady={online || installedGroups.has('audio-a1')}/> : path === '/today' ? <>
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {

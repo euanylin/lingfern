@@ -22,7 +22,6 @@ try {
   await page.goto('http://127.0.0.1:8787/start');
   for (let step = 0; step < 3; step++) await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
   await page.getByRole('group', { name: '听力', exact: true }).getByLabel(/^A1 ·/).check();
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
   await context.setOffline(true);
   const practice = page.locator('.corpus-practice[data-skill=listening]');

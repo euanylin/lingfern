@@ -1,3 +1,4 @@
+import { RefreshIcon } from './RefreshIcon';
 import { messages } from '../locales';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { z } from 'zod';
@@ -66,7 +67,7 @@ export function SharingManagement({ locale, accountId }: { locale: Locale; accou
   const date = (seconds: number) => new Date(seconds * 1000).toLocaleString(locale);
   const granted = (seconds: number) => messages('sharingManagement', { date: new Date(seconds * 1000).toLocaleDateString(locale) })[locale].granted;
   return <><details className="sharing-management service-disclosure" ref={root} onToggle={event => { const expanded = event.currentTarget.open; setOpen(expanded); if (expanded && !data) void run(); }}><summary ref={disclosure} aria-controls={`${id}-permissions`} aria-expanded={open}>{t.title}</summary>
-    {open && <button className="sharing-refresh" type="button" aria-label={t.load} aria-busy={busy} disabled={busy} onClick={() => void run()}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M20 7v5h-5M20 12a8 8 0 1 0-2 5M20 7l-3-2"/></svg></button>}
+    {open && <button className="sharing-refresh" type="button" aria-label={t.load} aria-busy={busy} disabled={busy} onClick={() => void run()}><RefreshIcon/></button>}
     <div id={`${id}-permissions`} aria-busy={busy}>
     {(busy || message) && <p className="muted" role="status">{busy ? t.loading : message}</p>}
     {data && <><h3>{t.shares}</h3>{!data.shares.length && <p className="sharing-empty">{t.empty}</p>}{data.shares.map(share => <article key={share.id}><div><h4>{share.title}</h4><p>{granted(share.createdAt)}<br/>{data.connections.find(client => client.id === share.connectionId)?.name}<br/>{t.profile}: {share.profileId}<br/>{t.expires}: {date(share.expiresAt)}</p></div><button className="service-danger" data-revoke type="button" disabled={busy} aria-label={`${t.revokeShare}: ${share.title}`} onClick={() => void run(`/api/ai/shares/${share.id}`, share.title)}>{t.revoke}</button></article>)}

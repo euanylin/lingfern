@@ -227,9 +227,9 @@ Public-trial acceptance requires real coverage of the goal families in Section 2
 
 ### 3.1 First Use
 
-Visitors can try a short task immediately. The flow is:
+Visitors reach Today after four optional setup steps. The flow is:
 
-**Choose interface language → choose purposes/interests → select an approximate starting point or skip → try a task → download materials as needed → Today.**
+**Choose interface language → choose a purpose → choose interests → select approximate reading/listening starting points or skip → save and go to Today.** Download materials as needed from the ordinary learning flow; there is no separate demonstration step in setup.
 
 Use plain descriptions accompanied by A1–C2 labels for starting points, without requiring knowledge of CEFR: for example, “Just starting”, “Can handle simple everyday information”, or “Can understand most complex articles”. Self-reports guide initial recommendations only; they are not ability evidence.
 

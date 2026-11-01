@@ -25,10 +25,9 @@ const rows = (page, table) => page.evaluate(table => new Promise((resolve, rejec
 }), table);
 async function onboarding(page, level) {
  await page.goto(origin + '/start');
- for (let step = 0; step < 3; step++) { await page.getByRole('button', { name: '跳过这一步', exact: true }).click(); await expect(page.getByText(`第 ${step + 2} 步，共 5 步`, { exact: true })).toBeVisible(); }
+ for (let step = 0; step < 3; step++) { await page.getByRole('button', { name: '跳过这一步', exact: true }).click(); await expect(page.getByText(`第 ${step + 2} 步，共 4 步`, { exact: true })).toBeVisible(); }
  await page.getByRole('group', { name: '阅读', exact: true }).getByLabel(new RegExp('^' + level + ' ·')).check();
  await page.getByRole('group', { name: '听力', exact: true }).getByLabel(/^A1 ·/).check();
- await page.getByRole('button', { name: '保存并继续', exact: true }).click();
  await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
 }

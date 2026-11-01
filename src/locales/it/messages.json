@@ -129,14 +129,13 @@
       "Lingua dell’interfaccia",
       "Per cosa vuoi usare l’inglese?",
       "Scegli i temi che ti interessano",
-      "Punti di partenza per lettura e ascolto",
-      "Prova una breve attività"
+      "Punti di partenza per lettura e ascolto"
     ],
     "back": "Indietro",
     "next": "Salva e continua",
     "skip": "Salta questo passaggio",
     "today": "Salva e vai a Oggi",
-    "step": "Passaggio {n} di 5",
+    "step": "Passaggio {n} di 4",
     "error": "Impossibile salvare. Riprova.",
     "reading": "Lettura",
     "listening": "Ascolto",
@@ -176,10 +175,7 @@
       "Punti di vista e argomenti in testi più lunghi",
       "Significati impliciti in contenuti complessi",
       "Significato preciso e tono sottile in discorsi estesi"
-    ],
-    "read": "Prova la lettura",
-    "listen": "Prova l’ascolto",
-    "unavailable": "Audio di ascolto non installato offline."
+    ]
   },
   "githubIdentity": {
     "title": "Identità GitHub",

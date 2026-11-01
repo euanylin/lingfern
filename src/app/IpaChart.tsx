@@ -117,7 +117,7 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
     {(!entries || view === 'detailed' && !sounds) && !error && !fullError && <p role="status">{t.loading}</p>}
     {(error || view === 'detailed' && fullError) && <p role="alert" className="error">{error || t.failed}</p>}
     {historyError && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].saveFailed}</p>}
-    <audio ref={player} preload="none" onEnded={() => { if (player.current?.ended) { playback.current.id = ''; setPlaying(''); } }} onError={() => { if (player.current?.error) { playback.current.id = ''; setPlaying(''); setError(t.failed); } }}/>
+    <audio ref={player} preload="none" onPause={() => { if (player.current?.paused) { playback.current.id = ''; setPlaying(''); } }} onEnded={() => { if (player.current?.ended) { playback.current.id = ''; setPlaying(''); } }} onError={() => { if (player.current?.error) { playback.current.id = ''; setPlaying(''); setError(t.failed); } }}/>
     {entries && (view === 'simple' ? (['vowel', 'consonant'] as const).map(group => <section className="ipa-group" key={group}>
       <h2>{t.groups[group]}</h2>
       {group === 'consonant' && <section className="ipa-category"><h3>{t.contrast}</h3><div className="ipa-pairs" dir="ltr">{entries.filter(entry => entry.voicing === 'voiceless' && entry.pair).map(entry => <div className="ipa-pair" key={entry.ipa}><span>/{entry.ipa}/</span><span aria-hidden="true">↔</span><span>/{entry.pair}/</span></div>)}</div></section>}

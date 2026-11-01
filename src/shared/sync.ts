@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { compareSyncCounters, maxSyncCounter, syncEventCounterSchema, type SyncCounter } from './syncCounter';
 import { localeSchema } from './locale';
 import { profileIdSchema } from './repository';
 import { preferencesSchema } from './preferences';
@@ -19,8 +20,8 @@ const settingPayload = z.discriminatedUnion('key', [
   z.object({ key: z.enum(['readingPractice', 'listeningPractice']), value: z.string().max(6000).refine(value => { try { readPracticeSelection(value); return true; } catch { return false; } }) }).strict(),
 ]);
 export { settingPayload as syncSettingSchema };
-const base = z.object({ id, deviceId: id, counter: z.number().int().min(1).max(Number.MAX_SAFE_INTEGER), occurredAt: z.iso.datetime() });
-const lookupContext = z.record(id, z.number().int().min(1).max(Number.MAX_SAFE_INTEGER)).refine(value => Object.keys(value).length <= 256);
+const base = z.object({ id, deviceId: id, counter: syncEventCounterSchema, occurredAt: z.iso.datetime() });
+const lookupContext = z.record(id, syncEventCounterSchema).refine(value => Object.keys(value).length <= 256);
 // Sync summaries, preferences and lookups; exclude private answers, notes and materials.
 export const syncEventSchema = z.discriminatedUnion('type', [
   base.extend({ type: z.literal('completion'), payload: z.object({ recordId: reference, sessionId: reference, questionId: reference, rootId: reference, goalId: reference, skill: z.enum(['reading', 'listening']), level: levelSchema, mode: z.enum(['practice', 'check']), contentHash: hash, scoringHash: hash.optional(), correct: z.boolean().nullable(), assistance }).strict() }).strict(),
@@ -39,7 +40,15 @@ export const syncEventSchema = z.discriminatedUnion('type', [
   base.extend({ type: z.literal('lookup_clear'), payload: z.object({ seen: lookupContext }).strict() }).strict(),
 ]);
 export type SyncEvent = z.infer<typeof syncEventSchema>;
-export const syncBatchSchema = z.object({ product: z.literal('Lingfern'), formatVersion: z.literal(1), profileId: profileIdSchema, deviceId: id, batchId: id, events: z.array(syncEventSchema).min(1).max(500) }).strict().superRefine((batch, ctx) => {
+export function hasExtendedSyncCounter(event: SyncEvent) {
+  return typeof event.counter === 'string' || (event.type === 'lookup_remove' || event.type === 'lookup_clear') && Object.values(event.payload.seen).some(counter => typeof counter === 'string');
+}
+// Observed events must precede the deletion's own logical clock.
+export function assertSyncObservation(event: SyncEvent) {
+  if ((event.type === 'lookup_remove' || event.type === 'lookup_clear') && Object.values(event.payload.seen).some(counter => compareSyncCounters(counter, event.counter) >= 0)) throw new Error('SYNC_CLOCK_INVALID');
+}
+export const syncBatchSchema = z.object({ product: z.literal('Lingfern'), formatVersion: z.union([z.literal(1), z.literal(2)]), profileId: profileIdSchema, deviceId: id, batchId: id, events: z.array(syncEventSchema).min(1).max(500) }).strict().superRefine((batch, ctx) => {
+  if (batch.formatVersion === 1 && batch.events.some(hasExtendedSyncCounter)) ctx.addIssue({ code: 'custom', message: 'Extended counters require batch format 2' });
   const ids = new Set<string>();
   for (const event of batch.events) {
     if (event.deviceId !== batch.deviceId || ids.has(event.id)) ctx.addIssue({ code: 'custom', message: 'Invalid event ownership or duplicate ID' });
@@ -77,6 +86,7 @@ export async function eventHash(event: SyncEvent) {
 
 export async function validateSyncBatch(raw: unknown) {
   const batch = syncBatchSchema.parse(raw);
+  for (const event of batch.events) assertSyncObservation(event);
   const bytes = new TextEncoder().encode(canonicalJson(batch));
   if (bytes.byteLength > syncByteLimit) throw new Error('SYNC_CAPACITY');
   const digest = await crypto.subtle.digest('SHA-256', bytes);
@@ -86,7 +96,7 @@ export async function validateSyncBatch(raw: unknown) {
 export function compareSyncEvents(a: SyncEvent, b: SyncEvent) {
   // Sort by code units independently of locale and device clocks.
   const compare = (left: string, right: string) => left < right ? -1 : left > right ? 1 : 0;
-  return a.counter - b.counter || compare(a.deviceId, b.deviceId) || compare(a.id, b.id);
+  return compareSyncCounters(a.counter, b.counter) || compare(a.deviceId, b.deviceId) || compare(a.id, b.id);
 }
 
 export function mergeSyncEvents(existing: readonly SyncEvent[], incoming: readonly SyncEvent[]) {
@@ -103,18 +113,18 @@ export function mergeSyncEvents(existing: readonly SyncEvent[], incoming: readon
 export function projectLookupHistory(raw: readonly SyncEvent[]) {
   // Clear observed versions without erasing concurrent or later lookups.
   const events = mergeSyncEvents([], raw);
-  const cleared = new Map<string, number>(), removed = new Map<string, Map<string, number>>();
+  const cleared = new Map<string, SyncCounter>(), removed = new Map<string, Map<string, SyncCounter>>();
   for (const event of events) {
     if (event.type !== 'lookup_clear' && event.type !== 'lookup_remove') continue;
     const key = event.type === 'lookup_remove' ? lookupKey(event.payload) : undefined;
-    const context = key === undefined ? cleared : removed.get(key) ?? new Map<string, number>();
+    const context = key === undefined ? cleared : removed.get(key) ?? new Map<string, SyncCounter>();
     if (key !== undefined) removed.set(key, context);
-    for (const [device, counter] of Object.entries(event.payload.seen)) context.set(device, Math.max(context.get(device) ?? 0, counter));
+    for (const [device, counter] of Object.entries(event.payload.seen)) context.set(device, maxSyncCounter(context.get(device) ?? 0, counter));
   }
   const latest = new Map<string, Extract<SyncEvent, { type: 'lookup' }>>();
   for (const event of events) if (event.type === 'lookup') {
     const key = lookupKey(event.payload);
-    if (event.counter > Math.max(cleared.get(event.deviceId) ?? 0, removed.get(key)?.get(event.deviceId) ?? 0)) latest.set(key, event);
+    if (compareSyncCounters(event.counter, maxSyncCounter(cleared.get(event.deviceId) ?? 0, removed.get(key)?.get(event.deviceId) ?? 0)) > 0) latest.set(key, event);
   }
   return [...latest.values()].sort((a, b) => b.payload.lookedUpAt.localeCompare(a.payload.lookedUpAt) || compareSyncEvents(b, a))
     .slice(0, 100).map(event => ({ ...event.payload, id: event.id }));

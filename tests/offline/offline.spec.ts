@@ -87,8 +87,17 @@ test('chosen word materials and question type persist, generate and save offline
   await page.goto('/start');
   for (let step = 0; step < 3; step++) await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
   for (const skill of ['阅读', '听力']) await page.getByRole('group', { name: skill, exact: true }).getByLabel(/^A1 ·/).check();
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
+  await expect(page).toHaveURL(/\/today$/);
+  const preferences = await page.evaluate(() => new Promise((resolve, reject) => {
+    const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      const db = open.result, request = db.transaction('profiles').objectStore('profiles').get('local-guest');
+      request.onsuccess = () => { resolve(request.result?.preferences); db.close(); };
+      request.onerror = () => { reject(request.error); db.close(); };
+    };
+  }));
+  expect(preferences).toEqual({ interests: [], reading: 'A1', listening: 'A1', step: 3, completed: true });
   await page.goto('/library');
   await page.getByRole('button', { name: /^通用材料/ }).last().click();
   await page.locator('.package-row').filter({ hasText: 'IPA 发音与录音' }).locator('input').check();
@@ -414,16 +423,22 @@ test('first-run choices persist and route to available reading while disconnecte
   expect(await page.evaluate(() => localStorage.getItem('lingfern.onboarding.seen'))).toBe('1');
   for (let step = 0; step < 3; step++) {
     await page.getByRole('button', { name: '跳过这一步' }).click();
-    await expect(page.locator('.first-run-top span')).toHaveText(`第 ${step + 2} 步，共 5 步`);
+    await expect(page.locator('.first-run-top span')).toHaveText(`第 ${step + 2} 步，共 4 步`);
   }
   await page.getByRole('group', { name: '阅读', exact: true }).getByRole('radio', { name: /^B1/ }).check();
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '试一份简短任务' })).toBeVisible();
-  await expect(page.getByRole('button', { name: '试试听力示例' })).toBeDisabled();
-  await page.reload();
-  await expect(page.getByRole('heading', { name: '试一份简短任务' })).toBeVisible();
   await page.getByRole('button', { name: '保存并前往今日' }).click();
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  const preferences = await page.evaluate(() => new Promise<unknown[]>((resolve, reject) => {
+    const open = indexedDB.open('lingfern'); open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      const db = open.result, request = db.transaction('profiles').objectStore('profiles').getAll();
+      request.onsuccess = () => { resolve(request.result.map((profile: { preferences: unknown }) => profile.preferences)); db.close(); };
+      request.onerror = () => { reject(request.error); db.close(); };
+    };
+  }));
+  expect(preferences).toContainEqual(expect.objectContaining({ reading: 'B1', step: 3, completed: true }));
   await page.locator('.primary-task').first().getByRole('button', { name: '开始', exact: true }).click();
   await confirmTask(page);
   await expect(page.locator('.material-workspace')).toBeVisible();

@@ -142,6 +142,24 @@ test('browser back, interrupted entry, missing transition events and reduced mot
   await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
 });
 
+test('backgrounding a settings panel clears hover and held touch without a pointer release', async ({ page }) => {
+  await page.goto('/today');
+  const trigger = page.locator('.reading-task [data-practice-skill=reading]'), dialog = page.locator('.practice-options-dialog');
+  await trigger.focus(); await trigger.press('Enter'); await expect(dialog).toHaveCSS('opacity', '1');
+  const hide = () => page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, value: true }); document.dispatchEvent(new Event('visibilitychange')); });
+  const show = () => page.evaluate(() => { Reflect.deleteProperty(document, 'hidden'); document.dispatchEvent(new Event('visibilitychange')); });
+  await dialog.locator('h2').hover(); await expect(dialog).toHaveAttribute('data-blur', 'true');
+  await hide(); await expect(dialog).toHaveAttribute('data-blur', 'false');
+  await show(); await expect(dialog).toHaveAttribute('data-blur', 'false');
+  const close = dialog.locator('header button');
+  await close.dispatchEvent('pointerdown', { pointerType: 'touch', pointerId: 7, isPrimary: true, bubbles: true });
+  await expect(close).toHaveAttribute('data-touch-active'); await expect(dialog).toHaveAttribute('data-blur', 'true');
+  await hide(); await expect(close).not.toHaveAttribute('data-touch-active'); await expect(dialog).toHaveAttribute('data-blur', 'false');
+  await show(); await dialog.locator('h2').dispatchEvent('pointermove', { pointerType: 'mouse', bubbles: true });
+  await expect(dialog).toHaveAttribute('data-blur', 'true');
+  await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+});
+
 for (const [width, theme, locale] of [[1440, 'light', 'zh-Hans'], [900, 'dark', 'en'], [1024, 'light', 'zh-Hant']] as const) test(`task detail keeps its frame fixed while scrolling and eases pointer blur at ${width}/${theme}/${locale}`, async ({ page }) => {
   await page.setViewportSize({ width, height: 400 });
   await page.goto('/settings');

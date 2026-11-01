@@ -1,9 +1,64 @@
 import { expect, test } from '@playwright/test';
 import { languagePacks } from '../../src/locales';
+import { selectPicker } from './picker';
 
 test.afterEach(async ({ page }) => { expect(await page.pageErrors()).toEqual([]); });
 
 const account = { account: { id: 1234, login: 'synthetic-learner' }, csrfToken: 'c'.repeat(43), syncAvailable: false };
+
+test('a delayed page load cannot replace a more recently saved appearance choice', async ({ page }) => {
+  await page.goto('/today');
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  await page.evaluate(async () => {
+    const data = await import('/src/data/db.ts' as string);
+    const transaction = data.db.transaction.bind(data.db);
+    data.db.transaction = (...args: unknown[]) => {
+      if (!args.includes(data.profiles) || !args.includes(data.syncEvents) || args.includes(data.syncClocks)) return transaction(...args);
+      data.db.transaction = transaction;
+      return transaction(...args).then((snapshot: unknown) => new Promise(resolve => {
+        Reflect.set(window, 'releasePagePreferences', () => resolve(snapshot));
+      }));
+    };
+  });
+  await page.locator('nav a[href="/settings"]:visible').first().click();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releasePagePreferences'))).toBe('function');
+  await selectPicker(page, languagePacks['zh-Hans'].app.theme, 'dark');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.evaluate(() => Reflect.get(window, 'releasePagePreferences')());
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  expect(await page.evaluate(async () => (await (await import('/src/data/db.ts' as string)).settings.get('profile:local-guest:theme'))?.value)).toBe('dark');
+});
+
+test('an old profile appearance save cannot change the newly selected profile', async ({ page }) => {
+  await page.goto('/settings');
+  await expect(page.locator('main h1')).toBeVisible();
+  await page.evaluate(async () => {
+    const data = await import('/src/data/db.ts' as string);
+    await data.profiles.add({ id: 'synthetic-second-profile', name: 'Second profile', createdAt: new Date().toISOString() });
+    await data.saveSetting('synthetic-second-profile', 'theme', 'light');
+    const transaction = data.db.transaction.bind(data.db);
+    data.db.transaction = (...args: unknown[]) => {
+      if (!args.includes(data.profiles) || !args.includes(data.syncClocks)) return transaction(...args);
+      data.db.transaction = transaction;
+      return transaction(...args).then((result: unknown) => new Promise(resolve => {
+        Reflect.set(window, 'releaseOldProfileSetting', () => resolve(result));
+      }));
+    };
+  });
+  await page.getByRole('button', { name: languagePacks['zh-Hans'].app.theme }).and(page.locator('.setting-trigger')).click();
+  await page.locator('[role="option"][data-value="dark"]').click();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releaseOldProfileSetting'))).toBe('function');
+  await selectPicker(page, languagePacks['zh-Hans'].profileBackup.profile, 'synthetic-second-profile');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await page.evaluate(() => Reflect.get(window, 'releaseOldProfileSetting')());
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  expect(await page.evaluate(async () => {
+    const { settings } = await import('/src/data/db.ts' as string);
+    return [(await settings.get('profile:local-guest:theme'))?.value, (await settings.get('profile:synthetic-second-profile:theme'))?.value];
+  })).toEqual(['dark', 'light']);
+});
 
 test('identity preloads on Today, stays visible during revalidation, and removes stale access after failure', async ({ page }) => {
   let requests = 0, release!: () => void;

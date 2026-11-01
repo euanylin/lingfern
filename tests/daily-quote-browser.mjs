@@ -34,7 +34,7 @@ const verifyQuote=async(day,locale='zh-Hans')=>{
 try {
  await page.clock.install({time:new Date('2026-10-07T12:00:00+08:00')});
  await page.goto(origin+'/start');for(let step=0;step<3;step++)await page.getByRole('button',{name:'跳过这一步',exact:true}).click();
- await page.getByRole('button',{name:'保存并继续',exact:true}).click();await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
+ await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
  const quote=page.locator('.daily-quote');await verifyQuote('2026-10-07');
  await page.evaluate(()=>window.scrollTo(0,0));await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0);
  const spacing=await page.evaluate(()=>{const stage=document.querySelector('.today-layout').getBoundingClientRect(),header=document.querySelector('header').getBoundingClientRect(),quote=document.querySelector('.daily-quote').getBoundingClientRect();return {top:stage.top-header.bottom,bottom:quote.top-stage.bottom};});assert.deepEqual(spacing,{top:64,bottom:40});

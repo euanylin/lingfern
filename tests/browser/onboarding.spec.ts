@@ -1,5 +1,22 @@
 import { expect, test } from '@playwright/test';
 
+test('a trackpad burst paints once per frame without losing its distance or final card', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  await expect(page.locator('.welcome-stage')).toBeVisible();
+  const probe = await page.evaluate(async () => {
+    const stage = document.querySelector('.welcome-stage')!, cards = [...document.querySelectorAll('.welcome-card')];
+    let writes = 0;
+    const observer = new MutationObserver(records => { writes += records.filter(record => cards.includes(record.target as Element)).length; });
+    observer.observe(stage, { subtree: true, attributes: true, attributeFilter: ['style'] });
+    for (let i = 0; i < 20; i++) stage.dispatchEvent(new WheelEvent('wheel', { deltaX: 2, bubbles: true, cancelable: true }));
+    await Promise.resolve(); const immediate = writes;
+    await new Promise(requestAnimationFrame); await Promise.resolve(); observer.disconnect();
+    return { immediate, writes, x: new DOMMatrixReadOnly(getComputedStyle(cards[0]).transform).m41 };
+  });
+  expect(probe.immediate).toBe(0); expect(probe.writes).toBe(3); expect(probe.x).toBeCloseTo(-40, 1);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+});
+
 test('introduction reuses the startup catalogue while Library still revalidates on each visit', async ({ page }) => {
   let catalogues = 0;
   page.on('request', request => { if (new URL(request.url()).pathname === '/resources/catalogue.json') catalogues++; });
@@ -37,6 +54,23 @@ for (const width of [390, 1440]) test(`hidden introduction settles its selected 
   await page.locator('.welcome-dots button').first().click();
   await expect(page.locator('.welcome-card').first()).toHaveAttribute('data-current', 'true');
   await expect(page.locator('.welcome-card').first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+});
+
+test('backgrounding unfinished wheel contact preserves its intended card', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), second = page.locator('.welcome-card').nth(1);
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  for (let index = 0; index < 3; index++) {
+    await stage.dispatchEvent('wheel', { deltaX: 200, bubbles: true, cancelable: true }); await page.clock.runFor(16);
+  }
+  await expect(second).toHaveAttribute('data-current', 'true');
+  await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => true }); document.dispatchEvent(new Event('visibilitychange')); });
+  await page.clock.runFor(700);
+  await expect(second).toHaveAttribute('data-current', 'true');
+  await expect(second).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+  await page.evaluate(() => { Reflect.deleteProperty(document, 'hidden'); document.dispatchEvent(new Event('visibilitychange')); });
+  await page.locator('.welcome-dots button').nth(2).click(); await page.clock.runFor(1000);
+  await expect(page.locator('.welcome-card').nth(2)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
 });
 
 for (const [width, height] of [[1440, 900], [390, 844], [900, 1100], [1920, 1080]]) test(`introduction card geometry is stable before the first resize observation at ${width}px`, async ({ page }) => {
@@ -106,6 +140,16 @@ for (const [from, to] of [[390, 1440], [1440, 390], [900, 1440], [1440, 900]]) t
   await page.clock.runFor(1000);
   const settled = await positions();
   for (let index = 0; index < settled.length; index++) expect(Math.abs(resized[index] - settled[index])).toBeLessThanOrEqual(.1);
+});
+
+test('resizing unfinished wheel contact still settles its intended card', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), second = page.locator('.welcome-card').nth(1);
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  await stage.dispatchEvent('wheel', { deltaX: 250, bubbles: true, cancelable: true }); await page.clock.runFor(16);
+  await page.setViewportSize({ width: 900, height: 900 }); await page.clock.runFor(1200);
+  await expect(second).toHaveAttribute('data-current', 'true');
+  await expect(second).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
 });
 
 test('mobile browser-bar resizing stays in CSS while desktop height and orientation still update card geometry', async ({ page }) => {
@@ -280,6 +324,227 @@ test('small trackpad deltas move cards continuously before the switch threshold 
   await page.clock.runFor(1000);
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await expect.poll(() => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
+});
+
+test('sparse forward trackpad contact does not spring backwards between samples', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const position = () => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  for (const distance of [10, 20, 30]) {
+    await stage.dispatchEvent('wheel', { deltaX: 10, bubbles: true, cancelable: true });
+    await page.clock.runFor(16); expect(await position()).toBeCloseTo(-distance, 1);
+    await page.clock.runFor(120); expect(await position()).toBeCloseTo(-distance, 1);
+  }
+  // A small completed gesture still returns to its original card.
+  await page.clock.runFor(1400); expect(await position()).toBeCloseTo(0, 1);
+  await expect(first).toHaveAttribute('data-current', 'true');
+});
+
+test('a slowing trackpad stream keeps following contact through renewed acceleration and reversal', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const deltas = [...Array.from({ length: 20 }, (_, index) => 20 * .9 ** index), 4, 6, 10, 16, -10, -14];
+  let distance = 0;
+  for (const deltaX of deltas) {
+    distance += deltaX;
+    await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      // Replay contact without a native inertia flag, as Safari and Firefox deliver it.
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+      el.dispatchEvent(event);
+    }, deltaX);
+    await page.clock.runFor(32);
+    expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(-distance, 1);
+  }
+  await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+});
+
+test('crossing the switch threshold does not release sparse ongoing trackpad contact', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  let distance = 0;
+  for (const deltaX of [50, 10, 10, 10]) {
+    distance += deltaX;
+    await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperty(event, 'timeStamp', { value: performance.now() });
+      el.dispatchEvent(event);
+    }, deltaX);
+    await page.clock.runFor(136);
+    expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(-distance, 1);
+  }
+  await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+});
+
+test('decelerating trackpad contact keeps following when later samples arrive sixty or one hundred milliseconds apart', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const samples = [...Array.from({ length: 20 }, (_, index) => ({ delay: 16, deltaX: 20 * .9 ** index })), ...[60, 100, 60, 100].map(delay => ({ delay, deltaX: 2 }))];
+  let distance = 0;
+  for (const { delay, deltaX } of samples) {
+    await page.clock.runFor(delay - 16); distance += deltaX;
+    await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+      el.dispatchEvent(event);
+    }, deltaX);
+    await page.clock.runFor(16);
+    expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(-distance, 1);
+  }
+  await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+});
+
+test('successive trackpad strokes keep moving through multiple cards and reverse immediately', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const shift = await first.evaluate(el => Math.max((el as HTMLElement).offsetWidth * .92 + 12, (innerWidth + (el as HTMLElement).offsetWidth * .8 + 64) / 3));
+  const samples: { delta: number; distance: number; positions: number[] }[] = [];
+  let distance = 0;
+  // A native inertia tail can join successive strokes; it must not impose a one-card stop.
+  const deltas = [...Array(8).fill(250), 12, 8, 4, 2, 180, 140, -20, -30, -80];
+  for (const deltaX of deltas) {
+    distance += deltaX;
+    await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+      el.dispatchEvent(event);
+    }, deltaX);
+    await page.clock.runFor(16);
+    const positions = await page.locator('.welcome-card').evaluateAll(cards => cards.slice(0, 2).map(card => new DOMMatrixReadOnly(getComputedStyle(card).transform).m41));
+    samples.push({ delta: deltaX, distance, positions });
+    // Compare both visible loop phases rather than mistaking wraparound for reversal.
+    for (let index = 0; index < positions.length; index++) {
+      const phase = ((index - distance / shift + 4.5) % 3 + 3) % 3 - 1.5;
+      expect(positions[index], `card ${index}, accumulated wheel distance ${distance}`).toBeCloseTo(phase * shift, 1);
+    }
+  }
+  await test.info().attach('multi-card-wheel-positions', { body: JSON.stringify({ shift, samples }), contentType: 'application/json' });
+  await page.clock.runFor(1500);
+  const selected = ((Math.round(distance / shift) % 3) + 3) % 3;
+  await expect(page.locator('.welcome-card').nth(selected)).toHaveAttribute('data-current', 'true');
+  expect(await page.locator('.welcome-card').nth(selected).evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(0, 1);
+});
+
+test('a new same-direction trackpad stroke during early release does not jump to the reverse loop copy', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const shift = await first.evaluate(el => Math.max((el as HTMLElement).offsetWidth * .92 + 12, (innerWidth + (el as HTMLElement).offsetWidth * .8 + 64) / 3));
+  const feed = () => stage.evaluate(el => {
+    const event = new WheelEvent('wheel', { deltaX: 50, bubbles: true, cancelable: true });
+    Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+    el.dispatchEvent(event);
+  });
+  const position = () => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  await feed(); await page.clock.runFor(448);
+  const releasing = await position();
+  expect(-releasing / shift).toBeGreaterThan(.15); expect(-releasing / shift).toBeLessThan(.3);
+  await feed(); await page.clock.runFor(16);
+  const resumed = await position();
+  expect(resumed).toBeCloseTo(releasing - 50, 1);
+  await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
+  expect(await position()).toBeCloseTo(-shift, 1);
+});
+
+test('a trackpad gesture ending exactly on a card stays there through release', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first(), second = page.locator('.welcome-card').nth(1);
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const shift = await first.evaluate(el => Math.max((el as HTMLElement).offsetWidth * .92 + 12, (innerWidth + (el as HTMLElement).offsetWidth * .8 + 64) / 3));
+  for (let index = 0; index < 4; index++) {
+    await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+      el.dispatchEvent(event);
+    }, shift / 4);
+    await page.clock.runFor(16);
+  }
+  for (let index = 0; index < 80; index++) {
+    expect(await second.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41), `release frame ${index}`).toBeCloseTo(0, 1);
+    await page.clock.runFor(16);
+  }
+  await expect(second).toHaveAttribute('data-current', 'true');
+});
+
+test('an explicit carousel selection cancels pending release and its wheel tail without blocking the next gesture', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
+  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const feed = async (deltaX: number) => {
+    await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+      el.dispatchEvent(event);
+    }, deltaX);
+    await page.clock.runFor(16);
+  };
+  for (let index = 0; index < 20; index++) await feed(20 * .9 ** index);
+  await page.clock.runFor(60);
+  await page.locator('.welcome-dots button').first().click();
+  for (const delta of [20, 15, 10, 5]) await feed(delta);
+  await page.clock.runFor(1500); await expect(first).toHaveAttribute('data-current', 'true');
+  await page.locator('.welcome-dots button').first().click();
+  await feed(80); await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+});
+
+test('horizontal trackpad contact tolerates diagonal jitter but yields to clear vertical scrolling', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 740 }); await page.goto('/introduction');
+  const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
+  await content.hover(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  for (const [deltaX, deltaY, distance] of [[15, 4, 15], [12, 14, 27], [15, 4, 42]]) {
+    const owned = await content.evaluate((el, delta) => {
+      const event = new WheelEvent('wheel', { ...delta, bubbles: true, cancelable: true });
+      el.dispatchEvent(event); return event.defaultPrevented;
+    }, { deltaX, deltaY });
+    expect(owned).toBe(true); await page.clock.runFor(32);
+    expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(-distance, 1);
+    expect(await content.evaluate(el => el.scrollTop)).toBe(0);
+  }
+  // A deliberate vertical movement immediately releases the horizontal tolerance.
+  for (const [deltaX, deltaY] of [[2, 40], [12, 14]]) {
+    expect(await content.evaluate((el, delta) => {
+      const event = new WheelEvent('wheel', { ...delta, bubbles: true, cancelable: true });
+      el.dispatchEvent(event); return event.defaultPrevented;
+    }, { deltaX, deltaY })).toBe(false);
+  }
+  await page.mouse.wheel(0, 40); await page.clock.runFor(32);
+  await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  await page.clock.runFor(1200);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+});
+
+test('continuous vertical wheel samples do not release an unfinished horizontal trackpad gesture', async ({ page }) => {
+  await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
+  const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
+  await expect(content).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const feed = (deltaX: number, deltaY = 0) => content.evaluate((el, delta) => {
+    const event = new WheelEvent('wheel', { ...delta, bubbles: true, cancelable: true });
+    Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+    el.dispatchEvent(event); return event.defaultPrevented;
+  }, { deltaX, deltaY });
+  const position = () => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  // Establish the library's ordinary cadence before the contact turns diagonal.
+  for (const delta of [10, 10, 10, 10, 5, 5]) { expect(await feed(delta)).toBe(true); await page.clock.runFor(16); }
+  expect(await position()).toBeCloseTo(-50, 1);
+  for (let index = 0; index < 20; index++) {
+    expect(await feed(index % 2, index % 2 ? 3 : 4)).toBe(false);
+    await page.clock.runFor(16);
+    expect(await position()).toBeCloseTo(-50, 1);
+  }
+  expect(await feed(20)).toBe(true); await page.clock.runFor(16);
+  expect(await position()).toBeCloseTo(-70, 1);
+  await page.clock.runFor(1500);
+  await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
 });
 
 test('a delayed decaying wheel tail cannot pull the selected card back', async ({ page }) => {

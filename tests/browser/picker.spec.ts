@@ -1,6 +1,97 @@
 import { expect, test } from '@playwright/test';
 import { expectPickerAlignment } from './picker';
 
+test.use({ launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'] } });
+
+test('dragging the thumb keeps the menu open and outer scrolling dismisses it', async ({ page, browserName, headless }) => {
+  test.skip(browserName === 'webkit' || browserName === 'firefox' && headless, 'WebKit does not capture this drag; headless Firefox forces scrollbars hidden.');
+  await page.setViewportSize({ width: 1280, height: 850 }); await page.goto('/settings');
+  const trigger = page.locator('.settings-language .setting-trigger'); await trigger.click();
+  const scroller = page.locator('.setting-menu-scroll'); await scroller.hover(); await page.mouse.wheel(0, 120);
+  await expect.poll(() => scroller.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  await page.waitForTimeout(150);
+  const before = await scroller.evaluate(el => ({ top: el.scrollTop, total: el.scrollHeight, height: el.clientHeight, box: el.getBoundingClientRect().toJSON() }));
+  const thumb = before.height * before.height / before.total;
+  const x = before.box.right - 3, y = before.box.top + before.height * before.top / before.total + thumb / 2;
+  await page.mouse.move(x, y); await page.waitForTimeout(150); await page.mouse.down();
+  await page.mouse.move(x, y + 90, { steps: 12 }); await page.mouse.up();
+  await expect(scroller).toBeVisible(); await expect.poll(() => scroller.evaluate(el => el.scrollTop)).toBeGreaterThan(before.top);
+  await page.keyboard.press('Escape'); await expect(trigger).toBeFocused();
+  await trigger.click(); await expect(scroller).toBeVisible();
+  await page.mouse.move(100, 300); await page.mouse.wheel(0, 120);
+  await expect(scroller).toHaveCount(0); await expect(trigger).toBeFocused();
+});
+
+test('returning from reading settings decorates its label without underlining the arrow', async ({ page }) => {
+  await page.goto('/today'); const trigger = page.locator('.reading-task [data-practice-skill=reading]');
+  await trigger.focus(); await trigger.press('Enter'); await expect(page.locator('.practice-options-dialog[open]')).toBeVisible();
+  await page.keyboard.press('Escape'); await expect(page.locator('.practice-options-dialog')).toHaveCount(0);
+  await expect(trigger).toBeFocused(); await expect(trigger).toHaveCSS('text-decoration-line', 'none');
+  await expect(trigger.locator('span').first()).toHaveCSS('text-decoration-line', 'underline');
+});
+
+test('Home and End return scrollbar focus to an unchanged option index', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 850 }); await page.goto('/settings');
+  const trigger = page.locator('.settings-language .setting-trigger'); await trigger.click();
+  const owner = page.locator('.setting-menu-scroll'), options = owner.getByRole('option');
+  for (const key of ['Home', 'End']) {
+    await page.keyboard.press(key);
+    // Native thumb dragging focuses the scroll owner without changing the option index.
+    await owner.evaluate((element, key) => { element.focus({ preventScroll: true }); element.scrollTop = key === 'Home' ? element.scrollHeight : 0; }, key);
+    await page.keyboard.press(key);
+    await expect(key === 'Home' ? options.first() : options.last()).toBeFocused();
+    expect(await owner.evaluate((element, key) => key === 'Home' ? element.scrollTop : element.scrollHeight - element.clientHeight - element.scrollTop, key)).toBeLessThanOrEqual(1);
+  }
+  await page.keyboard.press('Escape'); await expect(trigger).toBeFocused();
+});
+
+test('multi-select pointer choices become the next keyboard navigation starting point', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 850 }); await page.goto('/today');
+  await page.locator('.reading-task [data-practice-skill=reading]').click();
+  const dialog = page.locator('.practice-options-dialog'); await expect(dialog).toHaveAttribute('data-open', 'true');
+  const trigger = dialog.locator('.setting-trigger').first(); await trigger.click();
+  const menu = dialog.getByRole('listbox');
+  const chosen = menu.locator('[role=option][data-value=environment]'), next = menu.locator('[role=option][data-value=history]');
+  await chosen.click(); await expect(chosen).toHaveAttribute('aria-selected', 'true');
+  await expect(chosen).toBeFocused();
+  await page.keyboard.press('ArrowDown'); await expect(next).toBeFocused(); await expect(next).toBeInViewport();
+  await page.keyboard.press('Space'); await expect(next).toHaveAttribute('aria-selected', 'true');
+  await expect(chosen).toHaveAttribute('aria-selected', 'true'); await expect(menu).toBeVisible();
+  await page.keyboard.press('ArrowUp'); await expect(chosen).toBeFocused();
+  await page.keyboard.press('Space'); await expect(chosen).toHaveAttribute('aria-selected', 'false');
+  await expect(next).toHaveAttribute('aria-selected', 'true');
+  await page.keyboard.press('Escape'); await expect(menu).toHaveCount(0); await expect(trigger).toBeFocused();
+});
+
+test('pointer closing each practice settings button restores its idle appearance and keyboard focus remains visible', async ({ page, browserName }) => {
+  await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/today');
+  const triggers = page.locator('.today-grid .topic-picker .setting-trigger');
+  await expect(triggers).toHaveCount(4);
+  for (let index = 0; index < 4; index++) {
+    const trigger = triggers.nth(index), label = trigger.locator('span').first();
+    const idle = await trigger.evaluate(el => ({ color: getComputedStyle(el).color, background: getComputedStyle(el).backgroundColor }));
+    await trigger.click();
+    const dialog = page.locator('.practice-options-dialog[open]');
+    await expect(dialog).toHaveAttribute('data-open', 'true');
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    await dialog.locator('header button').click(); await expect(dialog).toHaveCount(0);
+    await page.mouse.move(1400, 850); await expect(trigger).toBeFocused();
+    await expect(label).toHaveCSS('text-decoration-line', 'none');
+    await expect(trigger).toHaveCSS('background-color', idle.background); await expect(trigger).toHaveCSS('color', idle.color);
+    await expect(trigger).toHaveCSS('scale', 'none'); await expect(trigger.locator('.setting-chevron')).toHaveCSS('translate', 'none');
+    // Firefox does not promote pointer focus on an arbitrary arrow key; Safari's default Tab order skips buttons.
+    if (browserName === 'firefox') {
+      await page.keyboard.press('Tab'); await expect(trigger).not.toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+    } else await page.keyboard.press('ArrowRight');
+    await expect(trigger).toBeFocused(); await expect(label).toHaveCSS('text-decoration-line', 'underline');
+    await trigger.press('Enter'); await expect(dialog).toBeVisible();
+    await page.keyboard.press('Escape'); await expect(dialog).toHaveCount(0);
+    await expect(trigger).toBeFocused(); await expect(label).toHaveCSS('text-decoration-line', 'underline');
+    await page.mouse.click(1400, 850);
+  }
+});
+
 for (const [width, colorScheme] of [[1440, 'light'], [375, 'dark']] as const) test(`keyboard profile picker ignores an already-settled scroll event: ${width}`, async ({ page }) => {
   await page.setViewportSize({ width, height: 800 });
   await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });

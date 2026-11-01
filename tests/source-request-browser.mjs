@@ -70,7 +70,7 @@ async function runDependence() {
  await resource.getByRole('checkbox').check(); await page.getByRole('button',{name:'下载所选资源',exact:true}).click(); await expect(resource).toContainText('已安装',{timeout:90000});
  await page.goto(origin+'/start'); for(let step=0;step<3;step++) await page.getByRole('button',{name:'跳过这一步',exact:true}).click();
  for(const skill of ['听力','阅读']) await page.getByRole('group',{name:skill,exact:true}).getByLabel(/^B2 ·/).check();
- await page.getByRole('button',{name:'保存并继续',exact:true}).click(); await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
+ await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
  const installed=new Set();
  for(const id of sourceIds) {
   const available=catalogue.packs.filter(pack=>pack.skill==='reading'&&!installed.has(pack.id)&&pack.minWords!==null&&pack.minWords<=300);
@@ -127,7 +127,6 @@ try {
   await page.reload(); await page.goto(origin + '/start');
   for (let step = 0; step < 3; step++) await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
   for (const skill of ['听力', '阅读']) await page.getByRole('group', { name: skill, exact: true }).getByLabel(/^B2 ·/).check();
-  await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
   // Download actual pack017 through the normal learner flow.
   await page.evaluate(({ packSeed, seed }) => { const original = crypto.getRandomValues.bind(crypto); crypto.getRandomValues = values => values instanceof Uint32Array && values.length === 2 ? (values[0] = packSeed, values[1] = seed, values) : original(values); }, { packSeed: viewpoints ? 2 : 16, seed: practiceSeed });

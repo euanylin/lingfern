@@ -234,6 +234,28 @@ test('selected-word popup fits a narrow dark learning view and closes with Escap
   await expect(page.locator('.selection-dictionary-menu')).toHaveCount(0);
 });
 
+test('selection actions and lookup fit the panned visual viewport after zoom', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openSnapshot(page, 'a1-reading', true);
+  const point = await highlightPassageWord(page, 'library');
+  const viewport = { left: Math.max(0, Math.min(point.x - 15, 190)), top: Math.max(0, point.y - 60), width: 200, height: 300 };
+  await page.evaluate(viewport => {
+    for (const [property, value] of Object.entries({ offsetLeft: viewport.left, offsetTop: viewport.top, width: viewport.width, height: viewport.height, scale: 1.95 })) Object.defineProperty(window.visualViewport!, property, { configurable: true, value });
+  }, viewport);
+  const menu = page.locator('.selection-dictionary-menu'); await expect(menu).toBeVisible();
+  const bounds = async (locator: typeof menu) => {
+    const box = (await locator.boundingBox())!;
+    expect(box.x).toBeGreaterThanOrEqual(viewport.left + 7.5); expect(box.x + box.width).toBeLessThanOrEqual(viewport.left + viewport.width - 7.5);
+    expect(box.y).toBeGreaterThanOrEqual(viewport.top + 7.5); expect(box.y + box.height).toBeLessThanOrEqual(viewport.top + viewport.height - 7.5);
+  };
+  await bounds(menu);
+  await page.getByRole('button', { name: '查词', exact: true }).click();
+  const popup = page.locator('.selection-dictionary'); await expect(popup).toBeVisible();
+  await expect(popup.getByText('A place where you can read or borrow books.')).toBeVisible();
+  await expect(popup).toHaveCSS('transform', 'none'); await bounds(popup);
+  await page.keyboard.press('Escape'); await expect(popup).toHaveCount(0);
+});
+
 test.describe('touch selection', () => {
   test.use({ hasTouch: true });
 

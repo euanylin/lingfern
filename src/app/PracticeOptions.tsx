@@ -69,7 +69,12 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
   }, [onChange, t.failed]);
   const toggleMaterial = useCallback((value: string, checked: boolean) => change({ ...draft, materials: checked ? [...draft.materials, value] : draft.materials.filter(item => item !== value) }), [change, draft]);
   const toggleGroup = useCallback((group: string) => setExpanded(previous => { const next = new Set(previous); if (next.has(group)) next.delete(group); else next.add(group); return next; }), []);
-  function close() { if (!saving) motion.close(); else void saveQueue.current.then(saved => { if (saved) motion.close(); }); }
+  function close() {
+    if (!saving) { motion.close(); return; }
+    const request = revision.current;
+    // Further editing supersedes a close waiting on an earlier save.
+    void saveQueue.current.then(saved => { if (saved && request === revision.current) motion.close(); });
+  }
   const known = useMemo(() => new Map(materials.map(item => [item.value, item])), [materials]);
   const missing = useCallback((value: string) => ({ value, label: `${t.unavailable} · ${value}`, group: 'unavailable' }), [t.unavailable]);
   const groups = useMemo(() => {

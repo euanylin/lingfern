@@ -30,10 +30,19 @@ test('saved feedback can be selectively exported without contacting an AI site',
   const markdown = Buffer.concat(markdownChunks).toString('utf8');
   expect(markdown).toContain('## 请求\n再举一个例子');
   expect(markdown).not.toContain('Meet at the library at ten.');
-  await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.getByRole('button', { name: '复制 Markdown' }).click();
   await expect(page.getByRole('status').filter({ hasText: '已复制。' })).toBeVisible();
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(markdown);
+  await page.evaluate(() => {
+    const target = document.createElement('textarea');
+    target.dataset.clipboardProbe = ''; target.setAttribute('aria-hidden', 'true');
+    target.style.cssText = 'position:fixed;inset:0;opacity:0;pointer-events:none';
+    document.body.appendChild(target); target.focus({ preventScroll: true });
+  });
+  try {
+    await page.keyboard.press('ControlOrMeta+V');
+    // Compare only the known fixture; never expose unrelated clipboard contents in failures.
+    await expect.poll(async () => await page.locator('[data-clipboard-probe]').inputValue() === markdown).toBe(true);
+  } finally { await page.locator('[data-clipboard-probe]').evaluate(target => target.remove()); }
   expect(external).toEqual([]);
 });
 

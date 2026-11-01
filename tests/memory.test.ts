@@ -1,7 +1,7 @@
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { db, memories } from '../src/data/db';
 import { removeSense, saveSense, projectMemories } from '../src/data/memory';
-import { validateSyncBatch, type SyncEvent } from '../src/shared/sync';
+import { compareSyncEvents, validateSyncBatch, type SyncEvent } from '../src/shared/sync';
 import * as dictionary from '../src/shared/dictionary';
 import { receiveSyncBatch, appendSyncEvent, readSyncEvents } from '../src/data/sync';
 import { exportBackup, importBackup, inspectBackup } from '../src/data/backup';
@@ -125,7 +125,7 @@ it('preserves valid legacy wire fields and archives review events without restor
   await receiveSyncBatch('p', validated.batch, validated.hash);
   expect(await readSyncEvents('p')).toEqual(events);
   expect((await projectMemories('p')).items[0]).toEqual({ profileId: 'p', memoryId: 'apple%1:13:00::', term: 'apple', definition: 'fruit', savedAt: saved.occurredAt });
-  expect((await inspectBackup(await exportBackup('p'))).records.syncEvents.map(({ profileId: _profile, batchId: _batch, ...event }) => { void _profile; void _batch; return event; }).sort((a, b) => a.counter - b.counter)).toEqual(events);
+  expect((await inspectBackup(await exportBackup('p'))).records.syncEvents.map(({ profileId: _profile, batchId: _batch, ...event }) => { void _profile; void _batch; return event; }).sort(compareSyncEvents)).toEqual(events);
   await expect(validateSyncBatch({ ...raw, events: [{ ...events[1], payload: {} }] })).rejects.toThrow();
   await expect(validateSyncBatch({ ...raw, events: [{ ...events[2], payload: {} }] })).rejects.toThrow();
 });

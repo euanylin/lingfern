@@ -5,6 +5,76 @@ import { selectPicker } from './picker';
 test.use({ launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'] } });
 const transparent = 'rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)';
 
+test.describe('touch scrollbar activity', () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, colorScheme: 'dark' });
+
+  test('new pages and automatic menu positioning stay quiet while user scrolling fades without resizing', async ({ page }) => {
+    await page.goto('/settings');
+    const root = page.locator('html'), color = () => root.evaluate(el => getComputedStyle(el).scrollbarColor);
+    await expect(root).toHaveAttribute('data-scrollbar-y', 'true');
+    await expect.poll(color).toBe(transparent);
+    await page.evaluate(() => scrollTo(0, 80));
+    await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(0);
+    await expect.poll(color).toBe(transparent);
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.locator('.settings-language .setting-trigger').click();
+    const popup = page.getByRole('listbox'), menu = popup.locator('.setting-menu-scroll');
+    await expect(menu).toHaveAttribute('data-scrollbar-y', 'true');
+    await expect(menu).toHaveCSS('scrollbar-color', transparent);
+    const before = await menu.evaluate(el => ({ width: el.clientWidth, height: el.clientHeight }));
+    await page.keyboard.press('End');
+    await expect.poll(() => menu.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+    await expect(menu).toHaveAttribute('data-scrollbar-active', '');
+    await expect.poll(() => menu.evaluate(el => getComputedStyle(el).scrollbarColor)).not.toBe(transparent);
+    await expect(menu).not.toHaveAttribute('data-scrollbar-active');
+    await expect(menu).toHaveCSS('scrollbar-color', transparent);
+    expect(await menu.evaluate(el => ({ width: el.clientWidth, height: el.clientHeight }))).toEqual(before);
+    expect(await popup.evaluate(el => {
+      const inner = el.querySelector('.setting-menu-scroll')!, a = el.getBoundingClientRect(), b = inner.getBoundingClientRect();
+      return getComputedStyle(el).overflow === 'hidden' && b.top >= a.top + 5 && b.bottom <= a.bottom - 5 && b.left >= a.left + 5 && b.right <= a.right - 5;
+    })).toBe(true);
+    await page.keyboard.press('Escape');
+    await page.locator('main').focus(); await page.keyboard.press('PageDown');
+    await expect(root).toHaveAttribute('data-scrollbar-active', '');
+    await page.locator('nav a[href="/library"]:visible').first().click();
+    await expect(page).toHaveURL(/\/library$/);
+    await expect(root).not.toHaveAttribute('data-scrollbar-active');
+    await expect.poll(color).toBe(transparent);
+  });
+
+  test('introduction hides every thumb while preview scrolling and the canonical SVG remain available', async ({ page }) => {
+    await page.goto('/introduction');
+    const current = page.locator('.welcome-card[data-current=true]'), content = current.locator('.welcome-content');
+    await expect(content).toBeVisible();
+    expect(await page.evaluate(() => [document.documentElement, ...document.querySelectorAll('.welcome-main *')].every(el => getComputedStyle(el).scrollbarWidth === 'none'))).toBe(true);
+    const icon = readFileSync(new URL('../../public/icon.svg', import.meta.url), 'utf8');
+    expect(await current.locator('.mobile-brand .brand-symbol').evaluate((el, source) => {
+      const original = new DOMParser().parseFromString(source, 'image/svg+xml').documentElement, svg = el.querySelector('svg')!;
+      return getComputedStyle(el).maskImage === 'none' && svg.getAttribute('viewBox') === original.getAttribute('viewBox') && svg.querySelector('path')!.getAttribute('d') === original.querySelector('path')!.getAttribute('d');
+    }, icon)).toBe(true);
+    await content.locator('.daily-quote-next').focus();
+    const before = await content.evaluate(el => el.scrollTop);
+    await page.keyboard.press('PageDown');
+    await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(before);
+    await expect(content).toHaveCSS('scrollbar-width', 'none');
+    await expect(page.locator('.welcome-start')).toBeVisible();
+  });
+});
+
+for (const [locale, width] of [['zh-Hans', 390], ['en', 1440], ['ar', 390]] as const) test(`settings action feedback and arrow fit the card in ${locale}/${width}`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 844 }); await page.goto('/settings');
+  await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+  const link = page.locator('.settings-start-link');
+  await link.focus(); await expect(link).toBeFocused();
+  const bounds = await link.evaluate(el => {
+    const box = el.getBoundingClientRect(), card = el.closest('.settings-preferences')!.getBoundingClientRect(), label = el.firstElementChild!.getBoundingClientRect(), arrow = el.lastElementChild!.getBoundingClientRect();
+    return { inside: box.left >= card.left && box.right <= card.right && arrow.left >= box.left && arrow.right <= box.right, padded: Math.min(label.left, arrow.left) >= box.left + 11 && Math.max(label.right, arrow.right) <= box.right - 11, height: box.height };
+  });
+  expect(bounds.inside && bounds.padded).toBe(true); expect(bounds.height).toBeGreaterThanOrEqual(44);
+  await link.hover();
+  expect(await link.evaluate(el => { const a = el.getBoundingClientRect(), b = el.closest('.settings-preferences')!.getBoundingClientRect(); return a.left >= b.left && a.right <= b.right && getComputedStyle(el).transform === 'none'; })).toBe(true);
+});
+
 for (const width of [375, 1440]) test(`document thumbs follow actual scrolling without changing width at ${width}px`, async ({ page }, info) => {
   await page.setViewportSize({ width, height: 812 }); await page.goto('/settings');
   const root = page.locator('html');
@@ -42,7 +112,7 @@ for (const [locale, theme] of [['zh-Hans','light'],['en','dark'],['ar','dark']] 
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
   await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
   const trigger = page.locator('.settings-language .setting-trigger'); await trigger.click();
-  const menu = page.getByRole('listbox'); await expect(menu).toBeVisible();
+  const menu = page.getByRole('listbox').locator('.setting-menu-scroll'); await expect(menu).toBeVisible();
   expect(await menu.evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
   await expect(menu).toHaveAttribute('data-scrollbar-y','true');
   const styles = await menu.evaluate(el => ({ width: getComputedStyle(el).scrollbarWidth, color: getComputedStyle(el).scrollbarColor }));
@@ -60,7 +130,7 @@ for (const [locale, theme] of [['zh-Hans','light'],['en','dark'],['ar','dark']] 
 test('short overflow hides the thumb while native scrolling, resizing and content changes remain available', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/settings');
   await page.locator('.settings-appearance .setting-trigger').first().click();
-  const menu = page.getByRole('listbox'); await expect(menu).toBeVisible();
+  const menu = page.getByRole('listbox').locator('.setting-menu-scroll'); await expect(menu).toBeVisible();
   await expect(menu).toHaveAttribute('data-scrollbar-y','false');
   await menu.evaluate(el => el.style.maxHeight = `${el.scrollHeight - 40}px`);
   await expect.poll(() => menu.evaluate(el => el.scrollHeight - el.clientHeight)).toBeGreaterThan(0);
@@ -99,7 +169,7 @@ for (const [locale, width, theme] of [['zh-Hans',375,'light'],['en',1440,'dark']
       return { width: style.scrollbarWidth, corners: frame ? style.borderRadius === getComputedStyle(frame).borderRadius : parseFloat(style.borderRadius) > 0, fits: box.left >= 0 && box.right <= innerWidth + 1, native: ['auto','scroll'].includes(style.overflowY) || ['auto','scroll'].includes(style.overflowX) };
     })).toEqual({ width: 'thin', corners: true, fits: true, native: true });
   };
-  await page.locator('.settings-language .setting-trigger').click(); await surface('.setting-menu');
+  await page.locator('.settings-language .setting-trigger').click(); await surface('.setting-menu-scroll');
   await page.keyboard.press('End'); await expect(page.getByRole('option').last()).toBeInViewport();
   await page.keyboard.press('Escape');
   await page.goto('/today'); await page.locator('.primary-task.reading-task [data-practice-skill=reading]').click();

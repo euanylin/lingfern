@@ -129,14 +129,13 @@
       "Idioma de la interfaz",
       "¿Para qué te gustaría usar el inglés?",
       "Elegir temas de interés",
-      "Tus puntos de partida de lectura y comprensión auditiva",
-      "Probar una actividad breve"
+      "Tus puntos de partida de lectura y comprensión auditiva"
     ],
     "back": "Atrás",
     "next": "Guardar y continuar",
     "skip": "Omitir este paso",
     "today": "Guardar e ir a Hoy",
-    "step": "Paso {n} de 5",
+    "step": "Paso {n} de 4",
     "error": "No se pudo guardar. Inténtalo de nuevo.",
     "reading": "Lectura",
     "listening": "Comprensión auditiva",
@@ -176,10 +175,7 @@
       "Puntos de vista y argumentos en contenidos más largos",
       "Significados implícitos en contenidos complejos",
       "Significado preciso y matices de tono en discursos extensos"
-    ],
-    "read": "Probar la lectura",
-    "listen": "Probar la escucha",
-    "unavailable": "El audio de comprensión auditiva no está instalado para usarlo sin conexión."
+    ]
   },
   "githubIdentity": {
     "title": "Identidad de GitHub",

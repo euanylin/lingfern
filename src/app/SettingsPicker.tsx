@@ -20,6 +20,7 @@ export function SettingsPicker(props: Props) {
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
+  const scroll = useRef<HTMLDivElement>(null);
   const isSelected = (option: Option) => props.multiple ? option.value ? props.value.includes(option.value) : !props.value.length : option.value === props.value;
   const selected = Math.max(0, options.findIndex(isSelected));
   const selectedText = props.multiple ? options.filter(isSelected).map(option => option.label).join(' / ') : options[selected]?.label ?? '';
@@ -32,8 +33,8 @@ export function SettingsPicker(props: Props) {
     return () => document.removeEventListener('pointerdown', outside);
   }, [open]);
   useLayoutEffect(() => {
-    if (!open || !menu.current || !trigger.current || !root.current) return;
-    const popup = menu.current;
+    if (!open || !menu.current || !scroll.current || !trigger.current || !root.current) return;
+    const popup = menu.current, scroller = scroll.current;
     const update = (centerSelected = false) => {
       if (!trigger.current || !root.current) return;
       const visual = window.visualViewport;
@@ -51,7 +52,7 @@ export function SettingsPicker(props: Props) {
       const option = popup.querySelectorAll<HTMLButtonElement>('[role=option]')[selected];
       if (!option) return;
       const center = option.offsetTop + option.offsetHeight / 2;
-      if (centerSelected) popup.scrollTop = Math.max(0, center - popup.clientHeight / 2);
+      if (centerSelected) scroller.scrollTop = Math.max(0, center - scroller.clientHeight / 2);
       const rtl = getComputedStyle(trigger.current).direction === 'rtl';
       // Wide fields open from their text edge; compact row values keep end alignment.
       const alignLeft = variant === 'field' ? !rtl : rtl;
@@ -102,27 +103,31 @@ export function SettingsPicker(props: Props) {
       window.visualViewport?.removeEventListener('scroll', scrolled);
     };
   }, [open, selected, options, props.multiple, variant]);
-  useLayoutEffect(() => {
-    if (!open || !menu.current) return;
-    const popup = menu.current, option = popup.querySelectorAll<HTMLButtonElement>('[role=option]')[focusIndex];
+  function focusOption(index: number) {
+    if (!menu.current || !scroll.current) return;
+    const scroller = scroll.current, option = menu.current.querySelectorAll<HTMLButtonElement>('[role=option]')[index];
     if (!option) return;
     option.focus({ preventScroll: true });
-    if (option.offsetTop < popup.scrollTop) popup.scrollTop = option.offsetTop;
-    else if (option.offsetTop + option.offsetHeight > popup.scrollTop + popup.clientHeight) popup.scrollTop = option.offsetTop + option.offsetHeight - popup.clientHeight;
-  }, [open, focusIndex]);
+    if (option.offsetTop < scroller.scrollTop) scroller.scrollTop = option.offsetTop;
+    else if (option.offsetTop + option.offsetHeight > scroller.scrollTop + scroller.clientHeight) scroller.scrollTop = option.offsetTop + option.offsetHeight - scroller.clientHeight;
+  }
+  useLayoutEffect(() => { if (open) focusOption(focusIndex); }, [open, focusIndex]);
 
   function show(index = selected) {
     if (blocked) return;
     setFocusIndex(index);
     setOpen(true);
   }
-  function choose(option: Option) {
-    if (props.multiple) props.onChange(!option.value ? [] : props.value.includes(option.value) ? props.value.filter(value => value !== option.value) : [...props.value, option.value]);
+  function choose(option: Option, index: number) {
+    if (props.multiple) {
+      setFocusIndex(index); focusOption(index);
+      props.onChange(!option.value ? [] : props.value.includes(option.value) ? props.value.filter(value => value !== option.value) : [...props.value, option.value]);
+    }
     else { props.onChange(option.value); setOpen(false); trigger.current?.focus(); }
   }
   function move(event: KeyboardEvent, index: number) {
     const next = event.key === 'ArrowDown' ? (index + 1) % options.length : event.key === 'ArrowUp' ? (index - 1 + options.length) % options.length : event.key === 'Home' ? 0 : event.key === 'End' ? options.length - 1 : -1;
-    if (next >= 0) { event.preventDefault(); setFocusIndex(next); }
+    if (next >= 0) { event.preventDefault(); if (next === focusIndex) focusOption(next); else setFocusIndex(next); }
     else if (event.key === 'Escape' && open) { event.preventDefault(); setOpen(false); trigger.current?.focus(); }
   }
   return <div className={`setting${variant === 'field' ? ' setting-field' : ''}`} ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
@@ -131,8 +136,10 @@ export function SettingsPicker(props: Props) {
       {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}><bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true">›</span>}
     </button>
     {open && <div ref={menu} id={`${id}-options`} className="setting-menu" role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
-      {/* Keep Safari menus open through pointer focus loss until the option click. */}
-      {options.map((option, index) => <button key={option.value} type="button" role="option" style={{ minHeight: 44 }} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span><bdi lang={option.lang}>{option.label}</bdi></button>)}
+      <div ref={scroll} className="setting-menu-scroll" tabIndex={-1} onKeyDown={event => { if (event.target === event.currentTarget) move(event, focusIndex); }}>
+        {/* Keep Safari menus open through pointer focus loss until the option click. */}
+        {options.map((option, index) => <button key={option.value} type="button" role="option" style={{ minHeight: 44 }} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option, index)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span><bdi lang={option.lang}>{option.label}</bdi></button>)}
+      </div>
     </div>}
   </div>;
 }

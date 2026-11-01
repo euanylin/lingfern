@@ -1,3 +1,4 @@
+import { incrementSyncCounter, maxSyncCounter, type SyncCounter } from '../../src/shared/syncCounter';
 import { expect, test, type Page } from '@playwright/test';
 import { autoSyncFixture } from '../browser/autoSyncFixture';
 
@@ -55,9 +56,9 @@ test('compiled automatic sync migrates history, preserves offline reloads, resto
     await server.attach(second); const fresh = await second.newPage(); await fresh.clock.install();
     await configure(fresh); await expect(fresh.locator('.history')).toHaveCount(4); await settled(fresh);
     expect(server.uploads).toHaveLength(before + 1);
-    const seen: Record<string, number> = {};
-    for (const event of lookupEvents) seen[event.deviceId] = Math.max(seen[event.deviceId] ?? 0, event.counter);
-    await server.add({ product: 'Lingfern', formatVersion: 1, profileId: server.scope.profileId, deviceId: 'synthetic-clear', batchId: 'clear-history', events: [{ id: 'observed-clear', deviceId: 'synthetic-clear', counter: Math.max(...Object.values(seen)) + 1, occurredAt: new Date().toISOString(), type: 'lookup_clear', payload: { seen } }] });
+    const seen: Record<string, SyncCounter> = {};
+    for (const event of lookupEvents) seen[event.deviceId] = maxSyncCounter(seen[event.deviceId] ?? 0, event.counter);
+    await server.add({ product: 'Lingfern', formatVersion: 1, profileId: server.scope.profileId, deviceId: 'synthetic-clear', batchId: 'clear-history', events: [{ id: 'observed-clear', deviceId: 'synthetic-clear', counter: incrementSyncCounter(Object.values(seen).reduce(maxSyncCounter, 0)), occurredAt: new Date().toISOString(), type: 'lookup_clear', payload: { seen } }] });
     await page.clock.fastForward(125000); await expect(page.locator('.history')).toHaveCount(0); await settled(page);
     await fresh.clock.fastForward(125000); await expect(fresh.locator('.history')).toHaveCount(0);
     expect(server.uploads).toHaveLength(before + 1);

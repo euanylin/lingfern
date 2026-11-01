@@ -1,3 +1,4 @@
+import { RefreshIcon } from './RefreshIcon';
 import { contentText, messages } from '../locales';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { localDay, quoteSourceUrl } from '../core/dailyQuoteFormat';
@@ -148,7 +149,7 @@ export function DailyQuote({ locale, onDayChange, initialSelection, onSelection 
         {selection.event && <p className="daily-quote-event"><a href={selection.event.url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{contentText(selection.event.labels, locale)}</a></p>}
         {'kind' in selection.quote.rightsEvidence && selection.quote.rightsEvidence.kind === 'cc-by-4.0' && <p className="daily-quote-license"><a href={selection.quote.rightsEvidence.rightsUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">CC BY 4.0</a></p>}
       </div>
-      <button type="button" className="daily-quote-next" aria-label={t.next} aria-disabled={loading} aria-busy={loading} onClick={() => { if (!loading) void choose(); }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 7a7 7 0 0 1 11.6-1L20 9M4 15l2.3 3A7 7 0 0 0 17.9 17"/></svg></button>
+      <button type="button" className="daily-quote-next" aria-label={t.next} aria-disabled={loading} aria-busy={loading} onClick={() => { if (!loading) void choose(); }}><RefreshIcon/></button>
     </div>
   </section>;
 }

@@ -354,7 +354,7 @@ The page requires no private data and displays static content immediately. Exist
 
 Help users start a real task, not register for a service. No GitHub, email, or native-language collection. Desktop uses a centred 560-wide column with Back/step/Skip at the top and a 40–64 content gap. Mobile gutters 20; actions may sit at the bottom, returning to flow when space is insufficient.
 
-Present heading, choices, Continue, and short explanation in that order. All nonessential decisions are skippable. “Try it now” from Landing may enter a short task directly rather than being blocked by a five-page survey.
+Present heading, choices, Continue, and short explanation in that order. All nonessential decisions are skippable. Setup has four steps; the last action saves and opens Today.
 
 #### Exact Sections
 
@@ -364,15 +364,14 @@ Present heading, choices, Continue, and short explanation in that order. All non
 | Purpose | Everyday life, study, work, travel, reading for pleasure/not sure | Skippable; selections support recommendations, not profile scoring |
 | Interests | Five main themes: campus, daily life, popular science, humanities/culture, travel | Select 0–5; add catalogue subtopics only as real content exists |
 | Starting point | Separate reading/listening choices with short A1–C2 can-do descriptions or “Not sure” | May differ and may be skipped; recommendation starting points only, not measured proficiency |
-| Short demonstration | Choose reading or listening; material, example, actual questions, feedback | Estimate duration from the real task; may skip to Today |
 
-The step indicator says “Step 2 of 5”, not proficiency progress. The demonstration takes a few minutes; do not simultaneously promise a two-minute complete flow and a three-minute task. Back preserves local selections and reopening may resume. Skipping must not penalise the growth graphic.
+The step indicator says “Step 2 of 4”, not proficiency progress. Step 4 ends with “Save and go to Today” (简体中文：“保存并前往今日”). Back preserves local selections and reopening may resume. An unfinished draft on the retired fifth step resumes at the fourth step with its choices intact. Skipping must not penalise the growth graphic.
 
 #### Interaction
 
 Continue provides immediate interaction feedback, but confirms completion only after local writing succeeds. Skipping leaves a choice unspecified, not silently “B1 selected by the user”. Focus the heading on each new page. On phones, Step 4 may show reading then listening as two subsections without extra pages or a complex placement test.
 
-After the demonstration, report actual goals attempted and next steps. Self-report and correct example answers are not independent evidence. The fern shows only a form supported by actual records.
+Self-reported starting points are not independent evidence. The fern shows only a form supported by actual records.
 
 #### Desktop / Tablet / Mobile
 

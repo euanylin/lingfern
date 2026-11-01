@@ -10,6 +10,39 @@ async function counts(page: import('@playwright/test').Page) {
   });
 }
 
+test('closing a preview while its practice saves retains the session without reopening learning', async ({ page }) => {
+  await page.goto('/today');
+  const trigger = page.locator('.task-row').filter({ has: page.getByRole('heading', { name: '找到集合地点', exact: true }) }).getByRole('button');
+  await trigger.click();
+  const before = await counts(page);
+  await page.evaluate(async () => {
+    const data = await import('/src/data/db.ts' as string);
+    const transaction = data.db.transaction.bind(data.db);
+    data.db.transaction = (...args: unknown[]) => {
+      if (!args.includes(data.sessions) || !args.includes(data.syncClocks) || args.includes(data.settings)) return transaction(...args);
+      data.db.transaction = transaction;
+      return transaction(...args).then((result: unknown) => new Promise(resolve => {
+        Reflect.set(window, 'releasePracticeSave', () => resolve(result));
+      }));
+    };
+  });
+  const dialog = page.getByRole('dialog');
+  await dialog.locator('button[data-mode=practice]').click();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releasePracticeSave'))).toBe('function');
+  await dialog.getByRole('button', { name: '关闭', exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  expect((await counts(page)).sessions).toBe(before.sessions + 1);
+  await page.evaluate(() => Reflect.get(window, 'releasePracticeSave')());
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await expect(page).toHaveURL(/\/today$/);
+  await expect(trigger).toBeVisible();
+  expect((await counts(page)).sessions).toBe(before.sessions + 1);
+  await trigger.click();
+  await confirmTask(page);
+  await expect(page).toHaveURL(/\/learn\//);
+  expect((await counts(page)).sessions).toBe(before.sessions + 1);
+});
+
 test('task details confirm metadata without starting, exposing passages or playing audio', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/today');

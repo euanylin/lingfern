@@ -43,7 +43,8 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const questionCard = useRef<HTMLDetailsElement>(null), questionContent = useRef<HTMLDivElement>(null), validationDialog = useRef<HTMLDialogElement>(null);
   const validationClose = useRef<HTMLButtonElement>(null), validationInvoker = useRef<HTMLElement | null>(null);
   const [jumpHidden, setJumpHidden] = useState(false);
-  const selection = useRef({ version: 0, questionId: selected });
+  const selection = useRef({ version: 0, questionId: selected }), refreshRevision = useRef(0);
+  useEffect(() => () => { selection.current.version++; refreshRevision.current++; }, []);
   const focusRequest = useRef<{ questionId: string; slot: number; focused?: HTMLElement } | undefined>(undefined);
   let number = 1;
   const numbered = all.map(item => { const start = number; number += questionSlots(item.question); return { ...item, start }; });
@@ -161,7 +162,13 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     const close = (event: KeyboardEvent) => { if (event.key === 'Escape' && !event.defaultPrevented && !validationDialog.current?.open) switchPane('material'); };
     document.addEventListener('keydown', close); return () => document.removeEventListener('keydown', close);
   }, [mobile, listening, pane]);
-  async function refresh() { const current = await sessions.get(session.id); if (current) onSession(current); }
+  function publishSession(current: Session) { live.current = current; onSession(current); }
+  async function refresh() {
+    const previous = live.current, selectedVersion = selection.current.version, request = ++refreshRevision.current;
+    const current = await sessions.get(session.id);
+    // Do not replace a newer selection, submission or annotation with an older read.
+    if (current && request === refreshRevision.current && previous === live.current && selectedVersion === selection.current.version) publishSession(current);
+  }
   function persist(change: { questionId: string; answer?: Answer; skipped?: boolean }) {
     const { questionId } = change, key = `${questionId}:${change.skipped === undefined ? 'answer' : 'skip'}`;
     if (change.answer !== undefined) setAnswers(previous => ({ ...previous, [questionId]: change.answer! }));
@@ -193,7 +200,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
       if (revision !== selection.current.version) return;
       if (updated.lesson.skill === 'reading' && target.material.id !== material.id) await markExposure(updated);
       if (target.material.id !== material.id && !listening) positions.current.set(material.id, scrollY);
-      if (revision === selection.current.version) onSession(updated);
+      if (revision === selection.current.version) publishSession(updated);
     } catch { if (revision !== selection.current.version) return; if (focusRequest.current === request) focusRequest.current = undefined; setError(t.saveError); }
   }
   function activateQuestion(item: (typeof all)[number], target: HTMLElement) {
@@ -207,7 +214,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     if (selection.current.questionId === item.question.id) return;
     selection.current.questionId = item.question.id; setSelected(item.question.id);
     const revision = ++selection.current.version;
-    void selectWorkspaceQuestion(session.id, owner, item.question.id).then(updated => { if (revision === selection.current.version) onSession(updated); }).catch(() => { if (revision === selection.current.version) setError(t.saveError); });
+    void selectWorkspaceQuestion(session.id, owner, item.question.id).then(updated => { if (revision === selection.current.version) publishSession(updated); }).catch(() => { if (revision === selection.current.version) setError(t.saveError); });
   }
   async function lookup() { await recordDictionaryUse(session.id, owner, all[live.current.position].question.id); await refresh(); }
   async function play() {
@@ -257,7 +264,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
       await pending.current;
       if (unsaved.current.size) throw new Error('SAVE');
       const result = await submitWorkspace(session.id, owner);
-      setSaved(result.attempts); setPane('question'); onSession(result.session);
+      setSaved(result.attempts); setPane('question'); publishSession(result.session);
       document.getElementById('workspace-result')?.focus();
     } catch (cause) { setError(cause instanceof Error && cause.message === 'NO_AUDIO' ? t.listenFirst : cause instanceof Error && ['UNSAVED', 'INVALID_ANSWER'].includes(cause.message) ? t.invalidAnswer : t.saveError); }
     finally { setBusy(false); }
@@ -284,7 +291,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
           {audioError && <div className="error" role="alert"><p>{t.audioError}</p><button type="button" onClick={() => { audio.current?.load(); setAudioError(false); }}>{t.retry}</button>{repairPack && <button type="button" disabled={!online || busy} onClick={async () => { setBusy(true); try { await installSourcePack(repairPack.sha256, profileId); audio.current?.load(); setAudioError(false); } catch { setError(t.audioRepairFailed); } finally { setBusy(false); } }}>{t.audioRepair}</button>}<a href="/library">{t.material}</a></div>}
           <details className="source"><summary>{messages('taskDetail')[locale].source}</summary><h2>{material.title}</h2><p>{material.credit?.attribution ?? material.audio.author}</p><p>{material.credit?.license ?? material.audio.license}</p>{(material.credit?.sourceUrl ?? material.audio.sourceUrl).startsWith('https://') && <a href={material.credit?.sourceUrl ?? material.audio.sourceUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{material.credit?.sourceUrl ?? material.audio.sourceUrl}</a>}</details>
           {material.audio.synthetic && <p>{t.syntheticCredit}</p>}
-        </section> : <ReadingMaterial key={material.id} material={material} locale={locale} label={t.material} sessionId={session.id} owner={owner} annotation={session.readingAnnotations?.find(item => item.materialId === material.id)} checking={!!lesson.mode} profileId={profileId} online={online} defaultId={onlineDictionary} onLookup={lookup} onDirty={value => { annotationDirty.current = value; }} onSaved={readingAnnotations => onSession({ ...live.current, readingAnnotations })}/>}
+        </section> : <ReadingMaterial key={material.id} material={material} locale={locale} label={t.material} sessionId={session.id} owner={owner} annotation={session.readingAnnotations?.find(item => item.materialId === material.id)} checking={!!lesson.mode} profileId={profileId} online={online} defaultId={onlineDictionary} onLookup={lookup} onDirty={value => { annotationDirty.current = value; }} onSaved={readingAnnotations => publishSession({ ...live.current, readingAnnotations })}/>}
       </article>
       <section className="question-panel workspace-questions" aria-label={t.question} aria-busy={busy} data-open={listening || pane === 'question'}>
         {mobile && !listening && pane === 'question' && <QuestionSheetResize locale={locale} controls="workspace-sheet-content" resize={sheet.resize}/>}
@@ -326,7 +333,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
           </section>; })}
           {!finished && (nextMaterial ? <button type="button" onClick={() => void navigate(nextMaterial.questions[0].id)} disabled={busy || saving}>{t.next}</button> : <button className="primary" disabled={busy || saving} type="submit">{busy ? t.saving : w.submitAll}</button>)}
         </form>
-        {lesson.mode === 'check' && !finished && <button type="button" disabled={busy || saving} onClick={async () => { setBusy(true); try { await pending.current; if (unsaved.current.size) throw new Error('SAVE'); onSession(await endCheck(session.id, owner)); } catch { setError(t.saveError); } finally { setBusy(false); } }}>{t.endCheck}</button>}
+        {lesson.mode === 'check' && !finished && <button type="button" disabled={busy || saving} onClick={async () => { setBusy(true); try { await pending.current; if (unsaved.current.size) throw new Error('SAVE'); publishSession(await endCheck(session.id, owner)); } catch { setError(t.saveError); } finally { setBusy(false); } }}>{t.endCheck}</button>}
         {finished && <section className="feedback"><h2 id="workspace-result" tabIndex={-1}>{session.status === 'ended' ? t.checkEnded : t.completed}</h2><p className="muted">{w.groups}: {all.length} · {w.blank}: {all.reduce((sum, item) => sum + ('gaps' in item.question ? item.question.gaps.length : 'rows' in item.question ? item.question.rows.length : 'kind' in item.question && item.question.kind === 'completion' ? 1 : 0), 0)} · {w.slots}: {number - 1}</p>{session.status === 'completed' && points.length > 0 && <p>{w.score}: {points.filter(point => point.correct === true).length}/{points.filter(point => point.correct !== null).length} · {points.filter(point => point.correct === null).length} {t.unscored}</p>}{numbered.map(item => {
           const record = saved.find(record => record.questionId === item.question.id);
           if (!record && skipped.has(item.question.id)) return <article className="workspace-review" key={item.question.id}><h3 lang="en">{item.start}. {item.question.prompt}</h3><p>{w.skipped}</p></article>;

@@ -64,3 +64,11 @@
   .welcome-card{opacity:0;visibility:hidden}
   .welcome-card[data-current=true]{opacity:1;visibility:visible}
 }
+
+/* Keep the canonical mark independent of Android masked-layer compositing. */
+.welcome-site-header .brand-symbol{background:none;mask:none;color:var(--accent)}
+/* Keep the mark's raster independent of the moving, filtered card. */
+.welcome-site-header .brand-symbol svg{display:block;width:100%;height:100%;transform:translateZ(0)}
+.welcome-site-header .brand-symbol path{fill:currentColor}
+html:has(#root>main.welcome-main),.welcome-main *{scrollbar-width:none!important}
+html:has(#root>main.welcome-main)::-webkit-scrollbar,.welcome-main *::-webkit-scrollbar{display:none}

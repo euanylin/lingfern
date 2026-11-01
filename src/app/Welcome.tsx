@@ -1,4 +1,5 @@
 import './Welcome.css';
+import fernSymbol from '../../public/icon.svg?raw';
 import { WheelGestures } from 'wheel-gestures';
 import { NavIcon } from './NavIcon';
 import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react';
@@ -105,7 +106,7 @@ export function Welcome(props: WelcomeProps) {
     // Choose the nearest loop copy, even during an unfinished drag.
     target = current.current + (((target - current.current + 4.5) % 3 + 3) % 3 - 1.5);
     const offset = current.current - target, toward = Math.sign(-offset);
-    const speed = toward * velocity > 0 ? toward * Math.min(6, Math.abs(velocity), 18 * Math.abs(offset)) : Math.max(-6, Math.min(6, velocity)), began = performance.now();
+    const speed = toward === 0 ? 0 : toward * velocity > 0 ? toward * Math.min(6, Math.abs(velocity), 18 * Math.abs(offset)) : Math.max(-6, Math.min(6, velocity)), began = performance.now();
     destination.current = target;
     const finish = () => { frame.current = 0; destination.current = ((Math.round(target) % 3) + 3) % 3; livePaint.current(destination.current); };
     if (reduced || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
@@ -163,41 +164,69 @@ export function Welcome(props: WelcomeProps) {
   }, [go, paint, reduced]);
   useEffect(() => {
     const root = stage.current!, gestures = WheelGestures({ preventWheelAction: false, reverseSign: false });
-    let start = 0, origin = 0, total = 0, velocity = 0, settled = false, lastAt = 0, peak = 0, lastDelta = 0;
-    let release: ReturnType<typeof setTimeout>;
-    const settle = (ending = false) => { if (!settled && !drag.current) { settled = ending || Math.abs(total) >= 40; go(target(), velocity); } };
-    const target = () => origin + (Math.abs(total) >= 40 ? Math.sign(total) : 0);
-    cancelWheel.current = () => { settled = true; clearTimeout(release); };
+    let start = 0, origin = 0, total = 0, velocity = 0, settled = true, cancelled = false;
+    let wheelFrame = 0, wheelPosition = 0, horizontal = false, lastAt = 0;
+    let release: ReturnType<typeof setTimeout> | undefined;
+    const flush = () => { if (wheelFrame) { cancelAnimationFrame(wheelFrame); wheelFrame = 0; paint(wheelPosition); } };
+    const settle = () => { release = undefined; cancelled = false; if (!settled && !drag.current) { flush(); horizontal = false; settled = true; go(target(), velocity); } };
+    const target = () => {
+      if (Math.abs(total) < 40) return origin;
+      const nearest = Math.round(start + total / dragDistance);
+      // Finish near the visible position, including when a new stroke interrupts release.
+      return total > 0 ? Math.max(Math.floor(start) + 1, nearest) : Math.min(Math.ceil(start) - 1, nearest);
+    };
+    const scheduleEnd = () => { clearTimeout(release); release = setTimeout(settle, Math.max(0, 200 - (performance.now() - lastAt))); };
+    cancelWheel.current = () => {
+      const ending = release !== undefined;
+      if (!settled) destination.current = target();
+      clearTimeout(release); release = undefined; flush();
+      cancelled ||= !settled; horizontal = false; settled = true;
+      if (ending) scheduleEnd();
+    };
     const off = gestures.on('wheel', event => {
+      // Deceleration can be held contact; settle only after the wheel stream stops.
+      if (event.isEnding) {
+        // Inferred inertia can shorten the library timeout below a still-moving finger's cadence.
+        if (!event.isMomentumCancel) scheduleEnd();
+        return;
+      }
       if (drag.current) return;
-      if (event.isEnding) { clearTimeout(release); if (!event.isMomentumCancel) settle(true); return; }
+      clearTimeout(release); release = undefined;
+      if (cancelled) return;
+      horizontal = true;
       const delta = event.axisDelta[0] * rtl;
-      const fresh = settled && !event.isMomentum && (Math.sign(delta) !== Math.sign(total) || Math.abs(delta) > Math.max(12, Math.abs(lastDelta) * 2) || event.event.timeStamp - lastAt > 160 && Math.abs(delta) >= Math.max(12, Math.min(peak * .8, Math.abs(lastDelta) * 2)));
-      if (event.isStart || fresh) {
-        peak = 0;
+      if (settled) {
+        flush();
         origin = frame.current ? destination.current : Math.round(current.current);
         cancelAnimationFrame(frame.current); frame.current = 0; start = current.current; total = 0; settled = false;
       }
-      lastAt = event.event.timeStamp; lastDelta = delta;
-      if (settled) return;
-      peak = Math.max(peak, Math.abs(delta)); total += delta;
+      // Native inertia can join successive strokes; every delta must keep moving the loop.
+      total += delta;
       velocity = event.axisVelocity[0] * rtl * 1000 / dragDistance;
-      clearTimeout(release);
-      if (event.isMomentum) { settle(true); return; }
-      // Stop following paused contact; keep classifying the inertia tail.
-      release = setTimeout(() => settle(), 100);
       cancelAnimationFrame(frame.current); frame.current = 0;
-      paint(reduced ? target() : start + Math.max(-1, Math.min(1, total / dragDistance)));
+      // Trackpad events can arrive faster than the display can present them.
+      wheelPosition = reduced ? target() : start + total / dragDistance;
+      if (!wheelFrame) wheelFrame = requestAnimationFrame(flush);
     });
     const scroll = (event: WheelEvent) => {
-      if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) return;
+      if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) { horizontal = false; return; }
       idleUntil.current = performance.now() + 6000;
-      if (event.shiftKey || event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      if (event.shiftKey || event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL) { horizontal = false; return; }
+      // Vertical samples are still contact, even when their scrolling stays native.
+      lastAt = performance.now();
+      if (release !== undefined) scheduleEnd();
+      // Tolerate slight diagonal jitter during horizontal contact; clear vertical input stays native.
+      const horizontalRatio = horizontal ? 2 / 3 : 1;
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * horizontalRatio) { horizontal = false; return; }
       // Handle horizontal trackpad pixels; preserve native wheel and Shift+wheel.
       event.preventDefault(); keyboard.current = false; gestures.feedWheel(event);
     };
     root.addEventListener('wheel', scroll, { passive: false });
-    return () => { root.removeEventListener('wheel', scroll); clearTimeout(release); cancelWheel.current = () => {}; off(); gestures.disconnect(); };
+    return () => {
+      root.removeEventListener('wheel', scroll); clearTimeout(release); cancelAnimationFrame(wheelFrame); cancelWheel.current = () => {}; off(); gestures.disconnect();
+      // Geometry changes must finish pending contact; an unmounted carousel stays stopped.
+      if (!settled && !drag.current && root.isConnected) { livePaint.current(wheelPosition); go(target(), velocity); }
+    };
   }, [go, paint, rtl, dragDistance, reduced]);
   function end(event: ReactPointerEvent<HTMLDivElement>) {
     const held = drag.current;
@@ -241,7 +270,7 @@ export function Welcome(props: WelcomeProps) {
           onClick={event => { if (event.target === event.currentTarget && index !== selected.current) { cancelWheel.current(); go(index); } }}>
           <div className="welcome-shadow"/>
           <div className="welcome-window" inert={index !== 0}>
-            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></span><nav className="desktop-nav" data-display="text" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><span className="nav-label">{app[name]}</span></a>)}</nav></header>
+            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><nav className="desktop-nav" data-display="text" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><span className="nav-label">{app[name]}</span></a>)}</nav></header>
             <div className="welcome-content">{index === 0 ? <TodayPreview {...props} active={fernActive}/> : index === 1 ? <div inert><LibraryPreview locale={locale} profileId={props.profileId} online={props.online}/></div> : <div inert>{props.settings}</div>}</div>
             <nav className="mobile-nav welcome-mobile-nav" data-display="both" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><NavIcon name={name}/><span className="nav-label">{app[name]}</span></a>)}</nav>
             <div className="welcome-shade"/>

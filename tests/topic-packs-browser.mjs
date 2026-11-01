@@ -126,7 +126,7 @@ try {
  const installed=await rows('communityPacks');
  for(const {entry,pack}of plan.banks){const actual=installed.find(item=>item.hash===entry.sha256);assert(actual);assert.equal(actual.id,entry.id);assert.deepEqual((actual.corpus??actual.spoken).records,(pack.corpus??pack.spoken).records);assert(journal.downloads.some(download=>download.url===origin+entry.path&&download.status===200));}
  journal.installed=installed.map(pack=>({id:pack.id,sha256:pack.hash,sourceRootIds:(pack.corpus??pack.spoken)?.records.map(record=>record.rootId)??[]}));
- await page.goto(origin+'/start');for(let step=0;step<3;step++)await page.getByRole('button',{name:'跳过这一步',exact:true}).click();await page.getByRole('group',{name:spokenOutcome?'听力':'阅读',exact:true}).getByLabel(new RegExp('^'+point+' ·')).check();await page.getByRole('button',{name:'保存并继续',exact:true}).click();await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
+ await page.goto(origin+'/start');for(let step=0;step<3;step++)await page.getByRole('button',{name:'跳过这一步',exact:true}).click();await page.getByRole('group',{name:spokenOutcome?'听力':'阅读',exact:true}).getByLabel(new RegExp('^'+point+' ·')).check();await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
  await page.waitForURL(origin+'/today');await expect(page.getByRole('heading',{name:'今日',exact:true})).toBeVisible();
  await context.setOffline(true);await page.reload();await expect(page.getByRole('heading',{name:'今日',exact:true})).toBeVisible();
  await page.evaluate(seed=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=values=>values instanceof Uint32Array&&values.length===2?(values[0]=0,values[1]=seed,values):original(values);},plan.seed);

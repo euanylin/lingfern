@@ -129,14 +129,13 @@
       "Interface language",
       "What would you like to use English for?",
       "Choose topics you enjoy",
-      "Your chosen reading and listening starting points",
-      "Try a short task"
+      "Your chosen reading and listening starting points"
     ],
     "back": "Back",
     "next": "Save and continue",
     "skip": "Skip this step",
     "today": "Save and go to Today",
-    "step": "Step {n} of 5",
+    "step": "Step {n} of 4",
     "error": "Could not save. Try again.",
     "reading": "Reading",
     "listening": "Listening",
@@ -176,10 +175,7 @@
       "Viewpoints and arguments in longer content",
       "Implied meanings in complex content",
       "Precise meaning and subtle tone in extended discourse"
-    ],
-    "read": "Try reading",
-    "listen": "Try listening",
-    "unavailable": "Listening audio is not installed offline."
+    ]
   },
   "githubIdentity": {
     "title": "GitHub identity",

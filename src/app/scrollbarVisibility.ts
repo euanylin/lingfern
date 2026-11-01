@@ -1,9 +1,26 @@
-const regions = '.welcome-content,.question-sheet-content,.selection-dictionary-body,.dictionary-suggestions,.setting-menu,.ipa-table-scroll,.ipa-vowel-scroll,.task-detail-body,.practice-options-body,.update-confirm-dialog,.workspace-card nav,textarea,pre';
+const regions = '.welcome-content,.question-sheet-content,.selection-dictionary-body,.dictionary-suggestions,.setting-menu-scroll,.ipa-table-scroll,.ipa-vowel-scroll,.task-detail-body,.practice-options-body,.update-confirm-dialog,.workspace-card nav,textarea,pre';
 
 export function scrollbarVisibility() {
   let frame = 0, task = 0;
   const observed = new Set<Element>();
+  const active = new Map<HTMLElement, number>();
+  const touch = matchMedia('(pointer:coarse)');
+  let inputUntil = 0;
   const resize = new ResizeObserver(schedule);
+  function input(event: Event) {
+    if (!touch.matches || event instanceof WheelEvent && event.ctrlKey) return;
+    if (event instanceof KeyboardEvent && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) { inputUntil = 0; return; }
+    inputUntil = performance.now() + 500;
+  }
+  const resetInput = () => { inputUntil = 0; };
+  function scrolled(event: Event) {
+    if (!touch.matches) return;
+    const element = event.target === document ? document.documentElement : event.target;
+    if (!(element instanceof HTMLElement) || performance.now() > inputUntil && !active.has(element)) return;
+    clearTimeout(active.get(element));
+    if (!element.hasAttribute('data-scrollbar-active')) element.dataset.scrollbarActive = '';
+    active.set(element, window.setTimeout(() => { delete element.dataset.scrollbarActive; active.delete(element); }, 700));
+  }
   function update() {
     frame = 0;
     const root = document.documentElement;
@@ -30,6 +47,12 @@ export function scrollbarVisibility() {
   document.addEventListener('input', schedule, true);
   document.addEventListener('toggle', schedule, true);
   document.addEventListener('load', schedule, true);
+  // Ignore layout, focus and route-reset scrolling until a real scroll gesture.
+  document.addEventListener('wheel', input, { passive: true, capture: true });
+  document.addEventListener('pointerdown', resetInput, { passive: true, capture: true });
+  document.addEventListener('touchmove', input, { passive: true, capture: true });
+  document.addEventListener('keydown', input, true);
+  document.addEventListener('scroll', scrolled, true);
   schedule();
   return () => {
     cancelAnimationFrame(frame); clearTimeout(task); resize.disconnect(); mutations.disconnect();
@@ -37,6 +60,12 @@ export function scrollbarVisibility() {
     document.removeEventListener('input', schedule, true);
     document.removeEventListener('toggle', schedule, true);
     document.removeEventListener('load', schedule, true);
+    document.removeEventListener('wheel', input, true);
+    document.removeEventListener('pointerdown', resetInput, true);
+    document.removeEventListener('touchmove', input, true);
+    document.removeEventListener('keydown', input, true);
+    document.removeEventListener('scroll', scrolled, true);
+    for (const [element, timer] of active) { clearTimeout(timer); delete element.dataset.scrollbarActive; }
     for (const element of [document.documentElement, ...document.querySelectorAll<HTMLElement>(regions)]) {
       delete element.dataset.scrollbarX; delete element.dataset.scrollbarY;
     }

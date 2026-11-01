@@ -27,6 +27,7 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
   const scroll = (event: Event) => { if (scrolling && !editor(event)) state.pulse(); };
   const editing = (event: Event) => { if (event.target instanceof Node && panel.contains(event.target) && editor(event)) state.cancel(); };
   const leave = (event: PointerEvent) => { if (event.pointerType === 'mouse') state.cancel(); };
+  const visibility = () => { if (document.hidden) state.cancel(); };
   panel.addEventListener('pointerdown', start);
   panel.addEventListener('pointerleave', leave);
   window.addEventListener('click', click);
@@ -38,6 +39,8 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
   window.addEventListener('pointerup', state.end);
   window.addEventListener('pointercancel', state.end);
   window.addEventListener('blur', state.cancel);
+  window.addEventListener('pagehide', state.cancel);
+  document.addEventListener('visibilitychange', visibility);
   return { ...state, dispose() {
     state.dispose();
     panel.removeEventListener('pointerdown', start);
@@ -51,5 +54,7 @@ export function cardInteraction(panel: HTMLElement, changed: (active: boolean) =
     window.removeEventListener('pointerup', state.end);
     window.removeEventListener('pointercancel', state.end);
     window.removeEventListener('blur', state.cancel);
+    window.removeEventListener('pagehide', state.cancel);
+    document.removeEventListener('visibilitychange', visibility);
   } };
 }

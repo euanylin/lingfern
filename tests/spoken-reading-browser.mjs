@@ -77,7 +77,6 @@ try {
     else await page.getByRole('button', { name: '跳过这一步', exact: true }).click();
     await page.getByRole('group', { name: '阅读', exact: true }).getByLabel(new RegExp('^' + starting + ' ·')).check();
     await page.getByRole('group', { name: '听力', exact: true }).getByLabel(/^C2 ·/).check();
-    await page.getByRole('button', { name: '保存并继续', exact: true }).click();
     await page.getByRole('button', { name: '保存并前往今日', exact: true }).click();
     assert((await rows('profiles')).some(profile => profile.preferences?.reading === starting));
   }

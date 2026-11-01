@@ -30,7 +30,7 @@ try {
  await page.getByRole('button',{name:'下载所选资源',exact:true}).click();
  for(const label of ['IPA 发音与录音','初级短句听力'])await expect(page.locator('.package-row').filter({hasText:label})).toContainText('已安装',{timeout:90000});
  await page.goto(origin+'/start');for(let step=0;step<3;step++)await page.getByRole('button',{name:'跳过这一步',exact:true}).click();
- await page.getByRole('group',{name:'听力',exact:true}).getByLabel(/^A1 ·/).check();await page.getByRole('button',{name:'保存并继续',exact:true}).click();await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
+ await page.getByRole('group',{name:'听力',exact:true}).getByLabel(/^A1 ·/).check();await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();
  await context.setOffline(true);
  // Fix selection only; use real playback, answering, transactions, and routing.
  await page.evaluate(()=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=values=>values instanceof Uint32Array&&values.length===2?(values[0]=0,values[1]=0,values):original(values);});

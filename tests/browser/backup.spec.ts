@@ -7,6 +7,58 @@ import { languagePacks } from '../../src/locales';
 
 test.use({ timezoneId: 'Asia/Shanghai' });
 
+for (const touch of [false, true]) test.describe(`modal focus ${touch ? 'touch' : 'mouse'}`, () => {
+  test.use({ viewport: { width: touch ? 390 : 1440, height: 900 }, hasTouch: touch, colorScheme: touch ? 'light' : 'dark' });
+
+  test('pointer opening preserves safe focus without keyboard decoration', async ({ page }) => {
+    await page.goto('/settings');
+    const trigger = page.locator('.backup-download');
+    await expect(trigger).toBeVisible();
+    const idle = await trigger.evaluate(element => getComputedStyle(element).backgroundColor);
+    const activate = async (control: typeof trigger) => { if (touch) await control.tap(); else await control.click(); };
+    const dialog = page.locator('.backup-export-dialog');
+    const cancel = dialog.getByRole('button', { name: '取消', exact: true });
+    let downloads = 0;
+    page.on('download', () => downloads++);
+
+    await activate(trigger); await page.mouse.move(20, 20);
+    await expect(cancel).toBeFocused();
+    await expect(cancel).toHaveCSS('text-decoration-line', 'none');
+    const pointerBackground = await cancel.evaluate(element => getComputedStyle(element).backgroundColor);
+    await expect(dialog.getByRole('textbox')).not.toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(dialog.getByRole('textbox')).toBeFocused();
+    await expect(cancel).toHaveCSS('background-color', pointerBackground);
+    await dialog.getByRole('textbox').fill('My backup');
+    await activate(cancel); await page.mouse.move(20, 20);
+    await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+    await expect(trigger).toHaveCSS('text-decoration-line', 'none');
+    await expect(trigger).toHaveCSS('background-color', idle);
+
+    await activate(trigger); await page.keyboard.press('Enter');
+    await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+    expect(downloads).toBe(0);
+    await page.keyboard.press('Enter');
+    await expect(cancel).toBeFocused(); await expect(cancel).toHaveCSS('text-decoration-line', 'underline');
+    await expect(cancel).not.toHaveCSS('background-color', pointerBackground);
+    await page.keyboard.press('Escape');
+    await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
+    await expect(trigger).not.toHaveCSS('background-color', idle);
+
+    await activate(page.locator('.profile-backup .offline-remove')); await page.mouse.move(20, 20);
+    const confirmation = page.locator('.profile-delete-dialog');
+    const keep = confirmation.getByRole('button', { name: '取消', exact: true });
+    await expect(keep).toBeFocused(); await expect(keep).toHaveCSS('text-decoration-line', 'none');
+    if (!touch) {
+      const resting = await keep.evaluate(element => getComputedStyle(element).backgroundColor);
+      await keep.hover();
+      await expect(keep).not.toHaveCSS('background-color', resting);
+    }
+    await activate(keep); await expect(confirmation).toHaveCount(0);
+    await expect(page.locator('.profile-backup .offline-remove')).toBeFocused();
+  });
+});
+
 for (const [locale, width] of [['en', 320], ['zh-Hant', 375], ['zh-Hans', 1440]] as const) test(`backup actions stay equally sized and non-overlapping: ${locale} ${width}`, async ({ page }) => {
   await page.setViewportSize({ width, height: 900 });
   await page.goto('/settings');

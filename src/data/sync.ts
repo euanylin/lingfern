@@ -1,11 +1,12 @@
 import Dexie from 'dexie';
+import { incrementSyncCounter, maxSyncCounter, type SyncCounter } from '../shared/syncCounter';
 import { db } from './db';
-import { canonicalJson, syncAcknowledgementSchema, syncDownloadScopeSchema, syncKnownFilesSchema, syncChangesSchema, compareSyncEvents, mergeSyncEvents, syncEventSchema, validateSyncBatch, syncByteLimit, type SyncBatch, type SyncEvent, type SyncDownloadScope } from '../shared/sync';
+import { assertSyncObservation, canonicalJson, hasExtendedSyncCounter, syncAcknowledgementSchema, syncDownloadScopeSchema, syncKnownFilesSchema, syncChangesSchema, compareSyncEvents, mergeSyncEvents, syncEventSchema, validateSyncBatch, syncByteLimit, type SyncBatch, type SyncEvent, type SyncDownloadScope } from '../shared/sync';
 import { profileIdSchema } from '../shared/repository';
 
 export type StoredEvent = SyncEvent & { profileId: string; batchId?: string };
 export type StoredBatch = { profileId: string; deviceId: string; batchId: string; hash: string; batch: SyncBatch; state: 'pending' | 'confirmed' | 'received' | 'conflict' };
-export type Clock = { profileId: string; deviceId: string; counter: number; logicalProfileId?: string; localRevision?: number; deleted?: true };
+export type Clock = { profileId: string; deviceId: string; counter: SyncCounter; logicalProfileId?: string; localRevision?: number; deleted?: true };
 export type NewEvent = SyncEvent extends infer Event ? Event extends SyncEvent ? Pick<Event, 'type' | 'payload'> : never : never;
 
 // Hash only imported IDs exceeding wire limits; preserve ordinary IDs and local validity.
@@ -30,7 +31,8 @@ export async function appendSyncEvent(profileId: string, value: NewEvent, databa
     const clock: Clock = await database.table('syncClocks').get(profileId) ?? { profileId, deviceId: crypto.randomUUID(), counter: 0, logicalProfileId: profileId };
     if (clock.deleted) throw new Error('PROFILE_DELETED');
     const bounded = await Dexie.waitFor(boundedReferences(value));
-    const event = syncEventSchema.parse({ ...bounded, id: identity.id ?? crypto.randomUUID(), deviceId: clock.deviceId, counter: clock.counter + 1, occurredAt: identity.occurredAt ?? new Date().toISOString() });
+    const event = syncEventSchema.parse({ ...bounded, id: identity.id ?? crypto.randomUUID(), deviceId: clock.deviceId, counter: incrementSyncCounter(clock.counter), occurredAt: identity.occurredAt ?? new Date().toISOString() });
+    assertSyncObservation(event);
     await database.table('syncEvents').add({ ...event, profileId });
     await database.table('syncClocks').put({ ...clock, counter: event.counter, localRevision: (clock.localRevision ?? 0) + 1 });
     return event;
@@ -65,6 +67,7 @@ export async function pendingSyncBatch(profileId: string, database: Dexie = db):
     const addedBytes = encoder.encode(canonicalJson(event)).byteLength + (batch.events.length ? 1 : 0);
     if (byteLength + addedBytes > syncByteLimit) break;
     batch.events.push(event);
+    if (hasExtendedSyncCounter(event)) batch.formatVersion = 2;
     byteLength += addedBytes;
   }
   if (!batch.events.length) throw new Error('SYNC_CAPACITY');
@@ -158,7 +161,7 @@ async function receiveValidatedBatch(profileId: string, batch: SyncBatch, hash: 
     const existingIds = new Set(old.filter(Boolean).map(row => row.id));
     await database.table('syncEvents').bulkAdd(batch.events.filter(event => !existingIds.has(event.id)).map(event => ({ ...event, profileId, batchId: batch.batchId })));
     const clock: Clock = await database.table('syncClocks').get(profileId) ?? { profileId, deviceId: crypto.randomUUID(), counter: 0, logicalProfileId: profileId };
-    await database.table('syncClocks').put({ ...clock, counter: Math.max(clock.counter, ...batch.events.map(event => event.counter)) });
+    await database.table('syncClocks').put({ ...clock, counter: batch.events.reduce((counter, event) => maxSyncCounter(counter, event.counter), clock.counter) });
     return 'received';
 }
 
