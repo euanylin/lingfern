@@ -1,7 +1,8 @@
 import { expect, test, type Locator } from '@playwright/test';
 import { selectPicker } from './picker';
 
-const starAppearance = (button: Locator) => button.evaluate(element => {
+const starAppearance = (button: Locator) => button.evaluate(async element => {
+  await Promise.allSettled(element.getAnimations().filter(animation => animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished));
   const style = getComputedStyle(element);
   return { width: style.width, height: style.height, padding: style.padding, border: style.borderStyle, fontSize: style.fontSize, color: style.color };
 });

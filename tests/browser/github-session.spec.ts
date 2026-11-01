@@ -174,3 +174,20 @@ test('an orphaned disconnect notice pauses foreground refresh and revalidates af
   await page.clock.fastForward(20000); expect(reads).toBe(before);
   await page.clock.fastForward(16000); await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected'); expect(reads).toBe(before + 1);
 });
+
+for (const notice of ['ended', 'changed']) test(`offline ${notice} notice allows identity recovery when connectivity returns`, async ({ page, context }) => {
+  let signedIn = true, reads = 0;
+  await page.route('**/api/session', route => { reads++; return route.fulfill({ json: signedIn ? account : { account: null, syncAvailable: false } }); });
+  await page.goto('/settings');
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected');
+  await context.setOffline(true);
+  await page.evaluate(() => { const channel = new BroadcastChannel('lingfern-identity'); channel.postMessage('ending'); channel.close(); });
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'loading');
+  await page.evaluate(notice => { const channel = new BroadcastChannel('lingfern-identity'); channel.postMessage(notice); channel.close(); }, notice);
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'failed');
+  const before = reads;
+  signedIn = false;
+  await context.setOffline(false);
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');
+  expect(reads).toBe(before + 1);
+});

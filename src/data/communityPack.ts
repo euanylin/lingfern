@@ -148,9 +148,11 @@ export async function inspectCommunityPack(bytes: Uint8Array): Promise<Community
     return lessonSchema.parse({ ...safe, materials: converted, id: `community:${hash}:${item.id}`, sourceId: `community:${hash}:${item.sourceId}`, communityPackageId: hash, reviewStatus: 'draft' });
   });
   if (new Set(lessons.map(item => item.id)).size !== lessons.length || lessons.reduce((count, lesson) => count + lesson.materials.length, 0) !== manifest.materialCount || (lessons.length > 0 && new Set(lessons.map(item => item.targetLevel)).size !== manifest.levels.length) || lessons.some(lesson => !manifest.levels.includes(lesson.targetLevel))) throw new Error('COMMUNITY_MANIFEST');
-  // Preserve legacy reads; enforce exposure/sync limits on new imports.
-  if (lessons.some(lesson => lesson.materials.some(material => material.questions.some(question =>
-    !exposureQuestionIdSchema.safeParse(question.id).success || 'variantGroup' in question && question.variantGroup && !exposureQuestionIdSchema.safeParse(question.variantGroup).success)))) throw new Error('COMMUNITY_LESSON');
+  // Preserve legacy reads; enforce workspace, exposure and sync limits on new imports.
+  if (lessons.some(lesson => new Set(lesson.materials.map(material => material.id)).size !== lesson.materials.length
+    || lesson.materials.some(material => material.id.length > 160 || Object.hasOwn(Object.prototype, material.id)
+      || material.questions.some(question => Object.hasOwn(Object.prototype, question.id)
+        || !exposureQuestionIdSchema.safeParse(question.id).success || 'variantGroup' in question && question.variantGroup && !exposureQuestionIdSchema.safeParse(question.variantGroup).success)))) throw new Error('COMMUNITY_LESSON');
   const media: Record<string, Uint8Array> = Object.create(null);
   for (const name of names.filter(item => item.startsWith('media/'))) {
     if (!usedMedia.has(name)) throw new Error('COMMUNITY_MEDIA');

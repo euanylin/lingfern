@@ -49,7 +49,9 @@ function observedLookups(events: SyncEvent[]) {
 
 export async function removeLookup(profileId: string, recordId: string, database: Dexie = db) {
   await migrateLookupHistory(profileId, database);
-  await database.transaction('rw', ['syncEvents', 'syncClocks'], async () => {
+  await database.transaction('rw', ['settings', 'syncEvents', 'syncClocks'], async () => {
+    const active = await database.table('settings').get('activeProfile');
+    if (active && active.value !== profileId) throw new Error('SYNC_SCOPE_CHANGED');
     const events = await readSyncEvents(profileId, database, types);
     const record = projectLookupHistory(events).find(record => record.id === recordId);
     if (record) await appendSyncEvent(profileId, { type: 'lookup_remove', payload: { kind: record.kind, term: record.term, seen: observedLookups(events) } }, database);

@@ -47,13 +47,8 @@ for (const level of ['b1', 'b2', 'c1', 'c2']) test(`${level} instructions stay E
   await expect(page.locator('.ai-preview').first()).toContainText(lesson.goal.en);
   await expect(page.locator('.ai-preview').first()).toContainText(question.explanations[question.answer].en);
   await page.goto('/progress');
-  const goal = page.locator('.progress-source-list > section').filter({ has: page.getByRole('heading', { name: lesson.goal.en, exact: true }) });
-  await expect(goal.locator('h3')).toHaveText(lesson.goal.en);
-  await goal.locator('.progress-cell').click();
-  await expect(page.locator('#progress-record-detail h3')).toHaveText(lesson.goal.en);
-  await page.reload();
   const history = page.locator('.history').filter({ has: page.getByRole('link', { name: new RegExp(lesson.title.en) }) });
-  await history.locator('details summary').click();
+  await history.locator('.history-records-toggle').click();
   await expect(history).toContainText(question.explanations[question.answer].en);
 });
 

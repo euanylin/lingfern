@@ -20,7 +20,8 @@ test('every display language opens the same English About page with local artwor
     await expect(page.locator('.about-page')).toHaveAttribute('lang', 'en');
     await expect(page.locator('.about-page')).toHaveAttribute('dir', 'ltr');
     expect(await page.locator('.about-page').evaluate(el => getComputedStyle(el).direction)).toBe('ltr');
-    await expect(page.locator('.about-back')).toHaveText('← Settings');
+    await expect(page.locator('.about-back')).toHaveText('←');
+    await expect(page.locator('.about-back')).toHaveAccessibleName('Settings');
     await expect(page.getByRole('link', { name: 'Lingfern on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/euanylin/lingfern');
     const text = await page.locator('.about-page').innerText();
     englishText ??= text;
@@ -106,8 +107,12 @@ for (const locale of ['zh-Hans', 'en', 'ar'] as const) test(`${locale} keeps Abo
     await expect(page.getByRole('heading', { name: 'About', exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const back = page.locator('.about-back');
+    await expect(back).toHaveText('←');
+    await expect(back).toHaveAccessibleName('Settings');
+    await expect(back).toHaveCSS('text-decoration-line', 'none');
     const bounds = await back.boundingBox();
     expect(bounds!.height).toBeGreaterThanOrEqual(44);
+    expect(bounds!.width).toBeGreaterThanOrEqual(44);
     await back.focus();
     await expect(back).toBeFocused();
     await back.press('Enter');

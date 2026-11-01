@@ -82,7 +82,7 @@ Soal objektif mendapat penilaian dan penjelasan sesuai jenisnya. Jawaban terbuka
 
 ## Riwayat dan kemajuan
 
-Buka [**Riwayat**](https://lingfern.com/progress) dari Hari Ini untuk meninjau sesi, jawaban, umpan balik, dan bantuan yang digunakan; hapus jawaban tersimpan setelah konfirmasi. Lihat kemajuan sasaran membaca/menyimak dan konfirmasikan waktu selesai saat koreksi jam ditawarkan.
+Buka [**Riwayat**](https://lingfern.com/progress) dari Hari Ini untuk meninjau sesi, jawaban, umpan balik, dan bantuan yang digunakan; hapus jawaban tersimpan setelah konfirmasi. Konfirmasikan waktu selesai saat koreksi jam ditawarkan.
 
 Pakis mencerminkan aktivitas tersimpan, bukan tingkat kemahiran bersertifikat. Kutipan harian menyertakan sumber, pembukaan teks panjang, dan pilihan kutipan lain.
 

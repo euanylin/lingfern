@@ -43,6 +43,12 @@ test('backup and Library deletion controls share their normal and keyboard-focus
   }
 });
 
+async function expectSavedHistory(page: import('@playwright/test').Page, count: number) {
+  await expect(page.locator('.history-grid>.history')).toHaveCount(1);
+  await page.locator('.history-records-toggle').click();
+  await expect(page.locator('.history-entry-records>section')).toHaveCount(count);
+}
+
 async function completeWorkspace(page: import('@playwright/test').Page, response = 'The source supports this interpretation, with its stated conditions and limits.') {
   await expect(page.locator('.material-workspace')).toBeVisible();
   await expect(page).toHaveURL(/\/learn\//);
@@ -347,7 +353,7 @@ test('a failed selected package preserves earlier packages and learning records'
   await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('被动');
   await expect(page.locator('.grammar-results details')).toHaveCount(1);
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('4');
+  await expectSavedHistory(page, 4);
 });
 
 test('select all toggles all packages and removal keeps learning records', async ({ page, context }) => {
@@ -356,7 +362,7 @@ test('select all toggles all packages and removal keeps learning records', async
   await confirmTask(page);
   await completeWorkspace(page);
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('4');
+  await expectSavedHistory(page, 4);
   await page.goto('/library');
   await expect(page.locator('.package-row input:checked')).toHaveCount(0);
   await page.getByRole('button', { name: '全选', exact: true }).click();
@@ -383,7 +389,7 @@ test('select all toggles all packages and removal keeps learning records', async
   await page.reload();
   await expect(grammar).not.toContainText('已安装');
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('4');
+  await expectSavedHistory(page, 4);
 });
 
 
@@ -564,7 +570,7 @@ test('downloads and restores three local ZIP generations with stable names and a
     ids.add(current!);
   }
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd').first()).toHaveText('2');
+  await expectSavedHistory(page, 2);
   await page.getByRole('link', { name: '设置', exact: true }).click();
   const deleted = await page.locator('.profile-backup .setting-trigger').getAttribute('data-value');
   await page.locator('.profile-backup').getByRole('button', { name: '删除档案', exact: true }).click();
@@ -573,5 +579,5 @@ test('downloads and restores three local ZIP generations with stable names and a
   await expect(page.locator('.profile-backup .setting-trigger')).not.toHaveAttribute('data-value', deleted!);
   await selectPicker(page, '当前档案', 'local-guest');
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd').first()).toHaveText('2');
+  await expectSavedHistory(page, 2);
 });

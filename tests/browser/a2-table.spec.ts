@@ -8,7 +8,7 @@ test('A2 table preserves typed times and scores the exception on a new material'
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: test.info().outputPath('a2-table.png') });
   await page.goto('/progress');
-  await page.locator('.history').filter({ has: page.getByRole('link', { name: /核对开放时间的例外/ }) }).locator('summary').click();
+  await page.locator('.history').filter({ has: page.getByRole('link', { name: /核对开放时间的例外/ }) }).locator('.history-records-toggle').click();
   await expect(page.getByText('Thursday: 12:00 · Tuesday: 10:00')).toBeVisible();
 });
 

@@ -55,7 +55,7 @@ test('failed legacy event capture leaves local learning records readable', async
     (window as unknown as { removeSyncFailure: () => void }).removeSyncFailure = () => data.syncEvents.hook('creating').unsubscribe(fail);
   });
   await page.getByRole('link', { name: '今日', exact: true }).click(); await page.getByRole('link', { name: '历史记录', exact: true }).click();
-  await expect(page.locator('.totals dd').first()).toHaveText('2');
+  expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(2);
   await expect(page.getByRole('alert')).toBeVisible();
   expect(await page.evaluate(async () => {
     const path = '/src/data/db.ts'; return (await import(path)).attempts.count();

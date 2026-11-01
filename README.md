@@ -82,7 +82,7 @@ Objective answers receive task-specific scores and explanations. Open responses 
 
 ## History and progress
 
-Open [**History**](https://lingfern.com/progress) from Today to revisit sessions, answers, feedback and assistance used; delete saved responses after confirmation. View reading/listening goal progress, and confirm completion times when clock-correction controls appear.
+Open [**History**](https://lingfern.com/progress) from Today to revisit sessions, answers, feedback and assistance used; delete saved responses after confirmation. Confirm completion times when clock-correction controls appear.
 
 The activity fern reflects saved work, not certified proficiency. Daily quotations include their source, expansion for long text and a control to choose another quote.
 

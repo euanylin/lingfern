@@ -82,7 +82,7 @@ Objektive Fragen werden mit passenden Erklärungen bewertet. Offene Antworten er
 
 ## Verlauf und Fortschritt
 
-Über [**Verlauf**](https://lingfern.com/progress) unter Heute lassen sich Sitzungen, Antworten, Rückmeldungen und verwendete Hilfen ansehen; gespeicherte Antworten können nach Bestätigung gelöscht werden. Sieh den zielbezogenen Lese-/Hörfortschritt ein und bestätige Abschlusszeiten, wenn eine Uhrzeitkorrektur angeboten wird.
+Über [**Verlauf**](https://lingfern.com/progress) unter Heute lassen sich Sitzungen, Antworten, Rückmeldungen und verwendete Hilfen ansehen; gespeicherte Antworten können nach Bestätigung gelöscht werden. Bestätige Abschlusszeiten, wenn eine Uhrzeitkorrektur angeboten wird.
 
 Der Farn zeigt gespeicherte Aktivität, keine zertifizierte Fähigkeit. Tageszitate haben Quellenangaben, eine Aufklappfunktion für lange Texte und einen Wechsel zum nächsten Zitat.
 

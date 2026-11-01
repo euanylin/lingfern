@@ -1,3 +1,4 @@
+import { DisclosurePanel } from './DisclosurePanel';
 import { memo, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { Attempt, Session } from '../data/db';
 import { liveQuery } from 'dexie';
@@ -114,7 +115,7 @@ const PracticeMaterialList = memo(function PracticeMaterialList({ groups, select
           const open = searching || expanded.has(bucket.group), title = bucket.group === 'community' ? messages('communityImport')[locale].installed : bucket.group === 'general' ? ui.general : bucket.group === 'unavailable' ? t.unavailable : firstRunCopy[locale].themes[topicSchema.options.indexOf(topicSchema.parse(bucket.group))];
           return <div className="offline-source-group" key={bucket.group}>
             <div className="offline-source-group-heading"><button className="offline-source-group-toggle" type="button" aria-expanded={open} aria-controls={`${id}-${bucket.group}`} onClick={() => onExpand(bucket.group)}><span>{title}</span><small>{ui.count.replace('{count}', String(bucket.items.length))}</small><span className="offline-group-chevron" aria-hidden="true">⌄</span></button></div>
-            <div className="package-list offline-group-items" id={`${id}-${bucket.group}`} hidden={!open}>{open && bucket.items.slice(0, 80).map(item => <label key={item.value} className="option"><input type="checkbox" checked={checked.has(item.value)} disabled={!checked.has(item.value) && selected.length >= 32} onChange={event => onToggle(item.value, event.target.checked)}/><span lang="en" dir="ltr">{item.label}</span></label>)}{open && bucket.items.length > 80 && <p className="muted">{t.refine}</p>}</div>
+            <DisclosurePanel id={`${id}-${bucket.group}`} open={open}>{() => <div className="package-list offline-group-items">{bucket.items.slice(0, 80).map(item => <label key={item.value} className="option"><input type="checkbox" checked={checked.has(item.value)} disabled={!checked.has(item.value) && selected.length >= 32} onChange={event => onToggle(item.value, event.target.checked)}/><span lang="en" dir="ltr">{item.label}</span></label>)}{bucket.items.length > 80 && <p className="muted">{t.refine}</p>}</div>}</DisclosurePanel>
           </div>;
         })}</div>;
 });

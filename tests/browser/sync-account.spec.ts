@@ -81,6 +81,8 @@ test('a new account profile is immediately named and keyboard-selectable in the 
     for (const colorScheme of ['light', 'dark'] as const) {
       await page.setViewportSize({ width: colorScheme === 'light' ? 1440 : 375, height: 900 });
       await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
+      // Let resize listeners reposition retained menus before measuring the page.
+      await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
       const picker = page.getByRole('button', { name: new RegExp(`^${profileLabel}:`) });
       await expect(picker).toContainText(`learner · ${localName}`);
       await picker.focus(); await picker.press('Enter');

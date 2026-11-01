@@ -53,6 +53,17 @@ it('backfills legacy history even after the previous bootstrap, without re-creat
   expect((await readSyncEvents('p')).filter(event => event.type === 'lookup')).toHaveLength(2);
 });
 
+it('keeps lookups after failed deletion and rejects a changed active profile', async () => {
+  await recordLookup('p', 'dictionary', 'apple');
+  const before = await readLookupHistory('p');
+  const write = vi.spyOn(db.table('syncEvents'), 'add').mockRejectedValueOnce(new Error('WRITE_FAILED'));
+  await expect(removeLookup('p', before[0].id)).rejects.toThrow('WRITE_FAILED');
+  expect(await readLookupHistory('p')).toEqual(before); write.mockRestore();
+  await settings.put({ key: 'activeProfile', value: 'other' });
+  await expect(removeLookup('p', before[0].id)).rejects.toThrow('SYNC_SCOPE_CHANGED');
+  expect(await readLookupHistory('p')).toEqual(before);
+});
+
 it('merges two devices, propagates deletes and clears, and preserves concurrent and later lookups', async () => {
   const other = new Dexie(`lookup-test-${crypto.randomUUID()}`);
   other.version(1).stores({ settings: 'key', syncEvents: '[profileId+id], profileId, [profileId+type]', syncClocks: 'profileId', syncBatches: '[profileId+deviceId+batchId], profileId, [profileId+state]', syncConflicts: '[profileId+hash], profileId' });

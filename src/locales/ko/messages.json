@@ -365,7 +365,6 @@
     "shortNote": "학습 기록은 암호화되지 않으며 자료와 녹음은 포함되지 않습니다."
   },
   "progressRecords_summaryCopy": {
-    "clock": "기록 시간이 미래입니다. 기기 시계를 확인하세요. 복습 일정에서 제외됩니다.",
     "only": "요약만 있습니다. 원래 답변은 답변한 기기에 남아 있습니다.",
     "missing": "필요한 자료 버전이 설치되지 않음",
     "summaries": "동기화된 요약",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "읽기",
     "listening": "듣기",
-    "overview": "영역별",
-    "matrix": "목표 기록",
-    "valid": "유효한 답변",
-    "materials": "서로 다른 자료",
-    "checks": "추가 도움 없이 맞힌 테스트 답변",
-    "last": "마지막 완료",
-    "none": "완료한 과제가 없습니다",
-    "noRecord": "기록 없음",
     "unscored": "저장됨, 미채점",
-    "legend": "◇ 저장됨, 미채점　● 테스트 정답　◐ 학습 중 추가 도움 없이 정답　○ 도움 후 정답　× 오답.",
     "checkCorrect": "테스트 정답",
-    "independent": "학습 중 추가 도움 없이 정답",
     "assisted": "도움 후 정답",
     "incorrect": "오답",
-    "details": "답변 보기",
-    "more": "추가 {count}개",
-    "open": "저장된 과제 복습",
-    "reviewStatus": "복습 상태",
-    "independentState": "이 자료를 독립적으로 완료",
-    "new": "전체 자료 답변이 없음",
-    "with_help": "추가 연습 필요",
-    "review_due": "복습 시기",
-    "independentMaterials": "독립적으로 완료한 서로 다른 자료",
-    "nextSuggested": "다음 권장 복습",
-    "recentlyConsistent": "최근 더 일관됨"
+    "details": "답변 보기"
   },
   "meta": {
     "nativeName": "한국어"
@@ -732,9 +711,7 @@
     "retry": "다시 시도",
     "export": "현재 답변 다운로드",
     "count": "저장된 답변",
-    "materialCount": "저장된 답변이 있는 서로 다른 자료",
     "empty": "저장된 답변이 없습니다. 오늘에서 완료한 답변이 여기에 표시됩니다.",
-    "history": "저장된 과제",
     "conditions": "사용한 힌트 단계",
     "offline": "오프라인",
     "online": "다시 연결되었습니다",
@@ -798,5 +775,9 @@
     "unsuitable": "이 선택으로 적절한 연습을 만들 수 없습니다. 문제 유형이나 자료를 변경하세요.",
     "readingSettings": "읽기 설정",
     "listeningSettings": "듣기 설정"
+  },
+  "historyDeletion": {
+    "remove": "삭제",
+    "linked": "연결된 두 부분이 모두 삭제됩니다."
   }
 }

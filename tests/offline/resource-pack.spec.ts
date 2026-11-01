@@ -85,6 +85,7 @@ test('download and local removal capture intentions without treating them as cac
   const removal = page.getByRole('alertdialog');
   await expect(removal.getByRole('button', { name: '取消', exact: true })).toBeFocused();
   await removal.getByRole('button', { name: '取消', exact: true }).click();
+  await expect(removal).toHaveCount(0);
   await expect(row).toContainText('已安装');
   await page.getByRole('button', { name: '删除所选资源', exact: true }).click();
   const began = Date.now();

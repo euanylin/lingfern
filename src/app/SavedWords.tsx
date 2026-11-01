@@ -1,3 +1,4 @@
+import { AnimatedDetails } from './AnimatedDetails';
 import { messages } from '../locales';
 import { liveQuery } from 'dexie';
 import { useEffect, useState } from 'react';
@@ -47,12 +48,12 @@ export function SavedWords({ locale, profileId, online, defaultId }: { locale: L
       const saved = savedIds.includes(item.memoryId);
       const dictionary = onlineDictionaries.find(entry => entry.id === defaultId)!;
       const onlineLabel = copy[locale].onlineLookupLink.replace('{dictionary}', dictionary.name).replace('{query}', item.term);
-      return <article key={item.memoryId} className="saved-word"><details open><summary className="saved-word-heading"><h2 lang="en" dir="ltr">{item.term}</h2><span className="saved-word-actions">{online ? <a className="saved-word-lookup" href={onlineDictionaryUrl(item.term, defaultId)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" title={onlineLabel} aria-label={onlineLabel}>{copy[locale].onlineLookup} ↗</a> : <span className="saved-word-lookup muted" aria-disabled="true">{copy[locale].onlineLookup} ↗</span>}
+      return <article key={item.memoryId} className="saved-word"><AnimatedDetails open><summary className="saved-word-heading"><h2 lang="en" dir="ltr">{item.term}</h2><span className="saved-word-actions">{online ? <a className="saved-word-lookup" href={onlineDictionaryUrl(item.term, defaultId)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" title={onlineLabel} aria-label={onlineLabel}>{copy[locale].onlineLookup} ↗</a> : <span className="saved-word-lookup muted" aria-disabled="true">{copy[locale].onlineLookup} ↗</span>}
         <button type="button" disabled={busy} className="sense-star" aria-pressed={saved} aria-label={`${saved ? star.remove : star.save} ${item.definition}`} title={saved ? star.remove : star.save} onClick={() => void act(async () => {
           if (saved) await removeSense(profileId, item.memoryId);
           else await saveSense(profileId, item.memoryId, item.term, item.definition);
         })}><span aria-hidden="true">{saved ? '★' : '☆'}</span></button></span></summary><div className="sense-definition"><p lang="en" dir="ltr">{item.definition}</p></div>
-      </details></article>;
+      </AnimatedDetails></article>;
     })}</div>}
   </section>;
 }

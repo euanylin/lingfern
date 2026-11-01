@@ -213,13 +213,19 @@ test('desktop settings and progress balance columns; narrow layouts stay stacked
   const settings = await page.evaluate(() => [document.querySelector('.settings-preferences')!, document.querySelector('.settings-data')!].map(element => element.getBoundingClientRect()));
   expect(settings[0].bottom).toBeLessThanOrEqual(settings[1].top);
   expect(settings[0].left).toBeCloseTo(settings[1].left, 0);
+  await page.evaluate(async () => {
+    const data = await import('/src/data/db.ts' as string), lesson = (await import('/tests/fixtures/content/a1-reading.json' as string)).default;
+    const session = await data.createSession(lesson); await data.claimSession(session.id, 'layout');
+    await data.markExposure(session); await data.submit(session.id, 'layout', 1); await data.releaseSession(session.id, 'layout');
+  });
   await page.goto('/progress');
   await expect(page.getByRole('heading', { name: '记录' })).toBeVisible();
   await expect(page.locator('.progress-fern')).toHaveCount(0);
-  const progress = await page.evaluate(() => ({ main: document.querySelector('main')!.getBoundingClientRect(), facts: [...document.querySelectorAll('.totals > div')].map(element => element.getBoundingClientRect()) }));
-  expect(progress.facts[0].left).toBeGreaterThanOrEqual(progress.main.left);
-  expect(progress.facts[1].right).toBeLessThanOrEqual(progress.main.right);
-  expect(progress.facts[0].right).toBeLessThanOrEqual(progress.facts[1].left);
+  await expect(page.locator('.history-overview,.totals,.progress-skill-summary')).toHaveCount(0);
+  const list = await page.locator('#today-records>.history-grid').boundingBox();
+  expect(list!.width).toBeLessThanOrEqual(760);
+  const entry = await page.locator('#today-records>.history-grid>.history').boundingBox();
+  expect(entry!.width).toBe(list!.width);
 
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto('/settings');

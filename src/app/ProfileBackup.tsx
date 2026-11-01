@@ -1,4 +1,4 @@
-import { showModal } from './modal';
+import { closeModal, showModal } from './modal';
 import { messages } from '../locales';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -37,14 +37,14 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
   useEffect(() => { if (exporting) { exportCancel.current?.setAttribute('autofocus', ''); showModal(exportDialog.current); } }, [exporting]);
   useEffect(() => { revision.current++; dialog.current?.close(); setConfirming(undefined); setDeleteError(''); exportDialog.current?.close(); setExporting(undefined); setInspection(undefined); setFileName(''); setBusy(false); }, [activeProfile]);
   useEffect(() => () => { revision.current++; }, []);
-  function closeExport() { if (busy) return; exportDialog.current?.close(); setExporting(undefined); downloadButton.current?.focus(); }
+  function closeExport() { if (busy) return; closeModal(exportDialog.current, () => { setExporting(undefined); downloadButton.current?.focus(); }); }
   function startExport() {
     if (busy) return;
     const now = new Date();
     const timestamp = `lingfern-${[now.getFullYear(), now.getMonth() + 1, now.getDate()].map(part => String(part).padStart(2, '0')).join('-')}`;
     setExporting(timestamp); setExportName(''); setExportError(''); setMessage('');
   }
-  function closeDelete() { if (busy) return; dialog.current?.close(); setConfirming(undefined); setDeleteError(''); removeButton.current?.focus(); }
+  function closeDelete() { if (busy) return; closeModal(dialog.current, () => { setConfirming(undefined); setDeleteError(''); removeButton.current?.focus(); }); }
   async function remove() {
     if (!confirming || busy) return;
     const current = revision.current;
@@ -52,7 +52,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
     try {
       const { deleteLocalProfile } = await import('../data/deletion');
       await deleteLocalProfile(confirming.id, confirming.name);
-      dialog.current?.close(); setConfirming(undefined); setInspection(undefined); setFileName('');
+      closeModal(dialog.current, () => { setConfirming(undefined); removeButton.current?.focus(); }); setInspection(undefined); setFileName('');
       await onProfileChange(); setMessage(t.deleted);
     } catch (error) { if (current === revision.current) setDeleteError(error instanceof Error && error.message === 'BUSY' ? t.deleteBusy : t.failed); }
     finally { if (current === revision.current) setBusy(false); requestAnimationFrame(() => removeButton.current?.focus()); }
@@ -70,7 +70,7 @@ export function ProfileBackup({ locale, activeProfile, onProfileChange }: { loca
       const url = URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: 'application/zip' }));
       const a = document.createElement('a'); a.href = url; a.download = `${filename}.zip`; a.click();
       setTimeout(() => URL.revokeObjectURL(url), 10_000);
-      exportDialog.current?.close(); setExporting(undefined); requestAnimationFrame(() => downloadButton.current?.focus());
+      closeModal(exportDialog.current, () => { setExporting(undefined); downloadButton.current?.focus(); });
     } catch { if (current === revision.current) setExportError(t.failed); } finally { if (current === revision.current) setBusy(false); }
   }
   async function choose(file?: File) {

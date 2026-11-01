@@ -365,7 +365,6 @@
     "shortNote": "備份未加密，含學習紀錄，不含資源與錄音。"
   },
   "progressRecords_summaryCopy": {
-    "clock": "紀錄時間超前，暫不用於複習安排，請核對裝置時鐘。",
     "only": "僅同步摘要，原始答案保留在答題裝置。",
     "missing": "所需材料版本尚未安裝",
     "summaries": "同步摘要",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "閱讀",
     "listening": "聽力",
-    "overview": "分項紀錄",
-    "matrix": "目標紀錄",
-    "valid": "有效作答",
-    "materials": "不同材料",
-    "checks": "無額外協助的測試正確作答",
-    "last": "最近完成",
-    "none": "尚無完整任務",
-    "noRecord": "暫無紀錄",
     "unscored": "已儲存，未評分",
-    "legend": "◇ 已儲存，未評分　● 測試正確　◐ 學習中無額外協助地答對　○ 使用協助後答對　× 答錯。",
     "checkCorrect": "測試正確",
-    "independent": "學習中無額外協助地答對",
     "assisted": "使用協助後答對",
     "incorrect": "答錯",
-    "details": "查看作答",
-    "more": "另外 {count} 筆",
-    "open": "查看已儲存任務",
-    "reviewStatus": "複習狀態",
-    "independentState": "本次材料獨立完成",
-    "new": "尚無完整材料作答",
-    "with_help": "仍需鞏固",
-    "review_due": "到期",
-    "independentMaterials": "獨立完成的不同材料",
-    "nextSuggested": "建議下次複習",
-    "recentlyConsistent": "近期更穩定"
+    "details": "查看作答"
   },
   "meta": {
     "nativeName": "繁體中文"
@@ -732,9 +711,7 @@
     "retry": "重試",
     "export": "下載目前答案",
     "count": "已儲存作答",
-    "materialCount": "已有作答的不同材料",
     "empty": "還沒有作答紀錄。在「今日」完成的作答會顯示在這裡。",
-    "history": "已儲存任務",
     "conditions": "使用提示層數",
     "offline": "已離線",
     "online": "已恢復連線",
@@ -798,5 +775,9 @@
     "unsuitable": "目前的選擇無法產生合適練習，請調整題型或材料。",
     "readingSettings": "閱讀設定",
     "listeningSettings": "聽力設定"
+  },
+  "historyDeletion": {
+    "remove": "刪除",
+    "linked": "關聯的兩部分將一併刪除。"
   }
 }

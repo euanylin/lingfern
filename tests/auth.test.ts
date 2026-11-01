@@ -6,7 +6,7 @@ import { webhookRoute } from '../worker/webhook';
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync } from 'node:fs';
 import { afterEach, expect, test, vi } from 'vitest';
-import { authRoute, digest, githubJson, githubToken, randomSecret, revokeAccount, sealTokens, type AuthEnv } from '../worker/auth';
+import { authRoute, boundedBody, digest, githubJson, githubToken, randomSecret, revokeAccount, sealTokens, type AuthEnv } from '../worker/auth';
 import { github } from '../worker/github';
 
 function environment() {
@@ -165,6 +165,24 @@ test('canceling a failed GitHub response cannot obscure its authorization status
   const body = new ReadableStream({ start(controller) { controller.error(new Error('upstream body failure')); } });
   vi.stubGlobal('fetch', vi.fn(async () => new Response(body, { status: 401 })));
   await expect(githubJson('https://api.github.com/user', {})).rejects.toMatchObject({ status: 401 });
+});
+
+test('bounded bodies release the reader after success and retain read failures', async () => {
+  const body = new ReadableStream<Uint8Array>({ start(controller) { controller.enqueue(new Uint8Array([1, 2])); controller.close(); } });
+  expect(await boundedBody(body, 2)).toEqual(new Uint8Array([1, 2]));
+  expect(body.locked).toBe(false);
+  const failure = new Error('upstream read failed');
+  const failed = new ReadableStream<Uint8Array>({ start(controller) { controller.error(failure); } });
+  await expect(boundedBody(failed, 2)).rejects.toBe(failure);
+  expect(failed.locked).toBe(false);
+});
+
+test('body size failures survive cancellation errors and release the reader', async () => {
+  const cancel = vi.fn(() => { throw new Error('upstream cancellation failed'); });
+  const body = new ReadableStream<Uint8Array>({ start(controller) { controller.enqueue(new Uint8Array(3)); }, cancel });
+  await expect(boundedBody(body, 2)).rejects.toThrow('BODY_SIZE');
+  expect(cancel).toHaveBeenCalledTimes(1);
+  expect(body.locked).toBe(false);
 });
 
 test.each(['logout', 'revocation', 'idle-expiry', 'absolute-expiry', 'new-login', 'account-switch', 'binding-read'])('session summary fences %s during upstream verification', async mode => {

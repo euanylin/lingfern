@@ -365,7 +365,6 @@
     "shortNote": "Copia sin cifrar del aprendizaje, sin recursos ni grabaciones."
   },
   "progressRecords_summaryCopy": {
-    "clock": "La hora del registro está en el futuro. Comprueba el reloj del dispositivo; se excluye de la programación del repaso.",
     "only": "Solo un resumen. Las respuestas originales permanecen en el dispositivo donde se respondieron.",
     "missing": "La versión necesaria del material no está instalada",
     "summaries": "Resúmenes sincronizados",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Lectura",
     "listening": "Comprensión auditiva",
-    "overview": "Por destreza",
-    "matrix": "Registros de objetivos",
-    "valid": "Respuestas válidas",
-    "materials": "Materiales distintos",
-    "checks": "Respuestas correctas en pruebas sin ayuda adicional",
-    "last": "Última finalización",
-    "none": "Aún no hay actividades completadas",
-    "noRecord": "Sin registros",
     "unscored": "Guardado, sin calificar",
-    "legend": "◇ Guardado, sin calificar　● Correcto en prueba　◐ Correcto en aprendizaje sin ayuda adicional　○ Correcto tras ayuda　× Incorrecto.",
     "checkCorrect": "Correcto en prueba",
-    "independent": "Correcto en aprendizaje sin ayuda adicional",
     "assisted": "Correcto tras ayuda",
     "incorrect": "Incorrecto",
-    "details": "Ver respuestas",
-    "more": "{count} más",
-    "open": "Revisar actividad guardada",
-    "reviewStatus": "Estado del repaso",
-    "independentState": "Material completado de forma independiente",
-    "new": "Sin respuesta completa al material",
-    "with_help": "Necesita más práctica",
-    "review_due": "Pendiente",
-    "independentMaterials": "Materiales distintos completados de forma independiente",
-    "nextSuggested": "Próximo repaso sugerido",
-    "recentlyConsistent": "Mayor constancia reciente"
+    "details": "Ver respuestas"
   },
   "meta": {
     "nativeName": "Español"
@@ -732,9 +711,7 @@
     "retry": "Reintentar",
     "export": "Descargar respuesta actual",
     "count": "Respuestas guardadas",
-    "materialCount": "Materiales distintos con respuestas guardadas",
     "empty": "Aún no hay respuestas guardadas. Aquí aparecen las respuestas completadas desde Hoy.",
-    "history": "Tus actividades guardadas",
     "conditions": "Niveles de pistas utilizados",
     "offline": "Sin conexión",
     "online": "Conexión restablecida",
@@ -798,5 +775,9 @@
     "unsuitable": "No hay práctica adecuada para estas elecciones. Cambia el tipo de pregunta o los materiales.",
     "readingSettings": "Ajustes de lectura",
     "listeningSettings": "Ajustes de escucha"
+  },
+  "historyDeletion": {
+    "remove": "Eliminar",
+    "linked": "Se eliminarán ambas partes vinculadas."
   }
 }

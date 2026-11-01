@@ -365,7 +365,6 @@
     "shortNote": "学習記録の暗号化されていないバックアップです。教材と音声は含まれません。"
   },
   "progressRecords_summaryCopy": {
-    "clock": "記録時刻が未来になっています。端末の時計を確認してください。復習予定の計算から除外されます。",
     "only": "概要のみです。元の回答は回答した端末にあります。",
     "missing": "必要な教材の版がインストールされていません",
     "summaries": "同期済みの概要",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "読解",
     "listening": "リスニング",
-    "overview": "技能別",
-    "matrix": "目標の記録",
-    "valid": "有効な回答",
-    "materials": "異なる教材",
-    "checks": "追加の補助なしで正解したテスト回答",
-    "last": "最終完了",
-    "none": "完了した課題はまだありません",
-    "noRecord": "記録なし",
     "unscored": "保存済み・未採点",
-    "legend": "◇ 保存済み・未採点　● テストで正解　◐ 学習中に追加補助なしで正解　○ 補助後に正解　× 不正解。",
     "checkCorrect": "テストで正解",
-    "independent": "学習中に追加補助なしで正解",
     "assisted": "補助後に正解",
     "incorrect": "不正解",
-    "details": "回答を表示",
-    "more": "ほか{count}件",
-    "open": "保存済み課題を振り返る",
-    "reviewStatus": "復習状況",
-    "independentState": "この教材を独立して完了",
-    "new": "教材全体への回答はまだありません",
-    "with_help": "追加の練習が必要",
-    "review_due": "期限到来",
-    "independentMaterials": "独立して完了した異なる教材",
-    "nextSuggested": "次の推奨復習",
-    "recentlyConsistent": "最近は安定している"
+    "details": "回答を表示"
   },
   "meta": {
     "nativeName": "日本語"
@@ -732,9 +711,7 @@
     "retry": "再試行",
     "export": "現在の回答をダウンロード",
     "count": "保存済みの回答",
-    "materialCount": "回答が保存された異なる教材",
     "empty": "保存済み回答はまだありません。今日で完了した回答がここに表示されます。",
-    "history": "保存した課題",
     "conditions": "使用したヒント段階",
     "offline": "オフライン",
     "online": "接続が復旧しました",
@@ -798,5 +775,9 @@
     "unsuitable": "この選択では適切な練習を作成できません。問題形式や教材を変更してください。",
     "readingSettings": "リーディング設定",
     "listeningSettings": "リスニング設定"
+  },
+  "historyDeletion": {
+    "remove": "削除",
+    "linked": "連携した両方の学習を削除します。"
   }
 }

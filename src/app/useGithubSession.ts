@@ -65,6 +65,7 @@ export function useGithubSession(active: boolean) {
         endingTimer = setTimeout(() => { ending.current = false; if (navigator.onLine) void refresh(); else setState({ status: 'failed' }); }, 35000);
         return;
       }
+      ending.current = false;
       setState({ status: navigator.onLine ? 'loading' : 'failed' });
       if (navigator.onLine) void refresh();
     };

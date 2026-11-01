@@ -365,7 +365,6 @@
     "shortNote": "Registros de aprendizagem sem criptografia; não inclui recursos nem gravações."
   },
   "progressRecords_summaryCopy": {
-    "clock": "Horário do registro no futuro. Confira o relógio; excluído do agendamento de revisão.",
     "only": "Só resumo. Respostas originais ficam no dispositivo usado.",
     "missing": "Versão necessária não instalada",
     "summaries": "Resumos sincronizados",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Leitura",
     "listening": "Escuta",
-    "overview": "Por habilidade",
-    "matrix": "Registros de objetivos",
-    "valid": "Respostas válidas",
-    "materials": "Materiais distintos",
-    "checks": "Respostas corretas na verificação sem ajuda extra",
-    "last": "Última conclusão",
-    "none": "Nenhuma tarefa concluída",
-    "noRecord": "Sem registro",
     "unscored": "Salvo, sem pontuação",
-    "legend": "◇ Salvo, sem pontuação　● Correto na verificação　◐ Correto na prática sem ajuda extra　○ Correto após ajuda　× Incorreto.",
     "checkCorrect": "Correto na verificação",
-    "independent": "Correto na prática sem ajuda extra",
     "assisted": "Correto após ajuda",
     "incorrect": "Incorreto",
-    "details": "Ver respostas",
-    "more": "Mais {count}",
-    "open": "Revisar tarefa salva",
-    "reviewStatus": "Status da revisão",
-    "independentState": "Material concluído de forma independente",
-    "new": "Sem resposta completa ao material",
-    "with_help": "Precisa de mais prática",
-    "review_due": "Pendente",
-    "independentMaterials": "Materiais distintos concluídos independentemente",
-    "nextSuggested": "Próxima revisão sugerida",
-    "recentlyConsistent": "Mais consistente recentemente"
+    "details": "Ver respostas"
   },
   "meta": {
     "nativeName": "Português"
@@ -732,9 +711,7 @@
     "retry": "Tentar novamente",
     "export": "Baixar resposta atual",
     "count": "Respostas salvas",
-    "materialCount": "Materiais distintos com respostas salvas",
     "empty": "Nenhuma resposta salva. Respostas concluídas em Hoje aparecem aqui.",
-    "history": "Suas tarefas salvas",
     "conditions": "Níveis de dica usados",
     "offline": "Offline",
     "online": "Conexão restabelecida",
@@ -798,5 +775,9 @@
     "unsuitable": "Não há prática adequada para estas escolhas. Altere o tipo de pergunta ou os materiais.",
     "readingSettings": "Configurações de leitura",
     "listeningSettings": "Configurações de escuta"
+  },
+  "historyDeletion": {
+    "remove": "Excluir",
+    "linked": "As duas partes vinculadas serão excluídas."
   }
 }

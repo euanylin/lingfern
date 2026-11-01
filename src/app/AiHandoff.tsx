@@ -1,3 +1,4 @@
+import { AnimatedDetails } from './AnimatedDetails';
 import { translateInstruction, contentText, messages } from '../locales';
 import { GutenbergLicence } from './GutenbergLicence';
 import { gutenbergTerms, isGutenbergSource } from '../shared/sourceLicence';
@@ -79,10 +80,10 @@ export function AiHandoff({ locale, lesson, material, question, attempt }: { loc
     const link = document.createElement('a'); link.href = url; link.download = name; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
-  return <details className="ai-handoff"><summary>{t.title}</summary><p className="muted">{t.intro}</p>
+  return <AnimatedDetails className="ai-handoff"><summary>{t.title}</summary><p className="muted">{t.intro}</p>
     <fieldset><legend>{t.request}</legend>{requests[locale].map((label, index) => <label className="ai-request" key={label}><input type="radio" name={`ai-request-${attempt.id}`} checked={request === index} onChange={() => setRequest(index)}/>{label}</label>)}</fieldset>
     <fieldset><legend>{t.preview}</legend><div className="ai-select">{(Object.keys(included) as (keyof typeof included)[]).map(key => <label key={key}><input type="checkbox" checked={included[key]} onChange={event => setIncluded(previous => ({ ...previous, [key]: event.target.checked }))}/>{t[key]}</label>)}</div>
-      {included.material && <details className="ai-excerpt"><summary>{t.excerpt}</summary><label htmlFor={`ai-material-${attempt.id}`}>{t.material}</label><textarea ref={materialInput} id={`ai-material-${attempt.id}`} readOnly value={materialText} rows={5}/><div className="ai-actions"><button type="button" onClick={applyExcerpt}>{t.applyExcerpt}</button>{materialExcerpt !== null && <button type="button" onClick={() => setMaterialExcerpt(null)}>{t.fullMaterial}</button>}</div></details>}
+      {included.material && <AnimatedDetails className="ai-excerpt"><summary>{t.excerpt}</summary><label htmlFor={`ai-material-${attempt.id}`}>{t.material}</label><textarea ref={materialInput} id={`ai-material-${attempt.id}`} readOnly value={materialText} rows={5}/><div className="ai-actions"><button type="button" onClick={applyExcerpt}>{t.applyExcerpt}</button>{materialExcerpt !== null && <button type="button" onClick={() => setMaterialExcerpt(null)}>{t.fullMaterial}</button>}</div></AnimatedDetails>}
     </fieldset>
     <article className="ai-preview"><h3>{t.preview}</h3><p><strong>Lingfern</strong></p>{sections.map(({ label, text }) => <section key={label}><h4>{label}</h4>{label === t.source && isGutenbergSource(material.credit?.sourceUrl) ? <><p>{sourceCredit}</p><GutenbergLicence sourceUrl={material.credit?.sourceUrl} locale={locale}/></> : <p>{text}</p>}</section>)}<section><h4>{t.request}</h4><p>{requests[locale][request]}</p></section></article>
     {tooLarge && <p role="alert" className="error">{t.tooLarge}</p>}
@@ -92,5 +93,5 @@ export function AiHandoff({ locale, lesson, material, question, attempt }: { loc
       {pending && <div className="ai-preview"><h4>{t.review}</h4><p>{pending.content}</p>{pending.unknownReferences && <p className="muted">{t.unknown}</p>}<button type="button" disabled={busy} onClick={() => void saveNote()}>{t.save}</button></div>}
       {notes.length > 0 && <div><h4>{t.notes}</h4>{notes.map(note => <div className="ai-preview" key={note.id}><p>{note.content}</p>{note.unknownReferences && <p className="muted">{t.unknown}</p>}</div>)}</div>}
     </section><p role="status" aria-live="polite">{message}</p>
-  </details>;
+  </AnimatedDetails>;
 }

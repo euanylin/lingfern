@@ -1,3 +1,4 @@
+import { AnimatedDetails } from './AnimatedDetails';
 import { RefreshIcon } from './RefreshIcon';
 import { messages } from '../locales';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -66,12 +67,12 @@ export function SharingManagement({ locale, accountId }: { locale: Locale; accou
   }
   const date = (seconds: number) => new Date(seconds * 1000).toLocaleString(locale);
   const granted = (seconds: number) => messages('sharingManagement', { date: new Date(seconds * 1000).toLocaleDateString(locale) })[locale].granted;
-  return <><details className="sharing-management service-disclosure" ref={root} onToggle={event => { const expanded = event.currentTarget.open; setOpen(expanded); if (expanded && !data) void run(); }}><summary ref={disclosure} aria-controls={`${id}-permissions`} aria-expanded={open}>{t.title}</summary>
+  return <><AnimatedDetails className="sharing-management service-disclosure" ref={root} onExpandedChange={expanded => { setOpen(expanded); if (expanded && !data) void run(); }}><summary ref={disclosure} aria-controls={`${id}-permissions`} aria-expanded={open}>{t.title}</summary>
     {open && <button className="sharing-refresh" type="button" aria-label={t.load} aria-busy={busy} disabled={busy} onClick={() => void run()}><RefreshIcon/></button>}
     <div id={`${id}-permissions`} aria-busy={busy}>
     {(busy || message) && <p className="muted" role="status">{busy ? t.loading : message}</p>}
     {data && <><h3>{t.shares}</h3>{!data.shares.length && <p className="sharing-empty">{t.empty}</p>}{data.shares.map(share => <article key={share.id}><div><h4>{share.title}</h4><p>{granted(share.createdAt)}<br/>{data.connections.find(client => client.id === share.connectionId)?.name}<br/>{t.profile}: {share.profileId}<br/>{t.expires}: {date(share.expiresAt)}</p></div><button className="service-danger" data-revoke type="button" disabled={busy} aria-label={`${t.revokeShare}: ${share.title}`} onClick={() => void run(`/api/ai/shares/${share.id}`, share.title)}>{t.revoke}</button></article>)}
     <h3>{t.clients}</h3>{!data.connections.length && <p className="sharing-empty">{t.empty}</p>}{data.connections.map(client => <article key={client.id}><div><h4>{client.name}</h4><p>{granted(client.createdAt)}<br/>{[client.contextsRead ? t.context : '', client.materialsRead ? t.material : ''].filter(Boolean).join(' · ')}<br/>{t.expires}: {date(client.expiresAt)}</p></div><button className="service-danger" data-revoke type="button" disabled={busy} aria-label={`${t.revokeClient}: ${client.name}`} onClick={() => void run(`/api/ai/connections/${client.id}`, client.name)}>{t.revoke}</button></article>)}</>}
     </div>
-  </details><div className="service-toast" role="status" aria-live="polite" aria-atomic="true">{toast}</div></>;
+  </AnimatedDetails><div className="service-toast" role="status" aria-live="polite" aria-atomic="true">{toast}</div></>;
 }

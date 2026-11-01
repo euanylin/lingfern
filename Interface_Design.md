@@ -485,6 +485,18 @@ Use the same natural two-column/single-column responsive layout, 44px targets, k
 
 History is the dedicated `/progress` record view reached from Reading top right, with Today active and a visible back link. It contains actual response/material counts, original responses or summaries, dates, support conditions, saved-session resume/review and existing deletion/recovery controls. Do not expand it inline on Today or add another growth fern, Progress navigation tab or unvalidated proficiency conclusion.
 
+Each saved-session row has a visible Delete action. Confirm with the record title and Cancel/Confirm deletion only; show one short additional line when both linked training parts will be removed (maintainer correction, 2026-11-01). Remove the selected session's answers, drafts and feedback atomically, including its paired parts. Retain material familiarity and existing individual-answer controls; reject deletion while another tab holds an active editing lease. Synced tombstones prevent restored answers and fully deleted sessions from returning.
+
+Maintainer visual refinement (2026-11-01): both history pages use an arrow-only back link without an underline, retaining an accessible destination name and a 44px target. Session titles have no underline or appended Resume/Review wording; omit the redundant Saved tasks heading. Delete actions and deletion confirmations use the existing theme-aware red styles. Lookup-history rows place the Delete button between the query link and the type description (IPA chart, dictionary or usage guide).
+
+The same arrow-only treatment applies to all return controls, including About, starting-choice steps and learning exits/returns. Keep their existing destinations, save/leave handling, accessible names and disabled states; share the 44px minimum target style.
+
+Lookup-history query hover, touch and keyboard focus use a softly tinted, inset rounded surface. Preserve a visible keyboard outline and separate Delete hit target; avoid a full-height rectangular highlight meeting the action area.
+
+Maintainer simplification (2026-11-01): the entire History page uses the Library's 760px maximum width. Show saved sessions as one compact row per record in a single rounded list, with title/date, an arrow-only response disclosure, then red Delete at the row end. Keep the complete title and response count available through accessible labels/tooltips. Remove aggregate statistics, skill breakdowns and goal information entirely, including their secondary disclosure. Preserve actual synchronized records as compact rows without invented original answers or replay links. Response details, unfinished-test restrictions, time verification, deletion and sync recovery remain available.
+
+History disclosure controls use a centred SVG chevron in a 44px target, flipping vertically with the same `rotateX(180deg)` and `200ms ease` as Library groups. Keep the panel's short height/opacity transition. Keep closing contents inert and hidden from assistive technology, then unmount them after the transition. Rapid reversals remain responsive; reduced-motion preference makes both changes immediate.
+
 Distinguish material roots, valid responses and qualifying goals. Shared-material questions and repeated attempts do not multiply unfamiliar independent evidence. Self-report is only the chosen starting point. Assisted/answer-exposed/familiar work remains labelled with its conditions; valid faults/missing responses are not wrong answers. Goal recommendations remain independent of dictionary bookmarks.
 
 Use existing `ProgressRecords` and record controls. Any goal/level matrix or expanded list must use actual current goal metadata and readable headers/labels, not synthetic populated cells. Rows/cells have 44px targets, natural wrapping and keyboard-accessible details. Mobile uses readable lists or explicitly contained tables without whole-page horizontal overflow. Closing details restores focus.
@@ -521,6 +533,8 @@ Package rows contain name, target range, skills, actual task count, download/exp
 Default to Cancel/Retry. Do not show Pause/Resume without real resumable downloading. Successfully installed independent packages remain when another package fails.
 
 **Lookup history:** use one rounded list with full-row links, the query on the left, localized reference category on the right and local-calendar dates without seconds. Mark today's rows with the localized Today label. Record opened/related usage entries and selected IPA sounds independently of audio success; preserve profile boundaries and encoded return destinations.
+
+Place a separate 44px Delete button beside each lookup link. Its confirmation shows the query and Cancel/Confirm deletion without explanatory paragraphs. Preserve saved words, update the list after the successful transaction and retain the existing sync deletion semantics.
 
 **Backup copy:** keep Simplified/Traditional Chinese words together when backup notes/actions wrap; retain current copy, equal action targets and input/file behavior.
 
@@ -913,8 +927,13 @@ A short colour transition is permitted; reduced motion switches immediately. Sys
 | Route change | Navigation | Approximately 140–220ms fade; optional movement ≤8px | Direct display |
 | Option selection | User choice | 140ms colour/border, no scale | Direct switch |
 | Submission feedback | Successful local transaction | 220–360ms expansion/fade | Direct display, normal focus |
-| Hint | Request next layer | 220ms expansion | Direct display |
-| Drawer/modal | User opens/closes | 220–360ms, ease-out without spring | Direct switch |
+| Hint | Request next layer | 220ms reveal/fade after assistance is saved | Direct display |
+| Drawer/modal | User opens/closes | 220–360ms entry; compact confirmations exit in 180ms, without spring | Direct switch |
+| Setup, lookup and reference views | Change step, receive results or change view | 160–220ms fade, optional 4px reveal | Direct display |
+| Sequence answers | User reorders selected steps | Existing rows move to their new positions over 220ms | Direct order |
+| Saved/playback/copy state | Successful action or actual playback state | Short icon or colour transition, stable control bounds | Direct state |
+| Disclosure | Native details, resource/material groups, history and full quote | 220ms height change; downward chevrons flip vertically with 200ms ease | Direct switch |
+| Settings picker | Open/close an option menu | 160ms fade; same vertical chevron flip | Direct switch |
 | Evidence location | Explicit link | Optional smooth scroll approximately 360ms | Direct positioning |
 | Hover/press | Pointer/keyboard | Existing small underline/colour motion, no unstable control bounds | Clear static state |
 | Download progress | Actual bytes received | No fictitious automatic advance; short transition if needed | Immediate actual values |
@@ -925,6 +944,10 @@ Use ordinary ease-out, for example cubic-bezier(0.2,0,0,1); the plant may use cu
 Honour system reduced-motion requests. The app may additionally reduce motion, but must not override the system by default and force playback. No particles, scroll-jacking, reward confetti or mandatory transitions. Existing fern/resting motion and translucent underlines remain light and purposeful, with a static reduced-motion state.
 
 Cancelling animation does not cancel saving, reset playback, or lose focus. Determine data and graphic state before choosing to animate, never infer learning state from animation-completed events.
+
+Maintainer coverage update (2026-11-01): apply disclosure motion to every existing native details control, including Settings service setup/permissions, About credits, installed-package sources, grammar, saved words, teaching/source/notes/answer cards, AI handoff/sharing and completion-time correction. Reuse the same controlled panel for Library and practice-material groups and history. Keep nested summaries independent, native links/buttons inside summaries functional, closing contents inert, and lazy contents retained only through the exit. Controlled Apply/Cancel and other action callbacks update immediately; rapid reversal must not restore an obsolete closed state. Menus retain their positioning, keyboard focus and native scrolling. Existing dialogs and answer-sheet motion remain in place.
+
+Extend restrained motion to the remaining shared surfaces: confirmation panels/backdrops, setup steps, autocomplete/results, hints/feedback, inline notices and control state changes. Route fades apply after in-app navigation, not to the initial prerendered page. Confirmation exits retain the native modal focus trap and block duplicate activation; profile changes, navigation and deleted owning records may tear them down immediately. Never retain obsolete account content or delay a transaction for a visual exit. Selection popups dismiss immediately when their text or viewport context changes. Keep continuous motion limited to the accepted fern and indicators of actual work; do not animate ordinary typing, scroll position, media time or resource byte counts.
 
 ---
 

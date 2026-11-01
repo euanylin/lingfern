@@ -1,11 +1,21 @@
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync, readdirSync } from 'node:fs';
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { version } from '../package.json';
 import { digest, revokeAccount } from '../worker/auth';
 import { webhookRoute } from '../worker/webhook';
 import { mcpFetch } from '../worker/mcp';
 import { cleanupShares, listSharedContexts, readSharedContext, sharingRoute, type SharingEnv } from '../worker/sharing';
+import { oauthRoute, type OAuthEnv } from '../worker/oauth';
+
+// Isolate the consent handler; real Provider/KV/PKCE behaviour has workerd coverage.
+vi.mock('@cloudflare/workers-oauth-provider', () => ({
+  default: class {
+    constructor(private options: { defaultHandler: { fetch(request: Request, env: OAuthEnv): Promise<Response> } }) {}
+    fetch(request: Request, env: OAuthEnv) { return this.options.defaultHandler.fetch(request, env); }
+  },
+  AuthorizationError: class extends Error {}, OAuthError: class extends Error {}, getOAuthApi: vi.fn(),
+}));
 
 async function fixture() {
   const sqlite = new DatabaseSync(':memory:');
@@ -175,6 +185,62 @@ test('atomic insertion enforces the twenty-share capacity and rejects revocation
   f.intercept(sql => { if (sql.startsWith('INSERT INTO shared_contexts')) f.sqlite.exec('UPDATE mcp_connections SET revoked=1'); });
   expect((await f.create()).status).toBe(409);
   expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts').get()!.n).toBe(0);
+});
+
+test.each(['session', 'absolute-session', 'connection'])('share creation rechecks %s expiry when the final write executes', async mode => {
+  const f = await fixture(), startedAt = Math.floor(Date.now() / 1000);
+  let databaseTime = startedAt;
+  f.sqlite.function('unixepoch', () => databaseTime);
+  if (mode === 'connection') f.sqlite.prepare('UPDATE mcp_connections SET expires_at=?').run(startedAt + 60);
+  else f.sqlite.prepare(`UPDATE sessions SET ${mode === 'session' ? 'expires_at' : 'absolute_expires_at'}=?`).run(startedAt + 60);
+  f.intercept(sql => { if (sql.startsWith('INSERT INTO shared_contexts')) databaseTime = startedAt + 61; });
+  const response = await f.create();
+  expect(response.status).toBe(409);
+  expect(await response.json()).toEqual({ error: 'SHARE_NOT_ALLOWED_OR_FULL' });
+  expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts').get()!.n).toBe(0);
+});
+
+test('share creation measures capacity and its full lifetime at the final write', async () => {
+  const f = await fixture(), startedAt = Math.floor(Date.now() / 1000);
+  let databaseTime = startedAt;
+  f.sqlite.function('unixepoch', () => databaseTime);
+  for (let index = 0; index < 20; index++) expect((await f.create()).status).toBe(201);
+  f.sqlite.prepare('UPDATE shared_contexts SET expires_at=?').run(startedAt + 60);
+  f.intercept(sql => { if (sql.startsWith('INSERT INTO shared_contexts')) databaseTime = startedAt + 61; });
+  const response = await f.create();
+  expect(response.status).toBe(201);
+  expect(await response.json()).toMatchObject({ createdAt: databaseTime, expiresAt: databaseTime + 86400 });
+  expect(f.sqlite.prepare('SELECT count(*) AS n FROM shared_contexts WHERE expires_at>unixepoch()').get()!.n).toBe(1);
+});
+
+test.each(['session', 'absolute-session', 'live', 'offline'])('MCP consent uses final write-time authorization and lifetime for %s', async mode => {
+  const f = await fixture(), startedAt = Math.floor(Date.now() / 1000);
+  let databaseTime = startedAt;
+  f.sqlite.function('unixepoch', () => databaseTime);
+  const expired = mode === 'session' || mode === 'absolute-session';
+  if (expired) f.sqlite.prepare(`UPDATE sessions SET ${mode === 'session' ? 'expires_at' : 'absolute_expires_at'}=?`).run(startedAt + 60);
+  const completeAuthorization = vi.fn(async () => ({ redirectTo: 'https://client.example/callback' }));
+  const helpers = {
+    approveConsent: async () => ({ request: { clientId: 'synthetic-client' }, headers: new Headers() }),
+    lookupClient: async () => { databaseTime = startedAt + 61; return { clientName: 'Synthetic client', clientId: 'synthetic-client' }; },
+    completeAuthorization,
+  };
+  const env = { ...f.env, OAUTH_KV: {} as KVNamespace, OAUTH_PROVIDER: helpers as unknown as OAuthEnv['OAUTH_PROVIDER'] };
+  const headers = new Headers(f.request('/oauth/authorize').headers);
+  headers.set('Content-Type', 'application/x-www-form-urlencoded');
+  const body = new URLSearchParams({ handle: 'synthetic-consent', csrf: 'c'.repeat(43), decision: 'approve', scope: 'contexts:read' });
+  if (mode === 'offline') body.append('scope', 'offline_access');
+  const response = await oauthRoute(new Request('http://127.0.0.1:8787/oauth/authorize', { method: 'POST', headers, body }), env, {} as ExecutionContext);
+  if (expired) {
+    expect(response!.status).toBe(409);
+    expect(await response!.json()).toEqual({ error: 'MCP_APPROVAL_CHANGED_OR_FULL' });
+    expect(completeAuthorization).not.toHaveBeenCalled();
+    expect(f.sqlite.prepare('SELECT count(*) AS n FROM mcp_connections').get()!.n).toBe(1);
+  } else {
+    expect(response!.status).toBe(302);
+    expect(completeAuthorization).toHaveBeenCalledTimes(1);
+    expect(f.sqlite.prepare('SELECT created_at,expires_at FROM mcp_connections WHERE id!=?').get(f.value.connectionId)).toEqual(expect.objectContaining({ created_at: databaseTime, expires_at: databaseTime + (mode === 'offline' ? 30 * 86400 : 3600) }));
+  }
 });
 
 test('revocation and authenticated deletion block subsequent reads and physically remove shared text', async () => {

@@ -14,11 +14,13 @@ for (const removeExposure of [false, true]) test(`record deletion requires confi
     return { id: record.id, prompt: session.lesson.materials[0].questions[0].prompt };
   });
   await page.setViewportSize({ width: 375, height: 812 }); await page.goto('/progress');
-  await page.locator('.history details summary').click();
-  const remove = page.locator('.history details section').filter({ has: page.getByRole('heading', { name: prompt, exact: true }) }).getByRole('button', { name: '删除此记录', exact: true });
+  await page.locator('.history-records-toggle').click();
+  const remove = page.locator('.history-entry-records section').filter({ has: page.getByRole('heading', { name: prompt, exact: true }) }).getByRole('button', { name: '删除此记录', exact: true });
+  await expect(remove).toHaveCSS('color', 'rgb(158, 63, 46)');
   await remove.click(); await page.getByRole('button', { name: '取消', exact: true }).click();
   expect(await page.evaluate(async id => { const path = '/src/data/db.ts'; return Boolean(await (await import(path)).attempts.get(id)); }, id)).toBe(true);
   await remove.click(); await expect(page.getByText('旧备份及 Git 历史不会被清除。', { exact: false })).toBeVisible();
+  await expect(page.getByRole('button', { name: '确认删除', exact: true })).toHaveCSS('color', 'rgb(158, 63, 46)');
   const exposure = page.getByRole('checkbox', { name: '同时删除本题的接触记录', exact: true });
   await expect(exposure).not.toBeChecked();
   if (removeExposure) {
@@ -36,7 +38,7 @@ for (const removeExposure of [false, true]) test(`record deletion requires confi
   await page.goto(`/learn/${id.split(':')[0]}`);
   await expect(page.getByText('此任务的部分记录已删除。保留的答案可在记录页面查看。', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: '提交答案', exact: true })).toHaveCount(0);
-  await page.goto('/progress'); await page.locator('.history details summary').click();
+  await page.goto('/progress'); await page.locator('.history-records-toggle').click();
   await expect(page.getByRole('button', { name: '删除此记录', exact: true })).toHaveCount(3);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: 'output/playwright/record-deletion-375-zh-Hans-light.png' });

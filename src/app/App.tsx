@@ -1,4 +1,4 @@
-import { showModal } from './modal';
+import { closeModal, showModal } from './modal';
 import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type ComponentType, type ComponentProps } from 'react';
 import { createPortal } from 'react-dom';
 import { liveQuery } from 'dexie';
@@ -142,7 +142,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   useEffect(scrollbarVisibility, [path, pageSearch]);
   useLayoutEffect(() => { updatePageMetadata(path, pageSearch); }, [path, pageSearch]);
   const resetNavigationScroll = useRef(false);
-  useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; scrollTo(0, 0); } }, [path, pageSearch]);
+  useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; document.getElementById('main')?.setAttribute('data-navigated', ''); scrollTo(0, 0); } }, [path, pageSearch]);
   useEffect(() => {
     if (!ready || path !== '/settings' || location.hash !== '#mcp') return;
     const locate = () => { const target = document.getElementById('mcp'); target?.scrollIntoView(); return !!target; };
@@ -379,7 +379,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   }
   useEffect(() => { if (confirmUpdate) { showModal(updateDialog.current); updateCancel.current?.focus(); } }, [confirmUpdate]);
   function requestUpdate(trigger: HTMLButtonElement) { updateTrigger.current = trigger; setUpdateBlocked(false); setConfirmUpdate(true); }
-  function closeUpdate() { if (applyingUpdate) return; updateDialog.current?.close(); setConfirmUpdate(false); updateTrigger.current?.focus(); }
+  function closeUpdate() { if (applyingUpdate) return; closeModal(updateDialog.current, () => { setConfirmUpdate(false); updateTrigger.current?.focus(); }); }
   async function applyUpdate() {
     if (applyingUpdate) return;
     setApplyingUpdate(true);
@@ -486,7 +486,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   return <>
     <a className="skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t.skip}</a>
     {!introducing && !entryPending && <header className={sessionId ? 'session-header' : ''}>
-      {sessionId ? <><a href="/today" onClick={e => { e.preventDefault(); void releaseSession(sessionId, owner).then(() => { setReady(false); window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0); }).catch(() => setError('save')); }}>{t.leave}</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
+      {sessionId ? <><a className="back-button" href="/today" aria-label={t.leave} onClick={e => { e.preventDefault(); void releaseSession(sessionId, owner).then(() => { setReady(false); window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0); }).catch(() => setError('save')); }}>←</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
         <a className="home-mark" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
         <a className="mobile-brand" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
         <nav className="desktop-nav" data-display={desktopNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
@@ -496,7 +496,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={sessionId} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={`${activeProfile}:${sessionId}`} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
@@ -512,10 +512,10 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
         {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue selections={practiceSelections} onSelection={savePracticeSelection} preferences={preferences} key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
         {combinedDetail && <TaskDetail key={combinedDetail[0].id + combinedDetail[1].id} lesson={combinedDetail[0]} additionalLesson={combinedDetail[1]} heading={training.title} locale={locale} profileId={activeProfile} action={training.start} busy={starting} onStart={() => startCombinedPractice()} onCheck={() => startCombinedPractice(true)} onClose={() => { setCombinedDetail(undefined); requestAnimationFrame(() => { if (combinedInvoker.current?.isConnected && !combinedInvoker.current.matches(':disabled')) combinedInvoker.current.focus({ preventScroll: true }); }); }} startError={error === 'save' ? t.saveError : ''} available={true}/>}
       </> : path === '/progress' ? <section id="today-records">
-        <a className="records-back" href="/today">← {t.today}</a>
-        <h1>{t.progress}</h1><div className="progress-overview">
-        <dl className="totals"><div><dt>{t.count}</dt><dd>{records.length + summaries.length + unavailableSummaries.length}</dd></div><div><dt>{t.materialCount}</dt><dd>{new Set([...records.map(r => r.rootId), ...summaries.map(row => row.event.payload.rootId), ...unavailableSummaries.map(event => event.payload.rootId)]).size}</dd></div></dl></div>
-        <CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/><ProgressRecords locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/>{!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}{history.length > 0 && <h2>{t.history}</h2>}<SessionHistory history={history} records={records} locale={locale} profileId={activeProfile} onChange={load}/>
+        <a className="records-back back-button" href="/today" aria-label={t.today}><span aria-hidden="true">←</span></a>
+        <h1>{t.progress}</h1>
+        {!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}<SessionHistory history={history} records={records} locale={locale} profileId={activeProfile} onChange={load}/>
+        <ProgressRecords locale={locale} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/><CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/>
         </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
@@ -527,7 +527,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       : path === '/library/ipa' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><IpaChart disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery} initialEntries={initialPage?.ipa} initialSounds={initialPage?.sounds}/></Suspense>
       : path === '/library/grammar' ? <GrammarLookup disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} initialData={initialPage?.grammar}/>
       : path === '/settings/about' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><About/></Suspense>
-      : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a href="/today">{t.finish}</a></>}
+      : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a className="back-button" href="/today" aria-label={t.finish}>←</a></>}
       </PageBoundary></Suspense>
     </main>
     {confirmUpdate && createPortal(<dialog ref={updateDialog} className="update-confirm-dialog" aria-labelledby="update-confirm-title" aria-describedby="update-confirm-description" onCancel={event => { event.preventDefault(); closeUpdate(); }} onClick={event => { if (event.target === event.currentTarget) closeUpdate(); }}>

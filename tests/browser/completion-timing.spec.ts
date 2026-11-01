@@ -34,8 +34,7 @@ for (const [locale, title, confirm] of [['zh-Hans', '核对学习记录时间', 
   expect(stored.filter((event: { type: string }) => event.type === 'completion').every((event: { occurredAt: string }) => event.occurredAt === '2099-01-01T00:00:00.000Z')).toBe(true);
   expect(stored.filter((event: { type: string }) => event.type === 'completion_timing')).toHaveLength(4);
   await page.reload();
-  await expect(page.locator('.totals dd').first()).toHaveText('4');
-  await page.locator('.progress-cell:visible').first().click();
-  await expect(page.locator('.progress-record-detail time').first()).not.toContainText('2099');
+  await expect(page.locator('.synced-summary-list .history')).toHaveCount(4);
+  await expect(page.locator('.synced-summary-list time').first()).not.toContainText('2099');
   expect(await page.evaluate(async () => { const path = '/src/data/db.ts'; return (await import(path)).attempts.count(); })).toBe(0);
 });

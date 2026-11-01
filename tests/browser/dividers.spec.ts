@@ -18,7 +18,7 @@ test('task lists use available width without spilling on smaller screens', async
   }
 });
 
-test('history cards retain their single divider and rounded surfaces', async ({ page }) => {
+test('history rows share one rounded surface with a single divider', async ({ page }) => {
   await page.goto('/today');
   const { lesson } = await openSnapshot(page, 'a1-reading', true); await completeWorkspace(page, lesson);
   await page.getByRole('link', { name: '离开任务' }).click();
@@ -29,13 +29,14 @@ test('history cards retain their single divider and rounded surfaces', async ({ 
   await page.goto('/progress');
   await expect(page).toHaveURL(/\/progress$/);
   await expect(page.locator('.history')).toHaveCount(2);
-  for (const [width, columns] of [[375, 1], [768, 2], [1024, 2]] as const) {
+  for (const width of [375, 768, 1024]) {
     await page.setViewportSize({ width, height: 900 });
     const layout = await page.locator('.history').evaluateAll(elements => {
       const [first, second] = elements.map(element => element.getBoundingClientRect());
-      return { columns: Math.abs(first.top - second.top) < 1 ? 2 : 1, borders: elements.every(element => getComputedStyle(element).borderTopWidth === '1px' && getComputedStyle(element).borderRadius === '16px' && getComputedStyle(element).borderBottomWidth === '0px'), overflow: document.documentElement.scrollWidth > innerWidth };
+      const surface = getComputedStyle(elements[0].closest('.history-grid')!);
+      return { columns: Math.abs(first.top - second.top) < 1 ? 2 : 1, borders: elements.every((element, index) => getComputedStyle(element).borderTopWidth === (index ? '1px' : '0px') && getComputedStyle(element).borderBottomWidth === '0px'), rounded: surface.borderRadius === '16px' && surface.overflow === 'hidden', overflow: document.documentElement.scrollWidth > innerWidth };
     });
-    expect(layout).toEqual({ columns, borders: true, overflow: false });
+    expect(layout).toEqual({ columns: 1, borders: true, rounded: true, overflow: false });
   }
   await expect(page.locator('footer')).toHaveCount(0);
   await page.goto('/library');

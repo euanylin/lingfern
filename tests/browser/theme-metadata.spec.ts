@@ -30,7 +30,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
   expect(await page.locator('.setting-menu').evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^(?:rgba\(234, 232, 226, 0\.55\)|color\(srgb 0\.917647 0\.909804 0\.886275 \/ 0\.55\))$/);
   await expect(page.locator('.setting-menu')).toHaveCSS('background-image', 'none');
   const expectPlacement = async () => {
-    const placement = await page.locator('.setting-menu').evaluate(menu => {
+    const placement = await page.locator('.setting-menu[data-open=true]').evaluate(menu => {
       const popup = menu.getBoundingClientRect();
       const anchor = menu.parentElement!.querySelector('.setting-trigger')!.getBoundingClientRect();
       return { within: popup.left >= 8 && popup.right <= innerWidth - 8 && popup.top >= 8 && popup.bottom <= innerHeight - 8,
@@ -52,7 +52,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
     await picker.hover();
     expect(await shape()).toEqual(resting);
     await picker.click();
-    const menu = page.locator('.settings-preferences .setting-menu');
+    const menu = page.locator('.settings-preferences .setting-menu[data-open=true]');
     await expect(menu).toBeVisible();
     await expectPlacement();
     await expect(menu.locator('[role=option]').first()).toHaveCSS('font-size', '15px');

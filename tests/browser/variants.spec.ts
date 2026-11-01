@@ -20,7 +20,7 @@ test('generated practice saves exact notices, resumes and gives evidence within 
   await page.goto('/today'); await page.getByRole('button', { name: '开始变式练习', exact: true }).click();
   await showLearningPane(page, 'question');
   await expect(page.getByRole('heading', { name: /When does the train leave today\?/ })).toBeVisible(); expect(page.url()).not.toBe(url);
-  await page.goto('/progress'); await expect(page.locator('.totals dd')).toHaveText(['2', '2']);
+  await page.goto('/progress'); expect(await page.evaluate(async () => { const rows = await (await import('/src/data/db.ts' as string)).attempts.toArray(); return [rows.length, new Set(rows.map((row: { rootId: string }) => row.rootId)).size]; })).toEqual([2, 2]);
   const seen = await page.evaluate(async () => (await import('/src/data/db.ts' as string)).exposures.toArray());
   expect(seen).toHaveLength(2); expect(seen.flatMap((entry: { contacts: unknown[] }) => entry.contacts)).toHaveLength(3);
   expect(new Set(seen.flatMap((entry: { contacts: { variantGroup: string }[] }) => entry.contacts.map(contact => contact.variantGroup))).size).toBe(2);

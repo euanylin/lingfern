@@ -365,7 +365,6 @@
     "shortNote": "Unencrypted learning records; resources and recordings excluded."
   },
   "progressRecords_summaryCopy": {
-    "clock": "Record time is ahead. Check the device clock; it is excluded from review scheduling.",
     "only": "Summary only. Original answers remain on the answering device.",
     "missing": "Required material version is not installed",
     "summaries": "Synced summaries",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Reading",
     "listening": "Listening",
-    "overview": "By skill",
-    "matrix": "Goal records",
-    "valid": "Valid responses",
-    "materials": "Distinct materials",
-    "checks": "Correct check responses without extra help",
-    "last": "Last completion",
-    "none": "No completed task yet",
-    "noRecord": "No record",
     "unscored": "Saved, unscored",
-    "legend": "◇ Saved, unscored　● Correct in a check　◐ Correct in learning without extra help　○ Correct after help　× Incorrect.",
     "checkCorrect": "Correct in a check",
-    "independent": "Correct in learning without extra help",
     "assisted": "Correct after help",
     "incorrect": "Incorrect",
-    "details": "View responses",
-    "more": "{count} more",
-    "open": "Review saved task",
-    "reviewStatus": "Review status",
-    "independentState": "Completed this material independently",
-    "new": "No complete material response",
-    "with_help": "Needs more practice",
-    "review_due": "Due",
-    "independentMaterials": "Distinct materials completed independently",
-    "nextSuggested": "Next suggested review",
-    "recentlyConsistent": "Recently more consistent"
+    "details": "View responses"
   },
   "meta": {
     "nativeName": "English"
@@ -732,9 +711,7 @@
     "retry": "Retry",
     "export": "Download current answer",
     "count": "Saved responses",
-    "materialCount": "Distinct materials with saved responses",
     "empty": "No saved responses yet. Completed answers from Today appear here.",
-    "history": "Your saved tasks",
     "conditions": "Hint layers used",
     "offline": "Offline",
     "online": "Back online",
@@ -798,5 +775,9 @@
     "unsuitable": "No suitable practice for these choices. Change the question type or materials.",
     "readingSettings": "Reading settings",
     "listeningSettings": "Listening settings"
+  },
+  "historyDeletion": {
+    "remove": "Delete",
+    "linked": "Both linked parts will be deleted."
   }
 }

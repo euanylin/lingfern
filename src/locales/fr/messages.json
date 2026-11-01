@@ -365,7 +365,6 @@
     "shortNote": "Sauvegarde non chiffrée des progrès, sans ressources ni enregistrements."
   },
   "progressRecords_summaryCopy": {
-    "clock": "L’heure enregistrée est dans le futur. Vérifiez l’horloge de l’appareil ; elle est exclue du calendrier de révision.",
     "only": "Résumé uniquement. Les réponses d’origine restent sur l’appareil utilisé.",
     "missing": "La version requise du document n’est pas installée",
     "summaries": "Résumés synchronisés",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Lecture",
     "listening": "Écoute",
-    "overview": "Par compétence",
-    "matrix": "Suivi des objectifs",
-    "valid": "Réponses valides",
-    "materials": "Documents distincts",
-    "checks": "Réponses correctes au test sans aide supplémentaire",
-    "last": "Dernière activité terminée",
-    "none": "Aucune activité terminée",
-    "noRecord": "Aucun enregistrement",
     "unscored": "Enregistré, non noté",
-    "legend": "◇ Enregistré, non noté　● Correct au test　◐ Correct en apprentissage sans aide supplémentaire　○ Correct après aide　× Incorrect.",
     "checkCorrect": "Correct au test",
-    "independent": "Correct en apprentissage sans aide supplémentaire",
     "assisted": "Correct après aide",
     "incorrect": "Incorrect",
-    "details": "Voir les réponses",
-    "more": "{count} de plus",
-    "open": "Revoir l’activité enregistrée",
-    "reviewStatus": "État de révision",
-    "independentState": "Document terminé en autonomie",
-    "new": "Aucune réponse complète au document",
-    "with_help": "Encore à travailler",
-    "review_due": "À faire",
-    "independentMaterials": "Documents distincts terminés en autonomie",
-    "nextSuggested": "Prochaine révision suggérée",
-    "recentlyConsistent": "Plus régulier récemment"
+    "details": "Voir les réponses"
   },
   "meta": {
     "nativeName": "Français"
@@ -732,9 +711,7 @@
     "retry": "Réessayer",
     "export": "Télécharger la réponse actuelle",
     "count": "Réponses enregistrées",
-    "materialCount": "Documents distincts avec réponses enregistrées",
     "empty": "Aucune réponse enregistrée. Les réponses terminées depuis Aujourd’hui apparaissent ici.",
-    "history": "Vos activités enregistrées",
     "conditions": "Niveaux d’indices utilisés",
     "offline": "Hors ligne",
     "online": "Connexion rétablie",
@@ -798,5 +775,9 @@
     "unsuitable": "Aucun exercice adapté à ces choix. Modifiez le type de question ou les supports.",
     "readingSettings": "Réglages de lecture",
     "listeningSettings": "Réglages d’écoute"
+  },
+  "historyDeletion": {
+    "remove": "Supprimer",
+    "linked": "Les deux parties liées seront supprimées."
   }
 }

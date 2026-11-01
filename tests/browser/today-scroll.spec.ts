@@ -52,9 +52,9 @@ for (const width of [375, 768, 1440]) test(`quote measurement leaves page positi
   }
   await test.info().attach('viewport-resize-scroll-positions', { body: JSON.stringify(result), contentType: 'application/json' });
   await expand.click(); await expect(expand).toHaveAttribute('aria-expanded', 'true');
-  expect((await quote.boundingBox())!.height).toBeGreaterThan(result.original.quoteHeight * 3);
+  await expect.poll(async () => (await quote.boundingBox())!.height).toBeGreaterThan(result.original.quoteHeight * 3);
   await expand.click(); await expect(expand).toHaveAttribute('aria-expanded', 'false');
-  expect(Math.abs((await quote.boundingBox())!.height - result.original.quoteHeight)).toBeLessThanOrEqual(1);
+  await expect.poll(async () => Math.abs((await quote.boundingBox())!.height - result.original.quoteHeight)).toBeLessThanOrEqual(1);
   for (const height of [760, 812, 775, 812]) { await page.setViewportSize({ width, height }); await expect(expand).toBeVisible(); }
 });
 

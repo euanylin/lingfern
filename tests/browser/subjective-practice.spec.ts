@@ -85,7 +85,7 @@ for (const [skill, width, locale, theme, testMode] of [
     await expect(page.locator('.workspace-review').getByText(w.skipped, { exact: true })).toHaveCount(all.filter(question => 'criteria' in question).length);
     await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
     await expect(page.locator('.workspace-review').getByText(w.skipped, { exact: true })).toHaveCount(all.filter(question => 'criteria' in question).length);
-    await page.goto('/progress'); await page.locator('.history details summary').click();
+    await page.goto('/progress'); await page.locator('.history-records-toggle').click();
     await expect(page.locator('.history').getByText(w.skipped, { exact: true })).toHaveCount(all.filter(question => 'criteria' in question).length);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });

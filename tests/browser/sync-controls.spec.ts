@@ -32,7 +32,7 @@ test('GitHub card keeps compact rows, full-width sync and one identity disconnec
       expect(geometry).toHaveLength(1);
       await expect(card.locator('.github-session-actions button')).toHaveText(t.githubIdentity_disconnectLabels.action);
       expect(geometry.every(box => box.width >= 44 && box.height >= 44)).toBe(true);
-      expect(await card.locator('.repository-reset>summary').evaluate(el => getComputedStyle(el, '::after').content)).toBe('"›"');
+      expect(await card.locator('.repository-reset>summary').evaluate(el => getComputedStyle(el, '::after').content)).toBe('"⌄"');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       const reference = page.locator('.settings-start-link');
       await reference.hover();
@@ -153,6 +153,7 @@ for (const [width, locale, theme] of [[390, 'zh-Hans', 'dark'], [1440, 'en', 'li
     const appearance = (element: Locator) => element.evaluate((element, properties) => properties.map(property => getComputedStyle(element).getPropertyValue(property)), properties);
     const rows = await page.locator('.settings-language>.setting,.sync-controls>.setting').evaluateAll(rows => rows.map(row => { const s = getComputedStyle(row); return [s.backgroundColor, s.borderRadius, s.fontSize, s.fontWeight, s.minHeight, s.padding, s.gap]; }));
     expect(rows[1]).toEqual(rows[0]);
+    await language.evaluate(element => (element as HTMLElement).blur());
     await language.scrollIntoViewIfNeeded(); await language.hover(); const hover = await appearance(language);
     await page.mouse.move(0, 0); await page.keyboard.press('Tab'); await language.focus(); const focus = await appearance(language);
     await language.press('Enter'); const languageMenu = page.getByRole('listbox'); await expect(languageMenu).toBeVisible();

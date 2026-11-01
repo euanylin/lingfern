@@ -109,6 +109,8 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   await expect(page.locator('.ipa-english-circle')).toHaveCount(41);
   await expect(page.locator('.ipa-english-variant')).toHaveCount(5);
   await expect(page.locator('.ipa-reference-entry[data-ipa=ɬ] button')).toHaveCount(1);
+  // Measure 44px targets after finite entrance translations have settled.
+  await page.locator('.ipa-page').evaluate(element => Promise.allSettled(element.getAnimations({ subtree: true }).filter(animation => animation instanceof CSSAnimation && animation.animationName === 'content-in' && animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished)));
   for (const width of [1440, 375, 320]) {
     await page.setViewportSize({ width, height: 812 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
+import { useExitPresence } from './DisclosurePanel';
 
 export function pickerMenuPosition(anchor: { left: number; top: number; right: number; height: number }, popup: { width: number; height: number }, viewport: { left: number; top: number; width: number; height: number }, align: 'left' | 'right' = 'right') {
   const margin = 8;
@@ -20,6 +21,7 @@ export function SettingsPicker(props: Props) {
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
+  const present = useExitPresence(open, menu);
   const scroll = useRef<HTMLDivElement>(null);
   const isSelected = (option: Option) => props.multiple ? option.value ? props.value.includes(option.value) : !props.value.length : option.value === props.value;
   const selected = Math.max(0, options.findIndex(isSelected));
@@ -33,7 +35,7 @@ export function SettingsPicker(props: Props) {
     return () => document.removeEventListener('pointerdown', outside);
   }, [open]);
   useLayoutEffect(() => {
-    if (!open || !menu.current || !scroll.current || !trigger.current || !root.current) return;
+    if (!present || !menu.current || !scroll.current || !trigger.current || !root.current) return;
     const popup = menu.current, scroller = scroll.current;
     const update = (centerSelected = false) => {
       if (!trigger.current || !root.current) return;
@@ -62,7 +64,7 @@ export function SettingsPicker(props: Props) {
       popup.style.left = `${placement.left - origin.left - parent.clientLeft + parent.scrollLeft}px`;
       popup.style.top = `${placement.top - origin.top - parent.clientTop + parent.scrollTop}px`;
     };
-    update(!props.multiple);
+    update(open && !props.multiple);
     const openingScroll = new Map<EventTarget, { owner: Element; left: number; top: number }>();
     for (let owner: Element | null = root.current; owner; owner = owner.parentElement) openingScroll.set(owner, { owner, left: owner.scrollLeft, top: owner.scrollTop });
     const page = document.scrollingElement;
@@ -102,7 +104,7 @@ export function SettingsPicker(props: Props) {
       window.visualViewport?.removeEventListener('resize', reposition);
       window.visualViewport?.removeEventListener('scroll', scrolled);
     };
-  }, [open, selected, options, props.multiple, variant]);
+  }, [open, present, selected, options, props.multiple, variant]);
   function focusOption(index: number) {
     if (!menu.current || !scroll.current) return;
     const scroller = scroll.current, option = menu.current.querySelectorAll<HTMLButtonElement>('[role=option]')[index];
@@ -118,6 +120,10 @@ export function SettingsPicker(props: Props) {
     setFocusIndex(index);
     setOpen(true);
   }
+  function toggle() {
+    if (open) { setOpen(false); trigger.current?.focus({ preventScroll: true }); }
+    else show();
+  }
   function choose(option: Option, index: number) {
     if (props.multiple) {
       setFocusIndex(index); focusOption(index);
@@ -132,10 +138,11 @@ export function SettingsPicker(props: Props) {
   }
   return <div className={`setting${variant === 'field' ? ' setting-field' : ''}`} ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
     <span id={`${id}-label`} className={variant !== 'setting' ? 'sr-only' : undefined}><span>{label}</span>{description && <small id={`${id}-description`} className="setting-description">{description}</small>}</span>
-    <button ref={trigger} className="setting-trigger" type="button" data-value={props.multiple ? props.value.join(',') : value} disabled={blocked} aria-label={`${label}: ${selectedText}`} aria-describedby={description ? `${id}-description` : undefined} aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} onClick={() => open ? setOpen(false) : show()} onKeyDown={event => { if (!open && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); show(event.key === 'ArrowDown' ? (selected + 1) % options.length : event.key === 'ArrowUp' ? (selected - 1 + options.length) % options.length : event.key === 'Home' ? 0 : options.length - 1); } else move(event, selected); }}>
-      {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}><bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true">›</span>}
+    {/* Keep pointer focus inside the control before Safari dispatches blur and click. */}
+    <button ref={trigger} className="setting-trigger" type="button" data-value={props.multiple ? props.value.join(',') : value} disabled={blocked} aria-label={`${label}: ${selectedText}`} aria-describedby={description ? `${id}-description` : undefined} aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} onPointerDown={() => trigger.current?.focus({ preventScroll: true })} onMouseDown={event => event.preventDefault()} onClick={toggle} onKeyDown={event => { if (!open && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); show(event.key === 'ArrowDown' ? (selected + 1) % options.length : event.key === 'ArrowUp' ? (selected - 1 + options.length) % options.length : event.key === 'Home' ? 0 : options.length - 1); } else move(event, selected); }}>
+      {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}><bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span>}
     </button>
-    {open && <div ref={menu} id={`${id}-options`} className="setting-menu" role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
+    {present && <div ref={menu} id={`${id}-options`} className="setting-menu" data-open={open} inert={!open} aria-hidden={!open} role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
       <div ref={scroll} className="setting-menu-scroll" tabIndex={-1} onKeyDown={event => { if (event.target === event.currentTarget) move(event, focusIndex); }}>
         {/* Keep Safari menus open through pointer focus loss until the option click. */}
         {options.map((option, index) => <button key={option.value} type="button" role="option" style={{ minHeight: 44 }} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option, index)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span><bdi lang={option.lang}>{option.label}</bdi></button>)}

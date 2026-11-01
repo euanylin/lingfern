@@ -82,7 +82,7 @@ As perguntas objetivas recebem correção e explicações. As respostas abertas 
 
 ## Histórico e progresso
 
-Abra o [**Histórico**](https://lingfern.com/progress) em Hoje para rever sessões, respostas, feedback e ajudas utilizadas; elimine respostas guardadas após confirmação. Veja o progresso por objetivo de leitura/compreensão oral e confirme horas de conclusão quando surgir a correção do relógio.
+Abra o [**Histórico**](https://lingfern.com/progress) em Hoje para rever sessões, respostas, feedback e ajudas utilizadas; elimine respostas guardadas após confirmação. Confirme horas de conclusão quando surgir a correção do relógio.
 
 O feto representa atividade guardada, não proficiência certificada. As citações diárias incluem fonte, expansão de texto longo e escolha de outra citação.
 

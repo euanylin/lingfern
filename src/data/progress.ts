@@ -3,6 +3,7 @@ import type { Attempt, Session } from './db';
 import { completionTiming } from './completionTiming';
 import { canonicalJson, projectSyncEvents, type SyncEvent } from '../shared/sync';
 import { questionSlots } from '../shared/practiceQuantity';
+import { boundedReferences } from './sync';
 
 export type CompletionSummary = Extract<SyncEvent, { type: 'completion' }>;
 export type ResolvedSummary = { event: CompletionSummary; lesson: Lesson };
@@ -115,7 +116,9 @@ export async function mergeLearningRecords(lessons: Lesson[], sessions: Session[
   const summaries: ResolvedSummary[] = [], unavailable: CompletionSummary[] = [];
   for (const event of remote) {
     const value = event.payload, lesson = byHash.get(value.contentHash);
-    if (!lesson || lesson.skill !== value.skill || lesson.targetLevel !== value.level || lesson.goalId !== value.goalId || (lesson.mode === 'check' ? 'check' : 'practice') !== value.mode || !questions(lesson).some(item => item.material.rootId === value.rootId && item.question.id === value.questionId)) unavailable.push(event);
+    const bounded = lesson && lesson.goalId.length > 160 ? await boundedReferences({ type: 'completion', payload: { ...value, goalId: lesson.goalId } }) : undefined;
+    const goalId = bounded?.type === 'completion' ? bounded.payload.goalId : lesson?.goalId;
+    if (!lesson || lesson.skill !== value.skill || lesson.targetLevel !== value.level || goalId !== value.goalId || (lesson.mode === 'check' ? 'check' : 'practice') !== value.mode || !questions(lesson).some(item => item.material.rootId === value.rootId && item.question.id === value.questionId)) unavailable.push(event);
     else summaries.push({ event, lesson });
   }
   return { records, summaries, unavailable, timingRows: timing.rows, deletedExposures: merged.deletedExposures, exposedRoots: new Set(merged.exposures.map(event => event.payload.rootId)), conflicting };

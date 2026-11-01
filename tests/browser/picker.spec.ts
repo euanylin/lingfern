@@ -115,6 +115,26 @@ for (const [width, colorScheme] of [[1440, 'light'], [375, 'dark']] as const) te
   await expect(trigger).toBeFocused();
 });
 
+test('a closing menu stays inside a narrowed viewport until its exit completes', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 800 });
+  await page.goto('/settings');
+  const trigger = page.locator('.settings-language .setting-trigger');
+  await trigger.click();
+  const menu = page.locator('.settings-language .setting-menu');
+  await expect(menu).toBeVisible();
+  await menu.evaluate(element => { element.style.transitionDuration = '3s'; });
+  await page.keyboard.press('Escape');
+  await expect(menu).toHaveAttribute('inert', '');
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  const bounds = await menu.boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.x).toBeGreaterThanOrEqual(8);
+  expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(312);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(trigger).toBeFocused();
+});
+
 for (const [width, locale, colorScheme] of [[830, 'zh-CN', 'dark'], [1440, 'en', 'light'], [375, 'ar', 'dark']] as const) test.describe(`picker anchors ${width}/${locale}`, () => {
   test.use({ viewport: { width, height: 780 }, locale, colorScheme, hasTouch: width < 768, isMobile: width < 768, reducedMotion: width < 768 ? 'reduce' : 'no-preference' });
   test('wide fields follow their logical start edge through selection and resizing', async ({ page }, info) => {

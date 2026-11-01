@@ -82,7 +82,7 @@ Las preguntas objetivas tienen corrección y explicaciones. Las respuestas abier
 
 ## Historial y progreso
 
-Abre [**Historial**](https://lingfern.com/progress) desde Hoy para revisar sesiones, respuestas, comentarios y ayudas usadas; elimina respuestas guardadas tras confirmar. Consulta el progreso de lectura/escucha por objetivo y confirma horas de finalización cuando aparezca la corrección del reloj.
+Abre [**Historial**](https://lingfern.com/progress) desde Hoy para revisar sesiones, respuestas, comentarios y ayudas usadas; elimina respuestas guardadas tras confirmar. Confirma horas de finalización cuando aparezca la corrección del reloj.
 
 El helecho representa actividad guardada, no un nivel certificado. Las citas diarias incluyen fuente, expansión de textos largos y selección de otra cita.
 

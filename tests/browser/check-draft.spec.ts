@@ -64,7 +64,7 @@ test('unfinished checks conceal answers across pages and reveal them only after 
     expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(0);
     if (index === 0) {
       await page.goto('/progress');
-      await page.locator('.history details').first().evaluate(element => (element as HTMLDetailsElement).open = true);
+      await page.locator('.history-records-toggle').first().click();
       await expect(page.getByText('Correct answer')).toHaveCount(0);
       await page.goto(`/learn/${id}`); await showLearningPane(page, 'question');
       await expect(page.locator(`#prompt-${question.id}`).locator('..').getByRole('radio').first()).toBeChecked();

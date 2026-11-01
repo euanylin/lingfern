@@ -24,6 +24,46 @@ async function packageZip(lesson: Record<string, unknown>, extra: Record<string,
 }
 
 describe('community lesson packages', () => {
+  it('rejects material IDs that cannot keep workspace state separate and restorable', async () => {
+    const duplicate = structuredClone(rawReading);
+    duplicate.materials[1].id = duplicate.materials[0].id;
+    await expect(inspectCommunityPack(await packageZip(duplicate))).rejects.toThrow('COMMUNITY_LESSON');
+    const overlong = structuredClone(rawReading);
+    overlong.materials[0].id = 'x'.repeat(161);
+    await expect(inspectCommunityPack(await packageZip(overlong))).rejects.toThrow('COMMUNITY_LESSON');
+  });
+
+  it.each(['__proto__', 'constructor', 'toString'])('rejects inherited workspace keys in new material and question IDs: %s', async id => {
+    for (const field of ['material', 'question']) {
+      const lesson = structuredClone(rawReading);
+      if (field === 'material') lesson.materials[0].id = id;
+      else lesson.materials[0].questions[0].id = id;
+      await expect(inspectCommunityPack(await packageZip(lesson))).rejects.toThrow('COMMUNITY_LESSON');
+    }
+  });
+
+  it('keeps a boundary-length imported material usable through answering and backup restoration', async () => {
+    const { claimSession, createSession, db, saveWorkspaceDraft, selectWorkspaceQuestion, submitWorkspace } = await import('../src/data/db');
+    const { exportBackup, importBackup, inspectBackup } = await import('../src/data/backup');
+    const lesson = structuredClone(rawReading);
+    lesson.materials[0].id = 'x'.repeat(160);
+    await Promise.all(db.tables.map(table => table.clear()));
+    try {
+      const pack = await inspectCommunityPack(await packageZip(lesson)), current = await createSession(pack.lessons[0], 'boundary');
+      await claimSession(current.id, 'owner');
+      for (const material of current.lesson.materials) for (const question of material.questions) {
+        if (!('options' in question)) throw new Error('EXPECTED_CHOICE');
+        await selectWorkspaceQuestion(current.id, 'owner', question.id);
+        await saveWorkspaceDraft(current.id, 'owner', question.id, question.answer);
+      }
+      const saved = await submitWorkspace(current.id, 'owner');
+      expect(saved.attempts.every(attempt => attempt.correct)).toBe(true);
+      const inspection = await inspectBackup(await exportBackup('boundary'));
+      expect(inspection.records.sessions[0].lesson).toEqual(current.lesson);
+      expect(await importBackup(inspection)).toEqual(expect.any(String));
+    } finally { await Promise.all(db.tables.map(table => table.clear())); }
+  });
+
   it('rejects new question or variant IDs beyond the save contract while accepting the exact boundary', async () => {
     for (const field of ['id', 'variantGroup']) {
       const valid = structuredClone(rawReading);

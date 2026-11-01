@@ -22,7 +22,7 @@ test('four real recordings play from this site, save evidence and resume', async
     }
   }
   await submitWorkspace(page); await verifyWorkspace(page, lesson);
-  await page.goto('/progress'); await expect(page.locator('.totals dd')).toHaveText(['4', '4']);
+  await page.goto('/progress'); expect(await page.evaluate(async () => { const rows = await (await import('/src/data/db.ts' as string)).attempts.toArray(); return [rows.length, new Set(rows.map((row: { rootId: string }) => row.rootId)).size]; })).toEqual([4, 4]);
   expect(external).toEqual([]);
 });
 

@@ -420,7 +420,7 @@ export async function projectPreferences(profileId: string) {
     const prefix = `profile:${profileId}:`;
     const rows = await settings.where('key').startsWith(prefix).toArray();
     const stored = new Map(rows.map(row => [row.key, row.value]));
-    for (const row of rows) if (row.key.startsWith(prefix)) {
+    for (const row of rows) {
       const key = row.key.slice(prefix.length);
       if (syncSettingSchema.safeParse({ key, value: row.value }).success) values.set(key, row.value);
     }
@@ -496,12 +496,10 @@ export async function bootstrapSyncEvents(profileId: string) {
       await queue(saved, memory.savedAt);
     }
     if (profile?.preferences && !merged.preferences) await queue({ type: 'preferences', payload: preferencesSchema.parse(profile.preferences) });
-    const values = new Map<string, string>();
-    const rows = await settings.toArray();
     const prefix = `profile:${profileId}:`;
-    for (const row of rows) if (row.key.startsWith(prefix)) values.set(row.key.slice(prefix.length), row.value);
-    for (const [key, value] of values) {
-      const parsed = syncSettingSchema.safeParse({ key, value });
+    for (const row of await settings.where('key').startsWith(prefix).toArray()) {
+      const key = row.key.slice(prefix.length);
+      const parsed = syncSettingSchema.safeParse({ key, value: row.value });
       if (parsed.success && !merged.settings.has(key)) await queue({ type: 'setting', payload: parsed.data });
     }
     await settings.put({ key: marker, value: '1' });

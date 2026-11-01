@@ -61,6 +61,8 @@ test('local suggestions rank exact entries first and support keyboard and touch-
   await expect(options).toHaveCount(64);
   expect(await options.evaluateAll(items => items.every(item => item.getBoundingClientRect().height >= 44))).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  await query.press('ArrowUp');
+  await expect(query).toHaveAttribute('aria-activedescendant', 'dictionary-suggestion-63');
   await query.press('ArrowDown');
   await expect(query).toHaveAttribute('aria-activedescendant', 'dictionary-suggestion-0');
   await query.press('ArrowUp');
@@ -78,6 +80,31 @@ test('local suggestions rank exact entries first and support keyboard and touch-
   await expect(query).toHaveValue('library');
   await expect(page.locator('.dictionary-results h3')).toHaveText('library');
   await expect(page.locator('footer .footer-wordmark')).toHaveCount(0);
+});
+
+test('a refreshed dictionary suggestion list cannot submit a removed keyboard selection', async ({ page }) => {
+  await page.goto('/library/dictionary');
+  const query = page.getByRole('combobox');
+  await expect(query).toBeVisible();
+  await page.evaluate(async () => {
+    const { communityPacks } = await import('/src/data/db.ts' as string);
+    await communityPacks.put({ profileId: 'local-guest', hash: 'b'.repeat(64), id: 'synthetic-suggestion-scope', lessons: [], sources: [], dictionary: ['fernaudit', 'fernauditb', 'fernauditc'].map(term => ({ term, sourceId: 'synthetic', definition: 'Synthetic suggestion regression.', example: 'A synthetic entry.' })), state: 'ready', installedAt: new Date().toISOString() });
+  });
+  await query.fill('fernaudit');
+  const options = page.getByRole('listbox').getByRole('option');
+  await expect(options).toHaveCount(3);
+  await query.press('ArrowDown'); await query.press('ArrowDown');
+  await expect(query).toHaveAttribute('aria-activedescendant', 'dictionary-suggestion-1');
+  await page.evaluate(async () => {
+    const { communityPacks } = await import('/src/data/db.ts' as string);
+    const key = ['local-guest', 'b'.repeat(64)], pack = await communityPacks.get(key);
+    await communityPacks.update(key, { dictionary: pack.dictionary.slice(0, 1) });
+  });
+  await expect(options).toHaveCount(1);
+  await expect(query).not.toHaveAttribute('aria-activedescendant');
+  await query.press('Enter');
+  await expect(page.locator('.dictionary-results h3')).toHaveText('fernaudit');
+  await expect(page.locator('.dictionary-results')).toContainText('Synthetic suggestion regression.');
 });
 
 test('empty dictionary fits without scrolling and keeps the active navigation at the bottom', async ({ page }) => {

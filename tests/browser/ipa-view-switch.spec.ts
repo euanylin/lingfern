@@ -34,6 +34,8 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   expect(await page.locator('.ipa-entry').evaluateAll(entries => entries.map(entry => entry.getAttribute('data-ipa')))).toEqual(chart.entries.map((entry: { ipa: string }) => entry.ipa));
   expect(await page.locator('.ipa-entry').first().evaluate(entry => [...entry.children].map(child => child.tagName))).toEqual(['SPAN', 'BUTTON', 'SPAN', 'BUTTON']);
   await expect(page.locator('.ipa-entry').first().locator('strong')).toHaveText('ee');
+  // Measure 44px targets after finite entrance translations have settled.
+  await page.locator('.ipa-page').evaluate(element => Promise.allSettled(element.getAnimations({ subtree: true }).filter(animation => animation instanceof CSSAnimation && animation.animationName === 'content-in' && animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished)));
   for (const width of [1440, 640, 375, 320]) {
     await page.setViewportSize({ width, height: 812 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

@@ -20,17 +20,20 @@ test('synced summaries render without invented answers or replay links, across l
     for (const width of [1440, 1200, 1024, 768, 375, 320]) {
       await page.setViewportSize({ width, height: 812 });
       await page.goto('/progress');
-      await expect(page.locator('.totals dd').first()).toHaveText('5');
-      await expect(page.locator('.totals dd').nth(1)).toHaveText('3');
-      await expect(page.locator('.synced-summary-list')).toContainText('unknown-root');
-      await expect(page.locator('.synced-summary-list code')).toHaveText('a'.repeat(64));
-      expect(await page.locator('.history-grid a').count()).toBe(0);
-      await page.locator('.progress-cell:visible').first().click();
-      await expect(page.locator('.progress-record-detail')).toBeVisible();
-      await expect(page.locator('.progress-record-detail a')).toHaveCount(0);
+      await expect(page.locator('.totals,.progress-skill-summary,.progress-source-list')).toHaveCount(0);
+      await expect(page.locator('.synced-summary-list .history')).toHaveCount(5);
+      const unknownRow = page.locator('.synced-summary-list .history').filter({ hasText: 'unknown-root' });
+      await unknownRow.locator('.history-records-toggle').click();
+      await expect(unknownRow.locator('code')).toHaveText('a'.repeat(64));
+      await page.locator('.synced-summary-list .history').filter({ hasNotText: 'unknown-root' }).first().locator('.history-records-toggle').click();
+      await expect(page.locator('.synced-summary-list a')).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       if ((width === 320 && locale === 'zh-Hans') || (width === 1440 && locale === 'en')) { await page.evaluate(() => scrollTo(0, 0)); await page.screenshot({ path: `output/playwright/sync-summary-${width}-${locale}.png` }); }
     }
   }
+  await page.locator('.synced-summary-list .history-delete').first().click();
+  await page.getByRole('dialog').locator('.practice-restart-actions button').last().click();
+  await expect(page.locator('.synced-summary-list .history')).toHaveCount(4);
+  await page.reload(); await expect(page.locator('.synced-summary-list .history')).toHaveCount(4);
   expect(await page.evaluate(async () => { const path = '/src/data/db.ts'; return (await import(path)).attempts.count(); })).toBe(0);
 });

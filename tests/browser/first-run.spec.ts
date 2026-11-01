@@ -32,6 +32,9 @@ test('first run saves optional choices, resumes and changes separate task recomm
   await page.goto('/start');
   await expect(page.getByRole('heading', { name: '界面语言', exact: true })).toBeFocused();
   await expect(page.locator('.mobile-nav')).toHaveCount(0);
+  const back = page.getByRole('button', { name: '上一步', exact: true });
+  await expect(back).toHaveText('←'); await expect(back).toBeDisabled();
+  expect((await back.boundingBox())!.width).toBeGreaterThanOrEqual(44);
   await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await page.getByRole('radio', { name: '旅行', exact: true }).check();
   await page.getByRole('button', { name: '保存并继续', exact: true }).click();
@@ -53,7 +56,7 @@ test('first run saves optional choices, resumes and changes separate task recomm
   await expect(page.getByRole('alert')).toContainText('未能保存');
   await expect(page.getByRole('heading', { name: '你选择的阅读与听力起点' })).toBeVisible();
   await expect(page).toHaveURL(/\/start$/);
-  await page.getByRole('button', { name: '上一步' }).click();
+  await back.focus(); await back.press('Enter');
   await expect(page.getByRole('checkbox', { name: '科学', exact: true })).toBeChecked();
   await page.getByRole('button', { name: '保存并继续', exact: true }).click();
   await expect(page.getByRole('group', { name: '阅读', exact: true }).getByRole('radio', { name: /^C2/ })).toBeChecked();

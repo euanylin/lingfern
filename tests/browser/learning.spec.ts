@@ -38,9 +38,9 @@ test('visitor learns, saves, reopens and finishes another root material', async 
   await expect(page.getByRole('radio', { name: 'At the library.' })).toBeChecked();
   await completeWorkspace(page, lesson); await verifyWorkspace(page, lesson);
   await page.reload(); await expect(page.locator('.workspace-review')).toHaveCount(4);
-  await page.goto('/progress'); await expect(page.locator('.totals dd')).toHaveText(['4', '2']);
-  await expect(page.locator('.progress-cell [role=img]').filter({ hasText: /^●$/ })).toHaveCount(0);
-  await page.locator('.history summary').click(); await expect(page.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
+  await page.goto('/progress'); expect(await page.evaluate(async () => { const rows = await (await import('/src/data/db.ts' as string)).attempts.toArray(); return [rows.length, new Set(rows.map((row: { rootId: string }) => row.rootId)).size]; })).toEqual([4, 2]);
+  await page.locator('.history-records-toggle').click(); await expect(page.getByRole('heading', { name: /Where do we meet\?/ })).toBeVisible();
+  await expect(page.locator('.history-entry-records .result-status')).toHaveText(['✓ 回答正确', '✓ 回答正确', '✓ 回答正确', '✓ 回答正确']);
 });
 
 test('an already open task saves while offline without claiming offline installation', async ({ page, context }) => {
@@ -156,6 +156,8 @@ test('mobile navigation stays fixed around learning and software-keyboard focus'
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   await expect(nav).toHaveCount(0);
   const leave = page.getByRole('link', { name: '离开任务' });
+  await expect(leave).toHaveText('←'); await expect(leave).toHaveCSS('text-decoration-line', 'none');
+  expect((await leave.boundingBox())!.width).toBeGreaterThanOrEqual(44);
   const symbol = page.locator('.session-header > .brand-symbol');
   await expect(symbol).toBeVisible();
   expect((await leave.boundingBox())!.x + (await leave.boundingBox())!.width).toBeLessThan((await symbol.boundingBox())!.x);

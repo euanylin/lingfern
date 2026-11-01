@@ -141,6 +141,9 @@ for (const [locale, width, theme] of [['zh-Hans', 1440, 'light'], ['zh-Hans', 14
         expect(await row.locator('time').innerText()).not.toMatch(/\d{2}:\d{2}:\d{2}/);
       }
       await expect(rows.nth(1)).toHaveCSS('border-top-width', '1px');
+      const buttons = await rows.locator('.history-delete').evaluateAll(elements => elements.map(element => { const rect = element.getBoundingClientRect(); return { x: rect.x, width: rect.width }; }));
+      expect(Math.max(...buttons.map(button => button.x)) - Math.min(...buttons.map(button => button.x))).toBeLessThanOrEqual(1);
+      expect(Math.max(...buttons.map(button => button.width)) - Math.min(...buttons.map(button => button.width))).toBeLessThanOrEqual(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await page.screenshot({ path: `output/playwright/lookup-history-list-${width}-${theme}-${locale}.png`, fullPage: true });
       await list.screenshot({ path: `output/playwright/lookup-history-card-${width}-${theme}-${locale}.png` });

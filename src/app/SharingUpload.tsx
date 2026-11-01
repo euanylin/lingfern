@@ -1,3 +1,4 @@
+import { AnimatedDetails } from './AnimatedDetails';
 import { messages } from '../locales';
 import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
@@ -65,7 +66,7 @@ export function SharingUpload({ locale, profileId, attemptId, title, text }: { l
       if (!controller.signal.aborted) setBusy(false);
     }
   }
-  return <details className="sharing-upload"><summary>{t.title}</summary><button type="button" disabled={busy || submitted} onClick={() => void run()}>{busy ? t.loading : t.load}</button>
+  return <AnimatedDetails className="sharing-upload"><summary>{t.title}</summary><button type="button" disabled={busy || submitted} onClick={() => void run()}>{busy ? t.loading : t.load}</button>
     {tooLarge && <p className="error" role="alert">{t.large}</p>}
     {clients && session?.account && <><p>{t.account}: <strong>{session.account.login}</strong><br/>{t.profile}: {profileName}</p>
       {!clients.length ? <p>{t.empty}</p> : <><SettingsPicker label={t.client} value={clientId} disabled={busy || submitted} options={[{ value: '', label: t.choose }, ...clients.map(client => ({ value: client.id, label: client.name }))]} onChange={value => { setClientId(value); setConfirmed(false); }}/>
@@ -74,5 +75,5 @@ export function SharingUpload({ locale, profileId, attemptId, title, text }: { l
       <button type="button" disabled={busy || submitted || tooLarge || !confirmed || !clientId} onClick={() => void run(true)}>{busy ? t.busy : t.send}</button></>}
     </>}
     <p role="status" aria-live="polite">{message}</p><a href="/settings#mcp">{t.settings}</a>
-  </details>;
+  </AnimatedDetails>;
 }

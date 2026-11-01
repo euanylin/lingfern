@@ -12,12 +12,14 @@ export function startSyncSchedule(profileId: string, onMerge: () => Promise<void
   let deferredWake: ReturnType<typeof setTimeout> | undefined;
   let applied = 0, merging: Promise<void> | undefined;
   const received = () => db.table('syncBatches').where('[profileId+state]').equals([profileId, 'received']).count();
-  const baseline = received().then(count => { applied = count; });
+  let baseline: Promise<void> | undefined;
+  // Retry a failed initial read instead of poisoning every later sync round.
+  const initialize = () => baseline ??= received().then(count => { applied = count; }).catch(error => { baseline = undefined; throw error; });
   const foreground = () => !stopped && document.visibilityState === 'visible' && navigator.onLine;
   const apply = async () => {
     if (merging) return merging;
     merging = (async () => {
-      await baseline;
+      await initialize();
       while (!stopped) {
         const count = await received();
         if (count === applied) return;
@@ -31,7 +33,7 @@ export function startSyncSchedule(profileId: string, onMerge: () => Promise<void
     if (running) { again = true; waking ||= wake; return; }
     running = true;
     try {
-      await baseline;
+      await initialize();
       if (await syncConfigurationPending(profileId)) return;
       const consent = await prepareAutoSync(profileId, summary);
       if (!consent || !foreground()) return;

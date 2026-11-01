@@ -75,19 +75,16 @@ async function backupUnlocked(root) {
 }
 
 export async function restore(root, snapshot, target) {
-  const { snapshots } = await chain(path.join(root, 'backup'), snapshot);
+  const { state } = await chain(path.join(root, 'backup'), snapshot);
   await mkdir(target); // Require a new empty restore directory.
-  for (const { name, manifest } of snapshots) {
-    for (const removed of manifest.deleted ?? []) await rm(path.join(target, removed), { force: true });
-    for (const file of manifest.files) {
-      if (file.path.split(path.sep).some(omit)) continue;
-      const source = path.join(root, 'backup', name, 'project', file.path);
-      const targetFile = path.join(target, file.path);
-      if (hash(await readFile(source)) !== file.sha256) throw new Error(`Corrupt backup: ${name}/${file.path}`);
-      await mkdir(path.dirname(targetFile), { recursive: true });
-      await copyFile(source, targetFile);
-      if (hash(await readFile(targetFile)) !== file.sha256) throw new Error(`Restore failed: ${file.path}`);
-    }
+  // Materialize the final tree; replaying deleted directories can block replacement files.
+  for (const file of state.values()) {
+    const source = path.join(root, 'backup', file.snapshot, 'project', file.path);
+    const targetFile = path.join(target, file.path);
+    if (hash(await readFile(source)) !== file.sha256) throw new Error(`Corrupt backup: ${file.snapshot}/${file.path}`);
+    await mkdir(path.dirname(targetFile), { recursive: true });
+    await copyFile(source, targetFile);
+    if (hash(await readFile(targetFile)) !== file.sha256) throw new Error(`Restore failed: ${file.path}`);
   }
   return target;
 }

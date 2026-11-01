@@ -81,7 +81,9 @@ export async function boundedBody(body: ReadableStream<Uint8Array> | null, limit
   const reader = body?.getReader();
   if (!reader) throw new Error('BODY');
   const chunks: Uint8Array[] = []; let length = 0;
-  while (true) { const next = await reader.read(); if (next.done) break; length += next.value.byteLength; if (length > limit) { await reader.cancel(); throw new Error('BODY_SIZE'); } chunks.push(next.value); }
+  try {
+    while (true) { const next = await reader.read(); if (next.done) break; length += next.value.byteLength; if (length > limit) { await reader.cancel().catch(() => {}); throw new Error('BODY_SIZE'); } chunks.push(next.value); }
+  } finally { reader.releaseLock(); }
   const combined = new Uint8Array(length); let offset = 0;
   for (const chunk of chunks) { combined.set(chunk, offset); offset += chunk.length; }
   return combined;

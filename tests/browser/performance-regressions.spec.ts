@@ -62,16 +62,16 @@ test('collapsed session history omits answer DOM and reopens every saved respons
   }, reading);
   await page.goto('/progress');
   await expect(page.locator('.history')).toHaveCount(2);
-  await expect(page.locator('.history details section')).toHaveCount(0);
+  await expect(page.locator('.history-entry-records section')).toHaveCount(0);
   const entry = page.locator('.history').first();
-  await expect(entry.locator('summary')).toContainText('4');
-  await entry.locator('summary').click();
-  await expect(entry.locator('details section')).toHaveCount(4);
+  await expect(entry.locator('.history-records-toggle')).toHaveAccessibleName('已保存作答: 4');
+  await entry.locator('.history-records-toggle').click();
+  await expect(entry.locator('.history-entry-records section')).toHaveCount(4);
   await expect(entry).toContainText(reading.materials[0].questions[0].prompt);
-  await entry.locator('summary').click();
-  await expect(entry.locator('details section')).toHaveCount(0);
-  await entry.locator('summary').click();
-  await expect(entry.locator('details section')).toHaveCount(4);
+  await entry.locator('.history-records-toggle').click();
+  await expect(entry.locator('.history-entry-records section')).toHaveCount(0);
+  await entry.locator('.history-records-toggle').click();
+  await expect(entry.locator('.history-entry-records section')).toHaveCount(4);
   expect(await page.evaluate(async () => { const path = '/src/data/db.ts'; return (await import(path)).attempts.count(); })).toBe(8);
 });
 

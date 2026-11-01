@@ -56,7 +56,7 @@ test('disconnect confirmation can cancel and reports upstream revocation failure
   await expect(page.locator('.github-identity')).toContainText('无法确认 GitHub 撤销成功');
   await expect(page.getByRole('link', { name: '在 GitHub 管理授权' })).toHaveAttribute('href', 'https://github.com/settings/apps');
   await page.goto('/progress');
-  await expect(page.locator('.totals dd').first()).toHaveText('2');
+  expect(await page.evaluate(async () => (await import('/src/data/db.ts' as string)).attempts.count())).toBe(2);
 });
 
 test('private repository binding is inspected before confirmation and disconnect stays separate', async ({ page }) => {

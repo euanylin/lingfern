@@ -102,6 +102,11 @@ test.describe('touch feedback', () => {
     await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
     const trigger = page.locator('.settings-language .setting-trigger');
     await readyForTouch(trigger);
+    await page.mouse.move(0, 0);
+    await trigger.evaluate(async element => {
+      (element as HTMLElement).blur();
+      await Promise.all(element.getAnimations().map(animation => animation.finished.catch(() => {})));
+    });
     const idle = await trigger.evaluate(el => ({ color: getComputedStyle(el).backgroundColor, width: el.getBoundingClientRect().width }));
     const cdp = await page.context().newCDPSession(page), box = (await trigger.boundingBox())!;
     const point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };

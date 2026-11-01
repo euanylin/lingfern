@@ -39,6 +39,7 @@ test('open responses restore drafts and optional self-assessment without automat
   }
   await page.goto('/progress');
   await expect(page.getByRole('link', { name: /转述计划与限制/ })).toBeVisible();
-  await expect(page.locator('.progress-source-list [role=img]')).toHaveText(['◇', '◇']);
-  await expect(page.locator('.progress-skill-summary dd').nth(2)).toHaveText('0');
+  await page.getByRole('button', { name: '已保存作答: 2', exact: true }).click();
+  await expect(page.locator('.history-entry-records .result-status')).toHaveText(['已保存 · 未自动评分', '已保存 · 未自动评分']);
+  await expect(page.locator('.history-entry-records')).toContainText(response);
 });

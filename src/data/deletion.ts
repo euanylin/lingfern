@@ -1,5 +1,5 @@
 import Dexie from 'dexie';
-import { attempts, db, exposures, feedbackNotes, profiles, sessions, settings, syncClocks, syncEvents } from './db';
+import { attempts, db, exposures, feedbackNotes, profiles, sessions, settings, syncClocks, syncEvents, type Session } from './db';
 import { appendSyncEvent, boundedReferences, readSyncEvents } from './sync';
 import { exposureContactKey, projectSyncEvents } from '../shared/sync';
 import { questions } from '../shared/content';
@@ -49,8 +49,7 @@ async function purge(profileId: string) {
     const session = await sessions.get(attempt.sessionId);
     if (session?.profileId === profileId) await sessions.update(session.id, { workspace: undefined, draft: undefined, readingAnnotations: undefined, recordsDeleted: true, owner: undefined, leaseUntil: 0 });
   }
-  if (!projected.deletedExposures.size && !projected.deletedContacts.size) return;
-  for (const exposure of await exposures.where('profileId').equals(profileId).toArray()) {
+  for (const exposure of projected.deletedExposures.size || projected.deletedContacts.size ? await exposures.where('profileId').equals(profileId).toArray() : []) {
     if (projected.deletedExposures.has(exposure.rootId)) { await exposures.delete([profileId, exposure.rootId]); continue; }
     if (!exposure.contacts?.length) continue;
     const kept = [];
@@ -63,6 +62,23 @@ async function purge(profileId: string) {
     if (kept.length === exposure.contacts.length) continue;
     if (!kept.length) await exposures.delete([profileId, exposure.rootId]);
     else await exposures.put({ ...exposure, contacts: kept, firstSeenAt: kept.map(contact => contact.firstSeenAt).sort()[0], lastSeenAt: kept.map(contact => contact.lastSeenAt).sort().at(-1)! });
+  }
+  // Full-session tombstones also remove restored snapshots on other devices.
+  const localSessions = deleted.size ? await sessions.where('profileId').equals(profileId).toArray() : [];
+  const removed = new Set<string>();
+  for (const session of localSessions) {
+    const markers = await Dexie.waitFor(Promise.all(questions(session.lesson).map(item => boundedReferences({ type: 'deletion', payload: { target: 'record', targetId: `${session.syncSessionId ?? session.id}:${item.question.id}` } }))));
+    if (markers.length && markers.every(marker => marker.type === 'deletion' && deleted.has(marker.payload.targetId))) removed.add(session.id);
+  }
+  for (const session of localSessions) if (removed.has(session.id) && localSessions.some(sibling => !removed.has(sibling.id)
+    && (!!session.practiceGroupId && sibling.practiceGroupId === session.practiceGroupId || !!session.checkGroupId && sibling.checkGroupId === session.checkGroupId))) removed.delete(session.id);
+  if (removed.size) {
+    for (const exposure of await exposures.where('profileId').equals(profileId).toArray()) {
+      const contacts = exposure.contacts?.filter(contact => !removed.has(contact.sessionId));
+      // Keep root familiarity without orphan references in profile backups.
+      if (contacts && contacts.length !== exposure.contacts!.length) await exposures.put({ ...exposure, contacts });
+    }
+    await sessions.bulkDelete([...removed]);
   }
 }
 
@@ -116,27 +132,48 @@ export async function restartPractice(profileId: string, sessionId: string) {
     if (selected.some(session => session.profileId !== profileId || session.lesson.mode === 'check' || session.checkGroupId || session.lesson.mode !== current.lesson.mode || !['active', 'completed'].includes(session.status))
       || current.practiceGroupId && (selected.length !== 2 || new Set(selected.map(session => session.lesson.skill)).size !== 2)) throw new Error('PRACTICE_RESTRICTED');
     if (selected.some(session => session.owner && session.leaseUntil > Date.now())) throw new Error('BUSY');
-    const original = projectSyncEvents(await readSyncEvents(profileId));
-    const recordIds = new Set<string>();
-    for (const session of selected) {
-      const local = await attempts.where('sessionId').equals(session.id).filter(attempt => attempt.profileId === profileId).toArray();
-      for (const attempt of local) recordIds.add(attempt.syncRecordId ?? attempt.id);
-      for (const item of questions(session.lesson)) {
-        recordIds.add(`${session.syncSessionId ?? session.id}:${item.question.id}`);
+    await deleteSessions(profileId, selected, true);
+  });
+}
+
+export async function deleteLearningSession(profileId: string, sessionId: string) {
+  profileIdSchema.parse(profileId);
+  await db.transaction('rw', [attempts, exposures, feedbackNotes, sessions, settings, syncEvents, syncClocks], async () => {
+    const active = await settings.get('activeProfile');
+    if (active && active.value !== profileId) throw new Error('SYNC_SCOPE_CHANGED');
+    const current = await sessions.get(sessionId);
+    if (!current || current.profileId !== profileId) throw new Error('NOT_FOUND');
+    const selected = await sessions.where('profileId').equals(profileId).filter(session => session.id === sessionId
+      || !!current.practiceGroupId && session.practiceGroupId === current.practiceGroupId
+      || !!current.checkGroupId && session.checkGroupId === current.checkGroupId).toArray();
+    if (selected.some(session => session.owner && session.leaseUntil > Date.now())) throw new Error('BUSY');
+    await deleteSessions(profileId, selected, false);
+  });
+}
+
+async function deleteSessions(profileId: string, selected: Session[], removeExposure: boolean) {
+  const original = projectSyncEvents(await readSyncEvents(profileId));
+  const recordIds = new Set<string>();
+  for (const session of selected) {
+    const local = await attempts.where('sessionId').equals(session.id).filter(attempt => attempt.profileId === profileId).toArray();
+    for (const attempt of local) recordIds.add(attempt.syncRecordId ?? attempt.id);
+    for (const item of questions(session.lesson)) {
+      recordIds.add(`${session.syncSessionId ?? session.id}:${item.question.id}`);
+      if (removeExposure) {
         const marker = await Dexie.waitFor(boundedReferences({ type: 'deletion', payload: { target: 'exposure_contact', targetId: item.material.rootId, sessionId: session.syncSessionId ?? session.id, questionId: item.question.id } }));
         if (marker.type === 'deletion' && marker.payload.target === 'exposure_contact' && !original.deletedContacts.has(exposureContactKey({ ...marker.payload, rootId: marker.payload.targetId }))) await appendSyncEvent(profileId, marker);
       }
-      for (const attempt of local) await feedbackNotes.where('attemptId').equals(attempt.id).filter(note => note.profileId === profileId).delete();
     }
-    for (const recordId of recordIds) {
-      const marker = await Dexie.waitFor(boundedReferences({ type: 'deletion', payload: { target: 'record', targetId: recordId } }));
-      if (marker.type === 'deletion' && !original.deletedRecords.has(marker.payload.targetId)) await appendSyncEvent(profileId, marker);
-    }
-    // Resolve restored contact IDs before removing immutable snapshots.
-    await purge(profileId);
-    for (const session of selected) {
-      await attempts.where('sessionId').equals(session.id).filter(attempt => attempt.profileId === profileId).delete();
-      await sessions.delete(session.id);
-    }
-  });
+    for (const attempt of local) await feedbackNotes.where('attemptId').equals(attempt.id).filter(note => note.profileId === profileId).delete();
+  }
+  for (const recordId of recordIds) {
+    const marker = await Dexie.waitFor(boundedReferences({ type: 'deletion', payload: { target: 'record', targetId: recordId } }));
+    if (marker.type === 'deletion' && !original.deletedRecords.has(marker.payload.targetId)) await appendSyncEvent(profileId, marker);
+  }
+  // Resolve restored contact IDs before removing immutable snapshots.
+  await purge(profileId);
+  for (const session of selected) {
+    await attempts.where('sessionId').equals(session.id).filter(attempt => attempt.profileId === profileId).delete();
+    await sessions.delete(session.id);
+  }
 }

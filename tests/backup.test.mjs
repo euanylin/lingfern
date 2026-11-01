@@ -5,6 +5,36 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { backup, restore, compact } from '../scripts/backup.mjs';
 
+test('restores directory/file replacements without replaying obsolete paths', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'lingfern-backup-path-'));
+  const target = `${root}-restored`;
+  try {
+    await mkdir(path.join(root, 'entry/nested'), { recursive: true });
+    await writeFile(path.join(root, 'entry/nested/value'), 'original');
+    const first = await backup(root);
+    await rm(path.join(root, 'entry'), { recursive: true });
+    await writeFile(path.join(root, 'entry'), 'replacement');
+    const second = await backup(root);
+    await restore(root, path.basename(second), target);
+    assert.equal(await readFile(path.join(target, 'entry'), 'utf8'), 'replacement');
+    await rm(target, { recursive: true });
+
+    await rm(path.join(root, 'entry'));
+    await mkdir(path.join(root, 'entry/nested'), { recursive: true });
+    await writeFile(path.join(root, 'entry/nested/value'), 'latest');
+    const third = await backup(root);
+    await restore(root, path.basename(third), target);
+    assert.equal(await readFile(path.join(target, 'entry/nested/value'), 'utf8'), 'latest');
+    await rm(target, { recursive: true });
+    await restore(root, path.basename(first), target);
+    assert.equal(await readFile(path.join(target, 'entry/nested/value'), 'utf8'), 'original');
+    await rm(target, { recursive: true });
+
+    await writeFile(path.join(third, 'project/entry/nested/value'), 'corrupt');
+    await assert.rejects(restore(root, path.basename(third), target), /Corrupt backup/);
+  } finally { await rm(root, { recursive: true, force: true }); await rm(target, { recursive: true, force: true }); }
+});
+
 test('incremental backup saves only changed files and restores the chain', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'lingfern-backup-'));
   const target = `${root}-restored`;

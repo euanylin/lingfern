@@ -1,3 +1,4 @@
+import { AnimatedDetails } from './AnimatedDetails';
 import { messages } from '../locales';
 import { useId, useState } from 'react';
 import { bindingIntentSchema, repositoryBindingSchema, repositoryChoicesSchema, type BindingIntent, type RepositoryChoice } from '../shared/repository';
@@ -72,10 +73,10 @@ export function RepositoryBinding({ locale, profileId, localProfileId, summary, 
   const setupPanel = <>{binding && <h4>{t.reset}</h4>}<p className="muted">{syncLabels[locale].detail}</p>{setup}{configuration}{choices?.length === 0 && <p role="status">{t.empty}</p>}</>;
   return <section className="repository-binding"><h3 className="sr-only">{t.title}</h3>
     {connected ? <>
-      <details className="repository-reset service-disclosure" onToggle={() => setIntent(undefined)}>
+      <AnimatedDetails className="repository-reset service-disclosure" onExpandedChange={() => setIntent(undefined)}>
         <summary aria-controls={`${id}-setup`}><span>{t.title}</span><bdi>{binding.owner}/{binding.name}</bdi></summary>
         <div id={`${id}-setup`}>{setupPanel}</div>
-      </details>
+      </AnimatedDetails>
       {!summary.syncAvailable && <p className="muted" role="status">{t.pending}</p>}
     </> : <>
       {binding && <p className="muted" role="status"><bdi>{binding.owner}/{binding.name}</bdi> · {t.disabled}</p>}

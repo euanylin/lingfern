@@ -5,63 +5,42 @@ import { selectPicker } from './picker';
 
 const reading = JSON.parse(readFileSync('tests/fixtures/content/a1-reading.json', 'utf8')) as { id: string; title: Record<string, string>; goal: Record<string, string>; materials: { questions: { answer: number }[] }[] };
 
-test('progress separates skills and shows first saved response without claiming goal completion', async ({ page }) => {
+test('history shows saved responses without statistics or goal panels', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await seedLegacyAnswers(page, 1);
-  await page.goto('/progress');
-  await expect(page.locator('.progress-cell [role=img]').filter({ hasText: /^●$/ })).toHaveCount(0);
-  const summaries = page.locator('.progress-skill-summary > section');
-  await expect(summaries.first()).toContainText('不同材料1');
-  await expect(summaries.first()).toContainText('有效作答1');
-  await expect(summaries.nth(1)).toContainText('有效作答0');
-  const cell = page.getByRole('button', { name: `查看作答: ${reading.goal['zh-Hans']}` });
-  await expect(cell).toContainText('○');
-  await expect(page.locator('.progress-matrix, .progress-mobile-list')).toHaveCount(0);
-  await expect(page.locator('.progress-records')).not.toContainText(/\b(?:A[12]|B[12]|C[12])\b/);
-  await cell.focus();
-  await cell.press('Enter');
-  await expect(cell).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('#progress-record-detail')).toContainText('使用帮助后答对');
-  await expect(page.locator('#progress-record-detail')).toContainText('尚无完整材料作答');
-  await expect(page.locator('#progress-record-detail a')).toHaveAttribute('href', /\/learn\//);
-  await page.evaluate(() => scrollTo(0, 0));
+  await seedLegacyAnswers(page, 1); await page.goto('/progress');
+  await expect(page.locator('.totals,.progress-records,.progress-skill-summary,.progress-source-list,.history-overview')).toHaveCount(0);
+  await expect(page.locator('#today-records>.history-grid>.history')).toHaveCount(1);
+  const disclosure = page.locator('#today-records>.history-grid .history-records-toggle');
+  await expect(disclosure).toHaveAccessibleName('已保存作答: 1');
+  await disclosure.focus(); await disclosure.press('Enter');
+  await expect(disclosure).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('.history-entry-records>section')).toHaveCount(1);
+  await expect(page.locator('.history-entry-records')).toContainText('Where do we meet?');
+  await disclosure.click();
   await page.screenshot({ path: 'output/playwright/progress-records-1440x900-light-zh-Hans-one-answer.png', fullPage: true });
-  await page.getByRole('button', { name: '听力', exact: true }).click();
-  await expect(page.getByRole('button', { name: `查看作答: ${reading.goal['zh-Hans']}` })).toHaveCount(0);
   await page.setViewportSize({ width: 320, height: 640 });
-  await page.getByRole('button', { name: '阅读', exact: true }).click();
-  await expect(page.locator('.progress-source-list .progress-cell')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({ path: 'output/playwright/progress-records-320x640-light-zh-Hans-one-answer.png', fullPage: true });
-  await page.goto('/settings');
-  await selectPicker(page, '语言', 'zh-Hant');
-  await page.goto('/progress');
-  await expect(page.getByRole('heading', { name: '分項紀錄' })).toBeVisible();
-  await page.goto('/settings');
-  await selectPicker(page, '語言', 'en');
-  await page.goto('/progress');
-  await expect(page.getByRole('heading', { name: 'By skill' })).toBeVisible();
+  for (const [current, next] of [['语言', 'zh-Hant'], ['語言', 'en']]) {
+    await page.goto('/settings'); await selectPicker(page, current, next);
+    await page.goto('/progress');
+    await expect(page.locator('#today-records>.history-grid>.history')).toHaveCount(1);
+    await expect(page.locator('.totals,.progress-records,.progress-skill-summary,.progress-source-list')).toHaveCount(0);
+  }
 });
 
-test('a completed goal material gets a dated review without a level claim', async ({ page }) => {
+test('simplified history preserves completed responses and later practice recommendations', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-09-27T10:00:00Z') });
-  await seedLegacyAnswers(page, 4);
-  await page.goto('/progress');
-  await page.getByRole('button', { name: `查看作答: ${reading.goal['zh-Hans']}` }).click();
-  await expect(page.locator('#progress-record-detail')).toContainText('独立完成的不同材料: 1');
-  await expect(page.locator('#progress-record-detail')).toContainText('建议下次复习');
-  await expect(page.locator('.progress-cell [role=img]').filter({ hasText: /^●$/ })).toHaveCount(0);
+  await seedLegacyAnswers(page, 4); await page.goto('/progress');
+  await page.locator('.history-records-toggle').click();
+  await expect(page.locator('.history-entry-records>section')).toHaveCount(4);
   await page.setViewportSize({ width: 320, height: 640 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.locator('#progress-record-detail').screenshot({ path: 'output/playwright/progress-review-detail-320x640-light-zh-Hans-completed-example.png' });
-  await page.clock.fastForward(4 * 86_400_000);
-  await page.goto('/today');
+  await page.clock.fastForward(4 * 86_400_000); await page.goto('/today');
   const selection = await page.evaluate(async () => {
-    const db = await import('/src/data/db.ts' as string);
-    const { selectPractice } = await import('/src/data/practice.ts' as string);
+    const db = await import('/src/data/db.ts' as string), { selectPractice } = await import('/src/data/practice.ts' as string);
     const history = await db.sessions.toArray();
-    const selected = selectPractice(history.map((session: {lesson:unknown}) => session.lesson), history, await db.attempts.toArray(), 'reading', undefined, new Date());
+    const selected = selectPractice(history.map((session: { lesson: unknown }) => session.lesson), history, await db.attempts.toArray(), 'reading', undefined, new Date());
     return { id: selected?.lesson.id, reason: selected?.reason };
   });
   expect(selection).toEqual({ id: reading.id, reason: 'review' });

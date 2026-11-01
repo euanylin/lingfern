@@ -55,6 +55,29 @@ it('resolves ordinary Test completion summaries from their exact snapshot withou
   } finally { await Promise.all(db.tables.map(table => table.clear())); }
 });
 
+it('resolves hashed goal references from a saved lesson without changing events or accepting mismatches', async () => {
+  await Promise.all(db.tables.map(table => table.clear()));
+  try {
+    const lesson = lessonSchema.parse({ ...rawLearning, goalId: 'imported-goal-'.repeat(20) }), created = await createSession(lesson);
+    await claimSession(created.id, 'owner');
+    for (const item of questions(lesson)) {
+      if (!('options' in item.question)) throw new Error('EXPECTED_CHOICE');
+      await submit(created.id, 'owner', item.question.answer);
+      await advance(created.id, 'owner');
+    }
+    const events = await readSyncEvents('local-guest');
+    const completions = events.filter(event => event.type === 'completion');
+    expect(completions.every(event => /^sha256:[a-f0-9]{64}$/.test(event.payload.goalId))).toBe(true);
+    const remote = await mergeLearningRecords([lesson], [], [], events);
+    expect(remote.unavailable).toEqual([]);
+    expect(remote.summaries).toHaveLength(questions(lesson).length);
+    expect(progressRecords([], [], [], remote.summaries).valid).toHaveLength(questions(lesson).length);
+    expect(await readSyncEvents('local-guest')).toEqual(events);
+    const mismatched = events.map(event => event.type === 'completion' ? { ...event, payload: { ...event.payload, goalId: 'other-goal' } } : event);
+    expect((await mergeLearningRecords([lesson], [], [], mismatched)).summaries).toEqual([]);
+  } finally { await Promise.all(db.tables.map(table => table.clear())); }
+});
+
 it('groups genuine first responses by goal and root without turning repeats or orphan data into progress', () => {
   const first = session('first');
   const repeat = session('repeat');

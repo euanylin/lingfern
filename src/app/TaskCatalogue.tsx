@@ -1,3 +1,4 @@
+import { AnimatedDetails } from './AnimatedDetails';
 import { contentLocale } from '../shared/locale';
 import { answerPointCount, readingWordCount } from '../shared/practiceQuantity';
 import { contentText, messages } from '../locales';
@@ -38,12 +39,12 @@ export function TaskCatalogue({ selections, onSelection, preferences, locale, le
   function clear() { setQuery(''); setApplied(empty); setDraft(empty); }
   return <section className="task-catalogue">
     <label className="task-search">{t.search}<input type="search" value={query} onChange={event => setQuery(event.target.value)} maxLength={160}/></label>
-    <div className="task-catalogue-layout"><details className="task-filters" open={open} onToggle={event => { const expanded = event.currentTarget.open; setOpen(expanded); if (!expanded) setDraft(applied); }}><summary>{t.filters}</summary>
+    <div className="task-catalogue-layout"><AnimatedDetails className="task-filters" open={open} onExpandedChange={expanded => { setOpen(expanded); if (!expanded) setDraft(applied); }}><summary>{t.filters}</summary>
       <SettingsPicker label={t.skill} value={controls.skill} options={[{ value: 'all', label: t.all }, { value: 'reading', label: t.reading }, { value: 'listening', label: t.listening }]} onChange={value => change({ skill: value })}/>
       <SettingsPicker label={t.theme} value={controls.theme} options={[{ value: 'all', label: t.all }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={value => change({ theme: value })}/>
       <SettingsPicker label={t.downloaded} value={controls.downloaded} options={[{ value: 'all', label: t.all }, { value: 'local', label: t.local }]} onChange={value => change({ downloaded: value })}/>
       <button type="button" onClick={() => desktop ? clear() : setDraft(empty)}>{t.clear}</button>{!desktop && <div className="backup-actions"><button type="button" onClick={() => { setApplied(draft); setOpen(false); }}>{t.apply} ({matching(draft).length})</button><button type="button" onClick={() => { setDraft(applied); setOpen(false); }}>{t.cancel}</button></div>}
-    </details><div className="task-catalogue-list"><p role="status" aria-live="polite">{matches.length} {t.count}</p>
+    </AnimatedDetails><div className="task-catalogue-list"><p role="status" aria-live="polite">{matches.length} {t.count}</p>
       {!matches.length && <><p>{t.empty}</p><div className="action-row">{!desktop && <button type="button" onClick={clear}>{t.clear}</button>}{!online && <a href="/library">{t.install}</a>}</div></>}
       {matches.map(lesson => { const completed = history.some(session => session.lesson.id === lesson.id && session.status === 'completed'); const estimated = taskMinutes(lesson); return <section className={`task-row${lesson.communityPackageId ? ' community-task' : ''}`} key={lesson.id}><p className="eyebrow">{lesson.skill.toUpperCase()} · {t.learning}</p><h2 lang={contentText(lesson.title, locale) === lesson.title.en ? 'en' : undefined}>{contentText(lesson.title, locale)}</h2><p lang={practiceLocale(lesson, locale)}>{contentText(lesson.goal, practiceLocale(lesson, locale))}</p><p className="muted">{lesson.communityPackageId && <>{c.communityLessons} · </>}{estimated} {t.minutes} · {local(lesson) ? t.ready : t.missing} · {completed ? t.done : t.fresh}{lesson.themes?.length ? ` · ${lesson.themes.map(value => firstRunCopy[locale].themes[topicSchema.options.indexOf(value)]).join(' / ')}` : ''}</p><button type="button" className="primary" disabled={busy} onClick={() => setDetail(lesson)}>{actionFor(lesson)}</button></section>; })}
     </div></div>

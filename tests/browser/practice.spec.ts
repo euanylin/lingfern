@@ -7,7 +7,9 @@ test('Today uses saved reading evidence without changing the listening starting 
   await expect(page.locator('.primary-task.reading-task').getByRole('heading', { name: '阅读', exact: true })).toBeVisible();
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await confirmTask(page);
   await completeWorkspace(page);
-  await page.getByRole('link', { name: '返回今日' }).click();
+  const back = page.getByRole('link', { name: '返回今日' });
+  await expect(back).toHaveText('←'); await expect(back).toHaveCSS('text-decoration-line', 'none');
+  await back.click();
   await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click();
   await expect(page.getByRole('dialog').getByRole('heading', { name: '配对活动安排', exact: true })).toBeVisible();
   await page.getByRole('button', { name: '关闭' }).click();

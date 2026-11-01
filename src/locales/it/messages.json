@@ -365,7 +365,6 @@
     "shortNote": "Dati di apprendimento non cifrati, senza risorse né registrazioni."
   },
   "progressRecords_summaryCopy": {
-    "clock": "Ora del record nel futuro. Controlla l’orologio; esclusa dalla pianificazione.",
     "only": "Solo riepilogo. Risposte originali sul dispositivo usato.",
     "missing": "Versione richiesta non installata",
     "summaries": "Riepiloghi sincronizzati",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Lettura",
     "listening": "Ascolto",
-    "overview": "Per abilità",
-    "matrix": "Record degli obiettivi",
-    "valid": "Risposte valide",
-    "materials": "Materiali distinti",
-    "checks": "Risposte corrette in verifica senza aiuti extra",
-    "last": "Ultimo completamento",
-    "none": "Nessuna attività completata",
-    "noRecord": "Nessun record",
     "unscored": "Salvato, senza punteggio",
-    "legend": "◇ Salvato, senza punteggio　● Corretto in verifica　◐ Corretto nello studio senza aiuti extra　○ Corretto dopo aiuto　× Errato.",
     "checkCorrect": "Corretto in verifica",
-    "independent": "Corretto nello studio senza aiuti extra",
     "assisted": "Corretto dopo aiuto",
     "incorrect": "Errato",
-    "details": "Vedi risposte",
-    "more": "Altri {count}",
-    "open": "Rivedi attività salvata",
-    "reviewStatus": "Stato del ripasso",
-    "independentState": "Materiale completato autonomamente",
-    "new": "Nessuna risposta completa al materiale",
-    "with_help": "Serve più pratica",
-    "review_due": "In scadenza",
-    "independentMaterials": "Materiali distinti completati autonomamente",
-    "nextSuggested": "Prossimo ripasso suggerito",
-    "recentlyConsistent": "Più costante di recente"
+    "details": "Vedi risposte"
   },
   "meta": {
     "nativeName": "Italiano"
@@ -732,9 +711,7 @@
     "retry": "Riprova",
     "export": "Scarica risposta attuale",
     "count": "Risposte salvate",
-    "materialCount": "Materiali distinti con risposte salvate",
     "empty": "Nessuna risposta salvata. Le risposte completate in Oggi appaiono qui.",
-    "history": "Le tue attività salvate",
     "conditions": "Livelli di aiuto usati",
     "offline": "Offline",
     "online": "Connessione ripristinata",
@@ -798,5 +775,9 @@
     "unsuitable": "Nessun esercizio adatto a queste scelte. Cambia il tipo di domanda o i materiali.",
     "readingSettings": "Impostazioni di lettura",
     "listeningSettings": "Impostazioni di ascolto"
+  },
+  "historyDeletion": {
+    "remove": "Elimina",
+    "linked": "Entrambe le parti collegate saranno eliminate."
   }
 }

@@ -45,9 +45,9 @@ export function FirstRun({ profileId, initial, locale, onLocale, onSaved }: { pr
     } catch { if (live.current) setFailed(true); } finally { if (live.current) setBusy(false); }
   }
   return <section className="first-run">
-    <div className="first-run-top"><button disabled={busy || value.step === 0} onClick={() => void move(value.step - 1)}>{t.back}</button><span>{t.step.replace('{n}', String(value.step + 1))}</span><button disabled={busy} onClick={() => void move(value.step + 1, true)}>{t.skip}</button></div>
+    <div className="first-run-top"><button className="back-button" aria-label={t.back} disabled={busy || value.step === 0} onClick={() => void move(value.step - 1)}>←</button><span>{t.step.replace('{n}', String(value.step + 1))}</span><button disabled={busy} onClick={() => void move(value.step + 1, true)}>{t.skip}</button></div>
     <h1 ref={heading} tabIndex={-1}>{t.headings[value.step]}</h1>
-    <fieldset disabled={busy} className="first-run-choices">
+    <fieldset key={value.step} disabled={busy} className="first-run-choices">
       {value.step === 0 && <SettingsPicker label={t.headings[0]} value={locale} options={languageOptions} onChange={value => void changeLocale(value as Locale)}/>}
       {value.step === 1 && <><legend>{t.headings[1]}</legend>{[undefined, ...purposes].map((purpose, index) => <label className="option" key={purpose ?? 'none'}><input type="radio" name="purpose" checked={value.purpose === purpose} onChange={() => setValue({ ...value, purpose })}/><span>{index === 0 ? t.unsure : t.purposes[index - 1]}</span></label>)}</>}
       {value.step === 2 && <><legend>{t.headings[2]}</legend><p className="muted">{t.interestLimit} · {value.interests.length}/5</p>{themes.map((theme, index) => <label className="option" key={theme}><input type="checkbox" disabled={!value.interests.includes(theme) && value.interests.length >= 5} checked={value.interests.includes(theme)} onChange={event => setValue({ ...value, interests: event.target.checked ? [...value.interests, theme] : value.interests.filter(item => item !== theme) })}/><span>{t.themes[index]}</span></label>)}</>}

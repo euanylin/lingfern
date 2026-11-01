@@ -201,8 +201,10 @@ try {
   assert(saved.filter(answer => answer.correct === null).every(answer => answer.selfAssessment.every(value => value === 'met')));
   await page.getByRole('link', { name: '返回今日', exact: true }).click(); await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
   await page.goto(`${origin}/progress`);
-  await expect(page.locator('.progress-source-list .progress-cell')).toHaveCount(1);
-  await expect(page.locator('.progress-matrix')).toHaveCount(0);
+  await expect(page.locator('.history-grid>.history')).toHaveCount(1);
+  await page.locator('.history-records-toggle').click();
+  await expect(page.locator('.history-entry-records>section')).toHaveCount(saved.length);
+  await expect(page.locator('.history-entry-records .result-status').filter({ hasText: '未自动评分' })).toHaveCount(2);
   if (due) await page.clock.setFixedTime(new Date(Math.max(...saved.map(answer => Date.parse(answer.submittedAt))) + 86400001));
   await page.goto(`${origin}/today`);
   if (replay) {

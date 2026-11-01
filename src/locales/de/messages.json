@@ -365,7 +365,6 @@
     "shortNote": "Unverschlüsselte Lerndaten, ohne Ressourcen und Aufnahmen."
   },
   "progressRecords_summaryCopy": {
-    "clock": "Aufzeichnungszeit liegt in der Zukunft. Geräteuhr prüfen; aus Wiederholungsplanung ausgeschlossen.",
     "only": "Nur Zusammenfassung. Originalantworten bleiben auf dem Antwortgerät.",
     "missing": "Benötigte Materialversion nicht installiert",
     "summaries": "Synchronisierte Zusammenfassungen",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Lesen",
     "listening": "Hören",
-    "overview": "Nach Fertigkeit",
-    "matrix": "Zielaufzeichnungen",
-    "valid": "Gültige Antworten",
-    "materials": "Verschiedene Materialien",
-    "checks": "Richtige Prüfantworten ohne Zusatzhilfe",
-    "last": "Letzter Abschluss",
-    "none": "Noch keine Aufgabe abgeschlossen",
-    "noRecord": "Keine Aufzeichnung",
     "unscored": "Gespeichert, unbewertet",
-    "legend": "◇ Gespeichert, unbewertet　● In Prüfung richtig　◐ Beim Lernen ohne Zusatzhilfe richtig　○ Nach Hilfe richtig　× Falsch.",
     "checkCorrect": "In Prüfung richtig",
-    "independent": "Beim Lernen ohne Zusatzhilfe richtig",
     "assisted": "Nach Hilfe richtig",
     "incorrect": "Falsch",
-    "details": "Antworten ansehen",
-    "more": "Weitere: {count}",
-    "open": "Gespeicherte Aufgabe ansehen",
-    "reviewStatus": "Wiederholungsstatus",
-    "independentState": "Dieses Material eigenständig abgeschlossen",
-    "new": "Keine vollständige Materialantwort",
-    "with_help": "Mehr Übung nötig",
-    "review_due": "Fällig",
-    "independentMaterials": "Verschiedene eigenständig abgeschlossene Materialien",
-    "nextSuggested": "Nächste empfohlene Wiederholung",
-    "recentlyConsistent": "Zuletzt beständiger"
+    "details": "Antworten ansehen"
   },
   "meta": {
     "nativeName": "Deutsch"
@@ -732,9 +711,7 @@
     "retry": "Erneut versuchen",
     "export": "Aktuelle Antwort herunterladen",
     "count": "Gespeicherte Antworten",
-    "materialCount": "Verschiedene Materialien mit gespeicherten Antworten",
     "empty": "Noch keine gespeicherten Antworten. Abgeschlossene Antworten aus Heute erscheinen hier.",
-    "history": "Ihre gespeicherten Aufgaben",
     "conditions": "Verwendete Hinweisebenen",
     "offline": "Offline",
     "online": "Wieder online",
@@ -798,5 +775,9 @@
     "unsuitable": "Keine passende Übung für diese Auswahl. Ändern Sie den Aufgabentyp oder die Materialien.",
     "readingSettings": "Leseeinstellungen",
     "listeningSettings": "Höreinstellungen"
+  },
+  "historyDeletion": {
+    "remove": "Löschen",
+    "linked": "Beide verbundenen Teile werden gelöscht."
   }
 }

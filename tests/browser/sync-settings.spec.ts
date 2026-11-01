@@ -32,6 +32,8 @@ test('received settings apply to their profile and local picker edits remain cap
   for (const width of [1440, 375]) {
     await page.setViewportSize({ width, height: 812 });
     await page.evaluate(() => scrollTo(0, 0));
+    // Let viewport events reposition menus before measuring their layout.
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
     if (width === 1440) await expect(page.locator('.mobile-nav')).toBeHidden();
     else await expect(page.locator('.mobile-nav')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

@@ -109,6 +109,7 @@ export function DailyQuote({ locale, onDayChange, initialSelection, onSelection 
       if (disposed) return;
       // Measure overflow without expanding the page during browser-bar motion.
       const needed = quoteNeedsExpansion(element.scrollHeight, parseFloat(getComputedStyle(element).lineHeight));
+      element.style.setProperty('--quote-height', `${element.scrollHeight}px`);
       setOverflow(current => current && current.id === id && current.needed === needed ? current : { id, needed });
     };
     measure();

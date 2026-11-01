@@ -82,7 +82,7 @@ Le domande oggettive ricevono valutazioni e spiegazioni. Le risposte aperte non 
 
 ## Cronologia e progressi
 
-Da [**Cronologia**](https://lingfern.com/progress) in Oggi rivedi sessioni, risposte, feedback e aiuti usati; elimina risposte salvate dopo conferma. Consulta i progressi per obiettivo di lettura/ascolto e conferma gli orari di completamento quando viene proposta la correzione dell’orologio.
+Da [**Cronologia**](https://lingfern.com/progress) in Oggi rivedi sessioni, risposte, feedback e aiuti usati; elimina risposte salvate dopo conferma. Conferma gli orari di completamento quando viene proposta la correzione dell’orologio.
 
 La felce rappresenta attività salvate, non competenza certificata. Le citazioni quotidiane includono fonte, espansione dei testi lunghi e scelta di un’altra citazione.
 

@@ -49,9 +49,10 @@ for (const locale of localeSchema.options) {
       }
       if (locale === 'ar') {
         await expect(language.locator('.setting-chevron')).toHaveCSS('direction', 'ltr');
-        expect(await language.locator('.setting-chevron').evaluate(element => new DOMMatrix(getComputedStyle(element).transform).a)).toBe(-1);
+        expect(await language.locator('.setting-chevron').evaluate(element => new DOMMatrix(getComputedStyle(element).transform).a)).toBe(1);
       }
       await language.click();
+      if (locale === 'ar') await expect.poll(() => language.locator('.setting-chevron').evaluate(element => new DOMMatrix(getComputedStyle(element).transform).d)).toBe(-1);
       const options = page.getByRole('listbox', { name: t.language });
       await expect(options.getByRole('option')).toHaveText(languageOptions.map(item => item.label));
       await expect(options.getByRole('option', { name: languagePacks[locale].meta.nativeName, exact: true })).toHaveAttribute('aria-selected', 'true');

@@ -234,7 +234,7 @@ test('picker choices retain touch and keyboard activation without premature blur
 
 
 
-test('mobile answer peek scales smoothly in both directions without shifting its layout', async ({ page }) => {
+test('mobile answer peek stays anchored during hover and preserves keyboard focus', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.mouse.move(0, 0);
   await startReading(page);
@@ -251,12 +251,10 @@ test('mobile answer peek scales smoothly in both directions without shifting its
   }));
   const layout = await toggle.evaluate(element => { const item = element as HTMLElement; return [item.offsetTop, item.offsetLeft, item.offsetWidth, item.offsetHeight]; });
   const box = (await toggle.boundingBox())!;
-  const entering = sampleScale(); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); const enlarged = await entering;
-  expect(new Set(enlarged.filter(value => value > 1 && value < 1.025)).size).toBeGreaterThanOrEqual(3);
-  expect(enlarged.at(-1)).toBeCloseTo(1.025, 4);
+  const entering = sampleScale(); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); const hovered = await entering;
+  expect(hovered.every(value => value === 1)).toBe(true);
   const leaving = sampleScale(); await page.mouse.move(0, 0); const restored = await leaving;
-  expect(new Set(restored.filter(value => value > 1 && value < 1.025)).size).toBeGreaterThanOrEqual(3);
-  expect(restored.at(-1)).toBe(1);
+  expect(restored.every(value => value === 1)).toBe(true);
   expect(await toggle.evaluate(element => { const item = element as HTMLElement; return [item.offsetTop, item.offsetLeft, item.offsetWidth, item.offsetHeight]; })).toEqual(layout);
   await page.keyboard.press('Tab');
   await toggle.focus(); await expect(toggle).toBeFocused();

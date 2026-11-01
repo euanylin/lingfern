@@ -1,4 +1,6 @@
-import { showModal } from './modal';
+import { DisclosurePanel } from './DisclosurePanel';
+import { AnimatedDetails } from './AnimatedDetails';
+import { closeModal, showModal } from './modal';
 import { contentLocale } from '../shared/locale';
 import { messages } from '../locales';
 import { loadRuntimeResources, runtimeResources } from '../data/runtimeResources';
@@ -96,7 +98,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     });
   }
   useEffect(() => { if (confirmingRemoval) { showModal(removalDialog.current); removalCancel.current?.focus(); } }, [confirmingRemoval]);
-  function closeRemoval() { if (deleting) return; removalDialog.current?.close(); setConfirmingRemoval(false); removalTrigger.current?.focus(); }
+  function closeRemoval() { if (deleting) return; closeModal(removalDialog.current, () => { setConfirmingRemoval(false); removalTrigger.current?.focus(); }); }
   function row(group: typeof downloadableGroups[number]) {
     const pack = sourceById.get(group.id);
     const fullTitle = name(group.id), parts = fullTitle.split(' · '), title = pack && parts.length > 2 ? parts.slice(2).join(' · ') : fullTitle;
@@ -127,7 +129,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
             <label className="offline-group-check"><input type="checkbox" aria-label={`${t.categories[category.id]} · ${bucket.title}`} checked={selectedCount === groups.length} aria-checked={selectedCount > 0 && selectedCount < groups.length ? 'mixed' : selectedCount === groups.length} ref={node => { if (node) node.indeterminate = selectedCount > 0 && selectedCount < groups.length; }} onChange={() => { selectGroups(groups.map(group => group.id)); if (selectedCount !== groups.length) setExpanded(previous => new Set([...previous, key])); }}/></label>
             <button className="offline-source-group-toggle" type="button" aria-expanded={open} aria-controls={`offline-group-items-${key}`} onClick={() => setExpanded(previous => { const next = new Set(previous); if (next.has(key)) next.delete(key); else next.add(key); return next; })}><span id={`offline-group-${key}`}>{bucket.title}</span><small>{ui.count.replace('{count}', String(groups.length))}{installedCount > 0 && ` · ${ui.installed.replace('{count}', String(installedCount))}`}</small><span className="offline-group-chevron" aria-hidden="true">⌄</span></button>
           </div>
-          <div className="package-list offline-group-items" id={`offline-group-items-${key}`} hidden={!open}>{(open || bucket.key === 'general') && groups.map(row)}</div>
+          <DisclosurePanel id={`offline-group-items-${key}`} open={open} keepMounted={bucket.key === 'general'}>{() => <div className="package-list offline-group-items">{groups.map(row)}</div>}</DisclosurePanel>
         </div>;
       })}
     </>;
@@ -196,8 +198,8 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     </div>
       {actionsVisible && <div ref={actions} className="offline-selection-actions" role="region" aria-label={ui.actions}><p className="muted" aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))} · {ui.downloadAction} {size(chosenBytes)}</p>
       {installing ? <div className="offline-download-progress"><p role="status"><span title={name(active)}>{t.installing} {name(active)}</span><span dir="ltr">{size(progress)} / {size(total)}</span></p><progress max={total} value={progress} aria-label={t.installing}/><button type="button" onClick={() => controller.current?.abort()}>{t.cancel}</button></div> : <div className="offline-actions">{removable.length > 0 && <button className="offline-remove" aria-label={t.remove} ref={removalTrigger} type="button" disabled={deleting || removable.length === 0} onClick={() => setConfirmingRemoval(true)}>{deleting ? t.removing : ui.removeAction}</button>}{chosen.length > 0 && <button aria-label={t.start} className="primary" type="button" disabled={deleting || !online || chosen.length === 0} onClick={() => void install()}>{ui.downloadAction}</button>}</div>}</div>}
-      {selected.size > 0 && <details className="resource-pack-tools"><summary>{t.zip}</summary><div className="resource-pack-links">{downloadableGroups.filter(group => selected.has(group.id)).map(group => { const path = 'path' in group ? group.path : runtimeResources.downloads.packs.find(pack => pack.id === group.id && pack.version === group.version)?.path; return path ? <a key={group.id} href={path} download>{name(group.id)} · {t.zipDownload}</a> : null; })}</div></details>}
-      {confirmingRemoval && createPortal(<dialog role="alertdialog" ref={removalDialog} className="offline-remove-dialog" aria-labelledby="offline-remove-title" onCancel={event => { event.preventDefault(); closeRemoval(); }} onClick={event => { if (event.target === event.currentTarget) closeRemoval(); }}><h2 id="offline-remove-title">{ui.removeTitle}</h2><p>{ui.removeDetail.replace('{count}', String(removable.length)).replace('{size}', size(removable.reduce((sum, group) => sum + group.bytes, 0)))}</p><div className="offline-remove-dialog-actions"><button ref={removalCancel} type="button" disabled={deleting} onClick={closeRemoval}>{t.cancel}</button><button className="offline-remove-confirm" type="button" disabled={deleting} onClick={() => { removalDialog.current?.close(); setConfirmingRemoval(false); void removeSelected(); }}>{t.remove}</button></div></dialog>, document.body)}
+      {selected.size > 0 && <AnimatedDetails className="resource-pack-tools"><summary>{t.zip}</summary><div className="resource-pack-links">{downloadableGroups.filter(group => selected.has(group.id)).map(group => { const path = 'path' in group ? group.path : runtimeResources.downloads.packs.find(pack => pack.id === group.id && pack.version === group.version)?.path; return path ? <a key={group.id} href={path} download>{name(group.id)} · {t.zipDownload}</a> : null; })}</div></AnimatedDetails>}
+      {confirmingRemoval && createPortal(<dialog role="alertdialog" ref={removalDialog} className="offline-remove-dialog" aria-labelledby="offline-remove-title" onCancel={event => { event.preventDefault(); closeRemoval(); }} onClick={event => { if (event.target === event.currentTarget) closeRemoval(); }}><h2 id="offline-remove-title">{ui.removeTitle}</h2><p>{ui.removeDetail.replace('{count}', String(removable.length)).replace('{size}', size(removable.reduce((sum, group) => sum + group.bytes, 0)))}</p><div className="offline-remove-dialog-actions"><button ref={removalCancel} type="button" disabled={deleting} onClick={closeRemoval}>{t.cancel}</button><button className="offline-remove-confirm" type="button" disabled={deleting} onClick={() => { closeModal(removalDialog.current, () => { setConfirmingRemoval(false); }); void removeSelected(); }}>{t.remove}</button></div></dialog>, document.body)}
       {!online && chosen.length > 0 && <p className="muted">{t.online}</p>}{error && <p role="alert" className="error">{error}</p>}
   </section>;
 }

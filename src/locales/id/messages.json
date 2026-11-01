@@ -365,7 +365,6 @@
     "shortNote": "Catatan belajar tanpa enkripsi; sumber daya dan rekaman tidak disertakan."
   },
   "progressRecords_summaryCopy": {
-    "clock": "Waktu catatan di masa depan. Periksa jam perangkat; tidak digunakan dalam jadwal tinjauan.",
     "only": "Hanya ringkasan. Jawaban asli tetap di perangkat asal.",
     "missing": "Versi materi yang diperlukan belum terpasang",
     "summaries": "Ringkasan tersinkron",
@@ -604,31 +603,11 @@
   "i18n_progressCopy": {
     "reading": "Membaca",
     "listening": "Menyimak",
-    "overview": "Menurut keterampilan",
-    "matrix": "Catatan tujuan",
-    "valid": "Jawaban valid",
-    "materials": "Materi berbeda",
-    "checks": "Jawaban pemeriksaan benar tanpa bantuan tambahan",
-    "last": "Penyelesaian terakhir",
-    "none": "Belum ada tugas selesai",
-    "noRecord": "Tidak ada catatan",
     "unscored": "Tersimpan, tanpa skor",
-    "legend": "◇ Tersimpan tanpa skor　● Benar dalam pemeriksaan　◐ Benar saat belajar tanpa bantuan tambahan　○ Benar setelah bantuan　× Salah.",
     "checkCorrect": "Benar dalam pemeriksaan",
-    "independent": "Benar saat belajar tanpa bantuan tambahan",
     "assisted": "Benar setelah bantuan",
     "incorrect": "Salah",
-    "details": "Lihat jawaban",
-    "more": "{count} lainnya",
-    "open": "Tinjau tugas tersimpan",
-    "reviewStatus": "Status tinjauan",
-    "independentState": "Materi diselesaikan mandiri",
-    "new": "Jawaban materi belum lengkap",
-    "with_help": "Perlu latihan lagi",
-    "review_due": "Jatuh tempo",
-    "independentMaterials": "Materi berbeda diselesaikan mandiri",
-    "nextSuggested": "Saran tinjauan berikutnya",
-    "recentlyConsistent": "Belakangan lebih konsisten"
+    "details": "Lihat jawaban"
   },
   "meta": {
     "nativeName": "Bahasa Indonesia"
@@ -732,9 +711,7 @@
     "retry": "Coba lagi",
     "export": "Unduh jawaban saat ini",
     "count": "Jawaban tersimpan",
-    "materialCount": "Materi berbeda dengan jawaban tersimpan",
     "empty": "Belum ada jawaban tersimpan. Jawaban selesai dari Hari Ini muncul di sini.",
-    "history": "Tugas tersimpan Anda",
     "conditions": "Tingkat petunjuk digunakan",
     "offline": "Luring",
     "online": "Koneksi pulih",
@@ -798,5 +775,9 @@
     "unsuitable": "Tidak ada latihan yang sesuai dengan pilihan ini. Ubah jenis soal atau materi.",
     "readingSettings": "Pengaturan membaca",
     "listeningSettings": "Pengaturan menyimak"
+  },
+  "historyDeletion": {
+    "remove": "Hapus",
+    "linked": "Kedua bagian yang terhubung akan dihapus."
   }
 }

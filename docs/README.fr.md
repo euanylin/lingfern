@@ -82,7 +82,7 @@ Les questions objectives reçoivent une correction et une explication. Les répo
 
 ## Historique et progression
 
-Depuis [**Historique**](https://lingfern.com/progress) dans Aujourd’hui, retrouvez sessions, réponses, retours et aides utilisées ; supprimez des réponses enregistrées après confirmation. Consultez la progression par objectif en lecture/écoute et confirmez les heures de fin si la correction d’horloge apparaît.
+Depuis [**Historique**](https://lingfern.com/progress) dans Aujourd’hui, retrouvez sessions, réponses, retours et aides utilisées ; supprimez des réponses enregistrées après confirmation. Confirmez les heures de fin si la correction d’horloge apparaît.
 
 La fougère représente l’activité sauvegardée, pas un niveau certifié. Les citations quotidiennes indiquent leur source ; un texte long peut être déplié et une autre citation choisie.
 
