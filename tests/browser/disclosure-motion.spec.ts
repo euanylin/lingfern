@@ -1,4 +1,5 @@
 import { expect, test, webkit, type Locator } from '@playwright/test';
+import { autoSyncFixture, connectSync } from './autoSyncFixture';
 
 async function heights(control: Locator) {
   return control.evaluate(async element => {
@@ -85,5 +86,60 @@ for (const engine of ['chromium', 'webkit'] as const) test(`shared disclosures a
     await reduced.locator('summary').click(); await expect(reduced).not.toHaveAttribute('open', '');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     expect(errors).toEqual([]);
+  } finally { await context.close(); await alternate?.close(); }
+});
+
+for (const engine of ['chromium', 'webkit'] as const) test(`foldout feedback stays intact during motion and repeated activation in ${engine}`, async ({ browser }) => {
+  const alternate = engine === 'webkit' ? await webkit.launch({ channel: '' }) : undefined;
+  const context = await (alternate ?? browser).newContext({ baseURL: 'http://127.0.0.1:5173', viewport: { width: 1440, height: 900 }, colorScheme: engine === 'webkit' ? 'dark' : 'light', locale: 'zh-CN' });
+  const page = await context.newPage(), server = autoSyncFixture();
+  try {
+    await server.attach(context); await connectSync(page); await page.goto('/settings');
+    for (const width of [1440, 375]) {
+      await page.setViewportSize({ width, height: 900 });
+      for (const selector of ['.repository-reset', '.sharing-management']) {
+        const detail = page.locator(selector), summary = detail.locator(':scope>summary');
+        await summary.scrollIntoViewIfNeeded(); await summary.hover();
+        const initial = (await summary.boundingBox())!;
+        for (const expanded of [true, false]) {
+          const frame = await detail.evaluate(async element => {
+            const summary = element.querySelector('summary')!;
+            summary.click(); await new Promise(requestAnimationFrame);
+            const animation = element.getAnimations()[0];
+            if (!animation) throw new Error('Missing foldout animation');
+            animation.pause(); animation.currentTime = 80;
+            const box = summary.getBoundingClientRect();
+            const hit = (x: number) => { const target = document.elementFromPoint(x, box.top + box.height / 2); return !!target && summary.contains(target); };
+            return { left: box.left, width: box.width, edges: [hit(box.left + 3), hit(box.right - 3)] };
+          });
+          expect(frame.edges).toEqual([true, true]);
+          expect(frame.left).toBeCloseTo(initial.x, 0); expect(frame.width).toBeCloseTo(initial.width, 0);
+          await detail.evaluate(element => element.getAnimations().forEach(animation => animation.finish()));
+          await expect(detail).toHaveJSProperty('open', expanded);
+        }
+        await page.evaluate(() => getSelection()?.removeAllRanges());
+        await (selector === '.repository-reset' ? summary.locator('bdi') : summary).dblclick();
+        expect(await page.evaluate(() => getSelection()?.toString())).toBe('');
+        await expect(detail).toHaveJSProperty('open', false);
+        await summary.focus(); await summary.press('Enter'); await expect(detail).toHaveJSProperty('open', true);
+        await expect(detail).not.toHaveAttribute('data-expanded', /true|false/);
+        await expect.poll(() => detail.evaluate(element => element.getAnimations().length)).toBe(0);
+        if (selector === '.repository-reset') {
+          const body = detail.locator('.repository-steps p').first();
+          await body.scrollIntoViewIfNeeded();
+          const word = await body.evaluate(element => {
+            const text = document.createTreeWalker(element, NodeFilter.SHOW_TEXT).nextNode()!;
+            const range = document.createRange(); range.setStart(text, 0); range.setEnd(text, 2);
+            const box = range.getBoundingClientRect(); return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+          });
+          await page.mouse.dblclick(word.x, word.y);
+          expect((await page.evaluate(() => getSelection()?.toString()))?.length).toBeGreaterThan(0);
+          await page.evaluate(() => getSelection()?.removeAllRanges());
+        }
+        await summary.press('Space'); await expect(detail).toHaveJSProperty('open', false);
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+    expect(await page.pageErrors()).toEqual([]);
   } finally { await context.close(); await alternate?.close(); }
 });

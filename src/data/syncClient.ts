@@ -304,7 +304,7 @@ export async function synchronize(profileId: string, consent: Consent, onMerge: 
     const continuing = state.phase === 'pending' && state.nextCheckAt !== undefined;
     if (!requested && continuing && now < state.nextCheckAt!) return { wakeAt: state.nextCheckAt! };
     if (!requested && !continuing && now - (state.checkedAt ?? -Infinity) < 15000) return wake ? { wakeAt: state.checkedAt! + 15000 } : undefined;
-    if (!requested && !wake && state.phase === 'synced' && revision === state.localRevision && now < (state.nextCheckAt ?? 0)) return;
+    if (drained && now < (state.nextCheckAt ?? 0)) return;
     const save = async (patch: Partial<SyncState>, failed = false) => {
       const next = syncStateSchema.parse({ ...state, ...patch });
       await db.transaction('rw', settings, syncClocks, async () => {

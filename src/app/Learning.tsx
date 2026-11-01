@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
 import { beginCheck, claimSession, markExposure, releaseSession, sessions, type Session } from '../data/db';
 import { contentLanguage, contentText } from '../locales';
 import { practiceLocale, type Locale } from '../shared/content';
@@ -18,10 +18,22 @@ function acquireSessionLock(id: string): Promise<(() => void) | undefined> {
   });
 }
 
-export default function Learning({ owner, id, profileId, locale, online, onlineDictionary, combinedSessions }: { owner: string; id: string; profileId: string; locale: Locale; online: boolean; onlineDictionary: OnlineDictionaryId; combinedSessions: Session[] }) {
+export type LearningHandle = { release: () => Promise<void> };
+
+export default function Learning({ ref, owner, id, profileId, locale, online, onlineDictionary, combinedSessions }: { ref?: Ref<LearningHandle>; owner: string; id: string; profileId: string; locale: Locale; online: boolean; onlineDictionary: OnlineDictionaryId; combinedSessions: Session[] }) {
   const t = copy[locale], [session, setSession] = useState<Session>(), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const mounted = useRef(true), loading = useRef(false), lockRelease = useRef<(() => void) | undefined>(undefined), claimPending = useRef<Promise<Session> | undefined>(undefined);
   const pending = useRef(Promise.resolve());
+  const releasing = useRef<Promise<void> | undefined>(undefined);
+  function release() {
+    mounted.current = false;
+    // Navigation and unmount share one release after every queued write and claim.
+    return releasing.current ??= Promise.allSettled([claimPending.current, pending.current]).then(() => {
+      lockRelease.current?.(); lockRelease.current = undefined;
+      return releaseSession(id, owner);
+    });
+  }
+  useImperativeHandle(ref, () => ({ release }));
   async function load() {
     if (loading.current) return;
     loading.current = true;
@@ -52,20 +64,16 @@ export default function Learning({ owner, id, profileId, locale, online, onlineD
     } finally { loading.current = false; }
   }
   useEffect(() => {
-    mounted.current = true; void load();
+    mounted.current = true; releasing.current = undefined; void load();
     const heartbeat = setInterval(() => {
-      if (loading.current || claimPending.current || navigator.locks && !lockRelease.current) return;
+      if (!mounted.current || loading.current || claimPending.current || navigator.locks && !lockRelease.current) return;
       const claim = claimSession(id, owner, Date.now(), profileId);
       claimPending.current = claim;
       void claim.catch(cause => { if (mounted.current) { if (cause instanceof Error && cause.message === 'CHECK_DEVICE') void load(); else setError('BUSY'); } }).finally(() => { if (claimPending.current === claim) claimPending.current = undefined; });
     }, 5000);
     return () => {
       mounted.current = false; clearInterval(heartbeat);
-      // Queued drafts still need this owner after the workspace leaves the screen.
-      void Promise.allSettled([claimPending.current, pending.current]).then(() => {
-        lockRelease.current?.(); lockRelease.current = undefined;
-        return releaseSession(id, owner);
-      }).catch(() => {});
+      void release().catch(() => {});
     };
   }, [id]);
   const message = error === 'CHECK_EXPOSED' ? t.checkUnavailable : error === 'CHECK_DEVICE' ? t.checkOriginalDevice : error === 'BUSY' ? t.busy : error === 'NOT_FOUND' ? t.missing : error === 'CONFLICT' ? t.conflict : error === 'READ' ? t.readError : t.saveError;

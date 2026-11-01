@@ -72,7 +72,8 @@ html{scroll-padding-top:calc(var(--site-header-height,72px) + 16px)}
 .history-entry-heading{display:flex;align-items:center;gap:0}.history-entry-heading>a{min-width:0;overflow-wrap:anywhere;text-decoration:none}
 .history-delete{flex:none;min-width:44px;padding:9px 12px;font-size:.875rem}
 .history-entry-heading>.history-delete{margin-inline-end:8px}
-.history-delete,.record-delete>button,.record-delete .backup-actions>button:first-child{color:var(--error)}
+.history-delete,.record-delete>button{color:var(--error)}
+.record-delete{margin-top:12px}
 .lookup-history-list a{display:flex;flex-direction:column;justify-content:center;gap:5px;min-height:56px;margin:4px;padding:10px 14px;padding-inline-end:4px;border-radius:var(--corner-radius);color:var(--ink);text-decoration:none;transition:background-color 160ms ease}
 .lookup-history-list strong{min-width:0;font-size:1rem;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
 .lookup-history-kind{min-width:0;margin-inline-end:18px;color:var(--muted);font-size:.8125rem;font-weight:500;line-height:1.35;text-align:end;overflow-wrap:anywhere}
@@ -653,6 +654,7 @@ dialog::backdrop{left:calc(0px - var(--modal-left-gutter,0px));right:calc(0px - 
 .synced-summary-list{margin-top:16px}.history-summary-label{font-weight:400;text-align:start}#today-records .completion-timing{margin-top:24px}
 
 /* Keep native disclosures and controlled menus aligned with Library flips. */
+.animated-details>summary{-webkit-user-select:none;user-select:none}
 details.animated-details[data-expanded=false]>summary::after,details.animated-details[data-expanded=false]>summary .installed-resources-chevron{transform:none}
 details.animated-details[data-expanded=true]>summary::after,details.animated-details[data-expanded=true]>summary .installed-resources-chevron{transform:rotateX(180deg)}
 .setting-trigger[aria-haspopup=listbox] .setting-chevron{display:grid;place-items:center;direction:ltr;transform:none;transition:transform 200ms ease}

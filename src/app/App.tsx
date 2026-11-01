@@ -3,11 +3,12 @@ import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect,
 import { createPortal } from 'react-dom';
 import { liveQuery } from 'dexie';
 import { registerSW } from 'virtual:pwa-register';
+import type { LearningHandle } from './Learning';
 import { version as appVersion } from '../../package.json';
 import { localDay } from '../core/dailyQuoteFormat';
 import { communityPackageReady } from '../data/communityInstall';
 import type { CompletionTime } from '../data/completionTiming';
-import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, db, profiles, projectPreferences, releaseSession, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
+import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, db, profiles, projectPreferences, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
 import { purgeDeletedRecords, restartPractice } from '../data/deletion';
 import { installedOfflineGroups } from '../data/offline';
 import { readInstallationIntents } from '../data/installationIntent';
@@ -109,6 +110,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const [path, setPath] = useState(() => initialPage?.path ?? route());
   const githubSession = useGithubSession(path === '/settings');
   const currentPath = useRef(path); currentPath.current = path;
+  const learning = useRef<LearningHandle>(null), leaving = useRef(false);
   const [todayDate, setTodayDate] = useState(() => initialPage?.day ?? localDay(new Date()));
   const todayQuote = useRef<DailyQuoteSelection>(undefined);
   const [unsavedDemo, setUnsavedDemo] = useState(false);
@@ -482,11 +484,23 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
           <a className="settings-about-row settings-about-link" href="/settings/about"><span>{t.about}</span><span aria-hidden="true">→</span></a>
         </section>
       </section>;
+  async function leaveTask() {
+    if (leaving.current) return;
+    leaving.current = true;
+    const released = learning.current?.release() ?? Promise.resolve();
+    setReady(false);
+    try {
+      await released;
+      if (currentPath.current !== path || currentProfile.current !== activeProfile) return;
+      window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0);
+    } catch { setError('save'); }
+    finally { leaving.current = false; }
+  }
   function beginFirstRun() { try { localStorage.setItem('lingfern.onboarding.seen', '1'); } catch { /* Continue when persistent storage is unavailable. */ } window.history.pushState(null, '', '/start'); setPath('/start'); scrollTo(0, 0); }
   return <>
     <a className="skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t.skip}</a>
     {!introducing && !entryPending && <header className={sessionId ? 'session-header' : ''}>
-      {sessionId ? <><a className="back-button" href="/today" aria-label={t.leave} onClick={e => { e.preventDefault(); void releaseSession(sessionId, owner).then(() => { setReady(false); window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0); }).catch(() => setError('save')); }}>←</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
+      {sessionId ? <><a className="back-button" href="/today" aria-label={t.leave} onClick={e => { e.preventDefault(); void leaveTask(); }}>←</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
         <a className="home-mark" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
         <a className="mobile-brand" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
         <nav className="desktop-nav" data-display={desktopNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
@@ -496,7 +510,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
       {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning owner={owner} key={`${activeProfile}:${sessionId}`} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
+      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning ref={learning} owner={owner} key={`${activeProfile}:${sessionId}`} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
         <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale}/><h1>{t.today}</h1></section>
         <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {

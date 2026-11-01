@@ -155,6 +155,26 @@ test('visibility revalidation remains available without BroadcastChannel and ski
   expect(reads).toBe(2);
 });
 
+test('a failed disconnect resumes identity revalidation when connectivity returns', async ({ page, context }) => {
+  let signedIn = true, reads = 0, disconnects = 0;
+  await page.route('**/api/session', route => { reads++; return route.fulfill({ json: signedIn ? account : { account: null, syncAvailable: false } }); });
+  await page.route('**/api/auth/disconnect', async route => {
+    disconnects++; signedIn = false;
+    await context.setOffline(true);
+    await route.abort('failed');
+  });
+  await page.goto('/settings');
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'connected');
+  page.on('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: '断开 GitHub 身份', exact: true }).click();
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'failed');
+  const before = reads;
+  await context.setOffline(false);
+  await expect(page.locator('.github-status-line')).toHaveAttribute('data-status', 'signed-out');
+  expect(reads).toBe(before + 1);
+  expect(disconnects).toBe(1);
+});
+
 test('startup identity retries two temporary failures and then recovers without a foreground gesture', async ({ page }) => {
   await page.clock.install(); let reads = 0;
   await page.route('**/api/session', route => { reads++; return route.fulfill(reads <= 2 ? { status: 503, json: { error: 'AUTH_UNAVAILABLE' } } : { json: account }); });

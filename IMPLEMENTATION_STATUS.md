@@ -1,6 +1,6 @@
 # Implementation status
 
-Current implementation summary, 2026-11-01. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) owns published identities and 0.1.154 changes. [Issues.md](Issues.md) owns remaining limits; this file does not duplicate release journals.
+Current implementation summary, 2026-11-01. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) owns published identities and current release changes. [Issues.md](Issues.md) owns remaining limits; this file does not duplicate release journals.
 
 | Area | Current behavior and implementation |
 |---|---|
@@ -16,6 +16,12 @@ Current implementation summary, 2026-11-01. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT
 | Deployment | One Vite/React frontend and Cloudflare Worker with Static Assets at `https://lingfern.com`. Narrow route fallbacks preserve missing-resource/API errors. Routine publication is local-first with GitHub CI disabled. See [workflow](AGENT_WORKFLOW.md) and [runbook](docs/release-runbook.md). |
 
 Lookup-history deletion buttons use shared columns to stay aligned across reference kinds, including narrow and RTL layouts. The 0.1.155 focused regression and production acceptance are recorded in the handoff.
+
+Released 0.1.156 history details now distinguish unsubmitted drafts from saved responses and conceal skipped prompts during active Test. Per-answer deletion appears below its answer/feedback, with rounded confirmation actions and one concise localized paragraph. [Verification](docs/history/2026-11-01-history-empty-details.md).
+
+The subsequent [maintenance review](docs/history/2026-11-01-maintenance-review.md) preserves those changes. Task exit waits for queued drafts and claims through the same release used by teardown; failed identity disconnection no longer suspends future refresh indefinitely. Sync polling reuses an existing equivalent predicate. These changes are published in 0.1.156 and preserve storage/wire compatibility.
+
+The released 0.1.157 [foldout feedback repair](docs/history/2026-11-01-foldout-feedback.md) preserves horizontally extended summary highlights during height animation and prevents accidental label selection while retaining body selection. Production controls and update preservation are recorded in the handoff.
 
 ## Acceptance boundary
 

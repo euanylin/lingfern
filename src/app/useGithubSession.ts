@@ -47,7 +47,7 @@ export function useGithubSession(active: boolean) {
       setState({ summary: { account: null, syncAvailable: false }, status: 'ready' });
       channel.current?.postMessage('ended');
       return result.providerRevoked === false ? 'partial' : 'done';
-    } catch { if (!abort.signal.aborted) { setState({ summary, status: 'failed' }); channel.current?.postMessage('changed'); return 'failed'; } }
+    } catch { if (!abort.signal.aborted) { ending.current = false; setState({ summary, status: 'failed' }); channel.current?.postMessage('changed'); return 'failed'; } }
     finally { if (request.current === abort) { request.current = undefined; mutating.current = false; } }
   }, [state]);
   useEffect(() => {

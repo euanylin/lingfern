@@ -49,7 +49,8 @@ export function AnimatedDetails({ ref, onToggle, onClickCapture, onExpandedChang
       if (aria === null) summary.removeAttribute('aria-expanded'); else summary.setAttribute('aria-expanded', aria);
       for (const state of states) { state.child.inert = state.inert; if (state.hidden === null) state.child.removeAttribute('aria-hidden'); else state.child.setAttribute('aria-hidden', state.hidden); }
     };
-    element.style.height = `${start}px`; element.style.overflow = 'hidden';
+    // Clip height transitions without trimming the summary's horizontal feedback.
+    element.style.height = `${start}px`; element.style.overflow = 'visible clip';
     element.dataset.expanded = String(expanded); summary.setAttribute('aria-expanded', String(expanded)); element.open = true;
     // Native toggle handlers can mount lazy contents before measuring the open height.
     motion.current.frame = requestAnimationFrame(() => {

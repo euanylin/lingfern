@@ -101,3 +101,32 @@ test('switching profiles preserves drafts queued behind an unfinished save', asy
   await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).owner, id)).toBeUndefined();
   await other.close();
 });
+
+for (const width of [1440, 375]) test(`leaving through the task back button preserves queued drafts: ${width}`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 900 });
+  await page.route(/\/src\/data\/db\.ts(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}\nconst originalDraftSave = saveWorkspaceDraft; let draftCalls = 0; saveWorkspaceDraft = async (...args) => { const call = ++draftCalls; try { const saved = await originalDraftSave(...args); if (call === 1) await new Promise(resolve => window.releaseFirstDraftSave = resolve); return saved; } finally { window.finishedDraftSaves = (window.finishedDraftSaves || 0) + 1; } };` });
+  });
+  const { id, lesson } = await openSnapshot(page, 'a1-reading', true);
+  await focusQuestion(page, lesson, 0);
+  await page.getByRole('radio', { name: 'At the library.' }).check();
+  await expect.poll(() => page.evaluate(() => typeof Reflect.get(window, 'releaseFirstDraftSave'))).toBe('function');
+  await page.getByRole('radio', { name: 'At the café.' }).check();
+  page.on('dialog', dialog => dialog.accept());
+  await page.locator('.session-header .back-button').click();
+  await expect(page.locator('.material-workspace')).toHaveCount(0);
+  await page.locator('.session-header .back-button').click();
+  await expect(page).toHaveURL(`/learn/${id}`);
+  await page.evaluate(() => Reflect.get(window, 'releaseFirstDraftSave')());
+  await expect(page).toHaveURL('/today');
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, 'finishedDraftSaves'))).toBe(2);
+  const questionId = lesson.materials[0].questions[0].id;
+  await expect.poll(() => page.evaluate(async ({ id, questionId }) => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace.drafts[questionId], { id, questionId })).toBe(0);
+  await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).owner, id)).toBeUndefined();
+  await expect.poll(() => page.evaluate(async id => (await navigator.locks.query()).held?.some(lock => lock.name === `lingfern-session:${id}`), id)).toBe(false);
+  await page.goto(`/learn/${id}`);
+  await focusQuestion(page, lesson, 0);
+  await expect(page.getByRole('radio', { name: 'At the café.' })).toBeChecked();
+  expect(await page.pageErrors()).toEqual([]);
+});

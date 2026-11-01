@@ -69,12 +69,17 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
       await expect(picker).toHaveAttribute('data-value', value);
     }
     await expect(picker).toBeFocused();
+    if (index !== 1) await expect(picker.locator('span').first()).toHaveCSS('text-decoration-line', 'none');
+    // A pointer selection can retain :focus-visible; exercise keyboard navigation explicitly.
+    await picker.press('Enter');
+    await expect(menu).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(menu).toHaveCount(0);
+    await expect(picker).toBeFocused();
     const focused = await shape();
     expect({ ...focused, shadow: resting.shadow }).toEqual(resting);
-    if (await picker.evaluate(el => el.matches(':focus-visible'))) {
-      expect(focused.shadow).toBe('none'); await expect(picker.locator('span').first()).toHaveCSS('text-decoration-line', 'underline');
-    }
-    else expect(focused.shadow).toBe(resting.shadow);
+    expect(focused.shadow).toBe('none');
+    await expect(picker.locator('span').first()).toHaveCSS('text-decoration-line', 'underline');
     await picker.evaluate(el => (el as HTMLElement).blur());
     expect(await shape()).toEqual(resting);
   }
