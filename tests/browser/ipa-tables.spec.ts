@@ -89,6 +89,61 @@ test('compound tone accents remain legible without platform font support', async
   }
 });
 
+for (const [width, theme] of [[1440, 'dark'], [375, 'light']] as const) test(`vowel chart keeps its central line and complete button feedback at ${width}/${theme}`, async ({ page }, testInfo) => {
+  await page.setViewportSize({ width, height: 900 });
+  await page.emulateMedia({ colorScheme: theme });
+  await page.goto('/library/ipa');
+  await page.getByRole('button', { name: '详细版', exact: true }).click();
+  const chart = page.locator('.ipa-vowel-scroll');
+  await expect(chart).toBeVisible();
+  await chart.evaluate(element => Promise.allSettled(element.getAnimations({ subtree: true }).filter(animation => animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished)));
+  for (const fontSize of ['100%', '200%']) {
+    await page.evaluate(value => document.documentElement.style.fontSize = value, fontSize);
+    const geometry = await chart.evaluate(element => {
+      const bounds = element.getBoundingClientRect();
+      const buttons = [...element.querySelectorAll('button')].map(button => ({ name: button.getAttribute('aria-label'), box: button.getBoundingClientRect() }));
+      return {
+        small: buttons.filter(({ box }) => box.width < 44 || box.height < 44).map(button => button.name),
+        clipped: buttons.filter(({ box }) => box.top < bounds.top + element.clientTop || box.bottom > bounds.top + element.clientTop + element.clientHeight).map(button => button.name),
+        overlaps: buttons.flatMap((a, index) => buttons.slice(index + 1).filter(b => Math.min(a.box.right, b.box.right) - Math.max(a.box.left, b.box.left) > .5 && Math.min(a.box.bottom, b.box.bottom) - Math.max(a.box.top, b.box.top) > .5).map(b => [a.name, b.name])),
+      };
+    });
+    expect.soft(geometry, `${fontSize} vowel control bounds`).toEqual({ small: [], clipped: [], overlaps: [] });
+    expect.soft(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  await page.evaluate(() => document.documentElement.style.fontSize = '100%');
+  await chart.locator('[data-ipa="ə"]').scrollIntoViewIfNeeded();
+  const centralLine = await chart.locator('.ipa-vowel-body').evaluate(element => {
+    const svg = element.querySelector('svg')!, bounds = svg.getBoundingClientRect();
+    // Sample the actual central path through the Mid row's empty slot.
+    return [50, 55].map(y => {
+      const x = 51 + (y - 8) * 20 / 84;
+      const stack = document.elementsFromPoint(bounds.left + bounds.width * x / 100, bounds.top + bounds.height * y / 100);
+      const lineIndex = stack.indexOf(svg);
+      return lineIndex >= 0 && stack.slice(0, lineIndex).every(layer => getComputedStyle(layer).backgroundColor === 'rgba(0, 0, 0, 0)');
+    });
+  });
+  expect.soft(centralLine).toEqual([true, true]);
+  const word = chart.getByRole('button', { name: 'Play word sit', exact: true });
+  await word.scrollIntoViewIfNeeded();
+  expect.soft(await word.evaluate(button => {
+    const box = button.getBoundingClientRect();
+    return button.contains(document.elementFromPoint(box.left + box.width / 2, box.bottom - 2));
+  })).toBe(true);
+  await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.loop = true; });
+  await page.keyboard.press('Tab');
+  await word.focus();
+  await expect(word).toBeFocused();
+  await expect(word).toHaveCSS('box-shadow', /inset/);
+  await word.press('Enter');
+  await expect(word).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.currentTime > 0 && !audio.paused)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath(`vowel-feedback-${width}-${theme}.png`) });
+  await word.press('Enter');
+  await expect(word).toHaveAttribute('aria-pressed', 'false');
+  expect(await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true);
+});
+
 for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const theme of ['light', 'dark'] as const) test(`English IPA axes, controls and local scrolling at ${locale}/${theme}`, async ({ page }) => {
   await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);

@@ -1,6 +1,6 @@
 # Current issues and limits
 
-Updated 2026-11-01. Current release and unpublished work are listed once in [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md). Completed task journals are not active issues. New entries should state evidence, impact, attempted approaches, next action and acceptance criteria; resolve security/data-loss defects before delivering affected functionality.
+Updated 2026-11-02. Current release and unpublished work are listed once in [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md). Completed task journals are not active issues. New entries should state evidence, impact, attempted approaches, next action and acceptance criteria; resolve security/data-loss defects before delivering affected functionality.
 
 ## Remaining observations
 
@@ -12,6 +12,10 @@ Updated 2026-11-01. Current release and unpublished work are listed once in [DEV
 | MOBILE-INTRO-FIRST-PAINT | The fern lifecycle failures are fixed and published in 0.1.153; the exact handset's intermittent initial paint was not reproduced. Focused evidence (local evidence: `docs/history/2026-11-01-mobile-intro-fern.md`). | Investigate any new device report without resetting the separate saved-activity Today fern or reopening a device acceptance matrix. |
 
 ## Retained safety boundaries
+
+- **IPA-VOWEL-FEEDBACK — published in 0.1.158 (2026-11-02):** Pair-wide opaque backgrounds hid the central line; 96px control groups overlapped rows spaced 91px apart, clipping green feedback and hit targets. Button-only backgrounds and horizontal/vertical spacing resolve the reported case. Three focused browser cases, build, compiled/production controls, full resource hashes and installed-update preservation passed. [Evidence, scope and screenshots](docs/history/2026-11-02-ipa-vowel-feedback.md). Next: retain the line-visibility, nonoverlap and bottom-edge regressions; investigate a new reproducible report.
+
+- **WWW-LOCAL-TRANSPORT — resolved (2026-11-01):** The two configured DNS upstreams retained a pre-creation `NXDOMAIN` for the new `www` record. They naturally refreshed to correct A records at 22:28:35 Asia/Shanghai. Ordinary HTTP/HTTPS paths/queries, the existing browser proxy, followed Today URLs and normal Chrome navigation now pass. The first transitional root failure is preserved with four subsequent passing root GET/HEAD checks. [Configuration, cause and acceptance](docs/history/2026-11-01-www-redirect.md#ordinary-access-accepted). No system DNS/proxy/security change or further website release was made; another visitor's still-cached negative result requires its own resolver refresh, not a broader release gate.
 
 - **FOLDOUT-FEEDBACK — published in 0.1.157 (2026-11-01):** A supplied recording and two failing regressions confirmed that animation clipping removed 12px from each summary edge and double-clicking selected its label. The shared transition now clips only vertically, and summary-only selection styling preserves ordinary body copying. Chromium/WebKit desktop/narrow and related controls pass. [Evidence and failed-test diagnosis](docs/history/2026-11-01-foldout-feedback.md). Next: retain edge-hit/selection regressions; compiled and production acceptance are recorded in the handoff.
 

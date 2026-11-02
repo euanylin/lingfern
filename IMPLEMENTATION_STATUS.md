@@ -1,6 +1,6 @@
 # Implementation status
 
-Current implementation summary, 2026-11-01. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) owns published identities and current release changes. [Issues.md](Issues.md) owns remaining limits; this file does not duplicate release journals.
+Current implementation summary, 2026-11-02. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) owns published identities and current release changes. [Issues.md](Issues.md) owns remaining limits; this file does not duplicate release journals.
 
 | Area | Current behavior and implementation |
 |---|---|
@@ -22,6 +22,10 @@ Released 0.1.156 history details now distinguish unsubmitted drafts from saved r
 The subsequent [maintenance review](docs/history/2026-11-01-maintenance-review.md) preserves those changes. Task exit waits for queued drafts and claims through the same release used by teardown; failed identity disconnection no longer suspends future refresh indefinitely. Sync polling reuses an existing equivalent predicate. These changes are published in 0.1.156 and preserve storage/wire compatibility.
 
 The released 0.1.157 [foldout feedback repair](docs/history/2026-11-01-foldout-feedback.md) preserves horizontally extended summary highlights during height animation and prevents accidental label selection while retaining body selection. Production controls and update preservation are recorded in the handoff.
+
+The zone redirects `www.lingfern.com` permanently to the HTTPS apex, preserving paths and queries. Ordinary HTTP/HTTPS, the existing browser proxy and normal Chrome navigation now pass after the two upstream DNS servers' old negative caches refreshed. The [WWW record](docs/history/2026-11-01-www-redirect.md#ordinary-access-accepted) retains initial failures, exact live checks and the confirmed DNS cause. No application release was made.
+
+The released 0.1.158 [IPA vowel-chart repair](docs/history/2026-11-02-ipa-vowel-feedback.md) keeps the central line and button feedback visible, with nonoverlapping controls at ordinary and enlarged text sizes. Focused browser/build, compiled/production controls, complete public-resource verification and installed-update preservation passed.
 
 ## Acceptance boundary
 
