@@ -11,9 +11,9 @@ export async function mountDeferredWorkspace(raw: unknown) {
   const initial = await claimSession(created.id, owner);
   function Parent() {
     const [session, setSession] = useState<Session>(initial);
-    const pending = useRef(Promise.resolve());
+    const pending = useRef(Promise.resolve()), confirmLeave = useRef(() => true);
     return <MaterialWorkspace session={session} owner={owner} locale="zh-Hans" profileId={session.profileId} online={true} onlineDictionary="cambridge" combinedSessions={[]}
-      onSession={next => { window.setTimeout(() => setSession(next), 150); }} pending={pending}/>;
+      onSession={next => { window.setTimeout(() => setSession(next), 150); }} pending={pending} confirmLeave={confirmLeave}/>;
   }
   createRoot(document.getElementById('root')!).render(<main><header className="session-header">Focus regression</header><Parent/></main>);
 }

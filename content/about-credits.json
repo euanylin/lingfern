@@ -61,7 +61,7 @@
     },
     {
       "name": "Model Context Protocol TypeScript SDK",
-      "license": "MIT",
+      "license": "Apache-2.0",
       "url": "https://github.com/modelcontextprotocol/typescript-sdk",
       "packages": [
         "@modelcontextprotocol/server"

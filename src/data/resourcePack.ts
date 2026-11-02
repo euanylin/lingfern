@@ -20,14 +20,16 @@ export async function inspectResourcePack(bytes: Uint8Array) {
     const data = files[file.path.slice(1)];
     if (!data || data.length !== file.bytes || [...new Uint8Array(await crypto.subtle.digest('SHA-256', new Uint8Array(data)))].map(byte => byte.toString(16).padStart(2, '0')).join('') !== file.sha256) throw new Error('PACKAGE_INTEGRITY');
   }
-  return { id: group.id, files };
+  return { id: group.id, version: group.version, files };
 }
 
 export type ResourcePack = Awaited<ReturnType<typeof inspectResourcePack>>;
 
 // Keep database mutations out of inspection-worker imports.
 export async function installResourcePack(pack: ResourcePack, profileId: string, signal?: AbortSignal) {
-  const group = offlineGroups.find(item => item.id === pack.id);
+  await loadRuntimeResources();
+  // The inspection worker can have a newer catalogue than the open page.
+  const group = offlineGroups.find(item => item.id === pack.id && item.version === pack.version);
   if (!group) throw new Error('PACKAGE_MANIFEST');
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
   await waitForOfflineWorker(signal);

@@ -29,6 +29,10 @@ The released 0.1.158 [IPA vowel-chart repair](docs/history/2026-11-02-ipa-vowel-
 
 ## Acceptance boundary
 
+The released 0.1.159 [About document browsing repair](docs/history/2026-11-02-about-documents.md) displays the original local licence/notice text instead of downloading it, including after an installed client's cache update. Browser clicks, installed-client update/offline data preservation and production acceptance passed.
+
+The released 0.1.159 [full local audit](docs/history/2026-11-02-full-local-audit.md) adds native Back/Forward protection for unsaved notes, rejects ZIP/catalogue version mismatches before installation, and keeps unnamed MCP clients manageable. It also applies compatible dependency security fixes, bounds MCP input validation and removes verified redundancy. Its broad tests, focused failure rechecks and remaining development-tool advisories are recorded separately from production acceptance. These changes are published, preserve existing data formats, and have separate production/source-sync receipts in the current handoff.
+
 The first public launch decision (local evidence: `docs/history/2026-10-26-first-public-launch.md`) links the accepted real two-device sync, provider/recovery, MCP expiry/revocation and maintainer device/network evidence. Reuse those results only within their recorded scope; local fixtures are not fresh provider or physical-device acceptance.
 
 The 2026-11-01 full local audit (local evidence: `docs/history/2026-11-01-full-local-audit.md`) covers the released application's broad regression scope, including failed attempts and corrected test assumptions. The 0.1.153 fern, title and CSS changes have their own focused results and production checks in the handoff. The repository cleanup does not rerun or expand these historical claims.

@@ -88,7 +88,8 @@ test('a continuing module failure keeps its error until another explicit retry a
   const context = await browser.newContext({ locale: 'zh-CN', serviceWorkers: 'block' }), page = await context.newPage();
   const url = origin + '/library/dictionary?from=synthetic-module-retry#preserved';
   let blocked = true, navigations = 0, recoveryRequests = 0;
-  page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations++; });
+  // Same-document history initialization is not a page reload.
+  page.on('request', request => { if (request.isNavigationRequest() && request.frame() === page.mainFrame()) navigations++; });
   await page.route('**/assets/Dictionary-*.js', route => {
     if (route.request().resourceType() === 'fetch') recoveryRequests++;
     return blocked ? route.fulfill({ status: 503, contentType: 'text/javascript', headers: { 'Cache-Control': 'no-store' }, body: '/* Synthetic temporary failure. */' }) : route.continue();

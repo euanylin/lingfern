@@ -1,3 +1,4 @@
+import { pushPageHistory } from './pageHistory';
 import { messages, languageOptions } from '../locales';
 import { topicSchema } from '../shared/content';
 import { useEffect, useRef, useState } from 'react';
@@ -41,7 +42,7 @@ export function FirstRun({ profileId, initial, locale, onLocale, onSaved }: { pr
       // Keep the save, but do not undo navigation after this flow has closed.
       if (!live.current) return;
       setValue(next); onSaved(next);
-      if (step > lastStep) { history.pushState(null, '', '/today'); dispatchEvent(new PopStateEvent('popstate')); }
+      if (step > lastStep) { pushPageHistory(null, '/today'); dispatchEvent(new PopStateEvent('popstate')); }
     } catch { if (live.current) setFailed(true); } finally { if (live.current) setBusy(false); }
   }
   return <section className="first-run">

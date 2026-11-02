@@ -18,12 +18,12 @@ function acquireSessionLock(id: string): Promise<(() => void) | undefined> {
   });
 }
 
-export type LearningHandle = { release: () => Promise<void> };
+export type LearningHandle = { release: () => Promise<void>; confirmLeave: () => boolean };
 
 export default function Learning({ ref, owner, id, profileId, locale, online, onlineDictionary, combinedSessions }: { ref?: Ref<LearningHandle>; owner: string; id: string; profileId: string; locale: Locale; online: boolean; onlineDictionary: OnlineDictionaryId; combinedSessions: Session[] }) {
   const t = copy[locale], [session, setSession] = useState<Session>(), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const mounted = useRef(true), loading = useRef(false), lockRelease = useRef<(() => void) | undefined>(undefined), claimPending = useRef<Promise<Session> | undefined>(undefined);
-  const pending = useRef(Promise.resolve());
+  const pending = useRef(Promise.resolve()), confirmLeave = useRef(() => true);
   const releasing = useRef<Promise<void> | undefined>(undefined);
   function release() {
     mounted.current = false;
@@ -33,7 +33,7 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
       return releaseSession(id, owner);
     });
   }
-  useImperativeHandle(ref, () => ({ release }));
+  useImperativeHandle(ref, () => ({ release, confirmLeave: () => confirmLeave.current() }));
   async function load() {
     if (loading.current) return;
     loading.current = true;
@@ -86,5 +86,5 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
     <dl><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{session.lesson.skill === 'listening' ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl>
     <button className="primary" disabled={busy} onClick={async () => { setBusy(true); try { setSession(await beginCheck(id, owner)); } catch (cause) { setError(cause instanceof Error ? cause.message : 'READ'); } finally { setBusy(false); } }}>{t.checkBegin}</button>
   </section>;
-  return <MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions} pending={pending}/>;
+  return <MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions} pending={pending} confirmLeave={confirmLeave}/>;
 }

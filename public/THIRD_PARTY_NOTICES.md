@@ -10,21 +10,21 @@ Source: https://github.com/cloudflare/workers-oauth-provider
 
 - [LICENSE.txt](licenses/@cloudflare__workers-oauth-provider@1.2.1/LICENSE.txt)
 
-## @modelcontextprotocol/core 2.2.0
+## @modelcontextprotocol/core 2.3.0
 
-Scope: runtime. License: MIT.
-
-Source: git+https://github.com/modelcontextprotocol/typescript-sdk.git
-
-- [LICENSE](licenses/@modelcontextprotocol__core@2.2.0/LICENSE)
-
-## @modelcontextprotocol/server 2.2.0
-
-Scope: runtime. License: MIT.
+Scope: runtime. License: Apache-2.0.
 
 Source: git+https://github.com/modelcontextprotocol/typescript-sdk.git
 
-- [LICENSE](licenses/@modelcontextprotocol__server@2.2.0/LICENSE)
+- [LICENSE](licenses/@modelcontextprotocol__core@2.3.0/LICENSE)
+
+## @modelcontextprotocol/server 2.3.0
+
+Scope: runtime. License: Apache-2.0.
+
+Source: git+https://github.com/modelcontextprotocol/typescript-sdk.git
+
+- [LICENSE](licenses/@modelcontextprotocol__server@2.3.0/LICENSE)
 
 ## @octokit/endpoint 11.0.5
 
@@ -259,13 +259,13 @@ Source: git+https://github.com/googlechrome/workbox.git
 
 - [LICENSE](licenses/workbox-window@7.4.1/LICENSE)
 
-## zod 4.6.5
+## zod 4.6.6
 
 Scope: runtime. License: MIT.
 
 Source: git+https://github.com/colinhacks/zod.git
 
-- [LICENSE](licenses/zod@4.6.5/LICENSE)
+- [LICENSE](licenses/zod@4.6.6/LICENSE)
 
 ## Octicons contact icons
 

@@ -42,3 +42,18 @@
 
 /resources/catalogue.json
   Cache-Control: no-cache
+
+/licenses/*
+  Content-Type: text/plain; charset=utf-8
+
+/THIRD_PARTY_NOTICES.md
+  Content-Type: text/plain; charset=utf-8
+
+/dictionary/oewn-2025/README.md
+  Content-Type: text/plain; charset=utf-8
+
+/dictionary/oewn-2025/LICENSE.md
+  Content-Type: text/plain; charset=utf-8
+
+/daily-quotes/README.md
+  Content-Type: text/plain; charset=utf-8

@@ -1,3 +1,4 @@
+import { pushPageHistory, replacePageHistory } from './pageHistory';
 import { showModal } from './modal';
 import { useEffect, useRef, useState } from 'react';
 import { cardInteraction } from './cardInteraction';
@@ -25,9 +26,9 @@ export function useTaskDialog(id: string, onClose: () => void, historyKey = 'pra
   }
   useEffect(() => {
     const previous = window.history.state;
-    window.history.pushState({ ...previous, [historyKey]: id }, '', location.href);
+    pushPageHistory({ ...previous, [historyKey]: id }, location.href);
     window.addEventListener('popstate', dismiss);
-    return () => { window.removeEventListener('popstate', dismiss); if (window.history.state?.[historyKey] === id) window.history.replaceState(previous, '', location.href); };
+    return () => { window.removeEventListener('popstate', dismiss); if (window.history.state?.[historyKey] === id) replacePageHistory(previous, location.href); };
   }, [id, historyKey]);
   useEffect(() => {
     // Inherit the opening gesture before a stationary mouse re-hits the panel.

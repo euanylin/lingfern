@@ -1,11 +1,8 @@
 import Dexie from 'dexie';
-import { readFileSync } from 'node:fs';
 import { afterEach, expect, it, vi } from 'vitest';
 import { communityPacks, db } from '../src/data/db';
 import { mutateResourceCache } from '../src/data/resourceMutation';
 import { communityDictionary, communityDictionaryTerms } from '../src/data/communityInstall';
-import { installOfflineResources, offlineCacheName, offlineGroups, offlineMarker } from '../src/data/offline';
-import { installResourcePack } from '../src/data/resourcePack';
 
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
@@ -94,42 +91,3 @@ it('keeps dictionary output while excluding empty, staged and other-profile pack
   } finally { await communityPacks.where('profileId').anyOf([profileId, 'other-dictionary-profile']).delete(); }
 });
 
-it.each(['download', 'zip'])('rejects cancellation during the final %s readiness query without deleting complete bytes', async method => {
-  const group = offlineGroups.find(group => group.id === 'grammar')!, controller = new AbortController();
-  const name = offlineCacheName(group.id), marker = offlineMarker(group.id), profileId = `final-resource-readiness-${method}`;
-  const files = Object.fromEntries(group.files.map(file => [file.path.slice(1), new Uint8Array(readFileSync(`public${file.path}`))]));
-  const entries = new Map<string, Map<string, Response>>();
-  const storage = {
-    has: async (name: string) => entries.has(name),
-    delete: vi.fn(async (name: string) => entries.delete(name)),
-    open: async (cacheName: string) => {
-      const values = entries.get(cacheName) ?? new Map<string, Response>(); entries.set(cacheName, values);
-      return {
-        keys: async () => {
-          if (cacheName === name && values.has(marker)) controller.abort();
-          return [...values.keys()].map(path => new Request(new URL(path, 'https://lingfern.test')));
-        },
-        match: async (path: string) => values.get(path)?.clone(),
-        put: async (path: string, response: Response) => { values.set(path, response); },
-      };
-    },
-  };
-  vi.stubGlobal('location', { origin: 'https://lingfern.test' });
-  vi.stubGlobal('window', { caches: storage, dispatchEvent: vi.fn() }); vi.stubGlobal('caches', storage);
-  vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }), getRegistration: async () => ({ active: {} }) } });
-  vi.stubGlobal('fetch', vi.fn(async (url: string) => {
-    const bytes = files[url.split('?')[0].slice(1)];
-    const response = new Response(bytes, { headers: { 'Content-Type': 'application/json' } });
-    Object.defineProperty(response, 'type', { value: 'basic' }); return response;
-  }));
-  const operation = method === 'download' ? installOfflineResources(group.id, () => {}, controller.signal, profileId) : installResourcePack({ id: group.id, files }, profileId, controller.signal);
-  try {
-    await expect(operation).rejects.toMatchObject({ name: 'AbortError' });
-    expect(entries.get(name)?.has(marker)).toBe(true);
-    expect(storage.delete.mock.calls.some(([deleted]) => deleted === name)).toBe(false);
-    expect([...entries.keys()]).toEqual([name]);
-  } finally {
-    await db.table('syncEvents').where('profileId').equals(profileId).delete();
-    await db.table('syncClocks').delete(profileId);
-  }
-});

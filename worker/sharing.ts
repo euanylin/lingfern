@@ -77,7 +77,7 @@ export async function sharingRoute(request: Request, env: SharingEnv): Promise<R
     await sharingLimit(db, session.id);
     const time = now();
     if (connections) {
-      const values = await db.prepare('SELECT id,name,created_at AS createdAt,expires_at AS expiresAt,contexts_read AS contextsRead,materials_read AS materialsRead FROM mcp_connections WHERE account_id=? AND revoked=0 AND expires_at>? LIMIT 100').bind(session.id, time).all();
+      const values = await db.prepare("SELECT id,CASE WHEN trim(name)='' THEN substr(client_id,1,120) ELSE name END AS name,created_at AS createdAt,expires_at AS expiresAt,contexts_read AS contextsRead,materials_read AS materialsRead FROM mcp_connections WHERE account_id=? AND revoked=0 AND expires_at>? LIMIT 100").bind(session.id, time).all();
       return privateJson({ connections: values.results });
     }
     if (deleting) {

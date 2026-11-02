@@ -7,6 +7,7 @@ import { webhookRoute } from '../worker/webhook';
 import { mcpFetch } from '../worker/mcp';
 import { cleanupShares, listSharedContexts, readSharedContext, sharingRoute, type SharingEnv } from '../worker/sharing';
 import { oauthRoute, type OAuthEnv } from '../worker/oauth';
+import { sharingConnectionsSchema } from '../src/shared/sharing';
 
 // Isolate the consent handler; real Provider/KV/PKCE behaviour has workerd coverage.
 vi.mock('@cloudflare/workers-oauth-provider', () => ({
@@ -110,6 +111,13 @@ test('official stateless SDK serves initialization and six read-only tools with 
   const tools = (await call('tools/list')).body.result.tools;
   expect(tools.map((tool: { name: string }) => tool.name).sort()).toEqual(['fetch', 'get_practice_template', 'list_shared_contexts', 'read_shared_context', 'search', 'search_materials']);
   expect(tools.every((tool: { annotations: { readOnlyHint: boolean } }) => tool.annotations.readOnlyHint)).toBe(true);
+  const limitBefore = f.sqlite.prepare('SELECT sum(count) AS total FROM auth_limits').get()!.total;
+  for (const query of [Array(33).fill(0), { nested: Array(31).fill(0) }]) {
+    const rejected = (await call('tools/call', { name: 'search', arguments: { query } })).body.result;
+    expect(rejected.isError).toBe(true);
+    expect(rejected.content[0].text).toContain('maximum of 32 elements');
+  }
+  expect(f.sqlite.prepare('SELECT sum(count) AS total FROM auth_limits').get()!.total).toBe(limitBefore);
   const found = (await call('tools/call', { name: 'search', arguments: { query: 'synthetic context' } })).body.result;
   expect(found.structuredContent.results).toEqual([{ id: summary.id, title: f.value.title, url: 'http://127.0.0.1:8787/settings#mcp' }]);
   expect(JSON.parse(found.content[0].text)).toEqual(found.structuredContent);
@@ -241,6 +249,28 @@ test.each(['session', 'absolute-session', 'live', 'offline'])('MCP consent uses 
     expect(completeAuthorization).toHaveBeenCalledTimes(1);
     expect(f.sqlite.prepare('SELECT created_at,expires_at FROM mcp_connections WHERE id!=?').get(f.value.connectionId)).toEqual(expect.objectContaining({ created_at: databaseTime, expires_at: databaseTime + (mode === 'offline' ? 30 * 86400 : 3600) }));
   }
+});
+
+test.each(['', '   ', '\t\n', undefined])('blank client name %j cannot hide existing approvals or block sharing management', async clientName => {
+  const f = await fixture();
+  f.sqlite.prepare('UPDATE mcp_connections SET name=?').run('');
+  const helpers = {
+    approveConsent: async () => ({ request: { clientId: 'new-client' }, headers: new Headers() }),
+    lookupClient: async () => ({ clientName, clientId: 'new-client' }),
+    completeAuthorization: async () => ({ redirectTo: 'https://client.example/callback' }),
+  };
+  const env = { ...f.env, OAUTH_KV: {} as KVNamespace, OAUTH_PROVIDER: helpers as unknown as OAuthEnv['OAUTH_PROVIDER'] };
+  const headers = new Headers(f.request('/oauth/authorize').headers);
+  headers.set('Content-Type', 'application/x-www-form-urlencoded');
+  const body = new URLSearchParams({ handle: 'synthetic-consent', csrf: 'c'.repeat(43), decision: 'approve', scope: 'contexts:read' });
+  const approved = await oauthRoute(new Request('http://127.0.0.1:8787/oauth/authorize', { method: 'POST', headers, body }), env, {} as ExecutionContext);
+  expect(approved!.status).toBe(302);
+  expect(f.sqlite.prepare('SELECT name FROM mcp_connections WHERE client_id=?').get('new-client')!.name).toBe('new-client');
+  const response = await sharingRoute(f.request('/api/ai/connections'), f.env);
+  expect(response!.status).toBe(200);
+  const { connections } = sharingConnectionsSchema.parse(await response!.json());
+  expect(connections.map(value => value.name).sort()).toEqual(['new-client', 'synthetic-client']);
+  expect(connections.find(value => value.id === f.value.connectionId)).toMatchObject({ contextsRead: 1, materialsRead: 0 });
 });
 
 test('revocation and authenticated deletion block subsequent reads and physically remove shared text', async () => {

@@ -1,15 +1,17 @@
 import { readFile } from 'node:fs/promises';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { unzipSync, zipSync } from 'fflate';
 import { offlineGroups } from '../src/data/offline';
-import { inspectResourcePack } from '../src/data/resourcePack';
+import { inspectResourcePack, installResourcePack } from '../src/data/resourcePack';
 import { unpackZip } from '../src/data/zip';
+import { loadRuntimeResources, runtimeResources } from '../src/data/runtimeResources';
 
 it('accepts every current official resource ZIP only after verifying its catalogue hashes', async () => {
   for (const group of offlineGroups) {
     const bytes = await readFile(`public/packs/${group.id}-${group.version}.zip`);
     const pack = await inspectResourcePack(bytes);
     expect(pack.id).toBe(group.id);
+    expect(pack.version).toBe(group.version);
     expect(Object.keys(pack.files)).toHaveLength(group.files.length + 1);
   }
 });
@@ -34,6 +36,26 @@ it('rejects changed bytes, foreign manifests, traversal, scripts and symlinks', 
   const central = link.findIndex((_, i) => i + 46 < link.length && view.getUint32(i, true) === 0x02014b50);
   view.setUint32(central + 38, 0xa0000000, true);
   expect(() => unpackZip(link, options)).toThrow('PACKAGE_ZIP');
+});
+
+it.each(['already changed', 'refreshing'])('rejects a ZIP when the catalogue is %s before writing cache or installation intent', async phase => {
+  const group = offlineGroups.find(item => item.id === 'grammar')!;
+  const pack = await inspectResourcePack(await readFile(`public/packs/${group.id}-${group.version}.zip`));
+  const originalVersion = group.version;
+  const { syncEvents } = await import('../src/data/db');
+  const before = await syncEvents.count();
+  const cache = { has: vi.fn(async () => false), open: vi.fn(async () => { throw new Error('CACHE_MUTATION_REACHED'); }) };
+  vi.stubGlobal('window', { caches: cache }); vi.stubGlobal('caches', cache);
+  vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }), getRegistration: async () => ({ active: {} }) } });
+  if (phase === 'already changed') group.version = '0000000000000000';
+  else vi.mocked(loadRuntimeResources).mockImplementationOnce(async () => {
+    group.version = '0000000000000000'; return runtimeResources;
+  });
+  try {
+    await expect(installResourcePack(pack, 'local-guest')).rejects.toThrow('PACKAGE_MANIFEST');
+    expect(cache.open).not.toHaveBeenCalled();
+    expect(await syncEvents.count()).toBe(before);
+  } finally { group.version = originalVersion; vi.unstubAllGlobals(); }
 });
 
 it('keeps every reading shard exactly once in independently bounded ZIP groups', async () => {

@@ -1,3 +1,4 @@
+import { acceptPageHistory, initializePageHistory, pushPageHistory, replacePageHistory } from './pageHistory';
 import { closeModal, showModal } from './modal';
 import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type ComponentType, type ComponentProps } from 'react';
 import { createPortal } from 'react-dom';
@@ -226,8 +227,8 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       setPreferences(storedPreferences ? preferencesSchema.parse(storedPreferences) : undefined);
       const showFirstRun = firstEntry && !storedPreferences?.completed && !all.length;
       firstEntry = false;
-      if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; window.history.replaceState(null, '', next); if (next === '/introduction') prepareDailyQuote(); setPath(next); }
-      else if (location.pathname === '/') { window.history.replaceState(null, '', '/today'); setPath('/today'); }
+      if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; replacePageHistory(null, next); if (next === '/introduction') prepareDailyQuote(); setPath(next); }
+      else if (location.pathname === '/') { replacePageHistory(null, '/today'); setPath('/today'); }
       setLocale(nextLocale);
       const appearance = savedValues.get('theme');
       setTheme(appearance && ['system','light','dark'].includes(appearance) ? appearance : 'system');
@@ -246,7 +247,14 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
     return ready && githubSession.status === 'ready' && summary?.account ? startSyncSchedule(activeProfile, () => syncLoad.current(true), summary) : undefined;
   }, [activeProfile, ready, githubSession.status, githubSession.summary]);
   useEffect(() => {
-    const navigate = (event?: PopStateEvent) => { practiceRequest.current++; const next = route(); resetNavigationScroll.current = !event; if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false); startTransition(() => { setPath(next); setPageSearch(location.search); }); };
+    initializePageHistory();
+    const navigate = (event?: PopStateEvent) => {
+      if (event && !acceptPageHistory(() => route() === currentPath.current || (learning.current?.confirmLeave() ?? true))) return;
+      practiceRequest.current++;
+      const next = route(); resetNavigationScroll.current = !event;
+      if (next !== currentPath.current && currentPath.current.startsWith('/learn/')) setReady(false);
+      startTransition(() => { setPath(next); setPageSearch(location.search); });
+    };
     const click = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || !(event.target instanceof Element)) return;
       const anchor = event.target.closest<HTMLAnchorElement>('a[href^="/"]');
@@ -255,7 +263,8 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       if (url.origin !== location.origin || !pageRoute(url.pathname) || url.hash) return;
       event.preventDefault();
       if (url.pathname === location.pathname && url.search === location.search) return;
-      window.history.pushState(null, '', url.pathname + url.search);
+      if (learning.current && !learning.current.confirmLeave()) return;
+      pushPageHistory(null, url.pathname + url.search);
       navigate();
     };
     const network = () => setOnline(navigator.onLine);
@@ -332,7 +341,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       const session = prior ?? await createSession(prepared, activeProfile);
       // Keep the saved session available without undoing a later dismissal/navigation.
       if (request !== practiceRequest.current || activeProfile !== currentProfile.current) { await syncLoad.current(); return; }
-      if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${session.id}`); else window.history.pushState(null, '', `/learn/${session.id}`);
+      if (window.history.state?.practicePreview) replacePageHistory(null, `/learn/${session.id}`); else pushPageHistory(null, `/learn/${session.id}`);
       setCombinedDetail(undefined); setPath(route()); scrollTo(0, 0);
     }
     catch { if (request === practiceRequest.current && activeProfile === currentProfile.current) setError('save'); } finally { setStarting(false); }
@@ -351,7 +360,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
     setCombinedPreparing(true); setCombinedError('');
     try {
       if (combinedPracticeSession?.lesson.mode === 'test' && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
-        window.history.pushState(null, '', `/learn/${combinedPracticeSession.id}`); setPath(route()); scrollTo(0, 0);
+        pushPageHistory(null, `/learn/${combinedPracticeSession.id}`); setPath(route()); scrollTo(0, 0);
       } else if (combinedPracticeSession && !combinedTopicsChanged && combinedPeers.every(session => practiceSelectionMatches(session.lesson, practiceSelections[session.lesson.skill]))) {
         setCombinedDetail([combinedPeers.find(item => item.lesson.skill === 'reading')!.lesson, combinedPeers.find(item => item.lesson.skill === 'listening')!.lesson]);
       } else {
@@ -375,7 +384,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       const resume = combinedPracticeSession && combinedPracticeSession.lesson.mode === pair[0].mode && combinedPeers.every(item => pair.some(lesson => JSON.stringify(lesson) === JSON.stringify(item.lesson)));
       const destination = resume ? combinedPracticeSession! : (await createCombinedPractice(pair[0], pair[1], activeProfile))[0];
       if (request !== practiceRequest.current || activeProfile !== currentProfile.current) { await syncLoad.current(); return; }
-      if (window.history.state?.practicePreview) window.history.replaceState(null, '', `/learn/${destination.id}`); else window.history.pushState(null, '', `/learn/${destination.id}`);
+      if (window.history.state?.practicePreview) replacePageHistory(null, `/learn/${destination.id}`); else pushPageHistory(null, `/learn/${destination.id}`);
       setCombinedDetail(undefined); setCombinedTopicsChanged(false); setPath(route()); scrollTo(0, 0);
     } catch { if (request === practiceRequest.current && activeProfile === currentProfile.current) setError('save'); } finally { setStarting(false); }
   }
@@ -485,18 +494,18 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
         </section>
       </section>;
   async function leaveTask() {
-    if (leaving.current) return;
+    if (leaving.current || learning.current && !learning.current.confirmLeave()) return;
     leaving.current = true;
     const released = learning.current?.release() ?? Promise.resolve();
     setReady(false);
     try {
       await released;
       if (currentPath.current !== path || currentProfile.current !== activeProfile) return;
-      window.history.pushState(null, '', '/today'); setPath(route()); scrollTo(0, 0);
+      pushPageHistory(null, '/today'); setPath(route()); scrollTo(0, 0);
     } catch { setError('save'); }
     finally { leaving.current = false; }
   }
-  function beginFirstRun() { try { localStorage.setItem('lingfern.onboarding.seen', '1'); } catch { /* Continue when persistent storage is unavailable. */ } window.history.pushState(null, '', '/start'); setPath('/start'); scrollTo(0, 0); }
+  function beginFirstRun() { try { localStorage.setItem('lingfern.onboarding.seen', '1'); } catch { /* Continue when persistent storage is unavailable. */ } pushPageHistory(null, '/start'); setPath('/start'); scrollTo(0, 0); }
   return <>
     <a className="skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t.skip}</a>
     {!introducing && !entryPending && <header className={sessionId ? 'session-header' : ''}>

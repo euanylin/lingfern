@@ -2,23 +2,21 @@
 
 Updated 2026-11-02. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.158
+## Current release: 0.1.159
 
-Cloudflare accepted Worker version `798f3cb0-d966-42b5-88c0-06681e110990`, deployment `8a4c8cb6-c857-4bea-a813-562bb9cfc5c3`, at 100% traffic. The matching source destination is [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts, avoiding a self-referential commit ID here.
+Cloudflare accepted Worker version `b17c103a-ad78-474e-9b6e-9493d427a504`, deployment `e52656fd-57a0-4e7f-9b17-dbba5ce3cdd3`, at 100% traffic. The matching source destination is [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact source commit/tree and protection-restoration results are recorded in this release's local receipts.
 
-Local release evidence: `private/verification/release-0.1.158-ipa-20261102/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when completed. Checks and Deploy remain disabled, with no GitHub CI result claimed.
+Release evidence: `private/verification/release-0.1.159-audit-20261102/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. The maintainer permitted CI for this release; the completed local audit and fresh release checks were sufficient, so Checks and Deploy remain disabled and no GitHub CI result is claimed. [Release record](docs/history/2026-11-02-release-0.1.159.md).
 
-The detailed IPA vowel chart now keeps its central line visible and its green playback/focus feedback complete. Pair-wide backgrounds previously masked the diagram and adjacent 96px control groups overlapped rows spaced 91px apart. Backgrounds now cover actual buttons, a gap preserves the line between paired sounds, and the chart height leaves room for controls and enlarged text. [Recording, cause, changed files and verification](docs/history/2026-11-02-ipa-vowel-feedback.md).
-
-Only the scoped IPA CSS/test repair, version metadata and status documents differ from the accepted 0.1.157 source. SVG paths, vowel coordinates, audio/history behavior, dependencies, storage/wire formats, Worker configuration, bindings, secrets and domain remain unchanged. No pending application change remains from this scope.
+About's nine local copyright/licence links display their unchanged text directly, including after an older client's cached response types are refreshed. The [full audit](docs/history/2026-11-02-full-local-audit.md) also repairs browser-history loss of unsaved notes, ZIP/catalogue version disagreement and empty MCP labels that broke connection management. Compatible security updates, bounded MCP input validation, accurate notices and conservative redundancy cleanup are included. The published IPA 0.1.158 line/feedback fix remains intact.
 
 ## Verification boundary
 
-The local repair passed three focused Chromium browser cases: desktop/dark and narrow/light central-line, full-feedback, playback/stop, keyboard, 44px targets and 100%/200% text; the retained chart case also covers horizontal chart scrolling and native page scrolling across narrow, landscape, short and desktop sizes. Changed-test ESLint passed. The fresh 0.1.158 production build passed TypeScript, 33 content cases and the existing resource/notices guards; deployment dry run passed.
+The exact audited source was checked before the version-only update. The final build passed TypeScript, 33 content cases and resource/notices guards; deployment dry run passed. The prior full local audit includes unit/source evidence, broad browser coverage with documented failures and focused rechecks, 42 passing offline cases, synthetic sync/MCP security and failed/successful update recovery. No broad suite was needlessly repeated for version metadata.
 
-Compiled local and production controls each passed in isolated Chromium 1440/dark and 375/light contexts, including keyboard/touch playback and both lower feedback edges. Candidate and ordinary production verification each checked 1001 asset sizes/hashes, 13 page bodies/routes and five missing paths, with the actual Worker version checked. An installed 0.1.157 client updated to 0.1.158 while preserving its exact synthetic profile/theme, lesson, answer and draft, then opened Today offline. No real learner data or provider writes were used.
+Candidate and ordinary production verification each checked 1001 asset sizes/hashes, 13 page bodies/routes and 5 missing paths with the actual Worker version. Compiled/production About links and navigation controls passed; anonymous production MCP/discovery checks passed. An installed 0.1.158 client updated to 0.1.159 while preserving exact synthetic profile, lesson, answer and draft data, refreshed old licence response types, then reopened offline. No real learner records or provider writes were used.
 
-Unchanged broad maintenance, content, offline, provider/security, recovery and 0.1.157 release evidence remains historical in `private/verification/release-0.1.157-foldouts-retry-20261101/` and its linked records. Those full suites, other engines, physical devices and real providers were not repeated for this CSS release. Existing bundle-size warnings retain their scope.
+Worker configuration, account, domain, bindings, secrets, migrations and learning-data/sync/backup formats remain unchanged. Three underlying development-tool dependency advisories remain in [Issues.md](Issues.md), with no high/critical or runtime npm findings. Existing bundle warnings and unexplained initial audit test failures retain their documented limits. No fresh physical-device, real-provider or mainland-network matrix is claimed. The local 8787 preview remains available; no pending application changes remain from this scope.
 
 ## Cloudflare zone settings — 2026-11-01
 

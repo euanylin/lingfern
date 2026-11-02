@@ -41,7 +41,7 @@ it('separates unavailable versions and atomically rejects profile changes and fa
   try {
     await expect(installOfflineResources('grammar', () => {}, new AbortController().signal, 'local-guest')).rejects.toThrow('INSTALLATION_INTENT_FAILED');
     await expect(removeOfflineResources('grammar', 'local-guest')).rejects.toThrow('INSTALLATION_INTENT_FAILED');
-    await expect(installResourcePack({ id: 'grammar', files: {} }, 'local-guest')).rejects.toThrow('INSTALLATION_INTENT_FAILED');
+    await expect(installResourcePack({ id: 'grammar', version: resources.groups.find(group => group.id === 'grammar')!.version, files: {} }, 'local-guest')).rejects.toThrow('INSTALLATION_INTENT_FAILED');
     expect(cache.open).not.toHaveBeenCalled(); expect(cache.delete).not.toHaveBeenCalled();
   } finally { vi.unstubAllGlobals(); }
   await settings.delete('activeProfile');

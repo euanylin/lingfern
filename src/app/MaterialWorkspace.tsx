@@ -19,7 +19,7 @@ import { AiHandoff } from './AiHandoff';
 import { installSourcePack, listeningSourcePack } from '../data/sourcePacks';
 import type { OnlineDictionaryId } from './onlineDictionaries';
 
-export default function MaterialWorkspace({ session, owner, locale, profileId, online, onlineDictionary, onSession, combinedSessions, pending }: { session: Session; owner: string; locale: Locale; profileId: string; online: boolean; onlineDictionary: OnlineDictionaryId; onSession: (session: Session) => void; combinedSessions: Session[]; pending: RefObject<Promise<void>> }) {
+export default function MaterialWorkspace({ session, owner, locale, profileId, online, onlineDictionary, onSession, combinedSessions, pending, confirmLeave }: { session: Session; owner: string; locale: Locale; profileId: string; online: boolean; onlineDictionary: OnlineDictionaryId; onSession: (session: Session) => void; combinedSessions: Session[]; pending: RefObject<Promise<void>>; confirmLeave: RefObject<() => boolean> }) {
   const t = copy[locale], w = messages('workspace')[locale], lesson = session.lesson, all = questions(lesson), instructionLocale = practiceLocale(lesson, locale);
   const material = all[session.position].material, listening = lesson.skill === 'listening', finished = session.status !== 'active';
   const [answers, setAnswers] = useState<Record<string, Answer>>({ ...(session.draft !== undefined ? { [all[session.position].question.id]: session.draft } : {}), ...session.workspace?.drafts });
@@ -105,11 +105,11 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     }).catch(() => { if (current) setError(t.readError); });
     return () => { current = false; };
   }, [finished, session.id, t.readError]);
+  confirmLeave.current = () => !(unsaved.current.size || annotationDirty.current) || confirm(unsaved.current.size ? t.saveError : readingAnnotationCopy[locale].leave);
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (unsaved.current.size || annotationDirty.current) { event.preventDefault(); event.returnValue = ''; } };
-    const guard = (event: MouseEvent) => { if ((unsaved.current.size || annotationDirty.current) && (event.target as HTMLElement).closest('a[href^="/"]') && !confirm(t.saveError)) { event.preventDefault(); event.stopPropagation(); } };
-    addEventListener('beforeunload', warn); document.addEventListener('click', guard, true);
-    return () => { removeEventListener('beforeunload', warn); document.removeEventListener('click', guard, true); };
+    addEventListener('beforeunload', warn);
+    return () => { removeEventListener('beforeunload', warn); };
   }, [t.saveError]);
   useEffect(() => {
     const materialChanged = previousMaterial.current !== playbackMaterial.id; previousMaterial.current = playbackMaterial.id;
