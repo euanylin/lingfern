@@ -171,7 +171,7 @@ npm run preview
 
 開啟[本機預覽](http://127.0.0.1:8787/today)。本機學習無需 GitHub／Cloudflare 憑證。
 
-- [使用指南（英文）](user-guide.md)
+- [使用指南（英文）](../README.md#readme-contents)
 - [開發與檢查（英文）](development.md)
 - [社群 ZIP 格式](../community-content.md)
 - [MCP 用戶端（英文）](mcp-clients.md)

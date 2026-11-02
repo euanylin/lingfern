@@ -524,7 +524,7 @@ details[open]:not(.installed-resources)>summary::after{transform:rotateX(180deg)
 :root{--focus-ring-width:0px}
 :is(button,a.button)[data-touch-active]:not(:disabled):not(.primary){background:var(--button-hover)}
 .primary[data-touch-active]:not(:disabled){background:var(--primary-hover)}
-:where(a[href]:not(.button),summary,label.option,label.package-row)[data-touch-active]{background:var(--interactive-hover)}
+:where(a[href]:not(.button),summary,label.option,label.package-row)[data-touch-active],.offline-install :is(.package-row,.offline-group-check)[data-touch-active]:not(:has(input:disabled)),.learning-grid .question-panel .option[data-touch-active]:not([data-result]):not(:has(input:checked,input:disabled)){background:var(--interactive-hover)}
 :root[data-touch-input] header>a:is(.home-mark,.mobile-brand){background:transparent;transform:none}
 .library-reference-tile[data-touch-active]::before,.library-reference-tile[data-touch-active]+.library-reference-tile::before{opacity:0}
 .backup-file-label[data-touch-active]:not(:has(input:disabled)) .backup-file-button{background:var(--button-hover)}
@@ -543,7 +543,8 @@ a[href]:focus-visible,summary:focus-visible{text-decoration:underline;text-decor
 .setting .setting-trigger:focus-visible:where(:root:not([data-pointer-input]) *){background:var(--button-hover)}
 .setting-trigger:focus-visible:where(:root:not([data-pointer-input]) *)>span:first-child{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .backup-file-label:has(input:focus-visible) .backup-file-button{background:var(--button-hover)}
-:is(.option,.package-row):has(input:focus-visible){background:var(--selection)}
+:is(.option,.package-row):has(input:focus-visible),.offline-install :is(.package-row,.offline-group-check):has(input:focus-visible),.learning-grid .question-panel .option:not([data-result]):not(:has(input:disabled)):has(input:focus-visible){background:var(--selection)}
+.offline-group-check{border-radius:var(--corner-radius)}
 .offline-search:focus-within{background:var(--button-hover)}.offline-search:focus-within svg{color:var(--ink)}.offline-search input:focus-visible{background:none}
 /* Keep topic feedback active while its menu is open. */
 .topic-picker .setting-trigger{transition:background-color 160ms ease,color 160ms ease,scale 180ms ease,translate 180ms ease}

@@ -52,8 +52,8 @@ English reading and listening practice for learners aged 16 and over, with learn
 
 ## Get started
 
-1. Open [Lingfern](https://lingfern.com), follow the introduction and choose your starting points and interests.
-2. Use [Today](https://lingfern.com/today) for **Reading**, **Listening** or **Combined**; choose **Practice** or **Test** in the preview. Combined keeps linked reading and listening sessions.
+1. Open [Lingfern](https://lingfern.com), follow the introduction and choose language, purpose, interests and separate reading/listening starting points. Optional choices can be skipped; finish with **Save and go to Today**.
+2. Use [Today](https://lingfern.com/today) for **Reading**, **Listening** or **Combined**; choose **Practice** or **Test** in the preview. Combined runs reading then listening and keeps both sessions.
 3. Use [Library](https://lingfern.com/library) for references/downloads and [Settings](https://lingfern.com/settings) for preferences, profiles and optional connections.
 
 <a id="readme-practice"></a>
@@ -67,7 +67,7 @@ Configure reading/listening separately by goal level, topics, materials and ques
 | Practice | Teaching examples, three hints (goal, clue, language), dictionary support and self-assessment where available. |
 | Test | The same practice snapshot without assistance or AI; feedback after completion. Audio replay/seeking remain available. |
 
-Objective answers receive task-specific scores and explanations. Open responses stay unscored; **Skip this question / Resume answering** preserves their drafts without awarding correctness.
+Objective answers receive task-specific scores and explanations. Open responses stay unscored; **Skip this question / Resume answering** preserves their drafts without counting a skipped response as correct or completed.
 
 <a id="readme-workspace"></a>
 
@@ -82,7 +82,7 @@ Objective answers receive task-specific scores and explanations. Open responses 
 
 ## History and progress
 
-Open [**History**](https://lingfern.com/progress) from Today to revisit sessions, answers, feedback and assistance used; delete saved responses after confirmation. Confirm completion times when clock-correction controls appear.
+Open [**History**](https://lingfern.com/progress) from Today to revisit or resume sessions and inspect answers, feedback and assistance used. Delete a session or individual saved response after confirmation; deleting a Combined session removes both linked parts. Confirm completion times when clock-correction controls appear.
 
 The activity fern reflects saved work, not certified proficiency. Daily quotations include their source, expansion for long text and a control to choose another quote.
 
@@ -96,7 +96,7 @@ The activity fern reflects saved work, not certified proficiency. Daily quotatio
 | [Bookmarks](https://lingfern.com/library/saved) | Save/remove definitions with ★/☆ and collapse entries. Unchecked entries remain until reopening/refreshing, so they can be restored immediately. |
 | [IPA chart](https://lingfern.com/library/ipa) | Simple/Detailed views, sound search, recordings and English example words where available. |
 | [English usage reference](https://lingfern.com/library/grammar) | Keyword search, alphabetical browsing and expandable explanations. |
-| [Query history](https://lingfern.com/library/history) | Reopen dictionary, usage and IPA lookups with their source, time and saved lookup state. |
+| [Query history](https://lingfern.com/library/history) | Reopen dictionary, usage and IPA lookups with their source, time and saved lookup state, or delete an entry after confirmation. |
 
 Choose Cambridge, Oxford Learner’s Dictionaries, Wiktionary or Merriam-Webster for external lookup. Links open the provider's website; usage links use Cambridge Grammar.
 
@@ -116,7 +116,7 @@ Where supported, use your browser’s install/add-to-home-screen command to run 
 
 Switch profiles in **Settings → Backup**. Export a ZIP using the suggested `lingfern-YYYY-MM-DD` name or your own name; the export name is saved inside the backup as the restored profile name. Renaming the downloaded ZIP does not replace that internal name.
 
-Preview the profile and record counts before importing into a separate profile. Delete a local profile only after confirmation; other profiles and remote repository copies are retained.
+Preview the profile and record counts before importing into a separate profile, which becomes active. Delete a local profile only after confirmation; other profiles and remote repository copies are retained. Deleting the last profile creates a replacement local profile.
 
 Backups contain sessions, answers, drafts, bookmarks, query history, feedback and preferences. They are **unencrypted** and exclude installed resource packages/audio: keep them private and reinstall those resources separately.
 
@@ -125,7 +125,7 @@ Backups contain sessions, answers, drafts, bookmarks, query history, feedback an
 ## GitHub automatic sync
 
 1. Connect GitHub in Settings, then select an account profile or copy your local profile into it.
-2. Create a dedicated **private** data repository, grant the GitHub App access, then select and verify the repository in setup.
+2. Create a dedicated **private** data repository with a README, grant the GitHub App access, then select and verify the repository in setup.
 3. Automatic sync exchanges learning summaries, bookmarks, query history, preferences, installation choices and supported deletions. Offline changes are retained for reconnection.
 
 The card shows syncing/synced/offline-pending/failure status and the last successful time; use **Sync now / Retry**, pause automatic sync, or disconnect the repository binding in setup. Conflicting data can be exported when the recovery control appears. Sync does not transfer full sessions, answers or installed audio: use a backup for full records.
@@ -171,7 +171,6 @@ npm run preview
 
 Open [the local preview](http://127.0.0.1:8787/today). GitHub/Cloudflare credentials are not required for local learning.
 
-- [User guide](docs/user-guide.md)
 - [Development and checks](docs/development.md)
 - [Community ZIP format](community-content.md)
 - [MCP clients](docs/mcp-clients.md)

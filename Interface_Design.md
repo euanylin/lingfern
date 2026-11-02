@@ -5,7 +5,7 @@
 This is the current interface specification. [AGENTS.md](AGENTS.md) owns project rules; [Product_Plan.md](Product_Plan.md) owns teaching/data/security; [docs/brand-assets.md](docs/brand-assets.md) owns brand artwork. Use existing controls and tokens rather than another design system. This document describes intended interaction and acceptance, not evidence that every state/device has passed.
 
 
-**Conventions:** dimensions assume a 16px root font size. Implement text and layout with scalable units; do not mechanically convert 1px borders or SVG coordinates. English copy is illustrative, not the only delivery language: Simplified Chinese, Traditional Chinese, and English ship together. Examples must not impersonate courses, audio, data, or network capabilities that do not exist.
+**Conventions:** dimensions assume a 16px root font size. Implement text and layout with scalable units; do not mechanically convert 1px borders or SVG coordinates. English copy is illustrative, not the only delivery language: all fourteen interface packages listed in `AGENTS.md` ship together. About content remains English. Examples must not impersonate courses, audio, data, or network capabilities that do not exist.
 
 ## Contents
 
@@ -31,7 +31,7 @@ This is the current interface specification. [AGENTS.md](AGENTS.md) owns project
 
 1. **Organise information through typography.** Use system serif fonts for selected headings and optional English reading text; system sans-serif for controls, explanations, and Chinese. Warm filled surfaces distinguish practice, reference, records and settings areas; cards and controls have no decorative outlines or shadows. Retain visible keyboard focus and semantic evidence boundaries.
 2. **Preserve the existing brand.** Keep the complete fern symbol in `public/icon.svg`, with its original geometry and proportions. Use the same source directly or as a CSS mask; do not restore handwritten lettering or personal signatures.
-3. **One growth fern.** Retain a related botanical visual in the centre of Landing and Today. No large plants on Learning, Check, or Settings. The fern supplements proficiency-related learning records; it is not another score.
+3. **One growth fern.** Retain a related botanical visual in the centre of the introduction's Today preview and Today. No large plants on Learning, Check, or Settings. The fern represents saved activity; it is not a proficiency score.
 4. **Use sage green as an accent.** Warm-white/warm-charcoal backgrounds and charcoal/warm-white text predominate. Avoid large high-saturation green areas, paper textures, decorative gradient backgrounds and particles. Preserve the existing live translucent navigation backdrop.
 5. **Prioritise reading and action.** Growth imagery must not delay the main action. Long-form reading, touch, keyboard access, offline status, and save feedback take precedence over decoration.
 6. **Every state has text.** Correctness, assistance, sync, and downloads have explicit wording and shapes; colour, animation, or leaf counts must not be the sole explanation.
@@ -44,16 +44,16 @@ This is the current interface specification. [AGENTS.md](AGENTS.md) owns project
 |---|---|
 | How to draw the fern | Round-ended rachis and curled tip, with simplified filled pinnae. Preserve one plant, root, and skeleton. Implement six stable forms before short transitions. |
 | Relationship to the logo | Share restrained colour, soft curves, and the fiddlehead motif. The growth fern is a page illustration, not a replacement or enlarged transformation of the logo. |
-| Plant placement | Centre it on Landing; centre a smaller version above the primary task on Today; keep the dedicated History view focused on records without a second plant. Retain the maintainer-confirmed existing desktop two-region layout; use vertical composition on narrow screens. |
+| Plant placement | Centre it in the introduction's Today preview and above practice on Today; keep the dedicated History view focused on records without a second plant. Retain the maintainer-confirmed existing desktop two-region layout; use vertical composition on narrow screens. |
 | Paper texture | None. A paper-like quality comes from whitespace, background, typography, and fine lines. |
 | Avoiding lifestyle-brand associations | No potted scenes, coffee imagery, hand-drawn decorative arrows, or green slogans. State reading/listening clearly on the first screen and keep task data and controls explicit. |
-| Progress visualisation | Growth fern + learning-record matrix/mobile list + dated timeline. No fabricated total score, radar chart, or confidence labels without a model. |
+| Progress visualisation | Today shows saved activity through the growth fern; History shows compact session and response records without aggregate statistics or a goal matrix. No fabricated total score, radar chart, or confidence labels without a model. |
 | One plant or two | One: reading on the left, listening on the right. This indicates different record distributions, not “deficiency” or “falling behind”. Text and lists carry the full meaning. |
 | Initial self-report | Show “Your chosen starting point” separately. Do not draw a mature plant as though evidence exists; without records both sides remain at the initial fiddlehead. |
 | Containers | Settings/records/imported-task lists use existing surfaces; players/questions/overlays use functional panels, without arbitrary card percentages. |
-| Scroll-hiding navigation | No directional auto-hide by default. Keep a stable sticky header; use document flow on short screens and when enlarged to avoid sudden content/focus shifts. |
+| Scroll-hiding navigation | No directional auto-hide. Keep the top and existing mobile bottom navigation viewport-fixed, including short screens and input focus; reserve measured clearance and preserve native scrolling. |
 | Plants in Learning | No growth fern, watermark, or decorative baseline. Retain only the standalone logo symbol in the Session Bar. |
-| Six forms and CEFR levels | Course introductions may pair six forms with A1–C2 target descriptions. Personal growth derives from actual goal records; the two mappings are not equivalent. |
+| Six forms and CEFR levels | Course illustrations may pair six forms with A1–C2 target descriptions. Personal growth derives from saved activity under Product Plan 6.8; the two mappings are not equivalent. |
 
 ---
 
@@ -64,7 +64,7 @@ This is the current interface specification. [AGENTS.md](AGENTS.md) owns project
 3. Prefer the shared spacing scale while allowing optical adjustment, text metrics, and SVG coordinates. Do not prohibit values so rigidly that real typography becomes impossible.
 4. Today retains the most recently answered active practice emphasis through its single primary action without a tag; without answered active work, all Start actions use the secondary filled style. Do not fabricate a diagnosis or duplicate explanatory prose.
 5. Express material levels, self-report, completed records, and validated proficiency estimates separately. The interface cannot create confidence categories or advancement thresholds.
-6. Prefer a 60–66ch maximum for English reading, also constrained by container width. Shorter phone lines are acceptable; do not impose a minimum character width that causes horizontal overflow.
+6. Limit English reader text to 68ch within the available column, as specified in C.3. Shorter phone lines are acceptable; do not impose a minimum character width that causes horizontal overflow.
 7. Learning/check tasks contain no unrelated recommendations or plants. Generated Test uses the shared practice preview; retained strict checks do not preview passages. Record exposure when text actually appears and do not treat previewed roots as unfamiliar independent evidence.
 8. Distinguish waiting, success, and failure for asynchronous work. Saving and sync have separate states. After failure, do not continue showing “Recorded”.
 9. Offline is normally neutral. Explain not-downloaded, corrupt-file, decoding, and save failures separately rather than calling them all poor connectivity.
@@ -129,7 +129,7 @@ Retain ✓/×, wording, and solid/dashed distinctions. Results must not rely onl
 | Decorative/default/control borders | `#3A3936` / `#3A3936` / `#778177` |
 | Accent/hover/focus | `#A8BBA3` / `#97AB92` / `#B9CBB3` |
 | Text on accent | `#1F1E1D` |
-| Light/dark selection fills | `#1E2A21` / `#26342A` |
+| Light/dark selection fills | `#EEF2EC` / `#343C31` |
 
 See Section I for full combinations. A passing contrast result on one background does not establish compliance on every nested background.
 
@@ -198,7 +198,7 @@ No floating shadows on page content. Popovers may use `0 1px 2px rgba(36,42,37,0
 | Main content maximum | 1120 |
 | Settings/first-run narrow column | 560 |
 | Standalone dictionary body | Maximum 720 |
-| Reading measure | Maximum 66ch, constrained by actual column width; no forced 45ch minimum on small screens |
+| Reading measure | Maximum 68ch, constrained by actual column width; no forced 45ch minimum on small screens |
 | Page gutters | ≥1440: 64; 1200–1439: 48; 768–1199: 32; 375–767: 20; 320–374: 16 |
 | Learning columns | ≥1200; material 640 + gap 48 + remaining question width, maximum 432 |
 | Desktop/mobile header minimum | 64/56; scale the complete SVG proportionally |
@@ -226,8 +226,10 @@ The following are **sRGB calculations for specified opaque colour pairs**, not w
 | `#FBFAF7` / `#536F5B` | 5.30:1 |
 | `#7A827A` / `#F7F6F2` | 3.66:1 |
 | `#7A827A` / `#DDE6DA` | 3.09:1 |
-| `#778177` / `#262C27` | 3.53:1 |
-| `#E3E8E1` / `#171B18` | 14.01:1 |
+| `#778177` / `#262624` | 3.75:1 |
+| `#F5F4EE` / `#1F1E1D` | 15.10:1 |
+
+The final two rows use the current dark-theme tokens: control border on the raised surface, then reading/UI text on the page background. They do not cover translucent overlays or other nested surfaces.
 
 ---
 
@@ -254,7 +256,7 @@ The final form may retain a small fiddlehead at its base to indicate continuing 
 
 ### D.2 Separate Course Presentation from Personal Growth
 
-**Course introductions** may pair the six forms with A1–C2 teaching goals under “Course target range”. These catalogue illustrations are not linked to personal data. Do not promise “from zero to complete fluency” or “understand any text”. The main Landing fern may be half-unfolded or fully unfurled, decorative and without a personal level conclusion.
+**Course illustrations** may pair the six forms with A1–C2 teaching goals. These illustrations are separate from personal data and do not require a catalogue or six-level landing page. Do not promise “from zero to complete fluency” or “understand any text”. The introduction preview animates the shared fern without implying the visitor's personal level.
 
 **Personal growth** follows Product Plan6.8’s saved-activity display (maintainer correction2026-10-12): full Test/check3, practice1, unfinished sessions proportional to distinct saved answers at practice weight; unique reference entries0.02, capped at1 total. Reading is left and listening right. The `x / (x + 24)` curve grows quickly early and progressively slower later. Preserve one skeleton and smooth motion; do not infer CEFR, mastered goals or ability from the drawing.
 
@@ -262,19 +264,17 @@ Canonical session/answer deduplication, exact snapshot coverage, retained-record
 
 ### D.3 Copy and Legend
 
-Keep the three-language SVG accessible description concise: reading/listening session counts, lookup count, number of full tests, and “Activity, not proficiency.” Do not introduce points, level-up targets, rewards or a second plant in History. Task/goal records retain their precise assistance, correctness and distinct-material evidence separately.
+Keep the SVG accessible description concise in all fourteen interface languages: reading/listening session counts, lookup count, number of full tests, and “Activity, not proficiency.” Do not introduce points, level-up targets, rewards or a second plant in History. Task/goal records retain their precise assistance, correctness and distinct-material evidence separately.
 
 ### D.4 Use by Page
 
 | Page | Placement and size | Behaviour |
 |---|---|---|
-| Landing | Centre; up to 360 high on tall screens, usually desktop 280–320, mobile 180–220 | Decorative half-unfolded/fully unfurled form; text and buttons usable first. No personal left/right skill meaning. |
+| Introduction | Within the actual Today preview, preserving its component proportions | Shared decorative growth timeline; Start stays usable. No personal records or level conclusion. |
 | Today | Centre near the date/heading; responsive size keeps training controls usable | History entry belongs to Reading top right; no plant-linked record jump or duplicate fern in History. |
 | Learning/Check/Settings | No growth fern | Necessary logo symbol only. Feedback says “Record saved”, not a decorative leaf reward. |
 
-Landing may retain a limited four-line/three-band motif. It must neither alter the logo's internal alignment nor impose hard absolute coordinates on page elements.
-
-On mobile, thin the graphic to at most 8 visible pinnae per side. A stage still represents the same goal records; thinning changes neither counts nor data. Below 88px, the graphic can only serve as navigation decoration alongside text. Do not make users count leaves to understand records.
+On mobile, thin the graphic to at most 8 visible pinnae per side. A stage still represents the same saved activity; thinning changes neither counts nor data. Below 88px, the graphic can only serve as decoration alongside text. Do not make users count leaves to understand records.
 
 ### D.5 Implementation and Motion Budget
 
@@ -290,11 +290,11 @@ The plant makes no server requests and stores no separate “level”. Derive it
 
 ## E. Navigation
 
-Primary navigation is **Today / Library / Settings**. Use clean real links: `/today`, `/library`, `/settings`. First run is `/start`; sessions use `/learn/<sessionId>`. Reference paths and the dedicated `/progress` History route are listed in Product Plan 9.2. History keeps Today selected and has a back link. No Tasks/Test navigation, separate Test page or old route aliases.
+Primary navigation is **Today / Library / Settings**. Use clean real links: `/today`, `/library`, `/settings`. First root visits show `/introduction` before starting choices at `/start`; sessions use `/learn/<sessionId>`. Reference paths and the dedicated `/progress` History route are listed in Product Plan 9.2. History keeps Today selected and has a back link. No Tasks/Test navigation, separate Test page or old route aliases.
 
-Today, Library, Settings and session chrome use the standalone fern symbol at 40px, not a horizontal wordmark lockup. Complete horizontal lockups remain on Landing, About and other surfaces with room for the full wordmark; size those proportionally (around 144 desktop / 128 compact) with containers that grow with actual SVG height and wrapped labels. Mobile uses the same standalone symbol and the existing three-entry bottom navigation, minimum 64 plus safe area; top targets remain 44px. End padding accounts for the actual bar. No direction-based auto-hide.
+All surfaces use the sole fern symbol from `public/icon.svg` with unchanged geometry and proportions. Today, Library, Settings and session chrome display it at 40px; do not restore horizontal wordmarks or signatures. Mobile uses the same symbol and the existing three-entry bottom navigation, minimum 64 plus safe area; top targets remain 44px. End padding accounts for the actual bar. No direction-based auto-hide.
 
-Preserve the accepted live translucent backdrop and animated navigation underline using the current shared styles. Labels, bounds, focus and selection stay stable; reduced motion uses a static underline. Short screens, keyboards and zoom put extra fixed bars into flow rather than shrinking targets. Session pages use their own Session Bar and hide global navigation.
+Preserve the accepted live translucent backdrop and animated navigation underline using the current shared styles. Labels, bounds, focus and selection stay stable; reduced motion uses a static underline. Keep top navigation and the existing mobile bottom navigation viewport-fixed on short screens, with keyboards and during zoom. Optional learning panels may use natural flow; retain measured clearance and 44px targets. Session pages use their own fixed Session Bar and hide global navigation.
 
 Do not add global single-character search/dictionary shortcuts. Optional task shortcuts remain scoped, default off, and cannot bypass Test/retained-check restrictions. Dictionary access is an explicit Library or permitted learning action.
 
@@ -302,49 +302,13 @@ Do not add global single-character search/dictionary shortcuts. Optional task sh
 
 ## F. Page-by-Page Specifications
 
-### 1. Landing
+### 1. Introduction
 
-#### Purpose
+The first root visit opens `/introduction`, showing the actual Today, Library and Settings layouts in three preview cards before `/start`. Reuse the current `Welcome` implementation rather than a separate marketing landing page, six-level catalogue or alternative navigation.
 
-Quickly establish that Lingfern is a reading/listening learning tool covering A1–C2 course targets, usable offline after downloading, without prior registration. The central growth fern is the brand visual, not a substitute for these explanations.
+The [First-visit introduction and native scrolling](#first-visit-introduction-and-native-scrolling-maintainer-update-2026-10-19) specification below owns card arrangement, permitted preview controls, six-second rotation, focus, gestures and reduced motion. Keep Start immediately usable; previews do not create personal learning or growth records. Returning learners and deep links retain their existing routes.
 
-#### Layout and Visual Hierarchy
-
-Centred composition: header → centred fern → subtle baseline → title and lead → Start learning → concise course target range. The hero has natural height; do not force 100vh, a fixed 920px, or `overflow: hidden`. Enlarged text and wrapped Chinese may extend beyond one screen.
-
-Desktop content maximum 1120; title group maximum 720. At 1440 × 900, start with header 64, top whitespace 24, fern 280, baseline/gap approximately 40, title approximately 1–2 lines, lead 2–3 lines, main button 48, and remaining gaps 16–32. When wrapping changes, shrink the fern/whitespace first, not crop the title or button. With sufficient height, the fern may reach 360.
-
-Visual order: fern and main title → Start learning → reading/listening/offline explanation → subsequent chapters. Loading does not wait for animation.
-
-#### Exact Sections
-
-**Header:** complete logo; “How it works”, “Privacy”, and a secondary “Open Lingfern” on the right. Follow the logo lockup specification. The Landing header stays in normal flow by default; do not create a second navigation that suddenly appears after scrolling. Returning users see “Continue learning”.
-
-**Main visual:** centre the related growth fern with its root on one pale fine line. A very subtle four-line motif may echo the brand on Landing, but absolute y coordinates must not become layout dependencies. No textured or photographic background.
-
-**Title and controls:** English may use `Read, listen, and grow into English.`; the Chinese headline conveys “Gradually understand English through real language”. Supporting copy names reading, listening, unfamiliar-material application, and no account requirement. Primary “Start learning”, secondary “See how it works”. No “understand any text” or guaranteed complete fluency.
-
-**Course range:** “Course targets from A1 to C2”. Pair six fern forms with material targets and plain can-do descriptions, explicitly not an assessment of the visitor. Show actual content counts and disclose unavailable levels. Small graphics share root and skeleton rather than becoming six species.
-
-**Editorial product explanation:** retain three chapters: “Real texts and audio”, “Learn, then check on new material”, and “Progress with visible evidence”. Desktop pairs left-side chapter headings with right-side text and real component examples; tablet/mobile stack them. Examples use public teaching demonstrations, never independent-check material previews.
-
-**User-control explanation:** a definition list, not six feature cards. Cover offline after download, local saving, optional GitHub sync, external AI handoff, and privacy. Privacy copy explains that learning records are saved on the device first and sent only within confirmed scopes when sync/sharing is enabled, rather than claiming no server-side state. The offline dictionary is included; Cambridge is an explicit external link.
-
-**Footer:** concise start entry, project source, help, privacy, sources/licences, and donation link. Display actual copyright/third-party attribution. Put build identifiers in diagnostics, not branded version badges.
-
-#### Interaction
-
-The primary action immediately enters First Run or Today. An optional initial subtle unfolding is allowed, but do not replay rapid A1-to-C2 growth every visit. Examples are static by default. Scrolling neither drives plant growth nor intercepts gestures.
-
-#### Desktop / Tablet / Mobile
-
-Desktop chapter gaps 80–96. Tablet course range 3×2 and editorial chapters single-column. Mobile gutters 20, or 16 at ≤374; fern usually 180–220, title 34/42, full-width button minimum 48. On short screens reduce the fern to 120–160 and allow scrolling rather than promising all copy fits within 88svh.
-
-On mobile, present the six-level range as an open 2×3 arrangement instead of a horizontal strip hiding levels. Every item has clear text, without ecommerce-style cards.
-
-#### Empty / Loading / Error
-
-The page requires no private data and displays static content immediately. Existing local profiles get a continue entry; zero records are not a fault. If storage is restricted/unavailable, clearly state that demo records cannot be reliably retained. An unsaved demonstration is permitted, but do not silently switch to temporary storage and show “Saved”. Content downloads have actual byte progress; app-shell cache percentages do not indicate complete offline courses.
+No sign-in or external service is required. A storage failure must remain visible and must not be replaced by a false saved-profile notice. App-shell availability does not claim complete offline courses.
 
 ---
 
@@ -360,7 +324,7 @@ Present heading, choices, Continue, and short explanation in that order. All non
 
 | Step | Content | Skipping and saving |
 |---|---|---|
-| Interface language | English, Simplified Chinese, Traditional Chinese; preselect from browser language | A valid default is enough to continue; no repeated question required |
+| Interface language | All fourteen supported interface languages; preselect from browser language | A valid default is enough to continue; no repeated question required |
 | Purpose | Everyday life, study, work, travel, reading for pleasure/not sure | Skippable; selections support recommendations, not profile scoring |
 | Interests | Five main themes: campus, daily life, popular science, humanities/culture, travel | Select 0–5; add catalogue subtopics only as real content exists |
 | Starting point | Separate reading/listening choices with short A1–C2 can-do descriptions or “Not sure” | May differ and may be skipped; recommendation starting points only, not measured proficiency |
@@ -379,9 +343,7 @@ Desktop Continue sits at the content end, right-aligned; mobile is full-width an
 
 #### Empty / Loading / Error
 
-If no suitable example exists, say so; do not start a check with placeholders. Before fetching the first audio, show actual size and verification state. Brief requests do not flash skeletons; slow downloads show real values such as “1.8 / 4.2 MiB received”. App-shell availability alone is not offline readiness.
-
-A failed download offers retry or proceeding to Today. Insufficient storage offers storage management and cancellation while preserving selections. Without writable storage, offer only a clearly unsaved demonstration, not a fake profile or success notice.
+The four-step setup saves choices without downloading a demo lesson. Storage failures preserve selections and offer an actionable retry; do not show completion or invent a saved profile when writing fails. Content installation and its actual download/verification states remain in Library.
 
 ---
 
@@ -397,7 +359,7 @@ Use a Practice heading above the three stacked cards:16px radius,16/20px padding
 
 A missing/exhausted source, offline resource or failed audio has an actionable unavailable/repair state; no fabricated course/test. Database read/save errors preserve visible input and do not show success. Growth follows retained saved activity and the small capped reference contribution under Product Plan6.8; no activity means the initial fiddlehead, never self-report-derived maturity.
 
-At 1440–320 widths retain central composition, natural wrapping and existing shared controls. Narrow/short/zoom/keyboard states remove unnecessary fixed bars. Three languages, theme/motion/focus and actual Preview→Practice/Test→save/reload/History behaviour need real checks.
+At 1440–320 widths retain central composition, natural wrapping and existing shared controls. Keep measured clearance for fixed navigation in narrow/short/zoom/keyboard states. Select relevant locale, theme/motion/focus and Preview→Practice/Test→save/reload/History checks by the changed behaviour in `AGENT_WORKFLOW.md`.
 
 ### 4. Imported Tasks on Today
 
@@ -417,7 +379,7 @@ Readable materials, usable responses, evidence-based feedback, and reliable loca
 
 **Reading ≥1200:** two columns within `min(1120, viewport width minus both gutters)`. The article follows document scrolling, without its own height limit or scroll container. Answer-card height fills the available viewport from its document anchor to a16px bottom margin and stays constant during page scrolling;window resizing recalculates it. Keep the answer card sticky below the Session Bar, with an independent internal question scroll area. Do not exceed the container or hide overflow to compensate. Short screens let the card return to page flow instead of clipping controls.
 
-**Reading <1200:** the article remains in document flow with the accepted bottom peek/expand answer sheet. Preserve page position when opening/closing the sheet or changing materials. The measured peek/expanded heights animate in both directions;reduced motion switches immediately. The initial expanded height is70% of the visible viewport. After opening, a44px drag handle continuously adjusts the height without snap points, within the visible viewport and at least24px below the actual visible Session Bar,including short/static-header states. Opening focuses the question prompt without focusing a text editor;explicit answer navigation and field selection retain their normal focus behavior. Keep square bottom corners,an inert hidden answer region and immediate focus return to the peek. Short screens and zoom remove unnecessary fixed bars instead of shrinking targets.
+**Reading <1200:** the article remains in document flow with the accepted bottom peek/expand answer sheet. Preserve page position when opening/closing the sheet or changing materials. The measured peek/expanded heights animate in both directions;reduced motion switches immediately. The initial expanded height is70% of the visible viewport. After opening, a44px drag handle continuously adjusts the height without snap points, within the visible viewport and at least24px below the actual visible Session Bar,including short-screen and keyboard states. Opening focuses the question prompt without focusing a text editor;explicit answer navigation and field selection retain their normal focus behavior. Keep square bottom corners,an inert hidden answer region and immediate focus return to the peek. Reserve the fixed Session Bar's measured height and keep content scrollable instead of shrinking targets.
 
 #### Exact Sections
 
@@ -447,15 +409,13 @@ Mobile reading sheets use the stable small viewport for their ordinary height, s
 
 #### Desktop
 
-Question panel: `bg/raised`, 1px border, shared rounded-rectangle radius, padding 24. If height permits, stick 24 below the Session Bar. Prefer natural scrolling for long panels. Use panel-internal scrolling only when needed, without controls covering content or three nested scroll containers.
+Question panel: shared raised surface, rounded-rectangle radius and padding, without a decorative outline. If height permits, stick below the measured Session Bar. Prefer natural scrolling for long panels. Use panel-internal scrolling only when needed, without controls covering content or three nested scroll containers.
 
 #### Tablet / Mobile
 
-Mobile Session Bar 52; Material/Question switch minimum 44; bottom action bar minimum 64 plus safe area. Do not add another persistent player layer to every small-screen state. Material view's primary action is “View question”; Question view shows Submit/Next, preventing submission without seeing the options.
+Use the shared `MaterialWorkspace`: reading keeps its article and peek/expand answer sheet; listening keeps its existing player/question arrangement. Do not restore a Material/Question tab switch or per-question answer page. Opening, closing or moving between questions retains scroll, input and playback counts; evidence actions locate the permitted source span. A return/leave route stays available.
 
-Switching retains scroll/input and does not reset playback counts. “Show evidence in text” switches and locates. A return/leave route stays available.
-
-If height is below 700, the keyboard is visible, or fixed regions occupy approximately more than one third of available height, return player, switch, and action bar to document flow, retaining only essential navigation. At still lower heights, unstick the Session Bar too. Preserve at least 320 of scrollable content space when enlarged; if impossible, stop fixing bars instead of shrinking controls to 32.
+Keep the Session Bar viewport-fixed with measured clearance, including short screens and input focus. Adapt optional player/panel regions to available height, retain native scrolling and keep 44px controls reachable without covering material or input.
 
 #### Keyboard / Focus
 
@@ -479,7 +439,7 @@ Retained strict independent-check snapshots use their original playback, unfamil
 
 All modes commit answers locally before Next/completion. Save/audio faults retain input/records, offer actual retry/repair/exit and never become incorrect language answers. Ending/switching to learning preserves genuine completed records and records the changed assistance conditions for later work. Completion/review may reveal permitted feedback/dictionary/AI; results are task evidence, not CEFR/examination conclusions.
 
-Use the same natural two-column/single-column responsive layout, 44px targets, keyboard focus and short-screen flow as learning. Mode restrictions require real interaction checks, including delayed feedback, no assistance, save failure, reload and completed review.
+Use the same shared material workspace, fixed navigation clearance, 44px targets, keyboard focus and short-screen scrolling as learning. Mode restrictions require relevant interaction checks, including delayed feedback, no assistance, save failure, reload and completed review.
 
 ### 7. History
 
@@ -499,7 +459,7 @@ History disclosure controls use a centred SVG chevron in a 44px target, flipping
 
 Distinguish material roots, valid responses and qualifying goals. Shared-material questions and repeated attempts do not multiply unfamiliar independent evidence. Self-report is only the chosen starting point. Assisted/answer-exposed/familiar work remains labelled with its conditions; valid faults/missing responses are not wrong answers. Goal recommendations remain independent of dictionary bookmarks.
 
-Use existing `ProgressRecords` and record controls. Any goal/level matrix or expanded list must use actual current goal metadata and readable headers/labels, not synthetic populated cells. Rows/cells have 44px targets, natural wrapping and keyboard-accessible details. Mobile uses readable lists or explicitly contained tables without whole-page horizontal overflow. Closing details restores focus.
+Use existing `ProgressRecords` and compact record controls without a goal/level matrix. Rows have 44px targets, natural wrapping and keyboard-accessible details without whole-page horizontal overflow. Closing details restores focus.
 
 No records shows a factual empty state. Missing original media does not erase saved responses; show actual repair/download options. Aggregation/read failure is not an empty database and must not overwrite it. Retained unfinished strict checks expose saved status only, not their answers. Deletion recomputes retained summaries rather than silently corrupting history.
 
@@ -509,9 +469,7 @@ No records shows a factual empty state. Missing original media does not erase sa
 
 #### Purpose and Layout
 
-A personal language library separating content, dictionary, saved items, and private notes. H1 followed by “Learning records are saved on this device first; see Settings for the sync scope”, not a claim that every displayed object is a complete local file.
-
-Desktop maximum 1120, with Device content / Saved items / Notes / Dictionary sections. Mobile may use four tabs or section entries. Do not eagerly load every long section or present a Finder-style file tree.
+A 760px-wide library with grouped Dictionary / IPA / Usage reference links, offline content, installed resources and community import. Lookup history has its own top-right entry; saved words remain on their dedicated dictionary-linked page. Use the current `Library` layout rather than adding Notes tabs or a file tree. Do not claim that every listed resource is already installed.
 
 #### Exact Sections
 
@@ -540,8 +498,6 @@ Place a separate 44px Delete button beside each lookup link. Its confirmation sh
 
 **Saved items:** one rounded list with separators. Put the word/phrase on the left and muted, un-underlined online lookup, the dictionary's filled/outline star and shared chevron on the right. Definitions align with the word heading and remain English. Each meaning is independently collapsible, initially expanded; collapsed rows retain lookup and star actions. Cancellation persists immediately, while the row stays until refresh or reopening. Keep row order stable through toggles; sort by saved time when building a fresh page list. Pressing nested stars/links must not scale the parent heading. No word-sense review, rating or due date. Saving does not mean mastery.
 
-**Notes:** plain-text first line, task link, date; expand to edit with local-save state. Notes are not synchronised to GitHub by default. Do not silently create cloud notes. Markdown export is user-triggered.
-
 **Dictionary:** search with an offline-definition/optional-Cambridge-link explanation, opening the dedicated page. Backup/restore links to the same Settings implementation, not a second import flow.
 
 #### Interaction and Responsive Behaviour
@@ -552,7 +508,7 @@ Desktop rows have title, state, and action columns. Mobile uses name, metadata, 
 
 #### Empty / Loading / Error
 
-No content: download through Library or import a supported ZIP. No saved items: explain saving during dictionary lookup. No notes: explain that external AI content is not fetched automatically.
+No content: download through Library or import a supported ZIP. No saved items: explain saving during dictionary lookup. External AI content is never fetched automatically.
 
 If capacity APIs are unavailable, say “Cannot estimate”, while permitting reasonable small-package installation with error handling. Distinguish missing files from hash failures and network failures. Failed imports leave the current profile intact, without automatic reset/rebuild.
 
@@ -588,7 +544,7 @@ Build links from a fixed official destination and encoded query; test the actual
 
 A nonmodal desktop dictionary drawer does not dim the entire page and allows return to the material. If insufficient width remains, use a modal or standalone page; do not obscure the question while claiming the two-column interface remains usable. Focus enters the actual popup controls and returns to the trigger on close; lookup must not depend on hover.
 
-Mobile sheets have a visible 44-hit-target close control and Back/Esc support. Dragging is optional. With the software keyboard, search/results remain scrollable; do not insist on fixed 92vh and hide Close. The latest 5 queries stay local and do not reappear from the cloud after clearing.
+Mobile sheets have a visible 44-hit-target close control and Back/Esc support. Dragging is optional. With the software keyboard, search/results remain scrollable; do not insist on fixed 92vh and hide Close. Lookup history retains the latest 100 distinct queries within the active profile and participates in optional sync; deletion/clear events prevent observed entries from returning after a merge.
 
 #### Empty / Loading / Error
 
@@ -632,15 +588,14 @@ Current sync excludes notes, essays, and private text. Do not make “one note e
 
 The conflict panel describes affected scope/actions without exposing entire private payloads. Format conflicts cannot be resolved by bulk “Use other device” or force push. Only design a keep-both text comparison if free-text sync is genuinely added later.
 
-#### Sign-Out and Disconnection
+#### Disconnection
 
-Three independent operations:
+Two separate Settings operations:
 
-- **Sign out on this device:** end the web session, optionally clear this device's records; repository remains.
 - **Disconnect sync repository:** remove binding and stop uploads; do not automatically revoke other AI connections.
 - **Disconnect GitHub identity:** revoke related sessions, remote grants, and expiring shares as the plan specifies, explaining the separate GitHub installation-revocation scope.
 
-Each confirmation names its scope. One generic `Disconnect` must not conceal three different consequences.
+Each confirmation names its scope. Settings has no separate website-session sign-out entry (maintainer update, 2026-10-25); the server logout endpoint remains separate. Neither disconnection deletes local records. Profile deletion and backup retain their own controls and confirmation.
 
 #### Empty / Loading / Error
 
@@ -735,7 +690,7 @@ Temporary defaults may render after a settings-read failure, with an explicit wa
 | Type | Default | Hover/press | Use |
 |---|---|---|---|
 | Primary | Brand fill, on-accent text, weight 600 | One/two darker steps; no layout movement | Main action in current decision area |
-| Secondary | Transparent, control border, body text | Sunken fill | Review, inspect, secondary action |
+| Secondary | Shared subdued fill, secondary text, no decorative outline | Shared hover fill | Review, inspect, secondary action |
 | Ghost | No border, dark sage text | Pale sage fill | Back, skip, expand |
 | Destructive | Dark error fill, light text, explicit verb | Darker step | Confirmed deletion |
 | Secondary destructive | Error text/border, no large red fill | Pale error fill | Open deletion confirmation |
@@ -751,7 +706,7 @@ Body links have underlines and dark sage text; hover deepens colour without move
 
 ### G.3 Containers and Task Items
 
-**Panels:** questions, players, and feedback may use `bg/raised`, 1px border, shared rounded-rectangle radius, padding 24/20. Lists/settings use fine dividers, not cards everywhere for component consistency. Shadows are for overlays only.
+**Panels:** reuse the existing raised surfaces, shared rounded-rectangle radius and padding; avoid decorative outlines. Lists/settings use their existing filled groups and inset dividers. Retain semantic evidence boundaries and visible focus; shadows follow the specific overlay rules.
 
 **Task rows:** minimum 88 high, vertical padding 20; level column around 56, flexible title/metadata, status area around 120. Switch three columns to vertical flow when space is insufficient; do not truncate essential mode/resource information. The row link is focusable. Additional buttons require separate semantic targets, not nested interactive elements. Completion does not reduce body-text opacity.
 
@@ -763,7 +718,7 @@ Body links have underlines and dark sage text; hover deepens colour without move
 
 **Level selection:** each A1–C2 segment has an effective 44 target and may wrap. Selected fill and tick work together; no six-step “achieved level” ladder. Personal progress has no unvalidated score or confidence track.
 
-**Record rows/cells:** use F.7's condition symbols plus counts and material dates. Up to 5 marks are a preview, not one original observation per leaf. Give cells complete accessible names and clickable full-cell targets, not 8px dots.
+**Record rows:** use F.7's compact session/response rows, dates and support conditions. Give disclosure and deletion controls complete accessible names and 44px targets; do not restore a goal matrix or leaf-based observation marks.
 
 ### G.5 Tabs and Segmented Controls
 
@@ -860,15 +815,15 @@ Use both available content width and height, not device names. Include enlarged 
 
 | Width | Gutter | Navigation | Learning page | Other main changes |
 |---|---:|---|---|---|
-| ≥1440 | 64 | Complete horizontal mark, 64-high header | 640 + 48 + 432 = 1120 | Today: small central fern/one task; History stays focused on record lists |
-| 1200–1439 | 48 | Complete or compact horizontal mark | 640 + 48 + remaining questions; 416 at 1200 | Obey available width; do not overflow by adding incompatible column minima |
-| 768–1199 | 32 | Compact mark; three-entry bottom navigation if labels do not fit | Single column maximum 640, optional Material/Question switch | Filters move above; History lists stack |
-| 375–767 | 20 | Standalone symbol in mobile header 56 + bottom bar 64 | Single column; normal heights may use switch 44/action bar 64 | Smaller plant, taller task rows, Settings sections → subpages |
-| 320–374 | 16 | Standalone symbol preferred | Natural flow preferred; long words may wrap | No forced 45ch minimum or full-page overflow from filters |
+| ≥1440 | 64 | Sole fern symbol, fixed header | 640 + 48 + 432 = 1120 | Today: small central fern/three practice cards; History stays focused on record lists |
+| 1200–1439 | 48 | Sole fern symbol, fixed header | 640 + 48 + remaining questions; 416 at 1200 | Obey available width; do not overflow by adding incompatible column minima |
+| 768–1199 | 32 | Sole fern symbol, existing navigation | Reading article with peek/expand answer sheet | Filters move above; History lists stack |
+| 375–767 | 20 | Sole fern symbol; fixed top and existing bottom navigation | Shared narrow workspace with 44px controls | Smaller plant and naturally wrapping task rows |
+| 320–374 | 16 | Same fixed navigation with measured clearance | Scrollable workspace; long words may wrap | No forced 45ch minimum or full-page overflow from filters |
 
-**Height:** below 700, with keyboard, or when fixed regions exceed roughly one third of available height, progressively unstick player → switch → bottom action. If still insufficient, return Session Bar to flow. Do not keep a larger plant/header by shrinking primary hit targets to 32.
+**Height:** retain fixed top navigation/Session Bar and the existing mobile bottom navigation. Reserve their measured heights, adapt optional learning panels and preserve native scrolling during input focus and zoom. Do not keep a larger plant/header by shrinking primary hit targets to 32.
 
-**Landing:** natural content height; CTA does not wait for animation. Typical desktop plant 280–320, reduced on short screens; mobile 180–220, short screen may use 160. Six course targets form 2×3 on mobile, not hidden in a strip whose scrolling users must guess.
+**Introduction:** preview-window aspect ratio and three-card arrangement follow viewport proportions. Content keeps the actual site layout and sizes, scrolling within its owning preview window. Start remains reachable without waiting for animation.
 
 **Today:** central plant at every width, mobile 96–120. Main task maximum 800, left-aligned text, unfinished work prioritised. Aim to show the primary action in the first screen at default size on a common 375×812 display. Large text and 320×640 may scroll; do not shrink text to satisfy a rigid target.
 
@@ -884,11 +839,9 @@ Use both available content width and height, not device names. Include enlarged 
 
 ### I.1 Main Surfaces and Controls
 
-Section C defines base colours. Dark mode is not an inversion filter: body text sits on the page background, players/questions on raised surfaces, and genuine overlays on `#262C27`. Do not place whole passages inside bright cards.
+Use the shared colours in Section C.2 and `public/ui-tokens.css`; do not maintain a second dark palette. Dark mode is not an inversion filter: body text sits on the page background, players/questions on raised surfaces, and genuine overlays use their shared surface. Do not place whole passages inside bright cards.
 
-Reading text is `#E3E8E1`, primary UI text `#EBEFE9`. Retain line-height and weight rather than making everything bold for clarity. Control border `#778177` retains distinction on overlays. `#333B35` is a normal divider, not a substitute for every essential boundary.
-
-Primary buttons use light sage `#A4B99F` with charcoal `#171B18`; hover darkens to `#90A589`. Secondary buttons use a subdued solid fill, never an outline-only capsule. Selection fill `#26342A`; keyboard focus retains a visible outer ring. Test actual pages.
+Retain line-height and weight rather than making everything bold for clarity. Primary buttons use the shared sage fill and charcoal text; secondary buttons use a subdued solid fill. Selection and visible keyboard focus retain their own states. Test the changed controls on their actual nested backgrounds.
 
 ### I.2 Semantics and Evidence
 
@@ -923,7 +876,7 @@ A short colour transition is permitted; reduced motion switches immediately. Sys
 | Situation | Trigger | Duration and method | Reduced motion |
 |---|---|---|---|
 | Landing plant | Optional initial display after page/action readiness | Total ≤1200ms; partial unfolding, not necessarily smallest-to-largest | Static |
-| Personal growth | New qualifying goals change form after successful aggregation | Total ≤900ms including stagger; new portions only | Static plus change text |
+| Personal growth | Saved activity changes form after successful aggregation | Total ≤900ms including stagger; new portions only | Static plus change text |
 | Route change | Navigation | Approximately 140–220ms fade; optional movement ≤8px | Direct display |
 | Option selection | User choice | 140ms colour/border, no scale | Direct switch |
 | Submission feedback | Successful local transaction | 220–360ms expansion/fade | Direct display, normal focus |
@@ -971,7 +924,7 @@ Each page has Skip to main content, one H1, and ordered headings. Modals trap fo
 
 Use genuine HTML for passages, tasks, and sources, not Canvas. Label Chinese interface and English materials separately. Questions use forms, fieldsets, and labels. After submission, options add actual states such as “Your answer/Correct answer”.
 
-Hide decorative plants from assistive technology. Personal plants have a brief alternative description and complete adjacent text. No separate Tab stops or lengthy names for 24 leaves. Matrices use real headers; expanded mobile lists retain goal/level/condition relationships.
+Hide decorative plants from assistive technology. Personal plants have a brief alternative description and complete adjacent text. No separate Tab stops or lengthy names for 24 leaves. Record disclosures retain actual response/date/support relationships and accessible names.
 
 Evidence may use semantic mark with a purpose label. Unrevealed answers must not appear early in aria attributes. Dictionary access must coexist with selection without hundreds of word-level keyboard stops.
 
@@ -985,7 +938,7 @@ Errors remain findable. Toasts confirm; undo also exists in its list/settings ra
 
 Minimum target 44×44, primary actions 48–52. Visual icons may be smaller, but hit areas do not overlap. Sorting has movement buttons/keyboard alternatives; sheets have visible Close; audio sliders have keyboard and precise seek alternatives only if the current mode allows them.
 
-Reduce fixed bars before shrinking text/controls or hiding materials. Account for safe areas and keyboard. At enlarged sizes, require complete scrollable content, understandable states, and reachable actions—not compulsory visibility of both result and evidence in one screen.
+Keep fixed navigation and its measured clearance; adapt optional learning panels before shrinking text/controls or hiding materials. Account for safe areas and keyboard. At enlarged sizes, require complete scrollable content, understandable states, and reachable actions—not compulsory visibility of both result and evidence in one screen.
 
 ### K.6 Audio and Checks
 
@@ -993,7 +946,7 @@ Learning may show existing verified transcripts. Checks follow explicit material
 
 Every audio control has a text name. Playback is not automatic. Pronunciation controls require actual files and permission. Missing/undecodable audio is not a language error.
 
-### K.7 Three Languages and Validation
+### K.7 Interface Languages and Validation
 
 Maintainer update (2026-10-16): B1–C2 instructional goals, before-start guidance, worked examples, hints, explanations and next steps use English in every interface language, including previously saved lessons. General navigation/actions use fourteen interface packages (maintainer update 2026-10-17). A1–A2 reviewed instructional support uses the selected language in all fourteen packages; the eleven non-Chinese/English languages each own `teaching.json`. Arabic UI uses RTL while English material, answers and instructions retain LTR. Unknown private/older instructional text also falls back to English with its actual language tag. Select the display language without rewriting saved learning snapshots.
 
@@ -1022,7 +975,7 @@ Library: lookup history / dictionary / IPA / usage / import / downloads / instal
 Settings: shared pickers / identity-sync-sharing / backup-privacy / updates / About
 ```
 
-Two learning columns start at 1200 when actual available width permits; narrow/short/keyboard/zoom states use natural flow and reachable 44px controls. Layout uses existing tokens and complete SVG lockups. There is no Tasks/Test navigation or second History fern.
+Two learning columns start at 1200 when actual available width permits; narrow/short/keyboard/zoom states preserve native scrolling, fixed navigation clearance and reachable 44px controls. Layout uses existing tokens and the complete sole fern symbol. There is no Tasks/Test navigation or second History fern.
 
 ---
 
@@ -1041,11 +994,11 @@ Use restrained labels/actions. Retain concise actionable save/error/deletion/aut
 
 **The plant is mistaken for a proficiency level.** Explain course illustrations and personal progress differently. Personal pages do not label six forms as A1–C2 advancement. Independent-goal records remain traceable. Screenshot copy also describes target materials, without “Share my level” cards.
 
-**The plant returns to a corner or overwhelms tasks.** Check centred composition on Landing and Today while limiting actual height. First-screen tasks/actions have priority. Learning has no decorative fern.
+**The plant returns to a corner or overwhelms tasks.** Check centred composition in the introduction's Today preview and Today while limiting actual height. First-screen tasks/actions have priority. Learning has no decorative fern.
 
 **Interaction appearance precedes real functionality.** Lists, percentages, dictionary audio, confidence, and sync success require data. No playback success without audio, connection success without APIs, or course cards without courses.
 
-**Multiple fixed mobile bars crowd content.** Test 320×640, 375×812, landscape, and keyboard states. Return to flow when needed; do not add another 32-high toolbar.
+**Multiple fixed mobile bars crowd content.** Select affected narrow, short, landscape and keyboard states. Keep fixed navigation with measured clearance; optional learning panels may return to flow. Do not add another 32-high toolbar.
 
 **Visual copy rewrites functional rules.** Recheck hint sequence, test previews, dictionary conditions, copying/uploading, sign-out/disconnection, and failed saving every time. “The draft designed it this way” is not a reason to broaden permissions or scoring scope.
 
@@ -1062,8 +1015,8 @@ Do not create another design framework, UI tool platform, or plant simulation en
 
 | Dimension | Required checks |
 |---|---|
-| Surfaces | Landing/First Run, Today, Learning/Test, History, Library/references and Settings identity/sync/sharing/backup/privacy/update/About |
-| Brand | Proportional lockups, complete g/f descenders; no changes to paths, weight, four-line alignment |
+| Surfaces | Introduction/First Run, Today, Learning/Test, History, Library/references and Settings identity/sync/sharing/backup/privacy/update/About |
+| Brand | Complete sole fern symbol from `public/icon.svg`, unchanged geometry and proportions; no wordmarks or signatures |
 | Layout | Widths 1440, 1200, 1024, 768, 375, 320 and short 640-high screens; no whole-page horizontal text overflow |
 | Themes | Light, dark, system; identifying-control contrast on panels and overlays |
 | Input | Keyboard, touch, Chinese IME, software keyboard; optional shortcuts cannot bypass check permissions |
@@ -1074,9 +1027,9 @@ Do not create another design framework, UI tool platform, or plant simulation en
 | Sync | Official creation guidance, binding validation, conflict isolation, distinct sync/identity disconnection |
 | Sharing | Copy/download local; MCP upload scope/client/expiry explicit; revocation does not falsely recall external copies |
 | Dictionary | Missing entries/IPA/audio, unreachable Cambridge, offline queries have truthful states |
-| Content | All three languages, understandable A1, C2 not reduced to obscure vocabulary; sample numbers not actual results |
+| Content | All fourteen interface languages with complete keys/placeholders, understandable A1, C2 not reduced to obscure vocabulary; sample numbers not actual results |
 
-Design calculations and document consistency checks are not runtime UI testing. Codex reports actual browsers, devices, build commits, and results, marking untested content accordingly. Wireframes do not replace screenshots or real behaviour.
+Choose relevant checks from this coverage table using `AGENT_WORKFLOW.md`; it is not a full matrix to repeat for every change. The maintainer's physical-device/accessibility and mainland-network acceptance is complete. Design calculations and document consistency checks are not runtime UI testing. Codex reports actual browsers, devices, build commits, and results, marking untested content accordingly. Wireframes do not replace screenshots or real behaviour.
 
 ### Sources Used for Checks
 
@@ -1102,7 +1055,7 @@ Latest daily-quote package (SHAacb5fe067efdd6519358ff86c203b2b9197658b483132efcf
 Quote source-row QA refinement: use the existing exact locator as its concise two-line disclosure label (fallback actual page title), rather than a thematic page plus alphabetical section such as “Virtue · E”. No author/work inference; expand for complete page/locator/revision link.
 
 
-2026-10-11 latest maintainer refinements: Library follows the supplied grouped-row ZIP (search, mixed checkbox, precise installed status, floating selected actions). Desktop and mobile navigation use filled active/focus pills instead of animated underlines. Both History entries share outline plus1.04 focus scale, static under reduced motion. Practice/Test sit above the source divider. Quote expansion uses four measured lines; short quotes remain complete. Newest About ZIP supersedes earlier separate cards with two compact rows, real version/state and About in ordinary text with a trailing arrow (2026-10-12 maintainer correction).
+2026-10-11 Library refinements retained: Library follows the supplied grouped-row ZIP (search, mixed checkbox, precise installed status, floating selected actions). Practice/Test sit above the source divider. Quote expansion uses four measured lines; short quotes remain complete. Newest About ZIP supersedes earlier separate cards with two compact rows, real version/state and About in ordinary text with a trailing arrow (2026-10-12 maintainer correction). Navigation now follows the accepted live translucent underline in Section E; History controls follow the 2026-11-01 refinements in F.7.
 
 
 ## First-visit introduction and native scrolling (maintainer update, 2026-10-19)

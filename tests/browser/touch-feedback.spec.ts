@@ -200,10 +200,13 @@ test.describe('touch feedback', () => {
     await readyForTouch(row);
     const box = (await row.boundingBox())!, point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
     const cdp = await context.newCDPSession(page);
+    const idle = await row.evaluate(el => getComputedStyle(el).backgroundColor);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
     await expect(row).toHaveAttribute('data-touch-active', '');
+    await expect(row).not.toHaveCSS('background-color', idle);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
     await expect(row.locator('input')).toBeChecked(); await expect(row).not.toHaveAttribute('data-touch-active');
+    await expect(row).toHaveCSS('background-color', idle);
     await context.setOffline(true);
     const download = page.locator('.offline-actions .primary'); await expect(download).toBeDisabled();
     const disabled = (await download.boundingBox())!;
@@ -233,6 +236,96 @@ test.describe('touch feedback', () => {
     expect(thumb.transform).toBe('none');
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await expect(slider).not.toHaveAttribute('data-touch-active'); await cdp.detach();
   });
+});
+
+for (const [width, theme] of [[375, 'light'], [1440, 'dark']] as const) test(`resource checkbox feedback stays visible without changing selection: ${width}/${theme}`, async ({ browser }, info) => {
+  const context = await browser.newContext({ baseURL: info.project.use.baseURL, hasTouch: true, viewport: { width, height: 900 }, colorScheme: theme });
+  const page = await context.newPage(); await page.goto('/library');
+  const group = page.locator('.offline-source-group').first(), toggle = group.locator('.offline-source-group-toggle');
+  await toggle.click();
+  const cdp = await context.newCDPSession(page);
+  for (const control of [group.locator('.offline-group-check'), group.locator('.package-row').first()]) {
+    const input = control.locator('input');
+    await control.scrollIntoViewIfNeeded(); await page.mouse.move(0, 0);
+    const idle = await control.evaluate(el => getComputedStyle(el).backgroundColor);
+    await page.keyboard.press('Tab'); await input.focus();
+    await expect(input).toBeFocused(); await expect(input).not.toBeChecked();
+    await expect(control).not.toHaveCSS('background-color', idle);
+    await expect(input).toHaveCSS('outline-width', '0px');
+    await expect(control).toHaveCSS('box-shadow', 'none');
+    const box = (await control.boundingBox())!;
+    expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
+    await page.screenshot({ path: info.outputPath(`resource-focus-${width}-${await control.getAttribute('class')}.png`) });
+    await toggle.focus(); await expect(control).toHaveCSS('background-color', idle);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+    await expect(control).toHaveAttribute('data-touch-active', '');
+    await expect(control).not.toHaveCSS('background-color', idle);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+    await expect(control).not.toHaveAttribute('data-touch-active'); await expect(input).not.toBeChecked();
+    await expect(control).toHaveCSS('background-color', idle);
+  }
+  const groupCheck = group.locator('.offline-group-check'), groupInput = groupCheck.locator('input');
+  await groupCheck.scrollIntoViewIfNeeded(); await groupInput.evaluate(el => { (el as HTMLInputElement).disabled = true; });
+  const disabledBox = (await groupCheck.boundingBox())!;
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: disabledBox.x + disabledBox.width / 2, y: disabledBox.y + disabledBox.height / 2 }] });
+  await expect(groupCheck).not.toHaveAttribute('data-touch-active');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await expect(groupInput).not.toBeChecked();
+  await cdp.detach(); await context.close();
+});
+
+for (const [width, theme] of [[375, 'light'], [1440, 'dark']] as const) test(`answer option feedback stays visible without changing answers: ${width}/${theme}`, async ({ browser }, info) => {
+  const context = await browser.newContext({ baseURL: info.project.use.baseURL, hasTouch: true, viewport: { width, height: 900 }, colorScheme: theme });
+  const page = await context.newPage(); await page.goto('/today');
+  const raw = JSON.parse(readFileSync(new URL('../fixtures/content/a1-reading.json', import.meta.url), 'utf8'));
+  const id = await page.evaluate(async raw => {
+    const { organizePractice } = await import('/src/core/practiceOrganization.ts' as string);
+    return (await (await import('/src/data/db.ts' as string)).createSession(organizePractice(raw))).id;
+  }, raw);
+  await page.goto(`/learn/${id}`); await page.locator('.material-workspace').waitFor();
+  if (width < 1200) await page.locator('.question-sheet-toggle').click();
+  const control = page.locator('.workspace-question .option').first(), input = control.locator('input');
+  await control.scrollIntoViewIfNeeded(); await page.mouse.move(0, 0);
+  const idle = await control.evaluate(el => getComputedStyle(el).backgroundColor);
+  await page.keyboard.press('Tab'); await input.focus();
+  await expect(input).toBeFocused(); await expect(input).not.toBeChecked();
+  await expect(control).not.toHaveCSS('background-color', idle);
+  await expect(control).toHaveCSS('outline-width', '0px'); await expect(control).toHaveCSS('box-shadow', 'none');
+  await page.screenshot({ path: info.outputPath(`answer-focus-${width}.png`) });
+  await input.evaluate(el => (el as HTMLInputElement).blur()); await expect(control).toHaveCSS('background-color', idle);
+  const box = (await control.boundingBox())!, cdp = await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+  await expect(control).toHaveAttribute('data-touch-active', ''); await expect(control).not.toHaveCSS('background-color', idle);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await expect(control).not.toHaveAttribute('data-touch-active'); await expect(input).not.toBeChecked();
+  await expect(control).toHaveCSS('background-color', idle);
+  // Exercise retained result styles without submitting the fixture's answers.
+  for (const result of ['correct', 'incorrect', 'answer']) {
+    await input.evaluate(el => (el as HTMLInputElement).blur());
+    await control.evaluate((el, result) => { (el as HTMLElement).dataset.result = result; }, result);
+    await expect.poll(() => control.evaluate(el => el.getAnimations().length)).toBe(0);
+    const resultColor = await control.evaluate(el => getComputedStyle(el).backgroundColor);
+    expect(resultColor).not.toBe(idle);
+    await page.keyboard.press('Tab'); await input.focus();
+    await expect(control).toHaveCSS('background-color', resultColor);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+    await expect(control).toHaveAttribute('data-touch-active', ''); await expect(control).toHaveCSS('background-color', resultColor);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+    await expect(input).not.toBeChecked();
+  }
+  await control.evaluate(el => { delete (el as HTMLElement).dataset.result; });
+  await input.check(); await input.evaluate(el => (el as HTMLInputElement).blur());
+  await expect.poll(() => control.evaluate(el => el.getAnimations().length)).toBe(0);
+  const selected = await control.evaluate(el => getComputedStyle(el).backgroundColor);
+  expect(selected).not.toBe(idle);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+  await expect(control).toHaveAttribute('data-touch-active', ''); await expect(control).toHaveCSS('background-color', selected);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] }); await expect(input).toBeChecked();
+  await input.evaluate(el => { (el as HTMLInputElement).disabled = true; });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+  await expect(control).not.toHaveAttribute('data-touch-active'); await expect(control).toHaveCSS('background-color', selected);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await cdp.detach(); await context.close();
 });
 
 for (const theme of ['light', 'dark']) test(`desktop search and keyboard controls use clear focus without bright frames: ${theme}`, async ({ page }) => {

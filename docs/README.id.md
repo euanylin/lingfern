@@ -171,7 +171,7 @@ npm run preview
 
 Buka [pratinjau lokal](http://127.0.0.1:8787/today). Belajar lokal tidak memerlukan kredensial GitHub/Cloudflare.
 
-- [Panduan penggunaan (Inggris)](user-guide.md)
+- [Panduan penggunaan (Inggris)](../README.md#readme-contents)
 - [Pengembangan dan pemeriksaan (Inggris)](development.md)
 - [Format ZIP komunitas](../community-content.md)
 - [Klien MCP (Inggris)](mcp-clients.md)

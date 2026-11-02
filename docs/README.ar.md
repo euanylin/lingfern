@@ -181,7 +181,7 @@ npm run preview
 
 افتح [المعاينة المحلية](http://127.0.0.1:8787/today). لا يتطلب التعلّم المحلي بيانات اعتماد GitHub أو Cloudflare.
 
-- [دليل الاستخدام (بالإنجليزية)](user-guide.md)
+- [دليل الاستخدام (بالإنجليزية)](../README.md#readme-contents)
 - [التطوير والفحوص (بالإنجليزية)](development.md)
 - [صيغة ZIP المجتمعية](../community-content.md)
 - [عملاء MCP (بالإنجليزية)](mcp-clients.md)

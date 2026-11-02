@@ -171,7 +171,7 @@ npm run preview
 
 Ouvrez [l’aperçu local](http://127.0.0.1:8787/today). L’apprentissage local ne demande pas d’identifiants GitHub/Cloudflare.
 
-- [Guide d’utilisation (anglais)](user-guide.md)
+- [Guide d’utilisation (anglais)](../README.md#readme-contents)
 - [Développement et vérifications (anglais)](development.md)
 - [Format ZIP communautaire](../community-content.md)
 - [Clients MCP (anglais)](mcp-clients.md)

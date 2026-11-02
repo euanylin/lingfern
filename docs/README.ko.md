@@ -171,7 +171,7 @@ npm run preview
 
 [로컬 미리보기](http://127.0.0.1:8787/today)를 엽니다. 로컬 학습에는 GitHub／Cloudflare 자격 증명이 필요하지 않습니다.
 
-- [사용 안내(영어)](user-guide.md)
+- [사용 안내(영어)](../README.md#readme-contents)
 - [개발·검사(영어)](development.md)
 - [커뮤니티 ZIP 형식](../community-content.md)
 - [MCP(영어)](mcp-clients.md)

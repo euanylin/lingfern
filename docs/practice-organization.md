@@ -1,6 +1,6 @@
 # Material-based reading and listening practice
 
-This document describes current generation, persistence and workspace behavior. User steps are in [the user guide](user-guide.md); layout rules are in [Interface_Design.md](../Interface_Design.md). Current release status belongs to [the handoff](../DEVELOPMENT_HANDOFF.md).
+This document describes current generation, persistence and workspace behavior. User steps are in [README](../README.md#readme-contents); layout rules are in [Interface_Design.md](../Interface_Design.md). Current release status belongs to [the handoff](../DEVELOPMENT_HANDOFF.md).
 
 ## Generation and source limits
 

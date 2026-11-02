@@ -42,7 +42,7 @@ async function inspect(api: ReturnType<typeof github>, accountId: number, choice
   const head = z.object({ sha: shaSchema, commit: z.object({ tree: z.object({ sha: shaSchema }) }) }).parse(commit);
   if (head.sha === sinceCommit) return { repository, existing: true, head: head.sha, tree: [] as z.infer<typeof treeSchema>['tree'], unchanged: true };
   const tree = treeSchema.parse((await api('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', { ...path, tree_sha: head.commit.tree.sha, recursive: '1' })).data);
-  if (tree.truncated || tree.tree.length > 10002 || tree.tree.reduce((size, entry) => size + (entry.size ?? 0), 0) > 20 * 1024 * 1024) throw new ApiError('REPOSITORY_CAPACITY', 413);
+  if (tree.truncated || tree.tree.reduce((size, entry) => size + (entry.size ?? 0), 0) > 20 * 1024 * 1024) throw new ApiError('REPOSITORY_CAPACITY', 413);
   const marker = tree.tree.find(entry => entry.path === 'profile.json');
   for (const entry of tree.tree) {
     const ordinary = ['README.md', 'README', '.gitignore', 'LICENSE', 'profile.json'].includes(entry.path);
@@ -238,7 +238,6 @@ export async function repositoryRoute(request: Request, env: AuthEnv): Promise<R
         // Personal ownership limits this App to one relevant installation.
         for (const repository of await installedRepositories(api, installation.id)) if (readyRepository(repository, session.id)) repositories.push({ installationId: installation.id, repositoryId: repository.id, name: repository.name });
       }
-      if (repositories.length > 100) throw new ApiError('REPOSITORY_CAPACITY', 413);
       const slug = env.GITHUB_APP_SLUG && /^[a-z0-9-]+$/.test(env.GITHUB_APP_SLUG) ? env.GITHUB_APP_SLUG : undefined;
       return privateJson({ repositories, ...(slug ? { installationUrl: `https://github.com/apps/${slug}/installations/new` } : {}) });
     }

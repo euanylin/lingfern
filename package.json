@@ -1,6 +1,6 @@
 {
   "name": "lingfern",
-  "version": "0.1.159",
+  "version": "0.1.160",
   "private": true,
   "type": "module",
   "engines": {
@@ -42,7 +42,6 @@
     "test:spoken-process": "node tests/spoken-process.mjs",
     "corpus:package": "node scripts/corpus-package.mjs && npm run offline:manifest && npm run packs:build && npm run resources:catalogue",
     "build:fixtures": "npm run typecheck && LINGFERN_OFFLINE_FIXTURES=1 node scripts/fixture-resources.mjs && LINGFERN_OFFLINE_FIXTURES=1 vite build --mode test-fixtures --outDir /tmp/lingfern-test-fixtures-dist --emptyOutDir",
-    "test:corpus-browser": "node tests/corpus-browser.mjs",
     "quotes:package": "node scripts/wikiquote-package.mjs && npm run quotes:runtime && npm run resources:catalogue",
     "resources:catalogue": "node scripts/runtime-resources.mjs",
     "resources:check": "node scripts/runtime-resources.mjs --check",

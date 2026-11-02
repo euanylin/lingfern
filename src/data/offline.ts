@@ -3,13 +3,14 @@ import { notifyResourceChange } from './resourceChanges';
 import { mutateResourceCache } from './resourceMutation';
 
 export const offlineGroups = runtimeResources.offline.groups;
-const group = (id: string) => offlineGroups.find(item => item.id === id);
-export const offlineCacheName = (id: string) => {
+type OfflineGroup = (typeof offlineGroups)[number];
+const group = (id: string | OfflineGroup) => typeof id === 'string' ? offlineGroups.find(item => item.id === id) : id;
+export const offlineCacheName = (id: string | OfflineGroup) => {
   const item = group(id);
   if (!item) throw new Error('UNKNOWN_PACKAGE');
   return `lingfern-public-${item.id}-${item.version}`;
 };
-export const offlineMarker = (id: string) => {
+export const offlineMarker = (id: string | OfflineGroup) => {
   const item = group(id);
   if (!item) throw new Error('UNKNOWN_PACKAGE');
   return `/offline-complete-${item.id}-${item.version}`;
@@ -31,13 +32,14 @@ export async function waitForOfflineWorker(signal?: AbortSignal) {
   } finally { clearTimeout(timeout); if (abort) signal?.removeEventListener('abort', abort); }
 }
 
-export async function offlineGroupReady(id: string) {
+export async function offlineGroupReady(id: string | OfflineGroup) {
   const item = group(id);
   if (!item || !('caches' in window) || !('serviceWorker' in navigator) || !(await navigator.serviceWorker.getRegistration('/'))?.active) return false;
-  const name = offlineCacheName(id);
+  const name = offlineCacheName(item);
   if (!await caches.has(name)) return false;
   const cache = await caches.open(name);
-  return cachedFilesPresent(cache, [offlineMarker(id), ...item.files.map(file => file.path)]);
+  const ready = await cachedFilesPresent(cache, [offlineMarker(item), ...item.files.map(file => file.path)]);
+  return ready && group(item.id)?.version === item.version;
 }
 
 export async function cachedFilesPresent(cache: Cache, paths: readonly string[]) {
@@ -78,10 +80,10 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
   await waitForOfflineWorker(signal);
   await (await import('./installationIntent')).saveInstallationIntent(profileId, id, true);
   await navigator.storage?.persist?.().catch(() => false);
-  const ready = await offlineGroupReady(id);
+  const ready = await offlineGroupReady(item);
   signal.throwIfAborted();
   if (ready) return true;
-  const name = offlineCacheName(id), stagedName = `${name}-staged-${crypto.randomUUID()}`;
+  const name = offlineCacheName(item), stagedName = `${name}-staged-${crypto.randomUUID()}`;
   const cache = await caches.open(stagedName);
   let completed = 0;
   try {
@@ -117,7 +119,7 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
     }
     if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
     const complete = await mutateResourceCache(name, async assertActive => {
-      const ready = await offlineGroupReady(id);
+      const ready = await offlineGroupReady(item);
       signal.throwIfAborted(); assertActive();
       if (ready) return true;
       const destination = await caches.open(name);
@@ -128,9 +130,9 @@ export async function installOfflineResources(id: string, onProgress: (bytes: nu
         assertActive(); await destination.put(file.path, response);
       }
       signal.throwIfAborted(); assertActive();
-      await destination.put(offlineMarker(id), new Response(item.version));
+      await destination.put(offlineMarker(item), new Response(item.version));
       signal.throwIfAborted(); assertActive();
-      const complete = await offlineGroupReady(id);
+      const complete = await offlineGroupReady(item);
       signal.throwIfAborted(); assertActive();
       return complete;
     }, signal);

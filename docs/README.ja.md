@@ -171,7 +171,7 @@ npm run preview
 
 [ローカルプレビュー](http://127.0.0.1:8787/today)を開きます。本機での学習に GitHub／Cloudflare の認証情報は不要です。
 
-- [利用ガイド（英語）](user-guide.md)
+- [利用ガイド（英語）](../README.md#readme-contents)
 - [開発と確認（英語）](development.md)
 - [コミュニティ ZIP 形式](../community-content.md)
 - [MCP（英語）](mcp-clients.md)

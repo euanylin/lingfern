@@ -8,7 +8,7 @@ All126independent sounds shown in Detailed view now have local sound buttons,bac
 
 All85new sources have saved Commons revision/author/licence evidence,verified original SHA1,local SHA256 and full FFmpeg decoding. Existing third-party rights/holds are unchanged. Individual file credits remain in `content/ipa-phoneme-sources.json` and its identical public copy. Current operation (local evidence: `docs/history/2026-10-18-ipa-full-audio.md`) records acquisition failures,source-description decisions,actual local checks and recovery. This is Codex/AI source/technical inspection,not human audition or physical-device acceptance. No official interactive-chart audio was copied:its separate restrictions do not follow the chart artwork's CC BY-SA licence.
 
-The header uses the maintainer’s supplied title/scope/right-side official text link and compact joined Simple/Detailed switch. The detailed scope remains English and describes the full chart and English circles;Simple retains its localized English-only scope. Header verification (local evidence: `docs/history/2026-10-17-ipa-header.md`).
+The header uses the maintainer’s supplied title/scope/right-side official text link and compact joined Simple/Detailed switch. The detailed scope remains English and describes the full chart and English circles;Simple retains its localized English-only scope. Header decision and verification (local evidence: `docs/history/2026-10-17-reference-ui.md`).
 
 References consulted2026-10-17:
 

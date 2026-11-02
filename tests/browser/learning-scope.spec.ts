@@ -130,3 +130,51 @@ for (const width of [1440, 375]) test(`leaving through the task back button pres
   await expect(page.getByRole('radio', { name: 'At the café.' })).toBeChecked();
   expect(await page.pageErrors()).toEqual([]);
 });
+
+test('a transient heartbeat failure preserves the open reading note through retry', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.route(/\/src\/data\/db\.ts(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}\nconst originalClaim = claimSession; claimSession = async (...args) => { if (window.failLearningHeartbeat && args.length < 5 || window.failLearningRetry && args.length === 5) { window.failLearningHeartbeat = false; window.failLearningRetry = false; throw new Error('SYNTHETIC_STORAGE_FAILURE'); } return originalClaim(...args); };` });
+  });
+  const { id } = await openSnapshot(page, 'a1-reading', true);
+  await page.locator('.reading-notes summary').click();
+  const note = page.locator('.reading-notes textarea');
+  await note.fill('Preserve this unsaved note through heartbeat retry.');
+  await page.evaluate(() => Reflect.set(window, 'failLearningHeartbeat', true));
+  await expect(page.getByRole('alert')).toBeVisible({ timeout: 10_000 });
+  await expect(note).toHaveValue('Preserve this unsaved note through heartbeat retry.');
+  await page.evaluate(() => Reflect.set(window, 'failLearningRetry', true));
+  await page.getByRole('alert').getByRole('button', { name: languagePacks['zh-Hans'].app.retry, exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText(languagePacks['zh-Hans'].app.saveError);
+  await expect(note).toHaveValue('Preserve this unsaved note through heartbeat retry.');
+  expect(await page.evaluate(async id => (await navigator.locks.query()).held?.some(lock => lock.name === `lingfern-session:${id}`), id)).toBe(true);
+  await page.getByRole('alert').getByRole('button', { name: languagePacks['zh-Hans'].app.retry, exact: true }).click();
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  await expect(note).toHaveValue('Preserve this unsaved note through heartbeat retry.');
+  await page.locator('.reading-notes button', { hasText: '保存笔记' }).click();
+  await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).readingAnnotations?.[0]?.note, id)).toBe('Preserve this unsaved note through heartbeat retry.');
+});
+test('a failed strict-check start shows its retry action without revealing the material', async ({ page }) => {
+  await page.route(/\/src\/data\/db\.ts(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}\nconst originalBeginCheck = beginCheck; beginCheck = async (...args) => { if (window.failCheckStart) { window.failCheckStart = false; throw new Error('SYNTHETIC_STORAGE_FAILURE'); } return originalBeginCheck(...args); };` });
+  });
+  const lesson = JSON.parse(readFileSync('tests/fixtures/content/a1-check-reading.json', 'utf8'));
+  await page.goto('/today');
+  await expect(page.locator('#practice-section-title')).toBeVisible();
+  const id = await page.evaluate(async lesson => (await (await import('/src/data/db.ts' as string)).createSession(lesson)).id, lesson);
+  await page.goto(`/learn/${id}`);
+  await expect(page.locator('.check-intro')).toBeVisible();
+  await page.evaluate(() => Reflect.set(window, 'failCheckStart', true));
+  await page.getByRole('button', { name: languagePacks['zh-Hans'].app.checkBegin, exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText(languagePacks['zh-Hans'].app.saveError);
+  await expect(page.locator('.material-workspace,.passage')).toHaveCount(0);
+  expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).checkStartedAt, id)).toBeUndefined();
+  await page.getByRole('button', { name: languagePacks['zh-Hans'].app.retry, exact: true }).click();
+  await expect(page.locator('.check-intro')).toBeVisible();
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  await page.getByRole('button', { name: languagePacks['zh-Hans'].app.checkBegin, exact: true }).click();
+  await expect(page.locator('.material-workspace')).toBeVisible();
+  await expect(page.locator('.workspace-hints,.teaching,.workspace-review')).toHaveCount(0);
+});

@@ -1,6 +1,6 @@
 # Identity, sync and MCP configuration
 
-Production identity, repository sync and MCP are already configured for `https://lingfern.com`; current bindings and public App identifiers are in [`wrangler.jsonc`](../wrangler.jsonc). Reuse the existing resources. Do not repeat old registration/setup steps, rotate stable keys or reapply migrations merely to publish an update. [Release and recovery](../docs/release-runbook.md) owns publication; [acceptance](../docs/release-readiness.md) records completed real-provider scope.
+Production identity, repository sync and MCP are already configured for `https://lingfern.com`; current bindings and public App identifiers are in [`wrangler.jsonc`](../wrangler.jsonc). Reuse the existing resources. Do not repeat old registration/setup steps, rotate stable keys or reapply migrations merely to publish an update. [Release and recovery](../docs/release-runbook.md) owns publication and its [acceptance boundaries](../docs/release-runbook.md#acceptance-boundaries) record completed real-provider scope.
 
 ## Local development
 

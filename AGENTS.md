@@ -4,7 +4,7 @@
 
 Follow the current user request. Use [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md) for execution steps, file/command mapping and delivery. This file contains the consolidated current project rules; [Product_Plan.md](Product_Plan.md), [Interface_Design.md](Interface_Design.md) and [docs/brand-assets.md](docs/brand-assets.md) provide their detailed specifications. Read those three specifications in full on first entry; reuse already-read context during the same work. Do not search for another plan or ask another product-preference questionnaire.
 
-Read the current [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md), [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) and relevant [Issues.md](Issues.md). Historical evidence is in `docs/history/`; it does not grant permission or restart obsolete work. A focused request does not resume the persistent development goal. Explicitly requested continuation uses `DEVELOPMENT_GOAL.md`.
+Read the current [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md), [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) and relevant [Issues.md](Issues.md). Historical evidence is in `docs/history/`; it does not grant permission or restart obsolete work. Explicitly requested continuation follows the current handoff and `AGENT_WORKFLOW.md`; focused requests keep their own scope.
 
 Inspect live workspace, Git state, code, dependencies and domain configuration before changes. Reuse existing implementations and preserve unfamiliar code, private repositories and production data. The implemented local application is not evidence of production deployment. The predominantly untracked workspace is not disposable.
 

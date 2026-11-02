@@ -1,13 +1,13 @@
 # Agent workflow
 
-This is the operational entry point for `/Users/euan/Documents/Lingfern`, updated on 2026-11-01. It indexes existing requirements and tools; it does not grant production permission or change acceptance gates. User-facing replies default to concise Chinese; operational documentation uses English; code comments and docstrings use concise English as required by `AGENTS.md`.
+This is the operational entry point for `/Users/euan/Documents/Lingfern`, updated on 2026-11-02. It indexes existing requirements and tools; it does not grant production permission or change acceptance gates. User-facing replies default to concise Chinese; operational documentation uses English; code comments and docstrings use concise English as required by `AGENTS.md`.
 
 ## 1. Start with the requested scope
 
 1. Read [AGENTS.md](AGENTS.md), including all consolidated current rules. On first entry, read [Product_Plan.md](Product_Plan.md), [Interface_Design.md](Interface_Design.md) and [docs/brand-assets.md](docs/brand-assets.md) in full. In an ongoing session, reuse already-read requirements and inspect changed/relevant sections.
 2. Read the compact current state in [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md), [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), and relevant entries in [Issues.md](Issues.md). Search by issue ID or feature; historical logs need not be reread end to end. Headings labelled “Latest” inside older history are not the current checkpoint.
 3. Inspect the workspace, live implementation, callers, tests, dependencies and configuration. Do not infer a disposable workspace from untracked files. Do not reset, clean, initialise another project or publish by inference.
-4. For explicit development continuation, use [DEVELOPMENT_GOAL.md](DEVELOPMENT_GOAL.md). For a focused request, finish that scope; the saved goal prompt is not an instruction to start unrelated development.
+4. For explicit development continuation, follow the current handoff and this workflow. For a focused request, finish that scope without starting unrelated development.
 5. Before editing, follow the backup procedure below unless the current request explicitly overrides it. Change existing shared code where possible, finish affected callers/fixtures and run relevant checks before delivery.
 
 Useful read-only orientation:
@@ -35,9 +35,7 @@ Use `rg` with explicit directories and exclude `backup/`, `private/`, `node_modu
 | `DEVELOPMENT_HANDOFF.md` | Newest state, evidence and next concrete step | Replace current state; link only useful retained evidence |
 | `IMPLEMENTATION_STATUS.md` | Current implementation/evidence boundary | Refresh scope table; link exact evidence without duplicating the handoff |
 | `Issues.md` | Difficult/deferred problems and acceptance criteria | Update current index after verification; retain historical issue IDs/evidence |
-| `docs/release-readiness.md` | Acceptance standards and retained first-launch evidence | Update after actual checks; never equate local checks with real environment acceptance |
-| `docs/release-runbook.md` | Reviewed candidate/configuration/release/rollback/recovery procedure | Keep unexecuted actions and approval dependencies explicit |
-| `DEVELOPMENT_GOAL.md` | Reusable continuation prompt | Reference current state; do not copy all overrides and counts |
+| `docs/release-runbook.md` | Acceptance boundaries, candidate/release/recovery procedure | Keep real-environment evidence, unexecuted actions and approval dependencies explicit |
 | `README.md` | Public introduction, with fourteen language versions | Keep product/use/privacy/licensing guidance clear; maintainer operation records belong in the handoff and release documents |
 
 Current runtime version comes from `package.json`, dependency pins from `package-lock.json`. Download/install metadata comes from `public/resources/catalogue.json`; topic ZIPs from `content/source-packs.json`; preparation coverage from `content/corpus/runtime-audit.json`. Those files describe different units: source roots, excerpts, ZIPs and resource groups are not interchangeable. Reconcile them before making a fresh inventory claim.
@@ -91,7 +89,9 @@ Run resource generation and tests reading those outputs sequentially. Coordinate
 
 `test:first-screen` prints its report path and defaults to a unique timestamped directory under `private/verification/`; set `LINGFERN_FIRST_SCREEN_OUTPUT` only to a new task-owned directory, never a historical evidence directory.
 
-Do not overlap a fixture production build with Vite development browser tests: they share the dependency optimizer cache even when resource staging paths differ. Browser mounting helpers must import React through the normal Vite module graph; do not hardcode `.vite/deps` URLs.
+Do not overlap any Vite production build with Vite development browser tests: both ordinary and fixture builds can invalidate the shared dependency optimizer cache and cause `504 Outdated Optimize Dep` failures. Finish builds before starting the fixture server; after such a failure, restart that server with `--force` and verify a rendered page before acceptance. Browser mounting helpers must import React through the normal Vite module graph; do not hardcode `.vite/deps` URLs.
+
+Restart the fixture Vite server after source edits before broad browser acceptance. A warm HMR graph may import timestamped database modules while test helpers import the plain URL, creating separate Dexie instances and invalidating transaction/fault-injection checks. Keep source stable during the run and retain failed evidence before restarting; see the diagnosis (local evidence: `docs/history/2026-11-02-comprehensive-audit.md`).
 
 ### Routine update budget — maintainer update,2026-10-26
 
@@ -140,7 +140,7 @@ Preserve I137/I142's strict installed-primary equality, cross-package ownership/
 
 Unless the current request explicitly overrides backups, run the required before-change/delivery incremental backup; follow the threshold authorisation in `AGENTS.md` and the chain/count/lock/exclusion procedure in [project backup guide](docs/project-backups.md). Its source/copy hash verification is sufficient for routine documentation, UI and focused code updates. Perform an independent full restore into a nonexistent destination only when changing backup/restore/retention logic, changing protected-file exclusions, retiring recovery points or when the affected release/data-recovery procedure requires it. Compare hashes and remove successful scratch restores. Permissions are owned by `AGENTS.md`; console setup is in [worker/identity-setup.md](worker/identity-setup.md).
 
-Keep current handoff/status/issues concise. Store dated detailed evidence in `docs/history/` or the existing private verification scope with these fields:
+Keep current handoff/status/issues concise and update the owning document. Retain significant design, source, security and release evidence in `docs/history/` or its existing private verification scope; routine edits do not need a new task diary. When a durable verification record is needed, include:
 
 ```text
 Date / scope / runtime version (unchanged for docs-only)
@@ -151,4 +151,4 @@ Remaining issue: impact, next concrete step, acceptance criterion
 Backup point / preview status / production deployment yes or no
 ```
 
-Put large logs and private verification evidence in their existing private scope, not inline in operating documents. Preserve frozen journal hashes from [docs/history/README.md](docs/history/README.md). In the final user reply, give the result and clickable deliverables, actual checks, remaining risks and next step. Don't promote historical evidence into a fresh success claim.
+Put large logs and private verification evidence in their existing private scope, not inline in operating documents. Follow the retention boundaries in [docs/history/README.md](docs/history/README.md); source hashes and rights evidence remain protected. In the final user reply, give the result and clickable deliverables, actual checks, remaining risks and next step. Don't promote historical evidence into a fresh success claim.

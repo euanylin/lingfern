@@ -34,14 +34,14 @@ export async function installResourcePack(pack: ResourcePack, profileId: string,
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
   await waitForOfflineWorker(signal);
   await (await import('./installationIntent')).saveInstallationIntent(profileId, group.id, true);
-  const ready = await offlineGroupReady(group.id);
+  const ready = await offlineGroupReady(group);
   signal?.throwIfAborted();
   if (ready) return group.id;
-  return mutateResourceCache(offlineCacheName(group.id), async assertActive => {
-    const ready = await offlineGroupReady(group.id);
+  return mutateResourceCache(offlineCacheName(group), async assertActive => {
+    const ready = await offlineGroupReady(group);
     signal?.throwIfAborted(); assertActive();
     if (ready) return group.id;
-    const cache = await caches.open(offlineCacheName(group.id));
+    const cache = await caches.open(offlineCacheName(group));
     for (const file of group.files) {
       signal?.throwIfAborted(); assertActive();
       const data = pack.files[file.path.slice(1)];
@@ -49,8 +49,8 @@ export async function installResourcePack(pack: ResourcePack, profileId: string,
       await cache.put(file.path, new Response(new Uint8Array(data), { headers: { 'Content-Type': type, 'Content-Length': String(data.length) } }));
     }
     signal?.throwIfAborted(); assertActive();
-    await cache.put(offlineMarker(group.id), new Response(group.version));
-    const complete = await offlineGroupReady(group.id);
+    await cache.put(offlineMarker(group), new Response(group.version));
+    const complete = await offlineGroupReady(group);
     signal?.throwIfAborted(); assertActive();
     if (!complete) throw new Error('PACKAGE_INCOMPLETE');
     return group.id;

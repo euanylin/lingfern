@@ -54,20 +54,21 @@ function candidates(material: Material, level: Lesson['targetLevel'], seed: numb
   }
   for (const part of spread(body, 40)) {
     if (part.text.length > 12000) continue;
+    const blockIndex = material.blocks.findIndex(block => block.id === part.blockId);
     if (allowed('evidence')) for (const [index, generate] of [corpusCondition, corpusConcession, corpusEvaluation, corpusQualification].entries()) {
       const task = generate(part.text, seed);
-      if (task) result.push({ kind: 'evidence', id: `${material.id.slice(0, 40)}-meaning-${part.start}-${index}`, blockId: part.blockId, prompt: task.prompt, spans: task.spans.map(span => ({ ...span, blockId: part.blockId, start: part.start + span.start, end: part.start + span.end })), accepted: task.accepted, evidence: { start: part.start + task.evidence.start, end: part.start + task.evidence.end }, hints: support, explanation: english(task.explanation) });
+      if (task) result.push({ kind: 'evidence', id: `${material.id.slice(0, 40)}-meaning-${blockIndex}-${part.start}-${index}`, blockId: part.blockId, prompt: task.prompt, spans: task.spans.map(span => ({ ...span, blockId: part.blockId, start: part.start + span.start, end: part.start + span.end })), accepted: task.accepted, evidence: { start: part.start + task.evidence.start, end: part.start + task.evidence.end }, hints: support, explanation: english(task.explanation) });
     }
     if (allowed('table')) {
       const dates = corpusDates(part.text, seed);
       if (dates) {
         const points = dates.rows.map((row, index) => ({ row, span: [dates.evidence, ...dates.otherEvidence][index] })).sort((a, b) => a.span.start - b.span.start);
-        result.push({ kind: 'table', id: `${material.id.slice(0, 40)}-dates-${part.blockId.slice(-8)}-${part.start}`, blockId: part.blockId, prompt: 'Complete each event with its stated year. Keep the timing qualifications.', rows: points.map(point => point.row), evidence: { start: part.start + points[0].span.start, end: part.start + points[0].span.end }, additionalEvidence: points.slice(1).map(point => ({ blockId: part.blockId, start: part.start + point.span.start, end: part.start + point.span.end })), hints: support, explanation: english('Each year belongs to its quoted event. Preserve words such as before, around and until.') });
+        result.push({ kind: 'table', id: `${material.id.slice(0, 40)}-dates-${blockIndex}-${part.start}`, blockId: part.blockId, prompt: 'Complete each event with its stated year. Keep the timing qualifications.', rows: points.map(point => point.row), evidence: { start: part.start + points[0].span.start, end: part.start + points[0].span.end }, additionalEvidence: points.slice(1).map(point => ({ blockId: part.blockId, start: part.start + point.span.start, end: part.start + point.span.end })), hints: support, explanation: english('Each year belongs to its quoted event. Preserve words such as before, around and until.') });
       }
     }
     if (allowed('sequence')) {
       const sequence = corpusSequence(part.text, seed);
-      if (sequence) result.push({ kind: 'sequence', id: `${material.id.slice(0, 40)}-order-${part.start}`, blockId: part.blockId, prompt: 'Arrange these sentences in their source order.', steps: sequence.steps, acceptedOrders: sequence.acceptedOrders, evidence: { start: part.start + sequence.evidence.start, end: part.start + sequence.evidence.end }, hints: support, explanation: english('The complete source presents these sentences in this order.') });
+      if (sequence) result.push({ kind: 'sequence', id: `${material.id.slice(0, 40)}-order-${blockIndex}-${part.start}`, blockId: part.blockId, prompt: 'Arrange these sentences in their source order.', steps: sequence.steps, acceptedOrders: sequence.acceptedOrders, evidence: { start: part.start + sequence.evidence.start, end: part.start + sequence.evidence.end }, hints: support, explanation: english('The complete source presents these sentences in this order.') });
     }
   }
   return result;

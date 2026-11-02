@@ -2,30 +2,31 @@
 
 [Lingfern](https://lingfern.com)
 
-These dated records preserve useful decisions, acceptance evidence, incident causes and limits. They are not the current setup guide or authorization to repeat an operation. A historical “pending”, “latest” or “local only” statement describes that record's date.
+These dated records retain architecture and product decisions, source/teaching/licensing evidence, significant defects, security incidents, authorization and release acceptance. They are not current setup instructions or permission to repeat an operation. A historical “pending”, “latest” or “local only” statement describes that record's date.
 
-Current entry points: [requirements](../../AGENTS.md), [workflow](../../AGENT_WORKFLOW.md), [handoff](../../DEVELOPMENT_HANDOFF.md), [implementation](../../IMPLEMENTATION_STATUS.md), [issues](../../Issues.md). Source snapshots and duplicate journal copies are not maintained as documentation. An old private recovery path is not a promise that the payload still exists.
+Current entry points: [requirements](../../AGENTS.md), [workflow](../../AGENT_WORKFLOW.md), [handoff](../../DEVELOPMENT_HANDOFF.md), [implementation](../../IMPLEMENTATION_STATUS.md), [issues](../../Issues.md). Current specifications own the implemented design; intermediate visual adjustments and completed preparation checklists are not maintained as separate histories.
 
-## Release and policy evidence
+Historical `backup/<timestamp>` references identify original verification checkpoints. The maintainer authorized clearing historical recovery points on 2026-11-02; those references do not promise a currently restorable snapshot. Old private materialisation paths may also have been retired. A dated test receipt remains evidence of its original input and scope, not proof that every referenced payload still exists. Project snapshots never included browser data, credentials, private verification evidence or production services.
 
-- Current release and source-sync receipts: `private/verification/release-0.1.159-audit-20261102/`. The preceding accepted 0.1.158 remains in `private/verification/release-0.1.158-ipa-20261102/`. The preceding accepted 0.1.157 remains in `private/verification/release-0.1.157-foldouts-retry-20261101/`. The intermediate accepted 0.1.156 remains in `private/verification/release-0.1.156-maintenance-20261101/`; its source sync was held for the subsequent recording repair. Prior 0.1.155 receipts remain in `private/verification/release-0.1.155-alignment-20261101/`. Accepted 0.1.154 remains a separate intermediate release whose source synchronization was held for the alignment correction. The earlier cancelled 0.1.154 attempt and accepted 0.1.153 receipts remain separate historical evidence. The preceding 0.1.152 records remain local historical evidence in `2026-11-01-cloudflare-0.1.152.md` and `2026-11-01-github-source-0.1.152-no-ci.md`.
-- Long-term disabled workflows (local evidence: `docs/history/2026-11-01-disabled-github-workflows.md`); the current execution procedure lives in the workflow above.
-- First public launch (local evidence: `docs/history/2026-10-26-first-public-launch.md`), maintainer device/network acceptance (local evidence: `docs/history/2026-10-21-release-gates.md`), real two-device sync (local evidence: `docs/history/2026-10-22-real-two-device-sync.md`), provider/recovery acceptance (local evidence: `docs/history/2026-10-23-release-completion.md`), MCP expiry/revocation (local evidence: `docs/history/2026-10-25-mcp-refresh.md`).
-- GitHub support/process investigation (local evidence: `docs/history/2026-10-31-github-update-process.md`), static-asset failure guard (local evidence: `docs/history/2026-10-25-static-assets-guard.md`).
+Only this history index is exported to GitHub. Dated filenames below refer to retained local evidence, not public download links.
 
-## Recent implementation evidence
+## Current and earlier releases
 
-- Full local audit: browser-history note protection, version-bound resource installation, MCP client labels, compatible security patches and conservative cleanup; published in 0.1.159 ([local audit](2026-11-02-full-local-audit.md), [release](2026-11-02-release-0.1.159.md)).
-- About licence documents display their original text and refresh older cached download types; published in 0.1.159 ([record](2026-11-02-about-documents.md)).
+- **Released 0.1.160:** IPA mobile repair (`2026-11-02-ipa-mobile.md`), IPA/shared-control feedback (`2026-11-02-related-feedback.md`), and the comprehensive follow-up audit (`2026-11-02-comprehensive-audit.md`): captured resource versions, unsaved-note preservation on transient lease errors, distinct generated-question IDs and bounded redundant-check removal. These fixes and repository/documentation cleanup are published; the [handoff](../../DEVELOPMENT_HANDOFF.md) owns current release receipts and verification boundaries.
+- **Released 0.1.159:** audit (`2026-11-02-full-local-audit.md`), About licence documents (`2026-11-02-about-documents.md`), and release/source synchronization (`2026-11-02-release-0.1.159.md`). Exact receipts: `private/verification/release-0.1.159-audit-20261102/`.
+- Earlier accepted changes: IPA vowel feedback (`2026-11-02-ipa-vowel-feedback.md`) in 0.1.158; shared foldouts (`2026-11-01-foldout-feedback.md`) in 0.1.157; queued drafts/identity recovery (`2026-11-01-maintenance-review.md`) and history details (`2026-11-01-history-empty-details.md`) in 0.1.156. Their dated source and publication boundaries remain separate.
 
-- IPA vowel central-line and feedback repair, published in 0.1.158 (local evidence: `docs/history/2026-11-02-ipa-vowel-feedback.md`).
+## Authorization, release and security
 
-- Shared foldout highlight and accidental label selection repair, published in 0.1.157 (local evidence: `docs/history/2026-11-01-foldout-feedback.md`).
+- Local-first publication policy (`2026-11-01-local-first-release-policy.md`) and long-term disabled workflows (`2026-11-01-disabled-github-workflows.md`); the current executable procedure is in the workflow above.
+- First public launch (`2026-10-26-first-public-launch.md`), maintainer device/network acceptance (`2026-10-21-release-gates.md`), real two-device sync (`2026-10-22-real-two-device-sync.md`), provider/recovery acceptance (`2026-10-23-release-completion.md`), and MCP expiry/revocation (`2026-10-25-mcp-refresh.md`).
+- Static-asset failure guard (`2026-10-25-static-assets-guard.md`), GitHub support/process investigation (`2026-10-31-github-update-process.md`), backup/sync compatibility audit (`2026-11-01-full-local-audit.md`), and bookmark review removal (`2026-10-24-bookmark-simplification.md`).
+- Initial source publication, account/resource setup and staged execution records retain their actual authorizations and failed-operation limits. Their spent approvals do not authorize a repeat.
 
-- Queued draft/identity recovery and conservative cleanup (local evidence: `docs/history/2026-11-01-maintenance-review.md`), history details/deletion confirmation (`docs/history/2026-11-01-history-empty-details.md`); both published in 0.1.156.
+## Implementation and recovery references
 
-- Broad local audit and data-format compatibility (local evidence: `docs/history/2026-11-01-full-local-audit.md`).
-- Mobile fern lifecycle (local evidence: `docs/history/2026-11-01-mobile-intro-fern.md`), refresh-title repair (local evidence: `docs/history/2026-11-01-refresh-title-flash.md`), CSS/reference cleanup (local evidence: `docs/history/2026-11-01-code-cleanup.md`).
-- Trackpad root causes (local evidence: `docs/history/2026-11-01-trackpad-recording.md`), Safari/Firefox interaction scope (local evidence: `docs/history/2026-10-31-safari-compatibility.md`), sync responsiveness (local evidence: `docs/history/2026-10-31-sync-review.md`), practical performance work (local evidence: `docs/history/2026-10-31-practical-performance.md`).
+- Shared material workspace (`2026-10-17-material-workspace.md`), TaskDetail lifecycle (`2026-10-17-task-detail-pointer.md`), page spacing (`2026-10-21-page-bottom-spacing.md`), reference controls (`2026-10-17-reference-ui.md`), and service cards (`2026-10-19-service-cards.md`).
+- Trackpad causes (`2026-11-01-trackpad-recording.md`), native scrollbar behavior (`2026-10-31-native-scrollbar-interaction.md`), Safari compatibility (`2026-10-31-safari-compatibility.md`), sync responsiveness (`2026-10-31-sync-review.md`), and practical performance (`2026-10-31-practical-performance.md`).
+- Historical storage consolidation (`2026-10-28-local-storage-cleanup.md`) and cold source/Git recovery boundaries (`2026-10-17-verification-storage.md`). These explain previous removals and retained original evidence; inspect actual files before recovery.
 
-Other retained source/teaching/licensing, security, release and bug records remain searchable by topic or date. Preserve exact evidence and failed-attempt limits where they explain a current guard or decision; do not append duplicate full journals to current-state documents.
+Other source, teaching, licensing and incident records remain searchable by topic or date. Retain exact evidence and limitations where they explain a current guard or decision; do not duplicate full journals in operating documents.

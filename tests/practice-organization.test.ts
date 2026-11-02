@@ -122,3 +122,25 @@ it('does not retest dates already used as additional objective evidence in anoth
   const selected = organizePractice(lesson).materials[0].questions;
   expect(selected.some(question => question.id === material.questions[0].id) && selected.some(question => 'rows' in question && question.blockId === 'dated-events')).toBe(false);
 });
+
+it.each(['evidence', 'sequence', 'table'] as const)('retains distinct %s questions at the same offset in separate blocks', kind => {
+  const lesson = structuredClone(reading);
+  for (const material of lesson.materials) {
+    const texts = kind === 'table' ? [
+      'The library opened in 1991. The hall was rebuilt in 2013. The museum closed in 2020.',
+      'The station opened in 1982. The bridge was rebuilt in 2004. The theatre closed in 2019.',
+    ] : [
+      'The library opens only when the librarian arrives. The shelves contain several books. The desk stands beside a window.',
+      'The museum opens only when the guide arrives. The walls display historical paintings. The courtyard contains a stone fountain.',
+    ];
+    material.blocks.push(...texts.map((text, index) => ({ id: `${material.id}-${index}-shared00`, text })), { id: `${material.id}-context`, text: 'Context '.repeat(300) });
+  }
+  const original = structuredClone(lesson), next = organizePractice(lesson, [], [kind]);
+  for (const material of next.materials) {
+    expect(material.questions.some(question => question.blockId === `${material.id}-0-shared00`)).toBe(true);
+    expect(material.questions.some(question => question.blockId === `${material.id}-1-shared00`)).toBe(true);
+    expect(new Set(material.questions.map(question => question.id)).size).toBe(material.questions.length);
+  }
+  expect(lesson).toEqual(original);
+  expect(organizePractice(next, [], [kind])).toEqual(next);
+});

@@ -13,6 +13,17 @@ const labels = messages('ipaChart');
 // Common mobile fonts lack these compound accents.
 const toneAccents: Record<string, string> = { '᷄': 'M2 9H9L16 2', '᷅': 'M2 2L9 9H16', '᷈': 'M2 2L7 9L12 2L17 9' };
 
+function revealChartControl(target: EventTarget) {
+  const button = target instanceof Element ? target.closest('button') : null;
+  const chart = button?.closest<HTMLElement>('.ipa-vowel-scroll,.ipa-table-scroll');
+  if (!button || !chart) return;
+  const bounds = chart.getBoundingClientRect(), box = button.getBoundingClientRect();
+  const start = bounds.left + chart.clientLeft, right = start + chart.clientWidth;
+  const left = Math.max(start, button.closest('tr')?.querySelector('th')?.getBoundingClientRect().right ?? start);
+  // Reveal feedback beyond sticky row titles without moving the page or intercepting swipes.
+  chart.scrollLeft += Math.min(0, box.left - left - 8) + Math.max(0, box.right - right + 8);
+}
+
 export function IpaChart({ locale, profileId, initialQuery = '', initialEntries, initialSounds, disabled = false }: { locale: Locale; profileId: string; initialQuery?: string; initialEntries?: unknown; initialSounds?: unknown; disabled?: boolean }) {
   const t = labels[locale];
   const [entries, setEntries] = useState<IpaEntry[] | undefined>(() => initialEntries ? ipaChartSchema.parse(initialEntries).entries : undefined);
@@ -126,7 +137,10 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
         <div className="ipa-grid" dir="ltr">{entries.filter(entry => entry.group === group && entry.category === category).map(entry => renderEntry(entry.ipa))}</div>
       </section>)}
     </section>) : sounds && <>
-      <div className="ipa-full-chart" lang="en" dir="ltr">
+      <div className="ipa-full-chart" lang="en" dir="ltr" onClick={event => revealChartControl(event.target)} onFocus={event => {
+        // Pointer focus precedes activation; leave the pressed target in place until the click.
+        if (!document.documentElement.hasAttribute('data-pointer-input')) revealChartControl(event.target);
+      }}>
       <section className="ipa-group" lang="en" dir="ltr"><h2>Vowels</h2><p className="muted">In pairs, the right symbol is rounded. Positions are schematic; English vowel quality varies by accent.</p>
         <div className="ipa-vowel-scroll" role="region" aria-label="Vowel chart: height and backness" tabIndex={0}><div className="ipa-vowel-map">
           <div className="ipa-vowel-columns"><span>Front</span><span>Central</span><span>Back</span></div>

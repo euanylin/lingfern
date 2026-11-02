@@ -1,6 +1,22 @@
 # Release and recovery
 
-This is the operational release procedure. [Development](development.md) covers local commands; [readiness](release-readiness.md) defines acceptance boundaries; the [handoff](../DEVELOPMENT_HANDOFF.md) owns the latest deployed and unpublished state. Historical approvals and version IDs are evidence, not reusable command arguments.
+This is the operational release procedure and acceptance reference. [Development](development.md) covers local commands; the [handoff](../DEVELOPMENT_HANDOFF.md) owns the latest deployed and unpublished state, and [Issues](../Issues.md) owns unresolved defects. Historical approvals and version IDs are evidence, not reusable command arguments.
+
+## Acceptance boundaries
+
+The maintainer approved the first public launch of 0.1.146 on 2026-10-26. Routine updates do not restart completed launch setup, unchanged-source rights review, the 72-cell teaching audit or native-speaker proofreading.
+
+| Accepted scope | Evidence and limits |
+|---|---|
+| Formal public launch | 2026-10-26 decision (local evidence: `docs/history/2026-10-26-first-public-launch.md`); scope remains the exact accepted source and production checks |
+| Physical-device/accessibility and mainland-network use | Maintainer acceptance, 2026-10-21 (local evidence: `docs/history/2026-10-21-release-gates.md`); no new standalone device/reader/carrier matrix required; preserve ordinary accessible UI regressions |
+| Real identity and two-device sync | Production completion (local evidence: `docs/history/2026-10-23-release-completion.md`) and Mac/Android sync (local evidence: `docs/history/2026-10-22-real-two-device-sync.md`); accepted account, permissions, offline concurrent changes, retry/deletion and failure scopes only |
+| MCP expiry/revocation | 2026-10-25 controlled test (local evidence: `docs/history/2026-10-25-mcp-refresh.md`); valid connection before/after a five-minute synthetic-share expiry, empty list/SHARE_NOT_FOUND, normal revocation and old-bearer rejection; normal product share lifetime stays 24 hours |
+| Teaching support and source-bound generation | [Teaching coverage matrix](teaching-coverage-matrix.md); finite inspected source/task evidence, not mature unlimited curriculum, calibrated CEFR, examination scores or learning effects |
+
+Earlier failed/interrupted natural 24-hour observations remain historical attempts, not pending acceptance. Natural long website-session expiry, key-loss/off-site disaster recovery and nationwide network performance were not established by the narrower accepted tests. Investigate concrete new defects without relabeling those limits as passed.
+
+For each update, use [AGENT_WORKFLOW](../AGENT_WORKFLOW.md) to select checks for changed behavior. Preserve transaction/import failure, conflict/deletion/replay, account isolation, expiry/revocation and offline-update recovery checks where those paths change. Local synthetic tests do not establish new real-provider acceptance. Documentation-only work needs content/link review, without app suites or CI; publication follows the source, resource and recovery guards below.
 
 ## Authorization and order
 

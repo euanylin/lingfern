@@ -1,6 +1,6 @@
 # Run and contribute to Lingfern
 
-[Website](https://lingfern.com) · [Home](../README.md) · [User guide](user-guide.md)
+[Website](https://lingfern.com) · [Overview and user guide](../README.md)
 
 Lingfern has one React and TypeScript frontend, with IndexedDB for learning data and a Service Worker for installed offline resources. A Cloudflare Worker serves the site and optional identity, sync and MCP endpoints.
 
@@ -35,7 +35,7 @@ For frontend development, run `npm run dev`. If you also need the local API, run
 | `npm run release:files -- --check` | Check the current public-source boundary without copying or uploading it. |
 | `npm run deploy:check` | Validate and bundle the Worker without deploying it. |
 
-Browser tests require the matching Playwright Chromium installation (`npx playwright install chromium`). Some local tests use retained source evidence that is intentionally absent from the public repository; `npm run test:source-evidence` requires that evidence. Do not replace missing originals with invented data or relax the assertions.
+Local browser tests use installed Google Chrome by default; cross-engine cases also require Playwright WebKit (`npx playwright install webkit`). CI-mode browser checks use Playwright Chromium (`npx playwright install chromium`). These browser choices do not authorize running GitHub workflows. Some local tests use retained source evidence that is intentionally absent from the public repository; `npm run test:source-evidence` requires that evidence. Do not replace missing originals with invented data or relax the assertions.
 
 ## Source layout
 
@@ -61,7 +61,7 @@ Changes to saving, imports, offline resources or sync need checks that existing 
 
 Routine releases use applicable local tests → direct Cloudflare acceptance → identical-source GitHub synchronization without GitHub CI. The [release runbook](release-runbook.md) owns authorization, exact-source proofs, staged resource verification, recovery and branch protection. Checks and Deploy remain disabled until a later explicit maintainer instruction; a local-only request does not authorize publication. `npm run deploy` is retained Actions-only tooling, not the local-login release command.
 
-Use the [agent workflow](../AGENT_WORKFLOW.md) for check selection and implementation entry points, [identity setup](../worker/identity-setup.md) for optional API configuration, and [project backups](project-backups.md) for source recovery. User profile backups are separate and are described in the [user guide](user-guide.md).
+Use the [agent workflow](../AGENT_WORKFLOW.md) for check selection and implementation entry points, [identity setup](../worker/identity-setup.md) for optional API configuration, and [project backups](project-backups.md) for source recovery. [User profile backups](../README.md#readme-backup) are separate from project recovery.
 
 ## Reuse
 

@@ -17,7 +17,7 @@ test('same-repository pull requests may be scoped; forks, manual runs and reruns
 });
 
 test('documents need no application checks; UI selects real callers and regression tests', async () => {
-  assert.deepEqual(await classifyChanges(changed('README.md', 'AGENTS.md', 'docs/user-guide.md')), { kind: 'docs', browser: [], units: [] });
+  assert.deepEqual(await classifyChanges(changed('README.md', 'AGENTS.md', 'docs/development.md')), { kind: 'docs', browser: [], units: [] });
   const plan = await classifyChanges(changed('src/app/modal.ts', 'AGENT_WORKFLOW.md'));
   assert.equal(plan.kind, 'ui');
   assert(plan.browser.includes('tests/browser/modal-surfaces.spec.ts') && plan.browser.includes('tests/browser/desktop-layout.spec.ts'));

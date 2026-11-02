@@ -171,7 +171,7 @@ npm run preview
 
 [स्थानीय पूर्वावलोकन](http://127.0.0.1:8787/today) खोलें। स्थानीय सीखने के लिए GitHub/Cloudflare क्रेडेंशियल ज़रूरी नहीं हैं।
 
-- [उपयोग मार्गदर्शिका (अंग्रेज़ी)](user-guide.md)
+- [उपयोग मार्गदर्शिका (अंग्रेज़ी)](../README.md#readme-contents)
 - [विकास और जाँच (अंग्रेज़ी)](development.md)
 - [सामुदायिक ZIP प्रारूप](../community-content.md)
 - [MCP क्लाइंट (अंग्रेज़ी)](mcp-clients.md)

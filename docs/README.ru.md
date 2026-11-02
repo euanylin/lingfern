@@ -171,7 +171,7 @@ npm run preview
 
 Откройте [локальный предпросмотр](http://127.0.0.1:8787/today). Для локального обучения не нужны учётные данные GitHub/Cloudflare.
 
-- [Руководство (английский)](user-guide.md)
+- [Руководство (английский)](../README.md#readme-contents)
 - [Разработка и проверки (английский)](development.md)
 - [Формат ZIP сообщества](../community-content.md)
 - [MCP-клиенты (английский)](mcp-clients.md)

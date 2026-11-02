@@ -112,18 +112,20 @@ for (const [width, theme] of [[1440, 'dark'], [375, 'light']] as const) test(`vo
     expect.soft(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await page.evaluate(() => document.documentElement.style.fontSize = '100%');
-  await chart.locator('[data-ipa="ə"]').scrollIntoViewIfNeeded();
-  const centralLine = await chart.locator('.ipa-vowel-body').evaluate(element => {
-    const svg = element.querySelector('svg')!, bounds = svg.getBoundingClientRect();
-    // Sample the actual central path through the Mid row's empty slot.
-    return [50, 55].map(y => {
-      const x = 51 + (y - 8) * 20 / 84;
-      const stack = document.elementsFromPoint(bounds.left + bounds.width * x / 100, bounds.top + bounds.height * y / 100);
-      const lineIndex = stack.indexOf(svg);
-      return lineIndex >= 0 && stack.slice(0, lineIndex).every(layer => getComputedStyle(layer).backgroundColor === 'rgba(0, 0, 0, 0)');
-    });
-  });
-  expect.soft(centralLine).toEqual([true, true]);
+  for (const symbol of ['ɪ', 'ə']) {
+    await chart.locator(`[data-ipa="${symbol}"]`).scrollIntoViewIfNeeded();
+    const line = await chart.locator('.ipa-vowel-body').evaluate((element, symbol) => {
+      const svg = element.querySelector('svg')!, bounds = svg.getBoundingClientRect();
+      // Include the front slope beside sit, which crosses its button on compressed charts.
+      return (symbol === 'ɪ' ? [22, 26, 30] : [50, 55]).map(y => {
+        const x = symbol === 'ɪ' ? 10 + (y - 8) * 39 / 84 : 51 + (y - 8) * 20 / 84;
+        const stack = document.elementsFromPoint(bounds.left + bounds.width * x / 100, bounds.top + bounds.height * y / 100);
+        const lineIndex = stack.indexOf(svg);
+        return lineIndex >= 0 && stack.slice(0, lineIndex).every(layer => getComputedStyle(layer).backgroundColor === 'rgba(0, 0, 0, 0)');
+      });
+    }, symbol);
+    expect.soft(line).toEqual(symbol === 'ɪ' ? [true, true, true] : [true, true]);
+  }
   const word = chart.getByRole('button', { name: 'Play word sit', exact: true });
   await word.scrollIntoViewIfNeeded();
   expect.soft(await word.evaluate(button => {

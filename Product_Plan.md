@@ -53,6 +53,8 @@ Learning data is saved in the browser first. Users may sign in with GitHub to sy
 
 Maintainer first-release scope update (2026-10-18): GitHub sign-in, GitHub repository synchronisation and MCP must all be available and accepted at the first public launch. They remain optional actions for learners; unsigned/offline learning must still work. They cannot be deferred or shipped disabled to declare the first public launch complete. Real provider/two-device/client acceptance is a required launch gate. This scope decision does not authorise real-account/repository/resource/domain changes, secret entry, uploads or deployment.
 
+The first public launch was accepted on 2026-10-26. Its original provider, device/network and launch evidence is indexed in [release acceptance boundaries](docs/release-runbook.md#acceptance-boundaries); routine changes use the scoped verification and publication rules in `AGENT_WORKFLOW.md`.
+
 ### 1.2 Required Functionality
 
 | Area | Requirement |
@@ -63,7 +65,7 @@ Maintainer first-release scope update (2026-10-18): GitHub sign-in, GitHub repos
 | Offline use | Once the application and required materials are downloaded, learning, scoring, review, and saving work without a network |
 | Cross-platform use | Responsive website, installable as a PWA; the same product on desktop and mobile |
 | Deployment | One Cloudflare Worker with Static Assets, published after local validation through the local Cloudflare login; GitHub source follows acceptance without hosted CI; lingfern.com is the single production entry point |
-| Mainland access | Core learning requires only the main site, not external sign-in, online fonts, source-code sites, or AI; test ordinary mainland China networks separately |
+| Mainland access | Core learning requires only the main site, not external sign-in, online fonts, source-code sites, or AI; preserve the maintainer-accepted access scope and investigate concrete new failures |
 | GitHub synchronisation | Optional sign-in; merge learning records, favourites, settings, and material exposure across devices |
 | AI interoperability | Copy, download, or share context; import feedback; offer an authorised remote MCP service |
 | Interface languages | Simplified Chinese, Traditional Chinese, English, Japanese, Korean, French, Spanish, German, Portuguese, Italian, Russian, Arabic, Hindi and Indonesian, in dedicated language directories |
@@ -227,7 +229,7 @@ Public-trial acceptance requires real coverage of the goal families in Section 2
 
 ### 3.1 First Use
 
-Visitors reach Today after four optional setup steps. The flow is:
+First root visits show the three-card introduction at `/introduction`, followed by four optional setup steps at `/start`. Returning learners and deep links retain their existing routes. The setup flow is:
 
 **Choose interface language → choose a purpose → choose interests → select approximate reading/listening starting points or skip → save and go to Today.** Download materials as needed from the ordinary learning flow; there is no separate demonstration step in setup.
 
@@ -241,11 +243,11 @@ A typical unit follows this sequence:
 
 | Stage | Page behaviour | Records |
 |---|---|---|
-| Enter | Show goal, material length, expected duration, and offline status | Create a local session; fix material and item snapshots |
+| Enter | Show goal, material preview, source/licence and actual media readiness | Create a local session; fix material and item snapshots |
 | Understand | Read/first playback, preceded by a meaningful goal | Record first exposure; do not infer comprehension from dwell time alone |
-| Instruction | Show a short explanation and worked example | Record support; do not count it as independent accuracy |
-| Practice | Submit answers; optionally use dictionary, hints, and replay | Save each submission locally; preserve first answers and revisions |
-| Feedback | Show answer evidence and the most important one or two issues | Save scoring source, rule identifier, and support conditions |
+| Instruction | Show concise goal and before-start guidance; worked examples follow submission | Record support; do not count it as independent accuracy |
+| Practice | Answer all questions in the shared material workspace; optionally use dictionary, hints, and replay | Save drafts by stable question ID; commit all answers in one final transaction before completion or feedback |
+| Feedback | Show permitted explanations, worked examples, answer evidence and the most important one or two issues | Save scoring source, rule identifier, and support conditions |
 | Apply again | Same goal using new material | Separately mark whether the material is unfamiliar |
 | Finish | Summarise completed tasks, goals to practise, and next review | Save completion; add to the sync queue when enabled |
 
@@ -327,7 +329,7 @@ Use three layers:
 
 Support basic lemmatisation, irregular-form mappings, multi-word expressions, and prioritisation of the sense pre-annotated for the current material. Runtime disambiguation must not require a language model. When no sense annotation exists, show candidates rather than claiming precise recognition.
 
-Display phonetic transcriptions/recordings only when reliable data exists; otherwise leave them absent. State “Not included in the offline dictionary” when no definition exists. Offer “View in Cambridge Dictionary” only as an explicit online action; never scrape silently. Looking up a word does not automatically create a flashcard; schedule recurrence after the user saves it.
+Display phonetic transcriptions/recordings only when reliable data exists; otherwise leave them absent. State “Not included in the offline dictionary” when no definition exists. Offer “View in Cambridge Dictionary” only as an explicit online action; never scrape silently. Looking up a word does not automatically save it. Bookmarks are save/remove controls only, without review scheduling or mastery claims.
 
 ### 4.5 Optional Personal Work
 
@@ -411,7 +413,7 @@ First filter for source integrity/rights, precise text exclusions, accepted play
 Then select in this order:
 
 1. Goals with recent repeated errors that require re-teaching.
-2. Expressions or goals due for review.
+2. Goals due for review.
 3. Goals achieved with hints that now need practice without them.
 4. Previously practised goals requiring a new-context check.
 5. New content aligned with the user's interests.
@@ -629,14 +631,15 @@ Implement reliable complete downloads first, not a complex resumable protocol im
 
 See **`Interface_Design.md`** in this directory for complete dimensions, colours, typography, states, responsive behaviour, motion, accessibility, and textual wireframes. The two documents jointly define implementation: this plan determines learning, data, authorisation, and offline behaviour; the interface document expresses those requirements on screen. Do not change data scope, scoring conditions, or actual capability claims to accommodate a visual component.
 
-Use editorial typography, sage green, system fonts, fine dividers, and open lists. Large illustrations appear only on Landing and Today. Learning and checks centre on materials, responses, and feedback. Detailed integration of source projects and third-party components remains in Sections 20 and 21; using a separate UI document does not reduce implementation scope.
+Use editorial typography, sage green, system fonts, fine dividers, and open lists. Growth illustrations appear only on the introduction's Today preview and Today. Learning and checks centre on materials, responses, and feedback. Detailed integration of source projects and third-party components remains in Sections 20 and 21; using a separate UI document does not reduce implementation scope.
 
 ### 9.2 Navigation and Routes
 
 Primary navigation is **Today / Library / Settings**. Today owns Reading, Listening, Combined training and any imported community task list. Each module opens shared `TaskDetail` with Practice/Test actions. History sits at Reading top right and opens the actual dedicated record view at `/progress`; Today remains selected. No inline records, standalone Tasks/Test page or extra Library jump beside practice.
 
 ```text
-/                       Introduction
+/                       First-visit introduction or returning learner's Today
+/introduction           Today/Library/Settings introduction previews
 /start                  First run
 /today                  Reading, Listening, Combined training, resume and growth
 /learn/<sessionId>      Learning/Test or saved-session review
@@ -646,7 +649,7 @@ Primary navigation is **Today / Library / Settings**. Today owns Reading, Listen
 /library/saved          Saved words
 /library/ipa             Pronunciation references
 /library/grammar         Usage references
-/library/history         Local lookup history
+/library/history         Profile lookup history, with optional sync
 /settings               Settings, identity/sync/sharing/backup/privacy controls
 /settings/about         About, source/licence information
 ```
@@ -658,13 +661,13 @@ Use clean-path routing and a narrow HTML fallback for known routes. `/tasks`, `/
 
 | Page | Must present | Must not replace this with |
 |---|---|---|
-| Landing | Central fern, concise listening/reading positioning, course target range, account-free start | Full-screen AI promotion or unvalidated claims of teaching effectiveness |
-| Today | Small central fern, one primary task, actual recommendation reason, resume and review | Competing primary buttons, fern relegated to a decorative corner, or KPI card wall |
+| Introduction | Three previews of Today/Library/Settings, with account-free Start | A separate marketing landing page or unvalidated claims of teaching effectiveness |
+| Today | Small central fern, Reading/Listening/Combined cards, one primary recommendation only when saved answers exist, resume and review | Competing primary buttons, fern relegated to a decorative corner, or KPI card wall |
 | Today training preview | Same generated snapshot, actual resources/source, equal Practice/Test actions | A separate authored/check catalogue or second Test preview |
 | Learning | Teaching/examples, materials, questions, three hint layers, feedback after saving, application in a new context | Questions without teaching, or success shown before records are lost in the background |
 | Check | Fixed conditions, saved status, review after completion | Marking missing-audio attempts wrong or bypassing rules through dictionary shortcuts |
-| History | Material targets, response/support conditions, counts, dates and recovery | Inline Today records, a second growth fern or unvalidated proficiency labels |
-| Library | Content states, estimated capacity, saved items, private notes, backup | Guaranteed device storage or notes synchronised by default |
+| History | Compact saved-session/response rows, support conditions, dates, deletion and recovery | Inline Today records, aggregate statistics, a goal matrix, second growth fern or unvalidated proficiency labels |
+| Library | Reference links, lookup history, content states, estimated capacity, installed resources and community import | Guaranteed device storage, unimplemented Notes tabs or a second backup flow |
 | Dictionary | Local definitions, genuinely available IPA/audio, user-triggered Cambridge link | Scraping, embedding, or an API falsely described as licensed by Cambridge |
 | Sync | Separate local/remote states, dedicated-repository guidance, explicit failures | Automatically expanded repository-creation permissions or “no server-side data” claims |
 | AI sharing | Separate local handoff and MCP upload, explicit data and client scope | Built-in chat, answer export during unfinished checks, or unscoped “Make available” actions |
@@ -675,15 +678,15 @@ Count exposure when material is actually displayed. Learning introductions may s
 
 Use the selected ostrich-fern fiddlehead and pinnate-frond imagery: a shared SVG skeleton, six stable forms, and left/right sides representing reading/listening records. Construction parameters are abstract design specifications, not botanical measurements or learning curves.
 
-**Course introductions** may pair the six forms with A1–C2 target descriptions. **Personal pages** use actual goal records under Section 6.8; six plant stages must not be equated with six CEFR levels. A high self-reported level must not produce a mature plant, and not signing in or breaking a streak must not cause wilting.
+**Course illustrations** may pair the six forms with A1–C2 target descriptions. **Personal pages** use saved activity under Section 6.8; six plant stages must not be equated with six CEFR levels. A high self-reported level must not produce a mature plant, and not signing in or breaking a streak must not cause wilting.
 
-Landing and Today use centred compositions. Control the plant's size on Today so the main task remains readily actionable. Do not add plant watermarks to Learning, Check, or Settings. Implement static forms and text first, followed by short, skippable transitions; do not add a plant simulation engine or a large animation dependency.
+The introduction's Today preview and Today use centred compositions. Control the plant's size on Today so the main task remains readily actionable. Do not add plant watermarks to Learning, Check, or Settings. Preserve the accepted continuous fern/resting motion and clear static reduced-motion state; do not add a plant simulation engine or a large animation dependency.
 
 ### 9.5 Typography, Themes, and Responsive Behaviour
 
 Use system sans-serif fonts for the interface. English materials may use a selectable serif face, initially around 19px/32px on desktop and 18px/30px on phones, with user-adjustable size. Mark interface Chinese and English materials with their respective languages. Do not depend on remotely loaded fonts; follow the interface document for font stacks and themes.
 
-The main content maximum is 1120px. Enable two learning columns from a 1200px viewport when usable width permits. At 1440px: material 640 + gap 48 + questions 432 = 1120. Narrow screens use a Material/Question switch or natural single column. Remove additional fixed bars on short screens, with the software keyboard, or when zoomed; do not shrink 44px touch targets.
+The main content maximum is 1120px. Enable two learning columns from a 1200px viewport when usable width permits. At 1440px: material 640 + gap 48 + questions 432 = 1120. Narrow reading uses the shared material workspace and its peek/expand answer sheet; listening retains its shared player and question layout. Keep top navigation and the existing mobile bottom navigation viewport-fixed, including short screens and input focus. Reserve their measured heights and keep optional learning panels scrollable; do not shrink 44px touch targets.
 
 Both themes retain state text, shapes, and explicit focus. Treat identifying control borders differently from decorative rules. A contrast result on one background is not a whole-page accessibility pass. Reduced motion respects system and user choices.
 
@@ -697,7 +700,7 @@ Save all responses before showing feedback. Initial rendering must not wait for 
 
 Deliver all fourteen interface languages together and identify unknown results as unknown. Implement repository setup, disconnecting sync, disconnecting GitHub, and revoking MCP separately under Sections 12–15; do not collapse them through one ambiguous “Disconnect” label. Settings retains only Disconnect GitHub identity (maintainer update, 2026-10-25), with its explicit all-device/provider confirmation; the separate server session-logout endpoint remains available.
 
-Manual and browser acceptance covers the current routes and training/record/reference/settings surfaces, widths from 320 to 1440, short 640px-high screens, 200% text enlargement, 400% page zoom, keyboard/screen reader, both themes, real media, offline use, and failure states. The final section of `Interface_Design.md` contains visual acceptance checks; unperformed tests must not be reported as passed.
+Design coverage includes current routes and training/record/reference/settings surfaces, widths from 320 to 1440, short 640px-high screens, 200% text enlargement, 400% page zoom, keyboard/screen reader, both themes, real media, offline use, and failure states. Select checks for the changed behaviour using `AGENT_WORKFLOW.md`; the maintainer's device/accessibility and mainland-network acceptance is complete, not a recurring standalone gate. The final section of `Interface_Design.md` contains visual checks; unperformed tests must not be reported as passed.
 
 ---
 
@@ -723,8 +726,8 @@ Manual and browser acceptance covers the current routes and training/record/refe
 Use the official product name **Workers Static Assets**. The asset service directly returns static HTML, JS, CSS, logos, short public audio, and small content packages. Only routes requiring dynamic behaviour enter the Worker. Cloudflare supplies this routing and single-deployment model.[4][5]
 
 ```text
-GitHub project repository
-    ↓ Actions: checks → build → approval → Wrangler deployment
+Verified local source
+    ↓ Applicable local checks → build proof → authorised direct deployment
 Cloudflare: lingfern.com
     ├─ Static Assets: pages, logos, dictionary/course packages, short audio
     └─ One Worker
@@ -734,6 +737,9 @@ Cloudflare: lingfern.com
          ├─ /mcp: read-only MCP
          ├─ /oauth/* and /.well-known/*: MCP authorisation and discovery
          └─ /downloads/*: public downloads only after R2 is added
+
+Accepted Cloudflare release → identical-source GitHub fast-forward [skip ci]
+Checks/Deploy workflows stay disabled unless explicitly reauthorised.
 
 Browser: listening/reading → local scoring → local saving → optional batched sync
 External assistants: separate authorisation → read approved expiring snapshots
@@ -962,7 +968,7 @@ Signing out removes the current web-session cookie. “Disconnect sync” remove
 
 Verify raw-request-body signatures on GitHub authorisation/installation revocation webhooks. Process them idempotently and disable associated credentials. If a webhook is missing or delayed, API 401/403 responses must still stop the use of invalid authorisation.
 
-Sign-out does not automatically delete the local profile. Offer a separate “Sign out and clear records on this device” option, with an easily found clearing control for shared computers.
+Settings exposes Disconnect GitHub identity without a separate website-session sign-out action (maintainer update, 2026-10-25). The server session-logout endpoint remains separate. Neither identity disconnection nor session logout deletes the local profile; local backup and profile deletion retain their own controls and confirmation.
 
 ### 12.6 When GitHub Is Unreachable
 
@@ -1161,14 +1167,16 @@ Use same-origin share-management endpoints: `POST /api/ai/shares` creates an exp
 
 `GET /api/ai/connections` lists approved MCP clients. `DELETE /api/ai/connections/<id>` revokes business permission and invokes the library-supported revocation process. Each read still checks authoritative revocation state. A share may bind only to a client approved by the same user; reject arbitrary frontend-supplied clients/accounts. These endpoints accept no GitHub repository paths and provide no arbitrary data queries.
 
-### 15.3 Retain Only Four Tools
+### 15.3 Read-Only Tools
 
 | Tool | Input | Output | Limits |
 |---|---|---|---|
+| `search` | Title query | IDs, titles and authenticated settings links for readable snapshots | At most 20 approved, unexpired contexts for this client; no full-history search |
+| `fetch` | Snapshot ID | Snapshot text and sharing timestamps | Same ownership, client, revocation and expiry checks as `read_shared_context` |
 | `list_shared_contexts` | Optional cursor and count | Summaries of snapshots readable by this client | At most 20 per page; no full text |
 | `read_shared_context` | Snapshot ID | Snapshot content and sharing time | Current user's snapshot, valid client authorisation, unexpired |
 | `search_materials` | Keywords, level, reading/listening skill | Public teaching-catalogue summaries | At most 10; public teaching content only, not check answer banks |
-| `get_practice_template` | Goal ID and level | Reviewed practice structure and constraints | No on-demand “validated items” and no changes to user records |
+| `get_practice_template` | Goal ID and level | Reviewed practice structure and constraints, or explicit unavailability | Currently returns `NO_REVIEWED_TEMPLATE`; no on-demand “validated items” or changes to user records |
 
 Names above are interface identifiers. Use ordinary Chinese/English descriptions on screen rather than inventing productised codenames for every tool, mode, or backend module.
 
@@ -1203,7 +1211,7 @@ If remote client metadata is fetched, restrict HTTPS, response length, redirects
 
 ### 15.5 Test Sequence
 
-First test the four tools locally with synthetic snapshots, then real GitHub identity sign-in/authorisation, and finally actual available ChatGPT and Claude clients.
+For an integration acceptance run, test the six tools locally with synthetic snapshots, then real GitHub identity sign-in/authorisation, and finally actual available ChatGPT and Claude clients. Preserve the completed launch evidence; routine changes use the applicable regressions in `AGENT_WORKFLOW.md`.
 
 A health page, installed SDK, `/mcp` string, anonymous private-data access, or success only in a mock client does not constitute completion.
 
@@ -1309,7 +1317,7 @@ Before deployment, inspect existing DNS, email MX/TXT records, certificates, and
 
 | Item | Configuration and completion criteria |
 |---|---|
-| Project repository | Source repository, protected release branch, two workflows, production approval |
+| Project repository | Source repository, protected release branch, disabled Checks/Deploy definitions, local-first publication controls |
 | Production Worker | Named lingfern; Static Assets and dynamic endpoints deployed together |
 | Production domain | lingfern.com bound with valid HTTPS; www redirected if present |
 | GitHub App | Installable; Metadata read and Contents read/write only; selectable dedicated private repositories |
@@ -1342,11 +1350,11 @@ Ordinary users choose local learning or follow GitHub sign-in guidance. The main
 | MCP | Small read-only responses, expiring shares, per-user/client rate limits |
 | Private server data | Limited D1 metadata and small snapshots, expiry cleanup; no duplicate full learning history |
 
-Static Assets currently provides free static requests/storage, while Worker execution, D1, KV, and R2 have their own quotas/billing. Do not promise permanently zero operating cost for the entire product.[21][23][25][30]
+When planning capacity or a release, consult the official current limits and pricing for Static Assets, Worker execution, D1, KV and any enabled R2 storage against the project's actual account plan. Record the applicable limits and measured usage; do not treat this document as a live quota or price list, or promise permanently zero operating cost.[21][23][25][30]
 
-Free Workers currently list limits such as 100,000 daily requests and 10 ms CPU per invocation. Measure JSON validation, encryption/decryption, SDK initialisation, and sync merging, rather than counting requests only. Network waiting and CPU time differ. Even if static files remain available, exhausted dynamic quotas can prevent login/sync.[21][25]
+Measure request volume, CPU time and actual cost for JSON validation, encryption/decryption, SDK initialisation and sync merging against those confirmed limits, rather than counting requests only. Network waiting and CPU time differ. Even if static files remain available, exhausted dynamic quotas can prevent login/sync.[21][25]
 
-Test within free quotas first. If exceeded, the maintainer chooses optimisation, remote-feature frequency limits, or a suitable plan. Do not weaken authentication, public-cache private data, or require donations. Inspect actual bills, anomalous downloads, and errors regularly. Usage alerts are not hard spending caps.
+Test within the confirmed plan limits first. If exceeded, the maintainer chooses optimisation, remote-feature frequency limits, or a suitable plan. Do not weaken authentication, public-cache private data, or require donations. Inspect actual bills, anomalous downloads, and errors regularly. Usage alerts are not hard spending caps.
 
 For example, 1,000 users downloading 30 MiB each transfer approximately 29.3 GiB. This is a capacity estimate, not a price quote. Even unbilled bandwidth requires control of download time, phone space, build duration, and abuse.
 
@@ -1364,11 +1372,11 @@ Retain the latest tested deployable artefact and lockfile. Content hashes are im
 
 ## 18. Execution and Completion
 
-For explicit continuation, use the current priorities in [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) and [DEVELOPMENT_GOAL.md](DEVELOPMENT_GOAL.md); do not restart a historical six-step scaffold or authored-example programme. Focused requests keep their own scope.
+For explicit continuation, use the current priorities in [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) and the scope rules in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md#1-start-with-the-requested-scope); do not restart a historical six-step scaffold or authored-example programme. Focused requests keep their own scope.
 
 Deliver complete useful increments using existing code, sources, packages and UI. Complete independent local work when provider/device/production gates are unavailable; give a concrete one-time setup procedure for the maintainer. Never request secrets in chat or present test doubles as real integration.
 
-Delivery procedure, commands, backup and preview are consolidated in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md). Completion requires actual six-level generated reading/listening with instructional/evidence support, offline save/recovery, genuine GitHub/two-device integration, permitted AI handoff/MCP, all three locales, valid rights and applicable real-device/network release acceptance. Passing local tests/build is not full completion, teaching-effectiveness proof or CEFR validation.
+Delivery procedure, commands, backup and preview are consolidated in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md). Product acceptance covers actual six-level generated reading/listening with instructional/evidence support, offline save/recovery, genuine GitHub/two-device integration, permitted AI handoff/MCP, all fourteen locales and valid rights. Preserve the completed launch and maintainer device/network acceptance linked in Section 1; do not reopen them for every change. Passing local tests/build is not teaching-effectiveness proof or CEFR validation.
 
 ---
 
@@ -1436,7 +1444,7 @@ Delivery procedure, commands, backup and preview are consolidated in [AGENT_WORK
 
 ### 19.3 Manual Pre-Release Review
 
-Verify course-goal fit, answers/evidence, audio/transcript agreement, copyright/attribution, natural three-language copy, A1 comprehensibility, C2 without forced ambiguity, uncropped logos, and privacy wording matching actual data flows.
+Verify course-goal fit, answers/evidence, audio/transcript agreement, copyright/attribution, complete keys/placeholders and reviewed copy in all fourteen interface languages, A1 comprehensibility, C2 without forced ambiguity, uncropped logos, and privacy wording matching actual data flows. Codex/AI review is accepted; native-speaker proofreading is not a release gate.
 
 Insufficient review may permit a clearly labelled trial, but not claims of a mature comprehensive bank, formal CEFR certification, or proven positive washback.
 
@@ -1491,9 +1499,9 @@ For each installed component, record purpose, actual release, source, licence, a
 
 Accept the current routes/surfaces, components and checklist in `Interface_Design.md`. Beyond screenshots, check complete logos, central growth fern, accurate material-level copy, shared-preview generated Test and preview-free retained strict checks, hint sequence, copy-versus-upload, sign-out/disconnection scopes, local-storage errors, and unconfigured remote states.
 
-Personal-growth tests include self-reported C2 with no records not producing a mature plant; multiple questions from one root material not duplicating goals; hinted/answer-exposed materials not becoming independent new contexts; identical post-merge graphics on two devices; explained recalculation after deletion; and no stage changes from FSRS or streaks.
+Personal-growth tests cover zero records despite self-reported C2, deduplicated saves within each session, legitimate repeated sessions as activity, exact full-test coverage, capped reference activity, consistent post-merge graphics and deletion recalculation. Goal evidence separately retains the distinct-material and assistance rules; neither bookmarks nor streaks imply mastery.
 
-Test widths 1440, 1200, 1024, 768, 375, 320, short 640-high screens, software keyboards, and text enlargement. Opaque-colour calculations, SVG validation, and document checks are not live browser accessibility tests; report separately. Do not hide missing API/course/audio implementation behind normal-state screenshots.
+Choose affected layouts and states from widths 1440, 1200, 1024, 768, 375, 320, short 640-high screens, software keyboards and text enlargement according to `AGENT_WORKFLOW.md`. Opaque-colour calculations, SVG validation, and document checks are not live browser accessibility tests; report separately. Do not hide missing API/course/audio implementation behind normal-state screenshots.
 
 ---
 
@@ -1754,7 +1762,7 @@ Acceptance: no duplicate players after re-entry; no external offline requests; a
 
 ### 20.9 Concerto and TAO: Reference Platforms, Not the Product Foundation
 
-**Concerto's value** is existing online test orchestration/adaptive flows and verifiable institutional background. Install a temporary local instance using a fixed release's official instructions, feed synthetic items, and inspect links between questions, parameters, selection, and results. Record needed interactions and implement them in Lingfern's lightweight UI rather than copying the entire authoring backend, R service, and database.[47][48]
+**Concerto's value** is existing online test orchestration/adaptive flows and verifiable institutional background. Retain it as a reference only; inspect a fixed release's documented interactions when a concrete research question requires comparison. Do not introduce its authoring backend, R service or database into Lingfern.[47][48]
 
 It is not thereby an “official Cambridge English A1–C2 engine”, nor a freely commercially reusable/redistributable Cambridge English item bank. Lingfern has no present need for teacher administration or large test management, so add no permanent server for it.
 
@@ -1979,7 +1987,7 @@ Use only required repository/marker/batch/tree operations with fixed batch IDs, 
 Integration sequence:
 
 1. Pin a compatible SDK/Zod/OAuth Provider/Wrangler combination; check entry points, licences, and dependencies. Maintain one production SDK.
-2. Mount a read-only service at `/mcp`, registering Section 15's four tools. A generic SDK `{ fetch }` example must not take over the site; static assets and `/api` retain established routing.
+2. Mount a read-only service at `/mcp`, registering Section 15's six tools. A generic SDK `{ fetch }` example must not take over the site; static assets and `/api` retain established routing.
 3. Declare full input schemas through `registerTool()`, accepting only snapshot IDs, cursors, or bounded queries. `owner/repo/userId/path` are not access authority.
 4. Match Provider `apiRoute`, `apiHandler`, and `defaultHandler` to actual paths. Integrate login/consent/metadata through official library APIs rather than inventing token protocols from partial tutorials.[18]
 5. Convert Provider-verified account, client, and scopes into this request's authorisation context and pass it to the SDK Fetch interface. Tools read that context. **The SDK Fetch handler does not automatically verify request-header tokens for you.** No global currentUser variable between requests.[75]
@@ -2046,7 +2054,7 @@ A project's UI, sample items, images, audio, models, and dictionary are not auto
 
 **Bookmarks:** sense save/remove, private backup and deduplicated sync; keep goal recommendations separate.
 
-**Sync/MCP:** necessary Octokit functions, official SDK, OAuth Provider in the Worker. Keep one Worker/four read-only tools; test real grants, refusals, revocation.
+**Sync/MCP:** necessary Octokit functions, official SDK, OAuth Provider in the Worker. Keep one Worker and the six read-only tools in Section 15; preserve real-provider acceptance and relevant grant, refusal and revocation checks.
 
 **Content growth:** Readability/spaCy for editors as needed; prepare WordNet dictionary data. Publish reviewed data only, not editorial environments/models to users.
 
@@ -2112,8 +2120,8 @@ External references were checked on 2026-09-27. They support technical boundarie
 49. GIRTH, Python IRT estimation, missing values, and licence. <https://github.com/eribean/girth>
 50. py-irt, Bayesian IRT research implementation, usage, and licence. <https://github.com/nd-ball/py-irt>
 51. TAO Core, assessment-platform core extension and licence. <https://github.com/oat-sa/tao-core>
-52. ts-fsrs, scheduler/trainer boundaries and licence. <https://github.com/open-spaced-repetition/ts-fsrs>
-53. ts-fsrs, scheduler package and API guidance. <https://github.com/open-spaced-repetition/ts-fsrs/blob/main/packages/fsrs/README.md>
+52. Historical scheduler reference; FSRS is no longer used by Lingfern: ts-fsrs, scheduler/trainer boundaries and licence. <https://github.com/open-spaced-repetition/ts-fsrs>
+53. Historical scheduler reference; no installation or review feature is required: ts-fsrs package/API guidance. <https://github.com/open-spaced-repetition/ts-fsrs/blob/main/packages/fsrs/README.md>
 54. Open English WordNet, release data, formats, and licence. <https://github.com/globalwordnet/english-wordnet>
 55. spaCy, project, pipelines, and licence. <https://github.com/explosion/spaCy>
 56. Mozilla Readability, extraction, security considerations, and licence. <https://github.com/mozilla/readability>
