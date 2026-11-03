@@ -248,7 +248,8 @@
     },
     "view": "Ansicht",
     "simple": "Einfach",
-    "detailed": "Detailliert"
+    "detailed": "Detailliert",
+    "englishMarks": "Englisch"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "Nachschlageverlauf",

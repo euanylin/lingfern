@@ -1,30 +1,22 @@
 # Current development handoff
 
-Updated 2026-11-02. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
+Updated 2026-11-03. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.160
+## Current release: 0.1.161
 
-Cloudflare accepted Worker version `b33fcc41-d913-4a63-8dd3-9ada4abbe389`, deployment `5686c13f-1778-4c89-9465-7dae8b548765`, at 100% traffic. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts.
+Cloudflare accepted Worker version `8333a65e-fdfc-49fa-9747-2338b9a3b276`, deployment `4cf27864-b4cf-44cc-b2bf-012c351e94ec`, at 100% traffic. Recovery target remains 0.1.160, Worker `b33fcc41-d913-4a63-8dd3-9ada4abbe389`. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts.
 
-Release evidence: `private/verification/release-0.1.160-maintenance-20261102/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed. The maintainer's no-new-backup instruction applies to this release: no project snapshot or replacement archive was created.
+Release evidence: `private/verification/release-0.1.161-chart-20261103/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed. One upload was reused after earlier connection failures; the successful checks are in `resume-4/`.
 
-This release includes the previously local IPA and shared-control fixes: horizontally reveal activated/focused sounds, preserve native page scrolling, keep enlarged example words within their feedback surface, and restore Library/answer keyboard and touch feedback. Local evidence: `docs/history/2026-11-02-ipa-mobile.md` and `docs/history/2026-11-02-related-feedback.md`.
-
-The comprehensive audit fixes captured resource-version handling during catalogue refresh, retains unsaved reading notes through transient lease errors, preserves strict-check pre-start concealment/retry, and prevents generated-question ID collisions between text blocks. Two unreachable repository-size checks were removed while their owning schemas and security guards remain. Local evidence: `docs/history/2026-11-02-comprehensive-audit.md`.
-
-Repository cleanup removes confirmed historical source backups, obsolete browser runners and the retired fixture; consolidates current operating documents and redundant histories; and excludes backup/editor artifacts from source exports. Raw sources, licences, retained decisions, Git history, backup functionality and the unconfirmed real learner export remain protected. Current documentation distinguishes local evidence paths from publicly exported links.
+This release aligns the detailed IPA chart with the 2015 official chart: pulmonic and non-pulmonic section names, other-symbol columns with the shared alveolo-palatal row, tone Level/Contour groups, circular press feedback, simple-view word playback, and the shared lesson-recording credit. The wide consonant table still fills its frame.
 
 ## Verification boundary
 
-The stable local audit passed **763 browser cases with one existing conditional skip and no failures**, plus **42/42 built offline cases**. Unit/source-evidence coverage, failed-before and focused regressions, lint, synthetic sync/MCP and update recovery retain their exact scopes in the audit record. The final resource and question-ID regressions passed after their reproduced failures; this does not claim that the initial 1,375-case unit run was wholly green or repeated in full.
+Focused local checks covered the changed chart, reference data and About credit. The fresh build included typecheck and the content/resource guards. Deployment dry run did not upload. Runtime was Node v26.5.0, the only installed Node; Node 24 was not downloaded.
 
-Fresh release checks passed on Node 24.22.1: TypeScript, 33 content cases, dictionary/offline/package/notices/resource guards, build and deployment dry run. The local compiled 8787 preview passed affected controls, rendered 今日 and exact `/sw.js`. Application source, dependency graph and build hashes were sealed before publication; only current documentation is updated afterward.
+Final candidate and ordinary production verification each passed all **1001 asset sizes/hashes**, **13 page bodies/routes** and **5 missing paths**, with the actual Worker version. Production IPA smoke confirmed the English-circle toggle, pulmonic heading, alveolo-palatal row and tone group headings. An installed 0.1.160 client updated to 0.1.161, preserving exact synthetic profile/theme, lesson, answer, draft and note data, then reopened Today and learning offline. No real learner records or provider writes were used.
 
-Final candidate and ordinary production verification each passed all **1001 asset sizes/hashes**, **13 page bodies/routes** and **5 missing paths**, with the actual Worker version. Compiled production checks passed IPA edge touch/keyboard behavior, enlarged words, Library feedback, unsaved-note navigation protection and saved-note reopening. Anonymous MCP/discovery/error-route checks passed. An installed 0.1.159 client updated to 0.1.160, preserving exact synthetic profile/theme, lesson, answer, draft and note data, then reopened Today and learning offline. No real learner records or provider writes were used.
-
-The first publication attempt recovered safely to 0.1.159 after the private update-verification script called the wrong Playwright response-header method. The corrected API call passed a local self-check. The same uploaded candidate was then revalidated through both complete resource passes and the successful update test; no second upload occurred. Original failed evidence remains in the release directory; successful final checks are in `resume/`.
-
-Account, domain, Worker configuration, bindings, secrets, migrations and learning-data/sync/backup formats remain unchanged. Three underlying development-tool dependency advisories remain in [Issues.md](Issues.md); the latest local audit found no high/critical or runtime npm findings. Existing bundle warnings retain their documented limits. No fresh physical-device, real-provider or mainland-network matrix is claimed. The local 8787 preview serves the released build.
+Earlier acceptance attempts recovered to 0.1.160 after truncated downloads and the existing 60-second request limit. The successful pass reused the same uploaded version over HTTP/1.1. Hashes, request limits and the two-reader check were not changed. Account, domain, Worker configuration, bindings, secrets, migrations and learning-data/sync/backup formats remain unchanged. No fresh physical-device, real-provider or mainland-network matrix is claimed.
 
 ## Cloudflare zone settings — 2026-11-01
 

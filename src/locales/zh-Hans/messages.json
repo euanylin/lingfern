@@ -248,7 +248,8 @@
     },
     "view": "显示方式",
     "simple": "简易版",
-    "detailed": "详细版"
+    "detailed": "详细版",
+    "englishMarks": "英语"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "查询历史",

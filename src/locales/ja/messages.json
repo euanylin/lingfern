@@ -248,7 +248,8 @@
     },
     "view": "表示形式",
     "simple": "簡易版",
-    "detailed": "詳細版"
+    "detailed": "詳細版",
+    "englishMarks": "英語"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "検索履歴",

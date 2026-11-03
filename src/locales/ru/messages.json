@@ -248,7 +248,8 @@
     },
     "view": "Вид",
     "simple": "Простой",
-    "detailed": "Подробный"
+    "detailed": "Подробный",
+    "englishMarks": "Англ."
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "История поиска",

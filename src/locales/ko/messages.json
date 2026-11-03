@@ -248,7 +248,8 @@
     },
     "view": "보기",
     "simple": "간단히",
-    "detailed": "자세히"
+    "detailed": "자세히",
+    "englishMarks": "영어"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "검색 기록",

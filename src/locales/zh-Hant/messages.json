@@ -248,7 +248,8 @@
     },
     "view": "顯示方式",
     "simple": "簡易版",
-    "detailed": "詳細版"
+    "detailed": "詳細版",
+    "englishMarks": "英語"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "查詢歷史",

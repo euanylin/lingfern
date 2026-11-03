@@ -248,7 +248,8 @@
     },
     "view": "Visualizzazione",
     "simple": "Semplice",
-    "detailed": "Dettagliata"
+    "detailed": "Dettagliata",
+    "englishMarks": "Inglese"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "Cronologia ricerche",

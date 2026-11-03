@@ -5,6 +5,7 @@ import pkg from '../package.json';
 import packs from '../content/source-packs.json';
 import teaching from '../content/corpus/teaching-source-packs.json';
 import audio from '../content/audio-sources.json';
+import wordSources from '../public/ipa/SOURCES.json';
 
 it('preserves the project licences, attribution and separate artwork terms verbatim', () => {
   for (const [source, published] of [['LICENSE', 'LICENSE'], ['NOTICE', 'NOTICE'], ['BRAND.md', 'BRAND.md'], ['LICENSES/CC-BY-4.0.txt', 'CC-BY-4.0.txt']]) {
@@ -27,10 +28,14 @@ it('credits every distributed corpus family without conflating recording and tex
   expect(new Set(credits.corpora.flatMap(source => source.families))).toEqual(distributed);
   const notices = readFileSync('public/THIRD_PARTY_NOTICES.md', 'utf8');
   for (const source of credits.corpora) expect(notices).toContain(`[${source.name}](${source.url})`);
+  const wordPages = new Set(wordSources.map(source => source.source));
   for (const source of audio) {
     expect(source.license).toBeTruthy(); expect(source.licenseUrl).toBeTruthy(); expect(source.changes).toBeTruthy();
-    expect(notices).toContain(source.author); expect(notices).toContain(source.source);
+    expect(notices).toContain(source.author);
+    if (!wordPages.has(source.source)) expect(notices).toContain(source.source);
   }
+  expect(notices).toContain('ipa/SOURCES.json');
+  expect(notices).toContain('A1 word listening and IPA chart example words use');
   expect(credits.corpora.find(source => source.name.startsWith('FLEURS'))!.terms).toContain('transcripts: CC BY-SA 4.0');
   expect(credits.corpora.find(source => source.name.startsWith('LibriSpeech'))!.terms).toContain('separate text rights');
   for (const link of notices.matchAll(/\]\(([^)]+)\)/g)) if (!/^https?:/.test(link[1])) expect(existsSync(`public/${link[1]}`), link[1]).toBe(true);

@@ -280,7 +280,7 @@ test('verified install reopens, looks up an unvisited word, plays audio and save
   await page.getByRole('button', { name: '听单词 see' }).click();
   await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.ended && audio.duration > 0)).toBe(true);
   await page.getByRole('button', { name: '详细版', exact: true }).click();
-  await expect(page.locator('.ipa-table')).toHaveCount(4);
+  await expect(page.locator('.ipa-table')).toHaveCount(3);
   await page.goto('/library/grammar');
   await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('条件句');
   await expect(page.locator('.grammar-results details').first()).toBeVisible();

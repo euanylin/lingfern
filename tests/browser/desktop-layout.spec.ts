@@ -190,7 +190,7 @@ test('desktop navigation and reference pages use the main content width without 
   await expect(page.locator('.ipa-entry').first()).toBeVisible();
   await expect(page.getByRole('button', { name: '简易版', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: '详细版', exact: true }).click();
-  await expect(page.locator('.ipa-table')).toHaveCount(4);
+  await expect(page.locator('.ipa-table')).toHaveCount(3);
   await page.getByRole('button', { name: '简易版', exact: true }).click();
   const ipa = await page.locator('.ipa-grid').first().locator('.ipa-entry').evaluateAll(rows => rows.slice(0, 4).map(row => row.getBoundingClientRect()));
   expect(ipa[0].top).toBeCloseTo(ipa[2].top, 0);
