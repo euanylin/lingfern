@@ -14,11 +14,11 @@
 .ipa-view-switch button{flex:1;min-width:0;min-height:44px;padding:8px 24px;background:transparent;color:var(--muted);font-weight:500;transform:none}
 .ipa-view-switch button:hover,.ipa-view-switch button:active{transform:none}
 .ipa-view-switch button[aria-pressed=true]{background:var(--button-surface);color:var(--ink);box-shadow:0 1px 3px #0002}
-button.ipa-english-marks{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;border-radius:0;background:transparent;color:var(--muted);font-weight:500;white-space:nowrap;transform:none}
-button.ipa-english-marks:hover,button.ipa-english-marks:active{background:transparent;transform:none}
-button.ipa-english-marks[aria-pressed=true]{background:transparent;color:var(--accent)}
+button.ipa-english-marks{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;border-radius:0;background:transparent;color:var(--muted);font-weight:500;white-space:nowrap;transform:none;transition:none}
 .ipa-english-marks-mark{box-sizing:border-box;width:16px;height:16px;border:1.5px solid currentColor;border-radius:50%;background:transparent}
-button.ipa-english-marks[aria-pressed=true] .ipa-english-marks-mark{background:currentColor}
+.ipa-page button.ipa-english-marks:is(:hover,:active,[data-touch-active]):not(:disabled):not(.primary){background:transparent;transform:none}
+.ipa-page button.ipa-english-marks:is(:active,[data-touch-active],[aria-pressed=true]):not(:disabled){color:var(--accent)}
+.ipa-page button.ipa-english-marks:is(:active,[data-touch-active],[aria-pressed=true]) .ipa-english-marks-mark{background:currentColor}
 @media(min-width:768px){.ipa-page{max-width:1120px}}
 .ipa-group{margin-top:32px}
 .ipa-group>h2{padding-bottom:8px;border-bottom:1px solid var(--line)}
@@ -35,8 +35,8 @@ button.ipa-english-marks[aria-pressed=true] .ipa-english-marks-mark{background:c
 .ipa-simple .ipa-entry button.ipa-word:hover,.ipa-simple .ipa-entry button.ipa-word:active,.ipa-simple .ipa-entry button.ipa-word[aria-pressed=true]{background:transparent;transform:none}
 .ipa-simple .ipa-entry button.ipa-word:focus-visible{outline:none;box-shadow:none}
 .ipa-simple .ipa-entry button.ipa-word:focus-visible>span{box-shadow:inset 0 0 0 var(--focus-ring-width,2px) var(--focus)}
-.ipa-simple .ipa-entry button.ipa-symbol[aria-pressed=true]{background:var(--selection)}
-.ipa-simple .ipa-entry button.ipa-word[aria-pressed=true]>span{background:var(--selection)}
+.ipa-simple .ipa-entry button.ipa-symbol:is([aria-pressed=true],[data-touch-active]){background:var(--selection)}
+.ipa-simple .ipa-entry button.ipa-word:is([aria-pressed=true],[data-touch-active])>span{background:var(--selection)}
 .ipa-simple .ipa-entry strong{font-weight:750;color:var(--accent)}
 .ipa-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:0 16px}
 .ipa-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:44px;border-bottom:1px solid var(--line);text-align:center;color:var(--accent)}
@@ -125,7 +125,7 @@ button.ipa-english-marks[aria-pressed=true] .ipa-english-marks-mark{background:c
 .ipa-vowel-pair>.ipa-entry{display:block}
 .ipa-vowel-pair .ipa-entry button{display:grid;place-items:center;width:1.35em;height:1.35em;min-width:1.35em;min-height:1.35em;padding:0;border-radius:50%;background:transparent;color:var(--accent);font-size:clamp(16px,5.2cqw,22px);line-height:1}
 .ipa-full-chart .ipa-vowel-pair .ipa-entry .ipa-symbol>span{width:100%;height:100%;min-width:0;min-height:0;padding:0;font-size:inherit;line-height:1}
-.ipa-full-chart .ipa-table .ipa-entry button[aria-pressed=true],.ipa-vowel-pair .ipa-entry button[aria-pressed=true],.ipa-symbol-item .ipa-entry button[aria-pressed=true],.ipa-airstream .ipa-entry button[aria-pressed=true]{background:transparent}
-.ipa-full-chart .ipa-entry button[aria-pressed=true]>span{background:var(--selection)}
+.ipa-full-chart .ipa-entry button:is([aria-pressed=true],[data-touch-active])>span{background:var(--selection)}
 .ipa-full-chart .ipa-entry button:focus-visible{outline:none;box-shadow:none}
 .ipa-full-chart .ipa-entry button:focus-visible>span{box-shadow:inset 0 0 0 var(--focus-ring-width,2px) var(--focus)}
+.ipa-full-chart button.ipa-symbol[data-touch-active]:not(:disabled):not(.primary),.ipa-simple button.ipa-word[data-touch-active]:not(:disabled):not(.primary){background:transparent;transform:none}

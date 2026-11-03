@@ -2,21 +2,19 @@
 
 Updated 2026-11-03. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.161
+## Current release: 0.1.162
 
-Cloudflare accepted Worker version `8333a65e-fdfc-49fa-9747-2338b9a3b276`, deployment `4cf27864-b4cf-44cc-b2bf-012c351e94ec`, at 100% traffic. Recovery target remains 0.1.160, Worker `b33fcc41-d913-4a63-8dd3-9ada4abbe389`. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts.
+Cloudflare accepted Worker version `9354572d-0803-4fd0-bbab-024b44322c91`, deployment `2a9024ab-577b-411d-9c91-21c495eb9d41`, at 100% traffic. Recovery target remains 0.1.161, Worker `8333a65e-fdfc-49fa-9747-2338b9a3b276`. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts.
 
-Release evidence: `private/verification/release-0.1.161-chart-20261103/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed. One upload was reused after earlier connection failures; the successful checks are in `resume-4/`.
+Release evidence: `private/verification/release-0.1.162-touch-20261103/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed.
 
-This release aligns the detailed IPA chart with the 2015 official chart: pulmonic and non-pulmonic section names, other-symbol columns with the shared alveolo-palatal row, tone Level/Contour groups, circular press feedback, simple-view word playback, and the shared lesson-recording credit. The wide consonant table still fills its frame.
+Touch feedback on the IPA chart now uses the same mark as playback: example words stay on the word, detailed symbols use the English-circle size, and the English toggle fills only its small circle. Duplicate pressed and touch rules were merged.
 
 ## Verification boundary
 
-Focused local checks covered the changed chart, reference data and About credit. The fresh build included typecheck and the content/resource guards. Deployment dry run did not upload. Runtime was Node v26.5.0, the only installed Node; Node 24 was not downloaded.
+The focused playback and touch tests passed before publication. The fresh build included typecheck and the content/resource guards. Deployment dry run did not upload. Runtime was Node v26.5.0, the only installed Node.
 
-Final candidate and ordinary production verification each passed all **1001 asset sizes/hashes**, **13 page bodies/routes** and **5 missing paths**, with the actual Worker version. Production IPA smoke confirmed the English-circle toggle, pulmonic heading, alveolo-palatal row and tone group headings. An installed 0.1.160 client updated to 0.1.161, preserving exact synthetic profile/theme, lesson, answer, draft and note data, then reopened Today and learning offline. No real learner records or provider writes were used.
-
-Earlier acceptance attempts recovered to 0.1.160 after truncated downloads and the existing 60-second request limit. The successful pass reused the same uploaded version over HTTP/1.1. Hashes, request limits and the two-reader check were not changed. Account, domain, Worker configuration, bindings, secrets, migrations and learning-data/sync/backup formats remain unchanged. No fresh physical-device, real-provider or mainland-network matrix is claimed.
+Candidate and ordinary production verification each checked every released asset, 13 pages and 5 missing paths, with the actual Worker version. Production IPA smoke and an installed 0.1.161 → 0.1.162 update preserved the synthetic profile, theme, lesson, answer, draft and note, then reopened Today and learning offline. No real learner records were used. Account, domain, bindings, secrets and migrations are unchanged.
 
 ## Cloudflare zone settings — 2026-11-01
 

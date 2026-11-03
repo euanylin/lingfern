@@ -416,3 +416,80 @@ test('pressed feedback fills every detailed symbol and follows each example word
   expect(await toneLayout()).toEqual({ sideBySide: false, stacked: true, levelOwns: true, contourOwns: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('touch feedback matches the playback mark and the English circle control', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/library/ipa');
+  const paint = (selector: string) => page.locator(selector).evaluate(button => {
+    const span = button.querySelector(':scope > span')!;
+    const mark = span.getBoundingClientRect();
+    const control = button.getBoundingClientRect();
+    const radius = getComputedStyle(span).borderTopLeftRadius;
+    return {
+      buttonBackground: getComputedStyle(button).backgroundColor,
+      buttonColor: getComputedStyle(button).color,
+      markBackground: getComputedStyle(span).backgroundColor,
+      markWidth: Math.round(mark.width),
+      markHeight: Math.round(mark.height),
+      controlWidth: Math.round(control.width),
+      controlHeight: Math.round(control.height),
+      radius,
+    };
+  });
+  const word = page.getByRole('button', { name: '听单词 see', exact: true });
+  await word.click();
+  const playedWord = await paint('.ipa-entry[data-ipa="i"] .ipa-word');
+  await word.click();
+  await word.evaluate(button => button.setAttribute('data-touch-active', ''));
+  const touchedWord = await paint('.ipa-entry[data-ipa="i"] .ipa-word');
+  expect(touchedWord.buttonBackground).toBe('rgba(0, 0, 0, 0)');
+  expect(touchedWord.markBackground).toBe(playedWord.markBackground);
+  expect(touchedWord.markWidth).toBe(playedWord.markWidth);
+  expect(touchedWord.markHeight).toBe(playedWord.markHeight);
+  expect(touchedWord.radius).toBe(playedWord.radius);
+  expect(touchedWord.markWidth).toBeLessThan(touchedWord.controlWidth);
+  const symbol = page.getByRole('button', { name: '听音标 /ɪ/', exact: true });
+  await symbol.click();
+  const playedSymbol = await paint('.ipa-entry[data-ipa="ɪ"] .ipa-symbol');
+  await symbol.click();
+  await symbol.evaluate(button => button.setAttribute('data-touch-active', ''));
+  const touchedSymbol = await paint('.ipa-entry[data-ipa="ɪ"] .ipa-symbol');
+  expect(touchedSymbol).toEqual(playedSymbol);
+  await page.getByRole('button', { name: '详细版', exact: true }).click();
+  const toggle = page.getByRole('button', { name: '英语', exact: true });
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+  const off = await paint('button.ipa-english-marks');
+  await toggle.evaluate(button => button.setAttribute('data-touch-active', ''));
+  const touchedToggle = await paint('button.ipa-english-marks');
+  await toggle.evaluate(button => button.removeAttribute('data-touch-active'));
+  await toggle.click();
+  const on = await paint('button.ipa-english-marks');
+  expect(off.markBackground).toBe('rgba(0, 0, 0, 0)');
+  expect(touchedToggle.buttonBackground).toBe('rgba(0, 0, 0, 0)');
+  expect(touchedToggle.buttonColor).toBe(on.buttonColor);
+  expect(touchedToggle.markBackground).toBe(touchedToggle.buttonColor);
+  expect(on.markBackground).toBe(on.buttonColor);
+  expect(touchedToggle.markWidth).toBe(on.markWidth);
+  expect(touchedToggle.markHeight).toBe(on.markHeight);
+  expect(touchedToggle.radius).toBe('50%');
+  expect(touchedToggle.markWidth).toBeLessThan(touchedToggle.controlWidth);
+  const consonant = page.locator('.ipa-table-consonants [data-ipa="p"] button');
+  await consonant.click();
+  const playedConsonant = await paint('.ipa-table-consonants [data-ipa="p"] button');
+  await consonant.click();
+  await consonant.evaluate(button => button.setAttribute('data-touch-active', ''));
+  const touchedConsonant = await paint('.ipa-table-consonants [data-ipa="p"] button');
+  const englishCircle = await page.locator('.ipa-table-consonants [data-ipa="p"] .ipa-english-circle').evaluate(mark => {
+    const box = mark.getBoundingClientRect();
+    return { width: Math.round(box.width), height: Math.round(box.height), radius: getComputedStyle(mark).borderTopLeftRadius };
+  });
+  expect(touchedConsonant.buttonBackground).toBe('rgba(0, 0, 0, 0)');
+  expect(touchedConsonant.markBackground).toBe(playedConsonant.markBackground);
+  expect(touchedConsonant.markWidth).toBe(playedConsonant.markWidth);
+  expect(touchedConsonant.markHeight).toBe(playedConsonant.markHeight);
+  expect(touchedConsonant.radius).toBe(playedConsonant.radius);
+  expect(touchedConsonant.markWidth).toBe(englishCircle.width);
+  expect(touchedConsonant.markHeight).toBe(englishCircle.height);
+  expect(touchedConsonant.markWidth).toBeLessThan(touchedConsonant.controlWidth);
+});
