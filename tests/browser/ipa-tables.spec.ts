@@ -344,12 +344,19 @@ test('an unsafe full-chart catalogue fails visibly instead of showing a partiall
 
 
 test('an old installed English package remains usable when the new detailed catalogue is unavailable', async ({ page }) => {
+  const englishReady = Promise.withResolvers<void>();
+  await page.route('**/ipa/entries.json', async route => {
+    await englishReady.promise;
+    await route.fulfill({ json: chart });
+  });
   await page.route('**/ipa/full-sounds.json', route => route.fulfill({ status: 404, body: 'Missing new package' }));
   await page.goto('/library/ipa');
   await page.getByRole('button', { name: '详细版', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('发音表或录音无法读取');
   await expect(page.locator('.ipa-entry')).toHaveCount(0);
   await page.getByRole('button', { name: '简易版', exact: true }).click();
+  await expect(page.getByRole('status')).toBeVisible();
+  englishReady.resolve();
   await expect(page.locator('.ipa-entry')).toHaveCount(41);
   await expect(page.getByRole('alert')).toHaveCount(0);
   await page.locator('audio').evaluate((audio: HTMLAudioElement) => { audio.muted = true; });

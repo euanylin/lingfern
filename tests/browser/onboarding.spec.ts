@@ -304,7 +304,7 @@ test('only horizontal trackpad gestures switch cards; wheel and Shift+wheel keep
   await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
 });
 
-test('small trackpad deltas move cards continuously before the switch threshold and settle once', async ({ page }) => {
+test('a brief trackpad flick tracks each delta then promptly settles one card', async ({ page }) => {
   await page.clock.install();
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
@@ -312,18 +312,66 @@ test('small trackpad deltas move cards continuously before the switch threshold 
   // Preserve continuous gestures across browser sampling gaps.
   await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   const samples: number[] = [];
-  for (const delta of [12, 11, 10, 9, 8, 6]) {
+  for (const delta of [8, 7, 5, 4, 2]) {
     await page.mouse.wheel(delta, 0);
-    await page.clock.runFor(32);
+    await page.clock.runFor(16);
     samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
   }
   await test.info().attach('trackpad-contact-positions', {body:JSON.stringify(samples),contentType:'application/json'});
   expect(samples[0]).toBeLessThan(-1);
   expect(samples.every((x, i) => !i || x <= samples[i - 1] + .1)).toBe(true);
   expect(samples.every((x, i) => !i || Math.abs(x - samples[i - 1]) < 30)).toBe(true);
+  await page.clock.runFor(144);
+  expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
   await page.clock.runFor(1000);
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await expect.poll(() => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
+});
+
+test('desktop trackpad inertia stops at the card selected during contact', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await expect(stage).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const feed = (deltaX: number, momentum?: boolean) => stage.evaluate((element, { deltaX, momentum }) => {
+    const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+    Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: momentum } });
+    element.dispatchEvent(event);
+  }, { deltaX, momentum });
+  await feed(42, false); await page.clock.runFor(16);
+  await feed(38, false); await page.clock.runFor(16);
+  await feed(60, true); await page.clock.runFor(80);
+  const first = page.locator('.welcome-card').first();
+  expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-200);
+  for (let i = 0; i < 20; i++) { await feed(75, true); await page.clock.runFor(16); }
+  await page.clock.runFor(800);
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
+
+  // Contact exceeds the short-flick limit, but momentum still must not choose another card.
+  await feed(85, false); await page.clock.runFor(16);
+  await feed(75, false); await page.clock.runFor(16);
+  const nextCard = page.locator('.welcome-card').nth(2);
+  const position = () => nextCard.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  for (let i = 0; i < 12; i++) { await feed(75, true); await page.clock.runFor(16); }
+  const coasting = await position();
+  await page.clock.runFor(48);
+  const betweenSamples = await position();
+  expect(betweenSamples).toBeGreaterThan(0);
+  expect(betweenSamples).toBeLessThan(coasting);
+  for (let i = 0; i < 8; i++) { await feed(75, true); await page.clock.runFor(16); }
+  const slowing = await position();
+  expect(slowing).toBeGreaterThan(0);
+  expect(slowing).toBeLessThan(betweenSamples);
+  await page.clock.runFor(800);
+  await expect(nextCard).toHaveAttribute('data-current', 'true');
+  expect(await position()).toBeCloseTo(0, 1);
+
+  // Browsers without an inertia flag can still report a recognizable deceleration curve.
+  for (let i = 0; i < 42; i++) { await feed(90 * .97 ** i); await page.clock.runFor(16); }
+  await page.clock.runFor(800);
+  await expect(first).toHaveAttribute('data-current', 'true');
 });
 
 test('sparse forward trackpad contact does not spring backwards between samples', async ({ page }) => {

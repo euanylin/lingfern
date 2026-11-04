@@ -1,20 +1,18 @@
 # Current development handoff
 
-Updated 2026-11-03. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
+Updated 2026-11-04. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.162
+## Current release: 0.1.163
 
-Cloudflare accepted Worker version `9354572d-0803-4fd0-bbab-024b44322c91`, deployment `2a9024ab-577b-411d-9c91-21c495eb9d41`, at 100% traffic. Recovery target remains 0.1.161, Worker `8333a65e-fdfc-49fa-9747-2338b9a3b276`. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts.
+Cloudflare accepted Worker version `dcbe3f7a-12a8-4670-8911-189b5eadbafe`, deployment `42dbb6e0-669d-4be9-8de5-f752859d873f`, at 100% traffic. Recovery target is 0.1.162, Worker `9354572d-0803-4fd0-bbab-024b44322c91`. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit and protection results belong to this release's local receipts.
 
-Release evidence: `private/verification/release-0.1.162-touch-20261103/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed.
+Release evidence: `private/verification/release-0.1.163-20261104/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed.
 
-Touch feedback on the IPA chart now uses the same mark as playback: example words stay on the word, detailed symbols use the English-circle size, and the English toggle fills only its small circle. Duplicate pressed and touch rules were merged.
+This release includes introduction carousel trackpad refinements, navigation preference loading, grammar disclosure motion, reduced redundant navigation blur, and About/IPA cleanup and loading feedback.
 
 ## Verification boundary
 
-The focused playback and touch tests passed before publication. The fresh build included typecheck and the content/resource guards. Deployment dry run did not upload. Runtime was Node v26.5.0, the only installed Node.
-
-Candidate and ordinary production verification each checked every released asset, 13 pages and 5 missing paths, with the actual Worker version. Production IPA smoke and an installed 0.1.161 → 0.1.162 update preserved the synthetic profile, theme, lesson, answer, draft and note, then reopened Today and learning offline. No real learner records were used. Account, domain, bindings, secrets and migrations are unchanged.
+The fresh build, deployment dry run and 12 focused browser tests passed. Runtime was Node v26.5.0. Candidate and production verification checked every released asset, page and missing-path guard. The isolated 0.1.162 → 0.1.163 update preserved synthetic profile and learning data and reopened offline; IPA production smoke passed. No real learner records were used.
 
 ## Cloudflare zone settings — 2026-11-01
 

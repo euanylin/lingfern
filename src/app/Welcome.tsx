@@ -164,22 +164,32 @@ export function Welcome(props: WelcomeProps) {
   }, [go, paint, reduced]);
   useEffect(() => {
     const root = stage.current!, gestures = WheelGestures({ preventWheelAction: false, reverseSign: false });
+    const flickLimit = Math.max(64, dragDistance / 8);
     let start = 0, origin = 0, total = 0, velocity = 0, settled = true, cancelled = false;
-    let wheelFrame = 0, wheelPosition = 0, horizontal = false, lastAt = 0;
+    let wheelFrame = 0, wheelPosition = 0, horizontal = false, lastAt = 0, startedAt = 0, samples = 0, travel = 0, flick = false, snapping = false;
+    let momentumTarget: number | undefined, momentumEaseFrom = 0;
     let release: ReturnType<typeof setTimeout> | undefined;
-    const flush = () => { if (wheelFrame) { cancelAnimationFrame(wheelFrame); wheelFrame = 0; paint(wheelPosition); } };
-    const settle = () => { release = undefined; cancelled = false; if (!settled && !drag.current) { flush(); horizontal = false; settled = true; go(target(), velocity); } };
+    const paintWheel = () => { wheelFrame = 0; paint(wheelPosition); };
+    const flush = () => { if (wheelFrame) { cancelAnimationFrame(wheelFrame); paintWheel(); } };
+    const clearRelease = () => { clearTimeout(release); release = undefined; };
+    const settle = () => {
+      clearRelease(); cancelled = false;
+      if (settled || drag.current) return;
+      flush(); horizontal = false; settled = true; snapping = flick || momentumTarget !== undefined;
+      go(target(), velocity);
+    };
     const target = () => {
-      if (Math.abs(total) < 40) return origin;
+      if (momentumTarget !== undefined) return momentumTarget;
+      if (!flick && Math.abs(total) < 36) return origin;
       const nearest = Math.round(start + total / dragDistance);
       // Finish near the visible position, including when a new stroke interrupts release.
       return total > 0 ? Math.max(Math.floor(start) + 1, nearest) : Math.min(Math.ceil(start) - 1, nearest);
     };
-    const scheduleEnd = () => { clearTimeout(release); release = setTimeout(settle, Math.max(0, 200 - (performance.now() - lastAt))); };
+    const scheduleEnd = (delay = 200) => { clearRelease(); release = setTimeout(settle, Math.max(0, delay - (performance.now() - lastAt))); };
     cancelWheel.current = () => {
       const ending = release !== undefined;
       if (!settled) destination.current = target();
-      clearTimeout(release); release = undefined; flush();
+      clearRelease(); flush();
       cancelled ||= !settled; horizontal = false; settled = true;
       if (ending) scheduleEnd();
     };
@@ -187,26 +197,61 @@ export function Welcome(props: WelcomeProps) {
       // Deceleration can be held contact; settle only after the wheel stream stops.
       if (event.isEnding) {
         // Inferred inertia can shorten the library timeout below a still-moving finger's cadence.
-        if (!event.isMomentumCancel) scheduleEnd();
+        if (!event.isMomentumCancel && release === undefined) scheduleEnd();
         return;
       }
       if (drag.current) return;
-      clearTimeout(release); release = undefined;
+      clearRelease();
       if (cancelled) return;
+      // Let the snap finish without feeding the same gesture's inertia back into the spring.
+      if (snapping && event.isMomentum) return;
+      snapping = false;
       horizontal = true;
       const delta = event.axisDelta[0] * rtl;
+      // Decide from contact distance before the first inertia sample can push it over the limit.
+      if (!settled && flick && event.isMomentum && delta * total > 0) { settle(); return; }
       if (settled) {
         flush();
         origin = frame.current ? destination.current : Math.round(current.current);
-        cancelAnimationFrame(frame.current); frame.current = 0; start = current.current; total = 0; settled = false;
+        start = current.current; total = 0; settled = false;
+        startedAt = lastAt; samples = 0; travel = 0;
+        momentumTarget = undefined;
       }
-      // Native inertia can join successive strokes; every delta must keep moving the loop.
+      // Inertia can carry a card to its contact-selected destination, without selecting another.
+      if (!event.isMomentum) {
+        if (momentumTarget !== undefined && !reduced) total = (wheelPosition - start) * dragDistance;
+        momentumTarget = undefined;
+      } else if (momentumTarget === undefined && Math.abs(total) >= 36 && delta * total > 0) {
+        momentumTarget = target();
+        const limit = (momentumTarget - start) * dragDistance;
+        if ((limit - total) * delta <= 0) { settle(); return; }
+        momentumEaseFrom = (total + limit) / 2;
+      }
       total += delta;
+      samples++;
+      travel += Math.abs(delta);
+      const distance = Math.abs(total);
+      flick = samples > 1 && lastAt - startedAt <= 100 && distance >= 24 && distance <= flickLimit && distance >= travel * .8;
       velocity = event.axisVelocity[0] * rtl * 1000 / dragDistance;
-      cancelAnimationFrame(frame.current); frame.current = 0;
+      if (frame.current) { cancelAnimationFrame(frame.current); frame.current = 0; }
       // Trackpad events can arrive faster than the display can present them.
-      wheelPosition = reduced ? target() : start + total / dragDistance;
-      if (!wheelFrame) wheelFrame = requestAnimationFrame(flush);
+      let offset = total;
+      let handoff = false;
+      if (momentumTarget !== undefined) {
+        const remaining = (momentumTarget - start) * dragDistance - momentumEaseFrom;
+        const progress = (total - momentumEaseFrom) / remaining;
+        // Ease into the remaining distance with continuous speed at the transition.
+        if (progress > 0) {
+          offset = momentumEaseFrom - remaining * Math.expm1(-progress);
+          velocity *= Math.exp(-progress);
+          handoff = true;
+        }
+      }
+      wheelPosition = reduced ? target() : start + offset / dragDistance;
+      if (!wheelFrame) wheelFrame = requestAnimationFrame(paintWheel);
+      // Continue deceleration in the spring when the flick releases or the coast nears its target.
+      if (handoff || flick && event.isMomentum) settle();
+      else if (flick) scheduleEnd(110);
     });
     const scroll = (event: WheelEvent) => {
       if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) { horizontal = false; return; }
@@ -214,16 +259,19 @@ export function Welcome(props: WelcomeProps) {
       if (event.shiftKey || event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL) { horizontal = false; return; }
       // Vertical samples are still contact, even when their scrolling stays native.
       lastAt = performance.now();
-      if (release !== undefined) scheduleEnd();
       // Tolerate slight diagonal jitter during horizontal contact; clear vertical input stays native.
       const horizontalRatio = horizontal ? 2 / 3 : 1;
-      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * horizontalRatio) { horizontal = false; return; }
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * horizontalRatio) {
+        horizontal = false;
+        if (release !== undefined) scheduleEnd();
+        return;
+      }
       // Handle horizontal trackpad pixels; preserve native wheel and Shift+wheel.
       event.preventDefault(); keyboard.current = false; gestures.feedWheel(event);
     };
     root.addEventListener('wheel', scroll, { passive: false });
     return () => {
-      root.removeEventListener('wheel', scroll); clearTimeout(release); cancelAnimationFrame(wheelFrame); cancelWheel.current = () => {}; off(); gestures.disconnect();
+      root.removeEventListener('wheel', scroll); clearRelease(); cancelAnimationFrame(wheelFrame); cancelWheel.current = () => {}; off(); gestures.disconnect();
       // Geometry changes must finish pending contact; an unmounted carousel stays stopped.
       if (!settled && !drag.current && root.isConnected) { livePaint.current(wheelPosition); go(target(), velocity); }
     };

@@ -17,7 +17,7 @@ Current implementation summary, 2026-11-02. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT
 
 ## Release and acceptance boundaries
 
-Production is **0.1.160**, including the IPA/control-feedback and resource/lease/question-ID fixes. [The handoff](DEVELOPMENT_HANDOFF.md) owns the release changes, verification and exact deployed identity. Older completed fixes belong in [history](docs/history/README.md), not a second release ledger here.
+Production is **0.1.163**, including the introduction, navigation and reference-tool refinements. [The handoff](DEVELOPMENT_HANDOFF.md) owns the release changes, verification and exact deployed identity. Older completed fixes belong in [history](docs/history/README.md), not a second release ledger here.
 
 The first public launch is complete. [Release acceptance boundaries](docs/release-runbook.md#acceptance-boundaries) identify retained real-provider, two-device, MCP and maintainer device/network evidence. Local fixtures do not constitute fresh provider or physical-device acceptance. Current observations and source holds remain in [Issues.md](Issues.md).
 

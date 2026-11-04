@@ -13,6 +13,10 @@ function CreditList({ items }: { items: { label: string; source: string; author:
   return <ul>{items.map(item => <li key={item.source}><a href={item.source} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.label} ↗</a><span>{item.author} · <a href={item.licenseUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.license}</a></span><span>{item.changes}</span></li>)}</ul>;
 }
 
+function projectRows(projects: typeof credits.software) {
+  return projects.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>);
+}
+
 export function About() {
   return <section className="about-page" lang="en" dir="ltr">
     <a className="about-back back-button" href="/settings" aria-label={t.settings}>←</a>
@@ -25,8 +29,8 @@ export function About() {
       <p className="about-project-terms muted"><a href="https://github.com/euanylin/lingfern" aria-label="Lingfern on GitHub" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">Lingfern ↗</a> · <a href="/licenses/lingfern/LICENSE">{t.projectCode}</a> · <a href="/licenses/lingfern/CC-BY-4.0.txt">{t.projectText}</a> · <a href="/licenses/lingfern/NOTICE">{t.projectNotice}</a>. <a href="/licenses/lingfern/BRAND.md">{t.brandTerms}</a>.</p>
       <section>
         <h2>{t.openSource}</h2>
-        <ul className="about-projects">{credits.software.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>)}</ul>
-        <AnimatedDetails className="about-credit-details"><summary>{t.buildTools} ({credits.development.length})</summary><ul>{credits.development.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>)}</ul></AnimatedDetails>
+        <ul className="about-projects">{projectRows(credits.software)}</ul>
+        <AnimatedDetails className="about-credit-details"><summary>{t.buildTools} ({credits.development.length})</summary><ul>{projectRows(credits.development)}</ul></AnimatedDetails>
         <a href="/THIRD_PARTY_NOTICES.md">{t.licences} ↗</a>
       </section>
       <section>

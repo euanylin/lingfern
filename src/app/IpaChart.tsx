@@ -33,7 +33,7 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
   const [entries, setEntries] = useState<IpaEntry[] | undefined>(() => initialEntries ? ipaChartSchema.parse(initialEntries).entries : undefined);
   const [sounds, setSounds] = useState<FullIpaSound[] | undefined>(() => initialSounds ? fullIpaAudioSchema.parse(initialSounds).entries : undefined);
   const [fullError, setFullError] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false);
   const [playing, setPlaying] = useState('');
   const [view, setView] = useState<'simple' | 'detailed'>(() => fullIpaSoundSymbols.includes(initialQuery) && !ipaSymbols.includes(initialQuery) ? 'detailed' : 'simple');
   const [markEnglish, setMarkEnglish] = useState(true);
@@ -44,10 +44,10 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
   const focusedEntry = useRef<HTMLElement>(null);
   useEffect(() => {
     let live = true;
-    if (!initialEntries) fetch('/ipa/entries.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return ipaChartSchema.parse(await response.json()); }).then(data => { if (live) setEntries(data.entries); }).catch(() => { if (live) setError(t.failed); });
+    if (!initialEntries) fetch('/ipa/entries.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return ipaChartSchema.parse(await response.json()); }).then(data => { if (live) setEntries(data.entries); }).catch(() => { if (live) setError(true); });
     if (!initialSounds) fetch('/ipa/full-sounds.json').then(async response => { if (!response.ok) throw new Error('IPA_UNAVAILABLE'); return fullIpaAudioSchema.parse(await response.json()); }).then(data => { if (live) setSounds(data.entries); }).catch(() => { if (live) setFullError(true); });
     return () => { live = false; playback.current.request++; playback.current.id = ''; player.current?.pause(); };
-  }, [t.failed, initialEntries, initialSounds]);
+  }, [initialEntries, initialSounds]);
   useEffect(() => {
     if (initialQuery && focusedEntry.current) {
       focusedEntry.current.scrollIntoView({ block: 'center' });
@@ -64,7 +64,7 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
       playback.current.id = ''; setPlaying(''); return;
     }
     playback.current.id = id;
-    setError(''); setPlaying(id);
+    setError(false); setPlaying(id);
     audio.src = src;
     // Record the selection independently of audio availability.
     void recordLookup(profileId, 'ipa', term).then(
@@ -72,37 +72,32 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
       () => { if (request === playback.current.request) setHistoryError(true); },
     );
     try { await audio.play(); } catch {
-      if (request === playback.current.request) { playback.current.id = ''; setPlaying(''); setError(t.failed); }
+      if (request === playback.current.request) { playback.current.id = ''; setPlaying(''); setError(true); }
       return;
     }
   }
   const bySymbol = new Map(entries?.map(entry => [entry.ipa, entry]));
   const bySound = new Map(sounds?.map(entry => [entry.ipa, entry]));
+  const failed = error || view === 'detailed' && fullError;
   const marked = view === 'detailed' && markEnglish;
   function renderEntry(symbol: string) {
     const entry = bySymbol.get(symbol);
-    if (!entry) {
-      const sound = bySound.get(symbol);
-      if (!sound) {
-        const [vowel, letters] = symbol.split(' '), accent = toneAccents[vowel[1]];
-        if (!letters || !/^[˥˦˧˨˩]+$/.test(letters)) return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>{symbol}</span>;
-        const right = Math.max(8, (letters.length - 1) * 6 + 2);
-        const points = [...letters].map((letter, index) => `${index * 6 + 2},${'˥˦˧˨˩'.indexOf(letter) * 5 + 2}`).join(' ');
-        return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>
-          <span className="sr-only">{symbol}</span><span aria-hidden="true">{accent ? <span className="ipa-compound-tone">e<svg viewBox="0 0 19 12" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d={accent}/></svg></span> : vowel}<svg className="ipa-tone-letter" viewBox={`0 0 ${right + 3} 26`} style={{ width: `${(right + 3) / 26}em` }} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><polyline points={letters.length === 1 ? `${points} ${right},${'˥˦˧˨˩'.indexOf(letters) * 5 + 2}` : points}/><path d={`M${right} 2V22`}/></svg></span>
-        </span>;
-      }
-      return <article className="ipa-entry ipa-reference-entry" key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
-        <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === symbol} onClick={() => void play(symbol, sound.soundAudio)}>
-          <span className={marked && englishVariants.includes(symbol) ? 'ipa-english-variant' : undefined} lang="en" dir="ltr" title={marked && englishVariants.includes(symbol) ? 'English accent variant or allophone' : undefined}>{symbol}</span>
-        </button>
-      </article>;
+    const sound = entry ?? bySound.get(symbol);
+    if (!sound) {
+      const [vowel, letters] = symbol.split(' '), accent = toneAccents[vowel[1]];
+      if (!letters || !/^[˥˦˧˨˩]+$/.test(letters)) return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>{symbol}</span>;
+      const right = Math.max(8, (letters.length - 1) * 6 + 2);
+      const points = [...letters].map((letter, index) => `${index * 6 + 2},${'˥˦˧˨˩'.indexOf(letter) * 5 + 2}`).join(' ');
+      return <span className="ipa-reference-symbol" key={symbol} data-symbol={symbol}>
+        <span className="sr-only">{symbol}</span><span aria-hidden="true">{accent ? <span className="ipa-compound-tone">e<svg viewBox="0 0 19 12" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"><path d={accent}/></svg></span> : vowel}<svg className="ipa-tone-letter" viewBox={`0 0 ${right + 3} 26`} style={{ width: `${(right + 3) / 26}em` }} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><polyline points={letters.length === 1 ? `${points} ${right},${'˥˦˧˨˩'.indexOf(letters) * 5 + 2}` : points}/><path d={`M${right} 2V22`}/></svg></span>
+      </span>;
     }
-    return <article className="ipa-entry" key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
-      {view === 'simple' ? <>
-        <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === symbol} onClick={() => void play(symbol, entry.soundAudio)}><span lang="en" dir="ltr">/{symbol}/</span></button>
-        <button disabled={disabled} type="button" className="ipa-word" aria-label={`${t.word} ${entry.example}`} aria-pressed={playing === `word:${symbol}`} onClick={() => void play(`word:${symbol}`, entry.audio, symbol)}><span lang="en" dir="ltr">{entry.before}<strong>{entry.bold}</strong>{entry.after}</span></button>
-      </> : <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === symbol} onClick={() => void play(symbol, entry.soundAudio)}><span className={marked ? 'ipa-english-circle' : undefined} lang="en" dir="ltr">{symbol}</span></button>}
+    const variant = !entry && marked && englishVariants.includes(symbol);
+    return <article className={entry ? "ipa-entry" : "ipa-entry ipa-reference-entry"} key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
+      <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === symbol} onClick={() => void play(symbol, sound.soundAudio)}>
+        <span className={variant ? 'ipa-english-variant' : entry && marked ? 'ipa-english-circle' : undefined} lang="en" dir="ltr" title={variant ? 'English accent variant or allophone' : undefined}>{view === 'simple' ? `/${symbol}/` : symbol}</span>
+      </button>
+      {entry && view === 'simple' && <button disabled={disabled} type="button" className="ipa-word" aria-label={`${t.word} ${entry.example}`} aria-pressed={playing === `word:${symbol}`} onClick={() => void play(`word:${symbol}`, entry.audio, symbol)}><span lang="en" dir="ltr">{entry.before}<strong>{entry.bold}</strong>{entry.after}</span></button>}
     </article>;
   }
   function symbolList(title: string, items: readonly (readonly [string, string])[], columns = '', note?: string) {
@@ -132,10 +127,10 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
       </div>
       {view === 'detailed' && <button type="button" className="ipa-english-marks" aria-pressed={markEnglish} onClick={() => setMarkEnglish(value => !value)}><span className="ipa-english-marks-mark" aria-hidden="true"/>{t.englishMarks}</button>}
     </div>
-    {(!entries || view === 'detailed' && !sounds) && !error && !fullError && <p role="status">{t.loading}</p>}
-    {(error || view === 'detailed' && fullError) && <p role="alert" className="error">{error || t.failed}</p>}
+    {(!entries || view === 'detailed' && !sounds) && !failed && <p role="status">{t.loading}</p>}
+    {failed && <p role="alert" className="error">{t.failed}</p>}
     {historyError && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].saveFailed}</p>}
-    <audio ref={player} preload="none" onPause={() => { if (player.current?.paused) { playback.current.id = ''; setPlaying(''); } }} onEnded={() => { if (player.current?.ended) { playback.current.id = ''; setPlaying(''); } }} onError={() => { if (player.current?.error) { playback.current.id = ''; setPlaying(''); setError(t.failed); } }}/>
+    <audio ref={player} preload="none" onPause={() => { if (player.current?.paused) { playback.current.id = ''; setPlaying(''); } }} onEnded={() => { if (player.current?.ended) { playback.current.id = ''; setPlaying(''); } }} onError={() => { if (player.current?.error) { playback.current.id = ''; setPlaying(''); setError(true); } }}/>
     {entries && (view === 'simple' ? (['vowel', 'consonant'] as const).map(group => <section className="ipa-group" key={group}>
       <h2>{t.groups[group]}</h2>
       {group === 'consonant' && <section className="ipa-category"><h3>{t.contrast}</h3><div className="ipa-pairs" dir="ltr">{entries.filter(entry => entry.voicing === 'voiceless' && entry.pair).map(entry => <div className="ipa-pair" key={entry.ipa}><span>/{entry.ipa}/</span><span aria-hidden="true">↔</span><span>/{entry.pair}/</span></div>)}</div></section>}
