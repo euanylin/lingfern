@@ -1,18 +1,18 @@
 # Current development handoff
 
-Updated 2026-11-04. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
+Updated 2026-11-05. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.163
+## Current release: 0.1.164
 
-Cloudflare accepted Worker version `dcbe3f7a-12a8-4670-8911-189b5eadbafe`, deployment `42dbb6e0-669d-4be9-8de5-f752859d873f`, at 100% traffic. Recovery target is 0.1.162, Worker `9354572d-0803-4fd0-bbab-024b44322c91`. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit and protection results belong to this release's local receipts.
+Cloudflare accepted Worker version `7ea040b9-3b22-40d5-a534-fdb10f2d15cd`, deployment `f6a9bef1-a3b5-4168-8381-744a0f675d19`, at 100% traffic. Recovery target is 0.1.163, Worker `dcbe3f7a-12a8-4670-8911-189b5eadbafe`. Matching source is synchronized to [GitHub main](https://github.com/euanylin/lingfern/tree/main) through the guarded local-first procedure.
 
-Release evidence: `private/verification/release-0.1.163-20261104/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed.
+Release evidence: `private/verification/release-0.1.164-20261105/`. `accepted.json` records Cloudflare acceptance. `github-accepted.json` records synchronization when complete. Checks and Deploy remain disabled.
 
-This release includes introduction carousel trackpad refinements, navigation preference loading, grammar disclosure motion, reduced redundant navigation blur, and About/IPA cleanup and loading feedback.
+This release fixes introduction carousel rebound and unintended extra switches from Firefox's rounded and Safari's coalesced inertia. It also consolidates preview navigation and removes a redundant wheel branch and CSS declarations.
 
 ## Verification boundary
 
-The fresh build, deployment dry run and 12 focused browser tests passed. Runtime was Node v26.5.0. Candidate and production verification checked every released asset, page and missing-path guard. The isolated 0.1.162 → 0.1.163 update preserved synthetic profile and learning data and reopened offline; IPA production smoke passed. No real learner records were used.
+Node 24.19.0 build and deployment dry run passed. Fifteen targeted browser regressions passed, and nine previously recorded Safari and Firefox streams produced identical frame positions before and after the cleanup. Candidate and production checks each verified 1,001 build files, 13 pages and five missing paths. The isolated 0.1.163 → 0.1.164 update preserved synthetic learning data and reopened offline. Production introduction navigation passed. No real learner records were used.
 
 ## Cloudflare zone settings — 2026-11-01
 
