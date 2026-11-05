@@ -152,3 +152,11 @@ The initial core experience, course downloads, audio, dictionary, logo, help, an
 Mainland-network release acceptance is closed by the maintainer's 2026-10-21 report; do not request further carrier/region/time samples for first launch. Attribute that confirmation to the maintainer without inventing sample details or claiming nationwide stability or superiority over another service. Preserve earlier measured results and investigate concrete new access defects through ordinary issue handling.
 
 GitHub's authorisation page and external AI services retain their own network and supported-region restrictions. Do not implement proxy sign-in, access third-party cookies, provide access tunnels, or silently fall back to a cloud service. Installed local learning and backups must continue working when remote features are unavailable.
+
+## Cursor Cloud specific instructions
+
+Node.js **24.19.0** from `.nvmrc` is required (`package.json` engines: `>=24.19.0 <25`). The Cloud Agent image may expose Node 22 at `/exec-daemon/node` earlier on `PATH` than nvm. The prepared environment prepends `$HOME/.nvm/versions/node/v24.19.0/bin` from `~/.bashrc`. If `node -v` is not `v24.19.0`, prepend that directory before `npm ci`, checks, `npm run build`, or `npm run preview`.
+
+Local learning needs no GitHub or Cloudflare credentials. Use the commands in [docs/development.md](docs/development.md): `npm ci`, then `npm run build`, then `npm run preview` at http://127.0.0.1:8787/today. `npm test` is the portable suite. `npm run test:source-evidence` needs private inputs that are not in this repository.
+
+`npm run build` rewrites `Dependency_Notices.md` for the current platform's optional packages. Do not commit that platform drift.
