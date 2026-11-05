@@ -2,17 +2,19 @@
 
 Updated 2026-11-05. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.164
+## Current release: 0.1.165
 
-Cloudflare accepted Worker version `7ea040b9-3b22-40d5-a534-fdb10f2d15cd`, deployment `f6a9bef1-a3b5-4168-8381-744a0f675d19`, at 100% traffic. Recovery target is 0.1.163, Worker `dcbe3f7a-12a8-4670-8911-189b5eadbafe`. Matching source is synchronized to [GitHub main](https://github.com/euanylin/lingfern/tree/main) through the guarded local-first procedure.
+Cloudflare accepted Worker version `9819d791-a489-4104-a07a-953e8965a6b5`, deployment `ca71e6f4-580b-4c24-aff5-0d4bbfff61a5`, at 100% traffic. Recovery target is 0.1.164, Worker `7ea040b9-3b22-40d5-a534-fdb10f2d15cd`. Source synchronization to [GitHub main](https://github.com/euanylin/lingfern/tree/main) follows the guarded local-first procedure; `github-accepted.json` records its final result.
 
-Release evidence: `private/verification/release-0.1.164-20261105/`. `accepted.json` records Cloudflare acceptance. `github-accepted.json` records synchronization when complete. Checks and Deploy remain disabled.
+Release evidence: `private/verification/release-0.1.165-20261105/`. `accepted.json` records Cloudflare acceptance. Checks and Deploy remain disabled.
 
-This release fixes introduction carousel rebound and unintended extra switches from Firefox's rounded and Safari's coalesced inertia. It also consolidates preview navigation and removes a redundant wheel branch and CSS declarations.
+This release fixes the daily-quote refresh background persisting after a touch tap. Hover styling now requires a fine pointer with hover support; existing touch-contact and keyboard feedback remain intact. Application changes are in `src/app/style.css`, with two focused regressions in `tests/browser/touch-feedback.spec.ts` and the package version updated to 0.1.165.
 
 ## Verification boundary
 
-Node 24.19.0 build and deployment dry run passed. Fifteen targeted browser regressions passed, and nine previously recorded Safari and Firefox streams produced identical frame positions before and after the cleanup. Candidate and production checks each verified 1,001 build files, 13 pages and five missing paths. The isolated 0.1.163 → 0.1.164 update preserved synthetic learning data and reopened offline. Production introduction navigation passed. No real learner records were used.
+The touch regression failed before the fix and passed afterward, alongside mouse hover and keyboard refresh/focus (`npm exec -- playwright test tests/browser/touch-feedback.spec.ts -g 'daily quote refresh' --workers=1`; Chrome, 390px dark touch and desktop light mouse). Changed-test ESLint, the Node 24.22.1 build and deployment dry run passed. The original physical handset has not been retested.
+
+Candidate and production checks each verified 1,001 build files, 13 pages and five missing paths. Candidate propagation required one bounded wrong-version retry before successful verification. Production touch/keyboard and desktop mouse/keyboard refresh checks passed. The isolated 0.1.164 → 0.1.165 update preserved the exact synthetic profile, theme, lesson, answer, draft and note, then reopened Today and learning offline. No real learner records were used. Existing Worker bindings, runtime configuration and static headers were preserved; one candidate was uploaded and no recovery was needed.
 
 ## Cloudflare zone settings — 2026-11-01
 

@@ -7,6 +7,17 @@ async function readyForTouch(control: Locator) {
   await control.click({ trial: true });
 }
 
+test('daily quote refresh retains mouse hover feedback', async ({ page }) => {
+  await page.goto('/today');
+  const button = page.locator('.daily-quote-next');
+  await expect(button).toBeVisible();
+  const idle = await button.evaluate(el => getComputedStyle(el).backgroundColor);
+  await button.hover();
+  await expect.poll(() => button.evaluate(el => getComputedStyle(el).backgroundColor)).not.toBe(idle);
+  await page.mouse.move(0, 0);
+  await expect(button).toHaveCSS('background-color', idle);
+});
+
 for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test(`Test keeps its desktop feedback during touch and keyboard focus: ${locale}/${theme}`, async ({ browser }, info) => {
   let desktopColor = '';
   for (const hasTouch of [false, true]) {
@@ -45,6 +56,27 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dar
 
 test.describe('touch feedback', () => {
   test.use({ hasTouch: true });
+  test('daily quote refresh clears touch highlight and retains keyboard feedback', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/today');
+    const quote = page.locator('.daily-quote[data-quote-id]'), button = quote.locator('.daily-quote-next');
+    await expect(button).toBeVisible();
+    const idle = await button.evaluate(el => getComputedStyle(el).backgroundColor);
+    const previous = await quote.getAttribute('data-quote-id');
+    await button.tap();
+    await expect(quote).not.toHaveAttribute('data-quote-id', previous!);
+    await expect(button).toHaveAttribute('aria-busy', 'false');
+    await expect(button).not.toHaveAttribute('data-touch-active');
+    await expect(button).toHaveCSS('background-color', idle);
+    await button.press('Tab'); await page.keyboard.press('Shift+Tab');
+    await expect(button).toBeFocused();
+    await expect(button).toHaveCSS('text-decoration-line', 'underline');
+    const next = await quote.getAttribute('data-quote-id');
+    await page.keyboard.press('Enter');
+    await expect(quote).not.toHaveAttribute('data-quote-id', next!);
+    await expect(button).toBeFocused();
+  });
   test('primary links and both History buttons use their desktop colours during touch contact', async ({ page, context }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.emulateMedia({ colorScheme: 'dark' });
