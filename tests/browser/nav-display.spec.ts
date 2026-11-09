@@ -41,8 +41,22 @@ test('desktop and mobile navigation display modes are independent and persist', 
   }
   await selectPicker(page, '桌面端导航', 'both');
   await expect(page.getByRole('button', { name: '桌面端导航' })).toHaveAttribute('data-value', 'both');
+  await page.addInitScript(() => {
+    const firstVisibleModes: Record<string, string> = {};
+    Object.assign(window, { firstVisibleModes });
+    const sample = () => {
+      for (const selector of ['.desktop-nav', '.mobile-nav']) {
+        const nav = document.querySelector<HTMLElement>(selector);
+        if (nav?.getClientRects().length && getComputedStyle(nav).visibility === 'visible') firstVisibleModes[selector] ??= nav.dataset.display!;
+      }
+      requestAnimationFrame(sample);
+    };
+    requestAnimationFrame(sample);
+  });
+  const firstVisibleMode = (selector: string) => page.evaluate(key => (window as unknown as { firstVisibleModes: Record<string, string> }).firstVisibleModes[key], selector);
   await page.reload();
   await expect(desktop).toHaveAttribute('data-display', 'both');
+  await expect.poll(() => firstVisibleMode('.desktop-nav')).toBe('both');
 
   await page.setViewportSize({ width: 320, height: 640 });
   for (const [mode, text, icons] of [['text', 3, 0], ['icon', 0, 3], ['both', 3, 3]] as const) {
@@ -58,6 +72,7 @@ test('desktop and mobile navigation display modes are independent and persist', 
   await expect(page.getByRole('button', { name: '移动端导航' })).toHaveAttribute('data-value', 'icon');
   await page.reload();
   await expect(mobile).toHaveAttribute('data-display', 'icon');
+  await expect.poll(() => firstVisibleMode('.mobile-nav')).toBe('icon');
   await expect(desktop).toHaveAttribute('data-display', 'both');
   for (const label of ['今日', '资料库', '设置']) await expect(mobile.getByRole('link', { name: label })).toBeAttached();
   await mobile.getByRole('link', { name: '今日' }).click();

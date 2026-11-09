@@ -190,7 +190,7 @@ test('desktop navigation and reference pages use the main content width without 
   await expect(page.locator('.ipa-entry').first()).toBeVisible();
   await expect(page.getByRole('button', { name: '简易版', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: '详细版', exact: true }).click();
-  await expect(page.locator('.ipa-table')).toHaveCount(4);
+  await expect(page.locator('.ipa-table')).toHaveCount(3);
   await page.getByRole('button', { name: '简易版', exact: true }).click();
   const ipa = await page.locator('.ipa-grid').first().locator('.ipa-entry').evaluateAll(rows => rows.slice(0, 4).map(row => row.getBoundingClientRect()));
   expect(ipa[0].top).toBeCloseTo(ipa[2].top, 0);
@@ -201,8 +201,27 @@ test('desktop navigation and reference pages use the main content width without 
   const entries = page.locator('.grammar-results details');
   const closed = await entries.evaluateAll(rows => rows.slice(0, 2).map(row => row.getBoundingClientRect()));
   expect(closed[0].top).toBeCloseTo(closed[1].top, 0);
-  await entries.first().locator('summary').click();
-  expect((await entries.first().boundingBox())!.width).toBeGreaterThan(900);
+  const heights = await entries.first().evaluate(async element => {
+    const summary = element.querySelector('summary')!;
+    const start = element.getBoundingClientRect().height;
+    summary.click();
+    await new Promise(requestAnimationFrame);
+    const animation = element.getAnimations()[0];
+    animation.pause();
+    animation.currentTime = 140;
+    const middle = element.getBoundingClientRect().height;
+    const end = parseFloat(String((animation.effect as KeyframeEffect).getKeyframes().at(-1)?.height));
+    animation.finish();
+    await new Promise(requestAnimationFrame);
+    return { start, middle, end, settled: element.getBoundingClientRect().height };
+  });
+  expect(heights.middle).toBeGreaterThan(heights.start);
+  expect(heights.middle).toBeLessThan(heights.end);
+  expect(heights.settled).toBeCloseTo(heights.end, 0);
+  await expect.poll(async () => (await entries.first().boundingBox())!.width).toBeGreaterThan(900);
+  await entries.first().locator('summary').press('Enter');
+  await expect(entries.first()).not.toHaveAttribute('open');
+  expect((await entries.first().boundingBox())!.width).toBeCloseTo(closed[0].width, 0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 

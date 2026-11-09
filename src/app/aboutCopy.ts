@@ -18,8 +18,9 @@ export const aboutCopy = {
   "reuseNotes": "Source and reuse notes",
   "audioSources": "Audio sources and licences",
   "audioNotice": "Recordings retain their credited speakers and source-specific licences. Conversion, excerpting and timing changes are listed below and with each material.",
+  "a1WordCredits": "A1 word listening and IPA chart example words use Wikimedia Commons recordings by",
+  "a1WordFiles": "File credits",
   "originalRecordings": "Lesson word and speech recordings",
-  "ipaWords": "IPA example words",
   "ipaSounds": "IPA sound recordings",
   "blog": "Blog",
   "email": "Email"

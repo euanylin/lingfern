@@ -5,6 +5,8 @@ import { aboutCopy as t } from '../../src/app/aboutCopy';
 import { localeSchema } from '../../src/shared/locale';
 import quotes from '../../content/daily-quotes.json' with { type: 'json' };
 import credits from '../../content/about-credits.json' with { type: 'json' };
+import audio from '../../content/audio-sources.json' with { type: 'json' };
+import wordSources from '../../public/ipa/SOURCES.json' with { type: 'json' };
 
 test('every display language opens the same English About page with local artwork and labelled contact links', async ({ page, context }) => {
   const external: string[] = [];
@@ -35,7 +37,13 @@ test('every display language opens the same English About page with local artwor
     })).toBe(true);
     await expect(page.locator('.about-signature,.about-signature-block')).toHaveCount(0);
     await expect(page.locator('.about-projects a')).toHaveCount(credits.software.length);
-    await expect(page.locator('.about-credit-details summary')).toHaveText([`${t.buildTools} (11)`, `${t.corpora} (${credits.corpora.length})`, `${t.quotes} (${quotes.quotes.length})`, `${t.originalRecordings} (29)`, `${t.ipaWords} (39)`, `${t.ipaSounds} (125)`]);
+    const lessonCount = audio.filter(item => !wordSources.some(source => source.source === item.source)).length;
+    await expect(page.locator('.about-credit-details summary')).toHaveText([`${t.buildTools} (11)`, `${t.corpora} (${credits.corpora.length})`, `${t.quotes} (${quotes.quotes.length})`, `${t.originalRecordings} (${lessonCount})`, `${t.ipaSounds} (125)`]);
+    const lessonRecordings = page.locator('.about-credit-details').filter({ has: page.getByText(`${t.originalRecordings} (${lessonCount})`, { exact: true }) });
+    await lessonRecordings.locator('summary').click();
+    await expect(lessonRecordings).toContainText(t.a1WordCredits);
+    await expect(lessonRecordings.getByRole('link', { name: t.a1WordFiles, exact: true })).toHaveAttribute('href', '/ipa/SOURCES.json');
+    await lessonRecordings.locator('summary').click();
     const dailyCredits = page.locator('.about-credit-details').filter({ has: page.getByText(`${t.quotes} (${quotes.quotes.length})`, { exact: true }) });
     await dailyCredits.locator('summary').click();
     await expect(dailyCredits.locator('li')).toHaveCount(1);

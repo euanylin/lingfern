@@ -25,6 +25,10 @@ export function AnimatedDetails({ ref, onToggle, onClickCapture, onExpandedChang
   }
   function animate(expanded: boolean, start: number) {
     const element = root.current!;
+    const grid = element.parentElement;
+    const columns = grid?.classList.contains('grammar-results') ? getComputedStyle(grid).gridTemplateColumns.split(' ') : [];
+    const columnWidth = columns.length === 2 ? parseFloat(columns[0]) : 0;
+    const startWidth = columnWidth ? element.getBoundingClientRect().width : 0;
     cancel(); motion.current.target = expanded;
     onExpandedChange?.(expanded);
     if (matchMedia('(prefers-reduced-motion:reduce)').matches) { finish(); return; }
@@ -57,7 +61,13 @@ export function AnimatedDetails({ ref, onToggle, onClickCapture, onExpandedChang
       element.style.height = height;
       const end = expanded ? element.getBoundingClientRect().height : collapsedHeight(element);
       element.style.height = `${end}px`;
-      const animation = element.animate({ height: [`${start}px`, `${end}px`] }, { duration: 220, easing: 'cubic-bezier(.2,0,0,1)' });
+      const keyframes: PropertyIndexedKeyframes = { height: [`${start}px`, `${end}px`] };
+      if (columnWidth) {
+        const endWidth = expanded ? element.getBoundingClientRect().width : columnWidth;
+        keyframes.width = [`${startWidth}px`, `${endWidth}px`];
+      }
+      const timing = columnWidth ? { duration: 280, easing: 'ease-in-out' } : { duration: 220, easing: 'cubic-bezier(.2,0,0,1)' };
+      const animation = element.animate(keyframes, timing);
       motion.current.animation = animation; animation.onfinish = finish;
     });
   }

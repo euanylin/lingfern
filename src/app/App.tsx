@@ -119,8 +119,8 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const [locale, setLocale] = useState<Locale>(() => initialPage ? 'en' : initialLocale());
   const localeRequest = useRef(0);
   const [theme, setTheme] = useState('system');
-  const [desktopNavDisplay, setDesktopNavDisplay] = useState<NavDisplay>('text');
-  const [mobileNavDisplay, setMobileNavDisplay] = useState<NavDisplay>('both');
+  const [desktopNavDisplay, setDesktopNavDisplay] = useState<NavDisplay>();
+  const [mobileNavDisplay, setMobileNavDisplay] = useState<NavDisplay>();
   const [onlineDictionary, setOnlineDictionary] = useState<OnlineDictionaryId>('cambridge');
   const [preferences, setPreferences] = useState<Preferences>();
   const [activeProfile, setActiveProfile] = useState('local-guest');
@@ -467,8 +467,8 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
             <div className="settings-language settings-card"><SettingsPicker label={t.language} value={locale} options={languageOptions} onChange={value => void setting('locale', value)}/></div>
             <div className="settings-appearance settings-card">
               <SettingsPicker label={t.theme} value={theme} options={[{ value: 'system', label: t.system }, { value: 'light', label: t.light }, { value: 'dark', label: t.dark }]} onChange={value => void setting('theme', value)}/>
-              <SettingsPicker label={t.desktopNavDisplay} value={desktopNavDisplay} options={[{ value: 'text', label: t.navText }, { value: 'icon', label: t.navIcons }, { value: 'both', label: t.navBoth }]} onChange={value => void setting('desktopNavDisplay', value)}/>
-              <SettingsPicker label={t.mobileNavDisplay} value={mobileNavDisplay} options={[{ value: 'text', label: t.navText }, { value: 'icon', label: t.navIcons }, { value: 'both', label: t.navBoth }]} onChange={value => void setting('mobileNavDisplay', value)}/>
+              <SettingsPicker label={t.desktopNavDisplay} value={desktopNavDisplay ?? 'text'} options={[{ value: 'text', label: t.navText }, { value: 'icon', label: t.navIcons }, { value: 'both', label: t.navBoth }]} onChange={value => void setting('desktopNavDisplay', value)}/>
+              <SettingsPicker label={t.mobileNavDisplay} value={mobileNavDisplay ?? 'both'} options={[{ value: 'text', label: t.navText }, { value: 'icon', label: t.navIcons }, { value: 'both', label: t.navBoth }]} onChange={value => void setting('mobileNavDisplay', value)}/>
             </div>
             <div className="settings-dictionary-row settings-card">
               <SettingsPicker label={t.defaultOnlineDictionary} description={t.onlineLookupPrivacy} value={onlineDictionary} options={onlineDictionaries.map(dictionary => ({ value: dictionary.id, label: dictionary.shortName }))} onChange={value => void setting('onlineDictionary', value)}/>
@@ -512,7 +512,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       {sessionId ? <><a className="back-button" href="/today" aria-label={t.leave} onClick={e => { e.preventDefault(); void leaveTask(); }}>←</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
         <a className="home-mark" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
         <a className="mobile-brand" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
-        <nav className="desktop-nav" data-display={desktopNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
+        <nav className="desktop-nav" data-display={desktopNavDisplay ?? 'text'} data-pending={!desktopNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
       </>}
     </header>}
     <main id="main" tabIndex={-1} className={introducing ? 'welcome-main' : undefined}>
@@ -559,7 +559,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       {updateBlocked && <p className="error" role="alert">{t.updateBlocked}</p>}
       <div className="update-confirm-actions"><button ref={updateCancel} type="button" disabled={applyingUpdate} onClick={closeUpdate}>{t.updateCancel}</button><button className="primary" type="button" disabled={applyingUpdate} aria-busy={applyingUpdate} onClick={() => void applyUpdate()}>{t.updateNow}</button></div>
     </dialog>, document.body)}
-    {!sessionId && !introducing && !entryPending && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
+    {!sessionId && !introducing && !entryPending && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay ?? 'both'} data-pending={!mobileNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
     <NetworkStatus online={online} locale={locale}/>
   </>;
 }

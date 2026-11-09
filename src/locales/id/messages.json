@@ -248,7 +248,8 @@
     },
     "view": "Tampilan",
     "simple": "Sederhana",
-    "detailed": "Terperinci"
+    "detailed": "Terperinci",
+    "englishMarks": "Inggris"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "Riwayat pencarian",

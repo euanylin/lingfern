@@ -1,30 +1,20 @@
 # Current development handoff
 
-Updated 2026-11-02. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
+Updated 2026-11-05. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.160
+## Current release: 0.1.165
 
-Cloudflare accepted Worker version `b33fcc41-d913-4a63-8dd3-9ada4abbe389`, deployment `5686c13f-1778-4c89-9465-7dae8b548765`, at 100% traffic. Matching-source synchronization targets [GitHub main](https://github.com/euanylin/lingfern/tree/main). Exact commit/tree and protection-restoration results belong to this release's local receipts.
+Cloudflare accepted Worker version `9819d791-a489-4104-a07a-953e8965a6b5`, deployment `ca71e6f4-580b-4c24-aff5-0d4bbfff61a5`, at 100% traffic. Recovery target is 0.1.164, Worker `7ea040b9-3b22-40d5-a534-fdb10f2d15cd`. Source synchronization to [GitHub main](https://github.com/euanylin/lingfern/tree/main) follows the guarded local-first procedure; `github-accepted.json` records its final result.
 
-Release evidence: `private/verification/release-0.1.160-maintenance-20261102/`. `accepted.json` records Cloudflare acceptance; `github-accepted.json` records source synchronization when complete. Checks and Deploy remain disabled; no GitHub CI result is claimed. The maintainer's no-new-backup instruction applies to this release: no project snapshot or replacement archive was created.
+Release evidence: `private/verification/release-0.1.165-20261105/`. `accepted.json` records Cloudflare acceptance. Checks and Deploy remain disabled.
 
-This release includes the previously local IPA and shared-control fixes: horizontally reveal activated/focused sounds, preserve native page scrolling, keep enlarged example words within their feedback surface, and restore Library/answer keyboard and touch feedback. Local evidence: `docs/history/2026-11-02-ipa-mobile.md` and `docs/history/2026-11-02-related-feedback.md`.
-
-The comprehensive audit fixes captured resource-version handling during catalogue refresh, retains unsaved reading notes through transient lease errors, preserves strict-check pre-start concealment/retry, and prevents generated-question ID collisions between text blocks. Two unreachable repository-size checks were removed while their owning schemas and security guards remain. Local evidence: `docs/history/2026-11-02-comprehensive-audit.md`.
-
-Repository cleanup removes confirmed historical source backups, obsolete browser runners and the retired fixture; consolidates current operating documents and redundant histories; and excludes backup/editor artifacts from source exports. Raw sources, licences, retained decisions, Git history, backup functionality and the unconfirmed real learner export remain protected. Current documentation distinguishes local evidence paths from publicly exported links.
+This release fixes the daily-quote refresh background persisting after a touch tap. Hover styling now requires a fine pointer with hover support; existing touch-contact and keyboard feedback remain intact. Application changes are in `src/app/style.css`, with two focused regressions in `tests/browser/touch-feedback.spec.ts` and the package version updated to 0.1.165.
 
 ## Verification boundary
 
-The stable local audit passed **763 browser cases with one existing conditional skip and no failures**, plus **42/42 built offline cases**. Unit/source-evidence coverage, failed-before and focused regressions, lint, synthetic sync/MCP and update recovery retain their exact scopes in the audit record. The final resource and question-ID regressions passed after their reproduced failures; this does not claim that the initial 1,375-case unit run was wholly green or repeated in full.
+The touch regression failed before the fix and passed afterward, alongside mouse hover and keyboard refresh/focus (`npm exec -- playwright test tests/browser/touch-feedback.spec.ts -g 'daily quote refresh' --workers=1`; Chrome, 390px dark touch and desktop light mouse). Changed-test ESLint, the Node 24.22.1 build and deployment dry run passed. The original physical handset has not been retested.
 
-Fresh release checks passed on Node 24.22.1: TypeScript, 33 content cases, dictionary/offline/package/notices/resource guards, build and deployment dry run. The local compiled 8787 preview passed affected controls, rendered 今日 and exact `/sw.js`. Application source, dependency graph and build hashes were sealed before publication; only current documentation is updated afterward.
-
-Final candidate and ordinary production verification each passed all **1001 asset sizes/hashes**, **13 page bodies/routes** and **5 missing paths**, with the actual Worker version. Compiled production checks passed IPA edge touch/keyboard behavior, enlarged words, Library feedback, unsaved-note navigation protection and saved-note reopening. Anonymous MCP/discovery/error-route checks passed. An installed 0.1.159 client updated to 0.1.160, preserving exact synthetic profile/theme, lesson, answer, draft and note data, then reopened Today and learning offline. No real learner records or provider writes were used.
-
-The first publication attempt recovered safely to 0.1.159 after the private update-verification script called the wrong Playwright response-header method. The corrected API call passed a local self-check. The same uploaded candidate was then revalidated through both complete resource passes and the successful update test; no second upload occurred. Original failed evidence remains in the release directory; successful final checks are in `resume/`.
-
-Account, domain, Worker configuration, bindings, secrets, migrations and learning-data/sync/backup formats remain unchanged. Three underlying development-tool dependency advisories remain in [Issues.md](Issues.md); the latest local audit found no high/critical or runtime npm findings. Existing bundle warnings retain their documented limits. No fresh physical-device, real-provider or mainland-network matrix is claimed. The local 8787 preview serves the released build.
+Candidate and production checks each verified 1,001 build files, 13 pages and five missing paths. Candidate propagation required one bounded wrong-version retry before successful verification. Production touch/keyboard and desktop mouse/keyboard refresh checks passed. The isolated 0.1.164 → 0.1.165 update preserved the exact synthetic profile, theme, lesson, answer, draft and note, then reopened Today and learning offline. No real learner records were used. Existing Worker bindings, runtime configuration and static headers were preserved; one candidate was uploaded and no recovery was needed.
 
 ## Cloudflare zone settings — 2026-11-01
 

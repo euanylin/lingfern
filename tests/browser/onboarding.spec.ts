@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Locator } from '@playwright/test';
 
 test('a trackpad burst paints once per frame without losing its distance or final card', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
@@ -280,6 +280,25 @@ test('idle rotation waits until contact, scrolling and keyboard activity end and
   await expect(current.locator('.welcome-shade')).toBeHidden();
 });
 
+test('a trackpad flick takes over from the visible card during automatic rotation', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await expect(stage).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  await page.clock.fastForward(6500); await page.clock.runFor(48);
+  const first = page.locator('.welcome-card').first();
+  await expect(first).toHaveAttribute('data-current', 'true');
+  expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-20);
+  for (const deltaX of [-14, -12, -8]) {
+    await stage.dispatchEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+    await page.clock.runFor(16);
+  }
+  await page.clock.runFor(850);
+  await expect(page.locator('.welcome-card').nth(2)).toHaveAttribute('data-current', 'true');
+});
+
 test('only horizontal trackpad gestures switch cards; wheel and Shift+wheel keep native scrolling', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   await expect(page.locator('.welcome')).toBeVisible();
@@ -298,13 +317,12 @@ test('only horizontal trackpad gestures switch cards; wheel and Shift+wheel keep
   await page.waitForTimeout(220); await page.keyboard.down('Shift'); await page.mouse.wheel(0, -90); await page.keyboard.up('Shift');
   await page.waitForTimeout(900);
   await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
-  const wheel = await current.evaluate(el => { const e = new WheelEvent('wheel', {deltaX:120,deltaMode:1,bubbles:true,cancelable:true}); el.dispatchEvent(e); return e.defaultPrevented; });
-  expect(wheel).toBe(false);
-  await page.waitForTimeout(900);
-  await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
+  const wheel = await current.evaluate(el => { const e = new WheelEvent('wheel', {deltaX:3,deltaMode:1,bubbles:true,cancelable:true}); el.dispatchEvent(e); return e.defaultPrevented; });
+  expect(wheel).toBe(true);
+  await expect(current).toHaveAttribute('aria-label', '第 3 张，共 3 张');
 });
 
-test('small trackpad deltas move cards continuously before the switch threshold and settle once', async ({ page }) => {
+test('a brief trackpad flick tracks each delta then promptly settles one card', async ({ page }) => {
   await page.clock.install();
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   const first = page.locator('.welcome-card').first(), content = first.locator('.welcome-content');
@@ -312,18 +330,114 @@ test('small trackpad deltas move cards continuously before the switch threshold 
   // Preserve continuous gestures across browser sampling gaps.
   await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   const samples: number[] = [];
-  for (const delta of [12, 11, 10, 9, 8, 6]) {
+  for (const delta of [8, 7, 5, 4, 2]) {
     await page.mouse.wheel(delta, 0);
-    await page.clock.runFor(32);
+    await page.clock.runFor(16);
     samples.push(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41));
   }
   await test.info().attach('trackpad-contact-positions', {body:JSON.stringify(samples),contentType:'application/json'});
   expect(samples[0]).toBeLessThan(-1);
   expect(samples.every((x, i) => !i || x <= samples[i - 1] + .1)).toBe(true);
   expect(samples.every((x, i) => !i || Math.abs(x - samples[i - 1]) < 30)).toBe(true);
+  await page.clock.runFor(144);
+  expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
   await page.clock.runFor(1000);
   await expect(page.locator('.welcome-card[data-current=true]')).toHaveAttribute('aria-label', '第 2 张，共 3 张');
   await expect.poll(() => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-100);
+});
+
+async function waitForCarouselGeometry(stage: Locator) {
+  await expect.poll(() => stage.locator('.welcome-card').nth(1).evaluate(card => {
+    const width = (card as HTMLElement).offsetWidth;
+    const shift = Math.max(width * .92 + 12, (innerWidth + width * .8 + 64) / 3);
+    return new DOMMatrixReadOnly(getComputedStyle(card).transform).m41 - shift;
+  })).toBeCloseTo(0, 1);
+}
+
+for (const [label, firstPhase, secondPhase] of [
+  ['marked', true, false],
+  ['unmarked second stroke', true, undefined],
+  ['both strokes unmarked', undefined, undefined],
+] as const) test(`consecutive short trackpad flicks advance with ${label}`, async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await waitForCarouselGeometry(stage);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const flick = async (contact: boolean | undefined, tail: boolean | undefined) => {
+    for (const [deltaX, momentum] of [[14, contact], [12, contact], [8, tail]] as const) {
+      await stage.evaluate((el, { deltaX, momentum }) => {
+        const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+        Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: momentum } });
+        el.dispatchEvent(event);
+      }, { deltaX, momentum });
+      await page.clock.runFor(16);
+    }
+  };
+  await flick(firstPhase === true ? false : undefined, firstPhase);
+  if (secondPhase === undefined) await page.clock.runFor(32);
+  await flick(secondPhase, firstPhase);
+  const first = page.locator('.welcome-card').first();
+  const position = () => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  const before = await position();
+  await page.clock.runFor(firstPhase === undefined ? 144 : 32);
+  expect(await position()).toBeLessThan(before);
+  await page.clock.runFor(800);
+  await expect(page.locator('.welcome-card').nth(2)).toHaveAttribute('data-current', 'true');
+});
+
+test('desktop trackpad inertia stops at the card selected during contact', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await waitForCarouselGeometry(stage);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const feed = (deltaX: number, momentum?: boolean) => stage.evaluate((element, { deltaX, momentum }) => {
+    const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+    Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: momentum } });
+    element.dispatchEvent(event);
+  }, { deltaX, momentum });
+  await feed(42, false); await page.clock.runFor(16);
+  await feed(38, false); await page.clock.runFor(16);
+  await feed(60, true); await page.clock.runFor(80);
+  const first = page.locator('.welcome-card').first();
+  expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(-200);
+  for (let i = 0; i < 20; i++) { await feed(75, true); await page.clock.runFor(16); }
+  await page.clock.runFor(800);
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
+
+  // Contact exceeds the short-flick limit, but momentum still must not choose another card.
+  await feed(85, false); await page.clock.runFor(16);
+  await feed(75, false); await page.clock.runFor(16);
+  const nextCard = page.locator('.welcome-card').nth(2);
+  const position = () => nextCard.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  for (let i = 0; i < 12; i++) { await feed(75, true); await page.clock.runFor(16); }
+  const coasting = await position();
+  await page.clock.runFor(48);
+  const betweenSamples = await position();
+  expect(betweenSamples).toBeGreaterThan(0);
+  expect(betweenSamples).toBeLessThan(coasting);
+  for (let i = 0; i < 8; i++) { await feed(75, true); await page.clock.runFor(16); }
+  const slowing = await position();
+  expect(slowing).toBeGreaterThan(0);
+  expect(slowing).toBeLessThan(betweenSamples);
+  await page.clock.runFor(800);
+  await expect(nextCard).toHaveAttribute('data-current', 'true');
+  expect(await position()).toBeCloseTo(0, 1);
+
+  // Browsers without an inertia flag can still report a recognizable deceleration curve.
+  for (let i = 0; i < 42; i++) { await feed(90 * .97 ** i); await page.clock.runFor(16); }
+  await page.clock.runFor(800);
+  await expect(first).toHaveAttribute('data-current', 'true');
+
+  // A fast, uneven unmarked tail can pass a card before velocity inference catches up.
+  for (const [index, delta] of [210, 195, 180, 165, 150, 140, 130, 120, 110, 100, 85, 70].entries()) {
+    await feed(delta); await page.clock.runFor(index % 2 ? 24 : 8);
+  }
+  await page.clock.runFor(800);
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
 });
 
 test('sparse forward trackpad contact does not spring backwards between samples', async ({ page }) => {
@@ -433,10 +547,112 @@ test('successive trackpad strokes keep moving through multiple cards and reverse
   expect(await page.locator('.welcome-card').nth(selected).evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(0, 1);
 });
 
+test('Chrome sustained trackpad contact can land two cards ahead before the second midpoint', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await expect(stage).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  for (let i = 0; i < 10; i++) {
+    await stage.evaluate(el => {
+      const event = new WheelEvent('wheel', { deltaX: 105, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: false } });
+      el.dispatchEvent(event);
+    });
+    await page.clock.runFor(32);
+  }
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
+  await page.clock.runFor(1000);
+  await expect(page.locator('.welcome-card').nth(2)).toHaveAttribute('data-current', 'true');
+});
+
+test('a fast Chrome long swipe carries release speed across two cards', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await expect(stage).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const feed = async (deltaX: number, momentum: boolean) => {
+    await stage.evaluate((el, { deltaX, momentum }) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: momentum } });
+      el.dispatchEvent(event);
+    }, { deltaX, momentum });
+    await page.clock.runFor(16);
+  };
+  for (const delta of [135, 145, 150, 150]) await feed(delta, false);
+  for (const delta of [145, 135, 125, 115, 100, 80]) await feed(delta, true);
+  const third = page.locator('.welcome-card').nth(2);
+  expect(await third.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(400, 1);
+  for (const delta of [60, 40, 20]) await feed(delta, true);
+  await page.clock.runFor(100);
+  expect(await third.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeLessThan(250);
+  await page.clock.runFor(850);
+  await expect(third).toHaveAttribute('data-current', 'true');
+});
+
+test('a fast native coast keeps moving while Chrome is still delivering inertia', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 728, height: 771 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await waitForCarouselGeometry(stage);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const shift = await page.locator('.welcome-card').nth(1).evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  const feed = async (deltas: number[], momentum: boolean) => {
+    for (const deltaX of deltas) {
+      await stage.evaluate((el, { deltaX, momentum }) => {
+        const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+        Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: momentum } });
+        el.dispatchEvent(event);
+      }, { deltaX, momentum });
+      await page.clock.runFor(9);
+    }
+  };
+  await feed([1, 5, 6, 3, 43, 48, 66, 13, 155, 150, 124, 87, 77], false);
+  await feed([111, 109, 105, 99, 96, 93, 83, 80, 79, 154, 75, 73, 70, 68, 65], true);
+  await page.clock.runFor(16);
+  const first = page.locator('.welcome-card').first();
+  const position = () => first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  expect(await position()).toBeCloseTo(shift * 3 - 2138, 1);
+  await feed([63, 60, 57, 54, 51, 48], true);
+  await page.clock.runFor(16);
+  expect(await position()).toBeCloseTo(shift * 3 - 2471, 1);
+  await page.clock.runFor(850);
+  await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
+});
+
+test('a fast trackpad stroke keeps coasting on a narrow desktop carousel', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 319, height: 771 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await expect(stage).toBeVisible();
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const first = page.locator('.welcome-card').first();
+  const shift = await page.locator('.welcome-card').nth(1).evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  const feed = async (deltas: number[], momentum: boolean) => {
+    for (const deltaX of deltas) {
+      await stage.evaluate((el, { deltaX, momentum }) => {
+        const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+        Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: momentum } });
+        el.dispatchEvent(event);
+      }, { deltaX, momentum });
+      await page.clock.runFor(8);
+    }
+  };
+  await feed([1, 4, 2, 7, 14, 3, 27, 20, 21, 13, 16, 18], false);
+  await feed([25, 31, 33, 35, 35, 34, 37, 35, 34, 34, 32, 32, 30, 29, 28, 28, 27, 25, 25, 24], true);
+  await page.clock.runFor(16);
+  expect(await first.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)).toBeCloseTo(shift * 3 - 759, 1);
+});
+
 test('a new same-direction trackpad stroke during early release does not jump to the reverse loop copy', async ({ page }) => {
   await page.clock.install(); await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/introduction');
   const stage = page.locator('.welcome-stage'), first = page.locator('.welcome-card').first();
-  await expect(stage).toBeVisible(); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  await waitForCarouselGeometry(stage); await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   const shift = await first.evaluate(el => Math.max((el as HTMLElement).offsetWidth * .92 + 12, (innerWidth + (el as HTMLElement).offsetWidth * .8 + 64) / 3));
   const feed = () => stage.evaluate(el => {
     const event = new WheelEvent('wheel', { deltaX: 50, bubbles: true, cancelable: true });
@@ -453,6 +669,35 @@ test('a new same-direction trackpad stroke during early release does not jump to
   await page.clock.runFor(1500);
   await expect(page.locator('.welcome-card').nth(1)).toHaveAttribute('data-current', 'true');
   expect(await position()).toBeCloseTo(-shift, 1);
+});
+
+test('a card settles without drifting farther away after an unmarked overshoot', async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage');
+  await waitForCarouselGeometry(stage);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  for (let i = 0; i < 6; i++) {
+    await stage.evaluate(el => {
+      const event = new WheelEvent('wheel', { deltaX: 150, bubbles: true, cancelable: true });
+      Object.defineProperties(event, { timeStamp: { value: performance.now() }, momentum: { value: undefined } });
+      el.dispatchEvent(event);
+    });
+    await page.clock.runFor(16);
+  }
+  const second = page.locator('.welcome-card').nth(1);
+  const position = () => second.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  await page.clock.runFor(32);
+  let previous = await position();
+  expect(previous).toBeLessThan(-20);
+  for (let i = 0; i < 40; i++) {
+    await page.clock.runFor(16);
+    const current = await position();
+    expect(current).toBeGreaterThanOrEqual(previous - .1);
+    previous = current;
+  }
+  expect(await position()).toBeCloseTo(0, 0);
 });
 
 test('a trackpad gesture ending exactly on a card stays there through release', async ({ page }) => {
@@ -472,6 +717,49 @@ test('a trackpad gesture ending exactly on a card stays there through release', 
     expect(await second.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41), `release frame ${index}`).toBeCloseTo(0, 1);
     await page.clock.runFor(16);
   }
+  await expect(second).toHaveAttribute('data-current', 'true');
+});
+
+for (const [kind, tail] of [
+  ['rounded Firefox', [20, 14, 9, ...Array<number>(15).fill(2), 3, ...Array<number>(8).fill(1)].map(delta => [16, delta])],
+  ['coalesced Safari', [[8, 20], [8, 15], [8, 13], ...Array.from({ length: 10 }, () => [8, 11]), [17, 20], [9, 9], [8, 9], [17, 16], [16, 16], [8, 7]]],
+] as const) test(`an unmarked ${kind} inertia tail cannot move a card past center after the wheel stream times out`, async ({ page }) => {
+  await page.clock.install();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/introduction');
+  const stage = page.locator('.welcome-stage'), second = page.locator('.welcome-card').nth(1);
+  await waitForCarouselGeometry(stage);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
+  const feed = async (deltaX: number) => {
+    const prevented = await stage.evaluate((el, deltaX) => {
+      const event = new WheelEvent('wheel', { deltaX, bubbles: true, cancelable: true });
+      Object.defineProperty(event, 'momentum', { value: undefined });
+      el.dispatchEvent(event);
+      return event.defaultPrevented;
+    }, deltaX);
+    expect(prevented).toBe(true);
+  };
+  const position = () => second.evaluate(el => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  for (const delta of [150, 150, 150, 150, 90, 70, 50]) {
+    await feed(delta);
+    await page.clock.runFor(16);
+  }
+  await page.clock.runFor(96 - tail[0][0]);
+  let previous = await position();
+  expect(previous).toBeGreaterThanOrEqual(0);
+  expect(previous).toBeLessThan(20);
+  for (const [delay, delta] of tail) {
+    await page.clock.runFor(delay);
+    await feed(delta);
+    const next = await position();
+    expect(next).toBeGreaterThanOrEqual(-.1);
+    expect(next).toBeLessThanOrEqual(previous + .1);
+    previous = next;
+  }
+  await page.clock.runFor(32);
+  expect(await position()).toBeGreaterThanOrEqual(-.1);
+  await page.clock.runFor(450);
+  expect(await position()).toBeCloseTo(0, 1);
   await expect(second).toHaveAttribute('data-current', 'true');
 });
 

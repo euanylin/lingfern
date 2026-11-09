@@ -248,7 +248,8 @@
     },
     "view": "View",
     "simple": "Simple",
-    "detailed": "Detailed"
+    "detailed": "Detailed",
+    "englishMarks": "English"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "Lookup history",

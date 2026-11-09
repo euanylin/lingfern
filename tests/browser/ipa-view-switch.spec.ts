@@ -15,7 +15,7 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   await expect(simple).toHaveAttribute('aria-pressed', 'true');
   await detailed.focus(); await detailed.press('Enter');
   await expect(detailed).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.ipa-table')).toHaveCount(4);
+  await expect(page.locator('.ipa-table')).toHaveCount(3);
   await simple.focus(); await simple.press('Enter');
   await expect(simple).toBeFocused(); await expect(simple).toHaveAttribute('aria-pressed', 'true');
   await expect(detailed).toHaveAttribute('aria-pressed', 'false');
@@ -32,7 +32,26 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
     ]);
   }
   expect(await page.locator('.ipa-entry').evaluateAll(entries => entries.map(entry => entry.getAttribute('data-ipa')))).toEqual(chart.entries.map((entry: { ipa: string }) => entry.ipa));
-  expect(await page.locator('.ipa-entry').first().evaluate(entry => [...entry.children].map(child => child.tagName))).toEqual(['SPAN', 'BUTTON', 'SPAN', 'BUTTON']);
+  expect(await page.locator('.ipa-entry').first().evaluate(entry => [...entry.children].map(child => child.tagName))).toEqual(['BUTTON', 'BUTTON']);
+  const word = page.getByRole('button', { name: `${t.word} see`, exact: true });
+  const wordAudio = page.locator('audio');
+  await wordAudio.evaluate((element: HTMLAudioElement) => { element.muted = true; });
+  await word.click();
+  await expect(word).toHaveAttribute('aria-pressed', 'true');
+  await expect(wordAudio).toHaveAttribute('src', chart.entries.find((entry: { ipa: string }) => entry.ipa === 'i').audio);
+  expect(await word.evaluate(button => {
+    const span = button.querySelector('span')!;
+    const mark = span.getBoundingClientRect().width;
+    const entry = button.closest('.ipa-entry')!.getBoundingClientRect().width;
+    return getComputedStyle(button).backgroundColor === 'rgba(0, 0, 0, 0)' && getComputedStyle(span).backgroundColor !== 'rgba(0, 0, 0, 0)' && mark < entry / 2 && mark < span.textContent!.length * 24 + 24;
+  })).toBe(true);
+  const longer = page.locator('.ipa-entry[data-ipa="ɑ"] .ipa-word span');
+  expect(await longer.evaluate(span => span.getBoundingClientRect().width)).toBeGreaterThan(await word.locator('span').evaluate(span => span.getBoundingClientRect().width));
+  await expect.poll(() => wordAudio.evaluate((element: HTMLAudioElement) => element.currentTime > 0 && !element.paused)).toBe(true);
+  await word.click();
+  await expect(word).toHaveAttribute('aria-pressed', 'false');
+  await expect.poll(() => wordAudio.evaluate((element: HTMLAudioElement) => element.paused)).toBe(true);
+  await expect(page.locator('.ipa-entry .playback-icon')).toHaveCount(0);
   await expect(page.locator('.ipa-entry').first().locator('strong')).toHaveText('ee');
   // Measure 44px targets after finite entrance translations have settled.
   await page.locator('.ipa-page').evaluate(element => Promise.allSettled(element.getAnimations({ subtree: true }).filter(animation => animation instanceof CSSAnimation && animation.animationName === 'content-in' && animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished)));
@@ -67,16 +86,16 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   await expect.poll(() => audio.evaluate((audio: HTMLAudioElement) => audio.played.length > 0 && !audio.paused)).toBe(true);
   expect(await audio.getAttribute('src')).toBe(chart.entries.find((entry: { ipa: string }) => entry.ipa === 'w').soundAudio);
   await detailed.focus(); await detailed.press('Space');
-  await expect(detailed).toBeFocused(); await expect(page.locator('.ipa-table')).toHaveCount(4);
+  await expect(detailed).toBeFocused(); await expect(page.locator('.ipa-table')).toHaveCount(3);
   await expect(page.getByRole('button', { name: `${languagePacks.en.ipaChart.sound} /w/`, exact: true })).toHaveAttribute('aria-pressed', 'true');
   expect(await audio.evaluate((audio: HTMLAudioElement) => !audio.paused)).toBe(true);
-  await page.getByRole('button', { name: `${languagePacks.en.ipaChart.word} wet`, exact: true }).click();
   await simple.click();
-  await expect(page.getByRole('button', { name: `${t.word} wet`, exact: true })).toHaveAttribute('aria-pressed', 'true');
-  expect(await audio.getAttribute('src')).toBe('/ipa/audio/wet.mp3');
-  await audio.evaluate((audio: HTMLAudioElement) => audio.loop = false);
-  await expect.poll(() => audio.evaluate((audio: HTMLAudioElement) => audio.ended && audio.duration > 0)).toBe(true);
-  await expect(page.getByRole('button', { name: `${t.word} wet`, exact: true })).toHaveAttribute('aria-pressed', 'false');
+  const symbol = page.getByRole('button', { name: `${t.sound} /w/`, exact: true });
+  await expect(symbol).toHaveAttribute('aria-pressed', 'true');
+  expect(await audio.getAttribute('src')).toBe(chart.entries.find((entry: { ipa: string }) => entry.ipa === 'w').soundAudio);
+  await symbol.click();
+  await expect(symbol).toHaveAttribute('aria-pressed', 'false');
+  expect(await audio.evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true);
   expect(await page.locator('.ipa-entry').count()).toBe(41);
 });
 
@@ -106,7 +125,7 @@ for (const theme of ['light', 'dark'] as const) test(`detailed IPA keeps complet
     await page.goto('/library/ipa');
     await expect(page.getByRole('button', { name: '简易版', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await page.getByRole('button', { name: '详细版', exact: true }).tap();
-    await expect(page.locator('.ipa-group > h2')).toHaveText(['Vowels', 'Pulmonic consonants', 'Non-pulmonic consonants', 'Other symbols', 'Affricates (examples)', 'Diacritics', 'Suprasegmentals', 'Tones and word accents']);
+    await expect(page.locator('.ipa-group > h2')).toHaveText(['Vowels', 'Consonants (pulmonic)', 'Consonants (non-pulmonic)', 'Other symbols', 'Affricates (examples)', 'Diacritics', 'Suprasegmentals', 'Tones and word accents']);
     for (const [width, height] of [[320, 480], [375, 812], [667, 375], [767, 1024], [768, 375], [1024, 600], [1440, 420], [1440, 900]]) {
       await page.setViewportSize({ width, height });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -117,10 +136,13 @@ for (const theme of ['light', 'dark'] as const) test(`detailed IPA keeps complet
       const rowHeader = page.locator('.ipa-table-consonants tbody th').first();
       const columnHeader = page.locator('.ipa-table-consonants thead th').nth(1);
       const beforeRow = (await rowHeader.boundingBox())!, beforeCol = (await columnHeader.boundingBox())!;
-      expect(beforeRow.width).toBe(await page.evaluate(() => matchMedia('(max-width:767px)').matches) ? 96 : 140);
+      expect(beforeRow.width).toBe(96);
+      expect(await scroll.evaluate(el => el.querySelector('table')!.getBoundingClientRect().width >= el.clientWidth - 1)).toBe(true);
       for (const container of await page.locator('.ipa-table-scroll, .ipa-vowel-scroll').all()) {
         expect(await container.evaluate(el => ({ fullHeight: el.scrollHeight <= el.clientHeight + 1, maxHeight: getComputedStyle(el).maxHeight, verticalChaining: getComputedStyle(el).overscrollBehaviorY }))).toEqual({ fullHeight: true, maxHeight: 'none', verticalChaining: 'auto' });
       }
+      expect(await page.locator('.ipa-table-scroll').evaluateAll(elements => elements.every(element => getComputedStyle(element).scrollbarWidth === 'none'))).toBe(true);
+      if (width <= 1024) expect(await scroll.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
       expect(await scroll.evaluate(el => {
         const table = el.querySelector('table')!.getBoundingClientRect(), box = el.getBoundingClientRect();
         return table.top >= box.top && table.bottom <= box.top + el.clientTop + el.clientHeight + 1;
@@ -139,7 +161,21 @@ for (const theme of ['light', 'dark'] as const) test(`detailed IPA keeps complet
         expect(await container.evaluate(el => el.scrollTop)).toBe(0);
       }
       await scroll.evaluate(el => { el.scrollLeft = 0; el.scrollTop = 0; });
-      expect(await page.locator('.ipa-entry button').evaluateAll(buttons => buttons.length === 167 && buttons.every(button => { const box = button.getBoundingClientRect(); return box.width >= 44 && box.height >= 44; }))).toBe(true);
+      await expect.poll(() => page.locator('.ipa-vowel-scroll').evaluate(el => {
+        const bounds = el.getBoundingClientRect();
+        return el.scrollWidth <= el.clientWidth + 1 && [...el.querySelectorAll('.ipa-vowel-columns span')].every(label => {
+          const box = label.getBoundingClientRect();
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1;
+        });
+      })).toBe(true);
+      expect(await page.locator('.ipa-vowel-columns span').evaluateAll(labels => labels.every(label => {
+        const chart = label.closest('.ipa-vowel-scroll')!.getBoundingClientRect(), box = label.getBoundingClientRect();
+        return box.left >= chart.left - 1 && box.right <= chart.right + 1;
+      }))).toBe(true);
+      expect(await page.locator('.ipa-symbol-item .ipa-entry button').evaluateAll(buttons => buttons.length > 0 && buttons.every(button => { const box = button.getBoundingClientRect(); return box.width >= 44 && box.height >= 44; }))).toBe(true);
+      expect(await page.locator('.ipa-table-scroll .ipa-entry button, .ipa-vowel-scroll .ipa-entry button').evaluateAll(buttons => buttons.length > 0 && buttons.every(button => parseFloat(getComputedStyle(button).fontSize) >= 16))).toBe(true);
+      expect(await page.locator('.ipa-entry button').count()).toBe(126);
+      await expect(page.locator('.ipa-entry .playback-icon')).toHaveCount(0);
       if (width === 375 || width === 1440 && height === 420) await page.screenshot({ path: testInfo.outputPath(`detailed-${width}x${height}.png`), fullPage: true });
     }
     await page.setViewportSize({ width: 320, height: 480 });

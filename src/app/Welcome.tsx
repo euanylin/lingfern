@@ -14,7 +14,13 @@ import { automaticPractice } from '../shared/practiceSelection';
 import { OfflineInstall } from './OfflineInstall';
 import { CommunityImport, InstalledResources } from './CommunityImport';
 
-const TodayPreview = memo(function TodayPreview({ locale, profileId, date, onDayChange, onContinue, active }: WelcomeProps & { active: boolean }) {
+const previewPages = ['today', 'library', 'settings'] as const;
+const wrapCard = (value: number) => ((value % previewPages.length) + previewPages.length) % previewPages.length;
+
+type WelcomeProps = { locale: Locale; profileId: string; online: boolean; date: string; onDayChange: (day: string) => void; onContinue: () => void; settings: ReactNode };
+type TodayPreviewProps = Pick<WelcomeProps, 'locale' | 'profileId' | 'date' | 'onDayChange' | 'onContinue'> & { active: boolean };
+
+const TodayPreview = memo(function TodayPreview({ locale, profileId, date, onDayChange, onContinue, active }: TodayPreviewProps) {
   const app = messages('app')[locale], first = firstRunCopy[locale], training = messages('app_training')[locale];
   return <div className="today-home">
     <div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={date}>{new Date(`${date}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern profileId={profileId} entries={[]} locale={locale} illustrationActive={active}/><h1>{app.today}</h1></section>
@@ -37,10 +43,9 @@ const LibraryPreview = memo(function LibraryPreview({ locale, profileId, online 
   </div>;
 });
 
-type WelcomeProps = { locale: Locale; profileId: string; online: boolean; date: string; onDayChange: (day: string) => void; onContinue: () => void; settings: ReactNode };
-export function Welcome(props: WelcomeProps) {
-  const { locale, onContinue } = props, t = messages('onboarding')[locale], app = messages('app')[locale];
-  const titles = [app.today, app.library, app.settings], subtitles = [t.subToday, t.subLibrary, `${app.preferences} · ${t.subSync}`];
+export function Welcome({ locale, profileId, online, date, onDayChange, onContinue, settings }: WelcomeProps) {
+  const t = messages('onboarding')[locale], app = messages('app')[locale];
+  const subtitles = [t.subToday, t.subLibrary, `${app.preferences} · ${t.subSync}`];
   const [active, setActive] = useState(0), [fernActive, setFernActive] = useState(true);
   const [width, setWidth] = useState(0), [reduced, setReduced] = useState(false);
   const [viewport, setViewport] = useState({ width: 0, height: 1 });
@@ -52,6 +57,7 @@ export function Welcome(props: WelcomeProps) {
   const drag = useRef<{ id: number; x: number; y: number; position: number; at: number; last: number; velocity: number; axis?: 'x' | 'y' } | undefined>(undefined), suppressClick = useRef(false);
   const pointerHeld = useRef(false), cancelWheel = useRef(() => {});
   const idleUntil = useRef(performance.now() + 6000), keyboard = useRef(false);
+  const autoRotating = useRef(false);
   const rtl = locale === 'ar' ? -1 : 1;
   useLayoutEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)'), update = () => setReduced(media.matches);
@@ -72,17 +78,17 @@ export function Welcome(props: WelcomeProps) {
   const swipeDistance = Math.max(90, viewport.width < 700 ? cardWidth * .6 : Math.min(300, Math.max(24, (width - cardWidth * .85) / 2)) * 1.1);
   const paint = useCallback((value: number) => {
     current.current = value;
-    const next = ((Math.round(value) % 3) + 3) % 3;
+    const next = wrapCard(Math.round(value));
     if (next !== selected.current) { selected.current = next; setActive(next); }
-    const todayActive = Math.abs(((value + 4.5) % 3 + 3) % 3 - 1.5) < .25;
+    const todayActive = Math.abs(wrapCard(value + 4.5) - 1.5) < .25;
     if (todayActive !== growing.current) { growing.current = todayActive; setFernActive(todayActive); }
     cards.current.forEach((layers, index) => {
       if (!layers) return;
       const { card, window, shadow, shade } = layers;
-      const distance = ((index - value + 4.5) % 3 + 3) % 3 - 1.5, away = Math.abs(distance);
+      const distance = wrapCard(index - value + 4.5) - 1.5, away = Math.abs(distance);
       const x = distance * shift * rtl;
       const scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
-      // Preserve the apparent depth without 3D layers around filtered scroll surfaces.
+      // Project depth in two dimensions so the scroll surfaces stay flat.
       const projection = 1600 / (1600 + 100 * away);
       card.style.transform = reduced ? 'none' : `translate(${x}px,0) scale(${scale * projection})`;
       if (card.dataset.current !== String(index === next)) { card.dataset.current = String(index === next); card.setAttribute('aria-hidden', String(index !== next)); }
@@ -100,15 +106,17 @@ export function Welcome(props: WelcomeProps) {
   // Keep queued frames on current geometry without restarting their spring.
   const livePaint = useRef(paint);
   useLayoutEffect(() => { livePaint.current = paint; paint(current.current); }, [paint]);
-  const go = useCallback((target: number, velocity = 0) => {
+  const go = useCallback((target: number, velocity = 0, followDirection = false) => {
+    autoRotating.current = false;
     idleUntil.current = performance.now() + 6000;
     cancelAnimationFrame(frame.current);
     // Choose the nearest loop copy, even during an unfinished drag.
-    target = current.current + (((target - current.current + 4.5) % 3 + 3) % 3 - 1.5);
+    if (!followDirection) target = current.current + (wrapCard(target - current.current + 4.5) - 1.5);
     const offset = current.current - target, toward = Math.sign(-offset);
-    const speed = toward === 0 ? 0 : toward * velocity > 0 ? toward * Math.min(6, Math.abs(velocity), 18 * Math.abs(offset)) : Math.max(-6, Math.min(6, velocity)), began = performance.now();
+    // Residual velocity away from the landing would make the card retreat before settling.
+    const speed = toward * Math.min(6, Math.max(0, toward * velocity), 18 * Math.abs(offset)), began = performance.now();
     destination.current = target;
-    const finish = () => { frame.current = 0; destination.current = ((Math.round(target) % 3) + 3) % 3; livePaint.current(destination.current); };
+    const finish = () => { frame.current = 0; autoRotating.current = false; destination.current = wrapCard(Math.round(target)); livePaint.current(destination.current); };
     if (reduced || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
     // Preserve release velocity with an interruptible critically damped spring.
     const animate = (now: number) => {
@@ -126,6 +134,7 @@ export function Welcome(props: WelcomeProps) {
       const root = stage.current;
       if (document.hidden || matchMedia('(prefers-reduced-motion: reduce)').matches || drag.current || pointerHeld.current || performance.now() < idleUntil.current || root?.querySelector('input:focus,textarea:focus,select:focus') || (keyboard.current && root?.closest('.welcome')?.contains(document.activeElement))) return;
       go(Math.round(current.current) + 1);
+      autoRotating.current = true;
     };
     let timer: ReturnType<typeof setInterval> | undefined;
     const start = () => { if (!document.hidden && timer === undefined) timer = setInterval(rotate, 500); };
@@ -139,14 +148,14 @@ export function Welcome(props: WelcomeProps) {
       if (!document.hidden) { start(); return; }
       clearInterval(timer); timer = undefined; cancelWheel.current();
       cancelAnimationFrame(frame.current); cancelAnimationFrame(inputFrame.current);
-      frame.current = 0; inputFrame.current = 0;
+      frame.current = 0; inputFrame.current = 0; autoRotating.current = false;
       const held = drag.current;
       if (held?.axis === 'x') destination.current = Math.round(held.last);
       if (held?.axis) suppressClick.current = true;
       drag.current = undefined;
       if (held && stage.current?.hasPointerCapture(held.id)) stage.current.releasePointerCapture(held.id);
       // Finish the invisible transition once; resume at its normal resting pose.
-      destination.current = ((Math.round(destination.current) % 3) + 3) % 3;
+      destination.current = wrapCard(Math.round(destination.current));
       paint(destination.current);
     };
     root.addEventListener('pointerdown', down, { passive: true, capture: true });
@@ -164,68 +173,183 @@ export function Welcome(props: WelcomeProps) {
   }, [go, paint, reduced]);
   useEffect(() => {
     const root = stage.current!, gestures = WheelGestures({ preventWheelAction: false, reverseSign: false });
-    let start = 0, origin = 0, total = 0, velocity = 0, settled = true, cancelled = false;
-    let wheelFrame = 0, wheelPosition = 0, horizontal = false, lastAt = 0;
+    const flickLimit = Math.max(64, dragDistance / 8);
+    let start = 0, origin = 0, total = 0, velocity = 0, settled = true, cancelled = false, sustainedContact = false, nativeContact = false;
+    let wheelFrame = 0, wheelPosition = 0, horizontal = false, lastAt = 0, startedAt = 0, samples = 0, travel = 0, flick = false, snapping = false;
+    let coast: 'free' | { target: number; easeFrom: number; native: boolean } | undefined;
+    let lastHorizontalAt = 0, lastDeltaX = 0, slowingSamples = 0;
+    let lastWheelTime = 0, recentWheelSpeed = 0;
     let release: ReturnType<typeof setTimeout> | undefined;
-    const flush = () => { if (wheelFrame) { cancelAnimationFrame(wheelFrame); wheelFrame = 0; paint(wheelPosition); } };
-    const settle = () => { release = undefined; cancelled = false; if (!settled && !drag.current) { flush(); horizontal = false; settled = true; go(target(), velocity); } };
+    const paintWheel = () => { wheelFrame = 0; paint(wheelPosition); };
+    const flush = () => { if (wheelFrame) { cancelAnimationFrame(wheelFrame); paintWheel(); } };
+    const clearRelease = () => { clearTimeout(release); release = undefined; };
+    const settle = () => {
+      clearRelease(); cancelled = false;
+      if (settled || drag.current) return;
+      flush(); horizontal = false; settled = true; snapping = flick || coast !== undefined;
+      go(target(), velocity, flick || typeof coast === 'object');
+    };
     const target = () => {
-      if (Math.abs(total) < 40) return origin;
-      const nearest = Math.round(start + total / dragDistance);
+      if (typeof coast === 'object') return coast.target;
+      // A new flick advances from the committed card, even while it is still moving.
+      if (flick) return origin + Math.sign(total);
+      if (Math.abs(total) < 36) return origin;
+      // Confirmed long contact can carry the next card before it reaches the midpoint.
+      const lead = sustainedContact ? Math.sign(total) * .35 : 0;
+      const nearest = Math.round(start + total / dragDistance + lead);
       // Finish near the visible position, including when a new stroke interrupts release.
       return total > 0 ? Math.max(Math.floor(start) + 1, nearest) : Math.min(Math.ceil(start) - 1, nearest);
     };
-    const scheduleEnd = () => { clearTimeout(release); release = setTimeout(settle, Math.max(0, 200 - (performance.now() - lastAt))); };
+    const scheduleEnd = (delay = 200) => { clearRelease(); release = setTimeout(settle, Math.max(0, delay - (performance.now() - lastAt))); };
     cancelWheel.current = () => {
       const ending = release !== undefined;
       if (!settled) destination.current = target();
-      clearTimeout(release); release = undefined; flush();
+      clearRelease(); flush();
       cancelled ||= !settled; horizontal = false; settled = true;
       if (ending) scheduleEnd();
     };
     const off = gestures.on('wheel', event => {
       // Deceleration can be held contact; settle only after the wheel stream stops.
       if (event.isEnding) {
+        if (event.isMomentumCancel) return;
         // Inferred inertia can shorten the library timeout below a still-moving finger's cadence.
-        if (!event.isMomentumCancel) scheduleEnd();
+        if (coast === 'free' && !settled) scheduleEnd(64);
+        else if (typeof coast === 'object' && coast.native && event.isMomentum && !settled) settle();
+        else if (release === undefined) scheduleEnd();
         return;
       }
       if (drag.current) return;
-      clearTimeout(release); release = undefined;
+      clearRelease();
       if (cancelled) return;
+      // Let the snap finish without feeding the same gesture's inertia back into the spring.
+      if (snapping && event.isMomentum) return;
+      snapping = false;
       horizontal = true;
       const delta = event.axisDelta[0] * rtl;
-      if (settled) {
+      // Decide from contact distance before the first inertia sample can push it over the limit.
+      if (!settled && flick && event.isMomentum && delta * total > 0) { settle(); return; }
+      const freshContact = coast === 'free' && event.isStart && !event.isMomentum;
+      if (settled || freshContact) {
         flush();
-        origin = frame.current ? destination.current : Math.round(current.current);
-        cancelAnimationFrame(frame.current); frame.current = 0; start = current.current; total = 0; settled = false;
+        // A manual stroke starts from the visible card, not a pending automatic destination.
+        origin = frame.current && !autoRotating.current ? destination.current : Math.round(current.current);
+        start = current.current; total = 0; settled = false;
+        startedAt = lastAt; samples = 0; travel = 0;
+        coast = undefined; sustainedContact = false; nativeContact = false;
       }
-      // Native inertia can join successive strokes; every delta must keep moving the loop.
+      // Inertia can carry a card to its contact-selected destination, without selecting another.
+      if (!event.isMomentum) {
+        if (typeof coast === 'object' && !reduced) total = (wheelPosition - start) * dragDistance;
+        coast = undefined;
+      } else if (!coast && Math.abs(total) >= 36 && delta * total > 0) {
+        let landing = target(), native = false;
+        // Use release speed only when the browser confirms both contact and inertia.
+        if (nativeContact && 'momentum' in event.event && event.event.momentum === true
+          && Math.abs(total) >= dragDistance * .4 && Math.abs(total) >= travel * .8 && velocity * total > 0) {
+          const speed = Math.abs(velocity);
+          const contactDistance = Math.abs(total) / dragDistance;
+          if (speed >= 6 && (contactDistance >= 1 || contactDistance + speed * .16 >= 1.5)) {
+            // An intentional fast multi-card stroke follows native inertia until release ends.
+            coast = 'free';
+            sustainedContact = false;
+          } else {
+            const direction = Math.sign(total);
+            const projected = Math.round(start + total / dragDistance + direction * Math.min(1.25, speed * .16));
+            if ((projected - landing) * direction > 0) {
+              landing += direction;
+              native = true;
+            }
+          }
+        }
+        if (coast !== 'free') {
+          const limit = (landing - start) * dragDistance;
+          coast = { target: landing, easeFrom: total + (limit - total) * (native ? .8 : .5), native };
+          if ((limit - total) * delta <= 0) { settle(); return; }
+        }
+      }
       total += delta;
+      samples++;
+      travel += Math.abs(delta);
+      const distance = Math.abs(total);
+      if (!event.isMomentum) {
+        nativeContact = 'momentum' in event.event && event.event.momentum === false;
+        sustainedContact = nativeContact && lastAt - startedAt >= 180 && distance >= dragDistance && distance >= travel * .8;
+      }
+      flick = samples > 1 && lastAt - startedAt <= 100 && distance >= 24 && distance <= flickLimit && distance >= travel * .8;
       velocity = event.axisVelocity[0] * rtl * 1000 / dragDistance;
-      cancelAnimationFrame(frame.current); frame.current = 0;
+      if (frame.current) { cancelAnimationFrame(frame.current); frame.current = 0; autoRotating.current = false; }
       // Trackpad events can arrive faster than the display can present them.
-      wheelPosition = reduced ? target() : start + total / dragDistance;
-      if (!wheelFrame) wheelFrame = requestAnimationFrame(flush);
+      let offset = total;
+      let handoff = false;
+      if (typeof coast === 'object') {
+        const remaining = (coast.target - start) * dragDistance - coast.easeFrom;
+        const progress = (total - coast.easeFrom) / remaining;
+        // Ease into the remaining distance with continuous speed at the transition.
+        if (progress > 0) {
+          offset = coast.easeFrom - remaining * Math.expm1(-progress);
+          velocity *= Math.exp(-progress);
+          handoff = true;
+        }
+      }
+      wheelPosition = reduced ? target() : start + offset / dragDistance;
+      if (!wheelFrame) wheelFrame = requestAnimationFrame(paintWheel);
+      // Continue deceleration in the spring when the flick releases or the coast nears its target.
+      if (handoff || flick && event.isMomentum) settle();
+      else if (flick) scheduleEnd(110);
     });
     const scroll = (event: WheelEvent) => {
       if (event.ctrlKey || event.metaKey || drag.current || (event.target instanceof Element && event.target.closest('.setting-menu,input,textarea,select'))) { horizontal = false; return; }
       idleUntil.current = performance.now() + 6000;
-      if (event.shiftKey || event.deltaMode !== WheelEvent.DOM_DELTA_PIXEL) { horizontal = false; return; }
+      const mode = event.deltaMode;
+      if (event.shiftKey || mode === WheelEvent.DOM_DELTA_PAGE) { horizontal = false; return; }
       // Vertical samples are still contact, even when their scrolling stays native.
       lastAt = performance.now();
-      if (release !== undefined) scheduleEnd();
       // Tolerate slight diagonal jitter during horizontal contact; clear vertical input stays native.
       const horizontalRatio = horizontal ? 2 / 3 : 1;
-      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * horizontalRatio) { horizontal = false; return; }
-      // Handle horizontal trackpad pixels; preserve native wheel and Shift+wheel.
-      event.preventDefault(); keyboard.current = false; gestures.feedWheel(event);
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * horizontalRatio) {
+        horizontal = false;
+        if (release !== undefined) scheduleEnd();
+        return;
+      }
+      // WheelGestures normalizes pixel and line deltas before measuring the stroke.
+      event.preventDefault(); keyboard.current = false;
+      const momentum = (event as WheelEvent & { momentum?: boolean }).momentum;
+      const gap = lastAt - lastHorizontalAt;
+      const sameDirection = event.deltaX * lastDeltaX > 0;
+      const magnitude = Math.abs(event.deltaX), previousMagnitude = Math.abs(lastDeltaX);
+      // Compare speed across coalesced pixel events using their input timestamps.
+      const elapsed = Math.max(8, event.timeStamp - lastWheelTime);
+      const recentSpeed = mode === WheelEvent.DOM_DELTA_PIXEL && sameDirection && elapsed < 40 ? recentWheelSpeed : 0;
+      const coalescedMagnitude = recentSpeed * elapsed * 1.25;
+      recentWheelSpeed = Math.max(magnitude / elapsed, recentSpeed * Math.exp(-elapsed / 80));
+      lastWheelTime = event.timeStamp;
+      if (momentum !== undefined || !sameDirection || gap >= 40 || magnitude > previousMagnitude) slowingSamples = 0;
+      else if (magnitude < previousMagnitude) slowingSamples++;
+      // A renewed push can end an unmarked short stroke before its idle timer fires.
+      const renewedPush = gap >= 40 && magnitude > previousMagnitude * 1.15;
+      const renewed = momentum === undefined && (
+        snapping && (renewedPush || event.deltaX * lastDeltaX < 0) ||
+        !settled && flick && renewedPush && sameDirection
+      );
+      lastHorizontalAt = lastAt; lastDeltaX = event.deltaX;
+      // Quantized inertia repeats values and can briefly jump from 2 to 3 pixels.
+      const roundingNoise = mode === WheelEvent.DOM_DELTA_PIXEL ? 3 : 0;
+      if (momentum === undefined && snapping && sameDirection && gap < 200
+        && magnitude <= Math.max(roundingNoise, previousMagnitude * 1.15, coalescedMagnitude)) return;
+      // Recognize deceleration during contact before the stroke can pass its first landing.
+      const inferredCoast = slowingSamples >= 3 && !settled
+        && Math.abs(total) >= dragDistance / 4 && Math.abs(total) < dragDistance * 1.25;
+      if (renewed || inferredCoast) {
+        if (renewed && !settled) settle();
+        const { deltaX, deltaY, deltaMode, timeStamp } = event;
+        gestures.feedWheel({ deltaX, deltaY, deltaMode, timeStamp, momentum: !renewed });
+      } else gestures.feedWheel(event);
     };
     root.addEventListener('wheel', scroll, { passive: false });
     return () => {
-      root.removeEventListener('wheel', scroll); clearTimeout(release); cancelAnimationFrame(wheelFrame); cancelWheel.current = () => {}; off(); gestures.disconnect();
+      root.removeEventListener('wheel', scroll); clearRelease(); cancelAnimationFrame(wheelFrame); cancelWheel.current = () => {}; off(); gestures.disconnect();
       // Geometry changes must finish pending contact; an unmounted carousel stays stopped.
-      if (!settled && !drag.current && root.isConnected) { livePaint.current(wheelPosition); go(target(), velocity); }
+      if (!settled && !drag.current && root.isConnected) { livePaint.current(wheelPosition); go(target(), velocity, flick || typeof coast === 'object'); }
     };
   }, [go, paint, rtl, dragDistance, reduced]);
   function end(event: ReactPointerEvent<HTMLDivElement>) {
@@ -241,6 +365,18 @@ export function Welcome(props: WelcomeProps) {
       go(Math.max(Math.round(held.position) - 1, Math.min(Math.round(held.position) + 1, Math.round(projected))), velocity);
     } else paint(current.current);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  }
+  function selectCard(index: number) {
+    cancelWheel.current();
+    go(index);
+  }
+  function previewNav(index: number, mobile = false) {
+    return <nav className={mobile ? 'mobile-nav welcome-mobile-nav' : 'desktop-nav'} data-display={mobile ? 'both' : 'text'} aria-label={app.navigation}>
+      {previewPages.map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined}
+        onClick={event => { event.preventDefault(); selectCard(target); }}>
+        {mobile && <NavIcon name={name}/>}<span className="nav-label">{app[name]}</span>
+      </a>)}
+    </nav>;
   }
   return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': viewport.width > 0 ? Math.max(.9, Math.min(1.85, screenRatio)) : undefined } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
     <div className="welcome-stage" ref={stage} role="region" aria-roledescription={t.carousel} aria-label={t.carousel}
@@ -263,22 +399,22 @@ export function Welcome(props: WelcomeProps) {
         }
       }} onPointerUp={end} onPointerCancel={end}
       onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; if (event.detail > 0) { event.preventDefault(); event.stopPropagation(); } } }}>
-      {titles.map((_, index) => <div key={index} ref={node => {
+      {previewPages.map((name, index) => <div key={name} ref={node => {
         // These layers share the card's lifetime; keep lookups out of animation frames.
         cards.current[index] = node ? { card: node, window: node.querySelector<HTMLElement>('.welcome-window')!, shadow: node.querySelector<HTMLElement>('.welcome-shadow')!, shade: node.querySelector<HTMLElement>('.welcome-shade')! } : null;
       }} className="welcome-card" data-current={index === 0} role="group" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-hidden={index !== 0}
-          onClick={event => { if (event.target === event.currentTarget && index !== selected.current) { cancelWheel.current(); go(index); } }}>
+          onClick={event => { if (event.target === event.currentTarget && index !== selected.current) selectCard(index); }}>
           <div className="welcome-shadow"/>
           <div className="welcome-window" inert={index !== 0}>
-            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><nav className="desktop-nav" data-display="text" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><span className="nav-label">{app[name]}</span></a>)}</nav></header>
-            <div className="welcome-content">{index === 0 ? <TodayPreview {...props} active={fernActive}/> : index === 1 ? <div inert><LibraryPreview locale={locale} profileId={props.profileId} online={props.online}/></div> : <div inert>{props.settings}</div>}</div>
-            <nav className="mobile-nav welcome-mobile-nav" data-display="both" aria-label={app.navigation}>{(['today', 'library', 'settings'] as const).map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined} onClick={event => { event.preventDefault(); cancelWheel.current(); go(target); }}><NavIcon name={name}/><span className="nav-label">{app[name]}</span></a>)}</nav>
+            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span>{previewNav(index)}</header>
+            <div className="welcome-content">{name === 'today' ? <TodayPreview locale={locale} profileId={profileId} date={date} onDayChange={onDayChange} onContinue={onContinue} active={fernActive}/> : name === 'library' ? <div inert><LibraryPreview locale={locale} profileId={profileId} online={online}/></div> : <div inert>{settings}</div>}</div>
+            {previewNav(index, true)}
             <div className="welcome-shade"/>
           </div>
         </div>)}
     </div>
-    <div className="welcome-caption"><div className="welcome-caption-copy" aria-live="polite" aria-atomic="true">{titles.map((title, index) => <div key={index} className="welcome-caption-slide" aria-hidden={index !== active} style={{ visibility: index === active ? 'visible' : 'hidden' }}><h1>{title}</h1><p>{subtitles[index]}</p></div>)}</div>
-      <div className="welcome-controls"><div className="welcome-dots">{titles.map((_, index) => <button key={index} type="button" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-current={index === 0 ? 'true' : undefined} onClick={() => { cancelWheel.current(); go(index); }}><span ref={node => { dots.current[index] = node; }}/></button>)}</div></div>
+    <div className="welcome-caption"><div className="welcome-caption-copy" aria-live="polite" aria-atomic="true">{previewPages.map((name, index) => <div key={name} className="welcome-caption-slide" aria-hidden={index !== active} style={{ visibility: index === active ? 'visible' : 'hidden' }}><h1>{app[name]}</h1><p>{subtitles[index]}</p></div>)}</div>
+      <div className="welcome-controls"><div className="welcome-dots">{previewPages.map((name, index) => <button key={name} type="button" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-current={index === 0 ? 'true' : undefined} onClick={() => selectCard(index)}><span ref={node => { dots.current[index] = node; }}/></button>)}</div></div>
       <button type="button" className="primary welcome-start" onClick={onContinue}>{messages('corpusPractice')[locale].start}</button>
     </div>
   </section>;

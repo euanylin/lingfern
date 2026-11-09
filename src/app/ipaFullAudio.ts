@@ -5,7 +5,7 @@ import { ipaSymbols } from './ipaTables';
 export const fullIpaSoundSymbols: readonly string[] = [...new Set([
   ...fullVowels.flatMap(row => row.cells.flatMap(([, left, right]) => [left, right])),
   ...fullConsonants.flatMap(([, ...cells]) => cells.flat()),
-  ...nonPulmonic.flatMap(([, ...cells]) => cells.flat()),
+  ...nonPulmonic.flatMap(([, rows]) => rows.map(([symbol]) => symbol)),
   ...otherSymbols.map(([symbol]) => symbol),
   ...affricates.map(([symbol]) => symbol),
   ...ipaSymbols,

@@ -301,10 +301,8 @@ Retained edition and processing notices: [open reading](corpus/open-reading-NOTI
 
 ## Lesson word and speech recordings
 
-- [En-us-bag.ogg](https://commons.wikimedia.org/wiki/File:En-us-bag.ogg) — Dvortygirl. [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/). Transcoded Ogg Vorbis to MP3 with FFmpeg; no trimming, speed or pitch changes. MP3 retains CC BY-SA 3.0.
-- [En-us-book.ogg](https://commons.wikimedia.org/wiki/File:En-us-book.ogg) — Dvortygirl. [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/). Transcoded Ogg Vorbis to MP3 with FFmpeg; no trimming, speed or pitch changes. MP3 retains CC BY-SA 3.0.
-- [En-us-cup.ogg](https://commons.wikimedia.org/wiki/File:En-us-cup.ogg) — Dvortygirl. [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/). Transcoded Ogg Vorbis to MP3 with FFmpeg; no trimming, speed or pitch changes. MP3 retains CC BY-SA 3.0.
-- [En-us-pen.ogg](https://commons.wikimedia.org/wiki/File:En-us-pen.ogg) — Dvortygirl. [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/). Transcoded Ogg Vorbis to MP3 with FFmpeg; no trimming, speed or pitch changes. MP3 retains CC BY-SA 3.0.
+A1 word listening and IPA chart example words use [Dvortygirl](https://commons.wikimedia.org/wiki/User:Dvortygirl) / Wikimedia Commons recordings, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Per-file credits: [word-recording sources](ipa/SOURCES.json).
+
 - [Rice University address — 12 September 1962](https://www.jfklibrary.org/asset-viewer/archives/jfkwha-127-002) — John F. Kennedy; White House Audio Collection. [JFK Library archival recording (public domain)](https://www.jfklibrary.org/asset-viewer/archives/jfkwha-127-002). Original speech recording excerpt 409.04–557.6 seconds; decoded, trimmed and transcoded to 96 kbps MP3. Sample timestamps reset; no pitch or playback-speed change.
 - [Inaugural address — 20 January 1961](https://www.jfklibrary.org/asset-viewer/archives/jfkwha-001) — John F. Kennedy; White House Audio Collection. [JFK Library archival recording (public domain)](https://www.jfklibrary.org/asset-viewer/archives/jfkwha-001). Original speech recording excerpt 465.14–604.3 seconds; decoded, trimmed and transcoded to 96 kbps MP3. Sample timestamps reset; no pitch or playback-speed change.
 - [American University address — 10 June 1963](https://www.jfklibrary.org/asset-viewer/archives/jfkwha-190-002) — John F. Kennedy; White House Audio Collection. [JFK Library archival recording (public domain)](https://www.jfklibrary.org/asset-viewer/archives/jfkwha-190-002). Original speech sample-time excerpt 1230.64–1596.48 seconds. Decoded to mono 16 kHz PCM with sample timestamps reset, trimmed and transcoded to 96 kbps MP3; no playback-speed or pitch change. Source Ogg granule timestamp warnings are retained as acquisition diagnostics; final clip fully decodes without warnings.
@@ -334,10 +332,6 @@ Retained edition and processing notices: [open reading](corpus/open-reading-NOTI
 ## IPA chart classification
 
 Copyright © 2026 International Phonetic Association. [Source and reuse terms](https://www.internationalphoneticassociation.org/content/ipa-chart). IPA chart classification adapted by Lingfern; the adaptation retains CC BY-SA 4.0. Application code and recordings have separate terms. [Local licence](ipa/CC-BY-SA-4.0.txt). Accessed 2026-10-18. Layout reference: https://www.ipachart.com/ ; no site code, fonts, artwork or recordings copied from that site.
-
-## IPA example-word recordings
-
-Dvortygirl / Wikimedia Commons. CC BY-SA 3.0. Individual original and MP3 file credits: [IPA sources](ipa/SOURCES.json). These recordings keep their own licence.
 
 ## IPA sound recordings
 

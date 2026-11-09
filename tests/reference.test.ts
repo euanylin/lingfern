@@ -8,7 +8,7 @@ import sources from '../content/ipa-audio-sources.json';
 import phonemeSources from '../content/ipa-phoneme-sources.json';
 import { ipaChartSchema, ipaSymbols, vowelColumns, vowelRows, consonantColumns, consonantRows, rhoticRows, diphthongRows } from '../src/app/ipaTables';
 
-import { fullVowels, fullPlaces, fullConsonants, otherSymbols, affricates, nonPulmonic, diacritics, suprasegmentals, tones, englishVariants } from '../src/app/fullIpa';
+import { fullVowels, fullPlaces, fullConsonants, otherSymbolRows, otherSymbols, affricates, nonPulmonic, diacritics, suprasegmentals, toneGroups, tones, englishVariants } from '../src/app/fullIpa';
 import { fullIpaAudioSchema, fullIpaSoundSymbols } from '../src/app/ipaFullAudio';
 
 describe('offline references', () => {
@@ -67,8 +67,17 @@ describe('offline references', () => {
     expect(new Set(symbols).size).toBe(symbols.length);
     expect(symbols.filter(symbol => ipaSymbols.includes(symbol!)).sort()).toEqual([...ipaSymbols].sort());
     expect(englishVariants.every(symbol => symbols.includes(symbol))).toBe(true);
-    expect(nonPulmonic.flatMap(([, ...cells]) => cells.flat())).toHaveLength(14);
+    expect(nonPulmonic.flatMap(([, rows]) => rows.map(([symbol]) => symbol))).toHaveLength(14);
+    expect(nonPulmonic.map(([title, rows]) => [title, ...rows.map(([symbol, place]) => `${symbol} ${place}`)])).toEqual([
+      ['Clicks', 'ʘ Bilabial', 'ǀ Dental', 'ǃ (Post)alveolar', 'ǂ Palatoalveolar', 'ǁ Alveolar lateral'],
+      ['Voiced implosives', 'ɓ Bilabial', 'ɗ Dental/alveolar', 'ʄ Palatal', 'ɠ Velar', 'ʛ Uvular'],
+      ['Ejectives', 'pʼ Bilabial', 'tʼ Dental/alveolar', 'kʼ Velar', 'sʼ Alveolar fricative'],
+    ]);
     expect(diacritics).toHaveLength(31); expect(suprasegmentals).toHaveLength(9); expect(tones).toHaveLength(14);
+    expect(otherSymbolRows.flatMap(([symbols]) => [...symbols])).toEqual(otherSymbols.map(([symbol]) => symbol));
+    expect(otherSymbolRows.find(([symbols]) => symbols.length === 2)).toEqual([['ɕ', 'ʑ'], 'Alveolo-palatal fricatives']);
+    expect(toneGroups.map(([name, rows]) => [name, rows.length])).toEqual([['Level', 7], ['Contour', 7]]);
+    expect([...tones]).toEqual(toneGroups.flatMap(([, rows]) => [...rows]));
   });
   it('places exactly the existing English inventory on the IPA axes with correct pair slots', () => {
     expect(ipaSymbols).toHaveLength(41);

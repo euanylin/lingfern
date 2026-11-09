@@ -248,7 +248,8 @@
     },
     "view": "طريقة العرض",
     "simple": "مبسّط",
-    "detailed": "مفصّل"
+    "detailed": "مفصّل",
+    "englishMarks": "إنجليزي"
   },
   "lookupHistory_lookupHistoryCopy": {
     "title": "سجل البحث",

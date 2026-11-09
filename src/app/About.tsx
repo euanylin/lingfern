@@ -1,16 +1,21 @@
 import { AnimatedDetails } from './AnimatedDetails';
 import { aboutCopy as t } from './aboutCopy';
 import audioSources from '../../content/audio-sources.json';
+import wordSources from '../../public/ipa/SOURCES.json';
 import dailyQuotes from '../../content/daily-quotes-metadata.json';
 import credits from '../../content/about-credits.json';
-const ipaWords = __LINGFERN_IPA_WORD_SOURCES__;
 const ipaSounds = __LINGFERN_IPA_SOUND_SOURCES__;
+const wordPages = new Set(wordSources.map(item => item.source));
+const lessonRecordings = audioSources.filter(item => !wordPages.has(item.source)).map(item => ({ label: item.transcript && item.transcript.length <= 40 ? item.transcript : item.title, source: item.source, author: item.author, license: item.license!, changes: item.changes, licenseUrl: item.licenseUrl! }));
+const ipaSoundRecordings = ipaSounds.map(item => ({ label: `/${item.ipa.join(', ')}/`, source: item.source, author: item.author, license: item.license, changes: item.changes, licenseUrl: item.licenseUrl }));
 
-const recordingGroups = [
-  { title: t.originalRecordings, items: audioSources.map(item => ({ label: item.transcript && item.transcript.length <= 40 ? item.transcript : item.title, source: item.source, author: item.author, license: item.license!, changes: item.changes, licenseUrl: item.licenseUrl! })) },
-  { title: t.ipaWords, items: ipaWords.map(item => ({ label: item.word, source: item.source, author: item.author, license: item.license, changes: item.changes, licenseUrl: item.licenseUrl })) },
-  { title: t.ipaSounds, items: ipaSounds.map(item => ({ label: `/${item.ipa.join(', ')}/`, source: item.source, author: item.author, license: item.license, changes: item.changes, licenseUrl: item.licenseUrl })) },
-];
+function CreditList({ items }: { items: { label: string; source: string; author: string; license: string; changes: string; licenseUrl: string }[] }) {
+  return <ul>{items.map(item => <li key={item.source}><a href={item.source} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.label} ↗</a><span>{item.author} · <a href={item.licenseUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.license}</a></span><span>{item.changes}</span></li>)}</ul>;
+}
+
+function projectRows(projects: typeof credits.software) {
+  return projects.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>);
+}
 
 export function About() {
   return <section className="about-page" lang="en" dir="ltr">
@@ -24,8 +29,8 @@ export function About() {
       <p className="about-project-terms muted"><a href="https://github.com/euanylin/lingfern" aria-label="Lingfern on GitHub" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">Lingfern ↗</a> · <a href="/licenses/lingfern/LICENSE">{t.projectCode}</a> · <a href="/licenses/lingfern/CC-BY-4.0.txt">{t.projectText}</a> · <a href="/licenses/lingfern/NOTICE">{t.projectNotice}</a>. <a href="/licenses/lingfern/BRAND.md">{t.brandTerms}</a>.</p>
       <section>
         <h2>{t.openSource}</h2>
-        <ul className="about-projects">{credits.software.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>)}</ul>
-        <AnimatedDetails className="about-credit-details"><summary>{t.buildTools} ({credits.development.length})</summary><ul>{credits.development.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>)}</ul></AnimatedDetails>
+        <ul className="about-projects">{projectRows(credits.software)}</ul>
+        <AnimatedDetails className="about-credit-details"><summary>{t.buildTools} ({credits.development.length})</summary><ul>{projectRows(credits.development)}</ul></AnimatedDetails>
         <a href="/THIRD_PARTY_NOTICES.md">{t.licences} ↗</a>
       </section>
       <section>
@@ -36,7 +41,8 @@ export function About() {
         <AnimatedDetails className="about-credit-details"><summary>{t.quotes} ({dailyQuotes.quoteCount})</summary><ul><li><a href={dailyQuotes.source.url} target="_blank" rel="noopener noreferrer">{dailyQuotes.source.title} ↗</a><span>{dailyQuotes.source.license}</span></li></ul><p><a href="/daily-quotes/README.md">{t.reuseNotes} ↗</a></p></AnimatedDetails>
         <h3>{t.audioSources}</h3>
         <p>{t.audioNotice}</p>
-        {recordingGroups.map(group => <AnimatedDetails className="about-credit-details" key={group.title}><summary>{group.title} ({group.items.length})</summary><ul>{group.items.map(item => <li key={item.source}><a href={item.source} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.label} ↗</a><span>{item.author} · <a href={item.licenseUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.license}</a></span><span>{item.changes}</span></li>)}</ul></AnimatedDetails>)}
+        <AnimatedDetails className="about-credit-details"><summary>{t.originalRecordings} ({lessonRecordings.length})</summary><p>{t.a1WordCredits} <a href="https://commons.wikimedia.org/wiki/User:Dvortygirl" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">Dvortygirl</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">CC BY-SA 3.0</a>. <a href="/ipa/SOURCES.json">{t.a1WordFiles}</a>.</p><CreditList items={lessonRecordings}/></AnimatedDetails>
+        <AnimatedDetails className="about-credit-details"><summary>{t.ipaSounds} ({ipaSoundRecordings.length})</summary><CreditList items={ipaSoundRecordings}/></AnimatedDetails>
       </section>
     </div>
     <ul className="about-links">
