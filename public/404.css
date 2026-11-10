@@ -1,1 +1,9 @@
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6}main{max-width:600px;margin:12vh auto;padding:24px}h1{font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,6vw,40px);line-height:1.2}p{color:var(--muted)}a{color:var(--accent)}.brand{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}.return{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;background:var(--button-surface);border-radius:var(--corner-radius);text-decoration:none}a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.not-found{-webkit-tap-highlight-color:transparent}
+#root>main.not-found-main{width:100%;max-width:1216px;min-height:0;margin:0 auto;padding:56px 48px 64px}
+.not-found-copy{max-width:440px}
+.not-found-copy .eyebrow{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1;letter-spacing:.12em}
+.not-found-copy h1{margin:0;font-size:46px;font-weight:600;line-height:1.15;letter-spacing:-.02em}
+.not-found-copy h1:lang(en){font-family:"Iowan Old Style",Charter,Georgia,serif}
+.not-found-description{margin:14px 0 28px;color:var(--muted);font-size:16px;line-height:1.5}
+.not-found-copy .button{max-width:100%;font-size:15px}
+@media(max-width:767px){#root>main.not-found-main{padding:40px 20px calc(84px + env(safe-area-inset-bottom))}.not-found-copy h1{font-size:34px}.not-found-description{margin:12px 0 24px;font-size:15px}}

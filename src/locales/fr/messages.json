@@ -780,5 +780,9 @@
   "historyDeletion": {
     "remove": "Supprimer",
     "linked": "Les deux parties liées seront supprimées."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Cette page a peut-être été déplacée, ou l’adresse est incorrecte."
   }
 }

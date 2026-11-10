@@ -18,6 +18,6 @@ export function SelfAssessment({ locale, question, attempt, owner, onSaved }: { 
   }
   return <section className="self-assessment" lang={locale}><h3>{t.title}</h3>
     {question.criteria.map((criterion, index) => <fieldset key={index} disabled={busy}><legend lang={contentLanguage(criterion, locale)}>{contentText(criterion, locale)}</legend>{(['met', 'revise', 'unsure'] as const).map(value => <label key={value}><input type="radio" name={`${attempt.id}-criterion-${index}`} value={value} checked={ratings[index] === value} onChange={() => { setRatings(previous => previous.map((item, i) => i === index ? value : item)); setMessage(''); }}/>{t[value]}</label>)}</fieldset>)}
-    <button type="button" disabled={busy || ratings.some(value => !value)} onClick={() => void save()}>{t.save}</button><p role="status">{message}</p>
+    <button className="button" type="button" disabled={busy || ratings.some(value => !value)} onClick={() => void save()}>{t.save}</button><p role="status">{message}</p>
   </section>;
 }

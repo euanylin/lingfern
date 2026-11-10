@@ -80,3 +80,18 @@ it('prioritises inspected course senses without assigning swimming-pool equivale
     expect((await lookupDictionary('résumé')).senses.some(sense => sense.id.startsWith('resume%'))).toBe(false);
   } finally { vi.unstubAllGlobals(); }
 });
+
+it('keeps installed dictionary fallback profile-scoped when the built-in lookup fails', async () => {
+  const { communityPacks } = await import('../src/data/db');
+  const { lookupLocalDictionary } = await import('../src/data/communityInstall');
+  const profileId = 'dictionary-fallback-latency', hash = 'a'.repeat(64);
+  await communityPacks.put({ profileId, hash, id: 'synthetic-dictionary', lessons: [], sources: [], dictionary: [{ term: 'zsynthetic', definition: 'Synthetic installed meaning.', example: 'Synthetic example.', sourceId: 'synthetic' }], state: 'ready', installedAt: new Date().toISOString() });
+  vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('OFFLINE'); }));
+  try {
+    const result = await lookupLocalDictionary(profileId, ' ZSYNTHETIC ');
+    expect(result.term).toBe('zsynthetic');
+    expect(result.senses).toEqual([]);
+    expect(result.community.map(entry => entry.definition)).toEqual(['Synthetic installed meaning.']);
+    await expect(lookupLocalDictionary('another-profile', 'zsynthetic')).rejects.toThrow('OFFLINE');
+  } finally { vi.unstubAllGlobals(); await communityPacks.delete([profileId, hash]); }
+});

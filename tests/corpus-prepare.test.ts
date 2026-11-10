@@ -16,6 +16,7 @@ vi.mock('../src/core/wordListening', async importOriginal => ({ ...await importO
 import { spokenCorpusLesson, type SpokenCorpus } from '../src/core/spokenCorpus';
 import { wordListeningLesson } from '../src/core/wordListening';
 import { corpusInterestMatch, corpusOperation } from '../src/core/corpusPractice';
+import * as practiceHistory from '../src/core/corpusPractice';
 import { sentencePolarityLesson } from '../src/core/beginnerListening';
 import type { Attempt, Session } from '../src/data/db';
 import wordSources from '../public/ipa/SOURCES.json';
@@ -23,6 +24,14 @@ import sentenceSources from '../public/audio/a1-sentences/SENTENCES.json';
 
 beforeEach(() => { vi.mocked(corpusLesson).mockReset(); vi.mocked(spokenCorpusLesson).mockReset(); vi.mocked(loadReadingCorpus).mockReset(); vi.mocked(loadSpokenCorpora).mockReset(); vi.mocked(installSourcePack).mockReset(); vi.mocked(wordListeningLesson).mockReset(); });
 afterEach(() => { vi.clearAllMocks(); vi.restoreAllMocks(); });
+
+it('derives the exposure and recommendation state with one history scan', async () => {
+  const scan = vi.spyOn(practiceHistory, 'corpusPracticeHistory');
+  vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([1, 1]));
+  const result = await prepareCorpusPractice({ locale: 'en', profileId: 'one-history-scan', preferences: { reading: 'A1', interests: [], step: 4, completed: true }, history: [], records: [], online: false, skill: 'reading' });
+  expect(result.lesson?.goalId).toBe('stated-polarity-verification');
+  expect(scan).toHaveBeenCalledTimes(1);
+});
 
 it('generates A1 reading polarity without an audio prerequisite and excludes roots seen in either skill', async () => {
   const base = { locale: 'zh-Hans' as const, profileId: 'reading-polarity-route', preferences: { reading: 'A1' as const, interests: [], step: 4, completed: true }, online: false, skill: 'reading' as const };
@@ -112,7 +121,27 @@ it('routes the new A1 meaning operation only after real word prerequisites, and 
   expect(wordListeningLesson).not.toHaveBeenCalled();
 });
 
-it('uses all available reading sources after a normal online package install with no interests', async () => {
+it.each(['reading', 'listening'] as const)('starts %s with local eligible material without downloading an unrelated package', async skill => {
+  const lesson = JSON.parse(readFileSync(`tests/fixtures/content/a1-${skill}.json`, 'utf8'));
+  const original = structuredClone(lesson);
+  vi.spyOn(crypto, 'getRandomValues').mockReturnValue(new Uint32Array([0, 0]));
+  vi.mocked(loadReadingCorpus).mockResolvedValue({ version: 1, failures: [], records: [] });
+  vi.mocked(loadSpokenCorpora).mockResolvedValue([{ version: 1, records: [], failures: [] } as unknown as SpokenCorpus]);
+  (skill === 'reading' ? vi.mocked(corpusLesson) : vi.mocked(spokenCorpusLesson)).mockReturnValue(lesson);
+  const result = await prepareCorpusPractice({ locale: 'en', profileId: 'local-start-speed', preferences: { reading: 'B2', listening: 'B2', interests: [], step: 4, completed: true }, history: [], records: [], online: true, skill });
+  expect(result.lesson?.id).toBe(lesson.id);
+  expect(result.downloadFailed).toBe(false);
+  expect(installSourcePack).not.toHaveBeenCalled();
+  expect(lesson).toEqual(original);
+});
+
+it('never hides a local integrity failure behind an automatic download', async () => {
+  vi.mocked(loadReadingCorpus).mockRejectedValue(new Error('CORPUS_INTEGRITY'));
+  await expect(prepareCorpusPractice({ locale: 'en', profileId: 'integrity-start', history: [], records: [], online: true, skill: 'reading' })).rejects.toThrow('CORPUS_INTEGRITY');
+  expect(installSourcePack).not.toHaveBeenCalled();
+});
+
+it('downloads only after local exhaustion and then uses all available reading sources', async () => {
   const { inspectCommunityPack } = await import('../src/data/communityPack');
   const entry = sourcePacks.find(pack => pack.skill === 'reading' && pack.sourceFamilies.includes('wikipedia'))!;
   const downloaded = await inspectCommunityPack(new Uint8Array(readFileSync('public' + entry.path)));
@@ -121,12 +150,13 @@ it('uses all available reading sources after a normal online package install wit
   const bundled = ['voa', 'gutenberg'].flatMap(source => (JSON.parse(readFileSync(`${source === 'gutenberg' ? 'content' : 'public'}/corpus/${source}.json`, 'utf8')) as Corpus).records);
   const merged: Corpus = { version: 1, failures: [], records: [...bundled, ...downloaded.corpus!.records] };
   vi.mocked(installSourcePack).mockResolvedValue(downloaded);
-  vi.mocked(loadReadingCorpus).mockResolvedValue(merged);
+  vi.mocked(loadReadingCorpus).mockResolvedValueOnce({ version: 1, failures: [], records: [] }).mockResolvedValue(merged);
   const result = await prepareCorpusPractice({ locale: 'zh-Hans', profileId: 'mixed-download-regression', preferences: { reading: 'B1', interests: [], step: 4, completed: true }, history: [], records: [], online: true, skill: 'reading' });
   expect(installSourcePack).toHaveBeenCalledTimes(1);
   expect(loadReadingCorpus).toHaveBeenCalledWith('mixed-download-regression', 220);
   expect(corpusLesson).toHaveBeenCalled();
   for (const call of vi.mocked(corpusLesson).mock.calls) {
+    if (!call[0].records.length) continue;
     expect(call[0].records).toEqual(merged.records);
     expect(['voa-', 'gutenberg-', 'wikipedia-'].every(prefix => call[0].records.some(record => record.id.startsWith(prefix)))).toBe(true);
   }

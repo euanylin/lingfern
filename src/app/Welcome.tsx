@@ -24,7 +24,7 @@ const TodayPreview = memo(function TodayPreview({ locale, profileId, date, onDay
   const app = messages('app')[locale], first = firstRunCopy[locale], training = messages('app_training')[locale];
   return <div className="today-home">
     <div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={date}>{new Date(`${date}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern profileId={profileId} entries={[]} locale={locale} illustrationActive={active}/><h1>{app.today}</h1></section>
-      <section className="practice-section" aria-labelledby="welcome-practice-title" inert><header className="practice-section-heading"><h2 id="welcome-practice-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header><div className="task-grid today-grid">
+      <section className="practice-section" aria-labelledby="welcome-practice-title" inert><header className="practice-section-heading"><h2 id="welcome-practice-title">{messages('app_practice')[locale]}</h2><a className="button records-link" href="/progress">{messages('app_history')[locale]}</a></header><div className="task-grid today-grid">
         {(['reading', 'listening'] as const).map(skill => <div className={`primary-task${skill === 'reading' ? ' reading-task' : ''}`} key={skill}><PracticeCard title={first[skill]} locale={locale} records={[]} dataSkill={skill} onStart={onContinue}><PracticeOptions locale={locale} profileId={profileId} skill={skill} value={automaticPractice} history={[]} records={[]} disabled={false} onChange={async () => {}}/></PracticeCard></div>)}
         <div className="primary-task combined-training"><PracticeCard title={training.title} locale={locale} records={[]} dataSkill="combined" onStart={onContinue}>{(['reading','listening'] as const).map(skill => <PracticeOptions key={skill} locale={locale} profileId={profileId} skill={skill} value={automaticPractice} history={[]} records={[]} disabled={false} onChange={async () => {}}/>)}</PracticeCard></div>
       </div></section>
@@ -35,7 +35,7 @@ const TodayPreview = memo(function TodayPreview({ locale, profileId, date, onDay
 const LibraryPreview = memo(function LibraryPreview({ locale, profileId, online }: { locale: Locale; profileId: string; online: boolean }) {
   const app = messages('app')[locale];
   return <div className="library-page">
-    <div className="library-page-heading"><h1>{app.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{messages('lookupHistory_lookupHistoryCopy')[locale].entry}</a></div></div>
+    <div className="library-page-heading"><h1>{app.library}</h1><div className="library-history-entry"><a className="button records-link" href="/library/history">{messages('lookupHistory_lookupHistoryCopy')[locale].entry}</a></div></div>
     <section className="library-references"><h2>{app.references}</h2>
       {(['dictionary', 'ipa', 'grammar'] as const).map(name => <a className="library-reference-tile" href={`/library/${name}`} key={name}>{name === 'dictionary' ? app.dictionaryEntry : app[name]}</a>)}
     </section>

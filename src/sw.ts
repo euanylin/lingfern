@@ -5,6 +5,7 @@ import { registerRoute } from 'workbox-routing';
 import { createPartialResponse } from 'workbox-range-requests';
 import { catalogueCacheName, cataloguePath, publicResourcePathSchema, resourceCatalogueSchema } from './shared/resourceCatalogue';
 import { pageSeo, renderPageHtml } from './shared/seo';
+import { requestLocale } from './shared/locale';
 
 const sw = self as unknown as ServiceWorkerGlobalScope & { __WB_MANIFEST: Array<{ url: string; revision?: string }> };
 let resourcePaths: Promise<Map<string, { id: string; version: string; bytes: number; sha256: string }>> | undefined;
@@ -58,11 +59,14 @@ registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin ==
   if (canonical) return Response.redirect(new URL(canonical + url.search, url).href, 301);
   const shell = await matchPrecache('/index.html');
   if (!shell) return fetch(request);
-  const seo = pageSeo(url.pathname, url.search), headers = new Headers(shell.headers);
+  const locale = requestLocale(request.headers.get('Accept-Language'));
+  const seo = pageSeo(url.pathname, url.search, locale), headers = new Headers(shell.headers);
   for (const key of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified']) headers.delete(key);
   headers.set('X-Robots-Tag', seo.robots);
+  headers.set('Content-Language', locale);
+  headers.append('Vary', 'Accept-Language');
   headers.set('Cache-Control', seo.robots.startsWith('noindex') ? 'private, no-store' : 'no-cache');
-  return new Response(renderPageHtml(await shell.text(), url.pathname, url.search), { status: shell.status, headers });
+  return new Response(renderPageHtml(await shell.text(), url.pathname, url.search, locale), { status: shell.status, headers });
 });
 sw.addEventListener('message', event => {
   if (event.data?.type === 'SKIP_WAITING') void sw.skipWaiting();

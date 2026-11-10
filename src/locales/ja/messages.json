@@ -780,5 +780,9 @@
   "historyDeletion": {
     "remove": "削除",
     "linked": "連携した両方の学習を削除します。"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "description": "ページが移動したか、アドレスが正しくない可能性があります。"
   }
 }

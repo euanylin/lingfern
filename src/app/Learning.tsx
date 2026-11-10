@@ -79,16 +79,16 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
     };
   }, [id]);
   const message = error === 'CHECK_EXPOSED' ? t.checkUnavailable : error === 'CHECK_DEVICE' ? t.checkOriginalDevice : error === 'BUSY' ? t.busy : error === 'NOT_FOUND' ? t.missing : error === 'CONFLICT' ? t.conflict : error === 'READ' ? t.readError : t.saveError;
-  if (!session) return <section><h1>{t.learning}</h1>{error ? <div className="error" role="alert"><p>{message}</p><button onClick={() => void load()}>{t.retry}</button></div> : <p>{t.loading}</p>}</section>;
+  if (!session) return <section><h1>{t.learning}</h1>{error ? <div className="error" role="alert"><p>{message}</p><button className="button" onClick={() => void load()}>{t.retry}</button></div> : <p>{t.loading}</p>}</section>;
   const instructionLocale = practiceLocale(session.lesson, locale), title = <h1 lang={contentLanguage(session.lesson.title, instructionLocale)}>{contentText(session.lesson.title, instructionLocale)}</h1>;
   if (session.recordsDeleted) return <>{title}<p>{deletionCopy[locale].archived}</p><a className="button" href="/progress">{t.progress}</a></>;
   const checkIntro = session.lesson.mode === 'check' && session.status === 'active' && !session.checkStartedAt;
-  if (error && (blockingErrors.includes(error) || checkIntro)) return <section>{title}<p role="alert">{message}</p><div className="action-row"><button onClick={() => void load()}>{t.retry}</button><a className="button back-button" href="/today" aria-label={t.finish}>←</a></div></section>;
+  if (error && (blockingErrors.includes(error) || checkIntro)) return <section>{title}<p role="alert">{message}</p><div className="action-row"><button className="button" onClick={() => void load()}>{t.retry}</button><a className="button back-button" href="/today" aria-label={t.finish}>←</a></div></section>;
   if (checkIntro) return <section className="narrow check-intro">
     {title}<p lang={contentLanguage(session.lesson.goal, instructionLocale)}>{contentText(session.lesson.goal, instructionLocale)}</p><p>{t.checkUnseen}</p>
     <dl><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{session.lesson.skill === 'listening' ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl>
     <button className="primary" disabled={busy} onClick={async () => { setBusy(true); try { setSession(await beginCheck(id, owner)); } catch (cause) { setError(cause instanceof Error ? cause.message : 'READ'); } finally { setBusy(false); } }}>{t.checkBegin}</button>
   </section>;
   // A transient storage failure must not discard the editor's unsaved input.
-  return <>{error && <div className="error" role="alert">{message} <button onClick={() => void load()}>{t.retry}</button></div>}<MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions} pending={pending} confirmLeave={confirmLeave}/></>;
+  return <>{error && <div className="error" role="alert">{message} <button className="button" onClick={() => void load()}>{t.retry}</button></div>}<MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions} pending={pending} confirmLeave={confirmLeave}/></>;
 }

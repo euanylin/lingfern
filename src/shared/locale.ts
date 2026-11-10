@@ -23,3 +23,12 @@ export function browserLocale(languages: readonly string[]): Locale {
 export function localeDirection(locale: Locale): 'ltr' | 'rtl' {
   return locale === 'ar' ? 'rtl' : 'ltr';
 }
+
+export function requestLocale(acceptLanguage: string | null): Locale {
+  const preferences = (acceptLanguage ?? '').slice(0, 4096).split(',').slice(0, 32).flatMap(value => {
+    const match = /^\s*(\*|[a-z]{1,8}(?:-[a-z0-9]{1,8})*)\s*(?:;\s*q=(0(?:\.\d{1,3})?|1(?:\.0{1,3})?))?\s*$/i.exec(value);
+    const quality = Number(match?.[2] ?? 1);
+    return match && quality > 0 ? [{ language: match[1] === '*' ? 'en' : match[1], quality }] : [];
+  }).sort((a, b) => b.quality - a.quality);
+  return browserLocale(preferences.map(item => item.language));
+}

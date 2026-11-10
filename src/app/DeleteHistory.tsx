@@ -30,7 +30,7 @@ export function DeleteHistory({ locale, title, linked = false, onDelete, onChang
     {confirming && createPortal(<dialog ref={dialog} className="practice-restart-dialog" aria-labelledby={headingId} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
       <h2 id={headingId}>{common.confirm}</h2><p lang="en" dir="ltr">{title}</p>{linked && <p>{t.linked}</p>}
       {error && <p className="error" role="alert">{error}</p>}
-      <div className="practice-restart-actions"><button type="button" ref={cancel} disabled={busy} onClick={close}>{common.cancel}</button><button type="button" className="offline-remove-confirm" disabled={busy} onClick={() => void remove()}>{common.confirm}</button></div>
+      <div className="practice-restart-actions"><button className="button" type="button" ref={cancel} disabled={busy} onClick={close}>{common.cancel}</button><button type="button" className="button offline-remove-confirm" disabled={busy} onClick={() => void remove()}>{common.confirm}</button></div>
     </dialog>, document.body)}
   </>;
 }

@@ -61,7 +61,7 @@ export function CommunityImport({ locale, profileId, onInstalled }: { locale: Lo
   }
   return <section className="community-import"><header className="community-import-header"><h2>{t.title}</h2>
     <label className="backup-file-label"><input className="sr-only" type="file" multiple accept=".zip,application/zip" aria-label={t.choose} disabled={busy} onChange={event => { void importFiles(event.target.files ?? undefined); event.target.value = ''; }}/><span className="button backup-file-button">{busy ? t.busy : t.choose}</span></label></header>
-    {busy && <><span role="status">{t.busy} {progress}</span><button type="button" onClick={() => controller.current?.abort()}>{t.cancel}</button></>}
+    {busy && <><span role="status">{t.busy} {progress}</span><button className="button" type="button" onClick={() => controller.current?.abort()}>{t.cancel}</button></>}
     {message && <p role="status">{message}</p>}
 
   </section>;

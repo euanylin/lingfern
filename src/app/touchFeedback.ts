@@ -28,6 +28,10 @@ export function touchFeedback() {
     target = control; pointer = { id: event.pointerId, x: event.clientX, y: event.clientY }; state.start();
   };
   const move = (event: PointerEvent) => {
+    if (!pointer && event.isPrimary && event.pointerType === 'mouse' && document.documentElement.hasAttribute('data-touch-input')) {
+      delete document.documentElement.dataset.touchInput;
+      document.documentElement.dataset.pointerInput = '';
+    }
     if (pointer?.id === event.pointerId && !target?.matches('input[type=range]') && Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > 10) cancel();
   };
   const end = (event: PointerEvent) => { if (pointer?.id === event.pointerId) { pointer = undefined; state.end(); } };

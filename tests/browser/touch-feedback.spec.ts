@@ -34,7 +34,7 @@ test('daily quote credits retain desktop text feedback without a background', as
 });
 
 for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test(`Test keeps its desktop feedback during touch and keyboard focus: ${locale}/${theme}`, async ({ browser }, info) => {
-  let desktopColor = '';
+  let desktopColor = '', desktopIdle = '';
   for (const hasTouch of [false, true]) {
     const context = await browser.newContext({ baseURL: info.project.use.baseURL, locale, colorScheme: theme, hasTouch, viewport: { width: hasTouch ? 390 : 1440, height: 900 } });
     const page = await context.newPage(); await page.goto('/today');
@@ -47,12 +47,14 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dar
     const idle = await control.evaluate(el => getComputedStyle(el).backgroundColor), box = (await control.boundingBox())!;
     expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
     if (!hasTouch) {
-      desktopColor = idle; await control.hover(); await expect(control).toHaveCSS('background-color', desktopColor);
+      desktopIdle = idle;
+      desktopColor = await control.evaluate(el => { const probe = document.createElement('span'); probe.style.background = getComputedStyle(el).getPropertyValue('--button-hover'); document.body.appendChild(probe); const color = getComputedStyle(probe).backgroundColor; probe.remove(); return color; });
+      await control.hover(); await expect(control).toHaveCSS('background-color', desktopColor);
       await page.mouse.down(); await expect(control).toHaveCSS('background-color', desktopColor); await page.mouse.up();
       await page.screenshot({ path: info.outputPath(`test-desktop-${locale}-${theme}.png`) });
       await page.mouse.move(0, 0);
     } else {
-      expect(idle).toBe(desktopColor);
+      expect(idle).toBe(desktopIdle);
       const cdp = await context.newCDPSession(page);
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
       await expect(control).toHaveAttribute('data-touch-active', '');
@@ -63,7 +65,7 @@ for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dar
       await cdp.detach();
     }
     await control.press('Tab'); await page.keyboard.press('Shift+Tab');
-    await expect(control).toBeFocused(); await expect(control).toHaveCSS('text-decoration-line', 'underline');
+    await expect(control).toBeFocused(); await expect(control).toHaveCSS('text-decoration-line', 'none');
     await expect(control).toHaveCSS('background-color', desktopColor);
     await context.close();
   }
@@ -251,7 +253,9 @@ test.describe('touch feedback', () => {
   test('touch and keyboard navigation use filled focus cues without bright rings', async ({ page, context }, info) => {
     await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/settings');
     const library = page.locator('.mobile-nav a[href="/library"]');
-    await library.focus(); await library.press('ArrowRight');
+    await expect(library).toBeVisible();
+    await library.press('Tab'); await page.keyboard.press('Shift+Tab');
+    await expect(library).toBeFocused();
     await expect(library).toHaveCSS('outline-width', '0px');
     const box = (await library.boundingBox())!, cdp = await context.newCDPSession(page);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });

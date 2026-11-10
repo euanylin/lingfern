@@ -184,6 +184,64 @@ test('empty narrow dictionary fits in every interface language', async ({ page }
   }
 });
 
+test('dictionary loads independent sources together and reuses the projected bookmark list', async ({ page }) => {
+  await page.route(/\/src\/data\/communityInstall\.ts(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}
+const readCommunityDictionary = communityDictionary;
+communityDictionary = async function(...args) {
+  await new Promise(resolve => window.releaseCommunityLookup = resolve);
+  return readCommunityDictionary(...args);
+};` });
+  });
+  await page.route('**/dictionary/oewn-2025/b.json', route => route.fulfill({ json: { book: [
+    { id: 'book%1:00:00::', pos: 'noun', definition: 'Synthetic saved book definition.' },
+    { id: 'book%2:00:00::', pos: 'verb', definition: 'Synthetic unsaved book definition.' },
+  ] } }));
+  await page.goto('/library/dictionary');
+  await expect(page.locator('.dictionary-search')).toBeVisible();
+  await page.evaluate(async () => {
+    const { memories, settings } = await import('/src/data/db.ts' as string);
+    const profileId = (await settings.get('activeProfile'))!.value;
+    await memories.put({ profileId, memoryId: 'book%1:00:00::', term: 'book', definition: 'Synthetic saved book definition.', savedAt: new Date().toISOString() });
+    const state = window as unknown as { bookmarkReads: number };
+    state.bookmarkReads = 0;
+    const get = memories.get.bind(memories);
+    memories.get = (...args: unknown[]) => { state.bookmarkReads++; return get(...args); };
+  });
+  const dictionaryRequested = page.waitForRequest('**/dictionary/oewn-2025/b.json');
+  await page.getByRole('combobox').fill('book');
+  await page.getByRole('combobox').press('Enter');
+  await expect.poll(() => page.evaluate(() => typeof (window as unknown as { releaseCommunityLookup?: unknown }).releaseCommunityLookup)).toBe('function');
+  await dictionaryRequested;
+  await expect(page.locator('.dictionary-results')).toHaveCount(0);
+  await page.evaluate(() => (window as unknown as { releaseCommunityLookup: () => void }).releaseCommunityLookup());
+  await expect(page.locator('.dictionary-results .sense-star[aria-pressed=true]')).toHaveCount(1);
+  await expect(page.locator('.dictionary-results .sense-star[aria-pressed=false]')).toHaveCount(1);
+  expect(await page.evaluate(() => (window as unknown as { bookmarkReads: number }).bookmarkReads)).toBe(0);
+});
+
+test('leaving a pending dictionary lookup does not add an unseen history entry', async ({ page }) => {
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/dictionary/oewn-2025/z.json', async route => {
+    await pending;
+    await route.fulfill({ json: { zlookupnotread: [{ id: 'zlookupnotread%1:00:00::', pos: 'noun', definition: 'Synthetic delayed result.' }] } });
+  });
+  await page.goto('/library/dictionary');
+  const requested = page.waitForRequest('**/dictionary/oewn-2025/z.json');
+  await page.getByRole('combobox').fill('zlookupnotread');
+  await page.getByRole('combobox').press('Enter');
+  await requested;
+  await page.locator('.desktop-nav a[href="/library"]').click();
+  await expect(page.locator('.library-page-heading')).toBeVisible();
+  const response = page.waitForResponse('**/dictionary/oewn-2025/z.json');
+  release(); await (await response).finished();
+  // Allow the released lookup and its IndexedDB continuations to finish before checking absence.
+  await page.waitForTimeout(200);
+  expect(await page.evaluate(async () => (await import('/src/data/lookupHistory.ts' as string)).readLookupHistory('local-guest'))).toEqual([]);
+});
+
 test('dictionary finds course, WordNet, inflected, multiword and missing terms', async ({ page }) => {
   await page.goto('/library/dictionary');
   await expect(page.getByRole('heading', { level: 1, name: '英英词典' })).toBeVisible();

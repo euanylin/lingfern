@@ -43,7 +43,7 @@ export function SavedWords({ locale, profileId, online, defaultId }: { locale: L
   }
   return <section className="saved-words"><h1>{t.title}</h1>{error && <p role="alert" className="error">{error}</p>}{!items.length && !problems.length && <p>{t.empty}</p>}{!online && !!items.length && <p role="status" className="muted">{copy[locale].onlineLookupOffline}</p>}
     {problems.length > 0 && <section className="memory-problems" aria-live="polite"><ul>{problems.map(problem => <li key={problem.memoryId}><span>{items.find(item => item.memoryId === problem.memoryId)?.term ?? problem.memoryId}: {problemCopy[locale].dictionary}</span>
-      <button type="button" disabled={busy} onClick={() => void act(() => removeSense(profileId, problem.memoryId))}>{t.remove}</button></li>)}</ul><button type="button" disabled={busy} onClick={() => void act()}>{problemCopy[locale].retry}</button></section>}
+      <button className="button" type="button" disabled={busy} onClick={() => void act(() => removeSense(profileId, problem.memoryId))}>{t.remove}</button></li>)}</ul><button className="button" type="button" disabled={busy} onClick={() => void act()}>{problemCopy[locale].retry}</button></section>}
     {!!items.length && <div className="saved-words-list">{items.map(item => {
       const saved = savedIds.includes(item.memoryId);
       const dictionary = onlineDictionaries.find(entry => entry.id === defaultId)!;

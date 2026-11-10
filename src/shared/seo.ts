@@ -1,22 +1,24 @@
+import { localeDirection, type Locale } from './locale.ts';
+import { seoCopy } from '../locales/seo.ts';
+
 export const siteOrigin = 'https://lingfern.com';
-const description = 'Read and listen to English at your own pace with Lingfern. Practice offline, save your progress, and optionally sync through GitHub.';
-export const publicPages: Readonly<Record<string, { title: string; description: string }>> = {
-  '/introduction': { title: 'Lingfern', description },
-  '/library/dictionary': { title: 'English dictionary | Lingfern', description: 'Look up English words with Open English WordNet, explore definitions and save bookmarks. Download the dictionary for offline use.' },
-  '/library/ipa': { title: 'IPA pronunciation chart | Lingfern', description: 'Explore the International Phonetic Alphabet with vowel and consonant charts, articulation guides and pronunciation examples.' },
-  '/library/grammar': { title: 'English usage dictionary | Lingfern', description: 'Explore English usage with explanations, examples, common pitfalls and related entries. Download the reference for offline use.' },
-  '/settings/about': { title: 'About Lingfern', description: 'Learn about Lingfern, its open-source software, learning resources, licensing and contact information.' },
+export const publicPages: Readonly<Record<string, { title: string; descriptionKey: keyof typeof seoCopy.en }>> = {
+  '/introduction': { title: 'Lingfern', descriptionKey: 'description' },
+  '/library/dictionary': { title: 'English dictionary | Lingfern', descriptionKey: 'dictionary' },
+  '/library/ipa': { title: 'IPA pronunciation chart | Lingfern', descriptionKey: 'ipa' },
+  '/library/grammar': { title: 'English usage dictionary | Lingfern', descriptionKey: 'grammar' },
+  '/settings/about': { title: 'About Lingfern', descriptionKey: 'about' },
 };
 // Text objects avoid Static Assets' automatic redirects for HTML filenames.
-export const prerenderPath = (path: string) => Object.hasOwn(publicPages, path) ? `/prerender${path}.html.txt` : undefined;
+export const prerenderPath = (path: string, locale: Locale = 'en') => Object.hasOwn(publicPages, path) ? `/prerender${locale === 'en' ? '' : '/' + locale}${path}.html.txt` : undefined;
 
-export function pageSeo(pathname: string, search = '') {
+export function pageSeo(pathname: string, search = '', locale: Locale = 'en') {
   const path = pathname === '/' ? '/introduction' : pathname;
   const page = publicPages[path];
   const query = path.startsWith('/library/') && new URLSearchParams(search).has('q');
   return {
     title: page?.title ?? 'Lingfern',
-    description: page?.description ?? description,
+    description: page ? seoCopy[locale][page.descriptionKey] : seoCopy[locale].description,
     canonical: page ? siteOrigin + path : undefined,
     robots: page && !query ? 'index, follow' : 'noindex, follow',
     website: !!page && path === '/introduction',
@@ -25,8 +27,8 @@ export function pageSeo(pathname: string, search = '') {
 
 const escape = (text: string) => text.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
 
-export function seoHead(pathname: string, search = '') {
-  const seo = pageSeo(pathname, search);
+export function seoHead(pathname: string, search = '', locale: Locale = 'en') {
+  const seo = pageSeo(pathname, search, locale);
   const meta = (key: string, value: string, property = false) => `<meta data-lingfern-seo ${property ? 'property' : 'name'}="${key}" content="${escape(value)}">`;
   const tags = [
     `<title data-lingfern-seo lang="en">${escape(seo.title)}</title>`,
@@ -44,12 +46,14 @@ export function seoHead(pathname: string, search = '') {
   return tags.join('\n');
 }
 
-export function renderPageHtml(html: string, pathname: string, search = '') {
+export function renderPageHtml(html: string, pathname: string, search = '', locale: Locale = 'en') {
   let blocks = 0;
   const rendered = html.replace(/<!--seo:start-->[\s\S]*?<!--seo:end-->/g, () => {
     blocks++;
-    return `<!--seo:start-->${seoHead(pathname, search)}<!--seo:end-->`;
+    return `<!--seo:start-->${seoHead(pathname, search, locale)}<!--seo:end-->`;
   });
   if (blocks !== 1) throw Error('SEO_TEMPLATE');
-  return rendered;
+  return rendered.replace(/<html\b[^>]*>/i, tag => tag
+    .replace(/\s(?:lang|dir)="[^"]*"/gi, '')
+    .replace('>', ` lang="${locale}" dir="${localeDirection(locale)}">`));
 }

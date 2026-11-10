@@ -1,15 +1,14 @@
 import { messages } from '../locales';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { liveQuery } from 'dexie';
-import { lookupDictionary, normaliseTerm, rankDictionarySuggestions, suggestDictionary } from '../shared/dictionary';
+import { normaliseTerm, rankDictionarySuggestions, suggestDictionary } from '../shared/dictionary';
 import type { Locale } from '../shared/content';
 import { OnlineLookup } from './OnlineLookup';
 import { removeSense, saveSense, projectMemories } from '../data/memory';
-import { memories } from '../data/db';
-import { communityDictionary, communityDictionaryTerms } from '../data/communityInstall';
+import { lookupLocalDictionary, communityDictionaryTerms } from '../data/communityInstall';
 import { recordLookup } from '../data/lookupHistory';
 
-type Result = Awaited<ReturnType<typeof lookupDictionary>> & { community: Awaited<ReturnType<typeof communityDictionary>> };
+type Result = Awaited<ReturnType<typeof lookupLocalDictionary>>;
 const labels = messages('dictionary');
 
 export function Dictionary({ locale, online, profileId, initialQuery = '', disabled = false }: { locale: Locale; online: boolean; profileId: string; initialQuery?: string; disabled?: boolean }) {
@@ -27,6 +26,7 @@ export function Dictionary({ locale, online, profileId, initialQuery = '', disab
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const lookupId = useRef(0);
   const queryInput = useRef<HTMLInputElement>(null);
+  useEffect(() => () => { lookupId.current++; }, []);
   useEffect(() => { if (initialQuery) void searchTerm(initialQuery); }, [initialQuery]);
   async function remember(term: string) {
     try { await recordLookup(profileId, 'dictionary', term); }
@@ -59,19 +59,15 @@ export function Dictionary({ locale, online, profileId, initialQuery = '', disab
     queryInput.current?.blur();
     setBusy(true);
     try {
-      const community = await communityDictionary(profileId, term);
-      const found = await lookupDictionary(term).catch(error => {
-        if (!community.length) throw error;
-        return { term: normaliseTerm(term), matched: normaliseTerm(term), senses: [], course: [] };
-      });
+      const found = await lookupLocalDictionary(profileId, term);
       if (id !== lookupId.current) return;
-      await projectMemories(profileId);
-      const saved = (await Promise.all(found.senses.map(async sense => await memories.get([profileId, sense.id]) ? sense.id : ''))).filter(Boolean);
+      const projected = await projectMemories(profileId);
+      const saved = new Set(projected.items.map(item => item.memoryId));
       if (id !== lookupId.current) return;
-      setSavedIds(saved);
+      setSavedIds(found.senses.filter(sense => saved.has(sense.id)).map(sense => sense.id));
       await remember(found.term);
       if (id !== lookupId.current) return;
-      setResult({ ...found, community });
+      setResult(found);
     } catch { if (id === lookupId.current) setError(t.failed); }
     finally { if (id === lookupId.current) setBusy(false); }
   }
@@ -100,7 +96,7 @@ export function Dictionary({ locale, online, profileId, initialQuery = '', disab
       {!result.course.length && !result.community.length && !result.senses.length && <p>{t.missing}</p>}
       {result.course.map(entry => <article key={entry.term + entry.definition}><p className="eyebrow">{t.course}</p><p lang="en">{entry.definition}</p><p className="muted" lang="en">{entry.example}</p></article>)}
       {result.community.map((entry, index) => <article key={`${entry.sourceId}:${entry.term}:${index}`}><p className="eyebrow">{t.community} · {entry.source}</p><p lang="en">{entry.definition}</p><p className="muted" lang="en">{entry.example}</p></article>)}
-      {!!result.senses.length && <><p className="eyebrow">{result.course.length ? t.senses : t.source}</p>{result.senses.slice(0, all ? undefined : 6).map(sense => <article key={sense.id}><span className="muted">{sense.pos}</span><div className="sense-definition"><button className="sense-star" type="button" disabled={disabled || !!savingId} aria-pressed={savedIds.includes(sense.id)} aria-label={`${savedIds.includes(sense.id) ? t.remove : t.save} ${sense.definition}`} title={savedIds.includes(sense.id) ? t.remove : t.save} onClick={() => void toggle(sense.id, result.matched, sense.definition)}><span aria-hidden="true">{savedIds.includes(sense.id) ? '★' : '☆'}</span></button><p lang="en">{sense.definition}</p></div>{sense.example && <p className="muted sense-example" lang="en">{sense.example}</p>}</article>)}{result.senses.length > 6 && !all && <button type="button" onClick={() => setAll(true)}>{t.more} ({result.senses.length})</button>}</>}
+      {!!result.senses.length && <><p className="eyebrow">{result.course.length ? t.senses : t.source}</p>{result.senses.slice(0, all ? undefined : 6).map(sense => <article key={sense.id}><span className="muted">{sense.pos}</span><div className="sense-definition"><button className="sense-star" type="button" disabled={disabled || !!savingId} aria-pressed={savedIds.includes(sense.id)} aria-label={`${savedIds.includes(sense.id) ? t.remove : t.save} ${sense.definition}`} title={savedIds.includes(sense.id) ? t.remove : t.save} onClick={() => void toggle(sense.id, result.matched, sense.definition)}><span aria-hidden="true">{savedIds.includes(sense.id) ? '★' : '☆'}</span></button><p lang="en">{sense.definition}</p></div>{sense.example && <p className="muted sense-example" lang="en">{sense.example}</p>}</article>)}{result.senses.length > 6 && !all && <button className="button" type="button" onClick={() => setAll(true)}>{t.more} ({result.senses.length})</button>}</>}
       
     </div>}
   </section>;

@@ -12,6 +12,8 @@ Only this history index is exported to GitHub. Dated filenames below refer to re
 
 ## Current and earlier releases
 
+- **Released 0.1.169:** local review and publication (`2026-11-10-release-0.1.169.md`): practice/dictionary loading, legacy selection, shared actions and 404, multilingual HTML/hydration and refresh first paint; exact candidate/production resources, synthetic predecessor-update/offline preservation and guarded no-CI source synchronization.
+
 - **Released 0.1.160:** IPA mobile repair (`2026-11-02-ipa-mobile.md`), IPA/shared-control feedback (`2026-11-02-related-feedback.md`), and the comprehensive follow-up audit (`2026-11-02-comprehensive-audit.md`): captured resource versions, unsaved-note preservation on transient lease errors, distinct generated-question IDs and bounded redundant-check removal. These fixes and repository/documentation cleanup are published; the [handoff](../../DEVELOPMENT_HANDOFF.md) owns current release receipts and verification boundaries.
 - **Released 0.1.159:** audit (`2026-11-02-full-local-audit.md`), About licence documents (`2026-11-02-about-documents.md`), and release/source synchronization (`2026-11-02-release-0.1.159.md`). Exact receipts: `private/verification/release-0.1.159-audit-20261102/`.
 - Earlier accepted changes: IPA vowel feedback (`2026-11-02-ipa-vowel-feedback.md`) in 0.1.158; shared foldouts (`2026-11-01-foldout-feedback.md`) in 0.1.157; queued drafts/identity recovery (`2026-11-01-maintenance-review.md`) and history details (`2026-11-01-history-empty-details.md`) in 0.1.156. Their dated source and publication boundaries remain separate.

@@ -780,5 +780,9 @@
   "historyDeletion": {
     "remove": "Hapus",
     "linked": "Kedua bagian yang terhubung akan dihapus."
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "description": "Halaman ini mungkin telah dipindahkan, atau alamatnya salah."
   }
 }

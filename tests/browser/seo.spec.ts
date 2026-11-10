@@ -1,7 +1,48 @@
 import { expect, test } from '@playwright/test';
 import { pageSeo, publicPages, siteOrigin } from '../../src/shared/seo';
+import { localeDirection, localeSchema } from '../../src/shared/locale';
+import { languagePacks } from '../../src/locales';
+import { selectPicker } from './picker';
 
 const origin = 'http://127.0.0.1:8787';
+
+test('one public URL serves all fourteen descriptions with correctly varied HTML', async ({ page, context }) => {
+  for (const locale of localeSchema.options) for (const path of ['/', ...Object.keys(publicPages)]) {
+    const response = await context.request.get(origin + path, { headers: { Accept: 'text/html', 'Accept-Language': locale } });
+    expect(response.status(), `${path}/${locale}`).toBe(200);
+    expect(response.headers()['content-language']).toBe(locale);
+    expect(response.headers().vary.toLowerCase()).toContain('accept-language');
+    const source = await response.text();
+    const document = await page.evaluate(source => {
+      const doc = new DOMParser().parseFromString(source, 'text/html');
+      const state = doc.querySelector('#root')?.getAttribute('data-public-page');
+      return { lang: doc.documentElement.lang, dir: doc.documentElement.dir, description: doc.querySelector('meta[name=description]')?.getAttribute('content'), canonical: doc.querySelector('link[rel=canonical]')?.getAttribute('href'), alternate: doc.querySelectorAll('link[hreflang]').length, locale: state ? JSON.parse(state).locale : undefined, dictionary: doc.querySelector('.dictionary h1')?.textContent, about: doc.querySelector('.about-page')?.getAttribute('lang') };
+    }, source);
+    const seo = pageSeo(path, '', locale);
+    expect(document).toMatchObject({ lang: locale, dir: localeDirection(locale), description: seo.description, canonical: seo.canonical, alternate: 0 });
+    if (path !== '/') expect(document.locale).toBe(locale);
+    if (path === '/library/dictionary') expect(document.dictionary).toBe(languagePacks[locale].dictionary.title);
+    if (path === '/settings/about') expect(document.about).toBe('en');
+  }
+  const fallback = await context.request.get(origin + '/introduction', { headers: { 'Accept-Language': '' } });
+  expect(fallback.headers()['content-language']).toBe('en');
+  expect(await fallback.text()).toContain(pageSeo('/introduction').description);
+});
+
+test('metadata follows saved language changes without changing page addresses', async ({ page }) => {
+  await page.goto(origin + '/settings');
+  for (const locale of ['fr', 'ar'] as const) {
+    await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+    await page.locator('.desktop-nav a[href="/library"]').click();
+    await page.locator('a[href="/library/dictionary"]').click();
+    await expect(page).toHaveURL(origin + '/library/dictionary');
+    await expect(page.locator('head meta[name=description]')).toHaveAttribute('content', pageSeo('/library/dictionary', '', locale).description);
+    await page.reload();
+    await expect(page.locator('head meta[name=description]')).toHaveAttribute('content', pageSeo('/library/dictionary', '', locale).description);
+    await expect(page.locator('html')).toHaveAttribute('dir', localeDirection(locale));
+    await page.locator('.desktop-nav a[href="/settings"]').click();
+  }
+});
 
 test('raw HTML exposes accurate public metadata and keeps personal routes unindexed', async ({ page, context }) => {
   const paths = ['/', ...Object.keys(publicPages), '/today', '/settings', '/progress', '/start', '/library', '/library/saved', '/library/history', '/learn/synthetic-private-id', '/library/dictionary?q=synthetic-secret-query'];

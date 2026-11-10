@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 
 // Export only reviewed source/build inputs; local originals and evidence are never upload inputs.
 const roots = ['src', 'worker', 'scripts', 'tests', 'public', 'content', 'docs', '.github'];
-const files = ['LICENSE', 'NOTICE', 'LICENSING.md', 'BRAND.md', 'LICENSES/CC-BY-4.0.txt', '.gitignore', '.nvmrc', 'AGENTS.md', 'AGENT_WORKFLOW.md', 'DEVELOPMENT_HANDOFF.md', 'IMPLEMENTATION_STATUS.md', 'Issues.md', 'Product_Plan.md', 'Interface_Design.md', 'README.md', 'Dependency_Notices.md', 'community-content.md', 'package.json', 'package-lock.json', 'tsconfig.json', 'eslint.config.mjs', 'index.html', 'vite.config.ts', 'playwright.config.ts', 'playwright.offline.config.ts', 'worker-configuration.d.ts', 'wrangler.jsonc'];
+const files = ['LICENSE', 'NOTICE', 'LICENSING.md', 'BRAND.md', 'LICENSES/CC-BY-4.0.txt', '.gitignore', '.nvmrc', 'AGENTS.md', 'AGENT_WORKFLOW.md', 'DEVELOPMENT_HANDOFF.md', 'IMPLEMENTATION_STATUS.md', 'Issues.md', 'Product_Plan.md', 'Interface_Design.md', 'README.md', 'Dependency_Notices.md', 'community-content.md', 'package.json', 'package-lock.json', 'tsconfig.json', 'eslint.config.mjs', 'index.html', '404.html', 'vite.config.ts', 'playwright.config.ts', 'playwright.offline.config.ts', 'worker-configuration.d.ts', 'wrangler.jsonc'];
 export function allowed(name) {
   if (name === 'docs/history/README.md') return true;
   if ((name === 'logo' || name.startsWith('logo/')) || name === 'public/logo' || name.startsWith('public/logo/')) return false;

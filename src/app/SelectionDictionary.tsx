@@ -1,7 +1,7 @@
 import { messages } from '../locales';
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
-import { communityDictionary } from '../data/communityInstall';
-import { lookupDictionary, suggestDictionary } from '../shared/dictionary';
+import { lookupLocalDictionary, type communityDictionary } from '../data/communityInstall';
+import { type lookupDictionary, suggestDictionary } from '../shared/dictionary';
 import type { Locale } from '../shared/content';
 import { onlineDictionaryUrl, type OnlineDictionaryId } from './onlineDictionaries';
 
@@ -58,12 +58,7 @@ export function SelectionDictionary({ selected, locale, profileId, online, defau
     setTerm(term);
     setOpen(true); setLoading(true); setError(''); setEntry(undefined); setCommunity([]); setSuggestions([]); setAll(false);
     try {
-      const local = await communityDictionary(profileId, term);
-      if (token !== request.current) return;
-      const found = await lookupDictionary(term).catch(error => {
-        if (!local.length) throw error;
-        return { term, matched: term, senses: [], course: [] };
-      });
+      const { community: local, ...found } = await lookupLocalDictionary(profileId, term);
       // A closed or replaced popup must not mark a later question as assisted.
       if (token !== request.current) return;
       await onLookup().catch(() => { throw new Error('LOOKUP_RECORD'); });

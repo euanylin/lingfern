@@ -2,11 +2,16 @@ import { expect, it } from 'vitest';
 import { extractPublicStyles } from '../scripts/prerender';
 import { publicPageStateSchema } from '../src/shared/prerender';
 import { prerenderPath, publicPages } from '../src/shared/seo';
+import { localeSchema } from '../src/shared/locale';
 
 it('keeps public hydration state scoped to known public routes and valid dates', () => {
   for (const path of Object.keys(publicPages)) {
     expect(publicPageStateSchema.parse({ path, day: '2026-10-26' }).path).toBe(path);
     expect(prerenderPath(path)).toBe(`/prerender${path}.html.txt`);
+    for (const locale of localeSchema.options) {
+      expect(publicPageStateSchema.parse({ path, day: '2026-10-26', locale }).locale).toBe(locale);
+      expect(prerenderPath(path, locale)).toBe(`/prerender${locale === 'en' ? '' : '/' + locale}${path}.html.txt`);
+    }
   }
   for (const path of ['/settings', '/learn/private-record', '/missing']) {
     expect(publicPageStateSchema.safeParse({ path, day: '2026-10-26' }).success).toBe(false);
@@ -14,6 +19,7 @@ it('keeps public hydration state scoped to known public routes and valid dates',
   }
   expect(publicPageStateSchema.safeParse({ path: '/introduction', day: '2026-02-30' }).success).toBe(false);
   expect(publicPageStateSchema.safeParse({ path: '/introduction', day: '2026-10-26', profileId: 'private' }).success).toBe(false);
+  expect(publicPageStateSchema.safeParse({ path: '/introduction', day: '2026-10-26', locale: 'unknown' }).success).toBe(false);
 });
 
 it('extracts exact static style values without inline CSS, duplicate rules or malformed void elements', () => {

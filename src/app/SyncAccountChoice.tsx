@@ -42,16 +42,16 @@ export function SyncAccountChoice({ locale, localProfileId, profileId, summary, 
     } catch { if (!signal.aborted) setMessage(t.failed); }
     finally { if (!signal.aborted) setBusy(false); }
   }
-  if (readFailed) return <section className="sync-account-choice"><h3>{t.title}</h3><p role="status">{t.failed}</p><button type="button" onClick={() => setReload(value => value + 1)}>{t.retry}</button></section>;
+  if (readFailed) return <section className="sync-account-choice"><h3>{t.title}</h3><p role="status">{t.failed}</p><button className="button" type="button" onClick={() => setReload(value => value + 1)}>{t.retry}</button></section>;
   if (!ready && !matched) return <p role="status">{t.loading}</p>;
   const current = choices.find(choice => choice.localProfileId === localProfileId);
   if (matched) return <>{current && <p className="github-profile-row"><span>{messages('profileBackup')[locale].profile}</span><bdi>{current.label}</bdi></p>}{children}</>;
   return <section className="sync-account-choice"><h3>{t.title}</h3><p>{t.choose}</p>
     {choices.length > 1 && <SettingsPicker label={t.target} value={target} disabled={busy} options={choices} onChange={setTarget}/>}
     {choices.length === 1 && <p className="muted">{t.target}: {choices[0].label}</p>}
-    <div className="backup-actions"><button className="primary" type="button" disabled={busy} onClick={() => void choose(true)}>{t.copy}</button><button type="button" disabled={busy} onClick={() => void choose(false)}>{t.switch}</button><button type="button" disabled={busy} onClick={() => setMessage(t.kept)}>{t.keep}</button></div>
+    <div className="backup-actions"><button className="primary" type="button" disabled={busy} onClick={() => void choose(true)}>{t.copy}</button><button className="button" type="button" disabled={busy} onClick={() => void choose(false)}>{t.switch}</button><button className="button" type="button" disabled={busy} onClick={() => setMessage(t.kept)}>{t.keep}</button></div>
     <p className="muted">{t.copyNote}</p>
     {(busy || message) && <p role="status">{busy ? t.busy : message}</p>}
-    {message === t.failed && <button type="button" disabled={busy} onClick={() => setReload(value => value + 1)}>{t.retry}</button>}
+    {message === t.failed && <button className="button" type="button" disabled={busy} onClick={() => setReload(value => value + 1)}>{t.retry}</button>}
   </section>;
 }

@@ -85,13 +85,15 @@ export async function reviewedExcerpts<T extends { text: string; language?: z.in
   }).map(excerpt => !targets.size || !excerpt.language ? excerpt : { ...excerpt, language: { ...excerpt.language,
     tokens: excerpt.language.tokens.filter(token => !targets.has(excerpt.text.slice(token.start, token.end).toLowerCase())) } });
 }
+// Preserve the first matching review when a passage has several teaching scopes.
+const readingScopes = new Map([...personalGoalScopes.need, ...personalGoalScopes.preference, ...personalGoalScopes.update, ...personalGoalScopes.reason, ...personalGoalScopes.rule, ...personalGoalScopes.integration, ...b1MainPointScopes.records, ...b1ConditionScopes.records, ...b1ReferenceScopes.records, ...b1MotiveScopes.records, ...b1IntentionScopes.records, ...b1ProcedureScopes.records, ...rhetoricalFunctionScopes.reading, ...disagreementSynthesisScopes.reading, ...faithfulParaphraseScopes.reading, ...complexPragmaticsScopes.reading, ...layeredPositionScopes.reading, ...nuancedMeaningScopes.reading, ...informationDensityScopes.reading, ...indirectStanceScopes.reading, ...argumentBoundariesScopes.reading, ...registerAudienceScopes.reading, ...discourseOrganizationScopes.reading, ...implicitIntentionScopes.reading, ...b2ViewAttributionScopes.reading, ...b2InformationSynthesisScopes.reading, ...b2SpeakerAttitudeScopes.reading, ...b2QualifiedConcessionScopes.reading, ...b2ComparisonScopes.reading, ...b2ClaimExampleScopes.records, ...orderScopes.records, ...meaningScopes.people, ...meaningScopes.location, ...meaningScopes.instruction, ...meaningScopes.quantity, ...meaningScopes.verification, ...meaningScopes.time].toReversed().map(scope => [scope.passageId, scope]));
 export async function reviewedReading(records: Corpus['records'], maxWords = 700) {
   if (!Number.isInteger(maxWords) || maxWords < 120 || maxWords > maxCorpusWords) throw new Error('INVALID_CORPUS_SELECTION');
   const reviews = await loadReviews();
   return (await Promise.all(records.map(async record => {
     const reviewed = [...await reviewedExcerpts(record, record.passages)];
     for (const passage of reviewed) {
-      const scope = [...personalGoalScopes.need, ...personalGoalScopes.preference, ...personalGoalScopes.update, ...personalGoalScopes.reason, ...personalGoalScopes.rule, ...personalGoalScopes.integration, ...b1MainPointScopes.records, ...b1ConditionScopes.records, ...b1ReferenceScopes.records, ...b1MotiveScopes.records, ...b1IntentionScopes.records, ...b1ProcedureScopes.records, ...rhetoricalFunctionScopes.reading, ...disagreementSynthesisScopes.reading, ...faithfulParaphraseScopes.reading, ...complexPragmaticsScopes.reading, ...layeredPositionScopes.reading, ...nuancedMeaningScopes.reading, ...informationDensityScopes.reading, ...indirectStanceScopes.reading, ...argumentBoundariesScopes.reading, ...registerAudienceScopes.reading, ...discourseOrganizationScopes.reading, ...implicitIntentionScopes.reading, ...b2ViewAttributionScopes.reading, ...b2InformationSynthesisScopes.reading, ...b2SpeakerAttitudeScopes.reading, ...b2QualifiedConcessionScopes.reading, ...b2ComparisonScopes.reading, ...b2ClaimExampleScopes.records, ...orderScopes.records, ...meaningScopes.people, ...meaningScopes.location, ...meaningScopes.instruction, ...meaningScopes.quantity, ...meaningScopes.verification, ...meaningScopes.time].find(scope => scope.passageId === passage.id);
+      const scope = readingScopes.get(passage.id);
       if (scope && (record.rootId !== scope.rootId || record.sourceHash !== scope.sourceHash || await textDigest(passage.text) !== scope.textSha256)) throw new Error('CORPUS_INTEGRITY');
       const projected = meaningScopes.quantity.find(entry => entry.passageId === passage.id);
       if (projected?.end !== undefined && (!Number.isSafeInteger(projected.end) || projected.end <= 0 || projected.end >= passage.text.length || passage.text[projected.end] !== '\n' || !/[.!]$/.test(passage.text.slice(0, projected.end)) || await textDigest(passage.text.slice(0, projected.end)) !== projected.materialSha256)) throw new Error('CORPUS_INTEGRITY');
@@ -197,26 +199,29 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
       .sort((a, b) => Number(b.path === `/corpus/${source}.json`) - Number(a.path === `/corpus/${source}.json`) || a.path.localeCompare(b.path, 'en', { numeric: true }));
     if (!files?.some(file => file.path === `/corpus/${source}.json`)) throw new Error('MISSING_CORPUS');
     const banks: Corpus[] = [];
-    for (const file of files) {
-      const response = await fetch(file.path, { credentials: 'omit' });
-      if (!response.ok || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_CORPUS'); }
-      const reader = response.body.getReader(), chunks: Uint8Array[] = [];
-      let length = 0;
-      try {
-        for (;;) {
-          const { value, done } = await reader.read();
-          if (done) break;
-          length += value.length;
-          if (length > file.bytes) throw new Error('CORPUS_INTEGRITY');
-          chunks.push(value);
-        }
-      } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
-      const bytes = new Uint8Array(length);
-      let offset = 0;
-      for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }
-      const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(byte => byte.toString(16).padStart(2, '0')).join('');
-      if (length !== file.bytes || digest !== file.sha256) throw new Error('CORPUS_INTEGRITY');
-      banks.push(corpusSchema.parse(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))));
+    // Bound parallel shard reads to limit memory while avoiding serial network waits.
+    for (let offset = 0; offset < files.length; offset += 2) {
+      banks.push(...await Promise.all(files.slice(offset, offset + 2).map(async file => {
+        const response = await fetch(file.path, { credentials: 'omit' });
+        if (!response.ok || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_CORPUS'); }
+        const reader = response.body.getReader(), chunks: Uint8Array[] = [];
+        let length = 0;
+        try {
+          for (;;) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            length += value.length;
+            if (length > file.bytes) throw new Error('CORPUS_INTEGRITY');
+            chunks.push(value);
+          }
+        } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
+        const bytes = new Uint8Array(length);
+        let offset = 0;
+        for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }
+        const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(byte => byte.toString(16).padStart(2, '0')).join('');
+        if (length !== file.bytes || digest !== file.sha256) throw new Error('CORPUS_INTEGRITY');
+        return corpusSchema.parse(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+      })));
     }
     const records = banks.flatMap(bank => bank.records);
     if (records.length > 3000 || new Set(records.map(record => record.rootId)).size !== records.length) throw new Error('CORPUS_INTEGRITY');

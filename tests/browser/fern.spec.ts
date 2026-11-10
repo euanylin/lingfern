@@ -231,7 +231,7 @@ test('unreadable reference history preserves the last known growth across naviga
   expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).syncEvents.get(['local-guest', id])).payload.term, invalid)).toBe('');
 });
 
-test('a cold reload reserves the fern space and paints complete records before revealing it', async ({ page }) => {
+test('a cold reload paints complete records in the first fern frame', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/today');
   await page.evaluate(async () => {
     await (await import('/src/data/db.ts' as string)).settings.put({ key: 'profile:local-guest:lookupHistory', value: JSON.stringify(Array.from({ length: 100 }, (_, index) => ({ kind: 'dictionary', term: `synthetic ${index}`, lookedUpAt: new Date().toISOString() }))) });
@@ -254,7 +254,7 @@ test('a cold reload reserves the fern space and paints complete records before r
   await page.reload(); await expect(page.locator('.fern')).toBeVisible();
   await expect(page.locator('.fern')).toHaveAttribute('aria-busy', 'false');
   const result = await page.evaluate(() => (window as unknown as { fernLoading: { first: { visibility: string; busy: string; height: number }; ready: { height: number; growth: number } } }).fernLoading);
-  expect(result.first.visibility).toBe('hidden'); expect(result.first.busy).toBe('true');
+  expect(result.first.visibility).toBe('visible'); expect(result.first.busy).toBe('false');
   expect(result.first.height).toBeGreaterThan(0); expect(result.ready.height).toBe(result.first.height);
   expect(result.ready.growth).toBeCloseTo(fernGrowth(0, 0, 100).stem, 12);
 });

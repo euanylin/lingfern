@@ -780,5 +780,9 @@
   "historyDeletion": {
     "remove": "Löschen",
     "linked": "Beide verbundenen Teile werden gelöscht."
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Seite wurde möglicherweise verschoben, oder die Adresse ist falsch."
   }
 }

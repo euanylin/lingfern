@@ -63,8 +63,9 @@ export async function readSharedContext(env: SharingEnv, accountId: number, clie
 }
 
 export async function cleanupShares(env: SharingEnv) {
-  if (env.AUTH_DB) await env.AUTH_DB.prepare('DELETE FROM shared_contexts WHERE expires_at<=? OR account_id IN(SELECT id FROM accounts WHERE revoked=1) OR connection_id IN(SELECT id FROM mcp_connections WHERE revoked=1 OR expires_at<=?)').bind(now(), now()).run();
-  if (env.AUTH_DB) await env.AUTH_DB.prepare('DELETE FROM mcp_login_requests WHERE expires_at<=?').bind(now()).run();
+  if (!env.AUTH_DB) return;
+  await env.AUTH_DB.prepare('DELETE FROM shared_contexts WHERE expires_at<=? OR account_id IN(SELECT id FROM accounts WHERE revoked=1) OR connection_id IN(SELECT id FROM mcp_connections WHERE revoked=1 OR expires_at<=?)').bind(now(), now()).run();
+  await env.AUTH_DB.prepare('DELETE FROM mcp_login_requests WHERE expires_at<=?').bind(now()).run();
 }
 
 export async function sharingRoute(request: Request, env: SharingEnv): Promise<Response | undefined> {

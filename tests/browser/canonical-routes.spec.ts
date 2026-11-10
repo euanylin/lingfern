@@ -42,8 +42,8 @@ for (const controlled of [false, true]) test(`canonical routes and valid saved p
     await context.setOffline(false);
     for (const path of ['/missing-page', '/missing.html', '/library/missing', '/settings/missing', '/tasks', '/tests']) {
       const response = (await page.goto(path))!; expect(response.status()).toBe(404);
-      await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
-      await expect(page.getByRole('link', { name: 'Back to Today' })).toHaveAttribute('href', '/today');
+      await expect(page.getByRole('heading', { name: '找不到页面' })).toBeVisible();
+      await expect(page.getByRole('link', { name: '返回今日' })).toHaveAttribute('href', '/today');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
     for (const path of paths) {
@@ -58,6 +58,6 @@ for (const controlled of [false, true]) test(`canonical routes and valid saved p
     for (const path of ['/favicon.ico', '/apple-touch-icon.png']) expect((await context.request.get(path)).status()).toBe(200);
     await page.setViewportSize({ width: 320, height: 640 }); await page.goto('/missing-page');
     await page.screenshot({ path: `output/playwright/not-found-sw-${controlled}.png` });
-    await page.getByRole('link', { name: 'Back to Today' }).click(); await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+    await page.getByRole('link', { name: '返回今日' }).click(); await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
   } finally { await context.close(); }
 });

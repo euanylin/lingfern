@@ -16,7 +16,7 @@ export const practiceSelectionSchema = z.preprocess(value => {
 }, z.object({
   topics: z.array(topicSchema).max(topicSchema.options.length).refine(topics => new Set(topics).size === topics.length).default([]),
   kinds: z.array(corpusQuestionKindSchema).max(corpusQuestionKindSchema.options.length).refine(kinds => new Set(kinds).size === kinds.length).default([]),
-  materials: z.array(exposureRootIdSchema).max(32).refine(ids => new Set(ids).size === ids.length),
+  materials: z.array(exposureRootIdSchema).max(32).refine(ids => new Set(ids).size === ids.length).default([]),
 }).strict());
 export type PracticeSelection = z.infer<typeof practiceSelectionSchema>;
 export const automaticPractice: PracticeSelection = { topics: [], kinds: [], materials: [] };

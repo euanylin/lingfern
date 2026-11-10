@@ -5,6 +5,7 @@ import { authRoute } from './auth';
 import { repositoryRoute } from './repository';
 import { oauthRoute, type OAuthEnv } from './oauth';
 import { pageSeo, prerenderPath, renderPageHtml } from '../src/shared/seo';
+import { requestLocale } from '../src/shared/locale';
 
 function unindexed(response: Response) {
   const result = new Response(response.body, response);
@@ -36,22 +37,25 @@ export default {
     const accept = request.headers.get('Accept') ?? '*/*';
     const canonical = canonicalPagePath(pathname);
     if (canonical && ['GET', 'HEAD'].includes(request.method)) return Response.redirect(new URL(canonical + new URL(request.url).search, request.url).href, 301);
-    if (pageRoute(pathname) && ['GET', 'HEAD'].includes(request.method) && ['text/html', 'application/xhtml+xml', '*/*'].some(type => accept.includes(type))) {
+    if ((pathname === '/' || pageRoute(pathname)) && ['GET', 'HEAD'].includes(request.method) && ['text/html', 'application/xhtml+xml', '*/*'].some(type => accept.includes(type))) {
       const headers = new Headers(request.headers);
       for (const key of ['if-none-match', 'if-modified-since', 'range']) headers.delete(key);
       headers.set('Accept-Encoding', 'identity');
       const search = new URL(request.url).search;
-      const page = !search && prerenderPath(pathname);
+      const locale = requestLocale(request.headers.get('Accept-Language'));
+      const page = !search && prerenderPath(pathname, locale);
       const asset = await env.ASSETS.fetch(new Request(new URL(page || '/', request.url), { method: 'GET', headers }));
       if (!asset.ok) return asset;
       // Only sealed public documents or the empty app shell are rendered.
       const template = await asset.text();
       if (template.length > (page ? 1024 * 1024 : 65536)) throw Error('HTML_SHELL_TOO_LARGE');
-      const seo = pageSeo(pathname, search);
-      const html = renderPageHtml(template, pathname, search);
+      const seo = pageSeo(pathname, search, locale);
+      const html = renderPageHtml(template, pathname, search, locale);
       const responseHeaders = new Headers(asset.headers);
       for (const key of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified']) responseHeaders.delete(key);
       responseHeaders.set('Content-Type', 'text/html; charset=utf-8');
+      responseHeaders.set('Content-Language', locale);
+      responseHeaders.append('Vary', 'Accept-Language');
       responseHeaders.set('X-Lingfern-Version', env.CF_VERSION_METADATA.id);
       responseHeaders.set('X-Robots-Tag', seo.robots);
       responseHeaders.set('Cache-Control', seo.robots.startsWith('noindex') ? 'private, no-store' : 'no-cache');

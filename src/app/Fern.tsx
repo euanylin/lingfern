@@ -10,9 +10,9 @@ import type { Locale } from '../shared/content';
 type FernMotion = { growth: FernGrowth; velocity: FernGrowth; seconds: number; lookups: number };
 const shown = new Map<string, FernMotion>();
 
-export function Fern({ profileId, entries, locale, illustrationActive }: { profileId: string; entries: ProgressEntry[]; locale: Locale; illustrationActive?: boolean }) {
+export function Fern({ profileId, entries, locale, illustrationActive, initialLookups }: { profileId: string; entries: ProgressEntry[]; locale: Locale; illustrationActive?: boolean; initialLookups?: number }) {
   const illustrating = illustrationActive !== undefined;
-  const [lookups, setLookups] = useState<number | undefined>(() => illustrating ? 0 : shown.get(profileId)?.lookups);
+  const [lookups, setLookups] = useState<number | undefined>(() => illustrating ? 0 : initialLookups ?? shown.get(profileId)?.lookups);
   const [failed, setFailed] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(!illustrating);

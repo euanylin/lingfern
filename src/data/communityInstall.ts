@@ -1,7 +1,7 @@
 import { cachedFilesPresent, waitForOfflineWorker } from './offline';
 import { communityPacks, db, syncClocks, type CommunityPackageRecord } from './db';
 import type { CommunityPack } from './communityPack';
-import { normaliseTerm } from '../shared/dictionary';
+import { lookupDictionary, normaliseTerm } from '../shared/dictionary';
 import { materialPackageId, type Lesson } from '../shared/content';
 import { mutateResourceCache } from './resourceMutation';
 
@@ -35,6 +35,15 @@ export async function communityDictionary(profileId: string, raw: string) {
   if (!term) return [];
   const packs = await communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready' && !!pack.dictionary?.length).toArray();
   return packs.flatMap(pack => (pack.dictionary ?? []).filter(entry => normaliseTerm(entry.term) === term).map(entry => ({ ...entry, source: pack.sources.find(source => source.id === entry.sourceId)?.title ?? pack.id })));
+}
+
+export async function lookupLocalDictionary(profileId: string, raw: string) {
+  const [communityResult, dictionaryResult] = await Promise.allSettled([communityDictionary(profileId, raw), lookupDictionary(raw)]);
+  if (communityResult.status === 'rejected') throw communityResult.reason;
+  const community = communityResult.value;
+  if (dictionaryResult.status === 'rejected' && !community.length) throw dictionaryResult.reason;
+  const found = dictionaryResult.status === 'fulfilled' ? dictionaryResult.value : { term: normaliseTerm(raw), matched: normaliseTerm(raw), senses: [], course: [] };
+  return { ...found, community };
 }
 
 export async function communityDictionaryTerms(profileId: string) {

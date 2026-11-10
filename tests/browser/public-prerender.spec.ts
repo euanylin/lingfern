@@ -1,9 +1,33 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { publicPages, prerenderPath } from '../../src/shared/seo';
+import { languagePacks } from '../../src/locales';
+import { selectPicker } from './picker';
 
 const origin = 'http://127.0.0.1:8787';
 const paths = Object.keys(publicPages);
+
+for (const locale of ['fr', 'ar'] as const) test(`public markup keeps its heading when saved ${locale} differs from the request language`, async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', serviceWorkers: 'block' });
+  const page = await context.newPage(), errors: string[] = [];
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => { release = resolve; });
+  try {
+    await page.goto(origin + '/settings');
+    await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
+    page.on('pageerror', error => errors.push(error.message));
+    page.on('console', message => { if (message.type() === 'error' && /hydration|hydrating|Minified React error/i.test(message.text())) errors.push(message.text()); });
+    await page.route('**/assets/*.js', async route => { await pending; await route.continue(); });
+    await page.goto(origin + '/library/dictionary', { waitUntil: 'commit' });
+    await expect(page.locator('.dictionary h1')).toHaveText(languagePacks['zh-Hans'].dictionary.title);
+    await page.evaluate(() => { (window as unknown as { originalHeading: Element | null }).originalHeading = document.querySelector('.dictionary h1'); });
+    release();
+    await expect(page.locator('.dictionary h1')).toHaveText(languagePacks[locale].dictionary.title);
+    await expect(page.locator('#root')).not.toHaveAttribute('data-public-page');
+    expect(errors).toEqual([]);
+    expect(await page.evaluate(() => (window as unknown as { originalHeading: Element | null }).originalHeading === document.querySelector('.dictionary h1'))).toBe(true);
+  } finally { release(); await page.unrouteAll({ behavior: 'wait' }); await context.close(); }
+});
 
 test('public preview chunks download while the main view is pending', async ({ browser }) => {
   const context = await browser.newContext({ locale: 'zh-CN', serviceWorkers: 'block' });
@@ -150,8 +174,8 @@ test('the normal root keeps first-visit onboarding and its saved seen state', as
   } finally { await context.close(); }
 });
 
-test('canonical public documents contain the existing body without executing JavaScript', async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
+for (const locale of ['en', 'zh-Hans'] as const) test(`canonical public documents contain the existing body without executing JavaScript: ${locale}`, async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, locale });
   const page = await context.newPage();
   try {
     for (const path of paths) {
@@ -162,7 +186,7 @@ test('canonical public documents contain the existing body without executing Jav
       if (path === '/library/grammar') expect(await page.locator('.grammar-results>details').count()).toBe(JSON.parse(readFileSync('public/grammar/entries.json', 'utf8')).entries.length);
       if (path === '/library/ipa') expect(await page.locator('.ipa-entry').count()).toBeGreaterThan(30);
       if (path === '/settings/about') await expect(page.locator('.about-projects')).toContainText('React');
-      if (path === '/introduction') await expect(page.locator('.welcome-caption')).toContainText('Today');
+      if (path === '/introduction') await expect(page.locator('.welcome-caption')).toContainText(languagePacks[locale].app.today);
     }
     const internal = await context.request.get(origin + prerenderPath('/library/ipa'));
     expect(internal.headers()['x-robots-tag']).toContain('noindex');

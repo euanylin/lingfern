@@ -59,7 +59,10 @@ export function SettingsPicker(props: Props) {
       // Wide fields open from their text edge; compact row values keep end alignment.
       const alignLeft = variant === 'field' ? !rtl : rtl;
       const placement = pickerMenuPosition(trigger.current.getBoundingClientRect(), { width: popup.offsetWidth, height: popup.offsetHeight }, viewport, alignLeft ? 'left' : 'right');
-      const parent = popup.offsetParent as HTMLElement, origin = parent.getBoundingClientRect();
+      const parent = popup.offsetParent;
+      // Closing dialogs can temporarily hide a menu retained for its exit motion.
+      if (!(parent instanceof HTMLElement)) return;
+      const origin = parent.getBoundingClientRect();
       popup.style.right = 'auto';
       popup.style.left = `${placement.left - origin.left - parent.clientLeft + parent.scrollLeft}px`;
       popup.style.top = `${placement.top - origin.top - parent.clientTop + parent.scrollTop}px`;

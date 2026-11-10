@@ -5,7 +5,8 @@ import { corpusSchema } from '../src/core/corpus';
 import { asTestLesson, topicSchema } from '../src/shared/content';
 import { practiceSelectionSchema, practiceSelectionMatches, readPracticeSelection } from '../src/shared/practiceSelection';
 import { practiceMaterials, prepareCorpusPractice } from '../src/app/prepareCorpusPractice';
-import { loadReadingCorpus } from '../src/data/corpus';
+import { offlineGroupReady } from '../src/data/offline';
+import { loadReadingCorpus, loadSpokenCorpora } from '../src/data/corpus';
 import { installSourcePack } from '../src/data/sourcePacks';
 import personal from '../public/audio/a2-speech/PERSONAL.json';
 
@@ -72,6 +73,8 @@ it('does not substitute unavailable, exhausted, or incompatible selected materia
 
 it('migrates single saved topics without accepting duplicate, conflicting or unknown topics', () => {
   expect(readPracticeSelection('{"topic":"science","kind":"choice","materials":[]}')).toEqual({ topics: ['science'], kinds: ['choice'], materials: [] });
+  // Older selections may predate the material filter entirely.
+  expect(readPracticeSelection('{"topic":"science","kind":"choice"}')).toEqual({ topics: ['science'], kinds: ['choice'], materials: [] });
   expect(readPracticeSelection(undefined)).toEqual({ topics: [], kinds: [], materials: [] });
   expect(practiceSelectionSchema.parse({ topics: topicSchema.options, materials: [] }).topics).toEqual(topicSchema.options);
   for (const value of [{ topics: ['science', 'science'] }, { topic: 'science', topics: ['culture'] }, { topics: ['unknown'] }, { topics: 'science' }]) expect(practiceSelectionSchema.safeParse({ ...value, materials: [] }).success).toBe(false);
@@ -111,4 +114,47 @@ it('keeps both automatic and material-filtered reading objective on the ordinary
       expect(found).toBe(true);
     }
   } finally { random.mockRestore(); }
+});
+
+
+it('reuses validated reading for availability and generation, then sees removals on the next start', async () => {
+  vi.mocked(loadReadingCorpus).mockClear();
+  const selection = { topics: [], kinds: ['completion' as const], materials: corpus.records.slice(0, 32).map(record => record.rootId) };
+  const preferences = { reading: 'B2' as const, interests: [], step: 4, completed: true };
+  const result = await prepareCorpusPractice({ ...base, skill: 'reading', preferences, selection });
+  expect(result.lesson).toBeDefined();
+  expect(loadReadingCorpus).toHaveBeenCalledTimes(1);
+  vi.mocked(loadReadingCorpus).mockResolvedValue({ version: 1, failures: [], records: [] });
+  expect((await prepareCorpusPractice({ ...base, skill: 'reading', preferences, selection })).lesson).toBeUndefined();
+  expect(loadReadingCorpus).toHaveBeenCalledTimes(2);
+});
+
+it('checks each offline audio group once across availability and selected-source generation', async () => {
+  vi.mocked(offlineGroupReady).mockClear();
+  const preferences = { listening: 'A2' as const, interests: [], step: 4, completed: true };
+  const selection = { topics: [], kinds: ['choice' as const], materials: personal.need.map(source => source.rootId) };
+  const result = await prepareCorpusPractice({ ...base, skill: 'listening', preferences, selection });
+  expect(result.lesson?.goalId).toBe('heard-stated-need');
+  expect(offlineGroupReady).toHaveBeenCalledTimes(1);
+  expect(offlineGroupReady).toHaveBeenCalledWith('audio-a2');
+  vi.mocked(offlineGroupReady).mockResolvedValueOnce(false);
+  expect((await prepareCorpusPractice({ ...base, skill: 'listening', preferences, selection })).lesson).toBeUndefined();
+  expect(offlineGroupReady).toHaveBeenCalledTimes(2);
+});
+
+it('retries failed reading resources on a new operation instead of retaining a rejected snapshot', async () => {
+  vi.mocked(loadReadingCorpus).mockClear();
+  vi.mocked(loadReadingCorpus).mockRejectedValueOnce(new Error('CORPUS_INTEGRITY'));
+  const input = { ...base, skill: 'reading' as const, selection: { topics: [], kinds: ['completion' as const], materials: corpus.records.slice(0, 32).map(record => record.rootId) } };
+  await expect(prepareCorpusPractice(input)).rejects.toThrow('CORPUS_INTEGRITY');
+  expect((await prepareCorpusPractice(input)).lesson).toBeDefined();
+  expect(loadReadingCorpus).toHaveBeenCalledTimes(2);
+});
+
+it.each(['reading', 'listening'] as const)('loads %s once when several requested kinds are exhausted', async skill => {
+  vi.mocked(loadReadingCorpus).mockResolvedValue({ version: 1, failures: [], records: [] }).mockClear();
+  vi.mocked(loadSpokenCorpora).mockResolvedValue([]).mockClear();
+  const result = await prepareCorpusPractice({ ...base, skill, preferences: { reading: 'B2', listening: 'B2', interests: [], step: 4, completed: true }, selection: { topics: [], materials: [], kinds: ['table', 'matching'] } });
+  expect(result.lesson).toBeUndefined();
+  expect(skill === 'reading' ? loadReadingCorpus : loadSpokenCorpora).toHaveBeenCalledTimes(1);
 });

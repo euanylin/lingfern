@@ -31,6 +31,9 @@ import { Fern } from './Fern';
 import { FirstRun, firstRunCopy } from './FirstRun';
 import { copy, initialLocale } from './i18n';
 import { NavIcon } from './NavIcon';
+import { NotFound } from './NotFound';
+import { navDisplay, type InitialInterface, type NavDisplay } from './initialInterface';
+import { readLookupHistory } from '../data/lookupHistory';
 import { updatePageMetadata } from './pageMetadata';
 import type { PublicPageState } from '../shared/prerender';
 import { defaultOnlineDictionary, onlineDictionaries, type OnlineDictionaryId } from './onlineDictionaries';
@@ -101,14 +104,12 @@ const lesson = catalogue.find(item => item.targetLevel === 'A1' && item.skill ==
 const owner = crypto.randomUUID();
 let firstEntry = typeof location !== 'undefined' && location.pathname === '/';
 const route = () => location.pathname === '/' ? '/today' : location.pathname;
-type NavDisplay = 'text' | 'icon' | 'both';
-const navDisplay = (value?: string): value is NavDisplay => value === 'text' || value === 'icon' || value === 'both';
 function welcomeSeen() {
   try { return localStorage.getItem('lingfern.onboarding.seen') === '1'; }
   catch { return true; }
 }
 
-export function App({ initialPage }: { initialPage?: PublicPageState }) {
+export function App({ initialPage, initialInterface }: { initialPage?: PublicPageState; initialInterface?: InitialInterface }) {
   useEffect(touchFeedback, []);
   const [path, setPath] = useState(() => initialPage?.path ?? route());
   const githubSession = useGithubSession(path === '/settings');
@@ -118,11 +119,16 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const todayQuote = useRef<DailyQuoteSelection>(undefined);
   const [unsavedDemo, setUnsavedDemo] = useState(false);
   useEffect(() => { setUnsavedDemo(false); }, [path]);
-  const [locale, setLocale] = useState<Locale>(() => initialPage ? 'en' : initialLocale());
+  const [locale, setLocale] = useState<Locale>(() => initialPage ? initialPage.locale ?? 'en' : initialInterface?.locale ?? initialLocale());
   const localeRequest = useRef(0);
-  const [theme, setTheme] = useState('system');
-  const [desktopNavDisplay, setDesktopNavDisplay] = useState<NavDisplay>();
-  const [mobileNavDisplay, setMobileNavDisplay] = useState<NavDisplay>();
+  const [theme, setTheme] = useState(initialPage ? 'system' : initialInterface?.theme ?? 'system');
+  const [desktopNavDisplay, setDesktopNavDisplay] = useState<NavDisplay | undefined>(initialPage ? undefined : initialInterface?.desktopNavDisplay ?? 'text');
+  const [mobileNavDisplay, setMobileNavDisplay] = useState<NavDisplay | undefined>(initialPage ? undefined : initialInterface?.mobileNavDisplay ?? 'both');
+  useLayoutEffect(() => {
+    if (!initialPage || !initialInterface) return;
+    setLocale(initialInterface.locale); setTheme(initialInterface.theme);
+    setDesktopNavDisplay(initialInterface.desktopNavDisplay); setMobileNavDisplay(initialInterface.mobileNavDisplay);
+  }, [initialPage, initialInterface]);
   const [onlineDictionary, setOnlineDictionary] = useState<OnlineDictionaryId>('cambridge');
   const [preferences, setPreferences] = useState<Preferences>();
   const [activeProfile, setActiveProfile] = useState('local-guest');
@@ -145,7 +151,15 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   const [history, setHistory] = useState<Session[]>([]);
   const [pageSearch, setPageSearch] = useState(initialPage ? '' : location.search);
   useEffect(scrollbarVisibility, [path, pageSearch]);
-  useLayoutEffect(() => { updatePageMetadata(path, pageSearch); }, [path, pageSearch]);
+  const missing = !pageRoute(path);
+  useLayoutEffect(() => {
+    updatePageMetadata(path, pageSearch, locale);
+    document.body.classList.toggle('not-found', missing);
+    if (missing) {
+      document.title = `${messages('notFound')[locale].title} | Lingfern`;
+      document.querySelector('meta[name="robots"]')?.setAttribute('content', 'noindex, nofollow');
+    }
+  }, [path, pageSearch, locale, missing]);
   const resetNavigationScroll = useRef(false);
   useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; document.getElementById('main')?.setAttribute('data-navigated', ''); scrollTo(0, 0); } }, [path, pageSearch]);
   useEffect(() => {
@@ -159,6 +173,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
   }, [path, ready]);
   const lookupQuery = new URLSearchParams(pageSearch).get('q') ?? '';
   const [records, setRecords] = useState<Attempt[]>([]);
+  const [fernLookups, setFernLookups] = useState<number>();
   const [summaries, setSummaries] = useState<ResolvedSummary[]>([]);
   const [unavailableSummaries, setUnavailableSummaries] = useState<CompletionSummary[]>([]);
   const [timingRows, setTimingRows] = useState<CompletionTime[]>([]);
@@ -200,7 +215,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       });
       await bootstrapSyncEvents(profileId).catch(() => { if (current === loadRevision.current) setError('save'); });
       await purgeDeletedRecords(profileId);
-      const [all, answers, imported, context, clock, events] = await Promise.all([
+      const [all, answers, imported, context, clock, events, lookups] = await Promise.all([
         sessions.where('profileId').equals(profileId).toArray(), attempts.where('profileId').equals(profileId).toArray(),
         communityPacks.where('profileId').equals(profileId).filter(pack => pack.state === 'ready').toArray(),
         projectPreferences(profileId).then(async snapshot => {
@@ -210,6 +225,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
           return { ...snapshot, nextLocale };
         }),
         syncClocks.get(profileId), readSyncEvents(profileId, db, ['completion', 'completion_timing', 'deletion']),
+        readLookupHistory(profileId).then(rows => rows.length).catch(() => undefined),
       ]);
       const available = await Promise.all(imported.map(async pack => ({ pack, ready: await communityPackageReady(pack) })));
       if (current !== loadRevision.current) return;
@@ -240,7 +256,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       setMobileNavDisplay(navDisplay(mobileDisplay) ? mobileDisplay : 'both');
       setOnlineDictionary(defaultOnlineDictionary(savedValues.get('onlineDictionary')));
       setPracticeSelections({ reading: readPracticeSelection(savedValues.get('readingPractice')), listening: readPracticeSelection(savedValues.get('listeningPractice')) });
-      setHistory(all.sort((a,b) => b.startedAt.localeCompare(a.startedAt))); setRecords(effective.records); setReady(true);
+      setHistory(all.sort((a,b) => b.startedAt.localeCompare(a.startedAt))); setRecords(effective.records); setFernLookups(lookups); setReady(true);
     } catch { if (current === loadRevision.current) { setError('read'); setReady(false); } if (rejectFailure) throw new Error('SYNC_APPLY_FAILED'); }
   }
   const syncLoad = useRef(load); syncLoad.current = load;
@@ -517,13 +533,13 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
         <nav className="desktop-nav" data-display={desktopNavDisplay ?? 'text'} data-pending={!desktopNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
       </>}
     </header>}
-    <main id="main" tabIndex={-1} className={introducing ? 'welcome-main' : undefined}>
+    <main id="main" tabIndex={-1} className={missing ? 'not-found-main' : introducing ? 'welcome-main' : undefined}>
       {updateAvailable && !updateDismissed && path !== '/settings' && <div className="notice update-notice"><span className="update-message" role="status">{t.updateReady}</span><div className="update-notice-actions"><button className="update-later" type="button" onClick={() => setUpdateDismissed(true)}>{t.updateLater}</button>{!sessionId && <button className="primary update-action" type="button" onClick={event => requestUpdate(event.currentTarget)}>{t.updateNow}</button>}</div></div>}
-      {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button onClick={() => void load()}>{t.retry}</button> {lesson && <button onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
+      {error && <div className="error" role="alert">{error === 'read' ? t.readError : t.saveError} <button className="button" onClick={() => void load()}>{t.retry}</button> {lesson && <button className="button" onClick={() => setUnsavedDemo(true)}>{unsavedCopy[locale].open}</button>}</div>}
       <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><PageBoundary key={path} locale={locale}>
-      {unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning ref={learning} owner={owner} key={`${activeProfile}:${sessionId}`} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
-        <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale}/><h1>{t.today}</h1></section>
-        <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="records-link" href="/progress">{messages('app_history')[locale]}</a></header>
+      {missing ? <NotFound locale={locale}/> : unsavedDemo && lesson ? <UnsavedDemo lesson={lesson} locale={locale} onClose={() => setUnsavedDemo(false)}/> : !pageReady ? (!error && <p className="sr-only" role="status">{t.loading}</p>) : sessionId ? <Learning ref={learning} owner={owner} key={`${activeProfile}:${sessionId}`} id={sessionId} profileId={activeProfile} locale={locale} online={online} onlineDictionary={onlineDictionary} combinedSessions={history.filter(item => item.checkGroupId || item.practiceGroupId)}/> : introducing ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><Welcome locale={locale} profileId={activeProfile} online={online} date={todayDate} onDayChange={setTodayDate} onContinue={beginFirstRun} settings={settingsPage}/></Suspense> : path === '/start' ? <FirstRun key={activeProfile} profileId={activeProfile} initial={preferences} locale={locale} onLocale={async value => { await Promise.all([loadUiLocale(value), loadInstructionLocale(value)]); setLocale(value); }} onSaved={value => { localPreferenceRevision.current++; setPreferences(value); }}/> : path === '/today' ? <>
+        <div className="today-home"><div className="today-layout"><section className="hero today-hero"><p className="eyebrow"><time dateTime={todayDate}>{new Date(`${todayDate}T12:00:00`).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</time></p><Fern key={activeProfile} profileId={activeProfile} entries={todayEntries} locale={locale} initialLookups={fernLookups}/><h1>{t.today}</h1></section>
+        <section className="practice-section" aria-labelledby="practice-section-title"><header className="practice-section-heading"><h2 id="practice-section-title">{messages('app_practice')[locale]}</h2><a className="button records-link" href="/progress">{messages('app_history')[locale]}</a></header>
         <div className="task-grid today-grid">{(['reading', 'listening'] as const).map(skill => {
           const choice = skill === 'reading' ? todayReading : todayListening;
           return <div className={`primary-task${skill === 'reading' ? ' reading-task' : ''}`} key={skill}>
@@ -541,7 +557,7 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
         <h1>{t.progress}</h1>
         {!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}<SessionHistory history={history} records={records} locale={locale} profileId={activeProfile} onChange={load}/>
         <ProgressRecords locale={locale} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/><CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/>
-        </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
+        </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="button records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
           { path: 'dictionary', title: t.dictionaryEntry },
           { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
@@ -552,14 +568,14 @@ export function App({ initialPage }: { initialPage?: PublicPageState }) {
       : path === '/library/ipa' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><IpaChart disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery} initialEntries={initialPage?.ipa} initialSounds={initialPage?.sounds}/></Suspense>
       : path === '/library/grammar' ? <GrammarLookup disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} initialData={initialPage?.grammar}/>
       : path === '/settings/about' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><About/></Suspense>
-      : path === '/settings' ? settingsPage : <><h1>{t.unsupported}</h1><a className="back-button" href="/today" aria-label={t.finish}>←</a></>}
+      : path === '/settings' ? settingsPage : <NotFound locale={locale}/>}
       </PageBoundary></Suspense>
     </main>
     {confirmUpdate && createPortal(<dialog ref={updateDialog} className="update-confirm-dialog" aria-labelledby="update-confirm-title" aria-describedby="update-confirm-description" onCancel={event => { event.preventDefault(); closeUpdate(); }} onClick={event => { if (event.target === event.currentTarget) closeUpdate(); }}>
       <h2 id="update-confirm-title">{t.updateConfirm}</h2><p id="update-confirm-description">{t.updateConfirmDetail}</p>
       {updateCheck === 'failed' && <p role="alert">{t.updateFailed}</p>}
       {updateBlocked && <p className="error" role="alert">{t.updateBlocked}</p>}
-      <div className="update-confirm-actions"><button ref={updateCancel} type="button" disabled={applyingUpdate} onClick={closeUpdate}>{t.updateCancel}</button><button className="primary" type="button" disabled={applyingUpdate} aria-busy={applyingUpdate} onClick={() => void applyUpdate()}>{t.updateNow}</button></div>
+      <div className="update-confirm-actions"><button className="button" ref={updateCancel} type="button" disabled={applyingUpdate} onClick={closeUpdate}>{t.updateCancel}</button><button className="primary" type="button" disabled={applyingUpdate} aria-busy={applyingUpdate} onClick={() => void applyUpdate()}>{t.updateNow}</button></div>
     </dialog>, document.body)}
     {!sessionId && !introducing && !entryPending && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay ?? 'both'} data-pending={!mobileNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
     <NetworkStatus online={online} locale={locale}/>
@@ -598,6 +614,6 @@ class PageBoundary extends Component<{ locale: Locale; children: ReactNode }, { 
   };
   render() {
     const t = copy[this.props.locale];
-    return this.state.failed ? <div className="error" role="alert">{t.readError} <button disabled={this.state.retrying} aria-busy={this.state.retrying} onClick={() => void this.retry()}>{t.retry}</button></div> : this.props.children;
+    return this.state.failed ? <div className="error" role="alert">{t.readError} <button className="button" disabled={this.state.retrying} aria-busy={this.state.retrying} onClick={() => void this.retry()}>{t.retry}</button></div> : this.props.children;
   }
 }

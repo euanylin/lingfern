@@ -46,7 +46,7 @@ export function FirstRun({ profileId, initial, locale, onLocale, onSaved }: { pr
     } catch { if (live.current) setFailed(true); } finally { if (live.current) setBusy(false); }
   }
   return <section className="first-run">
-    <div className="first-run-top"><button className="back-button" aria-label={t.back} disabled={busy || value.step === 0} onClick={() => void move(value.step - 1)}>←</button><span>{t.step.replace('{n}', String(value.step + 1))}</span><button disabled={busy} onClick={() => void move(value.step + 1, true)}>{t.skip}</button></div>
+    <div className="first-run-top"><button className="back-button" aria-label={t.back} disabled={busy || value.step === 0} onClick={() => void move(value.step - 1)}>←</button><span>{t.step.replace('{n}', String(value.step + 1))}</span><button className="button" disabled={busy} onClick={() => void move(value.step + 1, true)}>{t.skip}</button></div>
     <h1 ref={heading} tabIndex={-1}>{t.headings[value.step]}</h1>
     <fieldset key={value.step} disabled={busy} className="first-run-choices">
       {value.step === 0 && <SettingsPicker label={t.headings[0]} value={locale} options={languageOptions} onChange={value => void changeLocale(value as Locale)}/>}

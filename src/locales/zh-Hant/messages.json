@@ -780,5 +780,9 @@
   "historyDeletion": {
     "remove": "刪除",
     "linked": "關聯的兩部分將一併刪除。"
+  },
+  "notFound": {
+    "title": "找不到頁面",
+    "description": "頁面可能已搬走，或地址有誤。"
   }
 }

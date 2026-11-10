@@ -61,7 +61,7 @@ it('rejects corrupt corpus bytes and retries with a verified complete package', 
   expect(corpus.records.reduce((sum, source) => sum + source.passages.length, 0)).toBeGreaterThanOrEqual(12317);
   for (const source of corpus.records) expect(source.sourceHash).toBe(createHash('sha256').update(readFileSync(`content/corpus/raw/pg${source.id.slice('gutenberg-'.length)}.txt`)).digest('hex'));
   expect(await loadCorpus()).toBe(corpus);
-  expect(fetch).toHaveBeenCalledTimes(3);
+  expect(fetch.mock.calls.map(call => call[0])).toEqual(['/corpus/gutenberg.json', '/corpus/gutenberg-2.json', '/corpus/gutenberg.json', '/corpus/gutenberg-2.json']);
   expect(fetch).toHaveBeenLastCalledWith('/corpus/gutenberg-2.json', { credentials: 'omit' });
 });
 
@@ -103,7 +103,15 @@ it.each(['voa', 'additional'] as const)('loads every %s shard in numeric order a
   const bodies = paths.map((_, index) => JSON.stringify({ version: 1, failures: [], records: [{ ...record, id: record.id.replace(/\d+$/, String(9000000 + index)), rootId: record.rootId.replace(/\d+$/, String(9000000 + index)) }] }));
   const declared = bodies.map((body, index) => ({ path: paths[index], bytes: Buffer.byteLength(body), sha256: createHash('sha256').update(body).digest('hex') }));
   let corrupt = true;
-  const fetch = vi.fn(async path => new Response(path === paths[1] && corrupt ? '{}' : bodies[paths.indexOf(path)]));
+  let active = 0, peak = 0;
+  let releaseFirst: (() => void) | undefined;
+  const fetch = vi.fn(async path => {
+    active++; peak = Math.max(peak, active);
+    if (path === paths[0]) await new Promise<void>(resolve => { releaseFirst = resolve; });
+    if (path === paths[1]) releaseFirst!();
+    active--;
+    return new Response(path === paths[1] && corrupt ? '{}' : bodies[paths.indexOf(path)]);
+  });
   vi.stubGlobal('fetch', fetch);
   try {
     group.files = [declared[2], declared[0], declared[1]];
@@ -112,6 +120,7 @@ it.each(['voa', 'additional'] as const)('loads every %s shard in numeric order a
     const corpus = await load(family);
     expect(corpus.records.map(item => item.id)).toEqual([0, 1, 2].map(index => record.id.replace(/\d+$/, String(9000000 + index))));
     expect(fetch.mock.calls.slice(2).map(call => call[0])).toEqual(paths);
+    expect(peak).toBe(2);
     expect(await load(family)).toBe(corpus);
   } finally { group.files = files; }
 });

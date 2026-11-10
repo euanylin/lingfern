@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { createServer, type Plugin, type ResolvedConfig } from 'vite';
 import { publicPages, prerenderPath, renderPageHtml } from '../src/shared/seo.ts';
+import { localeSchema } from '../src/shared/locale.ts';
 import type { PublicPageState } from '../src/shared/prerender.ts';
 
 export function extractPublicStyles(body: string) {
@@ -31,31 +32,33 @@ export function publicPrerender(): Plugin {
       const server = await createServer({ mode: config.mode, server: { middlewareMode: true, watch: null, hmr: false, ws: false }, logLevel: 'error' });
       try {
         const { render } = await server.ssrLoadModule('/src/prerender.tsx') as typeof import('../src/prerender');
+        const day = new Date().toISOString().slice(0, 10);
+        const data = async (name: string) => JSON.parse(await readFile(`${config.publicDir}/${name}`, 'utf8'));
         for (const path of Object.keys(publicPages)) {
-          const state: PublicPageState = { path, day: new Date().toISOString().slice(0, 10) };
-          const data = async (name: string) => JSON.parse(await readFile(`${config.publicDir}/${name}`, 'utf8'));
-          if (path === '/library/grammar') state.grammar = await data('grammar/entries.json');
-          if (path === '/library/ipa') { state.ipa = await data('ipa/entries.json'); state.sounds = await data('ipa/full-sounds.json'); }
-          const body = await render(state);
-          if (/<script\b|<!--\$!-->|hidden id="S:/.test(body)) throw Error('PUBLIC_BODY_INCOMPLETE');
-          const styled = extractPublicStyles(body);
-          const json = JSON.stringify(state).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-          let html = renderPageHtml(template, path).replace('<div id="root"></div>', `<div id="root" data-public-page="${json}">${styled.html}</div>`).replace('lang="zh-Hans"', 'lang="en"');
+          const base: PublicPageState = { path, day };
+          if (path === '/library/grammar') base.grammar = await data('grammar/entries.json');
+          if (path === '/library/ipa') { base.ipa = await data('ipa/entries.json'); base.sounds = await data('ipa/full-sounds.json'); }
           const style = path === '/introduction' ? 'Welcome.css' : path === '/library/ipa' ? 'IpaChart.css' : undefined;
-          if (style) {
-            const asset = Object.values(bundle).find(item => item.type === 'asset' && item.names.includes(style));
-            if (!asset) throw Error(`PUBLIC_CSS_MISSING:${style}`);
-            if (!html.includes(`href="/${asset.fileName}"`)) html = html.replace('</head>', `<link rel="stylesheet" href="/${asset.fileName}"></head>`);
+          const asset = style ? Object.values(bundle).find(item => item.type === 'asset' && item.names.includes(style)) : undefined;
+          if (style && !asset) throw Error(`PUBLIC_CSS_MISSING:${style}`);
+          for (const locale of localeSchema.options) {
+            const state = { ...base, locale };
+            const body = await render(state);
+            if (/<script\b|<!--\$!-->|hidden id="S:/.test(body)) throw Error('PUBLIC_BODY_INCOMPLETE');
+            const styled = extractPublicStyles(body);
+            const json = JSON.stringify(state).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+            let html = renderPageHtml(template, path, '', locale).replace('<div id="root"></div>', `<div id="root" data-public-page="${json}">${styled.html}</div>`);
+            if (asset && !html.includes(`href="/${asset.fileName}"`)) html = html.replace('</head>', `<link rel="stylesheet" href="/${asset.fileName}"></head>`);
+            if (html === template || !html.includes('data-public-page=') || Buffer.byteLength(html) > 1024 * 1024) throw Error('PUBLIC_HTML_INVALID');
+            const file = join(options.dir, prerenderPath(path, locale)!.slice(1));
+            await mkdir(dirname(file), { recursive: true });
+            if (styled.css) {
+              const css = `/prerender/styles-${createHash('sha256').update(styled.css).digest('hex').slice(0, 12)}.css`;
+              await writeFile(join(options.dir, css), styled.css);
+              html = html.replace('</head>', `<link rel="stylesheet" href="${css}"></head>`);
+            }
+            await writeFile(file, html);
           }
-          if (html === template || !html.includes('data-public-page=') || Buffer.byteLength(html) > 1024 * 1024) throw Error('PUBLIC_HTML_INVALID');
-          const file = join(options.dir, prerenderPath(path)!.slice(1));
-          await mkdir(dirname(file), { recursive: true });
-          if (styled.css) {
-            const css = prerenderPath(path)!.replace(/\.html\.txt$/, `-${createHash('sha256').update(styled.css).digest('hex').slice(0, 12)}.css`);
-            await writeFile(join(options.dir, css), styled.css);
-            html = html.replace('</head>', `<link rel="stylesheet" href="${css}"></head>`);
-          }
-          await writeFile(file, html);
         }
       } finally { await server.close(); }
     },

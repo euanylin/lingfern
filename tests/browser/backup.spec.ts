@@ -39,7 +39,7 @@ for (const touch of [false, true]) test.describe(`modal focus ${touch ? 'touch' 
     await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();
     expect(downloads).toBe(0);
     await page.keyboard.press('Enter');
-    await expect(cancel).toBeFocused(); await expect(cancel).toHaveCSS('text-decoration-line', 'underline');
+    await expect(cancel).toBeFocused(); await expect(cancel).toHaveCSS('text-decoration-line', 'none');
     await expect(cancel).not.toHaveCSS('background-color', pointerBackground);
     await page.keyboard.press('Escape');
     await expect(dialog).toHaveCount(0); await expect(trigger).toBeFocused();

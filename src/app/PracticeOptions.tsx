@@ -89,20 +89,20 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
   const selected = draft.materials.length;
   return createPortal(<dialog {...motion.dialogProps} className="task-detail practice-options-dialog" aria-labelledby={id} onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }}>
     <div className="task-detail-body practice-options-body" {...motion.bodyProps}>
-      <header><div><p className="eyebrow" lang="en">{skill.toUpperCase()}</p><h2 id={id}>{t[skill === 'reading' ? 'readingSettings' : 'listeningSettings']}</h2></div><button type="button" disabled={saving} onClick={close}>{messages('taskDetail')[locale].close}</button></header>
+      <header><div><p className="eyebrow" lang="en">{skill.toUpperCase()}</p><h2 id={id}>{t[skill === 'reading' ? 'readingSettings' : 'listeningSettings']}</h2></div><button className="button" type="button" disabled={saving} onClick={close}>{messages('taskDetail')[locale].close}</button></header>
       <div className="practice-option-fields">
         <SettingsPicker variant="field" label={messages('corpusPractice_topic')[locale]} multiple value={draft.topics} options={[{ value: '', label: automatic }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={topics => change({ ...draft, topics: topicSchema.array().parse(topics) })}/>
         <SettingsPicker variant="field" label={t.kind} multiple value={draft.kinds} options={[{ value: '', label: automatic }, ...corpusQuestionKindSchema.options.map(value => ({ value, label: messages('taskDetail')[locale].kinds[value] }))]} onChange={kinds => change({ ...draft, kinds: corpusQuestionKindSchema.array().parse(kinds) })}/>
       </div>
       <fieldset><legend className="sr-only">{t.materials}</legend><div className="practice-material-heading"><span aria-hidden="true">{t.materials}</span>{selected > 0 && <small role="status">{t.selected.replace('{count}', String(selected))}</small>}</div>
-        <div className="practice-material-search"><button type="button" aria-pressed={!selected} onClick={() => change({ ...draft, materials: [] })}>{automatic}{!selected ? ' ✓' : ''}</button><label className="task-search"><span className="sr-only">{t.search}</span><input type="search" placeholder={t.search} value={query} onChange={event => setQuery(event.target.value)}/></label></div>
-        {selected > 0 && <div className="practice-selected-materials">{draft.materials.map(value => <button key={value} type="button" aria-pressed="true" title={known.get(value)?.label ?? missing(value).label} onClick={() => change({ ...draft, materials: draft.materials.filter(item => item !== value) })}><bdi lang="en">{known.get(value)?.label ?? missing(value).label}</bdi><span aria-hidden="true">×</span></button>)}</div>}
+        <div className="practice-material-search"><button className="button" type="button" aria-pressed={!selected} onClick={() => change({ ...draft, materials: [] })}>{automatic}{!selected ? ' ✓' : ''}</button><label className="task-search"><span className="sr-only">{t.search}</span><input type="search" placeholder={t.search} value={query} onChange={event => setQuery(event.target.value)}/></label></div>
+        {selected > 0 && <div className="practice-selected-materials">{draft.materials.map(value => <button className="button" key={value} type="button" aria-pressed="true" title={known.get(value)?.label ?? missing(value).label} onClick={() => change({ ...draft, materials: draft.materials.filter(item => item !== value) })}><bdi lang="en">{known.get(value)?.label ?? missing(value).label}</bdi><span aria-hidden="true">×</span></button>)}</div>}
         {selected === 1 && <p className="muted" role="status">{t.materialHint}</p>}
         {loading && <p className="muted" role="status">{t.loading}</p>}
         <PracticeMaterialList groups={groups} selected={draft.materials} expanded={expanded} searching={!!query.trim()} locale={locale} id={id} onToggle={toggleMaterial} onExpand={toggleGroup}/>
         {!loading && !groups.length && <p>{t.empty}</p>}
       </fieldset>
-      {(error || loadError) && <p className="error" role="alert">{error || loadError} <button type="button" disabled={saving} onClick={() => loadError ? onRefresh() : change(draft)}>{messages('app')[locale].retry}</button></p>}
+      {(error || loadError) && <p className="error" role="alert">{error || loadError} <button className="button" type="button" disabled={saving} onClick={() => loadError ? onRefresh() : change(draft)}>{messages('app')[locale].retry}</button></p>}
       {saving && <span className="sr-only" role="status">{t.saving}</span>}
     </div>
   </dialog>, document.body);

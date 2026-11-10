@@ -1,6 +1,6 @@
 import { organizePractice } from '../core/practiceOrganization';
 import type { SpokenCorpus } from '../core/spokenCorpus';
-import { qualifiedKnownRoots } from '../core/spokenLongAdmission';
+import { qualifiedKnownRoots, qualifiedLongSeconds } from '../core/spokenLongAdmission';
 import { mainPointListeningLesson, mainPointListeningSources, conditionListeningLesson, conditionListeningSources, referenceListeningLesson, referenceListeningSources, motiveListeningLesson, motiveListeningSources, intentionListeningLesson, intentionListeningSources, procedureListeningLesson, procedureListeningSources } from '../core/b1Listening';
 import ruleListeningSources from '../../public/audio/a2-speech/RULE.json';
 import { personalListeningLesson, actionOrderListeningLesson, stateChangeListeningLesson, statedReasonListeningLesson, statedRuleListeningLesson, shortIntegrationListeningLesson, integrationListeningSources } from '../core/a2Listening';
@@ -11,7 +11,6 @@ import personalListeningSources from '../../public/audio/a2-speech/PERSONAL.json
 import { sourcePacks, installedSourcePacks, installSourcePack } from '../data/sourcePacks';
 import { goalReviews } from '../data/goalReview';
 import { spokenCorpusLesson } from '../core/spokenCorpus';
-import { qualifiedLongSeconds } from '../core/spokenLongAdmission';
 import { filterCorpusRoots, corpusLesson } from '../core/corpus';
 import { beginnerSentenceReady, corpusInterestMatch, corpusPreferenceScore, corpusOperation, corpusPracticeHistory } from '../core/corpusPractice';
 import { wordListeningLesson, wordListeningWords } from '../core/wordListening';
@@ -29,7 +28,6 @@ import type { Lesson, Locale, CorpusQuestionKind } from '../shared/content';
 import { topicSchema } from '../shared/content';
 import type { Preferences } from '../shared/preferences';
 import { automaticQuestionKinds, practiceSelectionMatches, practiceSelectionSchema, type PracticeSelection } from '../shared/practiceSelection';
-
 
 const unfamiliarGoals = new Set(["argument-boundaries-in-context", "attributed-views-in-context", "claim-example-link", "complex-pragmatics", "contextual-comparison", "disagreement-synthesis", "discourse-organization-in-context", "explicit-basic-instruction", "explicit-detail-verification", "explicit-person-description", "explicit-personal-update", "explicit-place-relation", "explicit-planned-order", "explicit-small-count", "explicit-stated-need", "explicit-stated-preference", "explicit-stated-reason", "explicit-stated-time", "faithful-paraphrase", "implicit-intention-in-context", "indirect-stance-in-context", "information-density-in-context", "integrated-source-information", "layered-positions", "nuanced-meaning-in-context", "qualified-concession-meaning", "register-audience-in-context", "rhetorical-function-in-context", "speaker-attitude-in-context"]);
 
@@ -58,48 +56,64 @@ async function importedPracticeLessons(profileId: string, skill: 'reading' | 'li
   return ready.flat();
 }
 
-export async function practiceMaterials(profileId: string, skill: 'reading' | 'listening', preferences?: Preferences, history: Session[] = [], records: Attempt[] = [], online = typeof navigator === 'undefined' || navigator.onLine) {
+// Share reads only within one preparation, so later starts still see resource changes.
+function practiceResources(profileId: string, maxWords: number) {
+  let reading: ReturnType<typeof loadReadingCorpus> | undefined;
+  let spoken: ReturnType<typeof loadSpokenCorpora> | undefined;
+  const groups = new Map<string, Promise<boolean>>();
+  return {
+    reading: () => reading ??= loadReadingCorpus(profileId, maxWords),
+    spoken: () => spoken ??= loadSpokenCorpora(profileId),
+    ready: (group: string) => {
+      if (!groups.has(group)) groups.set(group, offlineGroupReady(group));
+      return groups.get(group)!;
+    },
+  };
+}
+
+export async function practiceMaterials(profileId: string, skill: 'reading' | 'listening', preferences?: Preferences, history: Session[] = [], records: Attempt[] = [], online = typeof navigator === 'undefined' || navigator.onLine, resources?: ReturnType<typeof practiceResources>) {
   const { maxWords, maxSeconds } = corpusPracticeHistory(history, records, profileId, skill, 'all', preferences?.[skill]);
+  resources ??= practiceResources(profileId, maxWords);
   const point = preferences?.[skill] ?? 'B2', beginner = point === 'A1' || point === 'A2';
   const imported = await importedPracticeLessons(profileId, skill);
   const choices = new Map<string, { label: string; group: string }>();
   for (const lesson of imported) for (const material of lesson.materials) choices.set(material.rootId, { label: `${material.title} · ${lesson.title.en}`, group: 'community' });
   const add = (root: string, title: string, hash?: string) => { const source = sourceTopics.get(root); choices.set(root, { label: title, group: source && source.sourceHash === hash && topicSchema.safeParse(source.topic).success ? source.topic : 'general' }); };
   if (skill === 'reading') {
-    const corpus = await loadReadingCorpus(profileId, maxWords).catch(error => { if (error instanceof TypeError || error instanceof Error && error.message === 'MISSING_CORPUS') return { version: 1 as const, records: [], failures: [] }; throw error; });
+    const corpus = await resources.reading().catch(error => { if (error instanceof TypeError || error instanceof Error && error.message === 'MISSING_CORPUS') return { version: 1 as const, records: [], failures: [] }; throw error; });
     for (const record of corpus.records) if (record.passages.some(passage => !passage.quoteProvenance && passage.wordCount <= maxWords && (beginner ? passage.startingPoints?.includes(point) : !passage.startingPoints) && (!['C1', 'C2'].includes(point) || passage.wordCount >= 120))) add(record.rootId, record.title, record.sourceHash);
     if (preferences?.reading === 'A1') for (const source of sentenceSources) add(source.rootId, source.title);
   } else {
     if (point !== 'A1') {
-      const banks = await loadSpokenCorpora(profileId), seconds = qualifiedLongSeconds(banks, preferences?.listening, maxSeconds);
+      const banks = await resources.spoken(), seconds = qualifiedLongSeconds(banks, preferences?.listening, maxSeconds);
       for (const bank of banks) for (const record of bank.records) if (record.clips.some(clip => clip.audio.duration <= seconds)) add(record.rootId, record.title, record.sourceHash);
     }
     const sentencesReady = beginnerSentenceReady(history, records, profileId);
-    for (const group of shortSources(preferences?.listening)) if ((online || await offlineGroupReady(group.group)) && (group.group !== 'audio-beginner' || sentencesReady)) for (const source of group.sources) if (source.audio.duration <= maxSeconds) add(source.rootId, source.title);
+    for (const group of shortSources(preferences?.listening)) if ((online || await resources.ready(group.group)) && (group.group !== 'audio-beginner' || sentencesReady)) for (const source of group.sources) if (source.audio.duration <= maxSeconds) add(source.rootId, source.title);
   }
   return [...choices].map(([value, item]) => ({ value, ...item })).sort((a, b) => a.label.localeCompare(b.label, 'en'));
 }
 
-async function selectedPractice(selection: PracticeSelection, input: { profileId: string; preferences?: Preferences; online: boolean; skill: 'reading' | 'listening'; interests?: Preferences['interests']; maxWords: number; maxSeconds: number; seen: ReadonlySet<string>; seenRoots: ReadonlySet<string>; previewRoots: ReadonlySet<string>; seed: number; sentencesReady: boolean }, kind?: CorpusQuestionKind) {
-  const { profileId, preferences, online, skill, interests, maxWords, maxSeconds, seen, seenRoots, previewRoots, seed } = input;
+async function selectedPractice(selection: PracticeSelection, input: { preferences?: Preferences; online: boolean; skill: 'reading' | 'listening'; interests?: Preferences['interests']; maxWords: number; maxSeconds: number; seen: ReadonlySet<string>; seenRoots: ReadonlySet<string>; previewRoots: ReadonlySet<string>; seed: number; sentencesReady: boolean }, resources: ReturnType<typeof practiceResources>, kind?: CorpusQuestionKind) {
+  const { preferences, online, skill, interests, maxWords, maxSeconds, seen, seenRoots, previewRoots, seed } = input;
   const allowed = (root: string, text: string, dailyLife = false) => (!selection.materials.length || selection.materials.includes(root)) && !previewRoots.has(root) && (!selection.topics.length || (dailyLife ? selection.topics.includes('daily-life') : corpusInterestMatch(text, selection.topics)));
   let lesson: Lesson | undefined;
   const banks: SpokenCorpus[] = [];
   if (skill === 'reading') {
     if (preferences?.reading === 'A1' && (!kind || kind === 'choice')) lesson = sentencePolarityLesson(sentenceSources.filter(source => !seenRoots.has(source.rootId) && allowed(source.rootId, source.title + '\n' + source.text, true)), seen, seed, 'reading');
     if (!lesson) {
-      const loaded = await loadReadingCorpus(profileId, maxWords);
+      const loaded = await resources.reading();
       const corpus = { ...loaded, records: loaded.records.map(record => ({ ...record, passages: record.passages.filter(passage => allowed(record.rootId, record.title + '\n' + passage.text)) })).filter(record => record.passages.length) };
       lesson = corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, kind, undefined, undefined, !selection.kinds.length);
     }
   } else {
     for (const group of shortSources(preferences?.listening)) {
-      if (kind && group.kind !== kind || group.group === 'audio-beginner' && !input.sentencesReady || !online && !await offlineGroupReady(group.group)) continue;
+      if (kind && group.kind !== kind || group.group === 'audio-beginner' && !input.sentencesReady || !online && !await resources.ready(group.group)) continue;
       lesson = group.generate(group.sources.filter(source => source.audio.duration <= maxSeconds && !seenRoots.has(source.rootId) && allowed(source.rootId, source.title + '\n' + ('text' in source ? source.text : source.title), group.level === 'A1')), seen, seed);
       if (lesson) break;
     }
     if (!lesson && preferences?.listening !== 'A1') {
-      for (const bank of await loadSpokenCorpora(profileId)) banks.push({ ...bank, records: bank.records.map(record => ({ ...record, clips: record.clips.filter(clip => allowed(record.rootId, record.title + '\n' + clip.text)) })).filter(record => record.clips.length) });
+      for (const bank of await resources.spoken()) banks.push({ ...bank, records: bank.records.map(record => ({ ...record, clips: record.clips.filter(clip => allowed(record.rootId, record.title + '\n' + clip.text)) })).filter(record => record.clips.length) });
       const seconds = qualifiedLongSeconds(banks, preferences?.listening, maxSeconds);
       for (const bank of banks) {
         lesson = spokenCorpusLesson(bank, seen, seed, seconds, preferences?.listening, interests, kind, undefined, banks, !selection.kinds.length);
@@ -121,29 +135,29 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   // shortcut: keyword-based topics; replace with reviewed excerpt labels when available.
   const interests = topics.length ? topics : preferences?.interests;
   const ownHistory = history.filter(session => session.profileId === profileId);
-  const { seen: reserved, maxWords, maxSeconds } = corpusPracticeHistory(history, records, profileId, skill, 'all', preferences?.[skill]);
   const reviews = goalReviews(ownHistory.map(session => session.lesson), ownHistory, records.filter(record => record.profileId === profileId));
-  const { focus } = corpusPracticeHistory(history, records, profileId, skill, 'all', preferences?.[skill], reviews);
+  const { seen: reserved, maxWords, maxSeconds, focus } = corpusPracticeHistory(history, records, profileId, skill, 'all', preferences?.[skill], reviews);
   const matchesFocus = (lesson: Lesson) => !!focus && corpusOperation(lesson.materials[0].questions[0]) === focus.operation;
   const requestedFocus = focus?.kind;
   const freshReview = focus?.reason === 'review';
   const contacts = await exposures.where('profileId').equals(profileId).toArray();
-  const seen = new Set([...reserved, ...previewIds, ...new Set([...contacts.flatMap(exposure => (exposure.contacts ?? []).map(contact => contact.materialId))].filter(id => id.startsWith('corpus-')).map(id => id.slice('corpus-'.length)))]);
+  const seen = new Set([...reserved, ...previewIds, ...contacts.flatMap(exposure => (exposure.contacts ?? []).map(contact => contact.materialId)).filter(id => id.startsWith('corpus-')).map(id => id.slice('corpus-'.length))]);
   const seenRoots = qualifiedKnownRoots([...ownHistory.flatMap(session => session.lesson.materials.map(material => material.rootId)), ...contacts.map(contact => contact.rootId)], ownHistory.flatMap(session => session.lesson.materials));
   const [packSeed, seed] = crypto.getRandomValues(new Uint32Array(2));
-  if (selection?.materials.length) {
-    const available = new Set((await practiceMaterials(profileId, skill, preferences, history, records, online)).map(item => item.value));
-    if (selection.materials.some(root => !available.has(root))) return { downloadFailed: false };
-  }
-  if (selection?.materials.some(root => root.startsWith('community:'))) {
-    const imported = await importedPracticeLessons(profileId, skill);
-    const selected = imported.find(lesson => practiceSelectionMatches(lesson, selection));
-    return { lesson: selected ? organizePractice(selected, [], selection.kinds) : undefined, downloadFailed: false };
-  }
   if (selection && (selection.kinds.length || selection.materials.length)) {
+    const resources = practiceResources(profileId, maxWords);
+    if (selection.materials.length) {
+      const available = new Set((await practiceMaterials(profileId, skill, preferences, history, records, online, resources)).map(item => item.value));
+      if (selection.materials.some(root => !available.has(root))) return { downloadFailed: false };
+    }
+    if (selection.materials.some(root => root.startsWith('community:'))) {
+      const imported = await importedPracticeLessons(profileId, skill);
+      const selected = imported.find(lesson => practiceSelectionMatches(lesson, selection));
+      return { lesson: selected ? organizePractice(selected, [], selection.kinds) : undefined, downloadFailed: false };
+    }
     for (let offset = 0; offset < Math.max(1, selection.kinds.length); offset++) {
       const kind = selection.kinds.length ? selection.kinds[(seed + offset) % selection.kinds.length] : undefined;
-      const lesson = await selectedPractice({ ...selection, topics }, { profileId, preferences, online, skill, interests, maxWords, maxSeconds, seen, seenRoots, previewRoots, seed, sentencesReady: beginnerSentenceReady(history, records, profileId) }, kind);
+      const lesson = await selectedPractice({ ...selection, topics }, { preferences, online, skill, interests, maxWords, maxSeconds, seen, seenRoots, previewRoots, seed, sentencesReady: beginnerSentenceReady(history, records, profileId) }, resources, kind);
       if (lesson) return { lesson, downloadFailed: false };
     }
     return { downloadFailed: false };
@@ -203,25 +217,22 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
   if (procedureRequested && (online || await offlineGroupReady('audio-b1'))) next = procedureListeningLesson(procedureListeningSources.filter(availableShortSource), seen, seed);
   if (procedureRequested && requestedFocus === 'choice' && !next) return { downloadFailed: false };
 
-
-
-
-
-
-
   let downloadedFallback: Lesson | undefined;
   let downloadFailed = false;
-  let downloaded: Awaited<ReturnType<typeof installSourcePack>> | undefined;
-  if (!next && online && (skill === 'listening' && preferences?.listening !== 'A1' || skill === 'reading' && !['A1', 'A2'].includes(preferences?.reading ?? 'B2'))) {
-    const installedPacks = await installedSourcePacks(profileId);
-    const available = sourcePacks.filter(pack => pack.skill === skill && (!topics.length || topics.some(topic => topic === pack.topic)) && !installedPacks.has(pack.id) && (skill === 'listening' ? pack.minSeconds !== null && pack.minSeconds <= maxSeconds : pack.minWords !== null && pack.minWords <= maxWords));
-    if (available.length) {
-      try { downloaded = await installSourcePack(available[packSeed % available.length].id, profileId); }
-      catch { downloadFailed = true; }
+  // Use eligible local text/audio before putting a new package download on the Start path.
+  async function* sources() {
+    yield undefined;
+    if (online && (skill === 'listening' && preferences?.listening !== 'A1' || skill === 'reading' && !['A1', 'A2'].includes(preferences?.reading ?? 'B2'))) {
+      const installedPacks = await installedSourcePacks(profileId);
+      const available = sourcePacks.filter(pack => pack.skill === skill && (!topics.length || topics.some(topic => topic === pack.topic)) && !installedPacks.has(pack.id) && (skill === 'listening' ? pack.minSeconds !== null && pack.minSeconds <= maxSeconds : pack.minWords !== null && pack.minWords <= maxWords));
+      if (available.length) {
+        try { yield await installSourcePack(available[packSeed % available.length].id, profileId); }
+        catch { downloadFailed = true; }
+        if (skill === 'listening') yield undefined;
+      }
     }
   }
-  // Add downloaded reading sources; preserve the listening-bank fallback.
-  for (const source of skill === 'listening' && downloaded ? [downloaded, undefined] : [undefined]) {
+  for await (const source of sources()) {
     if (next) break;
     if (skill === 'reading') {
       const polarityRequested = requestedFocus === 'choice' && focus?.operation === 'choice:stated-polarity';
@@ -231,7 +242,7 @@ export async function prepareCorpusPractice({ profileId, preferences, history, r
       }
       if (!next && polarityRequested) return { downloadFailed };
       if (!next) {
-        const loaded = await loadReadingCorpus(profileId, maxWords);
+        const loaded = await loadReadingCorpus(profileId, maxWords).catch(error => { if (error instanceof TypeError || error instanceof Error && error.message === 'MISSING_CORPUS') return { version: 1 as const, records: [], failures: [] }; throw error; });
         const corpus = filterCorpusRoots(topics.length ? { ...loaded, records: loaded.records.map(record => ({ ...record, passages: record.passages.filter(passage => corpusInterestMatch(record.title + '\n' + passage.text, topics)) })).filter(record => record.passages.length) } : loaded, previewRoots);
         if (freshReview) next = corpusLesson(filterCorpusRoots(corpus, seenRoots), seen, seed, maxWords, preferences?.reading, interests, requestedFocus, requestedFocus ? focus?.operation : undefined);
         next ??= corpusLesson(corpus, seen, seed, maxWords, preferences?.reading, interests, requestedFocus, requestedFocus ? focus?.operation : undefined);

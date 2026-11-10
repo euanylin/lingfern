@@ -29,5 +29,5 @@ export function SyncConflicts({ profileId, locale }: { profileId: string; locale
     } catch { setFailed(true); }
   }
   if (!rows.length && !failed) return null;
-  return <section className="sync-conflicts"><h3>{t.title}</h3><p className="muted">{t.detail}</p>{rows.map(row => <div key={row.hash}><p className="muted">{row.deviceId} / {row.batchId}</p><button type="button" onClick={() => void download(row.hash)}>{t.export}</button></div>)}{failed && <p className="error" role="status">{t.failed}</p>}</section>;
+  return <section className="sync-conflicts"><h3>{t.title}</h3><p className="muted">{t.detail}</p>{rows.map(row => <div key={row.hash}><p className="muted">{row.deviceId} / {row.batchId}</p><button className="button" type="button" onClick={() => void download(row.hash)}>{t.export}</button></div>)}{failed && <p className="error" role="status">{t.failed}</p>}</section>;
 }
