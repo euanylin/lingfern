@@ -1,4 +1,5 @@
 /// <reference lib="webworker" />
+import { canonicalPagePath, pageRoute } from './shared/pageRoutes';
 import { matchPrecache, precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { createPartialResponse } from 'workbox-range-requests';
@@ -52,7 +53,9 @@ registerRoute(({ request, url }) => request.method === 'GET' && url.origin === s
 
 // @ts-expect-error Workbox injects this manifest literal.
 precacheAndRoute(self.__WB_MANIFEST);
-registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin === sw.location.origin && (/^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(url.pathname) || url.pathname === '/'), async ({ request, url }) => {
+registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin === sw.location.origin && (pageRoute(url.pathname) || canonicalPagePath(url.pathname) || url.pathname === '/'), async ({ request, url }) => {
+  const canonical = canonicalPagePath(url.pathname);
+  if (canonical) return Response.redirect(new URL(canonical + url.search, url).href, 301);
   const shell = await matchPrecache('/index.html');
   if (!shell) return fetch(request);
   const seo = pageSeo(url.pathname, url.search), headers = new Headers(shell.headers);

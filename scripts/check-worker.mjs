@@ -19,6 +19,14 @@ for (const pathname of ['/introduction', '/start', '/today', '/progress', '/libr
   assert.equal(await response.text(), renderPageHtml(template, pathname));
   assert.equal(response.headers.get('x-robots-tag'), pageSeo(pathname).robots);
 }
+for (const path of ['/introduction', '/today', '/library', '/settings', '/settings/about', '/learn/test-id']) {
+  const response = await fetch(origin + path + '/?q=one%20two&x=1', { redirect: 'manual' });
+  assert.equal(response.status, 301, path);
+  assert.equal(response.headers.get('Location'), origin + path + '?q=one%20two&x=1');
+}
+const missingPage = await fetch(origin + '/unknown-page', { headers: { Accept: 'text/html' } });
+assert.equal(missingPage.status, 404);
+assert.match(await missingPage.text(), /Back to Today/);
 const serviceWorker = await fetch(origin + '/sw.js');
 const sitemapXml = await readFile('public/sitemap.xml', 'utf8');
 const sitemap = await fetch(origin + '/sitemap.xml', { headers: { Accept: 'text/html' } });

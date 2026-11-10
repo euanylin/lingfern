@@ -701,7 +701,7 @@
     "incorrect": "再看一看",
     "yourAnswer": "你的答案",
     "answer": "参考答案",
-    "completed": "阅读任务已保存",
+    "completed": "任务已保存",
     "loading": "正在读取本地记录…",
     "readError": "暂时无法读取本地记录。请重试，不会自动重置数据库。",
     "saveError": "未能保存。当前答案仍在，请重试或在离开前下载副本。",

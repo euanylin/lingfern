@@ -697,3 +697,6 @@ details.animated-details[data-expanded=true]>summary::after,details.animated-det
   .daily-quote-next[aria-busy=true] svg{animation:sharing-refresh 800ms linear infinite}
   .sequence-order>li{animation:surface-in 180ms ease-out}
 }
+
+/* Keep learning updates in flow so prompts and answers stay unobscured. */
+#root:has(>.session-header) .notice.update-notice{position:static;transform:none;width:auto;margin:0 0 20px}

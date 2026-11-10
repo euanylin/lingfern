@@ -112,7 +112,7 @@ export async function verifyPublicBuild(files, { version, htmlTemplate, pageTemp
     try {
       while (!stopped && cursor < files.length) {
         const file = files[cursor++];
-        const pathname = file.path === 'index.html' ? '/' : '/' + file.path.split('/').map(encodeURIComponent).join('/');
+        const pathname = file.path === 'index.html' ? '/' : file.path === '404.html' ? '/404' : '/' + file.path.split('/').map(encodeURIComponent).join('/');
         await publicGet(pathname, { ...options, expected: file });
       }
     } catch (error) { stopped = true; throw error; }

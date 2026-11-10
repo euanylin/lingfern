@@ -701,7 +701,7 @@
     "incorrect": "Pas tout à fait",
     "yourAnswer": "Votre réponse",
     "answer": "Réponse correcte",
-    "completed": "Activité de lecture enregistrée",
+    "completed": "Activité enregistrée",
     "loading": "Lecture des données locales…",
     "readError": "Impossible de lire les données locales. Réessayez sans réinitialiser la base.",
     "saveError": "Enregistrement impossible. Votre réponse actuelle est conservée. Réessayez ou téléchargez une copie avant de partir.",

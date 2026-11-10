@@ -701,7 +701,7 @@
     "incorrect": "Belum tepat",
     "yourAnswer": "Jawaban Anda",
     "answer": "Jawaban benar",
-    "completed": "Tugas membaca tersimpan",
+    "completed": "Tugas tersimpan",
     "loading": "Membaca catatan lokal…",
     "readError": "Catatan lokal tidak terbaca. Coba lagi tanpa mengatur ulang basis data.",
     "saveError": "Gagal menyimpan. Jawaban saat ini tetap di sini. Coba lagi atau unduh salinan sebelum keluar.",

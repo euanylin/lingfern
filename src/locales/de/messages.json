@@ -701,7 +701,7 @@
     "incorrect": "Nicht ganz",
     "yourAnswer": "Ihre Antwort",
     "answer": "Richtige Antwort",
-    "completed": "Leseaufgabe gespeichert",
+    "completed": "Aufgabe gespeichert",
     "loading": "Lokale Aufzeichnungen lesen…",
     "readError": "Lokale Aufzeichnungen nicht lesbar. Ohne Datenbank-Reset erneut versuchen.",
     "saveError": "Speichern fehlgeschlagen. Aktuelle Antwort bleibt hier. Erneut versuchen oder vor Verlassen Kopie laden.",

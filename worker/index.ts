@@ -1,3 +1,4 @@
+import { canonicalPagePath, pageRoute } from '../src/shared/pageRoutes';
 import { sharingRoute, cleanupShares, type SharingEnv } from './sharing';
 import { webhookRoute } from './webhook';
 import { authRoute } from './auth';
@@ -33,7 +34,9 @@ export default {
       });
     }
     const accept = request.headers.get('Accept') ?? '*/*';
-    if (/^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname) && ['GET', 'HEAD'].includes(request.method) && ['text/html', 'application/xhtml+xml', '*/*'].some(type => accept.includes(type))) {
+    const canonical = canonicalPagePath(pathname);
+    if (canonical && ['GET', 'HEAD'].includes(request.method)) return Response.redirect(new URL(canonical + new URL(request.url).search, request.url).href, 301);
+    if (pageRoute(pathname) && ['GET', 'HEAD'].includes(request.method) && ['text/html', 'application/xhtml+xml', '*/*'].some(type => accept.includes(type))) {
       const headers = new Headers(request.headers);
       for (const key of ['if-none-match', 'if-modified-since', 'range']) headers.delete(key);
       headers.set('Accept-Encoding', 'identity');
@@ -54,6 +57,14 @@ export default {
       responseHeaders.set('Cache-Control', seo.robots.startsWith('noindex') ? 'private, no-store' : 'no-cache');
       return new Response(request.method === 'HEAD' ? null : html, { status: asset.status, headers: responseHeaders });
     }
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    if (response.status !== 404 || !['GET', 'HEAD'].includes(request.method) || !/text\/html|application\/xhtml\+xml/.test(accept)) return response;
+    const page = await env.ASSETS.fetch(new Request(new URL('/404', request.url)));
+    if (!page.ok) return response;
+    const headers = new Headers(page.headers);
+    for (const key of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified']) headers.delete(key);
+    headers.set('X-Robots-Tag', 'noindex, nofollow');
+    headers.set('Cache-Control', 'no-cache');
+    return new Response(request.method === 'HEAD' ? null : page.body, { status: 404, headers });
   },
 } satisfies ExportedHandler<Env & SharingEnv & OAuthEnv>;

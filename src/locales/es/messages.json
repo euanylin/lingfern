@@ -701,7 +701,7 @@
     "incorrect": "No del todo",
     "yourAnswer": "Tu respuesta",
     "answer": "Respuesta correcta",
-    "completed": "Actividad de lectura guardada",
+    "completed": "Actividad guardada",
     "loading": "Leyendo registros locales…",
     "readError": "No se pudieron leer los registros locales. Inténtalo de nuevo sin reiniciar la base de datos.",
     "saveError": "No se pudo guardar. Tu respuesta actual sigue aquí. Inténtalo de nuevo o descarga una copia antes de salir.",

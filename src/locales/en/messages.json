@@ -701,7 +701,7 @@
     "incorrect": "Not quite",
     "yourAnswer": "Your answer",
     "answer": "Correct answer",
-    "completed": "Reading task saved",
+    "completed": "Task saved",
     "loading": "Reading local records…",
     "readError": "Local records could not be read. Retry without resetting the database.",
     "saveError": "Could not save. Your current answer is still here. Retry or download a copy before leaving.",

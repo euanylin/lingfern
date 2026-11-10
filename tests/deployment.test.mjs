@@ -13,7 +13,7 @@ const old = '11111111-1111-4111-8111-111111111111', next = '22222222-2222-4222-8
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const htmlTemplate = '<!doctype html><head><!--seo:start--><title>Lingfern</title><!--seo:end--></head><body>exact HTML</body>';
 const pageTemplates = Object.fromEntries(Object.keys(publicPages).map(path => [path, renderPageHtml(htmlTemplate.replace('exact HTML', `exact public content ${path}`), path)]));
-const contents = { 'index.html': Buffer.from(htmlTemplate), 'sw.js': Buffer.alloc(120142, 7), 'source-packs/listening.zip': Buffer.from('exact ZIP'), ...Object.fromEntries(Object.entries(pageTemplates).map(([path, html]) => [prerenderPath(path).slice(1), Buffer.from(html)])) };
+const contents = { 'index.html': Buffer.from(htmlTemplate), '404.html': Buffer.from('<h1>Page not found</h1>'), 'sw.js': Buffer.alloc(120142, 7), 'source-packs/listening.zip': Buffer.from('exact ZIP'), ...Object.fromEntries(Object.entries(pageTemplates).map(([path, html]) => [prerenderPath(path).slice(1), Buffer.from(html)])) };
 const files = Object.entries(contents).map(([path, bytes]) => ({ path, bytes: bytes.length, sha256: hash(bytes) }));
 const verify = (input, options) => verifyPublicBuild(input, { htmlTemplate, pageTemplates, ...options });
 
@@ -33,7 +33,7 @@ function fetchFixture({ version = next, change = () => undefined } = {}) {
     assert(!options.headers.Authorization && !options.headers.Cookie);
     const pathname = new URL(url).pathname;
     if (pathname === '/api/unknown' || pathname.includes('release-missing') || pathname === '/_headers' || pathname === '/sitemap') return new Response('not found', { status: 404 });
-    const file = pathname === '/' ? 'index.html' : pathname.slice(1);
+    const file = pathname === '/' ? 'index.html' : pathname === '/404' ? '404.html' : pathname.slice(1);
     const body = contents[file] ?? Buffer.from(renderPageHtml(pageTemplates[pathname] ?? htmlTemplate, pathname));
     const response = change(pathname, body);
     return response ?? new Response(body, { headers: { 'x-lingfern-version': version, 'cache-control': 'no-store', 'content-security-policy': "frame-ancestors 'none'", 'cf-ray': 'synthetic-TPE' } });
@@ -59,6 +59,8 @@ test('pinned and ordinary full checks read exact bytes without credentials or wr
     const result = await verify(files, { version: next, pin, fetcher: fixture.fetcher });
     assert.equal(result.files, files.length); assert.equal(result.pages, 13); assert.equal(result.missingPaths, 5);
     assert(fixture.requests.some(({ url }) => url === 'https://lingfern.com/sitemap'));
+    assert(fixture.requests.some(({ url }) => url === 'https://lingfern.com/404'));
+    assert(!fixture.requests.some(({ url }) => url === 'https://lingfern.com/404.html'));
     for (const { options } of fixture.requests) assert.equal(options.headers['Cloudflare-Workers-Version-Overrides'], pin ? `lingfern="${next}"` : undefined);
   }
 });

@@ -701,7 +701,7 @@
     "incorrect": "Non proprio",
     "yourAnswer": "La tua risposta",
     "answer": "Risposta corretta",
-    "completed": "Attività di lettura salvata",
+    "completed": "Attività salvata",
     "loading": "Lettura record locali…",
     "readError": "Record locali non leggibili. Riprova senza reimpostare il database.",
     "saveError": "Impossibile salvare. La risposta resta qui. Riprova o scarica una copia prima di uscire.",

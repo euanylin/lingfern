@@ -701,7 +701,7 @@
     "incorrect": "Não exatamente",
     "yourAnswer": "Sua resposta",
     "answer": "Resposta correta",
-    "completed": "Tarefa de leitura salva",
+    "completed": "Tarefa salva",
     "loading": "Lendo registros locais…",
     "readError": "Não foi possível ler registros locais. Tente novamente sem redefinir o banco de dados.",
     "saveError": "Não foi possível salvar. Sua resposta continua aqui. Tente novamente ou baixe uma cópia antes de sair.",

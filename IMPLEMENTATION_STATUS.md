@@ -15,9 +15,11 @@ Current implementation summary, 2026-11-10. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT
 | MCP and AI handoff | Optional explicitly approved, expiring shared snapshots with ownership/revocation checks; normal share lifetime remains 24 hours. External AI feedback remains a draft and cannot rewrite original answers or formal scores. `worker/mcp.ts`, `worker/oauth.ts`, `worker/sharing.ts`, `src/app/AiHandoff.tsx`. |
 | Deployment | One Vite/React frontend and Cloudflare Worker with Static Assets at `https://lingfern.com`. Narrow route fallbacks preserve missing-resource/API errors. Routine publication is local-first with GitHub CI disabled. See [workflow](AGENT_WORKFLOW.md) and [runbook](docs/release-runbook.md). |
 
+Acceptance repairs released in 0.1.168: shared modal Tab cycling, known-route canonicalization in Worker/SW, neutral completion labels, in-flow learning update notice, document 404 and existing-artwork compatibility icons. Candidate/production asset and affected-control checks plus isolated predecessor-update/offline preservation passed. Physical keyboard and simultaneous native 200% zoom/update notice remain untested. See `docs/history/2026-11-10-release-0.1.168.md`.
+
 ## Release and acceptance boundaries
 
-Production is **0.1.167**, including transient background-free daily-quote credit feedback and the bounded documentation/attribution corrections. [The handoff](DEVELOPMENT_HANDOFF.md) owns the release changes, verification and exact deployed identity. Older completed fixes belong in [history](docs/history/README.md), not a second release ledger here.
+Production is **0.1.168**, including the reviewed acceptance repairs and canonical 404 asset verification. [The handoff](DEVELOPMENT_HANDOFF.md) owns the release changes, verification and exact deployed identity. Older completed fixes belong in [history](docs/history/README.md), not a second release ledger here.
 
 The first public launch is complete. [Release acceptance boundaries](docs/release-runbook.md#acceptance-boundaries) identify retained real-provider, two-device, MCP and maintainer device/network evidence. Local fixtures do not constitute fresh provider or physical-device acceptance. Current observations and source holds remain in [Issues.md](Issues.md).
 

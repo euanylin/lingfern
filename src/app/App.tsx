@@ -1,3 +1,4 @@
+import { pageRoute } from '../shared/pageRoutes';
 import { acceptPageHistory, initializePageHistory, pushPageHistory, replacePageHistory } from './pageHistory';
 import { closeModal, showModal } from './modal';
 import { Component, lazy, startTransition, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type ComponentType, type ComponentProps } from 'react';
@@ -100,7 +101,6 @@ const lesson = catalogue.find(item => item.targetLevel === 'A1' && item.skill ==
 const owner = crypto.randomUUID();
 let firstEntry = typeof location !== 'undefined' && location.pathname === '/';
 const route = () => location.pathname === '/' ? '/today' : location.pathname;
-const pageRoute = (path: string) => /^\/(introduction|start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(path);
 type NavDisplay = 'text' | 'icon' | 'both';
 const navDisplay = (value?: string): value is NavDisplay => value === 'text' || value === 'icon' || value === 'both';
 function welcomeSeen() {

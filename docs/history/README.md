@@ -25,6 +25,8 @@ Only this history index is exported to GitHub. Dated filenames below refer to re
 
 ## Implementation and recovery references
 
+- **Released 0.1.168:** acceptance fixes (`2026-11-10-acceptance-fixes.md`) and review/publication (`2026-11-10-release-0.1.168.md`): shared modal focus, canonical routes/SW, saved-task feedback, learning update notice, document 404 and icon compatibility; complete candidate/production resource proofs, isolated predecessor update and guarded no-CI source synchronization.
+
 - Coverage-ledger follow-up and daily-quote touch feedback (`2026-11-10-coverage-review.md`): bounded translation/attribution corrections, preserved old B1 resource ZIP, exact generated-notice comparison and original local browser/build evidence; subsequently published in 0.1.167. The handoff owns current publication state.
 - Shared material workspace (`2026-10-17-material-workspace.md`), TaskDetail lifecycle (`2026-10-17-task-detail-pointer.md`), page spacing (`2026-10-21-page-bottom-spacing.md`), reference controls (`2026-10-17-reference-ui.md`), and service cards (`2026-10-19-service-cards.md`).
 - Trackpad causes (`2026-11-01-trackpad-recording.md`), native scrollbar behavior (`2026-10-31-native-scrollbar-interaction.md`), Safari compatibility (`2026-10-31-safari-compatibility.md`), sync responsiveness (`2026-10-31-sync-review.md`), and practical performance (`2026-10-31-practical-performance.md`).
