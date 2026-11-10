@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { compareScope, githubGet, verifiedBaseline } from './ci-scope.mjs';
 
-export const verificationSteps = ['Run npm ci', 'Run npm run lint', 'Run npm test', 'Run npm run release:files -- /tmp/lingfern-source-export', 'Run npm run build', 'Inspect public build', 'Run npm run deploy:check', 'Run npx playwright install --with-deps chromium', 'Run npm run test:sync', 'Run npm run test:mcp', 'Run npm run test:e2e', 'Run npm run test:offline', 'Run npm run test:update', 'Check local Worker routes and assets'];
+export const verificationSteps = ['Run npm ci', 'Run npm run lint', 'Run npm test', 'Check public source', 'Run npm run build', 'Inspect public build', 'Run npm run deploy:check', 'Run npx playwright install --with-deps chromium', 'Run npm run test:sync', 'Run npm run test:mcp', 'Run npm run test:e2e', 'Run npm run test:offline', 'Service Worker update safety', 'Check local Worker routes and assets'];
 export const buildSteps = ['Run npm ci', 'Run npm run lint', 'Check public source', 'Run npm run build', 'Inspect public build', 'Run npm run deploy:check', 'Run npx playwright install --with-deps chromium', 'Check local Worker routes and assets'];
 export const fullSteps = [...buildSteps, 'Run npm test', 'Run npm run test:sync', 'Run npm run test:mcp', 'Run npm run test:e2e', 'Run npm run test:offline', 'Service Worker update safety'];
 export const uiSteps = [...buildSteps, 'Run safety guards', 'Run scoped UI checks'];
