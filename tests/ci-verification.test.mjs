@@ -58,6 +58,52 @@ test('full proof rejects skipped, missing, failed, foreign and incomplete stages
   for (const change of [{ name: 'deploy' }, { run_id: 2 }, { head_sha: 'b'.repeat(40) }, { run_attempt: 2 }, { conclusion: 'failure' }, { steps: job.steps.slice(1) }, { steps: job.steps.map((step, index) => index ? step : { ...step, conclusion: 'skipped' }) }, { steps: [...job.steps, { name: 'extra', status: 'in_progress', conclusion: null }] }]) assert(!fullChecksJob({ ...job, ...change }, run));
 });
 
+test('a full Checks job may skip unselected UI stages without reusing incomplete proof', async () => {
+  const checks = await readFile(new URL('../.github/workflows/checks.yml', import.meta.url), 'utf8');
+  const base = 'b'.repeat(40);
+  const stages = kind => checks.split(/\n      - /).slice(1).map(block => {
+    const named = block.match(/^name: (.+)\n/), command = block.match(/^run: ([^\n|]+)\n/), uses = block.match(/^uses: (\S+)/);
+    const name = (named?.[1] ?? (command ? `Run ${command[1]}` : `Run ${uses[1]}`)).replaceAll('${{ steps.scope.outputs.kind }}', kind).replaceAll('${{ steps.scope.outputs.base }}', base);
+    const unselected = block.includes(kind === 'full' ? "steps.scope.outputs.kind == 'ui'" : "steps.scope.outputs.kind == 'full'");
+    return { name, status: 'completed', conclusion: unselected ? 'skipped' : 'success' };
+  });
+  const withSteps = steps => ({ ...job, steps });
+  const fullJob = withSteps(stages('full'));
+  const evidence = current => async path => path.includes('?head_sha=') ? { workflow_runs: [run] } : { total_count: 1, jobs: [current] };
+  assert.deepEqual(fullJob.steps.filter(step => step.conclusion === 'skipped').map(step => step.name), ['Run safety guards', 'Run scoped UI checks']);
+  assert(fullChecksJob(fullJob, run));
+  assert.deepEqual(await findVerification(evidence(fullJob), repository, sha, 99), { verified: 1, scope: 'full', main: undefined });
+  for (const name of verificationSteps) {
+    const missing = fullJob.steps.filter(step => step.name !== name);
+    assert(!fullChecksJob(withSteps(missing), run));
+    assert.deepEqual(await findVerification(evidence(withSteps(missing)), repository, sha, 99), {});
+    for (const conclusion of ['skipped', 'failure']) {
+      const steps = fullJob.steps.map(step => step.name === name ? { ...step, conclusion } : step);
+      assert(!fullChecksJob(withSteps(steps), run));
+      assert.deepEqual(await findVerification(evidence(withSteps(steps)), repository, sha, 99), {});
+    }
+  }
+  for (const change of [{ conclusion: 'failure' }, { conclusion: 'cancelled' }, { status: 'in_progress', conclusion: null }]) {
+    const broken = { ...fullJob, ...change };
+    assert(!fullChecksJob(broken, run));
+    assert.deepEqual(await findVerification(evidence(broken), repository, sha, 99), {});
+  }
+  const failedSibling = withSteps(fullJob.steps.map(step => step.name === 'Run safety guards' ? { ...step, conclusion: 'failure' } : step));
+  assert(!fullChecksJob(failedSibling, run));
+  assert.deepEqual(await findVerification(evidence(failedSibling), repository, sha, 99), {});
+  const uiJob = withSteps(stages('ui'));
+  assert(!fullChecksJob(uiJob, run));
+  const baseline = { ...run, id: 10, head_branch: 'main', head_sha: base };
+  const uiGet = async path => {
+    if (path.includes('/compare/')) return { status: 'ahead', merge_base_commit: { sha: base }, files: [{ filename: 'src/app/modal.ts', status: 'modified' }] };
+    if (path.includes('head_sha=' + base)) return { workflow_runs: [baseline] };
+    if (path.includes('?head_sha=')) return { workflow_runs: [run] };
+    return { total_count: 1, jobs: [uiJob] };
+  };
+  assert.equal(await scopedChecksJob(uiJob, run, uiGet, repository), 'ui');
+  assert.deepEqual(await findVerification(uiGet, repository, sha, 99), { verified: 1, scope: 'ui', main: undefined });
+});
+
 test('reused main success needs an independent full run for the identical source', async () => {
   const main = { ...run, id: 2, head_branch: 'main' }, reused = { ...job, run_id: 2, steps: [{ name: 'Reuse verification for the identical source', status: 'completed', conclusion: 'success' }, ...job.steps.map(step => ({ ...step, conclusion: 'skipped' }))] };
   const get = async path => path.includes('?head_sha=') ? { workflow_runs: [main, run] } : { total_count: 1, jobs: [path.includes('/runs/2/') ? reused : job] };

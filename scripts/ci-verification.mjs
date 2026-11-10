@@ -21,8 +21,9 @@ function completedJob(job, run, allowSkipped = false) {
   return job?.name === 'checks' && job.run_id === run.id && job.head_sha === run.head_sha && job.run_attempt === run.run_attempt && job.status === 'completed' && job.conclusion === 'success' && Array.isArray(job.steps) && job.steps.every(step => step.status === 'completed' && (step.conclusion === 'success' || allowSkipped && step.conclusion === 'skipped'));
 }
 
+// A full run skips stages selected for another scope. Required stages still have to succeed.
 export function fullChecksJob(job, run) {
-  return completedJob(job, run) && verificationSteps.every(name => job.steps.some(step => step.name === name));
+  return completedJob(job, run, true) && verificationSteps.every(name => job.steps.some(step => step.name === name && step.conclusion === 'success'));
 }
 
 export async function scopedChecksJob(job, run, get, repository) {
