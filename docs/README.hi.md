@@ -177,7 +177,7 @@ npm run preview
 - [MCP क्लाइंट (अंग्रेज़ी)](mcp-clients.md)
 - [Issues](https://github.com/euanylin/lingfern/issues)
 
-। समस्या दोहराने के चरण दें, निजी रिकॉर्ड या क्रेडेंशियल न जोड़ें।
+समस्या दोहराने के चरण दें, निजी रिकॉर्ड या क्रेडेंशियल न जोड़ें।
 
 <a id="readme-license"></a>
 

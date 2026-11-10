@@ -25,6 +25,7 @@ Only this history index is exported to GitHub. Dated filenames below refer to re
 
 ## Implementation and recovery references
 
+- Coverage-ledger follow-up and daily-quote touch feedback (`2026-11-10-coverage-review.md`): bounded translation/attribution corrections, preserved old B1 resource ZIP, exact generated-notice comparison and original local browser/build evidence; subsequently published in 0.1.167. The handoff owns current publication state.
 - Shared material workspace (`2026-10-17-material-workspace.md`), TaskDetail lifecycle (`2026-10-17-task-detail-pointer.md`), page spacing (`2026-10-21-page-bottom-spacing.md`), reference controls (`2026-10-17-reference-ui.md`), and service cards (`2026-10-19-service-cards.md`).
 - Trackpad causes (`2026-11-01-trackpad-recording.md`), native scrollbar behavior (`2026-10-31-native-scrollbar-interaction.md`), Safari compatibility (`2026-10-31-safari-compatibility.md`), sync responsiveness (`2026-10-31-sync-review.md`), and practical performance (`2026-10-31-practical-performance.md`).
 - Historical storage consolidation (`2026-10-28-local-storage-cleanup.md`) and cold source/Git recovery boundaries (`2026-10-17-verification-storage.md`). These explain previous removals and retained original evidence; inspect actual files before recovery.

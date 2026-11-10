@@ -74,7 +74,7 @@ Le domande oggettive ricevono valutazioni e spiegazioni. Le risposte aperte non 
 ## Controlli di lettura e audio
 
 - Seleziona il testo per consultare il dizionario o evidenziare e salva note sul materiale.
-- La scheda delle risposte porta alla domanda senza attivare l’inserimento. Su mobile il pannello di lettura si espande e ridimensiona; su desktop il testo scorre con la pagina e il pannello delle risposte separatamente.
+- La scheda delle risposte porta alla domanda senza attivare l’inserimento. Su mobile il pannello delle risposte si espande e ridimensiona; su desktop il testo scorre con la pagina e il pannello delle risposte separatamente.
 - Tutti i gruppi e le domande della registrazione attuale compaiono in ordine. Pausa, ripetizione, spostamento audio e cambio di domanda mantengono riproduzione e bozze.
 - Le bozze si salvano mentre rispondi. Invia dopo l’ultima domanda, riprendi sessioni incomplete o conferma **Ricomincia** per sostituirle. In caso di errore di salvataggio, usa riprova, recupero o esportazione della bozza prima di uscire.
 

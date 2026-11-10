@@ -74,7 +74,7 @@ Objektive Fragen werden mit passenden Erklärungen bewertet. Offene Antworten er
 ## Lese- und Audiosteuerung
 
 - Markiere Text zum Nachschlagen oder Hervorheben und speichere Materialnotizen.
-- Die Antwortübersicht springt zur Frage, ohne die Eingabe zu öffnen. Auf Mobilgeräten lässt sich das Lesepanel ausklappen und vergrößern; am Desktop scrollt der Text mit der Seite und der Antwortbereich separat.
+- Die Antwortübersicht springt zur Frage, ohne die Eingabe zu öffnen. Auf Mobilgeräten lässt sich der Antwortbereich ausklappen und vergrößern; am Desktop scrollt der Text mit der Seite und der Antwortbereich separat.
 - Alle Gruppen und Fragen zur aktuellen Aufnahme erscheinen der Reihe nach. Pause, Wiederholung, Audiosuche und Fragenwechsel erhalten Wiedergabe und Entwürfe.
 - Entwürfe werden beim Antworten gespeichert. Gib nach der letzten Frage ab, setze unvollständige Sitzungen fort oder bestätige **Neu beginnen**, um eine Sitzung zu ersetzen. Nutze bei Speicherfehlern vor dem Verlassen Wiederholung, Wiederherstellung oder Entwurfsexport.
 

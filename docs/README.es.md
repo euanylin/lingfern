@@ -6,7 +6,7 @@
 
 <img src="../public/icon.svg" width="96" alt="Lingfern">
 
-Práctica de lectura y comprensión auditiva en inglés para mayores de 16 años, con objetivos de A1 a C2. Los ejercicios se generan localmente a partir de textos y grabaciones. No necesitas una cuenta ni un servicio de IA para aprender.
+Práctica de lectura y comprensión auditiva en inglés para personas de 16 años o más, con objetivos de A1 a C2. Los ejercicios se generan localmente a partir de textos y grabaciones. No necesitas una cuenta ni un servicio de IA para aprender.
 
 <a id="readme-languages"></a>
 
@@ -74,7 +74,7 @@ Las preguntas objetivas tienen corrección y explicaciones. Las respuestas abier
 ## Lectura y controles de audio
 
 - Selecciona texto para consultar el diccionario o resaltar; guarda notas sobre el material.
-- La tarjeta de respuestas localiza preguntas sin activar la entrada. En móvil, el panel de lectura se expande y cambia de tamaño; en escritorio, el texto se desplaza con la página y el panel de respuestas por separado.
+- La tarjeta de respuestas localiza preguntas sin activar la entrada. En móvil, el panel de respuestas se expande y cambia de tamaño; en escritorio, el texto se desplaza con la página y el panel de respuestas por separado.
 - Se muestran en orden todos los grupos y preguntas de la grabación actual. Pausar, repetir, buscar en el audio o cambiar de pregunta conserva reproducción y borradores.
 - Los borradores se guardan mientras respondes. Envía tras la última pregunta, reanuda una sesión incompleta o confirma **Reiniciar** para sustituirla. Si falla el guardado, usa reintento, recuperación o exportación del borrador antes de salir.
 

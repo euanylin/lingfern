@@ -1,9 +1,9 @@
 # Main points and supporting details — source notices
 
-VOA Learning English, articles by John Russell:
+VOA Learning English:
 
-- Appeal: https://learningenglish.voanews.com/a/appeal/7985917.html — continuous original recording59.98–84.58 seconds.
-- How to Summon Others: https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html — continuous original recording68.28–100.60 seconds.
+- Appeal — Andrew Smith: https://learningenglish.voanews.com/a/appeal/7985917.html — continuous original recording59.98–84.58 seconds.
+- How to Summon Others — John Russell: https://learningenglish.voanews.com/a/how-to-summon-others-/7920108.html — continuous original recording68.28–100.60 seconds.
 
 Original VOA Learning English own-author production: public domain with attribution. Recorded terms: https://learningenglish.voanews.com/p/6861.html; retain VOA-LICENSE.txt in this directory. Article authorship is credited without asserting an independently verified narrator identity.
 

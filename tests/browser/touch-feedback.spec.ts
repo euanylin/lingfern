@@ -18,6 +18,21 @@ test('daily quote refresh retains mouse hover feedback', async ({ page }) => {
   await expect(button).toHaveCSS('background-color', idle);
 });
 
+test('daily quote credits retain desktop text feedback without a background', async ({ page }) => {
+  await page.goto('/today');
+  const link = page.locator('.daily-quote-credit a').first();
+  await expect(link).toBeVisible();
+  const idle = await link.evaluate(el => getComputedStyle(el).color);
+  await link.hover();
+  await expect(link).not.toHaveCSS('color', idle);
+  await expect(link).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await page.mouse.move(0, 0);
+  await expect(link).toHaveCSS('color', idle);
+  await link.press('Tab'); await page.keyboard.press('Shift+Tab');
+  await expect(link).toBeFocused();
+  await expect(link).toHaveCSS('text-decoration-line', 'underline');
+});
+
 for (const [locale, theme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar', 'dark']] as const) test(`Test keeps its desktop feedback during touch and keyboard focus: ${locale}/${theme}`, async ({ browser }, info) => {
   let desktopColor = '';
   for (const hasTouch of [false, true]) {
@@ -76,6 +91,42 @@ test.describe('touch feedback', () => {
     await page.keyboard.press('Enter');
     await expect(quote).not.toHaveAttribute('data-quote-id', next!);
     await expect(button).toBeFocused();
+  });
+  test('daily quote text feedback clears on release, cancellation and scrolling without a background', async ({ page, context }, info) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/today');
+    const links = page.locator('.daily-quote-credit a');
+    await expect(links.first()).toBeVisible();
+    await page.locator('.daily-quote').evaluate(el => el.addEventListener('click', event => {
+      if ((event.target as Element).closest('a')) event.preventDefault();
+    }));
+    const cdp = await context.newCDPSession(page);
+    for (const link of await links.all()) {
+      for (const end of ['touchEnd', 'touchCancel', 'scroll'] as const) {
+        await readyForTouch(link);
+        const idle = await link.evaluate(el => getComputedStyle(el.parentElement!).color), box = (await link.boundingBox())!;
+        const point = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
+        await expect(link).toHaveAttribute('data-touch-active', '');
+        await expect(link).not.toHaveCSS('color', idle);
+        await expect(link).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+        if (end === 'scroll') {
+          await page.screenshot({ path: info.outputPath('daily-quote-credit-touch.png') });
+          await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...point, y: point.y - 30 }] });
+          await expect(link).not.toHaveAttribute('data-touch-active');
+        }
+        await cdp.send('Input.dispatchTouchEvent', { type: end === 'touchEnd' ? 'touchEnd' : 'touchCancel', touchPoints: [] });
+        await expect(link).not.toHaveAttribute('data-touch-active');
+        await expect(link).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+        await expect(link).toHaveCSS('color', idle);
+      }
+    }
+    await cdp.detach();
+    const link = links.first();
+    await link.press('Tab'); await page.keyboard.press('Shift+Tab');
+    await expect(link).toBeFocused();
+    await expect(link).toHaveCSS('text-decoration-line', 'underline');
   });
   test('primary links and both History buttons use their desktop colours during touch contact', async ({ page, context }) => {
     await page.setViewportSize({ width: 390, height: 844 });

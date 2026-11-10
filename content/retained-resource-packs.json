@@ -23,6 +23,13 @@
       "path": "/packs/audio-a1-23cd5b5b338d2596.zip",
       "bytes": 1273964,
       "sha256": "d0edb9929f7aa0a28ee5d21c1aedad170af00c6e569744447cf664cde4fc255f"
+    },
+    {
+      "id": "audio-b1",
+      "version": "65d27730dc4b06e0",
+      "path": "/packs/audio-b1-65d27730dc4b06e0.zip",
+      "bytes": 6952323,
+      "sha256": "373510312fa53d7f59e55e1d92265c9055117987b1afe30af040d28ab2d5d953"
     }
   ]
 }
