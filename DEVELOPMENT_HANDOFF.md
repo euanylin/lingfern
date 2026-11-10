@@ -1,20 +1,20 @@
 # Current development handoff
 
-Updated 2026-11-05. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
+Updated 2026-11-10. This is the single current release and work-state entry point. Feature scope belongs in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), unresolved limits in [Issues.md](Issues.md), and commands/publication procedure in [AGENT_WORKFLOW.md](AGENT_WORKFLOW.md).
 
-## Current release: 0.1.165
+## Current release: 0.1.166
 
-Cloudflare accepted Worker version `9819d791-a489-4104-a07a-953e8965a6b5`, deployment `ca71e6f4-580b-4c24-aff5-0d4bbfff61a5`, at 100% traffic. Recovery target is 0.1.164, Worker `7ea040b9-3b22-40d5-a534-fdb10f2d15cd`. Source synchronization to [GitHub main](https://github.com/euanylin/lingfern/tree/main) follows the guarded local-first procedure; `github-accepted.json` records its final result.
+Cloudflare accepted Worker version `3230174e-2434-452b-a948-0cf6559fc402`, deployment `01cff218-b31c-4f82-a358-318615893654`, at 100% traffic. Recovery target is 0.1.165, Worker `9819d791-a489-4104-a07a-953e8965a6b5`. Source synchronization to [GitHub main](https://github.com/euanylin/lingfern/tree/main) follows the guarded local-first procedure; `github-accepted.json` records its final result. Checks and Deploy remain disabled.
 
-Release evidence: `private/verification/release-0.1.165-20261105/`. `accepted.json` records Cloudflare acceptance. Checks and Deploy remain disabled.
+This release integrates [PR #4](https://github.com/euanylin/lingfern/pull/4) at `1e1225228cdb2234777115dbe33d15580df579bd` and [PR #5](https://github.com/euanylin/lingfern/pull/5) at `a6d252cfca7544db814f9691569beff55fff0b44`. The retained CI verifier uses current workflow step names, and the fixture-only unsaved-answer demo is omitted from production assets and precaching. Added the verifier's step list to the actual-workflow contract regression; it failed before the fix and passes afterward. Remote Cursor environment instructions were preserved. No learner data, identity, sync format, corpus, domain or production bindings changed.
 
-This release fixes the daily-quote refresh background persisting after a touch tap. Hover styling now requires a fine pointer with hover support; existing touch-contact and keyboard feedback remain intact. Application changes are in `src/app/style.css`, with two focused regressions in `tests/browser/touch-feedback.spec.ts` and the package version updated to 0.1.165.
+Release evidence: `private/verification/release-0.1.166-20261110/`; earlier focused checks: `private/verification/pr-review-20261110/`. `accepted.json` records Cloudflare acceptance; `update-smoke.json` records the isolated installed-client upgrade.
 
 ## Verification boundary
 
-The touch regression failed before the fix and passed afterward, alongside mouse hover and keyboard refresh/focus (`npm exec -- playwright test tests/browser/touch-feedback.spec.ts -g 'daily quote refresh' --workers=1`; Chrome, 390px dark touch and desktop light mouse). Changed-test ESLint, the Node 24.22.1 build and deployment dry run passed. The original physical handset has not been retested.
+Node 24.22.1: 12 CI-verification tests, 2 teaching-copy tests, changed-file ESLint, 15 focused Chrome browser tests, the 0.1.166 production build and deployment dry run passed. Production contains 113 JavaScript assets and no `UnsavedDemo` chunk or precache entry. The local 8787 preview rendered 今日 and served `/sw.js` successfully in an isolated Chrome context. `Dependency_Notices.md` remained byte-identical to the recovery baseline.
 
-Candidate and production checks each verified 1,001 build files, 13 pages and five missing paths. Candidate propagation required one bounded wrong-version retry before successful verification. Production touch/keyboard and desktop mouse/keyboard refresh checks passed. The isolated 0.1.164 → 0.1.165 update preserved the exact synthetic profile, theme, lesson, answer, draft and note, then reopened Today and learning offline. No real learner records were used. Existing Worker bindings, runtime configuration and static headers were preserved; one candidate was uploaded and no recovery was needed.
+Candidate and ordinary production acceptance each verified all 999 build files, 13 pages and five missing paths without failed responses. One candidate was uploaded; no recovery was used. Existing runtime configuration, bindings and static headers matched the baseline. Production touch/keyboard and desktop mouse/keyboard quote refresh checks passed. The isolated 0.1.165 → 0.1.166 upgrade retained the exact synthetic profile, theme, lesson, answer, draft and note, then reopened Today and learning offline. No real learner records were used. No fresh real-provider or physical-device acceptance is claimed; unchanged launch evidence remains applicable.
 
 ## Cloudflare zone settings — 2026-11-01
 

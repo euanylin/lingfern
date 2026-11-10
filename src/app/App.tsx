@@ -71,7 +71,9 @@ const OfflineInstall = lazy(() => import('./OfflineInstall').then(module => ({ d
 const CommunityImport = lazy(() => import('./CommunityImport').then(module => ({ default: module.CommunityImport })));
 const InstalledResources = lazy(() => import('./CommunityImport').then(module => ({ default: module.InstalledResources })));
 const LookupHistory = lazy(() => import('./LookupHistory').then(module => ({ default: module.LookupHistory })));
-const UnsavedDemo = lazy(() => import('./UnsavedDemo').then(module => ({ default: module.UnsavedDemo })));
+const UnsavedDemo: ComponentType<{ lesson: Lesson; locale: Locale; onClose: () => void }> = import.meta.env.MODE === 'test-fixtures'
+  ? lazy(() => import('./UnsavedDemo').then(module => ({ default: module.UnsavedDemo })))
+  : () => null;
 export async function preloadPublicPage(path: string) {
   switch (path) {
     case '/introduction': {

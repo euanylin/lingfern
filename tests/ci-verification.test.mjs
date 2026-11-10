@@ -86,7 +86,7 @@ test('automatic Checks cover main pushes and main pull requests without skipping
 test('workflow stages agree with the verification contract and deployment gate precedes upload', async () => {
   const checks = await readFile(new URL('../.github/workflows/checks.yml', import.meta.url), 'utf8');
   const blocks = checks.split(/\n      - /).slice(1);
-  for (const name of [...new Set([...fullSteps, ...uiSteps])]) {
+  for (const name of [...new Set([...verificationSteps, ...fullSteps, ...uiSteps])]) {
     const block = blocks.find(value => value.startsWith(`name: ${name}\n`) || value.startsWith(`run: ${name.slice(4)}\n`) && name.startsWith('Run '));
     assert(block, name);
     assert(block.includes("if: steps.verification.outputs.run_id == '' && steps.scope.outputs.kind"), name);
