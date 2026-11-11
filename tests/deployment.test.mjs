@@ -69,7 +69,7 @@ test('page proofs require the sealed HTML template and reject changed metadata',
   const fixture = fetchFixture();
   await assert.rejects(verify(files, { htmlTemplate: 'different source', version: next, fetcher: fixture.fetcher }), /HTML_TEMPLATE_MISMATCH/);
   assert.equal(fixture.requests.length, 0);
-  const changed = fetchFixture({ change: (pathname, body) => pathname === '/library/ipa' ? new Response(body.toString().replace('IPA pronunciation chart', 'Wrong title'), { headers: { 'x-lingfern-version': next, 'content-security-policy': "frame-ancestors 'none'" } }) : undefined });
+  const changed = fetchFixture({ change: (pathname, body) => pathname === '/library/ipa' ? new Response(body.toString().replace('IPA chart', 'Wrong title'), { headers: { 'x-lingfern-version': next, 'content-security-policy': "frame-ancestors 'none'" } }) : undefined });
   await assert.rejects(verify(files, { version: next, fetcher: changed.fetcher }));
 });
 

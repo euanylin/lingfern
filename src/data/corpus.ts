@@ -192,6 +192,7 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
   })();
   const existing = loading.get(source);
   if (existing) return existing;
+  const controller = new AbortController();
   const request = (async () => {
     await loadRuntimeResources();
     const files = offlineGroups.filter(group => group.id === 'corpus' || group.id === 'corpus-open-reading').flatMap(group => group.files).filter(file => file.path === `/corpus/${source}.json`
@@ -202,7 +203,7 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
     // Bound parallel shard reads to limit memory while avoiding serial network waits.
     for (let offset = 0; offset < files.length; offset += 2) {
       banks.push(...await Promise.all(files.slice(offset, offset + 2).map(async file => {
-        const response = await fetch(file.path, { credentials: 'omit' });
+        const response = await fetch(file.path, { credentials: 'omit', signal: controller.signal });
         if (!response.ok || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_CORPUS'); }
         const reader = response.body.getReader(), chunks: Uint8Array[] = [];
         let length = 0;
@@ -226,7 +227,7 @@ export function loadCorpus(source: 'gutenberg' | 'voa' | 'wikipedia' | 'addition
     const records = banks.flatMap(bank => bank.records);
     if (records.length > 3000 || new Set(records.map(record => record.rootId)).size !== records.length) throw new Error('CORPUS_INTEGRITY');
     return { version: 1 as const, records, failures: banks.flatMap(bank => bank.failures) };
-  })().catch(error => { loading.delete(source); throw error; });
+  })().catch(error => { controller.abort(); loading.delete(source); throw error; });
   loading.set(source, request);
   return request;
 }

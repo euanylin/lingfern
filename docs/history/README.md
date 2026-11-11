@@ -12,6 +12,8 @@ Only this history index is exported to GitHub. Dated filenames below refer to re
 
 ## Current and earlier releases
 
+- **Released 0.1.170:** `2026-11-11-release-0.1.170.md`: 404 first paint/startup recovery, concise titles, localized missing-page metadata and failed-shard cancellation; exact candidate/production resources, predecessor-upgrade/offline preservation and guarded no-CI source synchronization.
+
 - **Released 0.1.169:** local review and publication (`2026-11-10-release-0.1.169.md`): practice/dictionary loading, legacy selection, shared actions and 404, multilingual HTML/hydration and refresh first paint; exact candidate/production resources, synthetic predecessor-update/offline preservation and guarded no-CI source synchronization.
 
 - **Released 0.1.160:** IPA mobile repair (`2026-11-02-ipa-mobile.md`), IPA/shared-control feedback (`2026-11-02-related-feedback.md`), and the comprehensive follow-up audit (`2026-11-02-comprehensive-audit.md`): captured resource versions, unsaved-note preservation on transient lease errors, distinct generated-question IDs and bounded redundant-check removal. These fixes and repository/documentation cleanup are published; the [handoff](../../DEVELOPMENT_HANDOFF.md) owns current release receipts and verification boundaries.
@@ -26,6 +28,8 @@ Only this history index is exported to GitHub. Dated filenames below refer to re
 - Initial source publication, account/resource setup and staged execution records retain their actual authorizations and failed-operation limits. Their spent approvals do not authorize a repeat.
 
 ## Implementation and recovery references
+
+- Local expanded review (`2026-11-11-recent-changes-review.md`): recent loading/navigation/SEO/shared-control and publishing-guard changes; startup-failure 404 recovery, localized metadata consistency and per-operation shard cancellation. Exact scope, retained before-fix failures and final local verification are recorded there; publication status belongs in the current handoff.
 
 - **Released 0.1.168:** acceptance fixes (`2026-11-10-acceptance-fixes.md`) and review/publication (`2026-11-10-release-0.1.168.md`): shared modal focus, canonical routes/SW, saved-task feedback, learning update notice, document 404 and icon compatibility; complete candidate/production resource proofs, isolated predecessor update and guarded no-CI source synchronization.
 

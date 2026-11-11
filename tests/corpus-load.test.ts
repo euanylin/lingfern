@@ -62,7 +62,7 @@ it('rejects corrupt corpus bytes and retries with a verified complete package', 
   for (const source of corpus.records) expect(source.sourceHash).toBe(createHash('sha256').update(readFileSync(`content/corpus/raw/pg${source.id.slice('gutenberg-'.length)}.txt`)).digest('hex'));
   expect(await loadCorpus()).toBe(corpus);
   expect(fetch.mock.calls.map(call => call[0])).toEqual(['/corpus/gutenberg.json', '/corpus/gutenberg-2.json', '/corpus/gutenberg.json', '/corpus/gutenberg-2.json']);
-  expect(fetch).toHaveBeenLastCalledWith('/corpus/gutenberg-2.json', { credentials: 'omit' });
+  expect(fetch).toHaveBeenLastCalledWith('/corpus/gutenberg-2.json', { credentials: 'omit', signal: expect.any(AbortSignal) });
 });
 
 it('rejects a corrupt second Gutenberg file and reloads all files without losing any source or passage', async () => {
@@ -235,3 +235,21 @@ it('loads every open-reading shard from its separate bounded resource group', as
   expect(corpus.records).toEqual(files.flatMap(file => JSON.parse(readFileSync('public' + file.path, 'utf8')).records));
   expect(fetch.mock.calls.map(call => call[0])).toEqual(files.map(file => file.path));
 });
+
+it('aborts the other parallel shard when corpus integrity fails', async () => {
+  vi.resetModules();
+  const { loadCorpus: load } = await import('../src/data/corpus');
+  let signal: AbortSignal | undefined;
+  const fetch = vi.fn((path: string, options?: RequestInit) => {
+    if (!path.endsWith('-2.json')) return Promise.resolve(new Response('{}'));
+    signal = options?.signal ?? undefined;
+    return new Promise<Response>((_resolve, reject) => {
+      signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')), { once: true });
+    });
+  });
+  vi.stubGlobal('fetch', fetch);
+  await expect(load()).rejects.toThrow('CORPUS_INTEGRITY');
+  expect(fetch).toHaveBeenCalledTimes(2);
+  expect(signal?.aborted).toBe(true);
+});
+

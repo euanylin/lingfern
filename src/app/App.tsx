@@ -155,10 +155,6 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
   useLayoutEffect(() => {
     updatePageMetadata(path, pageSearch, locale);
     document.body.classList.toggle('not-found', missing);
-    if (missing) {
-      document.title = `${messages('notFound')[locale].title} | Lingfern`;
-      document.querySelector('meta[name="robots"]')?.setAttribute('content', 'noindex, nofollow');
-    }
   }, [path, pageSearch, locale, missing]);
   const resetNavigationScroll = useRef(false);
   useLayoutEffect(() => { if (resetNavigationScroll.current) { resetNavigationScroll.current = false; document.getElementById('main')?.setAttribute('data-navigated', ''); scrollTo(0, 0); } }, [path, pageSearch]);

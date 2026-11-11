@@ -1,6 +1,8 @@
 # Implementation status
 
-Current implementation summary, 2026-11-10. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) owns published identities and current release changes. [Issues.md](Issues.md) owns remaining limits; this file does not duplicate release journals.
+Current implementation summary, 2026-11-11. [DEVELOPMENT_HANDOFF.md](DEVELOPMENT_HANDOFF.md) owns published identities and current release changes. [Issues.md](Issues.md) owns remaining limits; this file does not duplicate release journals.
+
+Published in 0.1.170: concise reference/About tab titles, a prepared-language 404 first paint with startup-failure recovery and consistent localized metadata, and cancellation of abandoned corpus shard downloads. Exact review, deployment and upgrade/offline evidence is owned by the current handoff and [release record](docs/history/2026-11-11-release-0.1.170.md).
 
 | Area | Current behavior and implementation |
 |---|---|
@@ -20,7 +22,7 @@ Acceptance repairs released in 0.1.168: shared modal Tab cycling, known-route ca
 
 ## Release and acceptance boundaries
 
-Production is **0.1.169**, including the practice-loading, dictionary, shared-control/404, multilingual rendering/hydration and refresh first-paint repairs. The fresh review, unit/source/browser checks and exact candidate/production resource acceptance passed; isolated predecessor-update/offline data preservation also passed. [The handoff](DEVELOPMENT_HANDOFF.md) owns the release changes, verification and exact deployed identity. Older completed fixes belong in [history](docs/history/README.md), not a second release ledger here.
+Production is **0.1.170**. Both complete candidate/production asset passes and affected controls passed; the isolated 0.1.169 → 0.1.170 upgrade preserved exact synthetic records and offline access. The accepted code includes all prior practice/dictionary/shared-control, multilingual/hydration and first-paint repairs. [The handoff](DEVELOPMENT_HANDOFF.md) owns exact deployment, GitHub synchronization and verification boundaries.
 
 The first public launch is complete. [Release acceptance boundaries](docs/release-runbook.md#acceptance-boundaries) identify retained real-provider, two-device, MCP and maintainer device/network evidence. Local fixtures do not constitute fresh provider or physical-device acceptance. Current observations and source holds remain in [Issues.md](Issues.md).
 

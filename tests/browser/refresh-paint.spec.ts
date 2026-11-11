@@ -28,6 +28,7 @@ for (const width of [390, 1440]) test(`refresh paints saved navigation and compl
     });
     await page.reload(); await expect(page.locator('.today-hero .fern')).toHaveAttribute('aria-busy', 'false');
     await expect.poll(() => page.evaluate(() => (window as unknown as { refreshPaint: { frames: unknown[] } }).refreshPaint.frames.length)).toBeGreaterThan(0);
+    await expect.poll(() => page.evaluate(() => (window as unknown as { refreshPaint: { fern?: unknown } }).refreshPaint.fern)).toBeDefined();
     const state = await page.evaluate(() => {
       const state = (window as unknown as { refreshPaint: { frames: { visible: boolean; display: string; labels: string[]; theme: string }[]; fern: { visibility: string; busy: string }; running: boolean } }).refreshPaint;
       state.running = false; return state;

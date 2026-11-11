@@ -5,6 +5,16 @@ import { localeDirection, localeSchema, requestLocale } from '../src/shared/loca
 import { seoCopy } from '../src/locales/seo';
 
 describe('page metadata', () => {
+  it('keeps tab and share titles concise without a brand suffix', () => {
+    const titles = { '/introduction': 'Lingfern', '/library/dictionary': 'Dictionary', '/library/ipa': 'IPA chart', '/library/grammar': 'Usage', '/settings/about': 'About' };
+    for (const locale of localeSchema.options) for (const [path, title] of Object.entries(titles)) {
+      expect(pageSeo(path, '', locale).title).toBe(title);
+      expect(seoHead(path, '', locale)).toContain(`property="og:title" content="${title}"`);
+      expect(seoHead(path, '', locale)).not.toContain('| Lingfern');
+    }
+    expect(readFileSync('404.html', 'utf8')).toContain('<title data-lingfern-seo>Page not found</title>');
+  });
+
   it.each(localeSchema.options)('provides complete %s descriptions without extra public URLs', locale => {
     expect(Object.keys(seoCopy[locale]).sort()).toEqual(Object.keys(seoCopy.en).sort());
     for (const path of Object.keys(publicPages)) {

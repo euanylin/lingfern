@@ -65,7 +65,7 @@ test('raw HTML exposes accurate public metadata and keeps personal routes uninde
   for (const accept of ['*/*', 'application/xhtml+xml']) {
     const bot = await context.request.get(origin + '/library/ipa', { headers: { Accept: accept } });
     expect(bot.status()).toBe(200);
-    expect(await bot.text()).toContain('property="og:title" content="IPA pronunciation chart | Lingfern"');
+    expect(await bot.text()).toContain('property="og:title" content="IPA chart"');
   }
   expect((await context.request.get(origin + '/library/ipa', { headers: { Accept: 'application/json' } })).status()).toBe(404);
 });
@@ -81,7 +81,7 @@ test('metadata follows navigation and back without duplicates, private details o
   await expect(page.locator('head meta[name=robots]')).toHaveAttribute('content', 'noindex, follow');
   await expect(page.locator('head link[rel=canonical],head meta[property="og:url"]')).toHaveCount(0);
   await page.locator('.settings-update a[href="/settings/about"]').click();
-  await expect(page).toHaveTitle('About Lingfern');
+  await expect(page).toHaveTitle('About');
   await expect(page.locator('head link[rel=canonical]')).toHaveAttribute('href', siteOrigin + '/settings/about');
   await page.goBack();
   await expect(page.locator('head meta[name=robots]')).toHaveAttribute('content', 'noindex, follow');
@@ -120,7 +120,7 @@ test('cached shell restores correct public and private metadata while offline', 
   await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
   await context.setOffline(true);
   await page.goto(origin + '/settings/about');
-  await expect(page).toHaveTitle('About Lingfern');
+  await expect(page).toHaveTitle('About');
   await expect(page.locator('head meta[name=robots]')).toHaveAttribute('content', 'index, follow');
   await page.goto(origin + '/progress');
   await expect(page.locator('head meta[name=robots]')).toHaveAttribute('content', 'noindex, follow');

@@ -1,4 +1,6 @@
 .not-found{-webkit-tap-highlight-color:transparent}
+/* The early script restores this fallback if application startup fails. */
+:root[data-not-found-pending] #root:has(>.not-found-header){visibility:hidden}
 #root>main.not-found-main{width:100%;max-width:1216px;min-height:0;margin:0 auto;padding:56px 48px 64px}
 .not-found-copy{max-width:440px}
 .not-found-copy .eyebrow{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1;letter-spacing:.12em}

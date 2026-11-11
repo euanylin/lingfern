@@ -4,6 +4,50 @@ import { readFileSync } from 'node:fs';
 const origin = 'http://127.0.0.1:8787';
 const locales = ['en', 'zh-Hans', 'zh-Hant', 'ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi', 'id'];
 
+test('404 first paint waits for its language and complete navigation on reload', async ({ browser }, info) => {
+  for (const width of [390, 1440]) {
+    const context = await browser.newContext({ locale: 'zh-CN', viewport: { width, height: 900 }, serviceWorkers: 'block' });
+    const page = await context.newPage();
+    let release!: () => void;
+    let scripts = new Promise<void>(resolve => { release = resolve; });
+    await page.route('**/assets/*.js', async route => { await scripts; await route.continue(); });
+    await page.addInitScript(() => {
+      const frames: { title: string; navigation: boolean }[] = [];
+      Object.assign(window, { firstPaintFrames: frames });
+      const sample = () => {
+        const heading = document.querySelector<HTMLElement>('.not-found-copy h1');
+        if (heading?.checkVisibility({ visibilityProperty: true })) frames.push({
+          title: heading.textContent!,
+          navigation: !!document.querySelector<HTMLElement>(innerWidth < 768 ? '.mobile-nav' : '.desktop-nav')?.checkVisibility({ visibilityProperty: true }),
+        });
+        requestAnimationFrame(sample);
+      };
+      requestAnimationFrame(sample);
+    });
+    try {
+      for (const reload of [false, true]) {
+        if (reload) scripts = new Promise<void>(resolve => { release = resolve; });
+        const response = reload ? await page.reload({ waitUntil: 'commit' }) : await page.goto(origin + '/missing-page', { waitUntil: 'commit' });
+        expect(response!.status()).toBe(404);
+        const heading = page.locator('.not-found-copy h1');
+        await expect(page.locator('.not-found-copy .button')).toHaveCSS('font-size', '15px');
+        await expect(heading).toBeHidden();
+        await expect(page.locator('.not-found-header')).toBeHidden();
+        release();
+        await expect(heading).toHaveText('找不到页面');
+        await expect(page).toHaveTitle('找不到页面');
+        await expect(heading).toBeVisible();
+        await expect(page.locator(width < 768 ? '.mobile-nav' : '.desktop-nav')).toBeVisible();
+        await expect.poll(() => page.evaluate(() => (window as unknown as { firstPaintFrames: unknown[] }).firstPaintFrames.length)).toBeGreaterThan(0);
+        const frames = await page.evaluate(() => (window as unknown as { firstPaintFrames: { title: string; navigation: boolean }[] }).firstPaintFrames);
+        expect(frames.length).toBeGreaterThan(0);
+        expect(frames.every(frame => frame.title === '找不到页面' && frame.navigation)).toBe(true);
+        await page.screenshot({ path: info.outputPath(`404-first-paint-${width}-${reload}.png`) });
+      }
+    } finally { release(); await context.close(); }
+  }
+});
+
 test('404 and Today keep the same header geometry and appearance', async ({ browser }, info) => {
   for (const [width, colorScheme] of [[390, 'dark'], [1440, 'light']] as const) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, colorScheme, locale: 'zh-CN', serviceWorkers: 'block' });
@@ -56,6 +100,7 @@ test('404 primary feedback matches the existing Settings action', async ({ page 
     };
     const expected = await action.evaluate(appearance);
     await page.goto(origin + '/missing-page');
+    await expect(page.locator('.desktop-nav')).toBeAttached();
     const button = page.locator('.not-found-copy .button');
     await button.press('Tab'); await page.keyboard.press('Shift+Tab'); await expect(button).toBeFocused();
     await expect.poll(() => button.evaluate(appearance)).toEqual(expected);
@@ -72,6 +117,22 @@ test('404 keeps its English return link without JavaScript', async ({ browser })
   await expect(page).toHaveURL(origin + '/today'); await context.close();
 });
 
+test('404 retains a usable fallback when application or bootstrap scripts fail', async ({ browser }) => {
+  for (const failed of ['**/assets/*.js', '**/404-boot.js']) {
+    const context = await browser.newContext({ serviceWorkers: 'block' });
+    const page = await context.newPage();
+    try {
+      await page.route(failed, route => route.abort());
+      // Keep the app from replacing the fallback when its guard itself fails.
+      if (failed.endsWith('/404-boot.js')) await page.route('**/assets/*.js', route => route.abort());
+      expect((await page.goto(origin + '/missing-page'))!.status()).toBe(404);
+      await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
+      await page.getByRole('link', { name: 'Back to Today' }).click();
+      await expect(page).toHaveURL(origin + '/today');
+    } finally { await context.close(); }
+  }
+});
+
 test('404 follows all fourteen browser languages with real errors and usable layouts', async ({ browser }, info) => {
   for (const [index, locale] of locales.entries()) {
     const width = index % 2 ? 390 : 1440;
@@ -85,6 +146,9 @@ test('404 follows all fourteen browser languages with real errors and usable lay
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('html')).toHaveAttribute('dir', locale === 'ar' ? 'rtl' : 'ltr');
     await expect(page.locator('h1')).toHaveText(pack.notFound.title);
+    await expect(page.locator('head title')).toHaveAttribute('lang', locale);
+    await expect(page.locator('head meta[property="og:title"]')).toHaveAttribute('content', pack.notFound.title);
+    await expect(page.locator('head meta[name="twitter:title"]')).toHaveAttribute('content', pack.notFound.title);
     await expect(page.locator('.not-found-description')).toHaveText(pack.notFound.description);
     const button = page.locator('.not-found-copy .button');
     await expect(button).toHaveText(pack.app.finish);

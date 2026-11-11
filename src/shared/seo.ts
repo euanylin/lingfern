@@ -4,10 +4,10 @@ import { seoCopy } from '../locales/seo.ts';
 export const siteOrigin = 'https://lingfern.com';
 export const publicPages: Readonly<Record<string, { title: string; descriptionKey: keyof typeof seoCopy.en }>> = {
   '/introduction': { title: 'Lingfern', descriptionKey: 'description' },
-  '/library/dictionary': { title: 'English dictionary | Lingfern', descriptionKey: 'dictionary' },
-  '/library/ipa': { title: 'IPA pronunciation chart | Lingfern', descriptionKey: 'ipa' },
-  '/library/grammar': { title: 'English usage dictionary | Lingfern', descriptionKey: 'grammar' },
-  '/settings/about': { title: 'About Lingfern', descriptionKey: 'about' },
+  '/library/dictionary': { title: 'Dictionary', descriptionKey: 'dictionary' },
+  '/library/ipa': { title: 'IPA chart', descriptionKey: 'ipa' },
+  '/library/grammar': { title: 'Usage', descriptionKey: 'grammar' },
+  '/settings/about': { title: 'About', descriptionKey: 'about' },
 };
 // Text objects avoid Static Assets' automatic redirects for HTML filenames.
 export const prerenderPath = (path: string, locale: Locale = 'en') => Object.hasOwn(publicPages, path) ? `/prerender${locale === 'en' ? '' : '/' + locale}${path}.html.txt` : undefined;
