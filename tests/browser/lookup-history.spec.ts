@@ -6,11 +6,11 @@ test('reference history persists per profile and reopens dictionary, usage and I
   await page.locator('.library-history-entry a').click();
   await expect(page.getByText('暂无查询记录。')).toBeVisible();
   await page.goto('/library/dictionary');
-  const query = page.getByRole('combobox');
+  const query = page.getByRole('textbox');
   await query.fill('apple'); await query.press('Enter');
   await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
   await page.goto('/library/grammar');
-  await page.getByRole('searchbox').fill('since / for');
+  await page.getByRole('textbox').fill('since / for');
   await page.locator('.grammar-results summary').click();
   await expect(page.getByText('I have lived here since 2020.', { exact: true })).toBeVisible();
   await expect.poll(() => page.evaluate(async () => (await (await import('/src/data/lookupHistory.ts' as string)).readLookupHistory('local-guest')).some((row: {kind: string}) => row.kind === 'grammar'))).toBe(true);
@@ -21,11 +21,11 @@ test('reference history persists per profile and reopens dictionary, usage and I
   await page.goto('/library/history'); await page.reload();
   await expect(page.locator('.history')).toHaveCount(3);
   await page.locator('.history a').filter({ hasText: 'apple' }).click();
-  await expect(page.getByRole('combobox')).toHaveValue('apple');
+  await expect(page.getByRole('textbox')).toHaveValue('apple');
   await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
   await page.goBack();
   await page.locator('.history a').filter({ hasText: 'since / for' }).click();
-  await expect(page.getByRole('searchbox')).toHaveValue('since / for');
+  await expect(page.getByRole('textbox')).toHaveValue('since / for');
   await expect(page.locator('.grammar-results details')).toHaveAttribute('open', '');
   await page.goBack();
   await page.locator('.history a').filter({ hasText: '/i/' }).click();
@@ -78,7 +78,7 @@ test('a failed history write preserves lookup results and reports the save failu
     const { syncEvents } = await import('/src/data/db.ts' as string);
     syncEvents.hook('creating', () => { throw new Error('WRITE_FAILED'); });
   });
-  await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
+  await page.getByRole('textbox').fill('apple'); await page.getByRole('textbox').press('Enter');
   await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
   await expect(page.locator('.dictionary [role=alert]')).toContainText('查询记录未保存');
 });
@@ -95,7 +95,7 @@ test('related usage navigation records its destination', async ({ page }) => {
   await entry.locator('summary').click();
   const related = entry.locator('.grammar-related').first(), target = (await related.innerText()).trim();
   await related.click();
-  await expect(page.getByRole('searchbox')).toHaveValue(target);
+  await expect(page.getByRole('textbox')).toHaveValue(target);
   await expect.poll(() => page.evaluate(async term => (await (await import('/src/data/lookupHistory.ts' as string)).readLookupHistory('local-guest')).some((row: { kind: string; term: string }) => row.kind === 'grammar' && row.term === term), target)).toBe(true);
 });
 
@@ -150,7 +150,7 @@ for (const [locale, width, theme] of [['zh-Hans', 1440, 'light'], ['zh-Hans', 14
       const link = rows.first().locator('a');
       await link.focus(); await expect(link).toHaveCSS('outline-style', 'solid');
       await link.press('Enter');
-      await expect(page.getByRole('combobox')).toHaveValue('dad');
+      await expect(page.getByRole('textbox')).toHaveValue('dad');
     } finally { await context.close(); }
   });
 }

@@ -18,7 +18,7 @@ test('closing answer validation returns to its submitter without re-entering the
   await page.goto(`/learn/${id}`);
   await page.locator('.question-sheet-toggle').click();
   await page.locator('.workspace-card button').last().click();
-  const input = page.locator('.workspace-question input:not([type=radio],[type=checkbox])').first();
+  const input = page.locator('.workspace-question textarea[data-single-line]').first();
   await input.fill('library');
   await input.evaluate(element => element.addEventListener('focus', () => { (element as HTMLElement).dataset.reentered = 'true'; }));
   const submit = page.locator('button[type=submit]');
@@ -50,7 +50,7 @@ async function editingAboveKeyboard(page: Page, workspace: boolean, width: numbe
   await page.goto(`/learn/${id}`); const panel = page.locator('.question-panel');
   await panel.locator('.question-sheet-toggle').click();
   await panel.locator('.question-sheet-resize').press('End');
-  const input = panel.locator('.completion-answer input').first(); await input.fill('kept');
+  const input = panel.locator('.completion-answer textarea').first(); await input.fill('kept');
   await page.evaluate(() => { scrollTo(0, 0); Object.defineProperty(window.visualViewport!, 'height', { configurable: true, value: 400 }); window.visualViewport!.dispatchEvent(new Event('resize')); });
   await expect.poll(() => panel.evaluate(el => el.getAnimations().filter(a => a.playState === 'running').length)).toBe(0);
   await page.waitForTimeout(200);
@@ -61,7 +61,7 @@ for (const [workspace, width] of [[true, 375], [false, 375], [true, 768]] as con
   const { id, panel, input } = await editingAboveKeyboard(page, workspace, width);
   const before = (await panel.boundingBox())!;
   const samples = await panel.evaluate(async element => {
-    const field = element.querySelector('input:not([type=radio],[type=checkbox],[type=range])')!;
+    const field = element.querySelector('textarea[data-single-line]')!;
     const samples: { height: number; bottom: number; offset: number; scroll: number; focused: boolean }[] = [];
     for (const [position, offset] of [[120, 0], [300, 12], [60, 6], [0, 0], [200, 0]]) {
       Object.defineProperty(window.visualViewport!, 'offsetTop', { configurable: true, value: offset });
@@ -119,7 +119,7 @@ for (const [workspace, width, locale, scheme, motion] of [
   const panel = page.locator('.question-panel');
   await panel.locator('.question-sheet-toggle').click();
   await expect.poll(() => panel.evaluate(el => el.getAnimations().filter(a => a.playState === 'running').length)).toBe(0);
-  const input = panel.locator('.completion-answer input').first();
+  const input = panel.locator('.completion-answer textarea').first();
   await input.fill('kept');
   const samples = await input.evaluate(async field => {
     const panel = field.closest<HTMLElement>('.question-panel')!, content = field.closest<HTMLElement>('.question-sheet-content')!;
@@ -150,7 +150,7 @@ for (const [workspace, width, locale, scheme, motion] of [
   await expect(input).toBeFocused(); await expect(input).toHaveValue('kept');
   await expect.poll(() => page.evaluate(async id => JSON.stringify(await (await import('/src/data/db.ts' as string)).sessions.get(id)).includes('kept'), id)).toBe(true);
   await page.reload(); await panel.locator('.question-sheet-toggle').click();
-  await expect(panel.locator('.completion-answer input').first()).toHaveValue('kept');
+  await expect(panel.locator('.completion-answer textarea').first()).toHaveValue('kept');
   await panel.locator('.question-close').click();
   await page.evaluate(() => {
     Object.defineProperty(window.visualViewport!, 'height', { configurable: true, value: 760 });

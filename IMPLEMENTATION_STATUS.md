@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-11-18. This describes current source behavior, including unpublished local work. [The handoff](DEVELOPMENT_HANDOFF.md) owns recorded production (0.1.170), local version (0.2.0), publication pause and exact verification scope. Historical test totals are not cumulative release acceptance.
+Updated 2026-11-18. The [handoff](DEVELOPMENT_HANDOFF.md) records the current production version and verification scope.
 
 | Area | Current behavior and implementation |
 |---|---|
@@ -20,7 +20,7 @@ Updated 2026-11-18. This describes current source behavior, including unpublishe
 
 ## Verification and release boundaries
 
-The public site serves 0.1.170. The published usage dictionary has 68 entries. The 191-entry dictionary, syntax-tree entry and optional parser packs, 33 theme palettes, updated Arabic layout and expanded About credits are in the local 0.2.0 build. See [current release evidence](DEVELOPMENT_HANDOFF.md#current-work-and-publication) and [documented analysis limits](Issues.md).
+The public site includes the 191-entry usage dictionary, syntax-tree editor and optional parser packs, 33 theme palettes, and expanded About credits. See the [current release evidence](DEVELOPMENT_HANDOFF.md#current-work-and-publication).
 
 First public launch is complete. [Release acceptance boundaries](docs/release-runbook.md#acceptance-boundaries) retain the real-provider, two-device, MCP and maintainer device/network evidence within their original scopes. Local fixtures do not establish fresh provider/device acceptance. Current source holds and unresolved observations remain in [Issues](Issues.md).
 

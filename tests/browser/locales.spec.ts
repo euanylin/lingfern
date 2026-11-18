@@ -114,8 +114,8 @@ for (const locale of ['ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi'
       const group = page.locator('.workspace-question').filter({ has: page.locator(`[id="prompt-${question.id}"]`) });
       if ('options' in question) await group.getByRole('radio').nth(question.answer).check();
       else if ('spans' in question) await group.getByRole('radio').nth(question.accepted[0]).check();
-      else if ('kind' in question && question.kind === 'completion') await group.locator('input').fill(question.answer);
-      else if ('gaps' in question) for (const [index, gap] of question.gaps.entries()) await group.locator('input').nth(index).fill(gap.answer);
+      else if ('kind' in question && question.kind === 'completion') await group.getByRole('textbox').fill(question.answer);
+      else if ('gaps' in question) for (const [index, gap] of question.gaps.entries()) await group.getByRole('textbox').nth(index).fill(gap.answer);
       else if ('steps' in question) for (const step of question.acceptedOrders[0]) await group.getByRole('button', { name: `${step} ＋`, exact: true }).click();
       else throw new Error(`Unexpected fixture question: ${Object.keys(question).join(',')}`);
       slot += questionSlots(question);

@@ -1,5 +1,34 @@
 import { expect, test } from '@playwright/test';
 
+test('adding a tree node by touch keeps the viewport at the board', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', isMobile: true, hasTouch: true, viewport: { width: 360, height: 640 } });
+  try {
+    const page = await context.newPage();
+    await page.goto('/library/trees');
+    const add = page.getByRole('button', { name: '添加子节点' });
+    const label = page.locator('#tree-label');
+    await expect(add).toBeEnabled();
+    const before = await page.evaluate(() => scrollY);
+    await add.tap();
+    await expect(label).toHaveValue('X');
+    await expect(page.getByRole('treeitem', { name: 'X', exact: true })).toHaveAttribute('aria-selected', 'true');
+    await expect(label).not.toBeFocused();
+    expect(await page.evaluate(() => scrollY)).toBe(before);
+    await label.tap();
+    await expect(label).toBeFocused();
+    await expect(label).toHaveAttribute('autocomplete', 'off');
+    await expect(label).toHaveJSProperty('tagName', 'TEXTAREA');
+    await label.press('Backspace');
+    await label.press('N');
+    await expect(page.getByRole('treeitem', { name: 'N', exact: true })).toBeVisible();
+    await label.fill('N\nP');
+    await label.press('Enter');
+    await expect(label).toHaveValue('NP');
+  } finally {
+    await context.close();
+  }
+});
+
 test('touch symbols preserve the target, selection and scrolling beneath the canvas', async ({ browser }) => {
   const context = await browser.newContext({ locale: 'zh-CN', hasTouch: true, viewport: { width: 390, height: 900 } });
   const page = await context.newPage();
@@ -26,7 +55,7 @@ test('touch symbols preserve the target, selection and scrolling beneath the can
     await expect(source).toHaveValue('aλ/d');
     const label = page.locator('#tree-label');
     await label.fill('NP');
-    await label.evaluate(field => (field as HTMLInputElement).setSelectionRange(2, 2));
+    await label.evaluate(field => (field as HTMLTextAreaElement).setSelectionRange(2, 2));
     await prime.tap();
     await prime.tap();
     await expect(label).toHaveValue('NP′′');
@@ -35,7 +64,7 @@ test('touch symbols preserve the target, selection and scrolling beneath the can
     await node.dblclick();
     const inline = page.locator('.tree-node-edit');
     await inline.fill('VP');
-    await inline.evaluate(field => (field as HTMLInputElement).setSelectionRange(2, 2));
+    await inline.evaluate(field => (field as HTMLTextAreaElement).setSelectionRange(2, 2));
     await lambda.tap();
     await expect(inline).toHaveValue('VPλ');
     await inline.press('Tab');
@@ -45,7 +74,7 @@ test('touch symbols preserve the target, selection and scrolling beneath the can
     await expect(label).toBeFocused();
     await expect(source).toHaveValue('aλ/d');
     await label.fill('x'.repeat(200));
-    await label.evaluate(field => (field as HTMLInputElement).setSelectionRange(200, 200));
+    await label.evaluate(field => (field as HTMLTextAreaElement).setSelectionRange(200, 200));
     await prime.tap();
     await expect(label).toHaveValue('x'.repeat(200));
     await symbols.scrollIntoViewIfNeeded();

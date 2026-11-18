@@ -9,7 +9,7 @@ for (const [locale, width] of [['zh-Hans', 1440], ['zh-Hant', 375], ['en', 640],
     await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, locale);
     await selectPicker(page, languagePacks[locale].app.theme, theme);
     await page.goto('/library/dictionary');
-    const input = page.getByRole('combobox'), menu = page.getByRole('listbox');
+    const input = page.getByRole('textbox'), menu = page.getByRole('listbox');
     const before = (await input.boundingBox())!;
     await input.fill('d'); await expect(menu).toBeVisible();
     const field = (await input.boundingBox())!, popup = (await menu.boundingBox())!;

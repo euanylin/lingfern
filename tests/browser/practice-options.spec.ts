@@ -12,6 +12,7 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
     const id = (await data.settings.get('activeProfile'))?.value ?? 'local-guest';
     await data.savePreferences(id, { reading: 'B2', listening: 'A1', interests: [], step: 4, completed: true }, locale);
     await data.saveSetting(id, 'theme', theme);
+    await data.saveSetting(id, 'palette', 'original');
   }, { locale, theme });
   await page.goto('/today');
   if (width === 1440) await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -41,11 +42,11 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await kind.click();
   expect(await kind.locator('bdi').evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(60);
   for (const word of ['cat', 'bed']) {
-    await dialog.getByRole('searchbox', { name: t.search }).fill(word);
-    await expect(dialog.getByRole('searchbox', { name: t.search })).toHaveValue(word);
+    await dialog.getByRole('textbox', { name: t.search }).fill(word);
+    await expect(dialog.getByRole('textbox', { name: t.search })).toHaveValue(word);
     await dialog.getByRole('checkbox', { name: word, exact: true }).check();
   }
-  await dialog.getByRole('searchbox', { name: t.search }).fill('');
+  await dialog.getByRole('textbox', { name: t.search }).fill('');
   expect(await dialog.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight && element.scrollWidth <= element.clientWidth; })).toBe(true);
   await expect(dialog.getByRole('button', { name: /^(Save|保存|儲存)$/ })).toHaveCount(0);
   expect(await dialog.locator('.practice-option-fields').evaluate(element => { const [first, second] = [...element.children].map(child => child.getBoundingClientRect()); return Math.abs(first.top - second.top) < 1 && Math.abs(first.left - second.left) > 100; })).toBe(true);
@@ -84,13 +85,13 @@ for (const width of [1440, 900, 375]) test(`settings keep full-card mouse hover 
   await dialog.getByRole('option').first().click();
   await dialog.locator('.setting-trigger').first().click();
   await expect(dialog).toHaveAttribute('data-blur', 'true');
-  await dialog.getByRole('searchbox').fill('the');
+  await dialog.getByRole('textbox').fill('the');
   await expect(dialog).toHaveAttribute('data-blur', 'true');
   await page.waitForTimeout(250);
   await expect(dialog).toHaveAttribute('data-blur', 'true');
   await page.mouse.move(-10, -10);
   await expect(dialog).toHaveAttribute('data-blur', 'false');
-  await dialog.getByRole('searchbox').fill('');
+  await dialog.getByRole('textbox').fill('');
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
 });
@@ -278,8 +279,8 @@ for (const skill of ['reading', 'listening'] as const) test(`${skill} material c
   });
   await dialog.getByRole('checkbox').first().check();
   await expect(dialog.getByRole('button', { name: '关闭', exact: true })).toBeEnabled();
-  await dialog.getByRole('searchbox').fill('a');
-  await dialog.getByRole('searchbox').fill('');
+  await dialog.getByRole('textbox').fill('a');
+  await dialog.getByRole('textbox').fill('');
   await dialog.locator('.practice-material-search>button').click();
   await expect(dialog.getByRole('button', { name: '关闭', exact: true })).toBeEnabled();
   // Let saves/live queries settle before checking for duplicate subscriptions.

@@ -308,7 +308,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
 
         <p className="saved workspace-save-status sr-only" role="status">{saving ? t.saving : unsaved.current.size ? t.saveError : t.saved}</p>
         {error && error !== t.invalidAnswer && <div className="error" role="alert"><p>{error}</p><button className="button" type="button" disabled={busy} onClick={event => { for (const change of unsaved.current.values()) persist(change); if (!unsaved.current.size) void submitAll(event.currentTarget); }}>{t.retry}</button><button className="button" type="button" onClick={download}>{t.export}</button></div>}
-        <form onSubmit={event => { event.preventDefault(); if (!nextMaterial) void submitAll((event.nativeEvent as SubmitEvent).submitter ?? event.currentTarget.querySelector('button[type=submit]')); }}>
+        <form autoComplete="off" onSubmit={event => { event.preventDefault(); if (!nextMaterial) void submitAll((event.nativeEvent as SubmitEvent).submitter ?? event.currentTarget.querySelector('button[type=submit]')); }}>
           {visible.map(item => {
             const split = 'kind' in item.question && item.question.kind === 'completion' ? item.question.prompt.indexOf('\n') : -1;
             const canSkip = 'criteria' in item.question && !finished && !saved.some(record => record.questionId === item.question.id);

@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 import { selectPicker } from './picker';
 
@@ -12,7 +13,7 @@ test('short and long pages retain the same document width with native scrollbars
   const box = () => page.locator('body').evaluate(element => ({ x: element.getBoundingClientRect().x, width: element.getBoundingClientRect().width }));
   const before = await box();
   release();
-  await expect(page.locator('.offline-search input')).toBeEnabled();
+  await expect(page.locator('.offline-search textarea')).toBeEnabled();
   expect(await box()).toEqual(before);
   expect(before.width).toBe(await page.evaluate(() => document.documentElement.clientWidth));
   await expect(page.locator('html')).toHaveCSS('scrollbar-width', 'auto');
@@ -39,7 +40,7 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en']) for (const width of [1440, 60
       const before = await geometry();
       const disabled = await page.locator('.offline-install').evaluate(element => element.querySelector('fieldset')?.disabled);
       finishCheck();
-      await expect(page.locator('.offline-search input')).toBeEnabled();
+      await expect(page.locator('.offline-search textarea')).toBeEnabled();
       expect(await geometry()).toEqual(before);
       expect(disabled).toBe(false);
       await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
@@ -53,7 +54,7 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en']) for (const width of [1440, 60
 test('offline search preserves selected resources when results change', async ({ page }) => {
   await page.goto('/library');
   const row = page.locator('.package-row').filter({ hasText: '英英词典' });
-  const search = page.getByRole('searchbox', { name: '搜索内容' });
+  const search = page.getByRole('textbox', { name: '搜索内容' });
   await expect(search).toBeVisible();
   await row.locator('input').check();
   await search.fill('no-matching-resource-19482');
@@ -96,6 +97,7 @@ test('topic collapse retains selection and the group control geometry', async ({
 });
 
 test('checking updates keeps the action and status layout stable', async ({ page, context }) => {
+  const { version } = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8')) as { version: string };
   test.setTimeout(90_000);
   // Delay the provider fixture to inspect pending UI; test SW updates separately.
   await page.addInitScript(() => {
@@ -126,7 +128,7 @@ test('checking updates keeps the action and status layout stable', async ({ page
       await expect(page.locator('.setting-trigger').nth(1)).toHaveAttribute('data-value', theme);
       await action.evaluate(element => element.scrollIntoView({ block: 'center' }));
       const initial = await section.boundingBox();
-      await expect(section.getByRole('status')).toHaveText('v0.1');
+      await expect(section.getByRole('status')).toHaveText(`v${version.split('.').slice(0, 2).join('.')}`);
       await expect(section.getByRole('link')).toHaveAttribute('href', '/settings/about');
       expect(await section.getByRole('button').count()).toBe(1);
       const aboutBox = await section.getByRole('link').boundingBox();

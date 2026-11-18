@@ -20,20 +20,20 @@ test('resource topic rows mount on expansion and retain their selection through 
   await expect(page.locator('.offline-package-heading')).toContainText('已选 1 项');
   await toggle.click();
   await expect(group.getByRole('checkbox', { name, exact: true })).toBeChecked();
-  await page.getByRole('searchbox', { name: '搜索内容' }).fill(name);
+  await page.getByRole('textbox', { name: '搜索内容' }).fill(name);
   await expect(page.getByRole('checkbox', { name, exact: true })).toBeChecked();
 });
 
 test('dictionary suggestions reuse community terms while typing and refresh after a local package change', async ({ page }) => {
   await page.goto('/library/dictionary');
-  await expect(page.getByRole('combobox')).toBeVisible();
+  await expect(page.getByRole('textbox')).toBeVisible();
   await page.evaluate(async () => {
     const path = '/src/data/db.ts', data = await import(path), where = data.communityPacks.where.bind(data.communityPacks);
     Reflect.set(window, 'dictionaryReads', 0);
     data.communityPacks.where = (index: unknown) => { Reflect.set(window, 'dictionaryReads', Reflect.get(window, 'dictionaryReads') + 1); return where(index); };
   });
   for (const term of ['apple', 'book', 'record']) {
-    await page.getByRole('combobox').fill(term);
+    await page.getByRole('textbox').fill(term);
     await expect(page.getByRole('option', { name: term, exact: true })).toBeVisible();
   }
   expect(await page.evaluate(() => Reflect.get(window, 'dictionaryReads'))).toBe(1);
@@ -41,7 +41,7 @@ test('dictionary suggestions reuse community terms while typing and refresh afte
     const path = '/src/data/db.ts', data = await import(path), profileId = (await data.settings.get('activeProfile'))?.value ?? 'local-guest';
     await data.communityPacks.put({ profileId, hash: 'a'.repeat(64), id: 'synthetic-term-refresh', lessons: [], sources: [], dictionary: [{ term: 'fernlookupword', sourceId: 'synthetic', definition: 'Synthetic browser test only.', example: 'A synthetic term.' }], state: 'ready', installedAt: new Date().toISOString() });
   });
-  await page.getByRole('combobox').fill('fernlookup');
+  await page.getByRole('textbox').fill('fernlookup');
   await expect(page.getByRole('option', { name: 'fernlookupword', exact: true })).toBeVisible();
   expect(await page.evaluate(() => Reflect.get(window, 'dictionaryReads'))).toBeGreaterThan(1);
 });
@@ -80,7 +80,7 @@ test('grammar searches full explanations without mounting closed detail bodies',
   await page.goto('/library/grammar');
   await expect(page.locator('.grammar-results summary')).toHaveCount(grammarCount);
   await expect(page.locator('.grammar-detail')).toHaveCount(0);
-  await page.getByRole('searchbox').fill('I have lived here since 2020.');
+  await page.getByRole('textbox').fill('I have lived here since 2020.');
   const entry = page.locator('.grammar-results details').filter({ hasText: 'since / for' });
   await expect(entry).toHaveCount(1);
   await entry.locator('summary').click();

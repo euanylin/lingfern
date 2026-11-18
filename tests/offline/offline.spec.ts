@@ -75,11 +75,11 @@ async function completeWorkspace(page: import('@playwright/test').Page, response
       if ('options' in question) await section.getByRole('radio').nth(question.answer).check();
       else if ('spans' in question) await section.getByRole('radio').nth(question.accepted[0]).check();
       else if ('criteria' in question) for (const input of await section.locator('textarea').all()) await input.fill(response);
-      else if ('gaps' in question) for (const [index, gap] of question.gaps.entries()) await section.locator('.inline-gap input').nth(index).fill(gap.answer);
-      else if ('rows' in question) for (const [index, row] of question.rows.entries()) await section.locator('.answer-table input').nth(index).fill(row.answer);
+      else if ('gaps' in question) for (const [index, gap] of question.gaps.entries()) await section.locator('.inline-gap textarea').nth(index).fill(gap.answer);
+      else if ('rows' in question) for (const [index, row] of question.rows.entries()) await section.locator('.answer-table textarea').nth(index).fill(row.answer);
       else if ('pairs' in question) for (const [index, pair] of question.pairs.entries()) await selectPicker(page, `${slot + index + 1}. ${pair.label}`, pair.answer);
       else if ('steps' in question) for (const step of question.acceptedOrders[0]) await section.locator('.sequence-choices').getByRole('button', { name: `${step} ＋`, exact: true }).click();
-      else await section.locator('.completion-answer input').fill(question.answer);
+      else await section.locator('.completion-answer textarea').fill(question.answer);
       slot += questionSlots(question);
     }
   }
@@ -149,11 +149,11 @@ test('chosen word materials and question type persist, generate and save offline
     await page.locator('.audio-play').click();
     await expect.poll(() => page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.ended && audio.duration > 0), { timeout: 15_000 }).toBe(true);
     await expect(page.getByText('录音已播放，可以选择并保存。', { exact: true })).toBeVisible();
-    await page.locator('.completion-answer input').fill(material.blocks[0].text);
+    await page.locator('.completion-answer textarea').fill(material.blocks[0].text);
     await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
   }
   await page.reload();
-  await expect(page.locator('.completion-answer input')).toHaveValue(snapshot.materials.at(-1)!.blocks[0].text);
+  await expect(page.locator('.completion-answer textarea')).toHaveValue(snapshot.materials.at(-1)!.blocks[0].text);
   await page.getByRole('button', { name: '提交练习', exact: true }).click();
   await expect(page.locator('#workspace-result')).toBeVisible();
   await expect(page.locator('.workspace-review')).toHaveCount(snapshot.materials.length);
@@ -243,7 +243,7 @@ test('verified install reopens, looks up an unvisited word, plays audio and save
   const external: string[] = [];
   page.on('request', request => { if (!request.url().startsWith(`${baseURL}/`)) external.push(request.url()); });
   await page.goto('/library');
-  await expect(page.getByRole('searchbox', { name: '搜索内容' })).toBeVisible();
+  await expect(page.getByRole('textbox', { name: '搜索内容' })).toBeVisible();
   await expect(page.locator('.package-row input:checked')).toHaveCount(0);
   await expect(page.getByRole('button', { name: '下载所选资源' })).toHaveCount(0);
   await page.getByRole('button', { name: /^通用材料/ }).last().click();
@@ -282,7 +282,7 @@ test('verified install reopens, looks up an unvisited word, plays audio and save
   await page.getByRole('button', { name: '详细版', exact: true }).click();
   await expect(page.locator('.ipa-table')).toHaveCount(3);
   await page.goto('/library/grammar');
-  await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('条件句');
+  await page.getByRole('textbox', { name: '搜索单词、搭配或用法疑问' }).fill('条件句');
   await expect(page.locator('.grammar-results details').first()).toBeVisible();
   expect(await page.locator('.grammar-results details').count()).toBeGreaterThanOrEqual(2);
   await page.locator('.grammar-results summary').first().click();
@@ -299,7 +299,7 @@ test('verified install reopens, looks up an unvisited word, plays audio and save
   });
   expect(advancedRange).toEqual({ status: 206, length: 100 });
   await page.goto('/library/dictionary');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('zebra');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('zebra');
   await expect(page.getByRole('option', { name: 'zebra', exact: true })).toBeVisible();
   await page.getByLabel('查询单词或短语').press('Enter');
   await expect(page.locator('.dictionary-results h3')).toHaveText('zebra');
@@ -350,7 +350,7 @@ test('a failed selected package preserves earlier packages and learning records'
   await context.setOffline(true);
   await page.goto('/library/grammar');
   await expect(page.getByRole('heading', { name: '英语用法词典' })).toBeVisible();
-  await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('被动');
+  await page.getByRole('textbox', { name: '搜索单词、搭配或用法疑问' }).fill('被动');
   await expect(page.locator('.grammar-results details')).toHaveCount(1);
   await page.goto('/progress');
   await expectSavedHistory(page, 4);
@@ -507,7 +507,7 @@ test('C1 concessions complete and reopen with new course definitions while disco
   await expect(page.locator('.workspace-review').last().locator('blockquote')).toHaveCount(3);
   await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
   await page.goto('/library/dictionary');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('provided');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('provided');
   await page.getByRole('option', { name: 'provided', exact: true }).click();
   await expect(page.getByText('Only if a stated condition is met. In a recommendation, it introduces a condition on support.')).toBeVisible();
   await page.goto(url);

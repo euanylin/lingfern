@@ -8,8 +8,6 @@
 
 Latihan membaca dan menyimak bahasa Inggris untuk usia 16 tahun ke atas, dengan sasaran belajar A1–C2. Latihan dibuat secara lokal dari teks sumber dan rekaman. Belajar tidak memerlukan akun atau layanan AI.
 
-Situs publik menggunakan **0.1.170**. Pohon sintaksis, kamus penggunaan yang diperluas, palet warna, dan kredit About yang diperbarui tersedia di **pratinjau lokal 0.2.0**. [Status rilis](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
-
 <a id="readme-languages"></a>
 
 <details>
@@ -98,14 +96,14 @@ Pakis mencerminkan aktivitas tersimpan, bukan tingkat kemahiran bersertifikat. K
 | [Markah](https://lingfern.com/library/saved) | Simpan/hapus definisi dengan ★/☆ dan lipat entri. Entri yang dilepas tetap ada sampai dibuka ulang/dimuat ulang agar dapat segera dipulihkan. |
 | [Bagan IPA](https://lingfern.com/library/ipa) | Tampilan sederhana/terperinci, pencarian bunyi, rekaman, dan kata contoh yang tersedia. |
 | [Kamus penggunaan bahasa Inggris](https://lingfern.com/library/grammar) | Pencarian kata kunci, penelusuran alfabet, dan penjelasan yang dapat dibuka. |
-| [Pohon sintaksis](#readme-syntax-tree) · 0.2.0 | Buat dan edit sembilan tampilan, simpan cuplikan bernama, dan ekspor SVG, PNG, WebP, JPEG, atau PDF. |
+| [Pohon sintaksis](#readme-syntax-tree) | Buat dan edit sembilan tampilan, simpan cuplikan bernama, dan ekspor SVG, PNG, WebP, JPEG, atau PDF. |
 | [Riwayat pencarian](https://lingfern.com/library/history) | Buka kembali pencarian kamus, penggunaan, dan IPA dengan sumber, waktu, serta status tersimpan. |
 
-Pratinjau lokal memuat **191 entri**. Penjelasan mengikuti bahasa antarmuka dan memakai bahasa Inggris jika terjemahan belum tersedia. Contoh, pola, dan perbandingan tetap dalam bahasa Inggris.
+Kamus penggunaan memuat **191 entri**. Penjelasan mengikuti bahasa antarmuka dan memakai bahasa Inggris jika terjemahan belum tersedia. Contoh, pola, dan perbandingan tetap dalam bahasa Inggris.
 
 <a id="readme-syntax-tree"></a>
 
-**Pustaka** → **Referensi** → **Pohon sintaksis** · [0.2.0](http://127.0.0.1:8787/library/trees)
+**Pustaka** → **Referensi** → **[Pohon sintaksis](https://lingfern.com/library/trees)**
 
 Masukkan kalimat, pohon berkurung, kerangka berindentasi, atau notasi dependensi. Kontrol simpul berada di atas kanvas dan bantuan simbol tepat di bawahnya. Aktifkan **Pemindahan** untuk menautkan simpul dengan indeks yang sama saat diseret; klik lagi atau tekan Escape untuk keluar. Klik kanan atau tekan lama pada layar sentuh untuk membuka menu. Satu draf lokal per profil disimpan dan dipulihkan otomatis; draf pohon ini tidak disertakan dalam cadangan atau sinkronisasi. **Simpan** membuat cuplikan bernama terpisah di riwayat. Pengosongan dapat diurungkan selama kunjungan; membuka kembali draf kosong memulihkan contoh. Tekan **Enter** untuk menggambar atau **Shift+Enter** untuk baris baru.
 
@@ -160,7 +158,7 @@ Kartu menampilkan sedang sinkron, sudah sinkron, menunggu offline, atau gagal se
 
 Empat belas bahasa antarmuka; tema terang/gelap/sistem; navigasi teks, ikon, atau gabungan yang terpisah untuk desktop/ponsel; kamus online bawaan; tingkat awal dan minat yang dapat diubah; dukungan papan ketik, sentuh, dan pengurangan gerakan.
 
-**0.2.0** · Ubah warna di **Pengaturan** → **Tema warna**. Tersedia **33 palet**: **Default** dan 32 alternatif termasuk **Pakis**, masing-masing mendukung warna terang dan gelap. Mode sistem/terang/gelap disimpan terpisah. Pilih Default untuk memulihkan palet awal. Preferensi berlaku di seluruh situs, pengantar, dan halaman terpasang saat luring; logo dan pakis Hari Ini tetap memakai warna merek aslinya.
+Ubah warna di **Pengaturan** → **Tema warna**. Tersedia **33 palet**: **Default** dan 32 alternatif termasuk **Pakis**, masing-masing mendukung warna terang dan gelap. Mode sistem/terang/gelap disimpan terpisah. Pilih Default untuk memulihkan palet awal. Preferensi berlaku di seluruh situs, pengantar, dan halaman terpasang saat luring; logo dan pakis Hari Ini tetap memakai warna merek aslinya.
 
 Bahan bahasa Inggris tetap dalam bahasa Inggris. Panduan A1–A2 yang ditinjau memiliki bantuan terjemahan; B1–C2 dan About tetap dalam bahasa Inggris.
 

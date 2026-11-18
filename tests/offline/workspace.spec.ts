@@ -41,9 +41,9 @@ test('installed offline workspace preserves arbitrary reading answers and multi-
   await page.reload(); await expect(page.locator('#workspace-result')).toBeVisible();
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto(`/learn/${listeningId}`);
   const question = listening.materials[0].questions[0]; if (!('gaps' in question)) throw new Error('NO_GAPS');
-  await page.locator('.inline-gap input').nth(1).fill(question.gaps[1].answer); await page.locator('.inline-gap input').first().fill(question.gaps[0].answer);
+  await page.locator('.inline-gap textarea').nth(1).fill(question.gaps[1].answer); await page.locator('.inline-gap textarea').first().fill(question.gaps[0].answer);
   await expect(page.locator('.workspace-save-status')).toHaveText('已保存在本设备');
-  await page.reload(); await expect(page.locator('.inline-gap input').nth(1)).toHaveValue(question.gaps[1].answer);
+  await page.reload(); await expect(page.locator('.inline-gap textarea').nth(1)).toHaveValue(question.gaps[1].answer);
   for (const [index, material] of listening.materials.entries()) {
     if (index) await page.locator('.workspace-card button').nth(2).click();
     const audio = page.locator('audio'); await expect(audio).toHaveAttribute('src', material.audio!.src);

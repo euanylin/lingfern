@@ -130,7 +130,7 @@ test('mobile navigation stays at the bottom through transient browser-bar height
     expect(Math.max(...errors)).toBeLessThanOrEqual(1);
   }
   await page.goto('/library');
-  const search = page.locator('.offline-search input');
+  const search = page.locator('.offline-search textarea');
   await search.focus();
   await expect(page.locator('.mobile-nav')).toHaveCSS('position', 'fixed');
   await search.blur();

@@ -2,6 +2,25 @@ import { expect, test } from '@playwright/test';
 
 const long = 'the students read the old book in the quiet library and the teachers wrote a long letter to the new parents and the children played in the small garden near the school and the parents waited at the front door';
 
+test('a fitted wide tree zooms one step at a time below ten percent', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/library/trees');
+  const source = page.locator('#tree-source');
+  await expect(source).toBeEnabled();
+  await source.fill(long);
+  await source.press('Enter');
+  await expect(page.getByRole('treeitem', { name: 'door', exact: true })).toBeVisible();
+  const scale = () => page.locator('.tree-board').evaluate(board => new DOMMatrix(getComputedStyle(board).transform).a);
+  const fitted = await scale();
+  expect(fitted).toBeLessThan(0.08);
+  const smaller = page.getByRole('button', { name: '缩小' });
+  await expect(smaller).toBeDisabled();
+  await page.getByRole('button', { name: '放大' }).click();
+  expect(Math.abs(await scale() - fitted * 1.25)).toBeLessThan(0.001);
+  await smaller.click();
+  expect(Math.abs(await scale() - fitted)).toBeLessThan(0.001);
+});
+
 test('board fits, zooms, and only scrolls inside the card once zoomed', async ({ page }) => {
   await page.setViewportSize({ width: 1120, height: 900 });
   await page.goto('/library/trees');

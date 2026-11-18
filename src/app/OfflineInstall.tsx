@@ -1,3 +1,4 @@
+import { SingleLineField } from './SingleLineField';
 import { DisclosurePanel } from './DisclosurePanel';
 import { AnimatedDetails } from './AnimatedDetails';
 import { closeModal, showModal } from './modal';
@@ -92,12 +93,13 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     return path ? [{ id: group.id, path }] : [];
   });
   const chosenBytes = chosen.reduce((sum, group) => sum + group.bytes, 0);
-  const matches = (id: string) => {
+  const search = query.trim().toLocaleLowerCase();
+  const visible = search ? downloadableGroups.filter(({ id }) => {
     const pack = sourceById.get(id);
     const group = pack ? topicName(id) + ' ' + pack.title.en : isTreePack(id) ? treeTitle : '';
-    return `${name(id)} ${group}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
-  };
-  const visible = downloadableGroups.filter(group => matches(group.id));
+    return `${name(id)} ${group}`.toLocaleLowerCase().includes(search);
+  }) : downloadableGroups;
+  const visibleIds = new Set(visible.map(group => group.id));
   const allVisibleSelected = visible.length > 0 && visible.every(group => selected.has(group.id));
   function selectGroups(ids: string[]) {
     setSelected(previous => {
@@ -132,10 +134,10 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     }
     if (singletons.length) grouped.push({ key: 'other', title: ui.other, groups: singletons });
     return <>
-      {category.id === 'reference' && <div className="package-list offline-base-packages">{base.filter(group => !isTreePack(group.id) && matches(group.id)).map(row)}</div>}
+      {category.id === 'reference' && <div className="package-list offline-base-packages">{base.filter(group => !isTreePack(group.id) && visibleIds.has(group.id)).map(row)}</div>}
       {grouped.map(bucket => {
-        const groups = bucket.groups.filter(group => matches(group.id)); if (!groups.length) return null;
-        const key = `${category.id}:${bucket.key}`, open = !!query.trim() || expanded.has(key), selectedCount = groups.filter(group => selected.has(group.id)).length, installedCount = groups.filter(group => installed.has(group.id)).length;
+        const groups = bucket.groups.filter(group => visibleIds.has(group.id)); if (!groups.length) return null;
+        const key = `${category.id}:${bucket.key}`, open = !!search || expanded.has(key), selectedCount = groups.filter(group => selected.has(group.id)).length, installedCount = groups.filter(group => installed.has(group.id)).length;
         return <div className="offline-source-group" role="group" aria-labelledby={`offline-group-${key}`} key={key}>
           <div className="offline-source-group-heading">
             <label className="offline-group-check"><input type="checkbox" aria-label={`${t.categories[category.id]} · ${bucket.title}`} checked={selectedCount === groups.length} aria-checked={selectedCount > 0 && selectedCount < groups.length ? 'mixed' : selectedCount === groups.length} ref={node => { if (node) node.indeterminate = selectedCount > 0 && selectedCount < groups.length; }} onChange={() => { selectGroups(groups.map(group => group.id)); if (selectedCount !== groups.length) setExpanded(previous => new Set([...previous, key])); }}/></label>
@@ -202,10 +204,10 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     {checking && <p className="sr-only" role="status">{t.checking}</p>}
     <div className="offline-package-details">
       <fieldset disabled={checking || installing || deleting || confirmingRemoval} aria-label={t.select}>
-        <label className="offline-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span className="sr-only">{ui.search}</span><input type="search" name="resource-search" value={query} placeholder={ui.search} onChange={event => setQuery(event.target.value)} autoComplete="off"/></label>
+        <label className="offline-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span className="sr-only">{ui.search}</span><SingleLineField enterKeyHint="search" name="resource-search" value={query} placeholder={ui.search} onChange={event => setQuery(event.target.value)}/></label>
         <div className="offline-package-heading"><span aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))}</span>{visible.length > 0 && <button className="offline-select-all" type="button" onClick={() => selectGroups(visible.map(group => group.id))}>{allVisibleSelected ? t.clear : t.all}</button>}</div>
         {!visible.length && <p className="muted" role="status">{ui.empty} <button className="button" type="button" onClick={() => setQuery('')}>{ui.clearSearch}</button></p>}
-        <div className="offline-categories">{categories.filter(category => category.groups.some(group => matches(group.id))).map(category => <section className="offline-category" key={category.id}><h3>{t.categories[category.id]}</h3>{categoryRows(category)}</section>)}</div>
+        <div className="offline-categories">{categories.filter(category => category.groups.some(group => visibleIds.has(group.id))).map(category => <section className="offline-category" key={category.id}><h3>{t.categories[category.id]}</h3>{categoryRows(category)}</section>)}</div>
       </fieldset>
     </div>
       {actionsVisible && <div ref={actions} className="offline-selection-actions" role="region" aria-label={ui.actions}><p className="muted" aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))} · {ui.downloadAction} {size(chosenBytes)}</p>

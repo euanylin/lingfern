@@ -55,7 +55,7 @@ test('imports a verified ZIP offline and leaves an existing package intact after
   await expect(page.locator('.package-row').filter({ hasText: 'A1 单词录音' })).not.toContainText('已安装');
   await context.setOffline(true);
   await page.goto('/library/grammar');
-  await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('条件句');
+  await page.getByRole('textbox', { name: '搜索单词、搭配或用法疑问' }).fill('条件句');
   await expect.poll(() => page.locator('.grammar-results details').count()).toBeGreaterThanOrEqual(2);
 });
 
@@ -110,7 +110,7 @@ test('imports the full dictionary ZIP and serves an unvisited entry after going 
   await expect(page.locator('.package-row').filter({ hasText: '英英词典' })).toContainText('已安装', { timeout: 30_000 });
   await context.setOffline(true);
   await page.goto('/library/dictionary');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('zebra');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('zebra');
   await page.getByLabel('查询单词或短语').press('Enter');
   await expect(page.locator('.dictionary-results h3')).toHaveText('zebra');
 });

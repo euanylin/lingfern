@@ -31,7 +31,7 @@ try {
     }
     const link = page.getByRole('link', { name: label, exact: false });
     await expect(link).toHaveAttribute('href', 'https://dictionary.cambridge.org/grammar/british-grammar/');
-    await page.getByRole('searchbox').fill('  present perfect & "since"  ');
+    await page.getByRole('textbox').fill('  present perfect & "since"  ');
     const href = new URL(await link.getAttribute('href'));
     assert.equal(href.origin, 'https://dictionary.cambridge.org');
     assert.equal(href.pathname, '/search/direct/');
@@ -52,7 +52,7 @@ try {
   assert.equal(external.length, 1);
   await context.setOffline(true);
   await expect(page.locator('.online-lookup-disabled')).toHaveAttribute('aria-disabled', 'true');
-  await page.getByRole('searchbox').fill('since / for');
+  await page.getByRole('textbox').fill('since / for');
   await expect(page.locator('.grammar-results details')).toHaveCount(1);
   await page.reload();
   await expect(page.locator('.grammar-results details').first()).toBeVisible();

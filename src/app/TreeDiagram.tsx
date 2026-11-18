@@ -1,3 +1,4 @@
+import { SingleLineField } from './SingleLineField';
 import { movementStrokes } from '../shared/tree-movement-strokes';
 import { messages } from '../locales';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type DragEvent, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
@@ -213,9 +214,9 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   // Written trees keep their supplied structure.
   const [generated, setGenerated] = useState(true);
   const diagramRef = useRef(diagram);
-  const labelRef = useRef<HTMLInputElement>(null);
+  const labelRef = useRef<HTMLTextAreaElement>(null);
   const focusLabel = useRef(false);
-  const symbolInput = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
+  const symbolInput = useRef<HTMLTextAreaElement>(null);
   const symbolCaret = useRef({ start: 0, end: 0 });
   const editOrigin = useRef('');
   const cancelEdit = useRef(false);
@@ -229,9 +230,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   const formatMenu = useRef<HTMLDivElement>(null);
   const formatFromKeys = useRef(false);
   const formatsPresent = useExitPresence(formatsOpen, formatMenu);
-  // The board fits the card by default. The card scrolls vertically exactly like a text area —
-  // native scrolling that hands the page back at its top and bottom edges — while zooming and
-  // horizontal panning are handled here.
+  // Vertical scrolling stays native until the board is wide enough for two-axis touch panning.
   const scrollRef = useRef<HTMLDivElement>(null);
   const [frame, setFrame] = useState({ width: 0, height: 0, left: 0, top: 0 });
   const [zoom, setZoom] = useState<number | null>(null);
@@ -240,15 +239,15 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   const pendingScroll = useRef<number | null>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const gesture = useRef<
-    | { mode: 'pending'; x: number; panX: number; pointerId: number }
-    | { mode: 'pan'; x: number; panX: number; pointerId: number }
-    | { mode: 'pinch'; distance: number; scale: number; contentX: number; contentY: number; anchorX: number; anchorY: number; offsetY: number }
+    | { mode: 'pending' | 'pan'; x: number; y: number; direct: boolean; pointerId: number }
+    | { mode: 'pinch'; distance: number; scale: number; contentX: number; contentY: number; anchorX: number; offsetY: number }
     | null
   >(null);
   diagramRef.current = diagram;
   const selectedId = diagram.nodes.some(node => node.id === selected) ? selected : diagram.root;
   const layout = useMemo(() => layoutTree(diagram), [diagram]);
   const fitScale = frame.width > 0 && frame.height > 0 ? Math.min(1, frame.width / Math.max(1, layout.width), frame.height / Math.max(1, layout.height)) : 1;
+  const minScale = Math.min(0.1, fitScale);
   const scale = zoom ?? fitScale;
   const contentWidth = layout.width * scale;
   const contentHeight = layout.height * scale;
@@ -259,8 +258,8 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   const panShift = clampPan(panX, contentWidth, frame.width);
   const sideways = frame.width > 0 && contentWidth > frame.width + 0.5;
   const percent = Math.round(scale * 100);
-  const limit = (value: number) => Math.min(4, Math.max(0.1, Number(value.toFixed(3))));
-  const viewport = { scale, frame, baseX, baseY, panShift, contentWidth, width: layout.width, height: layout.height, sideways };
+  const limit = (value: number, minimum: number) => Math.min(4, Math.max(minimum, Number(value.toFixed(3))));
+  const viewport = { scale, minScale, frame, baseX, baseY, panShift, contentWidth, width: layout.width, height: layout.height, sideways };
   const view = useRef(viewport);
   view.current = viewport;
   // Applied after the new content height is in the DOM so the zoom anchor stays under the cursor.
@@ -270,21 +269,25 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     pendingScroll.current = null;
   }, [scale, expanded]);
 
+  const applyAnchoredZoom = (value: number, x: number, y: number, contentX: number, contentY: number) => {
+    const state = view.current;
+    const width = state.width * value, height = state.height * value;
+    const baseX = Math.max(0, (state.frame.width - width) / 2), baseY = Math.max(0, (state.frame.height - height) / 2);
+    setZoom(value);
+    setPanX(clampPan(x - baseX - contentX * value, width, state.frame.width));
+    pendingScroll.current = Math.max(0, baseY + contentY * value - y);
+  };
   // Zoom around a screen point so the content under the pointer stays put.
   const setScaleAt = (next: number, clientX: number, clientY: number) => {
-    const value = limit(next);
     const element = scrollRef.current;
     const state = view.current;
+    const value = limit(next, state.minScale);
     if (!element || value === state.scale) return;
     const rect = element.getBoundingClientRect();
     const x = clientX - rect.left - state.frame.left, y = clientY - rect.top - state.frame.top;
     const contentX = (x - state.baseX - state.panShift) / state.scale;
     const contentY = (element.scrollTop + y - state.baseY) / state.scale;
-    const nextWidth = state.width * value;
-    const nextBaseX = Math.max(0, (state.frame.width - nextWidth) / 2);
-    setZoom(value);
-    setPanX(clampPan(x - nextBaseX - contentX * value, nextWidth, state.frame.width));
-    pendingScroll.current = Math.max(0, Math.max(0, (state.frame.height - state.height * value) / 2) + contentY * value - y);
+    applyAnchoredZoom(value, x, y, contentX, contentY);
   };
   const zoomAtCentre = (factor: number) => {
     const element = scrollRef.current;
@@ -293,7 +296,12 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     const state = view.current;
     setScaleAt(state.scale * factor, rect.left + state.frame.left + state.frame.width / 2, rect.top + state.frame.top + state.frame.height / 2);
   };
-  const fitToCard = () => { setZoom(null); setPanX(0); pendingScroll.current = 0; };
+  const fitToCard = () => {
+    setZoom(null);
+    setPanX(0);
+    pendingScroll.current = null;
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+  };
   // Fullscreen keeps one board: the same card becomes a fixed layer, and Escape leaves it.
   const toggleExpanded = () => { setExpanded(value => !value); setPanX(0); pendingScroll.current = 0; };
   useEffect(() => {
@@ -311,6 +319,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   }, [expanded]);
 
   const startGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0 || (event.target instanceof Element && event.target.closest('.tree-node-edit'))) return;
     pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
     const element = scrollRef.current;
     const state = view.current;
@@ -326,51 +335,60 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
         scale: state.scale,
         contentX: (anchorX - rect.left - state.frame.left - state.baseX - state.panShift) / state.scale,
         contentY: (element.scrollTop + offsetY - state.baseY) / state.scale,
-        anchorX, anchorY, offsetY,
+        anchorX, offsetY,
       };
       return;
     }
-    if (event.pointerType === 'mouse' && event.button !== 0) return;
-    // Buttons keep their own click and drag behaviour; the empty background only starts a pan.
-    if (event.target instanceof Element && event.target.closest('.tree-node, .tree-zoom')) return;
     if (!state.sideways) return;
+    const direct = event.pointerType === 'touch' || event.pointerType === 'pen';
+    if (!direct && event.target instanceof Element && event.target.closest('.tree-node')) return;
     // Wait for real movement so a click or double-click is never captured or treated as a drag.
-    gesture.current = { mode: 'pending', x: event.clientX, panX: state.panShift, pointerId: event.pointerId };
+    gesture.current = { mode: 'pending', x: event.clientX, y: event.clientY, direct, pointerId: event.pointerId };
   };
   const moveGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!pointers.current.has(event.pointerId)) return;
     pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
     const current = gesture.current, state = view.current, element = scrollRef.current;
     if (!current || !element) return;
-    const rect = element.getBoundingClientRect();
-    if (current.mode === 'pending') {
-      if (Math.abs(event.clientX - current.x) < 4 || current.pointerId !== event.pointerId) return;
-      gesture.current = { ...current, mode: 'pan' };
-      try { element.setPointerCapture(event.pointerId); } catch { /* keep panning without capture */ }
-      return;
-    }
-    if (current.mode === 'pan') {
-      setPanX(clampPan(current.panX + event.clientX - current.x, state.contentWidth, state.frame.width));
+    if (current.mode !== 'pinch') {
+      if (current.pointerId !== event.pointerId || !state.sideways) return;
+      const dx = event.clientX - current.x;
+      const dy = current.direct ? event.clientY - current.y : 0;
+      if (current.mode === 'pending') {
+        if (Math.hypot(dx, dy) < 4) return;
+        current.mode = 'pan';
+        cancelLongPress();
+        try { element.setPointerCapture(event.pointerId); } catch { /* keep panning without capture */ }
+      }
+      current.x = event.clientX;
+      current.y = event.clientY;
+      if (dx) setPanX(previous => clampPan(clampPan(previous, state.contentWidth, state.frame.width) + dx, state.contentWidth, state.frame.width));
+      if (dy) {
+        const top = element.scrollTop - dy;
+        element.scrollTop = top;
+        // Hand a nearly vertical swipe back to the page at the card's edge.
+        if (!expanded && Math.abs(dx) < Math.abs(dy) / 4 && (top < 0 || top > element.scrollHeight - element.clientHeight)) window.scrollBy(0, top - element.scrollTop);
+      }
       return;
     }
     const points = [...pointers.current.values()];
     if (points.length < 2) return;
     const distance = Math.max(1, Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y));
-    const next = limit(current.scale * distance / current.distance);
+    const next = limit(current.scale * distance / current.distance, state.minScale);
     if (next === state.scale) return;
-    const nextWidth = state.width * next;
-    const nextBaseX = Math.max(0, (state.frame.width - nextWidth) / 2);
-    setZoom(next);
-    setPanX(clampPan(current.anchorX - rect.left - state.frame.left - nextBaseX - current.contentX * next, nextWidth, state.frame.width));
-    pendingScroll.current = Math.max(0, Math.max(0, (state.frame.height - state.height * next) / 2) + current.contentY * next - current.offsetY);
+    const rect = element.getBoundingClientRect();
+    applyAnchoredZoom(next, current.anchorX - rect.left - state.frame.left, current.offsetY, current.contentX, current.contentY);
   };
   const endGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (gesture.current && gesture.current.mode !== 'pinch' && gesture.current.pointerId === event.pointerId) {
       try { scrollRef.current?.releasePointerCapture(event.pointerId); } catch { /* already released */ }
     }
     pointers.current.delete(event.pointerId);
-    if (pointers.current.size < 2 && gesture.current?.mode === 'pinch') gesture.current = null;
     if (!pointers.current.size) gesture.current = null;
+    else if (pointers.current.size === 1 && gesture.current?.mode === 'pinch') {
+      const [[pointerId, point]] = pointers.current;
+      gesture.current = event.type === 'pointerup' ? { mode: 'pending', ...point, pointerId, direct: true } : null;
+    }
   };
 
   // Pan horizontally without cancelling native vertical scrolling, including diagonal glides.
@@ -378,7 +396,6 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     const element = scrollRef.current;
     if (!element) return;
     const onWheel = (event: WheelEvent) => {
-      if (event.target instanceof Element && event.target.closest('.tree-zoom')) return;
       const state = view.current;
       if (event.ctrlKey || event.metaKey) {
         event.preventDefault();
@@ -563,7 +580,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
       const key = event.key.toLowerCase();
       if (key !== 'z' && key !== 'y') return;
       const field = document.activeElement;
-      if (field instanceof HTMLTextAreaElement || (field instanceof HTMLInputElement && field.id !== 'tree-label' && !field.classList.contains('tree-node-edit'))) return;
+      if ((field instanceof HTMLTextAreaElement || field instanceof HTMLInputElement) && field.id !== 'tree-label' && !field.classList.contains('tree-node-edit')) return;
       if (document.querySelector('dialog[open]')) return;
       event.preventDefault();
       if (key === 'y' || event.shiftKey) redoRef.current();
@@ -572,7 +589,17 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
-  const grow = (next: Diagram, id: string) => { pushHistory(); edited(); focusLabel.current = true; setDiagram(next); setSelected(id); setNotice(''); setProblem(''); };
+  const grow = (next: Diagram, id: string) => {
+    pushHistory();
+    edited();
+    // Keep mobile taps on the board instead of scrolling to the separate label input.
+    focusLabel.current = !matchMedia('(pointer: coarse)').matches;
+    if (!focusLabel.current) nodeMenu?.invoker.focus({ preventScroll: true });
+    setDiagram(next);
+    setSelected(id);
+    setNotice('');
+    setProblem('');
+  };
   // Movement mode coindexes nodes without changing their parent or sibling order.
   const [moveOpen, setMoveOpen] = useState(false);
   const movementMode = moveOpen && !disabled && diagram.nodes.length > 1;
@@ -584,7 +611,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     // Native touch dragging must not compete with the long-press menu.
     event.currentTarget.draggable = event.pointerType !== 'touch' && !disabled && !movementMode && id !== diagram.root;
     if (movementMode) startMovement(event, id);
-    else setSelected(id);
+    else if (event.pointerType !== 'touch') setSelected(id);
     if (disabled || event.pointerType !== 'touch' || !event.isPrimary) return;
     const element = event.currentTarget;
     longPress.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, timer: setTimeout(() => {
@@ -803,7 +830,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   };
   const insertSymbol = (symbol: string) => {
     const active = document.activeElement;
-    const live = active === sourceRef.current ? sourceRef.current : active === labelRef.current ? labelRef.current : active instanceof HTMLInputElement && active.classList.contains('tree-node-edit') ? active : null;
+    const live = active === sourceRef.current ? sourceRef.current : active === labelRef.current ? labelRef.current : active instanceof HTMLTextAreaElement && active.classList.contains('tree-node-edit') ? active : null;
     // A closed inline editor hands its caret back to the selected-node label field.
     const remembered = symbolInput.current;
     const rememberedField = remembered?.isConnected ? remembered : remembered?.classList.contains('tree-node-edit') ? labelRef.current : null;
@@ -824,7 +851,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     else changeLabel(next);
     requestAnimationFrame(() => { if (field.isConnected) field.setSelectionRange(caret, caret); });
   };
-  const noteSymbolField = (field: HTMLInputElement | HTMLTextAreaElement) => {
+  const noteSymbolField = (field: HTMLTextAreaElement) => {
     symbolInput.current = field;
     symbolCaret.current = { start: field.selectionStart ?? field.value.length, end: field.selectionEnd ?? field.value.length };
   };
@@ -960,7 +987,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     </div>
     <div className="tree-frame" data-expanded={expanded ? '' : undefined}>
     <div className="tree-zoom" dir="ltr" role="group" aria-label={t.zoom.group}>
-      <button type="button" aria-label={t.zoom.out} title={t.zoom.out} disabled={scale <= 0.1} onClick={() => zoomAtCentre(1 / 1.25)}><ZoomIcon direction="out"/></button>
+      <button type="button" aria-label={t.zoom.out} title={t.zoom.out} disabled={scale <= minScale} onClick={() => zoomAtCentre(1 / 1.25)}><ZoomIcon direction="out"/></button>
       <button type="button" className="tree-zoom-level" aria-label={`${t.zoom.fit}: ${percent}%`} title={t.zoom.fit} onClick={fitToCard}>{percent}%</button>
       <button type="button" aria-label={t.zoom.in} title={t.zoom.in} disabled={scale >= 4} onClick={() => zoomAtCentre(1.25)}><ZoomIcon direction="in"/></button>
       <button type="button" className="tree-zoom-fullscreen" aria-label={expanded ? t.zoom.exitFullscreen : t.zoom.fullscreen} title={expanded ? t.zoom.exitFullscreen : t.zoom.fullscreen} aria-pressed={expanded} onClick={toggleExpanded}><FullscreenIcon exit={expanded}/></button>
@@ -970,7 +997,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
         <div className="tree-board" data-movement={movementMode ? '' : undefined} dir="ltr" role="tree" aria-label={t.title} style={{ width: layout.width, height: layout.height, transform: `scale(${scale})`, transformOrigin: 'top left' }}>
       <svg aria-hidden="true" width={layout.width} height={layout.height} viewBox={`0 0 ${layout.width} ${layout.height}`}>{layout.edges.map((edge, index) => edge.movement ? <path key={index} d={movementPath(edge)} /> : edge.bend ? <path key={index} d={`M ${edge.x1} ${edge.y1} Q ${(edge.x1 + edge.x2) / 2} ${Math.min(edge.y1, edge.y2) - edge.bend} ${edge.x2} ${edge.y2}`} /> : <line key={index} x1={edge.x1} y1={edge.y1} x2={edge.x2} y2={edge.y2} />)}{layout.edges.map((edge, index) => edge.arrow || edge.movement ? <path key={`arrow-${index}`} className="tree-arrow" d={treeArrowPath(edge)} /> : null)}{layout.edges.map((edge, index) => edge.label ? <text key={`rel-${index}`} className="tree-edge-label" {...treeEdgeLabelPoint(edge)}>{edge.label}</text> : null)}</svg>
       {layout.nodes.map(node => editingId === node.id
-        ? <input key={node.id} className="tree-node tree-node-edit" dir="auto" aria-label={editOrigin.current || node.label} maxLength={200} value={draft} disabled={disabled} style={{ left: node.x, top: node.y, width: Math.max(node.width, 44), height: node.height }} autoFocus onFocus={event => { event.currentTarget.select(); noteSymbolField(event.currentTarget); }} onChange={event => changeLabel(event.target.value)} onBlur={event => { noteSymbolField(event.currentTarget); const toSymbols = event.relatedTarget instanceof Element && !!event.relatedTarget.closest('.tree-symbols'); if (toSymbols) return; finishEdit(); }} onKeyDown={event => { if (event.nativeEvent.isComposing) return; if (event.key === 'Enter') { event.preventDefault(); event.currentTarget.blur(); } if (event.key === 'Escape') { event.preventDefault(); cancelNodeEdit(); } }}/>
+        ? <SingleLineField key={node.id} className="tree-node tree-node-edit" dir="auto" aria-label={editOrigin.current || node.label} maxLength={200} value={draft} disabled={disabled} style={{ left: node.x, top: node.y, width: Math.max(node.width, 44), height: node.height }} autoFocus onFocus={event => { event.currentTarget.select(); noteSymbolField(event.currentTarget); }} onChange={event => changeLabel(event.target.value)} onBlur={event => { noteSymbolField(event.currentTarget); const toSymbols = event.relatedTarget instanceof Element && !!event.relatedTarget.closest('.tree-symbols'); if (toSymbols) return; finishEdit(); }} onKeyDown={event => { if (event.nativeEvent.isComposing) return; if (event.key === 'Enter') { event.preventDefault(); event.currentTarget.blur(); } if (event.key === 'Escape') { event.preventDefault(); cancelNodeEdit(); } }}/>
         : <button key={node.id} type="button" className={`tree-node${draggingId === node.id ? ' tree-node-dragging' : ''}${dropId === node.id ? ' tree-node-drop' : ''}`} role="treeitem" aria-selected={node.id === selectedId} aria-label={labelLines(node.label).length > 1 ? labelLines(node.label).join(' ') : undefined} dir="auto" data-tree-node={node.id} draggable={!disabled && !movementMode && node.id !== diagram.root} disabled={disabled} style={{ left: node.x, top: node.y, width: node.width, height: node.height }} onClick={event => { if (suppressMoveClick.current) { suppressMoveClick.current = false; return; } if (movementMode && event.detail === 0 && selectedId !== node.id) linkMove(selectedId, node.id); else setSelected(node.id); }} onPointerDown={event => startNodePress(event, node.id)} onPointerMove={moveNodePress} onPointerUp={endNodePress} onPointerCancel={endNodePress} onLostPointerCapture={endNodePress} onDoubleClick={() => { if (!movementMode) beginEdit(node.id, node.label); }} onContextMenu={event => { event.preventDefault(); openNodeMenu(node.id, event.currentTarget); }} onDragStart={event => startDrag(event, node.id)} onDragEnd={finishDrag} onDragOver={event => { if (!draggingId || !canDropNode(diagram, draggingId, node.id)) return; event.preventDefault(); event.stopPropagation(); event.dataTransfer.dropEffect = 'move'; setDropId(current => current === node.id ? current : node.id); }} onDragLeave={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDropId(current => current === node.id ? undefined : current); }} onDrop={event => { event.preventDefault(); event.stopPropagation(); const fromId = draggingId; const toId = dropId && diagram.nodes.some(item => item.children.includes(fromId ?? '') && item.children.includes(dropId)) ? dropId : node.id; finishDrag(); dropNode(fromId, toId); }}>{labelLines(node.label).map((line, index) => <span key={index}>{line}</span>)}</button>)}
         </div>
       </div>
@@ -978,18 +1005,18 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     </div>
     {nodeMenu && diagram.nodes.some(node => node.id === nodeMenu.id) && createPortal(<NodeMenu menu={nodeMenu} label={diagram.nodes.find(node => node.id === nodeMenu.id)?.label ?? t.title} onClose={closeNodeMenu} items={(() => { const id = nodeMenu.id; return [{ label: t.addChild, run: () => createChild(id) }, { label: t.addSibling, disabled: !diagram.nodes.some(node => node.children.includes(id)), run: () => createSibling(id) }, { label: t.moveLeft, disabled: !canShift(id, -1), run: () => shiftNode(id, -1) }, { label: t.moveRight, disabled: !canShift(id, 1), run: () => shiftNode(id, 1) }, { label: t.move, disabled: disabled || diagram.nodes.length < 2, checked: movementMode, run: toggleMovement }, ...(labelIndex(diagram.nodes.find(node => node.id === id)!.label) !== undefined ? [{ label: t.moveClear, run: () => clearMove(id) }] : []), { label: t.remove, disabled: id === diagram.root, run: () => deleteNode(id) }]; })()}/>, document.body)}
     <div className="tree-symbols" dir="ltr" role="group" aria-label={t.symbol.group}>{treeSymbols.map(([name, glyph]) => <button key={name} type="button" dir="ltr" disabled={disabled} aria-label={t.symbol[name]} onPointerDown={event => event.preventDefault()} onClick={() => insertSymbol(glyph)}>{glyph}</button>)}</div>
-    <label className="reference-search tree-source"><span className="tree-source-head">{t.source}{generated && diagram.nodes.length > 1 && <small id="tree-generated-note" className="tree-generated-note">{form === 'ccg' && diagram.nodes.some(node => node.label === '?') ? t.incomplete : t.generated}</small>}</span><textarea id="tree-source" dir="ltr" aria-label={t.source} aria-describedby={generated && diagram.nodes.length > 1 ? "tree-generated-note" : undefined} ref={sourceRef} rows={1} value={source} maxLength={200_000} disabled={disabled} onFocus={event => noteSymbolField(event.currentTarget)} onBlur={event => noteSymbolField(event.currentTarget)} onChange={event => { edited(true); setSource(event.target.value); }} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); draw(event.currentTarget.value); } }}/></label>
-    <label className="tree-field" htmlFor="tree-label">{t.label}<input id="tree-label" dir="auto" ref={labelRef} value={draft} maxLength={200} disabled={disabled} onFocus={event => noteSymbolField(event.currentTarget)} onChange={event => changeLabel(event.target.value)} onBlur={event => { noteSymbolField(event.currentTarget); const toSymbols = event.relatedTarget instanceof Element && !!event.relatedTarget.closest('.tree-symbols'); if (!toSymbols) setDraft(diagram.nodes.find(node => node.id === selectedId)?.label ?? draft); }}/></label>
+    <label className="reference-search tree-source"><span className="tree-source-head">{t.source}{generated && diagram.nodes.length > 1 && <small id="tree-generated-note" className="tree-generated-note">{form === 'ccg' && diagram.nodes.some(node => node.label === '?') ? t.incomplete : t.generated}</small>}</span><textarea autoComplete="off" id="tree-source" dir="ltr" aria-label={t.source} aria-describedby={generated && diagram.nodes.length > 1 ? "tree-generated-note" : undefined} ref={sourceRef} rows={1} value={source} maxLength={200_000} disabled={disabled} onFocus={event => noteSymbolField(event.currentTarget)} onBlur={event => noteSymbolField(event.currentTarget)} onChange={event => { edited(true); setSource(event.target.value); }} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); draw(event.currentTarget.value); } }}/></label>
+    <label className="tree-field" htmlFor="tree-label">{t.label}<SingleLineField id="tree-label" dir="auto" ref={labelRef} value={draft} maxLength={200} disabled={disabled} onFocus={event => noteSymbolField(event.currentTarget)} onChange={event => changeLabel(event.target.value)} onBlur={event => { noteSymbolField(event.currentTarget); const toSymbols = event.relatedTarget instanceof Element && !!event.relatedTarget.closest('.tree-symbols'); if (!toSymbols) setDraft(diagram.nodes.find(node => node.id === selectedId)?.label ?? draft); }}/></label>
     <div className="tree-actions tree-save-actions">
       <button className="button" type="button" disabled={disabled} onClick={() => void copyTree()}>{t.copy}</button>
       <button className="button" type="button" ref={saveButton} disabled={disabled} onClick={() => openName('save')}>{t.save}</button>
       <button className="button" type="button" ref={exportButton} disabled={disabled} onClick={() => openName('export')}>{t.export}</button>
     </div>
     {naming && createPortal(<dialog ref={nameDialog} className="offline-remove-dialog backup-export-dialog" aria-labelledby="tree-export-title" onCancel={event => { event.preventDefault(); if (formatsOpen) { setFormatsOpen(false); suffixRef.current?.focus({ preventScroll: true }); return; } closeName(); }} onClick={event => { if (event.target === event.currentTarget) closeName(); }}>
-      <form onSubmit={event => { event.preventDefault(); void confirmName(); }} onClick={event => { if (event.target instanceof Element && event.target.closest('.tree-format-suffix, .tree-format-menu')) return; setFormatsOpen(false); }}>
+      <form autoComplete="off" onSubmit={event => { event.preventDefault(); void confirmName(); }} onClick={event => { if (event.target instanceof Element && event.target.closest('.tree-format-suffix, .tree-format-menu')) return; setFormatsOpen(false); }}>
         <h2 id="tree-export-title">{naming === 'save' ? t.save : t.export}</h2>
         <label className="backup-export-label" htmlFor="tree-export-name">{backupLabels[locale].fileName}</label>
-        <div className="backup-export-field" dir="ltr"><input id="tree-export-name" dir="auto" autoComplete="off" maxLength={80} value={exportName} placeholder={fallback} data-default={!exportName.trim()} aria-describedby={naming === 'export' ? 'tree-export-extension' : undefined} aria-invalid={!!exportError} onChange={event => { setExportName(event.target.value); setExportError(''); }}/>{naming === 'export' && <button ref={suffixRef} id="tree-export-extension" className="tree-format-suffix" type="button" dir="ltr" aria-haspopup="listbox" aria-expanded={formatsOpen} aria-controls="tree-format-menu" aria-label={`${t.format}: .${exportExtension[format]}`} onClick={() => setFormatsOpen(open => !open)} onKeyDown={event => { if (event.key === 'Escape' && formatsOpen) { event.preventDefault(); setFormatsOpen(false); return; } if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); formatFromKeys.current = true; setFormatsOpen(true); } }}>.{exportExtension[format]}<span className="tree-format-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>}</div>
+        <div className="backup-export-field" dir="ltr"><SingleLineField id="tree-export-name" dir="auto" maxLength={80} value={exportName} placeholder={fallback} data-default={!exportName.trim()} aria-describedby={naming === 'export' ? 'tree-export-extension' : undefined} aria-invalid={!!exportError} onChange={event => { setExportName(event.target.value); setExportError(''); }}/>{naming === 'export' && <button ref={suffixRef} id="tree-export-extension" className="tree-format-suffix" type="button" dir="ltr" aria-haspopup="listbox" aria-expanded={formatsOpen} aria-controls="tree-format-menu" aria-label={`${t.format}: .${exportExtension[format]}`} onClick={() => setFormatsOpen(open => !open)} onKeyDown={event => { if (event.key === 'Escape' && formatsOpen) { event.preventDefault(); setFormatsOpen(false); return; } if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); formatFromKeys.current = true; setFormatsOpen(true); } }}>.{exportExtension[format]}<span className="tree-format-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>}</div>
         {naming === 'export' && formatsPresent && <div ref={formatMenu} id="tree-format-menu" className="tree-format-menu" data-open={formatsOpen} role="listbox" aria-label={t.format} aria-hidden={!formatsOpen} inert={!formatsOpen}><div className="tree-format-menu-clip"><div className="tree-format-options">{exportFormats.map(([value, label], index) => <button key={value} type="button" role="option" aria-selected={format === value} onClick={() => chooseFormat(value)} onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); setFormatsOpen(false); suffixRef.current?.focus({ preventScroll: true }); return; } moveFormat(event, index); }}><span className="setting-check" aria-hidden="true">{format === value && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span>{label}</button>)}</div></div></div>}
         {exportError && <p className="error" role="alert">{exportError}</p>}
         <div className="offline-remove-dialog-actions"><button className="button" ref={nameCancel} type="button" onClick={closeName}>{backupLabels[locale].cancel}</button><button className="primary" type="submit">{backupLabels[locale].save}</button></div>

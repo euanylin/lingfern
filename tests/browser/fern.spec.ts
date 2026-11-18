@@ -35,7 +35,7 @@ test('saved practice and unique lookups grow the same SVG through intermediate s
   await fern.evaluate(el => { (window as unknown as { originalFern: Element }).originalFern = el; });
   const other = await context.newPage(); await other.goto('/library/dictionary');
   const before = await stem.getAttribute('d');
-  await other.getByRole('combobox').fill('apple'); await other.getByRole('combobox').press('Enter');
+  await other.getByRole('textbox').fill('apple'); await other.getByRole('textbox').press('Enter');
   await page.bringToFront();
   await expect(fern).toHaveAttribute('aria-label', /查询 1 项/);
   const samples = await fern.evaluate(async el => {
@@ -49,7 +49,7 @@ test('saved practice and unique lookups grow the same SVG through intermediate s
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(fern).toHaveAttribute('data-motion', 'reduced');
   const grown = await stem.getAttribute('d');
-  await other.getByRole('combobox').fill('APPLE'); await other.getByRole('combobox').press('Enter');
+  await other.getByRole('textbox').fill('APPLE'); await other.getByRole('textbox').press('Enter');
   await expect(fern).toHaveAttribute('aria-label', /查询 1 项/); expect(await stem.getAttribute('d')).toEqual(grown);
   await page.reload(); await expect(fern).toHaveAttribute('aria-label', /阅读 1 次，听力 0 次，查询 1 项/); await expect(stem).toHaveAttribute('d', grown!);
   await page.emulateMedia({ reducedMotion: 'reduce' });

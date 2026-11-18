@@ -419,7 +419,7 @@ for (const theme of ['light', 'dark']) test(`desktop search and keyboard control
   await page.setViewportSize({ width: 1440, height: 900 }); await page.goto('/settings');
   await selectPicker(page, (await page.locator('.settings-appearance .setting-trigger').first().getAttribute('aria-label'))!, theme);
   await page.goto('/library');
-  const field = page.locator('.offline-search'), input = field.locator('input');
+  const field = page.locator('.offline-search'), input = field.getByRole('textbox');
   const idle = await field.evaluate(el => getComputedStyle(el).backgroundColor);
   await input.click(); await input.fill('test');
   await expect(input).toHaveCSS('outline-style', 'none'); await expect(input).toHaveCSS('box-shadow', 'none');

@@ -1,3 +1,4 @@
+import { SingleLineField } from './SingleLineField';
 import { AnimatedDetails } from './AnimatedDetails';
 import { contentLocale } from '../shared/locale';
 import { answerPointCount, readingWordCount } from '../shared/practiceQuantity';
@@ -38,7 +39,7 @@ export function TaskCatalogue({ selections, onSelection, preferences, locale, le
   const matches = matching(applied).sort((a, b) => (online ? 0 : Number(local(b)) - Number(local(a))) || levelSchema.options.indexOf(a.targetLevel) - levelSchema.options.indexOf(b.targetLevel));
   function clear() { setQuery(''); setApplied(empty); setDraft(empty); }
   return <section className="task-catalogue">
-    <label className="task-search">{t.search}<input type="search" value={query} onChange={event => setQuery(event.target.value)} maxLength={160}/></label>
+    <label className="task-search">{t.search}<SingleLineField enterKeyHint="search" value={query} onChange={event => setQuery(event.target.value)} maxLength={160}/></label>
     <div className="task-catalogue-layout"><AnimatedDetails className="task-filters" open={open} onExpandedChange={expanded => { setOpen(expanded); if (!expanded) setDraft(applied); }}><summary>{t.filters}</summary>
       <SettingsPicker label={t.skill} value={controls.skill} options={[{ value: 'all', label: t.all }, { value: 'reading', label: t.reading }, { value: 'listening', label: t.listening }]} onChange={value => change({ skill: value })}/>
       <SettingsPicker label={t.theme} value={controls.theme} options={[{ value: 'all', label: t.all }, ...topicSchema.options.map((value, index) => ({ value, label: firstRunCopy[locale].themes[index] }))]} onChange={value => change({ theme: value })}/>

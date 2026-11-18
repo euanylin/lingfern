@@ -35,7 +35,7 @@ for (const engine of ['chromium', 'webkit'] as const) test(`shared rows, menu op
   try {
     await page.goto('/settings/about');
     drift.summary = await geometry(page, page.locator('.about-credit-details>summary').first());
-    await page.goto('/library/dictionary'); await page.getByRole('combobox').fill('book');
+    await page.goto('/library/dictionary'); await page.getByRole('textbox').fill('book');
     drift.suggestion = await geometry(page, page.locator('.dictionary-suggestions li').first());
     await page.goto('/today'); await page.locator('.reading-task .topic-picker .setting-trigger').first().click();
     const dialog = page.locator('.practice-options-dialog'); await expect(dialog).toHaveCSS('opacity', '1');

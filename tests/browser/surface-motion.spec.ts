@@ -58,7 +58,7 @@ test('navigation, starting choices, suggestions, results and saved icons have bo
   await page.locator('.desktop-nav').getByRole('link', { name: '资料库', exact: true }).click();
   await expect(page.locator('.library-page')).toHaveCSS('animation-name', 'surface-in');
   await page.locator('a[href="/library/dictionary"]').click();
-  const query = page.getByRole('combobox');
+  const query = page.getByRole('textbox');
   await query.fill('book'); await expect(page.locator('.dictionary-suggestions')).toBeVisible();
   await expect(page.locator('.dictionary-suggestions')).toHaveCSS('animation-name', 'surface-in');
   await query.press('Enter');

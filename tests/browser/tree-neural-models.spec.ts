@@ -36,7 +36,7 @@ test('installs Stanza and Hol-CCG and uses both on the same offline editor route
   const toggle = treeGroup.getByRole('button');
   await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   await expect(treeGroup.getByRole('checkbox', { name: /Charniak/u })).toHaveCount(0);
-  const search = page.locator('.offline-install').getByRole('searchbox');
+  const search = page.locator('.offline-install').getByRole('textbox');
   await search.fill('句法树');
   await expect(treeGroup.locator('.package-row')).toHaveCount(4);
   await search.clear();

@@ -165,7 +165,7 @@ test('mobile navigation stays fixed around learning and software-keyboard focus'
   await expect(nav).toBeVisible();
   await nav.getByRole('link', { name: '资料库' }).click();
   await page.getByRole('link', { name: '英英词典' }).click();
-  const query = page.getByRole('combobox', { name: '查询单词或短语' });
+  const query = page.getByRole('textbox', { name: '查询单词或短语' });
   await query.focus();
   expect(await nav.evaluate(el => getComputedStyle(el).position)).toBe('fixed');
   await query.blur();

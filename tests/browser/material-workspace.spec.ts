@@ -138,7 +138,14 @@ test('desktop submit feedback stays inside the answer card without a horizontal 
   expect(await content.evaluate(el => el.scrollWidth - el.clientWidth)).toBe(0);
   const bounds = (await content.boundingBox())!, button = (await submit.boundingBox())!;
   expect(button.x).toBeGreaterThanOrEqual(bounds.x); expect(button.x + button.width).toBeLessThanOrEqual(bounds.x + bounds.width);
-  await submit.focus(); await expect(submit).toBeFocused(); await expect(submit).toBeEnabled();
+  await page.mouse.move(0, 0);
+  await submit.focus();
+  await page.keyboard.press('Shift+Tab');
+  await page.keyboard.press('Tab');
+  await expect(submit).toBeFocused();
+  await expect(submit).toBeEnabled();
+  await expect(submit).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, -1)');
+  expect(await content.evaluate(el => el.scrollWidth - el.clientWidth)).toBe(0);
 });
 
 test('desktop question number follows visible questions without changing the saved selection or drafts', async ({ page }) => {
@@ -163,7 +170,7 @@ for (const width of [375, 1440]) for (const kind of ['reading', 'listening', 'ga
   const slot = all.slice(0, index).reduce((count, item) => count + questionSlots(item.question), 0);
   if (width < 1200 && raw.skill === 'reading') await page.locator('.workspace-questions .question-sheet-toggle').click();
   await page.locator('.workspace-card button').nth(slot).click();
-  const field = page.locator(kind === 'response' ? '.workspace-question textarea' : kind === 'gaps' ? '.inline-gap input' : '.workspace-question .completion-answer input').first();
+  const field = page.locator(kind === 'response' ? '.response-answer textarea' : kind === 'gaps' ? '.inline-gap textarea' : '.workspace-question .completion-answer textarea').first();
   await field.click();
   await page.evaluate(async () => {
     const { db, sessions } = await import('/src/data/db.ts' as string), update = sessions.update.bind(sessions);
@@ -200,7 +207,7 @@ for (const width of [375, 1440]) for (const kind of ['reading', 'listening', 'ga
   expect(await page.evaluate(async id => Object.values((await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace.drafts).some(value => value === 'steady' || Array.isArray(value) && value.includes('steady')), id)).toBe(true);
   await page.reload();
   if (width < 1200 && raw.skill === 'reading') await page.locator('.workspace-questions .question-sheet-toggle').click();
-  await expect(page.locator(kind === 'response' ? '.workspace-question textarea' : kind === 'gaps' ? '.inline-gap input' : '.workspace-question .completion-answer input').first()).toHaveValue('steady');
+  await expect(page.locator(kind === 'response' ? '.response-answer textarea' : kind === 'gaps' ? '.inline-gap textarea' : '.workspace-question .completion-answer textarea').first()).toHaveValue('steady');
 });
 
 test('desktop reading follows page scrolling beside a pinned answer card, with free drafts, refresh and atomic completion', async ({ page }) => {
@@ -219,11 +226,11 @@ test('desktop reading follows page scrolling beside a pinned answer card, with f
   expect(Math.abs((await panel.boundingBox())!.height - originalHeight)).toBeLessThanOrEqual(1);
   expect(await article.evaluate(el => el.scrollTop)).toBe(0);
   const scroll = await page.evaluate(() => scrollY);
-  const inputs = page.locator('.workspace-question input:not([type=radio]):not([type=range])'); await inputs.last().fill('retained-draft');
+  const inputs = page.locator('.workspace-question textarea[data-single-line]'); await inputs.last().fill('retained-draft');
   await expect.poll(() => page.evaluate(async id => Object.values((await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace.drafts).includes('retained-draft'), id)).toBe(true);
   expect(await page.evaluate(() => scrollY)).toBe(scroll);
   await page.reload(); await expect(page.locator('.material-workspace')).toBeVisible();
-  await expect(page.locator('.workspace-question input:not([type=radio]):not([type=range])').last()).toHaveValue('retained-draft');
+  await expect(page.locator('.workspace-question textarea[data-single-line]').last()).toHaveValue('retained-draft');
   const all = questions(lesson);
   // Answer through real controls in reverse order without prior-question gating.
   for (const item of [...all].reverse()) {
@@ -231,7 +238,7 @@ test('desktop reading follows page scrolling beside a pinned answer card, with f
     const index = all.indexOf(item); await nav.nth(index).click();
     const question = page.locator('.workspace-question').filter({ has: page.locator(`[id="prompt-${item.question.id}"]`) });
     if ('options' in item.question) await question.getByRole('radio').nth(item.question.answer).check();
-    else if ('kind' in item.question && item.question.kind === 'completion') await question.locator('input').fill(item.question.answer);
+    else if ('kind' in item.question && item.question.kind === 'completion') await question.getByRole('textbox').fill(item.question.answer);
     else throw new Error('Unexpected fixture type');
   }
   await expect.poll(() => page.locator('.workspace-save-status').textContent()).toBe('已保存在本设备');
@@ -261,9 +268,9 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) for (const the
   await page.evaluate(() => scrollTo(0, 250)); const top = await page.evaluate(() => scrollY);
   await page.locator('.workspace-questions .question-sheet-toggle').click();
   await page.locator('.workspace-card button').nth(2).click();
-  await page.locator('.workspace-question[data-selected=true] input:not([type=radio]):not([type=range])').fill('mobile-draft');
+  await page.locator('.workspace-question[data-selected=true] textarea[data-single-line]').fill('mobile-draft');
   await page.locator('.workspace-card button').first().click();
-  await page.locator('.workspace-card button').nth(2).click(); await expect(page.locator('.workspace-question[data-selected=true] input:not([type=radio]):not([type=range])')).toHaveValue('mobile-draft');
+  await page.locator('.workspace-card button').nth(2).click(); await expect(page.locator('.workspace-question[data-selected=true] textarea[data-single-line]')).toHaveValue('mobile-draft');
   await page.locator('.workspace-questions .question-close').click();
   await expect(reader).toBeVisible(); expect(await page.evaluate(() => scrollY)).toBe(top);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -311,7 +318,7 @@ test('real recording multi-gap input saves independently, keeps playback and rep
   const { multiGapListening } = await import('../fixtures/workspace-lessons');
   const lesson = multiGapListening(), { id } = await start(page, lesson);
   const gap = lesson.materials[0].questions[0]; if (!('gaps' in gap)) throw new Error('NO_GAPS');
-  const inputs = page.locator('.inline-gap input'), player = page.locator('audio');
+  const inputs = page.locator('.inline-gap textarea'), player = page.locator('audio');
   await expect(inputs).toHaveCount(2);
   await player.evaluate((audio: HTMLAudioElement) => { audio.muted = true; audio.playbackRate = 16; (window as unknown as { original: HTMLAudioElement }).original = audio; });
   await page.getByRole('button', { name: '播放 / 重听', exact: true }).click();
@@ -342,7 +349,7 @@ test('failed draft write retains the input across navigation and retries before 
     const { sessions } = await import('/src/data/db.ts' as string); const update = sessions.update.bind(sessions); let fail = true;
     sessions.update = async (id: string, changes: {workspace?: unknown}) => { if (changes.workspace && fail) { fail = false; throw new Error('DISK_FULL'); } return update(id, changes); };
   });
-  const field = page.locator('.workspace-question input:not([type=radio]):not([type=range])').first(); await field.fill('failure-retained');
+  const field = page.locator('.workspace-question textarea[data-single-line]').first(); await field.fill('failure-retained');
   await expect(page.locator('.material-workspace [role=alert]')).toBeVisible(); await expect(field).toHaveValue('failure-retained');
   await page.locator('.workspace-card button').first().click();
   await page.locator('.workspace-card button').nth(2).click();
@@ -350,19 +357,19 @@ test('failed draft write retains the input across navigation and retries before 
   expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).attempts.where('sessionId').equals(id).count()), id)).toBe(0);
   await page.locator('.material-workspace [role=alert]').getByRole('button', { name: '重试', exact: true }).click();
   await expect(page.locator('.material-workspace [role=alert]')).toHaveCount(0);
-  await page.reload(); await expect(page.locator('.workspace-question input:not([type=radio]):not([type=range])').first()).toHaveValue('failure-retained');
+  await page.reload(); await expect(page.locator('.workspace-question textarea[data-single-line]').first()).toHaveValue('failure-retained');
 });
 
 test('multi-gap mobile controls reflow at 320px and 200 percent with explicit blank progress', async ({ page }, testInfo) => {
   const { multiGapListening } = await import('../fixtures/workspace-lessons');
   await page.setViewportSize({ width: 320, height: 812 }); await start(page, multiGapListening());
-  await expect(page.locator('.inline-gap input')).toHaveCount(2);
-  await page.locator('.inline-gap input').nth(1).fill('draft');
+  await expect(page.locator('.inline-gap textarea')).toHaveCount(2);
+  await page.locator('.inline-gap textarea').nth(1).fill('draft');
   await expect(page.locator('.workspace-card button[data-answered=true]')).toHaveCount(1);
   for (const scale of ['100%', '200%']) {
     await page.evaluate(scale => document.documentElement.style.fontSize = scale, scale);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    expect(await page.locator('.inline-gap input').evaluateAll(inputs => inputs.every(input => { const box = input.getBoundingClientRect(); return box.width >= 44 && box.height >= 44; }))).toBe(true);
+    expect(await page.locator('.inline-gap textarea').evaluateAll(inputs => inputs.every(input => { const box = input.getBoundingClientRect(); return box.width >= 44 && box.height >= 44; }))).toBe(true);
     await page.screenshot({ path: testInfo.outputPath(`gap-mobile-${scale}.png`), fullPage: true });
   }
 });
@@ -558,7 +565,7 @@ test('multi-slot navigation marks exactly one current response and keeps number 
   const nav = page.locator('.workspace-card nav'); await page.screenshot({ path: testInfo.outputPath('card-layout.png') });
   await expect(nav.locator('[aria-current]')).toHaveCount(1);
   await nav.getByRole('button').nth(1).click(); await expect(nav.locator('[aria-current]')).toHaveText('2');
-  await page.locator('.inline-gap input').first().focus(); await expect(nav.locator('[aria-current]')).toHaveText('1');
+  await page.locator('.inline-gap textarea').first().focus(); await expect(nav.locator('[aria-current]')).toHaveText('1');
   for (const width of [1440, 375, 320]) {
     await page.setViewportSize({ width, height: 812 });
     const boxes = await nav.getByRole('button').evaluateAll(buttons => buttons.map(button => { const box = button.getBoundingClientRect(); return { width: box.width, height: box.height }; }));
@@ -571,7 +578,7 @@ for (const width of [375, 1440]) test(`manual input focus wins before the naviga
   await page.setViewportSize({ width, height: 900 });
   await page.clock.install({ time: new Date('2026-10-19T09:00:00Z') });
   const { id } = await start(page, multiGapListening());
-  const nav = page.locator('.workspace-card nav'), input = page.locator('.inline-gap input').first();
+  const nav = page.locator('.workspace-card nav'), input = page.locator('.inline-gap textarea').first();
   await input.focus();
   await page.clock.pauseAt(new Date('2026-10-19T09:10:00Z'));
   const second = nav.getByRole('button').nth(1);
@@ -723,7 +730,7 @@ test('table prompts use the full card width with inputs underneath on desktop an
     const boxes = await row.evaluate(element => ({
       row: element.getBoundingClientRect().toJSON(),
       label: element.querySelector('span')!.getBoundingClientRect().toJSON(),
-      input: element.querySelector('input')!.getBoundingClientRect().toJSON(),
+      input: element.querySelector('textarea[data-single-line]')!.getBoundingClientRect().toJSON(),
     }));
     expect(boxes.label.width).toBeGreaterThan(boxes.row.width * .9);
     expect(boxes.input.y).toBeGreaterThanOrEqual(boxes.label.y + boxes.label.height + 4);
@@ -834,10 +841,10 @@ test('reference completion hierarchy preserves exact prompt text, saved snapshot
       if (split > 0) await expect(block.locator('.question-sentence')).toHaveText(prompt.slice(split + 1));
       else await expect(block.locator('.question-sentence')).toHaveCount(0);
       await expect(block.locator('h2')).toBeFocused();
-      await block.locator('input').click(); await expect(block.locator('input')).toBeFocused();
-      await expect(block.locator('input')).toHaveCSS('box-shadow', 'none');
-      await expect(block.locator('input')).toHaveCSS('outline-style', 'none');
-      await expect(block.locator('input')).toHaveCSS('direction', 'ltr');
+      await block.getByRole('textbox').click(); await expect(block.getByRole('textbox')).toBeFocused();
+      await expect(block.getByRole('textbox')).toHaveCSS('box-shadow', 'none');
+      await expect(block.getByRole('textbox')).toHaveCSS('outline-style', 'none');
+      await expect(block.getByRole('textbox')).toHaveCSS('direction', 'ltr');
     }
     expect(await page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).lesson, id)).toEqual(lesson);
   }

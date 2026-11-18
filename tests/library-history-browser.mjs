@@ -18,9 +18,9 @@ try {
   for (const pack of packs) await pack.getByRole('checkbox').check();
   await page.getByRole('button', { name: '下载所选资源', exact: true }).click();
   for (const pack of packs) await expect(pack).toContainText('已安装', { timeout: 90000 });
-  await page.goto(origin + '/library/dictionary'); await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
+  await page.goto(origin + '/library/dictionary'); await page.getByRole('textbox').fill('apple'); await page.getByRole('textbox').press('Enter');
   await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
-  await page.goto(origin + '/library/grammar'); await page.getByRole('searchbox').fill('since / for'); await page.locator('.grammar-results summary').click();
+  await page.goto(origin + '/library/grammar'); await page.getByRole('textbox').fill('since / for'); await page.locator('.grammar-results summary').click();
   await expect.poll(async () => (await history()).some(row => row.kind === 'grammar')).toBe(true);
   await page.goto(origin + '/library/ipa'); await page.getByRole('button', { name: '听音标 /i/', exact: true }).click();
   await expect.poll(async () => (await history()).some(row => row.kind === 'ipa')).toBe(true);

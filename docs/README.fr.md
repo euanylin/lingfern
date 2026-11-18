@@ -8,8 +8,6 @@
 
 Entraînement à la lecture et à la compréhension orale en anglais, dès 16 ans, avec des objectifs de A1 à C2. Les exercices sont générés localement à partir de textes et d’enregistrements. Aucun compte ni service d’IA n’est nécessaire pour apprendre.
 
-Le site public utilise **0.1.170**. Les arbres syntaxiques, le dictionnaire d’usage enrichi, les palettes et les crédits About mis à jour sont disponibles dans **l’aperçu local 0.2.0**. [État de publication](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
-
 <a id="readme-languages"></a>
 
 <details>
@@ -98,14 +96,14 @@ La fougère représente l’activité sauvegardée, pas un niveau certifié. Les
 | [Favoris](https://lingfern.com/library/saved) | ★/☆ pour enregistrer ou retirer une définition ; entrées repliables. Une entrée retirée reste jusqu’à la réouverture ou l’actualisation pour pouvoir être rétablie. |
 | [Tableau IPA](https://lingfern.com/library/ipa) | Vues simple/détaillée, recherche de sons, enregistrements et exemples anglais disponibles. |
 | [Dictionnaire d’usage anglais](https://lingfern.com/library/grammar) | Recherche par mot-clé, parcours alphabétique et explications dépliables. |
-| [Arbre syntaxique](#readme-syntax-tree) · 0.2.0 | Générer et modifier neuf représentations, enregistrer des instantanés nommés et exporter en SVG, PNG, WebP, JPEG ou PDF. |
+| [Arbre syntaxique](#readme-syntax-tree) | Générer et modifier neuf représentations, enregistrer des instantanés nommés et exporter en SVG, PNG, WebP, JPEG ou PDF. |
 | [Historique des recherches](https://lingfern.com/library/history) | Réouverture des recherches dictionnaire, usage et IPA avec source, heure et état conservé. |
 
-L’aperçu local contient **191 entrées**. Les explications suivent la langue de l’interface et reviennent à l’anglais si nécessaire. Exemples, constructions et contrastes restent en anglais.
+Le dictionnaire d’usage contient **191 entrées**. Les explications suivent la langue de l’interface et reviennent à l’anglais si nécessaire. Exemples, constructions et contrastes restent en anglais.
 
 <a id="readme-syntax-tree"></a>
 
-**Bibliothèque** → **Référence** → **Arbre syntaxique** · [0.2.0](http://127.0.0.1:8787/library/trees)
+**Bibliothèque** → **Référence** → **[Arbre syntaxique](https://lingfern.com/library/trees)**
 
 Saisissez une phrase, un arbre entre parenthèses, un plan indenté ou une notation de dépendances. Les commandes des nœuds sont au-dessus du canevas, les symboles juste en dessous. Activez **Déplacement** pour relier des nœuds par coindexation ; cliquez à nouveau ou appuyez sur Échap pour quitter ce mode. Le clic droit ou l’appui long ouvre le menu. Un brouillon local par profil est automatiquement enregistré et restauré, mais exclu des sauvegardes et de la synchronisation. **Enregistrer** crée un instantané nommé distinct dans l’historique. Effacer reste annulable pendant la visite ; rouvrir un brouillon vidé rétablit l’exemple. Appuyez sur **Entrée** pour dessiner ou sur **Maj+Entrée** pour insérer une ligne.
 
@@ -160,7 +158,7 @@ La carte indique synchronisation en cours, terminée, en attente hors ligne ou �
 
 Quatorze langues d’interface ; thème clair/sombre/système ; navigation texte, icônes ou mixte distincte sur ordinateur et mobile ; dictionnaire externe par défaut ; points de départ et intérêts modifiables ; clavier, tactile et préférence de réduction des animations.
 
-**0.2.0** · Changez de couleurs dans **Paramètres** → **Palette**. **33 palettes** sont proposées : **Par défaut** et 32 alternatives, dont **Fougère**, toutes en clair et sombre. Le mode système/clair/sombre est enregistré séparément. Choisissez Par défaut pour rétablir la palette initiale. Les couleurs suivent vos préférences sur le site, l’introduction et les pages installées hors ligne ; le logo et la fougère d’Aujourd’hui gardent leurs couleurs d’origine.
+Changez de couleurs dans **Paramètres** → **Palette**. **33 palettes** sont proposées : **Par défaut** et 32 alternatives, dont **Fougère**, toutes en clair et sombre. Le mode système/clair/sombre est enregistré séparément. Choisissez Par défaut pour rétablir la palette initiale. Les couleurs suivent vos préférences sur le site, l’introduction et les pages installées hors ligne ; le logo et la fougère d’Aujourd’hui gardent leurs couleurs d’origine.
 
 Les supports anglais restent en anglais. Les consignes A1–A2 révisées ont une aide traduite ; les consignes B1–C2 et About restent en anglais.
 

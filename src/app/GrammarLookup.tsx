@@ -1,3 +1,4 @@
+import { SingleLineField } from './SingleLineField';
 import { AnimatedDetails } from './AnimatedDetails';
 import { messages } from '../locales';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -71,7 +72,7 @@ export function GrammarLookup({ locale, online, profileId, initialQuery = '', in
   const letters = [...new Set(indexed.map(item => item.initial))].sort();
   const ready = entries && overlayReady;
   return <section className="reference-page grammar-page"><h1>{t.title}</h1>
-    <label className="reference-search">{t.search}<input disabled={disabled} type="search" value={query} onChange={event => { setQuery(event.target.value); setLetter(''); }} onBlur={() => void remember(query)} onKeyDown={event => { if (event.key === 'Enter') void remember(query); }} maxLength={80}/></label>
+    <label className="reference-search">{t.search}<SingleLineField disabled={disabled} enterKeyHint="search" value={query} onChange={event => { setQuery(event.target.value); setLetter(''); }} onBlur={() => void remember(query)} onKeyDown={event => { if (event.key === 'Enter') void remember(query); }} maxLength={80}/></label>
     <section className="online-lookup" aria-label={t.online}>
       <div className="online-lookup-links">{online ? <a href={cambridgeGrammarUrl(query)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" onClick={() => void remember(query)}>{t.online} <span aria-hidden="true">↗</span></a> : <span className="online-lookup-disabled" aria-disabled="true">{t.online} ↗</span>}</div>
       <p className="muted">{online ? t.privacy : t.offline}</p>

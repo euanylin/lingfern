@@ -34,7 +34,7 @@ try{
  await page.evaluate(()=>{document.documentElement.dataset.theme='dark';});
  for(const width of [1440,375,320]) {
   await page.setViewportSize({width,height:812});
-  await expect(page.getByRole('searchbox',{name:'搜索内容'})).toBeVisible();
+  await expect(page.getByRole('textbox',{name:'搜索内容'})).toBeVisible();
   const offlineBounds=await page.locator('.offline-install').boundingBox(),installedBounds=await installed.boundingBox();
   assert(installedBounds.y-offlineBounds.y-offlineBounds.height<=48,'Installed list follows offline content without reserved scroll gap');
   await expect(page.locator('.footer-wordmark')).toHaveCount(0);

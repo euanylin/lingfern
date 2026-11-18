@@ -2,6 +2,48 @@ import { expect, test } from '@playwright/test';
 import { languagePacks } from '../../src/locales';
 import { selectPicker } from './picker';
 
+test('long syntax-tree resource titles stay fully visible beside installation status', async ({ page }, info) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' });
+  await page.goto('/library');
+  await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
+  await page.evaluate(async () => {
+    const { offlineGroups, offlineCacheName, offlineMarker } = await import('/src/data/offline.ts' as string) as typeof import('../../src/data/offline');
+    for (const id of ['tree-parser', 'tree-stanza']) {
+      const group = offlineGroups.find(item => item.id === id)!;
+      const cache = await caches.open(offlineCacheName(group));
+      for (const path of [offlineMarker(group), ...group.files.map(file => file.path)]) await cache.put(path, new Response('layout fixture'));
+    }
+    navigator.serviceWorker.getRegistration = async () => ({ active: {} }) as ServiceWorkerRegistration;
+    window.dispatchEvent(new Event('lingfern-resources-installed'));
+  });
+
+  const group = page.getByRole('group', { name: '句法树', exact: true });
+  const toggle = group.getByRole('button');
+  await expect(toggle).toContainText('已装 2');
+  await toggle.click();
+  const titles = group.locator('.package-title');
+  await expect(titles).toHaveCount(4);
+  await expect(group.locator('.package-status')).toHaveText(['已安装', '已安装']);
+  const layout = () => titles.evaluateAll(nodes => nodes.map(node => {
+    const title = node.getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    const lines = [...range.getClientRects()];
+    return {
+      wrapped: new Set(lines.map(line => line.top)).size > 1,
+      fits: lines.every(line => line.left >= title.left - 1 && line.right <= title.right + 1),
+    };
+  }));
+  const narrow = await layout();
+  expect(narrow.every(title => title.fits)).toBe(true);
+  expect(narrow.some(title => title.wrapped)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await group.screenshot({ path: info.outputPath('wrapped-tree-resources.png') });
+  await page.setViewportSize({ width: 1440, height: 900 });
+  expect((await layout()).every(title => title.fits && !title.wrapped)).toBe(true);
+});
+
 for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) test(`general reading and listening packages share category controls (${locale})`, async ({ page, context }) => {
   const pack = languagePacks[locale], t = pack.offlineInstall, ui = pack.offlineInstall_libraryLabels;
   await page.goto('/settings');
@@ -36,7 +78,7 @@ for (const locale of ['zh-Hans', 'zh-Hant', 'en', 'ar'] as const) test(`general 
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `output/playwright/library-groups-${locale}-${width}-${theme}.png`, fullPage: true });
   }
-  const search = page.getByRole('searchbox', { name: ui.search });
+  const search = page.getByRole('textbox', { name: ui.search });
   await search.fill(t.names['audio-a1']);
   await expect(page.locator('.package-row')).toHaveCount(1);
   await page.getByRole('checkbox', { name: `${t.categories.listening} · ${ui.general}`, exact: true }).check();

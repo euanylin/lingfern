@@ -121,6 +121,8 @@ Before UI changes, inspect surrounding pages and reuse `SettingsPicker`, `TaskDe
 
 Keep copy restrained: short labels/actions, concise actionable save/error/deletion/authorisation/backup details and actual licence attribution. Do not repeatedly explain implementation status, missing features or original/local/authentic qualities in ordinary flows.
 
+Keep all fourteen READMEs and other user guides focused on current features and how to use them. Keep release numbers and temporary preview status in the handoff or release records. Mention an exact version in a user guide only when it affects compatibility or the steps the reader must follow. Link the feature name to its public route once published, and reserve localhost links for explicit development or preview instructions. Apply the same rule to all translations.
+
 Keep every card/control scrollbar within its owning surface and rounded corners. Preserve native scrolling, keyboard access and focus visibility.
 
 Use the existing lively translucent navigation underline and related small purposeful motion for controls, navigation, selections and state changes. Preserve accepted continuous fern/resting motion and live mobile backdrop; keep geometry, reading and actions stable. Do not reserve empty update-status space or fixed spare lines. `prefers-reduced-motion: reduce` gets a clear static state; no separate animation framework.

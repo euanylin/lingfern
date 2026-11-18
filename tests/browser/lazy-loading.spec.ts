@@ -23,7 +23,7 @@ test('Library navigation keeps the current page until its lazy modules are ready
   expect(await page.evaluate(() => scrollY)).toBe(initialScroll);
   await expect(page.locator('main > p[role=status]')).toHaveCount(0);
   release();
-  await expect(page.locator('.offline-search input')).toBeEnabled();
+  await expect(page.locator('.offline-search textarea')).toBeEnabled();
   await expect(page.locator('.library-page-heading')).toBeVisible();
   expect(await page.evaluate(() => scrollY)).toBe(0);
   await expect(practice).toHaveCount(0);
@@ -62,7 +62,7 @@ test('Today loads learning, reference, history and account views only when opene
   await expect(page.locator('.offline-install')).toBeVisible();
   expect(modules.has('/src/app/OfflineInstall.tsx')).toBe(true);
   await page.locator('a[href="/library/dictionary"]').first().click();
-  await expect(page.locator('.dictionary input').first()).toBeVisible();
+  await expect(page.locator('.dictionary textarea').first()).toBeVisible();
   expect(modules.has('/src/app/Dictionary.tsx')).toBe(true);
   expect(modules.has('/src/app/Learning.tsx')).toBe(false);
 });

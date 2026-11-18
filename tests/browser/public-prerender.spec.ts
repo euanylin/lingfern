@@ -97,8 +97,8 @@ test('a failed public route chunk keeps the existing retry and recovers after re
     expect(await theme(true)).toBe('dark');
     blocked = false;
     await page.getByRole('button', { name: '重试', exact: true }).click();
-    await page.getByRole('combobox').fill('apple');
-    await page.getByRole('combobox').press('Enter');
+    await page.getByRole('textbox').fill('apple');
+    await page.getByRole('textbox').press('Enter');
     await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
     expect(requests.some(request => !request.blocked && request.type === 'fetch')).toBe(true);
     expect(new Set(requests.map(request => request.url)).size).toBe(1);
@@ -129,7 +129,7 @@ test('a continuing module failure keeps its error until another explicit retry a
     expect(navigations).toBe(1); await expect(page).toHaveURL(url);
     blocked = false;
     await retry.focus(); await page.keyboard.press('Enter');
-    await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
+    await page.getByRole('textbox').fill('apple'); await page.getByRole('textbox').press('Enter');
     await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
     expect(recoveryRequests).toBe(2); expect(navigations).toBe(2);
     await expect(page).toHaveURL(url);
@@ -231,7 +231,7 @@ test('a saved profile and RTL preferences load before public actions write recor
     await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-    await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
+    await page.getByRole('textbox').fill('apple'); await page.getByRole('textbox').press('Enter');
     await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
     expect(await page.evaluate(() => new Promise<Record<string, number>>((resolve, reject) => {
       const request = indexedDB.open('lingfern'); request.onerror = () => reject(request.error);
@@ -263,10 +263,10 @@ for (const path of paths) test(`public markup hydrates without replacement or er
     expect(errors).toEqual([]);
     expect(await page.evaluate(() => (window as unknown as { originalHeading: Element | null }).originalHeading === document.querySelector('#root h1'))).toBe(true);
     if (path === '/library/dictionary') {
-      await page.getByRole('combobox').fill('apple'); await page.getByRole('combobox').press('Enter');
+      await page.getByRole('textbox').fill('apple'); await page.getByRole('textbox').press('Enter');
       await expect(page.locator('.dictionary-results h3')).toHaveText('apple');
     } else if (path === '/library/grammar') {
-      await page.getByRole('searchbox').fill('each');
+      await page.getByRole('textbox').fill('each');
       await page.locator('#grammar-each-every>summary').click();
       await expect(page.locator('#grammar-each-every .grammar-detail')).toBeVisible();
     } else if (path === '/library/ipa') {

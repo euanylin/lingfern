@@ -37,4 +37,4 @@ Official base-resource ZIPs use the separate `lingfern-public-resources` manifes
 
 ## Reference resources
 
-Dictionary, IPA and English usage use verified reference groups. The 0.2.0 preview adds a **Syntax tree** subgroup under **References**. UDPipe and Charniak support official ZIP import as well as Library download. Stanza and Hol-CCG use the verified individual-file installer. Stanza also requires UDPipe for tags. The four model packs are optional and work locally after installation. Their files, notes and hashes are in the runtime catalogue. [User workflow](README.md#readme-syntax-tree) · [Model rebuilding](scripts/tree-neural/README.md)
+Dictionary, IPA and English usage use verified reference groups. **References** includes a **Syntax tree** subgroup. UDPipe and Charniak support official ZIP import as well as Library download. Stanza and Hol-CCG use the verified individual-file installer. Stanza also requires UDPipe for tags. The four model packs are optional and work locally after installation. Their files, notes and hashes are in the runtime catalogue. [User workflow](README.md#readme-syntax-tree) · [Model rebuilding](scripts/tree-neural/README.md)

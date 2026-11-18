@@ -8,8 +8,6 @@
 
 English reading and listening practice for learners aged 16 and over, with learning goals from A1 to C2. Practice is generated locally from source texts and recordings. Learning works without an account or AI service.
 
-The public site runs **0.1.170**. The **0.2.0 local preview** includes the syntax tree, the expanded usage dictionary, color themes and updated About credits. [Release status](DEVELOPMENT_HANDOFF.md#current-work-and-publication).
-
 <a id="readme-languages"></a>
 
 <details>
@@ -98,14 +96,14 @@ The activity fern reflects saved work, not certified proficiency. Daily quotatio
 | [Bookmarks](https://lingfern.com/library/saved) | Save/remove definitions with ★/☆ and collapse entries. Unchecked entries remain until reopening/refreshing, so they can be restored immediately. |
 | [IPA chart](https://lingfern.com/library/ipa) | Simple/Detailed views, sound search, recordings and English example words where available. |
 | [English usage dictionary](https://lingfern.com/library/grammar) | Keyword search, alphabetical browsing and expandable explanations. |
-| [Syntax tree](#readme-syntax-tree) · 0.2.0 | Generate and edit nine tree presentations, save named snapshots, and export SVG, PNG, WebP, JPEG or PDF. |
+| [Syntax tree](#readme-syntax-tree) | Generate and edit nine tree presentations, save named snapshots, and export SVG, PNG, WebP, JPEG or PDF. |
 | [Lookup history](https://lingfern.com/library/history) | Reopen dictionary, usage and IPA lookups with their source, time and saved lookup state, or delete an entry after confirmation. |
 
-In the local preview, the dictionary has **191 entries**. Explanations follow the interface language with an English fallback. Examples, patterns and contrasts remain in English.
+The usage dictionary has **191 entries**. Explanations follow the interface language with an English fallback. Examples, patterns and contrasts remain in English.
 
 <a id="readme-syntax-tree"></a>
 
-**Library** → **Reference** → **Syntax tree** · [0.2.0](http://127.0.0.1:8787/library/trees)
+**Library** → **Reference** → **[Syntax tree](https://lingfern.com/library/trees)**
 
 Enter a sentence, bracketed tree, outline or dependency notation. Node controls sit above the canvas and symbol helpers directly below it. Turn on **Movement** to drag-link node coindices; click it again or press Escape to leave this mode. Right-click or hold a node on a touchscreen for its menu. Edits automatically restore from one device-local draft per profile; these tree drafts are excluded from backup and sync. Use **Save** for a separate named history snapshot. Clear is undoable during the visit; reopening a cleared draft restores the worked example. Press **Enter** to draw or **Shift+Enter** to add a line.
 
@@ -160,7 +158,7 @@ The card shows syncing/synced/offline-pending/failure status and the last succes
 
 Fourteen interface languages; light/dark/system themes; separate desktop/mobile text, icon or combined navigation; default online dictionary; adjustable starting points and interests; keyboard/touch access and reduced-motion support.
 
-**0.2.0** · Color themes are in **Settings** → **Color theme**. Choose from **33 palettes**: **Default** plus 32 alternatives including **Fern**, each with light and dark colors. System/Light/Dark is saved separately. Select Default to restore the default palette. Saved colors apply across the site, Introduction and installed offline use; the logo and Today fern retain their original brand colors.
+Color themes are in **Settings** → **Color theme**. Choose from **33 palettes**: **Default** plus 32 alternatives including **Fern**, each with light and dark colors. System/Light/Dark is saved separately. Select Default to restore the default palette. Saved colors apply across the site, Introduction and installed offline use; the logo and Today fern retain their original brand colors.
 
 English material stays English. A1–A2 reviewed guidance has translated support; B1–C2 guidance and About remain English.
 

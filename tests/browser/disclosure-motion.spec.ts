@@ -41,7 +41,7 @@ for (const engine of ['chromium', 'webkit'] as const) test(`shared disclosures a
     await expect(detail).toHaveAttribute('open', '');
     await expect(detail.locator(':scope>[inert]')).toHaveCount(0);
     await page.goto('http://127.0.0.1:5173/library/grammar');
-    await page.getByRole('searchbox').fill('since / for');
+    await page.getByRole('textbox').fill('since / for');
     const grammar = page.locator('.grammar-results details').first();
     expect(await grammar.evaluate(async element => {
       const summary = element.querySelector('summary')!; summary.click(); summary.click();

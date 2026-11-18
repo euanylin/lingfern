@@ -112,10 +112,10 @@ test('cold Library does not enable unchecked content before its first resource r
   await page.route('**/resources/catalogue.json', async route => { await pending; await route.continue(); });
   await page.goto('/library');
   await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'true');
-  await expect(page.locator('.offline-search input')).toBeDisabled();
+  await expect(page.locator('.offline-search textarea')).toBeDisabled();
   release();
   await expect(page.locator('.offline-install')).toHaveAttribute('aria-busy', 'false');
-  await expect(page.locator('.offline-search input')).toBeEnabled();
+  await expect(page.locator('.offline-search textarea')).toBeEnabled();
 });
 
 for (const [locale, width, colorScheme] of [['zh-Hans', 390, 'dark'], ['en', 1440, 'light'], ['ar', 375, 'dark']] as const) test.describe(`navigation state: ${locale}, ${width}px`, () => {

@@ -54,7 +54,7 @@ test('a dismissed pending lookup cannot mark the next material as dictionary-ass
 test('local suggestions rank exact entries first and support keyboard and touch-sized selection', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto('/library/dictionary');
-  const query = page.getByRole('combobox', { name: '查询单词或短语' });
+  const query = page.getByRole('textbox', { name: '查询单词或短语' });
   await expect(page.getByRole('button', { name: '查询', exact: true })).toHaveCount(0);
   await query.fill('a');
   const options = page.getByRole('listbox', { name: '查询建议' }).getByRole('option');
@@ -84,7 +84,7 @@ test('local suggestions rank exact entries first and support keyboard and touch-
 
 test('a refreshed dictionary suggestion list cannot submit a removed keyboard selection', async ({ page }) => {
   await page.goto('/library/dictionary');
-  const query = page.getByRole('combobox');
+  const query = page.getByRole('textbox');
   await expect(query).toBeVisible();
   await page.evaluate(async () => {
     const { communityPacks } = await import('/src/data/db.ts' as string);
@@ -118,7 +118,7 @@ test('empty dictionary fits without scrolling and keeps the active navigation at
     expect(geometry.pageWidth).toBeLessThanOrEqual(viewport.width);
     expect(geometry.pageHeight).toBeLessThanOrEqual(viewport.height);
   }
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('book');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('book');
   await page.getByLabel('查询单词或短语').press('Enter');
   await expect(page.getByText('其他可能的词义')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(568);
@@ -135,7 +135,7 @@ test('focusing dictionary search keeps the mobile navigation fixed and compact',
     await page.goto('/library/dictionary');
     const nav = page.locator('.mobile-nav');
     const initial = await nav.boundingBox();
-    await page.getByRole('combobox', { name: '查询单词或短语' }).focus();
+    await page.getByRole('textbox', { name: '查询单词或短语' }).focus();
     await expect(nav).toHaveCSS('position', 'fixed');
     await expect(page.locator('footer')).toHaveCount(0);
     const focused = await nav.boundingBox();
@@ -152,11 +152,11 @@ test('focusing dictionary search keeps the mobile navigation fixed and compact',
       await expect(page.locator('footer')).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     }
-    await page.getByRole('combobox', { name: '查询单词或短语' }).evaluate(input => (input as HTMLInputElement).blur());
+    await page.getByRole('textbox', { name: '查询单词或短语' }).evaluate(input => (input as HTMLInputElement).blur());
     await expect(page.locator('footer')).toHaveCount(0);
   }
   await page.goto('/library/grammar');
-  await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).focus();
+  await page.getByRole('textbox', { name: '搜索单词、搭配或用法疑问' }).focus();
   await expect(page.locator('footer')).toHaveCount(0);
   await page.goto('/library');
   await page.locator('.package-row:visible input[type=checkbox]').first().focus();
@@ -177,7 +177,7 @@ test('empty narrow dictionary fits in every interface language', async ({ page }
     await page.goto('/settings');
     await selectPicker(page, (await page.locator('.settings-preferences .setting-trigger').first().getAttribute('aria-label'))!, locale);
     await page.goto('/library/dictionary');
-    await expect(page.locator('.dictionary-search input')).toBeVisible();
+    await expect(page.locator('.dictionary-search textarea')).toBeVisible();
     const geometry = await page.evaluate(() => ({ pageHeight: document.documentElement.scrollHeight, navTops: [...document.querySelectorAll('.mobile-nav a')].map(link => link.getBoundingClientRect().top) }));
     expect(geometry.pageHeight).toBe(568);
     expect(new Set(geometry.navTops).size).toBe(1);
@@ -210,8 +210,8 @@ communityDictionary = async function(...args) {
     memories.get = (...args: unknown[]) => { state.bookmarkReads++; return get(...args); };
   });
   const dictionaryRequested = page.waitForRequest('**/dictionary/oewn-2025/b.json');
-  await page.getByRole('combobox').fill('book');
-  await page.getByRole('combobox').press('Enter');
+  await page.getByRole('textbox').fill('book');
+  await page.getByRole('textbox').press('Enter');
   await expect.poll(() => page.evaluate(() => typeof (window as unknown as { releaseCommunityLookup?: unknown }).releaseCommunityLookup)).toBe('function');
   await dictionaryRequested;
   await expect(page.locator('.dictionary-results')).toHaveCount(0);
@@ -230,8 +230,8 @@ test('leaving a pending dictionary lookup does not add an unseen history entry',
   });
   await page.goto('/library/dictionary');
   const requested = page.waitForRequest('**/dictionary/oewn-2025/z.json');
-  await page.getByRole('combobox').fill('zlookupnotread');
-  await page.getByRole('combobox').press('Enter');
+  await page.getByRole('textbox').fill('zlookupnotread');
+  await page.getByRole('textbox').press('Enter');
   await requested;
   await page.locator('.desktop-nav a[href="/library"]').click();
   await expect(page.locator('.library-page-heading')).toBeVisible();
@@ -245,7 +245,7 @@ test('leaving a pending dictionary lookup does not add an unseen history entry',
 test('dictionary finds course, WordNet, inflected, multiword and missing terms', async ({ page }) => {
   await page.goto('/library/dictionary');
   await expect(page.getByRole('heading', { level: 1, name: '英英词典' })).toBeVisible();
-  const query = page.getByRole('combobox', { name: '查询单词或短语' });
+  const query = page.getByRole('textbox', { name: '查询单词或短语' });
   await query.focus();
   expect(await query.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('none');
   expect(await query.evaluate(el => getComputedStyle(el).borderTopWidth)).toBe('0px');
@@ -384,7 +384,7 @@ test('dictionary keeps bundled course definitions but reports unavailable non-co
   await page.setViewportSize({ width: 320, height: 640 });
   await page.route('**/dictionary/oewn-2025/b.json', route => route.abort());
   await page.goto('/library/dictionary');
-  const query = page.getByRole('combobox', { name: '查询单词或短语' });
+  const query = page.getByRole('textbox', { name: '查询单词或短语' });
   await query.fill('book');
   await query.press('Enter');
   await expect(page.getByText('A set of pages with words or pictures that you can read.')).toBeVisible();
@@ -403,7 +403,7 @@ test('four external lookups follow the current phrase without prefetching or lea
   });
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto('/library/dictionary');
-  const query = page.getByRole('combobox', { name: '查询单词或短语' });
+  const query = page.getByRole('textbox', { name: '查询单词或短语' });
   const links = page.locator('.online-lookup-links a');
   await expect(links).toHaveCount(0);
   await expect(page.locator('.online-lookup-disabled')).toHaveCount(4);
@@ -447,7 +447,7 @@ test('online dictionary preference persists and invalid saved values fall back',
   await page.reload();
   await expect(picker).toHaveAttribute('data-value', 'oxford');
   await page.goto('/library/dictionary');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('apple');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('apple');
   await expect(page.locator('.online-lookup h3')).toHaveCount(0);
   await expect(page.locator('.online-lookup-links a').first()).toHaveAttribute('href', /dictionary\.cambridge\.org/);
   const [popup] = await Promise.all([page.waitForEvent('popup'), page.locator('.online-lookup-links a').first().click()]);
@@ -515,7 +515,7 @@ test('online lookup labels follow all three interface languages without contacti
 test('reviewed course meanings rank the matching sense ahead of unrelated uses', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto('/library/dictionary');
-  const query = page.getByRole('combobox', { name: '查询单词或短语' });
+  const query = page.getByRole('textbox', { name: '查询单词或短语' });
   for (const [word, definition] of [['record', 'register electronically'], ['work out', 'do physical exercise'], ['book', 'physical objects consisting of a number of pages bound together']]) {
     await query.fill(word); await query.press('Enter');
     await expect(page.locator('.sense-definition p').first()).toHaveText(definition);

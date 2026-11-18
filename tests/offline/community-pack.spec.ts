@@ -147,7 +147,7 @@ test('imports community lessons with offline image and audio, and rejects damage
   expect(result.status).toBe(200);
   expect(result.bytes).toBeGreaterThan(1000);
   await page.goto('/library/dictionary');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('ferncourseword');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('ferncourseword');
   await expect(page.locator('.dictionary-suggestions [role=option]').first()).toHaveText('ferncourseword');
   await page.getByRole('option', { name: 'ferncourseword', exact: true }).click();
   await expect(page.getByText('A word used only in this private course.')).toBeVisible();
@@ -167,8 +167,8 @@ test('imports community lessons with offline image and audio, and rejects damage
   await page.goto('/library');
   await expect(page.getByText('sample-course')).toHaveCount(0);
   await page.goto('/library/dictionary');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).fill('ferncourseword');
-  await page.getByRole('combobox', { name: '查询单词或短语' }).press('Enter');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).fill('ferncourseword');
+  await page.getByRole('textbox', { name: '查询单词或短语' }).press('Enter');
   await expect(page.getByText('A word used only in this private course.')).toHaveCount(0);
 });
 

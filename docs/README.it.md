@@ -8,8 +8,6 @@
 
 Esercizi di lettura e ascolto in inglese dai 16 anni, con obiettivi da A1 a C2. Le attività vengono generate localmente da testi e registrazioni. Per imparare non servono un account né un servizio di IA.
 
-Il sito pubblico usa **0.1.170**. L’albero sintattico, il dizionario d’uso esteso, le palette e i crediti About aggiornati sono disponibili nell’**anteprima locale 0.2.0**. [Stato della pubblicazione](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
-
 <a id="readme-languages"></a>
 
 <details>
@@ -98,14 +96,14 @@ La felce rappresenta attività salvate, non competenza certificata. Le citazioni
 | [Preferiti](https://lingfern.com/library/saved) | ★/☆ per salvare/rimuovere definizioni e voci richiudibili. Le voci rimosse rimangono fino alla riapertura/ricarica per ripristinarle subito. |
 | [Tabella IPA](https://lingfern.com/library/ipa) | Viste semplice/dettagliata, ricerca di suoni, registrazioni e parole d’esempio disponibili. |
 | [Dizionario d’uso inglese](https://lingfern.com/library/grammar) | Ricerca per parola chiave, consultazione alfabetica e spiegazioni espandibili. |
-| [Albero sintattico](#readme-syntax-tree) · 0.2.0 | Genera e modifica nove rappresentazioni, salva istantanee con nome ed esporta SVG, PNG, WebP, JPEG o PDF. |
+| [Albero sintattico](#readme-syntax-tree) | Genera e modifica nove rappresentazioni, salva istantanee con nome ed esporta SVG, PNG, WebP, JPEG o PDF. |
 | [Cronologia ricerche](https://lingfern.com/library/history) | Riapertura di ricerche nel dizionario, uso e IPA con fonte, ora e stato salvato. |
 
-L’anteprima locale contiene **191 voci**. Le spiegazioni seguono la lingua dell’interfaccia e usano l’inglese se manca la traduzione. Esempi, schemi e confronti restano in inglese.
+Il dizionario d’uso contiene **191 voci**. Le spiegazioni seguono la lingua dell’interfaccia e usano l’inglese se manca la traduzione. Esempi, schemi e confronti restano in inglese.
 
 <a id="readme-syntax-tree"></a>
 
-**Biblioteca** → **Riferimento** → **Albero sintattico** · [0.2.0](http://127.0.0.1:8787/library/trees)
+**Biblioteca** → **Riferimento** → **[Albero sintattico](https://lingfern.com/library/trees)**
 
 Inserisci una frase, un albero tra parentesi, una struttura indentata o una notazione di dipendenza. I comandi dei nodi sono sopra il canvas e i simboli subito sotto. Attiva **Movimento** per collegare i nodi tramite coindici trascinandoli; premi di nuovo o Escape per uscire. Il clic destro o una pressione prolungata apre il menu. Una bozza locale per profilo viene salvata e ripristinata automaticamente; queste bozze non rientrano in backup o sincronizzazione. **Salva** crea un’istantanea con nome separata nella cronologia. Svuotare è annullabile durante la visita; riaprendo una bozza svuotata torna l’esempio. Premi **Invio** per disegnare o **Maiusc+Invio** per andare a capo.
 
@@ -160,7 +158,7 @@ La scheda mostra sincronizzazione in corso, completata, in attesa offline o erro
 
 Quattordici lingue; tema chiaro/scuro/sistema; navigazione testo, icone o mista separata per desktop/mobile; dizionario online predefinito; livelli iniziali e interessi modificabili; tastiera, tocco e preferenza per movimento ridotto.
 
-**0.2.0** · Cambia i colori in **Impostazioni** → **Tema colori**. Sono disponibili **33 palette**: **Predefinito** e 32 alternative, tra cui **Felce**, tutte con colori chiari e scuri. La modalità sistema/chiara/scura si salva separatamente. Scegli Predefinito per ripristinare la palette iniziale. La scelta vale per sito, introduzione e pagine installate offline; logo e felce di Oggi conservano i colori originali.
+Cambia i colori in **Impostazioni** → **Tema colori**. Sono disponibili **33 palette**: **Predefinito** e 32 alternative, tra cui **Felce**, tutte con colori chiari e scuri. La modalità sistema/chiara/scura si salva separatamente. Scegli Predefinito per ripristinare la palette iniziale. La scelta vale per sito, introduzione e pagine installate offline; logo e felce di Oggi conservano i colori originali.
 
 I materiali inglesi restano in inglese. Le istruzioni A1–A2 revisionate hanno supporto tradotto; B1–C2 e About restano in inglese.
 

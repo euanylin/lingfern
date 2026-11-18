@@ -190,8 +190,8 @@ try {
   const inputs = organized ? page.locator('.workspace-question').first() : page;
   let expectedAnswer;
   if ('options' in firstQuestion) { expectedAnswer = firstQuestion.answer; await inputs.getByRole('radio').nth(expectedAnswer).check(); }
-  else if (firstQuestion.kind === 'completion') { expectedAnswer = firstQuestion.answer; await inputs.locator('.completion-answer input').fill(expectedAnswer); }
-  else if (firstQuestion.kind === 'table') { expectedAnswer = firstQuestion.rows.map(row => row.answer); for (const [index, answer] of expectedAnswer.entries()) await inputs.locator('.answer-table input').nth(index).fill(answer); }
+  else if (firstQuestion.kind === 'completion') { expectedAnswer = firstQuestion.answer; await inputs.locator('.completion-answer textarea').fill(expectedAnswer); }
+  else if (firstQuestion.kind === 'table') { expectedAnswer = firstQuestion.rows.map(row => row.answer); for (const [index, answer] of expectedAnswer.entries()) await inputs.locator('.answer-table textarea').nth(index).fill(answer); }
   else if (firstQuestion.kind === 'matching') { expectedAnswer = firstQuestion.pairs.map(pair => pair.answer); for (const [index, pair] of firstQuestion.pairs.entries()) { const label = organized ? `${index + 1}. ${pair.label}` : pair.label; await (organized ? inputs.locator('.matching-answers .setting-trigger').nth(index) : inputs.getByRole('button', { name: label, exact: true })).click(); await inputs.getByRole('listbox', { name: label, exact: true }).getByRole('option', { name: pair.answer, exact: true }).click(); } }
   else if (firstQuestion.kind === 'sequence') { expectedAnswer = firstQuestion.acceptedOrders[0]; for (const step of expectedAnswer) await inputs.getByRole('button', { name: organized ? `${step} ＋` : `添加步骤: ${step}`, exact: true }).click(); }
   else if (firstQuestion.kind === 'evidence') { expectedAnswer = firstQuestion.accepted[0]; await inputs.getByRole('radio').nth(expectedAnswer).check(); }
@@ -201,10 +201,10 @@ try {
     else if (await target.locator('.material-workspace').count()) {
       const current = target.locator('.workspace-question').first();
       if (typeof expectedAnswer === 'number') await expect(current.getByRole('radio').nth(expectedAnswer)).toBeChecked();
-      else if (typeof expectedAnswer === 'string') await expect(current.locator('input:not([type=radio])')).toHaveValue(expectedAnswer);
+      else if (typeof expectedAnswer === 'string') await expect(current.locator('input:not([type=radio]),textarea[data-single-line]')).toHaveValue(expectedAnswer);
       else if (firstQuestion.kind === 'matching') for (const [index, answer] of expectedAnswer.entries()) await expect(current.locator('.setting-trigger').nth(index)).toHaveAttribute('data-value', answer);
       else if (firstQuestion.kind === 'sequence') await expect(current.locator('.sequence-order li>span')).toHaveText(expectedAnswer);
-      else for (const [index, answer] of expectedAnswer.entries()) await expect(current.locator('input:not([type=radio])').nth(index)).toHaveValue(answer);
+      else for (const [index, answer] of expectedAnswer.entries()) await expect(current.locator('input:not([type=radio]),textarea[data-single-line]').nth(index)).toHaveValue(answer);
       await expect(current.locator('fieldset').first()).toBeDisabled();
     } else await target.getByRole('heading', { name: '✓ 回答正确' }).waitFor();
   }
