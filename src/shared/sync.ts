@@ -1,3 +1,4 @@
+import { paletteIds } from './palettes';
 import { z } from 'zod';
 import { compareSyncCounters, maxSyncCounter, syncEventCounterSchema, type SyncCounter } from './syncCounter';
 import { localeSchema } from './locale';
@@ -5,7 +6,7 @@ import { profileIdSchema } from './repository';
 import { preferencesSchema } from './preferences';
 import { levelSchema } from './content';
 import { readPracticeSelection } from './practiceSelection';
-import { lookupKey, lookupRecordSchema } from './lookupHistory';
+import { lookupBaseSchema, lookupKey, lookupRecordSchema } from './lookupHistory';
 
 export const syncByteLimit = 250 * 1024;
 const id = z.string().regex(/^[a-zA-Z0-9_-]{1,64}$/);
@@ -14,6 +15,7 @@ const hash = z.string().regex(/^[a-f0-9]{64}$/);
 const assistance = z.object({ hintLevel: z.number().int().min(0).max(3), dictionaryUsed: z.boolean(), audioCompleted: z.boolean(), playbackRequests: z.number().int().min(0).max(10000), teachingProvided: z.boolean().optional() }).strict();
 const settingPayload = z.discriminatedUnion('key', [
   z.object({ key: z.literal('locale'), value: localeSchema }).strict(),
+  z.object({ key: z.literal('palette'), value: z.enum(paletteIds) }).strict(),
   z.object({ key: z.literal('theme'), value: z.enum(['system', 'light', 'dark']) }).strict(),
   z.object({ key: z.enum(['desktopNavDisplay', 'mobileNavDisplay']), value: z.enum(['text', 'icon', 'both']) }).strict(),
   z.object({ key: z.literal('onlineDictionary'), value: z.enum(['cambridge', 'oxford', 'wiktionary', 'merriam-webster']) }).strict(),
@@ -36,18 +38,22 @@ export const syncEventSchema = z.discriminatedUnion('type', [
   base.extend({ type: z.literal('review_timing'), payload: z.object({ memoryId: reference, sourceId: id, sourceHash: hash, time: z.iso.datetime() }).strict() }).strict(),
   base.extend({ type: z.literal('memory_review'), payload: z.object({ memoryId: reference, rating: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]), configId: reference, assistance: z.object({ answerRevealed: z.boolean(), hintUsed: z.boolean() }).strict() }).strict() }).strict(),
   base.extend({ type: z.literal('lookup'), payload: lookupRecordSchema }).strict(),
-  base.extend({ type: z.literal('lookup_remove'), payload: lookupRecordSchema.pick({ kind: true, term: true }).extend({ seen: lookupContext }).strict() }).strict(),
+  base.extend({ type: z.literal('lookup_remove'), payload: lookupBaseSchema.pick({ kind: true, term: true }).extend({ seen: lookupContext }).strict() }).strict(),
   base.extend({ type: z.literal('lookup_clear'), payload: z.object({ seen: lookupContext }).strict() }).strict(),
 ]);
 export type SyncEvent = z.infer<typeof syncEventSchema>;
 export function hasExtendedSyncCounter(event: SyncEvent) {
   return typeof event.counter === 'string' || (event.type === 'lookup_remove' || event.type === 'lookup_clear') && Object.values(event.payload.seen).some(counter => typeof counter === 'string');
 }
+export function hasTreeLookup(event: SyncEvent) {
+  return (event.type === 'lookup' || event.type === 'lookup_remove') && event.payload.kind === 'tree';
+}
 // Observed events must precede the deletion's own logical clock.
 export function assertSyncObservation(event: SyncEvent) {
   if ((event.type === 'lookup_remove' || event.type === 'lookup_clear') && Object.values(event.payload.seen).some(counter => compareSyncCounters(counter, event.counter) >= 0)) throw new Error('SYNC_CLOCK_INVALID');
 }
-export const syncBatchSchema = z.object({ product: z.literal('Lingfern'), formatVersion: z.union([z.literal(1), z.literal(2)]), profileId: profileIdSchema, deviceId: id, batchId: id, events: z.array(syncEventSchema).min(1).max(500) }).strict().superRefine((batch, ctx) => {
+export const syncBatchSchema = z.object({ product: z.literal('Lingfern'), formatVersion: z.union([z.literal(1), z.literal(2), z.literal(3)]), profileId: profileIdSchema, deviceId: id, batchId: id, events: z.array(syncEventSchema).min(1).max(500) }).strict().superRefine((batch, ctx) => {
+  if (batch.formatVersion < 3 && batch.events.some(hasTreeLookup)) ctx.addIssue({ code: 'custom', message: 'Tree lookups require batch format 3' });
   if (batch.formatVersion === 1 && batch.events.some(hasExtendedSyncCounter)) ctx.addIssue({ code: 'custom', message: 'Extended counters require batch format 2' });
   const ids = new Set<string>();
   for (const event of batch.events) {

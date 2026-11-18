@@ -267,9 +267,27 @@ Source: git+https://github.com/colinhacks/zod.git
 
 - [LICENSE](licenses/zod@4.6.6/LICENSE)
 
-## Octicons contact icons
+## Vendored and adapted components
 
-GitHub Inc. MIT. The book (Blog), mail and GitHub contact glyphs come from [Primer Octicons](https://github.com/primer/octicons). Copyright and permission notice: [MIT licence](licenses/octicons/LICENSE). Changes: locally packaged SVG contact glyphs are displayed as CSS masks. Trademark rights are separate from the software licence.
+- [Octicons](https://github.com/primer/octicons) — MIT. Book, email and GitHub glyphs on this page. [Source and licence notes](licenses/octicons/LICENSE).
+- [non-layered-tidy-tree-layout](https://github.com/stetrevor/non-layered-tidy-tree-layout) — MIT. Michael Wong’s JavaScript layout algorithm, adapted to TypeScript for syntax trees with variable-sized nodes. [Source and licence notes](licenses/non-layered-tidy-tree-layout@2.0.2/LICENSE).
+- [UDPipe](https://github.com/ufal/udpipe) — MPL-2.0. Tokenization, part-of-speech tags and dependency parsing from the ÚFAL engine. [Source and licence notes](tree-parser/README.md).
+- [udpipe-wasm](https://github.com/exp-ouroborous/udpipe-wasm) — MPL-2.0. The Embind bridge used by the local UDPipe WebAssembly build. [Source and licence notes](tree-parser/LICENSE-engine.txt).
+- [BNOSAC English UD 2.1 model](https://github.com/bnosac/udpipe.models.ud) — CC BY-SA 4.0. Unmodified weights for optional English dependency analysis. [Source and licence notes](resources/tree-parser-v1/README.md).
+- [BLLIP Parser](https://github.com/BLLIP/bllip-parser) — Apache-2.0. The Charniak first-stage constituency engine and its bundled English model. [Source and licence notes](resources/tree-constituency-v1/NOTICE.txt).
+- [Charniak Emscripten port](https://github.com/antimatter15/charniak-emscripten) — Apache-2.0. Kevin Kwok’s browser port, with Lingfern fixes to input handling. [Source and licence notes](resources/tree-constituency-v1/README.md).
+- [Stanza](https://github.com/stanfordnlp/stanza) — Apache-2.0. English constituency checkpoints and in-order transition rules adapted for the browser. [Source and licence notes](resources/tree-stanza-v1/README.md).
+- [Hol-CCG](https://github.com/ryosuke-yamaki/hol-ccg) — MIT. Browser implementation of the parser with the MIT RoBERTa-base checkpoint and its extracted grammar rules. [Source and licence notes](resources/tree-hol-ccg-v1/README.md).
+- [Tokenizers.js](https://github.com/huggingface/tokenizers.js) — Apache-2.0. RoBERTa subword tokenization for Hol-CCG. [Source and licence notes](licenses/tokenizers@0.2.0/LICENSE).
+- [NLTK Treebank tokenizer](https://github.com/nltk/nltk) — Apache-2.0. Adapted word splitting for Hol-CCG. [Source and licence notes](licenses/nltk-treebank/LICENSE.txt).
+- [ONNX Runtime Web](https://github.com/microsoft/onnxruntime/tree/main) — MIT. Local CPU WebAssembly inference for Stanza and Hol-CCG. [Source and licence notes](licenses/onnxruntime-web@1.31.1/ThirdPartyNotices.txt).
+- [Emscripten](https://github.com/emscripten-core/emscripten) — MIT OR NCSA. WebAssembly toolchain and runtime glue for UDPipe and Charniak. [Source and licence notes](resources/tree-constituency-v1/LICENSE-emscripten.txt).
+- [musl](https://git.musl-libc.org/cgit/musl/) — MIT. C runtime included in the parser WebAssembly builds. [Source and licence notes](resources/tree-constituency-v1/LICENSE-musl.txt).
+- [LLVM libc++ and libc++abi](https://github.com/llvm/llvm-project) — Apache-2.0 WITH LLVM-exception. C++ standard library and ABI support linked into the parser builds. [Source and licence notes](resources/tree-constituency-v1/LICENSE-libcxx.txt).
+
+Artwork and trademark rights are separate. Parser package notes identify the exact model and source versions. ONNX Runtime ships its original [MIT licence](licenses/onnxruntime-web@1.31.1/LICENSE) and third-party notices. The Charniak pack retains its [Apache-2.0 licence](resources/tree-constituency-v1/LICENSE.txt), original NOTICE and [libc++abi licence](resources/tree-constituency-v1/LICENSE-libcxxabi.txt). The adapted tokenizer retains its [NLTK attribution](licenses/nltk-treebank/AUTHORS.md).
+
+The movement editor’s drop interaction references [Hierplane](https://github.com/allenai/hierplane) (Apache-2.0). The MIT tidy-layout port credits A.J. van der Ploeg’s [Java algorithm](https://github.com/cwi-swat/non-layered-tidy-trees/blob/e84be1bb8cc825fbe16ff000443cb8cf25ce8dd8/treelayout/algorithm/Paper.java#L3-L8), whose source header declares it public domain. Lingfern’s phrase-head heuristics use category labels described in the [Penn Treebank II bracketing guidelines](https://languagelog.ldc.upenn.edu/myl/PennTreebank1995.pdf).
 
 ## Dictionary
 

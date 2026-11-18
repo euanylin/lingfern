@@ -7,6 +7,7 @@ export const publicPages: Readonly<Record<string, { title: string; descriptionKe
   '/library/dictionary': { title: 'Dictionary', descriptionKey: 'dictionary' },
   '/library/ipa': { title: 'IPA chart', descriptionKey: 'ipa' },
   '/library/grammar': { title: 'Usage', descriptionKey: 'grammar' },
+  '/library/trees': { title: 'Syntax tree', descriptionKey: 'trees' },
   '/settings/about': { title: 'About', descriptionKey: 'about' },
 };
 // Text objects avoid Static Assets' automatic redirects for HTML filenames.

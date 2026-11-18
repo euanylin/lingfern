@@ -1,0 +1,112 @@
+import { expect, test } from '@playwright/test';
+
+for (const viewport of [{ width: 1120, height: 900 }, { width: 390, height: 320 }]) test(`node menu movement actions at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+  await page.setViewportSize(viewport);
+  await page.goto('/library/trees');
+  const source = page.locator('#tree-source');
+  await expect(source).toBeEnabled();
+  await source.fill('(Root (A₁) (B₁) (C))');
+  await source.press('Enter');
+  const a = page.getByRole('treeitem', { name: 'A₁', exact: true });
+  const openNodeMenu = async (name: string) => {
+    const node = page.getByRole('treeitem', { name, exact: true });
+    await node.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    // Settle queued native scroll events before opening a scroll-dismissed menu.
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const box = (await node.boundingBox())!;
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { button: 'right' });
+  };
+  await openNodeMenu('A₁');
+  const menu = page.getByRole('menu');
+  await expect(menu.getByRole('menuitem', { name: '添加子节点', exact: true })).toBeFocused();
+  await page.keyboard.press('End');
+  await expect(menu.getByRole('menuitem', { name: '删除节点', exact: true })).toBeFocused();
+  await page.keyboard.press('Home');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await expect(menu.getByRole('menuitem', { name: '右移', exact: true })).toBeFocused();
+  await expect(menu.locator('button')).toHaveText(['添加子节点', '添加同级', '左移', '右移', '移位', '取消移位', '删除节点']);
+  const move = menu.getByRole('menuitemcheckbox', { name: '移位', exact: true });
+  await expect(move).toHaveAttribute('aria-checked', 'false');
+  const box = (await menu.boundingBox())!;
+  expect(box.y).toBeGreaterThanOrEqual(0);
+  expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);
+  await move.focus();
+  await move.press('Enter');
+  await expect(menu).toHaveCount(0);
+  const toolbar = page.locator('.tree-actions').getByRole('button', { name: '移位', exact: true });
+  await expect(toolbar).toHaveAttribute('aria-pressed', 'true');
+  await openNodeMenu('A₁');
+  await expect(move).toHaveAttribute('aria-checked', 'true');
+  await move.click();
+  await expect(toolbar).toHaveAttribute('aria-pressed', 'false');
+  await openNodeMenu('C');
+  await expect(menu.getByRole('menuitem', { name: '取消移位', exact: true })).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await openNodeMenu('A₁');
+  await menu.getByRole('menuitem', { name: '取消移位', exact: true }).click();
+  await expect(page.getByRole('treeitem', { name: 'A', exact: true })).toHaveCount(1);
+  await expect(page.getByRole('treeitem', { name: 'B', exact: true })).toHaveCount(1);
+  await page.getByRole('button', { name: '撤销', exact: true }).click();
+  await expect(a).toHaveCount(1);
+});
+
+test('touch opens the node menu only after a stationary long press', async ({ browser }) => {
+  const context = await browser.newContext({ locale: 'zh-CN', hasTouch: true, viewport: { width: 390, height: 800 } });
+  const page = await context.newPage();
+  const session = await context.newCDPSession(page);
+  try {
+    await page.goto('/library/trees');
+    const source = page.locator('#tree-source');
+    await expect(source).toBeEnabled();
+    await source.fill('(Root (A₁) (B₁) (C))');
+    await source.press('Enter');
+    const point = async (name: string) => {
+      const node = page.getByRole('treeitem', { name, exact: true });
+      await node.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const box = (await node.boundingBox())!;
+      return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    };
+    const start = async (name: string) => {
+      const position = await point(name);
+      await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ id: 1, ...position }] });
+      return position;
+    };
+    const end = () => session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    const tapPoint = await point('A₁');
+    await page.touchscreen.tap(tapPoint.x, tapPoint.y);
+    await page.waitForTimeout(650);
+    await expect(page.getByRole('menu')).toHaveCount(0);
+    await start('A₁');
+    await session.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+    await page.waitForTimeout(650);
+    await expect(page.getByRole('menu')).toHaveCount(0);
+    const position = await start('A₁');
+    const scroll = await page.evaluate(() => scrollY);
+    await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ id: 1, x: position.x, y: position.y - 80 }] });
+    await end();
+    await page.waitForTimeout(650);
+    await expect(page.getByRole('menu')).toHaveCount(0);
+    expect(await page.evaluate(() => scrollY)).toBeGreaterThan(scroll);
+    const multi = await start('A₁');
+    await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ id: 1, ...multi }, { id: 2, x: multi.x + 60, y: multi.y + 30 }] });
+    await page.waitForTimeout(650);
+    await expect(page.getByRole('menu')).toHaveCount(0);
+    await end();
+    await start('A₁');
+    await expect(page.getByRole('menu', { name: 'A₁', exact: true })).toBeVisible();
+    await end();
+    await expect(page.getByRole('menu')).toBeVisible();
+    await expect(page.getByRole('menuitem', { name: '取消移位', exact: true })).toBeVisible();
+    await page.getByRole('menuitemcheckbox', { name: '移位', exact: true }).tap();
+    await expect(page.locator('.tree-actions').getByRole('button', { name: '移位', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await start('C');
+    await expect(page.getByRole('menu', { name: 'C', exact: true })).toBeVisible();
+    await end();
+    await expect(page.getByRole('menuitemcheckbox', { name: '移位', exact: true })).toHaveAttribute('aria-checked', 'true');
+    await expect(page.getByRole('menuitem', { name: '取消移位', exact: true })).toHaveCount(0);
+    await page.getByRole('menuitemcheckbox', { name: '移位', exact: true }).tap();
+    await expect(page.locator('.tree-actions').getByRole('button', { name: '移位', exact: true })).toHaveAttribute('aria-pressed', 'false');
+  } finally { await context.close(); }
+});

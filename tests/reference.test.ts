@@ -148,7 +148,7 @@ describe('offline references', () => {
     expect(JSON.parse(readFileSync('public/ipa/SOURCES.json', 'utf8'))).toEqual(sources);
   });
   it('has searchable multilingual question-led usage entries without unsupported CEFR labels', () => {
-    expect(grammar.entries).toHaveLength(68);
+    expect(grammar.entries).toHaveLength(191);
     expect(grammar.entries.every(entry => !('level' in entry))).toBe(true);
     expect(new Set(grammar.entries.map(entry => entry.id)).size).toBe(grammar.entries.length);
     for (const entry of grammar.entries) for (const locale of ['zh-Hans', 'zh-Hant', 'en'] as const) {
@@ -163,6 +163,21 @@ describe('offline references', () => {
       expect(entry.examples.length).toBeGreaterThanOrEqual(3);
       expect(new Set(entry.examples).size).toBe(entry.examples.length);
       for (const related of entry.related) expect(grammar.entries.some(other => other.id === related)).toBe(true);
+    }
+    const ids = grammar.entries.map(entry => entry.id).sort();
+    for (const locale of ['ja', 'ko', 'fr', 'es', 'de', 'pt', 'it', 'ru', 'ar', 'hi', 'id']) {
+      const overlay = JSON.parse(readFileSync(`public/grammar/i18n/${locale}.json`, 'utf8')) as Record<string, { title: string; question: string; summary: string; usage: string; pitfall: string; keywords: string[] }>;
+      expect(Object.keys(overlay).sort(), locale).toEqual(ids);
+      for (const entry of grammar.entries) {
+        const item = overlay[entry.id];
+        expect(item.title.length, `${locale} ${entry.id} title`).toBeGreaterThan(0);
+        expect(item.question.length, `${locale} ${entry.id} question`).toBeGreaterThan(0);
+        expect(item.summary.length, `${locale} ${entry.id} summary`).toBeGreaterThan(0);
+        expect(item.usage.length, `${locale} ${entry.id} usage`).toBeGreaterThan(40);
+        expect(item.pitfall.length, `${locale} ${entry.id} pitfall`).toBeGreaterThan(15);
+        expect(item.keywords.length, `${locale} ${entry.id} keywords`).toBeGreaterThan(0);
+        expect(Object.keys(item).sort(), `${locale} ${entry.id}`).toEqual(['keywords', 'pitfall', 'question', 'summary', 'title', 'usage']);
+      }
     }
   });
 });

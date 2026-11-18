@@ -1,3 +1,4 @@
+import { appearanceMode, applyAppearance, paletteId } from './shared/palettes';
 import './validationConfig';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { App, preloadPublicPage } from './app/App';
@@ -16,11 +17,16 @@ void db.open().catch(() => { /* App.load reports storage failures with its norma
 // Route chunks import this shell; finish module evaluation before awaiting them.
 async function boot() {
   if (location.pathname === '/introduction' && !location.search) prepareDailyQuote();
-  const initialInterface = await readInitialInterface(initialLocale()).catch(() => defaultInterface(initialLocale()));
+  const locale = initialLocale();
+  const initialInterface = await readInitialInterface(locale).catch(() => {
+    // The blocking appearance script has already restored the last local selection.
+    const { theme, palette } = document.documentElement.dataset;
+    return { ...defaultInterface(locale), theme: appearanceMode(theme), palette: paletteId(palette) };
+  });
+  applyAppearance(initialInterface.theme, initialInterface.palette);
   try { await loadUiLocale(initialInterface.locale); } catch { /* App.load offers retry. */ }
   document.documentElement.lang = initialInterface.locale;
   document.documentElement.dir = localeDirection(initialInterface.locale);
-  document.documentElement.dataset.theme = initialInterface.theme;
   const root = document.getElementById('root')!;
   const initial = root.dataset.publicPage;
   if (initial) {

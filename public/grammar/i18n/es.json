@@ -1,0 +1,2446 @@
+{
+  "articles": {
+    "title": "a, an y the",
+    "question": "¿Hace falta a, an o the aquí?",
+    "summary": "Usa a/an en muchas primeras menciones de un nombre contable singular, y the cuando el referente se puede identificar. Elige a/an por el sonido.",
+    "usage": "Pregunta primero si el nombre es contable y singular, y después si quien escucha puede identificar el referente. Un nombre contable singular suele necesitar un determinante. Los plurales genéricos y los nombres incontables a menudo van sin artículo; the puede usarse con singulares, plurales e incontables.\n\nUna primera mención no siempre lleva a/an: the es posible cuando la situación, o un modificador que sigue, ya identifica el referente. A student elige un miembro de una clase; the student pide al lector que identifique un miembro concreto. Los nombres contables singulares que designan un oficio suelen llevar a/an. No omitas un determinante inglés solo porque otra lengua no tenga artículo.",
+    "pitfall": "No elijas a/an solo por la primera letra escrita: an hour but a university.",
+    "keywords": [
+      "artículos",
+      "determinantes",
+      "nombres contables",
+      "primera mención"
+    ]
+  },
+  "passive": {
+    "title": "Voz pasiva",
+    "question": "¿Cuándo pasa a ser sujeto lo que recibe la acción?",
+    "summary": "Usa be + past participle para poner en posición de sujeto a la persona o la cosa afectada. El tiempo lo lleva be.",
+    "usage": "La pasiva destaca la entidad afectada, el resultado o el tema ya establecido. Omite el complemento con by cuando el agente es desconocido o no importa. Los auxiliares siguen marcando el tiempo y la modalidad: is written, was written, has been written, will be written.\n\nLa voz también ordena la información: si las muestras ya son el tema, The samples were collected... mantiene ese tema en su sitio. Si importa quién recoge, usa una cláusula activa o un complemento con by. Get + participle puede expresar un cambio de estado en algunas pasivas de suceso y suele sonar más coloquial; no sustituye a be en todo contexto formal o de estado. Omitir el agente no debe ocultar la responsabilidad cuando esta importa.",
+    "pitfall": "No todo be + participle se lee como un suceso: The door is closed puede describir un estado.",
+    "keywords": [
+      "voz pasiva",
+      "participio",
+      "agente",
+      "be"
+    ]
+  },
+  "affect-effect": {
+    "title": "affect / effect",
+    "question": "¿Affect o effect?",
+    "summary": "En el uso habitual, affect es un verbo y significa influir; effect es un nombre y significa resultado. Hay otros usos menos frecuentes.",
+    "usage": "Mira si la oración necesita un verbo o un nombre. Affect suele significar influir, como verbo; an effect suele ser un resultado. En registro formal, effect puede significar provocar, como verbo, y affect es un nombre especializado en psicología.",
+    "pitfall": "No trates el verbo effect como sinónimo simple de affect: effected change significa brought change about.",
+    "keywords": [
+      "influir",
+      "resultado",
+      "verbo o nombre"
+    ]
+  },
+  "be": {
+    "title": "El verbo be",
+    "question": "¿Cuándo uso am, is o are?",
+    "summary": "Usa am, is o are para identidad, estado o lugar. La forma depende del sujeto.",
+    "usage": "El be de presente concuerda con el sujeto: I am; you, we y they van con are; he, she, it y los nombres singulares van con is. En la negación, pon not después de be; en las preguntas de sí o no, coloca be delante del sujeto. Be también forma los tiempos progresivos.",
+    "pitfall": "No añadas do a una pregunta con be: Is she ready?, no Does she is ready?.",
+    "keywords": [
+      "verbo be",
+      "concordancia",
+      "am is are"
+    ]
+  },
+  "plurals": {
+    "title": "Plurales de nombres contables",
+    "question": "¿Cuándo un nombre contable necesita forma de plural?",
+    "summary": "Los nombres contables suelen llevar plural por encima de uno; algunos son irregulares, como child → children.",
+    "usage": "Los plurales regulares suelen añadir -s o -es; consonante + y a menudo pasa a -ies. Aprende aparte las formas irregulares frecuentes: man/men, child/children, person/people. El número también afecta a los cuantificadores, a los determinantes y a la concordancia del verbo.",
+    "pitfall": "Un nombre incontable no añade -s sin más: di some information o two pieces of information.",
+    "keywords": [
+      "plural",
+      "nombres contables",
+      "irregulares"
+    ]
+  },
+  "despite-although": {
+    "title": "despite / although",
+    "question": "¿Puede despite introducir una cláusula completa?",
+    "summary": "Despite suele llevar un sintagma nominal o -ing; although introduce una cláusula. Despite the fact that puede introducir una cláusula.",
+    "usage": "Despite es una preposición seguida de un sintagma nominal o de una forma -ing; although es una conjunción seguida de una cláusula con verbo conjugado. Las dos expresan concesión, pero el complemento no es el mismo. Despite the fact that puede introducir una cláusula de forma indirecta.",
+    "pitfall": "Evita despite we were late; usa despite being late o although we were late.",
+    "keywords": [
+      "concesión",
+      "preposición",
+      "conjunción"
+    ]
+  },
+  "past-simple": {
+    "title": "Pasado simple",
+    "question": "¿Did you go o did you went?",
+    "summary": "Úsalo para un hecho pasado ya concluido. Los verbos regulares suelen añadir -ed; las formas irregulares varían.",
+    "usage": "El pasado simple sitúa un hecho en el pasado. La afirmación usa la forma de pasado; la negación y casi todas las preguntas usan did + base verb. Be es la excepción: was/were. Las expresiones de un momento pasado concreto suelen ir con este tiempo.",
+    "pitfall": "Did ya marca el tiempo pasado: Did you go?, no Did you went?.",
+    "keywords": [
+      "pasado simple",
+      "did",
+      "verbos irregulares"
+    ]
+  },
+  "present-simple": {
+    "title": "Presente simple",
+    "question": "¿Por qué she works lleva -s y I work no?",
+    "summary": "Úsalo para hábitos y hechos generales. En afirmativa, un sujeto de tercera persona del singular suele añadir -s/-es.",
+    "usage": "El presente simple suele describir hábitos, pautas generales y hechos bastante estables. En afirmativa, el verbo de tercera persona del singular suele llevar -s; la negación y la pregunta usan does + base form. Con I, you, we y they se usa do.",
+    "pitfall": "Does ya lleva la concordancia de tercera persona: Does she work?, no Does she works?.",
+    "keywords": [
+      "presente simple",
+      "tercera persona",
+      "hábitos"
+    ]
+  },
+  "questions": {
+    "title": "Preguntas de sí o no y con wh-",
+    "question": "¿Por qué es does she work y no does she works?",
+    "summary": "En muchas preguntas de presente simple con verbo de acción, pon do/does delante del sujeto; las partículas wh- suelen ir primero. Con be, colócalo directamente delante del sujeto.",
+    "usage": "Las preguntas de presente simple con verbo léxico suelen seguir do/does + subject + base verb. La partícula interrogativa va primero: Where does she live? Si who es el propio sujeto, no hace falta ese auxiliar: Who lives here?",
+    "pitfall": "No dejes el orden de una afirmación en una pregunta principal: Where does she live?, no Where she lives?.",
+    "keywords": [
+      "preguntas",
+      "auxiliar do",
+      "orden de palabras"
+    ]
+  },
+  "each-every": {
+    "title": "each / every",
+    "question": "¿Each o every?",
+    "summary": "Each se fija en los miembros uno por uno; every suele abarcar todo el conjunto. Los dos preceden a un nombre contable singular; each también puede ir solo.",
+    "usage": "Each mira a los miembros por separado y puede ser pronombre o determinante. Every trata juntos a todos los miembros de un grupo y precede a un nombre contable singular. Each puede referirse a dos o más; every, por lo general, a tres o más. Los sintagmas en singular exigen concordancia en singular.",
+    "pitfall": "Every no puede ir solo como pronombre: Each was checked es posible; Every was checked no lo es.",
+    "keywords": [
+      "each",
+      "every",
+      "distributivos",
+      "singular"
+    ]
+  },
+  "comparison": {
+    "title": "Comparativos y superlativos",
+    "question": "¿Cómo comparo dos cosas?",
+    "summary": "Usa el comparativo con than para dos elementos; usa the + superlative para un extremo dentro de un grupo identificable.",
+    "usage": "Los comparativos relacionan dos cosas comparables. Los adjetivos cortos suelen tomar -er y los largos suelen tomar more; las formas irregulares, como good/better, hay que aprenderlas. Lo que sigue a than debe ser lógicamente paralelo. Para un grado igual, usa as ... as.",
+    "pitfall": "No combines more y -er en el caso normal: more taller es incorrecto. Algunos adjetivos de dos sílabas admiten las dos formas.",
+    "keywords": [
+      "comparativo",
+      "superlativo",
+      "than",
+      "adjetivos"
+    ]
+  },
+  "few-a-few": {
+    "title": "few / a few",
+    "question": "¿Few o a few?",
+    "summary": "A few significa algunos; few subraya un número pequeño o insuficiente. Los dos modifican nombres contables en plural.",
+    "usage": "Few y a few van con nombres contables en plural. Few destaca la insuficiencia; a few indica una cantidad pequeña, pero positiva. Little y a little suelen ir con nombres incontables. La elección refleja cómo valora quien habla esa cantidad.",
+    "pitfall": "No uses a few directamente con un incontable: di some advice o a few pieces of advice.",
+    "keywords": [
+      "cuantificadores",
+      "cantidad pequeña",
+      "contables"
+    ]
+  },
+  "first-conditional": {
+    "title": "Primer condicional",
+    "question": "¿If it rains, will we leave?",
+    "summary": "En una condición futura posible, la cláusula con if suele ir en presente simple y la principal puede llevar will; no es el único esquema con if.",
+    "usage": "En una condición futura posible, la cláusula con if suele llevar una forma de presente; la principal puede llevar will, un imperativo o un modal. Cualquiera de las dos puede ir primero, y una cláusula con if al inicio suele ir seguida de coma. No toda oración con if necesita will.",
+    "pitfall": "En el caso normal, no pongas will dentro de una cláusula con if de condición futura; will puede tener sentidos especiales, como la voluntad.",
+    "keywords": [
+      "condicional",
+      "if",
+      "futuro",
+      "will"
+    ]
+  },
+  "hypothetical-conditionals": {
+    "title": "Condicionales hipotéticos",
+    "question": "¿If I knew o if I had known?",
+    "summary": "Una hipótesis alejada del presente suele usar if + past y would + base form; un pasado irreal suele usar if + had + participle y would have + participle.",
+    "usage": "Las condiciones irreales de presente o de futuro suelen usar if + past form con would + base form. Las condiciones pasadas contrarias a los hechos usan if + had + past participle con would have + past participle. Una forma de pasado puede marcar distancia respecto de la realidad, y no tiempo pasado.\n\nLa forma de pasado en If I knew expresa distancia respecto del presente o del futuro real, no tiempo pasado. If I had known sitúa la condición irreal en el pasado. La condición y el resultado pueden referirse a tiempos distintos: If I had saved the file, I would have it now describe una omisión pasada con una consecuencia presente. No rellenes los esquemas condicionales de forma mecánica a partir de etiquetas numeradas; identifica primero los hechos, la referencia temporal y la postura de quien habla.",
+    "pitfall": "No mezcles los marcos temporales de forma mecánica. Los condicionales mixtos caben cuando una condición pasada tiene una consecuencia presente.",
+    "keywords": [
+      "condicionales",
+      "hipótesis",
+      "would",
+      "pasado irreal"
+    ]
+  },
+  "imply-infer": {
+    "title": "imply / infer",
+    "question": "¿Quién implies y quién infers?",
+    "summary": "Quien habla, o el texto, implies algo; quien lee infers eso a partir de indicios. Describen lados distintos de la comunicación.",
+    "usage": "Imply nombra lo que un hablante o un indicio sugiere de forma indirecta; infer nombra lo que un lector o un oyente concluye a partir de ello. Las direcciones no coinciden. En un escrito formal, indica la base observable de la inferencia y no la presentes como una afirmación explícita de la fuente.",
+    "pitfall": "No escribas que un autor inferred un sentido cuando quieres decir que el autor lo implied.",
+    "keywords": [
+      "inferencia",
+      "implicación",
+      "comunicación"
+    ]
+  },
+  "less-fewer": {
+    "title": "less / fewer",
+    "question": "¿Less o fewer?",
+    "summary": "Por lo general, elige fewer con plurales contables y less con incontables; los totales de tiempo o dinero, y el uso informal, pueden variar.",
+    "usage": "Fewer suele modificar elementos contables en plural; less suele modificar nombres incontables. Less than suele preceder a un tiempo, una distancia o una suma numérica tratados como una sola cantidad. El uso real es más flexible que un eslogan absoluto.",
+    "pitfall": "No des por incorrecta, sin más, toda duración numérica con fewer; elige la forma más clara en ese contexto.",
+    "keywords": [
+      "cuantificadores",
+      "contables",
+      "incontables"
+    ]
+  },
+  "make-do": {
+    "title": "make / do",
+    "question": "¿Make o do?",
+    "summary": "Make suele apuntar a crear un resultado; do suele nombrar una actividad o una tarea. Las colocaciones concretas siguen pidiendo comprobación.",
+    "usage": "Make suele destacar la creación de un producto o el hecho de causar un resultado; do suele destacar la realización de una actividad o de una tarea. Muchas colocaciones hay que aprenderlas una a una: make a decision, make progress, do homework, do research.",
+    "pitfall": "Es una tendencia, no una regla que prediga cada colocación; comprueba las combinaciones ya fijadas de ese nombre.",
+    "keywords": [
+      "colocaciones",
+      "make",
+      "do"
+    ]
+  },
+  "hedging": {
+    "title": "Matización y cautela",
+    "question": "¿May suggest significa probar?",
+    "summary": "May, appear to y suggest pueden limitar la fuerza de una afirmación. Conserva el alcance de la evidencia; no conviertas una posibilidad en prueba.",
+    "usage": "May, might, appears to y suggests pueden marcar que la evidencia apoya una posibilidad, no una conclusión. Ajusta la redacción a la fuerza de la evidencia, a los límites de la muestra y a otras explicaciones posibles; no debilites sin necesidad un hecho ya bien establecido.\n\nAjusta la fuerza de la afirmación a su evidencia. May suggest ofrece una interpretación posible; is consistent with dice que los datos encajan con una interpretación; ninguna de las dos prueba una causa. Incluso un resultado significativo puede estar limitado por la muestra, la medición o factores no controlados. Separa observación, interpretación y conclusión cuando haga falta, en vez de usar proves o always para convertir evidencia limitada en certeza.",
+    "pitfall": "Una sola observación rara vez prueba una causa: prove suele ser mucho más fuerte que suggest.",
+    "keywords": [
+      "matización",
+      "evidencia",
+      "posibilidad",
+      "cautela"
+    ]
+  },
+  "countability": {
+    "title": "Nombres contables e incontables",
+    "question": "¿Much information o many information?",
+    "summary": "Many suele ir con plurales contables; much suele ir con incontables. Algunos nombres cambian de contabilidad según el sentido.",
+    "usage": "Los contables se combinan con números y con el plural, y a menudo con many o few. Los incontables suelen llevar much o little y no tienen un plural ordinario. La contabilidad puede variar según el sentido: coffee puede ser la sustancia o una consumición.",
+    "pitfall": "No etiquetes para siempre cada sentido de un nombre como contable o incontable: an experience no es lo mismo que experience en general.",
+    "keywords": [
+      "contables",
+      "incontables",
+      "much",
+      "many"
+    ]
+  },
+  "modals": {
+    "title": "Modales: posibilidad y obligación",
+    "question": "¿Must not o do not have to?",
+    "summary": "May/might expresan posibilidad; must puede expresar una obligación fuerte o una inferencia. Must not significa prohibición, a diferencia de don't have to.",
+    "usage": "Must not prohíbe una acción; do not have to quita una obligación. Must puede expresar una obligación fuerte o una inferencia segura, mientras que have to suele referirse a un requisito externo. Importa el alcance de la negación.",
+    "pitfall": "No equipares You must not leave con You do not have to leave; la primera prohíbe marcharse.",
+    "keywords": [
+      "modales",
+      "obligación",
+      "prohibición",
+      "posibilidad"
+    ]
+  },
+  "present-perfect": {
+    "title": "Presente perfecto",
+    "question": "I went o I have gone: ¿importa el tiempo?",
+    "summary": "Usa have/has + past participle para enlazar un hecho pasado con el presente; un momento pasado concreto y ya cerrado suele pedir pasado simple.",
+    "usage": "El presente perfecto enlaza una situación pasada con un resultado presente, una experiencia o un estado que continúa. Una referencia a un momento pasado definido suele pedir el pasado simple. Since marca un punto de inicio y for, una duración. La variedad y el contexto pueden afectar algunas elecciones.\n\nLa referencia temporal es decisiva: un tiempo acabado y precisado, como yesterday o in 2019, suele pedir el pasado simple. So far y this week pueden favorecer el presente perfecto mientras el periodo todavía incluye el ahora. Incluso this morning puede tratarse de otra forma mientras la mañana sigue y después de que termina. El perfecto puede describir una experiencia o una consecuencia presente, no solo un término reciente. El inglés americano también usa con frecuencia el pasado simple en algunos contextos de already/yet, así que no trates cada uno de esos usos como un error.",
+    "pitfall": "No combines, en el caso normal, el presente perfecto con un tiempo definido ya cerrado, como yesterday: I saw her yesterday.",
+    "keywords": [
+      "presente perfecto",
+      "pasado simple",
+      "since",
+      "for"
+    ]
+  },
+  "inversion": {
+    "title": "Anteposición negativa e inversión",
+    "question": "¿Por qué se dice rarely had they seen?",
+    "summary": "Las expresiones restrictivas o negativas antepuestas, como rarely o not only, suelen provocar la inversión sujeto-auxiliar en la prosa formal y añaden énfasis.",
+    "usage": "Cuando un adverbial negativo o restrictivo abre la cláusula, el inglés formal suele invertir auxiliar y sujeto: Rarely have I seen...; Only then did I understand.... Si no hay auxiliar, usa el apoyo de do. La expresión antepuesta fija el alcance.\n\nLas expresiones negativas o limitadoras antepuestas, como hardly, rarely y not only, suelen provocar la inversión sujeto-auxiliar en estilo formal: Rarely have we seen.... Si no hay auxiliar, aporta do/does/did y usa la forma simple del verbo. No todo adverbio inicial provoca inversión: Yesterday we left no la necesita. La construcción también depende de qué modifica de verdad la expresión antepuesta.",
+    "pitfall": "No todo adverbio inicial provoca inversión: Often I go there lleva el orden normal.",
+    "keywords": [
+      "inversión",
+      "énfasis",
+      "adverbios negativos",
+      "estilo formal"
+    ]
+  },
+  "respectively": {
+    "title": "respectively",
+    "question": "¿Qué empareja respectively?",
+    "summary": "Respectively empareja dos listas de igual longitud, en orden. Si las listas o el orden no están claros, reescribe la oración.",
+    "usage": "Respectively empareja, en el mismo orden, los miembros de dos o más listas ordenadas. Quien lee tiene que poder identificar las listas y la secuencia. Si el emparejamiento se alarga o se complica, unas oraciones separadas quedan más claras. La palabra en sí no añade una relación de causa.",
+    "pitfall": "No uses respectively para disimular un desajuste entre las listas; formula cada emparejamiento de forma explícita.",
+    "keywords": [
+      "listas",
+      "orden",
+      "emparejamiento"
+    ]
+  },
+  "reported-speech": {
+    "title": "Estilo indirecto",
+    "question": "¿Todo tiempo tiene que retroceder en el estilo indirecto?",
+    "summary": "Al referir un habla pasada pueden cambiar los pronombres, las expresiones de tiempo y el tiempo verbal, según el punto de vista; un hecho que sigue siendo válido no siempre tiene que retroceder.",
+    "usage": "Al referir, distingue los hechos que siguen vigentes de las situaciones ligadas al momento original del habla. Tras un verbo de reporte en pasado, el tiempo a menudo retrocede, pero eso no siempre es obligatorio si el hecho sigue siendo cierto. También pueden cambiar los pronombres y las expresiones de tiempo o de lugar.\n\nEl retroceso temporal no es una regla mecánica. Si el hecho referido sigue siendo cierto, puede convenir mantener el tiempo original; retrocederlo puede marcar, en cambio, un punto de vista pasado. Palabras como today, tomorrow y here solo cambian si el momento o el lugar del reporte lo piden. Cuando refieres a otra persona, separa sus palabras reales de tu inferencia y no hagas el relato más seguro que el original.",
+    "pitfall": "No hagas retroceder de forma mecánica toda forma de presente; una verdad general puede seguir en presente.",
+    "keywords": [
+      "estilo indirecto",
+      "concordancia temporal",
+      "pronombres",
+      "reporte"
+    ]
+  },
+  "say-tell": {
+    "title": "say / tell",
+    "question": "¿Cuándo uso say o tell?",
+    "summary": "Say puede introducir las palabras o una cláusula. Tell suele nombrar al destinatario antes de la información referida; evita tell that sin destinatario.",
+    "usage": "Say se centra en las palabras o en el contenido: say something o say something to someone. Tell suele nombrar a un destinatario: tell someone something. Los dos pueden llevar una that-clause, pero tell suele conservar a quien escucha. Aprende fórmulas fijas como tell a story y tell the truth.",
+    "pitfall": "Evita say me y tell to me; usa say to me o tell me.",
+    "keywords": [
+      "decir",
+      "destinatario",
+      "estilo indirecto"
+    ]
+  },
+  "since-for": {
+    "title": "since / for",
+    "question": "¿Since o for con el tiempo?",
+    "summary": "Since identifica un punto de inicio; for da una duración. Ninguna de las dos palabras, por sí sola, decide el tiempo verbal.",
+    "usage": "Since introduce un punto de inicio, como un año, una fecha o un suceso; for introduce una duración, como two years. Las dos pueden aparecer con un estado que llega hasta ahora, pero el tiempo verbal depende de la oración. For también aparece con libertad junto al pasado simple.",
+    "pitfall": "No elijas por la presencia de un número: since 2020 da un inicio, no una duración.",
+    "keywords": [
+      "duración",
+      "punto de inicio",
+      "tiempos verbales"
+    ]
+  },
+  "relative-clauses": {
+    "title": "Oraciones de relativo",
+    "question": "¿Puedo usar that después de una coma?",
+    "summary": "Una oración de relativo puede identificar a una persona o a una cosa. La información extra no especificativa suele ir entre comas y no admite that con libertad.",
+    "usage": "Una relativa especificativa identifica de qué persona o cosa se trata. Una no especificativa añade información sobre un referente ya identificado y va entre comas. That es frecuente en las especificativas, pero no suele usarse en las no especificativas. El relativo de objeto a veces puede omitirse.\n\nPregunta primero si la cláusula identifica el referente. The report that arrived today is incomplete señala un informe concreto; the report, which arrived today, is incomplete trata el informe como ya conocido y añade información. Las no especificativas no suelen usar that ni omitir el relativo. Anteponer una preposición al relativo, como en to whom, es más formal; el uso ordinario a menudo la deja al final de la cláusula.",
+    "pitfall": "No uses coma + that en una relativa no especificativa: My car, which is red, ....",
+    "keywords": [
+      "relativos",
+      "that",
+      "which",
+      "comas"
+    ]
+  },
+  "used-to": {
+    "title": "used to / be used to",
+    "question": "¿Used to do o be used to doing?",
+    "summary": "Used to + base verb describe un hábito o un estado anterior; be used to + noun or -ing significa estar acostumbrado.",
+    "usage": "Used to + base verb describe un hábito o un estado pasado que, en general, ya no se mantiene. Be used to + noun or -ing significa estar acostumbrado; get used to subraya la adaptación. El to de be/get used to es una preposición, no la marca del infinitivo.",
+    "pitfall": "Di I am used to waking early, no I am used to wake early.",
+    "keywords": [
+      "hábitos pasados",
+      "acostumbrarse",
+      "to"
+    ]
+  },
+  "who-whom": {
+    "title": "who / whom",
+    "question": "¿Cuándo se usa whom en inglés formal?",
+    "summary": "Whom puede marcar un objeto, sobre todo tras una preposición antepuesta; en el habla cotidiana a menudo se usa who. El uso formal no es la única opción natural.",
+    "usage": "Who suele ser sujeto y, en el habla, se usa mucho también como objeto. Whom es una forma formal de objeto, sobre todo tras una preposición antepuesta. Identifica la función que falta dentro de la cláusula, en vez de mirar solo la palabra anterior. No fuerces whom en una conversación ordinaria.",
+    "pitfall": "Who did you invite? es del todo normal en el inglés actual; no lo marques como incorrecto sin más.",
+    "keywords": [
+      "pronombres",
+      "objeto",
+      "registro formal"
+    ]
+  },
+  "future": {
+    "title": "Futuro: will y be going to",
+    "question": "¿Will o going to para un plan?",
+    "summary": "Will puede expresar una decisión tomada ahora o una predicción; be going to suele señalar un plan previo o una evidencia presente. El contexto importa.",
+    "usage": "Will suele marcar decisiones tomadas en el momento, predicciones o promesas. Be going to suele presentar una intención previa o una predicción basada en evidencia presente. Se solapan bastante. Los horarios pueden ir en presente simple, y los planes concertados, en presente progresivo.",
+    "pitfall": "No conviertas toda referencia futura en will: The train leaves at six es un horario normal.",
+    "keywords": [
+      "futuro",
+      "will",
+      "going to",
+      "planes"
+    ]
+  },
+  "present-continuous": {
+    "title": "Presente continuo",
+    "question": "I work o I am working: ¿cuál encaja ahora?",
+    "summary": "Usa be + -ing para una acción que ocurre ahora o en este periodo; contrástalo con un presente simple de hábito.",
+    "usage": "El presente progresivo suele describir una actividad que ocurre ahora, una situación temporal o un plan de un futuro próximo. El presente simple suele describir hábitos o hechos estables. Forma el progresivo con am/is/are + -ing. Algunos verbos de estado rara vez van en progresivo, salvo que cambie su sentido.",
+    "pitfall": "Lo habitual es I know the answer, no I am knowing the answer; I am thinking about it describe una actividad.",
+    "keywords": [
+      "presente continuo",
+      "hábitos",
+      "ahora",
+      "-ing"
+    ]
+  },
+  "some-any": {
+    "title": "some y any",
+    "question": "¿Cómo elijo some o any?",
+    "summary": "Some es frecuente en afirmativas; any es frecuente en negativas y en preguntas abiertas.",
+    "usage": "Los dos modifican plurales contables e incontables. Las peticiones y los ofrecimientos que esperan un sí suelen usar some. En una afirmativa, any puede significar cualquiera. Ten en cuenta lo que espera quien habla, no solo el signo de interrogación.",
+    "pitfall": "Would you like some tea? es un ofrecimiento natural; no tiene por qué llevar any.",
+    "keywords": [
+      "some",
+      "any",
+      "preguntas",
+      "ofrecimientos"
+    ]
+  },
+  "there-is": {
+    "title": "there is y there are",
+    "question": "¿Cómo digo que algo existe en un lugar?",
+    "summary": "Usa there is con un nombre singular o incontable, y there are con un nombre en plural.",
+    "usage": "Aquí there introduce una entidad y no significa por fuerza en ese lugar. Suele nombrarse primero la entidad y después su ubicación. En las preguntas, pasa is/are delante de there; en las negativas, pon not después de is/are.",
+    "pitfall": "En un escrito formal, haz concordar el singular o el plural con el nombre que sigue.",
+    "keywords": [
+      "existencia",
+      "there is",
+      "concordancia"
+    ]
+  },
+  "possessive": {
+    "title": "Determinantes y pronombres posesivos",
+    "question": "¿Qué diferencia hay entre my y mine?",
+    "summary": "My, your y her preceden a un nombre; mine, yours y hers pueden ir sin un nombre detrás.",
+    "usage": "Compara my book con the book is mine, y our room con the room is ours. His tiene la misma forma en las dos posiciones. Its es un determinante; un its solo es raro. It's es una contracción, no un posesivo.",
+    "pitfall": "No escribas mine book; usa my book o This book is mine.",
+    "keywords": [
+      "posesivos",
+      "determinantes",
+      "pronombres"
+    ]
+  },
+  "imperatives": {
+    "title": "Imperativos",
+    "question": "¿Cómo doy una instrucción breve?",
+    "summary": "Un imperativo suele empezar por la forma base del verbo; la negación usa do not o don't + base verb.",
+    "usage": "El sujeto you suele omitirse. Please puede suavizar una petición, aunque el contexto y la relación siguen importando; a veces conviene más una pregunta. Let's + base verb propone una acción conjunta.",
+    "pitfall": "No pongas not justo delante del verbo: di Don't open the door.",
+    "keywords": [
+      "imperativo",
+      "instrucciones",
+      "negación"
+    ]
+  },
+  "past-continuous": {
+    "title": "Pasado progresivo",
+    "question": "¿Cómo describo una actividad en curso en el pasado?",
+    "summary": "El pasado progresivo usa was/were + -ing, a menudo para una actividad de fondo; el pasado simple suele nombrar un hecho que interrumpe o que ya concluyó.",
+    "usage": "En I was reading when the phone rang, la lectura ya estaba en curso y el timbre es otro hecho. While puede enlazar actividades simultáneas. Elige el progresivo para un proceso en desarrollo, no de forma automática para toda acción pasada.",
+    "pitfall": "Los verbos de estado habituales siguen evitando el progresivo: I knew the answer, no I was knowing it.",
+    "keywords": [
+      "pasado continuo",
+      "fondo",
+      "interrupción"
+    ]
+  },
+  "have-to": {
+    "title": "have to y must",
+    "question": "¿Uso have to o must para la obligación?",
+    "summary": "Los dos pueden expresar obligación; have to suele señalar un requisito externo, mientras que must puede subrayar la exigencia fuerte de quien habla.",
+    "usage": "Have to cambia con el tiempo y el sujeto: she has to, we had to, did you have to. Must no tiene una forma ordinaria de pasado; had to suele expresar una obligación pasada. El tono también varía según el contexto, la región y el registro.",
+    "pitfall": "Sus negaciones difieren: must not prohíbe; do not have to quita la obligación.",
+    "keywords": [
+      "obligación",
+      "must",
+      "have to",
+      "prohibición"
+    ]
+  },
+  "prepositions-time": {
+    "title": "Preposiciones de tiempo: at, on e in",
+    "question": "¿At, on o in para el tiempo?",
+    "summary": "Usa at para las horas, on para fechas y días, e in para meses, años y periodos más largos.",
+    "usage": "At 7:30, on Monday e in October son puntos de partida útiles. Los modificadores importan: on Monday morning, pero in the morning. Algunas expresiones varían según la región, como at the weekend y on the weekend.",
+    "pitfall": "Suele omitirse la preposición de tiempo delante de last, next o this: next Monday.",
+    "keywords": [
+      "preposiciones",
+      "tiempo",
+      "at on in"
+    ]
+  },
+  "gerund-infinitive": {
+    "title": "Formas -ing e infinitivo con to tras un verbo",
+    "question": "¿El verbo siguiente lleva -ing o to?",
+    "summary": "Cada verbo selecciona su complemento: enjoy suele llevar -ing; decide lleva to + base verb.",
+    "usage": "Algunos verbos aceptan las dos formas, pero cambian de sentido: remember locking the door recuerda una acción ya hecha; remember to lock the door se refiere a una tarea futura. Aprende juntas la forma y el sentido, en vez de memorizar solo una lista.\n\nNo hay permiso general para intercambiar la forma -ing y el infinitivo con to. Algunos verbos prefieren un complemento, como avoid doing o decide to do; otros admiten los dos, pero con otro sentido o otro foco, como en stop reading frente a stop to read. Tras una preposición, lo habitual es -ing: el to de look forward to meeting es una preposición, no la marca del infinitivo. Comprueba el esquema de cada verbo que no conozcas.",
+    "pitfall": "Un verbo tras una preposición suele ir en -ing: interested in learning, no interested in to learn.",
+    "keywords": [
+      "gerundio",
+      "infinitivo",
+      "complementos",
+      "-ing"
+    ]
+  },
+  "present-perfect-progressive": {
+    "title": "Presente perfecto progresivo",
+    "question": "¿Cuándo uso have been doing?",
+    "summary": "El presente perfecto progresivo destaca una actividad empezada en el pasado y que llega hasta ahora, o una cuyos efectos recientes siguen ahí.",
+    "usage": "Frente al perfecto simple, el progresivo suele poner en primer plano el proceso o la duración. I have written three pages destaca el resultado; I have been writing for an hour destaca la actividad. Los verbos de estado suelen preferir la forma simple.",
+    "pitfall": "No tiene por qué significar que la actividad sigue en este instante exacto: It has been raining puede explicar el suelo mojado cuando ya dejó de llover.",
+    "keywords": [
+      "presente perfecto continuo",
+      "duración",
+      "proceso"
+    ]
+  },
+  "enough-too": {
+    "title": "enough y too",
+    "question": "¿Cómo expreso un grado suficiente o excesivo?",
+    "summary": "Enough expresa suficiencia; too suele marcar un grado excesivo.",
+    "usage": "Enough va detrás de adjetivos y adverbios, pero delante de nombres: old enough, enough time. Too precede a adjetivos o adverbios: too heavy. Con un infinitivo con to, identifica quién puede hacer la acción: too heavy for me to carry.",
+    "pitfall": "Para la suficiencia ordinaria, di old enough y enough time, no enough old ni time enough.",
+    "keywords": [
+      "grado",
+      "suficiencia",
+      "exceso"
+    ]
+  },
+  "articles-zero": {
+    "title": "Artículo cero en la referencia general",
+    "question": "¿Cuándo no hace falta artículo?",
+    "summary": "Los plurales contables genéricos y los incontables genéricos a menudo van sin artículo.",
+    "usage": "Cats need sleep no es lo mismo que The cats in this room need sleep; Water is essential no es lo mismo que The water in this bottle is warm. Los nombres propios y las expresiones ya fijadas tienen sus propios esquemas, así que la referencia general no explica toda elección de artículo.",
+    "pitfall": "Un contable singular genérico suele necesitar un determinante: A cat needs sleep, no Cat needs sleep.",
+    "keywords": [
+      "artículo cero",
+      "referencia general",
+      "incontables"
+    ]
+  },
+  "relative-pronoun-omission": {
+    "title": "Omisión del pronombre relativo",
+    "question": "¿Cuándo puedo omitir un pronombre relativo?",
+    "summary": "En una relativa especificativa, el relativo de objeto a menudo puede omitirse; el relativo de sujeto, en general, no.",
+    "usage": "En The book (that) I bought, I es el sujeto de la cláusula y book es el objeto de bought, así que that puede desaparecer. En The book that fell, that es el sujeto y tiene que quedarse. Las relativas no especificativas no suelen permitir esta omisión.",
+    "pitfall": "No omitas who en The woman who called.",
+    "keywords": [
+      "relativos",
+      "omisión",
+      "objeto",
+      "sujeto"
+    ]
+  },
+  "although-however": {
+    "title": "although y however",
+    "question": "¿Se pueden intercambiar although y however?",
+    "summary": "Although introduce una cláusula subordinada; however suele ser un adverbio de enlace que contrasta enunciados independientes.",
+    "usage": "Although the plan is costly, it may work contiene una cláusula subordinada. The plan is costly. However, it may work contiene oraciones separadas. En prosa formal, evita unir dos oraciones independientes solo con una coma delante de however; usa punto o punto y coma.",
+    "pitfall": "However the plan is costly no sustituye sin más a Although the plan is costly.",
+    "keywords": [
+      "contraste",
+      "conectores",
+      "puntuación"
+    ]
+  },
+  "wish-if-only": {
+    "title": "wish e if only",
+    "question": "¿Cómo expreso un deseo contrario a los hechos?",
+    "summary": "Para un deseo contrario a la realidad presente, usa wish + past form; para un pesar sobre el pasado, usa wish + had + past participle.",
+    "usage": "I wish I knew the answer implica que ahora no lo sé; I wish I had known apunta a una falta de conocimiento anterior. Wish + would puede pedir un cambio en la conducta de alguien o en una situación, a menudo con frustración. If only suele aumentar la fuerza emotiva.",
+    "pitfall": "Aquí la forma de pasado marca irrealidad, no solo tiempo pasado; I wish I know no expresa, en el uso normal, una hipótesis irreal de presente.",
+    "keywords": [
+      "deseos",
+      "irrealidad",
+      "arrepentimiento"
+    ]
+  },
+  "used-to-would": {
+    "title": "Hábitos pasados con used to y would",
+    "question": "¿Puede would describir un hábito pasado?",
+    "summary": "Used to puede describir hábitos o estados pasados; would puede describir acciones repetidas cuando el marco pasado ya está claro.",
+    "usage": "When we were children, we would play by the river describe una actividad repetida. We used to live by the river describe un estado pasado. El would de hábito suele necesitar un marco pasado ya establecido y no suele usarse para situaciones estáticas.",
+    "pitfall": "El hábito We would live by the river no es un sustituto natural de We used to live by the river.",
+    "keywords": [
+      "hábitos pasados",
+      "would",
+      "used to"
+    ]
+  },
+  "its-it-is": {
+    "title": "its e it's",
+    "question": "¿Qué diferencia hay entre its e it's?",
+    "summary": "Its es un determinante posesivo; it's contrae it is o it has.",
+    "usage": "Desarrolla it's como it is o it has. Si eso funciona, usa el apóstrofo. Para lo que pertenece a it o se asocia con it, usa its. La contracción de it has suele aparecer en un perfecto: It's been a long day.",
+    "pitfall": "No imites otros posesivos escribiendo the dog wagged it's tail.",
+    "keywords": [
+      "apóstrofo",
+      "posesivo",
+      "contracción"
+    ]
+  },
+  "comma-splice": {
+    "title": "Coma entre oraciones independientes",
+    "question": "¿Puede una coma sola unir dos cláusulas independientes?",
+    "summary": "En prosa formal, una coma sola, en general, no puede unir dos cláusulas independientes.",
+    "usage": "Usa un punto, un punto y coma, o una coma más una conjunción coordinante como and o but. Otra opción es subordinar una de las cláusulas. La prosa literaria a veces usa a propósito estas comas, pero la prosa académica habitual las evita.",
+    "pitfall": "En la prosa estándar, cambia It was late, we left por It was late, so we left u otra estructura válida.",
+    "keywords": [
+      "puntuación",
+      "coma",
+      "oraciones independientes"
+    ]
+  },
+  "parallelism": {
+    "title": "Estructura paralela",
+    "question": "¿Cómo mantengo paralela una enumeración?",
+    "summary": "Cuando los elementos coordinados cumplen la misma función gramatical, las formas semejantes ayudan a ver su relación.",
+    "usage": "She likes reading, writing and editing usa tres formas -ing. Las comparaciones también necesitan una lógica paralela: The new method is faster than the old one. El paralelismo no exige el mismo número de palabras; exige funciones y sentidos comparables.",
+    "pitfall": "Evita mezclas accidentales como to read, writing, and edit en una sola enumeración coordinada.",
+    "keywords": [
+      "paralelismo",
+      "coordinación",
+      "enumeraciones"
+    ]
+  },
+  "nominalisation": {
+    "title": "Nominalización y verbos",
+    "question": "¿Puede la nominalización oscurecer una oración?",
+    "summary": "La nominalización puede comprimir información, pero también puede ocultar al agente y a la acción.",
+    "usage": "The committee decided es más directo que A decision was made by the committee. Aun así, the decision resulta útil cuando el concepto mismo es el tema o enlaza con el discurso previo. Elige según el propósito del texto y comprueba si el agente sigue siendo recuperable.",
+    "pitfall": "No todo nombre en -tion o -ment es malo; la cuestión es si oscurece información sin necesidad.",
+    "keywords": [
+      "nominalización",
+      "claridad",
+      "agente"
+    ]
+  },
+  "scope-negation": {
+    "title": "Alcance de la negación",
+    "question": "¿Not all y none significan lo mismo?",
+    "summary": "Not all niega que todos los miembros cumplan la condición; none niega que la cumpla alguno. No son intercambiables.",
+    "usage": "Not all participants agreed significa que el acuerdo no fue universal, pero no da una cifra exacta. None of the participants agreed excluye a todos los participantes del grupo que está de acuerdo. Al interpretar un argumento, conserva el alcance de los cuantificadores y de la negación.",
+    "pitfall": "No equipares not necessarily con necessarily not: lo primero niega la necesidad; lo segundo afirma la necesidad de lo contrario.",
+    "keywords": [
+      "negación",
+      "cuantificadores",
+      "alcance"
+    ]
+  },
+  "presupposition": {
+    "title": "Presuposición en el uso",
+    "question": "¿Puede la redacción presuponer un hecho no dicho?",
+    "summary": "Palabras como stop, still y even suelen introducir supuestos de fondo, más allá de la afirmación principal.",
+    "usage": "She stopped smoking suele presuponer que antes fumaba; She still works here sugiere un empleo que continúa frente a una expectativa posible; Even Jo passed presenta el éxito de Jo como sorprendente en alguna escala. El contexto, la negación y la corrección pueden afectar estas inferencias; no son hechos ya verificados.",
+    "pitfall": "Al citar still o finally, identifica de quién es el supuesto antes de presentarlo como evidencia tuya.",
+    "keywords": [
+      "presuposición",
+      "supuestos",
+      "inferencia"
+    ]
+  },
+  "cleft-focus": {
+    "title": "Oraciones hendidas y foco",
+    "question": "¿Qué enfoca It was ... that?",
+    "summary": "Una hendida con it presenta un constituyente como foco y trata el resto de la proposición como fondo.",
+    "usage": "It was Maya who found the error pone el foco en quien lo encontró; It was the error that Maya found pone el foco en el objeto encontrado. Comprueba que el foco responda a la discrepancia real, o quien lee puede malentender qué se está corrigiendo. Who y that son nexos frecuentes.",
+    "pitfall": "No interpretes todo it de una hendida como si señalara un objeto concreto.",
+    "keywords": [
+      "foco",
+      "oraciones hendidas",
+      "énfasis"
+    ]
+  },
+  "only-scope": {
+    "title": "El alcance de only",
+    "question": "¿Cómo cambia el sentido de only según su posición?",
+    "summary": "Only limita el constituyente enfocado; la posición y el acento pueden cambiar la interpretación.",
+    "usage": "Only Sara reviewed the draft excluye a otros revisores. Sara only reviewed the draft puede decir que revisó, pero no editó. La prosa escrita no tiene el acento del habla; coloca only junto al foco que pretendes y usa el contexto para quitar la ambigüedad.\n\nLa posición suele señalar el alcance: Only Nora sent the draft restringe a quien envía; Nora sent only the draft restringe el elemento; Nora only sent the draft puede significar que solo lo envió. El acento y el contexto aún pueden cambiar la interpretación oral. En un escrito preciso, pon only junto al elemento buscado y reescribe si la distinción afecta al argumento. El orden de palabras no garantiza, en todo contexto, una sola lectura.",
+    "pitfall": "Sara reviewed only the draft limita el objeto, no a las personas que lo revisaron.",
+    "keywords": [
+      "only",
+      "alcance",
+      "foco",
+      "ambigüedad"
+    ]
+  },
+  "because-because-of": {
+    "title": "because / because of",
+    "question": "¿Qué sigue a because y a because of?",
+    "summary": "Because introduce una cláusula; because of introduce un sintagma nominal.",
+    "usage": "Mira la forma de la causa: the road was closed es una cláusula tras because; the road closure es un sintagma nominal tras because of. Una cláusula de causa al principio suele ir seguida de coma; una al final, normalmente no. Because of también puede llevar un pronombre o un sintagma nominal en -ing. Razones parecidas pueden decirse con cualquiera de las dos formas, pero la gramática que las sigue es distinta.",
+    "pitfall": "Evita because of the road was closed; quita of o convierte la causa en un sintagma nominal.",
+    "keywords": [
+      "causa",
+      "because",
+      "sintagma nominal"
+    ]
+  },
+  "indirect-questions": {
+    "title": "Preguntas indirectas",
+    "question": "¿Por qué una pregunta indirecta usa el orden de una afirmación?",
+    "summary": "Una pregunta incrustada suele llevar el orden de una afirmación; las de sí o no usan if o whether.",
+    "usage": "Cuando Where does the bus stop? pasa a Do you know where the bus stops?, la parte incrustada pierde el apoyo de do y la inversión. En una pregunta de tiempo pasado, conserva el sentido de pasado, pero no el auxiliar interrogativo did. Could you tell me...? es una pregunta cortés y lleva signo de interrogación; I wonder... es una afirmación y suele llevar punto. En una pregunta de sí o no incrustada, introduce la cláusula con if o whether y mantén el orden enunciativo.",
+    "pitfall": "Evita Could you tell me where does the bus stop? Solo se invierte la pregunta exterior.",
+    "keywords": [
+      "preguntas indirectas",
+      "orden",
+      "whether",
+      "if"
+    ]
+  },
+  "either-neither": {
+    "title": "either / neither",
+    "question": "¿Cómo se refieren either y neither a dos alternativas?",
+    "summary": "Either significa uno de dos; neither significa ni uno ni el otro. Either...or ofrece alternativas, y neither...nor rechaza las dos.",
+    "usage": "Como determinantes, either y neither preceden a un nombre contable singular: either route, neither answer. Usa either/neither of delante de un determinante más un nombre en plural, o de un pronombre: neither of the routes, either of us. El escrito formal suele usar un verbo en singular cuando estos son el sujeto; en el habla informal también hay concordancia en plural, así que no es un error absoluto. Mantén paralelos los elementos emparejados en either...or y neither...nor. La concordancia con un sujeto compuesto puede depender del elemento más cercano y del estilo.",
+    "pitfall": "Neither ya es negativo; no añadas not para expresar la misma negación. Con tres o más elementos, no uses neither de forma automática en lugar de none.",
+    "keywords": [
+      "alternativas",
+      "either or",
+      "neither nor",
+      "concordancia"
+    ]
+  },
+  "unless": {
+    "title": "unless / if not",
+    "question": "¿Unless puede sustituir siempre a if not?",
+    "summary": "Unless suele significar excepto si; introduce una excepción, pero no sustituye a toda cláusula con if not.",
+    "usage": "You cannot enter unless you have a pass presenta el tener un pase como la excepción a una prohibición. En condiciones orientadas al futuro, la cláusula con unless suele usar una forma de presente, no will. If not puede limitarse a enunciar una condición negativa o a preguntar si algo no es cierto; sustituirlo por unless puede cambiar el foco. Comprueba si la cláusula identifica de verdad la única excepción. Unless ya lleva un sentido condicional negativo, así que otro not puede invertir el sentido buscado.",
+    "pitfall": "No leas unless como un if neutro, ni escribas en el caso normal unless you will have a pass para una condición futura.",
+    "keywords": [
+      "unless",
+      "excepción",
+      "condicionales"
+    ]
+  },
+  "during-while": {
+    "title": "during / while",
+    "question": "¿Qué sigue a during y a while?",
+    "summary": "During lleva un sintagma nominal que nombra un periodo; while suele introducir una cláusula.",
+    "usage": "During the meeting y while we were meeting pueden describir el mismo periodo, pero las estructuras que siguen son distintas. During puede significar en algún momento de un suceso o a lo largo de él, según el contexto. While a menudo destaca acciones simultáneas y también puede señalar contraste. Si el sujeto es compartido y está claro, cabe una cláusula reducida como while waiting. Comprueba primero si lo que sigue es un sintagma nominal o una cláusula.",
+    "pitfall": "Evita during we waited; usa while we waited o during the wait.",
+    "keywords": [
+      "tiempo",
+      "during",
+      "while",
+      "simultaneidad"
+    ]
+  },
+  "like-as": {
+    "title": "like / as",
+    "question": "¿En qué se diferencian like y as en comparaciones y funciones?",
+    "summary": "Like suele significar parecido a; as puede identificar un papel o una función, y puede introducir una cláusula de comparación.",
+    "usage": "She works as a guide enuncia su papel real; she talks like a guide describe un parecido. Delante de una cláusula de comparación completa, el escrito formal suele preferir as: Do it as I showed you. Like más una cláusula también es frecuente en el habla y no debe etiquetarse como incorrecto en todos los casos. As puede además introducir cláusulas de causa o de tiempo, así que el contexto importa. Like delante de un nombre o un pronombre es la forma directa de marcar el parecido.",
+    "pitfall": "Work like a guide y work as a guide no son iguales: lo primero compara; lo segundo nombra un papel.",
+    "keywords": [
+      "comparación",
+      "función",
+      "like",
+      "as"
+    ]
+  },
+  "stop-gerund-infinitive": {
+    "title": "stop doing / stop to do",
+    "question": "¿Por qué stop doing y stop to do significan cosas distintas?",
+    "summary": "Stop doing pone fin a una actividad; stop to do interrumpe una actividad para hacer otra.",
+    "usage": "She stopped reading dice que la lectura terminó. She stopped to read dice que interrumpió otra actividad con el fin de leer; to read enuncia el propósito, no la actividad interrumpida. Stop somebody from doing something significa impedir una acción, con -ing tras from. Identifica qué se detuvo de verdad antes de elegir el esquema.",
+    "pitfall": "Para dejar de fumar, usa stop smoking; stop to smoke significa parar para fumar.",
+    "keywords": [
+      "stop",
+      "gerundio",
+      "infinitivo",
+      "propósito"
+    ]
+  },
+  "remember-gerund-infinitive": {
+    "title": "remember doing / remember to do",
+    "question": "¿Qué diferencia hay entre remember doing y remember to do?",
+    "summary": "Remember doing recuerda un hecho ya ocurrido; remember to do significa no olvidar una tarea.",
+    "usage": "I remember locking the door mira hacia atrás, a un hecho. I remembered to lock the door dice que la tarea no se olvidó y se llevó a cabo. La negación importa: I do not remember locking it informa de un recuerdo que falta, no prueba que siguiera sin cerrarse; I did not remember to lock it suele informar de una tarea olvidada. Forget doing y forget to do muestran un contraste parecido, aunque sus contextos exactos siguen pidiendo comprobación.",
+    "pitfall": "Para el recuerdo de haberlo cerrado, di I remember locking it, no I remember to lock it.",
+    "keywords": [
+      "remember",
+      "recuerdo",
+      "tarea",
+      "-ing"
+    ]
+  },
+  "suggest-patterns": {
+    "title": "suggest + -ing / cláusula con that",
+    "question": "¿Puede suggest llevar una persona más infinitivo con to?",
+    "summary": "Para propuestas, usa suggest + -ing o suggest that + clause; no el esquema de tell, suggest someone to do.",
+    "usage": "I suggest leaving early propone una acción; I suggest that we leave early nombra a quien actúa. El inglés formal puede usar una forma verbal simple en la cláusula con that; también aparecen las formas de tiempo ordinarias. Suggest puede llevar un nombre que designe la propuesta, como en suggest a date. Para nombrar al destinatario, di suggest to someone that..., en vez de poner a la persona delante de un infinitivo con to. Suggest también puede significar indicar de forma indirecta, y entonces no es una propuesta.",
+    "pitfall": "Evita She suggested me to call; usa She suggested that I call o She suggested calling.",
+    "keywords": [
+      "suggest",
+      "propuestas",
+      "that",
+      "-ing"
+    ]
+  },
+  "neednt-mustnt": {
+    "title": "needn’t / mustn’t",
+    "question": "¿Por qué needn’t y mustn’t no son iguales?",
+    "summary": "Needn’t significa que no hay necesidad; mustn’t expresa prohibición o una instrucción fuerte de no actuar.",
+    "usage": "You needn’t print the form permite una copia electrónica; you mustn’t print it prohíbe imprimirlo. Don’t need to y needn’t a menudo expresan una falta de necesidad parecida, pero las formas difieren: needn’t lleva un verbo simple; don’t need to lleva un infinitivo con to. En pasado, didn’t need to do dice que no había necesidad y puede dejar abierta la acción real; needn’t have done suele implicar que la acción ocurrió sin ser necesaria.",
+    "pitfall": "No uses You mustn’t come early para decir que llegar pronto es opcional; suena a prohibición.",
+    "keywords": [
+      "necesidad",
+      "prohibición",
+      "needn’t",
+      "mustn’t"
+    ]
+  },
+  "whether-if": {
+    "title": "whether / if",
+    "question": "¿Cuándo whether e if no son intercambiables?",
+    "summary": "Los dos pueden introducir muchas preguntas de sí o no incrustadas. Whether es más seguro con alternativas explícitas y tras una preposición.",
+    "usage": "I don’t know whether/if the door is open admite cualquiera de las dos. Whether...or not hace explícitas las alternativas. Whether puede preceder a un infinitivo con to, pero if to leave no puede. Tras una preposición, usa whether, como en a discussion about whether to proceed. If también introduce condiciones; whether puede quitar la ambigüedad entre el sentido de whether y el de if. Mantén el orden enunciativo dentro de la pregunta incrustada.",
+    "pitfall": "Evita We discussed about if to leave; di We discussed whether to leave.",
+    "keywords": [
+      "whether",
+      "if",
+      "preguntas indirectas",
+      "alternativas"
+    ]
+  },
+  "modal-perfect": {
+    "title": "must have / might have / can’t have",
+    "question": "¿Cómo expresan deducciones pasadas las formas de modal perfecto?",
+    "summary": "Must have done señala una deducción pasada fuerte, might/may have done una posibilidad, y can’t have done una imposibilidad inferida.",
+    "usage": "Estas formas muestran el juicio presente de quien habla sobre un hecho pasado; no son relatos directos de un testigo. The lights are off; they must have left es una inferencia a partir de indicios. Could have done puede sugerir una posibilidad pasada o una oportunidad no realizada, según el contexto. Should have done a menudo critica una acción no hecha, más que hacer el mismo tipo de deducción. La deducción negativa suele usar can’t have done, no mustn’t have done.",
+    "pitfall": "No uses must have left para la obligación pasada had to leave; suele expresar una deducción.",
+    "keywords": [
+      "deducción",
+      "modales perfectos",
+      "pasado",
+      "posibilidad"
+    ]
+  },
+  "question-tags": {
+    "title": "Question tags",
+    "question": "¿Cómo eligen las question tags su auxiliar y su pronombre?",
+    "summary": "Una question tag suele repetir el auxiliar y el sujeto de la cláusula principal, a menudo con la polaridad invertida.",
+    "usage": "She is ready, isn’t she? repite is y usa she; they have finished, haven’t they? repite have. Si en la principal no hay auxiliar, usa do/does/did: You work here, don’t you? Los imperativos y Let's... tienen coletillas convencionales como will you? y shall we? También importa la entonación: una tag descendente suele buscar confirmación, y una ascendente puede ser una pregunta genuina. La puntuación sola no recoge esta diferencia.",
+    "pitfall": "No añadas is it a cualquier afirmación; comprueba la persona, el tiempo y el auxiliar.",
+    "keywords": [
+      "question tags",
+      "coletillas",
+      "auxiliar",
+      "entonación"
+    ]
+  },
+  "as-long-as": {
+    "title": "as long as / if",
+    "question": "¿Qué añade as long as a una condición?",
+    "summary": "As long as puede significar a condición de que, y destaca un requisito; también puede referirse a la duración.",
+    "usage": "You may borrow the camera as long as you return it tonight hace de devolverla una condición del permiso. Un if simple introduce una posibilidad sin subrayar por fuerza ese requisito. En condiciones orientadas al futuro, la cláusula condicional suele usar una forma de presente. As long as también puede describir la duración de forma literal: I stayed as long as I could. Decide si la oración trata de un resultado condicional o de una duración.",
+    "pitfall": "No trates todo as long as como condicional; con stayed o waited puede describir duración.",
+    "keywords": [
+      "condición",
+      "duración",
+      "as long as"
+    ]
+  },
+  "subject-verb-agreement": {
+    "title": "Concordancia sujeto-verbo",
+    "question": "¿El verbo va en singular o en plural?",
+    "summary": "El verbo concuerda con el sujeto gramatical, no con un nombre cercano. Elige is o are, has o have, y si un verbo en presente añade -s.",
+    "usage": "Encuentra el sujeto real. En The list of names is long, el sujeto es list, no names. Los nombres que siguen a together with, as well as o including no suelen convertir en plural un sujeto singular. Each, every y everyone suelen llevar un verbo en singular. News y mathematics llevan verbo en singular pese a la -s final; people lleva verbo en plural.\n\nEn un escrito cuidado, there is o there are concuerda con el nombre que sigue: There is a key, There are two keys. There's two keys es frecuente en el habla, pero no es la forma cuidada de la escritura. Un nombre colectivo como team o family suele ir en singular en inglés americano cuando el grupo es una unidad, y puede ir en plural en inglés británico cuando importan los miembros. Con either of o neither of como sujeto, el escrito formal suele preferir un verbo en singular.",
+    "pitfall": "No dejes que decida el nombre más cercano: The box of pencils is missing, no are missing.",
+    "keywords": [
+      "concordancia",
+      "sujeto",
+      "singular",
+      "plural"
+    ]
+  },
+  "past-perfect": {
+    "title": "Pasado perfecto",
+    "question": "¿Cuándo dos hechos pasados necesitan had + past participle?",
+    "summary": "Usa had + past participle para un hecho anterior a otro momento pasado. No es un pasado simple más formal.",
+    "usage": "Decide cuál de los dos momentos pasados es anterior. En When we arrived, the talk had started, el inicio es anterior a la llegada. Already, just y never suelen marcar ese pasado anterior. Si before o after ya dejan claro el orden, a menudo bastan dos verbos en pasado simple: I locked the door before I left. El pasado perfecto es más útil cuando, sin él, el orden no quedaría claro.\n\nNo pongas had en todos los hechos pasados. Una secuencia contada en orden temporal suele usar el pasado simple. El pasado perfecto toma como referencia otro momento pasado, no el ahora; un hecho pasado ligado al presente sigue usando el presente perfecto.",
+    "pitfall": "No marques con had el hecho pasado posterior. La llegada es más tarde, así que When we had arrived, the talk started invierte la línea temporal habitual, salvo que se pretenda otro punto posterior.",
+    "keywords": [
+      "pasado perfecto",
+      "anterioridad",
+      "had",
+      "secuencia"
+    ]
+  },
+  "past-perfect-continuous": {
+    "title": "Pasado perfecto continuo",
+    "question": "¿En qué se diferencia had been doing de was doing?",
+    "summary": "Had been + -ing muestra una actividad que continúa hasta un momento pasado, a menudo con un resultado entonces. Was doing significa en curso en ese momento.",
+    "usage": "Usa el pasado perfecto continuo para decir cuánto tiempo, o con qué repetición, una actividad llevaba en marcha antes de un punto pasado. I had been waiting for an hour when the bus came. A menudo también se ve un resultado: her eyes were red because she had been editing. Los verbos de estado, como know u own, no suelen tomar esta forma.\n\nWas waiting sitúa la cámara dentro de ese momento. Had been waiting va desde un momento anterior hasta ese momento. Si solo quieres decir que la espera estaba en curso entonces, basta el pasado continuo.",
+    "pitfall": "No uses had been doing para una acción que simplemente estaba en curso entonces. The phone rang while I was cooking no necesita had been.",
+    "keywords": [
+      "pasado perfecto continuo",
+      "duración",
+      "resultado"
+    ]
+  },
+  "future-continuous": {
+    "title": "Futuro continuo",
+    "question": "¿Cuándo es will be doing el futuro adecuado?",
+    "summary": "Will be + -ing marca una acción en curso en un momento futuro, y puede preguntar con cortesía por los planes de alguien. Una decisión repentina usa otro futuro.",
+    "usage": "Nombra el punto futuro: At 8 tomorrow I will be sitting on the train. Esta forma suele presentar la acción como en curso de manera prevista, no como una decisión tomada al hablar. Will you be passing the post office? trata el recorrido como un plan ya existente y apremia menos que Will you pass...?\n\nUna decisión repentina, una promesa o la predicción de una acción completa suele usar will + base form: I'll open the window. Un plan personal ya fijado usa más a menudo el presente continuo: I'm meeting Sam at 8. El esquema es will be más una forma -ing.",
+    "pitfall": "No quites el -ing, y no uses un participio pasado: At 8 I will be travelling, no will be travel ni will be travelled.",
+    "keywords": [
+      "futuro continuo",
+      "planes",
+      "will be",
+      "-ing"
+    ]
+  },
+  "future-perfect": {
+    "title": "Futuro perfecto",
+    "question": "¿Cómo digo que algo estará terminado antes de un momento futuro?",
+    "summary": "Will have + past participle significa completado antes de un plazo futuro. By y by the time suelen aportar ese plazo.",
+    "usage": "Encuentra primero el plazo y decide después si la acción está completa antes de él. By June she will have finished the course significa que, al llegar junio, la finalización ya es un hecho, no que el terminar ocurra durante junio. Una cláusula con by the time usa una forma de presente, y la principal usa el futuro perfecto: By the time you arrive, I will have left.\n\nSi solo quieres decir que algo ocurrirá, sin una finalización anterior a un punto, usa will + base form o be going to. No dejes el verbo que sigue a have en forma base.",
+    "pitfall": "Evita will have finish, y no pongas will en la cláusula con by the time: By the time you arrive, I will have left.",
+    "keywords": [
+      "futuro perfecto",
+      "plazo",
+      "by",
+      "will have"
+    ]
+  },
+  "present-for-future": {
+    "title": "Formas de presente para el futuro",
+    "question": "¿Cuándo un sentido futuro no usa will?",
+    "summary": "Los horarios y los programas suelen usar el presente simple. Un plan personal ya fijado suele usar el presente continuo. Will encaja con decisiones, promesas y predicciones.",
+    "usage": "Cuando un tren, un vuelo, una clase o una función sigue un horario, el presente simple es lo normal: The train leaves at 6. Eso no significa que esté ocurriendo ahora; trata el futuro como un horario fijo. Para algo que ya has concertado, lo habitual es el presente continuo: I'm seeing the dentist tomorrow. Una decisión tomada al hablar, o una predicción, usa will o be going to.\n\nLas cláusulas temporales de futuro y las de if también usan una forma de presente, no will: I'll call you when I land. Una sola palabra de futuro en chino no se corresponde con todos los futuros ingleses. Pregunta primero si se trata de un horario, de un plan, de una decisión o de una cláusula subordinada.",
+    "pitfall": "No pongas will en todo futuro. The train leaves at 6 es un horario; I'm seeing the dentist tomorrow es un plan.",
+    "keywords": [
+      "futuro",
+      "presente simple",
+      "horarios",
+      "planes"
+    ]
+  },
+  "stative-verbs": {
+    "title": "Verbos de estado",
+    "question": "¿Por qué algunos verbos evitan el continuo?",
+    "summary": "Los verbos de saber, gustar, poseer, percibir o parecer suelen ir en formas simples. El mismo verbo puede ir en continuo cuando significa una actividad.",
+    "usage": "Know, believe, like, own, seem y belong describen estados, no acciones paso a paso, así que di I know her, no I'm knowing her. Un marcador progresivo en chino no se convierte automáticamente en un continuo inglés. Have de posesión se queda en simple: I have a car. Have de actividad puede ir en continuo: I'm having lunch. I think da una opinión; I'm thinking significa que la reflexión está en curso.\n\nSee, hear, smell y taste suelen quedarse en simple, o usarse con can, para la percepción involuntaria. Cuando significan una cita, mirar, u oler o probar a propósito, el continuo es natural: I'm seeing the dentist, I'm tasting the soup. Pregunta si, en esa oración, el verbo es un estado o una actividad.",
+    "pitfall": "Evita I'm knowing, I'm owning y I'm having a car. La posesión es I have a car; una comida puede ser I'm having lunch.",
+    "keywords": [
+      "verbos de estado",
+      "continuo",
+      "percepción",
+      "posesión"
+    ]
+  },
+  "adverbs-of-frequency": {
+    "title": "Adverbios de frecuencia",
+    "question": "¿Dónde van always, often y never?",
+    "summary": "Always, usually, often, sometimes, rarely y never suelen ir delante del verbo principal, o detrás de be.",
+    "usage": "En She always arrives early, always va delante de arrives. En She is always early, va detrás de is. Con un auxiliar, sigue al primer auxiliar: I have never tried it. Sometimes y often también pueden cerrar la oración: I walk to work sometimes.\n\nNever, rarely y seldom ya son negativos, así que no añadas not. Always she is early es un énfasis ocasional, no la posición ordinaria. Estos adverbios responden a con qué frecuencia, no a cómo.",
+    "pitfall": "No pongas always al principio por defecto, y evita She doesn't never arrive. Never ya es negativo.",
+    "keywords": [
+      "frecuencia",
+      "adverbios",
+      "posición",
+      "never"
+    ]
+  },
+  "can-could-able": {
+    "title": "can, could y be able to",
+    "question": "¿Can, could o be able to para la capacidad?",
+    "summary": "Can sirve para la capacidad presente, la posibilidad o un permiso informal. Could sirve para una capacidad pasada general, una petición cortés o una posibilidad presente. Un éxito pasado concreto suele ser was able to.",
+    "usage": "I can swim es capacidad presente. I could swim when I was five es una capacidad general en el pasado. Para una ocasión pasada en la que alguien lo consiguió, el inglés suele usar was/were able to o managed to: The exit was blocked, but we were able to climb out. Si el intento falló, tanto couldn't como wasn't able to valen.\n\nCan no tiene infinitivo, así que otros tiempos usan be able to: I will be able to help tomorrow, She has been able to walk again. Could también puede dar una posibilidad presente con menos certeza: That could be the reason. Las palabras chinas de capacidad y de permiso no se corresponden todas con un solo modal inglés.",
+    "pitfall": "No te apoyes en I could climb out para un solo éxito pasado. Ese éxito concreto suele ser we were able to climb out.",
+    "keywords": [
+      "capacidad",
+      "can",
+      "could",
+      "be able to"
+    ]
+  },
+  "should-ought-had-better": {
+    "title": "should, ought to y had better",
+    "question": "¿Should, ought to o had better para un consejo?",
+    "summary": "Should y ought to dan un consejo o una expectativa. Had better vale para una situación concreta e insinúa un mal resultado si no actúas.",
+    "usage": "You should save a copy es un consejo ordinario. Ought to se acerca en el sentido y es un poco más formal, y es menos frecuente en el habla. La negación es ought not to, aunque shouldn't es más habitual. Should también puede marcar una expectativa: The train should be here soon.\n\nEl had de had better no es un tiempo pasado. You had better leave now se refiere al presente o al futuro, y a menudo se acorta en You'd better leave now. Usa la forma base, sin to. La negación es had better not. Es una advertencia para esta situación, no una recomendación general. No lo conviertas en would better.",
+    "pitfall": "No añadas to después de had better, y no escribas would better: You'd better leave, no You'd better to leave.",
+    "keywords": [
+      "consejo",
+      "should",
+      "ought to",
+      "had better"
+    ]
+  },
+  "may-might": {
+    "title": "may y might",
+    "question": "¿May y might significan los dos posibilidad?",
+    "summary": "May y might marcan posibilidad. Might suele sonar menos seguro, pero no es solo el pasado de may. May también puede dar un permiso formal.",
+    "usage": "It may rain e It might rain significan los dos que la lluvia es posible. Might suele sonar menos seguro, aunque la diferencia no es fija. May de permiso es formal: You may leave when you have signed. El permiso cotidiano es más a menudo can. En estilo indirecto, might suele sustituir a un may original: She said it might rain.\n\nLos dos llevan la forma base, sin to. La posibilidad pasada usa may have o might have más un participio pasado. Maybe es un adverbio y no puede sustituir a may be. May not puede ser un rechazo o una posibilidad, según el contexto; cannot marca más a menudo incapacidad o una prohibición más clara.",
+    "pitfall": "No escribas may to go. La posibilidad es It may rain; el adverbio es Maybe it will rain.",
+    "keywords": [
+      "posibilidad",
+      "may",
+      "might",
+      "permiso"
+    ]
+  },
+  "would-uses": {
+    "title": "Usos de would",
+    "question": "¿Would es pasado, hábito o cortesía?",
+    "summary": "Would puede ser un resultado condicional, una petición cortés, un hábito pasado repetido o un futuro visto desde el pasado. No suele informar de un solo hecho pasado ya concluido.",
+    "usage": "En las condiciones, would suele ir en el resultado: If I had time, I would walk. Las peticiones y los ofrecimientos usan Would you...? y Would you like...?, más suaves que will. Una acción pasada repetida también puede usar would: Every summer we would visit my aunt. Un estado pasado usa used to: I used to be shy, no I would be shy.\n\nVisto desde el pasado, will a menudo pasa a would: I knew she would be late. No uses would más un tiempo pasado ya cerrado para un solo hecho concluido. I would see him yesterday no es inglés; di I saw him yesterday.",
+    "pitfall": "No uses would para un estado pasado. I used to live there es el estado; I would live there suena a hábito repetido o a resultado condicional.",
+    "keywords": [
+      "would",
+      "condicional",
+      "cortesía",
+      "hábito"
+    ]
+  },
+  "reflexive-pronouns": {
+    "title": "Pronombres reflexivos",
+    "question": "¿Cuándo uso myself o himself en vez de me o him?",
+    "summary": "Usa un reflexivo cuando el sujeto y el objeto son la misma persona. Un reflexivo también puede enfatizar a la persona. Dos personas que actúan una sobre la otra necesitan each other.",
+    "usage": "En He cut himself, quien corta y quien resulta cortado son la misma persona. Para el énfasis, la oración sigue funcionando si quitas el pronombre: I fixed the lock myself. By myself puede significar solo o sin ayuda. El you singular usa yourself; el you plural usa yourselves. Las formas estándar son himself y themselves, no hisself ni theirselves.\n\nCuando dos personas se ven una a la otra, di They saw each other, no They saw themselves. La ropa y las partes del cuerpo suelen llevar un posesivo: He put his hand in his pocket. Un reflexivo no es un sujeto ordinario: evita Myself will do it.",
+    "pitfall": "No escribas theirselves ni hisself, y no uses themselves para una acción mutua: They saw each other.",
+    "keywords": [
+      "reflexivos",
+      "énfasis",
+      "each other"
+    ]
+  },
+  "demonstratives": {
+    "title": "this, that, these y those",
+    "question": "¿Cómo elijo this o that, y cuándo el nombre va en plural?",
+    "summary": "This y these suelen marcar lo cercano, lo actual o lo que se va a mencionar. That y those suelen marcar lo más lejano o lo recién mencionado. This y that llevan nombres en singular; these y those, plurales.",
+    "usage": "En el espacio, this cup es el que está a mano y that cup está más lejos. En el tiempo o en un texto, this puede apuntar hacia delante: This is the plan. That puede apuntar hacia atrás: That is exactly the problem. Al teléfono, This is Mina presenta a quien habla.\n\nHaz concordar el número: this book, these books, no this books. En un escrito cuidado, kind, sort y type se quedan en singular en that kind of problem, no those kind of problem. This y that también pueden ir solos como sujetos.",
+    "pitfall": "Evita this books y those kind of problem. Usa this o that con un nombre singular, y these o those con un plural.",
+    "keywords": [
+      "demostrativos",
+      "cercanía",
+      "singular",
+      "plural"
+    ]
+  },
+  "whose-whos": {
+    "title": "whose y who's",
+    "question": "¿Cuál es whose y cuál es who's?",
+    "summary": "Whose significa de quién, en preguntas y en relativas. Who's es la forma breve de who is o who has.",
+    "usage": "Whose bag is this? pregunta por el dueño. En una relativa, whose enlaza a una persona con algo que le pertenece: the student whose bag is missing. Who's late significa who is late; who's finished significa who has finished. Suenan igual, así que la prueba es si la oración necesita posesión.\n\nNo todo posesivo del chino se convierte en whose. Un posesivo ordinario es her o their: the student and her bag. Usa whose para la pregunta whose o para la posesión dentro de una relativa. Quitar el apóstrofo de who's no lo convierte en posesivo.",
+    "pitfall": "No escribas the student who's bag is missing. La posesión es whose bag; who's bag significaría who is bag.",
+    "keywords": [
+      "whose",
+      "who's",
+      "posesión",
+      "apóstrofo"
+    ]
+  },
+  "prepositions-place": {
+    "title": "at, in y on de lugar",
+    "question": "¿At, in u on para un lugar?",
+    "summary": "At suele marcar un punto, un evento o una entrada. In suele marcar un área o un espacio cerrado. On suele marcar una superficie, una línea o ir a bordo del transporte público.",
+    "usage": "Una sola palabra de lugar en chino cubre at, in y on. Pregunta si el lugar es un punto, un espacio o una superficie. At the door y at the station tratan el lugar como un punto de llegada o de actividad. In the room e in China lo tratan como un espacio en el que estás dentro. On the wall y on the coast son una superficie o una línea. El transporte público suele usar on the bus, on the train y on the plane; un coche particular suele usar in the car.\n\nAlgunas combinaciones están fijadas: at home, at work, in bed, in the picture. Las ciudades y los países suelen llevar in; una dirección o un punto concreto puede llevar at. Se dan tanto live on a street como live in a street. Aprende primero los grupos de punto, espacio y superficie, y después las excepciones.",
+    "pitfall": "No traduzcas todo lugar por in. Una entrada es at the door, una pared es on the wall, y el interior de una habitación es in the room.",
+    "keywords": [
+      "preposiciones de lugar",
+      "at",
+      "in",
+      "on"
+    ]
+  },
+  "prepositions-movement": {
+    "title": "Preposiciones de movimiento",
+    "question": "¿Qué preposición marca ir, entrar o salir?",
+    "summary": "To marca un destino, into el movimiento hacia un espacio, onto el movimiento hacia una superficie, y from un punto de partida. Arrive, reach y go home tienen sus propios esquemas.",
+    "usage": "Di go to the office, walk into the hall, put the cup onto the tray, come from the station, get out of the car y take the bag off the chair. Through subraya el movimiento por el interior de algo; across, el movimiento de un lado al otro. Into y onto hacen explícito el movimiento, y put it in the box también es ordinario.\n\nArrive in vale para una ciudad o un país, y arrive at para un edificio, una estación o un punto parecido. No digas arrive to. Reach the station no lleva to. Home, here y there suelen no llevar to: go home, come here. Enter the room ya incluye el movimiento, así que into es innecesario en ese uso ordinario. Enter into an agreement es una fórmula fija aparte.",
+    "pitfall": "Evita arrive to the station y go to home. Usa arrive at o arrive in, y di go home.",
+    "keywords": [
+      "movimiento",
+      "to",
+      "into",
+      "arrive"
+    ]
+  },
+  "adjective-order": {
+    "title": "Orden de los adjetivos",
+    "question": "¿Qué adjetivo va primero delante de un nombre?",
+    "summary": "Delante de un nombre, el orden habitual es opinión, tamaño, edad, forma, color, origen, material y después propósito. No amontones muchos adjetivos a la vez.",
+    "usage": "A lovely small old round table suena natural, y a old small lovely table no. Los determinantes y los números van primero: those two lovely chairs. El material se sitúa junto al nombre: a red wooden box. Un propósito se comporta como parte del nombre: a leather walking shoe. El orden es una tendencia fuerte, no una fórmula.\n\nLas comas pueden separar adjetivos del mismo tipo que podrían intercambiarse: a cold, wet day. Los adjetivos en el orden fijo no suelen necesitar coma. Dos o tres adjetivos suelen bastar. Si dudas, pon la opinión más personal más lejos del nombre.",
+    "pitfall": "Evita a red big car. El tamaño suele ir antes del color: a big red car.",
+    "keywords": [
+      "adjetivos",
+      "orden",
+      "nombre",
+      "opinión"
+    ]
+  },
+  "superlatives": {
+    "title": "Superlativos",
+    "question": "¿Cómo formo un superlativo, y cuándo añado the?",
+    "summary": "Los adjetivos cortos suelen tomar the + -est, y los largos, the most. Un superlativo suele tener un ámbito, y one of the va seguido de un nombre en plural.",
+    "usage": "Los adjetivos cortos, como tallest y simplest, toman -est. Los largos, como expensive y careful, toman the most. Los superlativos de good, bad y far son best, worst, y farthest o furthest. Un nombre suele llevar the: the oldest building in the town. Usa in para un lugar y of para un grupo: the best of the three. Un superlativo de experiencia vital suele llevar presente perfecto: the best meal I've had.\n\nNo combines most con -est. One of the best player es incorrecto porque one of lleva un plural: one of the best players. Most people significa la mayoría, no un superlativo. El superlativo es the most useful of the three. The a veces puede caer cuando el superlativo es atributo, pero suele quedarse delante de un nombre.",
+    "pitfall": "Evita the most tallest y one of the best player. Di the tallest, o one of the best players.",
+    "keywords": [
+      "superlativo",
+      "the most",
+      "-est",
+      "one of"
+    ]
+  },
+  "so-such": {
+    "title": "so y such",
+    "question": "¿Uso so o such para este énfasis?",
+    "summary": "So va seguido de un adjetivo o un adverbio. Such va seguido de un sintagma nominal. Tanto such a como so + adjetivo + a pueden enfatizar un contable singular.",
+    "usage": "So tired y so quickly modifican un adjetivo o un adverbio. Such a long day, such nice people y such weather modifican un sintagma nominal. Un contable singular admite los dos: such a cold day, o el más formal so cold a day. Las cantidades llevan so, no such: so many people, so much time, so few seats.\n\nLos esquemas de resultado son so tired that she left y such a long day that she left. No pongas so justo delante de a más un nombre. Such no es un adjetivo, así que the weather is such cold no es inglés.",
+    "pitfall": "Evita so a long day y such tired. Un sintagma nominal lleva such a long day; un adjetivo solo lleva so tired.",
+    "keywords": [
+      "énfasis",
+      "so",
+      "such",
+      "resultado"
+    ]
+  },
+  "still-yet-already": {
+    "title": "still, yet y already",
+    "question": "¿Still, already o yet?",
+    "summary": "Still significa que una situación continúa. Already significa antes de lo esperado. Yet, sobre todo en negativas y preguntas, significa hasta ahora.",
+    "usage": "She is still in the lab significa que no se ha ido. I've already eaten significa que la comida fue antes de lo esperado. Have you eaten yet? y I haven't eaten yet miden la situación hasta ahora. Still va delante del verbo principal o detrás de be. En negativas, still not es frecuente: I still haven't started. Already puede ir en posición media o al final. Yet suele ir al final.\n\nNo uses yet por already en una afirmación. Yet al principio de una oración a menudo significa sin embargo, y es otro uso: The room is small. Yet it is bright. Un marcador de acción completada en chino no elige automáticamente already en vez de un pasado. Already añade la idea de antes de lo esperado.",
+    "pitfall": "No sustituyas yet por already en una negativa ordinaria. No haber comido todavía es I haven't eaten yet, no I haven't already eaten.",
+    "keywords": [
+      "still",
+      "yet",
+      "already",
+      "expectativa"
+    ]
+  },
+  "ago-before": {
+    "title": "ago y before",
+    "question": "¿Ago o before para un tiempo anterior?",
+    "summary": "Ago cuenta hacia atrás desde ahora y lleva pasado simple. Before significa anterior a un punto, o en algún momento anterior, y a menudo se empareja con un perfecto.",
+    "usage": "Three days ago y a year ago cuentan hacia atrás desde ahora y llevan pasado simple: I saw her three days ago. Before noon y before the meeting necesitan otro tiempo como referencia. Before solo significa en algún momento anterior: I've seen this film before, o I had met her before.\n\nNo digas before three days por three days ago, y no pongas ago con el presente perfecto. Una sola palabra de tiempo en chino puede corresponder a cualquiera de las dos formas. Pregunta si el punto de referencia es ahora u otro suceso.",
+    "pitfall": "Evita I have seen her three days ago y before three days. Contar hacia atrás desde ahora es I saw her three days ago.",
+    "keywords": [
+      "ago",
+      "before",
+      "pasado",
+      "referencia temporal"
+    ]
+  },
+  "by-until": {
+    "title": "by y until",
+    "question": "¿Cuándo un límite de tiempo es by y cuándo es until?",
+    "summary": "By significa no más tarde de un punto y subraya la finalización antes de entonces. Until significa que una situación continúa hasta ese punto.",
+    "usage": "Finish the form by Friday significa que el formulario debe estar completo al llegar el viernes, y puede estarlo antes. The desk is staffed until Friday significa que la atención continúa hasta el viernes. Esperar, quedarse, estar abierto o estar cerrado suele llevar until. Un resultado de una sola vez, como terminar, entregar o llegar, suele llevar by.\n\nBy then y until then hacen el mismo contraste. En la negación, not until significa que el cambio ocurre en ese punto y no antes. No uses by para una estancia que continúa, ni until para un plazo que hay que cumplir antes. Till equivale a until y es más informal.",
+    "pitfall": "No escribas I'll wait by Friday para una espera que continúa. Lo que continúa es I'll wait until Friday; un plazo es Finish it by Friday.",
+    "keywords": [
+      "plazos",
+      "by",
+      "until",
+      "duración"
+    ]
+  },
+  "in-into-onto": {
+    "title": "in, into y onto",
+    "question": "¿El movimiento y la posición eligen siempre preposiciones distintas?",
+    "summary": "In y on pueden marcar posición, y también siguen a muchos verbos de movimiento. Into y onto subrayan de forma específica el movimiento hacia un espacio o hacia una superficie.",
+    "usage": "The keys are in the drawer es posición. She walked into the room subraya el movimiento de fuera hacia dentro. Put it in the box y put it into the box se dan los dos; into hace más clara la entrada. Onto the roof subraya el movimiento hacia la superficie, mientras que on the roof puede ser solo posición.\n\nOnto es una sola preposición. On to son dos palabras cuando to es la marca del infinitivo o la preposición siguiente: go on to explain the map significa seguir explicando, no moverse onto the map. No juntes todo on to en onto.",
+    "pitfall": "No escribas go onto explain por go on to explain. Ese to introduce la acción siguiente; no significa onto una superficie.",
+    "keywords": [
+      "in",
+      "into",
+      "onto",
+      "movimiento"
+    ]
+  },
+  "among-between": {
+    "title": "among y between",
+    "question": "¿Between es solo para dos, y among para un grupo?",
+    "summary": "Between vale para dos cosas, y también para varias cosas que se mantienen distintas. Among vale para algo dentro de un grupo que no se separa uno por uno.",
+    "usage": "Between the two doors es el espacio que separa dos cosas. The difference between the three designs sigue usando between porque los diseños se comparan como elementos distintos. Among the crowd y among her reasons sitúan algo dentro de un grupo sin separar cada elemento. Al repartir, between suele nombrar a los receptores distintos, mientras que among los trata como un grupo.\n\nBetween you and me usa la forma de objeto me, no I. No cambies todo between por among solo porque haya más de dos. El error inverso es among the two.",
+    "pitfall": "No escribas between you and I. Tras la preposición, usa la forma de objeto: between you and me.",
+    "keywords": [
+      "between",
+      "among",
+      "grupo",
+      "preposiciones"
+    ]
+  },
+  "other-another": {
+    "title": "other y another",
+    "question": "¿Another u other para uno más?",
+    "summary": "Another significa uno más o uno distinto y suele llevar un nombre singular. The other es el que queda en un conjunto conocido; other más un plural significa otros adicionales.",
+    "usage": "Another cup significa una taza adicional. The other cup es la que queda de dos. Other students significa estudiantes adicionales, y others puede ir solo: Some stayed; others left. The others significa todos los que quedan. Another ya es an + other, así que no añadas otro artículo ni escribas another students.\n\nAnother three days es la excepción: another puede ir delante de un número más un plural cuando significa un periodo o una cantidad adicional. Each other y one another marcan una acción mutua. Decide primero si te refieres a un elemento o a más, y si el conjunto ya es conocido.",
+    "pitfall": "Evita another students y the another cup. Un estudiante más es another student; estudiantes adicionales son other students.",
+    "keywords": [
+      "another",
+      "other",
+      "cantidad",
+      "conjunto"
+    ]
+  },
+  "both-all-none": {
+    "title": "both, all y none",
+    "question": "¿Qué palabra cubre dos, un grupo entero o cero?",
+    "summary": "Both es solo para dos. All es para tres o más, o para un incontable. None significa ni uno ni ninguno. Un conjunto concreto suele llevar of the.",
+    "usage": "Both students o both of the students significa dos personas conocidas. All students es genérico; all of the students o all the students significa un grupo concreto. None of the students es la negativa. Both...and... une elementos paralelos. Both of them lleva verbo en plural.\n\nNone of puede ir seguido de un plural o de un incontable. El escrito formal puede usar un verbo en singular, y un verbo en plural es frecuente en el habla, así que no es incorrecto de forma automática. No digas both of students ni all of students: tras of, un plural concreto necesita the u otro determinante. The both no es estándar. Para ni uno de tres o más, usa none, no neither.",
+    "pitfall": "Evita both of students. Di both students o both of the students.",
+    "keywords": [
+      "both",
+      "all",
+      "none",
+      "cuantificadores"
+    ]
+  },
+  "all-whole": {
+    "title": "all y whole",
+    "question": "¿All o whole para una cosa entera?",
+    "summary": "Whole suele seguir a the, a o un posesivo y modifica un contable singular. All puede modificar plurales e incontables, y aparece en all day.",
+    "usage": "The whole story, my whole life y a whole day tratan una cosa contable como completa. All the students y all the water cubren un plural y un incontable. All day y all morning significan el periodo entero y suelen no llevar the. The whole day también significa el día entero, con más énfasis en esa unidad completa.\n\nWhole no modifica con libertad un plural o un incontable. Evita the whole students y the whole information. Di all the students y all the information. El orden es the whole day, no whole the day ni the all day.",
+    "pitfall": "Evita whole the day y the whole informations. Un día completo es the whole day o all day; information lleva all the information.",
+    "keywords": [
+      "all",
+      "whole",
+      "totalidad",
+      "incontables"
+    ]
+  },
+  "so-that-such-that": {
+    "title": "so...that y such...that",
+    "question": "¿So...that o such...that para un resultado?",
+    "summary": "So lleva un adjetivo o un adverbio, y such lleva un sintagma nominal. La cláusula con that da el resultado. No es el mismo esquema que so that de propósito.",
+    "usage": "En She was so tired that she left early, so modifica tired. En It was such a long meeting that we left early, such modifica a long meeting. El habla a veces omite that, pero consérvalo mientras aprendes el esquema, para que no se confunda con el propósito. La prosa formal también puede decir The rules are such that..., con such apuntando hacia el resultado.\n\nEl propósito es She spoke quietly so that the baby could sleep, sin un so + adjetivo delante. El esquema de resultado pone so delante del adjetivo. No escribas so a long meeting that.",
+    "pitfall": "Evita She was such tired that she left. Un adjetivo lleva so tired that; un sintagma nominal lleva such a long meeting that.",
+    "keywords": [
+      "resultado",
+      "so that",
+      "such that",
+      "consecuencia"
+    ]
+  },
+  "purpose-to-so-that": {
+    "title": "Propósito con to y so that",
+    "question": "¿El propósito lleva infinitivo o una cláusula?",
+    "summary": "Con el mismo sujeto, el propósito suele usar to, in order to o so as to. Usa so that cuando necesitas una cláusula, un modal o un sujeto distinto.",
+    "usage": "En I left early to catch the train, quien se va y quien coge el tren son la misma persona. In order to es más explícito, y so as to es un poco más formal. Los tres llevan una forma base. Las negativas son in order not to y so as not to, no for not to.\n\nSo that introduce una cláusula completa, a menudo con can, could, will o would: I left early so that she could rest. Aquí she es un sujeto distinto, así que un infinitivo simple con to no encaja. No escribas so that to catch, y no conviertas todo propósito en for más un verbo. For puede llevar un nombre: for a rest.",
+    "pitfall": "Evita I left for catch the train y so that to rest. El mismo sujeto usa to catch; un sujeto distinto usa so that she could rest.",
+    "keywords": [
+      "propósito",
+      "infinitivo",
+      "so that",
+      "sujeto"
+    ]
+  },
+  "time-clauses": {
+    "title": "Cláusulas de tiempo",
+    "question": "¿Por qué una cláusula temporal de futuro evita will?",
+    "summary": "Cuando una cláusula con when, before, after, until, as soon as o once se refiere al futuro, su verbo suele ir en presente. Will se queda en la cláusula principal.",
+    "usage": "En I'll phone you when I land, land va en presente aunque el aterrizaje sea futuro. As soon as, once, before, after y until funcionan igual: Wait here until I get back. La principal puede llevar will, un imperativo o un modal. Una cláusula temporal al principio suele llevar coma.\n\nWhile marca un solapamiento y también deja fuera el will futuro de su propia cláusula. Cuando el sujeto es el mismo, after y before pueden llevar -ing: After landing, I phoned. La forma de presente no significa que el hecho ya haya ocurrido; es la forma normal de la cláusula temporal. Las cláusulas con if tienen una restricción parecida, pero una cláusula temporal no es una condición.",
+    "pitfall": "Evita I'll phone you when I will land. La cláusula temporal es when I land, y will se queda en la principal.",
+    "keywords": [
+      "cláusulas temporales",
+      "when",
+      "futuro",
+      "presente"
+    ]
+  },
+  "zero-conditional": {
+    "title": "Condicional cero",
+    "question": "¿Por qué los dos verbos se quedan en presente en un if general?",
+    "summary": "Para hábitos, hechos científicos o resultados inevitables, tanto la cláusula con if o when como la principal pueden usar el presente simple. No es una predicción sobre una sola ocasión futura.",
+    "usage": "If you heat ice, it melts enuncia una regla general, no un experimento de mañana. When a veces puede sustituir a if porque el resultado se trata como regular: When you heat ice, it melts. El resultado también puede ser un imperativo: If the light is red, stop.\n\nUna ocasión futura posible usa el primer condicional habitual: If it rains tomorrow, we will stay inside. No añadas will a los dos lados de una regla general. Will dentro de una cláusula con if puede tener un sentido especial, como la voluntad; no es la forma por defecto del condicional cero.",
+    "pitfall": "No escribas una regla general como If you will heat ice, it will melt. Un hecho general es If you heat ice, it melts.",
+    "keywords": [
+      "condicional cero",
+      "reglas",
+      "presente",
+      "if"
+    ]
+  },
+  "causative-have-get": {
+    "title": "Have y get causativos",
+    "question": "¿Cómo digo que encargué a otra persona que lo hiciera?",
+    "summary": "Have o get + objeto + participio pasado significa que encargas a alguien que lo haga con esa cosa. Si nombras a la persona, have lleva el verbo sin to y get lleva to.",
+    "usage": "I had my eyes tested significa que otra persona te los examinó, no que te los examinaras tú. Get es más coloquial y puede sugerir esfuerzo: I got the lock repaired. Si nombras a la persona, di I had the assistant print the file o I got the assistant to print the file.\n\nNo confundas esto con el pasado perfecto. I had cut my hair significa que tú habías hecho el corte. I had my hair cut significa que encargaste un corte. Get something done también puede significar una experiencia no deseada: I got my bike stolen. El contexto tiene que mostrar si se encargó o si te ocurrió.",
+    "pitfall": "No leas I had my hair cut como si te lo hubieras cortado tú. Tu propia acción ya hecha es I had cut my hair; el corte encargado es I had my hair cut.",
+    "keywords": [
+      "causativo",
+      "have",
+      "get",
+      "encargar"
+    ]
+  },
+  "let-make-allow": {
+    "title": "let, make y allow",
+    "question": "¿Let, make o allow llevan to?",
+    "summary": "Let y el make activo llevan un verbo sin to. Allow lleva to, o una forma -ing. El make pasivo añade to.",
+    "usage": "Let me see the map es permiso o una invitación, seguido de la forma base. Make me redo it es obligación, y la oración activa tampoco lleva to. La pasiva añade to: I was made to redo it. Allow es distinto: They allowed me to enter, o Smoking is not allowed. Permit sigue a allow.\n\nLet's go es una sugerencia a partir de let us y también lleva la forma base. No escribas let me to go ni make me to go. Allow me go también es incorrecto. Un verbo chino puede significar tanto permiso como obligación; el inglés los separa en let y make.",
+    "pitfall": "No añadas to después de let ni del make activo. Di Let me see y She made me wait. La pasiva es I was made to wait.",
+    "keywords": [
+      "let",
+      "make",
+      "allow",
+      "permiso"
+    ]
+  },
+  "prefer-would-rather": {
+    "title": "prefer y would rather",
+    "question": "¿Prefer to, o would rather?",
+    "summary": "Prefer lleva un nombre, -ing o to. Comparar dos cosas usa prefer A to B. Would rather lleva un verbo sin to. Para la acción presente de otra persona, la cláusula suele usar una forma de pasado.",
+    "usage": "Di I prefer tea to coffee y I prefer reading to watching television. Para una ocasión, prefer to do o would prefer to do es natural. La negación es prefer not to. No sustituyas to por than en el esquema del nombre. Una comparación de infinitivos puede usar rather than: prefer to walk rather than take the bus.\n\nWould rather lleva la forma base directamente: I'd rather walk than wait. I'd rather not wait rechaza la acción. Para lo que quieres que haga ahora otra persona, una forma de pasado crea distancia: I'd rather you stayed, I'd rather you didn't tell anyone. Esa forma de pasado no es un tiempo pasado real. No escribas would rather to go.",
+    "pitfall": "Evita I prefer tea than coffee y I'd rather to walk. La comparación es prefer tea to coffee, y rather va seguido directamente de walk.",
+    "keywords": [
+      "preferencia",
+      "prefer",
+      "would rather",
+      "comparación"
+    ]
+  },
+  "look-forward-to": {
+    "title": "look forward to",
+    "question": "¿Por qué look forward to suele ir seguido de -ing?",
+    "summary": "El to de esta expresión es una preposición, así que lleva un nombre o -ing, no una forma base.",
+    "usage": "I'm looking forward to the trip usa un nombre. I'm looking forward to meeting you usa -ing porque meeting you es el objeto de la preposición. Las cartas también usan I look forward to hearing from you. No sustituyas to por for.\n\nNo trates todo to como marca de infinitivo. El to de want to meet es el to del infinitivo. El to de look forward to es una preposición, como el to de listen to. I'm looking forward es frecuente porque el sentimiento es actual, pero la forma sigue siendo looking, no look forwarding.",
+    "pitfall": "Evita I'm looking forward to meet you. Tras la preposición, usa meeting you, o un nombre como the trip.",
+    "keywords": [
+      "look forward to",
+      "preposición",
+      "-ing",
+      "expectativa"
+    ]
+  },
+  "adjective-preposition": {
+    "title": "Adjetivo más preposición",
+    "question": "¿Qué preposición sigue a interested, good o afraid?",
+    "summary": "Muchos adjetivos llevan una preposición fija más un nombre o -ing. Aprende la preposición con el adjetivo; un equivalente chino no siempre se convierte en to.",
+    "usage": "Pares frecuentes son interested in, good at, bad at, afraid of, worried about, proud of, famous for, responsible for, keen on, married to, similar to, tired of, excited about y sorry about. Good at es una habilidad, good with es soltura con personas o herramientas, y good for es un beneficio. Different from es la opción más segura; el inglés británico también usa different to.\n\nSi un verbo sigue a la preposición, usa -ing: interested in learning, good at listening. Interested to hear es otro esquema, y significa tener curiosidad o alegrarse de oír algo; no sustituye a interested in. Ninguna regla predice todas las preposiciones, así que aprende cada combinación nueva como una unidad.",
+    "pitfall": "Evita interested on the course y afraid from dogs. Las fórmulas habituales son interested in the course y afraid of dogs.",
+    "keywords": [
+      "adjetivos",
+      "preposiciones",
+      "colocaciones",
+      "-ing"
+    ]
+  },
+  "verb-preposition": {
+    "title": "Verbo más preposición",
+    "question": "¿La preposición de depend, listen o wait puede moverse o desaparecer?",
+    "summary": "Con depend on, listen to y wait for, la preposición se queda tras el verbo y el objeto no puede separarlos. Otros verbos ya incluyen el sentido de una preposición que el aprendiz añade.",
+    "usage": "Depend on, rely on, listen to, wait for, belong to, apologise for, apply for, pay for, search for y believe in son combinaciones de verbo más preposición. Un pronombre también sigue a la preposición: listen to it, wait for them. Agree with a person, agree on a shared decision y agree to a proposal.\n\nDiscuss the plan, enter the room, reach the station, marry someone y mention the fee no suelen añadir about, into, to o with. Answer the question lleva el objeto directamente. Answer to a person puede significar rendir cuentas, y es otro sentido. No son phrasal verbs separables: look after her no puede pasar a look her after.",
+    "pitfall": "Evita depend of the weather, listen music y discuss about the plan. Di depend on, listen to music y discuss the plan.",
+    "keywords": [
+      "verbos",
+      "preposiciones",
+      "depend on",
+      "listen to"
+    ]
+  },
+  "so-neither-do": {
+    "title": "So do I y Neither do I",
+    "question": "¿Por qué el acuerdo es So do I y no So I do?",
+    "summary": "Para coincidir con una afirmativa, usa So + auxiliar + sujeto. Para coincidir con una negativa, usa Neither o Nor + auxiliar + sujeto. El auxiliar repite el de la primera oración.",
+    "usage": "Tras I like this map, So do I usa do en lugar de like. She is ready lleva So am I. They can drive lleva So can we. She has left lleva So have I. Una oración en pasado simple lleva So did I. Las negativas también se invierten: I don't eat meat. Neither do I. Nor do I significa lo mismo. Me too y Me neither son frecuentes en el habla; el acuerdo cuidado sigue invirtiendo.\n\nSo I do no significa yo también. Confirma a la misma persona: You work too hard. So I do. El sujeto no ha cambiado. No pongas el sujeto justo después de So cuando quieres decir que otra persona está de acuerdo. Fíjate primero en si la oración original usa be, un modal, un perfecto o un verbo ordinario.",
+    "pitfall": "No uses So I am para yo también. Tras She is tired, el acuerdo es So am I. So she is solo confirma que ella de verdad está cansada.",
+    "keywords": [
+      "acuerdo",
+      "so do I",
+      "neither",
+      "inversión"
+    ]
+  },
+  "one-ones": {
+    "title": "one y ones",
+    "question": "¿Cuándo puede one sustituir a un nombre?",
+    "summary": "One sustituye a un contable singular ya conocido, y ones a un plural. Un incontable no puede sustituirse por one.",
+    "usage": "En Which cup do you want? The blue one, one está por cup. El plural es the blue ones. Which one, this one y another one son normales. Ones suele necesitar un adjetivo o un determinante delante. These solo a menudo basta; these ones es coloquial.\n\nNo uses one para un incontable. No existe an information one; di this information. Tampoco añadas el nombre repetido: a one book es incorrecto. El one formal que significa la gente en general es otro uso: One should read the label. El inglés cotidiano usa más a menudo you.",
+    "pitfall": "No sustituyas un incontable por one, y no escribas the blue one cup. Una taza es the blue one; information se queda en this information.",
+    "keywords": [
+      "one",
+      "ones",
+      "sustitución",
+      "contables"
+    ]
+  },
+  "it-vs-there": {
+    "title": "it y there",
+    "question": "¿Cuándo la existencia es there is, y cuándo es it?",
+    "summary": "There is o there are introduce algo nuevo en la escena. It señala una cosa ya identificada, o actúa como sujeto vacío para el tiempo atmosférico, la hora, la distancia y algunas cláusulas.",
+    "usage": "There's a spider in the sink le dice a quien escucha que hay una araña en la escena. The spider is in the sink, o It's in the sink, se refiere a una araña que las dos personas ya pueden identificar. El tiempo, la hora y la distancia usan it: It's raining, It's five o'clock, It's a long way. It también puede apuntar hacia un infinitivo o una cláusula: It's hard to say, It seems that the gate is shut.\n\nEl verbo chino de existencia a menudo corresponde a there is, no a it has. It has a book on the table no es una oración existencial. There's two books es frecuente en el habla; el escrito cuidado usa There are two books. Este there no es la palabra de lugar over there. El lugar real se añade aparte: There is a cafe near the station.",
+    "pitfall": "No uses It has a book on the table para la existencia. Di There is a book on the table. La lluvia es It's raining.",
+    "keywords": [
+      "there is",
+      "it",
+      "existencia",
+      "tiempo"
+    ]
+  },
+  "on-time-in-time": {
+    "title": "on time e in time",
+    "question": "¿Cuál significa puntual, on time o in time?",
+    "summary": "On time significa en el momento previsto, puntual. In time significa con suficiente antelación, antes de que sea tarde.",
+    "usage": "The train was on time significa que llegó según el horario, ni pronto ni tarde. We arrived in time for the talk significa que llegamos antes de que empezara, quizá bastante antes. In time to do significa que hubo tiempo suficiente para la acción: We left in time to catch the bus. Just in time subraya un margen estrecho.\n\nOn time no lleva for un plazo para significar con suficiente antelación. In time no significa exactamente en el horario. Para un plazo, di in time for Friday's class o by Friday. Las dos fórmulas no se intercambian.",
+    "pitfall": "No uses on time for the talk para significar con suficiente antelación. Con suficiente antelación es in time for the talk; llegar en el momento previsto es on time.",
+    "keywords": [
+      "puntualidad",
+      "on time",
+      "in time",
+      "plazos"
+    ]
+  },
+  "at-the-end-in-the-end": {
+    "title": "at the end e in the end",
+    "question": "¿At the end o in the end?",
+    "summary": "At the end of es la parte final de algo. In the end es el resultado tras un cambio o una espera, y no lleva of.",
+    "usage": "At the end of the film y at the end of the street son el punto final de esa cosa. Si la cosa ya es conocida, puedes decir The film is sad at the end. In the end significa al cabo: In the end we took a taxi, a menudo tras vacilar, fracasar o esperar. No significa la última parte de una película, así que no existe in the end of the film.\n\nAt last y finally también pueden significar que algo ocurrió tras una larga espera, pero finally puede introducir el último elemento de una lista. In the end no hace ese trabajo. Pregunta si te refieres al final físico o textual de algo, o al desenlace de los hechos.",
+    "pitfall": "Evita in the end of the film. La última parte de la película es at the end of the film. Un desenlace tras cambios es in the end.",
+    "keywords": [
+      "final",
+      "desenlace",
+      "at the end",
+      "in the end"
+    ]
+  },
+  "in-case": {
+    "title": "in case e if",
+    "question": "¿In case significa if, o una precaución?",
+    "summary": "In case suele significar hacer algo ahora porque otra cosa podría ocurrir. If significa que el resultado ocurre solo cuando la condición es cierta.",
+    "usage": "En Take a charger in case the battery dies, llevas el cargador ahora, se agote o no la batería después. En I'll call you if the battery dies, la llamada ocurre solo si eso pasa. Una cláusula futura con in case usa una forma de presente: in case it rains, no in case it will rain. In case of lleva un nombre: in case of fire.\n\nNo sustituyas todo if por in case. I'll take your number in case I miss the bus es una precaución. I'll call you if I miss the bus es una condición. Parte del habla americana usa in case más cerca de if, pero el sentido central es la precaución.",
+    "pitfall": "No uses I'll call you in case I arrive para una llamada que ocurre solo al llegar. Esa condición es if I arrive. In case encaja con una precaución tomada de antemano.",
+    "keywords": [
+      "precaución",
+      "in case",
+      "if",
+      "condición"
+    ]
+  },
+  "even-if-even-though": {
+    "title": "even if y even though",
+    "question": "¿Even if o even though?",
+    "summary": "Even if introduce un caso incierto o hipotético que no cambia el resultado. Even though introduce un hecho conocido. Even although no es estándar.",
+    "usage": "En Even if it rains, we'll go, la lluvia no es segura, pero no cambiaría el plan. En Even though it rained, we went, la lluvia es un hecho. Even refuerza la concesión y no se añade con libertad a although. Usa even if para un futuro incierto y even though para lo que ha ocurrido o es claramente cierto.\n\nThough puede ir solo, y even though es la forma reforzada. Although también introduce una cláusula factual, pero no admite even delante. No copies un doble marcador de concesión: Even though it rained, but we went usa un nexo de más. Quédate con even though o con but.",
+    "pitfall": "Evita even although y Even though it rained, but we went. Una concesión factual es Even though it rained, we went.",
+    "keywords": [
+      "concesión",
+      "even if",
+      "even though",
+      "hechos"
+    ]
+  },
+  "reported-commands": {
+    "title": "Órdenes en estilo indirecto",
+    "question": "¿Las órdenes referidas usan that o to?",
+    "summary": "Tell, ask, order, advise y warn refieren una orden o una petición con una persona más un infinitivo con to. En la negativa, pon not delante de to.",
+    "usage": "La oración directa Wait outside puede pasar a She told us to wait outside. Una petición es She asked me to speak quietly. La negativa pone not delante de to: She told me not to lock the door. Ese es el orden preferible. Advise y warn usan el mismo esquema: She warned us not to touch the paint.\n\nSay no admite say someone to do. She said to wait es posible, pero She told us to wait es más claro. Si refieres información y no una orden, usa una cláusula con that: She told me that the door was locked. Decide primero si las palabras originales eran una orden o una afirmación.",
+    "pitfall": "Evita She told me that wait outside y She said me to wait. Una orden es She told me to wait outside.",
+    "keywords": [
+      "órdenes",
+      "estilo indirecto",
+      "infinitivo",
+      "tell"
+    ]
+  },
+  "be-supposed-to": {
+    "title": "be supposed to",
+    "question": "¿Be supposed to significa deber o lo que la gente cree?",
+    "summary": "Be supposed to puede ser una norma o un plan, o una creencia general. Was supposed to suele implicar que el plan no se cumplió.",
+    "usage": "We're supposed to sign in es lo que espera una norma o un plan, a menudo más suave que must. It's supposed to be an excellent cafe informa de lo que dice la gente, no de un hecho que quien habla haya comprobado. We're not supposed to park here significa que aparcar va contra la expectativa o la norma.\n\nEn I was supposed to call, but I forgot, el plan pasado no se cumplió. Hace falta be: suppose to call no es la fórmula. I suppose significa supongo y es otro esquema. No sustituyas la fórmula por should en todas las oraciones; la creencia y un plan no cumplido forman parte de su propio uso.",
+    "pitfall": "No escribas You suppose to sign in. La fórmula necesita be: You're supposed to sign in.",
+    "keywords": [
+      "supposed to",
+      "norma",
+      "expectativa",
+      "creencia"
+    ]
+  },
+  "be-about-to": {
+    "title": "be about to",
+    "question": "¿Be about to o will para algo inminente?",
+    "summary": "Be about to más una forma base significa que algo va a ocurrir de inmediato. Was about to, a menudo con when, significa que la acción era inminente y luego se interrumpió.",
+    "usage": "The film is about to start es más inmediato que will start. Una hora de reloj suele ser innecesaria: about to start at eight resulta forzado porque at eight ya da la hora y puede no significar este momento. En I was about to leave when the phone rang, la salida no ocurrió.\n\nI'm not about to apologise también puede ser un rechazo: no tengo intención de hacerlo. Eso no es un sentido temporal. No escribas about to leaving, y no añadas will. No existe will about to. Un plan más lejano usa be going to o el presente continuo.",
+    "pitfall": "Evita The film is about to starting, y no añadas will. Un inicio inmediato es The film is about to start.",
+    "keywords": [
+      "inminencia",
+      "be about to",
+      "interrupción",
+      "futuro"
+    ]
+  },
+  "get-passive": {
+    "title": "Pasiva con get",
+    "question": "¿Get más participio pasado puede sustituir a toda pasiva con be?",
+    "summary": "Get más un participio pasado suele marcar un cambio que le ocurre al sujeto. Es coloquial y a menudo sugiere un resultado o una sorpresa. No todas las pasivas de estado con be pasan a get.",
+    "usage": "The window got broken, He got promoted y We got delayed subrayan que algo ocurrió y que el sujeto recibió el resultado. Un complemento con by es posible, pero menos frecuente que con be. Get married, get dressed, get lost y get stuck son cambios de estado ya establecidos. Get suena natural en el habla; un informe formal sigue prefiriendo be.\n\nEstados como The building is made of brick y She is known for her essays no pasan a got made ni got known. Get something done también puede ser causativo: I got the window repaired significa que encargaste la reparación, mientras que The window got repaired significa que la reparación ocurrió. Fíjate en dónde se sitúa el objeto.",
+    "pitfall": "No conviertas The building is made of brick en The building got made of brick. Un estado de material se queda con be.",
+    "keywords": [
+      "pasiva",
+      "get",
+      "cambio de estado",
+      "resultado"
+    ]
+  },
+  "modal-passive": {
+    "title": "Pasivas con modal",
+    "question": "¿Cómo se combina un modal con la pasiva?",
+    "summary": "Usa un modal más be más un participio pasado: can be changed, must be signed, should be sent. Ought conserva to be.",
+    "usage": "La activa They must sign the form pasa a The form must be signed. El modal aporta posibilidad, necesidad, consejo o permiso, y be más el participio pasado aporta la pasiva. Pon not después del modal: The form must not be removed. En una pregunta, adelanta el modal: Can the date be changed?\n\nOught to be done es la forma principal que conserva to. No escribas must to be, should to be ni can finished. Una necesidad o posibilidad pasada usa una pasiva de modal perfecto: It should have been sent yesterday. Eso es una capa más; añadir un tiempo pasado a must be no significa por sí solo que la obligación se cumpliera en el pasado.",
+    "pitfall": "Evita The form must signed y The form must to be signed. El esquema es must be signed.",
+    "keywords": [
+      "pasiva",
+      "modales",
+      "must be",
+      "participio"
+    ]
+  },
+  "linking-so-therefore": {
+    "title": "so y therefore",
+    "question": "¿Por qué so puede unir un resultado cuando therefore a menudo no puede?",
+    "summary": "So es una conjunción y puede unir una causa con un resultado. Therefore es un adverbio, así que necesita punto o punto y coma, no una coma sola.",
+    "usage": "It was late, so we left es una oración de resultado ordinaria, por lo general con coma delante de so. Therefore es más formal: It was late. Therefore, we left. También puedes escribir It was late; therefore, we left. It was late, therefore we left es una coma entre oraciones independientes: dos oraciones completas unidas solo por una coma.\n\nNo copies un doble marcador de causa como Because it was late, so we left. Quédate con because o con so. Therefore también puede ir en medio: We therefore left. Para quien aprende, el principio de una oración nueva es el lugar más claro.",
+    "pitfall": "Evita It was late, therefore we left y Because it was late, so we left. Usa so, o empieza una oración nueva con Therefore.",
+    "keywords": [
+      "resultado",
+      "so",
+      "therefore",
+      "puntuación"
+    ]
+  },
+  "whereas-while": {
+    "title": "whereas y while de contraste",
+    "question": "¿Cómo contrastan while y whereas dos hechos?",
+    "summary": "Whereas y while pueden contrastar dos hechos. While también significa durante; whereas es casi solo contraste.",
+    "usage": "Cycling is cheap, whereas driving is not pone dos hechos uno junto al otro. While puede hacer lo mismo: Cycling is cheap, while driving is not. Whereas es un poco más formal y conviene a la comparación escrita. Si while pudiera leerse como tiempo, elige whereas o reescribe. While I like the design suele ser concesión o contraste; While I was reading es tiempo.\n\nMantén paralelos los dos lados. During es una preposición y no puede sustituir a whereas entre dos cláusulas completas. Although subraya la concesión, no un contraste neutro. Decide si los dos hechos simplemente difieren o si uno resulta sorprendente a pesar del otro.",
+    "pitfall": "No uses during para unir dos cláusulas en un contraste. Di Cycling is cheap, whereas driving is not. During the ride es una preposición de tiempo.",
+    "keywords": [
+      "contraste",
+      "whereas",
+      "while",
+      "comparación"
+    ]
+  },
+  "not-only-but-also": {
+    "title": "not only...but also",
+    "question": "¿Cómo mantengo paralelo not only...but also?",
+    "summary": "Los elementos que siguen a not only y a but also deben coincidir en la forma. Cuando not only abre la cláusula, la primera cláusula se invierte.",
+    "usage": "Not only the chairs but also the desks were moved une dos sintagmas nominales. She not only called but also wrote une dos verbos. Also a veces puede caer, pero la forma paralela no. La concordancia sigue al sujeto normal. Desks, junto al verbo, es plural, así que el verbo es were moved.\n\nEl énfasis antepuesto invierte la primera cláusula: Not only did she call, but she also wrote. Con be, di Not only is it cheap, but it is also strong. No escribas Not only she did call. El par chino no crea la inversión de forma automática. Invierte solo cuando not only empieza una cláusula completa.",
+    "pitfall": "Evita Not only she called, but also wrote. Al principio, usa Not only did she call, but she also wrote, y mantén paralelos los dos lados.",
+    "keywords": [
+      "paralelismo",
+      "not only",
+      "inversión",
+      "énfasis"
+    ]
+  },
+  "the-more-the-more": {
+    "title": "the more...the more",
+    "question": "¿Los dos lados de un doble comparativo necesitan the?",
+    "summary": "The más una cláusula comparativa, seguido de the más otra, significa que un cambio trae otro. Los dos the son necesarios, y more no se combina con -er.",
+    "usage": "The more carefully you read, the fewer mistakes you make empareja una condición que cambia con un resultado que cambia. The sooner we start, the earlier we finish funciona igual. Una forma breve puede omitir los verbos: The sooner, the better. Usa el comparativo normal: more carefully, fewer, better, harder, no more better ni more harder.\n\nNo escribas More you read, more you learn. El artículo the pertenece al esquema y no puede caer. La idea repetida en chino corresponde al the repetido, no a un more de más sobre una palabra que ya es un comparativo en -er.",
+    "pitfall": "Evita More you practise, more you improve y the more better. Di The more you practise, the more you improve.",
+    "keywords": [
+      "comparativo",
+      "the more",
+      "correlación",
+      "cambio"
+    ]
+  },
+  "participle-clauses": {
+    "title": "Cláusulas de participio",
+    "question": "¿Quién es el sujeto de un -ing o de un participio pasado al principio?",
+    "summary": "El sujeto sobreentendido de un sintagma de participio suele ser el sujeto de la cláusula principal. El -ing suele ser activo, un participio pasado suele ser pasivo, y having done marca una acción anterior.",
+    "usage": "En Hoping for shade, we sat under the tree, quien espera es we. En Built in 1920, the hall is still used, the hall es lo que se construyó. Having paid, we left pone el pago antes de la salida. El participio es más compacto que repetir who o after we.\n\nSi el sujeto principal no puede realizar la acción del participio, el modificador queda suelto. Walking to the station, the rain started hace que la lluvia camine. Di Walking to the station, I felt the rain start, o While I was walking, the rain started. Un participio no es un tiempo nuevo. La secuencia sigue viniendo de las palabras y del contexto.",
+    "pitfall": "Evita Walking to the station, the rain started. Quien camina tiene que ser el sujeto principal, o reescríbelo como While I was walking, the rain started.",
+    "keywords": [
+      "participio",
+      "sujeto",
+      "modificador suelto",
+      "-ing"
+    ]
+  },
+  "mixed-conditionals": {
+    "title": "Condicionales mixtos",
+    "question": "¿Cómo funcionan los verbos cuando la condición y el resultado están en tiempos distintos?",
+    "summary": "Para una condición pasada con un resultado presente, usa had más un participio pasado en la cláusula con if y would más una forma base en el resultado. Una condición presente con un resultado pasado usa la forma que corresponde a cada tiempo.",
+    "usage": "If I had taken the job, I would live in Leeds now deja el trabajo rechazado en el pasado y el lugar donde se vive en el presente. Would have lived movería también el vivir al pasado. En If she were more organised, she wouldn't have missed the train, ser desorganizada es un rasgo presente y perder el tren es un resultado pasado.\n\nNo fuerces los dos lados a un solo tiempo por simetría. Una condición irreal de presente es If I lived there, I would walk. Uno de pasado es If I had lived there, I would have walked. Mézclalos solo cuando los tiempos de verdad difieren. Were es la forma de una condición irreal de presente, incluido el formal I were y she were.",
+    "pitfall": "No pongas el resultado presente en would have. Un trabajo rechazado en el pasado y un lugar donde ahora no vives es If I had taken the job, I would live there now.",
+    "keywords": [
+      "condicionales mixtos",
+      "tiempos",
+      "would",
+      "had"
+    ]
+  },
+  "by-the-time": {
+    "title": "by the time",
+    "question": "¿Qué tiempos se emparejan con by the time?",
+    "summary": "By the time significa no más tarde de ese momento. Para el futuro, empareja una cláusula en presente con una principal en futuro perfecto. Para el pasado, empareja una cláusula en pasado con una principal en pasado perfecto.",
+    "usage": "En By the time you read this, I will have left, la lectura es futura y la salida ya está completa antes de ella. La cláusula usa read, y la principal usa will have left. En By the time we found a seat, the talk had begun, encontrar el asiento es pasado y el inicio es anterior, así que la forma es had begun.\n\nNo pongas will ni would en una cláusula futura ordinaria con by the time. La fórmula subraya la finalización antes de ese punto. Si algo simplemente está en curso en el momento de llegar, when más una forma continua puede encajar mejor. By then y by Friday también llevan formas de perfecto, pero no van seguidos de una cláusula.",
+    "pitfall": "Evita By the time you will arrive, I will leave. Di By the time you arrive, I will have left.",
+    "keywords": [
+      "by the time",
+      "futuro perfecto",
+      "pasado perfecto",
+      "plazo"
+    ]
+  },
+  "have-got": {
+    "title": "have got",
+    "question": "¿I've got significa posesión o el perfecto de get?",
+    "summary": "En inglés británico, I've got suele significar posesión presente. Las preguntas y las negativas usan have, sin do. La posesión pasada es had, no had got, en el sentido ordinario.",
+    "usage": "I've got two sisters equivale a I have two sisters. Have you got a pen? y I haven't got a pen son la pregunta y la negativa correspondientes. El inglés americano dice más a menudo Do you have a pen?, aunque have got se entiende. Have got to marca obligación, cerca de have to: I've got to leave now.\n\nEsto no es automáticamente el presente perfecto de get. I have got your message puede significar recibido, así que el contexto importa. Para la posesión, no trates got como la acción de obtener. La posesión pasada es I had a pen, no I had got a pen. I had got suena al pasado perfecto de get. Do you have got tampoco es estándar.",
+    "pitfall": "Evita Do you have got a pen? y I had got a pen para la posesión pasada. El presente es Have you got a pen? El pasado es I had a pen.",
+    "keywords": [
+      "have got",
+      "posesión",
+      "británico",
+      "obligación"
+    ]
+  },
+  "been-gone": {
+    "title": "been y gone",
+    "question": "Si la persona ya ha vuelto, ¿es has been o has gone?",
+    "summary": "Have been to significa que fue y volvió, o que tiene esa experiencia. Have gone to significa que se ha ido y no ha vuelto.",
+    "usage": "She has been to the lab puede decirse mientras está delante de ti: fue allí en algún momento. She has gone to the lab significa que va de camino o que ya está allí, no aquí. Been in puede subrayar la estancia: I've been in the lab all morning.\n\nGone también encaja con cosas que ya no están aquí: The milk has gone. No uses has gone to Paris para la experiencia de viaje de alguien que ya ha regresado. El chino puede confundir las dos. El inglés pregunta si la persona sigue fuera.",
+    "pitfall": "Si ella ha vuelto, She has gone to Paris le dice a quien escucha que sigue fuera. La experiencia es She has been to Paris.",
+    "keywords": [
+      "been",
+      "gone",
+      "presente perfecto",
+      "viaje"
+    ]
+  },
+  "mid-position-adverbs": {
+    "title": "Adverbios en posición media",
+    "question": "¿Dónde van adverbios como probably, never y still?",
+    "summary": "Los adverbios de frecuencia, de certeza y algunos de grado suelen ir delante del verbo principal, detrás de be, o detrás del primer auxiliar. Los de modo suelen seguir al objeto.",
+    "usage": "Di I probably know the answer, She is probably right, They have probably left y I can never tell. Esa es la posición neutra. Always, often, still y already a menudo también la usan. Un adverbio puede moverse para dar énfasis, pero el foco puede cambiar.\n\nLos adverbios de modo no suelen separar el verbo de su objeto: She speaks English well, no She speaks well English. Even y only cambian su objetivo cuando se mueven, así que no son adverbios ordinarios de posición media. Si dudas, pon el adverbio después del auxiliar y antes del verbo léxico.",
+    "pitfall": "Evita She speaks well English. English es el objeto, así que well lo sigue: She speaks English well. La probabilidad es She probably speaks English.",
+    "keywords": [
+      "adverbios",
+      "posición",
+      "probably",
+      "modo"
+    ]
+  },
+  "what-how-exclamations": {
+    "title": "Exclamaciones con what y how",
+    "question": "¿What o How en una exclamación?",
+    "summary": "What introduce un sintagma nominal. How introduce un adjetivo o un adverbio. What no lleva a delante de un incontable o de un plural.",
+    "usage": "What a strange question! tiene el contable singular question, así que lleva a. What beautiful weather! y What lovely shoes! no llevan a porque weather es incontable y shoes es plural. How strange! y How quickly it changed! modifican un adjetivo o un adverbio. How strange that sounds también es posible.\n\nNo escribas How a strange question ni What strange it is. So y such son un énfasis emparentado, pero no son el inicio de esta exclamación: such a strange question puede ir dentro de una oración. Una exclamación puede incluir sujeto y verbo, con What o How todavía al principio.",
+    "pitfall": "Evita How a beautiful day. Un nombre lleva What a beautiful day. Un adjetivo solo lleva How beautiful.",
+    "keywords": [
+      "exclamaciones",
+      "what",
+      "how",
+      "énfasis"
+    ]
+  },
+  "phrasal-verbs-separable": {
+    "title": "Phrasal verbs separables",
+    "question": "¿Por qué un pronombre va en medio de turn off?",
+    "summary": "Con turn off o pick up, un objeto nominal puede ir en medio o después de la partícula. Un pronombre tiene que ir en medio. Los verbos preposicionales, como look after, no se separan.",
+    "usage": "Turn off the radio y turn the radio off son posibles los dos. Cuando el objeto es it o them, solo son posibles turn it off y pick them up, no turn off it. Put on, give back, fill in y look up en el sentido de buscar comparten el esquema. Un sintagma nominal largo suele quedarse después de la partícula, para que el verbo y la partícula no queden lejos.\n\nLa prueba es si un pronombre puede pasar al medio. Look after her, wait for her y depend on her no pueden pasar a look her after. Esa palabra es una preposición, no una partícula móvil. El sentido de un phrasal verb a menudo no es la suma de sus palabras, así que aprende la unidad.",
+    "pitfall": "Evita turn off it y look her after. Un phrasal verb separable es turn it off. Un verbo preposicional es look after her.",
+    "keywords": [
+      "phrasal verbs",
+      "partícula",
+      "pronombre",
+      "separables"
+    ]
+  },
+  "noun-preposition": {
+    "title": "Nombre más preposición",
+    "question": "¿Qué preposición sigue a reason, solution o increase?",
+    "summary": "Aprende juntos el nombre y su preposición. Reason for, solution to e increase in no son intercambiables con libertad.",
+    "usage": "Combinaciones frecuentes son a reason for the delay, a need for rest, a solution to the problem, an increase in prices, a decrease in noise, the cause of the fire, an advantage of the plan, an interest in music, a photograph of the hall, a difficulty with the lock, an effect on attendance y a reply to the letter. Un nombre no siempre conserva la preposición del adjetivo relacionado: proud of, pero pride in.\n\nReason of no es la fórmula ordinaria. Solution of puede aparecer en química, pero un problema sigue llevando a solution to the problem. Un verbo tras la preposición usa -ing: a reason for leaving. Ninguna regla única produce todas las combinaciones.",
+    "pitfall": "Evita the reason of the delay y a solution of the problem. Di the reason for the delay y a solution to the problem.",
+    "keywords": [
+      "nombres",
+      "preposiciones",
+      "reason for",
+      "solution to"
+    ]
+  },
+  "future-in-the-past": {
+    "title": "Futuro en el pasado",
+    "question": "Desde un punto de vista pasado, ¿would o was going to?",
+    "summary": "Para un hecho visto desde el pasado, usa would, was going to o was about to. Was going to suele marcar un plan pasado, que puede no haberse cumplido.",
+    "usage": "I knew she would be late sitúa el retraso después de un momento pasado de saber. El will referido suele pasar también a would: She said she would wait. I was going to write, but I lost the address subraya una intención pasada, a menudo cancelada por but. I was about to leave significa que la salida era inmediata en ese momento pasado.\n\nNo conserves will en el estilo indirecto ordinario. He said he will come solo aparece cuando el hecho sigue en el futuro y quien habla elige no retroceder el tiempo. El esquema regular es would. No uses would para todo plan pasado. Una intención no cumplida queda más clara con was going to.",
+    "pitfall": "No escribas un plan pasado abandonado como I would write, but I lost the address. Di I was going to write, but I lost the address.",
+    "keywords": [
+      "futuro en el pasado",
+      "would",
+      "was going to",
+      "planes"
+    ]
+  },
+  "question-word-infinitive": {
+    "title": "Partícula interrogativa más infinitivo",
+    "question": "¿Qué estructura es I don't know what to do?",
+    "summary": "What, how, where, when, who y whether pueden llevar un infinitivo con to. El esquema es una pregunta indirecta acortada. Aquí whether no se sustituye por if.",
+    "usage": "I don't know what to wear se acerca a I don't know what I should wear. Show me where to sign y I can't decide whether to accept usan el mismo esquema. Sigue a verbos como know, decide, explain, wonder, ask, show y tell. El sujeto sobreentendido suele ser el sujeto o el objeto principal: Tell me what to do significa dime qué debo hacer yo.\n\nSi what ya es el objeto, no añadas it: what to do, no what to do it. En how to do it, it es un objeto aparte. La forma estándar es whether to go, no if to go. Las preguntas ordinarias con why usan una cláusula, no este esquema de infinitivo.",
+    "pitfall": "Evita I don't know what to do it e if to go. Di what to do y whether to go.",
+    "keywords": [
+      "infinitivo",
+      "what to",
+      "whether",
+      "preguntas indirectas"
+    ]
+  },
+  "emphatic-do": {
+    "title": "Do enfático",
+    "question": "¿Qué hace do en I do understand?",
+    "summary": "Do, does o did más la forma base contradice, insiste o marca un contraste. No se combina con el be ordinario ni con un modal.",
+    "usage": "I do understand responde a alguien que cree que no entiendes. She did send the file insiste en que el envío pasado ocurrió, y did va seguido de send, no de sent. El énfasis de presente usa do o does, el de pasado usa did, y el verbo léxico vuelve a la forma base. El contraste también lo usa: I don't like tea, but I do like coffee.\n\nEn un imperativo, Do sit down es una invitación cálida o insistente. No escribas She does be late ni I did went. El énfasis con be suele usar el acento u otra estructura, no does be. Si can, will o have ya es el auxiliar, no añadas do para enfatizar el mismo verbo.",
+    "pitfall": "Evita She did sent the file. El énfasis de pasado es did más la forma base: She did send the file.",
+    "keywords": [
+      "énfasis",
+      "do",
+      "contraste",
+      "auxiliar"
+    ]
+  },
+  "numbers-a-hundred": {
+    "title": "a hundred y hundreds of",
+    "question": "¿Por qué two hundred va en singular y hundreds of en plural?",
+    "summary": "Tras un número exacto, hundred y thousand se quedan en singular. Para una cantidad grande e imprecisa, usa hundreds of o thousands of, sin a y sin número exacto.",
+    "usage": "A hundred people y one hundred people son posibles los dos. Two hundred seats y three thousand copies no llevan -s. Un número más of the también se queda en singular: two hundred of the seats. El plural es para una cantidad imprecisa: hundreds of people, thousands of times.\n\nNo escribas two hundreds people ni a hundreds of people. El inglés británico a menudo pone and entre las centenas y las decenas: one hundred and twenty. Ese and no pone hundred en plural. Dozen y million siguen la misma tendencia: singular tras un número, plural para una cantidad grande e imprecisa.",
+    "pitfall": "Evita two hundreds students. Un número exacto es two hundred students. Una cantidad grande e imprecisa es hundreds of students.",
+    "keywords": [
+      "números",
+      "hundred",
+      "plural",
+      "cantidades"
+    ]
+  },
+  "linking-verbs-adjectives": {
+    "title": "Adjetivos tras verbos copulativos",
+    "question": "¿Por qué look, feel y taste llevan good y no well?",
+    "summary": "Cuando be, seem, look, feel, taste, sound o become describe el estado del sujeto, lleva un adjetivo, no un adverbio de modo.",
+    "usage": "This soup tastes good describe la sopa, no la manera de probar. I feel cold, The music sounds great y She seems tired usan todos adjetivos. Become, get, grow, stay y remain también pueden enlazar un adjetivo: get dark, stay calm. Well es el adverbio de good, pero well también es un adjetivo que significa sano: I feel well.\n\nNo pongas un adverbio en -ly tras estos verbos para describir al sujeto. Sounds well no es el cumplido ordinario; di sounds good. Feel badly aparece en parte del habla para el pesar o la simpatía, pero el estado del sujeto es I feel bad. Look like lleva un nombre, no un adjetivo: look tired, no look like tired.",
+    "pitfall": "Evita The soup tastes well y She looks like tired. The soup tastes good. Un aspecto cansado es looks tired.",
+    "keywords": [
+      "verbos copulativos",
+      "adjetivos",
+      "look",
+      "feel"
+    ]
+  },
+  "interesting-interested": {
+    "title": "interesting e interested",
+    "question": "¿Cuándo es -ing y cuándo es -ed?",
+    "summary": "La forma -ing describe lo que causa la sensación. La forma -ed describe a la persona que la tiene. Interested suele ir seguido de in.",
+    "usage": "The lecture was interesting describe la charla como la causa. The students were interested describe la sensación de los estudiantes. La misma división aparece en boring/bored, exciting/excited, confusing/confused y tiring/tired. Una persona también puede llevar -ing: She is interesting significa que despierta interés, no que lo sienta.\n\nInterested in lleva un nombre o -ing: interested in the map, interested in learning. Interested to hear es una reacción a una noticia y no sustituye a interested in. Pregunta si la palabra nombra la causa o a la persona que lo experimenta.",
+    "pitfall": "Evita I am interesting in history. La sensación de la persona es I am interested in history. La historia misma puede ser interesting.",
+    "keywords": [
+      "adjetivos",
+      "-ing",
+      "-ed",
+      "interested"
+    ]
+  },
+  "hard-hardly": {
+    "title": "hard y hardly",
+    "question": "¿Hardly es el adverbio de hard?",
+    "summary": "Hard significa difícil, o con esfuerzo. Hardly significa casi no, y ya está cerca de una negativa.",
+    "usage": "The exam was hard es el adjetivo. She works hard es el adverbio, y significa con esfuerzo, no casi nada de trabajo. Hardly significa lo contrario: She hardly works significa que casi no trabaja. Hardly ever significa muy rara vez. Hardly suele ir delante del verbo principal o detrás del primer auxiliar: I can hardly hear you.\n\nHardly had I sat down when the bell rang es una inversión formal, y when introduce el hecho siguiente. No añadas not a hardly. No leas el -ly como de manera difícil. Ese sentido ya pertenece a hard.",
+    "pitfall": "No leas She works hard como casi nada de trabajo. El esfuerzo es works hard. Casi nada es hardly works.",
+    "keywords": [
+      "hard",
+      "hardly",
+      "adverbios",
+      "casi no"
+    ]
+  },
+  "late-lately": {
+    "title": "late y lately",
+    "question": "¿Qué palabra significa reciente, late o lately?",
+    "summary": "Late significa después de la hora prevista, como adjetivo o como adverbio. Lately significa recientemente y a menudo lleva presente perfecto.",
+    "usage": "The bus was late y She arrived late significan los dos después de la hora prevista. A late train es un tren retrasado, y a late reply es una respuesta que llegó cuando ya debía haber llegado. Lately no significa retrasado: I haven't seen her lately significa que no en el periodo reciente. Recently se acerca en el sentido y es más flexible en la posición.\n\nNo escribas She arrived lately para una llegada tardía. Latest significa el más reciente o el último: the latest bus, the latest edition. El -ly de lately cambia el sentido; no convierte sin más late en adverbio.",
+    "pitfall": "Evita She arrived lately para una llegada tardía. Una llegada tardía es She arrived late. El periodo reciente es I haven't seen her lately.",
+    "keywords": [
+      "late",
+      "lately",
+      "retraso",
+      "reciente"
+    ]
+  },
+  "most-most-of": {
+    "title": "most y most of",
+    "question": "¿La mayoría es most people o most of people?",
+    "summary": "Una mayoría general es most más un nombre, sin of. Most of necesita the, these, un posesivo o un pronombre, porque significa un conjunto concreto.",
+    "usage": "Most students walk significa los estudiantes en general. Most of the students in this class walk significa la mayoría de esa clase conocida. Most of them y most of my notes funcionan porque them y my notes están identificados. The most es el superlativo: the most useful map.\n\nNo escribas most of people ni most of students. Los incontables siguen la misma división: most water es general, y most of the water in the jug es esa agua concreta. El verbo concuerda con el nombre al que se refiere most: most of the water is, most of the seats are.",
+    "pitfall": "Evita most of people. La forma general es Most people agreed. Un grupo conocido es Most of the people in the room agreed.",
+    "keywords": [
+      "most",
+      "mayoría",
+      "most of",
+      "determinante"
+    ]
+  },
+  "a-lot-plenty": {
+    "title": "a lot y plenty",
+    "question": "¿A lot of, lots of o plenty of?",
+    "summary": "A lot of y lots of llevan tanto contables como incontables. Plenty of significa suficiente y más. Much y many son más frecuentes en negativas y preguntas.",
+    "usage": "A lot of time y a lot of chairs son naturales los dos. Lots of es más coloquial. A lot solo puede sustituir a un nombre ya conocido: We have a lot. Plenty of time subraya no solo la cantidad, sino suficiente y algo de sobra. En afirmativas, a lot of es más habitual que much: I have a lot of work, no el ordinario I have much work.\n\nLas negativas y las preguntas siguen usando much y many con libertad: We don't have much time, Do we have many chairs? No quites of delante de un nombre: plenty of time, no plenty time. Too many y too much significan más de lo deseado, y eso es distinto de plenty.",
+    "pitfall": "Evita plenty time y a lot chairs. Delante de un nombre, di plenty of time y a lot of chairs.",
+    "keywords": [
+      "cantidad",
+      "a lot of",
+      "plenty",
+      "much"
+    ]
+  },
+  "no-not-none": {
+    "title": "no, not y none",
+    "question": "¿No, not o none cuando no hay entradas?",
+    "summary": "No va justo delante de un nombre. Not niega el verbo, o a y any. None va solo, o none of señala un conjunto conocido.",
+    "usage": "En There are no tickets left, no modifica tickets. There aren't any tickets left niega el verbo y usa any. La respuesta a How many are left? puede ser None. None of the tickets y none of them señalan un conjunto ya identificado.\n\nNo escribas I have not tickets ni none ticket. No puede preceder a un singular, a un plural o a un incontable: no key, no keys, no time. None no puede ir seguido de inmediato por un nombre. No acumules la negativa como don't have no tickets. En inglés estándar, esa doble negativa no es la forma de decir cero.",
+    "pitfall": "Evita I have not tickets. Di I have no tickets o I don't have any tickets. Como respuesta que significa cero, usa None.",
+    "keywords": [
+      "negación",
+      "no",
+      "none",
+      "any"
+    ]
+  },
+  "everyday-every-day": {
+    "title": "everyday y every day",
+    "question": "¿Everyday es una palabra o dos?",
+    "summary": "Everyday es un adjetivo y significa ordinario o diario. Every day es una expresión de tiempo y significa cada día.",
+    "usage": "Everyday clothes y everyday English modifican nombres y significan cosas ordinarias que usas con regularidad, no ropa formal ni lenguaje especializado. En I walk to work every day, every day da la frecuencia y puede pasar al principio: Every day I walk to work. Las dos palabras se quedan separadas porque day es un nombre.\n\nEvery other day, que significa en días alternos, también va separado. No escribas la frecuencia como everyday I walk. Junta las letras solo cuando la palabra pueda ir delante de un nombre como adjetivo.",
+    "pitfall": "Evita I walk everyday. La frecuencia es I walk every day. El adjetivo es everyday clothes.",
+    "keywords": [
+      "everyday",
+      "every day",
+      "frecuencia",
+      "adjetivo"
+    ]
+  },
+  "sometime-sometimes": {
+    "title": "sometime, sometimes y some time",
+    "question": "¿En qué se diferencian un momento no precisado, de vez en cuando y un periodo de tiempo?",
+    "summary": "Sometime es un momento no precisado. Sometimes significa de vez en cuando. Some time es un periodo de tiempo.",
+    "usage": "Come sometime next week no nombra un día concreto. I sometimes walk significa que el paseo forma parte de un hábito, no el hábito entero. I need some time significa un tramo de tiempo: time es un nombre y some es un determinante. Some times es raro y solo encaja cuando times significa ocasiones o épocas.\n\nSometime no suele ir delante del verbo para significar de vez en cuando. Sometimes puede ir en posición media, inicial o final. La fórmula china de de vez en cuando corresponde a sometimes. Una invitación a elegir un momento no precisado corresponde a sometime.",
+    "pitfall": "Evita I sometime walk para de vez en cuando. De vez en cuando es I sometimes walk. Un momento no precisado es sometime next week. Un periodo es some time alone.",
+    "keywords": [
+      "sometime",
+      "sometimes",
+      "some time",
+      "frecuencia"
+    ]
+  },
+  "maybe-may-be": {
+    "title": "maybe y may be",
+    "question": "¿Maybe y may be pueden sustituirse?",
+    "summary": "Maybe es un adverbio para toda la oración. May be es el modal may más el verbo be, y la cláusula sigue necesitando un sujeto.",
+    "usage": "Maybe she is right puede reescribirse como She may be right, pero cambian la gramática y la posición. Maybe suele empezar la oración, y también puede ser un añadido informal al final. May be necesita un sujeto, y be puede llevar un adjetivo, un nombre o un lugar: She may be late, It may be the key, They may be outside.\n\nNo escribas She maybe right ni Maybe be a problem. Maybe it's a problem es la oración completa. May be se queda en dos palabras, y maybe no puede partirse y usarse como verbo.",
+    "pitfall": "Evita She maybe right. El adverbio es Maybe she is right. El verbo es She may be right.",
+    "keywords": [
+      "maybe",
+      "may be",
+      "posibilidad",
+      "adverbio"
+    ]
+  },
+  "raise-rise": {
+    "title": "raise y rise",
+    "question": "¿Qué verbo necesita objeto, raise o rise?",
+    "summary": "Raise es transitivo y necesita un objeto. Su pasado y su participio son raised. Rise es intransitivo: rose, risen.",
+    "usage": "Raise your hand, raise the price y raise children significan todos que el sujeto mueve o hace subir otra cosa. Prices rise, the sun rose y the water has risen significan que la cosa misma sube, sin objeto. Raise es regular. Las tres formas de rise son rise, rose y risen.\n\nNo escribas The price raised para un precio que subió por sí mismo. Esa oración necesitaría una persona como sujeto que lo aumentara. Arise es un verbo intransitivo aparte, a menudo para un problema que aparece, y no sustituye a raise your hand.",
+    "pitfall": "Evita She rose her hand y The price raised. Una mano es She raised her hand. Un precio que sube por sí mismo es The price rose.",
+    "keywords": [
+      "raise",
+      "rise",
+      "transitivo",
+      "objeto"
+    ]
+  },
+  "lie-lay": {
+    "title": "lie y lay",
+    "question": "¿Por qué se solapan las formas de pasado de lie y lay?",
+    "summary": "Lie de recostarse tiene el pasado lay y el participio lain. Lay de poner necesita un objeto; su pasado y su participio son laid. Lie de decir una mentira usa lied.",
+    "usage": "I'm going to lie down no tiene objeto. Yesterday I lay down for an hour es el pasado de recostarse; ese lay no significa poner. Please lay the map on the table tiene el objeto map, y el pasado es She laid the map down. Los participios son has lain y has laid. Una mentira es lie, lied, lied: He lied about the time.\n\nEl solapamiento existe porque el pasado de lie se escribe lay. Busca primero un objeto. Sin objeto suele significar recostarse o estar situado. Con objeto significa poner. Parte del habla usa lay down para recostarse, pero el escrito cuidado conserva lie down.",
+    "pitfall": "Evita I laid down for an hour cuando quieres decir recostarte. El pasado de lie es I lay down. Poner el mapa es I laid the map down.",
+    "keywords": [
+      "lie",
+      "lay",
+      "pasado",
+      "objeto"
+    ]
+  },
+  "borrow-lend": {
+    "title": "borrow y lend",
+    "question": "¿Por qué el inglés usa dos verbos para prestar y tomar prestado?",
+    "summary": "Borrow significa tomar algo de forma temporal, a menudo con from. Lend significa darlo de forma temporal, con dos objetos o con to.",
+    "usage": "Can I borrow your pen? mueve el bolígrafo hacia quien habla. Can you lend me your pen? o Can you lend your pen to me? lo aleja del dueño. Borrow no admite un doble objeto de persona más cosa, así que borrow me a pen es incorrecto. El pasado de lend es lent.\n\nUn verbo chino cubre las dos direcciones. El inglés tiene que elegir la dirección. Borrow y lend son para un uso temporal. Si cambia la propiedad, usa give o take. Devolver es return, no un borrow back rutinario.",
+    "pitfall": "Evita Can you borrow me a pen? Dármelo es Can you lend me a pen? Tomarlo de ti es Can I borrow your pen?",
+    "keywords": [
+      "borrow",
+      "lend",
+      "prestar",
+      "dirección"
+    ]
+  },
+  "bring-take": {
+    "title": "bring y take",
+    "question": "¿Cuál es el punto de referencia de bring y take?",
+    "summary": "Bring mueve algo hacia quien habla o hacia el destino del que se habla. Take lo aleja hacia otro sitio. Fetch significa ir, cogerlo y volver.",
+    "usage": "Bring your passport to the interview trata la entrevista como el destino: el pasaporte debe llegar allí. Take this form to the desk lo aleja de aquí. En Come in and bring your bag, come y bring apuntan los dos hacia quien habla. I'll take it home sale del lugar actual.\n\nFetch, o get, significa que la persona se va y vuelve con la cosa: I'll fetch the key. No elijas bring para todo acto de llevar. Pregunta si el destino es aquí u otro sitio. El pasado de bring es brought, y el pasado de take es took.",
+    "pitfall": "Si la persona está en la habitación y quiere que el paraguas entre, di Bring the umbrella in, no Take the umbrella in. Take encaja con el movimiento que se aleja de aquí.",
+    "keywords": [
+      "bring",
+      "take",
+      "dirección",
+      "fetch"
+    ]
+  },
+  "hear-listen": {
+    "title": "hear y listen",
+    "question": "¿Cuál necesita to, hear o listen?",
+    "summary": "Hear es el sonido que te llega. Listen es prestar atención, y necesita to delante de un objeto.",
+    "usage": "I heard a noise no significa que estuvieras concentrado. I was listening to the radio significa que sí. Listen puede ir solo: Please listen. Un objeto necesita to: listen to me, listen to it. Hear from significa recibir noticias de alguien, y hear about significa enterarse de algo.\n\nLa audición involuntaria usa hear o can hear. I'm hearing the bell no es la forma ordinaria. Listen no puede pasar a listen music. Un verbo chino a menudo cubre tanto la percepción como la atención.",
+    "pitfall": "Evita listen music y listen the radio. La atención es listen to the radio. La percepción es I heard a noise.",
+    "keywords": [
+      "hear",
+      "listen",
+      "percepción",
+      "atención"
+    ]
+  },
+  "see-watch-look": {
+    "title": "see, watch y look",
+    "question": "¿Por qué el inglés separa ver, observar y mirar?",
+    "summary": "See es percibir o reunirse. Look es dirigir la vista. Watch es prestar atención a algo que cambia. Look necesita at delante de un objeto.",
+    "usage": "I saw a bird significa que el pájaro entró en tu campo visual. Look at the board le dice a alguien que dirija la vista. I watched the match significa seguir una escena que cambia a lo largo del tiempo. Look for significa buscar, y look after significa cuidar; ninguno es ver en sentido literal. See a film puede significar asistir a una proyección, mientras que watch a film subraya el visionado.\n\nSee de percepción involuntaria no suele ir en continuo; can see está disponible. I'm seeing the dentist es una cita. No escribas look the board ni watch at the match. Pregunta si el verbo chino significa notar, seguir una escena o volver la vista.",
+    "pitfall": "Evita look the board y watch at the match. Dirigir la vista es look at the board. Seguir una escena es watch the match. Notar es see.",
+    "keywords": [
+      "see",
+      "watch",
+      "look",
+      "percepción"
+    ]
+  },
+  "win-beat": {
+    "title": "win y beat",
+    "question": "¿Win o beat para un partido y un rival?",
+    "summary": "El objeto de win es un partido, un premio o una cantidad. El objeto de beat es el rival.",
+    "usage": "We won the final, She won a prize y Our team won son naturales todos. El rival lleva beat: We beat the other team. Win against a veces aparece, pero win the other team no es el esquema estándar. El pasado de beat es beat, y el participio es beaten: We have beaten them twice.\n\nUna oración china que nombra a quienes perdieron puede tentar a escribir win them. El inglés separa lo que se gana de la persona a la que se vence. Beat también significa golpear, pero en el deporte significa derrotar.",
+    "pitfall": "Evita We won the other team. El evento es We won the final. El rival es We beat the other team.",
+    "keywords": [
+      "win",
+      "beat",
+      "competir",
+      "objeto"
+    ]
+  },
+  "advice-advise": {
+    "title": "advice y advise",
+    "question": "¿En qué se diferencian el nombre y el verbo de advice?",
+    "summary": "Advice es un nombre incontable. Advise es el verbo, a menudo en advise someone to do. Las pronunciaciones también difieren.",
+    "usage": "Cuantifícalo con a piece of advice o some advice. An advice y un plural rutinario advices no son inglés ordinario. El verbo es She advised me to wait, y el nombre es Her advice was to wait. Advice termina con sonido /s/; advise termina con /z/.\n\nAdvise puede llevar una cláusula con that, y una sugerencia puede usar la forma base o should: She advised that he wait. El esquema más frecuente es advise someone to do. No añadas -ed al nombre advice y lo trates como verbo.",
+    "pitfall": "Evita an advice y She adviced me. Un elemento es a piece of advice. El verbo es She advised me to wait.",
+    "keywords": [
+      "advice",
+      "advise",
+      "incontable",
+      "consejo"
+    ]
+  },
+  "beside-besides": {
+    "title": "beside y besides",
+    "question": "¿Beside y besides se diferencian en más de una letra?",
+    "summary": "Beside es una preposición y significa al lado de. Besides significa además y puede ser preposición o adverbio.",
+    "usage": "Sit beside me es posición. Besides the fare, we paid for lunch significa además de la tarifa. Besides, the hall was cold usa el adverbio para añadir otro punto. Who else was there besides Sam? pregunta por personas además de Sam.\n\nExcept excluye. Besides en una afirmativa suele añadir. No uses beside para además. Beside oneself es una expresión fija para perder el control emocional, aparte del sentido ordinario de lugar.",
+    "pitfall": "No uses beside the cost para además del coste. La adición es besides the cost. La posición es beside the window.",
+    "keywords": [
+      "beside",
+      "besides",
+      "además",
+      "posición"
+    ]
+  },
+  "across-through": {
+    "title": "across y through",
+    "question": "¿Across o through para una calle y un túnel?",
+    "summary": "Across va de un lado al otro sobre una superficie. Through va por el interior de un espacio, y también puede recorrer un periodo de tiempo.",
+    "usage": "Walk across the road y across the bridge se mueven sobre una superficie de lado a lado. Walk through the tunnel, through the crowd y through the forest entran en un espacio y salen. Across the street también puede significar en el lado de enfrente. Through the window significa pasar por la abertura, no caminar sobre el cristal.\n\nThrough Friday puede significar hasta el viernes incluido. Ese es el uso temporal. No digas through the road para cruzar una calle. Pregunta si el movimiento es de lado a lado sobre una superficie o por el interior de algo.",
+    "pitfall": "Evita walk through the road para cruzar. Una calle es walk across the road. Un túnel es walk through the tunnel.",
+    "keywords": [
+      "across",
+      "through",
+      "movimiento",
+      "espacio"
+    ]
+  },
+  "as-if-as-though": {
+    "title": "as if y as though",
+    "question": "¿As if, as though o like para una apariencia?",
+    "summary": "As if y as though significan lo mismo y llevan una cláusula. Una comparación irreal suele usar una forma de pasado. Like más una cláusula es coloquial; el escrito cuidado conserva as if.",
+    "usage": "It looks as if it's going to rain puede ser una posibilidad real, así que la cláusula se queda en presente. He talks as if he knew everything sugiere que no lo sabe. Knew marca distancia respecto del hecho, no tiempo pasado. As though es un poco más formal y tiene la misma estructura. As if to leave usa un infinitivo para un gesto de irse.\n\nNo escribas as like he knew. It looks like rain está bien porque like lleva un nombre. It looks like it's going to rain es frecuente en el habla, pero una comparación cuidada, sobre todo si es irreal, prefiere as if o as though.",
+    "pitfall": "Evita He talks as like he knew. Di He talks as if he knew everything. Una posibilidad real de lluvia es It looks as if it's going to rain.",
+    "keywords": [
+      "as if",
+      "as though",
+      "apariencia",
+      "irrealidad"
+    ]
+  },
+  "spend-worth-ing": {
+    "title": "spend y worth más -ing",
+    "question": "¿Por qué spend y worth llevan -ing?",
+    "summary": "Spend lleva tiempo o dinero, y después -ing u on más un nombre. Worth lleva un nombre o -ing, no un infinitivo con to.",
+    "usage": "Di I spent an hour reading y She spent the money on books. El pasado de spend es spent. Spend time to read no es el esquema ordinario de este sentido. On lleva un nombre, no una forma base.\n\nEn The book is worth reading, el -ing tiene un sentido pasivo: merece ser leído. La forma sigue siendo reading, no el preferible worth being read, y no worth to read. It's worth it puede ir solo. Worth no es un verbo aquí, así que necesita be: is worth, no worths.",
+    "pitfall": "Evita worth to read y spent an hour to read. Di The book is worth reading y I spent an hour reading.",
+    "keywords": [
+      "spend",
+      "worth",
+      "-ing",
+      "tiempo"
+    ]
+  },
+  "cant-help": {
+    "title": "can't help",
+    "question": "¿Qué sigue a can't help cuando no puedes evitarlo?",
+    "summary": "Can't help más -ing significa que no puedes evitarlo. Can't help someone to do es otro sentido: no puedes ayudar a esa persona.",
+    "usage": "I can't help laughing significa que la risa no se puede contener. I can't help but laugh también es posible, con la forma base tras but. El pasado es I couldn't help laughing. Este help no significa ayudar, así que to laugh no es el esquema de una acción irresistible.\n\nI can't help you to move the desk significa que no puedes ayudar. Help en el sentido de ayudar admite help someone (to) do. Los dos sentidos se separan según si una persona sigue a help y si el verbo siguiente es -ing o to. Can't help it significa que no hay nada que puedas hacer ante una situación.",
+    "pitfall": "Evita I can't help to laugh para una risa irresistible. Ese sentido es I can't help laughing. No poder ayudar es I can't help you (to) move it.",
+    "keywords": [
+      "can't help",
+      "-ing",
+      "evitar",
+      "ayudar"
+    ]
+  },
+  "feel-like": {
+    "title": "feel like",
+    "question": "¿Feel like lleva to cuando quieres hacer algo?",
+    "summary": "Cuando feel like significa querer, lleva un nombre o -ing. También puede significar tener la sensación de que, y entonces suele llevar una cláusula.",
+    "usage": "I feel like a walk y I feel like walking significan los dos que eso es lo que quiero ahora. Feel like to walk no es el esquema. La negativa es I don't feel like cooking. Es más informal que want y a menudo describe un estado de ánimo presente.\n\nI feel like I'm falling es una sensación, no un deseo de caer. This cloth feels like silk es textura o parecido. Lo que sigue a like separa los sentidos: un nombre o -ing suele ser un deseo o una semejanza, y una cláusula suele ser una sensación. No lo confundas con feel más un adjetivo: I feel tired.",
+    "pitfall": "Evita I feel like to go out. Querer salir es I feel like going out, o I feel like a walk.",
+    "keywords": [
+      "feel like",
+      "deseo",
+      "sensación",
+      "-ing"
+    ]
+  },
+  "go-get-become": {
+    "title": "go, get y become",
+    "question": "¿Go, get o become para un cambio de estado?",
+    "summary": "Become es el verbo general de un cambio y puede llevar un adjetivo o un nombre. Get suele llevar un adjetivo y es coloquial. Go es frecuente con colores, con estropearse y con algunos cambios fijos.",
+    "usage": "She became a nurse usa become con un nombre de oficio. It got dark y I'm getting tired son cambios cotidianos de adjetivo. Go wrong, go bad, go grey y go mad son usos establecidos de go. La comida que se estropea suele ser go bad, no become bad como primera opción. Get no lleva un nombre de oficio: no existe get a nurse con este sentido.\n\nNo escribas go tired ni become to tired. Un adjetivo no necesita to. Grow también puede marcar un cambio gradual: grow dark. Pregunta si el cambio chino es un oficio o una identidad, un estado temporal, o un cambio de color o de condición.",
+    "pitfall": "Evita She got a nurse para una carrera, y no elijas primero The milk became bad. Un oficio es She became a nurse. La leche estropeada es The milk went bad.",
+    "keywords": [
+      "cambio de estado",
+      "become",
+      "get",
+      "go"
+    ]
+  },
+  "accept-except": {
+    "title": "accept y except",
+    "question": "¿Accept y except se separan en más de una letra?",
+    "summary": "Accept significa recibir o aceptar. Except significa no incluido y a menudo es una preposición.",
+    "usage": "She accepted the offer significa que accedió a tomarlo. Everyone came except Lee significa que Lee no estaba incluido. Except for a menudo corrige una afirmación global: The room was empty except for one chair. El verbo exclude es distinto de la preposición except. Accept no significa dejar fuera.\n\nLas dos palabras acentúan la segunda sílaba, pero el sonido inicial difiere: accept empieza por /ək/ y except por /ɪk/. Except también puede introducir una cláusula: except that the door was locked. No pongas accept en el lugar de except.",
+    "pitfall": "Evita Everyone came accept Lee. La exclusión es except Lee. Aceptar una oferta es accepted the offer.",
+    "keywords": [
+      "accept",
+      "except",
+      "exclusión",
+      "aceptar"
+    ]
+  },
+  "then-than": {
+    "title": "then y than",
+    "question": "¿Por qué then no cubre a la vez la secuencia y la comparación?",
+    "summary": "Then significa después, en ese momento, o en ese caso. Than sigue a un comparativo y marca la comparación.",
+    "usage": "We ate, and then we left. Then también puede significar en ese momento: I lived there then. Un comparativo necesita than: older than me, more useful than the old map. Than me es ordinario; than I am es una forma formal más completa.\n\nThen y than no suenan igual. No escribas more better then. El comparativo ya significa más, y la palabra que lo sigue es than. Antes de un tiempo puede ser before; no tiene por qué ser then.",
+    "pitfall": "Evita older then me. La comparación es older than me. La secuencia es We ate, and then we left.",
+    "keywords": [
+      "then",
+      "than",
+      "comparación",
+      "secuencia"
+    ]
+  },
+  "sensitive-sensible": {
+    "title": "sensitive y sensible",
+    "question": "¿Qué palabra significa que se afecta con facilidad, y cuál significa razonable?",
+    "summary": "Sensitive significa que se afecta con facilidad. Sensible significa razonable y práctico.",
+    "usage": "Sensitive skin y sensitive to criticism significan una reacción fuerte o que se hiere con facilidad. A sensible decision y sensible shoes significan buen juicio o sentido práctico. Sensitive suele llevar to: sensitive to light. Sensible of puede significar consciente en inglés formal, pero quien aprende necesita más a menudo el sentido de razonable: It is sensible to wait.\n\nNo escribas sensible skin para una piel que reacciona con facilidad, ni sensitive decision para una decisión acertada, salvo que quieras decir que la decisión trata un tema delicado. Las dos palabras vienen de sense, pero sus sentidos se han separado.",
+    "pitfall": "Evita a sensible skin para una piel reactiva. La piel es sensitive skin. Una decisión acertada es a sensible decision.",
+    "keywords": [
+      "sensitive",
+      "sensible",
+      "adjetivos",
+      "sentido"
+    ]
+  },
+  "actual-current": {
+    "title": "actual y current",
+    "question": "¿Actual puede cubrir tanto lo real como lo presente?",
+    "summary": "Actual contrasta con una estimación, una apariencia o una afirmación equivocada. Current contrasta con el pasado o el futuro y significa el de ahora.",
+    "usage": "The actual cost was higher es el coste real, no la estimación. The current price es el precio de ahora, y puede cambiar después. The current edition es la que está en uso. Actually a menudo corrige una afirmación: Actually, the gate is on the left. No significa en la actualidad.\n\nUna palabra china de condiciones reales a veces se usa donde el inglés necesita el tiempo presente. La persona que ahora ocupa el cargo, las normas vigentes y el precio de hoy llevan current o present, no actual. No trates actual como una palabra de tiempo.",
+    "pitfall": "Evita the actual president para la persona que ocupa el cargo ahora. Quien lo ocupa ahora es the current president. La cifra real es the actual cost.",
+    "keywords": [
+      "actual",
+      "current",
+      "real",
+      "presente"
+    ]
+  },
+  "eventually-finally": {
+    "title": "eventually y finally",
+    "question": "¿Eventually o finally para un desenlace y un último punto?",
+    "summary": "Eventually es el desenlace tras un tiempo o varios cambios. Finally puede significar por fin, o puede introducir el último elemento de una secuencia.",
+    "usage": "We eventually found a seat subraya que la búsqueda llevó tiempo. The bus finally came subraya el alivio tras una espera. Finally, add your name introduce el último paso de una lista. Eventually no puede hacer ese trabajo.\n\nIn the end se acerca a eventually y tampoco es un número de lista. At last y finally pueden marcar los dos algo que se esperaba. No pongas eventually al principio como si significara un último consejo.",
+    "pitfall": "Evita Eventually, check the spelling para un último paso. El último paso es Finally, check the spelling. Un desenlace tras una espera es eventually.",
+    "keywords": [
+      "eventually",
+      "finally",
+      "desenlace",
+      "secuencia"
+    ]
+  },
+  "specially-especially": {
+    "title": "specially y especially",
+    "question": "¿Specially o especially para particularmente?",
+    "summary": "Especially significa particularmente o sobre todo. Specially significa para un fin concreto.",
+    "usage": "I especially like the soup destaca la sopa entre otras cosas. The roads are icy, especially in the morning pone de relieve la mañana. Specially designed y I made it specially for you significan hecho para ese fin. Especially es la opción habitual para particularmente.\n\nNo escribas specially in the morning para sobre todo por la mañana. Specially no hace ese trabajo de destacar. Special es el adjetivo: a special key. Si particularly puede sustituir al adverbio, la palabra suele ser especially.",
+    "pitfall": "Evita The roads are icy, specially in the morning. Particularmente es especially in the morning. Hecho para ti es specially for you.",
+    "keywords": [
+      "especially",
+      "specially",
+      "particularmente",
+      "propósito"
+    ]
+  },
+  "miss-lose": {
+    "title": "miss y lose",
+    "question": "¿Qué sentidos pertenecen a miss y cuáles a lose?",
+    "summary": "Miss significa no alcanzar, no acertar o no asistir, o echar de menos a alguien. Lose significa dejar de tener algo, no poder encontrarlo o no ganar.",
+    "usage": "Miss the bus, miss the target y miss a class significan todos no conectar con algo a lo que debías llegar. I miss you significa que sientes la ausencia. Lose your keys, lose a game y lose your way significan que la cosa, el partido o la ruta ya no están bajo tu control. Perder un autobús no es lose the bus.\n\nMiss out puede significar omitir. El pasado de lose es lost, y el adjetivo lost significa que ya no se encuentra. Si la oración china significa que no cogiste el autobús, usa miss. Si las llaves no se encuentran, usa lose.",
+    "pitfall": "Evita I lost the bus. No cogerlo es I missed the bus. Unas llaves que no encuentras son I lost my keys.",
+    "keywords": [
+      "miss",
+      "lose",
+      "perder",
+      "echar de menos"
+    ]
+  },
+  "rob-steal": {
+    "title": "rob y steal",
+    "question": "¿El verbo lleva a la persona o a la cosa?",
+    "summary": "El objeto de rob es una persona o un lugar. El objeto de steal es la cosa que se lleva.",
+    "usage": "Di They robbed the bank y Someone robbed her. La cosa lleva steal: They stole the money. Para incluir los dos, usa rob someone of something: They robbed her of her bag. Steal no lleva a la víctima como objeto directo.\n\nEl pasado de rob es robbed. El pasado de steal es stole, y el participio es stolen. No escribas rob the money ni steal the bank para dinero sacado de un banco. El inglés te obliga a elegir si el objeto es la víctima o los bienes.",
+    "pitfall": "Evita They robbed the money y They stole the bank. El dinero es They stole the money. El banco o la persona es They robbed the bank o They robbed her.",
+    "keywords": [
+      "rob",
+      "steal",
+      "objeto",
+      "robo"
+    ]
+  },
+  "remind-remember": {
+    "title": "remind y remember",
+    "question": "¿Qué verbo significa hacer que alguien recuerde?",
+    "summary": "Remember es algo que haces tú. Remind significa hacer que otra persona recuerde, a menudo remind someone to do o remind someone about.",
+    "usage": "Please remind me to lock the door pide a otra persona que te haga recordar. I remembered to lock the door significa que tú no olvidaste la tarea. Remind necesita a la persona a la que se le recuerda. Remind someone of something significa traer un recuerdo a la mente: The song reminds me of that summer.\n\nNo escribas Remember me to lock the door para pedir que te lo recuerden. Remember to y remember -ing son un contraste aparte: remember to lock es la tarea pendiente, y remember locking es el recuerdo de haberlo hecho. El acto de avisar a otra persona es remind.",
+    "pitfall": "Evita Remember me to lock the door. Una petición de aviso es Remind me to lock the door. No olvidarlo tú es I remembered to lock it.",
+    "keywords": [
+      "remind",
+      "remember",
+      "recordar",
+      "avisar"
+    ]
+  },
+  "wait-expect-hope": {
+    "title": "wait, expect y hope",
+    "question": "¿Wait puede cubrir la espera, la expectativa y la esperanza?",
+    "summary": "Wait for significa quedarse hasta que algo ocurra. Expect significa creer que algo ocurrirá o que debe ocurrir. Hope significa querer que sea verdad algo posible.",
+    "usage": "I'm waiting for the result describe la actividad de esperar. Lleva for y no lleva una cláusula con that. I expect the result today significa que creo que llegará hoy. I hope the result is good significa que quiero ese desenlace. Tanto expect como hope pueden llevar to: I expect to hear today, I hope to hear today.\n\nWait no nombra una esperanza interior, así que I wait that you pass es incorrecto. Expect también puede significar exigir: I expect you to be on time. Hope no es el verbo normal para un hecho malo que no deseas; ahí encajan fear o worry. Una palabra china de esperar a veces significa de verdad una predicción.",
+    "pitfall": "Evita I'm waiting that the result is good y wait you. La actividad es wait for the result. El deseo es I hope it is good. La predicción es I expect it today.",
+    "keywords": [
+      "wait",
+      "expect",
+      "hope",
+      "espera"
+    ]
+  },
+  "look-seem-appear": {
+    "title": "look, seem y appear",
+    "question": "¿Look, seem o appear para una impresión?",
+    "summary": "Los tres pueden dar una impresión. Look suele apoyarse en algo visible, seem es el verbo general, y appear es más formal y puede sugerir que la impresión no es fiable.",
+    "usage": "You look tired suele apoyarse en algo visible, como un rostro o una postura. She seems tired puede venir de varios tipos de indicios. He appears calm es un poco más formal. El adjetivo sigue al verbo directamente: look tired, no look like tired. Look like y seem like llevan un nombre o una cláusula: look like a nurse, It looks as if the gate is shut.\n\nSeem y appear pueden llevar to be o to do: She seems to know the way. It seems that... e It appears that... comentan una situación entera. No escribas look that she is tired.",
+    "pitfall": "Evita She looks like tired. Un adjetivo es She looks tired. Un parecido con un nombre es She looks like a teacher.",
+    "keywords": [
+      "impresión",
+      "look",
+      "seem",
+      "appear"
+    ]
+  },
+  "lose-loose": {
+    "title": "lose y loose",
+    "question": "¿Cuál es el verbo, lose o loose?",
+    "summary": "Lose es el verbo, con el pasado lost, y significa dejar de tener, no ganar o perderse. Loose es sobre todo un adjetivo y significa no apretado o no fijo.",
+    "usage": "Di Don't lose the key, We lost the game y I often lose my way. Loose describe un estado: The screw is loose, loose trousers. La pronunciación ayuda: lose es /luːz/ y loose es /luːs/. Un tornillo que no está apretado es a loose screw, no a lose screw.\n\nLoose puede ser un verbo que significa soltar, pero ese uso es mucho menos frecuente que el adjetivo, y nunca sustituye a lose. El pasado de lose no es loosed. Las palabras chinas de suelto y de perdido no son una sola familia inglesa.",
+    "pitfall": "Evita Don't loose your key. Extraviarla es Don't lose your key. Un tornillo que no está apretado es The screw is loose.",
+    "keywords": [
+      "lose",
+      "loose",
+      "ortografía",
+      "verbo"
+    ]
+  },
+  "quiet-quite": {
+    "title": "quiet y quite",
+    "question": "¿Qué grafía significa silencioso, y cuál significa bastante?",
+    "summary": "Quiet es un adjetivo y significa poco ruido. Quite es un adverbio. Puede significar bastante, y con una palabra no graduable puede significar por completo.",
+    "usage": "A quiet room y Please be quiet significan los dos poco ruido. Quite no puede describir una habitación por sí solo. Quite good en inglés británico suele significar bastante bueno, no por fuerza muy bueno. En quite right, quite sure y quite finished, quite se acerca más a por completo porque esas palabras no son de verdad graduables. Quite quiet es gramatical y significa bastante silencioso.\n\nNo escribas a quite room. El adverbio suele ir delante de un adjetivo. A quite difficult map es posible, aunque a rather difficult map o quite a difficult map suelen sonar más naturales. Quite a más un sintagma nominal es un orden frecuente: quite a long walk.",
+    "pitfall": "Evita a quite room. Una habitación silenciosa es a quiet room. Un paseo bastante largo es quite a long walk.",
+    "keywords": [
+      "quiet",
+      "quite",
+      "adverbio",
+      "grado"
+    ]
+  },
+  "house-home": {
+    "title": "house y home",
+    "question": "¿Por qué go home no lleva to?",
+    "summary": "A house es un edificio. Home es donde vives, y no tiene por qué ser una casa. En go home y at home, home suele no llevar artículo ni to.",
+    "usage": "They bought a house trata del edificio. I'm going home trata de volver adonde vives, que puede ser un piso. At home significa en tu casa. In the house significa dentro de ese edificio. Stay home y stay at home se dan los dos. A home puede ser una residencia, o una institución como a care home.\n\nNo escribas go to home. Arrive home tampoco lleva to. Una palabra china puede significar el edificio, la familia o el lugar donde vives. Usa house primero cuando te refieres al edificio mismo. Home puede funcionar como adverbio, así que su gramática no es la del nombre ordinario house.",
+    "pitfall": "Evita go to home, y no uses go to the house para tu propia casa salvo que te refieras a ese edificio físico. Ir a casa es go home.",
+    "keywords": [
+      "house",
+      "home",
+      "go home",
+      "lugar"
+    ]
+  },
+  "work-job": {
+    "title": "work y job",
+    "question": "¿El empleo es el contable job o el incontable work?",
+    "summary": "Work en el sentido de empleo o de esfuerzo suele ser incontable, y también es un verbo. A job es un puesto contable o una tarea concreta.",
+    "usage": "Di I'm looking for work, I have a lot of work y She is at work. Un puesto concreto es a job: She has a job in the library, two jobs. Una tarea también puede ser a job: That's a big job. Go to work no lleva artículo. Homework también es incontable, así que no homeworks.\n\nNo digas a work para un puesto, salvo que work signifique una obra de arte o un escrito. Works puede significar una fábrica o los escritos de un autor; no es el plural ordinario de job. El verbo es She works on Mondays. Para una fórmula china de empleo, elige a job para el puesto y work para la actividad o el empleo en general.",
+    "pitfall": "Evita I have a work y She is looking for a job work. Buscar empleo puede ser looking for work. Tener un puesto es has a job.",
+    "keywords": [
+      "work",
+      "job",
+      "empleo",
+      "incontable"
+    ]
+  },
+  "in-spite-of-despite": {
+    "title": "in spite of y despite",
+    "question": "¿In spite of o despite pueden llevar una cláusula completa?",
+    "summary": "In spite of y despite son preposiciones y llevan un nombre o -ing. Despite no añade of. Una cláusula completa necesita although o the fact that.",
+    "usage": "In spite of the rain y Despite the rain significan lo mismo, y despite es más compacto. Un verbo tras ellos usa -ing: despite feeling ill. Cuando la concesión es una cláusula completa, usa although it rained, o despite the fact that it rained. In spite of necesita su of. Despite no lleva of.\n\nNinguna de las dos preposiciones une dos cláusulas como lo hace although. Una concesión china puede ir seguida directamente de una cláusula. En inglés, mira primero si lo que sigue es un nombre o un sujeto más un verbo. Even though también lleva una cláusula factual y no se escribe despite even.",
+    "pitfall": "Evita despite of the rain e in spite the rain. Di despite the rain o in spite of the rain. Una cláusula es Although it rained, we went.",
+    "keywords": [
+      "despite",
+      "in spite of",
+      "concesión",
+      "although"
+    ]
+  },
+  "so-as-to": {
+    "title": "so as to",
+    "question": "¿En qué se diferencia so as to de to y de so that?",
+    "summary": "So as to marca propósito y lleva una forma base con el mismo sujeto que la cláusula principal. La negativa es so as not to. Un sujeto distinto necesita una cláusula con so that.",
+    "usage": "En She spoke quietly so as to avoid waking the baby, quien habla y quien evita el ruido son la misma persona. To avoid o in order to avoid es más frecuente; so as to es un poco más formal. No formes la negativa como so as to not. Di so as not to wake anyone.\n\nSi la cláusula de propósito tiene un sujeto distinto, so as to no basta: She spoke quietly so that he could sleep. No leas so as to como el esquema de resultado so...that. El resultado es She was so quiet that nobody heard her. So as to no lleva un adjetivo en medio.",
+    "pitfall": "Evita so as to not wake y so as to he could sleep. La negativa es so as not to wake. Un sujeto distinto es so that he could sleep.",
+    "keywords": [
+      "propósito",
+      "so as to",
+      "so that",
+      "negación"
+    ]
+  },
+  "until-till": {
+    "title": "until y till",
+    "question": "¿Hay diferencia entre until y till?",
+    "summary": "Until y till significan los dos que una situación continúa hasta un punto. Till es más informal. Ninguno de los dos es el plazo de finalización que expresa by.",
+    "usage": "Wait until the rain stops y Wait till the rain stops significan lo mismo. Until es más frecuente en la escritura. Till es natural en el habla y en algunas fórmulas fijas. Not until significa que el cambio ocurre en ese punto y no antes: The shop doesn't open until nine. Una cláusula futura usa una forma de presente: until she arrives, no until she will arrive.\n\nUntil puede ir seguido de un nombre, de una hora o de una cláusula. No lo escribas untill. Si el trabajo tiene que estar terminado antes del viernes, usa by Friday. Si la situación continúa hasta el viernes, usa until Friday.",
+    "pitfall": "No escribas until como untill, y no escribas until she will arrive en la cláusula. Continuar hasta su llegada es until she arrives.",
+    "keywords": [
+      "until",
+      "till",
+      "duración",
+      "by"
+    ]
+  },
+  "practice-practise": {
+    "title": "practice y practise",
+    "question": "¿Cómo elijo practice o practise?",
+    "summary": "En inglés británico, practice es el nombre y practise es el verbo. El inglés americano suele escribir practice para los dos.",
+    "usage": "I need more practice usa el nombre. En inglés británico, She practises the piano every day usa el verbo practise. El inglés americano a menudo escribe She practices the piano. La pronunciación es la misma; la diferencia es sobre todo ortográfica.\n\nA doctor's practice nombra un consultorio y es un nombre. No escribas por defecto los verbos británicos como practice, y no des por hecho que el inglés americano necesita practise. Sigue el sistema ortográfico que estés usando.",
+    "pitfall": "En la escritura británica, no conviertas todo verbo en practice; la grafía verbal habitual es practise.",
+    "keywords": [
+      "practice",
+      "practise",
+      "ortografía",
+      "británico"
+    ]
+  },
+  "principal-principle": {
+    "title": "principal y principle",
+    "question": "¿Qué diferencia hay entre principal y principle?",
+    "summary": "Principle es una norma o una creencia. Principal puede ser un adjetivo que significa principal, o un nombre para el director de un centro o para un capital.",
+    "usage": "A matter of principle trata de una creencia o de una norma. The principal reason es la razón principal. The school principal es quien dirige el centro. Loan principal es el capital prestado, no los intereses. Las palabras suenan parecido, pero difieren en la grafía y en la función.\n\nUna ayuda de memoria frecuente es que principle termina como rule, mientras que principal puede nombrar a una persona principal. No escribas una norma moral como principal.",
+    "pitfall": "No escribas una norma rectora como principal; ese sentido es principle.",
+    "keywords": [
+      "principal",
+      "principle",
+      "norma",
+      "ortografía"
+    ]
+  },
+  "farther-further": {
+    "title": "farther y further",
+    "question": "¿Farther y further son intercambiables?",
+    "summary": "Los dos suelen valer para la distancia física; further es más seguro para un avance abstracto. Further también puede ser un verbo.",
+    "usage": "How much farther/further is the station? Muchos hablantes aceptan cualquiera de los dos para la distancia. Further research y further information casi siempre llevan further para una extensión abstracta. Further también puede significar adicional: further details.\n\nEl verbo to further a cause significa hacerla avanzar. Farther no suele ser un verbo. El uso americano a menudo reserva farther para la distancia literal, pero el solapamiento se mantiene.",
+    "pitfall": "Para un avance abstracto, prefiere further research, no farther research.",
+    "keywords": [
+      "farther",
+      "further",
+      "distancia",
+      "avance"
+    ]
+  },
+  "assure-ensure-insure": {
+    "title": "assure, ensure e insure",
+    "question": "¿Cómo elijo assure, ensure o insure?",
+    "summary": "Assure suele llevar una persona y la tranquiliza. Ensure significa asegurarse de que algo ocurra. Insure suele relacionarse con un seguro.",
+    "usage": "I assured her that the door was locked tranquiliza a una persona. Please ensure that the door is locked significa asegurarse de que eso ocurra. Insure the house against fire contrata un seguro. El inglés americano a veces solapa ensure e insure, pero los sentidos de seguro siguen favoreciendo insure.\n\nAssure suele llevar assure someone of/that…. Evita assure that the door is locked sin persona. Ensure suele llevar una cláusula con that o un nombre.",
+    "pitfall": "Evita I assure that it is safe. Prefiere I assure you that it is safe, o usa ensure.",
+    "keywords": [
+      "assure",
+      "ensure",
+      "insure",
+      "seguro"
+    ]
+  },
+  "classic-classical": {
+    "title": "classic y classical",
+    "question": "¿En qué se diferencian classic y classical?",
+    "summary": "Classic suele significar ejemplar, de primera o típico. Classical suele señalar una tradición clásica, sobre todo en música, literatura o la Antigüedad.",
+    "usage": "A classic novel es una obra ejemplar. A classic mistake es un error típico. Classical music suele nombrar la tradición clásica, no simplemente una canción pop muy buena. Classical architecture se refiere a un estilo clásico.\n\nNo escribas classical para todo sentido de ejemplar. Las películas clásicas cotidianas y los errores típicos llevan classic. Prefiere classical para etiquetas de estilo académico o histórico.",
+    "pitfall": "No reescribas a classic mistake como a classical mistake.",
+    "keywords": [
+      "classic",
+      "classical",
+      "tradición",
+      "ejemplar"
+    ]
+  },
+  "economic-economical": {
+    "title": "economic y economical",
+    "question": "¿Cuándo uso economic o economical?",
+    "summary": "Economic se relaciona con la economía o con los sistemas financieros. Economical significa ahorrador o de buen rendimiento.",
+    "usage": "Economic growth y economic policy conciernen a la economía o a la política. An economical car es barato de mantener. An economical use of space ahorra espacio. Los dos se relacionan con economy, pero las colocaciones difieren.\n\nNo escribas economical growth por economic growth. Usa economical para el ahorro o la relación calidad-precio.",
+    "pitfall": "No escribas economical policy para la política económica de un gobierno; eso es economic policy.",
+    "keywords": [
+      "economic",
+      "economical",
+      "economía",
+      "ahorro"
+    ]
+  },
+  "historic-historical": {
+    "title": "historic y historical",
+    "question": "¿En qué se diferencian historic y historical?",
+    "summary": "Historic destaca un momento o un lugar de importancia histórica. Historical significa relacionado con la historia o ambientado en el pasado.",
+    "usage": "A historic victory es importante en la historia. A historical novel es una novela sobre el pasado. Historical evidence es evidencia que viene de la historia. Hay solapamiento, pero los hitos favorecen historic, y lo relativo a la historia o ambientado en el pasado favorece historical.\n\nDelante de historic, el inglés británico a menudo usa a; el americano también lo hace con frecuencia. No dejes que el hábito antiguo de an historic oculte el contraste de sentido.",
+    "pitfall": "No reescribas historical novel como historic novel salvo que quieras decir una novela de rango excepcional.",
+    "keywords": [
+      "historic",
+      "historical",
+      "historia",
+      "adjetivos"
+    ]
+  },
+  "travel-trip-journey": {
+    "title": "travel, trip y journey",
+    "question": "¿Cómo elijo travel, trip o journey?",
+    "summary": "Travel suele ser una actividad incontable o un verbo. Trip es una salida, a menudo de ida y vuelta. Journey subraya el proceso de ir de un lugar a otro.",
+    "usage": "I love travel / travelling nombra la actividad. A business trip es una salida concreta. The journey took six hours se centra en el proceso. No escribas a travel para una salida; prefiere a trip.\n\nJourney es frecuente en inglés británico; el inglés americano cotidiano suele preferir trip. Voyage suele sugerir un viaje largo por mar. Tour puede significar un circuito de actuaciones o de visitas. Elige según la situación; no trates el chino 旅行 como un travel contable.",
+    "pitfall": "Evita I made a travel to Paris. Prefiere I took a trip to Paris o I travelled to Paris.",
+    "keywords": [
+      "travel",
+      "trip",
+      "journey",
+      "viaje"
+    ]
+  },
+  "clothes-cloth": {
+    "title": "clothes y cloth",
+    "question": "¿Qué diferencia hay entre clothes y cloth?",
+    "summary": "Clothes es un nombre plural para las prendas. Cloth es tela, y se usa como contable o como incontable.",
+    "usage": "These clothes are new lleva verbo en plural; no hay un singular a clothe. A piece of cloth o a cloth pueden nombrar un trozo de tela. Cloth también puede ser incontable: made of cloth. Clothing es un término de masa más formal.\n\nNo escribas a clothes para una prenda. Nombra la prenda (a shirt, a dress) o usa some clothes.",
+    "pitfall": "Evita a clothes y this clothes is. Prefiere these clothes are o a shirt.",
+    "keywords": [
+      "clothes",
+      "cloth",
+      "ropa",
+      "plural"
+    ]
+  },
+  "custom-customs": {
+    "title": "custom y customs",
+    "question": "¿Cuándo custom y customs significan cosas distintas?",
+    "summary": "Custom puede significar una tradición o un hábito personal. Customs suele significar la aduana, y también puede ser el plural de tradiciones.",
+    "usage": "Local custom es una tradición local. It is her custom to walk after dinner es un hábito personal. Go through customs significa pasar el control fronterizo. A customs officer trabaja allí. Las mayúsculas y la colocación ayudan: Customs puede nombrar el organismo.\n\nNo escribas go through custom para el control fronterizo. Varias tradiciones pueden ser customs, pero el sentido de aduana suele usar esa forma plural.",
+    "pitfall": "Evita go through custom; el sentido fronterizo es go through customs.",
+    "keywords": [
+      "custom",
+      "customs",
+      "tradición",
+      "aduana"
+    ]
+  },
+  "dessert-desert": {
+    "title": "dessert y desert",
+    "question": "¿Cómo distingo dessert de desert?",
+    "summary": "Dessert es un postre. Desert como nombre es tierra árida; como verbo significa abandonar. La grafía y el acento difieren.",
+    "usage": "A chocolate dessert es el postre. The Sahara Desert es tierra árida. He deserted his post significa que lo abandonó. Dessert suele acentuarse en la segunda sílaba; el nombre desert suele acentuarse en la primera.\n\nLa s de más es la comestible: strawberry shortcake for dessert. No escribas la tierra árida como dessert.",
+    "pitfall": "No escribas la tierra árida como dessert, ni el postre como desert.",
+    "keywords": [
+      "dessert",
+      "desert",
+      "postre",
+      "ortografía"
+    ]
+  },
+  "later-latter": {
+    "title": "later y latter",
+    "question": "¿Qué diferencia hay entre later y latter?",
+    "summary": "Later significa en un momento posterior. Latter señala el segundo de dos elementos recién mencionados.",
+    "usage": "See you later significa en un momento posterior. Of tea and coffee, I prefer the latter elige el segundo. The latter half of the year puede significar la segunda mitad. Later es temporal; latter es referencial.\n\nCon más de dos elementos, the latter resulta forzado para el último; prefiere the last o repite el nombre. Former se empareja con latter para el primero y el segundo.",
+    "pitfall": "No escribas See you latter; la despedida es See you later.",
+    "keywords": [
+      "later",
+      "latter",
+      "tiempo",
+      "referencia"
+    ]
+  },
+  "weather-whether": {
+    "title": "weather y whether",
+    "question": "¿Cómo distingo weather de whether?",
+    "summary": "Weather son las condiciones atmosféricas. Whether introduce alternativas o preguntas de sí o no referidas, a menudo con or.",
+    "usage": "The weather is cold nombra las condiciones al aire libre. I don't know whether she will come pregunta si vendrá. Whether...or... presenta alternativas. If a veces puede sustituir a whether, pero tras una preposición o con una elección clara de or not, whether es más seguro.\n\nNo escribas whether como weather. Weather es incontable: a lot of bad weather, no many weathers, salvo en un habla especial de tipos de clima.",
+    "pitfall": "Evita I wonder weather she will come; el marcador de la elección es whether.",
+    "keywords": [
+      "weather",
+      "whether",
+      "tiempo atmosférico",
+      "alternativa"
+    ]
+  }
+}

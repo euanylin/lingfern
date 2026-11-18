@@ -33,7 +33,7 @@ describe('runtime resource catalogue trust boundary', () => {
   it('shares fetch, preserves arrays on refresh and recovers validated cache without replacing it with bad input', async () => {
     const stored = new Map<string, Response>();
     const put = vi.fn(async (key: string, response: Response) => { stored.set(key, response.clone()); });
-    vi.stubGlobal('caches', { open: vi.fn(async () => ({ put, match: async (key: string) => stored.get(key)?.clone() })) });
+    vi.stubGlobal('caches', { has: async () => stored.size > 0, open: vi.fn(async () => ({ put, match: async (key: string) => stored.get(key)?.clone() })) });
     const fetcher = vi.fn(async () => new Response(JSON.stringify(fixture()), { headers: { 'Content-Type': 'application/json' } })); vi.stubGlobal('fetch', fetcher);
     const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
     const identity = module.runtimeResources.offline.groups;
@@ -44,6 +44,22 @@ describe('runtime resource catalogue trust boundary', () => {
     expect(module.runtimeResources.offline.groups).toBe(identity); expect(identity).toHaveLength(2);
     fetcher.mockImplementation(async () => new Response('x'.repeat(catalogueMaxBytes + 1))); await module.loadRuntimeResources(true); expect(put).toHaveBeenCalledTimes(2); expect(identity).toHaveLength(2);
     fetcher.mockRejectedValue(new Error('offline')); await module.loadRuntimeResources(true); expect(identity).toHaveLength(2);
+  });
+  it('loads the installed catalogue while a network refresh is pending', async () => {
+    const cached = fixture(), fresh = fixture();
+    fresh.offline.version = 'r2';
+    const response = Promise.withResolvers<Response>();
+    vi.stubGlobal('caches', {
+      has: async () => true,
+      open: async () => ({ match: async () => new Response(JSON.stringify(cached)), put: async () => {} }),
+    });
+    vi.stubGlobal('fetch', () => response.promise);
+    const module = await vi.importActual<typeof import('../src/data/runtimeResources')>('../src/data/runtimeResources');
+    const refresh = module.loadRuntimeResources(true);
+    await module.loadCachedRuntimeResources();
+    expect(module.runtimeResources.offline.version).toBe('r1');
+    response.resolve(new Response(JSON.stringify(fresh)));
+    expect((await refresh).offline.version).toBe('r2');
   });
   it('does not install anything or accept an uncached oversized or invalid catalogue', async () => {
     vi.stubGlobal('caches', undefined); vi.stubGlobal('fetch', vi.fn(async () => new Response('{}')));

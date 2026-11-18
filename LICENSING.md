@@ -36,6 +36,16 @@ The copyright notice “2026 Lingfern contributors” identifies project-control
 
 Keep the original credits, licence files and source-specific notices with any material you redistribute. Start with the [content and runtime dependency notices](public/THIRD_PARTY_NOTICES.md) and [development dependency notices](Dependency_Notices.md), then check the notices beside the particular text, dictionary or recording.
 
+`content/about-credits.json` records direct dependency and bundled component roles, upstream repositories and licence identifiers. It also feeds the About page and the generated vendored-component notices. Engine, model and runtime terms appear separately. The [parser package notes](public/THIRD_PARTY_NOTICES.md#vendored-and-adapted-components) link the precise sources and retained notices.
+
+The [original Java tidy-tree algorithm](https://github.com/cwi-swat/non-layered-tidy-trees/blob/e84be1bb8cc825fbe16ff000443cb8cf25ce8dd8/treelayout/algorithm/Paper.java#L3-L8) declares its code public domain in the source header. The [JavaScript port used by Lingfern](https://github.com/stetrevor/non-layered-tidy-tree-layout) declares MIT, and its [original MIT notice](public/licenses/non-layered-tidy-tree-layout@2.0.2/LICENSE) is retained.
+
+<a id="pending-provenance-checks"></a>
+
+### Phrase-head rule provenance
+
+Lingfern replaced the previous rule table with [first-party English phrase-head heuristics](src/shared/tree-forms.ts). The new implementation uses grammatical category groups and constituent position. The [Penn Treebank II bracketing guidelines](https://languagelog.ldc.upenn.edu/myl/PennTreebank1995.pdf) describe the label vocabulary. The earlier table and its CoreNLP reference are absent from the release source and build.
+
 Private learning data, credentials and private evidence are not licensed for publication by these terms. The public source contains no grant to access a user's learning records or connected services.
 
 ## Licence texts

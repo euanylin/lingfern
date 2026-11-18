@@ -22,7 +22,8 @@ export async function expectPickerAlignment(trigger: Locator) {
 }
 
 export async function selectPicker(page: Page, label: string, value: string) {
-  const trigger = page.getByRole('button', { name: label }).and(page.locator('.setting-trigger'));
+  const literal = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const trigger = page.getByRole('button', { name: new RegExp(`^${literal}(?::|$)`, 'u') }).and(page.locator('.setting-trigger'));
   const menuId = await trigger.getAttribute('aria-controls');
   const index = await trigger.evaluate(element => [...document.querySelectorAll('.setting-trigger')].indexOf(element));
   await trigger.click();

@@ -3,5 +3,6 @@
   "dictionary": "Consulta palabras inglesas en Open English WordNet, explora sus definiciones y guarda acepciones. Descarga el diccionario para usarlo sin conexión.",
   "ipa": "Explora el alfabeto fonético internacional con tablas de vocales y consonantes, guías de articulación y ejemplos de pronunciación.",
   "grammar": "Consulta usos del inglés con explicaciones, ejemplos, errores frecuentes y entradas relacionadas. Descarga la guía para usarla sin conexión.",
+  "trees": "Dibuja árboles sintácticos (constituyentes, dependencias, X-barra, CCG y más) desde corchetes, esquemas u oraciones y expórtalos a SVG, PNG o PDF.",
   "about": "Conoce Lingfern, su software de código abierto, sus recursos de aprendizaje, sus licencias y sus datos de contacto."
 }

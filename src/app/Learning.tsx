@@ -83,7 +83,7 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
   const instructionLocale = practiceLocale(session.lesson, locale), title = <h1 lang={contentLanguage(session.lesson.title, instructionLocale)}>{contentText(session.lesson.title, instructionLocale)}</h1>;
   if (session.recordsDeleted) return <>{title}<p>{deletionCopy[locale].archived}</p><a className="button" href="/progress">{t.progress}</a></>;
   const checkIntro = session.lesson.mode === 'check' && session.status === 'active' && !session.checkStartedAt;
-  if (error && (blockingErrors.includes(error) || checkIntro)) return <section>{title}<p role="alert">{message}</p><div className="action-row"><button className="button" onClick={() => void load()}>{t.retry}</button><a className="button back-button" href="/today" aria-label={t.finish}>←</a></div></section>;
+  if (error && (blockingErrors.includes(error) || checkIntro)) return <section>{title}<p role="alert">{message}</p><div className="action-row"><button className="button" onClick={() => void load()}>{t.retry}</button><a className="button back-button" href="/today" aria-label={t.finish}><span dir="ltr" aria-hidden="true">←</span></a></div></section>;
   if (checkIntro) return <section className="narrow check-intro">
     {title}<p lang={contentLanguage(session.lesson.goal, instructionLocale)}>{contentText(session.lesson.goal, instructionLocale)}</p><p>{t.checkUnseen}</p>
     <dl><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{session.lesson.skill === 'listening' ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl>

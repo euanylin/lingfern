@@ -4,7 +4,7 @@
 
 This is the local project recovery procedure. Run `npm run backup` before changes and delivery unless the maintainer explicitly excludes backups for the task. An explicit purge removes historical recovery points; do not immediately recreate them during that cleanup. Keep a verified full baseline; later snapshots contain only changed/new files and deletion records. If the protected files have not changed, the command returns the existing recovery point without creating another directory. Snapshots are immutable and written manifest-last. A directory without a manifest is incomplete.
 
-No project recovery points are retained after the maintainer's explicit 2026-11-02 purge. Historical snapshot paths in dated records are evidence of earlier checks, not available restore targets. A later authorized `npm run backup` creates a new full baseline. An explicit purge without replacement does not run consolidation or create a temporary project copy.
+The maintainer purged the then-existing recovery points on 2026-11-02; subsequent authorized backups created a new recovery chain. Inspect the actual complete manifests before selecting a restore point. Historical paths in dated records identify earlier checks and do not guarantee that those snapshots remain available. An explicit purge without replacement does not run consolidation or create a temporary project copy.
 
 Exclude secrets, `private/`, Git history, dependencies, Python `__pycache__/`, generated `dist/`, `output/` screenshots, browser-tool caches and nested backups. Keep original public assets and resource ZIPs: these are required for restoration. Browser IndexedDB, production services and off-site disaster recovery are outside this scope.
 

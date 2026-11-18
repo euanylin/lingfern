@@ -45,7 +45,8 @@ export async function installResourcePack(pack: ResourcePack, profileId: string,
     for (const file of group.files) {
       signal?.throwIfAborted(); assertActive();
       const data = pack.files[file.path.slice(1)];
-      const type = file.path.endsWith('.mp3') ? 'audio/mpeg' : file.path.endsWith('.json') ? 'application/json' : 'text/plain; charset=utf-8';
+      const type = file.path.endsWith('.mp3') ? 'audio/mpeg' : file.path.endsWith('.json') ? 'application/json'
+        : file.path.endsWith('.wasm') ? 'application/wasm' : /\.(?:udpipe|bin)$/u.test(file.path) ? 'application/octet-stream' : 'text/plain; charset=utf-8';
       await cache.put(file.path, new Response(new Uint8Array(data), { headers: { 'Content-Type': type, 'Content-Length': String(data.length) } }));
     }
     signal?.throwIfAborted(); assertActive();

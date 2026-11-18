@@ -37,7 +37,7 @@ const LibraryPreview = memo(function LibraryPreview({ locale, profileId, online 
   return <div className="library-page">
     <div className="library-page-heading"><h1>{app.library}</h1><div className="library-history-entry"><a className="button records-link" href="/library/history">{messages('lookupHistory_lookupHistoryCopy')[locale].entry}</a></div></div>
     <section className="library-references"><h2>{app.references}</h2>
-      {(['dictionary', 'ipa', 'grammar'] as const).map(name => <a className="library-reference-tile" href={`/library/${name}`} key={name}>{name === 'dictionary' ? app.dictionaryEntry : app[name]}</a>)}
+      {(['dictionary', 'grammar', 'ipa', 'trees'] as const).map(name => <a className="library-reference-tile" href={`/library/${name}`} key={name}>{name === 'dictionary' ? app.dictionaryEntry : app[name]}</a>)}
     </section>
     <OfflineInstall locale={locale} profileId={profileId} online={online} onReady={() => {}} preview/><InstalledResources locale={locale} profileId={profileId}/><CommunityImport locale={locale} profileId={profileId} onInstalled={() => {}}/>
   </div>;
@@ -58,7 +58,6 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
   const pointerHeld = useRef(false), cancelWheel = useRef(() => {});
   const idleUntil = useRef(performance.now() + 6000), keyboard = useRef(false);
   const autoRotating = useRef(false);
-  const rtl = locale === 'ar' ? -1 : 1;
   useLayoutEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)'), update = () => setReduced(media.matches);
     const resize = () => {
@@ -86,7 +85,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
       if (!layers) return;
       const { card, window, shadow, shade } = layers;
       const distance = wrapCard(index - value + 4.5) - 1.5, away = Math.abs(distance);
-      const x = distance * shift * rtl;
+      const x = distance * shift;
       const scale = 1 - .12 * Math.min(away, 1) - .1 * Math.max(0, away - 1);
       // Project depth in two dimensions so the scroll surfaces stay flat.
       const projection = 1600 / (1600 + 100 * away);
@@ -102,7 +101,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
         if (button.hasAttribute('aria-current') !== (index === next)) { if (index === next) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current'); }
         dot.style.transform = `scaleX(${(7 + 19 * weight) / 26})`; dot.style.opacity = String(.4 + .6 * weight); dot.style.borderRadius = `${3.5 * 26 / (7 + 19 * weight)}px / 3.5px`; }
     });
-  }, [reduced, rtl, shift]);
+  }, [reduced, shift]);
   // Keep queued frames on current geometry without restarting their spring.
   const livePaint = useRef(paint);
   useLayoutEffect(() => { livePaint.current = paint; paint(current.current); }, [paint]);
@@ -225,7 +224,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
       if (snapping && event.isMomentum) return;
       snapping = false;
       horizontal = true;
-      const delta = event.axisDelta[0] * rtl;
+      const delta = event.axisDelta[0];
       // Decide from contact distance before the first inertia sample can push it over the limit.
       if (!settled && flick && event.isMomentum && delta * total > 0) { settle(); return; }
       const freshContact = coast === 'free' && event.isStart && !event.isMomentum;
@@ -276,7 +275,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
         sustainedContact = nativeContact && lastAt - startedAt >= 180 && distance >= dragDistance && distance >= travel * .8;
       }
       flick = samples > 1 && lastAt - startedAt <= 100 && distance >= 24 && distance <= flickLimit && distance >= travel * .8;
-      velocity = event.axisVelocity[0] * rtl * 1000 / dragDistance;
+      velocity = event.axisVelocity[0] * 1000 / dragDistance;
       if (frame.current) { cancelAnimationFrame(frame.current); frame.current = 0; autoRotating.current = false; }
       // Trackpad events can arrive faster than the display can present them.
       let offset = total;
@@ -351,7 +350,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
       // Geometry changes must finish pending contact; an unmounted carousel stays stopped.
       if (!settled && !drag.current && root.isConnected) { livePaint.current(wheelPosition); go(target(), velocity, flick || typeof coast === 'object'); }
     };
-  }, [go, paint, rtl, dragDistance, reduced]);
+  }, [go, paint, dragDistance, reduced]);
   function end(event: ReactPointerEvent<HTMLDivElement>) {
     const held = drag.current;
     if (!held || held.id !== event.pointerId) return;
@@ -371,14 +370,14 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
     go(index);
   }
   function previewNav(index: number, mobile = false) {
-    return <nav className={mobile ? 'mobile-nav welcome-mobile-nav' : 'desktop-nav'} data-display={mobile ? 'both' : 'text'} aria-label={app.navigation}>
+    return <nav className={mobile ? 'mobile-nav welcome-mobile-nav' : 'desktop-nav'} dir="ltr" data-display={mobile ? 'both' : 'text'} aria-label={app.navigation}>
       {previewPages.map((name, target) => <a key={name} href={`/${name}`} aria-current={index === target ? 'page' : undefined}
         onClick={event => { event.preventDefault(); selectCard(target); }}>
-        {mobile && <NavIcon name={name}/>}<span className="nav-label">{app[name]}</span>
+        {mobile && <NavIcon name={name}/>}<span className="nav-label" dir="auto">{app[name]}</span>
       </a>)}
     </nav>;
   }
-  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': viewport.width > 0 ? Math.max(.9, Math.min(1.85, screenRatio)) : undefined } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? rtl : -rtl)); }}>
+  return <section className="welcome" aria-label={t.carousel} style={{ '--welcome-card-ratio': viewport.width > 0 ? Math.max(.9, Math.min(1.85, screenRatio)) : undefined } as React.CSSProperties} onFocusCapture={() => { idleUntil.current = performance.now() + 6000; }} onKeyDownCapture={() => { keyboard.current = true; idleUntil.current = performance.now() + 6000; }} onKeyDown={event => { if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || (event.target instanceof Element && event.target.closest('input,textarea,select,[role=listbox]'))) return; event.preventDefault(); cancelWheel.current(); go(Math.round(current.current) + (event.key === 'ArrowRight' ? 1 : -1)); }}>
     <div className="welcome-stage" ref={stage} role="region" aria-roledescription={t.carousel} aria-label={t.carousel}
       onPointerDown={event => { keyboard.current = false; idleUntil.current = performance.now() + 6000; suppressClick.current = false; if (event.isPrimary && event.button === 0) { cancelWheel.current(); cancelAnimationFrame(inputFrame.current); inputFrame.current = 0; cancelAnimationFrame(frame.current); drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, position: current.current, at: performance.now(), last: current.current, velocity: 0 }; } }}
       onPointerMove={event => {
@@ -391,7 +390,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
         }
         if (held.axis === 'x') {
           event.preventDefault();
-          const value = held.position + Math.max(-1, Math.min(1, -dx * rtl / dragDistance)), now = performance.now();
+          const value = held.position + Math.max(-1, Math.min(1, -dx / dragDistance)), now = performance.now();
           held.velocity = (value - held.last) * 1000 / Math.max(8, now - held.at);
           held.at = now; held.last = value;
           // Paint once per frame while retaining the final touch position.
@@ -406,7 +405,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
           onClick={event => { if (event.target === event.currentTarget && index !== selected.current) selectCard(index); }}>
           <div className="welcome-shadow"/>
           <div className="welcome-window" inert={index !== 0}>
-            <header className="welcome-site-header"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span>{previewNav(index)}</header>
+            <header className="welcome-site-header" dir="ltr"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span>{previewNav(index)}</header>
             <div className="welcome-content">{name === 'today' ? <TodayPreview locale={locale} profileId={profileId} date={date} onDayChange={onDayChange} onContinue={onContinue} active={fernActive}/> : name === 'library' ? <div inert><LibraryPreview locale={locale} profileId={profileId} online={online}/></div> : <div inert>{settings}</div>}</div>
             {previewNav(index, true)}
             <div className="welcome-shade"/>
@@ -414,7 +413,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
         </div>)}
     </div>
     <div className="welcome-caption"><div className="welcome-caption-copy" aria-live="polite" aria-atomic="true">{previewPages.map((name, index) => <div key={name} className="welcome-caption-slide" aria-hidden={index !== active} style={{ visibility: index === active ? 'visible' : 'hidden' }}><h1>{app[name]}</h1><p>{subtitles[index]}</p></div>)}</div>
-      <div className="welcome-controls"><div className="welcome-dots">{previewPages.map((name, index) => <button key={name} type="button" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-current={index === 0 ? 'true' : undefined} onClick={() => selectCard(index)}><span ref={node => { dots.current[index] = node; }}/></button>)}</div></div>
+      <div className="welcome-controls"><div className="welcome-dots" dir="ltr">{previewPages.map((name, index) => <button key={name} type="button" aria-label={t.slideN.replace('{n}', String(index + 1))} aria-current={index === 0 ? 'true' : undefined} onClick={() => selectCard(index)}><span ref={node => { dots.current[index] = node; }}/></button>)}</div></div>
       <button type="button" className="primary welcome-start" onClick={onContinue}>{messages('corpusPractice')[locale].start}</button>
     </div>
   </section>;

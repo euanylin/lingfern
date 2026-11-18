@@ -10,6 +10,9 @@ const folders = [
   ['dictionary', 'public/dictionary/oewn-2025'],
   ['ipa', 'public/ipa'],
   ['grammar', 'public/grammar'],
+  ['tree-parser', 'public/resources/tree-parser-v1'],
+  ['tree-constituency', 'public/resources/tree-constituency-v1'],
+  ...['tree-stanza', 'tree-hol-ccg'].map(id => [id, `public/resources/${id}-v1`]),
   ['corpus', 'public/corpus'],
   ['audio-beginner', 'public/audio/a1-sentences'],
   ...['a1', 'a2', 'b1', 'b2', 'c1', 'c2'].map(level => [`audio-${level}`, `public/audio/${level === 'a1' ? 'a1-words' : `${level}-speech`}`]),
@@ -21,7 +24,8 @@ for (const [id, folder] of folders) {
     for (const entry of await readdir(dir, { withFileTypes: true })) {
       const path = join(dir, entry.name);
       if (entry.isDirectory()) await visit(path);
-      else if (entry.isFile() && /\.(json|mp3|md|txt)$/.test(entry.name)) {
+      else if (entry.isFile() && (/\.(json|mp3|md|txt)$/.test(entry.name) || id === 'tree-parser' && /\.(udpipe|wasm)$/.test(entry.name)
+        || ['tree-constituency', 'tree-stanza', 'tree-hol-ccg'].includes(id) && /\.(bin|wasm)$/.test(entry.name))) {
         const bytes = await readFile(path);
         files.push({ path: '/' + relative(resolve(root, publicRoot), path).split('\\').join('/'), bytes: bytes.byteLength, sha256: createHash('sha256').update(bytes).digest('hex') });
       }

@@ -76,7 +76,11 @@ This is the current interface specification. [AGENTS.md](AGENTS.md) owns project
 
 ## C. Design Parameters
 
+The C.1/C.2 tables retain the original Fern visual reference. Current selectable palettes and independent display modes are specified in Section I and implemented by the shared token files; Default is the current default palette. Do not apply Fern reference values to every palette.
+
 ### C.1 Light Theme
+
+The C.1/C.2 tables retain the original Fern reference palette. Default and the other palettes use the current overrides in `public/palettes.css`; Section I owns selection, mode and brand-color behavior. Do not apply these Fern reference values to every palette.
 
 | Role | Colour | Use |
 |---|---|---|
@@ -469,13 +473,15 @@ No records shows a factual empty state. Missing original media does not erase sa
 
 #### Purpose and Layout
 
-A 760px-wide library with grouped Dictionary / IPA / Usage reference links, offline content, installed resources and community import. Lookup history has its own top-right entry; saved words remain on their dedicated dictionary-linked page. Use the current `Library` layout rather than adding Notes tabs or a file tree. Do not claim that every listed resource is already installed.
+A 760px-wide library with grouped Dictionary / IPA / Usage / Syntax tree reference links, offline content, installed resources and community import. Lookup history has its own top-right entry; saved words remain on their dedicated dictionary-linked page. Use the current `Library` layout rather than adding Notes tabs or a file tree. Do not claim that every listed resource is already installed.
 
 #### Exact Sections
 
 **Offline content:** estimated usage, installed packages, required resources. Example copy such as “This origin uses approximately 120 MiB; the browser estimates about 600 MiB remaining” must come from actual estimates and is not guaranteed device disk capacity. A thin proportional bar supplements readable values and cleanup controls.
 
-Maintainer update (2026-10-17): keep the two general reading corpora and seven general audio groups inside a collapsible “General materials” subgroup under Reading and Listening respectively. Reuse the existing topic-group checkboxes, mixed selection, search expansion, installed counts and keyboard controls. Reference resources remain ordinary rows; preserve every package identity and installation state.
+Maintainer update (2026-10-17): keep the two general reading corpora and seven general audio groups inside a collapsible “General materials” subgroup under Reading and Listening respectively. Reuse the existing topic-group checkboxes, mixed selection, search expansion, installed counts and keyboard controls. Preserve every package identity and installation state.
+
+Maintainer update (2026-11-18): Reference groups the syntax parser downloads under a collapsed “Syntax tree” disclosure. Reuse the resource-group search, keyboard controls, mixed selection and installed counts.
 
 Package rows contain name, target range, skills, actual task count, download/expanded size, state, and one main action. Follow the plan's small-package budget, not an illustrative 180 MB package contradicting a 20 MiB publication limit.
 
@@ -499,6 +505,18 @@ Place a separate 44px Delete button beside each lookup link. Its confirmation sh
 **Saved items:** one rounded list with separators. Put the word/phrase on the left and muted, un-underlined online lookup, the dictionary's filled/outline star and shared chevron on the right. Definitions align with the word heading and remain English. Each meaning is independently collapsible, initially expanded; collapsed rows retain lookup and star actions. Cancellation persists immediately, while the row stays until refresh or reopening. Keep row order stable through toggles; sort by saved time when building a fresh page list. Pressing nested stars/links must not scale the parent heading. No word-sense review, rating or due date. Saving does not mean mastery.
 
 **Dictionary:** search with an offline-definition/optional-Cambridge-link explanation, opening the dedicated page. Backup/restore links to the same Settings implementation, not a second import flow.
+
+#### Syntax-tree Editor
+
+At `/library/trees`, start with **The man who caught the ball is my uncle** and its worked tree, or restore a nonempty per-profile local draft. Clear is undoable during the visit; reopening a genuinely cleared draft restores the example. Save creates a separate named history snapshot and uses ordinary secondary styling. Autosave never replaces named history; automatic drafts are device-local and excluded from profile backup/sync.
+
+Place type, undo/redo/clear and node-edit controls **above the canvas** in one wrapping toolbar, using a single row when natural widths fit. Name the node action **Delete node** (删除节点), distinct from the clear/trash icon. Keep Copy text / Save / Export below the source and label inputs. Symbol helpers sit **directly below the canvas**, before sentence input, preserving the active field/caret; coarse-pointer targets are at least 48px high with readable glyphs.
+
+Movement uses `aria-pressed`, identical active/inactive dimensions and no scaling. Active drag links coindices; inactive drag moves the tree normally. A second click or Escape exits. Show Unlink only for an indexed selection. On narrow screens, Left / Right / Movement keep their normal row; only when Unlink appears do all four share a full-width, edge-aligned row with content-based widths and smaller labels. Preserve 44px targets and outer alignment.
+
+Right-click or a stationary 500ms touch hold opens the same viewport-bounded menu. Movement, scrolling, cancellation or a second touch cancels a pending hold; release after opening leaves the menu available. Order: add child/sibling, left/right, movement/conditional unlink, delete node. Focus enters an enabled item; Arrow/Home/End skip disabled actions, and Escape returns focus to the node. Preserve native menu scrolling and visible keyboard focus.
+
+Use accurate labels for all nine views, without claiming independent complete grammar engines. Show the concise generated-output note, or the localized incomplete-derivation notice when CCG contains `?`. Reselecting the current type or changing locale preserves manual edits; late generation cannot overwrite newer work. Screen and SVG/raster/PDF export share layout/movement routes and stronger identifying-control connector colors. Movement links use nearby clear paths when available. Their horizontal segments go below intervening tree branches when a nearer path would cross them. Shared destinations use separate arrowhead positions, and arrows leave vertical tree branches visible. Complex links can use the separated rails below the tree. At unavoidable intersections, leave a small break in the movement stroke so the tree branch or earlier movement remains readable. Shared arrowheads narrow to fit crowded destinations. Retain zoom/fullscreen, native vertical scrolling, simultaneous diagonal panning and reduced-motion behavior.
 
 #### Interaction and Responsive Behaviour
 
@@ -791,9 +809,9 @@ Mobile sheets may reach 92% of available viewport, with optional dragging and vi
 
 ### G.12 Toasts and System States
 
-Toasts confirm nonblocking actions, desktop 24 from bottom, mobile 12 above fixed bars. Maximum width 440, padding 12×16, shared rounded-rectangle radius. Approximately 5 seconds, or 8 with an action; pause on hover/focus. Important actions also exist on the page. New toasts must not replace errors requiring attention.
+Use the existing `.service-toast` for nonblocking feedback: shared rounded corners, maximum width 560px, 12×20px padding and a 48px minimum height. Position it above fixed navigation/safe-area clearance. Network status has its existing 14×20px content padding and 3.5-second lifetime. Important errors and recovery actions remain on the page; a transient toast cannot replace them.
 
-Light theme: charcoal toast with warm-white text. Dark theme: warm-white toast with charcoal text. Links must also be readable; do not retain light-green text on warm white. Copy feedback may say “Copied”, not “Sent to AI”.
+Use the selected palette’s secondary-control surface and readable ink in both modes. Supported translucent toasts mix that surface at 85% with 24px backdrop blur and 140% saturation; reduced-transparency and unsupported browsers retain the solid surface. Menus use their separate 55% tint. Copy feedback may say “Copied”, not “Sent to AI”.
 
 **Sync:** disabled, synced, pending, syncing, needs attention, and expired permission have distinct text/icons. Header icons have 44 targets. Do not animate without an actual request. Last-sync time uses real confirmation only.
 
@@ -839,9 +857,9 @@ Use both available content width and height, not device names. Include enlarged 
 
 ### I.1 Main Surfaces and Controls
 
-Use the shared colours in Section C.2 and `public/ui-tokens.css`; do not maintain a second dark palette. Dark mode is not an inversion filter: body text sits on the page background, players/questions on raised surfaces, and genuine overlays use their shared surface. Do not place whole passages inside bright cards.
+Use the shared semantic tokens in `public/ui-tokens.css` and palette overrides in `public/palettes.css`. Non-Fern palette dividers use low-saturation, low-contrast shared line tokens in both modes; input, selected and focus boundaries retain their separate stronger tokens. Default is the default palette; the 32 alternatives include the original Fern palette. Every palette has light and dark surfaces; display mode (Light/Dark/System) is an independent preference. Section C.2 retains the original visual reference. Alternative dark page, card, secondary-control and overlay surfaces use nearly neutral greys with only a subtle palette tint (surface saturation capped at 6%); keep theme accents distinct. Fern retains its existing colors. Default keeps neutral page/card/body-text/secondary surfaces and uses the same accent roles and state rules as every other palette: a muted blue accent, pale blue primary fill, mode-appropriate primary hover/pressed colors, blue selection/focus and readable accent text. Do not restore Default-only hover-text or feedback patches. Success, warning and error remain semantic. Dark mode is not an inversion filter: body text sits on the page background, players/questions on raised surfaces, and genuine overlays use their shared surface. Do not place whole passages inside bright cards.
 
-Retain line-height and weight rather than making everything bold for clarity. Primary buttons use the shared sage fill and charcoal text; secondary buttons use a subdued solid fill. Selection and visible keyboard focus retain their own states. Test the changed controls on their actual nested backgrounds.
+Retain line-height and weight rather than making everything bold for clarity. Primary buttons use the selected palette’s shared fill and contrasting text; secondary buttons use a subdued solid fill. Selection and visible keyboard focus retain their own states. Test the changed controls on their actual nested backgrounds.
 
 ### I.2 Semantics and Evidence
 
@@ -857,7 +875,7 @@ Keep wording, symbols, and solid/dashed distinctions. Dim borders/colour alone d
 
 ### I.3 Logo and Plant
 
-Use `public/icon.svg` directly or as a CSS mask in the theme accent colour. Preserve its geometry; light and dark themes use this same version. The 192px and 512px PNG installation icons are required derivatives, not alternate designs.
+Use `public/icon.svg` directly or as a CSS mask in the original brand accent (`#536F5B` in light mode and `#A8BBA3` in dark mode). Palette selection never recolours the logo or Today fern. Preserve its geometry; light and dark modes use this same version. The 192px and 512px PNG installation icons are required derivatives, not alternate designs.
 
 Growth fern may use rachis `#8FA58B`, mature pinnae `#A4B99F`, new leaves `#6E8570`. Low-contrast new-leaf portions are decorative transition only; important record states require clear outlines/text. Missing records are not glowing gaps.
 
@@ -867,7 +885,7 @@ Overlays use background plus 1px divider, without heavy shadows/glow. Backdrop m
 
 Do not automatically darken teaching photographs/diagrams by 8%. Colour or brightness may be material information; changes require content-asset permission. No global inversion of external assets. Provide an unchanged background container and explanation where necessary.
 
-A short colour transition is permitted; reduced motion switches immediately. System is the default theme, overridden by explicit user choice. Switching themes must not redownload courses, refresh the page, or interrupt playback.
+A short colour transition is permitted; reduced motion switches immediately. Default is the default palette (white page in light mode, neutral grey in dark mode); System remains the default display mode. Settings offers palette names, a single accent-only 64×32px swatch with half the shared card corner radius for its smaller size (8px at the current 16px token), keeping visible straight sides rather than a pill, and selected state. Do not show background/text swatches. Keep Default and Fern first; arrange the remaining choices by color family from warm reds/oranges through yellow/green, blue, purple and pink, with Cocoa/Sand/Slate beside their related hues. Select Default to restore the default; there is no separate reset button. Selecting Default changes only the palette. Existing valid explicit palette choices survive upgrades; an old default without a palette choice migrates to Default. Keep display mode and palette separately saved. Apply both before first visible content, including direct, internal, refreshed and offline Introduction visits. Switching palettes must not redownload courses, refresh the page, or interrupt playback.
 
 ---
 
@@ -948,7 +966,7 @@ Every audio control has a text name. Playback is not automatic. Pronunciation co
 
 ### K.7 Interface Languages and Validation
 
-Maintainer update (2026-10-16): B1–C2 instructional goals, before-start guidance, worked examples, hints, explanations and next steps use English in every interface language, including previously saved lessons. General navigation/actions use fourteen interface packages (maintainer update 2026-10-17). A1–A2 reviewed instructional support uses the selected language in all fourteen packages; the eleven non-Chinese/English languages each own `teaching.json`. Arabic UI uses RTL while English material, answers and instructions retain LTR. Unknown private/older instructional text also falls back to English with its actual language tag. Select the display language without rewriting saved learning snapshots.
+Maintainer update (2026-10-16): B1–C2 instructional goals, before-start guidance, worked examples, hints, explanations and next steps use English in every interface language, including previously saved lessons. General navigation/actions use fourteen interface packages (maintainer update 2026-10-17). A1–A2 reviewed instructional support uses the selected language in all fourteen packages; the eleven non-Chinese/English languages each own `teaching.json`. Arabic text, lists, settings pickers and local actions use RTL. Global navigation stays in Today / Library / Settings order from left to right, including the Introduction previews. Keep desktop Today practice on the left and the fern on the right. Keep the reading passage on the left and questions on the right. Introduction gestures, numbered question navigation, audio timelines and syntax-tree controls keep their physical directions. English material, answers and instructions retain LTR. Unknown private/older instructional text also falls back to English with its actual language tag. Select the display language without rewriting saved learning snapshots.
 
 All fourteen languages include privacy, errors, authorisation, fern legends, and empty states—not navigation only. Review Traditional Chinese properly, not mechanical conversion. A1 users may choose any interface language; do not assume a Chinese native language. Teaching still includes simple English/examples rather than relying on online AI for beginner support.
 
@@ -1044,13 +1062,13 @@ These external references check only the specified implementation boundaries; th
 
 ### Shared lookup and selection refinements (2026-10-11)
 
-Library query tools follow the latest ref-list ZIP: one card padded20px/20px/8px, serif20px heading, Dictionary → IPA → Usage as three vertical52px rows on desktop and mobile. Remove inner tiles, subtitles and arrows; use inset dividers,8px hover corners and the shared visible keyboard focus. About uses the existing accent underline. Download/choose backup actions share filled styling; Current profile and Content list retain their existing behavior with visible raised surfaces. Hover applies only to unselected options/resources, preserving checked and feedback colors; dark selection uses warm sage343C31.
+Library query tools share the current reference card: one card padded20px/20px/8px, serif20px heading, Dictionary → IPA → Usage → Syntax tree as four vertical52px rows on desktop and mobile. Remove inner tiles, subtitles and arrows; use inset dividers,8px hover corners and the shared visible keyboard focus. About uses the existing accent underline. Download/choose backup actions share filled styling; Current profile and Content list retain their existing behavior with visible raised surfaces. Hover applies only to unselected options/resources, preserving checked and feedback colors; selection uses the chosen palette’s shared selection token; Fern retains its original warm-sage reference.
 
 Maintainer update (2026-10-19): Detailed IPA tables and the vowel map keep their complete natural height at every viewport width and aspect ratio. Only horizontal chart scrolling is local; vertical gestures scroll the page without an inner height cap or blocked scroll chaining. Retain readable symbols,44px audio controls,LTR chart axes and fixed horizontal row labels.
 
-Maintainer23:02 screenshot correction: the85% menu tint appeared opaque. Shared menu tint is now55% raised surface with actual24px backdrop blur and140% saturation; check-only selection/6% hover, bounded placement and solid reduced-transparency/unsupported fallback remain. This explicit visual correction supersedes the supplied85% tint.
+Maintainer23:02 screenshot correction: the85% menu tint appeared opaque. Shared menu tint is now55% secondary-control surface with actual24px backdrop blur and140% saturation; check-only selection/6% hover, bounded placement and solid reduced-transparency/unsupported fallback remain. This explicit visual correction supersedes the supplied85% tint.
 
-Latest daily-quote package (SHAacb5fe067efdd6519358ff86c203b2b9197658b483132efcf86de77bcd81f092): plain page surface, serif20px desktop/18px narrow (maintainer sizing correction2026-10-12),1.45 line height, maxmin(60ch,720px), quiet13px source disclosure with original complete citation and fixed-revision source link inside,44px grey refresh icon. Keep long-quote full-text expansion and actual catalogue/day selection. Today fern160px desktop/96px mobile (maintainer sizing correction2026-10-12), with32px mobile gap before quote;40px quote/practice gap. Existing fern artwork/growth/accessibility retained, no specimen plant replacement or fabricated author fields. Bottom handwritten wordmark is removed per maintainer; top brand remains.
+Daily quote layout: plain page surface, serif20px desktop/18px narrow (maintainer sizing correction2026-10-12),1.45 line height, maxmin(60ch,720px), quiet13px source disclosure with original complete citation and fixed-revision source link inside,44px grey refresh icon. Keep long-quote full-text expansion and actual catalogue/day selection. Today fern160px desktop/96px mobile (maintainer sizing correction2026-10-12), with32px mobile gap before quote;40px quote/practice gap. Existing fern artwork/growth/accessibility retained, no specimen plant replacement or fabricated author fields. Bottom handwritten wordmark is removed per maintainer; top brand remains.
 
 Quote source-row QA refinement: use the existing exact locator as its concise two-line disclosure label (fallback actual page title), rather than a thematic page plus alphabetical section such as “Virtue · E”. No author/work inference; expand for complete page/locator/revision link.
 
@@ -1070,6 +1088,6 @@ Mobile reading sheets separate viewport panning from sizing. While typing,the ar
 
 Maintainer update (2026-10-31, YouTube interaction follow-up): let native overlay scrollbars control scroll visibility, fading, hover and dragging together, without a JavaScript hide timer. Use native theme contrast and hover/pressed feedback instead of a fixed translucent thumb color. Use the native default document scrollbar width and thin control scrollbars; do not force a fixed custom width or add reserved blank space that shifts the page. Preserve platform behavior, including an explicit system preference to keep scrollbars visible, and native keyboard access. Vertical wheel input within introduction content reads that content,while horizontal pixel trackpad gestures change slides; outer-stage vertical wheel and Shift+wheel retain native behaviour. Hide thumbs when neither axis exceeds10% of its visible extent,bounded to48–96CSSpx. Evaluate both axes after content or viewport changes; native styling shares the thumb color across both axes without changing geometry. Forced-colour accessibility keeps the system's visible controls; older browsers without scrollbar styling support retain native behavior.
 
-Latest maintainer navigation update:desktop and mobile top navigation,and the existing mobile bottom navigation,remain viewport-fixed through inertial scrolling. Reserve the actual observed top-header height so locale changes and enlarged text do not cover content. Keep native scrolling and44px targets in short/input-focused views;do not replace these bars with flow positioning. Separate composited layers from scrolling content;do not chase scroll position with per-frame JavaScript. Header/intrinsic sheet-size observation is coalesced outside ResizeObserver delivery.
+Fixed navigation:desktop and mobile top navigation,and the existing mobile bottom navigation,remain viewport-fixed through inertial scrolling. Reserve the actual observed top-header height so locale changes and enlarged text do not cover content. Keep native scrolling and44px targets in short/input-focused views;do not replace these bars with flow positioning. Separate composited layers from scrolling content;do not chase scroll position with per-frame JavaScript. Header/intrinsic sheet-size observation is coalesced outside ResizeObserver delivery.
 
 Each mobile introduction window also includes the normal three-item bottom navigation with shared site icons,localized labels and its own selected entry. Keep it outside the content scroller at the window bottom;links select the corresponding introduction card. Desktop introduction keeps its top navigation.

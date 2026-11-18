@@ -69,6 +69,7 @@ describe('local ZIP backup', () => {
     const answer = await submit(session.id, 'tab', 1);
     await saveDraft(session.id, 'tab', 2);
     await saveSetting('local-guest', 'theme', 'dark');
+    await saveSetting('local-guest', 'palette', 'original');
     await saveSetting('local-guest', 'locale', 'zh-Hant');
     const original = await inspectBackup(await exportBackup('local-guest'));
     let profileId = 'local-guest';
@@ -84,7 +85,7 @@ describe('local ZIP backup', () => {
       expect(await exposures.where('profileId').equals(restoredId).toArray()).toEqual(original.records.exposures.map(exposure => ({ ...exposure, profileId: restoredId, contacts: exposure.contacts?.map(contact => ({ ...contact, sessionId: restored.id })) })));
       const projected = await projectPreferences(restoredId);
       expect(projected.preferences).toEqual(preferences);
-      expect(Object.fromEntries(projected.values)).toMatchObject({ theme: 'dark', locale: 'zh-Hant' });
+      expect(Object.fromEntries(projected.values)).toMatchObject({ theme: 'dark', palette: 'original', locale: 'zh-Hant' });
       expect((await settings.get('activeProfile'))?.value).toBe(restoredId);
       profileId = restoredId;
     }

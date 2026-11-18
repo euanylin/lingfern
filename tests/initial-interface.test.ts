@@ -13,10 +13,10 @@ it('reads the selected profile atomically and leaves both profiles unchanged', a
   await profiles.bulkAdd(['a', 'b'].map(id => ({ id, name: id, createdAt: new Date().toISOString() })));
   await settings.bulkPut([
     { key: 'activeProfile', value: 'b' }, { key: 'profile:a:locale', value: 'fr' },
-    ...Object.entries({ locale: 'ar', theme: 'dark', desktopNavDisplay: 'both', mobileNavDisplay: 'icon' }).map(([key, value]) => ({ key: `profile:b:${key}`, value })),
+    ...Object.entries({ locale: 'ar', theme: 'dark', palette: 'basic', desktopNavDisplay: 'both', mobileNavDisplay: 'icon' }).map(([key, value]) => ({ key: `profile:b:${key}`, value })),
   ]);
   const before = await settings.toArray();
-  expect(await readInitialInterface('en')).toEqual({ locale: 'ar', theme: 'dark', desktopNavDisplay: 'both', mobileNavDisplay: 'icon' });
+  expect(await readInitialInterface('en')).toEqual({ locale: 'ar', theme: 'dark', palette: 'basic', desktopNavDisplay: 'both', mobileNavDisplay: 'icon' });
   expect(await settings.toArray()).toEqual(before); expect(await profiles.count()).toBe(2);
 });
 
@@ -33,4 +33,10 @@ it('rejects invalid display values without replacing stored settings', async () 
   const before = await settings.toArray();
   expect(await readInitialInterface('zh-Hant')).toEqual(defaultInterface('zh-Hant'));
   expect(await settings.toArray()).toEqual(before);
+});
+
+for (const palette of ['original', 'ruby', 'basic', '<invalid>']) it(`restores an explicit palette ${palette} independently of display mode`, async () => {
+  await profiles.add({ id: 'a', name: 'A', createdAt: new Date().toISOString() });
+  await settings.bulkPut([{ key: 'profile:a:palette', value: palette }, { key: 'profile:a:theme', value: 'dark' }]);
+  expect(await readInitialInterface('en')).toMatchObject({ theme: 'dark', palette: palette === '<invalid>' ? 'basic' : palette });
 });

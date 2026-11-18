@@ -23,6 +23,8 @@ for (const pack of retained.packs) {
 await mkdir(output, { recursive: true });
 const packs = [];
 for (const group of catalogue.groups) {
+  // Large neural models use individually verified assets in the online installer.
+  if (group.id === 'tree-stanza' || group.id === 'tree-hol-ccg') continue;
   const manifest = { format: 'lingfern-public-resources', version: 1, groupId: group.id, groupVersion: group.version, files: group.files };
   // Preserve published 08:00 ZIP wall-time fields in every timezone.
   const mtime = new Date(1980, 0, 1, 8);

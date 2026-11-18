@@ -13,7 +13,7 @@ let installDelay = 0;
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.json': 'application/json' };
 const server = createServer(async (request, response) => {
   const pathname = new URL(request.url ?? '/', 'http://localhost').pathname;
-  const pageRoute = /^\/(start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname);
+  const pageRoute = /^\/(start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history|trees))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname);
   const servingRoot = updated ? root : previousRoot;
   const file = resolve(join(servingRoot, pathname === '/' || pageRoute ? 'index.html' : pathname.slice(1)));
   if (!file.startsWith(servingRoot + '/') && file !== join(servingRoot, 'index.html')) { response.writeHead(404).end(); return; }

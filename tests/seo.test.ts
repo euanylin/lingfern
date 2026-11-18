@@ -6,7 +6,7 @@ import { seoCopy } from '../src/locales/seo';
 
 describe('page metadata', () => {
   it('keeps tab and share titles concise without a brand suffix', () => {
-    const titles = { '/introduction': 'Lingfern', '/library/dictionary': 'Dictionary', '/library/ipa': 'IPA chart', '/library/grammar': 'Usage', '/settings/about': 'About' };
+    const titles = { '/introduction': 'Lingfern', '/library/dictionary': 'Dictionary', '/library/ipa': 'IPA chart', '/library/grammar': 'Usage', '/library/trees': 'Syntax tree', '/settings/about': 'About' };
     for (const locale of localeSchema.options) for (const [path, title] of Object.entries(titles)) {
       expect(pageSeo(path, '', locale).title).toBe(title);
       expect(seoHead(path, '', locale)).toContain(`property="og:title" content="${title}"`);
@@ -39,8 +39,8 @@ describe('page metadata', () => {
   it('indexes exactly the public sitemap entries with distinct titles and descriptions', () => {
     const sitemap = readFileSync('public/sitemap.xml', 'utf8');
     expect([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1])).toEqual(Object.keys(publicPages).map(path => siteOrigin + path));
-    expect(new Set(Object.values(publicPages).map(page => page.title)).size).toBe(5);
-    expect(new Set(Object.keys(publicPages).map(path => pageSeo(path).description)).size).toBe(5);
+    expect(new Set(Object.values(publicPages).map(page => page.title)).size).toBe(6);
+    expect(new Set(Object.keys(publicPages).map(path => pageSeo(path).description)).size).toBe(6);
     for (const path of Object.keys(publicPages)) expect(pageSeo(path).robots).toBe('index, follow');
     expect(pageSeo('/').canonical).toBe(siteOrigin + '/introduction');
     for (const path of ['/', '/introduction', '/today']) expect(pageSeo(path).title).toBe('Lingfern');

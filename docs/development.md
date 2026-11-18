@@ -6,7 +6,7 @@ Lingfern has one React and TypeScript frontend, with IndexedDB for learning data
 
 ## Local preview
 
-Use **Node.js 24.19.0**, as specified in [`.nvmrc`](../.nvmrc), and npm. From the repository root:
+Use the Node.js version in [`.nvmrc`](../.nvmrc) and npm. From the repository root:
 
 ```sh
 npm ci
@@ -52,6 +52,20 @@ Local browser tests use installed Google Chrome by default; cross-engine cases a
 | `docs/` | User, development, release and source-evidence documentation. |
 
 Prepared source records are not all eligible learning materials. Preserve source-specific exclusions, rights restrictions and notices. The public repository does not contain private source evidence or personal learning data.
+
+## Tree and appearance maintenance
+
+`src/shared/tree-parse.ts` owns bounded phrase analysis, `tree-forms.ts` presentation/dependency conversion, `tree-movement.ts` coindices and `tree.ts` validation/editing/layout/export. `TreeDiagram.tsx` owns the editor and gestures. `src/data/treeDraft.ts` stores device-local automatic drafts; named snapshots use `lookupHistory.ts` and supported profile backup/sync. Improved parsing must not overwrite saved diagrams. Keep actual gap parents, typed CCG failure propagation, negative examples and all-form word conservation distinct from linguistic accuracy claims.
+
+`npm run tree:lexicon` regenerates `src/shared/tree-lexicon.ts` from installed WordNet data and `content/tree-clause-frames.json`; do not patch entries for individual sentences. `scripts/build-dictionary.py --clause-frames <source-zip> --check` checks the retained extraction when its input changes. Routine tree use/builds require neither Python nor the private source ZIP.
+
+Optional parser routing lives in `src/data/treeParser.ts`. UDPipe supplies dependencies and Stanza's tags. Constituency tries Stanza, then Charniak. Hol-CCG supplies CCG. The editor checks token preservation and retains rule-based movement. Library installs UDPipe and Charniak from the catalogue or official ZIPs. Stanza and Hol-CCG install as individual verified files because of their size. See [browser model rebuilding](../scripts/tree-neural/README.md) and [resource packages](../community-content.md#reference-resources).
+
+Palette IDs/order live in `src/shared/palettes.ts`; localized names remain indexed by stable IDs. Default keeps the saved ID `basic`. Keep the synchronous `public/appearance.js` catalogue, CSS and sync/backup validation aligned when changing choices. `SettingsPicker` is shared with tree types, language and practice settings: check the changed caller and one representative shared use. Preserve independent display mode, original brand colors and pre-paint/offline restoration.
+
+About reads `content/about-credits.json` and English copy from `src/app/aboutCopy.ts`. Add verified direct dependencies and vendored components there, retain original notices, and run `npm run notices`. [Licensing](../LICENSING.md) records source provenance.
+
+The [workflow](../AGENT_WORKFLOW.md#4-find-the-owning-implementation) maps focused checks; [status](../IMPLEMENTATION_STATUS.md) and [handoff](../DEVELOPMENT_HANDOFF.md) distinguish local source features from recorded production. Dated [audit evidence](history/2026-11-17-tree-theme-audit.md) is not a new test result.
 
 ## Suggest a change
 

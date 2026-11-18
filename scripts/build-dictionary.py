@@ -26,7 +26,7 @@ def write_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, separators=(',', ':'), sort_keys=True) + '\n')
 
 
-def main(path, license_path, wndb_path):
+def read_source(path):
     source = Path(path)
     if hashlib.sha256(source.read_bytes()).hexdigest() != SOURCE_SHA256:
         raise ValueError('OEWN archive SHA-256 does not match the pinned 2025 release')
@@ -45,6 +45,43 @@ def main(path, license_path, wndb_path):
     if len(entries) != 128009 or len(synsets) != 107519:
         raise ValueError('Unexpected OEWN entry or synset count')
 
+    return entries, synsets
+
+
+def clause_frames(path, check=False):
+    entries, _ = read_source(path)
+    verbs = {}
+    object_infinitives = {}
+    for word, parts in entries.items():
+        if not word.isascii() or not word.isalpha() or word != word.lower():
+            continue
+        senses = []
+        object_senses = []
+        for pos, data in parts.items():
+            if pos.split('-', 1)[0] != 'v':
+                continue
+            for sense in data.get('sense', []):
+                frames = sorted(set(sense.get('subcat', [])) & {'via-that', 'nonreferential-sent'})
+                if 'vtaa-to-inf' in sense.get('subcat', []):
+                    object_senses.append(sense['id'])
+                if frames:
+                    senses.append({'id': sense['id'], 'frames': frames})
+        if senses:
+            verbs[word] = sorted(senses, key=lambda sense: sense['id'])
+        if object_senses:
+            object_infinitives[word] = sorted(object_senses)
+    result = {'source': 'https://en-word.net/static/english-wordnet-2025-json.zip', 'sourceSha256': SOURCE_SHA256, 'license': 'CC BY 4.0', 'attribution': 'Open English WordNet 2025; Princeton WordNet; adapted by Lingfern', 'frames': ['nonreferential-sent', 'via-that'], 'verbs': verbs, 'objectInfinitiveFrame': 'vtaa-to-inf', 'objectInfinitives': object_infinitives}
+    target = ROOT / 'content/tree-clause-frames.json'
+    if check:
+        if json.loads(target.read_text()) != result:
+            raise ValueError('Clause-frame extraction is stale')
+    else:
+        write_json(target, result)
+    print(f'Verified {len(verbs)} source-derived finite-clause lemmas')
+
+
+def main(path, license_path, wndb_path):
+    entries, synsets = read_source(path)
     buckets = {letter: {} for letter in 'abcdefghijklmnopqrstuvwxyz0'}
     forms = {}
     sense_count = 0
@@ -91,4 +128,7 @@ def main(path, license_path, wndb_path):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:])
+    if len(sys.argv) >= 3 and sys.argv[1] == '--clause-frames':
+        clause_frames(sys.argv[2], '--check' in sys.argv[3:])
+    else:
+        main(*sys.argv[1:])

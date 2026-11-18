@@ -1,12 +1,12 @@
 {
   "version": 1,
   "offline": {
-    "version": "ec865165ae403a98",
+    "version": "c63569a35631b9a5",
     "groups": [
       {
         "id": "dictionary",
-        "version": "8d7421aa2675bb92",
-        "bytes": 29456853,
+        "version": "5429072efc3d1c99",
+        "bytes": 31596855,
         "files": [
           {
             "path": "/dictionary/oewn-2025/0.json",
@@ -112,6 +112,141 @@
             "path": "/dictionary/oewn-2025/p.json",
             "bytes": 2243564,
             "sha256": "b5223d2edead28cb40e8d33ece9805bab920d0d9b4683e4dc413de8e146735a8"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-0.json",
+            "bytes": 3557,
+            "sha256": "50216f5c7a51d4ad7140af4c8b01ade7d3d036f3d78b93b8ac705910c0a905e1"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-a.json",
+            "bytes": 154048,
+            "sha256": "695ee3281a71b7e00f990269236900537f70e262235848963482597e604ee43b"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-b.json",
+            "bytes": 124848,
+            "sha256": "8a331df0877679125402268feb9bc490dc276e54c203118d3cb88088dded30aa"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-c.json",
+            "bytes": 220233,
+            "sha256": "81d76ccc0de2a6a714d0e86520de90f4d14c9faa6e39b193620daaa331d93efd"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-d.json",
+            "bytes": 106135,
+            "sha256": "57e73df2783b351865b86c5aad73bc53d4158cb237ed8984b9e90f5a070cfa0a"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-e.json",
+            "bytes": 81389,
+            "sha256": "2f32c264018188408e5e354bb56f2b5f925c9ccf6c925f274fef9eaa91289953"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-f.json",
+            "bytes": 87984,
+            "sha256": "76fcd64f827db08ee444823cba50c03422c90ce59c394879d7f8c44ab7a135f8"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-g.json",
+            "bytes": 71628,
+            "sha256": "1ad2c6ab7dd3fa0e54f1827d5bb8cbe9ee3a3feac0ee893ddd1f1e2babff47bf"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-h.json",
+            "bytes": 84608,
+            "sha256": "9c36de05934389614ef6569b019ef99fd130b321422bf54f0f2709ea31467a1d"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-i.json",
+            "bytes": 75894,
+            "sha256": "bf837af16f0ea7a6d80518c92d05a685ea6b26dd161d49dfa88dc7d37b58f398"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-j.json",
+            "bytes": 16864,
+            "sha256": "1a8547fa774fce21b22f6792edb08d65339fb1de8f720ddbdf5b44ff6edd86fc"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-k.json",
+            "bytes": 19096,
+            "sha256": "b957b1810e89eb601557ee7fcb5a767f4669079de7fd9fdcd6c45074989e1f81"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-l.json",
+            "bytes": 79806,
+            "sha256": "606c7d2b8655fa1e4b93fa003b6ae8acd744a7b9cb39f0dfafdb031d30f39e8f"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-m.json",
+            "bytes": 119583,
+            "sha256": "e438ad9588078b613b6bb717df621830b4eedfa33e1689d5f7caf2f299a2b57b"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-n.json",
+            "bytes": 54191,
+            "sha256": "b5a13a9131d2626d2a750a09d5d701152588f6211a13f709240767825b4ca822"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-o.json",
+            "bytes": 52114,
+            "sha256": "7b4b0e9c35affd29dfe952237f3e93664244672d9984350d40972b9b7df9e4d3"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-p.json",
+            "bytes": 178942,
+            "sha256": "3a2c7ae89289716ff9a0203a94667478329c1c95d89284da2198e9e636292fb6"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-q.json",
+            "bytes": 8878,
+            "sha256": "3fe9433741a8c2e1b4e3a12172acb1cecb1b3a7bc6297da1efd6d8d874ae6078"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-r.json",
+            "bytes": 90598,
+            "sha256": "376e05b596690322e97ac56fceadb7f4ea2a270a58d9e13d8f97217cfabc5c91"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-s.json",
+            "bytes": 239112,
+            "sha256": "95fa973cf52a77005dd9ee491651022e0795d62999ea843fccf4a6f4478c1b7a"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-t.json",
+            "bytes": 109259,
+            "sha256": "85f46a578e99b47d6b53375c0e9d368bfcc7c8a9ddaa555bc17c4bd815f2aae9"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-u.json",
+            "bytes": 55842,
+            "sha256": "1eabdc42732b43672f223e0c734cbfb3363eec06faeec20effe175bdd6f6e3f1"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-v.json",
+            "bytes": 35543,
+            "sha256": "736035ad0e38e2ad36ff898fbfeba99cf5260e0924ba7644a3887ee072ed6b72"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-w.json",
+            "bytes": 54927,
+            "sha256": "0b8f10ae13ea72cad516cbfcff6d3a82da138ee88363ad5aeb404682f536b341"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-x.json",
+            "bytes": 2454,
+            "sha256": "863662ab901561f945f0f3f67648415d2332a92885a87114602a770802dafa97"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-y.json",
+            "bytes": 7419,
+            "sha256": "388eef4530d8f06b98ad7b6f0536889c89e6e0f5f4b3636e6d61acf268a279bc"
+          },
+          {
+            "path": "/dictionary/oewn-2025/pos-z.json",
+            "bytes": 5050,
+            "sha256": "5a49aa10cb56ab76dd32647bcec8cf83ee450025429641dd3b8f14dbbb872482"
           },
           {
             "path": "/dictionary/oewn-2025/q.json",
@@ -1164,18 +1299,311 @@
       },
       {
         "id": "grammar",
-        "version": "6c7b15704814fba9",
-        "bytes": 195690,
+        "version": "5ecb8c7e2f612912",
+        "bytes": 3049810,
         "files": [
           {
             "path": "/grammar/entries.json",
-            "bytes": 192148,
-            "sha256": "7ae83568cf846c7970a0fc1d5350ed642ea3f7f2d93075087dc165431ebc441f"
+            "bytes": 633498,
+            "sha256": "7f00c47b01f8a52da9a2ff758f2928b25e5d9fa642c6a33d93c9cfff4372705f"
+          },
+          {
+            "path": "/grammar/i18n/ar.json",
+            "bytes": 225355,
+            "sha256": "0c6ecb1c85aec4ac4c22e0d0b719d37829eb182d2e1693d28deb287fab1d75f2"
+          },
+          {
+            "path": "/grammar/i18n/de.json",
+            "bytes": 202341,
+            "sha256": "243fdd0a9abfffc0cdc29c83614b67b1b504af22d4903cfcbaedf95b186c5175"
+          },
+          {
+            "path": "/grammar/i18n/es.json",
+            "bytes": 194664,
+            "sha256": "54dc8aa4b20b7f62033956f29d4f047215dc6b57f3a43877a872cefb29722219"
+          },
+          {
+            "path": "/grammar/i18n/fr.json",
+            "bytes": 205976,
+            "sha256": "882a9d143115b0637e5f677b7db7053160b4155403dfc8d1d7c61151259ffbae"
+          },
+          {
+            "path": "/grammar/i18n/hi.json",
+            "bytes": 307320,
+            "sha256": "cf9658fae9405a0b502b944fd226fb7eb3bd1b98911c7a8ff2e13286a4678e26"
+          },
+          {
+            "path": "/grammar/i18n/id.json",
+            "bytes": 196608,
+            "sha256": "17fec34e5aa4e7b8777385888f505d82250d8b9a73d5d22805fb52f9d9a64420"
+          },
+          {
+            "path": "/grammar/i18n/it.json",
+            "bytes": 188776,
+            "sha256": "fc2a745ca390130fd50b058e6de94fbbd5f0626e179b7e035641a27b65aebc82"
+          },
+          {
+            "path": "/grammar/i18n/ja.json",
+            "bytes": 215578,
+            "sha256": "dae63abc8e9a4352e4d879af9d8efd216455f7085a66d413fbe1f0a0bef886ca"
+          },
+          {
+            "path": "/grammar/i18n/ko.json",
+            "bytes": 211441,
+            "sha256": "07b8c3e0ed2b9c596bb945825d052c46fae721a633075dfb1431ed0475af3a48"
+          },
+          {
+            "path": "/grammar/i18n/pt.json",
+            "bytes": 192779,
+            "sha256": "111849c4d299ef26ba6b54bfe5523efe8b391dd32d1f124b5c320ce556cdcc51"
+          },
+          {
+            "path": "/grammar/i18n/ru.json",
+            "bytes": 271367,
+            "sha256": "efe7b9399dfdcb76d4699c7bc7544caede892910236433fa4de279e2bf9e9de3"
           },
           {
             "path": "/grammar/README.md",
-            "bytes": 3542,
-            "sha256": "de4e005da12961b085a9be42a041828d30f3827bdacd415c9ee2d8458b372da2"
+            "bytes": 4107,
+            "sha256": "e7350dba59591dfe6c9807a995aed9c65ead0877daa42f33390c6fc710475e49"
+          }
+        ]
+      },
+      {
+        "id": "tree-parser",
+        "version": "617dda4ade022415",
+        "bytes": 16886087,
+        "files": [
+          {
+            "path": "/resources/tree-parser-v1/english.udpipe",
+            "bytes": 16368326,
+            "sha256": "20432a6f87b1f258927207b8fbd2dc21ebff9722b381b7a36cef34c8c9a380dc"
+          },
+          {
+            "path": "/resources/tree-parser-v1/LICENSE-engine.txt",
+            "bytes": 16725,
+            "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+          },
+          {
+            "path": "/resources/tree-parser-v1/LICENSE-model.txt",
+            "bytes": 246,
+            "sha256": "2e4fe3a911339ee54e5431bf1196ec56b379090fd80a7d83f14bef3ad3eddd34"
+          },
+          {
+            "path": "/resources/tree-parser-v1/README.md",
+            "bytes": 983,
+            "sha256": "34a451d08e9098695ee8549756d0183951e5a47bf60f5f999deaeb108eb19fb8"
+          },
+          {
+            "path": "/resources/tree-parser-v1/udpipe.wasm",
+            "bytes": 499807,
+            "sha256": "0643d2eab9e58e004edcf92d58911c2270c43813de36f8c5b1d076fb3180cce4"
+          }
+        ]
+      },
+      {
+        "id": "tree-constituency",
+        "version": "06efae56c0c6974b",
+        "bytes": 7341369,
+        "files": [
+          {
+            "path": "/resources/tree-constituency-v1/LICENSE-emscripten.txt",
+            "bytes": 5093,
+            "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/LICENSE-libcxx.txt",
+            "bytes": 16703,
+            "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/LICENSE-libcxxabi.txt",
+            "bytes": 16706,
+            "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/LICENSE-musl.txt",
+            "bytes": 6196,
+            "sha256": "b870108ec5e7790e9f9919064f1b9421d62d5f9b0e6c230c6adf7ea2da62e97b"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/LICENSE.txt",
+            "bytes": 11358,
+            "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/model.bin",
+            "bytes": 7011595,
+            "sha256": "f4e5a31887832b735dde42c927f0c2163a3cb5f4bcbcacba715c7847e91b739e"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/NOTICE.txt",
+            "bytes": 791,
+            "sha256": "4be7abf6e55cadc81c5cb4ee0dc2ddea7a42b2da45cf0586695d3c5f5963c878"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/parser.wasm",
+            "bytes": 270424,
+            "sha256": "f4760258946904a9967c6ff2ac77474e9e8ce44208552bb70e5cc00d6eb512c9"
+          },
+          {
+            "path": "/resources/tree-constituency-v1/README.md",
+            "bytes": 2503,
+            "sha256": "140892e99c2248161dbe866adec36b272b3324e39956186d1c1aaed80678bc39"
+          }
+        ]
+      },
+      {
+        "id": "tree-stanza",
+        "version": "1c97ebd421d52ae5",
+        "bytes": 83882781,
+        "files": [
+          {
+            "path": "/resources/tree-stanza-v1/constituent-0.bin",
+            "bytes": 4263274,
+            "sha256": "beb7eb91ad56cf7ae568d5d9c89039984af91e7b37498b92a02507d6a6b8cef9"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/graphs.json",
+            "bytes": 114,
+            "sha256": "99e7a995f49f2437bbea2a533e8b928ef6effd1fcf361929b6913cf1cf59c85a"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/metadata.json",
+            "bytes": 5219123,
+            "sha256": "92222a019ca1b030e9b7c3d98ab082ed064309a0ecb513b70c49e12679c590bb"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/ort-wasm-simd-threaded.wasm",
+            "bytes": 14848852,
+            "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/predict-0.bin",
+            "bytes": 599244,
+            "sha256": "20f6569eead798efde42f138287f7921fab4da3f550112a141df74638a29c2b5"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/README.md",
+            "bytes": 1119,
+            "sha256": "60e39bdcf9871fc9ac337d89fad1e966d2ec536e68f180e4c3c62860119bc637"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/reduce-0.bin",
+            "bytes": 266907,
+            "sha256": "a14a0c9f3840815531a1d185b356d4dcc214bc770e9c23a7991c748018c94e33"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/transition-0.bin",
+            "bytes": 32286,
+            "sha256": "1bf83b93586ef0059f86bf7fb1526871064bb0c1eb2d3eb0ce7f48780c927dd2"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/words-0.bin",
+            "bytes": 16777216,
+            "sha256": "5fdc189011c0c900a0a101441fe70f71ac59172d3a9cb0104ad5fe4be04fbcd2"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/words-1.bin",
+            "bytes": 16777216,
+            "sha256": "047879964359bc77e120788c98d4dd1f85d36a2da76d0eded9e17c60820712a5"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/words-2.bin",
+            "bytes": 16777216,
+            "sha256": "a0129016f89f0d5a6123ecd29431d7fa29d748b59b2559a52d743f892217f85d"
+          },
+          {
+            "path": "/resources/tree-stanza-v1/words-3.bin",
+            "bytes": 8320214,
+            "sha256": "83f80a35892457aa3efd817a9a4c47e04c3ad547014b5651438e30877a4596b6"
+          }
+        ]
+      },
+      {
+        "id": "tree-hol-ccg",
+        "version": "5a2e32eece6fa440",
+        "bytes": 170153596,
+        "files": [
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-0.bin",
+            "bytes": 16777216,
+            "sha256": "47e6f0e0e05923a08f9e5b7adc625dc8f6174db227745dd4607aa7fdfe344bb4"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-1.bin",
+            "bytes": 16777216,
+            "sha256": "82b70dcaf2803f118f0f07fa921909a920c0dfff1365c1a0178d9203b2006a15"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-2.bin",
+            "bytes": 16777216,
+            "sha256": "557e44315d5026a2cbaf1facc74c7f82a17d3108f32bd0a3cc5d4695ae63b22f"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-3.bin",
+            "bytes": 16777216,
+            "sha256": "d54b788d8f1204d3ff8a180c5e3bf3afa4eb0b8bd8b22dd16ab5a44061c04f6b"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-4.bin",
+            "bytes": 16777216,
+            "sha256": "7e2360d6b74573994d6dfcc9c6ee7beab3d2f3134773668fab57998aa061b905"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-5.bin",
+            "bytes": 16777216,
+            "sha256": "2acf860e94f6cf97f4f60d8d0380f53a318dc8cafaa9fe3687edaa855a378842"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-6.bin",
+            "bytes": 16777216,
+            "sha256": "54834706a4eab496baf56c76818cf548f0ef6e6c4ae02c9299b45fca05fa3bb3"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-7.bin",
+            "bytes": 16777216,
+            "sha256": "134a3b968276b2f2f3db6b4957b249190825156bf6aca53f4a8d162c1cd8c201"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/encoder-8.bin",
+            "bytes": 4975500,
+            "sha256": "916bca6575d2be7191f0a149eb536a2b112286c456e84762a2ab93b8fa948295"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/grammar.json",
+            "bytes": 235452,
+            "sha256": "b56b17d3a7dea438065e6f2fd6a368827a8b5dd5b28da2fc0a3caed5d49ac258"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/graphs.json",
+            "bytes": 48,
+            "sha256": "0a63f2870b37c54f69d8435e9cd704754219ee5f7751c5602cfd328b0f627474"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/heads-0.bin",
+            "bytes": 12314481,
+            "sha256": "96bda8487a3ac14fee2d2edadd85cbc306a261b11539f53be75067b669939007"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/ort-wasm-simd-threaded.wasm",
+            "bytes": 14848852,
+            "sha256": "4b884c203b0fa48d057be3332c65513ff85aa3c5bddd6946acc0fab7ecda001d"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/README.md",
+            "bytes": 1551,
+            "sha256": "b7384bca3c991b3e0d65156d3745e80c7c44e16439b90ce8342bb811c0258b4b"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/tokenizer_config.json",
+            "bytes": 1245,
+            "sha256": "38b4f61b73aab22f9c2bb01d0f2be28d745e1db57ef7fcfddfa33c6ac8265444"
+          },
+          {
+            "path": "/resources/tree-hol-ccg-v1/tokenizer.json",
+            "bytes": 3558739,
+            "sha256": "5ded8caf91aeee54e8ce00bfc1272336da51d7b58df17eeff01b8c36b428c194"
           }
         ]
       },
@@ -9641,10 +10069,10 @@
     "packs": [
       {
         "id": "dictionary",
-        "version": "8d7421aa2675bb92",
-        "path": "/packs/dictionary-8d7421aa2675bb92.zip",
-        "bytes": 7522856,
-        "sha256": "0761ba6970e25a19106bf584ffe81eb6e2bbf82dc25e1af6737f34be53e2162e"
+        "version": "5429072efc3d1c99",
+        "path": "/packs/dictionary-5429072efc3d1c99.zip",
+        "bytes": 8163929,
+        "sha256": "f07f4d06abc1d4d74565fcf7954bdd48021bb87d6274119df4b4b18ede9defae"
       },
       {
         "id": "ipa",
@@ -9655,10 +10083,24 @@
       },
       {
         "id": "grammar",
-        "version": "6c7b15704814fba9",
-        "path": "/packs/grammar-6c7b15704814fba9.zip",
-        "bytes": 58359,
-        "sha256": "9e0283529f544c97504b0332563dbf504d7df561ffb65bddde31e730df2e7eb1"
+        "version": "5ecb8c7e2f612912",
+        "path": "/packs/grammar-5ecb8c7e2f612912.zip",
+        "bytes": 860148,
+        "sha256": "84859a9e5cee59cf95c97f48b6c62e48153d2a65289d24727195f5704863e7c5"
+      },
+      {
+        "id": "tree-parser",
+        "version": "617dda4ade022415",
+        "path": "/packs/tree-parser-617dda4ade022415.zip",
+        "bytes": 16566117,
+        "sha256": "5a0dc6f372dd23359e9e7716a37729a7227235ce13002ef177d4180565ed1131"
+      },
+      {
+        "id": "tree-constituency",
+        "version": "06efae56c0c6974b",
+        "path": "/packs/tree-constituency-06efae56c0c6974b.zip",
+        "bytes": 7150179,
+        "sha256": "dd29fbe4d856b0e65d06645fa7611f593c93d663f61328d2e42a921b034c29c5"
       },
       {
         "id": "corpus",

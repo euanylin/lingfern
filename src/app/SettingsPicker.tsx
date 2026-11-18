@@ -10,7 +10,7 @@ export function pickerMenuPosition(anchor: { left: number; top: number; right: n
   return { left, top };
 }
 
-type Option = { value: string; label: string; lang?: string };
+type Option = { value: string; label: string; lang?: string; palette?: string };
 type Props = { label: string; options: Option[]; disabled?: boolean; variant?: 'setting' | 'field'; description?: string } & ({ multiple?: false; value: string; onChange: (value: string) => void } | { multiple: true; value: string[]; onChange: (value: string[]) => void });
 
 export function SettingsPicker(props: Props) {
@@ -27,6 +27,8 @@ export function SettingsPicker(props: Props) {
   const selected = Math.max(0, options.findIndex(isSelected));
   const selectedText = props.multiple ? options.filter(isSelected).map(option => option.label).join(' / ') : options[selected]?.label ?? '';
   const blocked = disabled || options.length === 0;
+
+  useLayoutEffect(() => { if (blocked && open) setOpen(false); }, [blocked, open]);
 
   useEffect(() => {
     if (!open) return;
@@ -68,12 +70,21 @@ export function SettingsPicker(props: Props) {
       popup.style.top = `${placement.top - origin.top - parent.clientTop + parent.scrollTop}px`;
     };
     update(open && !props.multiple);
+    const visual = window.visualViewport;
+    const reposition = () => update();
+    window.addEventListener('resize', reposition);
+    visual?.addEventListener('resize', reposition);
+    const stopRepositioning = () => {
+      window.removeEventListener('resize', reposition);
+      visual?.removeEventListener('resize', reposition);
+    };
+    // The fading menu still contributes to scrollable overflow until it unmounts.
+    if (!open) return stopRepositioning;
     const openingScroll = new Map<EventTarget, { owner: Element; left: number; top: number }>();
     for (let owner: Element | null = root.current; owner; owner = owner.parentElement) openingScroll.set(owner, { owner, left: owner.scrollLeft, top: owner.scrollTop });
     const page = document.scrollingElement;
     if (page) openingScroll.set(document, { owner: page, left: page.scrollLeft, top: page.scrollTop });
-    const visual = window.visualViewport, visualLeft = visual?.offsetLeft, visualTop = visual?.offsetTop;
-    const reposition = (event: Event) => { if (!(event.target instanceof Node && popup.contains(event.target))) update(); };
+    const visualLeft = visual?.offsetLeft, visualTop = visual?.offsetTop;
     const dismiss = (event: Event) => {
       if (event.target instanceof Node && popup.contains(event.target)) return;
       if (popup.contains(document.activeElement)) trigger.current?.focus({ preventScroll: true });
@@ -89,23 +100,20 @@ export function SettingsPicker(props: Props) {
     let touchY: number | undefined;
     const touchStart = (event: TouchEvent) => { touchY = event.target instanceof Node && popup.contains(event.target) ? undefined : event.touches[0]?.clientY; };
     const touchMove = (event: TouchEvent) => { if (touchY !== undefined && Math.abs((event.touches[0]?.clientY ?? touchY) - touchY) > 10) dismiss(event); };
-    window.addEventListener('resize', reposition);
     // Start scroll dismissal after the trigger finishes scrolling into view.
     const frame = requestAnimationFrame(() => { update(); window.addEventListener('scroll', scrolled, true); });
     window.addEventListener('wheel', dismiss, { capture: true, passive: true });
     window.addEventListener('touchstart', touchStart, { capture: true, passive: true });
     window.addEventListener('touchmove', touchMove, { capture: true, passive: true });
-    window.visualViewport?.addEventListener('resize', reposition);
-    window.visualViewport?.addEventListener('scroll', scrolled);
+    visual?.addEventListener('scroll', scrolled);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener('resize', reposition);
+      stopRepositioning();
       window.removeEventListener('scroll', scrolled, true);
       window.removeEventListener('wheel', dismiss, true);
       window.removeEventListener('touchstart', touchStart, true);
       window.removeEventListener('touchmove', touchMove, true);
-      window.visualViewport?.removeEventListener('resize', reposition);
-      window.visualViewport?.removeEventListener('scroll', scrolled);
+      visual?.removeEventListener('scroll', scrolled);
     };
   }, [open, present, selected, options, props.multiple, variant]);
   function focusOption(index: number) {
@@ -116,7 +124,12 @@ export function SettingsPicker(props: Props) {
     if (option.offsetTop < scroller.scrollTop) scroller.scrollTop = option.offsetTop;
     else if (option.offsetTop + option.offsetHeight > scroller.scrollTop + scroller.clientHeight) scroller.scrollTop = option.offsetTop + option.offsetHeight - scroller.clientHeight;
   }
-  useLayoutEffect(() => { if (open) focusOption(focusIndex); }, [open, focusIndex]);
+  useLayoutEffect(() => {
+    if (!open || blocked) return;
+    const index = Math.min(focusIndex, options.length - 1);
+    if (index !== focusIndex) setFocusIndex(index);
+    focusOption(index);
+  }, [open, blocked, focusIndex, options]);
 
   function show(index = selected) {
     if (blocked) return;
@@ -128,16 +141,17 @@ export function SettingsPicker(props: Props) {
     else show();
   }
   function choose(option: Option, index: number) {
+    if (blocked) return;
     if (props.multiple) {
       setFocusIndex(index); focusOption(index);
       props.onChange(!option.value ? [] : props.value.includes(option.value) ? props.value.filter(value => value !== option.value) : [...props.value, option.value]);
     }
-    else { props.onChange(option.value); setOpen(false); trigger.current?.focus(); }
+    else { props.onChange(option.value); setOpen(false); trigger.current?.focus({ preventScroll: true }); }
   }
   function move(event: KeyboardEvent, index: number) {
     const next = event.key === 'ArrowDown' ? (index + 1) % options.length : event.key === 'ArrowUp' ? (index - 1 + options.length) % options.length : event.key === 'Home' ? 0 : event.key === 'End' ? options.length - 1 : -1;
     if (next >= 0) { event.preventDefault(); if (next === focusIndex) focusOption(next); else setFocusIndex(next); }
-    else if (event.key === 'Escape' && open) { event.preventDefault(); setOpen(false); trigger.current?.focus(); }
+    else if (event.key === 'Escape' && open) { event.preventDefault(); setOpen(false); trigger.current?.focus({ preventScroll: true }); }
   }
   return <div className={`setting${variant === 'field' ? ' setting-field' : ''}`} ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
     <span id={`${id}-label`} className={variant !== 'setting' ? 'sr-only' : undefined}><span>{label}</span>{description && <small id={`${id}-description`} className="setting-description">{description}</small>}</span>
@@ -145,10 +159,10 @@ export function SettingsPicker(props: Props) {
     <button ref={trigger} className="setting-trigger" type="button" data-value={props.multiple ? props.value.join(',') : value} disabled={blocked} aria-label={`${label}: ${selectedText}`} aria-describedby={description ? `${id}-description` : undefined} aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} onPointerDown={() => trigger.current?.focus({ preventScroll: true })} onMouseDown={event => event.preventDefault()} onClick={toggle} onKeyDown={event => { if (!open && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); show(event.key === 'ArrowDown' ? (selected + 1) % options.length : event.key === 'ArrowUp' ? (selected - 1 + options.length) % options.length : event.key === 'Home' ? 0 : options.length - 1); } else move(event, selected); }}>
       {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}><bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span>}
     </button>
-    {present && <div ref={menu} id={`${id}-options`} className="setting-menu" data-open={open} inert={!open} aria-hidden={!open} role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
+    {present && <div ref={menu} id={`${id}-options`} className="setting-menu" data-open={open} inert={!open || blocked} aria-hidden={!open || blocked} role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
       <div ref={scroll} className="setting-menu-scroll" tabIndex={-1} onKeyDown={event => { if (event.target === event.currentTarget) move(event, focusIndex); }}>
         {/* Keep Safari menus open through pointer focus loss until the option click. */}
-        {options.map((option, index) => <button key={option.value} type="button" role="option" style={{ minHeight: 44 }} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option, index)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span><bdi lang={option.lang}>{option.label}</bdi></button>)}
+        {options.map((option, index) => <button key={option.value} type="button" role="option" tabIndex={-1} disabled={blocked} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option, index)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span>{option.palette && <span aria-hidden="true" className="palette-swatches" data-palette={option.palette}/>}<bdi lang={option.lang}>{option.label}</bdi></button>)}
       </div>
     </div>}
   </div>;

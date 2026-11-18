@@ -1,0 +1,2484 @@
+{
+  "articles": {
+    "title": "a, an, dan the",
+    "question": "Apakah saya perlu a, an, atau the di sini?",
+    "summary": "Gunakan a/an untuk banyak penyebutan pertama kata benda hitung tunggal, dan the jika acuannya sudah dapat dikenali. Pilih a atau an menurut bunyi.",
+    "usage": "Pertama, lihat apakah kata bendanya dapat dihitung dan tunggal, lalu apakah pendengar dapat mengenali acuannya. Kata benda hitung tunggal biasanya memerlukan determiner. Kata benda jamak generik dan kata benda massal sering tanpa artikel; the dapat dipakai pada kata benda tunggal, jamak, maupun massal.\n\nPenyebutan pertama tidak selalu memakai a/an: the mungkin jika situasi atau modifier sesudahnya sudah mengidentifikasi acuan. A student memilih satu anggota suatu kelas; the student meminta pembaca mengidentifikasi anggota tertentu. Kata benda hitung tunggal yang menamai pekerjaan biasanya memakai a/an. Jangan menghilangkan determiner bahasa Inggris hanya karena bahasa lain tidak punya artikel.",
+    "pitfall": "Jangan memilih a/an hanya dari huruf tertulis pertama: an hour, tetapi a university.",
+    "keywords": [
+      "artikel",
+      "kata sandang",
+      "penyebutan pertama",
+      "benda hitung"
+    ]
+  },
+  "passive": {
+    "title": "Kalimat pasif",
+    "question": "Kapan benda yang terkena sebaiknya menjadi subjek?",
+    "summary": "Gunakan be + past participle untuk menempatkan orang atau benda yang terkena di posisi subjek. Kalanya dibawa oleh be.",
+    "usage": "Bentuk pasif menonjolkan entitas yang terkena, hasil, atau topik yang sudah mapan. Hilangkan by-phrase jika pelaku tidak diketahui atau tidak penting. Kata kerja bantu tetap membawa kala dan modalitas: is written, was written, has been written, will be written.\n\nPilihan voice juga soal urutan informasi: jika sampel sudah menjadi topik, The samples were collected... mempertahankan topik itu. Jika pengumpulnya yang penting, pakai klausa aktif atau by-phrase. Get + participle dapat menyatakan perubahan keadaan pada sebagian passive peristiwa dan sering terdengar lebih percakapan; bentuk ini tidak menggantikan be di setiap konteks formal atau statif. Menghilangkan pelaku tidak boleh mengaburkan tanggung jawab jika hal itu penting.",
+    "pitfall": "Tidak setiap be + participle bermakna peristiwa yang sama: The door is closed dapat menggambarkan keadaan.",
+    "keywords": [
+      "kalimat pasif",
+      "past participle",
+      "pelaku",
+      "by"
+    ]
+  },
+  "affect-effect": {
+    "title": "affect / effect",
+    "question": "Affect atau effect?",
+    "summary": "Dalam pemakaian umum, affect adalah kata kerja yang berarti memengaruhi, dan effect adalah kata benda yang berarti hasil; ada pemakaian lain yang kurang umum.",
+    "usage": "Periksa apakah kalimat membutuhkan kata kerja atau kata benda. Affect biasanya berarti memengaruhi sebagai kata kerja; an effect biasanya berarti hasil. Effect dapat berarti mewujudkan secara formal sebagai kata kerja, dan affect adalah kata benda khusus dalam psikologi.",
+    "pitfall": "Jangan anggap effect sebagai kata kerja sama dengan affect: effected change berarti mewujudkan perubahan.",
+    "keywords": [
+      "affect",
+      "effect",
+      "memengaruhi",
+      "hasil"
+    ]
+  },
+  "be": {
+    "title": "Kata kerja be",
+    "question": "Kapan saya memakai am, is, atau are?",
+    "summary": "Gunakan am, is, atau are untuk identitas, keadaan, atau lokasi. Bentuknya bergantung pada subjek.",
+    "usage": "Be bentuk kini sesuai dengan subjek: I am; you, we, dan they memakai are; he, she, it, dan kata benda tunggal diikuti is. Letakkan not sesudah be untuk negatif, dan pindahkan be ke depan subjek untuk pertanyaan yes/no. Be juga membentuk kala progresif.",
+    "pitfall": "Jangan menambahkan do pada pertanyaan be: Is she ready?, bukan Does she is ready?.",
+    "keywords": [
+      "kata kerja be",
+      "am is are",
+      "persesuaian",
+      "pertanyaan"
+    ]
+  },
+  "plurals": {
+    "title": "Bentuk jamak kata benda hitung",
+    "question": "Kapan kata benda hitung perlu bentuk jamak?",
+    "summary": "Kata benda hitung biasanya berbentuk jamak jika lebih dari satu; sebagian tidak beraturan, misalnya child → children.",
+    "usage": "Jamak beraturan biasanya menambah -s atau -es; konsonan + y sering menjadi -ies. Pelajari bentuk tidak beraturan yang sering muncul secara terpisah: man/men, child/children, person/people. Jumlah juga memengaruhi quantifier, determiner, dan persesuaian kata kerja.",
+    "pitfall": "Kata benda massal tidak cukup ditambah -s: katakan some information atau two pieces of information.",
+    "keywords": [
+      "bentuk jamak",
+      "kata benda hitung",
+      "jamak tidak beraturan"
+    ]
+  },
+  "despite-although": {
+    "title": "despite / although",
+    "question": "Bisakah despite memperkenalkan klausa penuh?",
+    "summary": "Despite biasanya diikuti frasa kata benda atau -ing; although memperkenalkan klausa. Despite the fact that dapat memperkenalkan klausa.",
+    "usage": "Despite adalah preposisi yang diikuti frasa kata benda atau bentuk -ing; although adalah konjungsi yang diikuti klausa finite. Keduanya menyatakan konsesi, tetapi pelengkapnya berbeda. Despite the fact that dapat memperkenalkan klausa secara tidak langsung.",
+    "pitfall": "Hindari despite we were late; gunakan despite being late atau although we were late.",
+    "keywords": [
+      "despite",
+      "although",
+      "konsesi",
+      "klausa"
+    ]
+  },
+  "past-simple": {
+    "title": "Past simple",
+    "question": "Did you go atau did you went?",
+    "summary": "Gunakan untuk peristiwa lampau yang selesai. Kata kerja beraturan sering menambah -ed; bentuk tidak beraturan berbeda-beda.",
+    "usage": "Past simple menempatkan peristiwa di masa lalu. Kalimat afirmatif memakai bentuk lampau; negatif dan sebagian besar pertanyaan memakai did + base verb. Be merupakan pengecualian: was/were. Ungkapan waktu lampau yang pasti sering muncul dengan kala ini.",
+    "pitfall": "Did sudah menandai waktu lampau: Did you go?, bukan Did you went?.",
+    "keywords": [
+      "past simple",
+      "waktu lampau",
+      "did",
+      "kata kerja tidak beraturan"
+    ]
+  },
+  "present-simple": {
+    "title": "Present simple",
+    "question": "Mengapa she work berakhiran -s, tetapi I work tidak?",
+    "summary": "Gunakan untuk kebiasaan dan fakta umum. Dalam klausa afirmatif, subjek orang ketiga tunggal biasanya menambah -s/-es.",
+    "usage": "Present simple biasa menggambarkan kebiasaan, pola umum, dan fakta yang relatif tetap. Kata kerja afirmatif orang ketiga tunggal biasanya berakhiran -s; negatif dan pertanyaan memakai does + base form. Gunakan do dengan I, you, we, dan they.",
+    "pitfall": "Does sudah membawa persesuaian orang ketiga: Does she work?, bukan Does she works?.",
+    "keywords": [
+      "present simple",
+      "kebiasaan",
+      "orang ketiga",
+      "akhiran s"
+    ]
+  },
+  "questions": {
+    "title": "Pertanyaan yes/no dan wh-",
+    "question": "Mengapa does she work, bukan does she works?",
+    "summary": "Letakkan do/does di depan subjek untuk banyak pertanyaan tindakan present simple; kata wh- biasanya di depan. Pindahkan be langsung ke depan subjek.",
+    "usage": "Pertanyaan kata kerja leksikal present simple umumnya memakai do/does + subject + base verb. Letakkan kata tanya di depan: Where does she live? Jika who sendiri menjadi subjek, kata kerja bantu semacam itu tidak diperlukan: Who lives here?",
+    "pitfall": "Jangan mempertahankan urutan pernyataan dalam pertanyaan utama: Where does she live?, bukan Where she lives?.",
+    "keywords": [
+      "pertanyaan",
+      "yes no",
+      "kata tanya",
+      "inversi"
+    ]
+  },
+  "each-every": {
+    "title": "each / every",
+    "question": "Each atau every?",
+    "summary": "Each menitikberatkan anggota satu per satu; every sering meninjau seluruh himpunan. Keduanya mendahului kata benda hitung tunggal; each juga dapat berdiri sendiri.",
+    "usage": "Each memandang anggota secara individual dan dapat menjadi pronomina atau determiner. Every memperlakukan semua anggota kelompok bersama-sama dan mendahului kata benda hitung tunggal. Each dapat mengacu pada dua atau lebih; every biasanya pada tiga atau lebih. Frasa kata benda tunggal memakai persesuaian tunggal.",
+    "pitfall": "Every tidak dapat berdiri sendiri sebagai pronomina: Each was checked mungkin; Every was checked tidak.",
+    "keywords": [
+      "each",
+      "every",
+      "satu per satu",
+      "seluruh kelompok"
+    ]
+  },
+  "comparison": {
+    "title": "Komparatif dan superlatif",
+    "question": "Bagaimana cara membandingkan dua hal?",
+    "summary": "Gunakan komparatif dengan than untuk dua hal; gunakan the + superlative untuk titik ekstrem dalam kelompok yang dapat dikenali.",
+    "usage": "Komparatif menghubungkan dua hal yang sebanding. Kata sifat pendek sering memakai -er, yang lebih panjang sering memakai more; bentuk tidak beraturan seperti good/better harus dipelajari. Buat perbandingan sesudah than sejajar secara logis. Gunakan as ... as untuk derajat yang sama.",
+    "pitfall": "Jangan biasanya menggabungkan more dan -er: more taller salah. Sebagian kata sifat dua suku kata mengizinkan kedua bentuk.",
+    "keywords": [
+      "perbandingan",
+      "komparatif",
+      "superlatif",
+      "than"
+    ]
+  },
+  "few-a-few": {
+    "title": "few / a few",
+    "question": "Few atau a few?",
+    "summary": "A few berarti beberapa; few menekankan jumlah yang kecil atau tidak cukup. Keduanya menerangkan kata benda hitung jamak.",
+    "usage": "Few dan a few memakai kata benda hitung jamak. Few menekankan kekurangan; a few berarti jumlah kecil tetapi positif. Little dan a little biasanya memakai kata benda massal. Pilihannya mencerminkan penilaian pembicara tentang jumlah itu.",
+    "pitfall": "Jangan memakai a few langsung dengan kata benda massal: katakan some advice atau a few pieces of advice.",
+    "keywords": [
+      "few",
+      "a few",
+      "jumlah kecil",
+      "kata benda jamak"
+    ]
+  },
+  "first-conditional": {
+    "title": "First conditional",
+    "question": "If it rains, will we leave?",
+    "summary": "Untuk syarat masa depan yang mungkin, klausa if sering memakai present simple dan klausa utama dapat memakai will; ini bukan satu-satunya pola if.",
+    "usage": "Untuk syarat masa depan yang mungkin, klausa if biasanya memakai bentuk kini; klausa utama dapat memakai will, imperatif, atau modal. Kedua klausa dapat di depan, dan klausa if di awal biasanya diikuti koma. Tidak setiap kalimat if memerlukan will.",
+    "pitfall": "Jangan biasanya menaruh will di klausa if untuk syarat masa depan; will dapat bermakna khusus, misalnya kesediaan.",
+    "keywords": [
+      "first conditional",
+      "syarat",
+      "if",
+      "will"
+    ]
+  },
+  "hypothetical-conditionals": {
+    "title": "Kondisional hipotetis",
+    "question": "If I knew atau if I had known?",
+    "summary": "Hipotesis kini yang jauh sering memakai if + past dan would + base form; masa lalu yang tidak nyata sering memakai if + had + participle dan would have + participle.",
+    "usage": "Syarat kini atau masa depan yang tidak nyata sering memakai if + past form dengan would + base form. Kontrafaktual lampau memakai if + had + past participle dengan would have + past participle. Bentuk lampau dapat menandai jarak dari kenyataan, bukan waktu lampau.\n\nBentuk lampau dalam If I knew menyatakan jarak dari kenyataan kini atau masa depan, bukan waktu lampau. If I had known menempatkan syarat yang tidak nyata di masa lalu. Syarat dan hasil dapat mengacu pada waktu yang berbeda: If I had saved the file, I would have it now menggambarkan kelalaian lampau dengan akibat kini. Jangan mengisi pola kondisional secara mekanis dari label bernomor; kenali dulu fakta, acuan waktu, dan sikap pembicara.",
+    "pitfall": "Jangan mencampur kerangka waktu secara mekanis. Mixed conditional mungkin jika syarat lampau berakibat pada masa kini.",
+    "keywords": [
+      "kondisional",
+      "hipotesis",
+      "would",
+      "kontrafaktual"
+    ]
+  },
+  "imply-infer": {
+    "title": "imply / infer",
+    "question": "Siapa yang imply, siapa yang infer?",
+    "summary": "Pembicara atau teks imply sesuatu; pembaca infer dari bukti. Keduanya menggambarkan sisi komunikasi yang berbeda.",
+    "usage": "Imply menggambarkan apa yang disarankan secara tidak langsung oleh pembicara atau bukti; infer menggambarkan apa yang disimpulkan pembaca atau pendengar dari situ. Arahnya berbeda. Dalam tulisan formal, nyatakan dasar yang dapat diamati untuk suatu inferensi, dan jangan menyajikannya sebagai klaim eksplisit dari sumber.",
+    "pitfall": "Jangan menulis bahwa pengarang inferred suatu makna jika yang Anda maksud pengarang implied makna itu.",
+    "keywords": [
+      "imply",
+      "infer",
+      "menyiratkan",
+      "menyimpulkan"
+    ]
+  },
+  "less-fewer": {
+    "title": "less / fewer",
+    "question": "Less atau fewer?",
+    "summary": "Biasanya pilih fewer dengan kata benda hitung jamak dan less dengan kata benda massal; jumlah waktu atau uang serta pemakaian informal dapat berbeda.",
+    "usage": "Fewer biasanya menerangkan butir jamak yang dapat dihitung; less biasanya menerangkan kata benda massal. Less than sering mendahului waktu, jarak, atau jumlah angka yang diperlakukan sebagai satu kuantitas. Pemakaian nyata lebih luwes daripada slogan yang mutlak.",
+    "pitfall": "Jangan menganggap setiap durasi berangka dengan fewer otomatis salah; pilih bentuk yang paling jelas untuk konteksnya.",
+    "keywords": [
+      "less",
+      "fewer",
+      "jumlah",
+      "kata benda massal"
+    ]
+  },
+  "make-do": {
+    "title": "make / do",
+    "question": "Make atau do?",
+    "summary": "Make sering menunjuk pada penciptaan hasil; do sering menamai kegiatan atau tugas. Kolokasi masing-masing tetap perlu dicek.",
+    "usage": "Make sering menonjolkan pembuatan produk atau penyebab suatu hasil; do sering menonjolkan pelaksanaan kegiatan atau tugas. Banyak kolokasi harus dipelajari satu per satu: make a decision, make progress, do homework, do research.",
+    "pitfall": "Ini kecenderungan, bukan kaidah yang meramalkan setiap kolokasi; periksa pasangan yang sudah lazim untuk kata bendanya.",
+    "keywords": [
+      "make",
+      "do",
+      "kolokasi",
+      "membuat"
+    ]
+  },
+  "hedging": {
+    "title": "Hedging dan pembatasan klaim",
+    "question": "Apakah may suggest berarti membuktikan?",
+    "summary": "May, appear to, dan suggest dapat membatasi kekuatan klaim. Pertahankan cakupan bukti; jangan mengubah kemungkinan menjadi bukti.",
+    "usage": "May, might, appears to, dan suggests dapat menandai bahwa bukti mendukung kemungkinan, bukan kesimpulan. Sesuaikan rumusan dengan kekuatan bukti, batas sampel, dan penjelasan alternatif; jangan melemahkan fakta yang sudah mapan tanpa perlu.\n\nSesuaikan kekuatan klaim dengan buktinya. May suggest menawarkan tafsiran yang mungkin; is consistent with mengatakan data cocok dengan suatu tafsiran; keduanya tidak membuktikan sebab-akibat. Hasil yang signifikan pun dapat dibatasi oleh pengambilan sampel, pengukuran, atau faktor yang tidak dikendalikan. Pisahkan pengamatan, tafsiran, dan kesimpulan bila perlu, alih-alih memakai proves atau always untuk mengubah bukti terbatas menjadi kepastian.",
+    "pitfall": "Satu pengamatan jarang membuktikan sebab-akibat: prove biasanya jauh lebih kuat daripada suggest.",
+    "keywords": [
+      "hedging",
+      "kekuatan klaim",
+      "kemungkinan",
+      "bukti"
+    ]
+  },
+  "countability": {
+    "title": "Kata benda hitung dan tak terhitung",
+    "question": "Much information atau many information?",
+    "summary": "Many biasanya bersama kata benda hitung jamak; much biasanya bersama kata benda tak terhitung. Sebagian kata benda berubah keterhitungannya menurut makna.",
+    "usage": "Kata benda hitung berpadu dengan angka dan bentuk jamak, serta sering dengan many atau few. Kata benda massal biasa memakai much atau little dan tidak punya jamak biasa. Keterhitungan dapat berubah menurut makna: coffee dapat berarti zat atau satu sajian.",
+    "pitfall": "Jangan melabeli setiap makna kata benda selamanya hitung atau massal: an experience berbeda dari experience secara umum.",
+    "keywords": [
+      "kata benda hitung",
+      "tak terhitung",
+      "much",
+      "many"
+    ]
+  },
+  "modals": {
+    "title": "Modal: kemungkinan dan keharusan",
+    "question": "Must not atau do not have to?",
+    "summary": "May/might menyatakan kemungkinan; must dapat menyatakan keharusan kuat atau inferensi. Must not berarti larangan, berbeda dari don't have to.",
+    "usage": "Must not melarang suatu tindakan; do not have to menghapus keharusan. Must dapat menyatakan keharusan kuat atau inferensi yang yakin, sedangkan have to biasa mengacu pada syarat dari luar. Cakupan negasi penting.",
+    "pitfall": "Jangan menyamakan You must not leave dengan You do not have to leave; yang pertama melarang pergi.",
+    "keywords": [
+      "modal",
+      "must not",
+      "have to",
+      "larangan"
+    ]
+  },
+  "present-perfect": {
+    "title": "Present perfect",
+    "question": "I went atau I have gone: apakah waktunya penting?",
+    "summary": "Gunakan have/has + past participle untuk menghubungkan peristiwa lampau dengan masa kini; waktu lampau selesai yang spesifik umumnya memakai past simple.",
+    "usage": "Present perfect menghubungkan situasi lampau dengan hasil kini, pengalaman, atau keadaan yang berlanjut. Acuan waktu lampau yang pasti biasanya memakai past simple. Since menandai titik awal dan for suatu durasi. Ragam dan konteks dapat memengaruhi sebagian pilihan.\n\nAcuan waktu sangat menentukan: waktu selesai dan spesifik seperti yesterday atau in 2019 biasanya meminta past simple. So far dan this week dapat mendukung present perfect selama periodenya masih mencakup sekarang. Bahkan this morning dapat diperlakukan berbeda selagi pagi masih berlangsung dan sesudah berakhir. Perfect dapat menggambarkan pengalaman atau akibat kini, bukan hanya penyelesaian yang baru. American English juga sering memakai past simple dalam sebagian konteks already/yet, jadi jangan anggap setiap pemakaian itu kesalahan.",
+    "pitfall": "Jangan biasanya menggabungkan present perfect dengan waktu lampau pasti yang sudah selesai seperti yesterday: I saw her yesterday.",
+    "keywords": [
+      "present perfect",
+      "pengalaman",
+      "since",
+      "for"
+    ]
+  },
+  "inversion": {
+    "title": "Fronting negatif dan inversi",
+    "question": "Mengapa bentuknya rarely had they seen?",
+    "summary": "Ungkapan restriktif atau negatif yang di-front seperti rarely atau not only sering memicu inversi subjek–kata kerja bantu dalam prosa formal, dan menambah penekanan.",
+    "usage": "Jika adverbial negatif atau restriktif mengawali klausa, bahasa Inggris formal sering membalik kata kerja bantu dan subjek: Rarely have I seen...; Only then did I understand.... Jika tidak ada kata kerja bantu, gunakan do-support. Ungkapan yang di-front menentukan cakupannya.\n\nUngkapan negatif atau pembatas di depan seperti hardly, rarely, dan not only sering memicu inversi subjek–kata kerja bantu dalam gaya formal: Rarely have we seen.... Jika tidak ada kata kerja bantu, sediakan do/does/did dan pakai bentuk kata kerja polos. Tidak setiap adverbia di awal memicu inversi: Yesterday we left tidak memerlukannya. Konstruksi ini juga bergantung pada apa yang sebenarnya diterangkan ungkapan di depan itu.",
+    "pitfall": "Tidak setiap adverbia di awal memicu inversi: Often I go there memakai urutan biasa.",
+    "keywords": [
+      "inversi",
+      "fronting",
+      "negatif",
+      "penekanan"
+    ]
+  },
+  "respectively": {
+    "title": "respectively",
+    "question": "Respectively memasangkan apa?",
+    "summary": "Respectively memasangkan dua daftar yang sama panjang sesuai urutan. Jika daftar atau urutannya tidak jelas, tulis ulang kalimatnya.",
+    "usage": "Respectively memasangkan anggota dua daftar berurutan atau lebih dalam urutan yang sama. Pembaca harus dapat mengenali daftar dan urutannya. Jika pemetaannya panjang atau rumit, kalimat terpisah lebih jelas. Kata itu sendiri tidak menambah hubungan sebab.",
+    "pitfall": "Jangan memakai respectively untuk menyamarkan ketidakcocokan antardaftar; nyatakan setiap pasangan secara eksplisit.",
+    "keywords": [
+      "respectively",
+      "urutan",
+      "daftar",
+      "pasangan"
+    ]
+  },
+  "reported-speech": {
+    "title": "Reported speech",
+    "question": "Haruskah setiap kala mundur dalam reported speech?",
+    "summary": "Melaporkan ujaran lampau dapat mengubah pronomina, ungkapan waktu, dan kala sesuai sudut pandang; fakta yang masih berlaku tidak selalu harus dimundurkan.",
+    "usage": "Saat melaporkan, bedakan fakta yang masih berlaku dari situasi yang terikat pada waktu berbicara semula. Sesudah kata kerja pelapor lampau, kala sering mundur, tetapi ini tidak selalu wajib untuk fakta yang masih benar. Pronomina serta ungkapan waktu dan tempat juga dapat berubah.\n\nBackshifting bukan kaidah mekanis. Jika fakta yang dilaporkan masih benar, mempertahankan kala semula dapat tepat; menggesernya justru dapat menandai sudut pandang lampau. Kata seperti today, tomorrow, dan here berubah hanya jika waktu atau tempat pelaporan memerlukannya. Saat melaporkan orang lain, pisahkan rumusan asli mereka dari inferensi Anda, dan jangan membuat laporan lebih pasti daripada aslinya.",
+    "pitfall": "Jangan memundurkan setiap bentuk kini secara mekanis; kebenaran umum dapat tetap dalam bentuk kini.",
+    "keywords": [
+      "reported speech",
+      "kalimat tidak langsung",
+      "backshift",
+      "kala"
+    ]
+  },
+  "say-tell": {
+    "title": "say / tell",
+    "question": "Kapan saya memakai say atau tell?",
+    "summary": "Say dapat memperkenalkan kata-kata atau klausa. Tell biasanya menyebut penerima sebelum informasi yang dilaporkan; hindari tell that tanpa penerima.",
+    "usage": "Say berfokus pada kata-kata atau isi: say something atau say something to someone. Tell biasanya menyebut penerima: tell someone something. Keduanya dapat memakai that-clause, tetapi tell biasa mempertahankan pendengarnya. Pelajari frasa tetap seperti tell a story dan tell the truth.",
+    "pitfall": "Hindari say me dan tell to me; gunakan say to me atau tell me.",
+    "keywords": [
+      "say",
+      "tell",
+      "mengatakan",
+      "penerima"
+    ]
+  },
+  "since-for": {
+    "title": "since / for",
+    "question": "Since atau for untuk waktu?",
+    "summary": "Since mengidentifikasi titik awal; for memberi durasi. Kedua kata itu sendiri tidak menentukan kala.",
+    "usage": "Since memperkenalkan titik awal seperti tahun, tanggal, atau peristiwa; for memperkenalkan durasi seperti two years. Keduanya dapat muncul dengan keadaan yang berlanjut sampai sekarang, tetapi kala bergantung pada kalimatnya. For juga bebas muncul dengan past simple.",
+    "pitfall": "Jangan memilih berdasarkan adanya angka: since 2020 memberi titik awal, bukan durasi.",
+    "keywords": [
+      "since",
+      "for",
+      "durasi",
+      "titik awal"
+    ]
+  },
+  "relative-clauses": {
+    "title": "Relative clause",
+    "question": "Bisakah saya memakai that sesudah koma?",
+    "summary": "Relative clause dapat mengidentifikasi orang atau benda. Informasi tambahan yang non-defining biasanya dipisah koma dan tidak bebas memakai that.",
+    "usage": "Relative clause defining mengidentifikasi orang atau benda yang dimaksud. Klausa non-defining menambah informasi tentang acuan yang sudah teridentifikasi dan dipisah dengan koma. That lazim dalam klausa defining, tetapi biasanya tidak dalam klausa non-defining. Relative objek kadang dapat dihilangkan.\n\nPertama, tanyakan apakah klausa itu mengidentifikasi acuan. The report that arrived today is incomplete memilih satu laporan; the report, which arrived today, is incomplete memperlakukan laporan itu sebagai sudah diketahui dan menambah informasi. Klausa non-defining biasanya tidak memakai that dan tidak menghilangkan kata relative. Memindahkan preposisi ke depan kata relative, seperti dalam to whom, lebih formal; pemakaian biasa sering membiarkannya di akhir klausa.",
+    "pitfall": "Jangan memakai koma + that untuk klausa non-defining: My car, which is red, ....",
+    "keywords": [
+      "relative clause",
+      "who",
+      "which",
+      "that"
+    ]
+  },
+  "used-to": {
+    "title": "used to / be used to",
+    "question": "Used to do atau be used to doing?",
+    "summary": "Used to + base verb menggambarkan kebiasaan atau keadaan dahulu; be used to + kata benda atau -ing berarti terbiasa.",
+    "usage": "Used to + base verb menggambarkan kebiasaan atau keadaan lampau yang umumnya tidak lagi berlaku. Be used to + kata benda atau -ing berarti terbiasa; get used to menekankan penyesuaian. To dalam be/get used to adalah preposisi, bukan penanda infinitif.",
+    "pitfall": "Gunakan I am used to waking early, bukan I am used to wake early.",
+    "keywords": [
+      "used to",
+      "be used to",
+      "kebiasaan lampau",
+      "terbiasa"
+    ]
+  },
+  "who-whom": {
+    "title": "who / whom",
+    "question": "Kapan whom dipakai dalam bahasa Inggris formal?",
+    "summary": "Whom dapat menandai objek, terutama sesudah preposisi yang di-front; percakapan sehari-hari sering memakai who. Pemakaian formal bukan satu-satunya pilihan yang wajar.",
+    "usage": "Who biasanya subjek dan luas dipakai sebagai objek dalam ujaran. Whom adalah bentuk objek formal, terutama sesudah preposisi yang di-front. Kenali peran yang hilang di dalam klausa, jangan hanya melihat kata di depannya. Jangan memaksakan whom dalam percakapan biasa.",
+    "pitfall": "Who did you invite? sepenuhnya wajar dalam bahasa Inggris masa kini; jangan menandainya salah secara mutlak.",
+    "keywords": [
+      "who",
+      "whom",
+      "objek",
+      "formal"
+    ]
+  },
+  "future": {
+    "title": "Masa depan: will dan be going to",
+    "question": "Will atau going to untuk rencana?",
+    "summary": "Will dapat menyatakan keputusan yang diambil sekarang atau prediksi; be going to sering menandai rencana sebelumnya atau bukti yang ada sekarang. Konteks menentukan.",
+    "usage": "Will sering menandai keputusan yang diambil sekarang, prediksi, atau janji. Be going to biasa menyajikan niat sebelumnya atau prediksi berdasarkan bukti kini. Keduanya banyak tumpang tindih. Jadwal dapat memakai present simple, dan janji temu memakai present progressive.",
+    "pitfall": "Jangan mengubah setiap acuan masa depan menjadi will: The train leaves at six adalah pernyataan jadwal yang wajar.",
+    "keywords": [
+      "will",
+      "be going to",
+      "masa depan",
+      "rencana"
+    ]
+  },
+  "present-continuous": {
+    "title": "Present continuous",
+    "question": "I work atau I am working: mana yang cocok untuk sekarang?",
+    "summary": "Gunakan be + -ing untuk tindakan yang terjadi sekarang atau di sekitar sekarang; bedakan dari present simple untuk kebiasaan.",
+    "usage": "Present progressive biasa menggambarkan kegiatan yang terjadi sekarang, situasi sementara, atau janji dalam waktu dekat. Present simple biasa menggambarkan kebiasaan atau fakta yang tetap. Bentuk progresif dengan am/is/are + -ing. Sebagian kata kerja statif jarang progresif kecuali maknanya bergeser.",
+    "pitfall": "Biasanya katakan I know the answer, bukan I am knowing the answer; I am thinking about it menggambarkan kegiatan.",
+    "keywords": [
+      "present continuous",
+      "sedang",
+      "be ing",
+      "sekarang"
+    ]
+  },
+  "some-any": {
+    "title": "some dan any",
+    "question": "Bagaimana memilih some atau any?",
+    "summary": "Some lazim dalam kalimat afirmatif; any lazim dalam negatif dan pertanyaan terbuka.",
+    "usage": "Keduanya menerangkan kata benda hitung jamak dan kata benda massal. Permintaan dan tawaran yang mengharapkan jawaban ya sering memakai some. Dalam kalimat afirmatif, any dapat berarti yang mana pun. Pertimbangkan harapan pembicara, bukan hanya tanda tanya.",
+    "pitfall": "Would you like some tea? adalah tawaran yang wajar; tidak harus memakai any.",
+    "keywords": [
+      "some",
+      "any",
+      "penawaran",
+      "negatif"
+    ]
+  },
+  "there-is": {
+    "title": "there is dan there are",
+    "question": "Bagaimana mengatakan sesuatu ada di suatu tempat?",
+    "summary": "Gunakan there is dengan kata benda tunggal atau massal, dan there are dengan kata benda jamak.",
+    "usage": "Di sini there memperkenalkan suatu entitas dan tidak harus berarti di tempat itu. Biasanya sebut entitasnya, lalu lokasinya. Dalam pertanyaan, pindahkan is/are ke depan there; dalam negatif, letakkan not sesudah is/are.",
+    "pitfall": "Dalam tulisan formal, sesuaikan persesuaian tunggal atau jamak dengan kata benda yang mengikuti.",
+    "keywords": [
+      "there is",
+      "there are",
+      "keberadaan",
+      "persesuaian"
+    ]
+  },
+  "possessive": {
+    "title": "Determiner dan pronomina posesif",
+    "question": "Apa beda my dan mine?",
+    "summary": "My, your, dan her mendahului kata benda; mine, yours, dan hers dapat berdiri tanpa kata benda sesudahnya.",
+    "usage": "Bandingkan my book dengan the book is mine, dan our room dengan the room is ours. His berbentuk sama di kedua posisi. Its adalah determiner; its yang berdiri sendiri jarang. It’s adalah kontraksi, bukan posesif.",
+    "pitfall": "Jangan menulis mine book; gunakan my book atau This book is mine.",
+    "keywords": [
+      "posesif",
+      "my",
+      "mine",
+      "kepunyaan"
+    ]
+  },
+  "imperatives": {
+    "title": "Imperatif",
+    "question": "Bagaimana memberi instruksi singkat?",
+    "summary": "Imperatif biasanya diawali base verb; negatif memakai do not atau don’t + base verb.",
+    "usage": "Subjek you biasanya dihilangkan. Please dapat memperhalus permintaan, tetapi konteks dan hubungan tetap penting; pertanyaan mungkin lebih tepat. Let’s + base verb mengusulkan tindakan bersama.",
+    "pitfall": "Jangan menaruh not langsung di depan kata kerja: katakan Don’t open the door.",
+    "keywords": [
+      "imperatif",
+      "perintah",
+      "jangan",
+      "instruksi"
+    ]
+  },
+  "past-continuous": {
+    "title": "Past progressive",
+    "question": "Bagaimana menggambarkan kegiatan yang sedang berlangsung di masa lalu?",
+    "summary": "Past progressive memakai was/were + -ing, sering untuk kegiatan latar; past simple sering menamai peristiwa yang menyela atau selesai.",
+    "usage": "Dalam I was reading when the phone rang, membaca sudah berlangsung dan dering telepon adalah peristiwa lain. While dapat menghubungkan kegiatan yang bersamaan. Pilih progresif untuk proses yang sedang terbuka, bukan otomatis untuk setiap tindakan lampau.",
+    "pitfall": "Kata kerja statif yang umum biasanya tetap menghindari progresif: I knew the answer, bukan I was knowing it.",
+    "keywords": [
+      "past continuous",
+      "sedang lampau",
+      "was were",
+      "latar"
+    ]
+  },
+  "have-to": {
+    "title": "have to dan must",
+    "question": "Untuk keharusan, have to atau must?",
+    "summary": "Keduanya dapat menyatakan keharusan; have to sering menunjuk syarat dari luar, sedangkan must dapat menekankan keharusan kuat dari pembicara.",
+    "usage": "Have to berubah menurut kala dan subjek: she has to, we had to, did you have to. Must tidak punya bentuk lampau biasa; had to biasa menyatakan keharusan lampau. Nadanya juga berbeda menurut konteks, wilayah, dan ragam.",
+    "pitfall": "Negatifnya berbeda: must not melarang; do not have to menghapus keharusan.",
+    "keywords": [
+      "have to",
+      "must",
+      "keharusan",
+      "wajib"
+    ]
+  },
+  "prepositions-time": {
+    "title": "Preposisi waktu at, on, dan in",
+    "question": "At, on, atau in untuk waktu?",
+    "summary": "Gunakan at untuk jam, on untuk tanggal dan hari, dan in untuk bulan, tahun, serta periode yang lebih panjang.",
+    "usage": "At 7:30, on Monday, dan in October adalah titik awal yang berguna. Modifier penting: on Monday morning tetapi in the morning. Sebagian ungkapan berbeda menurut wilayah, misalnya at the weekend dan on the weekend.",
+    "pitfall": "Biasanya hilangkan preposisi waktu sebelum last, next, atau this: next Monday.",
+    "keywords": [
+      "preposisi waktu",
+      "at on in",
+      "jam",
+      "tanggal"
+    ]
+  },
+  "gerund-infinitive": {
+    "title": "-ing dan to-infinitive sesudah kata kerja",
+    "question": "Apakah kata kerja berikutnya memakai -ing atau to?",
+    "summary": "Kata kerja yang berbeda memilih pelengkap yang berbeda: enjoy biasa memakai -ing; decide memakai to + base verb.",
+    "usage": "Sebagian kata kerja menerima keduanya tetapi maknanya berubah: remember locking the door mengingat tindakan yang sudah selesai; remember to lock the door menyangkut tugas yang akan datang. Pelajari bentuk dan makna bersama-sama, jangan hanya menghafal daftar.\n\nTidak ada izin umum untuk menukar bentuk -ing dan to-infinitive. Sebagian kata kerja lebih suka satu pelengkap, seperti avoid doing atau decide to do; yang lain mengizinkan keduanya dengan makna atau fokus berbeda, seperti stop reading versus stop to read. Sesudah preposisi, -ing yang biasa: to dalam look forward to meeting adalah preposisi, bukan penanda infinitif. Periksa pola setiap kata kerja yang belum dikenal.",
+    "pitfall": "Kata kerja sesudah preposisi biasanya memakai -ing: interested in learning, bukan interested in to learn.",
+    "keywords": [
+      "gerund",
+      "infinitif",
+      "ing",
+      "to"
+    ]
+  },
+  "present-perfect-progressive": {
+    "title": "Present perfect progressive",
+    "question": "Kapan saya memakai have been doing?",
+    "summary": "Present perfect progressive menonjolkan kegiatan yang dimulai di masa lalu dan berlanjut sampai sekarang, atau yang akibatnya baru saja masih terasa.",
+    "usage": "Dibanding perfect sederhana, progresif sering menonjolkan proses atau durasi. I have written three pages menekankan hasil; I have been writing for an hour menekankan kegiatan. Kata kerja statif sering lebih suka bentuk sederhana.",
+    "pitfall": "Bentuk ini tidak harus berarti kegiatan berlanjut tepat pada saat ini: It has been raining dapat menjelaskan tanah basah sesudah hujan berhenti.",
+    "keywords": [
+      "present perfect progressive",
+      "have been",
+      "durasi",
+      "proses"
+    ]
+  },
+  "enough-too": {
+    "title": "enough dan too",
+    "question": "Bagaimana menyatakan derajat yang cukup atau berlebih?",
+    "summary": "Enough menyatakan kecukupan; too sering menandai derajat yang berlebih.",
+    "usage": "Enough mengikuti kata sifat dan kata keterangan, tetapi mendahului kata benda: old enough, enough time. Too mendahului kata sifat atau kata keterangan: too heavy. Dengan to-infinitive, kenali siapa yang dapat melakukan tindakan itu: too heavy for me to carry.",
+    "pitfall": "Untuk kecukupan biasa, katakan old enough dan enough time, bukan enough old atau time enough.",
+    "keywords": [
+      "enough",
+      "too",
+      "cukup",
+      "terlalu"
+    ]
+  },
+  "articles-zero": {
+    "title": "Artikel nol untuk acuan umum",
+    "question": "Kapan artikel tidak diperlukan?",
+    "summary": "Kata benda hitung jamak generik dan kata benda massal generik sering tanpa artikel.",
+    "usage": "Cats need sleep berbeda dari The cats in this room need sleep; Water is essential berbeda dari The water in this bottle is warm. Nama diri dan ungkapan yang sudah mapan punya polanya sendiri, jadi acuan umum tidak menjelaskan setiap pilihan artikel.",
+    "pitfall": "Kata benda hitung tunggal generik biasanya memerlukan determiner: A cat needs sleep, bukan Cat needs sleep.",
+    "keywords": [
+      "artikel nol",
+      "acuan umum",
+      "tanpa artikel",
+      "generik"
+    ]
+  },
+  "relative-pronoun-omission": {
+    "title": "Menghilangkan pronomina relative",
+    "question": "Kapan pronomina relative boleh dihilangkan?",
+    "summary": "Dalam relative clause defining, pronomina relative objek sering dapat dihilangkan; pronomina relative subjek biasanya tidak.",
+    "usage": "Dalam The book (that) I bought, I adalah subjek klausa dan book adalah objek bought, jadi that dapat hilang. Dalam The book that fell, that adalah subjek dan harus tetap. Relative non-defining biasanya tidak mengizinkan penghilangan ini.",
+    "pitfall": "Jangan menghilangkan who dari The woman who called.",
+    "keywords": [
+      "relative",
+      "menghilangkan that",
+      "who",
+      "objek"
+    ]
+  },
+  "although-however": {
+    "title": "although dan however",
+    "question": "Bisakah although dan however saling ditukar?",
+    "summary": "Although memperkenalkan klausa subordinatif; however sering berupa adverbia penghubung yang mengontraskan pernyataan mandiri.",
+    "usage": "Although the plan is costly, it may work berisi klausa subordinatif. The plan is costly. However, it may work berisi kalimat terpisah. Dalam prosa formal, hindari menggabungkan dua kalimat mandiri hanya dengan koma sebelum however; gunakan titik atau titik koma.",
+    "pitfall": "However the plan is costly tidak begitu saja menggantikan Although the plan is costly.",
+    "keywords": [
+      "although",
+      "however",
+      "kontras",
+      "klausa"
+    ]
+  },
+  "wish-if-only": {
+    "title": "wish dan if only",
+    "question": "Bagaimana menyatakan keinginan yang bertentangan dengan kenyataan?",
+    "summary": "Untuk keinginan yang bertentangan dengan kenyataan kini, gunakan wish + past form; untuk penyesalan tentang masa lalu, gunakan wish + had + past participle.",
+    "usage": "I wish I knew the answer menyiratkan bahwa saya tidak mengetahuinya sekarang; I wish I had known menunjuk pada ketidaktahuan yang lebih dahulu. Wish + would dapat meminta perubahan perilaku seseorang atau suatu situasi, sering dengan rasa frustrasi. If only sering menambah daya emosional.",
+    "pitfall": "Bentuk lampau di sini menandai ketidaknyataan, bukan sekadar waktu lampau; I wish I know biasanya tidak menyatakan kontrafaktual kini.",
+    "keywords": [
+      "wish",
+      "if only",
+      "penyesalan",
+      "keinginan"
+    ]
+  },
+  "used-to-would": {
+    "title": "Kebiasaan lampau dengan used to dan would",
+    "question": "Bisakah would menggambarkan kebiasaan lampau?",
+    "summary": "Used to dapat menggambarkan kebiasaan atau keadaan lampau; would dapat menggambarkan tindakan berulang jika kerangka lampau sudah jelas.",
+    "usage": "When we were children, we would play by the river menggambarkan kegiatan berulang. We used to live by the river menggambarkan keadaan lampau. Would untuk kebiasaan biasanya memerlukan latar lampau yang sudah terbentuk, dan biasanya tidak dipakai untuk situasi statis.",
+    "pitfall": "We would live by the river untuk kebiasaan bukan pengganti wajar bagi We used to live by the river.",
+    "keywords": [
+      "used to",
+      "would",
+      "kebiasaan lampau",
+      "keadaan"
+    ]
+  },
+  "its-it-is": {
+    "title": "its dan it’s",
+    "question": "Apa beda its dan it’s?",
+    "summary": "Its adalah determiner posesif; it’s menyingkat it is atau it has.",
+    "usage": "Uraikan it’s menjadi it is atau it has. Jika itu cocok, pakai apostrof. Untuk sesuatu yang milik atau terkait dengan it, gunakan its. Kontraksi it has sering muncul dalam konstruksi perfect: It’s been a long day.",
+    "pitfall": "Jangan meniru posesif lain dengan menulis the dog wagged it’s tail.",
+    "keywords": [
+      "its",
+      "it's",
+      "apostrof",
+      "posesif"
+    ]
+  },
+  "comma-splice": {
+    "title": "Comma splice",
+    "question": "Bisakah koma saja menggabungkan dua klausa mandiri?",
+    "summary": "Dalam prosa formal, koma saja umumnya tidak dapat menggabungkan dua klausa mandiri.",
+    "usage": "Gunakan titik, titik koma, atau koma plus konjungsi koordinatif seperti and atau but. Atau, jadikan salah satu klausa subordinatif. Prosa sastra kadang memakai comma splice yang disengaja, tetapi prosa akademik standar umumnya menghindarinya.",
+    "pitfall": "Dalam prosa standar, revisi It was late, we left menjadi It was late, so we left atau struktur lain yang sah.",
+    "keywords": [
+      "comma splice",
+      "koma",
+      "klausa mandiri",
+      "titik koma"
+    ]
+  },
+  "parallelism": {
+    "title": "Struktur paralel",
+    "question": "Bagaimana menjaga daftar tetap paralel secara gramatikal?",
+    "summary": "Jika butir yang dikoordinasikan berperan gramatikal yang sama, bentuk yang serupa membantu pembaca melihat hubungannya.",
+    "usage": "She likes reading, writing and editing memakai tiga bentuk -ing. Perbandingan juga perlu logika yang paralel: The new method is faster than the old one. Paralelisme tidak menuntut jumlah kata yang sama; yang diperlukan peran dan makna yang sebanding.",
+    "pitfall": "Hindari campuran yang tidak disengaja seperti to read, writing, and edit dalam satu daftar terkoordinasi.",
+    "keywords": [
+      "paralel",
+      "daftar",
+      "struktur",
+      "kesetaraan"
+    ]
+  },
+  "nominalisation": {
+    "title": "Nominalisasi dan kata kerja",
+    "question": "Bisakah nominalisasi mengaburkan kalimat?",
+    "summary": "Nominalisasi dapat memadatkan informasi, tetapi juga dapat menyembunyikan pelaku dan tindakan.",
+    "usage": "The committee decided lebih langsung daripada A decision was made by the committee. Namun the decision berguna jika konsep itu sendiri yang menjadi topik atau terhubung dengan wacana sebelumnya. Pilih menurut tujuan wacana, dan periksa apakah pelaku tetap dapat dipulihkan.",
+    "pitfall": "Tidak setiap kata benda berakhiran -tion atau -ment buruk; soalnya apakah ia mengaburkan informasi tanpa perlu.",
+    "keywords": [
+      "nominalisasi",
+      "kata benda",
+      "pelaku",
+      "kejelasan"
+    ]
+  },
+  "scope-negation": {
+    "title": "Cakupan negasi",
+    "question": "Apakah not all dan none bermakna sama?",
+    "summary": "Not all menyangkal bahwa setiap anggota memenuhi syarat; none menyangkal bahwa ada anggota yang memenuhi syarat. Keduanya tidak dapat saling mengganti.",
+    "usage": "Not all participants agreed berarti kesepakatan tidak universal, tetapi tidak memberi jumlah pasti. None of the participants agreed mengeluarkan setiap peserta dari kelompok yang setuju. Pertahankan cakupan quantifier dan negasi saat menafsirkan argumen.",
+    "pitfall": "Jangan menyamakan not necessarily dengan necessarily not: yang pertama menyangkal keniscayaan, yang kedua menegaskan keniscayaan dari kebalikannya.",
+    "keywords": [
+      "negasi",
+      "not all",
+      "none",
+      "cakupan"
+    ]
+  },
+  "presupposition": {
+    "title": "Presuposisi dalam pemakaian",
+    "question": "Bisakah rumusan mengandaikan fakta yang tidak dinyatakan?",
+    "summary": "Kata seperti stop, still, dan even sering memasukkan asumsi latar di luar pernyataan utama.",
+    "usage": "She stopped smoking biasanya mengandaikan kebiasaan merokok sebelumnya; She still works here menyarankan pekerjaan yang berlanjut berlawanan dengan harapan yang mungkin; Even Jo passed membingkai keberhasilan Jo sebagai mengejutkan pada suatu skala. Konteks, negasi, dan koreksi dapat memengaruhi inferensi ini; semuanya bukan fakta yang sudah terverifikasi.",
+    "pitfall": "Saat mengutip still atau finally, kenali asumsi siapa yang tersampaikan sebelum menyajikannya sebagai bukti Anda sendiri.",
+    "keywords": [
+      "presuposisi",
+      "asumsi",
+      "still",
+      "latar"
+    ]
+  },
+  "cleft-focus": {
+    "title": "Kalimat cleft dan fokus",
+    "question": "Apa yang difokuskan It was ... that?",
+    "summary": "It-cleft menyajikan satu konstituen sebagai fokus dan memperlakukan proposisi selebihnya sebagai latar.",
+    "usage": "It was Maya who found the error berfokus pada penemunya; It was the error that Maya found berfokus pada objek yang ditemukan. Periksa bahwa fokus itu menjawab persoalan yang sebenarnya, atau pembaca dapat salah paham tentang apa yang dikoreksi. Who dan that adalah penghubung yang lazim.",
+    "pitfall": "Jangan menafsirkan setiap it dalam cleft sebagai acuan ke benda konkret.",
+    "keywords": [
+      "cleft",
+      "fokus",
+      "it was",
+      "penekanan"
+    ]
+  },
+  "only-scope": {
+    "title": "Cakupan only",
+    "question": "Bagaimana posisi only mengubah makna?",
+    "summary": "Only membatasi konstituen yang difokuskan; posisi dan tekanan dapat mengubah tafsiran.",
+    "usage": "Only Sara reviewed the draft menyingkirkan peninjau lain. Sara only reviewed the draft dapat berarti ia meninjau tetapi tidak menyuntingnya. Prosa tertulis tidak punya tekanan ujaran; letakkan only dekat fokus yang dimaksud dan pakai konteks untuk menghilangkan ketaksaan.\n\nPenempatan biasanya menandai cakupan: Only Nora sent the draft membatasi pengirim; Nora sent only the draft membatasi butirnya; Nora only sent the draft dapat berarti ia hanya mengirimnya. Tekanan dan konteks tetap dapat mengubah tafsiran lisan. Dalam tulisan yang teliti, letakkan only di samping unsur yang dimaksud dan tulis ulang jika perbedaannya memengaruhi argumen. Urutan kata saja tidak menjamin satu bacaan di setiap konteks.",
+    "pitfall": "Sara reviewed only the draft membatasi objeknya, bukan orang yang meninjaunya.",
+    "keywords": [
+      "only",
+      "cakupan",
+      "posisi",
+      "fokus"
+    ]
+  },
+  "because-because-of": {
+    "title": "because / because of",
+    "question": "Apa yang mengikuti because dan because of?",
+    "summary": "Because memperkenalkan klausa; because of memperkenalkan frasa kata benda.",
+    "usage": "Periksa bentuk alasannya: the road was closed adalah klausa sesudah because; the road closure adalah frasa kata benda sesudah because of. Klausa alasan di awal biasanya diikuti koma, sedangkan yang di akhir biasanya tidak. Because of juga dapat memakai pronomina atau frasa -ing nominal. Alasan yang serupa dapat diungkapkan dengan kedua bentuk, tetapi tata bahasa sesudahnya berbeda.",
+    "pitfall": "Hindari because of the road was closed; hilangkan of atau ubah alasan menjadi frasa kata benda.",
+    "keywords": [
+      "because",
+      "because of",
+      "alasan",
+      "klausa"
+    ]
+  },
+  "indirect-questions": {
+    "title": "Pertanyaan tidak langsung",
+    "question": "Mengapa pertanyaan tidak langsung memakai urutan pernyataan?",
+    "summary": "Pertanyaan tersemat biasanya berurutan kata seperti pernyataan; pertanyaan yes–no memakai if atau whether.",
+    "usage": "Jika Where does the bus stop? menjadi Do you know where the bus stops?, bagian tersemat kehilangan do-support dan inversi. Untuk pertanyaan waktu lampau, pertahankan makna lampau tetapi bukan kata kerja bantu pertanyaan did. Could you tell me...? adalah pertanyaan sopan dan memakai tanda tanya; I wonder... adalah pernyataan dan biasanya memakai titik. Untuk pertanyaan yes–no tersemat, awali klausa dengan if atau whether dan pertahankan urutan pernyataan.",
+    "pitfall": "Hindari Could you tell me where does the bus stop? Hanya pertanyaan luar yang diinversi.",
+    "keywords": [
+      "pertanyaan tidak langsung",
+      "whether",
+      "urutan kata",
+      "if"
+    ]
+  },
+  "either-neither": {
+    "title": "either / neither",
+    "question": "Bagaimana either dan neither mengacu pada dua alternatif?",
+    "summary": "Either berarti salah satu dari dua; neither berarti bukan yang satu dan bukan yang lain. Either...or menawarkan alternatif, sedangkan neither...nor menolak keduanya.",
+    "usage": "Sebagai determiner, either dan neither mendahului kata benda hitung tunggal: either route, neither answer. Gunakan either/neither of sebelum determiner plus kata benda jamak atau pronomina: neither of the routes, either of us. Tulisan formal biasa memakai kata kerja tunggal jika ini menjadi subjek; persesuaian jamak juga muncul dalam ujaran informal, jadi bukan kesalahan mutlak. Jaga unsur berpasangan dalam either...or dan neither...nor tetap paralel. Persesuaian dengan subjek majemuk dapat bergantung pada unsur yang lebih dekat dan gayanya.",
+    "pitfall": "Neither sudah negatif; jangan menambah not untuk negasi yang sama. Untuk tiga butir atau lebih, jangan otomatis memakai neither sebagai ganti none.",
+    "keywords": [
+      "either",
+      "neither",
+      "or",
+      "nor"
+    ]
+  },
+  "unless": {
+    "title": "unless / if not",
+    "question": "Bisakah unless selalu menggantikan if not?",
+    "summary": "Unless sering berarti kecuali jika; ia memperkenalkan pengecualian, tetapi tidak menggantikan setiap klausa if not.",
+    "usage": "You cannot enter unless you have a pass menyajikan kepemilikan pas sebagai pengecualian dari larangan. Dalam syarat berorientasi masa depan, klausa unless biasanya memakai bentuk kini, bukan will. If not dapat sekadar menyatakan syarat negatif atau membuka pertanyaan apakah sesuatu tidak benar; menggantinya dengan unless dapat mengubah fokus. Periksa apakah klausa itu benar-benar mengidentifikasi satu-satunya pengecualian. Unless sudah membawa makna syarat negatif, jadi not lain dapat membalik maksudnya.",
+    "pitfall": "Jangan membaca unless sebagai if yang netral, atau biasanya menulis unless you will have a pass untuk syarat masa depan.",
+    "keywords": [
+      "unless",
+      "if not",
+      "kecuali",
+      "syarat"
+    ]
+  },
+  "during-while": {
+    "title": "during / while",
+    "question": "Apa yang mengikuti during dan while?",
+    "summary": "During memakai frasa kata benda yang menamai periode; while biasanya memperkenalkan klausa.",
+    "usage": "During the meeting dan while we were meeting dapat menggambarkan periode yang sama, tetapi struktur sesudahnya berbeda. During dapat berarti pada suatu titik dalam peristiwa atau sepanjang peristiwa itu, bergantung konteks. While sering menonjolkan tindakan bersamaan dan juga dapat menandai kontras. Jika subjeknya sama dan jelas, klausa tereduksi seperti while waiting mungkin. Pertama periksa apakah bahan sesudahnya frasa kata benda atau klausa.",
+    "pitfall": "Hindari during we waited; gunakan while we waited atau during the wait.",
+    "keywords": [
+      "during",
+      "while",
+      "selama",
+      "klausa"
+    ]
+  },
+  "like-as": {
+    "title": "like / as",
+    "question": "Bagaimana like dan as berbeda dalam perbandingan dan peran?",
+    "summary": "Like biasa berarti serupa dengan; as dapat mengidentifikasi peran atau fungsi dan dapat memperkenalkan klausa perbandingan.",
+    "usage": "She works as a guide menyatakan peran sebenarnya; she talks like a guide menggambarkan kemiripan. Sebelum klausa perbandingan penuh, tulisan formal sering lebih suka as: Do it as I showed you. Like plus klausa juga lazim dalam ujaran dan tidak boleh dilabeli salah secara universal. As juga dapat memperkenalkan klausa alasan atau waktu, jadi konteks penting. Like sebelum kata benda atau pronomina adalah cara langsung menandai kemiripan.",
+    "pitfall": "Work like a guide dan work as a guide berbeda: yang pertama membandingkan, yang kedua menamai peran.",
+    "keywords": [
+      "like",
+      "as",
+      "peran",
+      "kemiripan"
+    ]
+  },
+  "stop-gerund-infinitive": {
+    "title": "stop doing / stop to do",
+    "question": "Mengapa stop doing dan stop to do bermakna berbeda?",
+    "summary": "Stop doing mengakhiri suatu kegiatan; stop to do menjeda satu kegiatan untuk melakukan yang lain.",
+    "usage": "She stopped reading mengatakan membaca itu berakhir. She stopped to read mengatakan ia menjeda kegiatan lain demi membaca; to read menyatakan tujuan, bukan kegiatan yang dihentikan. Stop somebody from doing something berarti mencegah suatu tindakan, dengan -ing sesudah from. Kenali apa yang sebenarnya berhenti sebelum memilih polanya.",
+    "pitfall": "Untuk berhenti merokok, gunakan stop smoking; stop to smoke berarti berhenti sejenak untuk merokok.",
+    "keywords": [
+      "stop doing",
+      "stop to do",
+      "berhenti",
+      "tujuan"
+    ]
+  },
+  "remember-gerund-infinitive": {
+    "title": "remember doing / remember to do",
+    "question": "Apa beda remember doing dan remember to do?",
+    "summary": "Remember doing mengingat peristiwa yang sudah selesai; remember to do berarti tidak lupa suatu tugas.",
+    "usage": "I remember locking the door melihat kembali suatu peristiwa. I remembered to lock the door mengatakan tugas itu tidak terlupa dan dilaksanakan. Negasi penting: I do not remember locking it melaporkan ingatan yang hilang, bukan bukti bahwa pintu tetap tidak terkunci; I did not remember to lock it biasanya melaporkan tugas yang terlupa. Forget doing dan forget to do menunjukkan kontras yang terkait, meskipun konteks pastinya tetap perlu dicek.",
+    "pitfall": "Untuk ingatan telah menguncinya, katakan I remember locking it, bukan I remember to lock it.",
+    "keywords": [
+      "remember doing",
+      "remember to do",
+      "ingat",
+      "tugas"
+    ]
+  },
+  "suggest-patterns": {
+    "title": "suggest + -ing / that-clause",
+    "question": "Bisakah suggest memakai orang plus to-infinitive?",
+    "summary": "Untuk usulan, gunakan suggest + -ing atau suggest that + klausa; bukan pola tell berupa suggest someone to do.",
+    "usage": "I suggest leaving early mengusulkan suatu tindakan; I suggest that we leave early menamai pelakunya. Bahasa Inggris formal dapat memakai bentuk kata kerja polos dalam that-clause; bentuk kala biasa juga muncul. Suggest dapat memakai kata benda yang menamai usulan, seperti suggest a date. Untuk menamai penerima, katakan suggest to someone that..., bukan menaruh orang itu sebelum to-infinitive. Suggest juga dapat berarti menunjukkan secara tidak langsung, dan di situ ia bukan usulan sama sekali.",
+    "pitfall": "Hindari She suggested me to call; gunakan She suggested that I call atau She suggested calling.",
+    "keywords": [
+      "suggest",
+      "usulan",
+      "that",
+      "ing"
+    ]
+  },
+  "neednt-mustnt": {
+    "title": "needn’t / mustn’t",
+    "question": "Mengapa needn’t dan mustn’t berbeda?",
+    "summary": "Needn’t berarti tidak ada keharusan; mustn’t menyatakan larangan atau instruksi kuat untuk tidak bertindak.",
+    "usage": "You needn’t print the form mengizinkan salinan elektronik; you mustn’t print it melarang mencetak. Don’t need to dan needn’t sering menyatakan ketiadaan keharusan yang serupa, tetapi bentuknya berbeda: needn’t memakai kata kerja polos; don’t need to memakai to-infinitive. Di masa lalu, didn’t need to do mengatakan tidak ada keharusan dan dapat membiarkan tindakan sebenarnya terbuka; needn’t have done biasanya menyiratkan tindakan itu terjadi tanpa perlu.",
+    "pitfall": "Jangan memakai You mustn’t come early untuk berarti datang lebih awal bersifat opsional; bunyinya seperti larangan.",
+    "keywords": [
+      "needn't",
+      "mustn't",
+      "tidak perlu",
+      "larangan"
+    ]
+  },
+  "whether-if": {
+    "title": "whether / if",
+    "question": "Kapan whether dan if tidak dapat saling mengganti?",
+    "summary": "Keduanya dapat memperkenalkan banyak pertanyaan yes–no tersemat. Whether lebih aman dengan alternatif eksplisit dan sesudah preposisi.",
+    "usage": "I don’t know whether/if the door is open mengizinkan kedua kata. Whether...or not membuat alternatif menjadi eksplisit. Whether dapat mendahului to-infinitive, tetapi if to leave tidak bisa. Sesudah preposisi, gunakan whether, seperti dalam a discussion about whether to proceed. If juga memperkenalkan syarat; whether dapat menghilangkan ketaksaan antara makna “whether” dan “if”. Pertahankan urutan pernyataan di dalam pertanyaan tersemat.",
+    "pitfall": "Hindari We discussed about if to leave; katakan We discussed whether to leave.",
+    "keywords": [
+      "whether",
+      "if",
+      "pilihan",
+      "pertanyaan"
+    ]
+  },
+  "modal-perfect": {
+    "title": "must have / might have / can’t have",
+    "question": "Bagaimana bentuk modal perfect menyatakan deduksi lampau?",
+    "summary": "Must have done menandai deduksi lampau yang kuat, might/may have done suatu kemungkinan, dan can’t have done kemustahilan yang disimpulkan.",
+    "usage": "Bentuk ini menunjukkan penilaian pembicara sekarang tentang peristiwa lampau; bukan laporan saksi mata langsung. The lights are off; they must have left adalah inferensi dari bukti. Could have done dapat menyarankan kemungkinan lampau atau kesempatan yang tidak terwujud, bergantung konteks. Should have done sering mengkritik tindakan yang tidak diambil, bukan membuat deduksi jenis yang sama. Deduksi negatif biasanya memakai can’t have done, bukan mustn’t have done.",
+    "pitfall": "Jangan memakai must have left untuk keharusan lampau “had to leave”; bentuk itu biasanya menyatakan deduksi.",
+    "keywords": [
+      "must have",
+      "might have",
+      "deduksi",
+      "lampau"
+    ]
+  },
+  "question-tags": {
+    "title": "Question tag",
+    "question": "Bagaimana question tag memilih kata kerja bantu dan pronominanya?",
+    "summary": "Question tag biasanya menggemakan kata kerja bantu dan subjek klausa utama, sering dengan polaritas yang terbalik.",
+    "usage": "She is ready, isn’t she? mengulang is dan memakai she; they have finished, haven’t they? mengulang have. Jika klausa utama tanpa kata kerja bantu, gunakan do/does/did: You work here, don’t you? Imperatif dan Let’s... punya tag konvensional seperti will you? dan shall we? Intonasi juga penting: tag menurun sering mencari penegasan, sedangkan yang naik dapat menjadi pertanyaan sungguhan. Tanda baca saja tidak menangkap perbedaan ini.",
+    "pitfall": "Jangan menambahkan is it pada setiap pernyataan; periksa persona, kala, dan kata kerja bantu.",
+    "keywords": [
+      "question tag",
+      "kan",
+      "kata kerja bantu",
+      "bukan"
+    ]
+  },
+  "as-long-as": {
+    "title": "as long as / if",
+    "question": "Apa yang ditambahkan as long as pada suatu syarat?",
+    "summary": "As long as dapat berarti asalkan, dengan menonjolkan syarat yang diharuskan; ia juga dapat mengacu pada durasi.",
+    "usage": "You may borrow the camera as long as you return it tonight menjadikan pengembalian sebagai syarat izin. If yang polos memperkenalkan kemungkinan tanpa harus menekankan syarat semacam itu. Dalam syarat berorientasi masa depan, klausa syarat biasanya memakai bentuk kini. As long as juga dapat secara harfiah menggambarkan durasi: I stayed as long as I could. Putuskan apakah kalimat itu menyangkut hasil bersyarat atau lamanya waktu.",
+    "pitfall": "Jangan menganggap setiap as long as bersyarat; bersama stayed atau waited ia dapat menggambarkan durasi.",
+    "keywords": [
+      "as long as",
+      "asalkan",
+      "syarat",
+      "durasi"
+    ]
+  },
+  "subject-verb-agreement": {
+    "title": "Persesuaian subjek dan kata kerja",
+    "question": "Haruskah kata kerjanya tunggal atau jamak?",
+    "summary": "Kata kerja sesuai dengan subjek gramatikal, bukan dengan kata benda di dekatnya. Pilih is atau are, has atau have, dan apakah kata kerja kini menambah -s.",
+    "usage": "Temukan subjek yang sebenarnya. Dalam The list of names is long, subjeknya list, bukan names. Kata benda sesudah together with, as well as, atau including biasanya tidak membuat subjek tunggal menjadi jamak. Each, every, dan everyone biasanya memakai kata kerja tunggal. News dan mathematics memakai kata kerja tunggal meski berakhiran -s; people memakai kata kerja jamak.\n\nDalam tulisan yang teliti, there is atau there are sesuai dengan kata benda yang mengikuti: There is a key, There are two keys. There's two keys lazim dalam ujaran, tetapi bukan bentuk tertulis yang teliti. Kata benda kolektif seperti team atau family sering tunggal dalam American English jika kelompok itu satu kesatuan, dan dapat jamak dalam British English jika anggotanya yang penting. Dengan either of atau neither of sebagai subjek, tulisan formal biasanya lebih suka kata kerja tunggal.",
+    "pitfall": "Jangan biarkan kata benda terdekat yang memutuskan: The box of pencils is missing, bukan are missing.",
+    "keywords": [
+      "persesuaian",
+      "subjek",
+      "tunggal",
+      "jamak"
+    ]
+  },
+  "past-perfect": {
+    "title": "Past perfect",
+    "question": "Kapan dua peristiwa lampau memerlukan had + past participle?",
+    "summary": "Gunakan had + past participle untuk peristiwa sebelum waktu lampau lain. Ini bukan past simple yang lebih formal.",
+    "usage": "Putuskan mana dari dua waktu lampau yang lebih dahulu. Dalam When we arrived, the talk had started, mulainya lebih dahulu daripada kedatangan. Already, just, dan never sering menandai lampau yang lebih dahulu itu. Jika before atau after sudah membuat urutannya jelas, dua kata kerja past simple sering cukup: I locked the door before I left. Past perfect paling berguna jika urutannya akan tidak jelas tanpanya.\n\nJangan menaruh had pada setiap peristiwa lampau. Urutan yang diceritakan sesuai waktu biasanya memakai past simple. Past perfect memakai momen lampau lain sebagai acuannya, bukan sekarang; peristiwa lampau yang terkait dengan masa kini tetap memakai present perfect.",
+    "pitfall": "Jangan menandai peristiwa lampau yang lebih kemudian dengan had. Kedatangan lebih kemudian, jadi When we had arrived, the talk started membalik garis waktu yang biasa kecuali ada titik yang lebih kemudian lagi yang dimaksud.",
+    "keywords": [
+      "past perfect",
+      "had",
+      "urutan waktu",
+      "lebih dahulu"
+    ]
+  },
+  "past-perfect-continuous": {
+    "title": "Past perfect continuous",
+    "question": "Bagaimana had been doing berbeda dari was doing?",
+    "summary": "Had been + -ing menunjukkan kegiatan yang berlanjut sampai suatu momen lampau, sering dengan hasil pada saat itu. Was doing berarti sedang berlangsung pada momen itu.",
+    "usage": "Gunakan past perfect continuous untuk mengatakan berapa lama, atau seberapa berulang, suatu kegiatan telah berlangsung sebelum suatu titik lampau. I had been waiting for an hour when the bus came. Hasilnya sering juga terlihat: her eyes were red because she had been editing. Kata kerja statif seperti know atau own biasanya tidak memakai bentuk ini.\n\nWas waiting menempatkan kamera di dalam momen itu. Had been waiting berjalan dari waktu yang lebih dahulu sampai momen itu. Jika Anda hanya bermaksud bahwa penantian sedang berlangsung saat itu, past continuous sudah cukup.",
+    "pitfall": "Jangan memakai had been doing untuk tindakan yang sekadar sedang berlangsung saat itu. The phone rang while I was cooking tidak memerlukan had been.",
+    "keywords": [
+      "past perfect continuous",
+      "had been",
+      "durasi lampau",
+      "was doing"
+    ]
+  },
+  "future-continuous": {
+    "title": "Future continuous",
+    "question": "Kapan will be doing adalah masa depan yang tepat?",
+    "summary": "Will be + -ing menandai tindakan yang sedang berlangsung pada waktu masa depan, dan dapat menanyakan rencana seseorang dengan sopan. Keputusan mendadak memakai masa depan yang lain.",
+    "usage": "Sebut titik masa depannya: At 8 tomorrow I will be sitting on the train. Bentuk ini sering menyajikan tindakan sebagai sedang berlangsung dengan sendirinya, bukan sebagai keputusan yang diambil saat berbicara. Will you be passing the post office? memperlakukan rute sebagai rencana yang sudah ada dan kurang mendesak daripada Will you pass...?\n\nKeputusan mendadak, janji, atau prediksi tindakan yang utuh biasanya memakai will + base form: I'll open the window. Janji pribadi yang sudah tetap lebih sering memakai present continuous: I'm meeting Sam at 8. Polanya adalah will be plus bentuk -ing.",
+    "pitfall": "Jangan menghilangkan -ing, dan jangan memakai past participle: At 8 I will be travelling, bukan will be travel atau will be travelled.",
+    "keywords": [
+      "future continuous",
+      "will be",
+      "sedang",
+      "rencana"
+    ]
+  },
+  "future-perfect": {
+    "title": "Future perfect",
+    "question": "Bagaimana mengatakan sesuatu akan selesai sebelum waktu masa depan?",
+    "summary": "Will have + past participle berarti selesai sebelum tenggat masa depan. By dan by the time sering menyediakan tenggat itu.",
+    "usage": "Temukan tenggatnya dulu, lalu putuskan apakah tindakannya selesai sebelum itu. By June she will have finished the course berarti penyelesaian itu sudah menjadi fakta pada bulan Juni, bukan bahwa penyelesaiannya terjadi selama Juni. Klausa by the time memakai bentuk kini, dan klausa utama memakai future perfect: By the time you arrive, I will have left.\n\nJika Anda hanya bermaksud sesuatu akan terjadi, tanpa penyelesaian sebelum suatu titik, gunakan will + base form atau be going to. Jangan membiarkan kata kerja sesudah have dalam bentuk dasar.",
+    "pitfall": "Hindari will have finish, dan jangan menaruh will di klausa by the time: By the time you arrive, I will have left.",
+    "keywords": [
+      "future perfect",
+      "will have",
+      "tenggat",
+      "selesai"
+    ]
+  },
+  "present-for-future": {
+    "title": "Bentuk kini untuk masa depan",
+    "question": "Kapan makna masa depan tidak memakai will?",
+    "summary": "Jadwal dan program sering memakai present simple. Janji pribadi yang sudah tetap sering memakai present continuous. Will cocok untuk keputusan, janji, dan prediksi.",
+    "usage": "Jika kereta, penerbangan, kelas, atau pertunjukan berjalan menurut jadwal, present simple wajar: The train leaves at 6. Itu tidak berarti peristiwa itu sedang terjadi sekarang; ia memperlakukan masa depan sebagai jadwal yang tetap. Untuk sesuatu yang sudah Anda atur, present continuous yang biasa: I'm seeing the dentist tomorrow. Keputusan yang diambil saat berbicara, atau prediksi, memakai will atau be going to.\n\nKlausa waktu masa depan dan klausa if juga memakai bentuk kini, bukan will: I'll call you when I land. Satu kata masa depan dalam bahasa Cina tidak memetakan ke setiap masa depan bahasa Inggris. Pertama tanyakan apakah yang Anda maksud jadwal, janji, keputusan, atau klausa subordinatif.",
+    "pitfall": "Jangan menaruh will pada setiap masa depan. The train leaves at 6 adalah jadwal; I'm seeing the dentist tomorrow adalah janji.",
+    "keywords": [
+      "masa depan",
+      "jadwal",
+      "present simple",
+      "janji"
+    ]
+  },
+  "stative-verbs": {
+    "title": "Kata kerja statif",
+    "question": "Mengapa sebagian kata kerja menghindari continuous?",
+    "summary": "Kata kerja mengetahui, menyukai, memiliki, mengindra, atau tampak biasanya memakai bentuk simple. Kata kerja yang sama dapat memakai bentuk continuous jika bermakna kegiatan.",
+    "usage": "Know, believe, like, own, seem, dan belong menggambarkan keadaan, bukan tindakan langkah demi langkah, jadi katakan I know her, bukan I'm knowing her. Penanda progresif dalam bahasa Cina tidak otomatis menjadi bentuk continuous bahasa Inggris. Have untuk kepemilikan tetap simple: I have a car. Have untuk kegiatan dapat continuous: I'm having lunch. I think memberi pendapat; I'm thinking berarti pertimbangan sedang berlangsung.\n\nSee, hear, smell, dan taste biasanya tetap simple, atau memakai can, untuk persepsi yang tidak disengaja. Jika bermakna pertemuan, menonton, atau mencium dan mencicipi dengan sengaja, continuous wajar: I'm seeing the dentist, I'm tasting the soup. Tanyakan apakah kata kerja itu keadaan atau kegiatan dalam kalimat itu.",
+    "pitfall": "Hindari I'm knowing, I'm owning, dan I'm having a car. Kepemilikan adalah I have a car; makan dapat I'm having lunch.",
+    "keywords": [
+      "kata kerja statif",
+      "keadaan",
+      "continuous",
+      "know"
+    ]
+  },
+  "adverbs-of-frequency": {
+    "title": "Kata keterangan frekuensi",
+    "question": "Di mana always, often, dan never diletakkan?",
+    "summary": "Always, usually, often, sometimes, rarely, dan never biasanya di depan kata kerja utama, atau sesudah be.",
+    "usage": "Dalam She always arrives early, always datang sebelum arrives. Dalam She is always early, ia datang sesudah is. Dengan kata kerja bantu, ia mengikuti kata kerja bantu pertama: I have never tried it. Sometimes dan often juga dapat mengakhiri kalimat: I walk to work sometimes.\n\nNever, rarely, dan seldom sudah negatif, jadi jangan menambah not. Always she is early adalah penekanan sesekali, bukan posisi biasa. Kata keterangan ini menjawab seberapa sering, bukan bagaimana.",
+    "pitfall": "Jangan menaruh always di awal secara bawaan, dan hindari She doesn't never arrive. Never sudah negatif.",
+    "keywords": [
+      "frekuensi",
+      "always",
+      "often",
+      "never"
+    ]
+  },
+  "can-could-able": {
+    "title": "can, could, dan be able to",
+    "question": "Can, could, atau be able to untuk kemampuan?",
+    "summary": "Can untuk kemampuan kini, kemungkinan, atau izin informal. Could untuk kemampuan lampau umum, permintaan sopan, atau kemungkinan kini. Keberhasilan lampau yang spesifik sering was able to.",
+    "usage": "I can swim adalah kemampuan kini. I could swim when I was five adalah kemampuan umum di masa lalu. Untuk satu kesempatan lampau ketika seseorang berhasil, bahasa Inggris sering memakai was/were able to atau managed to: The exit was blocked, but we were able to climb out. Jika usahanya gagal, couldn't dan wasn't able to keduanya baik.\n\nCan tidak punya infinitif, jadi kala lain memakai be able to: I will be able to help tomorrow, She has been able to walk again. Could juga dapat memberi kemungkinan kini dengan kepastian lebih rendah: That could be the reason. Kata bahasa Cina untuk kemampuan dan izin tidak semuanya memetakan ke satu modal bahasa Inggris.",
+    "pitfall": "Jangan mengandalkan I could climb out untuk satu keberhasilan lampau. Keberhasilan spesifik itu biasanya we were able to climb out.",
+    "keywords": [
+      "can",
+      "could",
+      "be able to",
+      "kemampuan"
+    ]
+  },
+  "should-ought-had-better": {
+    "title": "should, ought to, dan had better",
+    "question": "Should, ought to, atau had better untuk saran?",
+    "summary": "Should dan ought to memberi saran atau harapan. Had better untuk situasi tertentu dan mengisyaratkan akibat buruk jika Anda tidak bertindak.",
+    "usage": "You should save a copy adalah saran biasa. Ought to dekat maknanya dan sedikit lebih formal, serta kurang lazim dalam ujaran. Negatifnya ought not to, meskipun shouldn't lebih biasa. Should juga dapat menandai harapan: The train should be here soon.\n\nHad dalam had better bukan kala lampau. You had better leave now menyangkut kini atau masa depan, sering disingkat You'd better leave now. Gunakan base form, tanpa to. Negatifnya had better not. Ini peringatan untuk situasi ini, bukan anjuran umum. Jangan mengubahnya menjadi would better.",
+    "pitfall": "Jangan menambah to sesudah had better, dan jangan menulis would better: You'd better leave, bukan You'd better to leave.",
+    "keywords": [
+      "should",
+      "ought to",
+      "had better",
+      "saran"
+    ]
+  },
+  "may-might": {
+    "title": "may dan might",
+    "question": "Apakah may dan might sama-sama berarti kemungkinan?",
+    "summary": "May dan might sama-sama menandai kemungkinan. Might sering terdengar kurang pasti, tetapi bukan hanya bentuk lampau dari may. May juga dapat memberi izin formal.",
+    "usage": "It may rain dan It might rain sama-sama berarti hujan mungkin. Might sering terdengar kurang pasti, meskipun perbedaannya tidak tetap. May untuk izin bersifat formal: You may leave when you have signed. Izin sehari-hari lebih sering can. Dalam reported speech, might sering menggantikan may yang semula: She said it might rain.\n\nKeduanya memakai base form, tanpa to. Kemungkinan lampau memakai may have atau might have plus past participle. Maybe adalah kata keterangan dan tidak dapat menggantikan may be. May not dapat berupa penolakan atau kemungkinan, bergantung konteks; cannot lebih sering menandai ketidakmampuan atau larangan yang lebih jelas.",
+    "pitfall": "Jangan menulis may to go. Kemungkinan adalah It may rain; kata keterangannya Maybe it will rain.",
+    "keywords": [
+      "may",
+      "might",
+      "kemungkinan",
+      "izin"
+    ]
+  },
+  "would-uses": {
+    "title": "Pemakaian would",
+    "question": "Apakah would lampau, kebiasaan, atau kesopanan?",
+    "summary": "Would dapat berupa hasil kondisional, permintaan sopan, kebiasaan lampau yang berulang, atau masa depan yang dilihat dari masa lalu. Ia biasanya tidak melaporkan satu peristiwa lampau yang selesai.",
+    "usage": "Dalam syarat, would biasanya berada di hasil: If I had time, I would walk. Permintaan dan tawaran memakai Would you...? dan Would you like...?, yang lebih lembut daripada will. Tindakan lampau yang berulang juga dapat memakai would: Every summer we would visit my aunt. Keadaan lampau memakai used to: I used to be shy, bukan I would be shy.\n\nDilihat dari masa lalu, will sering menjadi would: I knew she would be late. Jangan memakai would plus waktu lampau yang sudah selesai untuk satu peristiwa yang selesai. I would see him yesterday bukan bahasa Inggris; katakan I saw him yesterday.",
+    "pitfall": "Jangan memakai would untuk keadaan lampau. I used to live there adalah keadaannya; I would live there terdengar seperti kebiasaan berulang atau hasil kondisional.",
+    "keywords": [
+      "would",
+      "kebiasaan",
+      "sopan",
+      "kondisional"
+    ]
+  },
+  "reflexive-pronouns": {
+    "title": "Pronomina refleksif",
+    "question": "Kapan saya memakai myself atau himself, bukan me atau him?",
+    "summary": "Gunakan refleksif jika subjek dan objek orang yang sama. Refleksif juga dapat menekankan orang itu. Dua orang yang saling bertindak memerlukan each other.",
+    "usage": "Dalam He cut himself, orang yang memotong dan orang yang terpotong adalah orang yang sama. Untuk penekanan, kalimatnya tetap berjalan jika pronomina dihilangkan: I fixed the lock myself. By myself dapat berarti sendirian atau tanpa bantuan. You tunggal memakai yourself; you jamak memakai yourselves. Bentuk standarnya himself dan themselves, bukan hisself atau theirselves.\n\nJika dua orang saling melihat, katakan They saw each other, bukan They saw themselves. Pakaian dan bagian tubuh biasanya memakai posesif: He put his hand in his pocket. Refleksif bukan subjek biasa: hindari Myself will do it.",
+    "pitfall": "Jangan menulis theirselves atau hisself, dan jangan memakai themselves untuk tindakan timbal balik: They saw each other.",
+    "keywords": [
+      "refleksif",
+      "myself",
+      "himself",
+      "each other"
+    ]
+  },
+  "demonstratives": {
+    "title": "this, that, these, dan those",
+    "question": "Bagaimana memilih this atau that, dan kapan kata bendanya jamak?",
+    "summary": "This dan these sering menandai yang dekat, yang kini, atau yang akan disebutkan. That dan those sering menandai yang lebih jauh atau yang baru disebutkan. This dan that memakai kata benda tunggal; these dan those memakai jamak.",
+    "usage": "Dalam ruang, this cup adalah yang di tangan dan that cup lebih jauh. Dalam waktu atau teks, this dapat menunjuk ke depan: This is the plan. That dapat menunjuk ke belakang: That is exactly the problem. Di telepon, This is Mina memperkenalkan pembicara.\n\nSesuaikan jumlahnya: this book, these books, bukan this books. Dalam tulisan yang teliti, kind, sort, dan type tetap tunggal dalam that kind of problem, bukan those kind of problem. This dan that juga dapat berdiri sendiri sebagai subjek.",
+    "pitfall": "Hindari this books dan those kind of problem. Gunakan this atau that dengan kata benda tunggal dan these atau those dengan jamak.",
+    "keywords": [
+      "this",
+      "that",
+      "these",
+      "those"
+    ]
+  },
+  "whose-whos": {
+    "title": "whose dan who's",
+    "question": "Mana whose, dan mana who's?",
+    "summary": "Whose berarti milik siapa, dalam pertanyaan dan relative clause. Who's adalah bentuk singkat who is atau who has.",
+    "usage": "Whose bag is this? menanyakan pemiliknya. Dalam relative clause, whose menghubungkan orang dengan sesuatu miliknya: the student whose bag is missing. Who's late berarti who is late; who's finished berarti who has finished. Kedua kata itu berbunyi sama, jadi ujiannya apakah kalimat memerlukan kepemilikan.\n\nTidak setiap posesif dalam bahasa Cina menjadi whose. Posesif biasa adalah her atau their: the student and her bag. Gunakan whose untuk pertanyaan whose atau untuk kepemilikan di dalam relative clause. Menghilangkan apostrof dari who's tidak menjadikannya posesif.",
+    "pitfall": "Jangan menulis the student who's bag is missing. Kepemilikan adalah whose bag; who's bag berarti who is bag.",
+    "keywords": [
+      "whose",
+      "who's",
+      "milik siapa",
+      "apostrof"
+    ]
+  },
+  "prepositions-place": {
+    "title": "at, in, dan on untuk tempat",
+    "question": "At, in, atau on untuk tempat?",
+    "summary": "At sering menandai titik, peristiwa, atau pintu. In sering menandai wilayah atau ruang tertutup. On sering menandai permukaan, garis, atau berada di angkutan umum.",
+    "usage": "Satu kata tempat dalam bahasa Cina mencakup at, in, dan on. Tanyakan apakah tempat itu titik, ruang, atau permukaan. At the door dan at the station memperlakukan tempat sebagai titik kedatangan atau kegiatan. In the room dan in China memperlakukannya sebagai ruang yang Anda masuki. On the wall dan on the coast adalah permukaan atau garis. Angkutan umum biasanya memakai on the bus, on the train, dan on the plane; mobil pribadi biasanya memakai in the car.\n\nSebagian kombinasi tetap: at home, at work, in bed, in the picture. Kota dan negara biasanya memakai in; alamat atau titik spesifik dapat memakai at. Baik live on a street maupun live in a street muncul. Pelajari kelompok titik, ruang, dan permukaan sebelum pengecualiannya.",
+    "pitfall": "Jangan menerjemahkan setiap tempat sebagai in. Pintu adalah at the door, dinding adalah on the wall, dan bagian dalam ruangan adalah in the room.",
+    "keywords": [
+      "preposisi tempat",
+      "at",
+      "in",
+      "on"
+    ]
+  },
+  "prepositions-movement": {
+    "title": "Preposisi pergerakan",
+    "question": "Preposisi mana yang menandai pergi, masuk, atau keluar?",
+    "summary": "To menandai tujuan, into pergerakan masuk ke suatu ruang, onto pergerakan ke atas permukaan, dan from titik awal. Arrive, reach, dan go home punya polanya sendiri.",
+    "usage": "Katakan go to the office, walk into the hall, put the cup onto the tray, come from the station, get out of the car, dan take the bag off the chair. Through menekankan pergerakan di dalam sesuatu; across menekankan pergerakan dari satu sisi ke sisi lain. Into dan onto membuat pergerakannya eksplisit, sedangkan put it in the box juga biasa.\n\nArrive in untuk kota atau negara, dan arrive at untuk gedung, stasiun, atau titik serupa. Jangan mengatakan arrive to. Reach the station tidak memakai to. Home, here, dan there biasanya tanpa to: go home, come here. Enter the room sudah mencakup pergerakannya, jadi into tidak perlu dalam pemakaian biasa itu. Enter into an agreement adalah frasa tetap yang terpisah.",
+    "pitfall": "Hindari arrive to the station dan go to home. Gunakan arrive at atau arrive in, dan katakan go home.",
+    "keywords": [
+      "preposisi gerak",
+      "to",
+      "into",
+      "from"
+    ]
+  },
+  "adjective-order": {
+    "title": "Urutan kata sifat",
+    "question": "Kata sifat mana yang lebih dahulu sebelum kata benda?",
+    "summary": "Sebelum kata benda, urutan yang biasa adalah pendapat, ukuran, usia, bentuk, warna, asal, bahan, lalu tujuan. Jangan menumpuk banyak kata sifat sekaligus.",
+    "usage": "A lovely small old round table terdengar wajar, sedangkan a old small lovely table tidak. Determiner dan angka di depan: those two lovely chairs. Bahan duduk di samping kata benda: a red wooden box. Tujuan berperilaku seperti bagian dari kata benda: a leather walking shoe. Urutan ini kecenderungan kuat, bukan rumus.\n\nKoma dapat memisahkan kata sifat sejenis yang dapat bertukar tempat: a cold, wet day. Kata sifat dalam urutan tetap biasanya tidak perlu koma. Dua atau tiga kata sifat biasanya cukup. Jika ragu, letakkan pendapat yang paling pribadi paling jauh dari kata benda.",
+    "pitfall": "Hindari a red big car. Ukuran biasanya sebelum warna: a big red car.",
+    "keywords": [
+      "urutan kata sifat",
+      "warna",
+      "ukuran",
+      "pendapat"
+    ]
+  },
+  "superlatives": {
+    "title": "Superlatif",
+    "question": "Bagaimana membentuk superlatif, dan kapan menambah the?",
+    "summary": "Kata sifat pendek sering memakai the + -est, yang lebih panjang the most. Superlatif biasanya punya jangkauan, dan one of the diikuti kata benda jamak.",
+    "usage": "Kata sifat pendek seperti tallest dan simplest memakai -est. Yang lebih panjang seperti expensive dan careful memakai the most. Superlatif good, bad, dan far adalah best, worst, serta farthest atau furthest. Kata benda biasanya memakai the: the oldest building in the town. Gunakan in untuk tempat dan of untuk kelompok: the best of the three. Superlatif pengalaman hidup sering memakai present perfect: the best meal I've had.\n\nJangan menggabungkan most dengan -est. One of the best player salah karena one of memakai jamak: one of the best players. Most people berarti mayoritas, bukan superlatif. Superlatifnya the most useful of the three. The kadang dapat hilang jika superlatif predikatif, tetapi biasanya tetap sebelum kata benda.",
+    "pitfall": "Hindari the most tallest dan one of the best player. Katakan the tallest, atau one of the best players.",
+    "keywords": [
+      "superlatif",
+      "paling",
+      "the most",
+      "est"
+    ]
+  },
+  "so-such": {
+    "title": "so dan such",
+    "question": "Apakah saya memakai so atau such untuk penekanan semacam ini?",
+    "summary": "So diikuti kata sifat atau kata keterangan. Such diikuti frasa kata benda. Baik such a maupun so + kata sifat + a dapat menekankan kata benda hitung tunggal.",
+    "usage": "So tired dan so quickly menerangkan kata sifat atau kata keterangan. Such a long day, such nice people, dan such weather menerangkan frasa kata benda. Kata benda hitung tunggal mengizinkan keduanya: such a cold day, atau yang lebih formal so cold a day. Kuantitas memakai so, bukan such: so many people, so much time, so few seats.\n\nPola hasilnya so tired that she left dan such a long day that she left. Jangan menaruh so langsung sebelum a plus kata benda. Such bukan kata sifat, jadi the weather is such cold bukan bahasa Inggris.",
+    "pitfall": "Hindari so a long day dan such tired. Frasa kata benda memakai such a long day; kata sifat telanjang memakai so tired.",
+    "keywords": [
+      "so",
+      "such",
+      "penekanan",
+      "sangat"
+    ]
+  },
+  "still-yet-already": {
+    "title": "still, yet, dan already",
+    "question": "Still, already, atau yet?",
+    "summary": "Still berarti situasi berlanjut. Already berarti lebih awal daripada yang diharapkan. Yet, terutama dalam negatif dan pertanyaan, berarti sampai sekarang.",
+    "usage": "She is still in the lab berarti ia belum pergi. I've already eaten berarti makan itu lebih awal daripada yang diharapkan. Have you eaten yet? dan I haven't eaten yet mengukur situasi sampai sekarang. Still berada sebelum kata kerja utama atau sesudah be. Dalam negatif, still not lazim: I still haven't started. Already dapat di posisi tengah atau akhir. Yet biasanya di akhir.\n\nJangan memakai yet untuk already dalam pernyataan afirmatif. Yet di awal kalimat sering berarti however, dan itu pemakaian yang berbeda: The room is small. Yet it is bright. Penanda selesai dalam bahasa Cina tidak otomatis memilih already alih-alih kala lampau. Already menambah gagasan lebih awal daripada yang diharapkan.",
+    "pitfall": "Jangan mengganti yet dengan already dalam negatif biasa. Belum makan adalah I haven't eaten yet, bukan I haven't already eaten.",
+    "keywords": [
+      "still",
+      "yet",
+      "already",
+      "sudah"
+    ]
+  },
+  "ago-before": {
+    "title": "ago dan before",
+    "question": "Ago atau before untuk waktu yang lebih dahulu?",
+    "summary": "Ago menghitung mundur dari sekarang dan memakai past simple. Before berarti lebih dahulu daripada suatu titik, atau pada waktu yang lebih dahulu mana pun, dan sering berpasangan dengan perfect.",
+    "usage": "Three days ago dan a year ago menghitung mundur dari sekarang dan memakai past simple: I saw her three days ago. Before noon dan before the meeting memerlukan waktu lain sebagai acuan. Before sendiri berarti pada suatu waktu yang lebih dahulu: I've seen this film before, atau I had met her before.\n\nJangan mengatakan before three days untuk three days ago, dan jangan menaruh ago dengan present perfect. Satu kata waktu bahasa Cina dapat cocok dengan kedua bentuk. Tanyakan apakah titik acuannya sekarang atau peristiwa lain.",
+    "pitfall": "Hindari I have seen her three days ago dan before three days. Menghitung mundur dari sekarang adalah I saw her three days ago.",
+    "keywords": [
+      "ago",
+      "before",
+      "yang lalu",
+      "sebelum"
+    ]
+  },
+  "by-until": {
+    "title": "by dan until",
+    "question": "Kapan batas waktu by, dan kapan until?",
+    "summary": "By berarti tidak lebih lambat dari suatu titik dan menekankan penyelesaian sebelum itu. Until berarti situasi berlanjut sampai titik itu.",
+    "usage": "Finish the form by Friday berarti formulir harus selesai ketika Jumat tiba, dan boleh selesai lebih awal. The desk is staffed until Friday berarti petugas itu berlanjut sampai Jumat. Menunggu, tinggal, buka, atau tutup biasanya memakai until. Hasil sekali jalan seperti selesai, menyerahkan, atau tiba biasanya memakai by.\n\nBy then dan until then membuat kontras yang sama. Dalam negatif, not until berarti perubahan terjadi pada titik itu dan tidak sebelumnya. Jangan memakai by untuk tinggal yang berlanjut, atau until untuk tenggat yang harus diselesaikan sebelumnya. Till sepadan dengan until dan lebih informal.",
+    "pitfall": "Jangan menulis I'll wait by Friday untuk penantian yang berlanjut. Yang berlanjut adalah I'll wait until Friday; tenggat adalah Finish it by Friday.",
+    "keywords": [
+      "by",
+      "until",
+      "tenggat",
+      "sampai"
+    ]
+  },
+  "in-into-onto": {
+    "title": "in, into, dan onto",
+    "question": "Apakah pergerakan dan posisi selalu memilih preposisi yang berbeda?",
+    "summary": "In dan on dapat menandai posisi, dan keduanya juga mengikuti banyak kata kerja pergerakan. Into dan onto secara khusus menekankan pergerakan masuk ke ruang atau ke atas permukaan.",
+    "usage": "The keys are in the drawer adalah posisi. She walked into the room menekankan pergerakan dari luar ke dalam. Put it in the box dan put it into the box keduanya muncul; into membuat masuknya lebih jelas. Onto the roof menekankan pergerakan ke atas permukaan, sedangkan on the roof dapat hanya posisi.\n\nOnto adalah satu preposisi. On to adalah dua kata jika to penanda infinitif atau preposisi berikutnya: go on to explain the map berarti melanjutkan dengan menjelaskan, bukan bergerak ke atas peta. Jangan menggabungkan setiap on to menjadi onto.",
+    "pitfall": "Jangan menulis go onto explain untuk go on to explain. To itu memperkenalkan tindakan berikutnya; bukan berarti onto suatu permukaan.",
+    "keywords": [
+      "in",
+      "into",
+      "onto",
+      "posisi"
+    ]
+  },
+  "among-between": {
+    "title": "among dan between",
+    "question": "Apakah between hanya untuk dua, dan among untuk kelompok?",
+    "summary": "Between untuk dua hal, dan juga untuk beberapa hal yang tetap dibedakan. Among untuk sesuatu di dalam kelompok yang tidak dipilih satu per satu.",
+    "usage": "Between the two doors adalah ruang yang memisahkan dua hal. The difference between the three designs tetap memakai between karena desain-desain itu dibandingkan sebagai butir yang berbeda. Among the crowd dan among her reasons menempatkan sesuatu di dalam kelompok tanpa memisahkan setiap butir. Untuk berbagi, between sering menamai penerima yang berbeda, sedangkan among memperlakukan mereka sebagai kelompok.\n\nBetween you and me memakai bentuk objek me, bukan I. Jangan mengubah setiap between menjadi among hanya karena ada lebih dari dua. Kesalahan sebaliknya adalah among the two.",
+    "pitfall": "Jangan menulis between you and I. Sesudah preposisi, gunakan bentuk objek: between you and me.",
+    "keywords": [
+      "among",
+      "between",
+      "di antara",
+      "kelompok"
+    ]
+  },
+  "other-another": {
+    "title": "other dan another",
+    "question": "Another atau other untuk satu lagi?",
+    "summary": "Another berarti satu lagi atau yang berbeda dan biasanya memakai kata benda tunggal. The other adalah yang tersisa dalam himpunan yang diketahui; other plus jamak berarti yang tambahan.",
+    "usage": "Another cup berarti satu cangkir tambahan. The other cup adalah yang tersisa dari dua. Other students berarti mahasiswa tambahan, dan others dapat berdiri sendiri: Some stayed; others left. The others berarti semua yang tersisa. Another sudah an + other, jadi jangan menambah artikel lain atau menulis another students.\n\nAnother three days adalah pengecualian: another dapat datang sebelum angka plus jamak jika berarti periode atau kuantitas tambahan. Each other dan one another menandai tindakan timbal balik. Putuskan dulu apakah yang Anda maksud satu butir atau lebih, dan apakah himpunannya sudah diketahui.",
+    "pitfall": "Hindari another students dan the another cup. Satu mahasiswa lagi adalah another student; mahasiswa tambahan adalah other students.",
+    "keywords": [
+      "other",
+      "another",
+      "yang lain",
+      "satu lagi"
+    ]
+  },
+  "both-all-none": {
+    "title": "both, all, dan none",
+    "question": "Kata mana yang mencakup dua, seluruh kelompok, atau nol?",
+    "summary": "Both hanya untuk dua. All untuk tiga atau lebih, atau untuk massal. None berarti bukan satu pun dan tidak ada. Himpunan spesifik sering memakai of the.",
+    "usage": "Both students atau both of the students berarti dua orang yang diketahui. All students generik; all of the students atau all the students berarti kelompok tertentu. None of the students adalah negatifnya. Both...and... menggabungkan butir yang paralel. Both of them memakai kata kerja jamak.\n\nNone of dapat diikuti jamak atau kata benda massal. Tulisan formal dapat memakai kata kerja tunggal, sedangkan kata kerja jamak lazim dalam ujaran, jadi tidak otomatis salah. Jangan mengatakan both of students atau all of students: sesudah of, jamak spesifik memerlukan the atau determiner lain. The both tidak standar. Untuk bukan satu pun dari tiga atau lebih, gunakan none, bukan neither.",
+    "pitfall": "Hindari both of students. Katakan both students atau both of the students.",
+    "keywords": [
+      "both",
+      "all",
+      "none",
+      "keduanya"
+    ]
+  },
+  "all-whole": {
+    "title": "all dan whole",
+    "question": "All atau whole untuk sesuatu yang utuh?",
+    "summary": "Whole biasanya mengikuti the, a, atau posesif dan menerangkan kata benda hitung tunggal. All dapat menerangkan jamak dan kata benda massal, dan muncul dalam all day.",
+    "usage": "The whole story, my whole life, dan a whole day memperlakukan satu hal yang dapat dihitung sebagai utuh. All the students dan all the water mencakup jamak dan kata benda massal. All day dan all morning berarti seluruh periode dan biasanya tanpa the. The whole day juga berarti seluruh hari, dengan penekanan lebih pada satuan utuh itu.\n\nWhole tidak bebas menerangkan jamak atau kata benda massal. Hindari the whole students dan the whole information. Katakan all the students dan all the information. Urutannya the whole day, bukan whole the day atau the all day.",
+    "pitfall": "Hindari whole the day dan the whole informations. Hari yang utuh adalah the whole day atau all day; information memakai all the information.",
+    "keywords": [
+      "all",
+      "whole",
+      "seluruh",
+      "utuh"
+    ]
+  },
+  "so-that-such-that": {
+    "title": "so...that dan such...that",
+    "question": "So...that atau such...that untuk hasil?",
+    "summary": "So memakai kata sifat atau kata keterangan, dan such memakai frasa kata benda. Klausa that memberi hasilnya. Ini bukan pola yang sama dengan so that untuk tujuan.",
+    "usage": "Dalam She was so tired that she left early, so menerangkan tired. Dalam It was such a long meeting that we left early, such menerangkan a long meeting. Ujaran kadang menghilangkan that, tetapi pertahankan selagi Anda mempelajari polanya agar tetap terpisah dari tujuan. Prosa formal juga dapat mengatakan The rules are such that..., dengan such menunjuk ke depan pada hasilnya.\n\nTujuan adalah She spoke quietly so that the baby could sleep, tanpa so + kata sifat sebelumnya. Pola hasil menaruh so sebelum kata sifat. Jangan menulis so a long meeting that.",
+    "pitfall": "Hindari She was such tired that she left. Kata sifat memakai so tired that; frasa kata benda memakai such a long meeting that.",
+    "keywords": [
+      "so that",
+      "such that",
+      "hasil",
+      "akibat"
+    ]
+  },
+  "purpose-to-so-that": {
+    "title": "Tujuan dengan to dan so that",
+    "question": "Apakah tujuan memakai infinitif atau klausa?",
+    "summary": "Untuk subjek yang sama, tujuan sering memakai to, in order to, atau so as to. Gunakan so that jika Anda memerlukan klausa, modal, atau subjek yang berbeda.",
+    "usage": "Dalam I left early to catch the train, orang yang pergi dan orang yang mengejar kereta adalah orang yang sama. In order to lebih eksplisit, dan so as to sedikit lebih formal. Ketiganya memakai base verb. Negatifnya in order not to dan so as not to, bukan for not to.\n\nSo that memperkenalkan klausa penuh, sering dengan can, could, will, atau would: I left early so that she could rest. Di sini she adalah subjek yang berbeda, jadi to-infinitive sederhana tidak cocok. Jangan menulis so that to catch, dan jangan mengubah setiap tujuan menjadi for plus kata kerja. For dapat memakai kata benda: for a rest.",
+    "pitfall": "Hindari I left for catch the train dan so that to rest. Subjek yang sama memakai to catch; subjek yang berbeda memakai so that she could rest.",
+    "keywords": [
+      "tujuan",
+      "so that",
+      "in order to",
+      "supaya"
+    ]
+  },
+  "time-clauses": {
+    "title": "Klausa waktu",
+    "question": "Mengapa klausa waktu masa depan menghindari will?",
+    "summary": "Jika klausa dengan when, before, after, until, as soon as, atau once mengacu ke masa depan, kata kerjanya biasanya kini. Will tetap di klausa utama.",
+    "usage": "Dalam I'll phone you when I land, land berbentuk kini meskipun pendaratannya di masa depan. As soon as, once, before, after, dan until bekerja dengan cara yang sama: Wait here until I get back. Klausa utama dapat memakai will, imperatif, atau modal. Klausa waktu di depan biasanya memakai koma.\n\nWhile menandai tumpang tindih dan juga menyingkirkan will masa depan dari klausanya sendiri. Jika subjeknya sama, after dan before dapat memakai -ing: After landing, I phoned. Bentuk kini tidak berarti peristiwanya sudah terjadi; itu bentuk biasa klausa waktu. Klausa if punya batasan serupa, tetapi klausa waktu bukan syarat.",
+    "pitfall": "Hindari I'll phone you when I will land. Klausa waktunya when I land, dan will tetap di klausa utama.",
+    "keywords": [
+      "klausa waktu",
+      "when",
+      "before",
+      "will"
+    ]
+  },
+  "zero-conditional": {
+    "title": "Zero conditional",
+    "question": "Mengapa kedua kata kerja tetap kini dalam kalimat if yang umum?",
+    "summary": "Untuk kebiasaan, fakta ilmiah, atau hasil yang niscaya, baik klausa if atau when maupun klausa utama dapat memakai present simple. Ini bukan prediksi tentang satu kesempatan masa depan.",
+    "usage": "If you heat ice, it melts menyatakan kaidah umum, bukan satu percobaan besok. When kadang dapat menggantikan if karena hasilnya diperlakukan teratur: When you heat ice, it melts. Hasilnya juga dapat berupa imperatif: If the light is red, stop.\n\nSatu kesempatan masa depan yang mungkin memakai first conditional yang biasa: If it rains tomorrow, we will stay inside. Jangan menambah will di kedua sisi kaidah umum. Will di dalam klausa if dapat bermakna khusus seperti kesediaan; itu bukan bentuk bawaan zero conditional.",
+    "pitfall": "Jangan menulis kaidah umum sebagai If you will heat ice, it will melt. Fakta umum adalah If you heat ice, it melts.",
+    "keywords": [
+      "zero conditional",
+      "fakta umum",
+      "if",
+      "kebiasaan"
+    ]
+  },
+  "causative-have-get": {
+    "title": "Kausatif have dan get",
+    "question": "Bagaimana mengatakan saya mengatur orang lain untuk melakukannya?",
+    "summary": "Have atau get + objek + past participle berarti Anda mengatur seseorang untuk melakukannya pada benda itu. Jika Anda menamai orangnya, have memakai kata kerja tanpa to dan get memakai to.",
+    "usage": "I had my eyes tested berarti orang lain yang memeriksanya, bukan bahwa saya memeriksa mata saya sendiri. Get lebih percakapan dan dapat menyarankan usaha: I got the lock repaired. Jika Anda menamai orangnya, katakan I had the assistant print the file atau I got the assistant to print the file.\n\nJangan mencampur ini dengan past perfect. I had cut my hair berarti saya sendiri yang memotong. I had my hair cut berarti saya mengatur potong rambut. Get something done juga dapat berarti pengalaman yang tidak diinginkan: I got my bike stolen. Konteks harus menunjukkan apakah itu diatur atau menimpa Anda.",
+    "pitfall": "Jangan membaca I had my hair cut sebagai memotongnya sendiri. Tindakan selesai Anda sendiri adalah I had cut my hair; potong rambut yang diatur adalah I had my hair cut.",
+    "keywords": [
+      "kausatif",
+      "have something done",
+      "get",
+      "menyuruh"
+    ]
+  },
+  "let-make-allow": {
+    "title": "let, make, dan allow",
+    "question": "Apakah let, make, atau allow memakai to?",
+    "summary": "Let dan make aktif memakai kata kerja tanpa to. Allow memakai to, atau bentuk -ing. Make pasif menambah to.",
+    "usage": "Let me see the map adalah izin atau undangan, diikuti base verb. Make me redo it adalah paksaan, dan kalimat aktif juga tanpa to. Pasif menambah to: I was made to redo it. Allow berbeda: They allowed me to enter, atau Smoking is not allowed. Permit mengikuti allow.\n\nLet's go adalah usulan dari let us dan juga memakai base verb. Jangan menulis let me to go atau make me to go. Allow me go juga salah. Satu kata kerja bahasa Cina dapat berarti izin atau paksaan; bahasa Inggris memisahkannya sebagai let dan make.",
+    "pitfall": "Jangan menambah to sesudah let atau make aktif. Katakan Let me see dan She made me wait. Pasifnya I was made to wait.",
+    "keywords": [
+      "let",
+      "make",
+      "allow",
+      "izin"
+    ]
+  },
+  "prefer-would-rather": {
+    "title": "prefer dan would rather",
+    "question": "Prefer to, atau would rather?",
+    "summary": "Prefer memakai kata benda, -ing, atau to. Membandingkan dua hal memakai prefer A to B. Would rather memakai kata kerja tanpa to. Untuk tindakan kini orang lain, klausanya sering memakai bentuk lampau.",
+    "usage": "Katakan I prefer tea to coffee dan I prefer reading to watching television. Untuk satu kesempatan, prefer to do atau would prefer to do wajar. Negatifnya prefer not to. Jangan mengganti to dengan than dalam pola kata benda. Perbandingan infinitif dapat memakai rather than: prefer to walk rather than take the bus.\n\nWould rather memakai base verb secara langsung: I'd rather walk than wait. I'd rather not wait menolak tindakan itu. Untuk apa yang Anda inginkan dilakukan orang lain sekarang, bentuk lampau menciptakan jarak: I'd rather you stayed, I'd rather you didn't tell anyone. Bentuk lampau itu bukan waktu lampau yang nyata. Jangan menulis would rather to go.",
+    "pitfall": "Hindari I prefer tea than coffee dan I'd rather to walk. Perbandingannya prefer tea to coffee, dan rather diikuti langsung oleh walk.",
+    "keywords": [
+      "prefer",
+      "would rather",
+      "lebih suka",
+      "daripada"
+    ]
+  },
+  "look-forward-to": {
+    "title": "look forward to",
+    "question": "Mengapa look forward to sering diikuti -ing?",
+    "summary": "To dalam ungkapan ini adalah preposisi, jadi ia memakai kata benda atau -ing, bukan base verb.",
+    "usage": "I'm looking forward to the trip memakai kata benda. I'm looking forward to meeting you memakai -ing karena meeting you adalah objek preposisi. Surat juga memakai I look forward to hearing from you. Jangan mengganti to dengan for.\n\nJangan menganggap setiap to sebagai penanda infinitif. To dalam want to meet adalah to infinitif. To dalam look forward to adalah preposisi, seperti to dalam listen to. I'm looking forward lazim karena perasaannya kini, tetapi bentuknya tetap looking, bukan look forwarding.",
+    "pitfall": "Hindari I'm looking forward to meet you. Sesudah preposisi, gunakan meeting you, atau kata benda seperti the trip.",
+    "keywords": [
+      "look forward to",
+      "menantikan",
+      "ing",
+      "preposisi"
+    ]
+  },
+  "adjective-preposition": {
+    "title": "Kata sifat plus preposisi",
+    "question": "Preposisi mana yang mengikuti interested, good, atau afraid?",
+    "summary": "Banyak kata sifat memakai preposisi tetap plus kata benda atau -ing. Pelajari preposisinya bersama kata sifatnya; padanan bahasa Cina tidak selalu menjadi to.",
+    "usage": "Pasangan yang lazim meliputi interested in, good at, bad at, afraid of, worried about, proud of, famous for, responsible for, keen on, married to, similar to, tired of, excited about, dan sorry about. Good at adalah keterampilan, good with adalah kemudahan dengan orang atau alat, dan good for adalah manfaat. Different from adalah pilihan paling aman; British English juga memakai different to.\n\nJika kata kerja mengikuti preposisi, gunakan -ing: interested in learning, good at listening. Interested to hear adalah pola yang berbeda, berarti ingin tahu atau senang mendengar sesuatu; ia tidak menggantikan interested in. Tidak ada kaidah yang meramalkan setiap preposisi, jadi pelajari setiap kombinasi baru sebagai satu kesatuan.",
+    "pitfall": "Hindari interested on the course dan afraid from dogs. Frasa yang biasa adalah interested in the course dan afraid of dogs.",
+    "keywords": [
+      "kata sifat",
+      "preposisi",
+      "interested in",
+      "afraid of"
+    ]
+  },
+  "verb-preposition": {
+    "title": "Kata kerja plus preposisi",
+    "question": "Bisakah preposisi sesudah depend, listen, atau wait berpindah atau hilang?",
+    "summary": "Dengan depend on, listen to, dan wait for, preposisi tetap sesudah kata kerja dan objek tidak dapat memisahkannya. Sebagian kata kerja lain sudah mencakup makna preposisi yang ditambahkan pembelajar.",
+    "usage": "Depend on, rely on, listen to, wait for, belong to, apologise for, apply for, pay for, search for, dan believe in adalah kombinasi kata kerja plus preposisi. Pronomina juga mengikuti preposisi: listen to it, wait for them. Agree with seseorang, agree on keputusan bersama, dan agree to suatu usulan.\n\nDiscuss the plan, enter the room, reach the station, marry someone, dan mention the fee biasanya tidak menambah about, into, to, atau with. Answer the question memakai objek secara langsung. Answer to seseorang dapat berarti bertanggung jawab, dan itu makna yang berbeda. Ini bukan phrasal verb yang dapat dipisah: look after her tidak dapat menjadi look her after.",
+    "pitfall": "Hindari depend of the weather, listen music, dan discuss about the plan. Katakan depend on, listen to music, dan discuss the plan.",
+    "keywords": [
+      "kata kerja preposisi",
+      "depend on",
+      "listen to",
+      "wait for"
+    ]
+  },
+  "so-neither-do": {
+    "title": "So do I dan Neither do I",
+    "question": "Mengapa persetujuan So do I, bukan So I do?",
+    "summary": "Setujui yang positif dengan So + kata kerja bantu + subjek. Setujui yang negatif dengan Neither atau Nor + kata kerja bantu + subjek. Kata kerja bantu menggemakan kalimat pertama.",
+    "usage": "Sesudah I like this map, So do I memakai do sebagai ganti like. She is ready memakai So am I. They can drive memakai So can we. She has left memakai So have I. Kalimat past simple memakai So did I. Negatif juga diinversi: I don't eat meat. Neither do I. Nor do I bermakna sama. Me too dan Me neither lazim dalam ujaran; persetujuan yang teliti tetap menginversi.\n\nSo I do tidak berarti saya juga. Ia menegaskan orang yang sama: You work too hard. So I do. Subjeknya tidak berubah. Jangan menaruh subjek langsung sesudah So jika yang Anda maksud orang lain setuju. Pertama perhatikan apakah kalimat semula memakai be, modal, perfect, atau kata kerja biasa.",
+    "pitfall": "Jangan memakai So I am untuk saya juga. Sesudah She is tired, persetujuannya So am I. So she is hanya menegaskan bahwa ia memang lelah.",
+    "keywords": [
+      "so do I",
+      "neither do I",
+      "saya juga",
+      "persetujuan"
+    ]
+  },
+  "one-ones": {
+    "title": "one dan ones",
+    "question": "Kapan one dapat menggantikan kata benda?",
+    "summary": "One menggantikan kata benda hitung tunggal yang sudah diketahui, dan ones menggantikan jamak. Kata benda massal tidak dapat diganti one.",
+    "usage": "Dalam Which cup do you want? The blue one, one mewakili cup. Jamaknya the blue ones. Which one, this one, dan another one semuanya wajar. Ones biasanya memerlukan kata sifat atau determiner di depannya. These saja sering cukup; these ones bersifat percakapan.\n\nJangan memakai one untuk kata benda massal. Tidak ada an information one; katakan this information. Jangan menambah kata benda yang diulang: a one book salah. One formal yang berarti orang pada umumnya adalah pemakaian lain: One should read the label. Bahasa Inggris sehari-hari lebih sering memakai you.",
+    "pitfall": "Jangan mengganti kata benda massal dengan one, dan jangan menulis the blue one cup. Cangkir adalah the blue one; information tetap this information.",
+    "keywords": [
+      "one",
+      "ones",
+      "pengganti",
+      "kata benda"
+    ]
+  },
+  "it-vs-there": {
+    "title": "it dan there",
+    "question": "Kapan keberadaan there is, dan kapan it?",
+    "summary": "There is atau there are memperkenalkan sesuatu yang baru ke dalam adegan. It menunjuk pada hal yang sudah teridentifikasi, atau bertindak sebagai subjek semu untuk cuaca, waktu, jarak, dan sebagian klausa.",
+    "usage": "There's a spider in the sink memberitahu pendengar bahwa ada laba-laba dalam adegan itu. The spider is in the sink, atau It's in the sink, mengacu pada laba-laba yang sudah dapat dikenali kedua orang. Cuaca, waktu, dan jarak memakai it: It's raining, It's five o'clock, It's a long way. It juga dapat menunjuk ke depan pada infinitif atau klausa: It's hard to say, It seems that the gate is shut.\n\nKata kerja keberadaan bahasa Cina sering cocok dengan there is, bukan it has. It has a book on the table bukan kalimat eksistensial. There's two books lazim dalam ujaran; tulisan yang teliti memakai There are two books. There ini bukan kata tempat over there. Tempat yang sebenarnya ditambahkan terpisah: There is a cafe near the station.",
+    "pitfall": "Jangan memakai It has a book on the table untuk keberadaan. Katakan There is a book on the table. Hujan adalah It's raining.",
+    "keywords": [
+      "there is",
+      "it",
+      "keberadaan",
+      "cuaca"
+    ]
+  },
+  "on-time-in-time": {
+    "title": "on time dan in time",
+    "question": "Mana yang berarti tepat waktu, on time atau in time?",
+    "summary": "On time berarti pada saat yang dijadwalkan, tepat waktu. In time berarti cukup awal, sebelum terlambat.",
+    "usage": "The train was on time berarti kereta tiba sesuai jadwal, tidak awal dan tidak terlambat. We arrived in time for the talk berarti kami tiba sebelum dimulai, mungkin jauh sebelumnya. In time to do berarti ada cukup waktu untuk tindakan itu: We left in time to catch the bus. Just in time menekankan selisih yang sempit.\n\nOn time tidak memakai for suatu tenggat untuk berarti cukup awal. In time tidak berarti persis pada jadwal. Untuk tenggat, katakan in time for Friday's class atau by Friday. Kedua idiom itu tidak saling ditukar.",
+    "pitfall": "Jangan memakai on time for the talk untuk berarti cukup awal. Cukup awal adalah in time for the talk; tiba pada saat yang direncanakan adalah on time.",
+    "keywords": [
+      "on time",
+      "in time",
+      "tepat waktu",
+      "cukup awal"
+    ]
+  },
+  "at-the-end-in-the-end": {
+    "title": "at the end dan in the end",
+    "question": "At the end atau in the end?",
+    "summary": "At the end of adalah bagian akhir sesuatu. In the end adalah hasil sesudah perubahan atau penundaan, dan tidak memakai of.",
+    "usage": "At the end of the film dan at the end of the street adalah titik akhir hal itu. Jika halnya sudah diketahui, Anda dapat mengatakan The film is sad at the end. In the end berarti akhirnya: In the end we took a taxi, sering sesudah ragu, gagal, atau menunggu. Ia tidak berarti bagian terakhir film, jadi tidak ada in the end of the film.\n\nAt last dan finally juga dapat berarti sesuatu terjadi sesudah penantian panjang, tetapi finally dapat memperkenalkan butir terakhir dalam daftar. In the end tidak melakukan tugas itu. Tanyakan apakah yang Anda maksud ujung fisik atau tekstual sesuatu, atau hasil dari peristiwa.",
+    "pitfall": "Hindari in the end of the film. Bagian terakhir film adalah at the end of the film. Hasil sesudah perubahan adalah in the end.",
+    "keywords": [
+      "at the end",
+      "in the end",
+      "akhirnya",
+      "bagian akhir"
+    ]
+  },
+  "in-case": {
+    "title": "in case dan if",
+    "question": "Apakah in case berarti if, atau sebagai antisipasi?",
+    "summary": "In case biasanya berarti melakukan sesuatu sekarang karena sesuatu yang lain mungkin terjadi. If berarti hasilnya terjadi hanya jika syaratnya benar.",
+    "usage": "Dalam Take a charger in case the battery dies, Anda membawa pengisi daya sekarang, baik baterai nanti mati maupun tidak. Dalam I'll call you if the battery dies, panggilan terjadi hanya jika itu terjadi. Klausa in case masa depan memakai bentuk kini: in case it rains, bukan in case it will rain. In case of memakai kata benda: in case of fire.\n\nJangan mengganti setiap if dengan in case. I'll take your number in case I miss the bus adalah antisipasi. I'll call you if I miss the bus adalah syarat. Sebagian ujaran Amerika memakai in case lebih dekat ke if, tetapi makna intinya antisipasi.",
+    "pitfall": "Jangan memakai I'll call you in case I arrive untuk panggilan yang terjadi hanya saat tiba. Syarat itu adalah if I arrive. In case cocok untuk antisipasi yang diambil lebih dahulu.",
+    "keywords": [
+      "in case",
+      "if",
+      "antisipasi",
+      "jika"
+    ]
+  },
+  "even-if-even-though": {
+    "title": "even if dan even though",
+    "question": "Even if atau even though?",
+    "summary": "Even if memperkenalkan kasus yang belum pasti atau hipotetis yang tidak mengubah hasil. Even though memperkenalkan fakta yang diketahui. Even although tidak standar.",
+    "usage": "Dalam Even if it rains, we'll go, hujan belum pasti, tetapi tidak akan mengubah rencana. Dalam Even though it rained, we went, hujan adalah fakta. Even memperkuat konsesi dan tidak bebas ditambahkan pada although. Gunakan even if untuk masa depan yang belum pasti dan even though untuk yang sudah terjadi atau jelas benar.\n\nThough dapat berdiri sendiri, dan even though adalah bentuk yang diperkuat. Although juga memperkenalkan klausa faktual, tetapi tidak memakai even di depannya. Jangan meniru penanda konsesi ganda: Even though it rained, but we went memakai satu penghubung terlalu banyak. Pertahankan even though atau but, tidak keduanya.",
+    "pitfall": "Hindari even although dan Even though it rained, but we went. Konsesi faktual adalah Even though it rained, we went.",
+    "keywords": [
+      "even if",
+      "even though",
+      "meski",
+      "konsesi"
+    ]
+  },
+  "reported-commands": {
+    "title": "Perintah yang dilaporkan",
+    "question": "Apakah perintah yang dilaporkan memakai that atau to?",
+    "summary": "Tell, ask, order, advise, dan warn melaporkan perintah atau permintaan dengan orang plus to-infinitive. Letakkan not sebelum to dalam negatif.",
+    "usage": "Kalimat langsung Wait outside dapat menjadi She told us to wait outside. Permintaan adalah She asked me to speak quietly. Negatif menaruh not sebelum to: She told me not to lock the door. Itu urutan yang diutamakan. Advise dan warn memakai pola yang sama: She warned us not to touch the paint.\n\nSay tidak memakai say someone to do. She said to wait mungkin, tetapi She told us to wait lebih jelas. Jika Anda melaporkan informasi, bukan perintah, gunakan that-clause: She told me that the door was locked. Pertama putuskan apakah kata-kata semula perintah atau pernyataan.",
+    "pitfall": "Hindari She told me that wait outside dan She said me to wait. Perintah adalah She told me to wait outside.",
+    "keywords": [
+      "perintah tidak langsung",
+      "told to",
+      "asked to",
+      "not to"
+    ]
+  },
+  "be-supposed-to": {
+    "title": "be supposed to",
+    "question": "Apakah be supposed to berarti kewajiban atau yang dipercaya orang?",
+    "summary": "Be supposed to dapat berupa aturan atau pengaturan, atau kepercayaan umum. Was supposed to sering menyiratkan rencana itu tidak terjadi.",
+    "usage": "We're supposed to sign in adalah yang diharapkan aturan atau rencana, sering lebih lembut daripada must. It's supposed to be an excellent cafe melaporkan yang dikatakan orang, bukan fakta yang sudah dicek pembicara. We're not supposed to park here berarti parkir bertentangan dengan harapan atau aturan.\n\nDalam I was supposed to call, but I forgot, pengaturan lampau itu tidak terjadi. Be wajib: suppose to call bukan frasanya. I suppose berarti saya kira dan polanya berbeda. Jangan mengganti frasa ini dengan should di setiap kalimat; kepercayaan dan rencana yang tidak terpenuhi adalah bagian dari pemakaiannya sendiri.",
+    "pitfall": "Jangan menulis You suppose to sign in. Frasanya memerlukan be: You're supposed to sign in.",
+    "keywords": [
+      "be supposed to",
+      "seharusnya",
+      "aturan",
+      "rencana"
+    ]
+  },
+  "be-about-to": {
+    "title": "be about to",
+    "question": "Be about to atau will untuk sesuatu yang segera?",
+    "summary": "Be about to plus base verb berarti sesuatu akan terjadi segera. Was about to, sering dengan when, berarti tindakan itu sudah dekat lalu tersela.",
+    "usage": "The film is about to start lebih segera daripada will start. Waktu jam biasanya tidak perlu: about to start at eight janggal karena at eight sudah memberi waktu dan mungkin tidak berarti saat ini. Dalam I was about to leave when the phone rang, kepergian itu tidak terjadi.\n\nI'm not about to apologise juga dapat berupa penolakan: saya tidak berniat melakukannya. Itu bukan makna waktu. Jangan menulis about to leaving, dan jangan menambah will. Tidak ada will about to. Rencana yang lebih jauh memakai be going to atau present continuous.",
+    "pitfall": "Hindari The film is about to starting, dan jangan menambah will. Mulai yang segera adalah The film is about to start.",
+    "keywords": [
+      "be about to",
+      "segera",
+      "akan",
+      "hampir"
+    ]
+  },
+  "get-passive": {
+    "title": "Pasif get",
+    "question": "Bisakah get plus past participle menggantikan setiap pasif be?",
+    "summary": "Get plus past participle sering menandai perubahan yang menimpa subjek. Bentuknya percakapan dan sering menyarankan hasil atau kejutan. Pasif be yang statif tidak semuanya menjadi get.",
+    "usage": "The window got broken, He got promoted, dan We got delayed menekankan bahwa sesuatu terjadi dan subjek menerima hasilnya. By-phrase mungkin tetapi kurang lazim daripada dengan be. Get married, get dressed, get lost, dan get stuck adalah perubahan keadaan yang mapan. Get terdengar wajar dalam ujaran; laporan formal tetap lebih suka be.\n\nKeadaan seperti The building is made of brick dan She is known for her essays tidak menjadi got made atau got known. Get something done juga dapat kausatif: I got the window repaired berarti saya mengatur perbaikannya, sedangkan The window got repaired berarti perbaikan itu terjadi. Perhatikan di mana objeknya duduk.",
+    "pitfall": "Jangan mengubah The building is made of brick menjadi The building got made of brick. Keadaan bahan tetap dengan be.",
+    "keywords": [
+      "get passive",
+      "pasif get",
+      "perubahan",
+      "terjadi"
+    ]
+  },
+  "modal-passive": {
+    "title": "Pasif modal",
+    "question": "Bagaimana modal berpadu dengan pasif?",
+    "summary": "Gunakan modal plus be plus past participle: can be changed, must be signed, should be sent. Ought mempertahankan to be.",
+    "usage": "Aktif They must sign the form menjadi The form must be signed. Modal membawa kemungkinan, keharusan, saran, atau izin, dan be plus past participle membawa pasif. Letakkan not sesudah modal: The form must not be removed. Dalam pertanyaan, pindahkan modal ke depan: Can the date be changed?\n\nOught to be done adalah bentuk utama yang mempertahankan to. Jangan menulis must to be, should to be, atau can finished. Keharusan atau kemungkinan lampau memakai pasif modal perfect: It should have been sent yesterday. Itu lapisan tambahan; menambah waktu lampau pada must be tidak dengan sendirinya berarti kewajibannya selesai di masa lalu.",
+    "pitfall": "Hindari The form must signed dan The form must to be signed. Polanya must be signed.",
+    "keywords": [
+      "pasif modal",
+      "must be",
+      "should be",
+      "can be"
+    ]
+  },
+  "linking-so-therefore": {
+    "title": "so dan therefore",
+    "question": "Mengapa so dapat menggabungkan hasil, sedangkan therefore sering tidak?",
+    "summary": "So adalah konjungsi dan dapat menggabungkan sebab dengan hasil. Therefore adalah kata keterangan, jadi ia memerlukan titik atau titik koma, bukan koma saja.",
+    "usage": "It was late, so we left adalah kalimat hasil yang biasa, biasanya dengan koma sebelum so. Therefore lebih formal: It was late. Therefore, we left. Anda juga dapat menulis It was late; therefore, we left. It was late, therefore we left adalah comma splice: dua kalimat penuh digabung koma saja.\n\nJangan meniru penanda sebab ganda sebagai Because it was late, so we left. Pertahankan because atau so, tidak keduanya. Therefore juga dapat duduk di tengah: We therefore left. Bagi pembelajar, awal kalimat baru adalah tempat yang paling jelas.",
+    "pitfall": "Hindari It was late, therefore we left dan Because it was late, so we left. Gunakan so, atau mulai kalimat baru dengan Therefore.",
+    "keywords": [
+      "so",
+      "therefore",
+      "hasil",
+      "jadi"
+    ]
+  },
+  "whereas-while": {
+    "title": "whereas dan while kontras",
+    "question": "Bagaimana while dan whereas mengontraskan dua fakta?",
+    "summary": "Whereas dan while sama-sama dapat mengontraskan dua fakta. While juga berarti selama, whereas hampir hanya kontras.",
+    "usage": "Cycling is cheap, whereas driving is not menempatkan dua fakta berdampingan. While dapat melakukan hal yang sama: Cycling is cheap, while driving is not. Whereas sedikit lebih formal dan cocok untuk perbandingan tertulis. Jika while mungkin dibaca sebagai waktu, pilih whereas atau tulis ulang. While I like the design biasanya konsesi atau kontras; While I was reading adalah waktu.\n\nJaga kedua sisi tetap paralel. During adalah preposisi dan tidak dapat menggantikan whereas di antara dua klausa penuh. Although menekankan konsesi, bukan kontras netral. Putuskan apakah kedua fakta itu sekadar berbeda atau salah satunya mengejutkan meskipun ada yang lain.",
+    "pitfall": "Jangan memakai during untuk menggabungkan dua klausa dalam kontras. Katakan Cycling is cheap, whereas driving is not. During the ride adalah preposisi waktu.",
+    "keywords": [
+      "whereas",
+      "while",
+      "kontras",
+      "sedangkan"
+    ]
+  },
+  "not-only-but-also": {
+    "title": "not only...but also",
+    "question": "Bagaimana menjaga not only...but also tetap paralel?",
+    "summary": "Butir sesudah not only dan but also harus cocok bentuknya. Jika not only mengawali klausa, klausa pertama diinversi.",
+    "usage": "Not only the chairs but also the desks were moved menggabungkan dua frasa kata benda. She not only called but also wrote menggabungkan dua kata kerja. Also kadang dapat hilang, tetapi bentuk paralelnya tidak. Persesuaian mengikuti subjek yang biasa. Desks, di samping kata kerja, jamak, jadi kata kerjanya were moved.\n\nPenekanan di depan menginversi klausa pertama: Not only did she call, but she also wrote. Dengan be, katakan Not only is it cheap, but it is also strong. Jangan menulis Not only she did call. Pasangan bahasa Cina tidak otomatis menciptakan inversi. Inversi hanya jika not only mengawali klausa penuh.",
+    "pitfall": "Hindari Not only she called, but also wrote. Di depan, gunakan Not only did she call, but she also wrote, dan jaga kedua sisi tetap paralel.",
+    "keywords": [
+      "not only",
+      "but also",
+      "paralel",
+      "inversi"
+    ]
+  },
+  "the-more-the-more": {
+    "title": "the more...the more",
+    "question": "Apakah kedua sisi komparatif ganda memerlukan the?",
+    "summary": "The plus klausa komparatif, diikuti the plus yang lain, berarti satu perubahan membawa perubahan lain. Kedua pemakaian the wajib, dan more tidak berpadu dengan -er.",
+    "usage": "The more carefully you read, the fewer mistakes you make memasangkan syarat yang berubah dengan hasil yang berubah. The sooner we start, the earlier we finish bekerja dengan cara yang sama. Bentuk pendek dapat menghilangkan kata kerja: The sooner, the better. Gunakan komparatif yang biasa: more carefully, fewer, better, harder, bukan more better atau more harder.\n\nJangan menulis More you read, more you learn. Artikel the milik pola itu dan tidak dapat hilang. Gagasan berulang dalam bahasa Cina cocok dengan the yang diulang, bukan more tambahan pada kata yang sudah komparatif -er.",
+    "pitfall": "Hindari More you practise, more you improve dan the more better. Katakan The more you practise, the more you improve.",
+    "keywords": [
+      "the more",
+      "semakin",
+      "komparatif",
+      "ganda"
+    ]
+  },
+  "participle-clauses": {
+    "title": "Klausa partisip",
+    "question": "Siapa subjek -ing atau past participle di awal?",
+    "summary": "Subjek yang dipahami dari frasa partisip biasanya subjek klausa utama. -ing biasanya aktif, past participle biasanya pasif, dan having done menandai tindakan yang lebih dahulu.",
+    "usage": "Dalam Hoping for shade, we sat under the tree, orang yang berharap adalah we. Dalam Built in 1920, the hall is still used, aula adalah hal yang dibangun. Having paid, we left menaruh pembayaran sebelum kepergian. Partisip lebih ringkas daripada mengulang who atau after we.\n\nJika subjek utama tidak dapat melakukan tindakan partisip, modifier itu menggantung. Walking to the station, the rain started membuat hujan yang berjalan. Katakan Walking to the station, I felt the rain start, atau While I was walking, the rain started. Partisip bukan kala baru. Urutan tetap datang dari kata-kata dan konteks.",
+    "pitfall": "Hindari Walking to the station, the rain started. Pejalannya harus subjek utama, atau tulis ulang sebagai While I was walking, the rain started.",
+    "keywords": [
+      "partisip",
+      "klausa ing",
+      "subjek",
+      "having"
+    ]
+  },
+  "mixed-conditionals": {
+    "title": "Mixed conditional",
+    "question": "Bagaimana kata kerja bekerja jika syarat dan hasil berada di waktu yang berbeda?",
+    "summary": "Untuk syarat lampau dengan hasil kini, gunakan had plus past participle di klausa if dan would plus base verb di hasil. Syarat kini dengan hasil lampau memakai bentuk yang cocok dengan masing-masing waktu.",
+    "usage": "If I had taken the job, I would live in Leeds now mempertahankan pekerjaan yang ditolak di masa lalu dan tempat tinggal di masa kini. Would have lived akan memindahkan tempat tinggal itu ke masa lalu juga. Dalam If she were more organised, she wouldn't have missed the train, tidak teraturnya adalah sifat kini dan ketinggalan kereta adalah hasil lampau.\n\nJangan memaksa kedua sisi ke satu waktu demi kesimetrisan. Kontrafaktual kini adalah If I lived there, I would walk. Kontrafaktual lampau adalah If I had lived there, I would have walked. Campurkan hanya jika waktunya benar-benar berbeda. Were adalah bentuk untuk syarat kini yang tidak nyata, termasuk I were dan she were yang formal.",
+    "pitfall": "Jangan menaruh hasil kini dalam would have. Pekerjaan yang ditolak di masa lalu dan tempat yang tidak Anda tinggali sekarang adalah If I had taken the job, I would live there now.",
+    "keywords": [
+      "mixed conditional",
+      "syarat",
+      "waktu berbeda",
+      "would"
+    ]
+  },
+  "by-the-time": {
+    "title": "by the time",
+    "question": "Kala mana yang berpasangan dengan by the time?",
+    "summary": "By the time berarti tidak lebih lambat dari momen itu. Untuk masa depan, pasangkan klausa kini dengan klausa utama future perfect. Untuk masa lalu, pasangkan klausa lampau dengan klausa utama past perfect.",
+    "usage": "Dalam By the time you read this, I will have left, pembacaan itu di masa depan dan kepergian sudah selesai sebelumnya. Klausanya memakai read, dan klausa utama memakai will have left. Dalam By the time we found a seat, the talk had begun, menemukan kursi adalah lampau dan mulainya lebih dahulu, jadi bentuknya had begun.\n\nJangan menaruh will atau would dalam klausa by the time masa depan yang biasa. Frasa ini menekankan penyelesaian sebelum titik itu. Jika sesuatu sekadar sedang berlangsung saat tiba, when plus bentuk continuous mungkin lebih cocok. By then dan by Friday juga memakai bentuk perfect, tetapi tidak diikuti klausa.",
+    "pitfall": "Hindari By the time you will arrive, I will leave. Katakan By the time you arrive, I will have left.",
+    "keywords": [
+      "by the time",
+      "pada saat",
+      "future perfect",
+      "past perfect"
+    ]
+  },
+  "have-got": {
+    "title": "have got",
+    "question": "Apakah I've got berarti kepemilikan atau perfect dari get?",
+    "summary": "Dalam British English, I've got sering berarti kepemilikan kini. Pertanyaan dan negatif memakai have, tanpa do. Kepemilikan lampau adalah had, bukan had got, dalam makna biasa.",
+    "usage": "I've got two sisters sepadan dengan I have two sisters. Have you got a pen? dan I haven't got a pen adalah pertanyaan dan negatif yang cocok. American English lebih sering mengatakan Do you have a pen?, meskipun have got dipahami. Have got to menandai keharusan, dekat dengan have to: I've got to leave now.\n\nIni tidak otomatis present perfect dari get. I have got your message dapat berarti diterima, jadi konteks penting. Untuk kepemilikan, jangan memperlakukan got sebagai tindakan memperoleh. Kepemilikan lampau adalah I had a pen, bukan I had got a pen. I had got terdengar seperti past perfect dari get. Do you have got juga tidak standar.",
+    "pitfall": "Hindari Do you have got a pen? dan I had got a pen untuk kepemilikan lampau. Kini adalah Have you got a pen? Lampau adalah I had a pen.",
+    "keywords": [
+      "have got",
+      "punya",
+      "kepemilikan",
+      "got"
+    ]
+  },
+  "been-gone": {
+    "title": "been dan gone",
+    "question": "Jika orangnya sudah kembali, has been atau has gone?",
+    "summary": "Have been to berarti pergi dan kembali, atau punya pengalaman itu. Have gone to berarti sudah pergi dan belum kembali.",
+    "usage": "She has been to the lab dapat dikatakan selagi ia berdiri di depan Anda: ia pernah ke sana. She has gone to the lab berarti ia sedang dalam perjalanan atau sudah di sana, tidak di sini. Been in dapat menekankan tinggal: I've been in the lab all morning.\n\nGone juga cocok untuk hal yang tidak lagi di sini: The milk has gone. Jangan memakai has gone to Paris untuk pengalaman perjalanan seseorang yang sudah kembali. Bahasa Cina dapat mengaburkan keduanya. Bahasa Inggris menanyakan apakah orang itu masih pergi.",
+    "pitfall": "Jika ia sudah kembali, She has gone to Paris memberitahu pendengar bahwa ia masih pergi. Pengalamannya She has been to Paris.",
+    "keywords": [
+      "been",
+      "gone",
+      "pernah",
+      "sudah pergi"
+    ]
+  },
+  "mid-position-adverbs": {
+    "title": "Kata keterangan posisi tengah",
+    "question": "Di mana kata keterangan seperti probably, never, dan still diletakkan?",
+    "summary": "Kata keterangan frekuensi, kepastian, dan sebagian derajat biasanya di depan kata kerja utama, sesudah be, atau sesudah kata kerja bantu pertama. Kata keterangan cara sering mengikuti objek.",
+    "usage": "Katakan I probably know the answer, She is probably right, They have probably left, dan I can never tell. Itu posisi netral. Always, often, still, dan already sering memakainya juga. Kata keterangan dapat berpindah untuk penekanan, tetapi fokusnya dapat berubah.\n\nKata keterangan cara biasanya tidak memisahkan kata kerja dan objeknya: She speaks English well, bukan She speaks well English. Even dan only mengubah sasarannya jika berpindah, jadi bukan kata keterangan posisi tengah yang biasa. Jika ragu, letakkan kata keterangan sesudah kata kerja bantu dan sebelum kata kerja leksikal.",
+    "pitfall": "Hindari She speaks well English. English adalah objeknya, jadi well mengikutinya: She speaks English well. Probabilitas adalah She probably speaks English.",
+    "keywords": [
+      "kata keterangan",
+      "posisi",
+      "probably",
+      "well"
+    ]
+  },
+  "what-how-exclamations": {
+    "title": "Seruan dengan what dan how",
+    "question": "What atau How dalam seruan?",
+    "summary": "What memperkenalkan frasa kata benda. How memperkenalkan kata sifat atau kata keterangan. What tidak memakai a sebelum kata benda massal atau jamak.",
+    "usage": "What a strange question! punya kata benda hitung tunggal question, jadi memakai a. What beautiful weather! dan What lovely shoes! tanpa a karena weather kata benda massal dan shoes jamak. How strange! dan How quickly it changed! menerangkan kata sifat atau kata keterangan. How strange that sounds juga mungkin.\n\nJangan menulis How a strange question atau What strange it is. So dan such adalah penekanan yang terkait, tetapi bukan pembuka seruan ini: such a strange question dapat duduk di dalam kalimat. Seruan dapat memuat subjek dan kata kerja, dengan What atau How tetap di depan.",
+    "pitfall": "Hindari How a beautiful day. Kata benda memakai What a beautiful day. Kata sifat sendiri memakai How beautiful.",
+    "keywords": [
+      "what",
+      "how",
+      "seruan",
+      "betapa"
+    ]
+  },
+  "phrasal-verbs-separable": {
+    "title": "Phrasal verb yang dapat dipisah",
+    "question": "Mengapa pronomina berada di tengah turn off?",
+    "summary": "Dengan turn off atau pick up, objek kata benda dapat di tengah atau sesudah partikel. Pronomina harus di tengah. Kata kerja preposisional seperti look after tidak terpisah.",
+    "usage": "Turn off the radio dan turn the radio off keduanya mungkin. Jika objeknya it atau them, hanya turn it off dan pick them up yang mungkin, bukan turn off it. Put on, give back, fill in, dan look up dalam makna mencari berbagi pola itu. Frasa kata benda yang panjang biasanya tetap sesudah partikel agar kata kerja dan partikel tidak berjauhan.\n\nUjiannya apakah pronomina dapat pindah ke tengah. Look after her, wait for her, dan depend on her tidak dapat menjadi look her after. Kata itu preposisi, bukan partikel yang dapat dipindah. Makna phrasal verb sering bukan jumlah kata-katanya, jadi pelajari satuannya.",
+    "pitfall": "Hindari turn off it dan look her after. Phrasal verb yang dapat dipisah adalah turn it off. Kata kerja preposisional adalah look after her.",
+    "keywords": [
+      "phrasal verb",
+      "partikel",
+      "turn off",
+      "pisah"
+    ]
+  },
+  "noun-preposition": {
+    "title": "Kata benda plus preposisi",
+    "question": "Preposisi mana yang mengikuti reason, solution, atau increase?",
+    "summary": "Pelajari kata benda dan preposisinya bersama-sama. Reason for, solution to, dan increase in tidak bebas saling ditukar.",
+    "usage": "Kombinasi yang lazim meliputi a reason for the delay, a need for rest, a solution to the problem, an increase in prices, a decrease in noise, the cause of the fire, an advantage of the plan, an interest in music, a photograph of the hall, a difficulty with the lock, an effect on attendance, dan a reply to the letter. Kata benda tidak selalu mempertahankan preposisi kata sifat yang terkait: proud of, tetapi pride in.\n\nReason of bukan frasa yang biasa. Solution of dapat muncul dalam kimia, tetapi masalah tetap memakai a solution to the problem. Kata kerja sesudah preposisi memakai -ing: a reason for leaving. Tidak ada satu kaidah yang menghasilkan setiap kombinasi.",
+    "pitfall": "Hindari the reason of the delay dan a solution of the problem. Katakan the reason for the delay dan a solution to the problem.",
+    "keywords": [
+      "kata benda",
+      "preposisi",
+      "reason for",
+      "solution to"
+    ]
+  },
+  "future-in-the-past": {
+    "title": "Masa depan di masa lalu",
+    "question": "Dari sudut pandang lampau, would atau was going to?",
+    "summary": "Untuk peristiwa yang dilihat dari masa lalu, gunakan would, was going to, atau was about to. Was going to sering menandai rencana lampau, yang mungkin tidak terjadi.",
+    "usage": "I knew she would be late menempatkan keterlambatan sesudah momen mengetahui yang lampau. Will yang dilaporkan biasanya juga menjadi would: She said she would wait. I was going to write, but I lost the address menekankan niat lampau, sering yang dibatalkan oleh but. I was about to leave berarti kepergian itu segera pada momen lampau itu.\n\nJangan mempertahankan will dalam reported speech yang biasa. He said he will come muncul hanya jika peristiwanya masih di masa depan dan pembicara memilih tidak backshift. Pola yang teratur adalah would. Jangan memakai would untuk setiap rencana lampau. Niat yang tidak terpenuhi lebih jelas dengan was going to.",
+    "pitfall": "Jangan menulis rencana lampau yang ditinggalkan sebagai I would write, but I lost the address. Katakan I was going to write, but I lost the address.",
+    "keywords": [
+      "future in the past",
+      "was going to",
+      "would",
+      "rencana lampau"
+    ]
+  },
+  "question-word-infinitive": {
+    "title": "Kata tanya plus infinitif",
+    "question": "Struktur apa I don't know what to do?",
+    "summary": "What, how, where, when, who, dan whether dapat memakai to-infinitive. Polanya pertanyaan tidak langsung yang dipendekkan. Whether tidak diganti if di sini.",
+    "usage": "I don't know what to wear dekat dengan I don't know what I should wear. Show me where to sign dan I can't decide whether to accept memakai pola yang sama. Ia mengikuti kata kerja seperti know, decide, explain, wonder, ask, show, dan tell. Subjek yang dipahami biasanya subjek atau objek utama: Tell me what to do berarti beri tahu saya apa yang harus saya lakukan.\n\nJika what sudah menjadi objek, jangan menambah it: what to do, bukan what to do it. Dalam how to do it, it adalah objek terpisah. Bentuk standarnya whether to go, bukan if to go. Pertanyaan why yang biasa memakai klausa, bukan pola infinitif ini.",
+    "pitfall": "Hindari I don't know what to do it dan if to go. Katakan what to do dan whether to go.",
+    "keywords": [
+      "what to",
+      "how to",
+      "infinitif",
+      "whether to"
+    ]
+  },
+  "emphatic-do": {
+    "title": "Do penegas",
+    "question": "Apa fungsi do dalam I do understand?",
+    "summary": "Do, does, atau did plus base verb menyanggah, menegaskan, atau membuat kontras. Ia tidak berpadu dengan be biasa atau dengan modal.",
+    "usage": "I do understand menjawab seseorang yang mengira Anda tidak. She did send the file menegaskan bahwa pengiriman lampau itu terjadi, dan did diikuti send, bukan sent. Penegasan kini memakai do atau does, penegasan lampau memakai did, dan kata kerja leksikal kembali ke base form. Kontras juga memakainya: I don't like tea, but I do like coffee.\n\nDalam imperatif, Do sit down adalah undangan yang hangat atau tegas. Jangan menulis She does be late atau I did went. Penegasan dengan be biasanya memakai tekanan atau struktur lain, bukan does be. Jika can, will, atau have sudah menjadi kata kerja bantu, jangan menambah do untuk menegaskan kata kerja yang sama.",
+    "pitfall": "Hindari She did sent the file. Penegasan lampau adalah did plus base verb: She did send the file.",
+    "keywords": [
+      "emphatic do",
+      "penegasan",
+      "do",
+      "memang"
+    ]
+  },
+  "numbers-a-hundred": {
+    "title": "a hundred dan hundreds of",
+    "question": "Mengapa two hundred tunggal tetapi hundreds of jamak?",
+    "summary": "Sesudah angka pasti, hundred dan thousand tetap tunggal. Untuk jumlah besar yang samar, gunakan hundreds of atau thousands of, tanpa a dan tanpa angka pasti.",
+    "usage": "A hundred people dan one hundred people keduanya mungkin. Two hundred seats dan three thousand copies tanpa -s. Angka plus of the juga tetap tunggal: two hundred of the seats. Jamak untuk kuantitas samar: hundreds of people, thousands of times.\n\nJangan menulis two hundreds people atau a hundreds of people. British English sering menaruh and di antara ratusan dan puluhan: one hundred and twenty. And itu tidak membuat hundred jamak. Dozen dan million mengikuti kecenderungan yang sama: tunggal sesudah angka, jamak untuk jumlah besar yang samar.",
+    "pitfall": "Hindari two hundreds students. Angka pasti adalah two hundred students. Jumlah besar yang samar adalah hundreds of students.",
+    "keywords": [
+      "hundred",
+      "hundreds of",
+      "angka",
+      "ribuan"
+    ]
+  },
+  "linking-verbs-adjectives": {
+    "title": "Kata sifat sesudah kata kerja penghubung",
+    "question": "Mengapa look, feel, dan taste memakai good, bukan well?",
+    "summary": "Jika be, seem, look, feel, taste, sound, atau become menggambarkan keadaan subjek, ia memakai kata sifat, bukan kata keterangan cara.",
+    "usage": "This soup tastes good menggambarkan supnya, bukan cara mencicipi. I feel cold, The music sounds great, dan She seems tired semuanya memakai kata sifat. Become, get, grow, stay, dan remain juga dapat menghubungkan kata sifat: get dark, stay calm. Well adalah kata keterangan dari good, tetapi well juga kata sifat yang berarti sehat: I feel well.\n\nJangan menaruh kata keterangan -ly sesudah kata kerja ini untuk menggambarkan subjek. Sounds well bukan pujian yang biasa; katakan sounds good. Feel badly muncul dalam sebagian ujaran untuk penyesalan atau simpati, tetapi keadaan subjek adalah I feel bad. Look like memakai kata benda, bukan kata sifat: look tired, bukan look like tired.",
+    "pitfall": "Hindari The soup tastes well dan She looks like tired. The soup tastes good. Penampilan lelah adalah looks tired.",
+    "keywords": [
+      "kata kerja penghubung",
+      "kata sifat",
+      "look",
+      "feel"
+    ]
+  },
+  "interesting-interested": {
+    "title": "interesting dan interested",
+    "question": "Kapan -ing, dan kapan -ed?",
+    "summary": "Bentuk -ing menggambarkan yang menyebabkan perasaan. Bentuk -ed menggambarkan orang yang merasakannya. Interested sering diikuti in.",
+    "usage": "The lecture was interesting menggambarkan kuliah sebagai penyebab. The students were interested menggambarkan perasaan mahasiswa. Pemisahan yang sama muncul dalam boring/bored, exciting/excited, confusing/confused, dan tiring/tired. Orang juga dapat memakai -ing: She is interesting berarti ia menimbulkan minat, bukan bahwa ia merasakannya.\n\nInterested in memakai kata benda atau -ing: interested in the map, interested in learning. Interested to hear adalah reaksi terhadap berita dan tidak menggantikan interested in. Tanyakan apakah kata itu menamai penyebab atau orang yang mengalaminya.",
+    "pitfall": "Hindari I am interesting in history. Perasaan orang adalah I am interested in history. Sejarahnya sendiri mungkin interesting.",
+    "keywords": [
+      "interesting",
+      "interested",
+      "ed",
+      "ing"
+    ]
+  },
+  "hard-hardly": {
+    "title": "hard dan hardly",
+    "question": "Apakah hardly kata keterangan dari hard?",
+    "summary": "Hard berarti sulit, atau dengan usaha. Hardly berarti hampir tidak, dan sudah dekat dengan negatif.",
+    "usage": "The exam was hard adalah kata sifat. She works hard adalah kata keterangan, berarti dengan usaha, bukan hampir tidak bekerja. Hardly berarti kebalikannya: She hardly works berarti ia hampir tidak bekerja. Hardly ever berarti sangat jarang. Hardly biasanya datang sebelum kata kerja utama atau sesudah kata kerja bantu pertama: I can hardly hear you.\n\nHardly had I sat down when the bell rang adalah inversi formal, dan when memperkenalkan peristiwa berikutnya. Jangan menambah not pada hardly. Jangan membaca -ly sebagai dengan cara yang sulit. Makna itu sudah milik hard.",
+    "pitfall": "Jangan membaca She works hard sebagai hampir tidak bekerja. Usaha adalah works hard. Hampir tidak ada adalah hardly works.",
+    "keywords": [
+      "hard",
+      "hardly",
+      "hampir tidak",
+      "keras"
+    ]
+  },
+  "late-lately": {
+    "title": "late dan lately",
+    "question": "Kata mana yang berarti baru-baru ini, late atau lately?",
+    "summary": "Late berarti sesudah waktu yang diharapkan, sebagai kata sifat atau kata keterangan. Lately berarti baru-baru ini dan sering memakai present perfect.",
+    "usage": "The bus was late dan She arrived late sama-sama berarti sesudah waktu yang diharapkan. A late train adalah kereta yang tertunda, dan a late reply adalah balasan yang datang sesudah seharusnya. Lately tidak berarti tertunda: I haven't seen her lately berarti tidak dalam periode baru-baru ini. Recently dekat maknanya dan lebih luwes posisinya.\n\nJangan menulis She arrived lately untuk kedatangan yang terlambat. Latest berarti yang paling baru atau yang terakhir: the latest bus, the latest edition. -ly dalam lately mengubah makna; ia tidak sekadar mengubah late menjadi kata keterangan.",
+    "pitfall": "Hindari She arrived lately untuk kedatangan terlambat. Kedatangan terlambat adalah She arrived late. Periode baru-baru ini adalah I haven't seen her lately.",
+    "keywords": [
+      "late",
+      "lately",
+      "terlambat",
+      "baru-baru ini"
+    ]
+  },
+  "most-most-of": {
+    "title": "most dan most of",
+    "question": "Apakah mayoritas most people atau most of people?",
+    "summary": "Mayoritas umum adalah most plus kata benda, tanpa of. Most of memerlukan the, these, posesif, atau pronomina, karena berarti himpunan tertentu.",
+    "usage": "Most students walk berarti mahasiswa pada umumnya. Most of the students in this class walk berarti mayoritas kelas yang diketahui itu. Most of them dan most of my notes berjalan karena them dan my notes teridentifikasi. The most adalah superlatif: the most useful map.\n\nJangan menulis most of people atau most of students. Kata benda massal mengikuti pemisahan yang sama: most water umum, dan most of the water in the jug adalah air tertentu itu. Kata kerja sesuai dengan kata benda yang dirujuk most: most of the water is, most of the seats are.",
+    "pitfall": "Hindari most of people. Bentuk umum adalah Most people agreed. Kelompok yang diketahui adalah Most of the people in the room agreed.",
+    "keywords": [
+      "most",
+      "most of",
+      "sebagian besar",
+      "mayoritas"
+    ]
+  },
+  "a-lot-plenty": {
+    "title": "a lot dan plenty",
+    "question": "A lot of, lots of, atau plenty of?",
+    "summary": "A lot of dan lots of memakai kata benda hitung maupun massal. Plenty of berarti cukup dan lebih. Much dan many lebih lazim dalam negatif dan pertanyaan.",
+    "usage": "A lot of time dan a lot of chairs keduanya wajar. Lots of lebih percakapan. A lot sendiri dapat menggantikan kata benda yang diketahui: We have a lot. Plenty of time menekankan bukan hanya kuantitas tetapi cukup dengan sisa. Dalam kalimat afirmatif, a lot of lebih biasa daripada much: I have a lot of work, bukan I have much work yang biasa.\n\nNegatif dan pertanyaan tetap memakai much dan many dengan bebas: We don't have much time, Do we have many chairs? Jangan menghilangkan of sebelum kata benda: plenty of time, bukan plenty time. Too many dan too much berarti lebih daripada yang diinginkan, berbeda dari plenty.",
+    "pitfall": "Hindari plenty time dan a lot chairs. Sebelum kata benda, katakan plenty of time dan a lot of chairs.",
+    "keywords": [
+      "a lot of",
+      "plenty of",
+      "banyak",
+      "cukup"
+    ]
+  },
+  "no-not-none": {
+    "title": "no, not, dan none",
+    "question": "No, not, atau none jika tidak ada tiket?",
+    "summary": "No langsung sebelum kata benda. Not menegasikan kata kerja, atau a dan any. None berdiri sendiri, atau none of menunjuk himpunan yang diketahui.",
+    "usage": "Dalam There are no tickets left, no menerangkan tickets. There aren't any tickets left menegasikan kata kerja dan memakai any. Jawaban untuk How many are left? dapat None. None of the tickets dan none of them menunjuk himpunan yang sudah teridentifikasi.\n\nJangan menulis I have not tickets atau none ticket. No dapat mendahului tunggal, jamak, atau kata benda massal: no key, no keys, no time. None tidak dapat langsung diikuti kata benda. Jangan menumpuk negatif sebagai don't have no tickets. Dalam bahasa Inggris standar, negatif ganda itu bukan cara mengatakan nol.",
+    "pitfall": "Hindari I have not tickets. Katakan I have no tickets atau I don't have any tickets. Sebagai jawaban yang berarti nol, gunakan None.",
+    "keywords": [
+      "no",
+      "not",
+      "none",
+      "tidak ada"
+    ]
+  },
+  "everyday-every-day": {
+    "title": "everyday dan every day",
+    "question": "Apakah everyday satu kata atau dua?",
+    "summary": "Everyday adalah kata sifat yang berarti biasa atau sehari-hari. Every day adalah ungkapan waktu yang berarti setiap hari.",
+    "usage": "Everyday clothes dan everyday English menerangkan kata benda dan berarti hal biasa yang dipakai secara teratur, bukan pakaian formal atau bahasa khusus. Dalam I walk to work every day, every day memberi frekuensi dan dapat pindah ke depan: Every day I walk to work. Kedua kata itu tetap terpisah karena day adalah kata benda.\n\nEvery other day, yang berarti selang sehari, juga terpisah. Jangan menulis frekuensi sebagai everyday I walk. Gabungkan hurufnya hanya jika kata itu dapat duduk sebelum kata benda sebagai kata sifat.",
+    "pitfall": "Hindari I walk everyday. Frekuensi adalah I walk every day. Kata sifatnya everyday clothes.",
+    "keywords": [
+      "everyday",
+      "every day",
+      "setiap hari",
+      "sehari-hari"
+    ]
+  },
+  "sometime-sometimes": {
+    "title": "sometime, sometimes, dan some time",
+    "question": "Bagaimana waktu yang tidak tentu, sesekali, dan suatu periode berbeda?",
+    "summary": "Sometime adalah momen yang tidak ditentukan. Sometimes berarti sesekali. Some time adalah suatu periode waktu.",
+    "usage": "Come sometime next week tidak menamai hari tertentu. I sometimes walk berarti berjalan itu bagian dari kebiasaan, bukan seluruh kebiasaan. I need some time berarti rentang waktu: time adalah kata benda dan some adalah determiner. Some times jarang dan hanya cocok jika times berarti kesempatan atau era.\n\nSometime biasanya tidak duduk sebelum kata kerja untuk berarti sesekali. Sometimes dapat di posisi tengah, awal, atau akhir. Frasa bahasa Cina untuk sesekali cocok dengan sometimes. Undangan untuk memilih momen yang tidak ditentukan cocok dengan sometime.",
+    "pitfall": "Hindari I sometime walk untuk sesekali. Sesekali adalah I sometimes walk. Momen yang tidak ditentukan adalah sometime next week. Suatu periode adalah some time alone.",
+    "keywords": [
+      "sometime",
+      "sometimes",
+      "some time",
+      "kadang"
+    ]
+  },
+  "maybe-may-be": {
+    "title": "maybe dan may be",
+    "question": "Bisakah maybe dan may be saling mengganti?",
+    "summary": "Maybe adalah kata keterangan untuk seluruh kalimat. May be adalah modal may plus kata kerja be, dan klausanya tetap memerlukan subjek.",
+    "usage": "Maybe she is right dapat ditulis ulang sebagai She may be right, tetapi tata bahasa dan posisinya berubah. Maybe sering mengawali kalimat, dan juga dapat menjadi tambahan santai di akhir. May be memerlukan subjek, dan be dapat memakai kata sifat, kata benda, atau tempat: She may be late, It may be the key, They may be outside.\n\nJangan menulis She maybe right atau Maybe be a problem. Maybe it's a problem adalah kalimat yang lengkap. May be tetap dua kata, dan maybe tidak dapat dipisah lalu dipakai sebagai kata kerja.",
+    "pitfall": "Hindari She maybe right. Kata keterangannya Maybe she is right. Kata kerjanya She may be right.",
+    "keywords": [
+      "maybe",
+      "may be",
+      "mungkin",
+      "barangkali"
+    ]
+  },
+  "raise-rise": {
+    "title": "raise dan rise",
+    "question": "Kata kerja mana yang memerlukan objek, raise atau rise?",
+    "summary": "Raise transitif dan memerlukan objek. Lampau dan past participle-nya raised. Rise intransitif: rose, risen.",
+    "usage": "Raise your hand, raise the price, dan raise children semuanya berarti subjek menggerakkan atau membesarkan sesuatu yang lain. Prices rise, the sun rose, dan the water has risen berarti hal itu sendiri naik, tanpa objek. Raise beraturan. Tiga bentuk rise adalah rise, rose, dan risen.\n\nJangan menulis The price raised untuk harga yang naik sendiri. Kalimat itu memerlukan orang sebagai subjek yang menaikkannya. Arise adalah kata kerja intransitif terpisah, sering untuk masalah yang muncul, dan tidak menggantikan raise your hand.",
+    "pitfall": "Hindari She rose her hand dan The price raised. Tangan adalah She raised her hand. Harga yang naik sendiri adalah The price rose.",
+    "keywords": [
+      "raise",
+      "rise",
+      "menaikkan",
+      "naik"
+    ]
+  },
+  "lie-lay": {
+    "title": "lie dan lay",
+    "question": "Mengapa bentuk lampau lie dan lay tumpang tindih?",
+    "summary": "Lie untuk berbaring punya lampau lay dan past participle lain. Lay untuk meletakkan memerlukan objek; lampau dan past participle-nya laid. Lie untuk berbohong memakai lied.",
+    "usage": "I'm going to lie down tidak punya objek. Yesterday I lay down for an hour adalah lampau dari berbaring; lay itu tidak berarti meletakkan. Please lay the map on the table punya objek map, dan lampaunya She laid the map down. Partisipnya has lain dan has laid. Kebohongan adalah lie, lied, lied: He lied about the time.\n\nTumpang tindih ada karena lampau lie dieja lay. Cari objek dulu. Tanpa objek biasanya berarti berbaring atau terletak. Ada objek berarti meletakkan. Sebagian ujaran memakai lay down untuk berbaring, tetapi tulisan yang teliti mempertahankan lie down.",
+    "pitfall": "Hindari I laid down for an hour jika yang Anda maksud berbaring. Lampau lie adalah I lay down. Meletakkan peta adalah I laid the map down.",
+    "keywords": [
+      "lie",
+      "lay",
+      "berbaring",
+      "meletakkan"
+    ]
+  },
+  "borrow-lend": {
+    "title": "borrow dan lend",
+    "question": "Mengapa bahasa Inggris memakai dua kata kerja untuk meminjam dan meminjamkan?",
+    "summary": "Borrow berarti mengambil sesuatu untuk sementara, sering dengan from. Lend berarti memberikannya untuk sementara, dengan dua objek atau to.",
+    "usage": "Can I borrow your pen? menggerakkan pena ke arah pembicara. Can you lend me your pen? atau Can you lend your pen to me? menggerakkannya menjauh dari pemilik. Borrow tidak memakai objek ganda orang-plus-benda, jadi borrow me a pen salah. Lampau lend adalah lent.\n\nSatu kata kerja bahasa Cina mencakup kedua arah. Bahasa Inggris harus memilih arahnya. Borrow dan lend untuk pemakaian sementara. Jika kepemilikan berpindah, gunakan give atau take. Mengembalikan adalah return, bukan borrow back yang rutin.",
+    "pitfall": "Hindari Can you borrow me a pen? Memberikannya kepada saya adalah Can you lend me a pen? Mengambilnya dari Anda adalah Can I borrow your pen?",
+    "keywords": [
+      "borrow",
+      "lend",
+      "meminjam",
+      "meminjamkan"
+    ]
+  },
+  "bring-take": {
+    "title": "bring dan take",
+    "question": "Apa titik acuan bring dan take?",
+    "summary": "Bring menggerakkan sesuatu ke arah pembicara atau ke tujuan yang sedang dibicarakan. Take menggerakkannya menjauh ke tempat lain. Fetch berarti pergi, mengambilnya, dan kembali.",
+    "usage": "Bring your passport to the interview memperlakukan wawancara sebagai tujuan: paspor harus tiba di sana. Take this form to the desk menggerakkannya menjauh dari sini. Dalam Come in and bring your bag, come dan bring sama-sama menunjuk ke arah pembicara. I'll take it home meninggalkan tempat sekarang.\n\nFetch, atau get, berarti orang pergi lalu kembali dengan benda itu: I'll fetch the key. Jangan memilih bring untuk setiap tindakan membawa. Tanyakan apakah tujuannya di sini atau di tempat lain. Lampau bring adalah brought, dan lampau take adalah took.",
+    "pitfall": "Jika orang itu di dalam ruangan dan ingin payung dibawa masuk, katakan Bring the umbrella in, bukan Take the umbrella in. Take cocok untuk pergerakan menjauh dari sini.",
+    "keywords": [
+      "bring",
+      "take",
+      "membawa",
+      "fetch"
+    ]
+  },
+  "hear-listen": {
+    "title": "hear dan listen",
+    "question": "Mana yang memerlukan to, hear atau listen?",
+    "summary": "Hear adalah bunyi yang sampai kepada Anda. Listen adalah memberi perhatian, dan memerlukan to sebelum objek.",
+    "usage": "I heard a noise tidak berarti saya berkonsentrasi. I was listening to the radio berarti saya memang. Listen dapat berdiri sendiri: Please listen. Objek memerlukan to: listen to me, listen to it. Hear from berarti menerima kabar dari seseorang, dan hear about berarti mendengar tentang sesuatu.\n\nPendengaran yang tidak disengaja memakai hear atau can hear. I'm hearing the bell bukan bentuk yang biasa. Listen tidak dapat menjadi listen music. Satu kata kerja bahasa Cina sering mencakup persepsi dan perhatian.",
+    "pitfall": "Hindari listen music dan listen the radio. Perhatian adalah listen to the radio. Persepsi adalah I heard a noise.",
+    "keywords": [
+      "hear",
+      "listen",
+      "mendengar",
+      "menyimak"
+    ]
+  },
+  "see-watch-look": {
+    "title": "see, watch, dan look",
+    "question": "Mengapa bahasa Inggris memisahkan melihat, menonton, dan memandang?",
+    "summary": "See adalah mempersepsi atau bertemu. Look adalah mengarahkan mata. Watch adalah memberi perhatian pada sesuatu yang berubah. Look memerlukan at sebelum objek.",
+    "usage": "I saw a bird berarti burung itu masuk ke penglihatan Anda. Look at the board menyuruh seseorang mengarahkan matanya. I watched the match berarti mengikuti adegan yang berubah sepanjang waktu. Look for berarti mencari, dan look after berarti merawat; keduanya bukan melihat harfiah. See a film dapat berarti menghadiri pemutaran, sedangkan watch a film menekankan penayangannya.\n\nSee untuk persepsi yang tidak disengaja biasanya tidak continuous; can see tersedia. I'm seeing the dentist adalah janji. Jangan menulis look the board atau watch at the match. Tanyakan apakah kata kerja bahasa Cina itu berarti memperhatikan, mengikuti adegan, atau mengarahkan mata.",
+    "pitfall": "Hindari look the board dan watch at the match. Mengarahkan mata adalah look at the board. Mengikuti adegan adalah watch the match. Memperhatikan adalah see.",
+    "keywords": [
+      "see",
+      "watch",
+      "look",
+      "melihat"
+    ]
+  },
+  "win-beat": {
+    "title": "win dan beat",
+    "question": "Win atau beat untuk pertandingan dan lawan?",
+    "summary": "Objek win adalah pertandingan, hadiah, atau jumlah. Objek beat adalah lawan.",
+    "usage": "We won the final, She won a prize, dan Our team won semuanya wajar. Lawan memakai beat: We beat the other team. Win against kadang muncul, tetapi win the other team bukan pola standar. Lampau beat adalah beat, dan past participle-nya beaten: We have beaten them twice.\n\nKalimat bahasa Cina yang menamai orang yang kalah dapat menggoda pembelajar menulis win them. Bahasa Inggris memisahkan hal yang dimenangi dari orang yang dikalahkan. Beat juga berarti memukul, tetapi dalam olahraga berarti mengalahkan.",
+    "pitfall": "Hindari We won the other team. Peristiwanya We won the final. Lawannya We beat the other team.",
+    "keywords": [
+      "win",
+      "beat",
+      "menang",
+      "mengalahkan"
+    ]
+  },
+  "advice-advise": {
+    "title": "advice dan advise",
+    "question": "Bagaimana kata benda dan kata kerja untuk nasihat berbeda?",
+    "summary": "Advice adalah kata benda tak terhitung. Advise adalah kata kerja, sering dalam advise someone to do. Pengucapannya juga berbeda.",
+    "usage": "Hitung dengan a piece of advice atau some advice. An advice dan jamak rutin advices bukan bahasa Inggris biasa. Kata kerjanya She advised me to wait, dan kata bendanya Her advice was to wait. Advice berakhir bunyi /s/; advise berakhir /z/.\n\nAdvise dapat memakai that-clause, dan usulan dapat memakai base form atau should: She advised that he wait. Pola yang lebih lazim adalah advise someone to do. Jangan menambah -ed pada kata benda advice lalu memperlakukannya sebagai kata kerja.",
+    "pitfall": "Hindari an advice dan She adviced me. Satu butir adalah a piece of advice. Kata kerjanya She advised me to wait.",
+    "keywords": [
+      "advice",
+      "advise",
+      "nasihat",
+      "menasihati"
+    ]
+  },
+  "beside-besides": {
+    "title": "beside dan besides",
+    "question": "Apakah beside dan besides berbeda lebih dari satu huruf?",
+    "summary": "Beside adalah preposisi yang berarti di samping. Besides berarti sebagai tambahan dan dapat berupa preposisi atau kata keterangan.",
+    "usage": "Sit beside me adalah posisi. Besides the fare, we paid for lunch berarti selain ongkos itu. Besides, the hall was cold memakai kata keterangan untuk menambah poin lain. Who else was there besides Sam? menanyakan orang selain Sam.\n\nExcept menyingkirkan. Besides dalam kalimat afirmatif biasanya menambah. Jangan memakai beside untuk sebagai tambahan. Beside oneself adalah ungkapan tetap untuk kehilangan kendali emosi, terpisah dari makna tempat yang biasa.",
+    "pitfall": "Jangan memakai beside the cost untuk selain biaya itu. Tambahan adalah besides the cost. Posisi adalah beside the window.",
+    "keywords": [
+      "beside",
+      "besides",
+      "di samping",
+      "selain"
+    ]
+  },
+  "across-through": {
+    "title": "across dan through",
+    "question": "Across atau through untuk jalan dan terowongan?",
+    "summary": "Across bergerak dari satu sisi ke sisi lain di suatu permukaan. Through bergerak di dalam suatu ruang, dan juga dapat menembus suatu periode waktu.",
+    "usage": "Walk across the road dan across the bridge bergerak di permukaan dari sisi ke sisi. Walk through the tunnel, through the crowd, dan through the forest masuk ke suatu ruang lalu keluar. Across the street juga dapat berarti di sisi seberang. Through the window berarti lewat melalui bukaan, bukan berjalan di atas kaca.\n\nThrough Friday dapat berarti sampai dan termasuk Jumat. Itu pemakaian waktu. Jangan mengatakan through the road untuk menyeberang jalan. Tanyakan apakah pergerakannya sisi ke sisi di permukaan atau melalui bagian dalam sesuatu.",
+    "pitfall": "Hindari walk through the road untuk menyeberang. Jalan adalah walk across the road. Terowongan adalah walk through the tunnel.",
+    "keywords": [
+      "across",
+      "through",
+      "menyeberang",
+      "melalui"
+    ]
+  },
+  "as-if-as-though": {
+    "title": "as if dan as though",
+    "question": "As if, as though, atau like untuk suatu kesan?",
+    "summary": "As if dan as though bermakna sama dan memakai klausa. Perbandingan yang tidak nyata sering memakai bentuk lampau. Like plus klausa bersifat percakapan; tulisan yang teliti mempertahankan as if.",
+    "usage": "It looks as if it's going to rain dapat berupa kemungkinan nyata, jadi klausanya tetap kini. He talks as if he knew everything menyarankan ia tidak tahu. Knew menandai jarak dari fakta, bukan waktu lampau. As though sedikit lebih formal dan berstruktur sama. As if to leave memakai infinitif untuk isyarat akan pergi.\n\nJangan menulis as like he knew. It looks like rain baik karena like memakai kata benda. It looks like it's going to rain lazim dalam ujaran, tetapi perbandingan yang teliti, terutama yang tidak nyata, lebih suka as if atau as though.",
+    "pitfall": "Hindari He talks as like he knew. Katakan He talks as if he knew everything. Peluang hujan yang tampak nyata adalah It looks as if it's going to rain.",
+    "keywords": [
+      "as if",
+      "as though",
+      "seolah",
+      "kesan"
+    ]
+  },
+  "spend-worth-ing": {
+    "title": "spend dan worth plus -ing",
+    "question": "Mengapa spend dan worth memakai -ing?",
+    "summary": "Spend memakai waktu atau uang, lalu -ing atau on plus kata benda. Worth memakai kata benda atau -ing, bukan to-infinitive.",
+    "usage": "Katakan I spent an hour reading dan She spent the money on books. Lampau spend adalah spent. Spend time to read bukan pola biasa untuk makna ini. On memakai kata benda, bukan base verb.\n\nDalam The book is worth reading, -ing bermakna pasif: layak dibaca. Bentuknya tetap reading, bukan worth being read yang diutamakan, dan bukan worth to read. It's worth it dapat berdiri sendiri. Worth bukan kata kerja di sini, jadi ia memerlukan be: is worth, bukan worths.",
+    "pitfall": "Hindari worth to read dan spent an hour to read. Katakan The book is worth reading dan I spent an hour reading.",
+    "keywords": [
+      "spend",
+      "worth",
+      "menghabiskan",
+      "layak"
+    ]
+  },
+  "cant-help": {
+    "title": "can't help",
+    "question": "Apa yang mengikuti can't help jika Anda tidak dapat menahan diri?",
+    "summary": "Can't help plus -ing berarti Anda tidak dapat menahan diri. Can't help someone to do adalah makna lain: Anda tidak mampu membantu mereka.",
+    "usage": "I can't help laughing berarti tawa itu tidak dapat dihentikan. I can't help but laugh juga mungkin, dengan base verb sesudah but. Lampaunya I couldn't help laughing. Help ini tidak berarti membantu, jadi to laugh bukan pola untuk tindakan yang tak tertahankan.\n\nI can't help you to move the desk berarti Anda tidak dapat membantu. Help dalam makna membantu mengizinkan help someone (to) do. Kedua makna dipisahkan oleh apakah orang mengikuti help dan apakah kata kerja berikutnya -ing atau to. Can't help it berarti tidak ada yang dapat Anda lakukan tentang suatu situasi.",
+    "pitfall": "Hindari I can't help to laugh untuk tawa yang tak tertahankan. Makna itu I can't help laughing. Tidak mampu membantu adalah I can't help you (to) move it.",
+    "keywords": [
+      "can't help",
+      "tidak bisa menahan",
+      "helping",
+      "ing"
+    ]
+  },
+  "feel-like": {
+    "title": "feel like",
+    "question": "Apakah feel like memakai to jika Anda ingin melakukan sesuatu?",
+    "summary": "Jika feel like berarti ingin, ia memakai kata benda atau -ing. Ia juga dapat berarti merasa seolah, dan saat itu sering memakai klausa.",
+    "usage": "I feel like a walk dan I feel like walking sama-sama berarti saya menginginkan itu sekarang. Feel like to walk bukan polanya. Negatifnya I don't feel like cooking. Ini lebih santai daripada want dan sering menggambarkan suasana hati kini.\n\nI feel like I'm falling adalah sensasi, bukan keinginan untuk jatuh. This cloth feels like silk adalah tekstur atau kemiripan. Kata-kata sesudah like memisahkan maknanya: kata benda atau -ing sering keinginan atau kemiripan, dan klausa sering sensasi. Jangan mencampurnya dengan feel plus kata sifat: I feel tired.",
+    "pitfall": "Hindari I feel like to go out. Ingin keluar adalah I feel like going out, atau I feel like a walk.",
+    "keywords": [
+      "feel like",
+      "ingin",
+      "ingin melakukan",
+      "ing"
+    ]
+  },
+  "go-get-become": {
+    "title": "go, get, dan become",
+    "question": "Go, get, atau become untuk perubahan keadaan?",
+    "summary": "Become adalah kata kerja umum untuk perubahan dan dapat memakai kata sifat atau kata benda. Get sering memakai kata sifat dan bersifat percakapan. Go lazim untuk warna, menjadi rusak, dan sebagian perubahan tetap.",
+    "usage": "She became a nurse memakai become dengan kata benda pekerjaan. It got dark dan I'm getting tired adalah perubahan kata sifat sehari-hari. Go wrong, go bad, go grey, dan go mad adalah pemakaian go yang mapan. Makanan yang rusak biasanya go bad, bukan become bad sebagai pilihan pertama. Get tidak memakai kata benda pekerjaan: tidak ada get a nurse untuk makna ini.\n\nJangan menulis go tired atau become to tired. Kata sifat tidak memerlukan to. Grow juga dapat menandai perubahan bertahap: grow dark. Tanyakan apakah perubahan bahasa Cina itu pekerjaan atau identitas, keadaan sementara, atau perubahan warna atau kondisi.",
+    "pitfall": "Hindari She got a nurse untuk karier, dan jangan memilih The milk became bad lebih dahulu. Pekerjaan adalah She became a nurse. Susu rusak adalah The milk went bad.",
+    "keywords": [
+      "become",
+      "get",
+      "go",
+      "berubah"
+    ]
+  },
+  "accept-except": {
+    "title": "accept dan except",
+    "question": "Apakah accept dan except terpisah lebih dari satu huruf?",
+    "summary": "Accept berarti menerima atau setuju. Except berarti tidak termasuk dan sering berupa preposisi.",
+    "usage": "She accepted the offer berarti ia setuju menerimanya. Everyone came except Lee berarti Lee tidak termasuk. Except for sering mengoreksi pernyataan yang utuh: The room was empty except for one chair. Kata kerja exclude berbeda dari preposisi except. Accept tidak berarti mengeluarkan.\n\nKedua kata menekankan suku kedua, tetapi bunyi awalnya berbeda: accept diawali /ək/ dan except diawali /ɪk/. Except juga dapat memperkenalkan klausa: except that the door was locked. Jangan menaruh accept di tempat except.",
+    "pitfall": "Hindari Everyone came accept Lee. Pengecualian adalah except Lee. Menyetujui tawaran adalah accepted the offer.",
+    "keywords": [
+      "accept",
+      "except",
+      "menerima",
+      "kecuali"
+    ]
+  },
+  "then-than": {
+    "title": "then dan than",
+    "question": "Mengapa then tidak dapat mencakup urutan dan perbandingan sekaligus?",
+    "summary": "Then berarti berikutnya, pada waktu itu, atau dalam hal itu. Than mengikuti komparatif dan berarti perbandingan.",
+    "usage": "We ate, and then we left. Then juga dapat berarti pada waktu itu: I lived there then. Komparatif memerlukan than: older than me, more useful than the old map. Than me biasa; than I am adalah bentuk formal yang lebih penuh.\n\nThen dan than tidak berbunyi sama. Jangan menulis more better then. Komparatif sudah berarti lebih, dan kata sesudahnya than. Sebelum suatu waktu dapat before; tidak harus then.",
+    "pitfall": "Hindari older then me. Perbandingan adalah older than me. Urutan adalah We ate, and then we left.",
+    "keywords": [
+      "then",
+      "than",
+      "lalu",
+      "daripada"
+    ]
+  },
+  "sensitive-sensible": {
+    "title": "sensitive dan sensible",
+    "question": "Kata mana yang berarti mudah terpengaruh, dan mana yang berarti masuk akal?",
+    "summary": "Sensitive berarti mudah terpengaruh. Sensible berarti masuk akal dan praktis.",
+    "usage": "Sensitive skin dan sensitive to criticism berarti reaksi yang kuat atau mudah tersakiti. A sensible decision dan sensible shoes berarti penilaian yang sehat atau kepraktisan. Sensitive sering memakai to: sensitive to light. Sensible of dapat berarti sadar dalam bahasa Inggris formal, tetapi pembelajar lebih sering memerlukan makna masuk akal: It is sensible to wait.\n\nJangan menulis sensible skin untuk kulit yang mudah bereaksi, atau sensitive decision untuk keputusan yang bijak, kecuali yang Anda maksud keputusan itu menyangkut pokok yang peka. Kedua kata berasal dari sense, tetapi maknanya sudah terpisah.",
+    "pitfall": "Hindari a sensible skin untuk kulit yang reaktif. Kulit adalah sensitive skin. Keputusan yang bijak adalah a sensible decision.",
+    "keywords": [
+      "sensitive",
+      "sensible",
+      "peka",
+      "masuk akal"
+    ]
+  },
+  "actual-current": {
+    "title": "actual dan current",
+    "question": "Bisakah actual mencakup nyata dan yang sekarang?",
+    "summary": "Actual mengontraskan dengan perkiraan, kesan, atau klaim yang keliru. Current mengontraskan dengan lampau atau masa depan dan berarti yang sekarang.",
+    "usage": "The actual cost was higher adalah biaya yang nyata, bukan perkiraan. The current price adalah harga sekarang, dan dapat berubah nanti. The current edition adalah yang sedang dipakai. Actually sering mengoreksi klaim: Actually, the gate is on the left. Ia tidak berarti saat ini.\n\nKata bahasa Cina untuk kondisi nyata kadang dipakai di tempat bahasa Inggris memerlukan waktu sekarang. Orang yang sekarang menjabat, aturan yang berlaku, dan today's price memakai current atau present, bukan actual. Jangan memperlakukan actual sebagai kata waktu.",
+    "pitfall": "Hindari the actual president untuk orang yang menjabat sekarang. Pemegang sekarang adalah the current president. Angka yang nyata adalah the actual cost.",
+    "keywords": [
+      "actual",
+      "current",
+      "nyata",
+      "sekarang"
+    ]
+  },
+  "eventually-finally": {
+    "title": "eventually dan finally",
+    "question": "Eventually atau finally untuk hasil dan poin terakhir?",
+    "summary": "Eventually adalah hasil sesudah waktu atau beberapa perubahan. Finally dapat berarti akhirnya, atau memperkenalkan butir terakhir dalam urutan.",
+    "usage": "We eventually found a seat menekankan bahwa pencarian itu memakan waktu. The bus finally came menekankan kelegaan sesudah menunggu. Finally, add your name memperkenalkan langkah terakhir dalam daftar. Eventually tidak dapat melakukan tugas itu.\n\nIn the end dekat dengan eventually dan juga bukan nomor daftar. At last dan finally sama-sama dapat menandai sesuatu yang diharapkan. Jangan menaruh eventually di awal seolah ia berarti satu nasihat terakhir.",
+    "pitfall": "Hindari Eventually, check the spelling untuk langkah terakhir. Langkah terakhir adalah Finally, check the spelling. Hasil sesudah penundaan adalah eventually.",
+    "keywords": [
+      "eventually",
+      "finally",
+      "akhirnya",
+      "terakhir"
+    ]
+  },
+  "specially-especially": {
+    "title": "specially dan especially",
+    "question": "Specially atau especially untuk khususnya?",
+    "summary": "Especially berarti khususnya atau di atas segalanya. Specially berarti untuk tujuan tertentu.",
+    "usage": "I especially like the soup memilih sup itu dari hal lain. The roads are icy, especially in the morning menonjolkan pagi. Specially designed dan I made it specially for you berarti dilakukan untuk tujuan itu. Especially adalah pilihan biasa untuk particularly.\n\nJangan menulis specially in the morning untuk di atas segalanya pada pagi hari. Specially tidak melakukan tugas penonjolan itu. Special adalah kata sifat: a special key. Jika particularly dapat menggantikan kata keterangan itu, katanya biasanya especially.",
+    "pitfall": "Hindari The roads are icy, specially in the morning. Khususnya adalah especially in the morning. Dilakukan untuk Anda adalah specially for you.",
+    "keywords": [
+      "specially",
+      "especially",
+      "khususnya",
+      "khusus"
+    ]
+  },
+  "miss-lose": {
+    "title": "miss dan lose",
+    "question": "Makna mana milik miss, dan mana milik lose?",
+    "summary": "Miss berarti gagal menangkap, mengenai, atau menghadiri, atau merasakan ketidakhadiran seseorang. Lose berarti tidak lagi memiliki sesuatu, tidak dapat menemukannya, atau tidak menang.",
+    "usage": "Miss the bus, miss the target, dan miss a class semuanya berarti gagal terhubung dengan sesuatu yang seharusnya Anda temui. I miss you berarti Anda merasakan ketidakhadirannya. Lose your keys, lose a game, dan lose your way berarti benda, pertandingan, atau rute itu tidak lagi dalam kendali Anda. Ketinggalan bus bukan lose the bus.\n\nMiss out dapat berarti melewatkan. Lampau lose adalah lost, dan kata sifat lost berarti tidak lagi ditemukan. Jika kalimat bahasa Cina berarti Anda tidak naik bus, gunakan miss. Jika kunci tidak dapat ditemukan, gunakan lose.",
+    "pitfall": "Hindari I lost the bus. Tidak berhasil menaikinya adalah I missed the bus. Kunci yang tidak dapat ditemukan adalah I lost my keys.",
+    "keywords": [
+      "miss",
+      "lose",
+      "ketinggalan",
+      "kehilangan"
+    ]
+  },
+  "rob-steal": {
+    "title": "rob dan steal",
+    "question": "Apakah kata kerjanya memakai orang atau bendanya?",
+    "summary": "Objek rob adalah orang atau tempat. Objek steal adalah benda yang diambil.",
+    "usage": "Katakan They robbed the bank dan Someone robbed her. Bendanya memakai steal: They stole the money. Untuk memuat keduanya, gunakan rob someone of something: They robbed her of her bag. Steal tidak memakai korban sebagai objek langsung.\n\nLampau rob adalah robbed. Lampau steal adalah stole, dan past participle-nya stolen. Jangan menulis rob the money atau steal the bank untuk uang yang diambil dari bank. Bahasa Inggris membuat Anda memilih apakah objeknya korban atau barang.",
+    "pitfall": "Hindari They robbed the money dan They stole the bank. Uangnya They stole the money. Bank atau orangnya They robbed the bank atau They robbed her.",
+    "keywords": [
+      "rob",
+      "steal",
+      "merampok",
+      "mencuri"
+    ]
+  },
+  "remind-remember": {
+    "title": "remind dan remember",
+    "question": "Kata kerja mana yang berarti membuat seseorang ingat?",
+    "summary": "Remember adalah sesuatu yang Anda lakukan sendiri. Remind berarti membuat orang lain ingat, sering remind someone to do atau remind someone about.",
+    "usage": "Please remind me to lock the door meminta orang lain membuat Anda ingat. I remembered to lock the door berarti Anda sendiri tidak lupa tugas itu. Remind memerlukan orang yang diingatkan. Remind someone of something berarti memunculkan ingatan: The song reminds me of that summer.\n\nJangan menulis Remember me to lock the door untuk permintaan agar diingatkan. Remember to dan remember -ing adalah kontras terpisah: remember to lock adalah tugas di depan, dan remember locking adalah ingatan telah melakukannya. Tindakan mendorong orang lain adalah remind.",
+    "pitfall": "Hindari Remember me to lock the door. Permintaan agar diingatkan adalah Remind me to lock the door. Tidak lupa sendiri adalah I remembered to lock it.",
+    "keywords": [
+      "remind",
+      "remember",
+      "mengingatkan",
+      "ingat"
+    ]
+  },
+  "wait-expect-hope": {
+    "title": "wait, expect, dan hope",
+    "question": "Bisakah wait mencakup menunggu, harapan, dan keinginan?",
+    "summary": "Wait for berarti tinggal sampai sesuatu terjadi. Expect berarti percaya sesuatu akan terjadi atau seharusnya terjadi. Hope berarti menginginkan hal yang mungkin menjadi benar.",
+    "usage": "I'm waiting for the result menggambarkan kegiatan menunggu. Ia memakai for dan tidak memakai that-clause. I expect the result today berarti saya pikir hasil itu akan datang hari ini. I hope the result is good berarti saya menginginkan hasil itu. Baik expect maupun hope dapat memakai to: I expect to hear today, I hope to hear today.\n\nWait tidak menamai harapan batin, jadi I wait that you pass salah. Expect juga dapat berarti menuntut: I expect you to be on time. Hope bukan kata kerja biasa untuk peristiwa buruk yang tidak Anda inginkan; fear atau worry lebih cocok. Kata bahasa Cina untuk menunggu kadang sebenarnya berarti prediksi.",
+    "pitfall": "Hindari I'm waiting that the result is good dan wait you. Kegiatannya wait for the result. Keinginannya I hope it is good. Prediksinya I expect it today.",
+    "keywords": [
+      "wait",
+      "expect",
+      "hope",
+      "menunggu"
+    ]
+  },
+  "look-seem-appear": {
+    "title": "look, seem, dan appear",
+    "question": "Look, seem, atau appear untuk suatu kesan?",
+    "summary": "Ketiganya dapat memberi kesan. Look sering punya bukti yang terlihat, seem adalah kata kerja umum, dan appear lebih formal serta dapat menyarankan kesan itu mungkin tidak andal.",
+    "usage": "You look tired biasanya bertumpu pada sesuatu yang terlihat, seperti wajah atau postur. She seems tired dapat datang dari beberapa jenis bukti. He appears calm sedikit lebih formal. Kata sifat mengikuti kata kerja secara langsung: look tired, bukan look like tired. Look like dan seem like memakai kata benda atau klausa: look like a nurse, It looks as if the gate is shut.\n\nSeem dan appear dapat memakai to be atau to do: She seems to know the way. It seems that... dan It appears that... mengomentari seluruh situasi. Jangan menulis look that she is tired.",
+    "pitfall": "Hindari She looks like tired. Kata sifat adalah She looks tired. Kemiripan dengan kata benda adalah She looks like a teacher.",
+    "keywords": [
+      "look",
+      "seem",
+      "appear",
+      "tampak"
+    ]
+  },
+  "lose-loose": {
+    "title": "lose dan loose",
+    "question": "Mana yang kata kerja, lose atau loose?",
+    "summary": "Lose adalah kata kerja, dengan lampau lost, berarti tidak lagi memiliki, tidak menang, atau tersesat. Loose terutama kata sifat yang berarti tidak kencang atau tidak terpasang.",
+    "usage": "Katakan Don't lose the key, We lost the game dan I often lose my way. Loose menggambarkan keadaan: The screw is loose, loose trousers. Pengucapan membantu: lose adalah /luːz/ dan loose adalah /luːs/. Sekrup yang tidak kencang adalah a loose screw, bukan a lose screw.\n\nLoose dapat berupa kata kerja yang berarti mengendurkan, tetapi pemakaian itu jauh kurang lazim daripada kata sifat, dan tidak pernah menggantikan lose. Lampau lose bukan loosed. Kata bahasa Cina untuk longgar dan hilang bukan satu keluarga kata bahasa Inggris.",
+    "pitfall": "Hindari Don't loose your key. Salah menaruhnya adalah Don't lose your key. Sekrup yang tidak kencang adalah The screw is loose.",
+    "keywords": [
+      "lose",
+      "loose",
+      "hilang",
+      "longgar"
+    ]
+  },
+  "quiet-quite": {
+    "title": "quiet dan quite",
+    "question": "Ejaan mana yang berarti hening, dan mana yang berarti agak?",
+    "summary": "Quiet adalah kata sifat yang berarti sedikit bunyi. Quite adalah kata keterangan. Ia dapat berarti agak, dan dengan kata yang tidak berderajat ia dapat berarti sepenuhnya.",
+    "usage": "A quiet room dan Please be quiet sama-sama berarti sedikit bunyi. Quite tidak dapat menggambarkan ruangan sendirian. Quite good dalam British English sering berarti cukup baik, tidak harus sangat baik. Dalam quite right, quite sure, dan quite finished, quite lebih dekat ke sepenuhnya karena kata-kata itu tidak benar-benar berderajat. Quite quiet gramatikal dan berarti cukup hening.\n\nJangan menulis a quite room. Kata keterangan biasanya datang sebelum kata sifat. A quite difficult map mungkin, meskipun a rather difficult map atau quite a difficult map sering terdengar lebih wajar. Quite a plus frasa kata benda adalah urutan yang lazim: quite a long walk.",
+    "pitfall": "Hindari a quite room. Ruangan yang hening adalah a quiet room. Jalan yang cukup panjang adalah quite a long walk.",
+    "keywords": [
+      "quiet",
+      "quite",
+      "hening",
+      "cukup"
+    ]
+  },
+  "house-home": {
+    "title": "house dan home",
+    "question": "Mengapa go home tidak memakai to?",
+    "summary": "House adalah bangunan. Home adalah tempat Anda tinggal, dan tidak harus rumah. Dalam go home dan at home, home biasanya tanpa artikel dan tanpa to.",
+    "usage": "They bought a house tentang bangunannya. I'm going home tentang kembali ke tempat Anda tinggal, yang mungkin flat. At home berarti di rumah Anda. In the house berarti di dalam bangunan itu. Stay home dan stay at home keduanya muncul. A home dapat berupa tempat tinggal, atau lembaga seperti a care home.\n\nJangan menulis go to home. Arrive home juga tanpa to. Satu kata bahasa Cina dapat berarti bangunan, keluarga, atau tempat Anda tinggal. Gunakan house lebih dahulu jika yang Anda maksud bangunannya sendiri. Home dapat berfungsi sebagai kata keterangan, jadi tata bahasanya tidak sama dengan kata benda biasa house.",
+    "pitfall": "Hindari go to home, dan jangan memakai go to the house untuk rumah Anda sendiri kecuali yang Anda maksud bangunan fisik itu. Pulang adalah go home.",
+    "keywords": [
+      "house",
+      "home",
+      "rumah",
+      "pulang"
+    ]
+  },
+  "work-job": {
+    "title": "work dan job",
+    "question": "Apakah pekerjaan yang dapat dihitung job atau work yang tak terhitung?",
+    "summary": "Work yang berarti pekerjaan atau usaha biasanya tak terhitung, dan ia juga kata kerja. Job adalah jabatan yang dapat dihitung atau satu tugas.",
+    "usage": "Katakan I'm looking for work, I have a lot of work, dan She is at work. Jabatan tertentu adalah job: She has a job in the library, two jobs. Tugas juga dapat berupa job: That's a big job. Go to work tanpa artikel. Homework juga tak terhitung, jadi bukan homeworks.\n\nJangan mengatakan a work untuk jabatan, kecuali work berarti karya seni atau tulisan. Works dapat berarti pabrik atau tulisan pengarang; bukan jamak biasa dari job. Kata kerjanya She works on Mondays. Untuk satu frasa bahasa Cina yang berarti pekerjaan, pilih a job untuk jabatan dan work untuk kegiatan atau pekerjaan secara umum.",
+    "pitfall": "Hindari I have a work dan She is looking for a job work. Mencari pekerjaan dapat looking for work. Memegang jabatan adalah has a job.",
+    "keywords": [
+      "work",
+      "job",
+      "pekerjaan",
+      "jabatan"
+    ]
+  },
+  "in-spite-of-despite": {
+    "title": "in spite of dan despite",
+    "question": "Bisakah in spite of atau despite memakai klausa penuh?",
+    "summary": "In spite of dan despite sama-sama preposisi dan memakai kata benda atau -ing. Despite tidak menambah of. Klausa penuh memerlukan although atau the fact that.",
+    "usage": "In spite of the rain dan Despite the rain bermakna sama, dan despite lebih ringkas. Kata kerja sesudahnya memakai -ing: despite feeling ill. Jika konsesinya klausa penuh, gunakan although it rained, atau despite the fact that it rained. In spite of memerlukan of-nya. Despite tidak memakai of.\n\nKedua preposisi tidak menggabungkan dua klausa seperti although. Konsesi bahasa Cina dapat langsung diikuti klausa. Dalam bahasa Inggris, lihat dulu apakah yang mengikuti kata benda atau subjek plus kata kerja. Even though juga memakai klausa faktual dan tidak ditulis despite even.",
+    "pitfall": "Hindari despite of the rain dan in spite the rain. Katakan despite the rain atau in spite of the rain. Klausa adalah Although it rained, we went.",
+    "keywords": [
+      "despite",
+      "in spite of",
+      "meski",
+      "konsesi"
+    ]
+  },
+  "so-as-to": {
+    "title": "so as to",
+    "question": "Bagaimana so as to berbeda dari to dan so that?",
+    "summary": "So as to menandai tujuan dan memakai base verb dengan subjek yang sama dengan klausa utama. Negatifnya so as not to. Subjek yang berbeda memerlukan klausa so that.",
+    "usage": "Dalam She spoke quietly so as to avoid waking the baby, orang yang berbicara dan orang yang menghindari kebisingan adalah orang yang sama. To avoid atau in order to avoid lebih lazim; so as to sedikit lebih formal. Jangan membentuk negatif sebagai so as to not. Katakan so as not to wake anyone.\n\nJika klausa tujuan punya subjek yang berbeda, so as to tidak cukup: She spoke quietly so that he could sleep. Jangan membaca so as to sebagai pola hasil so...that. Hasilnya She was so quiet that nobody heard her. So as to tidak punya kata sifat di tengah.",
+    "pitfall": "Hindari so as to not wake dan so as to he could sleep. Negatifnya so as not to wake. Subjek yang berbeda adalah so that he could sleep.",
+    "keywords": [
+      "so as to",
+      "tujuan",
+      "supaya",
+      "agar tidak"
+    ]
+  },
+  "until-till": {
+    "title": "until dan till",
+    "question": "Apakah ada beda antara until dan till?",
+    "summary": "Until dan till sama-sama berarti situasi berlanjut sampai suatu titik. Till lebih informal. Keduanya bukan tenggat penyelesaian yang dinyatakan by.",
+    "usage": "Wait until the rain stops dan Wait till the rain stops bermakna sama. Until lebih lazim dalam tulisan. Till wajar dalam ujaran dan sebagian frasa tetap. Not until berarti perubahan terjadi pada titik itu dan tidak sebelumnya: The shop doesn't open until nine. Klausa masa depan memakai bentuk kini: until she arrives, bukan until she will arrive.\n\nUntil dapat diikuti kata benda, waktu, atau klausa. Jangan mengejanya untill. Jika pekerjaan harus selesai sebelum Jumat, gunakan by Friday. Jika situasinya berlanjut sampai Jumat, gunakan until Friday.",
+    "pitfall": "Jangan mengeja until sebagai untill, dan jangan menulis until she will arrive di dalam klausa. Berlanjut sampai kedatangannya adalah until she arrives.",
+    "keywords": [
+      "until",
+      "till",
+      "sampai",
+      "hingga"
+    ]
+  },
+  "practice-practise": {
+    "title": "practice dan practise",
+    "question": "Bagaimana memilih practice atau practise?",
+    "summary": "Dalam British English practice adalah kata benda dan practise adalah kata kerja. American English biasanya menulis practice untuk keduanya.",
+    "usage": "I need more practice memakai kata benda. Dalam British English She practises the piano every day memakai kata kerja practise. American English sering menulis She practices the piano. Pengucapannya sama; perbedaannya terutama ejaan.\n\nA doctor's practice menamai usaha medis dan merupakan kata benda. Jangan menulis kata kerja British sebagai practice secara bawaan, dan jangan menganggap American English memerlukan practise. Ikuti sistem ejaan yang Anda pakai.",
+    "pitfall": "Dalam tulisan British, jangan menjadikan setiap kata kerja practice; ejaan kata kerja yang biasa adalah practise.",
+    "keywords": [
+      "practice",
+      "practise",
+      "latihan",
+      "ejaan"
+    ]
+  },
+  "principal-principle": {
+    "title": "principal dan principle",
+    "question": "Apa beda principal dan principle?",
+    "summary": "Principle adalah kaidah atau keyakinan. Principal dapat berupa kata sifat yang berarti utama, atau kata benda untuk kepala sekolah atau jumlah pokok.",
+    "usage": "A matter of principle menyangkut keyakinan atau kaidah. The principal reason adalah alasan utama. The school principal adalah kepala sekolah. Loan principal adalah jumlah pokok, bukan bunga. Kedua kata berbunyi mirip tetapi berbeda ejaan dan perannya.\n\nBantuan ingatan yang lazim: principle berakhir seperti rule, sedangkan principal dapat menamai orang utama. Jangan menulis kaidah moral sebagai principal.",
+    "pitfall": "Jangan menulis kaidah penuntun sebagai principal; makna itu principle.",
+    "keywords": [
+      "principal",
+      "principle",
+      "prinsip",
+      "utama"
+    ]
+  },
+  "farther-further": {
+    "title": "farther dan further",
+    "question": "Apakah farther dan further dapat saling mengganti?",
+    "summary": "Keduanya sering dapat untuk jarak fisik; further lebih aman untuk kemajuan abstrak. Further juga dapat berupa kata kerja.",
+    "usage": "How much farther/further is the station? Banyak penutur menerima keduanya untuk jarak. Further research dan further information hampir selalu memakai further untuk perluasan abstrak. Further juga dapat berarti tambahan: further details.\n\nKata kerja to further a cause berarti memajukannya. Farther biasanya bukan kata kerja. Pemakaian Amerika sering menyimpan farther untuk jarak harfiah, tetapi tumpang tindih tetap ada.",
+    "pitfall": "Untuk kemajuan abstrak, lebih baik further research, bukan farther research.",
+    "keywords": [
+      "farther",
+      "further",
+      "lebih jauh",
+      "lanjutan"
+    ]
+  },
+  "assure-ensure-insure": {
+    "title": "assure, ensure, dan insure",
+    "question": "Bagaimana memilih assure, ensure, atau insure?",
+    "summary": "Assure sering memakai orang dan meyakinkan mereka. Ensure berarti memastikan sesuatu terjadi. Insure biasanya terkait asuransi.",
+    "usage": "I assured her that the door was locked meyakinkan seseorang. Please ensure that the door is locked membuat hasilnya pasti. Insure the house against fire membeli asuransi. American English kadang menumpuk ensure dan insure, tetapi makna asuransi tetap lebih suka insure.\n\nAssure biasa memakai assure someone of/that…. Hindari assure that the door is locked tanpa orang. Ensure sering memakai that-clause atau kata benda.",
+    "pitfall": "Hindari I assure that it is safe. Lebih baik I assure you that it is safe, atau gunakan ensure.",
+    "keywords": [
+      "assure",
+      "ensure",
+      "insure",
+      "memastikan"
+    ]
+  },
+  "classic-classical": {
+    "title": "classic dan classical",
+    "question": "Bagaimana classic dan classical berbeda?",
+    "summary": "Classic sering berarti patut dicontoh, bermutu tinggi, atau khas. Classical biasanya menunjuk tradisi klasik, terutama dalam musik, sastra, atau zaman kuno.",
+    "usage": "A classic novel adalah karya yang patut dicontoh. A classic mistake adalah kesalahan yang khas. Classical music biasanya menamai tradisi klasik, bukan sekadar lagu pop yang sangat bagus. Classical architecture mengacu pada gaya klasik.\n\nJangan menulis classical untuk setiap makna “典范”. Classic films dan classic mistakes sehari-hari memakai classic. Lebih baik classical untuk label gaya akademik atau historis.",
+    "pitfall": "Jangan menulis ulang a classic mistake sebagai a classical mistake.",
+    "keywords": [
+      "classic",
+      "classical",
+      "klasik",
+      "khas"
+    ]
+  },
+  "economic-economical": {
+    "title": "economic dan economical",
+    "question": "Kapan saya memakai economic atau economical?",
+    "summary": "Economic terkait ekonomi atau sistem keuangan. Economical berarti hemat atau bernilai baik.",
+    "usage": "Economic growth dan economic policy menyangkut ekonomi atau kebijakan. An economical car murah dijalankan. An economical use of space menghemat ruang. Keduanya terkait economy, tetapi kolokasinya berbeda.\n\nJangan menulis economical growth untuk economic growth. Gunakan economical untuk kehematan atau nilai uang.",
+    "pitfall": "Jangan menulis economical policy untuk kebijakan ekonomi pemerintah; itu economic policy.",
+    "keywords": [
+      "economic",
+      "economical",
+      "ekonomi",
+      "hemat"
+    ]
+  },
+  "historic-historical": {
+    "title": "historic dan historical",
+    "question": "Bagaimana historic dan historical berbeda?",
+    "summary": "Historic menonjolkan momen atau tempat yang penting secara sejarah. Historical berarti terkait sejarah atau berlatar masa lalu.",
+    "usage": "A historic victory penting dalam sejarah. A historical novel adalah novel tentang masa lalu. Historical evidence adalah bukti dari sejarah. Ada tumpang tindih, tetapi tonggak lebih suka historic, dan “about history / set in the past” lebih suka historical.\n\nSebelum historic, British English sering memakai a; American English juga lazim demikian. Jangan biarkan kebiasaan lama an historic menyembunyikan kontras maknanya.",
+    "pitfall": "Jangan menulis ulang historical novel sebagai historic novel kecuali yang Anda maksud novel berstatus tonggak.",
+    "keywords": [
+      "historic",
+      "historical",
+      "bersejarah",
+      "sejarah"
+    ]
+  },
+  "travel-trip-journey": {
+    "title": "travel, trip, dan journey",
+    "question": "Bagaimana memilih travel, trip, atau journey?",
+    "summary": "Travel sering berupa kegiatan tak terhitung atau kata kerja. Trip adalah satu perjalanan, sering pulang pergi. Journey menekankan proses pergi dari satu tempat ke tempat lain.",
+    "usage": "I love travel / travelling menamai kegiatannya. A business trip adalah satu perjalanan. The journey took six hours berfokus pada prosesnya. Jangan menulis a travel untuk satu perjalanan; lebih baik a trip.\n\nJourney lazim dalam British English; American English sehari-hari sering lebih suka trip. Voyage biasanya menyarankan perjalanan jauh lewat laut. Tour dapat berarti rangkaian pertunjukan atau wisata. Pilih menurut situasi; jangan memperlakukan “旅行” bahasa Cina sebagai travel yang dapat dihitung.",
+    "pitfall": "Hindari I made a travel to Paris. Lebih baik I took a trip to Paris atau I travelled to Paris.",
+    "keywords": [
+      "travel",
+      "trip",
+      "journey",
+      "perjalanan"
+    ]
+  },
+  "clothes-cloth": {
+    "title": "clothes dan cloth",
+    "question": "Apa beda clothes dan cloth?",
+    "summary": "Clothes adalah kata benda jamak untuk pakaian. Cloth adalah kain, dipakai sebagai kata benda hitung atau massal.",
+    "usage": "These clothes are new memakai kata kerja jamak; tidak ada tunggal a clothe. A piece of cloth atau a cloth dapat menamai sepotong kain. Cloth juga dapat kata benda massal: made of cloth. Clothing adalah istilah massal yang lebih formal.\n\nJangan menulis a clothes untuk satu pakaian. Sebut barangnya (a shirt, a dress) atau gunakan some clothes.",
+    "pitfall": "Hindari a clothes dan this clothes is. Lebih baik these clothes are atau a shirt.",
+    "keywords": [
+      "clothes",
+      "cloth",
+      "pakaian",
+      "kain"
+    ]
+  },
+  "custom-customs": {
+    "title": "custom dan customs",
+    "question": "Kapan custom dan customs bermakna berbeda?",
+    "summary": "Custom dapat berarti tradisi atau kebiasaan pribadi. Customs sering berarti badan perbatasan, dan juga dapat berupa jamak dari tradisi.",
+    "usage": "Local custom adalah tradisi setempat. It is her custom to walk after dinner adalah kebiasaan pribadi. Go through customs berarti melewati pemeriksaan perbatasan. A customs officer bekerja di sana. Kapitalisasi dan kolokasi membantu: Customs dapat menamai badan itu.\n\nJangan menulis go through custom untuk pemeriksaan perbatasan. Beberapa tradisi dapat berupa customs, tetapi makna badan biasanya memakai bentuk jamak itu.",
+    "pitfall": "Hindari go through custom; makna perbatasan adalah go through customs.",
+    "keywords": [
+      "custom",
+      "customs",
+      "adat",
+      "bea cukai"
+    ]
+  },
+  "dessert-desert": {
+    "title": "dessert dan desert",
+    "question": "Bagaimana membedakan dessert dari desert?",
+    "summary": "Dessert adalah hidangan manis. Desert sebagai kata benda adalah tanah gersang; sebagai kata kerja berarti meninggalkan. Ejaan dan tekanannya berbeda.",
+    "usage": "A chocolate dessert adalah hidangan manis. The Sahara Desert adalah tanah gersang. He deserted his post berarti ia meninggalkan posnya. Dessert biasanya bertekanan suku kedua; kata benda desert sering bertekanan suku pertama.\n\nS tambahan adalah yang dapat dimakan: strawberry shortcake for dessert. Jangan menulis tanah gersang sebagai dessert.",
+    "pitfall": "Jangan menulis tanah gersang sebagai dessert, atau hidangan manis sebagai desert.",
+    "keywords": [
+      "dessert",
+      "desert",
+      "pencuci mulut",
+      "gurun"
+    ]
+  },
+  "later-latter": {
+    "title": "later dan latter",
+    "question": "Apa beda later dan latter?",
+    "summary": "Later berarti pada waktu yang lebih kemudian. Latter menunjuk yang kedua dari dua hal yang baru disebutkan.",
+    "usage": "See you later berarti pada waktu yang lebih kemudian. Of tea and coffee, I prefer the latter memilih yang kedua. The latter half of the year dapat berarti paruh kedua. Later bersifat temporal; latter bersifat acuan.\n\nDengan lebih dari dua butir, the latter janggal untuk yang terakhir; lebih baik the last atau ulang kata bendanya. Former berpasangan dengan latter untuk yang pertama dan kedua.",
+    "pitfall": "Jangan menulis See you latter; perpisahannya See you later.",
+    "keywords": [
+      "later",
+      "latter",
+      "nanti",
+      "yang kedua"
+    ]
+  },
+  "weather-whether": {
+    "title": "weather dan whether",
+    "question": "Bagaimana membedakan weather dan whether?",
+    "summary": "Weather adalah kondisi atmosfer. Whether memperkenalkan alternatif atau pertanyaan yes/no yang dilaporkan, sering dengan or.",
+    "usage": "The weather is cold menamai kondisi di luar. I don't know whether she will come menanyakan apakah ia akan datang. Whether...or... menyajikan alternatif. If kadang dapat menggantikan whether, tetapi sesudah preposisi atau dengan pilihan or not yang jelas, whether lebih aman.\n\nJangan mengeja whether sebagai weather. Weather tak terhitung: a lot of bad weather, bukan many weathers, kecuali dalam pembicaraan jenis iklim yang khusus.",
+    "pitfall": "Hindari I wonder weather she will come; penanda pilihannya whether.",
+    "keywords": [
+      "weather",
+      "whether",
+      "cuaca",
+      "apakah"
+    ]
+  }
+}

@@ -13,8 +13,8 @@ function CreditList({ items }: { items: { label: string; source: string; author:
   return <ul>{items.map(item => <li key={item.source}><a href={item.source} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.label} ↗</a><span>{item.author} · <a href={item.licenseUrl} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{item.license}</a></span><span>{item.changes}</span></li>)}</ul>;
 }
 
-function projectRows(projects: typeof credits.software) {
-  return projects.map(({ name, license, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license}</span></li>);
+function projectRows(projects: { name: string; license: string; url: string; role: string; notice?: string }[]) {
+  return projects.map(({ name, license, url, role, notice }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a> <span>{license} · {role}</span>{notice && <a href={notice} aria-label={`${name}: ${t.sourceNotice}`}>{t.sourceNotice}</a>}</li>);
 }
 
 export function About() {
@@ -30,12 +30,13 @@ export function About() {
       <section>
         <h2>{t.openSource}</h2>
         <ul className="about-projects">{projectRows(credits.software)}</ul>
+        <AnimatedDetails className="about-credit-details"><summary>{t.syntaxProjects} ({credits.syntax.length})</summary><ul>{projectRows(credits.syntax)}</ul></AnimatedDetails>
         <AnimatedDetails className="about-credit-details"><summary>{t.buildTools} ({credits.development.length})</summary><ul>{projectRows(credits.development)}</ul></AnimatedDetails>
         <a href="/THIRD_PARTY_NOTICES.md">{t.licences} ↗</a>
       </section>
       <section>
         <h2>{t.contentSources}</h2>
-        <p><a href="/dictionary/oewn-2025/README.md">Open English WordNet 2025 ↗</a> · <a href="/dictionary/oewn-2025/LICENSE.md">CC BY 4.0 ↗</a> · <a href="/dictionary/oewn-2025/WNDB_License.txt">Princeton WordNet licence ↗</a></p>
+        <p><a href="https://github.com/globalwordnet/english-wordnet" target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">Open English WordNet 2025 ↗</a> · <a href="/dictionary/oewn-2025/README.md">{t.dictionaryAdaptation}</a> · <a href="/dictionary/oewn-2025/LICENSE.md">CC BY 4.0 ↗</a> · <a href="/dictionary/oewn-2025/WNDB_License.txt">Princeton WordNet licence ↗</a></p>
         <p>{t.ipaClassification}: <a href={credits.ipaClassification.url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{credits.ipaClassification.name} ↗</a> · <a href={credits.ipaClassification.licenseUrl} target="_blank" rel="noopener noreferrer">{credits.ipaClassification.license}</a>. {credits.ipaClassification.copyright} {t.ipaAdaptation}</p>
         <AnimatedDetails className="about-credit-details"><summary>{t.corpora} ({credits.corpora.length})</summary><p>{t.corpusNotice}</p><ul>{credits.corpora.map(({ name, terms, url }) => <li key={name}><a href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">{name} ↗</a><span>{terms}</span></li>)}</ul></AnimatedDetails>
         <AnimatedDetails className="about-credit-details"><summary>{t.quotes} ({dailyQuotes.quoteCount})</summary><ul><li><a href={dailyQuotes.source.url} target="_blank" rel="noopener noreferrer">{dailyQuotes.source.title} ↗</a><span>{dailyQuotes.source.license}</span></li></ul><p><a href="/daily-quotes/README.md">{t.reuseNotes} ↗</a></p></AnimatedDetails>

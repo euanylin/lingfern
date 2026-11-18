@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 import { selectPicker } from './picker';
+
+const grammarCount = JSON.parse(readFileSync('public/grammar/entries.json', 'utf8')).entries.length;
 
 test('IPA tables keep their axes while narrow screens scroll inside the table', async ({ page }) => {
   await page.goto('/library/ipa');
@@ -46,14 +49,14 @@ test('Library exposes classified IPA with sound/word controls and a searchable u
   await page.getByRole('link', { name: '资料库', exact: true }).click();
   await page.getByRole('link', { name: '英语用法词典' }).click();
   await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('被动');
-  await expect(page.locator('.grammar-results details')).toHaveCount(1);
-  await page.locator('.grammar-results summary').click();
+  const passive = page.locator('#grammar-passive');
+  await expect(passive.locator('summary')).toContainText('什么时候用被动语态突出受事？');
+  await passive.locator('summary').click();
   await expect(page.getByText('The page was corrected on Monday.')).toBeVisible();
   await expect(page.getByText('进一步说明：')).toBeVisible();
   await expect(page.getByText('The samples were collected in May.')).toBeVisible();
   await page.getByRole('searchbox', { name: '搜索单词、搭配或用法疑问' }).fill('since / for');
-  await expect(page.locator('.grammar-results details')).toHaveCount(1);
-  await page.locator('.grammar-results summary').click();
+  await page.locator('#grammar-since-for summary').click();
   await expect(page.getByText('I have lived here since 2020.', { exact: true })).toBeVisible();
   await page.getByRole('link', { name: '设置', exact: true }).click();
   await selectPicker(page, '语言', 'en');
@@ -63,8 +66,8 @@ test('Library exposes classified IPA with sound/word controls and a searchable u
   await expect(page.locator('.ipa-group > h2')).toHaveText(['Vowels', 'Consonants (pulmonic)', 'Consonants (non-pulmonic)', 'Other symbols', 'Affricates (examples)', 'Diacritics', 'Suprasegmentals', 'Tones and word accents']);
   await page.goto('/library/grammar');
   await expect(page.getByRole('heading', { name: 'English usage dictionary' })).toBeVisible();
-  await page.getByRole('searchbox', { name: 'Search words, patterns or usage questions' }).fill('passive');
-  await expect(page.locator('.grammar-results details')).toHaveCount(1);
+  await page.getByRole('searchbox', { name: 'Search words, patterns or usage questions' }).fill('active / passive');
+  await expect(passive.locator('summary')).toContainText('When should the affected thing become the subject?');
   await page.getByRole('link', { name: 'Settings', exact: true }).click();
   await selectPicker(page, 'Language', 'zh-Hant');
   await page.goto('/library/ipa');
@@ -73,7 +76,7 @@ test('Library exposes classified IPA with sound/word controls and a searchable u
   await expect(page.locator('.ipa-group > h2')).toHaveText(['Vowels', 'Consonants (pulmonic)', 'Consonants (non-pulmonic)', 'Other symbols', 'Affricates (examples)', 'Diacritics', 'Suprasegmentals', 'Tones and word accents']);
   await page.goto('/library/grammar');
   await expect(page.getByRole('heading', { name: '英語用法詞典' })).toBeVisible();
-  await expect(page.locator('.grammar-results details')).toHaveCount(68);
+  await expect(page.locator('.grammar-results details')).toHaveCount(grammarCount);
   await expect(page.locator('.grammar-results summary > small')).toHaveCount(0);
   await page.getByRole('searchbox', { name: '搜尋單字、搭配或用法疑問' }).fill('only');
   await expect(page.locator('.grammar-results details').filter({ hasText: 'only 放在哪裡會改變意思？' })).toHaveCount(1);

@@ -2,7 +2,8 @@ import type Dexie from 'dexie';
 import { maxSyncCounter, type SyncCounter } from '../shared/syncCounter';
 import { db } from './db';
 import { profileIdSchema } from '../shared/repository';
-import { lookupHistorySchema, lookupRecordSchema, type LookupRecord as Lookup } from '../shared/lookupHistory';
+import { lookupHistorySchema, lookupKey, lookupRecordSchema, type LookupRecord as Lookup } from '../shared/lookupHistory';
+import type { TreeDiagram } from '../shared/tree';
 import { canonicalJson, projectLookupHistory, type SyncEvent } from '../shared/sync';
 import { appendSyncEvent, readSyncEvents } from './sync';
 
@@ -35,10 +36,22 @@ export async function readLookupHistory(profileId: string, database: Dexie = db)
   return projectLookupHistory(await readSyncEvents(profileId, database, types));
 }
 
-export async function recordLookup(profileId: string, kind: Lookup['kind'], term: string, database: Dexie = db) {
+export async function recordLookup(profileId: string, kind: Exclude<Lookup['kind'], 'tree'>, term: string, database: Dexie = db) {
   const record = lookupRecordSchema.parse({ kind, term: term.normalize('NFKC').trim().replace(/\s+/g, ' '), lookedUpAt: new Date().toISOString() });
   await migrateLookupHistory(profileId, database);
   await appendSyncEvent(profileId, { type: 'lookup', payload: record }, database);
+}
+
+export async function recordTree(profileId: string, term: string, diagram: TreeDiagram, database: Dexie = db) {
+  const record = lookupRecordSchema.parse({ kind: 'tree', term: term.normalize('NFKC').trim().replace(/\s+/g, ' '), lookedUpAt: new Date().toISOString(), diagram });
+  await migrateLookupHistory(profileId, database);
+  await appendSyncEvent(profileId, { type: 'lookup', payload: record }, database);
+}
+
+export async function findSavedTree(profileId: string, term: string, database: Dexie = db) {
+  const wanted = lookupKey({ kind: 'tree', term });
+  const match = (await readLookupHistory(profileId, database)).find(row => row.kind === 'tree' && lookupKey(row) === wanted);
+  return match?.kind === 'tree' ? match : undefined;
 }
 
 function observedLookups(events: SyncEvent[]) {
@@ -67,6 +80,6 @@ export async function clearLookupHistory(profileId: string, database: Dexie = db
 }
 
 export function lookupHistoryUrl(record: Lookup) {
-  const { kind, term } = lookupRecordSchema.parse({ kind: record.kind, term: record.term, lookedUpAt: record.lookedUpAt });
-  return `/library/${kind}?q=${encodeURIComponent(term)}`;
+  const { kind, term } = lookupRecordSchema.parse({ kind: record.kind, term: record.term, lookedUpAt: record.lookedUpAt, ...(record.kind === 'tree' ? { diagram: record.diagram } : {}) });
+  return `/library/${kind === 'tree' ? 'trees' : kind}?q=${encodeURIComponent(term)}`;
 }

@@ -9,7 +9,7 @@ assert.equal(home.status, 200);
 assert.match(home.headers.get('content-type'), /text\/html/);
 assert.match(home.headers.get('content-security-policy'), /frame-ancestors 'none'/);
 const html = await home.text();
-for (const pathname of ['/introduction', '/start', '/today', '/progress', '/library', '/library/dictionary', '/library/saved', '/library/ipa', '/library/grammar', '/library/history', '/settings', '/settings/about', '/learn/test-id']) {
+for (const pathname of ['/introduction', '/start', '/today', '/progress', '/library', '/library/dictionary', '/library/saved', '/library/ipa', '/library/grammar', '/library/history', '/library/trees', '/settings', '/settings/about', '/learn/test-id']) {
   const response = await fetch(origin + pathname, { headers: { Accept: 'text/html' } });
   assert.equal(response.status, 200, pathname);
   assert.match(response.headers.get('content-type'), /text\/html/);

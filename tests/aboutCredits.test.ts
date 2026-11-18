@@ -14,13 +14,32 @@ it('preserves the project licences, attribution and separate artwork terms verba
 });
 
 it('credits every direct installed package with its actual declared licence', () => {
-  const represented = credits.software.concat(credits.development).flatMap(project => project.packages);
+  const projects = [...credits.software, ...credits.development];
+  const represented = projects.flatMap(project => project.packages);
   expect(represented.sort()).toEqual([...Object.keys(pkg.dependencies), ...Object.keys(pkg.devDependencies)].sort());
-  for (const project of credits.software.concat(credits.development)) for (const name of project.packages) {
+  for (const project of projects) for (const name of project.packages) {
     const installed = JSON.parse(readFileSync(`node_modules/${name}/package.json`, 'utf8'));
     expect(project.license, name).toBe(installed.license);
+    const repository = typeof installed.repository === 'string' ? installed.repository : installed.repository.url;
+    const repo = repository.replace(/^git\+/, '').replace(/^github:/, '').replace(/\.git$/, '');
+    expect(project.url.toLowerCase(), name).toBe((repo.includes('://') ? repo.replace(/^git:\/\//, 'https://') : `https://github.com/${repo}`).toLowerCase());
+    expect(project.role, name).toBeTruthy();
   }
   expect(existsSync('public/licenses/octicons/LICENSE')).toBe(true);
+});
+
+it('keeps each shipped syntax dependency or adaptation linked to its original notices', () => {
+  const notices = readFileSync('public/THIRD_PARTY_NOTICES.md', 'utf8');
+  const byName = new Map(credits.syntax.map(project => [project.name, project]));
+  expect(byName.size).toBe(credits.syntax.length);
+  for (const key of ['UDPipe', 'udpipe-wasm', 'BNOSAC English UD 2.1 model', 'BLLIP Parser', 'Charniak Emscripten port', 'Stanza', 'Hol-CCG', 'Tokenizers.js', 'NLTK Treebank tokenizer', 'ONNX Runtime Web', 'non-layered-tidy-tree-layout', 'Emscripten', 'musl', 'LLVM libc++ and libc++abi']) expect(byName.has(key), key).toBe(true);
+  for (const item of credits.syntax) {
+    expect(item.role, item.name).toBeTruthy();
+    expect(notices).toContain(`[${item.name}](${item.url}) — ${item.license}`);
+    expect(existsSync(`public${item.notice}`), item.name).toBe(true);
+  }
+  const tidy = byName.get('non-layered-tidy-tree-layout')!;
+  expect(readFileSync(`public${tidy.notice}`, 'utf8')).toContain('Copyright (c) 2019 Michael Wong');
 });
 
 it('credits every distributed corpus family without conflating recording and text terms', () => {

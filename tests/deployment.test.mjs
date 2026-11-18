@@ -57,7 +57,7 @@ test('pinned and ordinary full checks read exact bytes without credentials or wr
   for (const pin of [true, false]) {
     const fixture = fetchFixture();
     const result = await verify(files, { version: next, pin, fetcher: fixture.fetcher });
-    assert.equal(result.files, files.length); assert.equal(result.pages, 13); assert.equal(result.missingPaths, 5);
+    assert.equal(result.files, files.length); assert.equal(result.pages, 14); assert.equal(result.missingPaths, 5);
     assert(fixture.requests.some(({ url }) => url === 'https://lingfern.com/sitemap'));
     assert(fixture.requests.some(({ url }) => url === 'https://lingfern.com/404'));
     assert(!fixture.requests.some(({ url }) => url === 'https://lingfern.com/404.html'));

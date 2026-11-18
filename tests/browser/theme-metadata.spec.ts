@@ -6,10 +6,10 @@ test('advertises and updates the active color scheme for browser and dark-mode e
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/settings');
   await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute('content', 'light');
-  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#F7F6F2');
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', 'rgb(255, 255, 255)');
   await selectPicker(page, '外观', 'dark');
   await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute('content', 'dark');
-  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#1F1E1D');
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', 'rgb(32, 32, 32)');
   expect(await page.locator('html').evaluate(el => getComputedStyle(el).colorScheme)).toBe('dark');
   await page.reload();
   await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute('content', 'dark');
@@ -27,7 +27,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
   await page.goto('/settings');
   await page.getByRole('button', { name: '语言' }).click();
   await expect(page.locator('.setting-menu')).toHaveCSS('backdrop-filter', 'blur(24px) saturate(1.4)');
-  expect(await page.locator('.setting-menu').evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^(?:rgba\(234, 232, 226, 0\.55\)|color\(srgb 0\.917647 0\.909804 0\.886275 \/ 0\.55\))$/);
+  expect(await page.locator('.setting-menu').evaluate(el => getComputedStyle(el).backgroundColor)).toMatch(/^(?:rgba\(230, 230, 230, 0\.55\)|color\(srgb 0\.9 0\.9 0\.9 \/ 0\.55\))$/);
   await expect(page.locator('.setting-menu')).toHaveCSS('background-image', 'none');
   const expectPlacement = async () => {
     const placement = await page.locator('.setting-menu[data-open=true]').evaluate(menu => {
@@ -41,7 +41,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
   await expectPlacement();
   await page.keyboard.press('Escape');
   await selectPicker(page, '外观', 'dark');
-  for (const [index, value] of [[0, 'en'], [1, 'dark'], [4, 'oxford']] as const) {
+  for (const [index, value] of [[0, 'en'], [1, 'dark'], [5, 'oxford']] as const) {
     const picker = page.locator('.settings-preferences .setting-trigger').nth(index);
     const shape = () => picker.evaluate(el => {
       const style = getComputedStyle(el);
@@ -58,7 +58,7 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
     await expect(menu.locator('[role=option]').first()).toHaveCSS('font-size', '15px');
     if (index === 0) await page.screenshot({ path: 'output/playwright/select-dark-refined.png' });
     const glass = await menu.evaluate(el => ({ background: getComputedStyle(el).backgroundColor, blur: getComputedStyle(el).backdropFilter }));
-    expect(glass.background).toMatch(/^(?:rgba\(48, 48, 46, 0\.55\)|color\(srgb 0\.188235 0\.188235 0\.180392 \/ 0\.55\))$/);
+    expect(glass.background).toMatch(/^(?:rgba\(54, 54, 54, 0\.55\)|color\(srgb 0\.21 0\.21 0\.21 \/ 0\.55\))$/);
     expect(glass.blur).toContain('blur(24px)');
     expect(await menu.locator('[role=option]').evaluateAll(options => options.every(option => option.getBoundingClientRect().height >= 44))).toBe(true);
     await picker.press('Escape');
@@ -93,7 +93,11 @@ test('all settings pickers keep their shape and use a themed keyboard-accessible
   await language.press('ArrowDown');
   await expect(page.getByRole('listbox', { name: 'Language' })).toBeVisible();
   expect(await page.getByRole('listbox', { name: 'Language' }).locator('[role=option]').evaluateAll(options => options.every(option => option.getBoundingClientRect().height >= 44))).toBe(true);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  // Measure the first rendered frame after resizing, while exit animations are still running.
+  const overflow = await page.evaluate(() => new Promise<number>(resolve => {
+    requestAnimationFrame(() => resolve(document.documentElement.scrollWidth - innerWidth));
+  }));
+  expect(overflow).toBeLessThanOrEqual(0);
   await page.keyboard.press('Enter');
   await expect(page.getByRole('button', { name: languagePacks.fr.app.language })).toHaveAttribute('data-value', 'fr');
   const touch = await browser.newContext({ viewport: { width: 320, height: 640 }, hasTouch: true, isMobile: true });
@@ -123,7 +127,7 @@ test('production glass survives CSS minification and respects reduced transparen
   await expect(toast).toHaveCSS('backdrop-filter', 'blur(24px) saturate(1.4)');
   await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'dark' }, { name: 'prefers-reduced-transparency', value: 'reduce' }] });
   await expect(toast).toHaveCSS('backdrop-filter', 'none');
-  await expect(toast).toHaveCSS('background-color', 'rgb(48, 48, 46)');
+  await expect(toast).toHaveCSS('background-color', 'rgb(54, 54, 54)');
   await page.getByRole('button', { name: '语言' }).click();
   await expect(menu).toHaveCSS('backdrop-filter', 'none');
   await cdp.detach();

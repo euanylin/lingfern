@@ -8,6 +8,8 @@
 
 English reading and listening practice for learners aged 16 and over, with learning goals from A1 to C2. Practice is generated locally from source texts and recordings. Learning works without an account or AI service.
 
+The public site runs **0.1.170**. The **0.2.0 local preview** includes the syntax tree, the expanded usage dictionary, color themes and updated About credits. [Release status](DEVELOPMENT_HANDOFF.md#current-work-and-publication).
+
 <a id="readme-languages"></a>
 
 <details>
@@ -82,7 +84,7 @@ Objective answers receive task-specific scores and explanations. Open responses 
 
 ## History and progress
 
-Open [**History**](https://lingfern.com/progress) from Today to revisit or resume sessions and inspect answers, feedback and assistance used. Delete a session or individual saved response after confirmation; deleting a Combined session removes both linked parts. Confirm completion times when clock-correction controls appear.
+Use History on Today to reopen sessions, review answers or resume work. You can delete a session or a standalone synced record after confirmation. Deleting a Combined session removes both linked parts. Confirm completion times if clock-correction controls appear.
 
 The activity fern reflects saved work, not certified proficiency. Daily quotations include their source, expansion for long text and a control to choose another quote.
 
@@ -95,8 +97,21 @@ The activity fern reflects saved work, not certified proficiency. Daily quotatio
 | [English dictionary](https://lingfern.com/library/dictionary) | Look up words and their English definitions, including from selected reading text. |
 | [Bookmarks](https://lingfern.com/library/saved) | Save/remove definitions with ★/☆ and collapse entries. Unchecked entries remain until reopening/refreshing, so they can be restored immediately. |
 | [IPA chart](https://lingfern.com/library/ipa) | Simple/Detailed views, sound search, recordings and English example words where available. |
-| [English usage reference](https://lingfern.com/library/grammar) | Keyword search, alphabetical browsing and expandable explanations. |
-| [Query history](https://lingfern.com/library/history) | Reopen dictionary, usage and IPA lookups with their source, time and saved lookup state, or delete an entry after confirmation. |
+| [English usage dictionary](https://lingfern.com/library/grammar) | Keyword search, alphabetical browsing and expandable explanations. |
+| [Syntax tree](#readme-syntax-tree) · 0.2.0 | Generate and edit nine tree presentations, save named snapshots, and export SVG, PNG, WebP, JPEG or PDF. |
+| [Lookup history](https://lingfern.com/library/history) | Reopen dictionary, usage and IPA lookups with their source, time and saved lookup state, or delete an entry after confirmation. |
+
+In the local preview, the dictionary has **191 entries**. Explanations follow the interface language with an English fallback. Examples, patterns and contrasts remain in English.
+
+<a id="readme-syntax-tree"></a>
+
+**Library** → **Reference** → **Syntax tree** · [0.2.0](http://127.0.0.1:8787/library/trees)
+
+Enter a sentence, bracketed tree, outline or dependency notation. Node controls sit above the canvas and symbol helpers directly below it. Turn on **Movement** to drag-link node coindices; click it again or press Escape to leave this mode. Right-click or hold a node on a touchscreen for its menu. Edits automatically restore from one device-local draft per profile; these tree drafts are excluded from backup and sync. Use **Save** for a separate named history snapshot. Clear is undoable during the visit; reopening a cleared draft restores the worked example. Press **Enter** to draw or **Shift+Enter** to add a line.
+
+The editor also accepts one CCGbank AUTO derivation and keeps its categories and branches.
+
+To install optional models, open **Library** → **Offline content** → **References** → **Syntax tree**, select the packages and choose **Download selected**. UDPipe handles dependency trees. Constituency uses Stanza with UDPipe, then Charniak if available. Hol-CCG handles CCG. The built-in rules remain available offline and handle unsupported model output. Review generated trees before reusing them.
 
 Choose Cambridge, Oxford Learner’s Dictionaries, Wiktionary or Merriam-Webster for external lookup. Links open the provider's website; usage links use Cambridge Grammar.
 
@@ -145,9 +160,11 @@ The card shows syncing/synced/offline-pending/failure status and the last succes
 
 Fourteen interface languages; light/dark/system themes; separate desktop/mobile text, icon or combined navigation; default online dictionary; adjustable starting points and interests; keyboard/touch access and reduced-motion support.
 
-English material stays English. A1–A2 reviewed guidance has translated support; B1–C2 guidance and About remain English. Arabic navigation uses RTL while English content stays LTR.
+**0.2.0** · Color themes are in **Settings** → **Color theme**. Choose from **33 palettes**: **Default** plus 32 alternatives including **Fern**, each with light and dark colors. System/Light/Dark is saved separately. Select Default to restore the default palette. Saved colors apply across the site, Introduction and installed offline use; the logo and Today fern retain their original brand colors.
 
-**Check for updates → Update now** reloads with saved progress retained. About and material details provide project links, source credits and licences.
+English material stays English. A1–A2 reviewed guidance has translated support; B1–C2 guidance and About remain English.
+
+**Check for updates → Update now** reloads with saved progress retained. [About](https://lingfern.com/settings/about) and material details provide project links, source credits and licences.
 
 <a id="readme-privacy"></a>
 

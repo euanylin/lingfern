@@ -99,7 +99,7 @@ test('another tab switching profiles clears a stale backup preview and export di
     await data.profiles.add({ id: 'other-profile', name: 'Other profile', createdAt: new Date().toISOString() });
     return Array.from(new Uint8Array(await (await import('/src/data/backup.ts' as string)).exportBackup('local-guest')));
   });
-  await page.getByLabel('从备份恢复').setInputFiles({ name: 'source.zip', mimeType: 'application/zip', buffer: Buffer.from(bytes) });
+  await page.getByLabel('恢复备份').setInputFiles({ name: 'source.zip', mimeType: 'application/zip', buffer: Buffer.from(bytes) });
   await expect(page.locator('.backup-preview')).toBeVisible();
   await page.getByRole('button', { name: '下载备份', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();

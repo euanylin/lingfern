@@ -1,5 +1,9 @@
 /* Loaded with the shared reading/listening workspace. */
 .learning-grid{display:grid;grid-template-columns:minmax(0,640px) minmax(0,1fr)}.question-panel{background:var(--raised);padding:24px;align-self:start}.question-panel h2{margin-top:0;font-size:1.25rem}.question-panel h2:focus{outline:none}
+@media(min-width:1200px){
+  .workspace-grid:dir(rtl):not(.listening-layout){direction:ltr}
+  .workspace-grid:dir(rtl):not(.listening-layout)>*{direction:rtl}
+}
 @media(max-width:1199px){.learning-grid{grid-template-columns:minmax(0,640px);justify-content:center;gap:24px}}
 @media(max-width:1199px){.question-panel{margin-top:12px}}
 @media(max-width:767px){.question-panel{padding:20px}}

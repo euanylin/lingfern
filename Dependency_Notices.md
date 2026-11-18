@@ -3246,7 +3246,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @eslint/config-array 0.23.5
+## @eslint/config-array 0.23.6
 
 Declared license: Apache-2.0. Source: git+https://github.com/eslint/rewrite.git
 
@@ -3453,6 +3453,69 @@ Declared license: Apache-2.0. Source: git+https://github.com/eslint/rewrite.git
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+## minimatch 11.0.8
+
+Declared license: BlueOak-1.0.0. Source: git+ssh://git@github.com/isaacs/minimatch.git
+
+### LICENSE.md
+
+# Blue Oak Model License
+
+Version 1.0.0
+
+## Purpose
+
+This license gives everyone as much permission to work with
+this software as possible, while protecting contributors
+from liability.
+
+## Acceptance
+
+In order to receive this license, you must agree to its
+rules. The rules of this license are both obligations
+under that agreement and conditions to your license.
+You must not do anything with this software that triggers
+a rule that you cannot or will not follow.
+
+## Copyright
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe that contributor's
+copyright in it.
+
+## Notices
+
+You must ensure that everyone who gets a copy of
+any part of this software from you, with or without
+changes, also gets the text of this license or a link to
+<https://blueoakcouncil.org/license/1.0.0>.
+
+## Excuse
+
+If anyone notifies you in writing that you have not
+complied with [Notices](#notices), you can keep your
+license by taking all practical steps to comply within 30
+days after the notice. If you do not do so, your license
+ends immediately.
+
+## Patent
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe any patent claims
+they can license or become able to license.
+
+## Reliability
+
+No contributor can revoke this license.
+
+## No Liability
+
+**_As far as the law allows, this software comes as is,
+without any warranty or condition, and no contributor
+will be liable to anyone for any damages related to this
+software or this license, under any kind of legal claim._**
 
 
 ## @eslint/config-helpers 0.7.0
@@ -5499,6 +5562,69 @@ will be liable to anyone for any damages related to this
 software or this license, under any kind of legal claim._**
 
 
+## @isaacs/nonrecursive-glob-match 1.1.0
+
+Declared license: BlueOak-1.0.0. Source: https://registry.npmjs.org/@isaacs/nonrecursive-glob-match/-/nonrecursive-glob-match-1.1.0.tgz
+
+### LICENSE.md
+
+# Blue Oak Model License
+
+Version 1.0.0
+
+## Purpose
+
+This license gives everyone as much permission to work with
+this software as possible, while protecting contributors
+from liability.
+
+## Acceptance
+
+In order to receive this license, you must agree to its
+rules.  The rules of this license are both obligations
+under that agreement and conditions to your license.
+You must not do anything with this software that triggers
+a rule that you cannot or will not follow.
+
+## Copyright
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe that contributor's
+copyright in it.
+
+## Notices
+
+You must ensure that everyone who gets a copy of
+any part of this software from you, with or without
+changes, also gets the text of this license or a link to
+<https://blueoakcouncil.org/license/1.0.0>.
+
+## Excuse
+
+If anyone notifies you in writing that you have not
+complied with [Notices](#notices), you can keep your
+license by taking all practical steps to comply within 30
+days after the notice.  If you do not do so, your license
+ends immediately.
+
+## Patent
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe any patent claims
+they can license or become able to license.
+
+## Reliability
+
+No contributor can revoke this license.
+
+## No Liability
+
+***As far as the law allows, this software comes as is,
+without any warranty or condition, and no contributor
+will be liable to anyone for any damages related to this
+software or this license, under any kind of legal claim.***
+
+
 ## @jridgewell/gen-mapping 0.3.13
 
 Declared license: MIT. Source: git+https://github.com/jridgewell/sourcemaps.git
@@ -6895,7 +7021,7 @@ Declared license: MIT. Source: https://github.com/DefinitelyTyped/DefinitelyType
     SOFTWARE
 
 
-## @typescript-eslint/eslint-plugin 8.70.1
+## @typescript-eslint/eslint-plugin 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -6924,7 +7050,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## ignore 7.0.10
+## ignore 7.0.14
 
 Declared license: MIT. Source: https://github.com/kaelzhang/node-ignore.git
 
@@ -6952,7 +7078,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## @typescript-eslint/parser 8.70.1
+## @typescript-eslint/parser 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -6981,7 +7107,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/project-service 8.70.1
+## @typescript-eslint/project-service 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7010,7 +7136,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/scope-manager 8.70.1
+## @typescript-eslint/scope-manager 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7039,7 +7165,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/tsconfig-utils 8.70.1
+## @typescript-eslint/tsconfig-utils 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7068,7 +7194,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/type-utils 8.70.1
+## @typescript-eslint/type-utils 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7097,7 +7223,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/types 8.70.1
+## @typescript-eslint/types 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7126,7 +7252,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/typescript-estree 8.70.1
+## @typescript-eslint/typescript-estree 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7155,7 +7281,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/utils 8.70.1
+## @typescript-eslint/utils 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -7184,7 +7310,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## @typescript-eslint/visitor-keys 8.70.1
+## @typescript-eslint/visitor-keys 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -9778,7 +9904,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-## eslint 10.11.0
+## eslint 10.15.0
 
 Declared license: MIT. Source: eslint/eslint
 
@@ -10042,6 +10168,69 @@ Declared license: Apache-2.0. Source: https://github.com/eslint/js.git
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+## minimatch 11.0.8
+
+Declared license: BlueOak-1.0.0. Source: git+ssh://git@github.com/isaacs/minimatch.git
+
+### LICENSE.md
+
+# Blue Oak Model License
+
+Version 1.0.0
+
+## Purpose
+
+This license gives everyone as much permission to work with
+this software as possible, while protecting contributors
+from liability.
+
+## Acceptance
+
+In order to receive this license, you must agree to its
+rules. The rules of this license are both obligations
+under that agreement and conditions to your license.
+You must not do anything with this software that triggers
+a rule that you cannot or will not follow.
+
+## Copyright
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe that contributor's
+copyright in it.
+
+## Notices
+
+You must ensure that everyone who gets a copy of
+any part of this software from you, with or without
+changes, also gets the text of this license or a link to
+<https://blueoakcouncil.org/license/1.0.0>.
+
+## Excuse
+
+If anyone notifies you in writing that you have not
+complied with [Notices](#notices), you can keep your
+license by taking all practical steps to comply within 30
+days after the notice. If you do not do so, your license
+ends immediately.
+
+## Patent
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe any patent claims
+they can license or become able to license.
+
+## Reliability
+
+No contributor can revoke this license.
+
+## No Liability
+
+**_As far as the law allows, this software comes as is,
+without any warranty or condition, and no contributor
+will be liable to anyone for any damages related to this
+software or this license, under any kind of legal claim._**
 
 
 ## espree 11.2.0
@@ -17832,7 +18021,7 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 
 
-## typescript-eslint 8.70.1
+## typescript-eslint 8.72.2
 
 Declared license: MIT. Source: https://github.com/typescript-eslint/typescript-eslint.git
 
@@ -22259,7 +22448,7 @@ License text not included in this installed package; upstream review pending. Pa
 
 Declared license: MIT OR Apache-2.0. Source: https://github.com/cloudflare/workers-sdk.git
 
-License text not included in this installed package; upstream review pending. Package metadata is not the full license.
+The installed package omits its license files. The tagged release includes [MIT](https://github.com/cloudflare/workers-sdk/blob/wrangler%404.153.0/LICENSE-MIT) and [Apache-2.0](https://github.com/cloudflare/workers-sdk/blob/wrangler%404.153.0/LICENSE-APACHE).
 
 ## ws 8.21.0
 

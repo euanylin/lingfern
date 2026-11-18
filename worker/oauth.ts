@@ -7,6 +7,8 @@ import { sharingLimit, type SharingEnv } from './sharing';
 import { publicTeachingCatalogue } from './catalogue';
 
 export type OAuthEnv = SharingEnv & { OAUTH_KV?: KVNamespace; OAUTH_PROVIDER?: OAuthHelpers };
+// Permit only the exact presentation bootstrap on otherwise script-free consent pages.
+const appearanceIntegrity = 'sha256-n/fT1xACnhVP3Ufy0Gyk9lpBtvS1yEqlPAR64MmbYNA=';
 const scopes = ['mcp:read', 'contexts:read', 'materials:read', 'offline_access'];
 const site = (env: OAuthEnv) => env.LOCAL_AUTH === 'true' ? 'http://127.0.0.1:8787' : 'https://lingfern.com';
 const escape = (value: string) => value.replace(/[&<>"']/g, character => `&#${character.charCodeAt(0)};`);
@@ -22,9 +24,9 @@ function language(request: Request) {
 function html(request: Request, content: string, headers = new Headers(), redirectUri?: string) {
   headers.set('Content-Type', 'text/html; charset=utf-8'); headers.set('Cache-Control', 'private, no-store');
   // Allow form-action redirects as well as consent form targets.
-  headers.set('Content-Security-Policy', `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'${redirectUri ? ` ${(new URL(redirectUri).origin === 'null' ? new URL(redirectUri).protocol : new URL(redirectUri).origin)}` : ''}; base-uri 'none'; frame-ancestors 'none'`);
+  headers.set('Content-Security-Policy', `default-src 'none'; script-src '${appearanceIntegrity}'; style-src 'self'; img-src 'self'; form-action 'self'${redirectUri ? ` ${(new URL(redirectUri).origin === 'null' ? new URL(redirectUri).protocol : new URL(redirectUri).origin)}` : ''}; base-uri 'none'; frame-ancestors 'none'`);
   headers.set('X-Content-Type-Options', 'nosniff');
-  return new Response(`<!doctype html><html lang="${language(request)}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/oauth-consent.css"><title>Lingfern</title><main><span class="logo" role="img" aria-label="Lingfern"></span>${content}</main></html>`, { headers });
+  return new Response(`<!doctype html><html lang="${language(request)}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="/appearance.js" integrity="${appearanceIntegrity}" crossorigin="anonymous"></script><link rel="stylesheet" href="/oauth-consent.css"><title>Lingfern</title><main><span class="logo" role="img" aria-label="Lingfern"></span>${content}</main></html>`, { headers });
 }
 const cookieName = (env: OAuthEnv) => env.LOCAL_AUTH === 'true' ? 'lingfern_local_mcp_return' : '__Host-lingfern-mcp-return';
 const returnCookie = (env: OAuthEnv, value: string, maxAge: number) => `${cookieName(env)}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${env.LOCAL_AUTH === 'true' ? '' : '; Secure'}`;

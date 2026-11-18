@@ -27,7 +27,7 @@ test('task and bookmark originals are captured once and their IDs survive actual
   const download = page.waitForEvent('download');
   await page.getByRole('button', { name: '下载备份' }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
   const bytes = await readFile((await (await download).path())!);
-  await page.getByLabel('从备份恢复').setInputFiles({ name: 'legacy.zip', mimeType: 'application/zip', buffer: bytes });
+  await page.getByLabel('恢复备份').setInputFiles({ name: 'legacy.zip', mimeType: 'application/zip', buffer: bytes });
   await expect(page.locator('.backup-preview')).toBeVisible();
   await page.getByRole('button', { name: '导入为新档案' }).click();
   await expect(page.getByRole('status').filter({ hasText: '已建立新档案并导入记录。' })).toBeVisible();

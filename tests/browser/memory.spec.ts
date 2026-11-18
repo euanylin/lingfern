@@ -28,7 +28,7 @@ test('bookmarks one dictionary meaning and restores it from ZIP', async ({ page 
   await page.getByRole('button', { name: '下载备份' }).click(); await page.getByRole('dialog').getByRole('button', { name: '保存', exact: true }).click();
   const saved = await download;
   const bytes = await (await import('node:fs/promises')).readFile((await saved.path())!);
-  await page.getByLabel('从备份恢复').setInputFiles({ name: 'memory.zip', mimeType: 'application/zip', buffer: bytes });
+  await page.getByLabel('恢复备份').setInputFiles({ name: 'memory.zip', mimeType: 'application/zip', buffer: bytes });
   await expect(page.locator('.backup-preview')).toContainText('书签 1 · 反馈笔记 0');
   await page.getByRole('button', { name: '导入为新档案' }).click();
   await page.goto('/library/saved');

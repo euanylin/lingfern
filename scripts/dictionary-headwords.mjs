@@ -26,10 +26,29 @@ const valid = term => term.length <= 80 && /^[\p{L}\p{N}][\p{L}\p{N} .'-]*$/u.te
 const terms = new Set([...buckets.flatMap(bucket => Object.keys(bucket)), ...Object.keys(forms), ...course.entries.map(entry => entry.term.normalize('NFKC').toLocaleLowerCase('en-US').trim())].filter(valid));
 const content = JSON.stringify([...terms].sort()) + '\n';
 const output = new URL('headwords.json', dictionary);
-if (process.argv.includes('--check')) {
+
+// A compact POS index per headword lets the syntax-tree parser read the installed dictionary
+// instead of guessing. Each four-bit field holds a capped sense count: noun, verb, adjective, adverb.
+// Sense counts are a rough lexical-frequency proxy, so "book" prefers its noun reading over its verb.
+const posBuckets = letters.map((letter, index) => {
+  const entries = Object.entries(buckets[index]).map(([term, senses]) => {
+    const counts = { noun: 0, verb: 0, adjective: 0, adverb: 0 };
+    for (const sense of senses) if (sense.pos in counts) counts[sense.pos] += 1;
+    const value = Math.min(15, counts.noun) | (Math.min(15, counts.verb) << 4) | (Math.min(15, counts.adjective) << 8) | (Math.min(15, counts.adverb) << 12);
+    return [term, value];
+  }).sort(([left], [right]) => left.localeCompare(right, 'en'));
+  return JSON.stringify(Object.fromEntries(entries)) + '\n';
+});
+const posOutput = letters.map(letter => new URL(`pos-${letter}.json`, dictionary));
+const check = process.argv.includes('--check');
+if (check) {
   if (await readFile(output, 'utf8').catch(() => '') !== content) throw new Error('Dictionary suggestions are stale; run npm run dictionary:index');
-  console.log(`Verified ${terms.size} local dictionary suggestions`);
+  for (const [index, file] of posOutput.entries()) {
+    if (await readFile(file, 'utf8').catch(() => '') !== posBuckets[index]) throw new Error(`Dictionary POS index is stale: ${letters[index]}; run npm run dictionary:index`);
+  }
+  console.log(`Verified ${terms.size} local dictionary suggestions and ${letters.length} POS buckets`);
 } else {
   await writeFile(output, content);
-  console.log(`Wrote ${terms.size} local dictionary suggestions`);
+  for (const [index, file] of posOutput.entries()) await writeFile(file, posBuckets[index]);
+  console.log(`Wrote ${terms.size} local dictionary suggestions and ${letters.length} POS buckets`);
 }

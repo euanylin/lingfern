@@ -65,7 +65,7 @@
 }
 
 /* Keep the canonical mark independent of Android masked-layer compositing. */
-.welcome-site-header .brand-symbol{background:none;mask:none;color:var(--accent)}
+.welcome-site-header .brand-symbol{background:none;mask:none;color:var(--brand-accent)}
 /* Keep the mark's raster independent of the moving card. */
 .welcome-site-header .brand-symbol svg{display:block;width:100%;height:100%;transform:translateZ(0)}
 .welcome-site-header .brand-symbol path{fill:currentColor}

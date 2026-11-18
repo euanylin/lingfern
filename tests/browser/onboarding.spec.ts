@@ -1156,7 +1156,7 @@ for (const [locale, colorScheme, width] of [['zh-Hans', 'light', 393], ['en', 'd
   });
 });
 
-test('keyboard direction follows RTL and preview-only controls cannot receive focus', async ({ page }) => {
+test('Arabic keeps the carousel keyboard direction and preview-only controls cannot receive focus', async ({ page }) => {
   await page.goto('/settings');
   const { selectPicker } = await import('./picker');
   await selectPicker(page, (await page.locator('.settings-language .setting-trigger').getAttribute('aria-label'))!, 'ar');
@@ -1165,9 +1165,9 @@ test('keyboard direction follows RTL and preview-only controls cannot receive fo
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   const current = page.locator('.welcome-card[data-current=true]');
   await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '1'));
-  await page.locator('.welcome-dots button').first().focus(); await page.keyboard.press('ArrowLeft');
+  await page.locator('.welcome-dots button').first().focus(); await page.keyboard.press('ArrowRight');
   await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '2'));
-  await page.keyboard.press('ArrowRight'); await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '1'));
+  await page.keyboard.press('ArrowLeft'); await expect(current).toHaveAttribute('aria-label', languagePacks.ar.onboarding.slideN.replace('{n}', '1'));
   const trigger = current.locator('.setting-trigger').first(); await trigger.evaluate(el => (el as HTMLElement).focus());
   await expect(trigger).not.toBeFocused(); await expect(page.getByRole('listbox')).toHaveCount(0);
 });
@@ -1244,7 +1244,7 @@ test('both neighbouring cards stay visible while only quote and navigation contr
       await current.locator('.desktop-nav a[href="/library"]').click();
       await expect(current).toHaveAttribute('aria-label', '第 2 张，共 3 张');
     } else await current.locator('.welcome-mobile-nav a[href="/library"]').click();
-    await expect(current.locator('.library-reference-tile')).toHaveCount(3);
+    await expect(current.locator('.library-reference-tile')).toHaveCount(4);
     await expect(current.locator('.library-reference-tile').first()).toHaveJSProperty('inert', false);
     expect(await current.locator('.library-reference-tile').first().evaluate(el => !!el.closest('[inert]'))).toBe(true);
     await current.locator(width >= 768 ? '.desktop-nav a[href="/settings"]' : '.welcome-mobile-nav a[href="/settings"]').click();
@@ -1485,7 +1485,7 @@ for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar'
     await expect(first).toHaveAttribute('data-current', 'true');
     await content.evaluate(el => { el.scrollTop = 60; });
     const scroll = await content.evaluate(el => el.scrollTop), box = (await content.boundingBox())!;
-    const x = box.x + box.width * .85, y = box.y + box.height * .55, rtl = locale === 'ar' ? -1 : 1;
+    const x = box.x + box.width * .85, y = box.y + box.height * .55;
     const cdp = await context.newCDPSession(page), samples: { dx: number; x: number; width: number; scroll: number }[] = [];
     await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
     await page.evaluate(() => {
@@ -1496,7 +1496,7 @@ for (const [locale, colorScheme] of [['zh-Hans', 'light'], ['en', 'dark'], ['ar'
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
       const offsets = Array.from({ length: 33 }, (_, i) => 16 + i * 4);
       for (const dx of [...offsets, ...offsets.slice(0, -1).reverse()]) {
-        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - dx * rtl, y: y + 1 }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - dx, y: y + 1 }] });
         await page.waitForTimeout(50);
         const sample = await first.evaluate(el => { const r = el.getBoundingClientRect(); return { x: r.x, width: r.width, scroll: el.querySelector('.welcome-content')!.scrollTop }; });
         samples.push({ dx, ...sample });

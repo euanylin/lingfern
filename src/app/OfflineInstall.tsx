@@ -16,11 +16,13 @@ import { installOfflineResources, installedOfflineGroups, offlineGroups, removeO
 const labels = messages('offlineInstall');
 
 const libraryLabels = messages('offlineInstall_libraryLabels');
+const treeLabels = messages('treeDiagram');
+const isTreePack = (id: string) => id.startsWith('tree-');
 
 const size = (bytes: number) => bytes < 1_048_576 ? `${Math.ceil(bytes / 1024)} KiB` : `${(bytes / 1_048_576).toFixed(1)} MiB`;
 
 export function OfflineInstall({ locale, online, onReady, onIntentsChange, profileId, initialInstalled, initialIntents, preview = false }: { preview?: boolean; initialIntents?: Awaited<ReturnType<typeof readInstallationIntents>>; initialInstalled?: Set<string>; profileId: string; locale: Locale; online: boolean; onReady: (publicGroups: Set<string>) => void; onIntentsChange?: (intents: Awaited<ReturnType<typeof readInstallationIntents>>) => void }) {
-  const t = labels[locale], ui = libraryLabels[locale];
+  const t = labels[locale], ui = libraryLabels[locale], treeTitle = treeLabels[locale].title;
   const sourceById = new Map(sourcePacks.map(pack => [pack.id, pack]));
   const downloadableGroups = [...offlineGroups, ...sourcePacks];
   const details = (id: string) => {
@@ -83,10 +85,17 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
   }, [profileId, t.intentFailed]);
   const chosen = downloadableGroups.filter(group => selected.has(group.id) && !installed.has(group.id));
   const removable = downloadableGroups.filter(group => selected.has(group.id) && installed.has(group.id));
+  const zipLinks = downloadableGroups.flatMap(group => {
+    if (!selected.has(group.id)) return [];
+    const path = 'path' in group ? group.path
+      : runtimeResources.downloads.packs.find(pack => pack.id === group.id && pack.version === group.version)?.path;
+    return path ? [{ id: group.id, path }] : [];
+  });
   const chosenBytes = chosen.reduce((sum, group) => sum + group.bytes, 0);
   const matches = (id: string) => {
     const pack = sourceById.get(id);
-    return `${name(id)} ${pack ? topicName(id) + ' ' + pack.title.en : ''}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
+    const group = pack ? topicName(id) + ' ' + pack.title.en : isTreePack(id) ? treeTitle : '';
+    return `${name(id)} ${group}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
   };
   const visible = downloadableGroups.filter(group => matches(group.id));
   const allVisibleSelected = visible.length > 0 && visible.every(group => selected.has(group.id));
@@ -118,9 +127,12 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     const singletons = [...buckets.values()].filter(groups => groups.length === 1).flat();
     const grouped = [...buckets.entries()].filter(([, groups]) => groups.length > 1).map(([topic, groups]) => ({ key: topic, title: topicName(groups[0].id), groups }));
     if (base.length && category.id !== 'reference') grouped.unshift({ key: 'general', title: ui.general, groups: base });
+    if (category.id === 'reference') {
+      grouped.push({ key: 'trees', title: treeTitle, groups: base.filter(group => isTreePack(group.id)) });
+    }
     if (singletons.length) grouped.push({ key: 'other', title: ui.other, groups: singletons });
     return <>
-      {category.id === 'reference' && <div className="package-list offline-base-packages">{base.filter(group => matches(group.id)).map(row)}</div>}
+      {category.id === 'reference' && <div className="package-list offline-base-packages">{base.filter(group => !isTreePack(group.id) && matches(group.id)).map(row)}</div>}
       {grouped.map(bucket => {
         const groups = bucket.groups.filter(group => matches(group.id)); if (!groups.length) return null;
         const key = `${category.id}:${bucket.key}`, open = !!query.trim() || expanded.has(key), selectedCount = groups.filter(group => selected.has(group.id)).length, installedCount = groups.filter(group => installed.has(group.id)).length;
@@ -198,7 +210,7 @@ export function OfflineInstall({ locale, online, onReady, onIntentsChange, profi
     </div>
       {actionsVisible && <div ref={actions} className="offline-selection-actions" role="region" aria-label={ui.actions}><p className="muted" aria-live="polite">{t.selectedCount.replace('{count}', String(selected.size))} · {ui.downloadAction} {size(chosenBytes)}</p>
       {installing ? <div className="offline-download-progress"><p role="status"><span title={name(active)}>{t.installing} {name(active)}</span><span dir="ltr">{size(progress)} / {size(total)}</span></p><progress max={total} value={progress} aria-label={t.installing}/><button className="button" type="button" onClick={() => controller.current?.abort()}>{t.cancel}</button></div> : <div className="offline-actions">{removable.length > 0 && <button className="button offline-remove" aria-label={t.remove} ref={removalTrigger} type="button" disabled={deleting || removable.length === 0} onClick={() => setConfirmingRemoval(true)}>{deleting ? t.removing : ui.removeAction}</button>}{chosen.length > 0 && <button aria-label={t.start} className="primary" type="button" disabled={deleting || !online || chosen.length === 0} onClick={() => void install()}>{ui.downloadAction}</button>}</div>}</div>}
-      {selected.size > 0 && <AnimatedDetails className="resource-pack-tools"><summary>{t.zip}</summary><div className="resource-pack-links">{downloadableGroups.filter(group => selected.has(group.id)).map(group => { const path = 'path' in group ? group.path : runtimeResources.downloads.packs.find(pack => pack.id === group.id && pack.version === group.version)?.path; return path ? <a key={group.id} href={path} download>{name(group.id)} · {t.zipDownload}</a> : null; })}</div></AnimatedDetails>}
+      {zipLinks.length > 0 && <AnimatedDetails className="resource-pack-tools"><summary>{t.zip}</summary><div className="resource-pack-links">{zipLinks.map(({ id, path }) => <a key={id} href={path} download>{name(id)} · {t.zipDownload}</a>)}</div></AnimatedDetails>}
       {confirmingRemoval && createPortal(<dialog role="alertdialog" ref={removalDialog} className="offline-remove-dialog" aria-labelledby="offline-remove-title" onCancel={event => { event.preventDefault(); closeRemoval(); }} onClick={event => { if (event.target === event.currentTarget) closeRemoval(); }}><h2 id="offline-remove-title">{ui.removeTitle}</h2><p>{ui.removeDetail.replace('{count}', String(removable.length)).replace('{size}', size(removable.reduce((sum, group) => sum + group.bytes, 0)))}</p><div className="offline-remove-dialog-actions"><button className="button" ref={removalCancel} type="button" disabled={deleting} onClick={closeRemoval}>{t.cancel}</button><button className="button offline-remove-confirm" type="button" disabled={deleting} onClick={() => { closeModal(removalDialog.current, () => { setConfirmingRemoval(false); }); void removeSelected(); }}>{t.remove}</button></div></dialog>, document.body)}
       {!online && chosen.length > 0 && <p className="muted">{t.online}</p>}{error && <p role="alert" className="error">{error}</p>}
   </section>;

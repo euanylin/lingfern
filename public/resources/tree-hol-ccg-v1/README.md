@@ -1,0 +1,7 @@
+# Hol-CCG English parser
+
+This optional browser engine uses the [Hol-CCG RoBERTa-base checkpoint](https://huggingface.co/ryosuke-yamaki/hol-ccg-roberta-base/tree/5d8a7eaeafbc5b91562b2ce1249042627bbf09d4) by Ryosuke Yamaki, Tadahiro Taniguchi, and Daichi Mochihashi. The checkpoint declares MIT. [Upstream code and applicable MIT notice](https://github.com/ryosuke-yamaki/hol-ccg/tree/0213ca85d2397c5a4fb2c03bc1b20cf1a6283d26). [Licence](../../licenses/hol-ccg/LICENSE).
+
+Lingfern exports the encoder and span/category classifiers to ONNX and uses per-channel signed 8-bit storage for large encoder matrices. The browser port implements circular correlation and CKY with the checkpoint's extracted category and grammar statistics. The package contains no CCGbank sentences, Boxer code, C&C grammar engine or non-commercial C&C resources. All generated categories and derivations are proposals for review.
+
+The word splitting adapts NLTK's Treebank tokenizer (Copyright 2001–2026 NLTK Project, Edward Loper, Michael Heilman and Tom Aarsen). [NLTK Apache-2.0 licence](../../licenses/nltk-treebank/LICENSE.txt). RoBERTa subword tokenization uses Hugging Face [Tokenizers.js 0.2.0](https://github.com/huggingface/tokenizers.js), [Apache-2.0 licence](../../licenses/tokenizers@0.2.0/LICENSE). The CPU WebAssembly inference uses [ONNX Runtime Web 1.31.1](https://registry.npmjs.org/onnxruntime-web/1.31.1), [MIT licence](../../licenses/onnxruntime-web@1.31.1/LICENSE) and [third-party notices](../../licenses/onnxruntime-web@1.31.1/ThirdPartyNotices.txt).

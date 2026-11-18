@@ -1,0 +1,51 @@
+import { expect, test } from '@playwright/test';
+
+test('restores automatic drafts, keeps named saves separate and reopens cleared boards on the example', async ({ page }) => {
+  await page.goto('/library/trees');
+  const source = page.locator('#tree-source');
+  await expect(source).toBeEnabled();
+  const defaultSource = await source.inputValue();
+  const defaultNodes = await page.getByRole('treeitem').allTextContents();
+  const save = page.locator('.tree-save-actions').getByRole('button', { name: '保存', exact: true });
+  await expect(save).toHaveClass('button');
+  await source.fill('(DraftRoot (A) (B))');
+  await source.press('Enter');
+  await page.getByRole('treeitem', { name: 'A', exact: true }).click();
+  await page.locator('#tree-label').fill('Edited');
+  await save.click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('textbox').fill('named tree');
+  await dialog.getByRole('button', { name: '保存', exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  await page.locator('#tree-label').fill('AfterSave');
+  await source.fill('unfinished sentence');
+  await page.getByRole('link', { name: '今日', exact: true }).first().click();
+  await page.goto('/library/trees');
+  await expect(source).toHaveValue('unfinished sentence');
+  await expect(page.getByRole('treeitem', { name: 'AfterSave', exact: true })).toBeVisible();
+  await page.reload();
+  await expect(source).toHaveValue('unfinished sentence');
+  await expect(page.getByRole('treeitem', { name: 'AfterSave', exact: true })).toBeVisible();
+  // Named history stays an explicit snapshot, rather than being overwritten by automatic edits.
+  await page.goto('/library/trees?q=named%20tree');
+  await expect(page.getByRole('treeitem', { name: 'Edited', exact: true })).toBeVisible();
+  await expect(page.getByRole('treeitem', { name: 'AfterSave', exact: true })).toHaveCount(0);
+  await page.goto('/library/trees');
+  await expect(page.getByRole('treeitem', { name: 'AfterSave', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '清空', exact: true }).click();
+  await expect(source).toHaveValue('');
+  await expect(page.getByRole('treeitem')).toHaveCount(1);
+  // Clearing stays undoable in the current visit.
+  await page.getByRole('button', { name: '撤销', exact: true }).click();
+  await expect(page.getByRole('treeitem', { name: 'AfterSave', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '重做', exact: true }).click();
+  await expect(source).toHaveValue('');
+  await page.getByRole('link', { name: '今日', exact: true }).first().click();
+  await page.goto('/library/trees');
+  await expect(source).toHaveValue(defaultSource);
+  await expect(page.getByRole('treeitem')).toHaveText(defaultNodes);
+  await page.getByRole('button', { name: '清空', exact: true }).click();
+  await page.reload();
+  await expect(source).toHaveValue(defaultSource);
+  await expect(page.getByRole('treeitem')).toHaveText(defaultNodes);
+});

@@ -7,8 +7,12 @@ import { unpackZip } from '../src/data/zip';
 import { loadRuntimeResources, runtimeResources } from '../src/data/runtimeResources';
 
 it('accepts every current official resource ZIP only after verifying its catalogue hashes', async () => {
-  for (const group of offlineGroups) {
-    const bytes = await readFile(`public/packs/${group.id}-${group.version}.zip`);
+  const releases = runtimeResources.downloads.packs;
+  expect(offlineGroups.filter(group => !releases.some(release => release.id === group.id)).map(group => group.id).sort())
+    .toEqual(['tree-hol-ccg', 'tree-stanza']);
+  for (const release of releases) {
+    const group = offlineGroups.find(item => item.id === release.id && item.version === release.version)!;
+    const bytes = await readFile(`public${release.path}`);
     const pack = await inspectResourcePack(bytes);
     expect(pack.id).toBe(group.id);
     expect(pack.version).toBe(group.version);

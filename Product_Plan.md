@@ -172,7 +172,7 @@ Users may be at different stages for different goals. Do not require completion 
 
 ### 2.4 Supporting Beginners Without Depending on a Native Language
 
-Maintainer update (2026-10-16): B1–C2 instructional goals, before-start guidance, worked examples, hints, explanations and next steps use English in every interface language, including previously saved lessons. General navigation/actions use fourteen dedicated interface packages (maintainer update 2026-10-17). A1–A2 reviewed instructional support uses the selected language in all fourteen packages; the eleven non-Chinese/English languages each own `teaching.json`. Arabic interface direction is RTL; English material, answers and instructions remain LTR. Unknown private/older instructional text also retains an English fallback; saved snapshots are never rewritten for language changes. Select the display language without rewriting saved learning snapshots.
+Maintainer update (2026-10-16): B1–C2 instructional goals, before-start guidance, worked examples, hints, explanations and next steps use English in every interface language, including previously saved lessons. General navigation/actions use fourteen dedicated interface packages (maintainer update 2026-10-17). A1–A2 reviewed instructional support uses the selected language in all fourteen packages; the eleven non-Chinese/English languages each own `teaching.json`. Arabic interface text and local actions use RTL. Global navigation, fixed page columns and physical tool directions stay consistent across languages. English material, answers and instructions remain LTR. Unknown private/older instructional text also retains an English fallback; saved snapshots are never rewritten for language changes. Select the display language without rewriting saved learning snapshots.
 
 A1/A2 difficulties must not be solved by “send the entire English passage to an external AI”. Include:
 
@@ -649,6 +649,7 @@ Primary navigation is **Today / Library / Settings**. Today owns Reading, Listen
 /library/saved          Saved words
 /library/ipa             Pronunciation references
 /library/grammar         Usage references
+/library/trees           Syntax and ordinary tree diagrams, saved with lookup history
 /library/history         Profile lookup history, with optional sync
 /settings               Settings, identity/sync/sharing/backup/privacy controls
 /settings/about         About, source/licence information
@@ -674,6 +675,16 @@ Use clean-path routing and a narrow HTML fallback for known routes. `/tasks`, `/
 
 Count exposure when material is actually displayed. Learning introductions may show a preview, but that material can no longer count as unfamiliar. Generated Test starts from the shared preview; preview exposure is not unfamiliar independent evidence. Retained strict independent-check introductions show metadata only. First run collects reading and listening starting points separately; self-report is not a test result.
 
+### 9.3.1 Syntax-tree Reference
+
+Library opens `/library/trees` for sentence, bracket, outline, dependency and single CCGbank AUTO derivation input. Start with **The man who caught the ball is my uncle** and its worked tree. Offer constituency, dependency, X-bar, bare phrase structure, derived phrase tree, full phrase tree, simplified phrase tree, combinatory categorial and feature-annotated presentations. These are nine views of shared analysis, not nine independent grammar engines or complete TAG/AST/AVM inference.
+
+Retain manual node editing, undo/redo/clear, zoom/fullscreen, native/diagonal scrolling and shared routed SVG/PNG/WebP/JPEG/PDF export. Movement is a pressed-state toggle: active drag coindexes nodes instead of reparenting them; a second click or Escape exits. Unlink removes the selected chain. Right-click or a stationary touch hold opens the node menu, also navigable by keyboard. [The interface specification](Interface_Design.md#syntax-tree-editor) owns placement, responsive rows, symbols and focus.
+
+Automatically save one device-local draft per profile, restoring diagram, source and presentation after navigation/reload/offline. Preserve the preceding saved draft on failure and show the existing recovery guidance. Automatic drafts are excluded from profile backup and synchronization. Explicit named Save creates a separate lookup-history snapshot in supported backup/sync formats. Do not rewrite named saves after parser or locale changes. Clear stays blank and undoable during the visit; reopening a genuinely cleared draft restores the worked example, while nonempty drafts remain.
+
+Generation uses the bounded local parser, installed WordNet POS/inflection evidence and an offline fallback. The optional English dependency-parser pack in Library enables local UDPipe generation for the dependency view. The editor uses the ordinary parser for the whole input if the pack is unavailable, inference fails, or the model returns multiple trees or changes the normalized word surface. For the constituency view, the optional Stanza pack runs locally with UDPipe part-of-speech tags. Use the separately installed Charniak pack when Stanza is unavailable or its output fails validation, and retain the ordinary tree when it contains movement. Validate the complete normalized word surface and auxiliary tags. For the CCG view, the optional Hol-CCG pack generates a single complete derivation in the browser. Use ordinary generation if that derivation is unavailable or fails surface validation. The two neural packs install as verified individual assets in Library. Reviewed wh/relative, embedded-clause, adverb/preposition and verbal-passive gaps feed the views; basic dependencies omit trace tokens. X-bar/Bare retain functional head chains; CCG retains `?` and a localized notice for incomplete combinations. A pasted AUTO derivation opens directly in the CCG presentation and preserves the supplied word order, categories and branches. The inspected single-degree comparative-correlative treatment uses implementation-specific paired types, not general comparative semantics or independently validated gold analysis. Generated trees need review: successful drawing and word conservation do not establish linguistic correctness. Improved generation preserves existing saved snapshots.
+
 ### 9.4 Growth Fern and Progress
 
 Use the selected ostrich-fern fiddlehead and pinnate-frond imagery: a shared SVG skeleton, six stable forms, and left/right sides representing reading/listening records. Construction parameters are abstract design specifications, not botanical measurements or learning curves.
@@ -688,11 +699,13 @@ Use system sans-serif fonts for the interface. English materials may use a selec
 
 The main content maximum is 1120px. Enable two learning columns from a 1200px viewport when usable width permits. At 1440px: material 640 + gap 48 + questions 432 = 1120. Narrow reading uses the shared material workspace and its peek/expand answer sheet; listening retains its shared player and question layout. Keep top navigation and the existing mobile bottom navigation viewport-fixed, including short screens and input focus. Reserve their measured heights and keep optional learning panels scrollable; do not shrink 44px touch targets.
 
-Both themes retain state text, shapes, and explicit focus. Treat identifying control borders differently from decorative rules. A contrast result on one background is not a whole-page accessibility pass. Reduced motion respects system and user choices.
+Settings offers **33 palettes**: independent **Default** (stable ID `basic`) plus 32 alternatives including original **Fern**. Each supports light/dark; System/Light/Dark is an independent preference. Choose Default to restore the default, without a separate reset button. Restore preferences before paint across the site, Introduction, consent and installed offline use. Keep the logo/Today fern in their original mode-specific brand colors. The interface specification owns swatches, ordering, state tokens and neutral dark surfaces.
+
+All palettes/modes retain state text, shapes, and explicit focus. Treat identifying control borders differently from decorative rules. A contrast result on one background is not a whole-page accessibility pass. Reduced motion respects system and user choices.
 
 ### 9.6 Logo
 
-Use `public/icon.svg` as the sole logo source, directly or as a CSS mask in the theme accent colour. Keep its complete outline and square proportions. The required 192px and 512px PNG installation icons derive from this same version. Do not restore handwritten wordmarks, signatures, alternate logo designs or editable masters. See [brand assets](docs/brand-assets.md). The growth illustration remains separate from the formal logo.
+Use `public/icon.svg` as the sole logo source, directly or as a CSS mask in the original mode-specific brand accent (`#536F5B` light / `#A8BBA3` dark), independent of the selected palette. Keep its complete outline and square proportions. The required 192px and 512px PNG installation icons derive from this same version. Do not restore handwritten wordmarks, signatures, alternate logo designs or editable masters. See [brand assets](docs/brand-assets.md). The growth illustration remains separate from the formal logo.
 
 ### 9.7 States and Validation
 

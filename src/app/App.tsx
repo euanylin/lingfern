@@ -1,3 +1,4 @@
+import { appearanceMode, applyAppearance, paletteId, paletteIds, paletteOrder } from '../shared/palettes';
 import { pageRoute } from '../shared/pageRoutes';
 import { acceptPageHistory, initializePageHistory, pushPageHistory, replacePageHistory } from './pageHistory';
 import { closeModal, showModal } from './modal';
@@ -54,12 +55,14 @@ const publicViews = {
   '/settings/about': () => import('./About').then(module => ({ default: module.About })),
   '/library/dictionary': () => import('./Dictionary').then(module => ({ default: module.Dictionary })),
   '/library/grammar': () => import('./GrammarLookup').then(module => ({ default: module.GrammarLookup })),
+  '/library/trees': () => import('./TreeDiagram').then(module => ({ default: module.TreeDiagram })),
 };
 let Welcome: ComponentType<ComponentProps<typeof import('./Welcome').Welcome>> = lazy(publicViews['/introduction']);
 let IpaChart: ComponentType<ComponentProps<typeof import('./IpaChart').IpaChart>> = lazy(publicViews['/library/ipa']);
 let About: ComponentType<ComponentProps<typeof import('./About').About>> = lazy(publicViews['/settings/about']);
 let Dictionary: ComponentType<ComponentProps<typeof import('./Dictionary').Dictionary>> = lazy(publicViews['/library/dictionary']);
 let GrammarLookup: ComponentType<ComponentProps<typeof import('./GrammarLookup').GrammarLookup>> = lazy(publicViews['/library/grammar']);
+let TreeDiagram: ComponentType<ComponentProps<typeof import('./TreeDiagram').TreeDiagram>> = lazy(publicViews['/library/trees']);
 const Learning = lazy(() => import('./Learning'));
 const loadGithubIdentity = () => import('./GithubIdentity').then(module => ({ default: module.GithubIdentity }));
 let GithubIdentity: ComponentType<ComponentProps<typeof import('./GithubIdentity').GithubIdentity>> = lazy(loadGithubIdentity);
@@ -90,6 +93,7 @@ export async function preloadPublicPage(path: string) {
     case '/settings/about': About = (await publicViews[path]()).default; break;
     case '/library/dictionary': Dictionary = (await publicViews[path]()).default; break;
     case '/library/grammar': GrammarLookup = (await publicViews[path]()).default; break;
+    case '/library/trees': TreeDiagram = (await publicViews[path]()).default; break;
     default: throw Error('PUBLIC_PAGE_MISMATCH');
   }
 }
@@ -121,12 +125,13 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
   useEffect(() => { setUnsavedDemo(false); }, [path]);
   const [locale, setLocale] = useState<Locale>(() => initialPage ? initialPage.locale ?? 'en' : initialInterface?.locale ?? initialLocale());
   const localeRequest = useRef(0);
-  const [theme, setTheme] = useState(initialPage ? 'system' : initialInterface?.theme ?? 'system');
+  const [theme, setTheme] = useState(initialInterface?.theme ?? 'system');
+  const [palette, setPalette] = useState(paletteId(initialInterface?.palette));
   const [desktopNavDisplay, setDesktopNavDisplay] = useState<NavDisplay | undefined>(initialPage ? undefined : initialInterface?.desktopNavDisplay ?? 'text');
   const [mobileNavDisplay, setMobileNavDisplay] = useState<NavDisplay | undefined>(initialPage ? undefined : initialInterface?.mobileNavDisplay ?? 'both');
   useLayoutEffect(() => {
     if (!initialPage || !initialInterface) return;
-    setLocale(initialInterface.locale); setTheme(initialInterface.theme);
+    setLocale(initialInterface.locale);
     setDesktopNavDisplay(initialInterface.desktopNavDisplay); setMobileNavDisplay(initialInterface.mobileNavDisplay);
   }, [initialPage, initialInterface]);
   const [onlineDictionary, setOnlineDictionary] = useState<OnlineDictionaryId>('cambridge');
@@ -244,8 +249,8 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
       if (showFirstRun) { const next = !storedPreferences && !welcomeSeen() ? '/introduction' : '/start'; replacePageHistory(null, next); if (next === '/introduction') prepareDailyQuote(); setPath(next); }
       else if (location.pathname === '/') { replacePageHistory(null, '/today'); setPath('/today'); }
       setLocale(nextLocale);
-      const appearance = savedValues.get('theme');
-      setTheme(appearance && ['system','light','dark'].includes(appearance) ? appearance : 'system');
+      setPalette(paletteId(savedValues.get('palette')));
+      setTheme(appearanceMode(savedValues.get('theme')));
       const desktopDisplay = savedValues.get('desktopNavDisplay');
       const mobileDisplay = savedValues.get('mobileNavDisplay');
       setDesktopNavDisplay(navDisplay(desktopDisplay) ? desktopDisplay : 'text');
@@ -314,20 +319,22 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
     window.addEventListener('lingfern-resources-installed', refresh);
     return () => { live = false; channel?.close(); window.removeEventListener('lingfern-resources-installed', refresh); };
   }, [activeProfile]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dir = localeDirection(locale);
-    document.documentElement.dataset.theme = theme;
+  }, [locale]);
+  useLayoutEffect(() => {
+    applyAppearance(theme, palette);
     const systemDark = matchMedia('(prefers-color-scheme: dark)');
     const syncThemeMetadata = () => {
       const dark = theme === 'dark' || (theme === 'system' && systemDark.matches);
       document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]')?.setAttribute('content', dark ? 'dark' : 'light');
-      document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', dark ? '#1F1E1D' : '#F7F6F2');
+      document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', getComputedStyle(document.documentElement).backgroundColor);
     };
     syncThemeMetadata();
     systemDark.addEventListener('change', syncThemeMetadata);
     return () => systemDark.removeEventListener('change', syncThemeMetadata);
-  }, [locale, theme]);
+  }, [theme, palette]);
   async function setting(key: string, value: string) {
     const request = key === 'locale' ? ++localeRequest.current : undefined;
     try {
@@ -337,6 +344,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
       if (activeProfile !== currentProfile.current || (key === 'locale' && request !== localeRequest.current)) return;
       if (key === 'locale') setLocale(value as Locale);
       else if (key === 'theme') setTheme(value);
+      else if (key === 'palette') setPalette(paletteId(value));
       else if (key === 'desktopNavDisplay' && navDisplay(value)) setDesktopNavDisplay(value);
       else if (key === 'mobileNavDisplay' && navDisplay(value)) setMobileNavDisplay(value);
       else if (key === 'onlineDictionary') setOnlineDictionary(defaultOnlineDictionary(value));
@@ -481,13 +489,14 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
             <div className="settings-language settings-card"><SettingsPicker label={t.language} value={locale} options={languageOptions} onChange={value => void setting('locale', value)}/></div>
             <div className="settings-appearance settings-card">
               <SettingsPicker label={t.theme} value={theme} options={[{ value: 'system', label: t.system }, { value: 'light', label: t.light }, { value: 'dark', label: t.dark }]} onChange={value => void setting('theme', value)}/>
+              <SettingsPicker label={t.palette} value={palette} options={paletteOrder.map(value => ({ value, label: t.paletteNames[paletteIds.indexOf(value)], palette: value }))} onChange={value => void setting('palette', value)}/>
               <SettingsPicker label={t.desktopNavDisplay} value={desktopNavDisplay ?? 'text'} options={[{ value: 'text', label: t.navText }, { value: 'icon', label: t.navIcons }, { value: 'both', label: t.navBoth }]} onChange={value => void setting('desktopNavDisplay', value)}/>
               <SettingsPicker label={t.mobileNavDisplay} value={mobileNavDisplay ?? 'both'} options={[{ value: 'text', label: t.navText }, { value: 'icon', label: t.navIcons }, { value: 'both', label: t.navBoth }]} onChange={value => void setting('mobileNavDisplay', value)}/>
             </div>
             <div className="settings-dictionary-row settings-card">
               <SettingsPicker label={t.defaultOnlineDictionary} description={t.onlineLookupPrivacy} value={onlineDictionary} options={onlineDictionaries.map(dictionary => ({ value: dictionary.id, label: dictionary.shortName }))} onChange={value => void setting('onlineDictionary', value)}/>
             </div>
-            <a className="setting settings-start-link settings-card" href="/start"><span>{firstRunCopy[locale].edit}</span><span aria-hidden="true">→</span></a>
+            <a className="setting settings-start-link settings-card" href="/start"><span>{firstRunCopy[locale].edit}</span><span dir="ltr" aria-hidden="true">→</span></a>
           </div>
         </section>
         
@@ -504,7 +513,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
               {updateCheck === 'checking' ? t.updateChecking : updateCheck === 'preparing' ? t.updatePreparing : updateBlocked ? t.updateBlocked : updateAvailable ? t.updateNow : updateCheck === 'current' ? t.updateCurrent : updateCheck === 'offline' ? t.updateOffline : updateCheck === 'unavailable' ? t.updateUnavailable : updateCheck === 'failed' ? t.updateFailed : `v${appVersion.split('.').slice(0, 2).join('.')}`}
             </span>
           </button>
-          <a className="settings-about-row settings-about-link" href="/settings/about"><span>{t.about}</span><span aria-hidden="true">→</span></a>
+          <a className="settings-about-row settings-about-link" href="/settings/about"><span>{t.about}</span><span dir="ltr" aria-hidden="true">→</span></a>
         </section>
       </section>;
   async function leaveTask() {
@@ -522,11 +531,11 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
   function beginFirstRun() { try { localStorage.setItem('lingfern.onboarding.seen', '1'); } catch { /* Continue when persistent storage is unavailable. */ } pushPageHistory(null, '/start'); setPath('/start'); scrollTo(0, 0); }
   return <>
     <a className="skip" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>{t.skip}</a>
-    {!introducing && !entryPending && <header className={sessionId ? 'session-header' : ''}>
-      {sessionId ? <><a className="back-button" href="/today" aria-label={t.leave} onClick={e => { e.preventDefault(); void leaveTask(); }}>←</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span>{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span>{(messages('app_test')[locale])}</span> : null}</> : <>
+    {!introducing && !entryPending && <header dir="ltr" className={sessionId ? 'session-header' : ''}>
+      {sessionId ? <><a className="back-button" href="/today" aria-label={t.leave} onClick={e => { e.preventDefault(); void leaveTask(); }}>←</a><span className="brand-symbol symbol" role="img" aria-label="Lingfern"/>{history.find(session => session.id === sessionId)?.lesson.mode === 'check' ? <span dir="auto">{t.independentCheck}</span> : history.find(session => session.id === sessionId)?.lesson.mode === 'test' ? <span dir="auto">{(messages('app_test')[locale])}</span> : null}</> : <>
         <a className="home-mark" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
         <a className="mobile-brand" href="/today" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true"/></a>
-        <nav className="desktop-nav" data-display={desktopNavDisplay ?? 'text'} data-pending={!desktopNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>
+        <nav className="desktop-nav" data-display={desktopNavDisplay ?? 'text'} data-pending={!desktopNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label" dir="auto">{t[n]}</span></a>)}</nav>
       </>}
     </header>}
     <main id="main" tabIndex={-1} className={missing ? 'not-found-main' : introducing ? 'welcome-main' : undefined}>
@@ -549,20 +558,22 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
         {(communityLessons.length > 0 || catalogue.length > 0) && <TaskCatalogue selections={practiceSelections} onSelection={savePracticeSelection} preferences={preferences} key={activeProfile} startError={error === 'save' ? t.saveError : ''} profileId={activeProfile} locale={locale} lessons={[...catalogue, ...communityLessons]} history={history} records={records} online={online} installedGroups={installedGroups} localCorpus={localCorpus} localSpoken={localSpoken} busy={starting} onStart={start}/>}
         {combinedDetail && <TaskDetail key={combinedDetail[0].id + combinedDetail[1].id} lesson={combinedDetail[0]} additionalLesson={combinedDetail[1]} heading={training.title} locale={locale} profileId={activeProfile} action={training.start} busy={starting} onStart={() => startCombinedPractice()} onCheck={() => startCombinedPractice(true)} onClose={() => { setCombinedDetail(undefined); requestAnimationFrame(() => { if (combinedInvoker.current?.isConnected && !combinedInvoker.current.matches(':disabled')) combinedInvoker.current.focus({ preventScroll: true }); }); }} startError={error === 'save' ? t.saveError : ''} available={true}/>}
       </> : path === '/progress' ? <section id="today-records">
-        <a className="records-back back-button" href="/today" aria-label={t.today}><span aria-hidden="true">←</span></a>
+        <a className="records-back back-button" href="/today" aria-label={t.today}><span dir="ltr" aria-hidden="true">←</span></a>
         <h1>{t.progress}</h1>
         {!history.length && !records.length && !summaries.length && !unavailableSummaries.length && <p className="progress-empty">{t.empty}</p>}<SessionHistory history={history} records={records} locale={locale} profileId={activeProfile} onChange={load}/>
         <ProgressRecords locale={locale} summaries={summaries} unavailable={unavailableSummaries} conflicts={summaryConflicts} profileId={activeProfile} onChange={load}/><CompletionTiming key={activeProfile} locale={locale} profileId={activeProfile} rows={timingRows} onChange={load}/>
         </section> : path === '/library' ? <div className="library-page"><div className="library-page-heading"><h1>{t.library}</h1><div className="library-history-entry"><a className="button records-link" href="/library/history">{lookupHistoryCopy[locale].entry}</a></div></div><section className="library-references"><h2>{t.references}</h2>{[
           { path: 'dictionary', title: t.dictionaryEntry },
-          { path: 'ipa', title: t.ipa },
           { path: 'grammar', title: t.grammar },
+          { path: 'ipa', title: t.ipa },
+          { path: 'trees', title: t.trees },
         ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={setInstalledGroups} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
       : path === '/library/dictionary' ? <div className="library-page"><Dictionary disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>
       : path === '/library/ipa' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><IpaChart disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery} initialEntries={initialPage?.ipa} initialSounds={initialPage?.sounds}/></Suspense>
       : path === '/library/grammar' ? <GrammarLookup disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery} initialData={initialPage?.grammar}/>
+      : path === '/library/trees' ? <TreeDiagram disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} profileId={activeProfile} initialQuery={lookupQuery}/>
       : path === '/settings/about' ? <Suspense fallback={<p className="sr-only" role="status">{t.loading}</p>}><About/></Suspense>
       : path === '/settings' ? settingsPage : <NotFound locale={locale}/>}
       </PageBoundary></Suspense>
@@ -573,7 +584,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
       {updateBlocked && <p className="error" role="alert">{t.updateBlocked}</p>}
       <div className="update-confirm-actions"><button className="button" ref={updateCancel} type="button" disabled={applyingUpdate} onClick={closeUpdate}>{t.updateCancel}</button><button className="primary" type="button" disabled={applyingUpdate} aria-busy={applyingUpdate} onClick={() => void applyUpdate()}>{t.updateNow}</button></div>
     </dialog>, document.body)}
-    {!sessionId && !introducing && !entryPending && path !== '/start' && <nav className="mobile-nav" data-display={mobileNavDisplay ?? 'both'} data-pending={!mobileNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label">{t[n]}</span></a>)}</nav>}
+    {!sessionId && !introducing && !entryPending && path !== '/start' && <nav className="mobile-nav" dir="ltr" data-display={mobileNavDisplay ?? 'both'} data-pending={!mobileNavDisplay && error !== 'read' ? '' : undefined} aria-label={t.navigation}>{nav.map(n => <a key={n} aria-label={t[n]} aria-current={activeNav === n ? 'page' : undefined} href={`/${n}`}><NavIcon name={n}/><span className="nav-label" dir="auto">{t[n]}</span></a>)}</nav>}
     <NetworkStatus online={online} locale={locale}/>
   </>;
 }

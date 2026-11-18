@@ -36,9 +36,10 @@ test('every display language opens the same English About page with local artwor
       return rect.width >= 200 && rect.width === rect.height && css.maskImage.includes('/icon.svg');
     })).toBe(true);
     await expect(page.locator('.about-signature,.about-signature-block')).toHaveCount(0);
-    await expect(page.locator('.about-projects a')).toHaveCount(credits.software.length);
+    const repositories = page.locator('.about-projects a[target="_blank"]');
+    await expect(repositories).toHaveText(credits.software.map(project => `${project.name} ↗`));
     const lessonCount = audio.filter(item => !wordSources.some(source => source.source === item.source)).length;
-    await expect(page.locator('.about-credit-details summary')).toHaveText([`${t.buildTools} (11)`, `${t.corpora} (${credits.corpora.length})`, `${t.quotes} (${quotes.quotes.length})`, `${t.originalRecordings} (${lessonCount})`, `${t.ipaSounds} (125)`]);
+    await expect(page.locator('.about-credit-details summary')).toHaveText([`${t.syntaxProjects} (${credits.syntax.length})`, `${t.buildTools} (${credits.development.length})`, `${t.corpora} (${credits.corpora.length})`, `${t.quotes} (${quotes.quotes.length})`, `${t.originalRecordings} (${lessonCount})`, `${t.ipaSounds} (125)`]);
     const lessonRecordings = page.locator('.about-credit-details').filter({ has: page.getByText(`${t.originalRecordings} (${lessonCount})`, { exact: true }) });
     await lessonRecordings.locator('summary').click();
     await expect(lessonRecordings).toContainText(t.a1WordCredits);

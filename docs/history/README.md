@@ -10,6 +10,20 @@ Historical `backup/<timestamp>` references identify original verification checkp
 
 Only this history index is exported to GitHub. Dated filenames below refer to retained local evidence, not public download links.
 
+## Current unpublished tree and appearance work
+
+Publication remains paused; [the handoff](../../DEVELOPMENT_HANDOFF.md) owns recorded production and local source state. Current user instructions are in the fourteen READMEs; product behavior is in [the plan](../../Product_Plan.md#931-syntax-tree-reference) and [interface specification](../../Interface_Design.md#syntax-tree-editor). These dated records preserve implementation and verification scope:
+
+- [Documentation and credits](2026-11-18-documentation-and-credits.md): published and preview feature boundaries, localized usage instructions, upstream attribution and remaining provenance checks.
+- [Arabic layout refinement](2026-11-18-arabic-layout.md) and [tree editor and appearance review](2026-11-18-tree-editor-and-appearance-review.md): stable spatial layout, editor input, export and palette recovery.
+- `2026-11-18-tree-parser-cleanup.md`: model adapter review, punctuation round trips, dependency surface checks, Worker cleanup and model-package staging.
+- `2026-11-18-tree-generation-audit.md`: terminology, inverted passives, existential clauses, clausal subjects, nominal modifiers and infinitival `to`, with a paired EWT development comparison.
+- `2026-11-17-tree-theme-audit.md`: parser/form/picker/menu review, comparative-correlative and prepositional-passive repairs, regression scope and remaining analysis limits. Earlier failures in the form/adjunct records are historical, not pending copies of repaired defects.
+- `2026-11-17-tree-movement-mode.md`, `2026-11-17-tree-symbol-touch.md`, `2026-11-17-tree-autosave.md`, `2026-11-17-tree-clear-example.md` and `2026-11-17-tree-preset-review.md`: movement toggle/menu/touch interaction, toolbar/symbol placement, separate automatic drafts/named saves and example restoration.
+- `2026-11-17-tree-form-semantics.md`, `2026-11-17-tree-adjunct-ccg.md`, `2026-11-17-tree-clause-frames.md` and `2026-11-15-tree-movement-routing.md`: form conventions, lexical-source/gap rules and shared screen/export routes.
+- `2026-11-17-theme-palettes.md`, `2026-11-17-basic-palette-rebuild.md` and `2026-11-17-tree-picker-review.md`: 33 palettes, independent mode, pre-paint/offline preferences, Default (`basic`) and shared picker behavior. Intermediate palette/swatch/order refinements remain dated receipts, not alternative current designs.
+- `2026-11-16-tree-boundary-polish.md` and `2026-11-17-tree-code-cleanup.md`: historical EWT dev diagnostics and the preceding output-preserving cleanup; no new full EWT accuracy claim.
+
 ## Current and earlier releases
 
 - **Released 0.1.170:** `2026-11-11-release-0.1.170.md`: 404 first paint/startup recovery, concise titles, localized missing-page metadata and failed-shard cancellation; exact candidate/production resources, predecessor-upgrade/offline preservation and guarded no-CI source synchronization.

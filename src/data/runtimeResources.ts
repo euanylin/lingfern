@@ -29,6 +29,16 @@ function applyCatalogue(value: ResourceCatalogue) {
 export function applyRuntimeCatalogue(input: unknown) {
   return applyCatalogue(resourceCatalogueSchema.parse(input));
 }
+async function readCachedCatalogue() {
+  if (typeof caches === 'undefined' || !await caches.has(catalogueCacheName)) return;
+  const cached = await (await caches.open(catalogueCacheName)).match(cataloguePath);
+  if (cached) return readCatalogue(cached);
+}
+export async function loadCachedRuntimeResources() {
+  if (loaded) return;
+  const cached = await readCachedCatalogue();
+  if (cached && !loaded) applyCatalogue(cached);
+}
 export async function loadRuntimeResources(force = false): Promise<ResourceCatalogue> {
   if (inflight) return inflight;
   if (loaded && !force) return runtimeResources;
@@ -49,10 +59,8 @@ export async function loadRuntimeResources(force = false): Promise<ResourceCatal
       }
       return applyCatalogue(value);
     } catch (error) {
-      if (typeof caches !== 'undefined') {
-        const cached = await (await caches.open(catalogueCacheName)).match(cataloguePath);
-        if (cached) return applyCatalogue(await readCatalogue(cached));
-      }
+      const cached = await readCachedCatalogue();
+      if (cached) return applyCatalogue(cached);
       throw error;
     }
   })();

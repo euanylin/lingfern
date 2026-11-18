@@ -8,6 +8,8 @@
 
 Entraînement à la lecture et à la compréhension orale en anglais, dès 16 ans, avec des objectifs de A1 à C2. Les exercices sont générés localement à partir de textes et d’enregistrements. Aucun compte ni service d’IA n’est nécessaire pour apprendre.
 
+Le site public utilise **0.1.170**. Les arbres syntaxiques, le dictionnaire d’usage enrichi, les palettes et les crédits About mis à jour sont disponibles dans **l’aperçu local 0.2.0**. [État de publication](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
+
 <a id="readme-languages"></a>
 
 <details>
@@ -82,7 +84,7 @@ Les questions objectives reçoivent une correction et une explication. Les répo
 
 ## Historique et progression
 
-Depuis [**Historique**](https://lingfern.com/progress) dans Aujourd’hui, retrouvez sessions, réponses, retours et aides utilisées ; supprimez des réponses enregistrées après confirmation. Confirmez les heures de fin si la correction d’horloge apparaît.
+Dans Aujourd’hui, ouvrez l’historique pour revoir les séances et réponses ou reprendre une séance. Vous pouvez supprimer une séance ou un résultat synchronisé autonome après confirmation. Supprimer une séance combinée efface ses deux parties liées. Confirmez l’heure de fin si l’option de correction apparaît.
 
 La fougère représente l’activité sauvegardée, pas un niveau certifié. Les citations quotidiennes indiquent leur source ; un texte long peut être déplié et une autre citation choisie.
 
@@ -95,8 +97,21 @@ La fougère représente l’activité sauvegardée, pas un niveau certifié. Les
 | [Dictionnaire anglais](https://lingfern.com/library/dictionary) | Recherche de mots avec définitions en anglais, y compris depuis un texte sélectionné. |
 | [Favoris](https://lingfern.com/library/saved) | ★/☆ pour enregistrer ou retirer une définition ; entrées repliables. Une entrée retirée reste jusqu’à la réouverture ou l’actualisation pour pouvoir être rétablie. |
 | [Tableau IPA](https://lingfern.com/library/ipa) | Vues simple/détaillée, recherche de sons, enregistrements et exemples anglais disponibles. |
-| [Usage de l’anglais](https://lingfern.com/library/grammar) | Recherche par mot-clé, parcours alphabétique et explications dépliables. |
-| [Historique de recherche](https://lingfern.com/library/history) | Réouverture des recherches dictionnaire, usage et IPA avec source, heure et état conservé. |
+| [Dictionnaire d’usage anglais](https://lingfern.com/library/grammar) | Recherche par mot-clé, parcours alphabétique et explications dépliables. |
+| [Arbre syntaxique](#readme-syntax-tree) · 0.2.0 | Générer et modifier neuf représentations, enregistrer des instantanés nommés et exporter en SVG, PNG, WebP, JPEG ou PDF. |
+| [Historique des recherches](https://lingfern.com/library/history) | Réouverture des recherches dictionnaire, usage et IPA avec source, heure et état conservé. |
+
+L’aperçu local contient **191 entrées**. Les explications suivent la langue de l’interface et reviennent à l’anglais si nécessaire. Exemples, constructions et contrastes restent en anglais.
+
+<a id="readme-syntax-tree"></a>
+
+**Bibliothèque** → **Référence** → **Arbre syntaxique** · [0.2.0](http://127.0.0.1:8787/library/trees)
+
+Saisissez une phrase, un arbre entre parenthèses, un plan indenté ou une notation de dépendances. Les commandes des nœuds sont au-dessus du canevas, les symboles juste en dessous. Activez **Déplacement** pour relier des nœuds par coindexation ; cliquez à nouveau ou appuyez sur Échap pour quitter ce mode. Le clic droit ou l’appui long ouvre le menu. Un brouillon local par profil est automatiquement enregistré et restauré, mais exclu des sauvegardes et de la synchronisation. **Enregistrer** crée un instantané nommé distinct dans l’historique. Effacer reste annulable pendant la visite ; rouvrir un brouillon vidé rétablit l’exemple. Appuyez sur **Entrée** pour dessiner ou sur **Maj+Entrée** pour insérer une ligne.
+
+Vous pouvez aussi coller une dérivation CCGbank AUTO pour en conserver les catégories et les branches.
+
+Dans **Bibliothèque** → **Contenu hors ligne** → **Références** → **Arbre syntaxique**, sélectionnez les modèles voulus puis **Télécharger la sélection**. UDPipe analyse les dépendances. Stanza (avec UDPipe) ou Charniak installé analyse les constituants. Hol-CCG produit les dérivations CCG. Les règles intégrées fonctionnent hors ligne si le modèle est indisponible ou si sa sortie est rejetée. Vérifiez l’analyse avant de l’utiliser.
 
 Choisissez Cambridge, Oxford Learner’s Dictionaries, Wiktionary ou Merriam-Webster pour les recherches externes. Les liens ouvrent le site du fournisseur ; les liens d’usage utilisent Cambridge Grammar.
 
@@ -145,9 +160,11 @@ La carte indique synchronisation en cours, terminée, en attente hors ligne ou �
 
 Quatorze langues d’interface ; thème clair/sombre/système ; navigation texte, icônes ou mixte distincte sur ordinateur et mobile ; dictionnaire externe par défaut ; points de départ et intérêts modifiables ; clavier, tactile et préférence de réduction des animations.
 
-Les supports anglais restent en anglais. Les consignes A1–A2 révisées ont une aide traduite ; les consignes B1–C2 et About restent en anglais. La navigation arabe est RTL, les contenus anglais LTR.
+**0.2.0** · Changez de couleurs dans **Paramètres** → **Palette**. **33 palettes** sont proposées : **Par défaut** et 32 alternatives, dont **Fougère**, toutes en clair et sombre. Le mode système/clair/sombre est enregistré séparément. Choisissez Par défaut pour rétablir la palette initiale. Les couleurs suivent vos préférences sur le site, l’introduction et les pages installées hors ligne ; le logo et la fougère d’Aujourd’hui gardent leurs couleurs d’origine.
 
-**Rechercher des mises à jour → Mettre à jour** recharge la page en conservant la progression sauvegardée. About et les détails des supports donnent liens du projet, sources et licences.
+Les supports anglais restent en anglais. Les consignes A1–A2 révisées ont une aide traduite ; les consignes B1–C2 et About restent en anglais.
+
+**Rechercher des mises à jour → Mettre à jour** recharge la page en conservant la progression sauvegardée. [À propos](https://lingfern.com/settings/about) et les détails des supports donnent liens du projet, sources et licences.
 
 <a id="readme-privacy"></a>
 

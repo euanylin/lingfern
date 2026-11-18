@@ -8,6 +8,8 @@
 
 Latihan membaca dan menyimak bahasa Inggris untuk usia 16 tahun ke atas, dengan sasaran belajar A1–C2. Latihan dibuat secara lokal dari teks sumber dan rekaman. Belajar tidak memerlukan akun atau layanan AI.
 
+Situs publik menggunakan **0.1.170**. Pohon sintaksis, kamus penggunaan yang diperluas, palet warna, dan kredit About yang diperbarui tersedia di **pratinjau lokal 0.2.0**. [Status rilis](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
+
 <a id="readme-languages"></a>
 
 <details>
@@ -82,7 +84,7 @@ Soal objektif mendapat penilaian dan penjelasan sesuai jenisnya. Jawaban terbuka
 
 ## Riwayat dan kemajuan
 
-Buka [**Riwayat**](https://lingfern.com/progress) dari Hari Ini untuk meninjau sesi, jawaban, umpan balik, dan bantuan yang digunakan; hapus jawaban tersimpan setelah konfirmasi. Konfirmasikan waktu selesai saat koreksi jam ditawarkan.
+Buka riwayat dari Hari Ini untuk meninjau sesi dan jawaban atau melanjutkan sesi. Setelah konfirmasi, sesi atau catatan sinkron mandiri dapat dihapus. Menghapus sesi gabungan juga menghapus kedua bagian terkait. Konfirmasikan waktu selesai jika opsi koreksi waktu muncul.
 
 Pakis mencerminkan aktivitas tersimpan, bukan tingkat kemahiran bersertifikat. Kutipan harian menyertakan sumber, pembukaan teks panjang, dan pilihan kutipan lain.
 
@@ -95,8 +97,21 @@ Pakis mencerminkan aktivitas tersimpan, bukan tingkat kemahiran bersertifikat. K
 | [Kamus Inggris](https://lingfern.com/library/dictionary) | Cari kata dengan definisi bahasa Inggris, termasuk dari teks bacaan yang dipilih. |
 | [Markah](https://lingfern.com/library/saved) | Simpan/hapus definisi dengan ★/☆ dan lipat entri. Entri yang dilepas tetap ada sampai dibuka ulang/dimuat ulang agar dapat segera dipulihkan. |
 | [Bagan IPA](https://lingfern.com/library/ipa) | Tampilan sederhana/terperinci, pencarian bunyi, rekaman, dan kata contoh yang tersedia. |
-| [Referensi penggunaan bahasa Inggris](https://lingfern.com/library/grammar) | Pencarian kata kunci, penelusuran alfabet, dan penjelasan yang dapat dibuka. |
+| [Kamus penggunaan bahasa Inggris](https://lingfern.com/library/grammar) | Pencarian kata kunci, penelusuran alfabet, dan penjelasan yang dapat dibuka. |
+| [Pohon sintaksis](#readme-syntax-tree) · 0.2.0 | Buat dan edit sembilan tampilan, simpan cuplikan bernama, dan ekspor SVG, PNG, WebP, JPEG, atau PDF. |
 | [Riwayat pencarian](https://lingfern.com/library/history) | Buka kembali pencarian kamus, penggunaan, dan IPA dengan sumber, waktu, serta status tersimpan. |
+
+Pratinjau lokal memuat **191 entri**. Penjelasan mengikuti bahasa antarmuka dan memakai bahasa Inggris jika terjemahan belum tersedia. Contoh, pola, dan perbandingan tetap dalam bahasa Inggris.
+
+<a id="readme-syntax-tree"></a>
+
+**Pustaka** → **Referensi** → **Pohon sintaksis** · [0.2.0](http://127.0.0.1:8787/library/trees)
+
+Masukkan kalimat, pohon berkurung, kerangka berindentasi, atau notasi dependensi. Kontrol simpul berada di atas kanvas dan bantuan simbol tepat di bawahnya. Aktifkan **Pemindahan** untuk menautkan simpul dengan indeks yang sama saat diseret; klik lagi atau tekan Escape untuk keluar. Klik kanan atau tekan lama pada layar sentuh untuk membuka menu. Satu draf lokal per profil disimpan dan dipulihkan otomatis; draf pohon ini tidak disertakan dalam cadangan atau sinkronisasi. **Simpan** membuat cuplikan bernama terpisah di riwayat. Pengosongan dapat diurungkan selama kunjungan; membuka kembali draf kosong memulihkan contoh. Tekan **Enter** untuk menggambar atau **Shift+Enter** untuk baris baru.
+
+Anda juga dapat menempel satu derivasi CCGbank AUTO dan mempertahankan kategori serta cabang aslinya.
+
+Di **Pustaka** → **Konten luring** → **Referensi** → **Pohon sintaksis**, pilih model lalu tekan **Unduh pilihan**. UDPipe menganalisis dependensi. Pohon konstituen memakai Stanza (memerlukan UDPipe) atau Charniak jika terpasang. Hol-CCG menghasilkan derivasi CCG. Aturan bawaan bekerja luring jika model tidak tersedia atau keluarannya ditolak. Periksa analisis sebelum menggunakannya.
 
 Pilih Cambridge, Oxford Learner’s Dictionaries, Wiktionary, atau Merriam-Webster untuk pencarian eksternal. Tautan membuka situs penyedia; tautan penggunaan memakai Cambridge Grammar.
 
@@ -145,9 +160,11 @@ Kartu menampilkan sedang sinkron, sudah sinkron, menunggu offline, atau gagal se
 
 Empat belas bahasa antarmuka; tema terang/gelap/sistem; navigasi teks, ikon, atau gabungan yang terpisah untuk desktop/ponsel; kamus online bawaan; tingkat awal dan minat yang dapat diubah; dukungan papan ketik, sentuh, dan pengurangan gerakan.
 
-Bahan bahasa Inggris tetap dalam bahasa Inggris. Panduan A1–A2 yang ditinjau memiliki bantuan terjemahan; B1–C2 dan About tetap dalam bahasa Inggris. Navigasi Arab memakai RTL, sedangkan konten Inggris LTR.
+**0.2.0** · Ubah warna di **Pengaturan** → **Tema warna**. Tersedia **33 palet**: **Default** dan 32 alternatif termasuk **Pakis**, masing-masing mendukung warna terang dan gelap. Mode sistem/terang/gelap disimpan terpisah. Pilih Default untuk memulihkan palet awal. Preferensi berlaku di seluruh situs, pengantar, dan halaman terpasang saat luring; logo dan pakis Hari Ini tetap memakai warna merek aslinya.
 
-**Periksa pembaruan → Perbarui sekarang** memuat ulang dengan mempertahankan kemajuan tersimpan. About dan rincian bahan menampilkan tautan proyek, sumber, dan lisensi.
+Bahan bahasa Inggris tetap dalam bahasa Inggris. Panduan A1–A2 yang ditinjau memiliki bantuan terjemahan; B1–C2 dan About tetap dalam bahasa Inggris.
+
+**Periksa pembaruan → Perbarui sekarang** memuat ulang dengan mempertahankan kemajuan tersimpan. [Tentang](https://lingfern.com/settings/about) dan rincian bahan menampilkan tautan proyek, sumber, dan lisensi.
 
 <a id="readme-privacy"></a>
 

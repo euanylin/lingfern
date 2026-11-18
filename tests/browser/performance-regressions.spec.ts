@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
 const reading = JSON.parse(readFileSync('tests/fixtures/content/a1-reading.json', 'utf8'));
+const grammarCount = JSON.parse(readFileSync('public/grammar/entries.json', 'utf8')).entries.length;
 
 test('resource topic rows mount on expansion and retain their selection through collapse and search', async ({ page }) => {
   await page.goto('/library');
@@ -77,7 +78,7 @@ test('collapsed session history omits answer DOM and reopens every saved respons
 
 test('grammar searches full explanations without mounting closed detail bodies', async ({ page }) => {
   await page.goto('/library/grammar');
-  await expect(page.locator('.grammar-results summary')).toHaveCount(68);
+  await expect(page.locator('.grammar-results summary')).toHaveCount(grammarCount);
   await expect(page.locator('.grammar-detail')).toHaveCount(0);
   await page.getByRole('searchbox').fill('I have lived here since 2020.');
   const entry = page.locator('.grammar-results details').filter({ hasText: 'since / for' });

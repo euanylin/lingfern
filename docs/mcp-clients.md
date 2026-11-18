@@ -1,6 +1,12 @@
 # Connecting MCP clients
 
-Use **Streamable HTTP** at `https://lingfern.com/mcp`. Sign in through the client's normal OAuth flow, then explicitly share a learning context with that connection in Settings → MCP. Signing in does not share history or bind a sync repository.
+Use **Streamable HTTP** at `https://lingfern.com/mcp`. Complete OAuth in the client using the same GitHub identity you use on the site.
+
+1. Open a completed practice response and expand **Ask AI**. Select and preview the material, answer and feedback to include.
+2. Expand **Make available to a connected assistant**, choose **Load authorised clients**, select the **Recipient client**, approve the displayed content and select **Confirm upload**.
+3. In **Settings → MCP → Sharing and client permissions**, refresh the list to inspect or revoke active shares and client permissions. A shared snapshot expires after 24 hours or at the earlier connection expiry.
+
+OAuth authorizes the connection. A snapshot becomes available only after the confirmed upload. Repository sync has its own setup and permissions.
 
 Opening `/mcp` directly in a browser can display HTTP 401: it is a protocol endpoint, and website cookies do not authenticate an MCP client. A conforming client follows its `WWW-Authenticate` discovery challenge and starts OAuth. Enter the URL in the agent's MCP server settings rather than the browser address bar.
 
@@ -15,7 +21,7 @@ These are documented connection paths, not claims that every client/version has 
 | Cursor IDE / CLI / Cloud Agents | Add an HTTP server by URL. Use each person's OAuth connection; do not share a personal bearer token across a team. | [Cursor MCP](https://cursor.com/docs/mcp), [Cloud Agent capabilities](https://cursor.com/docs/cloud-agent/capabilities) |
 | VS Code Copilot | Add an HTTP MCP server through the MCP Servers customization screen or the applicable configuration file; authenticate when prompted. | [VS Code MCP](https://code.visualstudio.com/docs/agent-customization/mcp-servers) |
 | Gemini CLI | Use `httpUrl` for Streamable HTTP and dynamic OAuth discovery. If configuring scopes explicitly, use `mcp:read` and `contexts:read`. | [Gemini CLI MCP](https://geminicli.com/docs/tools/mcp-server/) |
-| Cherry Studio | Select the version's remote Streamable HTTP transport. OAuth support must be available in that installed version; an SSE-only configuration is a different transport. | [Cherry Studio MCP](https://docs.cherry-ai.com/cherry-studio-wen-dang/advanced-basic/mcp) |
+| Cherry Studio | Select the version's remote Streamable HTTP transport. OAuth support must be available in that installed version; an SSE-only configuration is a different transport. | [Cherry Studio MCP](https://www.cherryai.com.cn/docs/zh-cn/advanced-basic/extensions/mcp/) |
 | Grok / Grok Bot / Team Bots | Add a custom **Remote HTTPS** MCP connector. Use per-person OAuth, including in a team bot; connecting a bot does not grant other people access to a learner's shares. | [Grok connectors](https://docs.x.ai/grok/connectors), [Team Bots](https://docs.x.ai/grok-bot/team-bots) |
 | Grok Build | Add a remote HTTP MCP server and complete the browser OAuth flow. | [Grok Build MCP](https://docs.x.ai/build/features/mcp-servers) |
 | Grok / xAI Responses API and other hosted agent SDKs | Supply the MCP URL and a current token obtained by the application's own OAuth client. Keep token acquisition, refresh and storage in that application, outside model prompts. | [xAI remote MCP](https://docs.x.ai/developers/tools/remote-mcp) |

@@ -111,6 +111,7 @@ try {
     for (const [locale, width, height, colorScheme, heading] of [['zh-CN', 375, 812, 'light', '授权助手'], ['en-US', 1440, 900, 'dark', 'Authorize an assistant'], ['zh-TW', 320, 640, 'dark', '授權助手']]) {
       const context = await browser.newContext({ locale, viewport: { width, height }, colorScheme });
       await context.addCookies([{ name: 'lingfern_local_session', value: cookie, url: address }]);
+      await context.addInitScript(({ mode }) => localStorage.setItem('lingfern-appearance-v1', JSON.stringify({ palette: 'plum', mode })), { mode: colorScheme });
       const page = await context.newPage(); const document = await page.goto(`${address}/oauth/authorize?${query}`);
       assert.equal(document.headers()['referrer-policy'], 'same-origin');
       assert.equal(document.headers()['content-security-policy'].match(/form-action ([^;]+)/)[1], `'self' ${callbackOrigin}`);
@@ -119,6 +120,9 @@ try {
       assert.ok(await page.evaluate(async () => { const image = new Image(); image.src = '/icon.svg'; await image.decode(); return image.naturalWidth > 0 && image.naturalWidth === image.naturalHeight; }));
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       assert.ok(await page.locator('button[value=approve]').isVisible());
+      assert.equal(await page.locator('html').getAttribute('data-palette'), 'plum');
+      assert.equal(await page.locator('html').getAttribute('data-theme'), colorScheme);
+      assert.equal(await page.locator('.logo').evaluate(el => getComputedStyle(el).backgroundColor), colorScheme === 'dark' ? 'rgb(168, 187, 163)' : 'rgb(83, 111, 91)');
       await page.screenshot({ path: `output/playwright/oauth-consent-${width}-${locale}-${colorScheme}.png`, fullPage: true });
       if (locale === 'en-US') {
         await page.route('https://foreign.example/**', route => route.abort());
@@ -142,6 +146,8 @@ try {
   assert.equal(page.status, 200); const html = await page.text();
   assert.ok(html.includes('授权助手')); assert.ok(html.includes('Synthetic &#60;client&#62;')); assert.ok(!html.includes('Synthetic <client>'));
   assert.ok(page.headers.get('Content-Security-Policy').includes("frame-ancestors 'none'"));
+  const appearanceIntegrity = 'sha256-' + createHash('sha256').update(await readFile('public/appearance.js')).digest('base64');
+  assert.ok(page.headers.get('Content-Security-Policy').includes(`script-src '${appearanceIntegrity}';`));
   const handle = html.match(/name="handle" value="([^"]+)"/)[1];
   const approval = { handle, csrf, decision: 'approve', scope: 'contexts:read' };
   assert.equal((await request('/oauth/authorize', post({ ...approval, csrf: 'wrong' }, { Origin: origin }))).status, 403);

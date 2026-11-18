@@ -1,0 +1,2406 @@
+{
+  "articles": {
+    "title": "a、an、the",
+    "question": "ここでは a、an、the のどれが必要ですか。",
+    "summary": "単数の可算名詞を初めて述べるときは多く a/an を使い、どれか特定できるときは the を使います。a と an は音で選びます。",
+    "usage": "まず名詞が可算で単数かを見て、次に聞き手が指示対象を特定できるかを見ます。単数の可算名詞には、ふつう限定詞が必要です。総称の複数名詞と質量名詞には冠詞がないことが多く、the は単数・複数・質量名詞のどれにも使えます。\n\n初めて述べるからといって、いつも a/an になるわけではありません。状況や後ろの修飾ですでに対象が特定できるなら、the も可能です。A student は種類の中の一つを選び、the student は特定の一人を読み手に特定させます。職業を表す単数の可算名詞は、ふつう a/an を取ります。ほかの言語に冠詞がないからといって、英語の限定詞を省かないでください。",
+    "pitfall": "つづりの最初の文字だけで a/an を選ばないでください。an hour ですが、a university です。",
+    "keywords": [
+      "冠詞",
+      "不定冠詞",
+      "定冠詞",
+      "可算名詞"
+    ]
+  },
+  "passive": {
+    "title": "受動態",
+    "question": "影響を受けるものを、いつ主語にしますか。",
+    "summary": "影響を受ける人や物を主語にするには be + past participle を使います。時制は be が担います。",
+    "usage": "受動態は、影響を受けるもの、結果、すでに話題になっていることを前に出します。行為者が不明、または重要でないときは by 句を省きます。助動詞が時制と法を担います。is written、was written、has been written、will be written です。\n\n態は情報の順序でもあります。samples がすでに話題なら、The samples were collected... が話題を保ちます。集めた人が重要なら、能動態か by 句を使います。Get + participle は、出来事の受動態で状態の変化を表すことがあり、会話ではよりくだけて聞こえます。形式ばった文や状態を表す文の be を、すべて置き換えるわけではありません。行為者を省いても、責任が重要なときにそれを隠さないでください。",
+    "pitfall": "be + participle がすべて同じ出来事の読みになるわけではありません。The door is closed は状態を表すことがあります。",
+    "keywords": [
+      "受動態",
+      "過去分詞",
+      "by句",
+      "態"
+    ]
+  },
+  "affect-effect": {
+    "title": "affect と effect",
+    "question": "affect と effect のどちらですか。",
+    "summary": "一般的には、affect は「影響する」という動詞、effect は「結果」という名詞です。これ以外の用法もあります。",
+    "usage": "文に必要なのが動詞か名詞かを確認します。Affect はふつう動詞で「影響する」意味です。an effect はふつう結果です。Effect は形式ばった文で動詞として「もたらす」意味になり、affect は心理学では専門用語の名詞です。",
+    "pitfall": "動詞の effect を affect の単なる同義語にしないでください。effected change は「変化をもたらした」という意味です。",
+    "keywords": [
+      "affectとeffect",
+      "影響",
+      "結果"
+    ]
+  },
+  "be": {
+    "title": "動詞 be",
+    "question": "am、is、are はいつ使いますか。",
+    "summary": "同一、状態、場所には am、is、are を使います。形は主語で決まります。",
+    "usage": "現在の be は主語と呼応します。I am です。you、we、they は are です。he、she、it と単数名詞の後は is です。否定は be の後に not を置き、yes/no 疑問文では be を主語の前に出します。be は進行形も作ります。",
+    "pitfall": "be の疑問文に do を足さないでください。Is she ready? であり、Does she is ready? ではありません。",
+    "keywords": [
+      "be動詞",
+      "am is are",
+      "疑問文"
+    ]
+  },
+  "plurals": {
+    "title": "可算名詞の複数形",
+    "question": "可算名詞は、いつ複数形が必要ですか。",
+    "summary": "可算名詞は、一つを超えるとふつう複数形を取ります。child → children のように不規則なものもあります。",
+    "usage": "規則複数はふつう -s か -es を付けます。子音 + y は多く -ies になります。よく出る不規則形は別に覚えます。man/men、child/children、person/people です。数は数量詞、限定詞、動詞の一致にも影響します。",
+    "pitfall": "質量名詞に単純に -s を付けないでください。some information か two pieces of information と言います。",
+    "keywords": [
+      "複数形",
+      "可算名詞",
+      "不規則変化"
+    ]
+  },
+  "despite-although": {
+    "title": "despite と although",
+    "question": "despite は完全な節を導けますか。",
+    "summary": "Despite はふつう名詞句か -ing を取り、although は節を導きます。Despite the fact that なら節を導けます。",
+    "usage": "Despite は前置詞で、名詞句か -ing 形が続きます。although は接続詞で、定形節が続きます。どちらも譲歩を表しますが、後ろに来る形が違います。Despite the fact that は、間接的に節を導けます。",
+    "pitfall": "despite we were late は避け、despite being late か although we were late を使ってください。",
+    "keywords": [
+      "despite",
+      "although",
+      "譲歩"
+    ]
+  },
+  "past-simple": {
+    "title": "過去形",
+    "question": "Did you go と did you went のどちらですか。",
+    "summary": "完了した過去の出来事に使います。規則動詞は多く -ed を付け、不規則動詞は形が変わります。",
+    "usage": "過去形は出来事を過去に置きます。肯定文は過去形を使い、否定文と大部分の疑問文は did + 動詞の原形です。be は例外で was/were です。過去の時点を特定する表現が、この時制とともによく出ます。",
+    "pitfall": "Did がすでに過去を示します。Did you go? であり、Did you went? ではありません。",
+    "keywords": [
+      "過去形",
+      "did",
+      "不規則動詞"
+    ]
+  },
+  "present-simple": {
+    "title": "現在形",
+    "question": "なぜ she work には -s があり、I work にはないのですか。",
+    "summary": "習慣や一般的な事実に使います。肯定文では、三人称単数の主語にふつう -s/-es を付けます。",
+    "usage": "現在形は、習慣、一般的なパターン、比較的安定した事実を表すことが多いです。三人称単数の肯定の動詞はふつう -s を取ります。否定文と疑問文は does + 原形です。I、you、we、they には do を使います。",
+    "pitfall": "Does がすでに三人称の一致を担います。Does she work? であり、Does she works? ではありません。",
+    "keywords": [
+      "現在形",
+      "三人称単数",
+      "does"
+    ]
+  },
+  "questions": {
+    "title": "yes/no 疑問文と wh- 疑問文",
+    "question": "なぜ does she works ではなく does she work なのですか。",
+    "summary": "現在形の多くの動作の疑問文では、do/does を主語の前に置きます。wh- の語はふつう先頭です。be は直接、主語の前に出します。",
+    "usage": "現在形の一般動詞の疑問文は、ふつう do/does + 主語 + 動詞の原形です。疑問詞を先に置きます。Where does she live? です。who 自身が主語のときは、その助動詞は不要です。Who lives here? です。",
+    "pitfall": "主文の疑問文で平叙文の語順を残さないでください。Where does she live? であり、Where she lives? ではありません。",
+    "keywords": [
+      "疑問文",
+      "do does",
+      "wh疑問詞"
+    ]
+  },
+  "each-every": {
+    "title": "each と every",
+    "question": "each と every のどちらですか。",
+    "summary": "Each は成員を個別に見ます。every は集合全体を見ることが多いです。どちらも単数の可算名詞の前に置き、each は単独でも使えます。",
+    "usage": "Each は成員を一人ずつ見て、代名詞にも限定詞にもなります。Every は集団の成員をまとめて扱い、単数の可算名詞の前に置きます。Each は二つ以上、every はふつう三つ以上を指します。単数の名詞句は単数で一致します。",
+    "pitfall": "Every は代名詞として単独では使えません。Each was checked は可能ですが、Every was checked は不可です。",
+    "keywords": [
+      "each",
+      "every",
+      "単数一致"
+    ]
+  },
+  "comparison": {
+    "title": "比較級と最上級",
+    "question": "二つのものをどう比べますか。",
+    "summary": "二つを比べるときは比較級と than を使い、特定できる範囲の極端には the + 最上級を使います。",
+    "usage": "比較級は、比べられる二つのものを関係づけます。短い形容詞は多く -er、長い形容詞は多く more を取ります。good/better のような不規則形は覚える必要があります。than の後の比較は、論理的に並行させてください。同じ程度には as ... as を使います。",
+    "pitfall": "more と -er をふつう重ねません。more taller は誤りです。二音節の形容詞には、どちらの形も可能なものがあります。",
+    "keywords": [
+      "比較級",
+      "最上級",
+      "than",
+      "as as"
+    ]
+  },
+  "few-a-few": {
+    "title": "few と a few",
+    "question": "few と a few のどちらですか。",
+    "summary": "A few は「いくつか」、few は数が少ない、または足りないことを強調します。どちらも複数の可算名詞を修飾します。",
+    "usage": "Few と a few は複数の可算名詞を取ります。Few は不足を強調し、a few は少ないが存在する量です。Little と a little はふつう質量名詞を取ります。選び方は、話者がその量をどう見るかを反映します。",
+    "pitfall": "質量名詞に a few を直接付けないでください。some advice か a few pieces of advice と言います。",
+    "keywords": [
+      "few",
+      "a few",
+      "数量"
+    ]
+  },
+  "first-conditional": {
+    "title": "第一条件文",
+    "question": "If it rains, will we leave? でよいですか。",
+    "summary": "起こりうる未来の条件では、if 節は現在形、主節は will になることが多いです。if の型はこれだけではありません。",
+    "usage": "起こりうる未来の条件では、if 節はふつう現在形を取り、主節には will、命令文、法助動詞が来ることがあります。どちらの節も先に置けます。if 節が先なら、ふつうコンマが続きます。すべての if 文に will が必要なわけではありません。",
+    "pitfall": "未来の条件の if 節に、ふつう will を置かないでください。will には、意志のような特別な意味になることがあります。",
+    "keywords": [
+      "条件文",
+      "if",
+      "will",
+      "未来"
+    ]
+  },
+  "hypothetical-conditionals": {
+    "title": "仮定の条件文",
+    "question": "If I knew と if I had known のどちらですか。",
+    "summary": "現在の遠い仮定は多く if + 過去形と would + 原形です。実現しなかった過去は多く if + had + 過去分詞と would have + 過去分詞です。",
+    "usage": "現在や未来の非現実の条件は、多く if + 過去形と would + 原形です。過去の反事実は、if + had + past participle と would have + past participle です。過去形は、過去の時ではなく、現実からの距離を示すことがあります。\n\nIf I knew の過去形は、現在や未来の現実からの距離であり、過去の時ではありません。If I had known は、非現実の条件を過去に置きます。条件と結果は別の時を指せます。If I had saved the file, I would have it now は、過去のし忘れと現在の結果です。番号のラベルから型を機械的に埋めず、まず事実、時の参照、話者の立場を見てください。",
+    "pitfall": "時の枠を機械的に混ぜないでください。過去の条件が現在の結果を持つときは、混合条件文も可能です。",
+    "keywords": [
+      "仮定法",
+      "would",
+      "had",
+      "反事実"
+    ]
+  },
+  "imply-infer": {
+    "title": "imply と infer",
+    "question": "imply するのは誰で、infer するのは誰ですか。",
+    "summary": "話し手や文章が何かを imply し、読み手は証拠からそれを infer します。伝達の別の側を表します。",
+    "usage": "Imply は、話し手や証拠が間接的に示唆することです。infer は、読み手や聞き手がそこから結論することです。向きが違います。形式的な文章では、推論の観察できる根拠を述べ、出典の明示的な主張であるかのように書かないでください。",
+    "pitfall": "著者が暗示した意味なのに、著者が inferred したと書かないでください。著者が implied した、という意味です。",
+    "keywords": [
+      "imply",
+      "infer",
+      "暗示",
+      "推論"
+    ]
+  },
+  "less-fewer": {
+    "title": "less と fewer",
+    "question": "less と fewer のどちらですか。",
+    "summary": "ふつう複数の可算名詞には fewer、質量名詞には less を選びます。時間や金額の合計、くだけた用法では揺れがあります。",
+    "usage": "Fewer はふつう数えられる複数のものを修飾し、less はふつう質量名詞を修飾します。Less than は、一つの量として扱う時間、距離、金額の数字の前に置かれることが多いです。実際の用法は、絶対的な標語より柔軟です。",
+    "pitfall": "数字で表す期間のすべてを、fewer だから誤りと決めないでください。文脈で最も明確な形を選んでください。",
+    "keywords": [
+      "less",
+      "fewer",
+      "可算",
+      "不可算"
+    ]
+  },
+  "make-do": {
+    "title": "make と do",
+    "question": "make と do のどちらですか。",
+    "summary": "Make は結果を作ることを指すことが多く、do は活動や作業を名づけることが多いです。個々の連語は確認が必要です。",
+    "usage": "Make は、産物を作ることや結果を引き起こすことを強調することが多いです。do は、活動や作業を行うことを強調することが多いです。多くの連語は個別に覚えます。make a decision、make progress、do homework、do research です。",
+    "pitfall": "これは傾向であり、すべての連語を予測する規則ではありません。その名詞の決まった組み合わせを確認してください。",
+    "keywords": [
+      "make",
+      "do",
+      "連語"
+    ]
+  },
+  "hedging": {
+    "title": "留保と限定",
+    "question": "may suggest は証明を意味しますか。",
+    "summary": "May、appear to、suggest は主張の強さを抑えられます。証拠の範囲を保ち、可能性を証明に変えないでください。",
+    "usage": "May、might、appears to、suggests は、証拠が結論ではなく可能性を支えることを示せます。表現を、証拠の強さ、標本の限界、別の説明に合わせてください。十分に確立した事実を、不必要に弱めないでください。\n\n主張の強さを証拠に合わせてください。May suggest は可能な解釈です。is consistent with は、データがその解釈に合うというだけで、どちらも因果を証明しません。有意な結果でも、標本、測定、制御していない要因で限られることがあります。必要なら、観察、解釈、結論を分けてください。proves や always で、限られた証拠を確実さに変えないでください。",
+    "pitfall": "一つの観察が因果を証明することはほとんどありません。prove は、ふつう suggest よりずっと強いです。",
+    "keywords": [
+      "留保",
+      "may",
+      "suggest",
+      "証明"
+    ]
+  },
+  "countability": {
+    "title": "可算名詞と不可算名詞",
+    "question": "Much information と many information のどちらですか。",
+    "summary": "Many はふつう複数の可算名詞、much はふつう不可算名詞と一緒に使います。意味によって可算性が変わる名詞もあります。",
+    "usage": "可算名詞は数や複数と組み合わさり、many や few とともによく使います。質量名詞はふつう much や little を取り、普通の複数形を取りません。可算性は意味で変わります。coffee は物質も一杯分も表せます。",
+    "pitfall": "名詞のすべての意味を、恒久的に可算か質量かと決めないでください。an experience は、一般の experience とは違います。",
+    "keywords": [
+      "可算名詞",
+      "不可算名詞",
+      "much",
+      "many"
+    ]
+  },
+  "modals": {
+    "title": "法助動詞：可能性と義務",
+    "question": "Must not と do not have to のどちらですか。",
+    "summary": "May/might は可能性を表します。must は強い義務や推論を表せます。Must not は禁止で、don't have to とは違います。",
+    "usage": "Must not は行為を禁じ、do not have to は義務を外します。Must は強い義務や確かな推論を表せ、have to は外からの要求を指すことが多いです。否定の範囲が重要です。",
+    "pitfall": "You must not leave を You do not have to leave と同じにしないでください。前者は去ることを禁じます。",
+    "keywords": [
+      "法助動詞",
+      "must",
+      "have to",
+      "禁止"
+    ]
+  },
+  "present-perfect": {
+    "title": "現在完了",
+    "question": "I went と I have gone では、時は関係しますか。",
+    "summary": "過去の出来事を現在と結ぶには have/has + past participle を使います。終わった特定の過去の時は、ふつう過去形です。",
+    "usage": "現在完了は、過去の状況を、現在の結果、経験、続いている状態と結びます。過去の時点が特定されているときは、ふつう過去形です。Since は起点、for は期間です。変種や文脈で、一部の選択は変わります。\n\n時の参照が重要です。yesterday や in 2019 のように終わった特定の時は、ふつう過去形です。So far や this week は、その期間が今を含むあいだ現在完了に向きやすいです。this morning も、朝が続いているあいだと終わったあとでは扱いが違うことがあります。完了は、経験や現在の結果も表し、つい最近終わったことだけではありません。アメリカ英語では、already や yet の一部で過去形もよく使われるので、そのすべてを誤りとしないでください。",
+    "pitfall": "現在完了を、yesterday のような終わった特定の時とふつう組み合わせないでください。I saw her yesterday です。",
+    "keywords": [
+      "現在完了",
+      "since",
+      "for",
+      "過去形"
+    ]
+  },
+  "inversion": {
+    "title": "否定の前置と倒置",
+    "question": "なぜ rarely had they seen になるのですか。",
+    "summary": "rarely や not only のように、制限や否定の表現を前に出すと、形式的な文章では subject–auxiliary inversion が起き、強調になります。",
+    "usage": "否定や制限の副詞句が節の先頭に来ると、形式的な英語では助動詞と主語が倒置することが多いです。Rarely have I seen...、Only then did I understand.... です。助動詞がなければ do を補います。前置した表現が範囲を決めます。\n\nhardly、rarely、not only のような否定や限定の表現を前に出すと、形式的な文体では subject–auxiliary inversion が起きることが多いです。Rarely have we seen.... です。助動詞がなければ do/does/did を補い、動詞は原形にします。先頭の副詞がすべて倒置を起こすわけではありません。Yesterday we left には不要です。前置した表現が実際に何を修飾するかにもよります。",
+    "pitfall": "先頭の副詞がすべて倒置を起こすわけではありません。Often I go there は普通の語順です。",
+    "keywords": [
+      "倒置",
+      "否定の前置",
+      "rarely",
+      "not only"
+    ]
+  },
+  "respectively": {
+    "title": "respectively",
+    "question": "respectively は何と何を対応させますか。",
+    "summary": "Respectively は、長さの等しい二つのリストを順に対応させます。リストや順序が不明なら、文を書き直します。",
+    "usage": "Respectively は、二つ以上の順序のあるリストの成員を、同じ順で対応させます。読み手がリストと順序を特定できる必要があります。対応が長く複雑なら、文を分ける方が明確です。この語自体は因果関係を加えません。",
+    "pitfall": "リストの不一致を隠すために respectively を使わないでください。各対応を明示してください。",
+    "keywords": [
+      "respectively",
+      "対応",
+      "列挙"
+    ]
+  },
+  "reported-speech": {
+    "title": "間接話法",
+    "question": "間接話法では、時制を必ず一つ戻しますか。",
+    "summary": "過去の発話を伝えるときは、視点に合わせて代名詞、時の表現、時制が変わることがあります。今も成り立つ事実は、必ずしも戻しません。",
+    "usage": "伝えるときは、今も成り立つ事実と、元の発話の時に結び付いた状況を分けます。過去の伝達動詞の後では時制が一つ戻ることが多いですが、今も真の事実では必ずしも必要ありません。代名詞や時・場所の表現も変わることがあります。\n\n時制の後退は機械的な規則ではありません。伝えられた事実が今も真なら、元の時制を保つのが適切なことがあります。後退は、過去の視点を示すこともあります。today、tomorrow、here のような語は、伝える時や場所がそれを求めるときだけ変わります。他人の言葉を伝えるときは、実際の言い方と自分の推論を分け、元より確実にしないでください。",
+    "pitfall": "現在形をすべて機械的に後退させないでください。一般的な真理は現在のままでよいです。",
+    "keywords": [
+      "間接話法",
+      "時制の一致",
+      "伝達"
+    ]
+  },
+  "say-tell": {
+    "title": "say と tell",
+    "question": "say と tell はいつ使いますか。",
+    "summary": "Say は言葉や節を導けます。Tell はふつう、伝えられる情報の前に受け手を名指します。受け手のない tell that は避けます。",
+    "usage": "Say は言葉や内容に焦点を当てます。say something、または say something to someone です。Tell はふつう受け手を名指します。tell someone something です。どちらも that 節を取れますが、tell は聞き手を残すことが多いです。tell a story や tell the truth のような決まった句を覚えてください。",
+    "pitfall": "say me と tell to me は避け、say to me か tell me を使ってください。",
+    "keywords": [
+      "say",
+      "tell",
+      "伝達動詞"
+    ]
+  },
+  "since-for": {
+    "title": "since と for",
+    "question": "時には since と for のどちらですか。",
+    "summary": "Since は起点を示し、for は期間を示します。どちらの語も、それだけでは時制を決めません。",
+    "usage": "Since は年、日付、出来事のような起点を導きます。for は two years のような期間を導きます。どちらも今まで続く状態とともに使えますが、時制は文によります。For は過去形とも自由に使えます。",
+    "pitfall": "数字があるかどうかで選ばないでください。since 2020 は起点であり、期間ではありません。",
+    "keywords": [
+      "since",
+      "for",
+      "期間",
+      "起点"
+    ]
+  },
+  "relative-clauses": {
+    "title": "関係節",
+    "question": "コンマの後に that を使えますか。",
+    "summary": "関係節は人や物を特定できます。付け足しの情報はふつうコンマで区切り、that を自由には取りません。",
+    "usage": "限定の関係節は、どの人や物かを特定します。非限定の節は、すでに特定された対象への情報を加え、コンマで区切ります。That は限定節ではよく使いますが、非限定節ではふつう使いません。目的語の関係詞は、省けることがあります。\n\nまず、その節が指示対象を特定するかを見ます。The report that arrived today is incomplete は報告書を選び出します。the report, which arrived today, is incomplete は、報告書を既知として情報を加えます。非限定節では、ふつう that を使わず、関係詞も省きません。to whom のように前置詞を関係詞の前に出すのはより形式的です。普通の用法では、節の終わりに残すことが多いです。",
+    "pitfall": "非限定節にコンマ + that を使わないでください。My car, which is red, ... です。",
+    "keywords": [
+      "関係節",
+      "that",
+      "which",
+      "限定"
+    ]
+  },
+  "used-to": {
+    "title": "used to と be used to",
+    "question": "Used to do と be used to doing のどちらですか。",
+    "summary": "Used to + 原形は以前の習慣や状態です。be used to + 名詞か -ing は「慣れている」です。",
+    "usage": "Used to + 原形は、ふつうもう続かない過去の習慣や状態です。Be used to + 名詞か -ing は慣れていること、get used to は慣れていくことを強調します。be/get used to の to は前置詞であり、不定詞の標識ではありません。",
+    "pitfall": "I am used to wake early ではなく、I am used to waking early を使ってください。",
+    "keywords": [
+      "used to",
+      "be used to",
+      "習慣",
+      "慣れる"
+    ]
+  },
+  "who-whom": {
+    "title": "who と whom",
+    "question": "形式的な英語で whom はいつ使いますか。",
+    "summary": "Whom は目的語を示せ、特に前置された前置詞の後です。日常の話し言葉では who が多いです。形式的な用法だけが自然な選択ではありません。",
+    "usage": "Who はふつう主語で、話し言葉では目的語としても広く使われます。Whom は形式的な目的語の形で、前置された前置詞の後で特に使います。前の語だけを見ず、節の中で欠けている役割を特定してください。日常の会話に whom を無理に入れないでください。",
+    "pitfall": "Who did you invite? は現代英語でまったく普通です。一律に誤りとしないでください。",
+    "keywords": [
+      "who",
+      "whom",
+      "目的格"
+    ]
+  },
+  "future": {
+    "title": "未来：will と be going to",
+    "question": "計画には will と going to のどちらですか。",
+    "summary": "Will は今決めたことや予測を表せます。be going to は、以前からの計画や今の証拠を示すことが多いです。文脈が重要です。",
+    "usage": "Will は、今決めたこと、予測、約束を示すことが多いです。Be going to は、以前からの意図や、今の証拠に基づく予測を表すことが多いです。かなり重なります。時刻表には現在形、取り決めには現在進行形も使えます。",
+    "pitfall": "未来の参照をすべて will に変えないでください。The train leaves at six は普通の時刻表の言い方です。",
+    "keywords": [
+      "未来",
+      "will",
+      "be going to",
+      "予定"
+    ]
+  },
+  "present-continuous": {
+    "title": "現在進行形",
+    "question": "今は I work と I am working のどちらが合いますか。",
+    "summary": "今、または今の前後で起きている行為には be + -ing を使います。習慣の現在形と対比します。",
+    "usage": "現在進行形は、今起きている活動、一時的な状況、近い未来の取り決めを表すことが多いです。現在形は、習慣や安定した事実を表すことが多いです。進行形は am/is/are + -ing で作ります。状態動詞の一部は、意味が変わらない限り進行形になりにくいです。",
+    "pitfall": "ふつう I am knowing the answer ではなく I know the answer と言います。I am thinking about it は活動を表します。",
+    "keywords": [
+      "現在進行形",
+      "be -ing",
+      "今"
+    ]
+  },
+  "some-any": {
+    "title": "some と any",
+    "question": "some と any をどう選びますか。",
+    "summary": "Some は肯定文でよく使い、any は否定文と開いた疑問文でよく使います。",
+    "usage": "どちらも複数の可算名詞と質量名詞を修飾します。肯定を期待する依頼や申し出には some を使うことが多いです。肯定文の any は「どれでも」を意味できます。疑問符だけでなく、話者の期待を見てください。",
+    "pitfall": "Would you like some tea? は自然な申し出です。any にする必要はありません。",
+    "keywords": [
+      "some",
+      "any",
+      "数量"
+    ]
+  },
+  "there-is": {
+    "title": "there is と there are",
+    "question": "何かがどこかにあると、どう言いますか。",
+    "summary": "単数または質量名詞には there is、複数名詞には there are を使います。",
+    "usage": "ここでの there は存在を導き、必ずしも「その場所に」を意味しません。ふつう対象を名指し、その後に場所を置きます。疑問文では is/are を there の前に出し、否定では not を is/are の後に置きます。",
+    "pitfall": "形式的な文章では、後ろの名詞に合わせて単数か複数かを一致させてください。",
+    "keywords": [
+      "there is",
+      "there are",
+      "存在"
+    ]
+  },
+  "possessive": {
+    "title": "所有限定詞と所有代名詞",
+    "question": "my と mine の違いは何ですか。",
+    "summary": "My、your、her は名詞の前に置きます。mine、yours、hers は、後ろに名詞がなくても立てます。",
+    "usage": "my book と the book is mine、our room と the room is ours を比べてください。His はどちらの位置でも同じ形です。Its は限定詞で、単独の its はまれです。It's は短縮形であり、所有形ではありません。",
+    "pitfall": "mine book と書かないでください。my book か This book is mine です。",
+    "keywords": [
+      "所有格",
+      "my",
+      "mine",
+      "所有代名詞"
+    ]
+  },
+  "imperatives": {
+    "title": "命令文",
+    "question": "短い指示をどう出しますか。",
+    "summary": "命令文はふつう動詞の原形で始まります。否定は do not か don't + 原形です。",
+    "usage": "主語の you はふつう省きます。Please は依頼を和らげられますが、文脈と関係は依然として重要です。疑問文の方が適切なこともあります。Let's + 原形は、一緒の行動を提案します。",
+    "pitfall": "not を動詞の直前に置かないでください。Don't open the door と言います。",
+    "keywords": [
+      "命令文",
+      "don't",
+      "原形"
+    ]
+  },
+  "past-continuous": {
+    "title": "過去進行形",
+    "question": "過去に進行中だった活動をどう表しますか。",
+    "summary": "過去進行形は was/were + -ing で、背景の活動によく使います。過去形は、割り込む出来事や完了した出来事を名指すことが多いです。",
+    "usage": "I was reading when the phone rang では、読書はすでに進行中で、電話は別の出来事です。While は同時の活動を結べます。展開する過程に進行形を選び、過去の行為のすべてに自動では使いません。",
+    "pitfall": "よくある状態動詞は、依然として進行形を避けることが多いです。I was knowing it ではなく I knew the answer です。",
+    "keywords": [
+      "過去進行形",
+      "was were",
+      "while"
+    ]
+  },
+  "have-to": {
+    "title": "have to と must",
+    "question": "義務には have to と must のどちらを使いますか。",
+    "summary": "どちらも義務を表せます。have to は外からの要求を指すことが多く、must は話者の強い要求を強調できます。",
+    "usage": "Have to は時制と主語で変わります。she has to、we had to、did you have to です。Must には普通の過去形がなく、過去の義務は had to で表すことが多いです。調子も文脈、地域、文体で変わります。",
+    "pitfall": "否定は違います。must not は禁止、do not have to は義務を外します。",
+    "keywords": [
+      "have to",
+      "must",
+      "義務"
+    ]
+  },
+  "prepositions-time": {
+    "title": "時の前置詞 at、on、in",
+    "question": "時には at、on、in のどれですか。",
+    "summary": "時刻には at、日付と曜日には on、月・年・より長い期間には in を使います。",
+    "usage": "At 7:30、on Monday、in October は出発点として便利です。修飾が重要です。on Monday morning ですが、in the morning です。at the weekend と on the weekend のように、地域で変わる表現もあります。",
+    "pitfall": "last、next、this の前では、時の前置詞をふつう省きます。next Monday です。",
+    "keywords": [
+      "時の前置詞",
+      "at",
+      "on",
+      "in"
+    ]
+  },
+  "gerund-infinitive": {
+    "title": "動詞の後の -ing と to 不定詞",
+    "question": "次の動詞は -ing と to のどちらですか。",
+    "summary": "動詞によって補語が違います。enjoy はふつう -ing、decide は to + 原形を取ります。",
+    "usage": "両方を取れて意味が変わる動詞もあります。remember locking the door は完了した行為の記憶です。remember to lock the door はこれからする作業です。形と意味を一緒に覚え、一覧だけを暗記しないでください。\n\n-ing と to 不定詞を自由に入れ替えてよいわけではありません。avoid doing や decide to do のように、一方を好む動詞があります。stop reading と stop to read のように、両方を許しても意味や焦点が違う動詞もあります。前置詞の後は -ing が普通です。look forward to meeting の to は前置詞であり、不定詞の標識ではありません。知らない動詞は、その型を確認してください。",
+    "pitfall": "前置詞の後の動詞はふつう -ing です。interested in to learn ではなく interested in learning です。",
+    "keywords": [
+      "動名詞",
+      "不定詞",
+      "ing",
+      "to"
+    ]
+  },
+  "present-perfect-progressive": {
+    "title": "現在完了進行形",
+    "question": "have been doing はいつ使いますか。",
+    "summary": "現在完了進行形は、過去に始まり今まで続く活動、または最近の影響が残る活動を強調します。",
+    "usage": "単純な完了と比べ、進行形は過程や継続を前に出すことが多いです。I have written three pages は成果を強調し、I have been writing for an hour は活動を強調します。状態動詞は単純形を好むことが多いです。",
+    "pitfall": "ちょうど今も続いているとは限りません。It has been raining は、雨が止んだあとの濡れた地面を説明できます。",
+    "keywords": [
+      "現在完了進行形",
+      "have been",
+      "継続"
+    ]
+  },
+  "enough-too": {
+    "title": "enough と too",
+    "question": "十分な程度と、過剰な程度をどう表しますか。",
+    "summary": "Enough は十分さを表し、too は過剰な程度を示すことが多いです。",
+    "usage": "Enough は形容詞と副詞の後、名詞の前に置きます。old enough、enough time です。Too は形容詞や副詞の前です。too heavy です。to 不定詞では、誰がその行為をできるかを特定します。too heavy for me to carry です。",
+    "pitfall": "普通の十分さは、enough old や time enough ではなく、old enough と enough time です。",
+    "keywords": [
+      "enough",
+      "too",
+      "程度"
+    ]
+  },
+  "articles-zero": {
+    "title": "総称の無冠詞",
+    "question": "冠詞が不要なのはいつですか。",
+    "summary": "総称の複数可算名詞と、総称の質量名詞には、冠詞がないことが多いです。",
+    "usage": "Cats need sleep は The cats in this room need sleep と違います。Water is essential は The water in this bottle is warm と違います。固有名や決まった表現には独自の型があるので、総称ですべての冠詞の選択が説明できるわけではありません。",
+    "pitfall": "総称の単数可算名詞には、ふつう限定詞が必要です。Cat needs sleep ではなく A cat needs sleep です。",
+    "keywords": [
+      "無冠詞",
+      "総称",
+      "複数",
+      "質量名詞"
+    ]
+  },
+  "relative-pronoun-omission": {
+    "title": "関係代名詞の省略",
+    "question": "関係代名詞はいつ省けますか。",
+    "summary": "限定関係節では、目的語の関係代名詞は省けることが多いです。主語の関係代名詞は、ふつう省けません。",
+    "usage": "The book (that) I bought では、I が節の主語で book が bought の目的語なので、that は省けます。The book that fell では that が主語なので残します。非限定の関係節では、この省略はふつうできません。",
+    "pitfall": "The woman who called から who を省かないでください。",
+    "keywords": [
+      "関係代名詞",
+      "省略",
+      "目的格"
+    ]
+  },
+  "although-however": {
+    "title": "although と however",
+    "question": "although と however は入れ替えられますか。",
+    "summary": "Although は従属節を導きます。however は、独立した文を対比する接続副詞であることが多いです。",
+    "usage": "Although the plan is costly, it may work には従属節があります。The plan is costly. However, it may work は別々の文です。形式的な文章では、however の前のコンマだけで二つの独立文を結ばないでください。ピリオドかセミコロンを使います。",
+    "pitfall": "However the plan is costly は、Although the plan is costly の単純な置き換えではありません。",
+    "keywords": [
+      "although",
+      "however",
+      "対比",
+      "接続"
+    ]
+  },
+  "wish-if-only": {
+    "title": "wish と if only",
+    "question": "事実に反する願いをどう表しますか。",
+    "summary": "現在の現実に反する願いには wish + 過去形、過去への後悔には wish + had + past participle を使います。",
+    "usage": "I wish I knew the answer は、今それを知らないことを含みます。I wish I had known は、より前に知らなかったことを指します。Wish + would は、誰かの行動や状況の変化を求めることがあり、いら立ちを伴うことが多いです。If only は感情の力を強めることが多いです。",
+    "pitfall": "ここでの過去形は非現実を示し、単に過去の時ではありません。I wish I know は、現在の反事実をふつう表しません。",
+    "keywords": [
+      "wish",
+      "if only",
+      "仮定",
+      "後悔"
+    ]
+  },
+  "used-to-would": {
+    "title": "過去の習慣の used to と would",
+    "question": "would は過去の習慣を表せますか。",
+    "summary": "Used to は過去の習慣や状態を表せます。would は、過去の枠がすでに明らかなときの繰り返しの行為を表せます。",
+    "usage": "When we were children, we would play by the river は繰り返しの活動です。We used to live by the river は過去の状態です。習慣の would には、確立した過去の設定がふつう必要で、静的な状況にはあまり使いません。",
+    "pitfall": "習慣の We would live by the river は、We used to live by the river の自然な代用ではありません。",
+    "keywords": [
+      "used to",
+      "would",
+      "過去の習慣"
+    ]
+  },
+  "its-it-is": {
+    "title": "its と it's",
+    "question": "its と it's の違いは何ですか。",
+    "summary": "Its は所有限定詞です。it's は it is か it has の短縮です。",
+    "usage": "it's を it is か it has に展開します。それで通じるならアポストロフィを使います。it に属するもの、または結び付くものには its です。it has の短縮は完了の構文によく出ます。It's been a long day です。",
+    "pitfall": "ほかの所有形に倣って、the dog wagged it's tail と書かないでください。",
+    "keywords": [
+      "its",
+      "it's",
+      "所有",
+      "短縮"
+    ]
+  },
+  "comma-splice": {
+    "title": "コンマスプライス",
+    "question": "コンマだけで二つの独立節を結べますか。",
+    "summary": "形式的な文章では、コンマだけでは二つの独立節をふつう結べません。",
+    "usage": "ピリオド、セミコロン、または and や but のような等位接続詞とコンマを使います。あるいは一方の節を従属節にしてください。文学の文章では意図的なコンマスプライスもありますが、標準的な学術文はふつう避けます。",
+    "pitfall": "標準的な文章では、It was late, we left を It was late, so we left か、別の妥当な構造に直してください。",
+    "keywords": [
+      "コンマ",
+      "独立節",
+      "接続"
+    ]
+  },
+  "parallelism": {
+    "title": "並行構造",
+    "question": "列挙を文法的に並行させるにはどうしますか。",
+    "summary": "等位の項目が同じ文法的役割を担うとき、似た形にすると関係が見えやすくなります。",
+    "usage": "She likes reading, writing and editing は三つの -ing 形です。比較も並行した論理が必要です。The new method is faster than the old one です。並行は語数を同じにすることではなく、役割と意味を比べられるようにすることです。",
+    "pitfall": "一つの等位の列挙で、to read, writing, and edit のような混在を避けてください。",
+    "keywords": [
+      "並行",
+      "列挙",
+      "等位"
+    ]
+  },
+  "nominalisation": {
+    "title": "名詞化と動詞",
+    "question": "名詞化は文を分かりにくくしますか。",
+    "summary": "名詞化は情報を圧縮できますが、行為者と行為を隠すこともあります。",
+    "usage": "The committee decided は、A decision was made by the committee より直接的です。それでも the decision は、概念自体が話題のとき、または前の談話につながるときに有用です。談話の目的で選び、行為者が復元できるかを確認してください。",
+    "pitfall": "-tion や -ment の名詞がすべて悪いわけではありません。問題は、不必要に情報を隠すかどうかです。",
+    "keywords": [
+      "名詞化",
+      "動詞",
+      "行為者"
+    ]
+  },
+  "scope-negation": {
+    "title": "否定の範囲",
+    "question": "not all と none は同じ意味ですか。",
+    "summary": "Not all は、全員が該当することを否定します。none は、誰も該当しないことを否定します。入れ替えられません。",
+    "usage": "Not all participants agreed は、同意が全員ではなかったことを意味し、正確な数は示しません。None of the participants agreed は、同意した集団から参加者全員を除きます。議論を読むときは、数量詞と否定の範囲を保ってください。",
+    "pitfall": "not necessarily を necessarily not と同じにしないでください。前者は必然を否定し、後者は逆の必然を主張します。",
+    "keywords": [
+      "否定",
+      "not all",
+      "none",
+      "範囲"
+    ]
+  },
+  "presupposition": {
+    "title": "用法の前提",
+    "question": "言い方は、述べていない事実を前提にできますか。",
+    "summary": "stop、still、even のような語は、主な主張を超えた背景の前提を持ち込むことが多いです。",
+    "usage": "She stopped smoking は、ふつう以前の喫煙を前提にします。She still works here は、ありうる予想に反して雇用が続いていることを示唆します。Even Jo passed は、何らかの尺度で Jo の成功を意外なものとして枠づけます。文脈、否定、訂正がこれらの推論に影響します。検証済みの事実ではありません。",
+    "pitfall": "still や finally を引用するときは、誰の前提かを特定してから、自分の証拠として示さないでください。",
+    "keywords": [
+      "前提",
+      "still",
+      "even",
+      "stop"
+    ]
+  },
+  "cleft-focus": {
+    "title": "分裂文と焦点",
+    "question": "It was ... that は何に焦点を当てますか。",
+    "summary": "it 分裂文は一つの構成要素を焦点として示し、残りの命題を背景として扱います。",
+    "usage": "It was Maya who found the error は見つけた人に焦点を当てます。It was the error that Maya found は見つかった対象に焦点を当てます。焦点が実際の争点に答えているかを確認してください。そうでないと、何を訂正しているか誤解されます。Who と that がよくある連結語です。",
+    "pitfall": "分裂文の it を、すべて具体的な物を指すと読まないでください。",
+    "keywords": [
+      "分裂文",
+      "焦点",
+      "it was that"
+    ]
+  },
+  "only-scope": {
+    "title": "only の範囲",
+    "question": "only は位置でどう意味が変わりますか。",
+    "summary": "Only は焦点の構成要素を限定します。位置と強勢で解釈が変わります。",
+    "usage": "Only Sara reviewed the draft は、ほかの校閲者を除きます。Sara only reviewed the draft は、校閲はしたが編集はしなかった、と言えます。書き言葉には話し言葉の強勢がないので、only を意図した焦点の近くに置き、文脈で曖昧さを除いてください。\n\n位置がふつう範囲を示します。Only Nora sent the draft は送り手を限定します。Nora sent only the draft は送った物を限定します。Nora only sent the draft は、単に送っただけ、という意味になりえます。強勢と文脈は、話し言葉の解釈をなお変えられます。正確な文章では、only を意図した要素のそばに置き、区別が議論に影響するなら書き直してください。語順だけでは、あらゆる文脈で一つの読みを保証しません。",
+    "pitfall": "Sara reviewed only the draft が限定するのは対象であり、校閲した人々ではありません。",
+    "keywords": [
+      "only",
+      "範囲",
+      "焦点",
+      "語順"
+    ]
+  },
+  "because-because-of": {
+    "title": "because と because of",
+    "question": "because と because of の後には何が来ますか。",
+    "summary": "Because は節を導き、because of は名詞句を導きます。",
+    "usage": "理由の形を見てください。the road was closed は because の後の節です。the road closure は because of の後の名詞句です。理由の節が先頭ならふつうコンマが続き、文末ならふつう続きません。Because of は代名詞や名詞的な -ing 句も取れます。似た理由はどちらの形でも表せますが、後ろの文法は違います。",
+    "pitfall": "because of the road was closed は避けてください。of を外すか、理由を名詞句に変えてください。",
+    "keywords": [
+      "because",
+      "because of",
+      "理由"
+    ]
+  },
+  "indirect-questions": {
+    "title": "間接疑問文",
+    "question": "間接疑問文は、なぜ平叙文の語順ですか。",
+    "summary": "埋め込まれた疑問はふつう平叙文の語順です。yes–no 疑問には if か whether を使います。",
+    "usage": "Where does the bus stop? が Do you know where the bus stops? になると、埋め込まれた部分は do の支えと倒置を失います。過去の時の疑問では、過去の意味は保ち、疑問の助動詞 did は残しません。Could you tell me...? は丁寧な疑問で疑問符を取ります。I wonder... は平叙文で、ふつうピリオドです。埋め込まれた yes–no 疑問は、if か whether で節を導き、平叙文の語順を保ちます。",
+    "pitfall": "Could you tell me where does the bus stop? は避けてください。倒置するのは外側の疑問だけです。",
+    "keywords": [
+      "間接疑問",
+      "語順",
+      "whether",
+      "if"
+    ]
+  },
+  "either-neither": {
+    "title": "either と neither",
+    "question": "either と neither は二つの選択肢をどう指しますか。",
+    "summary": "Either は二つのうち一方、neither はどちらでもないです。Either...or は選択肢を出し、neither...nor は両方を退けます。",
+    "usage": "限定詞としては、either と neither は単数の可算名詞の前に置きます。either route、neither answer です。限定詞付きの複数名詞や代名詞の前には either/neither of を使います。neither of the routes、either of us です。形式的な文章では、これらが主語のとき単数の動詞がよく使われます。くだけた話し言葉では複数の一致も起きるので、絶対的な誤りではありません。either...or と neither...nor の対の要素は並行させてください。複合主語との一致は、近い要素と文体によります。",
+    "pitfall": "Neither はすでに否定です。同じ否定を表すために not を足さないでください。三つ以上には、none の代わりに neither を自動で使わないでください。",
+    "keywords": [
+      "either",
+      "neither",
+      "or",
+      "nor"
+    ]
+  },
+  "unless": {
+    "title": "unless と if not",
+    "question": "unless は if not をいつも置き換えられますか。",
+    "summary": "Unless は except if を意味することが多く、例外を導きます。すべての if not 節を置き換えるわけではありません。",
+    "usage": "You cannot enter unless you have a pass は、通行証を持つことを禁止の例外として示します。未来向きの条件では、unless 節はふつう will ではなく現在形です。If not は、単に否定の条件を述べるか、何かが真でないかを問うことがあります。unless に置き換えると焦点が変わることがあります。その節が本当に唯一の例外を示しているかを確認してください。Unless はすでに否定の条件の意味を持つので、もう一つの not は意図を逆にすることがあります。",
+    "pitfall": "unless を中立な if として読まないでください。未来の条件に unless you will have a pass とふつう書かないでください。",
+    "keywords": [
+      "unless",
+      "if not",
+      "例外",
+      "条件"
+    ]
+  },
+  "during-while": {
+    "title": "during と while",
+    "question": "during と while の後には何が来ますか。",
+    "summary": "During は期間を名指す名詞句を取り、while はふつう節を導きます。",
+    "usage": "During the meeting と while we were meeting は同じ期間を表せますが、後ろの構造は違います。During は、文脈によって出来事のどこかの時点、またはその全体を意味します。While は同時の行為を強調することが多く、対比も示せます。主語が共有され明確なら、while waiting のような縮約節も可能です。まず後ろが名詞句か節かを確認してください。",
+    "pitfall": "during we waited は避け、while we waited か during the wait を使ってください。",
+    "keywords": [
+      "during",
+      "while",
+      "期間",
+      "同時"
+    ]
+  },
+  "like-as": {
+    "title": "like と as",
+    "question": "比較と役割で、like と as はどう違いますか。",
+    "summary": "Like は「似ている」を意味することが多いです。as は役割や機能を示し、比較の節も導けます。",
+    "usage": "She works as a guide は実際の役割です。she talks like a guide は類似です。完全な比較節の前では、形式的な文章は as を好むことが多いです。Do it as I showed you です。Like に節が続く形も話し言葉ではよくあり、一律に誤りとしないでください。As は理由や時の節も導けるので、文脈が重要です。名詞や代名詞の前の like は、類似を示す素直な方法です。",
+    "pitfall": "Work like a guide と work as a guide は違います。前者は比較、後者は役割です。",
+    "keywords": [
+      "like",
+      "as",
+      "比較",
+      "役割"
+    ]
+  },
+  "stop-gerund-infinitive": {
+    "title": "stop doing と stop to do",
+    "question": "なぜ stop doing と stop to do は意味が違うのですか。",
+    "summary": "Stop doing は活動を終えます。stop to do は、別のことをするために活動を一時止めます。",
+    "usage": "She stopped reading は読書が終わったことを言います。She stopped to read は、読むために別の活動を一時止めたことを言います。to read は目的であり、中止した活動ではありません。Stop somebody from doing something は行為を妨げることで、from の後は -ing です。型を選ぶ前に、実際に何が止まったかを特定してください。",
+    "pitfall": "喫煙をやめるなら stop smoking です。stop to smoke は、一服するために立ち止まることです。",
+    "keywords": [
+      "stop doing",
+      "stop to",
+      "動名詞",
+      "目的"
+    ]
+  },
+  "remember-gerund-infinitive": {
+    "title": "remember doing と remember to do",
+    "question": "remember doing と remember to do の違いは何ですか。",
+    "summary": "Remember doing は完了した出来事を思い出します。remember to do は、作業を忘れないことです。",
+    "usage": "I remember locking the door は出来事を振り返ります。I remembered to lock the door は、作業を忘れず実行したことを言います。否定が重要です。I do not remember locking it は記憶がない報告であり、鍵が開いたままだった証明ではありません。I did not remember to lock it は、ふつう忘れた作業を報告します。Forget doing と forget to do も関連する対比ですが、正確な文脈は確認が必要です。",
+    "pitfall": "鍵をかけた記憶なら、I remember to lock it ではなく I remember locking it です。",
+    "keywords": [
+      "remember doing",
+      "remember to",
+      "記憶"
+    ]
+  },
+  "suggest-patterns": {
+    "title": "suggest + -ing / that 節",
+    "question": "suggest は人 + to 不定詞を取れますか。",
+    "summary": "提案には suggest + -ing か suggest that + 節を使います。tell の型である suggest someone to do は使いません。",
+    "usage": "I suggest leaving early は行為を提案します。I suggest that we leave early は行為者を名指します。形式的な英語では that 節に原形が出ることがあり、普通の時制の形も出ます。Suggest は提案を名指す名詞も取れます。suggest a date です。受け手を名指すなら、人を to 不定詞の前に置かず、suggest to someone that... と言います。Suggest は間接的に示す意味にもなり、そのときは提案ではありません。",
+    "pitfall": "She suggested me to call は避け、She suggested that I call か She suggested calling を使ってください。",
+    "keywords": [
+      "suggest",
+      "that節",
+      "提案"
+    ]
+  },
+  "neednt-mustnt": {
+    "title": "needn't と mustn't",
+    "question": "なぜ needn't と mustn't は違うのですか。",
+    "summary": "Needn't は必要がないことです。mustn't は禁止、またはしないよう強く指示することです。",
+    "usage": "You needn't print the form は電子版を許します。you mustn't print it は印刷を禁じます。Don't need to と needn't は、必要がないことを似て表すことが多いですが、形は違います。needn't は原形、don't need to は to 不定詞です。過去では、didn't need to do は必要がなかったことで、実際にしたかは開いたままになりえます。needn't have done は、ふつう不要なのにしたことを含みます。",
+    "pitfall": "早く来ることが任意だという意味で You mustn't come early を使わないでください。禁止に聞こえます。",
+    "keywords": [
+      "needn't",
+      "mustn't",
+      "必要",
+      "禁止"
+    ]
+  },
+  "whether-if": {
+    "title": "whether と if",
+    "question": "whether と if は、いつ入れ替えられないのですか。",
+    "summary": "どちらも多くの埋め込まれた yes–no 疑問を導けます。明示的な選択肢や前置詞の後では whether の方が安全です。",
+    "usage": "I don't know whether/if the door is open はどちらの語も可能です。Whether...or not は選択肢を明示します。Whether は to 不定詞の前に置けますが、if to leave は不可です。前置詞の後は whether です。a discussion about whether to proceed です。If は条件も導きます。whether は「どちらであるか」と「もし」の曖昧さを除けます。埋め込まれた疑問の中は平叙文の語順を保ちます。",
+    "pitfall": "We discussed about if to leave は避け、We discussed whether to leave と言ってください。",
+    "keywords": [
+      "whether",
+      "if",
+      "間接疑問"
+    ]
+  },
+  "modal-perfect": {
+    "title": "must have / might have / can't have",
+    "question": "法助動詞の完了形は、過去の推論をどう表しますか。",
+    "summary": "Must have done は強い過去の推論、might/may have done は可能性、can't have done はありえないという推論です。",
+    "usage": "これらの形は、過去の出来事についての話者の現在の判断であり、直接見た報告ではありません。The lights are off; they must have left は証拠からの推論です。Could have done は、文脈によって過去の可能性、または実現しなかった機会を示せます。Should have done は、同じ種類の推論ではなく、しなかった行為を批判することが多いです。否定の推論はふつう can't have done であり、mustn't have done ではありません。",
+    "pitfall": "過去の義務「行かなければならなかった」に must have left を使わないでください。ふつう推論です。",
+    "keywords": [
+      "must have",
+      "might have",
+      "can't have",
+      "推論"
+    ]
+  },
+  "question-tags": {
+    "title": "付加疑問",
+    "question": "付加疑問は助動詞と代名詞をどう選びますか。",
+    "summary": "付加疑問は、ふつう主節の助動詞と主語を受け、極性を逆にすることが多いです。",
+    "usage": "She is ready, isn't she? は is を繰り返し she を使います。they have finished, haven't they? は have を繰り返します。主節に助動詞がなければ do/does/did です。You work here, don't you? です。命令文と Let's... には、will you? や shall we? のような決まった付加があります。イントネーションも重要です。下降は確認を求めることが多く、上昇は本当の質問になりえます。句読点だけではこの違いは表せません。",
+    "pitfall": "すべての文に is it を付けないでください。人称、時制、助動詞を確認してください。",
+    "keywords": [
+      "付加疑問",
+      "tag",
+      "助動詞"
+    ]
+  },
+  "as-long-as": {
+    "title": "as long as と if",
+    "question": "as long as は条件に何を加えますか。",
+    "summary": "As long as は provided that を意味し、必要な条件を強調できます。期間も表せます。",
+    "usage": "You may borrow the camera as long as you return it tonight は、返すことを許可の条件にします。単なる if は可能性を導きますが、そのような要求を必ずしも強調しません。未来向きの条件では、条件節はふつう現在形です。As long as は文字どおり期間も表せます。I stayed as long as I could です。文が条件の結果か、時間の長さかを決めてください。",
+    "pitfall": "as long as をすべて条件としないでください。stayed や waited とでは期間を表すことがあります。",
+    "keywords": [
+      "as long as",
+      "条件",
+      "期間"
+    ]
+  },
+  "subject-verb-agreement": {
+    "title": "主語と動詞の一致",
+    "question": "動詞は単数と複数のどちらですか。",
+    "summary": "動詞は近くの名詞ではなく、文法上の主語と一致します。is か are、has か have、現在の動詞に -s を付けるかを選びます。",
+    "usage": "本当の主語を見つけてください。The list of names is long の主語は names ではなく list です。together with、as well as、including の後の名詞は、単数の主語をふつう複数にしません。Each、every、everyone はふつう単数の動詞を取ります。News と mathematics は末尾の -s があっても単数の動詞、people は複数の動詞です。\n\n丁寧な文章では、there is か there are は後ろの名詞と一致します。There is a key、There are two keys です。There's two keys は話し言葉ではよくありますが、丁寧な書き言葉の形ではありません。team や family のような集合名詞は、集団を一つの単位と見るアメリカ英語では単数になることが多く、成員が重要なイギリス英語では複数になることがあります。either of や neither of が主語のとき、形式的な文章はふつう単数の動詞を好みます。",
+    "pitfall": "一番近い名詞に決めさせないでください。The box of pencils is missing であり、are missing ではありません。",
+    "keywords": [
+      "主語と動詞",
+      "一致",
+      "単数",
+      "複数"
+    ]
+  },
+  "past-perfect": {
+    "title": "過去完了",
+    "question": "二つの過去の出来事に、had + past participle が必要なのはいつですか。",
+    "summary": "別の過去の時より前の出来事には had + past participle を使います。より形式的な過去形ではありません。",
+    "usage": "二つの過去の時のどちらが早いかを決めてください。When we arrived, the talk had started では、開始は到着より前です。Already、just、never は、そのより早い過去を示すことが多いです。before や after ですでに順序が明らかなら、二つの過去形で足りることが多いです。I locked the door before I left です。過去完了は、そうしなければ順序が不明なときに最も有用です。\n\n過去の出来事のすべてに had を付けないでください。時間順に語る列は、ふつう過去形です。過去完了の基準は今ではなく、別の過去の時点です。現在と結び付く過去の出来事は、依然として現在完了です。",
+    "pitfall": "より後の過去の出来事に had を付けないでください。到着の方が後なので、When we had arrived, the talk started は、別のより後の時点を意図しない限り、通常の時間順を逆にします。",
+    "keywords": [
+      "過去完了",
+      "had",
+      "時の前後"
+    ]
+  },
+  "past-perfect-continuous": {
+    "title": "過去完了進行形",
+    "question": "had been doing は was doing とどう違いますか。",
+    "summary": "Had been + -ing は、過去の時点まで続いていた活動を示し、そのときの結果を伴うことが多いです。Was doing は、その時点で進行中だったことです。",
+    "usage": "過去の時点より前に、活動がどれだけ長く、またはどれだけ繰り返し続いていたかを言うには過去完了進行形を使います。I had been waiting for an hour when the bus came です。結果が見えることも多いです。her eyes were red because she had been editing です。know や own のような状態動詞は、この形をふつう取りません。\n\nWas waiting は、その瞬間の中に視点を置きます。Had been waiting は、より前からその瞬間まで続きます。そのとき待ちが進行中だったとだけ言うなら、過去進行形で足ります。",
+    "pitfall": "そのとき単に進行中だった行為に had been doing を使わないでください。The phone rang while I was cooking に had been は不要です。",
+    "keywords": [
+      "過去完了進行形",
+      "had been",
+      "継続"
+    ]
+  },
+  "future-continuous": {
+    "title": "未来進行形",
+    "question": "will be doing が適切な未来なのはいつですか。",
+    "summary": "Will be + -ing は未来の時点で進行中の行為を示し、相手の予定を丁寧に尋ねることもできます。突然の決定は別の未来です。",
+    "usage": "未来の時点を名指します。At 8 tomorrow I will be sitting on the train です。この形は、発話の瞬間の決定としてではなく、当然進行している行為として示すことが多いです。Will you be passing the post office? は経路を既存の予定として扱い、Will you pass...? より押し付けが少ないです。\n\n突然の決定、約束、完了する行為の予測は、ふつう will + 原形です。I'll open the window です。決まった個人の取り決めは、現在進行形の方が多いです。I'm meeting Sam at 8 です。型は will be に -ing 形です。",
+    "pitfall": "-ing を落とさず、過去分詞も使わないでください。At 8 I will be travelling であり、will be travel や will be travelled ではありません。",
+    "keywords": [
+      "未来進行形",
+      "will be",
+      "進行"
+    ]
+  },
+  "future-perfect": {
+    "title": "未来完了",
+    "question": "未来の時より前に終わることは、どう言いますか。",
+    "summary": "Will have + past participle は、未来の期限より前に完了することです。By と by the time がその期限を示すことが多いです。",
+    "usage": "まず期限を見つけ、その前に行為が完了するかを決めます。By June she will have finished the course は、六月のあいだに終わるのではなく、六月の時点ですでに完了していることです。by the time 節は現在形、主節は未来完了です。By the time you arrive, I will have left です。\n\nある時点より前の完了ではなく、単に起きることを言うなら、will + 原形か be going to を使います。have の後の動詞を原形のままにしないでください。",
+    "pitfall": "will have finish は避け、by the time 節に will を置かないでください。By the time you arrive, I will have left です。",
+    "keywords": [
+      "未来完了",
+      "will have",
+      "by"
+    ]
+  },
+  "present-for-future": {
+    "title": "未来を表す現在形",
+    "question": "未来の意味なのに will を使わないのはいつですか。",
+    "summary": "時刻表や番組は現在形が多いです。決まった個人の取り決めは現在進行形が多いです。Will は決定、約束、予測に合います。",
+    "usage": "列車、便、授業、公演が時刻表どおりに動くとき、現在形が普通です。The train leaves at 6 です。今起きているという意味ではなく、未来を固定した予定として扱います。すでに手配したことには、現在進行形が普通です。I'm seeing the dentist tomorrow です。話しながら決めたことや予測には、will か be going to を使います。\n\n未来の時の節と if 節も、will ではなく現在形です。I'll call you when I land です。日本語の未来を表す一つの言い方が、英語の未来表現のすべてに対応するわけではありません。まず時刻表、取り決め、決定、従属節のどれかを見てください。",
+    "pitfall": "未来のすべてに will を付けないでください。The train leaves at 6 は時刻表、I'm seeing the dentist tomorrow は取り決めです。",
+    "keywords": [
+      "現在形の未来",
+      "時刻表",
+      "取り決め",
+      "will"
+    ]
+  },
+  "stative-verbs": {
+    "title": "状態動詞",
+    "question": "なぜ進行形を避ける動詞があるのですか。",
+    "summary": "知る、好む、所有する、感知する、見えるの動詞は、ふつう単純形です。活動を意味するときは、同じ動詞でも進行形を取れます。",
+    "usage": "Know、believe、like、own、seem、belong は段階的な行為ではなく状態なので、I'm knowing her ではなく I know her と言います。日本語の「ている」が、自動的に英語の進行形になるわけではありません。所有の have は単純形です。I have a car です。活動の have は進行形になれます。I'm having lunch です。I think は意見、I'm thinking は考慮が進行中です。\n\nSee、hear、smell、taste は、意図しない知覚ではふつう単純形のままか、can を使います。会う、見る、意図して嗅ぐ・味わう意味なら、進行形が自然です。I'm seeing the dentist、I'm tasting the soup です。その文で動詞が状態か活動かを見てください。",
+    "pitfall": "I'm knowing、I'm owning、I'm having a car は避けてください。所有は I have a car、食事は I'm having lunch になれます。",
+    "keywords": [
+      "状態動詞",
+      "進行形",
+      "know",
+      "have"
+    ]
+  },
+  "adverbs-of-frequency": {
+    "title": "頻度の副詞",
+    "question": "always、often、never はどこに置きますか。",
+    "summary": "Always、usually、often、sometimes、rarely、never は、ふつう本動詞の前、または be の後です。",
+    "usage": "She always arrives early では、always は arrives の前です。She is always early では is の後です。助動詞があるときは最初の助動詞の後です。I have never tried it です。Sometimes と often は文末にも置けます。I walk to work sometimes です。\n\nNever、rarely、seldom はすでに否定なので、not を足さないでください。Always she is early は時々の強調であり、普通の位置ではありません。これらの副詞が答えるのは頻度であり、様子ではありません。",
+    "pitfall": "always を既定で文頭に置かず、She doesn't never arrive も避けてください。Never はすでに否定です。",
+    "keywords": [
+      "頻度の副詞",
+      "always",
+      "never",
+      "語順"
+    ]
+  },
+  "can-could-able": {
+    "title": "can、could、be able to",
+    "question": "能力には can、could、be able to のどれですか。",
+    "summary": "Can は現在の能力、可能性、くだけた許可です。Could は一般的な過去の能力、丁寧な依頼、現在の可能性です。特定の過去の成功は was able to が多いです。",
+    "usage": "I can swim は現在の能力です。I could swim when I was five は過去の一般的な能力です。一度の過去の成功には、was/were able to か managed to を使うことが多いです。The exit was blocked, but we were able to climb out です。試みが失敗したなら、couldn't も wasn't able to も問題ありません。\n\nCan には不定詞がないので、ほかの時制は be able to です。I will be able to help tomorrow、She has been able to walk again です。Could は、より不確かな現在の可能性も示せます。That could be the reason です。日本語の能力や許可の語が、すべて一つの英語の法助動詞に対応するわけではありません。",
+    "pitfall": "一度の過去の成功を I could climb out に頼らないでください。その成功はふつう we were able to climb out です。",
+    "keywords": [
+      "can",
+      "could",
+      "be able to",
+      "能力"
+    ]
+  },
+  "should-ought-had-better": {
+    "title": "should、ought to、had better",
+    "question": "助言には should、ought to、had better のどれですか。",
+    "summary": "Should と ought to は助言や予期です。Had better はこの状況向けで、行動しなければ悪い結果になることをにおわせます。",
+    "usage": "You should save a copy は普通の助言です。Ought to は意味が近く、やや形式的で、話し言葉では少なめです。否定は ought not to ですが、shouldn't の方が普通です。Should は予期も示せます。The train should be here soon です。\n\nhad better の had は過去時制ではありません。You had better leave now は現在や未来のことで、You'd better leave now と短くなることが多いです。to のない原形を使います。否定は had better not です。一般的な勧告ではなく、この状況への警告です。would better に変えないでください。",
+    "pitfall": "had better の後に to を足さず、would better とも書かないでください。You'd better to leave ではなく You'd better leave です。",
+    "keywords": [
+      "should",
+      "ought to",
+      "had better",
+      "助言"
+    ]
+  },
+  "may-might": {
+    "title": "may と might",
+    "question": "may と might はどちらも可能性ですか。",
+    "summary": "May と might はどちらも可能性を示します。Might はより不確かに聞こえることが多いですが、may の過去だけではありません。May は形式的な許可も出せます。",
+    "usage": "It may rain と It might rain は、どちらも雨がありうることです。Might はより不確かに聞こえることが多いですが、差は固定ではありません。許可の may は形式的です。You may leave when you have signed です。日常の許可は can の方が多いです。間接話法では、元の may を might が置き換えることが多いです。She said it might rain です。\n\nどちらも to のない原形を取ります。過去の可能性は may have か might have に過去分詞です。Maybe は副詞で、may be を置き換えられません。May not は文脈によって拒否か可能性です。cannot は不能、またはより明確な禁止を示すことが多いです。",
+    "pitfall": "may to go と書かないでください。可能性は It may rain、副詞は Maybe it will rain です。",
+    "keywords": [
+      "may",
+      "might",
+      "可能性",
+      "maybe"
+    ]
+  },
+  "would-uses": {
+    "title": "would の用法",
+    "question": "would は過去、習慣、丁寧さのどれですか。",
+    "summary": "Would は条件の結果、丁寧な依頼、繰り返した過去の習慣、過去から見た未来になれます。一度の完了した過去の出来事は、ふつう報告しません。",
+    "usage": "条件では、would はふつう結果に置きます。If I had time, I would walk です。依頼や申し出の Would you...? と Would you like...? は、will より柔らかいです。繰り返した過去の行為にも would を使えます。Every summer we would visit my aunt です。過去の状態は used to です。I would be shy ではなく I used to be shy です。\n\n過去から見ると、will は would になることが多いです。I knew she would be late です。一度の完了した出来事に、終わった過去の時と would を使わないでください。I would see him yesterday は英語ではありません。I saw him yesterday と言います。",
+    "pitfall": "過去の状態に would を使わないでください。状態は I used to live there です。I would live there は繰り返しの習慣か、条件の結果に聞こえます。",
+    "keywords": [
+      "would",
+      "条件",
+      "習慣",
+      "丁寧"
+    ]
+  },
+  "reflexive-pronouns": {
+    "title": "再帰代名詞",
+    "question": "me や him の代わりに myself や himself を使うのはいつですか。",
+    "summary": "主語と目的語が同じ人のときに再帰代名詞を使います。その人を強調することもできます。互いに働きかける二人には each other が必要です。",
+    "usage": "He cut himself では、切る人と切られる人が同じです。強調では、代名詞を外しても文は成り立ちます。I fixed the lock myself です。By myself は一人、または助けなしを意味できます。単数の you は yourself、複数の you は yourselves です。標準の形は himself と themselves であり、hisself や theirselves ではありません。\n\n二人が互いを見るときは、They saw themselves ではなく They saw each other です。衣服と体の部分はふつう所有格です。He put his hand in his pocket です。再帰代名詞は普通の主語ではありません。Myself will do it は避けてください。",
+    "pitfall": "theirselves や hisself と書かず、相互の行為に themselves を使わないでください。They saw each other です。",
+    "keywords": [
+      "再帰代名詞",
+      "myself",
+      "each other"
+    ]
+  },
+  "demonstratives": {
+    "title": "this、that、these、those",
+    "question": "this と that をどう選び、名詞が複数なのはいつですか。",
+    "summary": "This と these は、近いもの、現在のもの、これから述べるものを示すことが多いです。That と those は、より遠いもの、たった今述べたものを示すことが多いです。This と that は単数、these と those は複数です。",
+    "usage": "空間では、this cup は手元、that cup はより遠いものです。時や文章では、this は先を指せます。This is the plan です。That は後ろを指せます。That is exactly the problem です。電話では This is Mina が話し手を紹介します。\n\n数を合わせてください。this book、these books であり、this books ではありません。丁寧な文章では、kind、sort、type は that kind of problem で単数のままです。those kind of problem ではありません。This と that は主語として単独でも立てます。",
+    "pitfall": "this books と those kind of problem は避けてください。単数名詞には this か that、複数には these か those です。",
+    "keywords": [
+      "this",
+      "that",
+      "these",
+      "those"
+    ]
+  },
+  "whose-whos": {
+    "title": "whose と who's",
+    "question": "whose はどれで、who's はどれですか。",
+    "summary": "Whose は「誰のものか」で、疑問文と関係節に使います。Who's は who is か who has の短縮です。",
+    "usage": "Whose bag is this? は持ち主を尋ねます。関係節では、whose が人と、その人に属するものを結びます。the student whose bag is missing です。Who's late は who is late、who's finished は who has finished です。同じ音なので、文に所有が必要かで判断します。\n\n日本語の所有がすべて whose になるわけではありません。普通の所有は her や their です。the student and her bag です。Whose は whose の疑問、または関係節の中の所有に使います。who's からアポストロフィを外しても所有にはなりません。",
+    "pitfall": "the student who's bag is missing と書かないでください。所有は whose bag です。who's bag は who is bag の意味になります。",
+    "keywords": [
+      "whose",
+      "who's",
+      "所有",
+      "関係節"
+    ]
+  },
+  "prepositions-place": {
+    "title": "場所の at、in、on",
+    "question": "場所には at、in、on のどれですか。",
+    "summary": "At は点、出来事、戸口を示すことが多いです。In は区域や囲まれた空間、on は表面、線、公共交通の乗車を示すことが多いです。",
+    "usage": "日本語の一つの場所の語が、at、in、on をまとめて覆います。場所が点か、空間か、表面かを見てください。At the door と at the station は、到着や活動の点として扱います。In the room と in China は、中にいる空間として扱います。On the wall と on the coast は表面か線です。公共交通はふつう on the bus、on the train、on the plane、自家用車はふつう in the car です。\n\n決まった組み合わせもあります。at home、at work、in bed、in the picture です。都市と国はふつう in、特定の住所や点は at になれます。live on a street も live in a street も起きます。例外の前に、点、空間、表面の組を覚えてください。",
+    "pitfall": "場所をすべて in に訳さないでください。戸口は at the door、壁は on the wall、部屋の中は in the room です。",
+    "keywords": [
+      "場所の前置詞",
+      "at",
+      "in",
+      "on"
+    ]
+  },
+  "prepositions-movement": {
+    "title": "移動の前置詞",
+    "question": "行く、入る、出るを示す前置詞はどれですか。",
+    "summary": "To は目的地、into は空間への移動、onto は表面への移動、from は起点です。Arrive、reach、go home には独自の型があります。",
+    "usage": "go to the office、walk into the hall、put the cup onto the tray、come from the station、get out of the car、take the bag off the chair と言います。Through は何かの中を通る移動、across は一方から他方への移動を強調します。Into と onto は移動を明示し、put it in the box も普通です。\n\nArrive in は都市や国、arrive at は建物、駅、同様の点です。arrive to と言わないでください。Reach the station に to はありません。Home、here、there にはふつう to がありません。go home、come here です。Enter the room は移動をすでに含むので、その普通の用法に into は不要です。Enter into an agreement は別の決まった句です。",
+    "pitfall": "arrive to the station と go to home は避けてください。arrive at か arrive in を使い、go home と言います。",
+    "keywords": [
+      "移動の前置詞",
+      "to",
+      "into",
+      "from"
+    ]
+  },
+  "adjective-order": {
+    "title": "形容詞の順序",
+    "question": "名詞の前で、どの形容詞が先ですか。",
+    "summary": "名詞の前のふつうの順は、意見、大きさ、年齢、形、色、起源、材料、それから用途です。形容詞を一度にたくさん重ねないでください。",
+    "usage": "A lovely small old round table は自然で、a old small lovely table は不自然です。限定詞と数は先です。those two lovely chairs です。材料は名詞の隣です。a red wooden box です。用途は名詞の一部のように働きます。a leather walking shoe です。順序は強い傾向であり、公式ではありません。\n\n入れ替えられる同じ種類の形容詞は、コンマで分けられます。a cold, wet day です。決まった順序の形容詞には、ふつうコンマは不要です。二つか三つで足りることが多いです。迷ったら、最も個人的な意見を名詞から最も遠くに置いてください。",
+    "pitfall": "a red big car は避けてください。大きさはふつう色より前です。a big red car です。",
+    "keywords": [
+      "形容詞の順序",
+      "意見",
+      "大きさ",
+      "色"
+    ]
+  },
+  "superlatives": {
+    "title": "最上級",
+    "question": "最上級をどう作り、the はいつ足しますか。",
+    "summary": "短い形容詞は the + -est、長い形容詞は the most が多いです。最上級にはふつう範囲があり、one of the の後は複数名詞です。",
+    "usage": "tallest や simplest のような短い形容詞は -est です。expensive や careful のような長いものは the most です。good、bad、far の最上級は best、worst、そして farthest か furthest です。名詞にはふつう the があります。the oldest building in the town です。場所には in、集団には of です。the best of the three です。人生の経験の最上級は現在完了を取ることが多いです。the best meal I've had です。\n\nmost と -est を重ねないでください。One of the best player は誤りです。one of は複数を取ります。one of the best players です。Most people は多数であり、最上級ではありません。最上級は the most useful of the three です。最上級が述語のとき the が落ちることがありますが、名詞の前ではふつう残ります。",
+    "pitfall": "the most tallest と one of the best player は避けてください。the tallest、または one of the best players です。",
+    "keywords": [
+      "最上級",
+      "the most",
+      "est",
+      "one of"
+    ]
+  },
+  "so-such": {
+    "title": "so と such",
+    "question": "この強調には so と such のどちらですか。",
+    "summary": "So の後は形容詞か副詞、such の後は名詞句です。単数の可算名詞は such a も、so + 形容詞 + a も強調できます。",
+    "usage": "So tired と so quickly は形容詞か副詞を修飾します。Such a long day、such nice people、such weather は名詞句を修飾します。単数の可算名詞は両方可能です。such a cold day、またはより形式的な so cold a day です。量は such ではなく so です。so many people、so much time、so few seats です。\n\n結果の型は so tired that she left と such a long day that she left です。so を a と名詞の直前に置かないでください。Such は形容詞ではないので、the weather is such cold は英語ではありません。",
+    "pitfall": "so a long day と such tired は避けてください。名詞句は such a long day、形容詞だけは so tired です。",
+    "keywords": [
+      "so",
+      "such",
+      "強調",
+      "that"
+    ]
+  },
+  "still-yet-already": {
+    "title": "still、yet、already",
+    "question": "still、already、yet のどれですか。",
+    "summary": "Still は状況が続くこと、already は予想より早いこと、yet は主に否定と疑問で「今まで」です。",
+    "usage": "She is still in the lab は、まだ出ていないことです。I've already eaten は、食事が予想より早かったことです。Have you eaten yet? と I haven't eaten yet は、今までの状況を測ります。Still は本動詞の前か be の後です。否定では still not がよく出ます。I still haven't started です。Already は中間か文末です。Yet はふつう文末です。\n\n肯定の平叙文で、already の意味に yet を使わないでください。文頭の Yet は however を意味することが多く、別の用法です。The room is small. Yet it is bright. です。日本語の完了の標識が、過去時制ではなく already を自動的に選ぶわけではありません。Already は、予想より早いという考えを加えます。",
+    "pitfall": "普通の否定で yet を already に置き換えないでください。まだ食べていないは I haven't eaten yet であり、I haven't already eaten ではありません。",
+    "keywords": [
+      "still",
+      "yet",
+      "already",
+      "完了"
+    ]
+  },
+  "ago-before": {
+    "title": "ago と before",
+    "question": "より前の時には ago と before のどちらですか。",
+    "summary": "Ago は今から遡り、過去形を取ります。Before は基準点より前、またはそれ以前のいつかで、完了形と組むことが多いです。",
+    "usage": "Three days ago と a year ago は今から遡り、過去形を取ります。I saw her three days ago です。Before noon と before the meeting は、別の時を基準にします。Before 単独は、それ以前のいつかです。I've seen this film before、または I had met her before です。\n\nthree days ago を before three days と言わず、ago を現在完了と一緒に置かないでください。日本語の一つの時の語が、どちらの形にも対応することがあります。基準が今か、別の出来事かを見てください。",
+    "pitfall": "I have seen her three days ago と before three days は避けてください。今から遡るのは I saw her three days ago です。",
+    "keywords": [
+      "ago",
+      "before",
+      "過去",
+      "以前"
+    ]
+  },
+  "by-until": {
+    "title": "by と until",
+    "question": "期限が by なのはいつで、until なのはいつですか。",
+    "summary": "By はその時点までに、それより前の完了を強調します。Until はその時点まで状況が続くことです。",
+    "usage": "Finish the form by Friday は、金曜が来たときに用紙が完成しているべきことで、より早く完成していてもよいです。The desk is staffed until Friday は、人員配置が金曜まで続くことです。待つ、滞在する、開いている、閉まっているはふつう until です。終える、提出する、到着するような一度の結果はふつう by です。\n\nBy then と until then も同じ対比です。否定の not until は、変化がその時点に起き、それより前には起きないことです。続く滞在に by を使わず、前に終えなければならない期限に until を使わないでください。Till は until に対応し、よりくだけています。",
+    "pitfall": "続きの待ちに I'll wait by Friday と書かないでください。続くのは I'll wait until Friday、期限は Finish it by Friday です。",
+    "keywords": [
+      "by",
+      "until",
+      "期限",
+      "継続"
+    ]
+  },
+  "in-into-onto": {
+    "title": "in、into、onto",
+    "question": "移動と位置は、いつも別の前置詞を選びますか。",
+    "summary": "In と on は位置を示し、多くの移動の動詞の後にも続きます。Into と onto は、空間の中や表面の上への移動を特に強調します。",
+    "usage": "The keys are in the drawer は位置です。She walked into the room は外から中への移動を強調します。Put it in the box も put it into the box も起きます。into の方が入ることが明確です。Onto the roof は表面への移動を強調し、on the roof は位置だけのこともあります。\n\nOnto は一つの前置詞です。to が不定詞の標識か次の前置詞のとき、on to は二語です。go on to explain the map は、説明することで続けることであり、地図の上へ移動することではありません。すべての on to を onto にしないでください。",
+    "pitfall": "go on to explain を go onto explain と書かないでください。その to は次の行為を導き、表面の onto ではありません。",
+    "keywords": [
+      "in",
+      "into",
+      "onto",
+      "移動"
+    ]
+  },
+  "among-between": {
+    "title": "among と between",
+    "question": "between は二つだけ、among は集団だけですか。",
+    "summary": "Between は二つ、および区別を保った複数のものに使います。Among は、一つずつ取り出さない集団の中のものです。",
+    "usage": "Between the two doors は、二つのものを隔てる空間です。The difference between the three designs も between です。設計を別々の項目として比べるからです。Among the crowd と among her reasons は、各項目を分けず集団の中に置きます。分けるとき、between は別々の受け手を名指すことが多く、among は集団として扱います。\n\nBetween you and me は I ではなく目的格の me です。二つを超えるからといって、すべての between を among に変えないでください。逆の誤りは among the two です。",
+    "pitfall": "between you and I と書かないでください。前置詞の後は目的格です。between you and me です。",
+    "keywords": [
+      "among",
+      "between",
+      "間",
+      "集団"
+    ]
+  },
+  "other-another": {
+    "title": "other と another",
+    "question": "もう一つには another と other のどちらですか。",
+    "summary": "Another はもう一つ、または別の一つで、ふつう単数名詞を取ります。The other は既知の組の残り一つ、other に複数は追加のものです。",
+    "usage": "Another cup は追加の一杯です。The other cup は二つのうち残りです。Other students は追加の学生で、others は単独でも立てます。Some stayed; others left です。The others は残りのすべてです。Another はすでに an + other なので、冠詞を足したり another students と書いたりしないでください。\n\nAnother three days は例外です。追加の期間や量を意味するとき、another は数と複数の前に来られます。Each other と one another は相互の行為です。まず一つなのかそれ以上か、組がすでに分かっているかを決めてください。",
+    "pitfall": "another students と the another cup は避けてください。もう一人の学生は another student、追加の学生は other students です。",
+    "keywords": [
+      "other",
+      "another",
+      "the other",
+      "others"
+    ]
+  },
+  "both-all-none": {
+    "title": "both、all、none",
+    "question": "二つ、集団全体、ゼロを覆う語はどれですか。",
+    "summary": "Both は二つだけです。All は三つ以上、または質量です。None は一人も、どれもないことです。特定の組は of the を取ることが多いです。",
+    "usage": "Both students か both of the students は、分かっている二人です。All students は総称、all of the students か all the students は特定の集団です。None of the students が否定です。Both...and... は並行する項目を結びます。Both of them は複数の動詞を取ります。\n\nNone of の後は複数か質量名詞です。形式的な文章は単数の動詞を使うことがあり、話し言葉では複数の動詞もよくあるので、自動的に誤りではありません。both of students や all of students と言わないでください。of の後の特定の複数には the か別の限定詞が必要です。The both は標準ではありません。三つ以上の一つもないことには neither ではなく none です。",
+    "pitfall": "both of students は避けてください。both students か both of the students です。",
+    "keywords": [
+      "both",
+      "all",
+      "none",
+      "of the"
+    ]
+  },
+  "all-whole": {
+    "title": "all と whole",
+    "question": "全体には all と whole のどちらですか。",
+    "summary": "Whole はふつう the、a、所有格の後に来て、単数の可算名詞を修飾します。All は複数と質量名詞を修飾でき、all day にも出ます。",
+    "usage": "The whole story、my whole life、a whole day は、一つの数えられるものを完全なものとして扱います。All the students と all the water は複数と質量名詞を覆います。All day と all morning は期間全体で、ふつう the がありません。The whole day も一日全体で、その完全な単位をより強調します。\n\nWhole は複数や質量名詞を自由には修飾しません。the whole students と the whole information は避けてください。all the students と all the information です。語順は the whole day であり、whole the day や the all day ではありません。",
+    "pitfall": "whole the day と the whole informations は避けてください。完全な一日は the whole day か all day、information は all the information です。",
+    "keywords": [
+      "all",
+      "whole",
+      "全体"
+    ]
+  },
+  "so-that-such-that": {
+    "title": "so...that と such...that",
+    "question": "結果には so...that と such...that のどちらですか。",
+    "summary": "So は形容詞か副詞、such は名詞句を取ります。that 節が結果です。目的の so that とは同じ型ではありません。",
+    "usage": "She was so tired that she left early では、so が tired を修飾します。It was such a long meeting that we left early では、such が a long meeting を修飾します。話し言葉では that を省くことがありますが、型を覚えるあいだは残し、目的と分けてください。形式的な文章では The rules are such that... も言え、such が結果を先に指します。\n\n目的は She spoke quietly so that the baby could sleep で、その前に so + 形容詞はありません。結果の型は形容詞の前に so を置きます。so a long meeting that と書かないでください。",
+    "pitfall": "She was such tired that she left は避けてください。形容詞は so tired that、名詞句は such a long meeting that です。",
+    "keywords": [
+      "so that",
+      "such that",
+      "結果"
+    ]
+  },
+  "purpose-to-so-that": {
+    "title": "目的の to と so that",
+    "question": "目的は不定詞と節のどちらですか。",
+    "summary": "主語が同じなら、目的は to、in order to、so as to が多いです。節、法助動詞、別の主語が必要なら so that です。",
+    "usage": "I left early to catch the train では、去る人と電車に乗る人が同じです。In order to はより明示的、so as to はやや形式的です。三つとも原形を取ります。否定は in order not to と so as not to であり、for not to ではありません。\n\nSo that は完全な節を導き、can、could、will、would を伴うことが多いです。I left early so that she could rest です。ここでは she が別の主語なので、単純な to 不定詞は合いません。so that to catch と書かず、すべての目的を for と動詞にしないでください。For は名詞を取れます。for a rest です。",
+    "pitfall": "I left for catch the train と so that to rest は避けてください。同じ主語は to catch、別の主語は so that she could rest です。",
+    "keywords": [
+      "目的",
+      "to",
+      "so that",
+      "in order to"
+    ]
+  },
+  "time-clauses": {
+    "title": "時の節",
+    "question": "未来の時の節は、なぜ will を避けるのですか。",
+    "summary": "when、before、after、until、as soon as、once の節が未来を指すとき、動詞はふつう現在形です。Will は主節に残します。",
+    "usage": "I'll phone you when I land では、着陸は未来なのに land は現在形です。As soon as、once、before、after、until も同じです。Wait here until I get back です。主節は will、命令文、法助動詞を使えます。時の節が先頭なら、ふつうコンマを取ります。\n\nWhile は重なりを示し、自分の節からも未来の will を外します。主語が同じとき、after と before は -ing を取れます。After landing, I phoned です。現在形は、出来事がすでに起きたという意味ではなく、時の節の普通の形です。If 節にも似た制限がありますが、時の節は条件ではありません。",
+    "pitfall": "I'll phone you when I will land は避けてください。時の節は when I land で、will は主節に残します。",
+    "keywords": [
+      "時の節",
+      "when",
+      "until",
+      "will"
+    ]
+  },
+  "zero-conditional": {
+    "title": "ゼロ条件文",
+    "question": "一般的な if 文では、なぜ両方の動詞が現在形のままですか。",
+    "summary": "習慣、科学的事実、避けられない結果では、if や when の節と主節の両方が現在形になれます。一度の未来の予測ではありません。",
+    "usage": "If you heat ice, it melts は、明日の一つの実験ではなく一般的な規則です。結果を規則的なものとして扱うので、when が if を置き換えることもあります。When you heat ice, it melts です。結果は命令文にもなれます。If the light is red, stop です。\n\n一度の起こりうる未来は、通常の第一条件文です。If it rains tomorrow, we will stay inside です。一般的な規則の両側に will を足さないでください。if 節の中の will は意志のような特別な意味になりえます。ゼロ条件文の既定の形ではありません。",
+    "pitfall": "一般的な規則を If you will heat ice, it will melt と書かないでください。一般的な事実は If you heat ice, it melts です。",
+    "keywords": [
+      "ゼロ条件",
+      "if",
+      "一般事実",
+      "現在形"
+    ]
+  },
+  "causative-have-get": {
+    "title": "使役の have と get",
+    "question": "ほかの人にしてもらう手配は、どう言いますか。",
+    "summary": "Have か get + 目的語 + 過去分詞は、その物に誰かがすることを手配することです。人を名指すとき、have は原形、get は to です。",
+    "usage": "I had my eyes tested は、自分で検査したのではなく、ほかの人が検査したことです。Get はより会話的で、手間を示せます。I got the lock repaired です。人を名指すなら、I had the assistant print the file か I got the assistant to print the file です。\n\nこれを過去完了と混同しないでください。I had cut my hair は、切ったのが自分だということです。I had my hair cut は、散髪を手配したことです。Get something done は望まない経験も意味できます。I got my bike stolen です。手配したのか、自分に起きたのかは、文脈が示す必要があります。",
+    "pitfall": "I had my hair cut を、自分で切ったことと読まないでください。自分で終えた行為は I had cut my hair、手配した散髪は I had my hair cut です。",
+    "keywords": [
+      "使役",
+      "have",
+      "get",
+      "過去分詞"
+    ]
+  },
+  "let-make-allow": {
+    "title": "let、make、allow",
+    "question": "let、make、allow は to を取りますか。",
+    "summary": "Let と能動の make は to のない動詞を取ります。Allow は to、または -ing です。受動の make は to を足します。",
+    "usage": "Let me see the map は許可や誘いで、原形が続きます。Make me redo it は強制で、能動文にも to がありません。受動態は to を足します。I was made to redo it です。Allow は違います。They allowed me to enter、または Smoking is not allowed です。Permit は allow に従います。\n\nLet's go は let us からの提案で、やはり原形です。let me to go や make me to go と書かないでください。Allow me go も誤りです。日本語の一つの動詞が許可にも強制にもなることがあります。英語は let と make に分けます。",
+    "pitfall": "let や能動の make の後に to を足さないでください。Let me see と She made me wait です。受動態は I was made to wait です。",
+    "keywords": [
+      "let",
+      "make",
+      "allow",
+      "使役"
+    ]
+  },
+  "prefer-would-rather": {
+    "title": "prefer と would rather",
+    "question": "prefer to と would rather のどちらですか。",
+    "summary": "Prefer は名詞、-ing、to を取ります。二つを比べるときは prefer A to B です。Would rather は to のない動詞です。ほかの人の現在の行為には、節が過去形になることが多いです。",
+    "usage": "I prefer tea to coffee と I prefer reading to watching television と言います。一度の機会には prefer to do か would prefer to do が自然です。否定は prefer not to です。名詞の型で to を than に置き換えないでください。不定詞の比較は rather than を使えます。prefer to walk rather than take the bus です。\n\nWould rather は原形を直接取ります。I'd rather walk than wait です。I'd rather not wait はその行為を拒みます。今ほかの人にしてほしいことには、過去形が距離を作ります。I'd rather you stayed、I'd rather you didn't tell anyone です。その過去形は実際の過去の時ではありません。would rather to go と書かないでください。",
+    "pitfall": "I prefer tea than coffee と I'd rather to walk は避けてください。比較は prefer tea to coffee、rather の直後は walk です。",
+    "keywords": [
+      "prefer",
+      "would rather",
+      "比較"
+    ]
+  },
+  "look-forward-to": {
+    "title": "look forward to",
+    "question": "なぜ look forward to の後は -ing が多いのですか。",
+    "summary": "この表現の to は前置詞なので、原形ではなく名詞か -ing を取ります。",
+    "usage": "I'm looking forward to the trip は名詞です。I'm looking forward to meeting you は -ing です。meeting you が前置詞の目的語だからです。手紙でも I look forward to hearing from you を使います。to を for に置き換えないでください。\n\nすべての to を不定詞の標識としないでください。want to meet の to は不定詞の to です。look forward to の to は前置詞で、listen to の to と同じです。I'm looking forward は気持ちが現在なのでよく使いますが、形は依然として looking であり、look forwarding ではありません。",
+    "pitfall": "I'm looking forward to meet you は避けてください。前置詞の後は meeting you、または the trip のような名詞です。",
+    "keywords": [
+      "look forward to",
+      "動名詞",
+      "前置詞"
+    ]
+  },
+  "adjective-preposition": {
+    "title": "形容詞と前置詞",
+    "question": "interested、good、afraid の後の前置詞はどれですか。",
+    "summary": "多くの形容詞は、決まった前置詞に名詞か -ing を取ります。前置詞は形容詞と一緒に覚えます。日本語の対応が、いつも to になるわけではありません。",
+    "usage": "よくある組には interested in、good at、bad at、afraid of、worried about、proud of、famous for、responsible for、keen on、married to、similar to、tired of、excited about、sorry about があります。Good at は技能、good with は人や道具との扱いやすさ、good for は利益です。Different from が最も安全です。イギリス英語では different to も使います。\n\n前置詞の後に動詞が来るなら -ing です。interested in learning、good at listening です。Interested to hear は別の型で、何かを聞いて興味を持つ、またはうれしいという意味です。interested in を置き換えません。すべての前置詞を予測する規則はないので、新しい組み合わせは一単位で覚えてください。",
+    "pitfall": "interested on the course と afraid from dogs は避けてください。普通の句は interested in the course と afraid of dogs です。",
+    "keywords": [
+      "形容詞",
+      "前置詞",
+      "interested in",
+      "good at"
+    ]
+  },
+  "verb-preposition": {
+    "title": "動詞と前置詞",
+    "question": "depend、listen、wait の後の前置詞は、動かせますか、消せますか。",
+    "summary": "depend on、listen to、wait for では、前置詞は動詞の後に残り、目的語は間を分けられません。学習者が足す前置詞の意味を、すでに含む動詞もあります。",
+    "usage": "Depend on、rely on、listen to、wait for、belong to、apologise for、apply for、pay for、search for、believe in は動詞と前置詞の組み合わせです。代名詞も前置詞の後です。listen to it、wait for them です。人には agree with、共有の決定には agree on、提案には agree to です。\n\nDiscuss the plan、enter the room、reach the station、marry someone、mention the fee には、ふつう about、into、to、with を足しません。Answer the question は目的語を直接取ります。Answer to a person は責任を負う意味になり、別の意味です。これらは分離できる句動詞ではありません。look after her は look her after になれません。",
+    "pitfall": "depend of the weather、listen music、discuss about the plan は避けてください。depend on、listen to music、discuss the plan です。",
+    "keywords": [
+      "動詞と前置詞",
+      "depend on",
+      "listen to",
+      "wait for"
+    ]
+  },
+  "so-neither-do": {
+    "title": "So do I と Neither do I",
+    "question": "なぜ同意は So I do ではなく So do I なのですか。",
+    "summary": "肯定への同意は So + 助動詞 + 主語です。否定への同意は Neither か Nor + 助動詞 + 主語です。助動詞は最初の文を受けます。",
+    "usage": "I like this map の後、So do I は like の代わりに do を使います。She is ready は So am I です。They can drive は So can we です。She has left は So have I です。過去形の文は So did I です。否定も倒置します。I don't eat meat. Neither do I. です。Nor do I も同じ意味です。Me too と Me neither は話し言葉でよくあります。丁寧な同意は依然として倒置します。\n\nSo I do は「私も」ではありません。同じ人を確認します。You work too hard. So I do. です。主語は変わっていません。ほかの人が同意する意味で、So の直後に主語を置かないでください。まず元の文が be、法助動詞、完了、普通の動詞のどれかを見てください。",
+    "pitfall": "「私も」に So I am を使わないでください。She is tired の後の同意は So am I です。So she is は、彼女が本当に疲れていることの確認だけです。",
+    "keywords": [
+      "So do I",
+      "Neither do I",
+      "同意",
+      "倒置"
+    ]
+  },
+  "one-ones": {
+    "title": "one と ones",
+    "question": "one はいつ名詞を置き換えられますか。",
+    "summary": "One は分かっている単数の可算名詞、ones は複数を置き換えます。質量名詞は one で置き換えられません。",
+    "usage": "Which cup do you want? The blue one では、one が cup の代わりです。複数は the blue ones です。Which one、this one、another one はどれも普通です。Ones には、ふつう前に形容詞か限定詞が必要です。These だけでも足りることが多いです。these ones は会話的です。\n\n質量名詞に one を使わないでください。an information one はなく、this information と言います。名詞を繰り返して足さないでください。a one book は誤りです。形式的な one が人一般を意味するのは別の用法です。One should read the label です。日常の英語では you の方が多いです。",
+    "pitfall": "質量名詞を one で置き換えず、the blue one cup とも書かないでください。カップは the blue one、information は this information のままです。",
+    "keywords": [
+      "one",
+      "ones",
+      "代用",
+      "可算"
+    ]
+  },
+  "it-vs-there": {
+    "title": "it と there",
+    "question": "存在が there is なのはいつで、it なのはいつですか。",
+    "summary": "There is か there are は、場面に新しいものを導入します。It は特定されたものを指すか、天候、時、距離、一部の節の形式主語になります。",
+    "usage": "There's a spider in the sink は、場面にクモが存在することを聞き手に告げます。The spider is in the sink、または It's in the sink は、両者がすでに特定できるクモを指します。天候、時、距離は it です。It's raining、It's five o'clock、It's a long way です。It は不定詞や節を先に指せます。It's hard to say、It seems that the gate is shut です。\n\n日本語の存在の言い方は、it has ではなく there is に対応することが多いです。It has a book on the table は存在文ではありません。There's two books は話し言葉でよくありますが、丁寧な書き言葉は There are two books です。この there は場所の over there ではありません。本当の場所は別に足します。There is a cafe near the station です。",
+    "pitfall": "存在に It has a book on the table を使わないでください。There is a book on the table です。雨は It's raining です。",
+    "keywords": [
+      "there is",
+      "it",
+      "存在",
+      "形式主語"
+    ]
+  },
+  "on-time-in-time": {
+    "title": "on time と in time",
+    "question": "時間どおりなのは on time と in time のどちらですか。",
+    "summary": "On time は予定の瞬間、時間どおりです。In time は十分に早く、遅すぎる前です。",
+    "usage": "The train was on time は、予定どおりに着いたことで、早くも遅くもありません。We arrived in time for the talk は、始まる前、おそらくかなり前に着いたことです。In time to do は、その行為に十分な時間があったことです。We left in time to catch the bus です。Just in time は余裕が狭いことを強調します。\n\nOn time は、十分に早いという意味で期限の for を取りません。In time は時刻表どおりという意味ではありません。期限には in time for Friday's class か by Friday です。二つの慣用句は入れ替えられません。",
+    "pitfall": "十分に早い意味で on time for the talk を使わないでください。十分に早いは in time for the talk、予定の瞬間に着くのは on time です。",
+    "keywords": [
+      "on time",
+      "in time",
+      "時間どおり"
+    ]
+  },
+  "at-the-end-in-the-end": {
+    "title": "at the end と in the end",
+    "question": "at the end と in the end のどちらですか。",
+    "summary": "At the end of は何かの最後の部分です。In the end は変化や遅れのあとの結果で、of を取りません。",
+    "usage": "At the end of the film と at the end of the street は、そのものの最終点です。ものがすでに分かっていれば、The film is sad at the end と言えます。In the end は eventually です。In the end we took a taxi は、ためらい、失敗、待ちのあとであることが多いです。映画の最後の部分ではないので、in the end of the film はありません。\n\nAt last と finally も、長い待ちのあとに何かが起きたことを意味できますが、finally は列挙の最後の項目を導けます。In the end はその仕事をしません。何かの物理的・文章上の終わりか、出来事の結果かを見てください。",
+    "pitfall": "in the end of the film は避けてください。映画の最後は at the end of the film、変化のあとの結果は in the end です。",
+    "keywords": [
+      "at the end",
+      "in the end",
+      "最後",
+      "結局"
+    ]
+  },
+  "in-case": {
+    "title": "in case と if",
+    "question": "in case は if ですか、それとも予防ですか。",
+    "summary": "In case は、ほかのことが起きるかもしれないので今何かをすることを意味することが多いです。If は、条件が真のときだけ結果が起きます。",
+    "usage": "Take a charger in case the battery dies では、電池が後で切れるかどうかにかかわらず、今充電器を持ちます。I'll call you if the battery dies では、それが起きたときだけ電話します。未来の in case 節は現在形です。in case it will rain ではなく in case it rains です。In case of は名詞を取ります。in case of fire です。\n\nすべての if を in case に置き換えないでください。I'll take your number in case I miss the bus は予防です。I'll call you if I miss the bus は条件です。一部のアメリカの話し言葉では in case が if に近くなりますが、中核の意味は予防です。",
+    "pitfall": "到着したときだけ起きる電話に I'll call you in case I arrive を使わないでください。その条件は if I arrive です。In case は前もって取る予防に合います。",
+    "keywords": [
+      "in case",
+      "if",
+      "予防",
+      "条件"
+    ]
+  },
+  "even-if-even-though": {
+    "title": "even if と even though",
+    "question": "even if と even though のどちらですか。",
+    "summary": "Even if は、結果を変えない不確実または仮定の場合を導きます。Even though は分かっている事実を導きます。Even although は標準ではありません。",
+    "usage": "Even if it rains, we'll go では、雨は確実ではありませんが、計画は変わりません。Even though it rained, we went では、雨は事実です。Even は譲歩を強め、although に自由には足せません。不確実な未来には even if、起きたことや明らかに真のことには even though です。\n\nThough は単独でも立て、even though がその強めた形です。Although も事実の節を導きますが、前に even は取りません。二重の譲歩標識を写さないでください。Even though it rained, but we went は連結語が一つ多いです。even though か but のどちらかを残してください。",
+    "pitfall": "even although と Even though it rained, but we went は避けてください。事実の譲歩は Even though it rained, we went です。",
+    "keywords": [
+      "even if",
+      "even though",
+      "譲歩"
+    ]
+  },
+  "reported-commands": {
+    "title": "間接命令",
+    "question": "間接命令は that と to のどちらですか。",
+    "summary": "Tell、ask、order、advise、warn は、人 + to 不定詞で命令や依頼を伝えます。否定は to の前に not を置きます。",
+    "usage": "直接の Wait outside は She told us to wait outside になれます。依頼は She asked me to speak quietly です。否定は to の前に not です。She told me not to lock the door です。それが望ましい語順です。Advise と warn も同じ型です。She warned us not to touch the paint です。\n\nSay は say someone to do を取りません。She said to wait は可能ですが、She told us to wait の方が明確です。命令ではなく情報を伝えるなら that 節です。She told me that the door was locked です。まず元の言葉が命令か平叙文かを決めてください。",
+    "pitfall": "She told me that wait outside と She said me to wait は避けてください。命令は She told me to wait outside です。",
+    "keywords": [
+      "間接命令",
+      "tell to",
+      "not to"
+    ]
+  },
+  "be-supposed-to": {
+    "title": "be supposed to",
+    "question": "be supposed to は義務ですか、人々の考えですか。",
+    "summary": "Be supposed to は規則や取り決め、または一般的な思い込みになれます。Was supposed to は、計画が実現しなかったことを含むことが多いです。",
+    "usage": "We're supposed to sign in は、規則や計画が期待することで、must より柔らかいことが多いです。It's supposed to be an excellent cafe は人々の話であり、話者が確認した事実ではありません。We're not supposed to park here は、駐車が期待や規則に反することです。\n\nI was supposed to call, but I forgot では、過去の取り決めは実現していません。be が必要です。suppose to call はこの句ではありません。I suppose は「思う」で、別の型です。すべての文で should に置き換えないでください。思い込みと実現しなかった計画は、この句自身の用法の一部です。",
+    "pitfall": "You suppose to sign in と書かないでください。この句には be が必要です。You're supposed to sign in です。",
+    "keywords": [
+      "be supposed to",
+      "予定",
+      "規則"
+    ]
+  },
+  "be-about-to": {
+    "title": "be about to",
+    "question": "差し迫ったことには be about to と will のどちらですか。",
+    "summary": "Be about to に原形は、何かがすぐに起きるということです。Was about to は when とともに、差し迫っていた行為が中断されたことを意味することが多いです。",
+    "usage": "The film is about to start は will start より切迫しています。時刻はふつう不要です。about to start at eight は不自然です。at eight がすでに時を示し、今この瞬間を意味しないことがあるからです。I was about to leave when the phone rang では、出発は起きていません。\n\nI'm not about to apologise は拒否にもなれます。するつもりはない、ということです。時の意味ではありません。about to leaving と書かず、will も足さないでください。will about to はありません。より遠い計画は be going to か現在進行形です。",
+    "pitfall": "The film is about to starting は避け、will も足さないでください。すぐ始まるのは The film is about to start です。",
+    "keywords": [
+      "be about to",
+      "直前",
+      "will"
+    ]
+  },
+  "get-passive": {
+    "title": "get の受動態",
+    "question": "get と過去分詞は、すべての be 受動態を置き換えられますか。",
+    "summary": "Get と過去分詞は、主語に起きる変化を示すことが多いです。会話的で、結果や意外さを示すことが多いです。状態の be 受動態がすべて get になるわけではありません。",
+    "usage": "The window got broken、He got promoted、We got delayed は、何かが起きて主語が結果を受けたことを強調します。by 句は可能ですが、be より少なめです。Get married、get dressed、get lost、get stuck は確立した状態変化です。Get は話し言葉で自然です。形式的な報告は依然として be を好みます。\n\nThe building is made of brick や She is known for her essays のような状態は、got made や got known になりません。Get something done は使役にもなれます。I got the window repaired は修理を手配したこと、The window got repaired は修理が起きたことです。目的語の位置に注意してください。",
+    "pitfall": "The building is made of brick を The building got made of brick に変えないでください。材料の状態は be のままです。",
+    "keywords": [
+      "get受動態",
+      "状態変化",
+      "be"
+    ]
+  },
+  "modal-passive": {
+    "title": "法助動詞の受動態",
+    "question": "法助動詞は受動態とどう組み合わさりますか。",
+    "summary": "法助動詞 + be + 過去分詞です。can be changed、must be signed、should be sent です。Ought は to be を残します。",
+    "usage": "能動の They must sign the form は The form must be signed になります。法助動詞が可能性、必要、助言、許可を担い、be と過去分詞が受動態を担います。not は法助動詞の後です。The form must not be removed です。疑問文では法助動詞を前に出します。Can the date be changed? です。\n\nto を残す主な形は Ought to be done です。must to be、should to be、can finished と書かないでください。過去の必要や可能性は法助動詞の完了受動態です。It should have been sent yesterday です。それは追加の層です。must be に過去の時を足すだけでは、義務が過去に完了したことにはなりません。",
+    "pitfall": "The form must signed と The form must to be signed は避けてください。型は must be signed です。",
+    "keywords": [
+      "法助動詞",
+      "受動態",
+      "must be",
+      "should be"
+    ]
+  },
+  "linking-so-therefore": {
+    "title": "so と therefore",
+    "question": "なぜ so は結果を結べて、therefore はしばしば結べないのですか。",
+    "summary": "So は接続詞で、原因と結果を結べます。Therefore は副詞なので、コンマだけではなくピリオドかセミコロンが必要です。",
+    "usage": "It was late, so we left は普通の結果の文で、so の前にふつうコンマがあります。Therefore はより形式的です。It was late. Therefore, we left. です。It was late; therefore, we left. とも書けます。It was late, therefore we left はコンマスプライスです。二つの完全な文をコンマだけで結んでいます。\n\nBecause it was late, so we left のように原因の標識を二重に写さないでください。because か so のどちらかを残します。Therefore は中間にも置けます。We therefore left. です。学習者には、新しい文の先頭が最も明確です。",
+    "pitfall": "It was late, therefore we left と Because it was late, so we left は避けてください。so を使うか、Therefore で新しい文を始めてください。",
+    "keywords": [
+      "so",
+      "therefore",
+      "結果",
+      "接続"
+    ]
+  },
+  "whereas-while": {
+    "title": "whereas と対比の while",
+    "question": "while と whereas は二つの事実をどう対比しますか。",
+    "summary": "Whereas と while はどちらも二つの事実を対比できます。While は「あいだ」も意味し、whereas はほぼ対比だけです。",
+    "usage": "Cycling is cheap, whereas driving is not は二つの事実を並べます。While も同じことができます。Cycling is cheap, while driving is not です。Whereas はやや形式的で、書き言葉の比較に合います。while が時と読まれうるなら、whereas を選ぶか書き直してください。While I like the design はふつう譲歩か対比、While I was reading は時です。\n\n両側を並行させてください。During は前置詞で、二つの完全な節のあいだの whereas を置き換えられません。Although は中立な対比ではなく譲歩を強調します。二つの事実が単に違うのか、一方が他方にもかかわらず意外なのかを決めてください。",
+    "pitfall": "対比で二つの節を during で結ばないでください。Cycling is cheap, whereas driving is not です。During the ride は時の前置詞です。",
+    "keywords": [
+      "whereas",
+      "while",
+      "対比"
+    ]
+  },
+  "not-only-but-also": {
+    "title": "not only...but also",
+    "question": "not only...but also を並行させるにはどうしますか。",
+    "summary": "not only と but also の後の項目は形を合わせます。not only が節の先頭なら、最初の節は倒置します。",
+    "usage": "Not only the chairs but also the desks were moved は二つの名詞句を結びます。She not only called but also wrote は二つの動詞を結びます。Also は落ちることがありますが、並行した形は落ちません。一致は普通の主語に従います。動詞の隣の desks は複数なので、動詞は were moved です。\n\n前置した強調は最初の節を倒置します。Not only did she call, but she also wrote です。be では Not only is it cheap, but it is also strong です。Not only she did call と書かないでください。日本語の対が自動的に倒置を作るわけではありません。not only が完全な節の先頭に来るときだけ倒置します。",
+    "pitfall": "Not only she called, but also wrote は避けてください。先頭では Not only did she call, but she also wrote とし、両側を並行させてください。",
+    "keywords": [
+      "not only",
+      "but also",
+      "倒置",
+      "並行"
+    ]
+  },
+  "the-more-the-more": {
+    "title": "the more...the more",
+    "question": "二重比較の両側に the は必要ですか。",
+    "summary": "The と比較の節、その後の the ともう一つの比較は、一方の変化がもう一方をもたらすことです。両方の the が必要で、more は -er と重なりません。",
+    "usage": "The more carefully you read, the fewer mistakes you make は、変わる条件と変わる結果を組にします。The sooner we start, the earlier we finish も同じです。短い形は動詞を省けます。The sooner, the better です。普通の比較級を使います。more carefully、fewer、better、harder であり、more better や more harder ではありません。\n\nMore you read, more you learn と書かないでください。冠詞の the はこの型に属し、落とせません。日本語で繰り返す考えは、繰り返す the に対応し、すでに -er 比較の語に more を足すことではありません。",
+    "pitfall": "More you practise, more you improve と the more better は避けてください。The more you practise, the more you improve です。",
+    "keywords": [
+      "the more",
+      "比較",
+      "比例"
+    ]
+  },
+  "participle-clauses": {
+    "title": "分詞構文",
+    "question": "先頭の -ing や過去分詞の主語は誰ですか。",
+    "summary": "分詞句の理解される主語は、ふつう主節の主語です。-ing はふつう能動、過去分詞はふつう受動、having done はより前の行為です。",
+    "usage": "Hoping for shade, we sat under the tree では、木陰を望むのは we です。Built in 1920, the hall is still used では、建てられたのは hall です。Having paid, we left は支払いを出発より前に置きます。分詞は、who や after we を繰り返すより簡潔です。\n\n主節の主語が分詞の行為をできないと、修飾が宙に浮きます。Walking to the station, the rain started は雨に歩かせます。Walking to the station, I felt the rain start、または While I was walking, the rain started と言います。分詞は新しい時制ではありません。順序は依然として語と文脈から来ます。",
+    "pitfall": "Walking to the station, the rain started は避けてください。歩く人を主節の主語にするか、While I was walking, the rain started と書き直してください。",
+    "keywords": [
+      "分詞構文",
+      "ing",
+      "懸垂分詞"
+    ]
+  },
+  "mixed-conditionals": {
+    "title": "混合条件文",
+    "question": "条件と結果が別の時にあるとき、動詞はどう働きますか。",
+    "summary": "過去の条件と現在の結果には、if 節で had と過去分詞、結果で would と原形を使います。現在の条件と過去の結果は、それぞれの時に合う形を使います。",
+    "usage": "If I had taken the job, I would live in Leeds now は、断った仕事を過去に、住む場所を現在に保ちます。Would have lived は居住も過去に移します。If she were more organised, she wouldn't have missed the train では、だらしなさが現在の性質で、電車に乗り遅れたことが過去の結果です。\n\n対称のために両側を一つの時に押し込まないでください。現在の反事実は If I lived there, I would walk です。過去の反事実は If I had lived there, I would have walked です。時が本当に違うときだけ混ぜてください。Were は現在の非現実の条件の形で、形式的な I were と she were も含みます。",
+    "pitfall": "現在の結果を would have に入れないでください。過去に断った仕事と、今住んでいない場所は If I had taken the job, I would live there now です。",
+    "keywords": [
+      "混合条件",
+      "仮定法",
+      "時制"
+    ]
+  },
+  "by-the-time": {
+    "title": "by the time",
+    "question": "by the time にはどの時制が組になりますか。",
+    "summary": "By the time はその時点までには、です。未来では現在形の節と未来完了の主節、過去では過去形の節と過去完了の主節を組にします。",
+    "usage": "By the time you read this, I will have left では、読むことは未来で、出発はその前にすでに完了しています。節は read、主節は will have left です。By the time we found a seat, the talk had begun では、席を見つけたことは過去で、開始はより前なので had begun です。\n\n普通の未来の by the time 節に will や would を置かないでください。この句は、その時点より前の完了を強調します。到着の瞬間に単に進行中なら、when と進行形の方が合うことがあります。By then と by Friday も完了形を取りますが、節は続きません。",
+    "pitfall": "By the time you will arrive, I will leave は避けてください。By the time you arrive, I will have left です。",
+    "keywords": [
+      "by the time",
+      "未来完了",
+      "過去完了"
+    ]
+  },
+  "have-got": {
+    "title": "have got",
+    "question": "I've got は所有ですか、get の完了ですか。",
+    "summary": "イギリス英語では I've got が現在の所有を意味することが多いです。疑問と否定は do のない have です。過去の所有は、普通の意味では had got ではなく had です。",
+    "usage": "I've got two sisters は I have two sisters に対応します。Have you got a pen? と I haven't got a pen が対応する疑問と否定です。アメリカ英語は Do you have a pen? の方が多いですが、have got も理解されます。Have got to は義務で、have to に近いです。I've got to leave now です。\n\nこれは自動的に get の現在完了ではありません。I have got your message は受け取った意味になりうるので、文脈が重要です。所有では、got を入手の行為として扱わないでください。過去の所有は I had got a pen ではなく I had a pen です。I had got は get の過去完了に聞こえます。Do you have got も非標準です。",
+    "pitfall": "Do you have got a pen? と、過去の所有の I had got a pen は避けてください。現在は Have you got a pen?、過去は I had a pen です。",
+    "keywords": [
+      "have got",
+      "所有",
+      "have"
+    ]
+  },
+  "been-gone": {
+    "title": "been と gone",
+    "question": "人が戻っているなら has been と has gone のどちらですか。",
+    "summary": "Have been to は行って戻ったこと、またはその経験です。Have gone to は出ていて、戻っていないことです。",
+    "usage": "She has been to the lab は、目の前に立っているときに言えます。どこかの時点でそこに行ったことです。She has gone to the lab は、向かっているかすでにそこにいて、ここにはいないことです。Been in は滞在を強調できます。I've been in the lab all morning です。\n\nGone は、もうここにない物にも合います。The milk has gone です。すでに戻った人の旅行経験に has gone to Paris を使わないでください。日本語では二つがぼやけることがあります。英語は、その人がまだ離れているかを問います。",
+    "pitfall": "彼女が戻っているなら、She has gone to Paris はまだ離れていると聞き手に伝えます。経験は She has been to Paris です。",
+    "keywords": [
+      "been",
+      "gone",
+      "have been to",
+      "have gone to"
+    ]
+  },
+  "mid-position-adverbs": {
+    "title": "中間位置の副詞",
+    "question": "probably、never、still のような副詞はどこに置きますか。",
+    "summary": "頻度、確実さ、一部の程度の副詞は、ふつう本動詞の前、be の後、または最初の助動詞の後です。様態の副詞は目的語の後が多いです。",
+    "usage": "I probably know the answer、She is probably right、They have probably left、I can never tell と言います。それが中立の位置です。Always、often、still、already もそこを使うことが多いです。強調のために副詞は動けますが、焦点は変わることがあります。\n\n様態の副詞は、ふつう動詞と目的語を分けません。She speaks well English ではなく She speaks English well です。Even と only は動くと対象が変わるので、普通の中間位置の副詞ではありません。迷ったら、助動詞の後、語彙動詞の前に置いてください。",
+    "pitfall": "She speaks well English は避けてください。English は目的語なので well は後です。She speaks English well です。可能性は She probably speaks English です。",
+    "keywords": [
+      "副詞の位置",
+      "probably",
+      "様態"
+    ]
+  },
+  "what-how-exclamations": {
+    "title": "what と how の感嘆",
+    "question": "感嘆は What と How のどちらですか。",
+    "summary": "What は名詞句を導き、How は形容詞か副詞を導きます。What は質量名詞と複数の前に a を取りません。",
+    "usage": "What a strange question! は単数の可算名詞 question なので a を取ります。What beautiful weather! と What lovely shoes! に a はありません。weather は質量名詞、shoes は複数だからです。How strange! と How quickly it changed! は形容詞か副詞を修飾します。How strange that sounds も可能です。\n\nHow a strange question や What strange it is と書かないでください。So と such は関連する強調ですが、この感嘆の先頭ではありません。such a strange question は文の中に置けます。感嘆には主語と動詞が含まれることがあり、What や How は依然として先頭です。",
+    "pitfall": "How a beautiful day は避けてください。名詞は What a beautiful day、形容詞だけは How beautiful です。",
+    "keywords": [
+      "感嘆文",
+      "what",
+      "how"
+    ]
+  },
+  "phrasal-verbs-separable": {
+    "title": "分離できる句動詞",
+    "question": "なぜ代名詞は turn off の真ん中に入るのですか。",
+    "summary": "turn off や pick up では、名詞の目的語は真ん中にも小辞の後にも置けます。代名詞は真ん中です。look after のような前置詞動詞は分かれません。",
+    "usage": "Turn off the radio と turn the radio off はどちらも可能です。目的語が it や them になると、turn it off と pick them up だけが可能で、turn off it は不可です。Put on、give back、fill in、調べる意味の look up も同じ型です。長い名詞句は、動詞と小辞が離れないよう、ふつう小辞の後に残します。\n\n試すのは、代名詞が真ん中に動けるかです。Look after her、wait for her、depend on her は look her after になれません。その語は前置詞であり、動かせる小辞ではありません。句動詞の意味は語の合計でないことが多いので、一単位で覚えてください。",
+    "pitfall": "turn off it と look her after は避けてください。分離できる句動詞は turn it off、前置詞動詞は look after her です。",
+    "keywords": [
+      "句動詞",
+      "分離",
+      "代名詞",
+      "小辞"
+    ]
+  },
+  "noun-preposition": {
+    "title": "名詞と前置詞",
+    "question": "reason、solution、increase の後の前置詞はどれですか。",
+    "summary": "名詞と前置詞は一緒に覚えます。Reason for、solution to、increase in は自由に入れ替えられません。",
+    "usage": "よくある組み合わせには a reason for the delay、a need for rest、a solution to the problem、an increase in prices、a decrease in noise、the cause of the fire、an advantage of the plan、an interest in music、a photograph of the hall、a difficulty with the lock、an effect on attendance、a reply to the letter があります。名詞が関連する形容詞の前置詞をいつも保つわけではありません。proud of ですが pride in です。\n\nReason of は普通の句ではありません。Solution of は化学に出ることがありますが、問題は依然として a solution to the problem です。前置詞の後の動詞は -ing です。a reason for leaving です。すべての組み合わせを生む単一の規則はありません。",
+    "pitfall": "the reason of the delay と a solution of the problem は避けてください。the reason for the delay と a solution to the problem です。",
+    "keywords": [
+      "名詞と前置詞",
+      "reason for",
+      "solution to"
+    ]
+  },
+  "future-in-the-past": {
+    "title": "過去から見た未来",
+    "question": "過去の視点からは would と was going to のどちらですか。",
+    "summary": "過去から見た出来事には would、was going to、was about to を使います。Was going to は過去の計画を示すことが多く、実現していないことがあります。",
+    "usage": "I knew she would be late は、知った過去の時点より後に遅れを置きます。伝えられた will もふつう would になります。She said she would wait です。I was going to write, but I lost the address は過去の意図を強調し、but で取り消されることが多いです。I was about to leave は、その過去の時点で出発が差し迫っていたことです。\n\n普通の間接話法に will を残さないでください。He said he will come は、出来事がまだ未来にあり、話者が時制を後退させないときにだけ出ます。通常の型は would です。過去の計画のすべてに would を使わないでください。実現しなかった意図は was going to の方が明確です。",
+    "pitfall": "放棄した過去の計画を I would write, but I lost the address と書かないでください。I was going to write, but I lost the address です。",
+    "keywords": [
+      "過去の未来",
+      "would",
+      "was going to"
+    ]
+  },
+  "question-word-infinitive": {
+    "title": "疑問詞と不定詞",
+    "question": "I don't know what to do はどんな構造ですか。",
+    "summary": "What、how、where、when、who、whether は to 不定詞を取れます。短縮した間接疑問です。ここでは whether を if に置き換えません。",
+    "usage": "I don't know what to wear は I don't know what I should wear に近いです。Show me where to sign と I can't decide whether to accept も同じ型です。know、decide、explain、wonder、ask、show、tell のような動詞の後に続きます。理解される主語はふつう主節の主語か目的語です。Tell me what to do は、私が何をすべきかを教えて、です。\n\nwhat がすでに目的語なら it を足さないでください。what to do it ではなく what to do です。how to do it では、it は別の目的語です。標準の形は if to go ではなく whether to go です。普通の why 疑問は、この不定詞の型ではなく節を使います。",
+    "pitfall": "I don't know what to do it と if to go は避けてください。what to do と whether to go です。",
+    "keywords": [
+      "疑問詞",
+      "不定詞",
+      "what to",
+      "whether to"
+    ]
+  },
+  "emphatic-do": {
+    "title": "強調の do",
+    "question": "I do understand の do は何をしているのですか。",
+    "summary": "Do、does、did と原形は、否定、主張、対比をします。普通の be や法助動詞とは組み合わさりません。",
+    "usage": "I do understand は、分かっていないと思う相手への答えです。She did send the file は過去の送信が起きたことを主張し、did の後は sent ではなく send です。現在の強調は do か does、過去の強調は did で、語彙動詞は原形に戻ります。対比にも使います。I don't like tea, but I do like coffee です。\n\n命令文の Do sit down は温かい、または強い招待です。She does be late や I did went と書かないでください。be の強調は、ふつう強勢か別の構造であり、does be ではありません。can、will、have がすでに助動詞なら、同じ動詞を強調するために do を足さないでください。",
+    "pitfall": "She did sent the file は避けてください。過去の強調は did と原形です。She did send the file です。",
+    "keywords": [
+      "強調のdo",
+      "did",
+      "対比"
+    ]
+  },
+  "numbers-a-hundred": {
+    "title": "a hundred と hundreds of",
+    "question": "なぜ two hundred は単数で、hundreds of は複数なのですか。",
+    "summary": "正確な数の後では hundred と thousand は単数のままです。漠然と大きい数には hundreds of か thousands of で、a も正確な数もありません。",
+    "usage": "A hundred people も one hundred people も可能です。Two hundred seats と three thousand copies に -s はありません。数と of the も単数のままです。two hundred of the seats です。複数は漠然とした量です。hundreds of people、thousands of times です。\n\ntwo hundreds people や a hundreds of people と書かないでください。イギリス英語は百の位と十の位のあいだに and を置くことが多いです。one hundred and twenty です。その and は hundred を複数にしません。Dozen と million も同じ傾向です。数の後は単数、漠然と大きい量は複数です。",
+    "pitfall": "two hundreds students は避けてください。正確な数は two hundred students、漠然と大きい数は hundreds of students です。",
+    "keywords": [
+      "hundred",
+      "hundreds of",
+      "数"
+    ]
+  },
+  "linking-verbs-adjectives": {
+    "title": "連結動詞の後の形容詞",
+    "question": "なぜ look、feel、taste は well ではなく good を取るのですか。",
+    "summary": "be、seem、look、feel、taste、sound、become が主語の状態を表すとき、様態の副詞ではなく形容詞を取ります。",
+    "usage": "This soup tastes good はスープを表し、味わい方ではありません。I feel cold、The music sounds great、She seems tired はどれも形容詞です。Become、get、grow、stay、remain も形容詞を結べます。get dark、stay calm です。Well は good の副詞ですが、健康だという形容詞でもあります。I feel well です。\n\n主語を表すために、これらの動詞の後に -ly 副詞を置かないでください。Sounds well は普通のほめ言葉ではありません。sounds good です。Feel badly は後悔や同情の一部の話し言葉に出ますが、主語の状態は I feel bad です。Look like は形容詞ではなく名詞を取ります。look like tired ではなく look tired です。",
+    "pitfall": "The soup tastes well と She looks like tired は避けてください。The soup tastes good です。疲れて見えるのは looks tired です。",
+    "keywords": [
+      "連結動詞",
+      "形容詞",
+      "look",
+      "taste"
+    ]
+  },
+  "interesting-interested": {
+    "title": "interesting と interested",
+    "question": "-ing なのはいつで、-ed なのはいつですか。",
+    "summary": "-ing 形は感情を引き起こすものを表します。-ed 形はその感情を持つ人を表します。Interested の後は in が多いです。",
+    "usage": "The lecture was interesting は講義を原因として表します。The students were interested は学生の感情です。同じ分かれ方は boring/bored、exciting/excited、confusing/confused、tiring/tired にもあります。人も -ing を取れます。She is interesting は、彼女が興味を感じるのではなく、興味を引き起こすことです。\n\nInterested in は名詞か -ing を取ります。interested in the map、interested in learning です。Interested to hear は知らせへの反応で、interested in を置き換えません。語が原因を名指すのか、それを経験する人を名指すのかを見てください。",
+    "pitfall": "I am interesting in history は避けてください。人の感情は I am interested in history です。歴史そのものは interesting かもしれません。",
+    "keywords": [
+      "interesting",
+      "interested",
+      "感情形容詞"
+    ]
+  },
+  "hard-hardly": {
+    "title": "hard と hardly",
+    "question": "hardly は hard の副詞ですか。",
+    "summary": "Hard は難しい、または努力して、です。Hardly はほとんどない、で、すでに否定に近いです。",
+    "usage": "The exam was hard は形容詞です。She works hard は副詞で、努力してであり、ほとんど働かないことではありません。Hardly は逆です。She hardly works はほとんど働かないことです。Hardly ever はごくまれです。Hardly はふつう本動詞の前か、最初の助動詞の後です。I can hardly hear you です。\n\nHardly had I sat down when the bell rang は形式的な倒置で、when が次の出来事を導きます。hardly に not を足さないでください。-ly を「難しい様子で」と読まないでください。その意味はすでに hard にあります。",
+    "pitfall": "She works hard をほとんど働かないことと読まないでください。努力は works hard、ほとんどないは hardly works です。",
+    "keywords": [
+      "hard",
+      "hardly",
+      "副詞"
+    ]
+  },
+  "late-lately": {
+    "title": "late と lately",
+    "question": "最近を意味するのは late と lately のどちらですか。",
+    "summary": "Late は予定の時より後で、形容詞にも副詞にもなります。Lately は最近で、現在完了を取ることが多いです。",
+    "usage": "The bus was late と She arrived late は、どちらも予定より後です。A late train は遅れた列車、a late reply は期限の後に来た返事です。Lately は遅れたという意味ではありません。I haven't seen her lately は、最近の期間に見ていないことです。Recently は意味が近く、位置がより柔軟です。\n\n遅れた到着に She arrived lately と書かないでください。Latest は最も新しい、または最後です。the latest bus、the latest edition です。lately の -ly は意味を変えます。late を単に副詞にするのではありません。",
+    "pitfall": "遅れた到着に She arrived lately は避けてください。遅れた到着は She arrived late、最近の期間は I haven't seen her lately です。",
+    "keywords": [
+      "late",
+      "lately",
+      "最近",
+      "遅れ"
+    ]
+  },
+  "most-most-of": {
+    "title": "most と most of",
+    "question": "多数は most people と most of people のどちらですか。",
+    "summary": "一般的な多数は most と名詞で、of はありません。Most of には the、these、所有格、代名詞が必要です。特定の組だからです。",
+    "usage": "Most students walk は学生一般です。Most of the students in this class walk は、その分かっているクラスの多数です。Most of them と most of my notes は成り立ちます。them と my notes が特定されているからです。The most は最上級です。the most useful map です。\n\nmost of people や most of students と書かないでください。質量名詞も同じ分かれ方です。most water は一般、most of the water in the jug はその特定の水です。動詞は most が指す名詞と一致します。most of the water is、most of the seats are です。",
+    "pitfall": "most of people は避けてください。一般は Most people agreed、分かっている集団は Most of the people in the room agreed です。",
+    "keywords": [
+      "most",
+      "most of",
+      "多数"
+    ]
+  },
+  "a-lot-plenty": {
+    "title": "a lot と plenty",
+    "question": "a lot of、lots of、plenty of のどれですか。",
+    "summary": "A lot of と lots of は可算名詞と質量名詞の両方を取ります。Plenty of は十分で、さらに余りがあることです。Much と many は否定と疑問でより普通です。",
+    "usage": "A lot of time も a lot of chairs も自然です。Lots of はより会話的です。A lot 単独は、分かっている名詞を置き換えられます。We have a lot です。Plenty of time は量だけでなく、余りがあるほど十分であることを強調します。肯定文では much より a lot of が普通です。普通の I have much work ではなく I have a lot of work です。\n\n否定と疑問では much と many を自由に使います。We don't have much time、Do we have many chairs? です。名詞の前で of を落とさないでください。plenty time ではなく plenty of time です。Too many と too much は欲しい量より多いことで、plenty とは違います。",
+    "pitfall": "plenty time と a lot chairs は避けてください。名詞の前は plenty of time と a lot of chairs です。",
+    "keywords": [
+      "a lot of",
+      "plenty of",
+      "much",
+      "many"
+    ]
+  },
+  "no-not-none": {
+    "title": "no、not、none",
+    "question": "券がないとき、no、not、none のどれですか。",
+    "summary": "No は名詞の直前です。Not は動詞、または a と any を否定します。None は単独で立ち、none of は分かっている組を指します。",
+    "usage": "There are no tickets left では、no が tickets を修飾します。There aren't any tickets left は動詞を否定し any を使います。How many are left? への答えは None になれます。None of the tickets と none of them は、すでに特定された組を指します。\n\nI have not tickets や none ticket と書かないでください。No は単数、複数、質量名詞の前に来られます。no key、no keys、no time です。None の直後に名詞は来られません。don't have no tickets と否定を重ねないでください。標準英語では、その二重否定はゼロの言い方ではありません。",
+    "pitfall": "I have not tickets は避けてください。I have no tickets か I don't have any tickets です。ゼロを意味する答えは None です。",
+    "keywords": [
+      "no",
+      "not",
+      "none",
+      "否定"
+    ]
+  },
+  "everyday-every-day": {
+    "title": "everyday と every day",
+    "question": "everyday は一語ですか、二語ですか。",
+    "summary": "Everyday は普通の、毎日の、という形容詞です。Every day は毎日という時の表現です。",
+    "usage": "Everyday clothes と everyday English は名詞を修飾し、正式な服や専門の言葉ではなく、日常的に使う普通のものを意味します。I walk to work every day では、every day が頻度を示し、先頭にも動けます。Every day I walk to work です。day は名詞なので二語のままです。\n\n一日おきの Every other day も分かれています。頻度を everyday I walk と書かないでください。文字を結ぶのは、形容詞として名詞の前に置けるときだけです。",
+    "pitfall": "I walk everyday は避けてください。頻度は I walk every day、形容詞は everyday clothes です。",
+    "keywords": [
+      "everyday",
+      "every day",
+      "毎日"
+    ]
+  },
+  "sometime-sometimes": {
+    "title": "sometime、sometimes、some time",
+    "question": "特定しない時、時々、時間の長さはどう違いますか。",
+    "summary": "Sometime は特定しない時点、sometimes は時々、some time は時間の長さです。",
+    "usage": "Come sometime next week は特定の日を名指しません。I sometimes walk は、歩きが習慣の一部であり、習慣のすべてではないことです。I need some time は時間の幅です。time は名詞、some は限定詞です。Some times はまれで、times が機会や時代を意味するときだけ合います。\n\nSometime は、時々の意味で動詞の前にふつう置きません。Sometimes は中間、先頭、文末に置けます。日本語の「時々」は sometimes に対応します。特定しない時点を選ぶ誘いかけは sometime に対応します。",
+    "pitfall": "時々の意味で I sometime walk は避けてください。時々は I sometimes walk、特定しない時点は sometime next week、期間は some time です。",
+    "keywords": [
+      "sometime",
+      "sometimes",
+      "some time"
+    ]
+  },
+  "maybe-may-be": {
+    "title": "maybe と may be",
+    "question": "maybe と may be は互いに置き換えられますか。",
+    "summary": "Maybe は文全体の副詞です。May be は法助動詞 may と動詞 be で、節には依然として主語が必要です。",
+    "usage": "Maybe she is right は She may be right と書き直せますが、文法と位置は変わります。Maybe は文頭が多いですが、文末のくだけた付け足しにもなれます。May be には主語が必要で、be は形容詞、名詞、場所を取れます。She may be late、It may be the key、They may be outside です。\n\nShe maybe right や Maybe be a problem と書かないでください。Maybe it's a problem が完全な文です。May be は二語のままで、maybe を分けて動詞として使えません。",
+    "pitfall": "She maybe right は避けてください。副詞は Maybe she is right、動詞は She may be right です。",
+    "keywords": [
+      "maybe",
+      "may be",
+      "可能性"
+    ]
+  },
+  "raise-rise": {
+    "title": "raise と rise",
+    "question": "目的語が必要なのは raise と rise のどちらですか。",
+    "summary": "Raise は他動詞で目的語が必要です。過去と過去分詞は raised です。Rise は自動詞で、rose、risen です。",
+    "usage": "Raise your hand、raise the price、raise children は、主語がほかのものを上げる、または育てることです。Prices rise、the sun rose、the water has risen は、物自体が上がることで、目的語はありません。Raise は規則変化です。rise の三つの形は rise、rose、risen です。\n\nそれ自体が上がった価格に The price raised と書かないでください。その文には、それを上げた人が主語として必要です。Arise は別の自動詞で、問題が現れることに使うことが多く、raise your hand を置き換えません。",
+    "pitfall": "She rose her hand と The price raised は避けてください。手は She raised her hand、それ自体が上がる価格は The price rose です。",
+    "keywords": [
+      "raise",
+      "rise",
+      "他動詞",
+      "自動詞"
+    ]
+  },
+  "lie-lay": {
+    "title": "lie と lay",
+    "question": "なぜ lie と lay の過去形は重なるのですか。",
+    "summary": "横たわる lie の過去は lay、過去分詞は lain です。置く lay は目的語が必要で、過去と過去分詞は laid です。嘘の lie は lied です。",
+    "usage": "I'm going to lie down に目的語はありません。Yesterday I lay down for an hour は横たわるの過去です。その lay は置くことではありません。Please lay the map on the table には目的語 map があり、過去は She laid the map down です。分詞は has lain と has laid です。嘘は lie、lied、lied です。He lied about the time です。\n\n重なるのは、lie の過去のつづりが lay だからです。まず目的語を探してください。目的語がなければ、ふつう横たわるか位置しています。目的語があれば置くことです。一部の話し言葉は横たわることに lay down を使いますが、丁寧な書き言葉は lie down を保ちます。",
+    "pitfall": "横たわる意味で I laid down for an hour は避けてください。lie の過去は I lay down、地図を置くのは I laid the map down です。",
+    "keywords": [
+      "lie",
+      "lay",
+      "laid",
+      "lain"
+    ]
+  },
+  "borrow-lend": {
+    "title": "borrow と lend",
+    "question": "なぜ英語は貸し借りに二つの動詞を使うのですか。",
+    "summary": "Borrow は一時的に受け取ること、from を伴うことが多いです。Lend は一時的に渡すことで、二つの目的語か to です。",
+    "usage": "Can I borrow your pen? はペンを話し手の方へ動かします。Can you lend me your pen? か Can you lend your pen to me? は持ち主から離します。Borrow は人＋物の二重目的語を取らないので、borrow me a pen は誤りです。lend の過去は lent です。\n\n日本語の一つの動詞が両方の向きを覆います。英語は向きを選ぶ必要があります。Borrow と lend は一時的な使用です。所有が移るなら give か take です。返すのは return であり、決まり文句の borrow back ではありません。",
+    "pitfall": "Can you borrow me a pen? は避けてください。私に渡すのは Can you lend me a pen?、あなたから受け取るのは Can I borrow your pen? です。",
+    "keywords": [
+      "borrow",
+      "lend",
+      "借りる",
+      "貸す"
+    ]
+  },
+  "bring-take": {
+    "title": "bring と take",
+    "question": "bring と take の基準点は何ですか。",
+    "summary": "Bring は話し手、または話題の目的地へ動かします。Take は別の場所へ離します。Fetch は行って取り、戻ることです。",
+    "usage": "Bring your passport to the interview は面接を目的地として扱い、パスポートはそこに着くべきです。Take this form to the desk はここから離します。Come in and bring your bag では、come と bring がどちらも話し手の方を指します。I'll take it home は今の場所を離れます。\n\nFetch、または get は、人が離れて物と一緒に戻ることです。I'll fetch the key です。運ぶ行為のすべてに bring を選ばないでください。目的地がここか別の場所かを見てください。bring の過去は brought、take の過去は took です。",
+    "pitfall": "人が部屋にいて傘を運び入れてほしいなら、Take the umbrella in ではなく Bring the umbrella in です。Take はここから離れる移動に合います。",
+    "keywords": [
+      "bring",
+      "take",
+      "fetch",
+      "方向"
+    ]
+  },
+  "hear-listen": {
+    "title": "hear と listen",
+    "question": "to が必要なのは hear と listen のどちらですか。",
+    "summary": "Hear は音が届くことです。Listen は注意を向けることで、目的語の前に to が必要です。",
+    "usage": "I heard a noise は集中していたことではありません。I was listening to the radio は集中していたことです。Listen は単独でも立てます。Please listen です。目的語には to が必要です。listen to me、listen to it です。Hear from は誰かから知らせを受け取ること、hear about は何かを耳にすることです。\n\n意図しない聴取は hear か can hear です。I'm hearing the bell は普通の形ではありません。Listen は listen music になれません。日本語の一つの動詞が、知覚と注意の両方を覆うことが多いです。",
+    "pitfall": "listen music と listen the radio は避けてください。注意は listen to the radio、知覚は I heard a noise です。",
+    "keywords": [
+      "hear",
+      "listen",
+      "listen to"
+    ]
+  },
+  "see-watch-look": {
+    "title": "see、watch、look",
+    "question": "なぜ英語は見ること、注視、視線を分けるのですか。",
+    "summary": "See は知覚するか会うことです。Look は視線を向けること、watch は変化するものに注意を向けることです。Look は目的語の前に at が必要です。",
+    "usage": "I saw a bird は鳥が視界に入ったことです。Look at the board は視線を向けるよう言います。I watched the match は、時間をかけて変化する場面を追うことです。Look for は探す、look after は世話するで、どちらも文字どおりの見ることではありません。See a film は上映に行く意味になり、watch a film は視聴を強調します。\n\n意図しない知覚の see は、ふつう進行形を取りません。can see は使えます。I'm seeing the dentist は予約です。look the board や watch at the match と書かないでください。日本語の動詞が気づく、場面を追う、目を向けるのどれかを見てください。",
+    "pitfall": "look the board と watch at the match は避けてください。視線を向けるのは look at the board、場面を追うのは watch the match、気づくのは see です。",
+    "keywords": [
+      "see",
+      "watch",
+      "look at"
+    ]
+  },
+  "win-beat": {
+    "title": "win と beat",
+    "question": "試合と相手には win と beat のどちらですか。",
+    "summary": "win の目的語は試合、賞、金額です。beat の目的語は相手です。",
+    "usage": "We won the final、She won a prize、Our team won はどれも自然です。相手は beat です。We beat the other team です。Win against が出ることはありますが、win the other team は標準の型ではありません。beat の過去は beat、過去分詞は beaten です。We have beaten them twice です。\n\n負けた人を名指す日本語の文は、win them と書きたくなります。英語は、勝ったものと打ち負かした人を分けます。Beat は打つ意味もありますが、スポーツでは負かすことです。",
+    "pitfall": "We won the other team は避けてください。出来事は We won the final、相手は We beat the other team です。",
+    "keywords": [
+      "win",
+      "beat",
+      "試合",
+      "相手"
+    ]
+  },
+  "advice-advise": {
+    "title": "advice と advise",
+    "question": "助言の名詞と動詞はどう違いますか。",
+    "summary": "Advice は不可算名詞です。Advise は動詞で、advise someone to do が多いです。発音も違います。",
+    "usage": "量は a piece of advice か some advice で表します。An advice と決まりの複数 advices は普通の英語ではありません。動詞は She advised me to wait、名詞は Her advice was to wait です。Advice は /s/ の音で終わり、advise は /z/ で終わります。\n\nAdvise は that 節を取れ、提案は原形か should を使うことがあります。She advised that he wait です。より普通の型は advise someone to do です。名詞の advice に -ed を足して動詞として扱わないでください。",
+    "pitfall": "an advice と She adviced me は避けてください。一つは a piece of advice、動詞は She advised me to wait です。",
+    "keywords": [
+      "advice",
+      "advise",
+      "不可算"
+    ]
+  },
+  "beside-besides": {
+    "title": "beside と besides",
+    "question": "beside と besides の違いは一文字だけですか。",
+    "summary": "Beside は隣に、という前置詞です。Besides はそれに加えて、で、前置詞にも副詞にもなれます。",
+    "usage": "Sit beside me は位置です。Besides the fare, we paid for lunch は運賃に加えてです。Besides, the hall was cold は、副詞でもう一点を加えます。Who else was there besides Sam? は Sam に加えて誰がいたかを尋ねます。\n\nExcept は除外します。肯定文の besides はふつう加えます。それに加えて、の意味に beside を使わないでください。Beside oneself は感情を失う決まった表現で、普通の場所の意味とは別です。",
+    "pitfall": "費用に加えて、の意味で beside the cost を使わないでください。追加は besides the cost、位置は beside the window です。",
+    "keywords": [
+      "beside",
+      "besides",
+      "隣",
+      "加えて"
+    ]
+  },
+  "across-through": {
+    "title": "across と through",
+    "question": "道とトンネルには across と through のどちらですか。",
+    "summary": "Across は表面の一方から他方へです。Through は空間の中を通り、期間を通すこともできます。",
+    "usage": "Walk across the road と across the bridge は、表面の端から端へ動きます。Walk through the tunnel、through the crowd、through the forest は空間に入って出ます。Across the street は向かい側も意味できます。Through the window は開口を通ることであり、ガラスの上を歩くことではありません。\n\nThrough Friday は金曜まで、金曜を含めて、を意味できます。それが時の用法です。道を渡ることに through the road と言わないでください。動きが表面の端から端か、何かの中を通るか見てください。",
+    "pitfall": "渡ることに walk through the road は避けてください。道は walk across the road、トンネルは walk through the tunnel です。",
+    "keywords": [
+      "across",
+      "through",
+      "横切る",
+      "通り抜ける"
+    ]
+  },
+  "as-if-as-though": {
+    "title": "as if と as though",
+    "question": "様子には as if、as though、like のどれですか。",
+    "summary": "As if と as though は同じ意味で節を取ります。非現実の比較は過去形が多いです。Like に節は会話的で、丁寧な書き言葉は as if を保ちます。",
+    "usage": "It looks as if it's going to rain は現実の可能性かもしれないので、節は現在形のままです。He talks as if he knew everything は、彼が知らないことを示唆します。Knew は事実からの距離であり、過去の時ではありません。As though はやや形式的で、同じ構造です。As if to leave は、去るそぶりに不定詞を使います。\n\nas like he knew と書かないでください。It looks like rain は問題ありません。like が名詞を取るからです。It looks like it's going to rain は話し言葉でよくありますが、丁寧な比較、特に非現実の比較は as if か as though を好みます。",
+    "pitfall": "He talks as like he knew は避けてください。He talks as if he knew everything です。雨になりそうに見えるのは It looks as if it's going to rain です。",
+    "keywords": [
+      "as if",
+      "as though",
+      "like",
+      "様子"
+    ]
+  },
+  "spend-worth-ing": {
+    "title": "spend と worth の -ing",
+    "question": "なぜ spend と worth は -ing を取るのですか。",
+    "summary": "Spend は時間か金の後に -ing、または on と名詞です。Worth は to 不定詞ではなく名詞か -ing です。",
+    "usage": "I spent an hour reading と She spent the money on books と言います。spend の過去は spent です。Spend time to read はこの意味の普通の型ではありません。On は原形ではなく名詞を取ります。\n\nThe book is worth reading では、-ing が受動の意味です。読まれる価値がある、です。形は依然として reading で、優先する worth being read ではなく、worth to read でもありません。It's worth it は単独でも立てます。ここでの worth は動詞ではないので be が必要です。worths ではなく is worth です。",
+    "pitfall": "worth to read と spent an hour to read は避けてください。The book is worth reading と I spent an hour reading です。",
+    "keywords": [
+      "spend",
+      "worth",
+      "動名詞"
+    ]
+  },
+  "cant-help": {
+    "title": "can't help",
+    "question": "自分で止められないとき、can't help の後は何ですか。",
+    "summary": "Can't help + -ing は自分で止められないことです。Can't help someone to do は別の意味で、その人を助けられないことです。",
+    "usage": "I can't help laughing は笑いを止められないことです。I can't help but laugh も可能で、but の後は原形です。過去は I couldn't help laughing です。この help は援助ではないので、抑えられない行為の型は to laugh ではありません。\n\nI can't help you to move the desk は、手伝えないことです。援助の help は help someone (to) do を許します。二つの意味は、help の後に人が来るか、次の動詞が -ing か to かで分かれます。Can't help it は、状況にどうしようもないことです。",
+    "pitfall": "抑えられない笑いに I can't help to laugh は避けてください。その意味は I can't help laughing です。手伝えないのは I can't help you (to) move it です。",
+    "keywords": [
+      "can't help",
+      "動名詞",
+      "抑えられない"
+    ]
+  },
+  "feel-like": {
+    "title": "feel like",
+    "question": "何かをしたいとき、feel like は to を取りますか。",
+    "summary": "feel like が欲しいを意味するとき、名詞か -ing を取ります。そんな感覚がある、も意味し、そのときは節を取ることが多いです。",
+    "usage": "I feel like a walk と I feel like walking は、どちらも今それが欲しいことです。Feel like to walk はこの型ではありません。否定は I don't feel like cooking です。want よりくだけて、今の気分を表すことが多いです。\n\nI feel like I'm falling は感覚であり、落ちたい欲望ではありません。This cloth feels like silk は手触りや類似です。like の後の語が意味を分けます。名詞か -ing は欲望か類似であることが多く、節は感覚であることが多いです。形容詞の feel と混同しないでください。I feel tired です。",
+    "pitfall": "I feel like to go out は避けてください。外出したいのは I feel like going out、または I feel like a walk です。",
+    "keywords": [
+      "feel like",
+      "動名詞",
+      "気分"
+    ]
+  },
+  "go-get-become": {
+    "title": "go、get、become",
+    "question": "状態の変化には go、get、become のどれですか。",
+    "summary": "Become は変化の一般的な動詞で、形容詞も名詞も取れます。Get は形容詞を取ることが多く、会話的です。Go は色、悪くなること、一部の決まった変化に普通です。",
+    "usage": "She became a nurse は職業の名詞と become です。It got dark と I'm getting tired は日常の形容詞の変化です。Go wrong、go bad、go grey、go mad は go の確立した用法です。食べ物が悪くなるのは、第一選択として become bad ではなくふつう go bad です。Get は職業の名詞を取りません。この意味の get a nurse はありません。\n\ngo tired や become to tired と書かないでください。形容詞に to は不要です。Grow も徐々の変化を示せます。grow dark です。日本語の変化が職業や同一性か、一時的な状態か、色や状態の変化かを見てください。",
+    "pitfall": "職業に She got a nurse は避け、The milk became bad を第一に選ばないでください。職業は She became a nurse、傷んだ牛乳は The milk went bad です。",
+    "keywords": [
+      "become",
+      "get",
+      "go",
+      "変化"
+    ]
+  },
+  "accept-except": {
+    "title": "accept と except",
+    "question": "accept と except の違いは一文字だけですか。",
+    "summary": "Accept は受け取る、または同意することです。Except は含まない、で、前置詞であることが多いです。",
+    "usage": "She accepted the offer は、それを受け取ることに同意したことです。Everyone came except Lee は、Lee が含まれなかったことです。Except for は文全体を訂正することが多いです。The room was empty except for one chair です。動詞の exclude は前置詞の except とは違います。Accept は除くことではありません。\n\nどちらも第二音節に強勢がありますが、始まりの音は違います。accept は /ək/、except は /ɪk/ で始まります。Except は節も導けます。except that the door was locked です。except の位置に accept を置かないでください。",
+    "pitfall": "Everyone came accept Lee は避けてください。除外は except Lee、申し出に同意するのは accepted the offer です。",
+    "keywords": [
+      "accept",
+      "except",
+      "受け入れる",
+      "除外"
+    ]
+  },
+  "then-than": {
+    "title": "then と than",
+    "question": "なぜ then は順序と比較の両方を覆えないのですか。",
+    "summary": "Then は次に、そのとき、その場合です。Than は比較級の後で、比較を意味します。",
+    "usage": "We ate, and then we left. です。Then はそのときも意味します。I lived there then です。比較級には than が必要です。older than me、more useful than the old map です。Than me は普通で、than I am はより完全な形式です。\n\nThen と than は同じ音ではありません。more better then と書かないでください。比較級はすでにより多いことを意味し、その後の語は than です。時の前は before になれ、then である必要はありません。",
+    "pitfall": "older then me は避けてください。比較は older than me、順序は We ate, and then we left です。",
+    "keywords": [
+      "then",
+      "than",
+      "比較",
+      "順序"
+    ]
+  },
+  "sensitive-sensible": {
+    "title": "sensitive と sensible",
+    "question": "影響されやすいのはどちらの語で、分別があるのはどちらの語ですか。",
+    "summary": "Sensitive は影響されやすいことです。Sensible は分別があり、実用的なことです。",
+    "usage": "Sensitive skin と sensitive to criticism は、強い、または傷つきやすい反応です。A sensible decision と sensible shoes は、健全な判断や実用性です。Sensitive は to を取ることが多いです。sensitive to light です。Sensible of は形式的な英語で気づいていることを意味できますが、学習者に必要なのは分別の意味の方が多いです。It is sensible to wait です。\n\n反応しやすい肌に sensible skin、賢明な決定に sensitive decision と書かないでください。決定が繊細な主題に関わるという意味でない限りです。どちらも sense から来ますが、意味は分かれています。",
+    "pitfall": "反応しやすい肌に a sensible skin は避けてください。肌は sensitive skin、賢明な決定は a sensible decision です。",
+    "keywords": [
+      "sensitive",
+      "sensible",
+      "敏感",
+      "分別"
+    ]
+  },
+  "actual-current": {
+    "title": "actual と current",
+    "question": "actual は本当と現在の両方を覆えますか。",
+    "summary": "Actual は見積もり、外見、誤った主張と対比します。Current は過去や未来と対比し、今のものです。",
+    "usage": "The actual cost was higher は見積もりではなく本当の費用です。The current price は今の価格で、後で変わることがあります。The current edition は使われている版です。Actually は主張を訂正することが多いです。Actually, the gate is on the left. です。現在、という意味ではありません。\n\n日本語で実情を表す語が、英語では現在の時が必要な場所に使われることがあります。今職にある人、施行中の規則、今日の価格は actual ではなく current か present です。actual を時の語として扱わないでください。",
+    "pitfall": "今職にある人に the actual president は避けてください。現在の人は the current president、本当の数字は the actual cost です。",
+    "keywords": [
+      "actual",
+      "current",
+      "実際",
+      "現在"
+    ]
+  },
+  "eventually-finally": {
+    "title": "eventually と finally",
+    "question": "結果と最後の点には eventually と finally のどちらですか。",
+    "summary": "Eventually は時間やいくつかの変化のあとの結果です。Finally はようやく、または順序の最後の項目を導くことです。",
+    "usage": "We eventually found a seat は、探すのに時間がかかったことを強調します。The bus finally came は、待ちのあとの安堵を強調します。Finally, add your name は一覧の最後の手順を導きます。Eventually はその仕事ができません。\n\nIn the end は eventually に近く、一覧の番号でもありません。At last と finally は、望んでいたことが起きることをどちらも示せます。最後の助言の一つであるかのように、eventually を先頭に置かないでください。",
+    "pitfall": "最後の手順に Eventually, check the spelling は避けてください。最後の手順は Finally, check the spelling、遅れのあとの結果は eventually です。",
+    "keywords": [
+      "eventually",
+      "finally",
+      "結局",
+      "最後"
+    ]
+  },
+  "specially-especially": {
+    "title": "specially と especially",
+    "question": "特に、には specially と especially のどちらですか。",
+    "summary": "Especially は特に、とりわけ、です。Specially は特定の目的のためです。",
+    "usage": "I especially like the soup は、ほかのものからスープを選び出します。The roads are icy, especially in the morning は朝を強調します。Specially designed と I made it specially for you は、その目的のためにしたことです。特に、の普通の選択は especially です。\n\n朝はとりわけ、の意味で specially in the morning と書かないでください。Specially はその強調の仕事をしません。Special は形容詞です。a special key です。particularly が副詞を置き換えられるなら、語はふつう especially です。",
+    "pitfall": "The roads are icy, specially in the morning は避けてください。特に朝は especially in the morning、あなたのためにしたのは specially for you です。",
+    "keywords": [
+      "especially",
+      "specially",
+      "特に"
+    ]
+  },
+  "miss-lose": {
+    "title": "miss と lose",
+    "question": "どの意味が miss で、どの意味が lose ですか。",
+    "summary": "Miss は捕まえ損ねる、当て損ねる、出席し損ねる、または誰かの不在を寂しく思うことです。Lose はもう持っていない、見つけられない、勝てないことです。",
+    "usage": "Miss the bus、miss the target、miss a class は、会うはずだったものにつなげ損ねることです。I miss you は不在を寂しく思うことです。Lose your keys、lose a game、lose your way は、物、試合、道がもう自分の制御にないことです。バスに乗り遅れることは lose the bus ではありません。\n\nMiss out は省くことを意味できます。lose の過去は lost、形容詞の lost はもう見つからないことです。日本語の文がバスに乗れなかったなら miss です。鍵が見つからないなら lose です。",
+    "pitfall": "I lost the bus は避けてください。乗れなかったのは I missed the bus、見つけられない鍵は I lost my keys です。",
+    "keywords": [
+      "miss",
+      "lose",
+      "乗り遅れる",
+      "なくす"
+    ]
+  },
+  "rob-steal": {
+    "title": "rob と steal",
+    "question": "動詞が取るのは人ですか、物ですか。",
+    "summary": "rob の目的語は人か場所です。steal の目的語は取られた物です。",
+    "usage": "They robbed the bank と Someone robbed her と言います。物は steal です。They stole the money です。両方を含めるなら rob someone of something です。They robbed her of her bag です。Steal は被害者を直接目的語に取りません。\n\nrob の過去は robbed です。steal の過去は stole、過去分詞は stolen です。銀行から取られた金に rob the money や steal the bank と書かないでください。英語では、目的語が被害者か品物かを選ぶ必要があります。",
+    "pitfall": "They robbed the money と They stole the bank は避けてください。金は They stole the money、銀行や人は They robbed the bank か They robbed her です。",
+    "keywords": [
+      "rob",
+      "steal",
+      "奪う",
+      "盗む"
+    ]
+  },
+  "remind-remember": {
+    "title": "remind と remember",
+    "question": "誰かに思い出させる動詞はどちらですか。",
+    "summary": "Remember は自分ですることです。Remind はほかの人に思い出させることで、remind someone to do か remind someone about が多いです。",
+    "usage": "Please remind me to lock the door は、思い出させるようほかの人に頼みます。I remembered to lock the door は、自分で作業を忘れなかったことです。Remind には思い出させられる人が必要です。Remind someone of something は記憶を呼び起こすことです。The song reminds me of that summer です。\n\n思い出してほしい依頼に Remember me to lock the door と書かないでください。Remember to と remember -ing は別の対比です。remember to lock はこれからの作業、remember locking はしたことの記憶です。ほかの人を促す行為は remind です。",
+    "pitfall": "Remember me to lock the door は避けてください。促してほしい依頼は Remind me to lock the door、自分で忘れないのは I remembered to lock it です。",
+    "keywords": [
+      "remind",
+      "remember",
+      "思い出させる"
+    ]
+  },
+  "wait-expect-hope": {
+    "title": "wait、expect、hope",
+    "question": "wait は待つこと、予期、希望を覆えますか。",
+    "summary": "Wait for は何かが起きるまでいることです。Expect は起きると信じる、または起きるべきだと思うことです。Hope はありうることを望むことです。",
+    "usage": "I'm waiting for the result は待つ活動です。for を取り、that 節は取りません。I expect the result today は、今日来ると考えることです。I hope the result is good はその結果を望むことです。expect と hope はどちらも to を取れます。I expect to hear today、I hope to hear today です。\n\nWait は内面の希望を名指さないので、I wait that you pass は誤りです。Expect は要求も意味できます。I expect you to be on time です。望まない悪い出来事の普通の動詞は hope ではありません。fear か worry が合います。日本語の待つ語が、実際には予測を意味することがあります。",
+    "pitfall": "I'm waiting that the result is good と wait you は避けてください。活動は wait for the result、願いは I hope it is good、予測は I expect it today です。",
+    "keywords": [
+      "wait",
+      "expect",
+      "hope",
+      "待つ"
+    ]
+  },
+  "look-seem-appear": {
+    "title": "look、seem、appear",
+    "question": "印象には look、seem、appear のどれですか。",
+    "summary": "三つとも印象を与えられます。Look は目に見える根拠があることが多く、seem は一般的な動詞、appear はより形式的で、印象が当てにならないことを示せます。",
+    "usage": "You look tired は、顔や姿勢のように見えるものに基づくことが多いです。She seems tired はいくつかの種類の根拠から来られます。He appears calm はやや形式的です。形容詞は動詞の直後です。look like tired ではなく look tired です。Look like と seem like は名詞か節を取ります。look like a nurse、It looks as if the gate is shut です。\n\nSeem と appear は to be か to do を取れます。She seems to know the way です。It seems that... と It appears that... は状況全体について述べます。look that she is tired と書かないでください。",
+    "pitfall": "She looks like tired は避けてください。形容詞は She looks tired、名詞への類似は She looks like a teacher です。",
+    "keywords": [
+      "look",
+      "seem",
+      "appear",
+      "印象"
+    ]
+  },
+  "lose-loose": {
+    "title": "lose と loose",
+    "question": "動詞なのは lose と loose のどちらですか。",
+    "summary": "Lose は動詞で、過去は lost です。もう持っていない、勝てない、道に迷うことです。Loose は主に形容詞で、きつくない、固定されていないことです。",
+    "usage": "Don't lose the key、We lost the game、I often lose my way と言います。Loose は状態を表します。The screw is loose、loose trousers です。発音が助けになります。lose は /luːz/、loose は /luːs/ です。きつくないねじは a lose screw ではなく a loose screw です。\n\nLoose はほどくという動詞にもなれますが、その用法は形容詞よりずっと少なく、lose を置き換えることはありません。lose の過去は loosed ではありません。日本語のゆるいと失うは、一つの英語の語族ではありません。",
+    "pitfall": "Don't loose your key は避けてください。置き忘れるのは Don't lose your key、きつくないねじは The screw is loose です。",
+    "keywords": [
+      "lose",
+      "loose",
+      "なくす",
+      "ゆるい"
+    ]
+  },
+  "quiet-quite": {
+    "title": "quiet と quite",
+    "question": "静かなつづりはどれで、かなり、のつづりはどれですか。",
+    "summary": "Quiet は音が少ないという形容詞です。Quite は副詞です。かなり、を意味でき、段階のない語では完全に、を意味できます。",
+    "usage": "A quiet room と Please be quiet はどちらも音が少ないことです。Quite はそれだけでは部屋を表せません。イギリス英語の Quite good は、かなり良いことが多く、必ずしもとても良いことではありません。quite right、quite sure、quite finished では、それらの語が本当には段階的でないので、quite は完全に、に近いです。Quite quiet は文法的で、かなり静か、です。\n\na quite room と書かないでください。副詞はふつう形容詞の前です。A quite difficult map は可能ですが、a rather difficult map か quite a difficult map の方が自然に聞こえることが多いです。Quite a と名詞句はよくある語順です。quite a long walk です。",
+    "pitfall": "a quite room は避けてください。静かな部屋は a quiet room、かなり長い散歩は quite a long walk です。",
+    "keywords": [
+      "quiet",
+      "quite",
+      "静か",
+      "かなり"
+    ]
+  },
+  "house-home": {
+    "title": "house と home",
+    "question": "なぜ go home に to がないのですか。",
+    "summary": "House は建物です。Home は住む場所で、家屋である必要はありません。go home と at home では、home にふつう冠詞も to もありません。",
+    "usage": "They bought a house は建物についてです。I'm going home は住む場所へ戻ることで、マンションかもしれません。At home は自分の家にいることです。In the house はその建物の中です。Stay home も stay at home も起きます。A home は住居、または care home のような施設になれます。\n\ngo to home と書かないでください。Arrive home にも to はありません。日本語の一つの語が、建物、家族、住む場所を意味できます。建物そのものを意味するときは、まず house を使ってください。Home は副詞としても働けるので、文法は普通の名詞 house と同じではありません。",
+    "pitfall": "go to home は避け、物理的なその建物を意味しない限り、自分の家に go to the house を使わないでください。家へ帰るのは go home です。",
+    "keywords": [
+      "house",
+      "home",
+      "go home"
+    ]
+  },
+  "work-job": {
+    "title": "work と job",
+    "question": "雇用は数えられる job ですか、数えられない work ですか。",
+    "summary": "雇用や努力の work はふつう不可算で、動詞でもあります。Job は数えられる職、または一つの作業です。",
+    "usage": "I'm looking for work、I have a lot of work、She is at work と言います。特定の職は a job です。She has a job in the library、two jobs です。作業も a job になれます。That's a big job です。Go to work に冠詞はありません。Homework も不可算なので homeworks ではありません。\n\n職に a work と言わないでください。work が芸術や文章の一作品を意味する場合を除きます。Works は工場、または著者の著作を意味でき、job の普通の複数ではありません。動詞は She works on Mondays です。雇用を意味する日本語の一つの言い方では、職には a job、活動や雇用一般には work を選んでください。",
+    "pitfall": "I have a work と She is looking for a job work は避けてください。職を探すことは looking for work、職に就いていることは has a job になれます。",
+    "keywords": [
+      "work",
+      "job",
+      "不可算",
+      "仕事"
+    ]
+  },
+  "in-spite-of-despite": {
+    "title": "in spite of と despite",
+    "question": "in spite of や despite は完全な節を取れますか。",
+    "summary": "In spite of と despite はどちらも前置詞で、名詞か -ing を取ります。Despite に of は足しません。完全な節には although か the fact that が必要です。",
+    "usage": "In spite of the rain と Despite the rain は同じ意味で、despite の方が簡潔です。後の動詞は -ing です。despite feeling ill です。譲歩が完全な節なら、although it rained、または despite the fact that it rained です。In spite of には of が必要です。Despite は of を取りません。\n\nどちらの前置詞も、although のように二つの節を結びません。日本語の譲歩は節が直接続くことがあります。英語では、後ろが名詞か、主語と動詞かをまず見てください。Even though も事実の節を取り、despite even とは書きません。",
+    "pitfall": "despite of the rain と in spite the rain は避けてください。despite the rain か in spite of the rain です。節は Although it rained, we went です。",
+    "keywords": [
+      "despite",
+      "in spite of",
+      "譲歩"
+    ]
+  },
+  "so-as-to": {
+    "title": "so as to",
+    "question": "so as to は to や so that とどう違いますか。",
+    "summary": "So as to は目的を示し、主節と同じ主語の原形を取ります。否定は so as not to です。別の主語には so that 節が必要です。",
+    "usage": "She spoke quietly so as to avoid waking the baby では、話す人と音を立てないようにする人が同じです。To avoid か in order to avoid の方が普通で、so as to はやや形式的です。否定を so as to not と作らないでください。so as not to wake anyone です。\n\n目的の節に別の主語があるなら、so as to では足りません。She spoke quietly so that he could sleep です。so as to を結果の so...that と読まないでください。結果は She was so quiet that nobody heard her です。So as to の真ん中に形容詞はありません。",
+    "pitfall": "so as to not wake と so as to he could sleep は避けてください。否定は so as not to wake、別の主語は so that he could sleep です。",
+    "keywords": [
+      "so as to",
+      "目的",
+      "so that"
+    ]
+  },
+  "until-till": {
+    "title": "until と till",
+    "question": "until と till に違いはありますか。",
+    "summary": "Until と till はどちらも、状況がある時点まで続くことです。Till はよりくだけています。どちらも by が表す完了の期限ではありません。",
+    "usage": "Wait until the rain stops と Wait till the rain stops は同じ意味です。Until は書き言葉でより普通です。Till は話し言葉と一部の決まった句で自然です。Not until は、変化がその時点に起き、それより前には起きないことです。The shop doesn't open until nine です。未来の節は現在形です。until she will arrive ではなく until she arrives です。\n\nUntil の後は名詞、時、節になれます。untill とつづらないでください。仕事を金曜より前に終えなければならないなら by Friday です。状況が金曜まで続くなら until Friday です。",
+    "pitfall": "until を untill とつづらず、節に until she will arrive と書かないでください。到着まで続くのは until she arrives です。",
+    "keywords": [
+      "until",
+      "till",
+      "まで",
+      "by"
+    ]
+  },
+  "practice-practise": {
+    "title": "practice と practise",
+    "question": "practice と practise をどう選びますか。",
+    "summary": "イギリス英語では practice が名詞、practise が動詞です。アメリカ英語はふつう両方を practice と書きます。",
+    "usage": "I need more practice は名詞です。イギリス英語では She practises the piano every day が動詞の practise です。アメリカ英語は She practices the piano と書くことが多いです。発音は同じで、違いは主につづりです。\n\n医師の practice は診療の事業を名指し、名詞です。イギリス英語の動詞を既定で practice と書かず、アメリカ英語に practise が必要だとも思わないでください。使っているつづり体系に従ってください。",
+    "pitfall": "イギリス英語の書き言葉では、すべての動詞を practice にしないでください。普通の動詞のつづりは practise です。",
+    "keywords": [
+      "practice",
+      "practise",
+      "つづり",
+      "英米"
+    ]
+  },
+  "principal-principle": {
+    "title": "principal と principle",
+    "question": "principal と principle の違いは何ですか。",
+    "summary": "Principle は規則や信念です。Principal は主な、という形容詞、または学校長や元本の名詞になれます。",
+    "usage": "A matter of principle は信念や規則についてです。The principal reason は主な理由です。The school principal は学校の長です。Loan principal は利子ではなく元本です。語は似た音ですが、つづりと役割が違います。\n\n覚え方として、principle は rule のように終わり、principal は主な人を名指せます。道徳上の規則を principal と書かないでください。",
+    "pitfall": "指針となる規則を principal と書かないでください。その意味は principle です。",
+    "keywords": [
+      "principal",
+      "principle",
+      "原則",
+      "主な"
+    ]
+  },
+  "farther-further": {
+    "title": "farther と further",
+    "question": "farther と further は入れ替えられますか。",
+    "summary": "物理的な距離にはどちらも使えることが多いです。抽象的な進展には further の方が安全です。Further は動詞にもなれます。",
+    "usage": "How much farther/further is the station? です。距離にはどちらかを受け入れる話者が多いです。Further research と further information は、抽象的な延長にはほとんどいつも further です。Further は追加の、も意味できます。further details です。\n\n動詞の to further a cause はそれを進めることです。Farther はふつう動詞ではありません。アメリカの用法は文字どおりの距離に farther を残すことが多いですが、重なりは残ります。",
+    "pitfall": "抽象的な進展には farther research ではなく further research を選んでください。",
+    "keywords": [
+      "farther",
+      "further",
+      "距離",
+      "さらに"
+    ]
+  },
+  "assure-ensure-insure": {
+    "title": "assure、ensure、insure",
+    "question": "assure、ensure、insure をどう選びますか。",
+    "summary": "Assure は人を取って安心させることが多いです。Ensure は何かが起きることを確実にすることです。Insure はふつう保険に関係します。",
+    "usage": "I assured her that the door was locked は人を安心させます。Please ensure that the door is locked は結果を確実にします。Insure the house against fire は保険を買います。アメリカ英語では ensure と insure が重なることがありますが、保険の意味は依然として insure を好みます。\n\nAssure はふつう assure someone of/that…. を取ります。人のない assure that the door is locked は避けてください。Ensure は that 節か名詞を取ることが多いです。",
+    "pitfall": "I assure that it is safe は避けてください。I assure you that it is safe を選ぶか、ensure を使ってください。",
+    "keywords": [
+      "assure",
+      "ensure",
+      "insure",
+      "確実"
+    ]
+  },
+  "classic-classical": {
+    "title": "classic と classical",
+    "question": "classic と classical はどう違いますか。",
+    "summary": "Classic は模範的、一流、典型的を意味することが多いです。Classical はふつう古典の伝統、特に音楽、文学、古代を指します。",
+    "usage": "A classic novel は模範的な作品です。A classic mistake は典型的な誤りです。Classical music はふつう古典の伝統を名指し、単に非常に良いポップソングではありません。Classical architecture は古典の様式です。\n\n「典型」「模範」のすべての意味を classical と書かないでください。日常の classic films と classic mistakes は classic です。学問上、または歴史上の様式のラベルには classical を選んでください。",
+    "pitfall": "a classic mistake を a classical mistake と書き直さないでください。",
+    "keywords": [
+      "classic",
+      "classical",
+      "古典",
+      "典型"
+    ]
+  },
+  "economic-economical": {
+    "title": "economic と economical",
+    "question": "economic と economical はいつ使いますか。",
+    "summary": "Economic は経済や金融の仕組みに関係します。Economical は倹約的、または費用に見合うことです。",
+    "usage": "Economic growth と economic policy は経済や政策に関します。An economical car は維持費が安い車です。An economical use of space は空間を節約します。どちらも economy に関係しますが、連語は違います。\n\neconomic growth を economical growth と書かないでください。倹約や費用対効果には economical を使います。",
+    "pitfall": "政府の経済政策に economical policy と書かないでください。それは economic policy です。",
+    "keywords": [
+      "economic",
+      "economical",
+      "経済",
+      "節約"
+    ]
+  },
+  "historic-historical": {
+    "title": "historic と historical",
+    "question": "historic と historical はどう違いますか。",
+    "summary": "Historic は歴史的に重要な瞬間や場所を強調します。Historical は歴史に関係する、または過去に設定されていることです。",
+    "usage": "A historic victory は歴史において重要な勝利です。A historical novel は過去についての小説です。Historical evidence は歴史からの証拠です。重なりはありますが、節目は historic、「歴史について／過去に設定された」は historical が向きます。\n\nhistoric の前では、イギリス英語は a を使うことが多く、アメリカ英語もよく使います。古い an historic の習慣で、意味の対比を隠さないでください。",
+    "pitfall": "画期的な地位の小説を意味しない限り、historical novel を historic novel と書き直さないでください。",
+    "keywords": [
+      "historic",
+      "historical",
+      "歴史的"
+    ]
+  },
+  "travel-trip-journey": {
+    "title": "travel、trip、journey",
+    "question": "travel、trip、journey をどう選びますか。",
+    "summary": "Travel は数えられない活動、または動詞であることが多いです。Trip は一度の外出で、往復であることが多いです。Journey は一つの場所から別の場所へ行く過程を強調します。",
+    "usage": "I love travel / travelling は活動を名指します。A business trip は一度の外出です。The journey took six hours は過程に焦点を当てます。一度の外出に a travel と書かず、a trip を選んでください。\n\nJourney はイギリス英語でよくあり、日常のアメリカ英語は trip を好むことが多いです。Voyage は海の長い旅を示すことが多いです。Tour は公演や観光の巡回を意味できます。状況で選んでください。日本語の「旅行」を、数えられる travel として扱わないでください。",
+    "pitfall": "I made a travel to Paris は避けてください。I took a trip to Paris か I travelled to Paris を選んでください。",
+    "keywords": [
+      "travel",
+      "trip",
+      "journey",
+      "旅行"
+    ]
+  },
+  "clothes-cloth": {
+    "title": "clothes と cloth",
+    "question": "clothes と cloth の違いは何ですか。",
+    "summary": "Clothes は衣服の複数名詞です。Cloth は布で、可算にも質量にも使います。",
+    "usage": "These clothes are new は複数の動詞を取ります。単数の a clothe はありません。A piece of cloth か a cloth は布の一片を名指せます。Cloth は質量名詞にもなれます。made of cloth です。Clothing はより形式的な質量語です。\n\n一着に a clothes と書かないでください。品目を名指すか（a shirt、a dress）、some clothes を使ってください。",
+    "pitfall": "a clothes と this clothes is は避けてください。these clothes are か a shirt を選んでください。",
+    "keywords": [
+      "clothes",
+      "cloth",
+      "衣服",
+      "布"
+    ]
+  },
+  "custom-customs": {
+    "title": "custom と customs",
+    "question": "custom と customs はいつ意味が違いますか。",
+    "summary": "Custom は伝統、または個人の習慣を意味できます。Customs は税関を意味することが多く、伝統の複数にもなれます。",
+    "usage": "Local custom は土地の伝統です。It is her custom to walk after dinner は個人の習慣です。Go through customs は国境検査を通ることです。A customs officer はそこで働きます。大文字と連語が助けになります。Customs は機関を名指せます。\n\n国境検査に go through custom と書かないでください。いくつかの伝統は customs になれますが、機関の意味はふつうその複数形を使います。",
+    "pitfall": "go through custom は避けてください。国境の意味は go through customs です。",
+    "keywords": [
+      "custom",
+      "customs",
+      "習慣",
+      "税関"
+    ]
+  },
+  "dessert-desert": {
+    "title": "dessert と desert",
+    "question": "dessert と desert をどう見分けますか。",
+    "summary": "Dessert は甘いコースです。名詞の desert は乾燥した土地、動詞は捨てることです。つづりと強勢が違います。",
+    "usage": "A chocolate dessert は甘いコースです。The Sahara Desert は乾燥した土地です。He deserted his post は持ち場を捨てたことです。Dessert はふつう第二音節に強勢があり、名詞の desert は第一音節に強勢があることが多いです。\n\n余分な s が食べられる方です。strawberry shortcake for dessert です。乾燥した土地を dessert と書かないでください。",
+    "pitfall": "乾燥した土地を dessert、甘いコースを desert と書かないでください。",
+    "keywords": [
+      "dessert",
+      "desert",
+      "デザート",
+      "砂漠"
+    ]
+  },
+  "later-latter": {
+    "title": "later と latter",
+    "question": "later と latter の違いは何ですか。",
+    "summary": "Later はより後の時です。Latter はたった今述べた二つのうち二つ目を指します。",
+    "usage": "See you later はより後の時です。Of tea and coffee, I prefer the latter は二つ目を選びます。The latter half of the year は後半を意味できます。Later は時間、latter は参照です。\n\n三つ以上では、最後のものに the latter は不自然です。the last を選ぶか、名詞を繰り返してください。Former は一つ目、latter は二つ目の組です。",
+    "pitfall": "See you latter と書かないでください。別れの挨拶は See you later です。",
+    "keywords": [
+      "later",
+      "latter",
+      "後で",
+      "後者"
+    ]
+  },
+  "weather-whether": {
+    "title": "weather と whether",
+    "question": "weather と whether をどう見分けますか。",
+    "summary": "Weather は大気の状態です。Whether は選択肢、または伝えられた yes/no 疑問を導き、or を伴うことが多いです。",
+    "usage": "The weather is cold は屋外の状態を名指します。I don't know whether she will come は、来るかどうかを尋ねます。Whether...or... は選択肢を示します。If が whether を置き換えることもありますが、前置詞の後や、明確な or not の選択では whether の方が安全です。\n\nwhether を weather とつづらないでください。Weather は不可算です。特別な気候の種類の話を除き、many weathers ではなく a lot of bad weather です。",
+    "pitfall": "I wonder weather she will come は避けてください。選択の標識は whether です。",
+    "keywords": [
+      "weather",
+      "whether",
+      "天気",
+      "かどうか"
+    ]
+  }
+}

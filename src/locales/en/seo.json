@@ -3,5 +3,6 @@
   "dictionary": "Look up English words with Open English WordNet, explore definitions and save bookmarks. Download the dictionary for offline use.",
   "ipa": "Explore the International Phonetic Alphabet with vowel and consonant charts, articulation guides and pronunciation examples.",
   "grammar": "Explore English usage with explanations, examples, common pitfalls and related entries. Download the reference for offline use.",
+  "trees": "Draw syntax trees from brackets, outlines or sentences — constituency, dependency, X-bar, CCG and more — and export them as SVG, PNG or PDF.",
   "about": "Learn about Lingfern, its open-source software, learning resources, licensing and contact information."
 }

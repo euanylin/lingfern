@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => ({
       if (file.isFile() && file.name === '.DS_Store') unlinkSync(join(file.parentPath, file.name));
   } }, VitePWA({
     strategies: 'injectManifest', srcDir: 'src', filename: 'sw.ts', registerType: 'prompt', injectRegister: null,
-    manifest: { id: '/', name: 'Lingfern', short_name: 'Lingfern', description: 'Read, listen, and grow into English.', start_url: '/', scope: '/', display: 'standalone', background_color: '#F7F6F2', theme_color: '#536F5B', icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }, { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }] },
+    manifest: { id: '/', name: 'Lingfern', short_name: 'Lingfern', description: 'Read, listen, and grow into English.', start_url: '/', scope: '/', display: 'standalone', background_color: '#FFFFFF', theme_color: '#FFFFFF', icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }, { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }] },
     // Keep the full quote catalogue and evidence available offline.
     injectManifest: {
       maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, globIgnores: ['prerender/**'], globPatterns: ['**/*.{html,js,css,svg,png,webmanifest}', 'audio/a1-words/word-*.mp3', 'daily-quotes/*.{md,txt,json}', 'THIRD_PARTY_NOTICES.md', 'ipa/CC-BY-SA-*.txt', 'licenses/**/*', 'corpus/*.{md,txt}', 'dictionary/oewn-2025/{README.md,LICENSE.md,WNDB_License.txt}'],

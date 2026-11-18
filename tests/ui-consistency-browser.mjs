@@ -9,7 +9,7 @@ page.on('pageerror',error=>errors.push(error.message));
 await page.route('**/*',route=>route.request().url().startsWith(origin+'/')?route.continue():route.abort());
 try{
  await page.goto(origin+'/start');for(let step=0;step<3;step++)await page.getByRole('button',{name:'跳过这一步',exact:true}).click();await page.getByRole('button',{name:'保存并前往今日',exact:true}).click();await expect(page.getByRole('heading',{name:'今日',exact:true})).toBeAttached();
- const routes=['today','progress','library','library/dictionary','library/saved','library/ipa','library/grammar','settings','settings/about','start'];
+ const routes=['today','progress','library','library/dictionary','library/saved','library/ipa','library/grammar','library/trees','settings','settings/about','start'];
  let views=0;
  for(const locale of ['zh-Hans','zh-Hant','en']){
   await page.goto(origin+'/settings');const language=page.locator('.settings-preferences .setting-trigger').first();await language.click();await page.locator(`.setting-menu [data-value="${locale}"]`).click();await expect(language).toHaveAttribute('data-value',locale);

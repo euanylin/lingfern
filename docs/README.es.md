@@ -8,6 +8,8 @@
 
 Práctica de lectura y comprensión auditiva en inglés para personas de 16 años o más, con objetivos de A1 a C2. Los ejercicios se generan localmente a partir de textos y grabaciones. No necesitas una cuenta ni un servicio de IA para aprender.
 
+El sitio público funciona con **0.1.170**. El árbol sintáctico, el diccionario de uso ampliado, las paletas y los créditos actualizados de About están en la **vista previa local 0.2.0**. [Estado de publicación](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
+
 <a id="readme-languages"></a>
 
 <details>
@@ -82,7 +84,7 @@ Las preguntas objetivas tienen corrección y explicaciones. Las respuestas abier
 
 ## Historial y progreso
 
-Abre [**Historial**](https://lingfern.com/progress) desde Hoy para revisar sesiones, respuestas, comentarios y ayudas usadas; elimina respuestas guardadas tras confirmar. Confirma horas de finalización cuando aparezca la corrección del reloj.
+Abre el historial desde Hoy para revisar sesiones y respuestas o reanudar una sesión. Tras confirmar, puedes eliminar una sesión o un registro sincronizado independiente. Al eliminar una sesión combinada se borran sus dos partes vinculadas. Confirma la hora de finalización si aparece la opción de corrección.
 
 El helecho representa actividad guardada, no un nivel certificado. Las citas diarias incluyen fuente, expansión de textos largos y selección de otra cita.
 
@@ -95,8 +97,21 @@ El helecho representa actividad guardada, no un nivel certificado. Las citas dia
 | [Diccionario inglés](https://lingfern.com/library/dictionary) | Consulta de palabras con definiciones en inglés, también desde el texto seleccionado. |
 | [Marcadores](https://lingfern.com/library/saved) | ★/☆ para guardar o quitar definiciones y entradas plegables. Lo quitado permanece hasta reabrir/actualizar para poder recuperarlo al instante. |
 | [Tabla IPA](https://lingfern.com/library/ipa) | Vistas sencilla/detallada, búsqueda de sonidos, grabaciones y palabras de ejemplo disponibles. |
-| [Referencia de uso del inglés](https://lingfern.com/library/grammar) | Búsqueda por palabra clave, navegación alfabética y explicaciones desplegables. |
-| [Historial de consultas](https://lingfern.com/library/history) | Reabrir consultas de diccionario, uso e IPA con fuente, hora y estado guardado. |
+| [Diccionario de uso del inglés](https://lingfern.com/library/grammar) | Búsqueda por palabra clave, navegación alfabética y explicaciones desplegables. |
+| [Árbol sintáctico](#readme-syntax-tree) · 0.2.0 | Genera y edita nueve representaciones, guarda instantáneas con nombre y exporta SVG, PNG, WebP, JPEG o PDF. |
+| [Historial de búsquedas](https://lingfern.com/library/history) | Reabrir consultas de diccionario, uso e IPA con fuente, hora y estado guardado. |
+
+La vista previa local contiene **191 entradas**. Las explicaciones siguen el idioma de la interfaz y recurren al inglés si falta la traducción. Los ejemplos, patrones y contrastes permanecen en inglés.
+
+<a id="readme-syntax-tree"></a>
+
+**Biblioteca** → **Referencia** → **Árbol sintáctico** · [0.2.0](http://127.0.0.1:8787/library/trees)
+
+Introduce una oración, un árbol entre paréntesis, un esquema sangrado o notación de dependencias. Los controles de nodos están sobre el lienzo y los símbolos justo debajo. Activa **Movimiento** para vincular nodos mediante coíndices; pulsa de nuevo o Escape para salir. El clic derecho o una pulsación prolongada abre el menú. Se guarda y restaura automáticamente un borrador local por perfil; estos borradores de árboles no se incluyen en copias de seguridad ni sincronización. **Guardar** crea una instantánea con nombre independiente en el historial. Vaciar se puede deshacer durante la visita; al reabrir un borrador vacío vuelve el ejemplo. Pulsa **Intro** para dibujar o **Mayús+Intro** para añadir una línea.
+
+También puedes pegar una derivación CCGbank AUTO para conservar sus categorías y ramas.
+
+En **Biblioteca** → **Contenido sin conexión** → **Referencias** → **Árbol sintáctico**, selecciona los modelos y pulsa **Descargar selección**. UDPipe analiza dependencias. Para constituyentes se usa Stanza (requiere UDPipe) o Charniak si está instalado. Hol-CCG se usa para CCG. Las reglas integradas funcionan sin conexión cuando falta el modelo o se rechaza su resultado. Revisa el análisis antes de usarlo.
 
 Elige Cambridge, Oxford Learner’s Dictionaries, Wiktionary o Merriam-Webster para búsquedas externas. Los enlaces abren el sitio del proveedor; los de uso emplean Cambridge Grammar.
 
@@ -145,9 +160,11 @@ La tarjeta muestra sincronizando, sincronizado, pendiente sin conexión o error 
 
 Catorce idiomas; tema claro/oscuro/sistema; navegación de texto, iconos o mixta independiente para móvil/escritorio; diccionario externo predeterminado; puntos de partida e intereses modificables; teclado, pantalla táctil y reducción de movimiento.
 
-Los materiales ingleses permanecen en inglés. Las instrucciones revisadas A1–A2 cuentan con traducción; B1–C2 y About siguen en inglés. La navegación árabe es RTL y el contenido inglés LTR.
+**0.2.0** · Cambia los colores en **Ajustes** → **Paleta**. Hay **33 paletas**: **Predeterminado** y 32 alternativas, incluida **Helecho**, todas con colores claros y oscuros. El modo sistema/claro/oscuro se guarda aparte. Selecciona Predeterminado para restaurar la paleta inicial. Se aplica a todo el sitio, la introducción y las páginas instaladas sin conexión; el logotipo y el helecho de Hoy mantienen sus colores originales.
 
-**Buscar actualizaciones → Actualizar ahora** recarga conservando el progreso guardado. About y los detalles del material muestran enlaces del proyecto, fuentes y licencias.
+Los materiales ingleses permanecen en inglés. Las instrucciones revisadas A1–A2 cuentan con traducción; B1–C2 y About siguen en inglés.
+
+**Buscar actualizaciones → Actualizar ahora** recarga conservando el progreso guardado. [Acerca de](https://lingfern.com/settings/about) y los detalles del material muestran enlaces del proyecto, fuentes y licencias.
 
 <a id="readme-privacy"></a>
 

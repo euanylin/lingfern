@@ -1,0 +1,2485 @@
+{
+  "articles": {
+    "title": "a, an, the",
+    "question": "여기에 a, an, the 중 무엇이 필요할까요?",
+    "summary": "단수 가산 명사의 많은 첫 언급에는 a/an을 쓰고, 대상을 특정할 수 있으면 the를 씁니다. a/an은 소리로 고르세요.",
+    "usage": "먼저 명사가 가산이며 단수인지, 그다음 듣는 사람이 그 대상을 특정할 수 있는지 확인하세요. 단수 가산 명사에는 보통 한정사가 필요합니다. 총칭의 복수와 물질 명사는 관사가 없는 경우가 많고, the는 단수, 복수, 물질 명사 모두에 올 수 있습니다.\n\n첫 언급이라고 항상 a/an이 필요한 것은 아닙니다. 상황이나 뒤따르는 수식어가 이미 대상을 특정하면 the도 가능합니다. A student는 부류 가운데 하나를 고르고, the student는 독자에게 특정한 한 사람을 가리키라고 합니다. 직업을 나타내는 단수 가산 명사는 보통 a/an을 취합니다. 다른 언어에 관사가 없다고 영어 한정사를 빼지 마세요.",
+    "pitfall": "쓴 글자의 첫 글자만 보고 a/an을 고르지 마세요. an hour but a university.",
+    "keywords": [
+      "관사",
+      "부정관사",
+      "정관사",
+      "한정사"
+    ]
+  },
+  "passive": {
+    "title": "수동태",
+    "question": "영향을 받은 것을 언제 주어로 둘까요?",
+    "summary": "영향을 받은 사람이나 사물을 주어 자리에 두려면 be + past participle를 쓰세요. 시제는 be가 담당합니다.",
+    "usage": "수동태는 영향을 받은 대상, 결과, 또는 이미 자리 잡은 주제를 앞에 둡니다. 행위자가 알려지지 않았거나 중요하지 않으면 by-phrase를 생략하세요. 조동사는 여전히 시제와 서법을 담당합니다. is written, was written, has been written, will be written.\n\n태는 정보의 순서이기도 합니다. samples가 이미 주제라면 The samples were collected...가 주제를 그 자리에 둡니다. 수집한 사람이 중요하면 능동절이나 by-phrase를 쓰세요. Get + participle는 일부 사건 수동에서 상태 변화를 나타내며, 더 구어적으로 들리는 경우가 많습니다. 모든 격식체나 상태 맥락에서 be를 대체하지는 않습니다. 행위자를 빼더라도, 책임이 중요할 때는 그 책임을 흐리지 마세요.",
+    "pitfall": "모든 be + participle가 같은 사건으로 읽히지는 않습니다. The door is closed는 상태를 말할 수 있습니다.",
+    "keywords": [
+      "수동태",
+      "과거분사",
+      "by구",
+      "행위자"
+    ]
+  },
+  "affect-effect": {
+    "title": "affect / effect",
+    "question": "Affect일까요, effect일까요?",
+    "summary": "흔한 쓰임에서 affect는 영향을 준다는 동사이고, effect는 결과라는 명사입니다. 덜 흔한 다른 쓰임도 있습니다.",
+    "usage": "문장에 동사가 필요한지 명사가 필요한지 먼저 확인하세요. Affect는 보통 동사로 영향을 준다는 뜻이고, an effect는 보통 결과입니다. Effect는 격식체에서 동사로 이루어 내다를 뜻할 수 있고, affect는 심리학의 전문 명사입니다.",
+    "pitfall": "동사 effect를 affect의 단순 동의어로 보지 마세요. effected change means brought change about.",
+    "keywords": [
+      "영향",
+      "결과",
+      "동사와 명사",
+      "affect"
+    ]
+  },
+  "be": {
+    "title": "동사 be",
+    "question": "am, is, are는 언제 쓸까요?",
+    "summary": "정체, 상태, 위치에는 am, is, are를 쓰세요. 형태는 주어에 따라 정해집니다.",
+    "usage": "현재 시제 be는 주어와 일치합니다. I am; you, we and they are이고, he, she, it와 단수 명사 뒤에는 is가 옵니다. 부정은 be 뒤에 not을 두고, 예/아니오 의문문에서는 be를 주어 앞으로 옮기세요. Be는 진행형도 만듭니다.",
+    "pitfall": "be 의문문에 do를 넣지 마세요. Is she ready?, not Does she is ready?.",
+    "keywords": [
+      "be동사",
+      "am is are",
+      "수일치",
+      "의문문"
+    ]
+  },
+  "plurals": {
+    "title": "가산 명사의 복수",
+    "question": "가산 명사는 언제 복수형이 필요할까요?",
+    "summary": "가산 명사는 하나가 넘으면 보통 복수형을 취합니다. child → children처럼 불규칙한 것도 있습니다.",
+    "usage": "규칙 복수는 보통 -s나 -es를 붙입니다. 자음 + y는 자주 -ies가 됩니다. 자주 쓰는 불규칙은 따로 익히세요. man/men, child/children, person/people. 수는 수량어, 한정사, 동사 일치에도 영향을 줍니다.",
+    "pitfall": "물질 명사에 단순히 -s를 붙이지 마세요. some information or two pieces of information이라고 하세요.",
+    "keywords": [
+      "복수",
+      "가산명사",
+      "불규칙복수",
+      "-s"
+    ]
+  },
+  "despite-although": {
+    "title": "despite / although",
+    "question": "despite가 완전한 절을 이끌 수 있을까요?",
+    "summary": "Despite는 보통 명사구나 -ing를 취하고, although는 절을 이끕니다. Despite the fact that은 절을 이끌 수 있습니다.",
+    "usage": "Despite는 전치사라서 명사구나 -ing가 뒤따르고, although는 접속사라서 정형절이 뒤따릅니다. 둘 다 양보를 나타내지만 보충어가 다릅니다. Despite the fact that은 간접적으로 절을 이끌 수 있습니다.",
+    "pitfall": "despite we were late는 피하세요. despite being late나 although we were late를 쓰세요.",
+    "keywords": [
+      "despite",
+      "although",
+      "양보",
+      "전치사"
+    ]
+  },
+  "past-simple": {
+    "title": "단순 과거",
+    "question": "Did you go일까요, did you went일까요?",
+    "summary": "끝난 과거 사건에 쓰세요. 규칙 동사는 자주 -ed를 붙이고, 불규칙 형태는 다릅니다.",
+    "usage": "단순 과거는 사건을 과거에 둡니다. 긍정문은 과거형을 쓰고, 부정문과 대부분의 의문문은 did + base verb를 씁니다. Be는 예외입니다. was/were. 분명한 과거 시간 표현이 이 시제와 자주 함께 옵니다.",
+    "pitfall": "Did가 이미 과거를 표시합니다. Did you go?, not Did you went?.",
+    "keywords": [
+      "단순과거",
+      "did",
+      "불규칙동사",
+      "-ed"
+    ]
+  },
+  "present-simple": {
+    "title": "단순 현재",
+    "question": "she work에는 -s가 있는데 I work에는 왜 없을까요?",
+    "summary": "습관과 일반적인 사실에 쓰세요. 긍정문에서 3인칭 단수 주어는 보통 -s/-es를 붙입니다.",
+    "usage": "단순 현재는 습관, 일반적인 패턴, 비교적 안정된 사실을 자주 나타냅니다. 3인칭 단수 긍정 동사는 보통 -s를 취합니다. 부정문과 의문문은 does + base form을 씁니다. I, you, we and they에는 do를 쓰세요.",
+    "pitfall": "Does가 이미 3인칭 일치를 담당합니다. Does she work?, not Does she works?.",
+    "keywords": [
+      "단순현재",
+      "3인칭 -s",
+      "does",
+      "습관"
+    ]
+  },
+  "questions": {
+    "title": "예/아니오 의문문과 wh- 의문문",
+    "question": "does she works가 아니라 does she work인 이유는 무엇일까요?",
+    "summary": "많은 단순 현재 동작 의문문은 do/does를 주어 앞에 두고, wh- 단어는 보통 맨 앞에 옵니다. be는 주어 바로 앞으로 옮기세요.",
+    "usage": "단순 현재의 본동사 의문문은 일반적으로 do/does + subject + base verb를 씁니다. 의문사를 앞에 두세요. Where does she live? who 자체가 주어이면 그런 조동사가 필요 없습니다. Who lives here?",
+    "pitfall": "주절 의문문에서 평서문 어순을 그대로 두지 마세요. Where does she live?, not Where she lives?.",
+    "keywords": [
+      "의문문",
+      "do does",
+      "wh의문문",
+      "어순"
+    ]
+  },
+  "each-every": {
+    "title": "each / every",
+    "question": "Each일까요, every일까요?",
+    "summary": "Each는 구성원을 개별적으로 보고, every는 자주 집합 전체를 훑습니다. 둘 다 단수 가산 명사 앞에 오며, each는 홀로 설 수도 있습니다.",
+    "usage": "Each는 구성원을 하나씩 보며 대명사나 한정사가 될 수 있습니다. Every는 집단의 모든 구성원을 함께 다루며 단수 가산 명사 앞에 옵니다. Each는 둘 이상을 가리킬 수 있고, every는 보통 셋 이상을 가리킵니다. 단수 명사구는 단수 일치를 취합니다.",
+    "pitfall": "Every는 대명사로 홀로 설 수 없습니다. Each was checked는 가능하지만 Every was checked는 안 됩니다.",
+    "keywords": [
+      "each",
+      "every",
+      "각각",
+      "전체"
+    ]
+  },
+  "comparison": {
+    "title": "비교급과 최상급",
+    "question": "둘은 어떻게 비교할까요?",
+    "summary": "둘을 비교할 때는 than과 비교급을 쓰고, 특정할 수 있는 집단의 극단에는 the + 최상급을 쓰세요.",
+    "usage": "비교급은 비교할 수 있는 둘을 연결합니다. 짧은 형용사는 자주 -er, 긴 형용사는 자주 more를 취합니다. good/better 같은 불규칙은 따로 익혀야 합니다. than 뒤의 비교는 논리적으로 병렬이 되게 하세요. 같은 정도는 as ... as를 쓰세요.",
+    "pitfall": "more와 -er를 보통 함께 쓰지 마세요. more taller는 틀립니다. 일부 2음절 형용사는 두 형태가 모두 가능합니다.",
+    "keywords": [
+      "비교급",
+      "최상급",
+      "than",
+      "more"
+    ]
+  },
+  "few-a-few": {
+    "title": "few / a few",
+    "question": "Few일까요, a few일까요?",
+    "summary": "A few는 약간이고, few는 적거나 부족한 수를 강조합니다. 둘 다 복수 가산 명사를 수식합니다.",
+    "usage": "Few와 a few는 복수 가산 명사를 취합니다. Few는 부족함을 강조하고, a few는 적지만 있는 양을 뜻합니다. Little과 a little은 보통 물질 명사를 취합니다. 선택은 화자가 그 양을 어떻게 보는지에 달려 있습니다.",
+    "pitfall": "물질 명사에 a few를 바로 쓰지 마세요. some advice or a few pieces of advice라고 하세요.",
+    "keywords": [
+      "few",
+      "a few",
+      "little",
+      "수량"
+    ]
+  },
+  "first-conditional": {
+    "title": "제1조건문",
+    "question": "If it rains, will we leave?",
+    "summary": "가능한 미래 조건에서는 if절이 자주 단순 현재를 쓰고 주절이 will을 쓸 수 있습니다. 이것이 유일한 if 패턴은 아닙니다.",
+    "usage": "가능한 미래 조건에서 if절은 보통 현재형을 취하고, 주절은 will, 명령문, 또는 조동사를 쓸 수 있습니다. 어느 절이든 앞에 올 수 있고, 앞에 나온 if절 뒤에는 보통 쉼표가 옵니다. 모든 if 문장에 will이 필요한 것은 아닙니다.",
+    "pitfall": "미래 조건의 if절에 will을 보통 넣지 마세요. will은 기꺼이 하려는 뜻 같은 특별한 의미가 있을 수 있습니다.",
+    "keywords": [
+      "조건문",
+      "if",
+      "will",
+      "미래조건"
+    ]
+  },
+  "hypothetical-conditionals": {
+    "title": "가정 조건문",
+    "question": "If I knew일까요, if I had known일까요?",
+    "summary": "현재와 거리가 있는 가정은 자주 if + past와 would + base form을 쓰고, 실현되지 않은 과거는 자주 if + had + participle와 would have + participle를 씁니다.",
+    "usage": "현재나 미래의 비현실 조건은 자주 if + past form과 would + base form을 씁니다. 과거의 반사실은 if + had + past participle와 would have + past participle를 씁니다. 과거형은 과거 시간이 아니라 현실과의 거리를 표시할 수 있습니다.\n\nIf I knew의 과거형은 과거 시간이 아니라 현재나 미래 현실과의 거리를 나타냅니다. If I had known은 비현실 조건을 과거에 둡니다. 조건과 결과는 서로 다른 시간을 가리킬 수 있습니다. If I had saved the file, I would have it now는 과거의 빠뜨림과 현재의 결과를 말합니다. 번호 붙은 이름만 보고 조건문 틀을 기계적으로 채우지 마세요. 사실, 시간, 화자의 태도를 먼저 파악하세요.",
+    "pitfall": "시간 틀을 기계적으로 섞지 마세요. 과거 조건이 현재 결과를 낳으면 혼합 조건문이 가능합니다.",
+    "keywords": [
+      "가정법",
+      "would",
+      "반사실",
+      "if절"
+    ]
+  },
+  "imply-infer": {
+    "title": "imply / infer",
+    "question": "누가 imply하고 누가 infer할까요?",
+    "summary": "화자나 글이 무언가를 imply하고, 독자는 근거에서 그것을 infer합니다. 소통의 서로 다른 쪽입니다.",
+    "usage": "Imply는 화자나 근거가 간접적으로 시사하는 것을 말하고, infer는 독자나 듣는 사람이 그것에서 결론 내리는 것을 말합니다. 방향이 다릅니다. 격식 있는 글에서는 추론의 관찰할 수 있는 근거를 밝히고, 그것을 출처의 명시적 주장처럼 제시하지 마세요.",
+    "pitfall": "저자가 의미를 imply했다는 뜻인데 저자가 의미를 inferred했다고 쓰지 마세요.",
+    "keywords": [
+      "함의",
+      "추론",
+      "imply",
+      "infer"
+    ]
+  },
+  "less-fewer": {
+    "title": "less / fewer",
+    "question": "Less일까요, fewer일까요?",
+    "summary": "보통 복수 가산 명사에는 fewer, 물질 명사에는 less를 고르세요. 시간이나 돈의 총량, 비격식 용법은 달라질 수 있습니다.",
+    "usage": "Fewer는 보통 셀 수 있는 복수 항목을 수식하고, less는 보통 물질 명사를 수식합니다. Less than은 하나의 양으로 다루는 수치화된 시간, 거리, 금액 앞에 자주 옵니다. 실제 용법은 절대적인 구호보다 더 유연합니다.",
+    "pitfall": "숫자로 된 기간을 모두 fewer로 쓰는 것이 자동으로 틀리다고 보지 마세요. 맥락에서 가장 분명한 형태를 고르세요.",
+    "keywords": [
+      "less",
+      "fewer",
+      "가산",
+      "물질명사"
+    ]
+  },
+  "make-do": {
+    "title": "make / do",
+    "question": "Make일까요, do일까요?",
+    "summary": "Make는 자주 결과를 만드는 쪽을 가리키고, do는 활동이나 과제를 이름 붙이는 경우가 많습니다. 개별 연어는 여전히 확인이 필요합니다.",
+    "usage": "Make는 산출물을 만들거나 결과를 일으키는 면을 자주 드러내고, do는 활동이나 과제를 수행하는 면을 자주 드러냅니다. 많은 연어는 따로 익혀야 합니다. make a decision, make progress, do homework, do research.",
+    "pitfall": "이것은 모든 연어를 예측하는 규칙이 아니라 경향입니다. 그 명사에 굳어진 결합을 확인하세요.",
+    "keywords": [
+      "make",
+      "do",
+      "연어",
+      "만들다"
+    ]
+  },
+  "hedging": {
+    "title": "유보와 한정",
+    "question": "may suggest가 증명을 뜻할까요?",
+    "summary": "May, appear to, suggest는 주장의 강도를 제한할 수 있습니다. 근거의 범위를 지키고, 가능성을 증명으로 바꾸지 마세요.",
+    "usage": "May, might, appears to, suggests는 근거가 결론이 아니라 가능성을 뒷받침한다는 표시가 될 수 있습니다. 표현을 근거의 강도, 표본의 한계, 다른 설명과 맞추세요. 잘 확립된 사실을 불필요하게 약하게 만들지 마세요.\n\n주장의 강도를 근거에 맞추세요. May suggest는 가능한 해석을 제시하고, is consistent with는 자료가 그 해석과 맞는다고 말합니다. 둘 다 인과를 증명하지는 않습니다. 유의한 결과도 표본, 측정, 통제되지 않은 요인 때문에 제한될 수 있습니다. 제한된 근거를 확실성으로 바꾸려고 proves나 always를 쓰기보다, 필요할 때는 관찰, 해석, 결론을 나누세요.",
+    "pitfall": "관찰 하나가 인과를 증명하는 경우는 드뭅니다. prove는 보통 suggest보다 훨씬 강합니다.",
+    "keywords": [
+      "유보",
+      "가능성",
+      "증명",
+      "suggest"
+    ]
+  },
+  "countability": {
+    "title": "가산 명사와 불가산 명사",
+    "question": "Much information일까요, many information일까요?",
+    "summary": "Many는 보통 복수 가산 명사와, much는 보통 불가산 명사와 함께 씁니다. 의미에 따라 가산성이 바뀌는 명사도 있습니다.",
+    "usage": "가산 명사는 수와 복수와 결합하고, 자주 many나 few와 함께 씁니다. 물질 명사는 흔히 much나 little을 취하고 보통의 복수가 없습니다. 가산성은 의미에 따라 달라질 수 있습니다. coffee는 물질일 수도, 한 잔일 수도 있습니다.",
+    "pitfall": "명사의 모든 뜻을 영원히 가산이나 물질로 고정하지 마세요. an experience는 일반적인 experience와 다릅니다.",
+    "keywords": [
+      "가산",
+      "불가산",
+      "much",
+      "many"
+    ]
+  },
+  "modals": {
+    "title": "조동사: 가능성과 의무",
+    "question": "Must not일까요, do not have to일까요?",
+    "summary": "May/might는 가능성을 나타내고, must는 강한 의무나 추론을 나타낼 수 있습니다. Must not은 금지이며, don't have to와는 다릅니다.",
+    "usage": "Must not은 행동을 금지하고, do not have to는 의무를 없앱니다. Must는 강한 의무나 확신 있는 추론을 나타낼 수 있고, have to는 자주 밖의 요구를 가리킵니다. 부정이 어디까지 미치는지가 중요합니다.",
+    "pitfall": "You must not leave를 You do not have to leave와 같다고 보지 마세요. 전자는 떠나는 것을 금지합니다.",
+    "keywords": [
+      "조동사",
+      "must not",
+      "have to",
+      "금지"
+    ]
+  },
+  "present-perfect": {
+    "title": "현재완료",
+    "question": "I went와 I have gone, 시간이 중요할까요?",
+    "summary": "과거 사건을 현재와 연결할 때는 have/has + past participle를 쓰세요. 끝났고 구체적인 과거 시간은 일반적으로 단순 과거를 취합니다.",
+    "usage": "현재완료는 과거 상황을 현재의 결과, 경험, 또는 계속되는 상태와 연결합니다. 분명한 과거 시간 지시는 보통 단순 과거를 취합니다. Since는 시작점을, for는 기간을 표시합니다. 영어 변종과 맥락이 일부 선택에 영향을 줄 수 있습니다.\n\n시간 지시가 핵심입니다. yesterday나 in 2019처럼 끝났고 특정된 시간은 보통 단순 과거를 요구합니다. So far와 this week는 그 기간이 아직 지금을 포함하면 현재완료가 어울릴 수 있습니다. this morning도 아침이 계속되는 동안과 끝난 뒤가 다르게 다뤄질 수 있습니다. 완료는 최근의 끝남만이 아니라 경험이나 현재의 결과를 말할 수 있습니다. 미국 영어는 already/yet 맥락에서 단순 과거를 흔히 쓰기도 하므로, 그런 쓰임을 모두 오류로 보지 마세요.",
+    "pitfall": "현재완료를 yesterday 같은 끝난 특정 시간과 보통 함께 쓰지 마세요. I saw her yesterday.",
+    "keywords": [
+      "현재완료",
+      "have has",
+      "since",
+      "for"
+    ]
+  },
+  "inversion": {
+    "title": "부정어 전치와 도치",
+    "question": "rarely had they seen이 되는 이유는 무엇일까요?",
+    "summary": "rarely나 not only 같은 제한·부정 표현을 앞에 두면, 격식체에서 주어–조동사 도치가 자주 일어나 강조가 됩니다.",
+    "usage": "부정이나 제한의 부사구가 절을 시작하면, 격식 영어는 조동사와 주어를 자주 도치합니다. Rarely have I seen...; Only then did I understand.... 조동사가 없으면 do-support를 쓰세요. 앞에 둔 표현이 미치는 범위를 정합니다.\n\nhardly, rarely and not only처럼 앞에 둔 부정·제한 표현은 격식체에서 주어–조동사 도치를 자주 일으킵니다. Rarely have we seen.... 조동사가 없으면 do/does/did를 넣고 동사는 원형으로 두세요. 모든 문두 부사가 도치를 일으키지는 않습니다. Yesterday we left에는 도치가 필요 없습니다. 이 구문은 앞에 둔 표현이 실제로 무엇을 수식하는지에도 달려 있습니다.",
+    "pitfall": "모든 문두 부사가 도치를 일으키지는 않습니다. Often I go there는 보통 어순입니다.",
+    "keywords": [
+      "도치",
+      "부정 전치",
+      "rarely",
+      "강조"
+    ]
+  },
+  "respectively": {
+    "title": "respectively",
+    "question": "respectively는 무엇을 짝지을까요?",
+    "summary": "Respectively는 길이가 같은 두 목록을 순서대로 짝짓습니다. 목록이나 순서가 불분명하면 문장을 다시 쓰세요.",
+    "usage": "Respectively는 둘 이상의 순서 있는 목록의 항목을 같은 순서로 짝짓습니다. 읽는 사람이 목록과 순서를 알아볼 수 있어야 합니다. 대응이 길어지거나 복잡해지면 문장을 나누는 편이 더 분명합니다. 이 단어 자체는 인과를 더하지 않습니다.",
+    "pitfall": "목록이 서로 맞지 않는 것을 가리려고 respectively를 쓰지 마세요. 각 짝을 분명히 쓰세요.",
+    "keywords": [
+      "respectively",
+      "대응",
+      "순서",
+      "목록"
+    ]
+  },
+  "reported-speech": {
+    "title": "간접화법",
+    "question": "간접화법에서 모든 시제를 뒤로 옮겨야 할까요?",
+    "summary": "과거의 말을 전할 때는 시점과 함께 대명사, 시간 표현, 시제가 바뀔 수 있습니다. 여전히 유효한 사실은 항상 뒤로 옮길 필요가 없습니다.",
+    "usage": "전달할 때는 여전히 성립하는 사실과 원래 말한 시점에 묶인 상황을 구분하세요. 과거 전달 동사 뒤에서 시제는 자주 뒤로 가지만, 여전히 참인 사실에는 항상 필요하지는 않습니다. 대명사와 시간·장소 표현도 바뀔 수 있습니다.\n\n시제 후퇴는 기계적인 규칙이 아닙니다. 전달하는 사실이 여전히 참이면 원래 시제를 유지하는 것이 적절할 수 있고, 옮기면 과거 시점을 표시할 수 있습니다. today, tomorrow, here 같은 말은 전달하는 시간이나 장소가 그렇게 요구할 때만 바뀝니다. 다른 사람의 말을 전할 때는 실제 말과 자신의 추론을 구분하고, 원래보다 더 단정적으로 만들지 마세요.",
+    "pitfall": "모든 현재형을 기계적으로 뒤로 옮기지 마세요. 일반적 진리는 현재로 남을 수 있습니다.",
+    "keywords": [
+      "간접화법",
+      "시제 후퇴",
+      "대명사",
+      "전달"
+    ]
+  },
+  "say-tell": {
+    "title": "say / tell",
+    "question": "say와 tell은 언제 쓸까요?",
+    "summary": "Say는 말이나 절을 이끌 수 있습니다. Tell은 보통 전달 내용 앞에 듣는 사람을 밝힙니다. 듣는 사람 없이 tell that은 피하세요.",
+    "usage": "Say는 말이나 내용에 초점을 둡니다. say something 또는 say something to someone. Tell은 보통 듣는 사람을 밝힙니다. tell someone something. 둘 다 that-clause를 취할 수 있지만, tell은 자주 듣는 사람을 유지합니다. tell a story, tell the truth 같은 고정 표현을 익히세요.",
+    "pitfall": "say me와 tell to me는 피하세요. say to me나 tell me를 쓰세요.",
+    "keywords": [
+      "say",
+      "tell",
+      "말하다",
+      "듣는 사람"
+    ]
+  },
+  "since-for": {
+    "title": "since / for",
+    "question": "시간과 함께 쓸 때 since일까요, for일까요?",
+    "summary": "Since는 시작점을 밝히고, for는 기간을 줍니다. 어느 단어도 그것만으로 시제를 정하지는 않습니다.",
+    "usage": "Since는 연도, 날짜, 사건 같은 시작점을 도입하고, for는 two years 같은 기간을 도입합니다. 둘 다 지금까지 계속되는 상태와 함께 쓸 수 있지만, 시제는 문장에 달려 있습니다. For는 단순 과거와도 자유롭게 씁니다.",
+    "pitfall": "숫자가 있다고 고르지 마세요. since 2020은 기간이 아니라 시작점입니다.",
+    "keywords": [
+      "since",
+      "for",
+      "시작점",
+      "기간"
+    ]
+  },
+  "relative-clauses": {
+    "title": "관계절",
+    "question": "쉼표 뒤에 that을 쓸 수 있을까요?",
+    "summary": "관계절은 사람이나 사물을 특정할 수 있습니다. 덧붙이는 정보는 보통 쉼표로 떼고, that을 자유롭게 쓰지 않습니다.",
+    "usage": "한정 관계절은 어떤 사람이나 사물인지 특정합니다. 비한정 관계절은 이미 특정된 대상에 정보를 더하며 쉼표로 구분합니다. That은 한정절에서 흔하지만 비한정절에서는 보통 쓰지 않습니다. 목적어 관계사는 때로 생략할 수 있습니다.\n\n먼저 그 절이 대상을 특정하는지 확인하세요. The report that arrived today is incomplete는 어느 보고서인지 집어 냅니다. the report, which arrived today, is incomplete는 보고서를 이미 알려진 것으로 두고 정보를 더합니다. 비한정절은 보통 that을 쓰거나 관계어를 생략하지 않습니다. to whom처럼 전치사를 관계어 앞에 두는 것은 더 격식적입니다. 일상에서는 절 끝에 두는 경우가 많습니다.",
+    "pitfall": "비한정절에 쉼표 + that을 쓰지 마세요. My car, which is red, ....",
+    "keywords": [
+      "관계절",
+      "which",
+      "that",
+      "쉼표"
+    ]
+  },
+  "used-to": {
+    "title": "used to / be used to",
+    "question": "Used to do일까요, be used to doing일까요?",
+    "summary": "Used to + base verb는 예전의 습관이나 상태를 말하고, be used to + 명사나 -ing는 익숙함을 뜻합니다.",
+    "usage": "Used to + base verb는 대체로 더 이상 성립하지 않는 과거 습관이나 상태를 말합니다. Be used to + 명사나 -ing는 익숙하다는 뜻이고, get used to는 적응을 강조합니다. be/get used to의 to는 부정사 표지가 아니라 전치사입니다.",
+    "pitfall": "I am used to wake early가 아니라 I am used to waking early를 쓰세요.",
+    "keywords": [
+      "used to",
+      "be used to",
+      "익숙함",
+      "과거 습관"
+    ]
+  },
+  "who-whom": {
+    "title": "who / whom",
+    "question": "격식 영어에서 whom은 언제 쓸까요?",
+    "summary": "Whom은 목적어를 표시할 수 있고, 특히 앞에 둔 전치사 뒤에 옵니다. 일상 말에서는 자주 who를 씁니다. 격식 용법만이 자연스러운 선택은 아닙니다.",
+    "usage": "Who는 보통 주어이고, 말에서는 목적어로도 널리 씁니다. Whom은 격식적인 목적격으로, 특히 앞에 둔 전치사 뒤에 옵니다. 앞 단어만 보지 말고 절 안에서 빠진 역할을 확인하세요. 일상 대화에 whom을 억지로 넣지 마세요.",
+    "pitfall": "Who did you invite?는 현대 영어에서 완전히 자연스럽습니다. 단정적으로 틀렸다고 표시하지 마세요.",
+    "keywords": [
+      "who",
+      "whom",
+      "목적격",
+      "관계대명사"
+    ]
+  },
+  "future": {
+    "title": "미래: will과 be going to",
+    "question": "계획에는 will일까요, going to일까요?",
+    "summary": "Will은 지금 내린 결정이나 예측을 나타낼 수 있고, be going to는 이전의 계획이나 눈앞의 근거를 자주 나타냅니다. 맥락이 중요합니다.",
+    "usage": "Will은 지금 내린 결정, 예측, 약속을 자주 표시합니다. Be going to는 이전의 의도나 현재 근거에 기반한 예측을 흔히 나타냅니다. 둘은 상당히 겹칩니다. 시간표는 단순 현재를, 약속은 현재진행을 쓸 수 있습니다.",
+    "pitfall": "모든 미래 표현을 will로 바꾸지 마세요. The train leaves at six는 정상적인 시간표 표현입니다.",
+    "keywords": [
+      "will",
+      "be going to",
+      "미래",
+      "계획"
+    ]
+  },
+  "present-continuous": {
+    "title": "현재진행",
+    "question": "지금에는 I work와 I am working 중 무엇이 맞을까요?",
+    "summary": "지금 또는 지금 무렵의 동작에는 be + -ing를 쓰세요. 습관의 단순 현재와 대조하세요.",
+    "usage": "현재진행은 지금 일어나는 활동, 일시적 상황, 가까운 미래의 약속을 흔히 나타냅니다. 단순 현재는 습관이나 안정된 사실을 흔히 나타냅니다. 진행형은 am/is/are + -ing로 만드세요. 일부 상태 동사는 의미가 바뀌지 않으면 진행형이 드뭅니다.",
+    "pitfall": "보통 I am knowing the answer가 아니라 I know the answer라고 하세요. I am thinking about it는 활동입니다.",
+    "keywords": [
+      "현재진행",
+      "be -ing",
+      "지금",
+      "습관"
+    ]
+  },
+  "some-any": {
+    "title": "some과 any",
+    "question": "some과 any는 어떻게 고를까요?",
+    "summary": "Some은 긍정문에 흔하고, any는 부정문과 열린 의문문에 흔합니다.",
+    "usage": "둘 다 복수 가산 명사와 물질 명사를 수식합니다. 긍정을 기대하는 요청과 권유는 자주 some을 씁니다. 긍정문에서 any는 어느 것이든을 뜻할 수 있습니다. 물음표만이 아니라 화자의 기대를 보세요.",
+    "pitfall": "Would you like some tea?는 자연스러운 권유입니다. any를 써야 하는 것은 아닙니다.",
+    "keywords": [
+      "some",
+      "any",
+      "긍정",
+      "의문문"
+    ]
+  },
+  "there-is": {
+    "title": "there is와 there are",
+    "question": "어딘가에 무언가가 있다고 어떻게 말할까요?",
+    "summary": "단수나 물질 명사에는 there is, 복수 명사에는 there are를 쓰세요.",
+    "usage": "여기서 there는 존재를 도입하며, 반드시 그 장소에서를 뜻하지는 않습니다. 보통 대상을 먼저 말하고 그다음 위치를 말하세요. 의문문에서는 is/are를 there 앞으로 옮기고, 부정문에서는 not을 is/are 뒤에 두세요.",
+    "pitfall": "격식 있는 글에서는 뒤 명사에 맞춰 단수와 복수를 일치시키세요.",
+    "keywords": [
+      "there is",
+      "there are",
+      "존재",
+      "있다"
+    ]
+  },
+  "possessive": {
+    "title": "소유 한정사와 대명사",
+    "question": "my와 mine의 차이는 무엇일까요?",
+    "summary": "My, your, her는 명사 앞에 오고, mine, yours, hers는 뒤따르는 명사 없이 설 수 있습니다.",
+    "usage": "my book과 the book is mine, our room과 the room is ours를 비교하세요. His는 두 자리에서 형태가 같습니다. Its는 한정사이고, 홀로 서는 its는 드뭅니다. It’s는 축약이지 소유가 아닙니다.",
+    "pitfall": "mine book이라고 쓰지 마세요. my book이나 This book is mine을 쓰세요.",
+    "keywords": [
+      "소유격",
+      "my mine",
+      "소유대명사",
+      "its"
+    ]
+  },
+  "imperatives": {
+    "title": "명령문",
+    "question": "짧은 지시는 어떻게 할까요?",
+    "summary": "명령문은 보통 base verb로 시작합니다. 부정은 do not이나 don’t + base verb를 씁니다.",
+    "usage": "주어 you는 보통 생략됩니다. Please는 요청을 부드럽게 할 수 있지만, 맥락과 관계는 여전히 중요합니다. 의문문이 더 적절할 수도 있습니다. Let’s + base verb는 함께하는 행동을 제안합니다.",
+    "pitfall": "not을 동사 바로 앞에 두지 마세요. Don’t open the door라고 하세요.",
+    "keywords": [
+      "명령문",
+      "don't",
+      "let's",
+      "지시"
+    ]
+  },
+  "past-continuous": {
+    "title": "과거진행",
+    "question": "과거에 진행 중이던 활동은 어떻게 말할까요?",
+    "summary": "과거진행은 was/were + -ing이며, 배경 활동에 자주 씁니다. 단순 과거는 끼어들거나 끝난 사건을 자주 이름 붙입니다.",
+    "usage": "I was reading when the phone rang에서 reading은 이미 진행 중이었고, 전화 소리는 또 다른 사건입니다. While은 동시에 일어난 활동을 연결할 수 있습니다. 펼쳐지는 과정에 진행형을 고르고, 모든 과거 동작에 자동으로 쓰지 마세요.",
+    "pitfall": "흔한 상태 동사는 여전히 보통 진행형을 피합니다. I was knowing it가 아니라 I knew the answer입니다.",
+    "keywords": [
+      "과거진행",
+      "was were",
+      "while",
+      "배경"
+    ]
+  },
+  "have-to": {
+    "title": "have to와 must",
+    "question": "의무에는 have to와 must 중 무엇을 쓸까요?",
+    "summary": "둘 다 의무를 나타낼 수 있습니다. have to는 밖의 요구를 자주 가리키고, must는 화자의 강한 요구를 강조할 수 있습니다.",
+    "usage": "Have to는 시제와 주어에 따라 바뀝니다. she has to, we had to, did you have to. Must에는 보통의 과거형이 없고, 과거 의무는 흔히 had to로 나타냅니다. 어조도 맥락, 지역, 격식에 따라 달라집니다.",
+    "pitfall": "부정은 다릅니다. must not은 금지하고, do not have to는 의무를 없앱니다.",
+    "keywords": [
+      "have to",
+      "must",
+      "의무",
+      "had to"
+    ]
+  },
+  "prepositions-time": {
+    "title": "시간 전치사 at, on, in",
+    "question": "시간에는 at, on, in 중 무엇일까요?",
+    "summary": "시각에는 at, 날짜와 요일에는 on, 달·해·더 긴 기간에는 in을 쓰세요.",
+    "usage": "At 7:30, on Monday, in October이 유용한 출발점입니다. 수식어가 중요합니다. on Monday morning이지만 in the morning입니다. at the weekend와 on the weekend처럼 지역에 따라 달라지는 표현도 있습니다.",
+    "pitfall": "last, next, this 앞에는 시간 전치사를 보통 생략하세요. next Monday.",
+    "keywords": [
+      "시간전치사",
+      "at on in",
+      "요일",
+      "시각"
+    ]
+  },
+  "gerund-infinitive": {
+    "title": "동사 뒤의 -ing와 to부정사",
+    "question": "다음 동사는 -ing일까요, to일까요?",
+    "summary": "동사마다 취하는 보충어가 다릅니다. enjoy는 흔히 -ing를, decide는 to + base verb를 취합니다.",
+    "usage": "둘 다 받지만 의미가 바뀌는 동사도 있습니다. remember locking the door는 끝난 행동을 떠올리고, remember to lock the door는 앞으로 할 일을 말합니다. 형태와 의미를 함께 익히고, 목록만 외우지 마세요.\n\n-ing와 to부정사를 마음대로 바꿀 일반 허가는 없습니다. avoid doing이나 decide to do처럼 한 보충어를 선호하는 동사가 있고, stop reading과 stop to read처럼 둘 다 되지만 의미나 초점이 다른 동사도 있습니다. 전치사 뒤에는 -ing가 보통입니다. look forward to meeting의 to는 부정사 표지가 아니라 전치사입니다. 낯선 동사는 그 패턴을 확인하세요.",
+    "pitfall": "전치사 뒤 동사는 보통 -ing를 취합니다. interested in to learn이 아니라 interested in learning입니다.",
+    "keywords": [
+      "동명사",
+      "to부정사",
+      "-ing",
+      "동사패턴"
+    ]
+  },
+  "present-perfect-progressive": {
+    "title": "현재완료진행",
+    "question": "have been doing은 언제 쓸까요?",
+    "summary": "현재완료진행은 과거에 시작해 지금까지 이어지는 활동, 또는 최근 효과가 남아 있는 활동을 강조합니다.",
+    "usage": "단순 완료와 비교하면 진행형은 과정이나 지속을 앞에 두는 경우가 많습니다. I have written three pages는 산출을 강조하고, I have been writing for an hour는 활동을 강조합니다. 상태 동사는 단순형을 선호하는 경우가 많습니다.",
+    "pitfall": "바로 이 순간에 활동이 계속된다는 뜻일 필요는 없습니다. It has been raining은 비가 그친 뒤 젖은 땅을 설명할 수 있습니다.",
+    "keywords": [
+      "현재완료진행",
+      "have been",
+      "지속",
+      "진행"
+    ]
+  },
+  "enough-too": {
+    "title": "enough와 too",
+    "question": "충분하거나 지나친 정도는 어떻게 말할까요?",
+    "summary": "Enough는 충분함을, too는 지나친 정도를 자주 표시합니다.",
+    "usage": "Enough는 형용사와 부사 뒤에 오고 명사 앞에 옵니다. old enough, enough time. Too는 형용사나 부사 앞에 옵니다. too heavy. to부정사와 함께 쓸 때는 누가 그 행동을 할 수 있는지 밝히세요. too heavy for me to carry.",
+    "pitfall": "보통의 충분함에는 enough old나 time enough가 아니라 old enough와 enough time이라고 하세요.",
+    "keywords": [
+      "enough",
+      "too",
+      "충분",
+      "지나친"
+    ]
+  },
+  "articles-zero": {
+    "title": "총칭의 무관사",
+    "question": "관사가 필요 없을 때는 언제일까요?",
+    "summary": "총칭의 복수 가산 명사와 총칭의 물질 명사는 관사가 없는 경우가 많습니다.",
+    "usage": "Cats need sleep는 The cats in this room need sleep와 다르고, Water is essential은 The water in this bottle is warm과 다릅니다. 고유명사와 굳어진 표현은 나름의 패턴이 있으므로, 총칭이 모든 관사 선택을 설명하지는 않습니다.",
+    "pitfall": "총칭의 단수 가산 명사에는 보통 한정사가 필요합니다. Cat needs sleep가 아니라 A cat needs sleep입니다.",
+    "keywords": [
+      "무관사",
+      "총칭",
+      "복수",
+      "물질명사"
+    ]
+  },
+  "relative-pronoun-omission": {
+    "title": "관계대명사 생략",
+    "question": "관계대명사는 언제 생략할 수 있을까요?",
+    "summary": "한정 관계절에서 목적격 관계대명사는 자주 생략할 수 있습니다. 주격 관계대명사는 보통 생략할 수 없습니다.",
+    "usage": "The book (that) I bought에서 I가 절의 주어이고 book이 bought의 목적어이므로 that은 사라질 수 있습니다. The book that fell에서 that은 주어이므로 남아야 합니다. 비한정 관계절은 이 생략을 보통 허용하지 않습니다.",
+    "pitfall": "The woman who called에서 who를 생략하지 마세요.",
+    "keywords": [
+      "관계대명사",
+      "생략",
+      "목적격",
+      "who"
+    ]
+  },
+  "although-however": {
+    "title": "although와 however",
+    "question": "although와 however를 바꿔 쓸 수 있을까요?",
+    "summary": "Although는 종속절을 이끕니다. however는 독립된 진술을 대조하는 연결 부사인 경우가 많습니다.",
+    "usage": "Although the plan is costly, it may work에는 종속절이 있습니다. The plan is costly. However, it may work에는 별개의 문장이 있습니다. 격식 산문에서 두 독립 문장을 however 앞의 쉼표만으로 잇지 마세요. 마침표나 세미콜론을 쓰세요.",
+    "pitfall": "However the plan is costly는 Although the plan is costly를 단순히 대체하지 않습니다.",
+    "keywords": [
+      "although",
+      "however",
+      "대조",
+      "접속"
+    ]
+  },
+  "wish-if-only": {
+    "title": "wish와 if only",
+    "question": "사실과 반대되는 소망은 어떻게 말할까요?",
+    "summary": "현재 현실과 반대되는 소망에는 wish + 과거형을, 과거에 대한 후회에는 wish + had + past participle를 쓰세요.",
+    "usage": "I wish I knew the answer는 지금 그것을 모른다는 뜻입니다. I wish I had known은 더 이전의 지식 부족을 가리킵니다. Wish + would는 누군가의 행동이나 상황의 변화를 부탁할 수 있고, 자주 답답함이 섞입니다. If only는 감정의 힘을 키우는 경우가 많습니다.",
+    "pitfall": "여기서 과거형은 단순히 과거 시간이 아니라 비현실을 표시합니다. I wish I know는 현재의 반사실을 보통 나타내지 않습니다.",
+    "keywords": [
+      "wish",
+      "if only",
+      "소망",
+      "후회"
+    ]
+  },
+  "used-to-would": {
+    "title": "used to와 would의 과거 습관",
+    "question": "would가 과거 습관을 말할 수 있을까요?",
+    "summary": "Used to는 과거 습관이나 상태를 말할 수 있습니다. would는 과거 틀이 이미 분명할 때 반복된 행동을 말할 수 있습니다.",
+    "usage": "When we were children, we would play by the river는 반복된 활동을 말합니다. We used to live by the river는 과거 상태를 말합니다. 습관의 would는 보통 이미 자리 잡은 과거 배경이 필요하며, 변하지 않는 상황에는 보통 쓰지 않습니다.",
+    "pitfall": "습관의 We would live by the river는 We used to live by the river를 자연스럽게 대체하지 않습니다.",
+    "keywords": [
+      "used to",
+      "would",
+      "과거 습관",
+      "반복"
+    ]
+  },
+  "its-it-is": {
+    "title": "its와 it’s",
+    "question": "its와 it’s의 차이는 무엇일까요?",
+    "summary": "Its는 소유 한정사입니다. it’s는 it is나 it has의 축약입니다.",
+    "usage": "it’s를 it is나 it has로 풀어 보세요. 그것이 되면 아포스트로피를 쓰세요. it에 속하거나 연결된 것에는 its를 쓰세요. it has 축약은 완료 구문에 자주 나옵니다. It’s been a long day.",
+    "pitfall": "다른 소유격을 흉내 내어 the dog wagged it’s tail이라고 쓰지 마세요.",
+    "keywords": [
+      "its",
+      "it's",
+      "아포스트로피",
+      "소유"
+    ]
+  },
+  "comma-splice": {
+    "title": "콤마 스플라이스",
+    "question": "쉼표만으로 두 독립절을 이을 수 있을까요?",
+    "summary": "격식 산문에서 쉼표만으로는 두 독립절을 일반적으로 이을 수 없습니다.",
+    "usage": "마침표, 세미콜론, 또는 and나 but 같은 등위 접속사와 쉼표를 쓰세요. 아니면 한 절을 종속절로 만드세요. 문학 산문은 의도적인 콤마 스플라이스를 쓰기도 하지만, 표준 학술 산문은 일반적으로 피합니다.",
+    "pitfall": "표준 산문에서는 It was late, we left를 It was late, so we left나 다른 올바른 구조로 고치세요.",
+    "keywords": [
+      "콤마",
+      "독립절",
+      "접속",
+      "세미콜론"
+    ]
+  },
+  "parallelism": {
+    "title": "병렬 구조",
+    "question": "목록을 문법적으로 병렬로 유지하려면 어떻게 할까요?",
+    "summary": "같은 문법 역할을 하는 등위 항목은 비슷한 형태가 관계를 알아보기 쉽게 합니다.",
+    "usage": "She likes reading, writing and editing은 세 개의 -ing를 씁니다. 비교도 병렬 논리가 필요합니다. The new method is faster than the old one. 병렬은 단어 수가 같을 필요는 없고, 역할과 의미가 견줄 만하면 됩니다.",
+    "pitfall": "to read, writing, and edit처럼 한 등위 목록에 형태가 우연히 섞이는 것을 피하세요.",
+    "keywords": [
+      "병렬",
+      "목록",
+      "구조",
+      "등위"
+    ]
+  },
+  "nominalisation": {
+    "title": "명사화와 동사",
+    "question": "명사화가 문장을 흐릴 수 있을까요?",
+    "summary": "명사화는 정보를 압축할 수 있지만, 행위자와 행위도 숨길 수 있습니다.",
+    "usage": "The committee decided는 A decision was made by the committee보다 더 직접적입니다. 그러나 개념 자체가 주제이거나 앞선 이야기와 연결될 때는 the decision이 유용합니다. 글의 목적에 따라 고르고, 행위자를 여전히 알아볼 수 있는지 확인하세요.",
+    "pitfall": "모든 -tion이나 -ment 명사가 나쁜 것은 아닙니다. 문제는 정보를 불필요하게 흐리는지입니다.",
+    "keywords": [
+      "명사화",
+      "동사",
+      "행위자",
+      "간결"
+    ]
+  },
+  "scope-negation": {
+    "title": "부정의 범위",
+    "question": "not all과 none은 같은 뜻일까요?",
+    "summary": "Not all은 모든 구성원이 해당한다는 것을 부정하고, none은 어느 구성원도 해당하지 않는다고 부정합니다. 서로 바꿔 쓸 수 없습니다.",
+    "usage": "Not all participants agreed는 동의가 모두가 아니었다는 뜻이지, 정확한 수를 주지는 않습니다. None of the participants agreed는 동의하는 집단에서 모든 참가자를 뺍니다. 논증을 읽을 때 수량어와 부정의 범위를 유지하세요.",
+    "pitfall": "not necessarily를 necessarily not과 같다고 보지 마세요. 전자는 필연을 부정하고, 후자는 반대가 필연이라고 단언합니다.",
+    "keywords": [
+      "부정",
+      "not all",
+      "none",
+      "범위"
+    ]
+  },
+  "presupposition": {
+    "title": "표현 속의 전제",
+    "question": "표현이 말하지 않은 사실을 전제할 수 있을까요?",
+    "summary": "stop, still, even 같은 말은 주요 주장 너머의 배경 가정을 자주 들여옵니다.",
+    "usage": "She stopped smoking은 보통 이전에 담배를 피웠음을 전제합니다. She still works here는 가능한 기대와 달리 고용이 계속됨을 시사합니다. Even Jo passed는 어떤 척도에서 Jo의 합격을 놀라운 것으로 틀 짓습니다. 맥락, 부정, 정정이 이런 추론에 영향을 줄 수 있습니다. 검증된 사실은 아닙니다.",
+    "pitfall": "still이나 finally를 인용할 때는 그것이 누구의 가정인지 밝힌 뒤 자신의 근거로 제시하세요.",
+    "keywords": [
+      "전제",
+      "still",
+      "even",
+      "stop"
+    ]
+  },
+  "cleft-focus": {
+    "title": "분열문과 초점",
+    "question": "It was ... that은 무엇을 초점으로 둘까요?",
+    "summary": "it-분열문은 한 성분을 초점으로 제시하고 나머지 명제를 배경으로 다룹니다.",
+    "usage": "It was Maya who found the error는 찾은 사람에 초점을 둡니다. It was the error that Maya found는 발견된 대상에 초점을 둡니다. 초점이 실제 쟁점에 답하는지 확인하세요. 그렇지 않으면 무엇을 바로잡는지 읽는 사람이 오해할 수 있습니다. Who와 that이 흔한 연결어입니다.",
+    "pitfall": "모든 분열문의 it를 구체적인 사물을 가리키는 것으로 읽지 마세요.",
+    "keywords": [
+      "분열문",
+      "초점",
+      "강조",
+      "it was"
+    ]
+  },
+  "only-scope": {
+    "title": "only의 범위",
+    "question": "only는 위치에 따라 의미가 어떻게 달라질까요?",
+    "summary": "Only는 초점인 성분을 제한합니다. 위치와 강세가 해석을 바꿀 수 있습니다.",
+    "usage": "Only Sara reviewed the draft는 다른 검토자를 제외합니다. Sara only reviewed the draft는 검토만 하고 고치지는 않았다는 뜻일 수 있습니다. 글에는 말의 강세가 없습니다. only를 의도한 초점 가까이에 두고, 맥락으로 모호함을 없애세요.\n\n위치가 보통 범위를 알려 줍니다. Only Nora sent the draft는 보낸 사람을 제한하고, Nora sent only the draft는 보낸 것을 제한합니다. Nora only sent the draft는 단지 보냈을 뿐이라는 뜻일 수 있습니다. 강세와 맥락은 여전히 말의 해석을 바꿀 수 있습니다. 정확한 글에서는 only를 의도한 요소 옆에 두고, 구분이 논증에 영향을 주면 다시 쓰세요. 어순만으로 모든 맥락에서 하나의 해석이 보장되지는 않습니다.",
+    "pitfall": "Sara reviewed only the draft는 검토한 사람이 아니라 목적어를 제한합니다.",
+    "keywords": [
+      "only",
+      "범위",
+      "초점",
+      "위치"
+    ]
+  },
+  "because-because-of": {
+    "title": "because / because of",
+    "question": "because와 because of 뒤에는 무엇이 올까요?",
+    "summary": "Because는 절을 이끌고, because of는 명사구를 이끕니다.",
+    "usage": "이유의 형태를 보세요. the road was closed는 because 뒤의 절이고, the road closure는 because of 뒤의 명사구입니다. 앞에 오는 이유절 뒤에는 보통 쉼표가 오고, 뒤에 오는 이유절에는 보통 없습니다. Because of는 대명사나 명사적 -ing구도 취할 수 있습니다. 비슷한 이유는 어느 형태로든 말할 수 있지만, 그 뒤의 문법은 다릅니다.",
+    "pitfall": "because of the road was closed는 피하세요. of를 빼거나 이유를 명사구로 바꾸세요.",
+    "keywords": [
+      "because",
+      "because of",
+      "이유",
+      "접속사"
+    ]
+  },
+  "indirect-questions": {
+    "title": "간접의문문",
+    "question": "간접의문문이 평서문 어순인 이유는 무엇일까요?",
+    "summary": "안에 들어간 의문문은 보통 평서문 어순입니다. 예/아니오 의문문은 if나 whether를 씁니다.",
+    "usage": "Where does the bus stop?가 Do you know where the bus stops?가 되면, 안에 들어간 부분은 do-support와 도치를 잃습니다. 과거 시간의 질문에서는 과거 의미는 유지하되 의문 조동사 did는 유지하지 마세요. Could you tell me...?는 공손한 의문문이라 물음표를 취하고, I wonder...는 평서문이라 보통 마침표를 취합니다. 안에 들어간 예/아니오 의문문은 if나 whether로 절을 열고 평서문 어순을 유지하세요.",
+    "pitfall": "Could you tell me where does the bus stop?는 피하세요. 도치되는 것은 바깥 의문문뿐입니다.",
+    "keywords": [
+      "간접의문",
+      "어순",
+      "whether",
+      "if"
+    ]
+  },
+  "either-neither": {
+    "title": "either / neither",
+    "question": "either와 neither는 두 대안을 어떻게 가리킬까요?",
+    "summary": "Either는 둘 중 하나이고, neither는 둘 다 아니라는 뜻입니다. Either...or는 대안을 제시하고, neither...nor는 둘 다 거부합니다.",
+    "usage": "한정사로서 either와 neither는 단수 가산 명사 앞에 옵니다. either route, neither answer. 한정사와 복수 명사, 또는 대명사 앞에는 either/neither of를 쓰세요. neither of the routes, either of us. 격식 있는 글은 이것들이 주어일 때 단수 동사를 흔히 씁니다. 비격식 말에서는 복수 일치도 나타나므로 절대적인 오류는 아닙니다. either...or와 neither...nor의 짝은 병렬로 유지하세요. 복합 주어와의 일치는 더 가까운 요소와 문체에 따라 달라질 수 있습니다.",
+    "pitfall": "Neither는 이미 부정입니다. 같은 부정을 나타내려고 not을 더하지 마세요. 셋 이상에는 neither를 none 자리에 자동으로 쓰지 마세요.",
+    "keywords": [
+      "either",
+      "neither",
+      "둘",
+      "or nor"
+    ]
+  },
+  "unless": {
+    "title": "unless / if not",
+    "question": "unless가 if not을 항상 대체할 수 있을까요?",
+    "summary": "Unless는 자주 ~가 아닌 한을 뜻하며 예외를 도입합니다. 모든 if not 절을 대체하지는 않습니다.",
+    "usage": "You cannot enter unless you have a pass는 통행증이 있는 것을 금지의 예외로 제시합니다. 미래 쪽 조건에서 unless절은 보통 will이 아니라 현재형을 씁니다. If not은 단지 부정 조건을 말하거나, 무언가가 참이 아닌지에 대한 물음을 열 수 있습니다. unless로 바꾸면 초점이 바뀔 수 있습니다. 그 절이 정말 유일한 예외를 가리키는지 확인하세요. Unless는 이미 부정 조건의 의미를 가지므로, not을 하나 더 넣으면 의도한 뜻이 뒤집힐 수 있습니다.",
+    "pitfall": "unless를 중립적인 if로 읽지 말고, 미래 조건에 unless you will have a pass라고 보통 쓰지 마세요.",
+    "keywords": [
+      "unless",
+      "if not",
+      "예외",
+      "조건"
+    ]
+  },
+  "during-while": {
+    "title": "during / while",
+    "question": "during과 while 뒤에는 무엇이 올까요?",
+    "summary": "During은 기간을 이름 붙이는 명사구를 취하고, while은 보통 절을 이끕니다.",
+    "usage": "During the meeting과 while we were meeting은 같은 기간을 말할 수 있지만, 뒤따르는 구조는 다릅니다. During은 맥락에 따라 사건 중의 어느 시점이나 내내를 뜻할 수 있습니다. While은 동시에 일어나는 행동을 자주 강조하고, 대조를 나타내기도 합니다. 주어가 같고 분명하면 while waiting 같은 줄어든 절이 가능합니다. 뒤에 오는 것이 명사구인지 절인지 먼저 확인하세요.",
+    "pitfall": "during we waited는 피하세요. while we waited나 during the wait를 쓰세요.",
+    "keywords": [
+      "during",
+      "while",
+      "동안",
+      "시간"
+    ]
+  },
+  "like-as": {
+    "title": "like / as",
+    "question": "비교와 역할에서 like와 as는 어떻게 다를까요?",
+    "summary": "Like는 흔히 ~와 비슷하게를 뜻하고, as는 역할이나 기능을 밝히며 비교절을 이끌 수 있습니다.",
+    "usage": "She works as a guide는 실제 역할을 말하고, she talks like a guide는 닮음을 말합니다. 완전한 비교절 앞에서는 격식 있는 글이 as를 선호하는 경우가 많습니다. Do it as I showed you. Like와 절의 결합은 말에서도 흔하며, 보편적으로 틀렸다고 단정하지 마세요. As는 이유절이나 시간절도 이끌 수 있으므로 맥락이 중요합니다. 명사나 대명사 앞의 like가 닮음을 표시하는 직접적인 방법입니다.",
+    "pitfall": "Work like a guide와 work as a guide는 다릅니다. 전자는 비교이고, 후자는 역할을 이름 붙입니다.",
+    "keywords": [
+      "like",
+      "as",
+      "비교",
+      "역할"
+    ]
+  },
+  "stop-gerund-infinitive": {
+    "title": "stop doing / stop to do",
+    "question": "stop doing과 stop to do의 뜻이 다른 이유는 무엇일까요?",
+    "summary": "Stop doing은 활동을 끝내고, stop to do는 다른 일을 하려고 한 활동을 멈춥니다.",
+    "usage": "She stopped reading은 읽기가 끝났다는 뜻입니다. She stopped to read는 읽기 위해 다른 활동을 멈췄다는 뜻입니다. to read는 목적이며, 중단된 활동이 아닙니다. Stop somebody from doing something은 행동을 막는다는 뜻이며 from 뒤에 -ing가 옵니다. 패턴을 고르기 전에 실제로 무엇이 멈췄는지 확인하세요.",
+    "pitfall": "담배를 끊는 데는 stop smoking을 쓰세요. stop to smoke는 담배를 피우려고 멈춘다는 뜻입니다.",
+    "keywords": [
+      "stop doing",
+      "stop to",
+      "중단",
+      "목적"
+    ]
+  },
+  "remember-gerund-infinitive": {
+    "title": "remember doing / remember to do",
+    "question": "remember doing과 remember to do의 차이는 무엇일까요?",
+    "summary": "Remember doing은 끝난 사건을 떠올리고, remember to do는 할 일을 잊지 않는다는 뜻입니다.",
+    "usage": "I remember locking the door는 사건을 돌아봅니다. I remembered to lock the door는 그 일을 잊지 않고 해냈다는 뜻입니다. 부정이 중요합니다. I do not remember locking it는 기억이 없다는 보고이지, 잠기지 않은 채였다는 증거가 아닙니다. I did not remember to lock it는 보통 잊은 일을 보고합니다. Forget doing과 forget to do도 관련된 대조를 보이지만, 정확한 맥락은 여전히 확인이 필요합니다.",
+    "pitfall": "잠갔던 기억에는 I remember to lock it가 아니라 I remember locking it라고 하세요.",
+    "keywords": [
+      "remember",
+      "기억",
+      "할 일",
+      "동명사"
+    ]
+  },
+  "suggest-patterns": {
+    "title": "suggest + -ing / that절",
+    "question": "suggest가 사람 더하기 to부정사를 취할 수 있을까요?",
+    "summary": "제안에는 suggest + -ing나 suggest that + 절을 쓰세요. tell 패턴인 suggest someone to do는 쓰지 않습니다.",
+    "usage": "I suggest leaving early는 행동을 제안하고, I suggest that we leave early는 행위자를 밝힙니다. 격식 영어는 that절에 동사원형을 쓸 수 있고, 보통의 시제 형태도 나타납니다. Suggest는 suggest a date처럼 제안을 이름 붙이는 명사를 취할 수 있습니다. 받는 사람을 밝히려면 사람을 to부정사 앞에 두지 말고 suggest to someone that...이라고 하세요. Suggest는 간접적으로 나타낸다는 뜻도 있으며, 그때는 제안이 아닙니다.",
+    "pitfall": "She suggested me to call은 피하세요. She suggested that I call이나 She suggested calling을 쓰세요.",
+    "keywords": [
+      "suggest",
+      "제안",
+      "that절",
+      "-ing"
+    ]
+  },
+  "neednt-mustnt": {
+    "title": "needn’t / mustn’t",
+    "question": "needn’t와 mustn’t가 다른 이유는 무엇일까요?",
+    "summary": "Needn’t는 필요가 없다는 뜻이고, mustn’t는 금지나 하지 말라는 강한 지시입니다.",
+    "usage": "You needn’t print the form은 전자 사본을 허용하고, you mustn’t print it는 인쇄를 금지합니다. Don’t need to와 needn’t는 필요가 없음을 비슷하게 나타내는 경우가 많지만 형태가 다릅니다. needn’t는 동사원형을, don’t need to는 to부정사를 취합니다. 과거에서 didn’t need to do는 필요가 없었다는 뜻이며 실제 행동은 열어 둘 수 있습니다. needn’t have done은 보통 불필요하게 그 행동이 일어났음을 함의합니다.",
+    "pitfall": "일찍 오는 것이 선택이라는 뜻으로 You mustn’t come early를 쓰지 마세요. 금지처럼 들립니다.",
+    "keywords": [
+      "needn't",
+      "mustn't",
+      "필요 없다",
+      "금지"
+    ]
+  },
+  "whether-if": {
+    "title": "whether / if",
+    "question": "whether와 if가 바꿔 쓰이지 않을 때는 언제일까요?",
+    "summary": "둘 다 많은 내포된 예/아니오 의문문을 이끌 수 있습니다. 명시적 대안이 있거나 전치사 뒤에는 whether가 더 안전합니다.",
+    "usage": "I don’t know whether/if the door is open은 어느 단어든 가능합니다. Whether...or not은 대안을 분명히 합니다. Whether는 to부정사 앞에 올 수 있지만 if to leave는 안 됩니다. 전치사 뒤에는 whether를 쓰세요. a discussion about whether to proceed처럼 말입니다. If는 조건도 이끕니다. whether는 whether와 if의 의미 사이 모호함을 없앨 수 있습니다. 안에 들어간 의문문은 평서문 어순을 유지하세요.",
+    "pitfall": "We discussed about if to leave는 피하세요. We discussed whether to leave라고 하세요.",
+    "keywords": [
+      "whether",
+      "if",
+      "간접의문",
+      "선택"
+    ]
+  },
+  "modal-perfect": {
+    "title": "must have / might have / can’t have",
+    "question": "조동사 완료형은 과거 추론을 어떻게 나타낼까요?",
+    "summary": "Must have done은 강한 과거 추론, might/may have done은 가능성, can’t have done은 추론된 불가능을 나타냅니다.",
+    "usage": "이 형태들은 과거 사건에 대한 화자의 현재 판단을 보여 주며, 직접 목격 보고가 아닙니다. The lights are off; they must have left는 근거에서 나온 추론입니다. Could have done은 맥락에 따라 과거의 가능성이나 이루어지지 않은 기회를 시사할 수 있습니다. Should have done은 같은 종류의 추론이라기보다, 하지 않은 행동을 자주 비판합니다. 부정 추론은 보통 mustn’t have done이 아니라 can’t have done을 씁니다.",
+    "pitfall": "떠나야 했다는 과거 의무에 must have left를 쓰지 마세요. 그것은 보통 추론을 나타냅니다.",
+    "keywords": [
+      "must have",
+      "might have",
+      "과거 추론",
+      "can't have"
+    ]
+  },
+  "question-tags": {
+    "title": "부가의문",
+    "question": "부가의문은 조동사와 대명사를 어떻게 고를까요?",
+    "summary": "부가의문은 보통 주절의 조동사와 주어를 되풀이하며, 자주 긍정과 부정이 반대입니다.",
+    "usage": "She is ready, isn’t she?는 is를 반복하고 she를 씁니다. they have finished, haven’t they?는 have를 반복합니다. 주절에 조동사가 없으면 do/does/did를 쓰세요. You work here, don’t you? 명령문과 Let’s...에는 will you?와 shall we? 같은 관용 부가가 있습니다. 억양도 중요합니다. 내려가는 부가는 확인을 자주 구하고, 올라가는 부가는 진짜 질문일 수 있습니다. 구두점만으로는 이 차이를 담지 못합니다.",
+    "pitfall": "모든 진술에 is it를 붙이지 마세요. 인칭, 시제, 조동사를 확인하세요.",
+    "keywords": [
+      "부가의문",
+      "조동사",
+      "꼬리질문",
+      "isn't"
+    ]
+  },
+  "as-long-as": {
+    "title": "as long as / if",
+    "question": "as long as는 조건에 무엇을 더할까요?",
+    "summary": "As long as는 ~하기만 하면을 뜻하며 필요한 조건을 강조할 수 있습니다. 기간을 가리킬 수도 있습니다.",
+    "usage": "You may borrow the camera as long as you return it tonight은 돌려주는 것을 허가의 조건으로 만듭니다. 평범한 if는 그런 요건을 반드시 강조하지 않고 가능성을 도입합니다. 미래 쪽 조건에서 조건절은 보통 현재형을 씁니다. As long as는 글자 그대로 기간을 말할 수도 있습니다. I stayed as long as I could. 문장이 조건의 결과인지 시간의 길이인지 정하세요.",
+    "pitfall": "모든 as long as를 조건으로 보지 마세요. stayed나 waited와 함께면 기간을 말할 수 있습니다.",
+    "keywords": [
+      "as long as",
+      "조건",
+      "기간",
+      "if"
+    ]
+  },
+  "subject-verb-agreement": {
+    "title": "주어와 동사의 일치",
+    "question": "동사는 단수일까요, 복수일까요?",
+    "summary": "동사는 가까운 명사가 아니라 문법적 주어와 일치합니다. is인지 are인지, has인지 have인지, 현재 동사에 -s를 붙일지를 고르세요.",
+    "usage": "진짜 주어를 찾으세요. The list of names is long에서 주어는 names가 아니라 list입니다. together with, as well as, including 뒤의 명사는 단수 주어를 보통 복수로 만들지 않습니다. Each, every, everyone은 보통 단수 동사를 취합니다. News와 mathematics는 끝의 -s에도 단수 동사를 취하고, people은 복수 동사를 취합니다.\n\n신중한 글에서 there is나 there are는 뒤 명사와 일치합니다. There is a key, There are two keys. There's two keys는 말에서 흔하지만 신중한 문어 형태는 아닙니다. team이나 family 같은 집합 명사는 집단을 하나의 단위로 볼 때 미국 영어에서 자주 단수이고, 구성원이 중요할 때 영국 영어에서는 복수일 수 있습니다. either of나 neither of가 주어이면 격식 있는 글은 보통 단수 동사를 선호합니다.",
+    "pitfall": "가장 가까운 명사가 결정하게 두지 마세요. The box of pencils is missing이지, are missing이 아닙니다.",
+    "keywords": [
+      "수일치",
+      "주어",
+      "단수",
+      "복수"
+    ]
+  },
+  "past-perfect": {
+    "title": "과거완료",
+    "question": "두 과거 사건에 had + past participle가 필요할 때는 언제일까요?",
+    "summary": "다른 과거 시점보다 앞선 사건에는 had + past participle를 쓰세요. 더 격식 있는 단순 과거가 아닙니다.",
+    "usage": "두 과거 시간 중 어느 쪽이 더 이른지 정하세요. When we arrived, the talk had started에서 시작은 도착보다 이릅니다. Already, just, never는 그 더 이른 과거를 자주 표시합니다. before나 after가 이미 순서를 분명하게 하면 단순 과거 둘로 충분한 경우가 많습니다. I locked the door before I left. 과거완료는 그렇지 않으면 순서가 불분명할 때 가장 유용합니다.\n\n모든 과거 사건에 had를 붙이지 마세요. 시간 순으로 이야기하는 연속은 보통 단순 과거를 씁니다. 과거완료는 지금이 아니라 또 다른 과거 순간을 기준으로 삼습니다. 현재와 연결된 과거 사건은 여전히 현재완료를 씁니다.",
+    "pitfall": "더 나중 과거 사건에 had를 붙이지 마세요. 도착이 더 나중이므로, 또 다른 나중 시점을 의도하지 않는 한 When we had arrived, the talk started는 보통의 시간선을 뒤집습니다.",
+    "keywords": [
+      "과거완료",
+      "had",
+      "순서",
+      "대과거"
+    ]
+  },
+  "past-perfect-continuous": {
+    "title": "과거완료진행",
+    "question": "had been doing은 was doing과 어떻게 다를까요?",
+    "summary": "Had been + -ing는 과거 시점까지 이어진 활동을 보여 주며, 그때의 결과가 있는 경우가 많습니다. Was doing은 그 순간에 진행 중이었다는 뜻입니다.",
+    "usage": "과거 시점 전에 활동이 얼마나 오래, 또는 얼마나 반복해서 이어졌는지 말하려면 과거완료진행을 쓰세요. I had been waiting for an hour when the bus came. 결과도 보이는 경우가 많습니다. her eyes were red because she had been editing. know나 own 같은 상태 동사는 이 형태를 보통 취하지 않습니다.\n\nWas waiting은 시점을 그 순간 안에 둡니다. Had been waiting은 더 이른 시간부터 그 순간까지 이어집니다. 기다림이 그때 진행 중이었다는 뜻만이면 과거진행으로 충분합니다.",
+    "pitfall": "그때 단순히 진행 중이던 행동에 had been doing을 쓰지 마세요. The phone rang while I was cooking에는 had been이 필요 없습니다.",
+    "keywords": [
+      "과거완료진행",
+      "had been",
+      "was doing",
+      "지속"
+    ]
+  },
+  "future-continuous": {
+    "title": "미래진행",
+    "question": "will be doing이 맞는 미래는 언제일까요?",
+    "summary": "Will be + -ing는 미래 시점에 진행 중인 행동을 표시하고, 누군가의 계획을 공손하게 물을 수 있습니다. 갑작스러운 결정은 다른 미래를 씁니다.",
+    "usage": "미래 시점을 밝히세요. At 8 tomorrow I will be sitting on the train. 이 형태는 말하는 순간에 내린 결정보다, 당연한 일로 진행 중인 행동을 제시하는 경우가 많습니다. Will you be passing the post office?는 경로를 이미 있는 계획으로 다루며 Will you pass...?보다 덜 다그칩니다.\n\n갑작스러운 결정, 약속, 또는 완료될 행동의 예측은 보통 will + base form을 씁니다. I'll open the window. 정해진 개인 약속은 현재진행이 더 흔합니다. I'm meeting Sam at 8. 패턴은 will be와 -ing형입니다.",
+    "pitfall": "-ing를 빼지 말고, past participle를 쓰지 마세요. At 8 I will be travelling이지, will be travel이나 will be travelled가 아닙니다.",
+    "keywords": [
+      "미래진행",
+      "will be",
+      "진행",
+      "계획"
+    ]
+  },
+  "future-perfect": {
+    "title": "미래완료",
+    "question": "미래 시점 전에 끝날 일은 어떻게 말할까요?",
+    "summary": "Will have + past participle는 미래 기한 전에 완료됨을 뜻합니다. By와 by the time이 그 기한을 자주 제공합니다.",
+    "usage": "먼저 기한을 찾고, 그 전에 행동이 완료되는지 정하세요. By June she will have finished the course는 6월이 되면 이미 완료된 사실이라는 뜻이지, 6월 중에 끝난다는 뜻이 아닙니다. by the time절은 현재형을 쓰고 주절은 미래완료를 씁니다. By the time you arrive, I will have left.\n\n한 시점 전의 완료 없이 그저 일어날 일이면 will + base form이나 be going to를 쓰세요. have 뒤 동사를 base form으로 두지 마세요.",
+    "pitfall": "will have finish는 피하고, by the time절에 will을 넣지 마세요. By the time you arrive, I will have left.",
+    "keywords": [
+      "미래완료",
+      "will have",
+      "by",
+      "기한"
+    ]
+  },
+  "present-for-future": {
+    "title": "미래를 나타내는 현재형",
+    "question": "미래 의미인데 will을 쓰지 않을 때는 언제일까요?",
+    "summary": "시간표와 프로그램은 자주 단순 현재를 씁니다. 정해진 개인 약속은 자주 현재진행을 씁니다. Will은 결정, 약속, 예측에 맞습니다.",
+    "usage": "기차, 항공편, 수업, 공연이 시간표대로 움직이면 단순 현재가 자연스럽습니다. The train leaves at 6. 지금 일어나고 있다는 뜻이 아니라, 미래를 고정된 일정으로 다룹니다. 이미 잡아 둔 일에는 현재진행이 보통입니다. I'm seeing the dentist tomorrow. 말하는 중에 내린 결정이나 예측은 will이나 be going to를 씁니다.\n\n미래 시간절과 if절도 will이 아니라 현재형을 씁니다. I'll call you when I land. 중국어의 미래 표지 하나가 모든 영어 미래에 대응하지는 않습니다. 시간표인지, 약속인지, 결정인지, 종속절인지 먼저 물어 보세요.",
+    "pitfall": "모든 미래에 will을 붙이지 마세요. The train leaves at 6은 시간표이고, I'm seeing the dentist tomorrow는 약속입니다.",
+    "keywords": [
+      "현재로 미래",
+      "시간표",
+      "약속",
+      "will"
+    ]
+  },
+  "stative-verbs": {
+    "title": "상태 동사",
+    "question": "어떤 동사는 진행형을 피하는 이유는 무엇일까요?",
+    "summary": "앎, 좋아함, 소유, 감각, 인상을 나타내는 동사는 보통 단순형을 취합니다. 같은 동사도 활동을 뜻하면 진행형을 취할 수 있습니다.",
+    "usage": "Know, believe, like, own, seem, belong은 한 걸음씩의 행동이 아니라 상태를 말하므로 I'm knowing her가 아니라 I know her라고 하세요. 중국어의 진행 표지가 자동으로 영어 진행형이 되지는 않습니다. 소유의 have는 단순형으로 남습니다. I have a car. 활동의 have는 진행형이 될 수 있습니다. I'm having lunch. I think은 의견을 주고, I'm thinking은 생각하는 일이 진행 중이라는 뜻입니다.\n\nSee, hear, smell, taste는 의도하지 않은 지각에는 보통 단순형으로 남거나 can을 씁니다. 만남, 지켜보기, 의도적인 냄새 맡기나 맛보기를 뜻하면 진행형이 자연스럽습니다. I'm seeing the dentist, I'm tasting the soup. 그 문장에서 동사가 상태인지 활동인지 물어 보세요.",
+    "pitfall": "I'm knowing, I'm owning, I'm having a car는 피하세요. 소유는 I have a car이고, 식사는 I'm having lunch가 될 수 있습니다.",
+    "keywords": [
+      "상태동사",
+      "진행형",
+      "know",
+      "have"
+    ]
+  },
+  "adverbs-of-frequency": {
+    "title": "빈도 부사",
+    "question": "always, often, never는 어디에 둘까요?",
+    "summary": "Always, usually, often, sometimes, rarely, never는 보통 본동사 앞이나 be 뒤에 옵니다.",
+    "usage": "She always arrives early에서 always는 arrives 앞에 옵니다. She is always early에서는 is 뒤에 옵니다. 조동사가 있으면 첫 조동사 뒤에 옵니다. I have never tried it. Sometimes와 often은 문장 끝에도 올 수 있습니다. I walk to work sometimes.\n\nNever, rarely, seldom은 이미 부정이므로 not을 더하지 마세요. Always she is early는 가끔 쓰는 강조이지 보통 위치가 아닙니다. 이 부사들은 어떻게가 아니라 얼마나 자주에 답합니다.",
+    "pitfall": "always를 기본으로 맨 앞에 두지 말고, She doesn't never arrive는 피하세요. Never는 이미 부정입니다.",
+    "keywords": [
+      "빈도부사",
+      "always",
+      "never",
+      "위치"
+    ]
+  },
+  "can-could-able": {
+    "title": "can, could, be able to",
+    "question": "능력에는 can, could, be able to 중 무엇일까요?",
+    "summary": "Can은 현재 능력, 가능성, 비격식 허가에 씁니다. Could는 일반적인 과거 능력, 공손한 요청, 현재 가능성에 씁니다. 특정한 과거의 성공은 자주 was able to입니다.",
+    "usage": "I can swim은 현재 능력입니다. I could swim when I was five는 과거의 일반 능력입니다. 누군가 성공한 한 번의 과거에는 was/were able to나 managed to를 자주 씁니다. The exit was blocked, but we were able to climb out. 시도가 실패했다면 couldn't와 wasn't able to 모두 괜찮습니다.\n\nCan에는 부정사가 없으므로 다른 시제는 be able to를 씁니다. I will be able to help tomorrow, She has been able to walk again. Could는 확실성이 더 낮은 현재 가능성도 줍니다. That could be the reason. 능력과 허가를 나타내는 중국어 단어가 모두 하나의 영어 조동사에 대응하지는 않습니다.",
+    "pitfall": "한 번의 과거 성공에 I could climb out만 기대지 마세요. 그 특정 성공은 보통 we were able to climb out입니다.",
+    "keywords": [
+      "can",
+      "could",
+      "be able to",
+      "능력"
+    ]
+  },
+  "should-ought-had-better": {
+    "title": "should, ought to, had better",
+    "question": "조언에는 should, ought to, had better 중 무엇일까요?",
+    "summary": "Should와 ought to는 조언이나 예상을 줍니다. Had better는 특정 상황에 쓰며, 행동하지 않으면 나쁜 결과가 있음을 암시합니다.",
+    "usage": "You should save a copy는 보통의 조언입니다. Ought to는 의미가 가깝고 조금 더 격식적이며, 말에서는 덜 흔합니다. 부정은 ought not to이지만 shouldn't가 더 흔합니다. Should는 예상도 표시할 수 있습니다. The train should be here soon.\n\nHad better의 had는 과거 시제가 아닙니다. You had better leave now는 현재나 미래에 관한 말로, 자주 You'd better leave now로 줄어듭니다. to 없이 base form을 쓰세요. 부정은 had better not입니다. 일반 권고라기보다 이 상황에 대한 경고입니다. would better로 바꾸지 마세요.",
+    "pitfall": "had better 뒤에 to를 더하지 말고, would better라고 쓰지 마세요. You'd better to leave가 아니라 You'd better leave입니다.",
+    "keywords": [
+      "should",
+      "had better",
+      "ought to",
+      "조언"
+    ]
+  },
+  "may-might": {
+    "title": "may와 might",
+    "question": "may와 might 둘 다 가능성을 뜻할까요?",
+    "summary": "May와 might 둘 다 가능성을 표시합니다. Might는 덜 확실한 경우가 많지만, 단순히 may의 과거는 아닙니다. May는 격식 있는 허가도 줄 수 있습니다.",
+    "usage": "It may rain과 It might rain은 둘 다 비가 가능하다는 뜻입니다. Might는 덜 확실하게 들리는 경우가 많지만 차이가 고정된 것은 아닙니다. 허가의 May는 격식적입니다. You may leave when you have signed. 일상의 허가는 can이 더 흔합니다. 간접화법에서 might는 원래의 may를 자주 대체합니다. She said it might rain.\n\n둘 다 to 없이 base form을 취합니다. 과거의 가능성은 past participle와 함께 may have나 might have를 씁니다. Maybe는 부사이며 may be를 대체할 수 없습니다. May not은 맥락에 따라 거절이거나 가능성일 수 있습니다. cannot은 못함이나 더 분명한 금지를 더 자주 표시합니다.",
+    "pitfall": "may to go라고 쓰지 마세요. 가능성은 It may rain이고, 부사는 Maybe it will rain입니다.",
+    "keywords": [
+      "may",
+      "might",
+      "가능성",
+      "허가"
+    ]
+  },
+  "would-uses": {
+    "title": "would의 쓰임",
+    "question": "would는 과거일까요, 습관일까요, 공손함일까요?",
+    "summary": "Would는 조건의 결과, 공손한 요청, 반복된 과거 습관, 또는 과거에서 본 미래일 수 있습니다. 끝난 과거 사건 하나를 보통 보고하지는 않습니다.",
+    "usage": "조건문에서 would는 보통 결과에 있습니다. If I had time, I would walk. 요청과 권유는 Would you...?와 Would you like...?를 쓰며 will보다 부드럽습니다. 반복된 과거 행동도 would를 쓸 수 있습니다. Every summer we would visit my aunt. 과거 상태는 used to를 씁니다. I would be shy가 아니라 I used to be shy.\n\n과거에서 보면 will은 자주 would가 됩니다. I knew she would be late. 끝난 사건 하나에 끝난 과거 시간과 함께 would를 쓰지 마세요. I would see him yesterday는 영어가 아닙니다. I saw him yesterday라고 하세요.",
+    "pitfall": "과거 상태에 would를 쓰지 마세요. 상태는 I used to live there이고, I would live there는 반복 습관이나 조건의 결과처럼 들립니다.",
+    "keywords": [
+      "would",
+      "조건",
+      "습관",
+      "공손"
+    ]
+  },
+  "reflexive-pronouns": {
+    "title": "재귀대명사",
+    "question": "me나 him 대신 myself나 himself는 언제 쓸까요?",
+    "summary": "주어와 목적어가 같은 사람이면 재귀형을 쓰세요. 재귀형은 그 사람을 강조할 수도 있습니다. 서로에게 작용하는 두 사람은 each other가 필요합니다.",
+    "usage": "He cut himself에서 벤 사람과 베인 사람은 같습니다. 강조라면 대명사를 빼도 문장이 성립합니다. I fixed the lock myself. By myself는 혼자 또는 도움 없이를 뜻할 수 있습니다. 단수 you는 yourself, 복수 you는 yourselves를 씁니다. 표준형은 hisself나 theirselves가 아니라 himself와 themselves입니다.\n\n두 사람이 서로를 보면 They saw themselves가 아니라 They saw each other라고 하세요. 옷과 신체 부위는 보통 소유격을 취합니다. He put his hand in his pocket. 재귀형은 보통의 주어가 아닙니다. Myself will do it는 피하세요.",
+    "pitfall": "theirselves나 hisself라고 쓰지 말고, 서로에 대한 행동에 themselves를 쓰지 마세요. They saw each other.",
+    "keywords": [
+      "재귀대명사",
+      "myself",
+      "each other",
+      "himself"
+    ]
+  },
+  "demonstratives": {
+    "title": "this, that, these, those",
+    "question": "this와 that은 어떻게 고르고, 명사가 복수일 때는 어떻게 할까요?",
+    "summary": "This와 these는 가깝거나, 현재이거나, 곧 언급할 것을 자주 표시합니다. That과 those는 더 멀거나 방금 언급한 것을 자주 표시합니다. This와 that은 단수 명사, these와 those는 복수를 취합니다.",
+    "usage": "공간에서 this cup은 손에 있는 것이고 that cup은 더 멀리 있습니다. 시간이나 글에서 this는 앞을 가리킬 수 있습니다. This is the plan. That은 뒤를 가리킬 수 있습니다. That is exactly the problem. 전화에서 This is Mina는 말하는 사람을 소개합니다.\n\n수를 맞추세요. this books가 아니라 this book, these books입니다. 신중한 글에서 kind, sort, type은 that kind of problem에서 단수로 남으며, those kind of problem이 아닙니다. This와 that은 주어로 홀로 설 수도 있습니다.",
+    "pitfall": "this books와 those kind of problem은 피하세요. 단수 명사에는 this나 that, 복수에는 these나 those를 쓰세요.",
+    "keywords": [
+      "지시사",
+      "this that",
+      "these those",
+      "단수복수"
+    ]
+  },
+  "whose-whos": {
+    "title": "whose와 who's",
+    "question": "어느 것이 whose이고 어느 것이 who's일까요?",
+    "summary": "Whose는 질문과 관계절에서 누구의 것을 뜻합니다. Who's는 who is나 who has의 짧은 형태입니다.",
+    "usage": "Whose bag is this?는 주인을 묻습니다. 관계절에서 whose는 사람과 그 사람에게 속한 것을 연결합니다. the student whose bag is missing. Who's late는 who is late이고, who's finished는 who has finished입니다. 소리가 같으므로, 문장에 소유가 필요한지 시험하세요.\n\n중국어의 모든 소유가 whose가 되지는 않습니다. 보통의 소유는 her나 their입니다. the student and her bag. whose는 누구의라는 물음이나 관계절 안의 소유에 쓰세요. who's에서 아포스트로피를 빼도 소유가 되지 않습니다.",
+    "pitfall": "the student who's bag is missing이라고 쓰지 마세요. 소유는 whose bag이고, who's bag는 who is bag가 됩니다.",
+    "keywords": [
+      "whose",
+      "who's",
+      "누구의",
+      "소유"
+    ]
+  },
+  "prepositions-place": {
+    "title": "장소의 at, in, on",
+    "question": "장소에는 at, in, on 중 무엇일까요?",
+    "summary": "At은 지점, 행사, 출입구를 자주 표시합니다. In은 구역이나 둘러싸인 공간을 자주 표시합니다. On은 표면, 선, 또는 대중교통에 탔음을 자주 표시합니다.",
+    "usage": "중국어의 장소 표현 하나가 at, in, on을 덮습니다. 그 장소가 지점인지, 공간인지, 표면인지 물어 보세요. At the door와 at the station은 장소를 도착이나 활동의 지점으로 다룹니다. In the room과 in China는 안에 있는 공간으로 다룹니다. On the wall과 on the coast는 표면이나 선입니다. 대중교통은 보통 on the bus, on the train, on the plane이고, 자가용은 보통 in the car입니다.\n\n일부 결합은 고정되어 있습니다. at home, at work, in bed, in the picture. 도시와 나라는 보통 in을 취하고, 구체적인 주소나 지점은 at을 취할 수 있습니다. live on a street와 live in a street 둘 다 나타납니다. 예외보다 지점, 공간, 표면의 묶음을 먼저 익히세요.",
+    "pitfall": "모든 장소를 in으로 옮기지 마세요. 출입구는 at the door, 벽은 on the wall, 방 안은 in the room입니다.",
+    "keywords": [
+      "장소전치사",
+      "at in on",
+      "위치",
+      "교통"
+    ]
+  },
+  "prepositions-movement": {
+    "title": "이동의 전치사",
+    "question": "가기, 들어가기, 떠나기를 어느 전치사가 표시할까요?",
+    "summary": "To는 목적지, into는 공간 안으로의 이동, onto는 표면 위로의 이동, from은 출발점을 표시합니다. Arrive, reach, go home은 나름의 패턴이 있습니다.",
+    "usage": "go to the office, walk into the hall, put the cup onto the tray, come from the station, get out of the car, take the bag off the chair라고 하세요. Through는 무언가의 안을 지나는 이동을, across는 한쪽에서 다른 쪽으로의 이동을 강조합니다. Into와 onto는 이동을 분명히 하고, put it in the box도 일상적입니다.\n\n도시나 나라에는 arrive in, 건물·역·비슷한 지점에는 arrive at을 씁니다. arrive to라고 하지 마세요. Reach the station에는 to가 없습니다. Home, here, there는 보통 to를 취하지 않습니다. go home, come here. Enter the room은 이미 이동을 포함하므로, 그 일상적 쓰임에는 into가 필요 없습니다. Enter into an agreement는 별개의 고정 표현입니다.",
+    "pitfall": "arrive to the station과 go to home은 피하세요. arrive at이나 arrive in을 쓰고, go home이라고 하세요.",
+    "keywords": [
+      "이동전치사",
+      "to into",
+      "arrive",
+      "go home"
+    ]
+  },
+  "adjective-order": {
+    "title": "형용사 어순",
+    "question": "명사 앞에서 어느 형용사가 먼저 올까요?",
+    "summary": "명사 앞의 보통 순서는 의견, 크기, 나이, 모양, 색깔, 기원, 재료, 그다음 용도입니다. 형용사를 한꺼번에 많이 쌓지 마세요.",
+    "usage": "A lovely small old round table은 자연스럽고, a old small lovely table은 그렇지 않습니다. 한정사와 수는 먼저 옵니다. those two lovely chairs. 재료는 명사 옆에 앉습니다. a red wooden box. 용도는 명사의 일부처럼 행동합니다. a leather walking shoe. 순서는 공식이 아니라 강한 경향입니다.\n\n자리를 바꿀 수 있는 같은 유형의 형용사는 쉼표로 나눌 수 있습니다. a cold, wet day. 고정 순서의 형용사는 보통 쉼표가 필요 없습니다. 형용사 두세 개면 보통 충분합니다. 확신이 없으면 가장 개인적인 의견을 명사에서 가장 멀리 두세요.",
+    "pitfall": "a red big car는 피하세요. 크기가 보통 색깔보다 앞입니다. a big red car.",
+    "keywords": [
+      "형용사어순",
+      "형용사",
+      "수식",
+      "색깔"
+    ]
+  },
+  "superlatives": {
+    "title": "최상급",
+    "question": "최상급은 어떻게 만들고, the는 언제 붙일까요?",
+    "summary": "짧은 형용사는 자주 the + -est, 긴 형용사는 the most를 취합니다. 최상급에는 보통 범위가 있고, one of the 뒤에는 복수 명사가 옵니다.",
+    "usage": "tallest, simplest 같은 짧은 형용사는 -est를 취합니다. expensive, careful 같은 긴 형용사는 the most를 취합니다. good, bad, far의 최상급은 best, worst, farthest 또는 furthest입니다. 명사에는 보통 the가 있습니다. the oldest building in the town. 장소에는 in, 집단에는 of를 쓰세요. the best of the three. 인생 경험의 최상급은 현재완료를 자주 취합니다. the best meal I've had.\n\nmost와 -est를 함께 쓰지 마세요. one of the best player는 one of가 복수를 취하므로 틀립니다. one of the best players. Most people은 다수이지 최상급이 아닙니다. 최상급은 the most useful of the three입니다. 최상급이 서술어일 때 the가 빠질 수 있지만, 명사 앞에서는 보통 남습니다.",
+    "pitfall": "the most tallest와 one of the best player는 피하세요. the tallest, 또는 one of the best players라고 하세요.",
+    "keywords": [
+      "최상급",
+      "the most",
+      "-est",
+      "one of"
+    ]
+  },
+  "so-such": {
+    "title": "so와 such",
+    "question": "이런 강조에는 so일까요, such일까요?",
+    "summary": "So 뒤에는 형용사나 부사가 옵니다. Such 뒤에는 명사구가 옵니다. 단수 가산 명사를 강조할 때는 such a와 so + 형용사 + a 둘 다 가능합니다.",
+    "usage": "So tired와 so quickly는 형용사나 부사를 수식합니다. Such a long day, such nice people, such weather는 명사구를 수식합니다. 단수 가산 명사는 둘 다 허용합니다. such a cold day, 또는 더 격식적인 so cold a day. 수량은 such가 아니라 so를 취합니다. so many people, so much time, so few seats.\n\n결과 패턴은 so tired that she left와 such a long day that she left입니다. so를 a와 명사 바로 앞에 두지 마세요. Such는 형용사가 아니므로 the weather is such cold는 영어가 아닙니다.",
+    "pitfall": "so a long day와 such tired는 피하세요. 명사구는 such a long day, 형용사만은 so tired입니다.",
+    "keywords": [
+      "so",
+      "such",
+      "강조",
+      "결과"
+    ]
+  },
+  "still-yet-already": {
+    "title": "still, yet, already",
+    "question": "Still, already, yet 중 무엇일까요?",
+    "summary": "Still은 상황이 계속됨을 뜻합니다. Already는 예상보다 이름입니다. Yet은 주로 부정문과 의문문에서 지금까지를 뜻합니다.",
+    "usage": "She is still in the lab은 떠나지 않았다는 뜻입니다. I've already eaten은 식사가 예상보다 일렀다는 뜻입니다. Have you eaten yet?와 I haven't eaten yet는 지금까지의 상황을 잽니다. Still은 본동사 앞이나 be 뒤에 옵니다. 부정에서는 still not이 흔합니다. I still haven't started. Already는 중간 위치나 끝일 수 있습니다. Yet은 보통 끝에 옵니다.\n\n긍정 진술에서 already 자리에 yet을 쓰지 마세요. 문장 앞의 Yet은 자주 however를 뜻하며, 다른 쓰임입니다. The room is small. Yet it is bright. 중국어의 완료 표지가 과거 시제보다 already를 자동으로 고르지는 않습니다. Already는 예상보다 이르다는 뜻을 더합니다.",
+    "pitfall": "보통의 부정에서 yet을 already로 바꾸지 마세요. 아직 안 먹었다는 것은 I haven't already eaten이 아니라 I haven't eaten yet입니다.",
+    "keywords": [
+      "still",
+      "yet",
+      "already",
+      "이미"
+    ]
+  },
+  "ago-before": {
+    "title": "ago와 before",
+    "question": "더 이른 시간에는 ago일까요, before일까요?",
+    "summary": "Ago는 지금부터 거슬러 세며 단순 과거를 취합니다. Before는 한 시점보다 이르거나 그 이전의 어느 때이고, 완료와 자주 짝을 이룹니다.",
+    "usage": "Three days ago와 a year ago는 지금부터 거슬러 세며 단순 과거를 취합니다. I saw her three days ago. Before noon과 before the meeting은 다른 시간을 기준으로 삼습니다. Before 단독은 더 이전의 어느 때를 뜻합니다. I've seen this film before, 또는 I had met her before.\n\nthree days ago를 before three days라고 하지 말고, ago를 현재완료와 함께 두지 마세요. 중국어의 시간 표현 하나가 어느 형태와도 맞을 수 있습니다. 기준점이 지금인지 다른 사건인지 물어 보세요.",
+    "pitfall": "I have seen her three days ago와 before three days는 피하세요. 지금부터 거슬러 세는 것은 I saw her three days ago입니다.",
+    "keywords": [
+      "ago",
+      "before",
+      "과거",
+      "시점"
+    ]
+  },
+  "by-until": {
+    "title": "by와 until",
+    "question": "시간 제한이 by일 때와 until일 때는 언제일까요?",
+    "summary": "By는 한 시점보다 늦지 않음을 뜻하며 그 전의 완료를 강조합니다. Until은 상황이 그 시점까지 계속됨을 뜻합니다.",
+    "usage": "Finish the form by Friday는 금요일이 오면 양식이 완료되어 있어야 하며, 더 일찍 완료될 수도 있다는 뜻입니다. The desk is staffed until Friday는 근무가 금요일까지 계속된다는 뜻입니다. 기다리기, 머물기, 열려 있기, 닫혀 있기는 보통 until을 취합니다. 끝내기, 제출하기, 도착하기 같은 한 번의 결과는 보통 by를 취합니다.\n\nBy then과 until then도 같은 대조를 만듭니다. 부정에서 not until은 변화가 그 시점에 일어나고 그 전은 아니라는 뜻입니다. 계속되는 머무름에 by를 쓰거나, 그 전에 끝내야 하는 기한에 until을 쓰지 마세요. Till은 until과 같고 더 비격식적입니다.",
+    "pitfall": "계속되는 기다림에 I'll wait by Friday라고 쓰지 마세요. 계속은 I'll wait until Friday이고, 기한은 Finish it by Friday입니다.",
+    "keywords": [
+      "by",
+      "until",
+      "기한",
+      "까지"
+    ]
+  },
+  "in-into-onto": {
+    "title": "in, into, onto",
+    "question": "이동과 위치는 항상 다른 전치사를 고를까요?",
+    "summary": "In과 on은 위치를 표시할 수 있고, 많은 이동 동사 뒤에도 옵니다. Into와 onto는 공간 안으로나 표면 위로의 이동을 특별히 강조합니다.",
+    "usage": "The keys are in the drawer는 위치입니다. She walked into the room은 밖에서 안으로의 이동을 강조합니다. Put it in the box와 put it into the box 둘 다 나타나며, into가 들어감을 더 분명하게 합니다. Onto the roof는 표면 위로의 이동을 강조하고, on the roof는 위치만일 수 있습니다.\n\nOnto는 전치사 하나입니다. to가 부정사 표지나 다음 전치사일 때 on to는 두 단어입니다. go on to explain the map은 지도 위로 이동하는 것이 아니라 설명함으로써 이어 간다는 뜻입니다. 모든 on to를 onto로 붙이지 마세요.",
+    "pitfall": "go on to explain을 go onto explain이라고 쓰지 마세요. 그 to는 다음 행동을 도입하며, 표면 위의 onto가 아닙니다.",
+    "keywords": [
+      "in into",
+      "onto",
+      "on to",
+      "이동"
+    ]
+  },
+  "among-between": {
+    "title": "among과 between",
+    "question": "between은 둘만이고 among은 집단만일까요?",
+    "summary": "Between은 둘에, 그리고 구별해 두는 여러 것에도 씁니다. Among은 하나씩 집어 내지 않는 집단 안에 있는 것에 씁니다.",
+    "usage": "Between the two doors는 둘을 가르는 공간입니다. The difference between the three designs는 디자인을 구별되는 항목으로 비교하므로 여전히 between을 씁니다. Among the crowd와 among her reasons는 모든 항목을 가르지 않고 집단 안에 무언가를 둡니다. 나눌 때 between은 구별되는 받는 사람을 자주 이름 붙이고, among은 집단으로 다룹니다.\n\nBetween you and me는 I가 아니라 목적격 me를 씁니다. 둘이 넘는다고 모든 between을 among으로 바꾸지 마세요. 반대 오류는 among the two입니다.",
+    "pitfall": "between you and I라고 쓰지 마세요. 전치사 뒤에는 목적격을 쓰세요. between you and me.",
+    "keywords": [
+      "between",
+      "among",
+      "사이",
+      "목적격"
+    ]
+  },
+  "other-another": {
+    "title": "other와 another",
+    "question": "하나 더에는 another일까요, other일까요?",
+    "summary": "Another는 하나 더 또는 다른 하나를 뜻하며 보통 단수 명사를 취합니다. The other는 알려진 집합의 남은 하나이고, other와 복수는 추가되는 것들을 뜻합니다.",
+    "usage": "Another cup은 컵 하나 더입니다. The other cup은 둘 중 남은 하나입니다. Other students는 추가 학생들이고, others는 홀로 설 수 있습니다. Some stayed; others left. The others는 남은 전부입니다. Another는 이미 an + other이므로 관사를 더하거나 another students라고 쓰지 마세요.\n\nAnother three days는 예외입니다. 추가 기간이나 수량을 뜻할 때 another가 숫자와 복수 앞에 올 수 있습니다. Each other와 one another는 서로에 대한 행동을 표시합니다. 하나인지 더인지, 집합이 이미 알려진지 먼저 정하세요.",
+    "pitfall": "another students와 the another cup은 피하세요. 학생 하나 더는 another student이고, 추가 학생들은 other students입니다.",
+    "keywords": [
+      "another",
+      "other",
+      "하나 더",
+      "나머지"
+    ]
+  },
+  "both-all-none": {
+    "title": "both, all, none",
+    "question": "둘, 전체, 영을 어느 단어가 덮을까요?",
+    "summary": "Both는 둘에만 씁니다. All은 셋 이상이나 물질에 씁니다. None은 하나도, 아무것에도 아니라는 뜻입니다. 특정 집합은 자주 of the를 취합니다.",
+    "usage": "Both students나 both of the students는 알려진 두 사람을 뜻합니다. All students는 총칭이고, all of the students나 all the students는 특정 집단을 뜻합니다. None of the students가 부정입니다. Both...and...는 병렬 항목을 잇습니다. Both of them은 복수 동사를 취합니다.\n\nNone of 뒤에는 복수나 물질 명사가 올 수 있습니다. 격식 있는 글은 단수 동사를 쓸 수 있고, 말에서는 복수 동사가 흔하므로 자동으로 틀린 것은 아닙니다. both of students나 all of students라고 하지 마세요. of 뒤의 특정 복수에는 the나 다른 한정사가 필요합니다. The both는 표준이 아닙니다. 셋 이상 중 하나도 아니면 neither가 아니라 none을 쓰세요.",
+    "pitfall": "both of students는 피하세요. both students나 both of the students라고 하세요.",
+    "keywords": [
+      "both",
+      "all",
+      "none",
+      "of the"
+    ]
+  },
+  "all-whole": {
+    "title": "all과 whole",
+    "question": "전체에는 all일까요, whole일까요?",
+    "summary": "Whole은 보통 the, a, 소유격 뒤에 오며 단수 가산 명사를 수식합니다. All은 복수와 물질 명사를 수식할 수 있고, all day에도 나타납니다.",
+    "usage": "The whole story, my whole life, a whole day는 셀 수 있는 하나를 완전한 것으로 다룹니다. All the students와 all the water는 복수와 물질 명사를 덮습니다. All day와 all morning은 기간 전체를 뜻하며 보통 the가 없습니다. The whole day도 하루 전체를 뜻하며, 그 완전한 단위를 더 강조합니다.\n\nWhole은 복수나 물질 명사를 자유롭게 수식하지 않습니다. the whole students와 the whole information은 피하세요. all the students와 all the information이라고 하세요. 순서는 whole the day나 the all day가 아니라 the whole day입니다.",
+    "pitfall": "whole the day와 the whole informations는 피하세요. 온전한 하루는 the whole day나 all day이고, information은 all the information을 취합니다.",
+    "keywords": [
+      "all",
+      "whole",
+      "전체",
+      "하루"
+    ]
+  },
+  "so-that-such-that": {
+    "title": "so...that과 such...that",
+    "question": "결과에는 so...that일까요, such...that일까요?",
+    "summary": "So는 형용사나 부사를, such는 명사구를 취합니다. that절이 결과를 줍니다. 목적의 so that과는 다른 패턴입니다.",
+    "usage": "She was so tired that she left early에서 so는 tired를 수식합니다. It was such a long meeting that we left early에서 such는 a long meeting을 수식합니다. 말에서는 that을 생략하기도 하지만, 패턴을 익히는 동안에는 목적과 분리되도록 that을 유지하세요. 격식 산문은 such가 결과를 앞으로 가리키는 The rules are such that...도 말할 수 있습니다.\n\n목적은 앞에 so와 형용사가 없는 She spoke quietly so that the baby could sleep입니다. 결과 패턴은 so를 형용사 앞에 둡니다. so a long meeting that이라고 쓰지 마세요.",
+    "pitfall": "She was such tired that she left는 피하세요. 형용사는 so tired that, 명사구는 such a long meeting that을 취합니다.",
+    "keywords": [
+      "so that",
+      "such that",
+      "결과",
+      "정도"
+    ]
+  },
+  "purpose-to-so-that": {
+    "title": "to와 so that의 목적",
+    "question": "목적은 부정사일까요, 절일까요?",
+    "summary": "주어가 같으면 목적은 자주 to, in order to, so as to를 씁니다. 절, 조동사, 또는 다른 주어가 필요하면 so that을 쓰세요.",
+    "usage": "I left early to catch the train에서 떠나는 사람과 기차를 타는 사람은 같습니다. In order to는 더 분명하고, so as to는 조금 더 격식적입니다. 셋 다 base verb를 취합니다. 부정은 for not to가 아니라 in order not to와 so as not to입니다.\n\nSo that은 완전한 절을 이끌며 can, could, will, would와 자주 함께 씁니다. I left early so that she could rest. 여기서 she는 다른 주어이므로 단순한 to부정사가 맞지 않습니다. so that to catch라고 쓰지 말고, 모든 목적을 for와 동사로 바꾸지 마세요. For는 명사를 취할 수 있습니다. for a rest.",
+    "pitfall": "I left for catch the train과 so that to rest는 피하세요. 같은 주어는 to catch, 다른 주어는 so that she could rest를 씁니다.",
+    "keywords": [
+      "목적",
+      "to부정사",
+      "so that",
+      "in order to"
+    ]
+  },
+  "time-clauses": {
+    "title": "시간절",
+    "question": "미래 시간절이 will을 피하는 이유는 무엇일까요?",
+    "summary": "when, before, after, until, as soon as, once가 있는 절이 미래를 가리키면 동사는 보통 현재입니다. Will은 주절에 남습니다.",
+    "usage": "I'll phone you when I land에서 land는 착륙이 미래인데도 현재입니다. As soon as, once, before, after, until도 같습니다. Wait here until I get back. 주절은 will, 명령문, 또는 조동사를 쓸 수 있습니다. 앞에 오는 시간절은 보통 쉼표를 취합니다.\n\nWhile은 겹침을 표시하고, 자기 절에서 미래 will을 빼 둡니다. 주어가 같으면 after와 before가 -ing를 취할 수 있습니다. After landing, I phoned. 현재형은 사건이 이미 일어났다는 뜻이 아니라 시간절의 보통 형태입니다. If절도 비슷한 제한이 있지만, 시간절은 조건이 아닙니다.",
+    "pitfall": "I'll phone you when I will land는 피하세요. 시간절은 when I land이고, will은 주절에 남습니다.",
+    "keywords": [
+      "시간절",
+      "when",
+      "until",
+      "미래"
+    ]
+  },
+  "zero-conditional": {
+    "title": "영조건문",
+    "question": "일반 if 문장에서 두 동사가 현재로 남는 이유는 무엇일까요?",
+    "summary": "습관, 과학적 사실, 피할 수 없는 결과에는 if나 when절과 주절 모두 단순 현재를 쓸 수 있습니다. 한 번의 미래 상황에 대한 예측이 아닙니다.",
+    "usage": "If you heat ice, it melts는 내일의 한 실험이 아니라 일반 규칙을 말합니다. 결과를 규칙적인 것으로 다루면 when이 if를 때로 대체할 수 있습니다. When you heat ice, it melts. 결과는 명령문일 수도 있습니다. If the light is red, stop.\n\n가능한 한 번의 미래 상황은 보통의 제1조건문을 씁니다. If it rains tomorrow, we will stay inside. 일반 규칙의 양쪽에 will을 더하지 마세요. if절 안의 will은 기꺼이 하려는 뜻 같은 특별한 의미가 있을 수 있습니다. 영조건문의 기본 형태는 아닙니다.",
+    "pitfall": "일반 규칙을 If you will heat ice, it will melt라고 쓰지 마세요. 일반 사실은 If you heat ice, it melts입니다.",
+    "keywords": [
+      "영조건",
+      "if",
+      "일반사실",
+      "현재"
+    ]
+  },
+  "causative-have-get": {
+    "title": "사역의 have와 get",
+    "question": "다른 사람이 하도록 마련했다고 어떻게 말할까요?",
+    "summary": "Have나 get에 목적어와 past participle를 더하면, 누군가에게 그 일을 하도록 마련한다는 뜻입니다. 사람을 밝히면 have는 동사원형, get는 to를 취합니다.",
+    "usage": "I had my eyes tested는 내가 내 눈을 검사했다는 뜻이 아니라 다른 사람이 검사했다는 뜻입니다. Get은 더 구어적이고 노력을 시사할 수 있습니다. I got the lock repaired. 사람을 밝히면 I had the assistant print the file나 I got the assistant to print the file라고 하세요.\n\n과거완료와 혼동하지 마세요. I had cut my hair는 내가 자른 일이 이미 있었음을 뜻합니다. I had my hair cut는 이발을 마련했다는 뜻입니다. Get something done은 달갑지 않은 경험도 뜻할 수 있습니다. I got my bike stolen. 맥락이 마련한 일인지 당한 일인지 보여 줘야 합니다.",
+    "pitfall": "I had my hair cut를 직접 자른 것으로 읽지 마세요. 자신이 끝낸 행동은 I had cut my hair이고, 마련한 이발은 I had my hair cut입니다.",
+    "keywords": [
+      "사역",
+      "have something done",
+      "get",
+      "과거분사"
+    ]
+  },
+  "let-make-allow": {
+    "title": "let, make, allow",
+    "question": "let, make, allow 중 무엇이 to를 취할까요?",
+    "summary": "Let과 능동의 make는 to 없는 동사를 취합니다. Allow는 to나 -ing를 취합니다. 수동의 make는 to를 더합니다.",
+    "usage": "Let me see the map은 허가나 권유이며 base verb가 뒤따릅니다. Make me redo it는 강제이며, 능동문에도 to가 없습니다. 수동은 to를 더합니다. I was made to redo it. Allow는 다릅니다. They allowed me to enter, 또는 Smoking is not allowed. Permit은 allow를 따릅니다.\n\nLet's go는 let us에서 온 제안이며 역시 base verb를 취합니다. let me to go나 make me to go라고 쓰지 마세요. Allow me go도 틀립니다. 중국어 동사 하나가 허가와 강제를 모두 뜻할 수 있습니다. 영어는 let과 make로 나눕니다.",
+    "pitfall": "let이나 능동 make 뒤에 to를 더하지 마세요. Let me see와 She made me wait라고 하세요. 수동은 I was made to wait입니다.",
+    "keywords": [
+      "let",
+      "make",
+      "allow",
+      "사역"
+    ]
+  },
+  "prefer-would-rather": {
+    "title": "prefer와 would rather",
+    "question": "Prefer to일까요, would rather일까요?",
+    "summary": "Prefer는 명사, -ing, to를 취합니다. 둘을 비교할 때는 prefer A to B를 씁니다. Would rather는 to 없는 동사를 취합니다. 다른 사람의 현재 행동에는 절이 자주 과거형을 씁니다.",
+    "usage": "I prefer tea to coffee와 I prefer reading to watching television이라고 하세요. 한 번에는 prefer to do나 would prefer to do가 자연스럽습니다. 부정은 prefer not to입니다. 명사 패턴에서 to를 than으로 바꾸지 마세요. 부정사 비교는 rather than을 쓸 수 있습니다. prefer to walk rather than take the bus.\n\nWould rather는 base verb를 바로 취합니다. I'd rather walk than wait. I'd rather not wait는 그 행동을 거절합니다. 지금 다른 사람이 하기를 바라는 것에는 과거형이 거리를 만듭니다. I'd rather you stayed, I'd rather you didn't tell anyone. 그 과거형은 실제 과거 시간이 아닙니다. would rather to go라고 쓰지 마세요.",
+    "pitfall": "I prefer tea than coffee와 I'd rather to walk는 피하세요. 비교는 prefer tea to coffee이고, rather 뒤에는 walk가 바로 옵니다.",
+    "keywords": [
+      "prefer",
+      "would rather",
+      "비교",
+      "선호"
+    ]
+  },
+  "look-forward-to": {
+    "title": "look forward to",
+    "question": "look forward to 뒤에 -ing가 자주 오는 이유는 무엇일까요?",
+    "summary": "이 표현의 to는 전치사이므로 base verb가 아니라 명사나 -ing를 취합니다.",
+    "usage": "I'm looking forward to the trip은 명사를 씁니다. I'm looking forward to meeting you는 meeting you가 전치사의 목적어이므로 -ing를 씁니다. 편지에서도 I look forward to hearing from you를 씁니다. to를 for로 바꾸지 마세요.\n\n모든 to를 부정사 표지로 보지 마세요. want to meet의 to는 부정사의 to입니다. look forward to의 to는 listen to의 to처럼 전치사입니다. 느낌이 현재라 I'm looking forward가 흔하지만, 형태는 여전히 look forwarding이 아니라 looking입니다.",
+    "pitfall": "I'm looking forward to meet you는 피하세요. 전치사 뒤에는 meeting you나 the trip 같은 명사를 쓰세요.",
+    "keywords": [
+      "look forward to",
+      "전치사 to",
+      "-ing",
+      "기대"
+    ]
+  },
+  "adjective-preposition": {
+    "title": "형용사와 전치사",
+    "question": "interested, good, afraid 뒤에는 어느 전치사가 올까요?",
+    "summary": "많은 형용사가 고정 전치사와 명사 또는 -ing를 취합니다. 전치사를 형용사와 함께 익히세요. 중국어 대응이 항상 to가 되지는 않습니다.",
+    "usage": "흔한 짝에는 interested in, good at, bad at, afraid of, worried about, proud of, famous for, responsible for, keen on, married to, similar to, tired of, excited about, sorry about가 있습니다. Good at은 기술, good with는 사람이나 도구를 다루는 능숙함, good for는 이점입니다. Different from이 가장 안전한 선택이고, 영국 영어는 different to도 씁니다.\n\n전치사 뒤에 동사가 오면 -ing를 쓰세요. interested in learning, good at listening. Interested to hear는 다른 패턴으로, 무언가를 듣고 싶어 하거나 들어서 기쁘다는 뜻입니다. interested in을 대체하지 않습니다. 모든 전치사를 예측하는 규칙은 없으므로 새로운 결합은 한 단위로 익히세요.",
+    "pitfall": "interested on the course와 afraid from dogs는 피하세요. 보통 표현은 interested in the course와 afraid of dogs입니다.",
+    "keywords": [
+      "형용사 전치사",
+      "interested in",
+      "good at",
+      "afraid of"
+    ]
+  },
+  "verb-preposition": {
+    "title": "동사와 전치사",
+    "question": "depend, listen, wait 뒤의 전치사가 움직이거나 사라질 수 있을까요?",
+    "summary": "depend on, listen to, wait for에서는 전치사가 동사 뒤에 남고 목적어가 둘을 가를 수 없습니다. 다른 일부 동사는 학습자가 더하는 전치사의 의미를 이미 포함합니다.",
+    "usage": "Depend on, rely on, listen to, wait for, belong to, apologise for, apply for, pay for, search for, believe in은 동사와 전치사의 결합입니다. 대명사도 전치사 뒤에 옵니다. listen to it, wait for them. 사람에게는 agree with, 함께 정한 결정에는 agree on, 제안에는 agree to입니다.\n\nDiscuss the plan, enter the room, reach the station, marry someone, mention the fee는 보통 about, into, to, with를 더하지 않습니다. Answer the question은 목적어를 바로 취합니다. Answer to a person은 책임이 있다는 다른 뜻일 수 있습니다. 이것들은 분리할 수 있는 구동사가 아닙니다. look after her는 look her after가 될 수 없습니다.",
+    "pitfall": "depend of the weather, listen music, discuss about the plan은 피하세요. depend on, listen to music, discuss the plan이라고 하세요.",
+    "keywords": [
+      "동사 전치사",
+      "depend on",
+      "listen to",
+      "wait for"
+    ]
+  },
+  "so-neither-do": {
+    "title": "So do I와 Neither do I",
+    "question": "동의가 So I do가 아니라 So do I인 이유는 무엇일까요?",
+    "summary": "긍정에 동의할 때는 So + 조동사 + 주어를 쓰세요. 부정에 동의할 때는 Neither나 Nor + 조동사 + 주어를 쓰세요. 조동사는 첫 문장을 되풀이합니다.",
+    "usage": "I like this map 뒤에는 like 자리에 do를 쓴 So do I가 옵니다. She is ready는 So am I를 취합니다. They can drive는 So can we입니다. She has left는 So have I입니다. 단순 과거 문장은 So did I를 취합니다. 부정도 도치합니다. I don't eat meat. Neither do I. Nor do I도 같은 뜻입니다. Me too와 Me neither는 말에서 흔합니다. 신중한 동의는 여전히 도치합니다.\n\nSo I do는 나도 그렇다는 뜻이 아닙니다. 같은 사람을 확인합니다. You work too hard. So I do. 주어가 바뀌지 않았습니다. 다른 사람이 동의한다는 뜻일 때 So 바로 뒤에 주어를 두지 마세요. 원래 문장이 be, 조동사, 완료, 보통 동사 중 무엇을 쓰는지 먼저 보세요.",
+    "pitfall": "나도 그렇다는 뜻에 So I am을 쓰지 마세요. She is tired 뒤의 동의는 So am I입니다. So she is는 그녀가 정말 피곤하다는 확인일 뿐입니다.",
+    "keywords": [
+      "so do I",
+      "neither",
+      "동의",
+      "도치"
+    ]
+  },
+  "one-ones": {
+    "title": "one과 ones",
+    "question": "one이 명사를 대신할 수 있는 때는 언제일까요?",
+    "summary": "One은 알려진 단수 가산 명사를, ones는 복수를 대신합니다. 물질 명사는 one으로 대신할 수 없습니다.",
+    "usage": "Which cup do you want? The blue one에서 one은 cup을 대신합니다. 복수는 the blue ones입니다. Which one, this one, another one 모두 자연스럽습니다. Ones는 보통 앞에 형용사나 한정사가 필요합니다. These만으로 충분한 경우가 많고, these ones는 구어적입니다.\n\n물질 명사에 one을 쓰지 마세요. an information one은 없고, this information이라고 하세요. 명사를 반복해서 더하지도 마세요. a one book은 틀립니다. 일반적인 사람을 뜻하는 격식 one은 다른 쓰임입니다. One should read the label. 일상 영어는 you를 더 자주 씁니다.",
+    "pitfall": "물질 명사를 one으로 바꾸지 말고, the blue one cup이라고 쓰지 마세요. 컵은 the blue one이고, information은 this information으로 남습니다.",
+    "keywords": [
+      "one",
+      "ones",
+      "대용",
+      "가산명사"
+    ]
+  },
+  "it-vs-there": {
+    "title": "it와 there",
+    "question": "존재는 언제 there is이고, 언제 it일까요?",
+    "summary": "There is나 there are는 장면에 새로운 것을 도입합니다. It은 이미 특정된 것을 가리키거나, 날씨·시간·거리와 일부 절의 형식 주어로 작용합니다.",
+    "usage": "There's a spider in the sink는 장면에 거미가 있음을 듣는 사람에게 알립니다. The spider is in the sink나 It's in the sink는 두 사람이 이미 특정할 수 있는 거미를 가리킵니다. 날씨, 시간, 거리는 it를 씁니다. It's raining, It's five o'clock, It's a long way. It은 부정사나 절을 앞으로 가리킬 수도 있습니다. It's hard to say, It seems that the gate is shut.\n\n존재의 중국어 동사는 it has가 아니라 there is와 자주 맞습니다. It has a book on the table은 존재문이 아닙니다. There's two books는 말에서 흔합니다. 신중한 글은 There are two books를 씁니다. 이 there는 장소어 over there가 아닙니다. 실제 장소는 따로 더합니다. There is a cafe near the station.",
+    "pitfall": "존재에 It has a book on the table을 쓰지 마세요. There is a book on the table이라고 하세요. 비는 It's raining입니다.",
+    "keywords": [
+      "there is",
+      "it",
+      "존재",
+      "날씨"
+    ]
+  },
+  "on-time-in-time": {
+    "title": "on time과 in time",
+    "question": "시간을 지킨다는 것은 on time일까요, in time일까요?",
+    "summary": "On time은 예정된 순간에, 시간을 지켜서입니다. In time은 너무 늦기 전에, 충분히 일찍입니다.",
+    "usage": "The train was on time은 예정대로 도착했고 이르지도 늦지도 않았다는 뜻입니다. We arrived in time for the talk은 시작 전에, 어쩌면 훨씬 전에 도착했다는 뜻입니다. In time to do는 그 행동에 시간이 충분했다는 뜻입니다. We left in time to catch the bus. Just in time은 여유가 좁았음을 강조합니다.\n\nOn time은 충분히 일찍이라는 뜻으로 기한의 for를 취하지 않습니다. In time은 시간표에 정확히 맞다는 뜻이 아닙니다. 기한에는 in time for Friday's class나 by Friday라고 하세요. 두 관용 표현은 서로 바꾸지 않습니다.",
+    "pitfall": "충분히 일찍이라는 뜻에 on time for the talk을 쓰지 마세요. 충분히 일찍은 in time for the talk이고, 예정된 순간에 도착하는 것은 on time입니다.",
+    "keywords": [
+      "on time",
+      "in time",
+      "정시",
+      "시간"
+    ]
+  },
+  "at-the-end-in-the-end": {
+    "title": "at the end와 in the end",
+    "question": "At the end일까요, in the end일까요?",
+    "summary": "At the end of는 무언가의 마지막 부분입니다. In the end는 변화나 지연 뒤의 결과이며 of를 취하지 않습니다.",
+    "usage": "At the end of the film과 at the end of the street는 그 사물의 마지막 지점입니다. 사물이 이미 알려져 있으면 The film is sad at the end라고 할 수 있습니다. In the end는 결국을 뜻합니다. In the end we took a taxi는 자주 망설임, 실패, 기다림 뒤입니다. 영화의 마지막 부분을 뜻하지 않으므로 in the end of the film은 없습니다.\n\nAt last와 finally도 오래 기다린 뒤 일이 일어났음을 뜻할 수 있지만, finally는 목록의 마지막 항목을 도입할 수 있습니다. In the end는 그 역할을 하지 않습니다. 무언가의 물리적·글의 끝인지, 사건의 결과인지 물어 보세요.",
+    "pitfall": "in the end of the film은 피하세요. 영화의 마지막 부분은 at the end of the film입니다. 변화 뒤의 결과는 in the end입니다.",
+    "keywords": [
+      "at the end",
+      "in the end",
+      "결국",
+      "끝"
+    ]
+  },
+  "in-case": {
+    "title": "in case와 if",
+    "question": "in case는 if일까요, 만약을 위한 대비일까요?",
+    "summary": "In case는 다른 일이 일어날 수 있어서 지금 무언가를 한다는 뜻이 보통입니다. If는 조건이 참일 때만 결과가 일어남을 뜻합니다.",
+    "usage": "Take a charger in case the battery dies에서는 배터리가 나중에 죽든 말든 지금 충전기를 가져갑니다. I'll call you if the battery dies에서는 그것이 일어날 때만 전화합니다. 미래의 in case절은 현재형을 씁니다. in case it will rain이 아니라 in case it rains입니다. In case of는 명사를 취합니다. in case of fire.\n\n모든 if를 in case로 바꾸지 마세요. I'll take your number in case I miss the bus는 대비입니다. I'll call you if I miss the bus는 조건입니다. 일부 미국 말은 in case를 if에 가깝게 쓰지만, 핵심 의미는 대비입니다.",
+    "pitfall": "도착할 때만 하는 전화에 I'll call you in case I arrive를 쓰지 마세요. 그 조건은 if I arrive입니다. In case는 미리 하는 대비에 맞습니다.",
+    "keywords": [
+      "in case",
+      "if",
+      "대비",
+      "조건"
+    ]
+  },
+  "even-if-even-though": {
+    "title": "even if와 even though",
+    "question": "Even if일까요, even though일까요?",
+    "summary": "Even if는 결과를 바꾸지 않는 불확실하거나 가상의 경우를 도입합니다. Even though는 알려진 사실을 도입합니다. Even although는 표준이 아닙니다.",
+    "usage": "Even if it rains, we'll go에서 비는 확실하지 않지만 계획을 바꾸지 않을 것입니다. Even though it rained, we went에서 비는 사실입니다. Even은 양보를 강화하며 although에 자유롭게 붙지 않습니다. 불확실한 미래에는 even if, 일어났거나 분명히 참인 것에는 even though를 쓰세요.\n\nThough는 홀로 설 수 있고, even though가 강화된 형태입니다. Although도 사실 절을 이끌지만 앞에 even을 취하지 않습니다. 양보 표지를 둘 겹치지 마세요. Even though it rained, but we went는 연결어가 하나 많습니다. even though나 but 중 하나만 두세요.",
+    "pitfall": "even although와 Even though it rained, but we went는 피하세요. 사실의 양보는 Even though it rained, we went입니다.",
+    "keywords": [
+      "even if",
+      "even though",
+      "양보",
+      "although"
+    ]
+  },
+  "reported-commands": {
+    "title": "전달된 명령",
+    "question": "전달된 명령은 that일까요, to일까요?",
+    "summary": "Tell, ask, order, advise, warn은 사람 더하기 to부정사로 명령이나 요청을 전달합니다. 부정에서는 to 앞에 not을 두세요.",
+    "usage": "직접 문장 Wait outside는 She told us to wait outside가 될 수 있습니다. 요청은 She asked me to speak quietly입니다. 부정은 to 앞에 not을 둡니다. She told me not to lock the door. 그것이 선호되는 순서입니다. Advise와 warn도 같은 패턴을 씁니다. She warned us not to touch the paint.\n\nSay는 say someone to do를 취하지 않습니다. She said to wait는 가능하지만 She told us to wait가 더 분명합니다. 명령이 아니라 정보를 전달하면 that절을 쓰세요. She told me that the door was locked. 원래 말이 명령이었는지 진술이었는지 먼저 정하세요.",
+    "pitfall": "She told me that wait outside와 She said me to wait는 피하세요. 명령은 She told me to wait outside입니다.",
+    "keywords": [
+      "간접명령",
+      "tell to",
+      "not to",
+      "요청"
+    ]
+  },
+  "be-supposed-to": {
+    "title": "be supposed to",
+    "question": "be supposed to는 의무일까요, 사람들이 믿는 것일까요?",
+    "summary": "Be supposed to는 규칙이나 약속일 수도, 일반적인 믿음일 수도 있습니다. Was supposed to는 계획이 일어나지 않았음을 자주 함의합니다.",
+    "usage": "We're supposed to sign in은 규칙이나 계획이 기대하는 것으로, 자주 must보다 부드럽습니다. It's supposed to be an excellent cafe는 화자가 확인한 사실이 아니라 사람들이 하는 말을 전합니다. We're not supposed to park here는 주차가 기대나 규칙에 어긋난다는 뜻입니다.\n\nI was supposed to call, but I forgot에서 과거의 약속은 일어나지 않았습니다. be가 필요합니다. suppose to call은 그 표현이 아닙니다. I suppose는 추측한다는 뜻으로 다른 패턴입니다. 모든 문장에서 이 표현을 should로 바꾸지 마세요. 믿음과 이루어지지 않은 계획은 이 표현 고유의 쓰임입니다.",
+    "pitfall": "You suppose to sign in이라고 쓰지 마세요. 이 표현에는 be가 필요합니다. You're supposed to sign in.",
+    "keywords": [
+      "be supposed to",
+      "하기로 되어 있다",
+      "규칙",
+      "믿음"
+    ]
+  },
+  "be-about-to": {
+    "title": "be about to",
+    "question": "임박한 일에는 be about to일까요, will일까요?",
+    "summary": "Be about to와 base verb는 일이 당장 일어나려 함을 뜻합니다. Was about to는 when과 함께, 행동이 임박했다가 끼어들렸음을 자주 뜻합니다.",
+    "usage": "The film is about to start는 will start보다 더 임박합니다. 시각은 보통 필요 없습니다. about to start at eight은 어색합니다. at eight이 이미 시간을 주며 바로 이 순간을 뜻하지 않을 수 있기 때문입니다. I was about to leave when the phone rang에서 떠남은 일어나지 않았습니다.\n\nI'm not about to apologise는 거절일 수도 있습니다. 그럴 의도가 없습니다. 그것은 시간 의미가 아닙니다. about to leaving이라고 쓰지 말고 will을 더하지 마세요. will about to는 없습니다. 더 먼 계획은 be going to나 현재진행을 쓰세요.",
+    "pitfall": "The film is about to starting은 피하고 will을 더하지 마세요. 당장 시작은 The film is about to start입니다.",
+    "keywords": [
+      "be about to",
+      "임박",
+      "막 하려다",
+      "will"
+    ]
+  },
+  "get-passive": {
+    "title": "get 수동",
+    "question": "get과 past participle가 모든 be 수동을 대체할 수 있을까요?",
+    "summary": "Get과 past participle는 주어에게 일어나는 변화를 자주 표시합니다. 구어적이고, 결과나 놀라움을 시사하는 경우가 많습니다. 상태의 be 수동이 모두 get이 되지는 않습니다.",
+    "usage": "The window got broken, He got promoted, We got delayed는 일이 일어났고 주어가 결과를 받았음을 강조합니다. by구는 가능하지만 be보다는 덜 흔합니다. Get married, get dressed, get lost, get stuck은 굳어진 상태 변화입니다. Get은 말에서 자연스럽고, 격식 보고는 여전히 be를 선호합니다.\n\nThe building is made of brick이나 She is known for her essays 같은 상태는 got made나 got known이 되지 않습니다. Get something done은 사역일 수도 있습니다. I got the window repaired는 수리를 마련했다는 뜻이고, The window got repaired는 수리가 일어났다는 뜻입니다. 목적어가 어디에 있는지 보세요.",
+    "pitfall": "The building is made of brick을 The building got made of brick으로 바꾸지 마세요. 재료의 상태는 be와 함께 남습니다.",
+    "keywords": [
+      "get 수동",
+      "상태변화",
+      "수동태",
+      "구어"
+    ]
+  },
+  "modal-passive": {
+    "title": "조동사 수동",
+    "question": "조동사는 수동과 어떻게 결합할까요?",
+    "summary": "조동사 더하기 be 더하기 past participle를 쓰세요. can be changed, must be signed, should be sent. Ought는 to be를 유지합니다.",
+    "usage": "능동 They must sign the form은 The form must be signed가 됩니다. 조동사가 가능성, 필요, 조언, 허가를 담당하고, be와 past participle가 수동의 역할을 합니다. not은 조동사 뒤에 두세요. The form must not be removed. 의문문에서는 조동사를 앞으로 옮기세요. Can the date be changed?\n\nOught to be done이 to를 유지하는 주요 형태입니다. must to be, should to be, can finished라고 쓰지 마세요. 과거의 필요나 가능성은 조동사 완료 수동을 씁니다. It should have been sent yesterday. 그것은 한 층 더입니다. must be에 과거 시간을 더한다고 그 의무가 과거에 완료되었다는 뜻이 되지는 않습니다.",
+    "pitfall": "The form must signed와 The form must to be signed는 피하세요. 패턴은 must be signed입니다.",
+    "keywords": [
+      "조동사 수동",
+      "must be",
+      "should be",
+      "수동"
+    ]
+  },
+  "linking-so-therefore": {
+    "title": "so와 therefore",
+    "question": "so는 결과를 이을 수 있는데 therefore는 자주 못 하는 이유는 무엇일까요?",
+    "summary": "So는 접속사이며 원인과 결과를 이을 수 있습니다. Therefore는 부사이므로 쉼표만이 아니라 마침표나 세미콜론이 필요합니다.",
+    "usage": "It was late, so we left는 보통의 결과 문장으로, so 앞에 쉼표가 있는 경우가 많습니다. Therefore는 더 격식적입니다. It was late. Therefore, we left. It was late; therefore, we left라고 쓸 수도 있습니다. It was late, therefore we left는 콤마 스플라이스입니다. 쉼표만으로 두 완전한 문장을 이은 것입니다.\n\n이중 원인 표지 Because it was late, so we left를 그대로 옮기지 마세요. because나 so 중 하나만 두세요. Therefore는 가운데에도 올 수 있습니다. We therefore left. 학습자에게는 새 문장의 시작이 가장 분명한 자리입니다.",
+    "pitfall": "It was late, therefore we left와 Because it was late, so we left는 피하세요. so를 쓰거나, Therefore로 새 문장을 시작하세요.",
+    "keywords": [
+      "so",
+      "therefore",
+      "결과",
+      "접속"
+    ]
+  },
+  "whereas-while": {
+    "title": "whereas와 대조의 while",
+    "question": "while과 whereas는 두 사실을 어떻게 대조할까요?",
+    "summary": "Whereas와 while 둘 다 두 사실을 대조할 수 있습니다. While은 동안도 뜻하고, whereas는 거의 대조뿐입니다.",
+    "usage": "Cycling is cheap, whereas driving is not은 두 사실을 나란히 둡니다. While도 같습니다. Cycling is cheap, while driving is not. Whereas는 조금 더 격식적이며 글로 된 비교에 맞습니다. while이 시간으로 읽힐 수 있으면 whereas를 고르거나 다시 쓰세요. While I like the design은 보통 양보나 대조이고, While I was reading은 시간입니다.\n\n양쪽을 병렬로 유지하세요. During은 전치사이며 두 완전한 절 사이에서 whereas를 대체할 수 없습니다. Although는 중립적 대조보다 양보를 강조합니다. 두 사실이 단순히 다른지, 하나에도 불구하고 다른 하나가 놀라운지 정하세요.",
+    "pitfall": "대조에서 두 절을 잇는 데 during을 쓰지 마세요. Cycling is cheap, whereas driving is not이라고 하세요. During the ride는 시간 전치사입니다.",
+    "keywords": [
+      "whereas",
+      "while",
+      "대조",
+      "반면"
+    ]
+  },
+  "not-only-but-also": {
+    "title": "not only...but also",
+    "question": "not only...but also를 병렬로 유지하려면 어떻게 할까요?",
+    "summary": "not only와 but also 뒤의 항목은 형태가 맞아야 합니다. not only가 절을 시작하면 첫 절이 도치됩니다.",
+    "usage": "Not only the chairs but also the desks were moved는 두 명사구를 잇습니다. She not only called but also wrote는 두 동사를 잇습니다. Also는 때로 빠질 수 있지만 병렬 형태는 빠질 수 없습니다. 일치는 보통의 주어를 따릅니다. 동사 옆의 desks가 복수이므로 동사는 were moved입니다.\n\n앞에 둔 강조는 첫 절을 도치합니다. Not only did she call, but she also wrote. be가 있으면 Not only is it cheap, but it is also strong라고 하세요. Not only she did call이라고 쓰지 마세요. 중국어 짝이 자동으로 도치를 만들지는 않습니다. not only가 완전한 절을 시작할 때만 도치하세요.",
+    "pitfall": "Not only she called, but also wrote는 피하세요. 앞에서는 Not only did she call, but she also wrote를 쓰고, 양쪽을 병렬로 유지하세요.",
+    "keywords": [
+      "not only",
+      "but also",
+      "병렬",
+      "도치"
+    ]
+  },
+  "the-more-the-more": {
+    "title": "the more...the more",
+    "question": "이중 비교의 양쪽에 the가 필요할까요?",
+    "summary": "비교급 절 앞의 the와 그 뒤 또 하나의 the는 한 변화가 다른 변화를 가져온다는 뜻입니다. the는 둘 다 필요하고, more는 -er와 결합하지 않습니다.",
+    "usage": "The more carefully you read, the fewer mistakes you make는 변하는 조건과 변하는 결과를 짝짓습니다. The sooner we start, the earlier we finish도 같습니다. 짧은 형태는 동사를 생략할 수 있습니다. The sooner, the better. 보통의 비교급을 쓰세요. more carefully, fewer, better, harder이지, more better나 more harder가 아닙니다.\n\nMore you read, more you learn이라고 쓰지 마세요. 관사 the는 패턴에 속하며 빠질 수 없습니다. 중국어의 반복된 생각은 이미 -er 비교급인 단어에 more를 하나 더 붙이는 것이 아니라, 반복된 the와 맞습니다.",
+    "pitfall": "More you practise, more you improve와 the more better는 피하세요. The more you practise, the more you improve라고 하세요.",
+    "keywords": [
+      "the more",
+      "이중비교",
+      "비교급",
+      "할수록"
+    ]
+  },
+  "participle-clauses": {
+    "title": "분사구문",
+    "question": "문두 -ing나 past participle의 주어는 누구일까요?",
+    "summary": "분사구에서 이해되는 주어는 보통 주절의 주어입니다. -ing는 보통 능동, past participle는 보통 수동이고, having done은 더 이른 행동을 표시합니다.",
+    "usage": "Hoping for shade, we sat under the tree에서 그늘을 바라는 사람은 we입니다. Built in 1920, the hall is still used에서 지어진 것은 hall입니다. Having paid, we left는 떠나기 전에 지불을 둡니다. 분사는 who나 after we를 반복하는 것보다 더 짧습니다.\n\n주절 주어가 분사의 행동을 할 수 없으면 수식어가 엉뚱한 주어에 붙습니다. Walking to the station, the rain started는 비가 걷게 만듭니다. Walking to the station, I felt the rain start나 While I was walking, the rain started라고 하세요. 분사는 새로운 시제가 아닙니다. 순서는 여전히 단어와 맥락에서 옵니다.",
+    "pitfall": "Walking to the station, the rain started는 피하세요. 걷는 사람이 주절 주어여야 하며, 아니면 While I was walking, the rain started로 다시 쓰세요.",
+    "keywords": [
+      "분사구문",
+      "-ing",
+      "과거분사",
+      "주어"
+    ]
+  },
+  "mixed-conditionals": {
+    "title": "혼합 조건문",
+    "question": "조건과 결과가 다른 시간에 있을 때 동사는 어떻게 될까요?",
+    "summary": "과거 조건과 현재 결과에는 if절에 had와 past participle, 결과에 would와 base verb를 쓰세요. 현재 조건과 과거 결과는 각 시간에 맞는 형태를 씁니다.",
+    "usage": "If I had taken the job, I would live in Leeds now는 거절한 일을 과거에, 사는 곳을 현재에 둡니다. Would have lived는 사는 것도 과거로 옮깁니다. If she were more organised, she wouldn't have missed the train에서 정리가 안 된 것은 현재의 특성이고, 기차를 놓친 것은 과거의 결과입니다.\n\n대칭을 위해 양쪽을 한 시간으로 밀어 넣지 마세요. 현재의 반사실은 If I lived there, I would walk입니다. 과거의 반사실은 If I had lived there, I would have walked입니다. 시간이 정말 다를 때만 섞으세요. Were는 현재의 비현실 조건에 쓰는 형태이며, 격식적인 I were와 she were를 포함합니다.",
+    "pitfall": "현재 결과를 would have에 넣지 마세요. 과거에 거절한 일과 지금 살지 않는 곳은 If I had taken the job, I would live there now입니다.",
+    "keywords": [
+      "혼합조건",
+      "가정법",
+      "would",
+      "시제"
+    ]
+  },
+  "by-the-time": {
+    "title": "by the time",
+    "question": "by the time과 짝이 되는 시제는 무엇일까요?",
+    "summary": "By the time은 그 순간보다 늦지 않음을 뜻합니다. 미래에는 현재절과 미래완료 주절을 짝짓고, 과거에는 과거절과 과거완료 주절을 짝짓습니다.",
+    "usage": "By the time you read this, I will have left에서 읽기는 미래이고 떠남은 그 전에 이미 완료됩니다. 절은 read를, 주절은 will have left를 씁니다. By the time we found a seat, the talk had begun에서 자리 찾기는 과거이고 시작은 더 이르므로 형태는 had begun입니다.\n\n보통의 미래 by the time절에 will이나 would를 넣지 마세요. 이 표현은 그 시점 전의 완료를 강조합니다. 도착하는 순간에 단순히 진행 중이면 when과 진행형이 더 맞을 수 있습니다. By then과 by Friday도 완료형을 취하지만, 절이 뒤따르지는 않습니다.",
+    "pitfall": "By the time you will arrive, I will leave는 피하세요. By the time you arrive, I will have left라고 하세요.",
+    "keywords": [
+      "by the time",
+      "미래완료",
+      "과거완료",
+      "기한"
+    ]
+  },
+  "have-got": {
+    "title": "have got",
+    "question": "I've got은 소유일까요, get의 완료일까요?",
+    "summary": "영국 영어에서 I've got은 자주 현재 소유를 뜻합니다. 의문과 부정은 do 없이 have를 씁니다. 보통 의미의 과거 소유는 had got이 아니라 had입니다.",
+    "usage": "I've got two sisters는 I have two sisters와 같습니다. Have you got a pen?과 I haven't got a pen이 맞는 의문과 부정입니다. 미국 영어는 Do you have a pen?을 더 자주 말하지만 have got도 이해됩니다. Have got to는 have to에 가까운 의무를 표시합니다. I've got to leave now.\n\n이것은 자동으로 get의 현재완료가 아닙니다. I have got your message는 받았다는 뜻일 수 있으므로 맥락이 중요합니다. 소유에서는 got을 얻는 행동으로 보지 마세요. 과거 소유는 I had got a pen이 아니라 I had a pen입니다. I had got은 get의 과거완료처럼 들립니다. Do you have got도 비표준입니다.",
+    "pitfall": "Do you have got a pen?과 과거 소유의 I had got a pen은 피하세요. 현재는 Have you got a pen?이고, 과거는 I had a pen입니다.",
+    "keywords": [
+      "have got",
+      "소유",
+      "have",
+      "영국영어"
+    ]
+  },
+  "been-gone": {
+    "title": "been과 gone",
+    "question": "사람이 돌아왔으면 has been일까요, has gone일까요?",
+    "summary": "Have been to는 갔다가 돌아왔거나 그 경험이 있음을 뜻합니다. Have gone to는 떠나서 아직 돌아오지 않았음을 뜻합니다.",
+    "usage": "She has been to the lab은 그녀가 눈앞에 서 있는 동안에도 말할 수 있습니다. 어느 시점에 거기에 갔다는 뜻입니다. She has gone to the lab은 가는 중이거나 이미 거기 있고 여기 있지 않다는 뜻입니다. Been in은 머무름을 강조할 수 있습니다. I've been in the lab all morning.\n\nGone은 더 이상 여기 없는 것에도 맞습니다. The milk has gone. 이미 돌아온 사람의 여행 경험에 has gone to Paris를 쓰지 마세요. 중국어는 둘을 흐릴 수 있습니다. 영어는 그 사람이 아직 나가 있는지를 묻습니다.",
+    "pitfall": "그녀가 돌아왔다면 She has gone to Paris는 아직 나가 있다고 듣게 합니다. 경험은 She has been to Paris입니다.",
+    "keywords": [
+      "been",
+      "gone",
+      "갔다 오다",
+      "현재완료"
+    ]
+  },
+  "mid-position-adverbs": {
+    "title": "중간 위치 부사",
+    "question": "probably, never, still 같은 부사는 어디에 둘까요?",
+    "summary": "빈도, 확실성, 일부 정도의 부사는 보통 본동사 앞, be 뒤, 또는 첫 조동사 뒤에 옵니다. 양태 부사는 목적어 뒤에 자주 옵니다.",
+    "usage": "I probably know the answer, She is probably right, They have probably left, I can never tell이라고 하세요. 그것이 중립 위치입니다. Always, often, still, already도 그 자리를 자주 씁니다. 강조를 위해 부사를 옮길 수 있지만 초점이 바뀔 수 있습니다.\n\n양태 부사는 동사와 목적어를 보통 가르지 않습니다. She speaks well English가 아니라 She speaks English well입니다. Even과 only는 움직이면 대상이 바뀌므로 보통의 중간 위치 부사가 아닙니다. 확신이 없으면 조동사 뒤, 본동사 앞에 두세요.",
+    "pitfall": "She speaks well English는 피하세요. English가 목적어이므로 well은 그 뒤에 옵니다. She speaks English well. 가능성은 She probably speaks English입니다.",
+    "keywords": [
+      "부사위치",
+      "probably",
+      "중간",
+      "어순"
+    ]
+  },
+  "what-how-exclamations": {
+    "title": "what과 how의 감탄",
+    "question": "감탄문에서 What일까요, How일까요?",
+    "summary": "What은 명사구를 도입합니다. How는 형용사나 부사를 도입합니다. What은 물질 명사나 복수 앞에 a를 취하지 않습니다.",
+    "usage": "What a strange question!에는 단수 가산 명사 question이 있으므로 a를 취합니다. What beautiful weather!와 What lovely shoes!에는 a가 없습니다. weather는 물질 명사이고 shoes는 복수이기 때문입니다. How strange!와 How quickly it changed!는 형용사나 부사를 수식합니다. How strange that sounds도 가능합니다.\n\nHow a strange question이나 What strange it is라고 쓰지 마세요. So와 such도 관련된 강조이지만 이 감탄의 시작은 아닙니다. such a strange question은 문장 안에 앉을 수 있습니다. 감탄문에도 주어와 동사가 있을 수 있으며, What이나 How는 여전히 앞에 있습니다.",
+    "pitfall": "How a beautiful day는 피하세요. 명사는 What a beautiful day, 형용사만은 How beautiful을 취합니다.",
+    "keywords": [
+      "감탄문",
+      "what a",
+      "how",
+      "강조"
+    ]
+  },
+  "phrasal-verbs-separable": {
+    "title": "분리할 수 있는 구동사",
+    "question": "대명사가 turn off 가운데로 가는 이유는 무엇일까요?",
+    "summary": "turn off나 pick up에서는 명사 목적어가 가운데나 소사 뒤에 갈 수 있습니다. 대명사는 가운데에 가야 합니다. look after 같은 전치사 동사는 갈라지지 않습니다.",
+    "usage": "Turn off the radio와 turn the radio off 둘 다 가능합니다. 목적어가 it나 them이 되면 turn it off와 pick them up만 가능하고 turn off it는 안 됩니다. Put on, give back, fill in, 그리고 찾아본다는 뜻의 look up이 이 패턴을 공유합니다. 긴 명사구는 동사와 소사가 멀리 떨어지지 않도록 보통 소사 뒤에 남습니다.\n\n시험은 대명사가 가운데로 들어갈 수 있는지입니다. Look after her, wait for her, depend on her는 look her after가 될 수 없습니다. 그 단어는 움직이는 소사가 아니라 전치사입니다. 구동사의 의미는 단어의 합이 아닌 경우가 많으므로 단위로 익히세요.",
+    "pitfall": "turn off it와 look her after는 피하세요. 분리할 수 있는 구동사는 turn it off이고, 전치사 동사는 look after her입니다.",
+    "keywords": [
+      "구동사",
+      "분리",
+      "대명사",
+      "turn off"
+    ]
+  },
+  "noun-preposition": {
+    "title": "명사와 전치사",
+    "question": "reason, solution, increase 뒤에는 어느 전치사가 올까요?",
+    "summary": "명사와 전치사를 함께 익히세요. Reason for, solution to, increase in은 자유롭게 바꿔 쓸 수 없습니다.",
+    "usage": "흔한 결합에는 a reason for the delay, a need for rest, a solution to the problem, an increase in prices, a decrease in noise, the cause of the fire, an advantage of the plan, an interest in music, a photograph of the hall, a difficulty with the lock, an effect on attendance, a reply to the letter가 있습니다. 명사가 관련 형용사의 전치사를 항상 유지하지는 않습니다. proud of이지만 pride in입니다.\n\nReason of는 보통 표현이 아닙니다. Solution of는 화학에 나타날 수 있지만, 문제는 여전히 a solution to the problem을 취합니다. 전치사 뒤 동사는 -ing를 씁니다. a reason for leaving. 모든 결합을 만드는 단일 규칙은 없습니다.",
+    "pitfall": "the reason of the delay와 a solution of the problem은 피하세요. the reason for the delay와 a solution to the problem이라고 하세요.",
+    "keywords": [
+      "명사 전치사",
+      "reason for",
+      "solution to",
+      "increase in"
+    ]
+  },
+  "future-in-the-past": {
+    "title": "과거에서 본 미래",
+    "question": "과거 시점에서는 would일까요, was going to일까요?",
+    "summary": "과거에서 본 사건에는 would, was going to, was about to를 쓰세요. Was going to는 과거의 계획을 자주 표시하며, 그 계획은 일어나지 않았을 수 있습니다.",
+    "usage": "I knew she would be late는 앎의 과거 순간 뒤에 늦음을 둡니다. 전달된 will도 보통 would가 됩니다. She said she would wait. I was going to write, but I lost the address는 과거의 의도를 강조하며, but 때문에 취소된 경우가 많습니다. I was about to leave는 그 과거 순간에 출발이 임박했다는 뜻입니다.\n\n보통의 간접화법에 will을 유지하지 마세요. He said he will come은 사건이 여전히 미래이고 화자가 시제를 뒤로 옮기지 않기로 할 때만 나타납니다. 규칙적인 패턴은 would입니다. 모든 과거 계획에 would를 쓰지 마세요. 이루어지지 않은 의도는 was going to가 더 분명합니다.",
+    "pitfall": "버려진 과거 계획을 I would write, but I lost the address라고 쓰지 마세요. I was going to write, but I lost the address라고 하세요.",
+    "keywords": [
+      "과거에서 본 미래",
+      "was going to",
+      "would",
+      "계획"
+    ]
+  },
+  "question-word-infinitive": {
+    "title": "의문사와 부정사",
+    "question": "I don't know what to do는 어떤 구조일까요?",
+    "summary": "What, how, where, when, who, whether는 to부정사를 취할 수 있습니다. 이 패턴은 줄어든 간접의문문입니다. 여기서 whether를 if로 바꾸지 않습니다.",
+    "usage": "I don't know what to wear는 I don't know what I should wear에 가깝습니다. Show me where to sign과 I can't decide whether to accept도 같은 패턴을 씁니다. know, decide, explain, wonder, ask, show, tell 같은 동사 뒤에 옵니다. 이해되는 주어는 보통 주절의 주어나 목적어입니다. Tell me what to do는 내가 무엇을 해야 하는지 말해 달라는 뜻입니다.\n\nwhat이 이미 목적어이면 it를 더하지 마세요. what to do it가 아니라 what to do입니다. how to do it에서 it는 별개의 목적어입니다. 표준형은 if to go가 아니라 whether to go입니다. 보통의 why 의문은 이 부정사 패턴보다 절을 씁니다.",
+    "pitfall": "I don't know what to do it와 if to go는 피하세요. what to do와 whether to go라고 하세요.",
+    "keywords": [
+      "what to",
+      "whether to",
+      "의문사",
+      "부정사"
+    ]
+  },
+  "emphatic-do": {
+    "title": "강조의 do",
+    "question": "I do understand에서 do는 무엇을 할까요?",
+    "summary": "Do, does, did와 base verb는 반박하거나, 고집하거나, 대조를 만듭니다. 보통의 be나 조동사와는 결합하지 않습니다.",
+    "usage": "I do understand는 당신이 이해하지 못한다고 생각하는 사람에게 답합니다. She did send the file은 과거의 보냄이 일어났다고 고집하며, did 뒤에는 sent가 아니라 send가 옵니다. 현재 강조는 do나 does, 과거 강조는 did를 쓰고, 본동사는 base form으로 돌아갑니다. 대조에도 씁니다. I don't like tea, but I do like coffee.\n\n명령문에서 Do sit down은 따뜻하거나 고집 있는 권유입니다. She does be late나 I did went라고 쓰지 마세요. be의 강조는 보통 does be가 아니라 강세나 다른 구조를 씁니다. can, will, have가 이미 조동사이면 같은 동사를 강조하려고 do를 더하지 마세요.",
+    "pitfall": "She did sent the file은 피하세요. 과거 강조는 did와 base verb입니다. She did send the file.",
+    "keywords": [
+      "강조 do",
+      "did",
+      "대조",
+      "insist"
+    ]
+  },
+  "numbers-a-hundred": {
+    "title": "a hundred와 hundreds of",
+    "question": "two hundred는 단수인데 hundreds of는 복수인 이유는 무엇일까요?",
+    "summary": "정확한 수 뒤에서 hundred와 thousand는 단수로 남습니다. 막연히 큰 수에는 a도 정확한 수도 없이 hundreds of나 thousands of를 쓰세요.",
+    "usage": "A hundred people과 one hundred people 둘 다 가능합니다. Two hundred seats와 three thousand copies에는 -s가 없습니다. 숫자와 of the도 단수로 남습니다. two hundred of the seats. 복수는 막연한 수량에 씁니다. hundreds of people, thousands of times.\n\ntwo hundreds people이나 a hundreds of people이라고 쓰지 마세요. 영국 영어는 백 단위와 십 단위 사이에 and를 자주 넣습니다. one hundred and twenty. 그 and가 hundred를 복수로 만들지는 않습니다. Dozen과 million도 같은 경향을 따릅니다. 숫자 뒤에는 단수, 막연히 큰 양에는 복수입니다.",
+    "pitfall": "two hundreds students는 피하세요. 정확한 수는 two hundred students이고, 막연히 큰 수는 hundreds of students입니다.",
+    "keywords": [
+      "hundred",
+      "hundreds of",
+      "수",
+      "복수"
+    ]
+  },
+  "linking-verbs-adjectives": {
+    "title": "연결동사 뒤의 형용사",
+    "question": "look, feel, taste가 well이 아니라 good을 취하는 이유는 무엇일까요?",
+    "summary": "be, seem, look, feel, taste, sound, become이 주어의 상태를 말할 때는 양태 부사가 아니라 형용사를 취합니다.",
+    "usage": "This soup tastes good은 맛보는 방식이 아니라 수프를 말합니다. I feel cold, The music sounds great, She seems tired 모두 형용사를 씁니다. Become, get, grow, stay, remain도 형용사를 연결할 수 있습니다. get dark, stay calm. Well은 good의 부사이지만, 건강하다는 뜻의 형용사이기도 합니다. I feel well.\n\n주어를 묘사하려고 이 동사들 뒤에 -ly 부사를 두지 마세요. Sounds well은 보통의 칭찬이 아닙니다. sounds good이라고 하세요. Feel badly는 후회나 동정의 일부 말에 나타나지만, 주어의 상태는 I feel bad입니다. Look like는 형용사가 아니라 명사를 취합니다. look like tired가 아니라 look tired입니다.",
+    "pitfall": "The soup tastes well과 She looks like tired는 피하세요. The soup tastes good입니다. 피곤해 보이는 것은 looks tired입니다.",
+    "keywords": [
+      "연결동사",
+      "형용사",
+      "look",
+      "feel"
+    ]
+  },
+  "interesting-interested": {
+    "title": "interesting과 interested",
+    "question": "언제 -ing이고 언제 -ed일까요?",
+    "summary": "-ing형은 느낌을 일으키는 것을 말합니다. -ed형은 그 느낌을 가진 사람을 말합니다. Interested 뒤에는 자주 in이 옵니다.",
+    "usage": "The lecture was interesting은 강의를 원인으로 말합니다. The students were interested는 학생들의 느낌을 말합니다. boring/bored, exciting/excited, confusing/confused, tiring/tired에도 같은 나눔이 있습니다. 사람도 -ing를 취할 수 있습니다. She is interesting은 그녀가 흥미를 느낀다는 뜻이 아니라 흥미를 일으킨다는 뜻입니다.\n\nInterested in은 명사나 -ing를 취합니다. interested in the map, interested in learning. Interested to hear는 소식에 대한 반응이며 interested in을 대체하지 않습니다. 그 단어가 원인인지, 그것을 경험하는 사람인지 물어 보세요.",
+    "pitfall": "I am interesting in history는 피하세요. 사람의 느낌은 I am interested in history입니다. History 자체는 interesting일 수 있습니다.",
+    "keywords": [
+      "interesting",
+      "interested",
+      "감정",
+      "-ing -ed"
+    ]
+  },
+  "hard-hardly": {
+    "title": "hard와 hardly",
+    "question": "hardly가 hard의 부사일까요?",
+    "summary": "Hard는 어렵거나, 노력을 들여서를 뜻합니다. Hardly는 거의 ~않다를 뜻하며 이미 부정에 가깝습니다.",
+    "usage": "The exam was hard는 형용사입니다. She works hard는 부사로, 거의 일을 안 한다는 뜻이 아니라 노력을 들여서를 뜻합니다. Hardly는 반대입니다. She hardly works는 거의 일을 하지 않는다는 뜻입니다. Hardly ever는 아주 드물게를 뜻합니다. Hardly는 보통 본동사 앞이나 첫 조동사 뒤에 옵니다. I can hardly hear you.\n\nHardly had I sat down when the bell rang은 격식 도치이고, when이 다음 사건을 도입합니다. hardly에 not을 더하지 마세요. -ly를 어려운 방식으로로 읽지 마세요. 그 의미는 이미 hard에 속합니다.",
+    "pitfall": "She works hard를 거의 일을 안 하는 것으로 읽지 마세요. 노력은 works hard이고, 거의 없음은 hardly works입니다.",
+    "keywords": [
+      "hard",
+      "hardly",
+      "거의",
+      "부사"
+    ]
+  },
+  "late-lately": {
+    "title": "late와 lately",
+    "question": "최근을 뜻하는 것은 late일까요, lately일까요?",
+    "summary": "Late는 형용사나 부사로 예상 시간보다 늦음을 뜻합니다. Lately는 최근을 뜻하며 현재완료를 자주 취합니다.",
+    "usage": "The bus was late와 She arrived late 둘 다 예상 시간보다 늦음을 뜻합니다. A late train은 지연된 기차이고, a late reply는 마땅한 때보다 늦게 온 답장입니다. Lately는 지연을 뜻하지 않습니다. I haven't seen her lately는 최근 기간에 보지 않았다는 뜻입니다. Recently는 의미가 가깝고 위치가 더 유연합니다.\n\n늦은 도착에 She arrived lately라고 쓰지 마세요. Latest는 가장 최근이거나 마지막을 뜻합니다. the latest bus, the latest edition. lately의 -ly는 의미를 바꾸며, late를 단순히 부사로 만들지 않습니다.",
+    "pitfall": "늦은 도착에 She arrived lately는 피하세요. 늦은 도착은 She arrived late이고, 최근 기간은 I haven't seen her lately입니다.",
+    "keywords": [
+      "late",
+      "lately",
+      "최근",
+      "늦다"
+    ]
+  },
+  "most-most-of": {
+    "title": "most와 most of",
+    "question": "다수는 most people일까요, most of people일까요?",
+    "summary": "일반적인 다수는 of 없이 most와 명사입니다. Most of에는 the, these, 소유격, 대명사가 필요합니다. 특정 집합을 뜻하기 때문입니다.",
+    "usage": "Most students walk는 학생 일반을 뜻합니다. Most of the students in this class walk는 그 알려진 학급의 다수를 뜻합니다. Most of them과 most of my notes는 them과 my notes가 특정되므로 성립합니다. The most는 최상급입니다. the most useful map.\n\nmost of people이나 most of students라고 쓰지 마세요. 물질 명사도 같은 나눔을 따릅니다. most water는 일반이고, most of the water in the jug는 그 특정한 물입니다. 동사는 most가 가리키는 명사와 일치합니다. most of the water is, most of the seats are.",
+    "pitfall": "most of people은 피하세요. 일반형은 Most people agreed입니다. 알려진 집단은 Most of the people in the room agreed입니다.",
+    "keywords": [
+      "most",
+      "most of",
+      "대부분",
+      "한정사"
+    ]
+  },
+  "a-lot-plenty": {
+    "title": "a lot와 plenty",
+    "question": "A lot of, lots of, plenty of 중 무엇일까요?",
+    "summary": "A lot of와 lots of는 가산 명사와 물질 명사 모두에 씁니다. Plenty of는 충분하고 더 있음을 뜻합니다. Much와 many는 부정문과 의문문에서 더 흔합니다.",
+    "usage": "A lot of time과 a lot of chairs 둘 다 자연스럽습니다. Lots of는 더 구어적입니다. A lot 단독은 알려진 명사를 대신할 수 있습니다. We have a lot. Plenty of time은 수량만이 아니라 여유가 있는 충분함을 강조합니다. 긍정문에서는 much보다 a lot of가 더 흔합니다. 보통의 I have much work가 아니라 I have a lot of work입니다.\n\n부정문과 의문문은 여전히 much와 many를 자유롭게 씁니다. We don't have much time, Do we have many chairs? 명사 앞에서 of를 빼지 마세요. plenty time이 아니라 plenty of time입니다. Too many와 too much는 원하는 것보다 많다는 뜻으로, plenty와는 다릅니다.",
+    "pitfall": "plenty time과 a lot chairs는 피하세요. 명사 앞에는 plenty of time과 a lot of chairs라고 하세요.",
+    "keywords": [
+      "a lot of",
+      "plenty of",
+      "many",
+      "much"
+    ]
+  },
+  "no-not-none": {
+    "title": "no, not, none",
+    "question": "표가 없을 때 no, not, none 중 무엇일까요?",
+    "summary": "No는 명사 바로 앞에 옵니다. Not은 동사, 또는 a와 any를 부정합니다. None은 홀로 서거나, none of가 알려진 집합을 가리킵니다.",
+    "usage": "There are no tickets left에서 no는 tickets를 수식합니다. There aren't any tickets left는 동사를 부정하고 any를 씁니다. How many are left?에 대한 답은 None일 수 있습니다. None of the tickets와 none of them은 이미 특정된 집합을 가리킵니다.\n\nI have not tickets나 none ticket이라고 쓰지 마세요. No는 단수, 복수, 물질 명사 앞에 올 수 있습니다. no key, no keys, no time. None은 명사 바로 뒤에 올 수 없습니다. don't have no tickets처럼 부정을 겹치지 마세요. 표준 영어에서 그 이중 부정은 영을 말하는 방식이 아닙니다.",
+    "pitfall": "I have not tickets는 피하세요. I have no tickets나 I don't have any tickets라고 하세요. 영을 뜻하는 답에는 None을 쓰세요.",
+    "keywords": [
+      "no",
+      "not",
+      "none",
+      "부정"
+    ]
+  },
+  "everyday-every-day": {
+    "title": "everyday와 every day",
+    "question": "everyday는 한 단어일까요, 두 단어일까요?",
+    "summary": "Everyday는 일상적이거나 매일의라는 형용사입니다. Every day는 매일이라는 시간 표현입니다.",
+    "usage": "Everyday clothes와 everyday English는 명사를 수식하며, 격식 옷이나 전문 언어가 아니라 정기적으로 쓰는 평범한 것을 뜻합니다. I walk to work every day에서 every day는 빈도를 주며 앞으로 옮길 수 있습니다. Every day I walk to work. day가 명사이므로 두 단어는 떨어져 있습니다.\n\n하루 걸러를 뜻하는 Every other day도 떨어져 있습니다. 빈도를 everyday I walk라고 쓰지 마세요. 형용사로 명사 앞에 앉을 수 있을 때만 글자를 붙이세요.",
+    "pitfall": "I walk everyday는 피하세요. 빈도는 I walk every day이고, 형용사는 everyday clothes입니다.",
+    "keywords": [
+      "everyday",
+      "every day",
+      "매일",
+      "일상"
+    ]
+  },
+  "sometime-sometimes": {
+    "title": "sometime, sometimes, some time",
+    "question": "지정되지 않은 때, 가끔, 기간은 어떻게 다를까요?",
+    "summary": "Sometime은 지정되지 않은 순간입니다. Sometimes는 가끔을 뜻합니다. Some time은 시간의 기간입니다.",
+    "usage": "Come sometime next week는 특정한 날을 이름 붙이지 않습니다. I sometimes walk는 걷기가 습관의 전부가 아니라 일부라는 뜻입니다. I need some time은 시간의 폭을 뜻합니다. time은 명사이고 some은 한정사입니다. Some times는 드물며, times가 경우나 시대를 뜻할 때만 맞습니다.\n\nSometime은 가끔을 뜻하려고 동사 앞에 보통 앉지 않습니다. Sometimes는 중간, 문두, 문말일 수 있습니다. 가끔을 뜻하는 중국어 표현은 sometimes와 맞습니다. 지정되지 않은 순간을 고르라는 초대는 sometime과 맞습니다.",
+    "pitfall": "가끔에 I sometime walk는 피하세요. 가끔은 I sometimes walk입니다. 지정되지 않은 순간은 sometime next week이고, 기간은 some time alone입니다.",
+    "keywords": [
+      "sometime",
+      "sometimes",
+      "some time",
+      "가끔"
+    ]
+  },
+  "maybe-may-be": {
+    "title": "maybe와 may be",
+    "question": "maybe와 may be가 서로를 대신할 수 있을까요?",
+    "summary": "Maybe는 문장 전체의 부사입니다. May be는 조동사 may와 동사 be이며, 절에는 여전히 주어가 필요합니다.",
+    "usage": "Maybe she is right는 She may be right로 다시 쓸 수 있지만, 문법과 위치가 바뀝니다. Maybe는 문장을 자주 시작하고, 끝에 가벼운 덧붙임이 될 수도 있습니다. May be에는 주어가 필요하고, be는 형용사, 명사, 장소를 취할 수 있습니다. She may be late, It may be the key, They may be outside.\n\nShe maybe right나 Maybe be a problem이라고 쓰지 마세요. Maybe it's a problem이 완전한 문장입니다. May be는 두 단어로 남고, maybe는 쪼개어 동사로 쓸 수 없습니다.",
+    "pitfall": "She maybe right는 피하세요. 부사는 Maybe she is right이고, 동사는 She may be right입니다.",
+    "keywords": [
+      "maybe",
+      "may be",
+      "아마",
+      "부사"
+    ]
+  },
+  "raise-rise": {
+    "title": "raise와 rise",
+    "question": "목적어가 필요한 동사는 raise일까요, rise일까요?",
+    "summary": "Raise는 타동사이며 목적어가 필요합니다. 과거와 past participle는 raised입니다. Rise는 자동사입니다. rose, risen.",
+    "usage": "Raise your hand, raise the price, raise children 모두 주어가 다른 것을 올리거나 기른다는 뜻입니다. Prices rise, the sun rose, the water has risen은 사물 자체가 올라가며 목적어가 없습니다. Raise는 규칙 동사입니다. rise의 세 형태는 rise, rose, risen입니다.\n\n스스로 오른 가격에 The price raised라고 쓰지 마세요. 그 문장에는 그것을 올린 사람이 주어로 필요합니다. Arise는 별개의 자동사로, 문제가 나타남을 자주 나타내며 raise your hand를 대체하지 않습니다.",
+    "pitfall": "She rose her hand와 The price raised는 피하세요. 손은 She raised her hand이고, 스스로 오르는 가격은 The price rose입니다.",
+    "keywords": [
+      "raise",
+      "rise",
+      "타동사",
+      "자동사"
+    ]
+  },
+  "lie-lay": {
+    "title": "lie와 lay",
+    "question": "lie와 lay의 과거형이 겹치는 이유는 무엇일까요?",
+    "summary": "눕는 lie의 과거는 lay, past participle는 lain입니다. 놓는 lay는 목적어가 필요하며 과거와 past participle는 laid입니다. 거짓말을 뜻하는 lie는 lied를 씁니다.",
+    "usage": "I'm going to lie down에는 목적어가 없습니다. Yesterday I lay down for an hour는 눕다의 과거입니다. 그 lay는 놓다는 뜻이 아닙니다. Please lay the map on the table에는 목적어 map이 있고, 과거는 She laid the map down입니다. 분사는 has lain과 has laid입니다. 거짓말은 lie, lied, lied입니다. He lied about the time.\n\n겹침은 lie의 과거가 lay로 철자되기 때문입니다. 먼저 목적어를 찾으세요. 목적어가 없으면 보통 눕거나 위치함을 뜻합니다. 목적어가 있으면 놓다는 뜻입니다. 일부 말은 눕는 데 lay down을 쓰지만, 신중한 글은 lie down을 유지합니다.",
+    "pitfall": "눕는다는 뜻에 I laid down for an hour는 피하세요. lie의 과거는 I lay down입니다. 지도를 내려놓는 것은 I laid the map down입니다.",
+    "keywords": [
+      "lie",
+      "lay",
+      "lain",
+      "laid"
+    ]
+  },
+  "borrow-lend": {
+    "title": "borrow와 lend",
+    "question": "빌리고 빌려 주는 데 영어가 동사 둘을 쓰는 이유는 무엇일까요?",
+    "summary": "Borrow는 일시적으로 가져오는 것으로, 자주 from과 함께 씁니다. Lend는 일시적으로 주는 것으로, 이중 목적어나 to와 함께 씁니다.",
+    "usage": "Can I borrow your pen?은 펜을 화자 쪽으로 움직입니다. Can you lend me your pen?이나 Can you lend your pen to me?는 주인에게서 멀리 움직입니다. Borrow는 사람과 사물의 이중 목적어를 취하지 않으므로 borrow me a pen은 틀립니다. lend의 과거는 lent입니다.\n\n중국어 동사 하나가 두 방향을 덮습니다. 영어는 방향을 골라야 합니다. Borrow와 lend는 일시적 사용에 씁니다. 소유가 바뀌면 give나 take를 쓰세요. 돌려주는 것은 일상적인 borrow back이 아니라 return입니다.",
+    "pitfall": "Can you borrow me a pen?은 피하세요. 나에게 주는 것은 Can you lend me a pen?이고, 당신에게서 가져오는 것은 Can I borrow your pen?입니다.",
+    "keywords": [
+      "borrow",
+      "lend",
+      "빌리다",
+      "빌려주다"
+    ]
+  },
+  "bring-take": {
+    "title": "bring과 take",
+    "question": "bring과 take의 기준점은 무엇일까요?",
+    "summary": "Bring은 화자 쪽이나 이야기하는 목적지로 무언가를 움직입니다. Take는 다른 곳으로 멀리 움직입니다. Fetch는 가서 가져와 돌아온다는 뜻입니다.",
+    "usage": "Bring your passport to the interview는 면접을 목적지로 다룹니다. 여권이 거기에 도착해야 합니다. Take this form to the desk는 여기서 멀리 움직입니다. Come in and bring your bag에서 come과 bring 둘 다 화자 쪽을 가리킵니다. I'll take it home은 현재 장소를 떠납니다.\n\nFetch, 또는 get은 사람이 떠나 그것을 가지고 돌아온다는 뜻입니다. I'll fetch the key. 나르는 모든 행위에 bring을 고르지 마세요. 목적지가 여기인지 다른 곳인지 물어 보세요. bring의 과거는 brought, take의 과거는 took입니다.",
+    "pitfall": "방에 있는 사람이 우산을 안으로 가져오길 원하면 Take the umbrella in이 아니라 Bring the umbrella in이라고 하세요. Take는 여기서 멀어지는 이동에 맞습니다.",
+    "keywords": [
+      "bring",
+      "take",
+      "가져오다",
+      "가져가다"
+    ]
+  },
+  "hear-listen": {
+    "title": "hear와 listen",
+    "question": "to가 필요한 것은 hear일까요, listen일까요?",
+    "summary": "Hear는 소리가 당신에게 닿는 것입니다. Listen은 주의를 기울이는 것이며, 목적어 앞에 to가 필요합니다.",
+    "usage": "I heard a noise는 집중하고 있었다는 뜻이 아닙니다. I was listening to the radio는 그렇다는 뜻입니다. Listen은 홀로 설 수 있습니다. Please listen. 목적어에는 to가 필요합니다. listen to me, listen to it. Hear from은 누군가에게서 소식을 받는 것이고, hear about은 무언가에 대해 알게 되는 것입니다.\n\n의도하지 않은 듣기는 hear나 can hear를 씁니다. I'm hearing the bell은 보통 형태가 아닙니다. Listen은 listen music이 될 수 없습니다. 중국어 동사 하나가 지각과 주의를 자주 함께 덮습니다.",
+    "pitfall": "listen music과 listen the radio는 피하세요. 주의는 listen to the radio이고, 지각은 I heard a noise입니다.",
+    "keywords": [
+      "hear",
+      "listen",
+      "듣다",
+      "주의"
+    ]
+  },
+  "see-watch-look": {
+    "title": "see, watch, look",
+    "question": "영어가 보기, 지켜보기, 바라보기를 나누는 이유는 무엇일까요?",
+    "summary": "See는 지각하거나 만나는 것입니다. Look는 눈을 돌리는 것입니다. Watch는 변하는 것에 주의를 기울이는 것입니다. Look는 목적어 앞에 at이 필요합니다.",
+    "usage": "I saw a bird는 새가 시야에 들어왔다는 뜻입니다. Look at the board는 눈을 돌리라고 합니다. I watched the match는 시간에 걸쳐 변하는 장면을 따라갔다는 뜻입니다. Look for는 찾고, look after는 돌본다는 뜻입니다. 둘 다 글자 그대로의 보기가 아닙니다. See a film은 상영에 간다는 뜻일 수 있고, watch a film은 시청을 강조합니다.\n\n의도하지 않은 지각의 see는 진행형을 보통 취하지 않습니다. can see를 쓸 수 있습니다. I'm seeing the dentist는 예약입니다. look the board나 watch at the match라고 쓰지 마세요. 중국어 동사가 알아챔, 장면 따라가기, 눈 돌리기 중 무엇인지를 물어 보세요.",
+    "pitfall": "look the board와 watch at the match는 피하세요. 눈을 돌리는 것은 look at the board, 장면을 따라가는 것은 watch the match, 알아채는 것은 see입니다.",
+    "keywords": [
+      "see",
+      "watch",
+      "look at",
+      "보다"
+    ]
+  },
+  "win-beat": {
+    "title": "win과 beat",
+    "question": "경기와 상대에는 win일까요, beat일까요?",
+    "summary": "win의 목적어는 경기, 상, 금액입니다. beat의 목적어는 상대입니다.",
+    "usage": "We won the final, She won a prize, Our team won 모두 자연스럽습니다. 상대는 beat를 취합니다. We beat the other team. Win against가 때로 나타나지만, win the other team은 표준 패턴이 아닙니다. beat의 과거는 beat, past participle는 beaten입니다. We have beaten them twice.\n\n진 사람을 이름 붙이는 중국어 문장은 학습자가 win them이라고 쓰게 할 수 있습니다. 영어는 이긴 것과 이긴 사람을 나눕니다. Beat는 치다는 뜻도 있지만, 스포츠에서는 이긴다는 뜻입니다.",
+    "pitfall": "We won the other team은 피하세요. 경기는 We won the final이고, 상대는 We beat the other team입니다.",
+    "keywords": [
+      "win",
+      "beat",
+      "이기다",
+      "상대"
+    ]
+  },
+  "advice-advise": {
+    "title": "advice와 advise",
+    "question": "조언의 명사와 동사는 어떻게 다를까요?",
+    "summary": "Advice는 불가산 명사입니다. Advise는 동사로, 자주 advise someone to do에 씁니다. 발음도 다릅니다.",
+    "usage": "a piece of advice나 some advice로 양을 말하세요. An advice와 일상적인 복수 advices는 보통 영어가 아닙니다. 동사는 She advised me to wait이고, 명사는 Her advice was to wait입니다. Advice는 /s/ 소리로 끝나고, advise는 /z/로 끝납니다.\n\nAdvise는 that절을 취할 수 있고, 제안은 base form이나 should를 쓸 수 있습니다. She advised that he wait. 더 흔한 패턴은 advise someone to do입니다. 명사 advice에 -ed를 붙여 동사로 다루지 마세요.",
+    "pitfall": "an advice와 She adviced me는 피하세요. 한 가지는 a piece of advice이고, 동사는 She advised me to wait입니다.",
+    "keywords": [
+      "advice",
+      "advise",
+      "조언",
+      "불가산"
+    ]
+  },
+  "beside-besides": {
+    "title": "beside와 besides",
+    "question": "beside와 besides는 글자 하나 이상의 차이가 있을까요?",
+    "summary": "Beside는 옆에를 뜻하는 전치사입니다. Besides는 게다가를 뜻하며 전치사나 부사가 될 수 있습니다.",
+    "usage": "Sit beside me는 위치입니다. Besides the fare, we paid for lunch는 요금에 더해를 뜻합니다. Besides, the hall was cold는 다른 점을 더하는 부사입니다. Who else was there besides Sam?은 Sam에 더해 누가 있었는지 묻습니다.\n\nExcept는 제외합니다. 긍정문의 Besides는 보통 더합니다. 추가의 뜻에 beside를 쓰지 마세요. Beside oneself는 감정을 잃는 고정 표현으로, 보통의 장소 의미와는 별개입니다.",
+    "pitfall": "비용에 더해라는 뜻에 beside the cost를 쓰지 마세요. 추가는 besides the cost이고, 위치는 beside the window입니다.",
+    "keywords": [
+      "beside",
+      "besides",
+      "옆에",
+      "게다가"
+    ]
+  },
+  "across-through": {
+    "title": "across와 through",
+    "question": "도로와 터널에는 across일까요, through일까요?",
+    "summary": "Across는 표면 위에서 한쪽에서 다른 쪽으로 갑니다. Through는 공간 안을 지나가며, 기간을 관통할 수도 있습니다.",
+    "usage": "Walk across the road와 across the bridge는 표면 위에서 쪽에서 쪽으로 움직입니다. Walk through the tunnel, through the crowd, through the forest는 공간에 들어가 나옵니다. Across the street는 맞은편을 뜻할 수도 있습니다. Through the window는 유리 위를 걷는 것이 아니라 개구부를 지나감을 뜻합니다.\n\nThrough Friday는 금요일까지 포함함을 뜻할 수 있습니다. 그것은 시간 용법입니다. 도로를 건너는 데 through the road라고 하지 마세요. 이동이 표면 위의 쪽에서 쪽인지, 무언가의 안을 지나는지 물어 보세요.",
+    "pitfall": "건너기에 walk through the road는 피하세요. 도로는 walk across the road이고, 터널은 walk through the tunnel입니다.",
+    "keywords": [
+      "across",
+      "through",
+      "건너다",
+      "통과"
+    ]
+  },
+  "as-if-as-though": {
+    "title": "as if와 as though",
+    "question": "인상에는 as if, as though, like 중 무엇일까요?",
+    "summary": "As if와 as though는 같은 뜻이며 절을 취합니다. 비현실적 비교는 과거형을 자주 씁니다. Like와 절은 구어적이고, 신중한 글은 as if를 유지합니다.",
+    "usage": "It looks as if it's going to rain은 실제 가능성일 수 있으므로 절은 현재로 남습니다. He talks as if he knew everything은 그가 알지 못함을 시사합니다. Knew는 과거 시간이 아니라 사실과의 거리를 표시합니다. As though는 조금 더 격식적이며 구조가 같습니다. As if to leave는 떠나려는 몸짓에 부정사를 씁니다.\n\nas like he knew라고 쓰지 마세요. It looks like rain은 like가 명사를 취하므로 괜찮습니다. It looks like it's going to rain은 말에서 흔하지만, 신중한 비교, 특히 비현실적인 것은 as if나 as though를 선호합니다.",
+    "pitfall": "He talks as like he knew는 피하세요. He talks as if he knew everything이라고 하세요. 비가 올 것처럼 실제로 보이는 것은 It looks as if it's going to rain입니다.",
+    "keywords": [
+      "as if",
+      "as though",
+      "가정",
+      "like"
+    ]
+  },
+  "spend-worth-ing": {
+    "title": "spend, worth와 -ing",
+    "question": "spend와 worth가 -ing를 취하는 이유는 무엇일까요?",
+    "summary": "Spend는 시간이나 돈을 취한 뒤 -ing, 또는 on과 명사를 취합니다. Worth는 to부정사가 아니라 명사나 -ing를 취합니다.",
+    "usage": "I spent an hour reading과 She spent the money on books라고 하세요. spend의 과거는 spent입니다. Spend time to read는 이 의미의 보통 패턴이 아닙니다. On은 base verb가 아니라 명사를 취합니다.\n\nThe book is worth reading에서 -ing는 수동의 의미를 갖습니다. 읽을 가치가 있습니다. 형태는 여전히 reading이며, 더 선호되는 worth being read도 아니고 worth to read도 아닙니다. It's worth it는 홀로 설 수 있습니다. 여기서 worth는 동사가 아니므로 be가 필요합니다. worths가 아니라 is worth입니다.",
+    "pitfall": "worth to read와 spent an hour to read는 피하세요. The book is worth reading과 I spent an hour reading이라고 하세요.",
+    "keywords": [
+      "spend",
+      "worth",
+      "-ing",
+      "시간"
+    ]
+  },
+  "cant-help": {
+    "title": "can't help",
+    "question": "스스로 멈출 수 없을 때 can't help 뒤에는 무엇이 올까요?",
+    "summary": "Can't help과 -ing는 스스로 멈출 수 없다는 뜻입니다. Can't help someone to do는 다른 뜻입니다. 그들을 도울 수 없습니다.",
+    "usage": "I can't help laughing은 웃음을 멈출 수 없다는 뜻입니다. I can't help but laugh도 가능하며 but 뒤에 base verb가 옵니다. 과거는 I couldn't help laughing입니다. 이 help는 돕다는 뜻이 아니므로, 참을 수 없는 행동에는 to laugh가 패턴이 아닙니다.\n\nI can't help you to move the desk는 도울 수 없다는 뜻입니다. 돕다는 뜻의 help는 help someone (to) do를 허용합니다. 두 의미는 help 뒤에 사람이 오는지, 다음 동사가 -ing인지 to인지로 나뉩니다. Can't help it은 상황에 대해 할 수 있는 일이 없다는 뜻입니다.",
+    "pitfall": "참을 수 없는 웃음에 I can't help to laugh는 피하세요. 그 의미는 I can't help laughing입니다. 도울 수 없음은 I can't help you (to) move it입니다.",
+    "keywords": [
+      "can't help",
+      "참다",
+      "-ing",
+      "돕다"
+    ]
+  },
+  "feel-like": {
+    "title": "feel like",
+    "question": "하고 싶을 때 feel like가 to를 취할까요?",
+    "summary": "Feel like가 원하다를 뜻하면 명사나 -ing를 취합니다. 그런 느낌이 든다를 뜻할 수도 있으며, 그때는 절을 자주 취합니다.",
+    "usage": "I feel like a walk와 I feel like walking 둘 다 지금 그것을 원한다는 뜻입니다. Feel like to walk는 그 패턴이 아닙니다. 부정은 I don't feel like cooking입니다. want보다 더 가볍고, 현재의 기분을 자주 말합니다.\n\nI feel like I'm falling은 떨어지고 싶은 욕구가 아니라 감각입니다. This cloth feels like silk는 질감이나 닮음입니다. like 뒤의 말이 의미를 가릅니다. 명사나 -ing는 자주 욕구이거나 유사함이고, 절은 자주 감각입니다. 형용사와 함께 쓰는 feel과 혼동하지 마세요. I feel tired.",
+    "pitfall": "I feel like to go out은 피하세요. 나가고 싶음은 I feel like going out이거나 I feel like a walk입니다.",
+    "keywords": [
+      "feel like",
+      "하고 싶다",
+      "-ing",
+      "느낌"
+    ]
+  },
+  "go-get-become": {
+    "title": "go, get, become",
+    "question": "상태 변화에는 go, get, become 중 무엇일까요?",
+    "summary": "Become은 변화의 일반 동사이며 형용사나 명사를 취할 수 있습니다. Get은 형용사를 자주 취하고 구어적입니다. Go는 색깔, 나빠짐, 일부 고정 변화에 흔합니다.",
+    "usage": "She became a nurse는 직업 명사와 become을 씁니다. It got dark와 I'm getting tired는 일상의 형용사 변화입니다. Go wrong, go bad, go grey, go mad는 go의 굳어진 쓰임입니다. 음식이 상하는 것은 첫 선택으로 become bad가 아니라 보통 go bad입니다. Get은 직업 명사를 취하지 않습니다. 이 의미의 get a nurse는 없습니다.\n\ngo tired나 become to tired라고 쓰지 마세요. 형용사에는 to가 필요 없습니다. Grow도 점진적 변화를 표시할 수 있습니다. grow dark. 중국어의 변화가 직업이나 정체성인지, 일시적 상태인지, 색깔이나 상태의 변화인지 물어 보세요.",
+    "pitfall": "직업에 She got a nurse는 피하고, The milk became bad를 먼저 고르지 마세요. 직업은 She became a nurse이고, 상한 우유는 The milk went bad입니다.",
+    "keywords": [
+      "become",
+      "get",
+      "go bad",
+      "변화"
+    ]
+  },
+  "accept-except": {
+    "title": "accept와 except",
+    "question": "accept와 except는 글자 하나 이상으로 갈릴까요?",
+    "summary": "Accept는 받거나 동의함을 뜻합니다. Except는 포함하지 않음을 뜻하며 자주 전치사입니다.",
+    "usage": "She accepted the offer는 그것을 받기로 동의했다는 뜻입니다. Everyone came except Lee는 Lee가 포함되지 않았다는 뜻입니다. Except for는 전체 진술을 자주 바로잡습니다. The room was empty except for one chair. 동사 exclude는 전치사 except와 다릅니다. Accept는 빼 둔다는 뜻이 아닙니다.\n\n두 단어 모두 둘째 음절에 강세가 있지만 첫소리가 다릅니다. accept는 /ək/로, except는 /ɪk/로 시작합니다. Except는 절도 이끌 수 있습니다. except that the door was locked. except 자리에 accept를 두지 마세요.",
+    "pitfall": "Everyone came accept Lee는 피하세요. 제외는 except Lee이고, 제안에 동의함은 accepted the offer입니다.",
+    "keywords": [
+      "accept",
+      "except",
+      "수락",
+      "제외"
+    ]
+  },
+  "then-than": {
+    "title": "then과 than",
+    "question": "then이 순서와 비교를 둘 다 덮을 수 없는 이유는 무엇일까요?",
+    "summary": "Then은 다음, 그때, 또는 그렇다면을 뜻합니다. Than은 비교급 뒤에 오며 비교를 뜻합니다.",
+    "usage": "We ate, and then we left. Then은 그때를 뜻할 수도 있습니다. I lived there then. 비교급에는 than이 필요합니다. older than me, more useful than the old map. Than me는 일상적이고, than I am은 더 완전한 격식 형태입니다.\n\nThen과 than은 소리가 같지 않습니다. more better then이라고 쓰지 마세요. 비교급이 이미 더함을 뜻하고, 그 뒤의 단어는 than입니다. 시간 앞은 before일 수 있습니다. 반드시 then일 필요는 없습니다.",
+    "pitfall": "older then me는 피하세요. 비교는 older than me이고, 순서는 We ate, and then we left입니다.",
+    "keywords": [
+      "then",
+      "than",
+      "비교",
+      "순서"
+    ]
+  },
+  "sensitive-sensible": {
+    "title": "sensitive와 sensible",
+    "question": "쉽게 영향을 받는 것은 어느 단어이고, 합리적인 것은 어느 단어일까요?",
+    "summary": "Sensitive는 쉽게 영향을 받음을 뜻합니다. Sensible은 합리적이고 실용적임을 뜻합니다.",
+    "usage": "Sensitive skin과 sensitive to criticism은 강하거나 쉽게 상처 받는 반응을 뜻합니다. A sensible decision과 sensible shoes는 건전한 판단이나 실용성을 뜻합니다. Sensitive는 자주 to를 취합니다. sensitive to light. Sensible of는 격식 영어에서 알아차림을 뜻할 수 있지만, 학습자에게 더 자주 필요한 것은 합리적이라는 뜻입니다. It is sensible to wait.\n\n쉽게 반응하는 피부에 sensible skin이라고 쓰거나, 현명한 결정에 sensitive decision이라고 쓰지 마세요. 결정이 민감한 주제를 다룬다는 뜻이 아닌 한 그렇습니다. 두 단어 모두 sense에서 왔지만 의미는 갈라졌습니다.",
+    "pitfall": "반응하는 피부에 a sensible skin은 피하세요. 피부는 sensitive skin이고, 현명한 결정은 a sensible decision입니다.",
+    "keywords": [
+      "sensitive",
+      "sensible",
+      "민감",
+      "합리적"
+    ]
+  },
+  "actual-current": {
+    "title": "actual과 current",
+    "question": "actual이 실제와 현재를 둘 다 덮을 수 있을까요?",
+    "summary": "Actual은 추정, 겉모습, 잘못된 주장과 대조됩니다. Current는 과거와 미래와 대조되며 현재의 것을 뜻합니다.",
+    "usage": "The actual cost was higher는 추정이 아니라 실제 비용입니다. The current price는 지금 가격이며 나중에 바뀔 수 있습니다. The current edition은 지금 쓰는 판입니다. Actually는 주장을 자주 바로잡습니다. Actually, the gate is on the left. 현재에를 뜻하지는 않습니다.\n\n실제 상황을 뜻하는 중국어 단어가 영어에서는 현재 시간이 필요한 자리에 쓰이기도 합니다. 지금 재임 중인 사람, 시행 중인 규칙, 오늘의 가격은 actual이 아니라 current나 present를 취합니다. actual을 시간 단어로 보지 마세요.",
+    "pitfall": "지금 재임 중인 사람에 the actual president는 피하세요. 현재의 재임자는 the current president이고, 실제 수치는 the actual cost입니다.",
+    "keywords": [
+      "actual",
+      "current",
+      "실제",
+      "현재"
+    ]
+  },
+  "eventually-finally": {
+    "title": "eventually와 finally",
+    "question": "결과와 마지막 항목에는 eventually일까요, finally일까요?",
+    "summary": "Eventually는 시간이나 여러 변화 뒤의 결과입니다. Finally는 드디어를 뜻하거나, 순서의 마지막 항목을 도입할 수 있습니다.",
+    "usage": "We eventually found a seat는 찾는 데 시간이 걸렸음을 강조합니다. The bus finally came은 기다림 뒤의 안도를 강조합니다. Finally, add your name은 목록의 마지막 단계를 도입합니다. Eventually는 그 역할을 할 수 없습니다.\n\nIn the end는 eventually에 가깝고 역시 목록 번호가 아닙니다. At last와 finally 둘 다 바라던 일을 표시할 수 있습니다. 마지막 조언 하나인 것처럼 eventually를 문두에 두지 마세요.",
+    "pitfall": "마지막 단계에 Eventually, check the spelling은 피하세요. 마지막 단계는 Finally, check the spelling이고, 지연 뒤의 결과는 eventually입니다.",
+    "keywords": [
+      "eventually",
+      "finally",
+      "결국",
+      "마지막"
+    ]
+  },
+  "specially-especially": {
+    "title": "specially와 especially",
+    "question": "특히에는 specially일까요, especially일까요?",
+    "summary": "Especially는 특히 또는 무엇보다를 뜻합니다. Specially는 특정 목적을 위해를 뜻합니다.",
+    "usage": "I especially like the soup는 다른 것들 가운데 수프를 집어 냅니다. The roads are icy, especially in the morning은 아침을 강조합니다. Specially designed와 I made it specially for you는 그 목적을 위해 했다는 뜻입니다. 특히에는 especially가 보통의 선택입니다.\n\n무엇보다 아침에 specially in the morning이라고 쓰지 마세요. Specially는 그 강조 역할을 하지 않습니다. Special은 형용사입니다. a special key. particularly가 그 부사를 대신할 수 있으면 단어는 보통 especially입니다.",
+    "pitfall": "The roads are icy, specially in the morning은 피하세요. 특히는 especially in the morning이고, 당신을 위해 한 것은 specially for you입니다.",
+    "keywords": [
+      "especially",
+      "specially",
+      "특히",
+      "목적"
+    ]
+  },
+  "miss-lose": {
+    "title": "miss와 lose",
+    "question": "어느 의미가 miss에 속하고, 어느 것이 lose에 속할까요?",
+    "summary": "Miss는 잡지 못하거나, 맞히지 못하거나, 참석하지 못하거나, 부재를 느끼는 것입니다. Lose는 더 이상 갖지 못하거나, 찾을 수 없거나, 이기지 못하는 것입니다.",
+    "usage": "Miss the bus, miss the target, miss a class 모두 만나야 했던 것과 연결하지 못함을 뜻합니다. I miss you는 부재를 느낀다는 뜻입니다. Lose your keys, lose a game, lose your way는 물건, 경기, 길이 더 이상 당신의 통제에 없다는 뜻입니다. 버스를 놓치는 것은 lose the bus가 아닙니다.\n\nMiss out은 빠뜨림을 뜻할 수 있습니다. lose의 과거는 lost이고, 형용사 lost는 더 이상 찾을 수 없음을 뜻합니다. 중국어 문장이 버스를 타지 못했다는 뜻이면 miss를 쓰세요. 열쇠를 찾을 수 없으면 lose를 쓰세요.",
+    "pitfall": "I lost the bus는 피하세요. 타지 못함은 I missed the bus이고, 찾을 수 없는 열쇠는 I lost my keys입니다.",
+    "keywords": [
+      "miss",
+      "lose",
+      "놓치다",
+      "잃다"
+    ]
+  },
+  "rob-steal": {
+    "title": "rob와 steal",
+    "question": "동사의 목적어는 사람일까요, 물건일까요?",
+    "summary": "rob의 목적어는 사람이나 장소입니다. steal의 목적어는 빼앗긴 물건입니다.",
+    "usage": "They robbed the bank와 Someone robbed her라고 하세요. 물건은 steal을 취합니다. They stole the money. 둘 다 넣으려면 rob someone of something을 쓰세요. They robbed her of her bag. Steal은 피해자를 직접 목적어로 취하지 않습니다.\n\nrob의 과거는 robbed입니다. steal의 과거는 stole, past participle는 stolen입니다. 은행에서 돈을 가져간 데 rob the money나 steal the bank라고 쓰지 마세요. 영어는 목적어가 피해자인지 물건인지 고르게 합니다.",
+    "pitfall": "They robbed the money와 They stole the bank는 피하세요. 돈은 They stole the money이고, 은행이나 사람은 They robbed the bank 또는 They robbed her입니다.",
+    "keywords": [
+      "rob",
+      "steal",
+      "훔치다",
+      "목적어"
+    ]
+  },
+  "remind-remember": {
+    "title": "remind와 remember",
+    "question": "누군가에게 기억하게 하는 동사는 무엇일까요?",
+    "summary": "Remember는 스스로 하는 것입니다. Remind는 다른 사람이 기억하게 하는 것으로, 자주 remind someone to do나 remind someone about입니다.",
+    "usage": "Please remind me to lock the door는 다른 사람에게 기억하게 해 달라고 합니다. I remembered to lock the door는 스스로 그 일을 잊지 않았다는 뜻입니다. Remind에는 상기받는 사람이 필요합니다. Remind someone of something은 기억을 떠오르게 합니다. The song reminds me of that summer.\n\n상기해 달라는 요청에 Remember me to lock the door라고 쓰지 마세요. Remember to와 remember -ing는 별개의 대조입니다. remember to lock은 앞의 일이고, remember locking은 한 일의 기억입니다. 다른 사람을 일깨우는 행위는 remind입니다.",
+    "pitfall": "Remember me to lock the door는 피하세요. 상기해 달라는 요청은 Remind me to lock the door이고, 스스로 잊지 않음은 I remembered to lock it입니다.",
+    "keywords": [
+      "remind",
+      "remember",
+      "상기",
+      "기억"
+    ]
+  },
+  "wait-expect-hope": {
+    "title": "wait, expect, hope",
+    "question": "wait가 기다림, 예상, 희망을 모두 덮을 수 있을까요?",
+    "summary": "Wait for는 일이 일어날 때까지 머무는 것입니다. Expect는 일이 일어나거나 일어나야 한다고 믿는 것입니다. Hope는 가능한 일이 참이기를 바라는 것입니다.",
+    "usage": "I'm waiting for the result는 기다리는 활동을 말합니다. for를 취하고 that절을 취하지 않습니다. I expect the result today는 오늘 올 것이라고 생각한다는 뜻입니다. I hope the result is good은 그 결과를 원한다는 뜻입니다. expect와 hope 둘 다 to를 취할 수 있습니다. I expect to hear today, I hope to hear today.\n\nWait는 내면의 희망을 이름 붙이지 않으므로 I wait that you pass는 틀립니다. Expect는 요구를 뜻할 수도 있습니다. I expect you to be on time. Hope는 원하지 않는 나쁜 사건에 보통 쓰는 동사가 아닙니다. 그때는 fear나 worry가 맞습니다. 기다림을 뜻하는 중국어 단어가 실제로는 예측인 경우가 있습니다.",
+    "pitfall": "I'm waiting that the result is good과 wait you는 피하세요. 활동은 wait for the result, 바람은 I hope it is good, 예측은 I expect it today입니다.",
+    "keywords": [
+      "wait",
+      "expect",
+      "hope",
+      "기다리다"
+    ]
+  },
+  "look-seem-appear": {
+    "title": "look, seem, appear",
+    "question": "인상에는 look, seem, appear 중 무엇일까요?",
+    "summary": "셋 다 인상을 줄 수 있습니다. Look는 보이는 근거가 있는 경우가 많고, seem은 일반 동사이며, appear는 더 격식적이고 인상이 믿을 만하지 않을 수 있음을 시사할 수 있습니다.",
+    "usage": "You look tired는 얼굴이나 자세처럼 보이는 것에 보통 기대어 있습니다. She seems tired는 여러 종류의 근거에서 올 수 있습니다. He appears calm은 조금 더 격식적입니다. 형용사는 동사 바로 뒤에 옵니다. look like tired가 아니라 look tired입니다. Look like와 seem like는 명사나 절을 취합니다. look like a nurse, It looks as if the gate is shut.\n\nSeem과 appear는 to be나 to do를 취할 수 있습니다. She seems to know the way. It seems that...과 It appears that...은 상황 전체를 논평합니다. look that she is tired라고 쓰지 마세요.",
+    "pitfall": "She looks like tired는 피하세요. 형용사는 She looks tired이고, 명사와의 닮음은 She looks like a teacher입니다.",
+    "keywords": [
+      "look",
+      "seem",
+      "appear",
+      "인상"
+    ]
+  },
+  "lose-loose": {
+    "title": "lose와 loose",
+    "question": "동사는 lose일까요, loose일까요?",
+    "summary": "Lose는 동사로, 과거는 lost이며 더 이상 갖지 못하거나, 이기지 못하거나, 길을 잃음을 뜻합니다. Loose는 주로 조이지 않거나 고정되지 않았다는 형용사입니다.",
+    "usage": "Don't lose the key, We lost the game, I often lose my way라고 하세요. Loose는 상태를 말합니다. The screw is loose, loose trousers. 발음이 도움이 됩니다. lose는 /luːz/이고 loose는 /luːs/입니다. 조이지 않은 나사는 lose screw가 아니라 loose screw입니다.\n\nLoose는 풀다는 뜻의 동사가 될 수 있지만, 그 쓰임은 형용사보다 훨씬 덜 흔하며 lose를 결코 대체하지 않습니다. lose의 과거는 loosed가 아닙니다. 느슨함과 잃음을 뜻하는 중국어 단어가 하나의 영어 단어족은 아닙니다.",
+    "pitfall": "Don't loose your key는 피하세요. 잃어버리는 것은 Don't lose your key이고, 조이지 않은 나사는 The screw is loose입니다.",
+    "keywords": [
+      "lose",
+      "loose",
+      "잃다",
+      "느슨한"
+    ]
+  },
+  "quiet-quite": {
+    "title": "quiet와 quite",
+    "question": "조용한 철자는 어느 것이고, 꽤를 뜻하는 것은 어느 것일까요?",
+    "summary": "Quiet는 소음이 적다는 형용사입니다. Quite는 부사입니다. 꽤를 뜻할 수 있고, 등급이 없는 단어와 함께면 완전히를 뜻할 수 있습니다.",
+    "usage": "A quiet room과 Please be quiet 둘 다 소음이 적음을 뜻합니다. Quite는 그 자체로 방을 묘사할 수 없습니다. 영국 영어의 Quite good은 꽤 좋다는 뜻인 경우가 많고, 반드시 아주 좋다는 뜻은 아닙니다. quite right, quite sure, quite finished에서 quite는 완전히에 더 가깝습니다. 그 단어들은 정말 등급이 없기 때문입니다. Quite quiet는 문법적이며 꽤 조용하다는 뜻입니다.\n\na quite room이라고 쓰지 마세요. 부사는 보통 형용사 앞에 옵니다. A quite difficult map도 가능하지만, a rather difficult map이나 quite a difficult map이 더 자연스럽게 들리는 경우가 많습니다. Quite a와 명사구는 흔한 순서입니다. quite a long walk.",
+    "pitfall": "a quite room은 피하세요. 조용한 방은 a quiet room이고, 꽤 긴 산책은 quite a long walk입니다.",
+    "keywords": [
+      "quiet",
+      "quite",
+      "조용한",
+      "꽤"
+    ]
+  },
+  "house-home": {
+    "title": "house와 home",
+    "question": "go home에 to가 없는 이유는 무엇일까요?",
+    "summary": "House는 건물입니다. Home은 사는 곳이며 집 건물일 필요는 없습니다. go home과 at home에서 home은 보통 관사도 to도 없습니다.",
+    "usage": "They bought a house는 건물에 관한 것입니다. I'm going home은 사는 곳으로 돌아가는 것이며, 아파트일 수도 있습니다. At home은 집에 있음을 뜻합니다. In the house는 그 건물 안을 뜻합니다. Stay home과 stay at home 둘 다 나타납니다. Home은 거주지일 수도, care home 같은 시설일 수도 있습니다.\n\ngo to home이라고 쓰지 마세요. Arrive home에도 to가 없습니다. 중국어 단어 하나가 건물, 가족, 사는 곳을 뜻할 수 있습니다. 건물 자체를 뜻할 때는 먼저 house를 쓰세요. Home은 부사로 기능할 수 있으므로, 문법이 보통 명사 house와 같지 않습니다.",
+    "pitfall": "go to home은 피하고, 그 물리적 건물을 뜻하지 않는 한 자기 집에 go to the house를 쓰지 마세요. 집에 가는 것은 go home입니다.",
+    "keywords": [
+      "house",
+      "home",
+      "집",
+      "go home"
+    ]
+  },
+  "work-job": {
+    "title": "work와 job",
+    "question": "고용은 가산 job일까요, 불가산 work일까요?",
+    "summary": "고용이나 노력을 뜻하는 work는 보통 불가산이며 동사이기도 합니다. Job은 가산인 자리나 한 과제입니다.",
+    "usage": "I'm looking for work, I have a lot of work, She is at work라고 하세요. 특정 자리는 job입니다. She has a job in the library, two jobs. 과제도 job이 될 수 있습니다. That's a big job. Go to work에는 관사가 없습니다. Homework도 불가산이므로 homeworks가 아닙니다.\n\n예술 작품이나 글을 뜻하지 않는 한 자리에 a work라고 하지 마세요. Works는 공장이나 저자의 저작을 뜻할 수 있습니다. job의 보통 복수가 아닙니다. 동사는 She works on Mondays입니다. 고용을 뜻하는 중국어 표현 하나에는 자리에는 a job, 활동이나 고용 일반에는 work를 고르세요.",
+    "pitfall": "I have a work와 She is looking for a job work는 피하세요. 일자리를 찾는 것은 looking for work가 될 수 있고, 자리를 갖는 것은 has a job입니다.",
+    "keywords": [
+      "work",
+      "job",
+      "일",
+      "불가산"
+    ]
+  },
+  "in-spite-of-despite": {
+    "title": "in spite of와 despite",
+    "question": "in spite of나 despite가 완전한 절을 취할 수 있을까요?",
+    "summary": "In spite of와 despite는 둘 다 전치사이며 명사나 -ing를 취합니다. Despite에는 of를 더하지 않습니다. 완전한 절에는 although나 the fact that이 필요합니다.",
+    "usage": "In spite of the rain과 Despite the rain은 같은 뜻이며 despite가 더 짧습니다. 그 뒤의 동사는 -ing를 씁니다. despite feeling ill. 양보가 완전한 절이면 although it rained나 despite the fact that it rained를 쓰세요. In spite of에는 of가 필요합니다. Despite는 of를 취하지 않습니다.\n\n어느 전치사도 although처럼 두 절을 잇지 않습니다. 중국어 양보는 절이 바로 뒤따를 수 있습니다. 영어에서는 뒤따르는 것이 명사인지, 주어와 동사인지 먼저 보세요. Even though도 사실 절을 취하며 despite even이라고 쓰지 않습니다.",
+    "pitfall": "despite of the rain과 in spite the rain은 피하세요. despite the rain이나 in spite of the rain이라고 하세요. 절은 Although it rained, we went입니다.",
+    "keywords": [
+      "despite",
+      "in spite of",
+      "양보",
+      "although"
+    ]
+  },
+  "so-as-to": {
+    "title": "so as to",
+    "question": "so as to는 to, so that과 어떻게 다를까요?",
+    "summary": "So as to는 목적을 표시하며 주절과 같은 주어의 base verb를 취합니다. 부정은 so as not to입니다. 다른 주어에는 so that절이 필요합니다.",
+    "usage": "She spoke quietly so as to avoid waking the baby에서 말하는 사람과 소리를 피하는 사람은 같습니다. To avoid나 in order to avoid가 더 흔하고, so as to는 조금 더 격식적입니다. 부정을 so as to not으로 만들지 마세요. so as not to wake anyone이라고 하세요.\n\n목적절의 주어가 다르면 so as to로는 부족합니다. She spoke quietly so that he could sleep. so as to를 결과 패턴 so...that으로 읽지 마세요. 결과는 She was so quiet that nobody heard her입니다. So as to는 가운데에 형용사가 없습니다.",
+    "pitfall": "so as to not wake와 so as to he could sleep는 피하세요. 부정은 so as not to wake이고, 다른 주어는 so that he could sleep입니다.",
+    "keywords": [
+      "so as to",
+      "목적",
+      "so that",
+      "부정사"
+    ]
+  },
+  "until-till": {
+    "title": "until과 till",
+    "question": "until과 till에 차이가 있을까요?",
+    "summary": "Until과 till 둘 다 상황이 한 시점까지 계속됨을 뜻합니다. Till이 더 비격식적입니다. 어느 쪽도 by가 나타내는 완료 기한은 아닙니다.",
+    "usage": "Wait until the rain stops와 Wait till the rain stops는 같은 뜻입니다. Until이 글에서 더 흔합니다. Till은 말과 일부 고정 표현에서 자연스럽습니다. Not until은 변화가 그 시점에 일어나고 그 전은 아니라는 뜻입니다. The shop doesn't open until nine. 미래 절은 현재형을 씁니다. until she will arrive가 아니라 until she arrives입니다.\n\nUntil 뒤에는 명사, 시각, 절이 올 수 있습니다. untill이라고 철자하지 마세요. 일을 금요일 전에 끝내야 하면 by Friday를 쓰세요. 상황이 금요일까지 계속되면 until Friday를 쓰세요.",
+    "pitfall": "until을 untill이라고 쓰지 말고, 절에 until she will arrive라고 쓰지 마세요. 도착까지 계속은 until she arrives입니다.",
+    "keywords": [
+      "until",
+      "till",
+      "까지",
+      "by"
+    ]
+  },
+  "practice-practise": {
+    "title": "practice와 practise",
+    "question": "practice와 practise는 어떻게 고를까요?",
+    "summary": "영국 영어에서 practice는 명사, practise는 동사입니다. 미국 영어는 보통 둘 다 practice로 씁니다.",
+    "usage": "I need more practice는 명사를 씁니다. 영국 영어에서 She practises the piano every day는 동사 practise를 씁니다. 미국 영어는 She practices the piano라고 자주 씁니다. 발음은 같고, 차이는 주로 철자입니다.\n\n의사의 practice는 의료 사업을 이름 붙이며 명사입니다. 영국 동사를 기본으로 practice라고 쓰지 말고, 미국 영어에 practise가 필요하다고 가정하지 마세요. 쓰는 철자 체계를 따르세요.",
+    "pitfall": "영국식 글에서 모든 동사를 practice로 만들지 마세요. 보통의 동사 철자는 practise입니다.",
+    "keywords": [
+      "practice",
+      "practise",
+      "연습",
+      "철자"
+    ]
+  },
+  "principal-principle": {
+    "title": "principal과 principle",
+    "question": "principal과 principle의 차이는 무엇일까요?",
+    "summary": "Principle은 규칙이나 믿음입니다. Principal은 주요한이라는 형용사이거나, 교장이나 원금을 뜻하는 명사일 수 있습니다.",
+    "usage": "A matter of principle은 믿음이나 규칙에 관한 것입니다. The principal reason은 주요 이유입니다. The school principal은 학교의 장입니다. Loan principal은 이자가 아니라 원금입니다. 소리가 비슷하지만 철자와 역할이 다릅니다.\n\n흔한 기억법은 principle이 rule처럼 끝나고, principal은 주요 인물을 이름 붙일 수 있다는 것입니다. 도덕 규칙을 principal이라고 쓰지 마세요.",
+    "pitfall": "이끄는 규칙을 principal이라고 쓰지 마세요. 그 의미는 principle입니다.",
+    "keywords": [
+      "principal",
+      "principle",
+      "원칙",
+      "주요"
+    ]
+  },
+  "farther-further": {
+    "title": "farther와 further",
+    "question": "farther와 further를 바꿔 쓸 수 있을까요?",
+    "summary": "물리적 거리에는 둘 다 자주 통합니다. 추상적 진전에는 further가 더 안전합니다. Further는 동사가 될 수도 있습니다.",
+    "usage": "How much farther/further is the station? 많은 화자가 거리에는 어느 쪽이든 받아들입니다. Further research와 further information은 추상적 확장에 거의 항상 further를 취합니다. Further는 추가를 뜻할 수도 있습니다. further details.\n\n동사 to further a cause는 그것을 진전시킨다는 뜻입니다. Farther는 보통 동사가 아닙니다. 미국 용법은 farther를 글자 그대로의 거리에 자주 남겨 두지만, 겹침은 남습니다.",
+    "pitfall": "추상적 진전에는 farther research가 아니라 further research를 선호하세요.",
+    "keywords": [
+      "farther",
+      "further",
+      "거리",
+      "더"
+    ]
+  },
+  "assure-ensure-insure": {
+    "title": "assure, ensure, insure",
+    "question": "assure, ensure, insure는 어떻게 고를까요?",
+    "summary": "Assure는 사람을 자주 취해 안심시킵니다. Ensure는 일이 일어나도록 확실히 함을 뜻합니다. Insure는 보통 보험과 관련됩니다.",
+    "usage": "I assured her that the door was locked는 사람을 안심시킵니다. Please ensure that the door is locked는 결과를 확실하게 합니다. Insure the house against fire는 보험을 듭니다. 미국 영어는 ensure와 insure가 때로 겹치지만, 보험의 뜻은 여전히 insure를 선호합니다.\n\nAssure는 흔히 assure someone of/that…을 취합니다. 사람 없이 assure that the door is locked는 피하세요. Ensure는 that절이나 명사를 자주 취합니다.",
+    "pitfall": "I assure that it is safe는 피하세요. I assure you that it is safe를 선호하거나 ensure를 쓰세요.",
+    "keywords": [
+      "assure",
+      "ensure",
+      "insure",
+      "확실히"
+    ]
+  },
+  "classic-classical": {
+    "title": "classic과 classical",
+    "question": "classic과 classical은 어떻게 다를까요?",
+    "summary": "Classic은 모범적, 일류, 또는 전형을 자주 뜻합니다. Classical은 보통 고전 전통, 특히 음악, 문학, 고대 세계를 가리킵니다.",
+    "usage": "A classic novel은 모범적인 작품입니다. A classic mistake는 전형적인 실수입니다. Classical music은 아주 좋은 팝송이 아니라 고전 전통을 보통 이름 붙입니다. Classical architecture는 고전 양식을 가리킵니다.\n\n“典范”의 모든 뜻에 classical이라고 쓰지 마세요. 일상의 classic films와 classic mistakes는 classic을 취합니다. 학술적이거나 역사적 양식 명칭에는 classical을 선호하세요.",
+    "pitfall": "a classic mistake를 a classical mistake로 다시 쓰지 마세요.",
+    "keywords": [
+      "classic",
+      "classical",
+      "고전",
+      "전형"
+    ]
+  },
+  "economic-economical": {
+    "title": "economic과 economical",
+    "question": "economic과 economical은 언제 쓸까요?",
+    "summary": "Economic은 경제나 금융 체계와 관련됩니다. Economical은 절약하거나 값이 좋음을 뜻합니다.",
+    "usage": "Economic growth와 economic policy는 경제나 정책에 관한 것입니다. An economical car는 유지비가 쌉니다. An economical use of space는 공간을 아낍니다. 둘 다 economy와 관련되지만 연어가 다릅니다.\n\neconomic growth를 economical growth라고 쓰지 마세요. 절약이나 돈의 가치에는 economical을 쓰세요.",
+    "pitfall": "정부의 economic policy에 economical policy라고 쓰지 마세요. 그것은 economic policy입니다.",
+    "keywords": [
+      "economic",
+      "economical",
+      "경제",
+      "절약"
+    ]
+  },
+  "historic-historical": {
+    "title": "historic과 historical",
+    "question": "historic과 historical은 어떻게 다를까요?",
+    "summary": "Historic은 역사적으로 중요한 순간이나 장소를 강조합니다. Historical은 역사와 관련되거나 과거에 설정된 것을 뜻합니다.",
+    "usage": "A historic victory는 역사에서 중요합니다. A historical novel은 과거에 관한 소설입니다. Historical evidence는 역사에서 온 증거입니다. 겹침은 있지만, 이정표는 historic을, “about history / set in the past”는 historical을 선호합니다.\n\nhistoric 앞에서 영국 영어는 자주 a를 쓰고, 미국 영어도 흔히 그렇습니다. 예전 습관인 an historic이 의미 대조를 가리지 않게 하세요.",
+    "pitfall": "기념비적 지위의 소설을 뜻하지 않는 한 historical novel을 historic novel로 다시 쓰지 마세요.",
+    "keywords": [
+      "historic",
+      "historical",
+      "역사적",
+      "과거"
+    ]
+  },
+  "travel-trip-journey": {
+    "title": "travel, trip, journey",
+    "question": "travel, trip, journey는 어떻게 고를까요?",
+    "summary": "Travel은 자주 불가산 활동이거나 동사입니다. Trip은 한 번의 나들이로, 왕복인 경우가 많습니다. Journey는 한 곳에서 다른 곳으로 가는 과정을 강조합니다.",
+    "usage": "I love travel / travelling은 활동을 이름 붙입니다. A business trip은 한 번의 나들이입니다. The journey took six hours는 과정에 초점을 둡니다. 한 번의 나들이에 a travel이라고 쓰지 마세요. a trip을 선호하세요.\n\nJourney는 영국 영어에서 흔하고, 일상 미국 영어는 trip을 자주 선호합니다. Voyage는 보통 바다의 긴 여행을 시사합니다. Tour는 공연이나 관광의 순회를 뜻할 수 있습니다. 상황에 따라 고르세요. 중국어 “旅行”을 가산인 travel로 다루지 마세요.",
+    "pitfall": "I made a travel to Paris는 피하세요. I took a trip to Paris나 I travelled to Paris를 선호하세요.",
+    "keywords": [
+      "travel",
+      "trip",
+      "journey",
+      "여행"
+    ]
+  },
+  "clothes-cloth": {
+    "title": "clothes와 cloth",
+    "question": "clothes와 cloth의 차이는 무엇일까요?",
+    "summary": "Clothes는 옷을 뜻하는 복수 명사입니다. Cloth는 천으로, 가산이나 물질 명사로 쓰입니다.",
+    "usage": "These clothes are new는 복수 동사를 취합니다. 단수 a clothe는 없습니다. A piece of cloth나 a cloth는 천 한 조각을 이름 붙일 수 있습니다. Cloth는 물질 명사일 수도 있습니다. made of cloth. Clothing은 더 격식 있는 물질어입니다.\n\n옷 한 벌에 a clothes라고 쓰지 마세요. 항목을 이름 붙이거나, a shirt, a dress처럼, some clothes를 쓰세요.",
+    "pitfall": "a clothes와 this clothes is는 피하세요. these clothes are나 a shirt를 선호하세요.",
+    "keywords": [
+      "clothes",
+      "cloth",
+      "옷",
+      "천"
+    ]
+  },
+  "custom-customs": {
+    "title": "custom과 customs",
+    "question": "custom과 customs의 뜻이 달라지는 때는 언제일까요?",
+    "summary": "Custom은 전통이나 개인 습관을 뜻할 수 있습니다. Customs는 자주 국경 기관을 뜻하고, 전통의 복수일 수도 있습니다.",
+    "usage": "Local custom은 지역 전통입니다. It is her custom to walk after dinner는 개인 습관입니다. Go through customs는 국경 검사를 통과함을 뜻합니다. A customs officer가 거기서 일합니다. 대문자와 연어가 도움이 됩니다. Customs는 기관을 이름 붙일 수 있습니다.\n\n국경 검사에 go through custom이라고 쓰지 마세요. 여러 전통은 customs일 수 있지만, 기관의 뜻은 보통 그 복수형을 씁니다.",
+    "pitfall": "go through custom은 피하세요. 국경의 뜻은 go through customs입니다.",
+    "keywords": [
+      "custom",
+      "customs",
+      "세관",
+      "관습"
+    ]
+  },
+  "dessert-desert": {
+    "title": "dessert와 desert",
+    "question": "dessert와 desert는 어떻게 구별할까요?",
+    "summary": "Dessert는 단 코스입니다. 명사 desert는 건조한 땅이고, 동사로는 버린다는 뜻입니다. 철자와 강세가 다릅니다.",
+    "usage": "A chocolate dessert는 단 코스입니다. The Sahara Desert는 건조한 땅입니다. He deserted his post는 그 자리를 버렸다는 뜻입니다. Dessert는 보통 둘째 음절에 강세가 있고, 명사 desert는 자주 첫 음절에 강세가 있습니다.\n\n여분의 s가 먹을 수 있는 쪽입니다. strawberry shortcake for dessert. 건조한 땅을 dessert라고 쓰지 마세요.",
+    "pitfall": "건조한 땅을 dessert로, 단 코스를 desert로 쓰지 마세요.",
+    "keywords": [
+      "dessert",
+      "desert",
+      "디저트",
+      "사막"
+    ]
+  },
+  "later-latter": {
+    "title": "later와 latter",
+    "question": "later와 latter의 차이는 무엇일까요?",
+    "summary": "Later는 더 나중 시간을 뜻합니다. Latter는 방금 언급한 둘 중 둘째를 가리킵니다.",
+    "usage": "See you later는 더 나중 시간을 뜻합니다. Of tea and coffee, I prefer the latter는 둘째를 고릅니다. The latter half of the year는 후반을 뜻할 수 있습니다. Later는 시간이고, latter는 지시입니다.\n\n항목이 둘을 넘으면 마지막 것에 the latter는 어색합니다. the last를 쓰거나 명사를 반복하세요. Former는 첫째와 둘째에서 latter와 짝을 이룹니다.",
+    "pitfall": "See you latter라고 쓰지 마세요. 작별은 See you later입니다.",
+    "keywords": [
+      "later",
+      "latter",
+      "나중",
+      "후자"
+    ]
+  },
+  "weather-whether": {
+    "title": "weather와 whether",
+    "question": "weather와 whether는 어떻게 구별할까요?",
+    "summary": "Weather는 대기 상태입니다. Whether는 대안이나 전달된 예/아니오 의문문을 이끌며, 자주 or와 함께 씁니다.",
+    "usage": "The weather is cold는 바깥 상태를 이름 붙입니다. I don't know whether she will come은 그녀가 올지 묻습니다. Whether...or...는 대안을 제시합니다. If가 whether를 때로 대신할 수 있지만, 전치사 뒤나 분명한 or not 선택에는 whether가 더 안전합니다.\n\nwhether를 weather로 철자하지 마세요. Weather는 불가산입니다. many weathers가 아니라 a lot of bad weather입니다. 특별한 기후 유형 이야기는 예외입니다.",
+    "pitfall": "I wonder weather she will come은 피하세요. 선택 표지는 whether입니다.",
+    "keywords": [
+      "weather",
+      "whether",
+      "날씨",
+      "인지"
+    ]
+  }
+}

@@ -8,6 +8,8 @@
 
 Englisches Lese- und Hörtraining ab 16 Jahren mit Lernzielen von A1 bis C2. Übungen werden lokal aus Quelltexten und Aufnahmen erzeugt. Zum Lernen sind weder Konto noch KI-Dienst nötig.
 
+Die öffentliche Website läuft mit **0.1.170**. Syntaxbaum, erweitertes Gebrauchswörterbuch, Farbthemen und aktualisierte About-Quellen sind in der **lokalen Vorschau 0.2.0** verfügbar. [Versionsstand](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
+
 <a id="readme-languages"></a>
 
 <details>
@@ -82,7 +84,7 @@ Objektive Fragen werden mit passenden Erklärungen bewertet. Offene Antworten er
 
 ## Verlauf und Fortschritt
 
-Über [**Verlauf**](https://lingfern.com/progress) unter Heute lassen sich Sitzungen, Antworten, Rückmeldungen und verwendete Hilfen ansehen; gespeicherte Antworten können nach Bestätigung gelöscht werden. Bestätige Abschlusszeiten, wenn eine Uhrzeitkorrektur angeboten wird.
+Öffnen Sie den Verlauf über Heute, um Übungen und Antworten anzusehen oder eine Übung fortzusetzen. Nach Bestätigung lassen sich eine Übung oder ein eigenständiger synchronisierter Eintrag löschen. Das Löschen einer kombinierten Übung entfernt beide verbundenen Teile. Wenn die Zeitkorrektur angeboten wird, können Sie den Abschlusszeitpunkt bestätigen.
 
 Der Farn zeigt gespeicherte Aktivität, keine zertifizierte Fähigkeit. Tageszitate haben Quellenangaben, eine Aufklappfunktion für lange Texte und einen Wechsel zum nächsten Zitat.
 
@@ -95,8 +97,19 @@ Der Farn zeigt gespeicherte Aktivität, keine zertifizierte Fähigkeit. Tageszit
 | [Englischwörterbuch](https://lingfern.com/library/dictionary) | Wörter mit englischen Definitionen nachschlagen, auch aus ausgewähltem Lesetext. |
 | [Lesezeichen](https://lingfern.com/library/saved) | Definitionen mit ★/☆ speichern/entfernen; Einträge einklappen. Entfernte Einträge bleiben bis zum erneuten Öffnen/Aktualisieren zum direkten Wiederherstellen sichtbar. |
 | [IPA-Tabelle](https://lingfern.com/library/ipa) | Einfache/detaillierte Ansicht, Lautsuche, verfügbare Aufnahmen und englische Beispielwörter. |
-| [Englischer Sprachgebrauch](https://lingfern.com/library/grammar) | Stichwortsuche, alphabetisches Blättern und aufklappbare Erläuterungen. |
-| [Suchverlauf](https://lingfern.com/library/history) | Wörterbuch-, Sprachgebrauchs- und IPA-Suchen mit Quelle, Zeit und gespeichertem Suchzustand erneut öffnen. |
+| [Wörterbuch zum englischen Sprachgebrauch](https://lingfern.com/library/grammar) | Stichwortsuche, alphabetisches Blättern und aufklappbare Erläuterungen. |
+| [Syntaxbaum](#readme-syntax-tree) · 0.2.0 | Neun Darstellungen erzeugen und bearbeiten, benannte Momentaufnahmen speichern sowie SVG, PNG, WebP, JPEG oder PDF exportieren. |
+| [Nachschlageverlauf](https://lingfern.com/library/history) | Wörterbuch-, Sprachgebrauchs- und IPA-Suchen mit Quelle, Zeit und gespeichertem Suchzustand erneut öffnen. |
+
+Die lokale Vorschau enthält **191 Einträge**. Erklärungen folgen der Oberflächensprache und erscheinen bei fehlender Übersetzung auf Englisch. Beispiele, Muster und Gegenüberstellungen bleiben englisch.
+
+<a id="readme-syntax-tree"></a>
+
+**Bibliothek** → **Nachschlagewerk** → **Syntaxbaum** · [0.2.0](http://127.0.0.1:8787/library/trees)
+
+Gib einen Satz, einen Klammerbaum, eine eingerückte Gliederung oder eine Dependenznotation ein. Knotenwerkzeuge stehen über der Zeichenfläche, Symbolhilfen direkt darunter. Mit **Bewegung** verknüpft Ziehen die Knoten durch Koindizes; erneutes Klicken oder Escape beendet den Modus. Rechtsklick oder langes Berühren öffnet das Menü. Pro Profil wird ein lokaler Entwurf automatisch gespeichert und wiederhergestellt; diese Baumentwürfe sind von Sicherung und Synchronisierung ausgeschlossen. **Speichern** erstellt eine getrennte benannte Momentaufnahme im Verlauf. Leeren lässt sich während des Besuchs rückgängig machen; beim erneuten Öffnen eines geleerten Entwurfs erscheint das Beispiel. Automatische Analysen müssen geprüft werden. **Enter** zeichnet den Baum, **Umschalt+Enter** fügt einen Zeilenumbruch ein. Eine eingefügte CCGbank-AUTO-Ableitung behält ihre Kategorien und Verzweigungen.
+
+Wählen Sie unter **Bibliothek** → **Offline-Inhalte** → **Nachschlagewerke** → **Syntaxbaum** die Modelle und dann **Auswahl herunterladen**. UDPipe analysiert Abhängigkeiten. Für Konstituenten verwendet Lingfern Stanza (mit UDPipe) oder das installierte Charniak-Modell. Hol-CCG erzeugt CCG-Ableitungen. Die eingebauten Regeln funktionieren offline, wenn ein Modell fehlt oder sein Ergebnis verworfen wird. Prüfen Sie erzeugte Analysen vor der Verwendung.
 
 Wähle Cambridge, Oxford Learner’s Dictionaries, Wiktionary oder Merriam-Webster für externe Suchen. Links öffnen die Website des Anbieters; Verweise zum Sprachgebrauch verwenden Cambridge Grammar.
 
@@ -145,9 +158,11 @@ Die Karte zeigt laufende/abgeschlossene Synchronisierung, Offline-Wartestatus od
 
 Vierzehn Oberflächensprachen; helles/dunkles/Systemdesign; getrennte Text-, Symbol- oder gemischte Navigation für Desktop/Mobilgerät; Standard-Onlinewörterbuch; anpassbare Ausgangsniveaus und Interessen; Tastatur, Touch und reduzierte Bewegung.
 
-Englische Materialien bleiben Englisch. Geprüfte A1–A2-Anleitungen haben Übersetzungshilfen; B1–C2 und About bleiben Englisch. Arabische Navigation ist RTL, englischer Inhalt LTR.
+**0.2.0** · Die Palette lässt sich unter **Einstellungen** → **Farbthema** ändern. Es gibt **33 Paletten**: **Standard** und 32 Alternativen einschließlich **Farn**, jeweils mit hellen und dunklen Farben. System/Hell/Dunkel wird separat gespeichert. Standard stellt die Ausgangspalette wieder her. Die Auswahl gilt für die gesamte Website, Einführung und installierte Offline-Seiten; Logo und Farn auf Heute behalten ihre ursprünglichen Markenfarben.
 
-**Nach Updates suchen → Jetzt aktualisieren** lädt neu und behält gespeicherten Fortschritt. About und Materialdetails enthalten Projektlinks, Quellen und Lizenzen.
+Englische Materialien bleiben Englisch. Geprüfte A1–A2-Anleitungen haben Übersetzungshilfen; B1–C2 und About bleiben Englisch.
+
+**Nach Updates suchen → Jetzt aktualisieren** lädt neu und behält gespeicherten Fortschritt. [Über](https://lingfern.com/settings/about) und Materialdetails enthalten Projektlinks, Quellen und Lizenzen.
 
 <a id="readme-privacy"></a>
 

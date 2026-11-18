@@ -43,6 +43,14 @@
 /resources/catalogue.json
   Cache-Control: no-cache
 
+/tree-parser/worker-v1.js
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self'
+
+/tree-parser/constituency-v1.js
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self'
+
 /licenses/*
   Content-Type: text/plain; charset=utf-8
 
@@ -57,3 +65,11 @@
 
 /daily-quotes/README.md
   Content-Type: text/plain; charset=utf-8
+
+/tree-parser/hol-ccg-v1.js
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self'
+
+/tree-parser/stanza-v1.js
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self'

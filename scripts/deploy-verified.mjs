@@ -11,7 +11,7 @@ import { prerenderPath, publicPages, renderPageHtml } from '../src/shared/seo.ts
 const origin = 'https://lingfern.com';
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
-const pages = ['introduction', 'start', 'today', 'progress', 'library', 'library/dictionary', 'library/saved', 'library/ipa', 'library/grammar', 'library/history', 'settings', 'settings/about', 'learn/release-probe'];
+const pages = ['introduction', 'start', 'today', 'progress', 'library', 'library/dictionary', 'library/saved', 'library/ipa', 'library/grammar', 'library/history', 'library/trees', 'settings', 'settings/about', 'learn/release-probe'];
 
 export function redactCommandOutput(output, token) {
   assert(typeof token === 'string' && token.length > 0);

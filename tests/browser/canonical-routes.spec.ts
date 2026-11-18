@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 const origin = 'http://127.0.0.1:8787';
-const paths = ['/introduction', '/start', '/today', '/progress', '/library', '/library/dictionary', '/library/saved', '/library/ipa', '/library/grammar', '/library/history', '/settings', '/settings/about'];
+const paths = ['/introduction', '/start', '/today', '/progress', '/library', '/library/dictionary', '/library/saved', '/library/ipa', '/library/grammar', '/library/history', '/library/trees', '/settings', '/settings/about'];
 
 for (const controlled of [false, true]) test(`canonical routes and valid saved practice: SW ${controlled}`, async ({ browser }) => {
   test.setTimeout(120_000);

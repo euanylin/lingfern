@@ -272,6 +272,12 @@ for (const path of paths) test(`public markup hydrates without replacement or er
     } else if (path === '/library/ipa') {
       await page.locator('.ipa-entry[data-ipa=i] button').first().click();
       await expect(page.locator('.ipa-page audio')).toHaveAttribute('src', /\.mp3$/);
+    } else if (path === '/library/trees') {
+      const source = page.getByRole('textbox', { name: '句子、括号、缩进或依存' });
+      await expect(source).toBeEnabled();
+      await source.fill('the cat sat');
+      await source.press('Enter');
+      await expect(page.getByRole('treeitem', { name: 'NN', exact: true })).toHaveCount(1);
     } else if (path === '/introduction') {
       await page.locator('.welcome-start').click();
       await expect(page).toHaveURL(/\/start$/);

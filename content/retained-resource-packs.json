@@ -18,6 +18,14 @@
       "sha256": "4269dc54ba293e17bc2b47695e2f9cecda951d9aa56792bd059380b299cfc255"
     },
     {
+      "id": "grammar",
+      "version": "6c7b15704814fba9",
+      "path": "/packs/grammar-6c7b15704814fba9.zip",
+      "bytes": 58359,
+      "sha256": "9e0283529f544c97504b0332563dbf504d7df561ffb65bddde31e730df2e7eb1",
+      "sourceCommit": "f05173ee3c974e84d230a71faaf11da95d1fdc9b"
+    },
+    {
       "id": "audio-a1",
       "version": "23cd5b5b338d2596",
       "path": "/packs/audio-a1-23cd5b5b338d2596.zip",
@@ -30,6 +38,13 @@
       "path": "/packs/audio-b1-65d27730dc4b06e0.zip",
       "bytes": 6952323,
       "sha256": "373510312fa53d7f59e55e1d92265c9055117987b1afe30af040d28ab2d5d953"
+    },
+    {
+      "id": "dictionary",
+      "version": "8d7421aa2675bb92",
+      "path": "/packs/dictionary-8d7421aa2675bb92.zip",
+      "bytes": 7522856,
+      "sha256": "0761ba6970e25a19106bf584ffe81eb6e2bbf82dc25e1af6737f34be53e2162e"
     }
   ]
 }

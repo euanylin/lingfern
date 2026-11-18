@@ -3,10 +3,10 @@
   "packs": [
     {
       "id": "dictionary",
-      "version": "8d7421aa2675bb92",
-      "path": "/packs/dictionary-8d7421aa2675bb92.zip",
-      "bytes": 7522856,
-      "sha256": "0761ba6970e25a19106bf584ffe81eb6e2bbf82dc25e1af6737f34be53e2162e"
+      "version": "5429072efc3d1c99",
+      "path": "/packs/dictionary-5429072efc3d1c99.zip",
+      "bytes": 8163929,
+      "sha256": "f07f4d06abc1d4d74565fcf7954bdd48021bb87d6274119df4b4b18ede9defae"
     },
     {
       "id": "ipa",
@@ -17,10 +17,24 @@
     },
     {
       "id": "grammar",
-      "version": "6c7b15704814fba9",
-      "path": "/packs/grammar-6c7b15704814fba9.zip",
-      "bytes": 58359,
-      "sha256": "9e0283529f544c97504b0332563dbf504d7df561ffb65bddde31e730df2e7eb1"
+      "version": "5ecb8c7e2f612912",
+      "path": "/packs/grammar-5ecb8c7e2f612912.zip",
+      "bytes": 860148,
+      "sha256": "84859a9e5cee59cf95c97f48b6c62e48153d2a65289d24727195f5704863e7c5"
+    },
+    {
+      "id": "tree-parser",
+      "version": "617dda4ade022415",
+      "path": "/packs/tree-parser-617dda4ade022415.zip",
+      "bytes": 16566117,
+      "sha256": "5a0dc6f372dd23359e9e7716a37729a7227235ce13002ef177d4180565ed1131"
+    },
+    {
+      "id": "tree-constituency",
+      "version": "06efae56c0c6974b",
+      "path": "/packs/tree-constituency-06efae56c0c6974b.zip",
+      "bytes": 7150179,
+      "sha256": "dd29fbe4d856b0e65d06645fa7611f593c93d663f61328d2e42a921b034c29c5"
     },
     {
       "id": "corpus",

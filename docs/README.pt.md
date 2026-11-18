@@ -8,6 +8,8 @@
 
 Prática de leitura e compreensão oral em inglês para pessoas a partir dos 16 anos, com objetivos de A1 a C2. Os exercícios são gerados localmente a partir de textos e gravações. Não é preciso uma conta nem um serviço de IA para aprender.
 
+O site público usa **0.1.170**. A árvore sintática, o dicionário de uso ampliado, as paletas e os créditos atualizados de About estão na **prévia local 0.2.0**. [Estado da publicação](../DEVELOPMENT_HANDOFF.md#current-work-and-publication).
+
 <a id="readme-languages"></a>
 
 <details>
@@ -82,7 +84,7 @@ As perguntas objetivas recebem correção e explicações. As respostas abertas 
 
 ## Histórico e progresso
 
-Abra o [**Histórico**](https://lingfern.com/progress) em Hoje para rever sessões, respostas, feedback e ajudas utilizadas; elimine respostas guardadas após confirmação. Confirme horas de conclusão quando surgir a correção do relógio.
+Abra o histórico em Hoje para rever sessões e respostas ou retomar uma sessão. Após confirmar, pode apagar uma sessão ou um registro sincronizado independente. Ao apagar uma sessão combinada, as duas partes vinculadas são removidas. Confirme a hora de conclusão se houver uma opção de correção.
 
 O feto representa atividade guardada, não proficiência certificada. As citações diárias incluem fonte, expansão de texto longo e escolha de outra citação.
 
@@ -95,8 +97,21 @@ O feto representa atividade guardada, não proficiência certificada. As citaç�
 | [Dicionário de inglês](https://lingfern.com/library/dictionary) | Consultar palavras e definições em inglês, também a partir de texto selecionado. |
 | [Favoritos](https://lingfern.com/library/saved) | Guardar/retirar definições com ★/☆ e recolher entradas. As entradas retiradas ficam até reabrir/atualizar para permitir reposição imediata. |
 | [Tabela IPA](https://lingfern.com/library/ipa) | Vistas simples/detalhada, pesquisa de sons, gravações e palavras inglesas de exemplo disponíveis. |
-| [Referência de uso do inglês](https://lingfern.com/library/grammar) | Pesquisa por palavra-chave, navegação alfabética e explicações expansíveis. |
+| [Dicionário de uso do inglês](https://lingfern.com/library/grammar) | Pesquisa por palavra-chave, navegação alfabética e explicações expansíveis. |
+| [Árvore sintática](#readme-syntax-tree) · 0.2.0 | Gere e edite nove representações, guarde instantâneos com nome e exporte SVG, PNG, WebP, JPEG ou PDF. |
 | [Histórico de consultas](https://lingfern.com/library/history) | Reabrir pesquisas do dicionário, uso e IPA com origem, hora e estado guardado. |
+
+A prévia local tem **191 entradas**. As explicações seguem o idioma da interface e recorrem ao inglês quando falta tradução. Exemplos, padrões e contrastes ficam em inglês.
+
+<a id="readme-syntax-tree"></a>
+
+**Biblioteca** → **Referência** → **Árvore sintática** · [0.2.0](http://127.0.0.1:8787/library/trees)
+
+Introduza uma frase, árvore entre parênteses, estrutura indentada ou notação de dependências. Os controlos dos nós ficam acima da área de desenho e os símbolos logo abaixo. Ative **Movimento** para ligar nós por coindexação ao arrastar; clique novamente ou prima Escape para sair. O botão direito ou um toque prolongado abre o menu. Um rascunho local por perfil é guardado e restaurado automaticamente; estes rascunhos de árvores não entram nas cópias de segurança nem na sincronização. **Guardar** cria um instantâneo com nome separado no histórico. Limpar pode ser anulado durante a visita; reabrir um rascunho vazio repõe o exemplo. Pressione **Enter** para desenhar ou **Shift+Enter** para inserir uma linha.
+
+Também pode colar uma derivação CCGbank AUTO para manter as categorias e os ramos originais.
+
+Em **Biblioteca** → **Conteúdo offline** → **Referências** → **Árvore sintática**, selecione os modelos e escolha **Baixar seleção**. UDPipe analisa dependências. Para constituintes, use Stanza (requer UDPipe) ou Charniak instalado. Hol-CCG gera derivações CCG. As regras integradas funcionam offline se o modelo não estiver disponível ou a saída for rejeitada. Revise a análise antes de usar.
 
 Escolha Cambridge, Oxford Learner’s Dictionaries, Wiktionary ou Merriam-Webster para consultas externas. As ligações abrem o site do fornecedor; as de uso recorrem a Cambridge Grammar.
 
@@ -145,9 +160,11 @@ O cartão mostra a sincronização em curso, concluída, pendente offline ou fal
 
 Catorze idiomas; tema claro/escuro/sistema; navegação de texto, ícones ou mista separada para computador/telemóvel; dicionário externo predefinido; pontos de partida e interesses ajustáveis; teclado, toque e preferência por movimento reduzido.
 
-Os materiais ingleses mantêm-se em inglês. As instruções A1–A2 revistas têm apoio traduzido; B1–C2 e About mantêm-se em inglês. A navegação árabe é RTL e o conteúdo inglês LTR.
+**0.2.0** · Mude as cores em **Configurações** → **Paleta**. Existem **33 paletas**: **Padrão** e 32 alternativas, incluindo **Samambaia**, todas com cores claras e escuras. O modo sistema/claro/escuro é guardado separadamente. Escolha Padrão para repor a paleta inicial. A seleção aplica-se ao site, à introdução e às páginas instaladas sem ligação; o logótipo e a samambaia de Hoje mantêm as cores originais.
 
-**Procurar atualizações → Atualizar agora** recarrega preservando o progresso guardado. About e os detalhes dos materiais apresentam ligações do projeto, fontes e licenças.
+Os materiais ingleses mantêm-se em inglês. As instruções A1–A2 revistas têm apoio traduzido; B1–C2 e About mantêm-se em inglês.
+
+**Procurar atualizações → Atualizar agora** recarrega preservando o progresso guardado. [Sobre](https://lingfern.com/settings/about) e os detalhes dos materiais apresentam ligações do projeto, fontes e licenças.
 
 <a id="readme-privacy"></a>
 

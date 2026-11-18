@@ -1,7 +1,7 @@
 import Dexie from 'dexie';
 import { incrementSyncCounter, maxSyncCounter, type SyncCounter } from '../shared/syncCounter';
 import { db } from './db';
-import { assertSyncObservation, canonicalJson, hasExtendedSyncCounter, syncAcknowledgementSchema, syncDownloadScopeSchema, syncKnownFilesSchema, syncChangesSchema, compareSyncEvents, mergeSyncEvents, syncEventSchema, validateSyncBatch, syncByteLimit, type SyncBatch, type SyncEvent, type SyncDownloadScope } from '../shared/sync';
+import { assertSyncObservation, canonicalJson, hasExtendedSyncCounter, hasTreeLookup, syncAcknowledgementSchema, syncDownloadScopeSchema, syncKnownFilesSchema, syncChangesSchema, compareSyncEvents, mergeSyncEvents, syncEventSchema, validateSyncBatch, syncByteLimit, type SyncBatch, type SyncEvent, type SyncDownloadScope } from '../shared/sync';
 import { profileIdSchema } from '../shared/repository';
 
 export type StoredEvent = SyncEvent & { profileId: string; batchId?: string };
@@ -61,13 +61,19 @@ export async function pendingSyncBatch(profileId: string, database: Dexie = db):
   // Count canonical events and separators without re-encoding the growing batch.
   const encoder = new TextEncoder();
   let byteLength = encoder.encode(canonicalJson(batch)).byteLength;
+  let trees: boolean | undefined;
   for (const row of selected) {
     if (row.deviceId !== batch.deviceId) continue;
     const event = unstored(row);
+    const tree = hasTreeLookup(event);
+    // Keep ordinary events in format 1/2 so a tree diagram does not make them unreadable to an older client.
+    if (trees !== undefined && tree !== trees) break;
     const addedBytes = encoder.encode(canonicalJson(event)).byteLength + (batch.events.length ? 1 : 0);
     if (byteLength + addedBytes > syncByteLimit) break;
+    trees = tree;
     batch.events.push(event);
-    if (hasExtendedSyncCounter(event)) batch.formatVersion = 2;
+    if (tree) batch.formatVersion = 3;
+    else if (hasExtendedSyncCounter(event)) batch.formatVersion = 2;
     byteLength += addedBytes;
   }
   if (!batch.events.length) throw new Error('SYNC_CAPACITY');

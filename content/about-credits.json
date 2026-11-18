@@ -3,29 +3,32 @@
     {
       "name": "React and React DOM",
       "license": "MIT",
-      "url": "https://react.dev/",
+      "url": "https://github.com/react/react",
       "packages": [
         "react",
         "react-dom"
-      ]
+      ],
+      "role": "Interface components and browser rendering."
     },
     {
       "name": "Dexie",
       "license": "Apache-2.0",
-      "url": "https://dexie.org/",
+      "url": "https://github.com/dexie/Dexie.js",
       "packages": [
         "dexie"
-      ]
+      ],
+      "role": "IndexedDB learning records, settings and transactions."
     },
     {
       "name": "Workbox",
       "license": "MIT",
-      "url": "https://developer.chrome.com/docs/workbox/",
+      "url": "https://github.com/GoogleChrome/workbox",
       "packages": [
         "workbox-precaching",
         "workbox-range-requests",
         "workbox-routing"
-      ]
+      ],
+      "role": "Service Worker precaching, routing and offline audio range responses."
     },
     {
       "name": "wheel-gestures",
@@ -33,7 +36,8 @@
       "url": "https://github.com/xiel/wheel-gestures",
       "packages": [
         "wheel-gestures"
-      ]
+      ],
+      "role": "Trackpad and wheel gesture handling."
     },
     {
       "name": "fflate",
@@ -41,15 +45,17 @@
       "url": "https://github.com/101arrowz/fflate",
       "packages": [
         "fflate"
-      ]
+      ],
+      "role": "ZIP import and export, plus PDF stream compression."
     },
     {
       "name": "Zod",
       "license": "MIT",
-      "url": "https://zod.dev/",
+      "url": "https://github.com/colinhacks/zod",
       "packages": [
         "zod"
-      ]
+      ],
+      "role": "Runtime validation for data, imports and API payloads."
     },
     {
       "name": "Workers OAuth Provider",
@@ -57,7 +63,8 @@
       "url": "https://github.com/cloudflare/workers-oauth-provider",
       "packages": [
         "@cloudflare/workers-oauth-provider"
-      ]
+      ],
+      "role": "OAuth for remote MCP clients."
     },
     {
       "name": "Model Context Protocol TypeScript SDK",
@@ -65,7 +72,8 @@
       "url": "https://github.com/modelcontextprotocol/typescript-sdk",
       "packages": [
         "@modelcontextprotocol/server"
-      ]
+      ],
+      "role": "MCP transport and tool definitions."
     },
     {
       "name": "Octokit request",
@@ -73,87 +81,99 @@
       "url": "https://github.com/octokit/request.js",
       "packages": [
         "@octokit/request"
-      ]
+      ],
+      "role": "Requests to the GitHub API."
     },
     {
       "name": "Octicons",
       "license": "MIT",
       "url": "https://github.com/primer/octicons",
-      "packages": []
+      "packages": [],
+      "role": "Book, email and GitHub glyphs on this page.",
+      "notice": "/licenses/octicons/LICENSE"
     }
   ],
   "development": [
     {
       "name": "fast-check",
       "license": "MIT",
-      "url": "https://fast-check.dev/",
+      "url": "https://github.com/dubzzz/fast-check",
       "packages": [
         "fast-check"
-      ]
+      ],
+      "role": "Property-based regression tests."
     },
     {
       "name": "Vite",
       "license": "MIT",
-      "url": "https://vite.dev/",
+      "url": "https://github.com/vitejs/vite",
       "packages": [
         "vite"
-      ]
+      ],
+      "role": "Frontend bundling and local development."
     },
     {
       "name": "vite-plugin-pwa",
       "license": "MIT",
-      "url": "https://vite-pwa-org.netlify.app/",
+      "url": "https://github.com/vite-pwa/vite-plugin-pwa",
       "packages": [
         "vite-plugin-pwa"
-      ]
+      ],
+      "role": "Service Worker build and web-app integration."
     },
     {
       "name": "TypeScript",
       "license": "Apache-2.0",
-      "url": "https://www.typescriptlang.org/",
+      "url": "https://github.com/microsoft/TypeScript",
       "packages": [
         "typescript"
-      ]
+      ],
+      "role": "Static type checking."
     },
     {
       "name": "Vitest",
       "license": "MIT",
-      "url": "https://vitest.dev/",
+      "url": "https://github.com/vitest-dev/vitest",
       "packages": [
         "vitest"
-      ]
+      ],
+      "role": "Unit and integration test runner."
     },
     {
       "name": "Playwright",
       "license": "Apache-2.0",
-      "url": "https://playwright.dev/",
+      "url": "https://github.com/microsoft/playwright",
       "packages": [
         "@playwright/test"
-      ]
+      ],
+      "role": "Browser and offline workflow tests."
     },
     {
       "name": "ESLint",
       "license": "MIT",
-      "url": "https://eslint.org/",
+      "url": "https://github.com/eslint/eslint",
       "packages": [
         "eslint"
-      ]
+      ],
+      "role": "Source linting."
     },
     {
       "name": "typescript-eslint",
       "license": "MIT",
-      "url": "https://typescript-eslint.io/",
+      "url": "https://github.com/typescript-eslint/typescript-eslint",
       "packages": [
         "typescript-eslint"
-      ]
+      ],
+      "role": "TypeScript linting rules."
     },
     {
       "name": "Wrangler",
       "license": "MIT OR Apache-2.0",
-      "url": "https://developers.cloudflare.com/workers/wrangler/",
+      "url": "https://github.com/cloudflare/workers-sdk",
       "packages": [
         "wrangler"
-      ]
+      ],
+      "role": "Local Worker testing and release tooling."
     },
     {
       "name": "fake-indexeddb",
@@ -161,7 +181,8 @@
       "url": "https://github.com/dumbmatter/fakeIndexedDB",
       "packages": [
         "fake-indexeddb"
-      ]
+      ],
+      "role": "Isolated IndexedDB for tests."
     },
     {
       "name": "@types/node, @types/react, @types/react-dom",
@@ -171,7 +192,8 @@
         "@types/node",
         "@types/react",
         "@types/react-dom"
-      ]
+      ],
+      "role": "Type declarations for Node.js, React and React DOM."
     }
   ],
   "corpora": [
@@ -315,5 +337,105 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "copyright": "Copyright © 2026 International Phonetic Association.",
     "changes": "IPA chart classification adapted by Lingfern; the adaptation retains CC BY-SA 4.0. Application code and recordings have separate terms."
-  }
+  },
+  "syntax": [
+    {
+      "name": "non-layered-tidy-tree-layout",
+      "license": "MIT",
+      "url": "https://github.com/stetrevor/non-layered-tidy-tree-layout",
+      "role": "Michael Wong’s JavaScript layout algorithm, adapted to TypeScript for syntax trees with variable-sized nodes.",
+      "notice": "/licenses/non-layered-tidy-tree-layout@2.0.2/LICENSE"
+    },
+    {
+      "name": "UDPipe",
+      "license": "MPL-2.0",
+      "url": "https://github.com/ufal/udpipe",
+      "role": "Tokenization, part-of-speech tags and dependency parsing from the ÚFAL engine.",
+      "notice": "/tree-parser/README.md"
+    },
+    {
+      "name": "udpipe-wasm",
+      "license": "MPL-2.0",
+      "url": "https://github.com/exp-ouroborous/udpipe-wasm",
+      "role": "The Embind bridge used by the local UDPipe WebAssembly build.",
+      "notice": "/tree-parser/LICENSE-engine.txt"
+    },
+    {
+      "name": "BNOSAC English UD 2.1 model",
+      "license": "CC BY-SA 4.0",
+      "url": "https://github.com/bnosac/udpipe.models.ud",
+      "role": "Unmodified weights for optional English dependency analysis.",
+      "notice": "/resources/tree-parser-v1/README.md"
+    },
+    {
+      "name": "BLLIP Parser",
+      "license": "Apache-2.0",
+      "url": "https://github.com/BLLIP/bllip-parser",
+      "role": "The Charniak first-stage constituency engine and its bundled English model.",
+      "notice": "/resources/tree-constituency-v1/NOTICE.txt"
+    },
+    {
+      "name": "Charniak Emscripten port",
+      "license": "Apache-2.0",
+      "url": "https://github.com/antimatter15/charniak-emscripten",
+      "role": "Kevin Kwok’s browser port, with Lingfern fixes to input handling.",
+      "notice": "/resources/tree-constituency-v1/README.md"
+    },
+    {
+      "name": "Stanza",
+      "license": "Apache-2.0",
+      "url": "https://github.com/stanfordnlp/stanza",
+      "role": "English constituency checkpoints and in-order transition rules adapted for the browser.",
+      "notice": "/resources/tree-stanza-v1/README.md"
+    },
+    {
+      "name": "Hol-CCG",
+      "license": "MIT",
+      "url": "https://github.com/ryosuke-yamaki/hol-ccg",
+      "role": "Browser implementation of the parser with the MIT RoBERTa-base checkpoint and its extracted grammar rules.",
+      "notice": "/resources/tree-hol-ccg-v1/README.md"
+    },
+    {
+      "name": "Tokenizers.js",
+      "license": "Apache-2.0",
+      "url": "https://github.com/huggingface/tokenizers.js",
+      "role": "RoBERTa subword tokenization for Hol-CCG.",
+      "notice": "/licenses/tokenizers@0.2.0/LICENSE"
+    },
+    {
+      "name": "NLTK Treebank tokenizer",
+      "license": "Apache-2.0",
+      "url": "https://github.com/nltk/nltk",
+      "role": "Adapted word splitting for Hol-CCG.",
+      "notice": "/licenses/nltk-treebank/LICENSE.txt"
+    },
+    {
+      "name": "ONNX Runtime Web",
+      "license": "MIT",
+      "url": "https://github.com/microsoft/onnxruntime/tree/main",
+      "role": "Local CPU WebAssembly inference for Stanza and Hol-CCG.",
+      "notice": "/licenses/onnxruntime-web@1.31.1/ThirdPartyNotices.txt"
+    },
+    {
+      "name": "Emscripten",
+      "license": "MIT OR NCSA",
+      "url": "https://github.com/emscripten-core/emscripten",
+      "role": "WebAssembly toolchain and runtime glue for UDPipe and Charniak.",
+      "notice": "/resources/tree-constituency-v1/LICENSE-emscripten.txt"
+    },
+    {
+      "name": "musl",
+      "license": "MIT",
+      "url": "https://git.musl-libc.org/cgit/musl/",
+      "role": "C runtime included in the parser WebAssembly builds.",
+      "notice": "/resources/tree-constituency-v1/LICENSE-musl.txt"
+    },
+    {
+      "name": "LLVM libc++ and libc++abi",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "url": "https://github.com/llvm/llvm-project",
+      "role": "C++ standard library and ABI support linked into the parser builds.",
+      "notice": "/resources/tree-constituency-v1/LICENSE-libcxx.txt"
+    }
+  ]
 }
