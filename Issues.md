@@ -1,6 +1,6 @@
 # Current issues and limits
 
-Updated 2026-11-18. [Handoff](DEVELOPMENT_HANDOFF.md) owns current work/release state, [implementation](IMPLEMENTATION_STATUS.md) owns features, and dated records retain completed repairs. Historical test/advisory counts are point-in-time evidence, not fresh results.
+Updated 2026-11-19. [Handoff](DEVELOPMENT_HANDOFF.md) owns current work/release state, [implementation](IMPLEMENTATION_STATUS.md) owns features, and dated records retain completed repairs. Historical test/advisory counts are point-in-time evidence, not fresh results.
 
 ## Open observation
 
@@ -9,6 +9,15 @@ The [phrase-head provenance review](LICENSING.md#phrase-head-rule-provenance) re
 | ID | Evidence and impact | Next action / acceptance |
 |---|---|---|
 | DEVELOPMENT-DEPENDENCY-ADVISORIES | Rechecked on 2026-11-15 after upgrading `eslint` 10.11.0 → 10.15.0 and `typescript-eslint` 8.70.1 → 8.72.2, which moved `eslint` onto `minimatch` 11.0.8 (the fixed line) and removed two findings. That 2026-11-15 `npm audit` reported 12 findings — 0 high, 0 critical, 0 runtime, 2 low and 10 moderate — all development-only. That review retained three root causes: `minimatch` 10.2.6 through `@typescript-eslint/typescript-estree` (range `^10.2.2`; at that review, no compatible upstream fix was available), `glob` 11.1.0 through `workbox-build` 7.4.1 (then the newest release; the fixed `glob` was 14.x), and `deepmerge` 4.3.1 (unfixed upstream at that review). At that review, `npm audit fix` proposed nothing without `--force`. Inspected callers use owned patterns, never pass an `AbortSignal` to `glob`, and merge hardcoded defaults, so no untrusted build input reaches the affected code. | Recheck after `typescript-eslint` widens to `minimatch` 11 and after `workbox-build` moves to `glob` 14. Accept an upgrade only after `npm run lint`, the unit suite and the build pass; do not force incompatible overrides and do not describe the tree as advisory-free. Acceptance: the count falls without `--force`, or the remainder is re-evidenced as unreachable from project inputs. |
+
+## Resolved Library issue
+
+- **LIBRARY-INSTALLATION-INTENTION:** The Library exposed a synchronised installation choice for resources missing on the current device. Removed the label, event capture and projection, and sync copy across all fourteen languages. Chrome verified the four parser rows, multi-resource download/removal, cross-tab status and offline ZIP import. A synthetic mixed sync batch retained its hash and bookmark after backup restoration. Retired events in the unbatched queue were skipped when the next batch was sealed.
+
+## Resolved tooltip issue
+
+- **FERN-HOVER-TEXT:** The SVG title repeated the fern’s accessible activity summary as a browser tooltip. Removed the title in the shared fern and removed redundant titles from resource names, download progress and selected-material buttons. Chrome verified the Today and Introduction fern, the accessible name, resource names and material selection.
+- **REDUNDANT-INTERFACE-TEXT:** Removed repeated tooltips from the introduction logo, online dictionary links and IPA variant marks, plus the syntax editor’s generic introduction and generated-output note. The IPA legend and accessible variant description still identify the marks. The CCG warning still appears for unresolved generated derivations and clears after a valid redraw. The focused Chrome checks covered those paths and the compiled preview. The separate mobile header comparison still differs in background and blur. Restoring the original SVG markup reproduced the same discrepancy.
 
 ## Syntax-analysis boundaries
 

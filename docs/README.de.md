@@ -143,7 +143,7 @@ Sicherungen enthalten Sitzungen, Antworten, Entwürfe, Lesezeichen, Suchverlauf,
 
 1. Verbinde GitHub in den Einstellungen und wähle ein Kontoprofil oder kopiere das lokale Profil dorthin.
 2. Erstelle ein eigenes **privates** Daten-Repository, gewähre der GitHub App Zugriff und wähle/prüfe es bei der Einrichtung.
-3. Die bidirektionale Synchronisierung überträgt Lernzusammenfassungen, Lesezeichen, Suchverlauf, Präferenzen, Installationsauswahl und unterstützte Löschungen. Offline-Änderungen bleiben bis zur Wiederverbindung erhalten.
+3. Die bidirektionale Synchronisierung überträgt Lernzusammenfassungen, Lesezeichen, Suchverlauf, Präferenzen und unterstützte Löschungen. Offline-Änderungen bleiben bis zur Wiederverbindung erhalten.
 
 Die Karte zeigt laufende/abgeschlossene Synchronisierung, Offline-Wartestatus oder Fehler sowie den letzten Erfolg. Nutze **Jetzt synchronisieren / Erneut versuchen**, pausiere die Automatik oder löse die Repository-Bindung in der Einrichtung. Konfliktdaten lassen sich beim entsprechenden Wiederherstellungsangebot exportieren. Vollständige Sitzungen, Antworten und installierte Audios werden nicht übertragen; dafür dient die Sicherung.
 

@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "Árbol sintáctico",
-    "intro": "Dibuja un árbol sintáctico desde corchetes, un esquema o una oración y edítalo a mano.",
-    "generated": "Generado automáticamente; puede ser inexacto.",
     "incomplete": "Derivación incompleta: ? indica una combinación sin resolver.",
     "source": "Oración, corchetes, esquema o dependencias",
     "draw": "Dibujar automáticamente",
@@ -329,8 +327,6 @@
     "failed": "No se pudo copiar. Selecciona la dirección y cópiala manualmente."
   },
   "offlineInstall": {
-    "wanted": "Instalación solicitada",
-    "intentFailed": "No se guardó la selección de instalación. Inténtalo de nuevo; no se hicieron más cambios en los archivos locales.",
     "categories": {
       "reading": "Lectura",
       "listening": "Comprensión auditiva",
@@ -601,7 +597,7 @@
     "offline": "Sin conexión · sincronización pendiente",
     "lastSuccess": "Última sincronización correcta",
     "disabled": "La sincronización automática está desactivada.",
-    "detail": "Sincroniza resúmenes de aprendizaje, marcadores, historial de consultas, preferencias, opciones de instalación y eliminaciones con este repositorio privado.",
+    "detail": "Sincroniza resúmenes de aprendizaje, marcadores, historial de consultas, preferencias y eliminaciones con este repositorio privado.",
     "syncing": "Sincronizando…",
     "failed": "La sincronización no terminó. Inténtalo de nuevo. Se conservan los registros locales.",
     "conflict": "Se conservaron los lotes en conflicto. Las subidas están pausadas.",
@@ -800,7 +796,6 @@
     "updateUnavailable": "Aquí no se pueden buscar actualizaciones.",
     "updateFailed": "No se pudieron buscar actualizaciones. Inténtalo de nuevo.",
     "updateBlocked": "Hay una actividad abierta en otra pestaña. Termínala o sal de ella antes de actualizar.",
-    "unsupported": "Esta página no está disponible en esta versión.",
     "palette": "Paleta",
     "paletteNames": [
       "Predeterminado",

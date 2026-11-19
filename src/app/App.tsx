@@ -14,7 +14,6 @@ import type { CompletionTime } from '../data/completionTiming';
 import { attempts, bootstrapSyncEvents, communityPacks, createCombinedPractice, createSession, db, profiles, projectPreferences, saveSetting, sessions, settings, syncClocks, type Attempt, type Session } from '../data/db';
 import { purgeDeletedRecords, restartPractice } from '../data/deletion';
 import { installedOfflineGroups } from '../data/offline';
-import { readInstallationIntents } from '../data/installationIntent';
 import { activeCombinedPractice, activeCorpusPractice, selectPractice } from '../data/practice';
 import { mergeLearningRecords, progressRecords, type CompletionSummary, type ResolvedSummary } from '../data/progress';
 import { installedSourcePacks } from '../data/sourcePacks';
@@ -183,7 +182,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
   const [localCorpus, setLocalCorpus] = useState(false);
   const [localSpoken, setLocalSpoken] = useState(false);
   const [starting, setStarting] = useState(false);
-  const [offlineSnapshot, setOfflineSnapshot] = useState<{ profileId: string; groups: Set<string>; intents: Awaited<ReturnType<typeof readInstallationIntents>> }>();
+  const [offlineSnapshot, setOfflineSnapshot] = useState<{ profileId: string; groups: Set<string> }>();
   const [installedGroups, setInstalledGroups] = useState<Set<string>>(new Set());
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const [updateBlocked, setUpdateBlocked] = useState(false);
@@ -307,10 +306,10 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
     let live = true, revision = 0;
     const refresh = () => {
       const current = ++revision;
-      void Promise.all([installedOfflineGroups(), installedSourcePacks(activeProfile), readInstallationIntents(activeProfile)]).then(([groups, sources, intents]) => {
+      void Promise.all([installedOfflineGroups(), installedSourcePacks(activeProfile)]).then(([groups, sources]) => {
         if (!live || current !== revision) return;
         setInstalledGroups(groups);
-        setOfflineSnapshot({ profileId: activeProfile, groups: new Set([...groups, ...sources]), intents });
+        setOfflineSnapshot({ profileId: activeProfile, groups: new Set([...groups, ...sources]) });
       }).catch(() => { if (live && current === revision) setOfflineSnapshot(undefined); });
     };
     refresh();
@@ -567,7 +566,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
           { path: 'grammar', title: t.grammar },
           { path: 'ipa', title: t.ipa },
           { path: 'trees', title: t.trees },
-        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialIntents={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.intents : undefined} initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={setInstalledGroups} onIntentsChange={intents => setOfflineSnapshot(previous => previous?.profileId === activeProfile ? { ...previous, intents } : previous)}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
+        ].map(reference => <a className="library-reference-tile" key={reference.path} href={`/library/${reference.path}`}>{reference.title}</a>)}</section><OfflineInstall initialInstalled={offlineSnapshot?.profileId === activeProfile ? offlineSnapshot.groups : undefined} key={activeProfile} profileId={activeProfile} locale={locale} online={online} onReady={setInstalledGroups}/><InstalledResources locale={locale} profileId={activeProfile}/><CommunityImport locale={locale} profileId={activeProfile} onInstalled={() => void load()}/></div>
       : path === '/library/history' ? <LookupHistory key={activeProfile} locale={locale} profileId={activeProfile}/>
       : path === '/library/dictionary' ? <div className="library-page"><Dictionary disabled={!ready} key={`${activeProfile}:${pageSearch}`} locale={locale} online={online} profileId={activeProfile} initialQuery={lookupQuery}/></div>
       : path === '/library/saved' ? <div className="library-page"><SavedWords key={activeProfile} locale={locale} profileId={activeProfile} online={online} defaultId={onlineDictionary}/></div>

@@ -10,8 +10,8 @@ export function OnlineLookup({ query, locale, online, onOpen }: { query: string;
       const label = t.onlineLookupLink.replace('{dictionary}', dictionary.name).replace('{query}', term);
       const name = `${dictionary.shortName} ↗`;
       return online && term
-        ? <a key={dictionary.id} href={onlineDictionaryUrl(term, dictionary.id)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" title={label} aria-label={label}>{name}</a>
-        : <span key={dictionary.id} className="online-lookup-disabled" aria-disabled="true" title={dictionary.name}>{name}</span>;
+        ? <a key={dictionary.id} href={onlineDictionaryUrl(term, dictionary.id)} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" aria-label={label}>{name}</a>
+        : <span key={dictionary.id} className="online-lookup-disabled" aria-disabled="true">{name}</span>;
     })}</div>
     {!online && <p role="status" className="muted">{t.onlineLookupOffline}</p>}
   </section>;

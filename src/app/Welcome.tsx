@@ -14,6 +14,7 @@ import { automaticPractice } from '../shared/practiceSelection';
 import { OfflineInstall } from './OfflineInstall';
 import { CommunityImport, InstalledResources } from './CommunityImport';
 
+const previewFernSymbol = fernSymbol.replace(' role="img" aria-labelledby="title desc"', '').replace(/<(title|desc)\b[^>]*>[^<]*<\/\1>/g, '');
 const previewPages = ['today', 'library', 'settings'] as const;
 const wrapCard = (value: number) => ((value % previewPages.length) + previewPages.length) % previewPages.length;
 
@@ -405,7 +406,7 @@ export function Welcome({ locale, profileId, online, date, onDayChange, onContin
           onClick={event => { if (event.target === event.currentTarget && index !== selected.current) selectCard(index); }}>
           <div className="welcome-shadow"/>
           <div className="welcome-window" inert={index !== 0}>
-            <header className="welcome-site-header" dir="ltr"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: fernSymbol }}/></span>{previewNav(index)}</header>
+            <header className="welcome-site-header" dir="ltr"><span className="home-mark" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: previewFernSymbol }}/></span><span className="mobile-brand" role="img" aria-label="Lingfern"><span className="brand-symbol" aria-hidden="true" dangerouslySetInnerHTML={{ __html: previewFernSymbol }}/></span>{previewNav(index)}</header>
             <div className="welcome-content">{name === 'today' ? <TodayPreview locale={locale} profileId={profileId} date={date} onDayChange={onDayChange} onContinue={onContinue} active={fernActive}/> : name === 'library' ? <div inert><LibraryPreview locale={locale} profileId={profileId} online={online}/></div> : <div inert>{settings}</div>}</div>
             {previewNav(index, true)}
             <div className="welcome-shade"/>

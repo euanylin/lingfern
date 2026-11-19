@@ -143,7 +143,7 @@ Cadangan berisi sesi, jawaban, draf, markah, riwayat pencarian, umpan balik, dan
 
 1. Hubungkan GitHub di Pengaturan, lalu pilih profil akun atau salin profil lokal ke akun tersebut.
 2. Buat repositori data khusus yang **privat**, beri akses kepada GitHub App, lalu pilih dan verifikasi repositori saat pengaturan.
-3. Sinkronisasi dua arah otomatis bertukar ringkasan belajar, markah, riwayat pencarian, preferensi, pilihan pemasangan, dan penghapusan yang didukung. Perubahan offline menunggu koneksi pulih.
+3. Sinkronisasi dua arah otomatis bertukar ringkasan belajar, markah, riwayat pencarian, preferensi, dan penghapusan yang didukung. Perubahan offline menunggu koneksi pulih.
 
 Kartu menampilkan sedang sinkron, sudah sinkron, menunggu offline, atau gagal serta waktu keberhasilan terakhir. Gunakan **Sinkronkan sekarang / Coba lagi**, jeda sinkronisasi otomatis, atau putuskan ikatan repositori saat pengaturan. Data konflik dapat diekspor saat pemulihan ditawarkan. Sesi lengkap, jawaban, dan audio terpasang tidak ditransfer; gunakan cadangan untuk catatan lengkap.
 

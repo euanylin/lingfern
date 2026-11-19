@@ -20,7 +20,7 @@ const consumers = [
   { name: 'dictionary', error: 'DICTIONARY_UNAVAILABLE', read: () => lookupDictionary('zzstreamfailure') },
   { name: 'reading corpus', error: 'MISSING_CORPUS', read: () => loadCorpus('voa') },
   { name: 'source package', error: 'MISSING_CORPUS', read: () => installSourcePack(sourcePacks[0].id, 'isolated-stream-test') },
-  { name: 'offline resources', error: 'HTTP_OR_TYPE:', read: () => installOfflineResources('grammar', () => {}, new AbortController().signal, 'isolated-stream-test') },
+  { name: 'offline resources', error: 'HTTP_OR_TYPE:', read: () => installOfflineResources('grammar', () => {}, new AbortController().signal) },
   { name: 'sync API', error: 'SYNC_HTTP_503', read: () => jsonRequest('/api/sync/changes', new AbortController().signal) },
 ];
 
@@ -41,7 +41,7 @@ it('releases the offline download reader when its progress consumer throws', asy
   const response = new Response(stream, { headers: { 'Content-Type': 'application/json' } });
   Object.defineProperty(response, 'type', { value: 'basic' });
   vi.stubGlobal('fetch', vi.fn(async () => response));
-  await expect(installOfflineResources('grammar', () => { throw new Error('PROGRESS_FAILED'); }, new AbortController().signal, 'isolated-stream-test')).rejects.toThrow('PROGRESS_FAILED');
+  await expect(installOfflineResources('grammar', () => { throw new Error('PROGRESS_FAILED'); }, new AbortController().signal)).rejects.toThrow('PROGRESS_FAILED');
   expect(cancel).toHaveBeenCalledTimes(1);
   expect(stream.locked).toBe(false);
 });

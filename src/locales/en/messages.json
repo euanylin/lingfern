@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "Syntax tree",
-    "intro": "Draw a syntax tree from brackets, an outline or a sentence, then edit it by hand.",
-    "generated": "Auto-generated; may be inaccurate.",
     "incomplete": "Incomplete derivation: ? marks an unresolved combination.",
     "source": "Sentence, brackets, outline or dependencies",
     "draw": "Draw automatically",
@@ -329,8 +327,6 @@
     "failed": "Could not copy. Select the address and copy it manually."
   },
   "offlineInstall": {
-    "wanted": "Installation intended",
-    "intentFailed": "This package’s installation choice was not saved. Try again; its local files were not changed further.",
     "categories": {
       "reading": "Reading",
       "listening": "Listening",
@@ -601,7 +597,7 @@
     "offline": "Offline · waiting to sync",
     "lastSuccess": "Last successful sync",
     "disabled": "Automatic sync is off.",
-    "detail": "Syncs learning summaries, bookmarks, lookup history, preferences, installation choices and deletion records with this private repository.",
+    "detail": "Syncs learning summaries, bookmarks, lookup history, preferences and deletion records with this private repository.",
     "syncing": "Syncing…",
     "failed": "Sync did not finish. Try again. Local records remain.",
     "conflict": "Conflicting batches were preserved. Uploads are paused.",
@@ -800,7 +796,6 @@
     "updateUnavailable": "Update checking is unavailable here.",
     "updateFailed": "Could not check for updates. Try again.",
     "updateBlocked": "A task is open in another tab. Finish or leave it before updating.",
-    "unsupported": "This page is not available in this version.",
     "palette": "Color theme",
     "paletteNames": [
       "Default",

@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "Albero sintattico",
-    "intro": "Disegna un albero sintattico da parentesi, uno schema o una frase, poi modificalo a mano.",
-    "generated": "Generato automaticamente; può essere impreciso.",
     "incomplete": "Derivazione incompleta: ? indica una combinazione non risolta.",
     "source": "Frase, parentesi, schema o dipendenze",
     "draw": "Disegna automaticamente",
@@ -329,8 +327,6 @@
     "failed": "Impossibile copiare. Seleziona l’indirizzo e copialo manualmente."
   },
   "offlineInstall": {
-    "wanted": "Installazione prevista",
-    "intentFailed": "Scelta d’installazione non salvata. Riprova; file locali non modificati ulteriormente.",
     "categories": {
       "reading": "Lettura",
       "listening": "Ascolto",
@@ -601,7 +597,7 @@
     "offline": "Offline · sincronizzazione in attesa",
     "lastSuccess": "Ultima sincronizzazione riuscita",
     "disabled": "La sincronizzazione automatica è disattivata.",
-    "detail": "Sincronizza riepiloghi di apprendimento, segnalibri, cronologia delle ricerche, preferenze, scelte di installazione ed eliminazioni con questo repository privato.",
+    "detail": "Sincronizza riepiloghi di apprendimento, segnalibri, cronologia delle ricerche, preferenze ed eliminazioni con questo repository privato.",
     "syncing": "Sincronizzazione…",
     "failed": "Sincronizzazione incompleta. Riprova. Record locali conservati.",
     "conflict": "Lotti in conflitto conservati. Caricamenti sospesi.",
@@ -800,7 +796,6 @@
     "updateUnavailable": "Controllo aggiornamenti non disponibile qui.",
     "updateFailed": "Impossibile cercare aggiornamenti. Riprova.",
     "updateBlocked": "Attività aperta in un’altra scheda. Terminala o esci prima di aggiornare.",
-    "unsupported": "Pagina non disponibile in questa versione.",
     "palette": "Tema colori",
     "paletteNames": [
       "Predefinito",

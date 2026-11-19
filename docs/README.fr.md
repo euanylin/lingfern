@@ -143,7 +143,7 @@ Les sauvegardes contiennent sessions, réponses, brouillons, favoris, historique
 
 1. Connectez GitHub dans les Paramètres ; choisissez un profil du compte ou copiez-y votre profil local.
 2. Créez un dépôt de données dédié **privé**, accordez l’accès à la GitHub App, puis sélectionnez et vérifiez le dépôt pendant la configuration.
-3. La synchronisation bidirectionnelle échange résumés d’apprentissage, favoris, historique, préférences, choix d’installation et suppressions prises en charge. Les changements hors ligne attendent la reconnexion.
+3. La synchronisation bidirectionnelle échange résumés d’apprentissage, favoris, historique, préférences et suppressions prises en charge. Les changements hors ligne attendent la reconnexion.
 
 La carte indique synchronisation en cours, terminée, en attente hors ligne ou échec, ainsi que la dernière réussite. Utilisez **Synchroniser / Réessayer**, suspendez l’automatisme ou détachez le dépôt dans la configuration. Les données conflictuelles sont exportables lorsque cette récupération est proposée. Sessions complètes, réponses et audio ne sont pas transférés : utilisez une sauvegarde pour tous les enregistrements.
 

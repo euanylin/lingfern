@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "句法树",
-    "intro": "用括号、缩进或句子生成句法树，也可以手动编辑节点。",
-    "generated": "自动生成，仅供参考。",
     "incomplete": "推导未完成：? 表示无法组合。",
     "source": "句子、括号、缩进或依存",
     "draw": "自动绘制",
@@ -329,8 +327,6 @@
     "failed": "复制失败，请选中地址手动复制。"
   },
   "offlineInstall": {
-    "wanted": "已记下安装意向",
-    "intentFailed": "此资源的安装选择未保存，请重试；未继续更改其本机文件。",
     "categories": {
       "reading": "阅读",
       "listening": "听力",
@@ -601,7 +597,7 @@
     "offline": "离线待同步",
     "lastSuccess": "上次成功同步",
     "disabled": "自动同步已关闭。",
-    "detail": "学习摘要、书签、查询历史、偏好、安装选择与删除记录会同步到此私有仓库。",
+    "detail": "学习摘要、书签、查询历史、偏好与删除记录会同步到此私有仓库。",
     "syncing": "正在同步…",
     "failed": "同步未完成，请重试。本机记录仍保留。",
     "conflict": "发现冲突，已保留冲突批次，暂停上传。",
@@ -800,7 +796,6 @@
     "updateUnavailable": "当前环境无法检查更新。",
     "updateFailed": "检查更新失败，请重试。",
     "updateBlocked": "另一标签页仍在进行任务。请先完成或离开该任务。",
-    "unsupported": "当前版本尚未提供此页面。",
     "palette": "主题配色",
     "paletteNames": [
       "默认",

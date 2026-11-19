@@ -143,7 +143,7 @@ Backups contain sessions, answers, drafts, bookmarks, query history, feedback an
 
 1. Connect GitHub in Settings, then select an account profile or copy your local profile into it.
 2. Create a dedicated **private** data repository with a README, grant the GitHub App access, then select and verify the repository in setup.
-3. Automatic sync exchanges learning summaries, bookmarks, query history, preferences, installation choices and supported deletions. Offline changes are retained for reconnection.
+3. Automatic sync exchanges learning summaries, bookmarks, query history, preferences and supported deletions. Offline changes are retained for reconnection.
 
 The card shows syncing/synced/offline-pending/failure status and the last successful time; use **Sync now / Retry**, pause automatic sync, or disconnect the repository binding in setup. Conflicting data can be exported when the recovery control appears. Sync does not transfer full sessions, answers or installed audio: use a backup for full records.
 

@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "Pohon sintaksis",
-    "intro": "Gambar pohon sintaksis dari tanda kurung, kerangka, atau kalimat, lalu edit simpulnya secara manual.",
-    "generated": "Dibuat otomatis; bisa kurang tepat.",
     "incomplete": "Derivasi belum lengkap: ? menandai gabungan yang belum terselesaikan.",
     "source": "Kalimat, tanda kurung, kerangka, atau dependensi",
     "draw": "Gambar otomatis",
@@ -329,8 +327,6 @@
     "failed": "Gagal menyalin. Pilih alamat dan salin secara manual."
   },
   "offlineInstall": {
-    "wanted": "Direncanakan dipasang",
-    "intentFailed": "Pilihan pemasangan tidak disimpan. Coba lagi; berkas lokal tidak diubah lebih lanjut.",
     "categories": {
       "reading": "Membaca",
       "listening": "Menyimak",
@@ -601,7 +597,7 @@
     "offline": "Luring · menunggu sinkronisasi",
     "lastSuccess": "Sinkronisasi terakhir berhasil",
     "disabled": "Sinkronisasi otomatis nonaktif.",
-    "detail": "Menyinkronkan ringkasan belajar, markah, riwayat pencarian, preferensi, pilihan pemasangan, dan catatan penghapusan dengan repositori privat ini.",
+    "detail": "Menyinkronkan ringkasan belajar, markah, riwayat pencarian, preferensi, dan catatan penghapusan dengan repositori privat ini.",
     "syncing": "Menyinkronkan…",
     "failed": "Sinkronisasi belum selesai. Coba lagi. Catatan lokal tetap.",
     "conflict": "Kelompok berkonflik dipertahankan. Unggahan dijeda.",
@@ -800,7 +796,6 @@
     "updateUnavailable": "Pemeriksaan pembaruan tidak tersedia di sini.",
     "updateFailed": "Gagal memeriksa pembaruan. Coba lagi.",
     "updateBlocked": "Tugas terbuka di tab lain. Selesaikan atau tinggalkan sebelum memperbarui.",
-    "unsupported": "Halaman tidak tersedia dalam versi ini.",
     "palette": "Tema warna",
     "paletteNames": [
       "Default",

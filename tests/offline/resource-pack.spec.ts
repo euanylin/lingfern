@@ -41,12 +41,12 @@ test('imports a verified ZIP offline and leaves an existing package intact after
   await page.getByLabel('导入 ZIP').setInputFiles(pack('grammar'));
   await expect(page.getByRole('status')).toContainText('资源已安装');
   await expect(page.locator('.package-row').filter({ hasText: '英语用法词典' })).toContainText('已安装');
-  const intents = await page.evaluate(() => new Promise<{ type: string; payload: { contentId: string; wanted: boolean } }[]>((resolve, reject) => {
+  const events = await page.evaluate(() => new Promise<{ type: string }[]>((resolve, reject) => {
     const request = indexedDB.open('lingfern');
     request.onerror = () => reject(request.error);
     request.onsuccess = () => { const database = request.result, read = database.transaction('syncEvents').objectStore('syncEvents').getAll(); read.onerror = () => { database.close(); reject(read.error); }; read.onsuccess = () => { database.close(); resolve(read.result); }; };
   }));
-  expect(intents.filter(event => event.type === 'installation').map(event => event.payload)).toMatchObject([{ contentId: 'grammar', wanted: true }]);
+  expect(events.filter(event => event.type === 'installation')).toHaveLength(0);
   const corrupted = unzipSync(await readFile(pack('audio-a1')));
   corrupted['audio/a1-words/word-1.mp3'][0] ^= 1;
   await page.getByLabel('导入 ZIP').setInputFiles({ name: 'bad.zip', mimeType: 'application/zip', buffer: Buffer.from(zipSync(corrupted)) });
@@ -59,7 +59,7 @@ test('imports a verified ZIP offline and leaves an existing package intact after
   await expect.poll(() => page.locator('.grammar-results details').count()).toBeGreaterThanOrEqual(2);
 });
 
-test('download and local removal capture intentions without treating them as cached files', async ({ page }) => {
+test('downloads and removes multiple resources without creating sync events', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 812 });
   await page.goto('/library');
   await page.getByRole('button', { name: /^通用材料/ }).last().click();
@@ -93,15 +93,12 @@ test('download and local removal capture intentions without treating them as cac
   await expect(row).not.toContainText('已安装');
   await expect(grammar).not.toContainText('已安装');
   await test.info().attach('batch-resource-operation', { body: JSON.stringify({ viewport: '320x812', progressBarHeights: [...new Set(heights)], removalMs: Date.now() - began }), contentType: 'application/json' });
-  const events = await page.evaluate(() => new Promise<{ type: string; payload: { contentId: string; contentHash: string; wanted: boolean } }[]>((resolve, reject) => {
+  const events = await page.evaluate(() => new Promise<{ type: string }[]>((resolve, reject) => {
     const request = indexedDB.open('lingfern');
     request.onerror = () => reject(request.error);
     request.onsuccess = () => { const database = request.result, read = database.transaction('syncEvents').objectStore('syncEvents').getAll(); read.onerror = () => { database.close(); reject(read.error); }; read.onsuccess = () => { database.close(); resolve(read.result); }; };
   }));
-  const intents = events.filter(event => event.type === 'installation');
-  expect(intents).toHaveLength(4);
-  expect(intents.map(event => event.payload.wanted).sort()).toEqual([false, false, true, true]);
-  expect(intents.every(event => ['audio-a1', 'grammar'].includes(event.payload.contentId) && /^[a-f0-9]{64}$/.test(event.payload.contentHash))).toBe(true);
+  expect(events.filter(event => event.type === 'installation')).toHaveLength(0);
 });
 
 test('imports the full dictionary ZIP and serves an unvisited entry after going offline', async ({ page, context }) => {

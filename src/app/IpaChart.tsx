@@ -94,8 +94,8 @@ export function IpaChart({ locale, profileId, initialQuery = '', initialEntries,
     }
     const variant = !entry && marked && englishVariants.includes(symbol);
     return <article className={entry ? "ipa-entry" : "ipa-entry ipa-reference-entry"} key={symbol} data-ipa={symbol} ref={symbol === initialQuery ? focusedEntry : undefined} tabIndex={symbol === initialQuery ? -1 : undefined}>
-      <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-pressed={playing === symbol} onClick={() => void play(symbol, sound.soundAudio)}>
-        <span className={variant ? 'ipa-english-variant' : entry && marked ? 'ipa-english-circle' : undefined} lang="en" dir="ltr" title={variant ? 'English accent variant or allophone' : undefined}>{view === 'simple' ? `/${symbol}/` : symbol}</span>
+      <button disabled={disabled} type="button" className="ipa-symbol" aria-label={`${chartLabels.sound} /${symbol}/`} aria-description={variant ? 'English accent variant or allophone' : undefined} aria-pressed={playing === symbol} onClick={() => void play(symbol, sound.soundAudio)}>
+        <span className={variant ? 'ipa-english-variant' : entry && marked ? 'ipa-english-circle' : undefined} lang="en" dir="ltr">{view === 'simple' ? `/${symbol}/` : symbol}</span>
       </button>
       {entry && view === 'simple' && <button disabled={disabled} type="button" className="ipa-word" aria-label={`${t.word} ${entry.example}`} aria-pressed={playing === `word:${symbol}`} onClick={() => void play(`word:${symbol}`, entry.audio, symbol)}><span lang="en" dir="ltr">{entry.before}<strong>{entry.bold}</strong>{entry.after}</span></button>}
     </article>;

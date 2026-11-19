@@ -21,7 +21,6 @@ export async function installSourcePack(id: string, profileId: string, signal?: 
   await loadRuntimeResources();
   const entry = sourcePacks.find(pack => pack.id === id || pack.sha256 === id);
   if (!entry) throw new Error('UNKNOWN_PACKAGE');
-  await (await import('./installationIntent')).saveInstallationIntent(profileId, entry.id, true);
   const response = await fetch(entry.path, { cache: 'no-cache', redirect: 'error', credentials: 'omit', signal });
   if (!response.ok || !response.body) { await response.body?.cancel().catch(() => {}); throw new Error('MISSING_CORPUS'); }
   const reader = response.body.getReader(), chunks: Uint8Array[] = [];
@@ -57,7 +56,6 @@ export async function removeSourcePack(ids: string | string[], profileId: string
   await loadRuntimeResources();
   const selected = [...new Set(typeof ids === 'string' ? [ids] : ids)];
   const entries = selected.map(id => { const entry = sourcePacks.find(pack => pack.id === id); if (!entry) throw new Error('UNKNOWN_PACKAGE'); return entry; });
-  await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
   try {
     for (let offset = 0; offset < entries.length; offset += 4) await Promise.all(entries.slice(offset, offset + 4).map(entry => {
       const name = communityCacheName(entry.sha256);

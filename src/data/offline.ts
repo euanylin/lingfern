@@ -54,12 +54,11 @@ export async function installedOfflineGroups() {
   return new Set(states.filter(([, ready]) => ready).map(([id]) => id));
 }
 
-export async function removeOfflineResources(ids: string | string[], profileId: string) {
+export async function removeOfflineResources(ids: string | string[]) {
   await loadRuntimeResources();
   const selected = [...new Set(typeof ids === 'string' ? [ids] : ids)];
   if (selected.some(id => !group(id))) throw new Error('UNKNOWN_PACKAGE');
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
-  await (await import('./installationIntent')).saveInstallationIntents(profileId, selected, false);
   try {
     for (let offset = 0; offset < selected.length; offset += 4) await Promise.all(selected.slice(offset, offset + 4).map(id => {
       const name = offlineCacheName(id);
@@ -72,13 +71,12 @@ export async function removeOfflineResources(ids: string | string[], profileId: 
   } finally { notifyResourceChange(); }
 }
 
-export async function installOfflineResources(id: string, onProgress: (bytes: number) => void, signal: AbortSignal, profileId: string) {
+export async function installOfflineResources(id: string, onProgress: (bytes: number) => void, signal: AbortSignal) {
   await loadRuntimeResources();
   const item = group(id);
   if (!item) throw new Error('UNKNOWN_PACKAGE');
   if (!('caches' in window) || !crypto.subtle) throw new Error('UNSUPPORTED');
   await waitForOfflineWorker(signal);
-  await (await import('./installationIntent')).saveInstallationIntent(profileId, id, true);
   await navigator.storage?.persist?.().catch(() => false);
   const ready = await offlineGroupReady(item);
   signal.throwIfAborted();

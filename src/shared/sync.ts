@@ -32,6 +32,7 @@ export const syncEventSchema = z.discriminatedUnion('type', [
   base.extend({ type: z.literal('preferences'), payload: preferencesSchema }).strict(),
   base.extend({ type: z.literal('setting'), payload: settingPayload }).strict(),
   base.extend({ type: z.literal('deletion'), payload: z.union([z.object({ target: z.enum(['record', 'exposure']), targetId: reference }).strict(), z.object({ target: z.literal('exposure_contact'), targetId: reference, sessionId: reference, questionId: reference }).strict()]) }).strict(),
+  // Retain validation for immutable batches and backups containing retired installation choices.
   base.extend({ type: z.literal('installation'), payload: z.object({ contentId: reference, contentHash: hash, wanted: z.boolean() }).strict() }).strict(),
   base.extend({ type: z.literal('completion_timing'), payload: z.object({ sourceId: id, sourceHash: hash, time: z.iso.datetime() }).strict() }).strict(),
   // Preserve legacy wire bytes without restoring the retired review feature.
@@ -151,7 +152,6 @@ export function projectSyncEvents(raw: readonly SyncEvent[]) {
   const exposures: Extract<SyncEvent, { type: 'exposure' }>[] = [];
   const savedItems = new Map<string, Extract<SyncEvent, { type: 'saved_item' }>>();
   const settings = new Map<string, Extract<SyncEvent, { type: 'setting' }>>();
-  const installations = new Map<string, Extract<SyncEvent, { type: 'installation' }>>();
   let preferences: Extract<SyncEvent, { type: 'preferences' }> | undefined;
   for (const event of events) {
     switch (event.type) {
@@ -159,9 +159,8 @@ export function projectSyncEvents(raw: readonly SyncEvent[]) {
       case 'exposure': if (!deletedExposures.has(event.payload.rootId) && !deletedContacts.has(exposureContactKey(event.payload))) exposures.push(event); break;
       case 'saved_item': savedItems.set(event.payload.memoryId, event); break;
       case 'setting': settings.set(event.payload.key, event); break;
-      case 'installation': installations.set(event.payload.contentId, event); break;
       case 'preferences': preferences = event; break;
     }
   }
-  return { completions, exposures, savedItems, settings, installations, preferences, deletedRecords, deletedExposures, deletedContacts, counter: events.at(-1)?.counter ?? 0 };
+  return { completions, exposures, savedItems, settings, preferences, deletedRecords, deletedExposures, deletedContacts, counter: events.at(-1)?.counter ?? 0 };
 }

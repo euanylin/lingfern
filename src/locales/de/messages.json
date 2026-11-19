@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "Syntaxbaum",
-    "intro": "Zeichnen Sie einen Syntaxbaum aus Klammern, einer Gliederung oder einem Satz und bearbeiten Sie ihn anschließend von Hand.",
-    "generated": "Automatisch erzeugt, kann fehlerhaft sein.",
     "incomplete": "Unvollständige Ableitung: ? kennzeichnet eine ungelöste Kombination.",
     "source": "Satz, Klammern, Gliederung oder Dependenz",
     "draw": "Automatisch zeichnen",
@@ -329,8 +327,6 @@
     "failed": "Kopieren fehlgeschlagen. Adresse markieren und manuell kopieren."
   },
   "offlineInstall": {
-    "wanted": "Installation vorgemerkt",
-    "intentFailed": "Installationswahl nicht gespeichert. Erneut versuchen; lokale Dateien nicht weiter verändert.",
     "categories": {
       "reading": "Lesen",
       "listening": "Hören",
@@ -601,7 +597,7 @@
     "offline": "Offline · Synchronisierung ausstehend",
     "lastSuccess": "Letzte erfolgreiche Synchronisierung",
     "disabled": "Die automatische Synchronisierung ist ausgeschaltet.",
-    "detail": "Synchronisiert Lernzusammenfassungen, Lesezeichen, Suchverlauf, Einstellungen, Installationsauswahl und Löschungen mit diesem privaten Repository.",
+    "detail": "Synchronisiert Lernzusammenfassungen, Lesezeichen, Suchverlauf, Einstellungen und Löschungen mit diesem privaten Repository.",
     "syncing": "Synchronisieren…",
     "failed": "Synchronisierung unvollständig. Erneut versuchen. Lokale Aufzeichnungen bleiben.",
     "conflict": "Konfliktstapel erhalten. Upload pausiert.",
@@ -800,7 +796,6 @@
     "updateUnavailable": "Updateprüfung hier nicht verfügbar.",
     "updateFailed": "Updateprüfung fehlgeschlagen. Erneut versuchen.",
     "updateBlocked": "Aufgabe in anderem Tab offen. Vor Update beenden oder verlassen.",
-    "unsupported": "Seite in dieser Version nicht verfügbar.",
     "palette": "Farbthema",
     "paletteNames": [
       "Standard",

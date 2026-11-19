@@ -112,7 +112,6 @@ export function Fern({ profileId, entries, locale, illustrationActive, initialLo
   const shape = fernShape(initial.current.growth, reduced ? 0 : initial.current.seconds);
   const description = illustrating ? messages('onboarding')[locale].carousel : messages('additional', { reading, listening, lookups: lookups ?? 0, tests: activity.tests })[locale].activity;
   return <><svg ref={svg} className="fern" viewBox="0 0 240 180" role="img" aria-label={description} aria-busy={lookups === undefined} visibility={lookups === undefined ? 'hidden' : 'visible'} data-growth={initial.current.growth.stem} data-motion={reduced ? 'reduced' : visible ? 'active' : 'paused'}>
-    <title>{description}</title>
     <g fill="currentColor">{shape.left.map((d, index) => <path className="fern-pinna" key={`left-${index}`} d={d}/>)}{shape.right.map((d, index) => <path className="fern-pinna" key={`right-${index}`} d={d}/>)}</g>
     <path className="fern-stem" d={shape.stem} fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round"/>
   </svg>{failed && <p role="alert" className="error">{messages('lookupHistory_lookupHistoryCopy')[locale].failed}</p>}</>;

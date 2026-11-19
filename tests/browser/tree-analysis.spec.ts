@@ -18,7 +18,7 @@ test('shows incomplete CCG derivations and clears the warning after a valid redr
   await source.press('Enter');
   await expect(page.getByRole('treeitem', { name: '?', exact: true })).toHaveCount(0);
   await expect(page.getByRole('treeitem', { name: 'S', exact: true }).first()).toBeVisible();
-  await expect(page.locator('#tree-generated-note')).toHaveText('自动生成，仅供参考。');
+  await expect(page.locator('#tree-generated-note')).toHaveCount(0);
 });
 
 test('names the available phrase presentations without claiming a TAG grammar', async ({ page }) => {

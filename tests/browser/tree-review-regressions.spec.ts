@@ -14,7 +14,7 @@ for (const width of [390, 1120]) test(`renders comparative and prepositional pas
     await expect(page.getByRole('treeitem', { name: terminal, exact: true }).first()).toBeVisible();
     await expect(page.getByRole('treeitem', { name: '?', exact: true })).toHaveCount(0);
     await expect(page.getByRole('treeitem', { name: 'S', exact: true }).first()).toBeVisible();
-    await expect(page.locator('#tree-generated-note')).toHaveText('自动生成，仅供参考。');
+    await expect(page.locator('#tree-generated-note')).toHaveCount(0);
     await expect(page.getByRole('alert')).toHaveCount(0);
   }
   await page.screenshot({ path: info.outputPath('prepositional-passive.png'), fullPage: true });

@@ -42,12 +42,10 @@ it('rejects changed bytes, foreign manifests, traversal, scripts and symlinks', 
   expect(() => unpackZip(link, options)).toThrow('PACKAGE_ZIP');
 });
 
-it.each(['already changed', 'refreshing'])('rejects a ZIP when the catalogue is %s before writing cache or installation intent', async phase => {
+it.each(['already changed', 'refreshing'])('rejects a ZIP when the catalogue is %s before writing to the cache', async phase => {
   const group = offlineGroups.find(item => item.id === 'grammar')!;
   const pack = await inspectResourcePack(await readFile(`public/packs/${group.id}-${group.version}.zip`));
   const originalVersion = group.version;
-  const { syncEvents } = await import('../src/data/db');
-  const before = await syncEvents.count();
   const cache = { has: vi.fn(async () => false), open: vi.fn(async () => { throw new Error('CACHE_MUTATION_REACHED'); }) };
   vi.stubGlobal('window', { caches: cache }); vi.stubGlobal('caches', cache);
   vi.stubGlobal('navigator', { serviceWorker: { ready: Promise.resolve({ active: {} }), getRegistration: async () => ({ active: {} }) } });
@@ -56,9 +54,8 @@ it.each(['already changed', 'refreshing'])('rejects a ZIP when the catalogue is 
     group.version = '0000000000000000'; return runtimeResources;
   });
   try {
-    await expect(installResourcePack(pack, 'local-guest')).rejects.toThrow('PACKAGE_MANIFEST');
+    await expect(installResourcePack(pack)).rejects.toThrow('PACKAGE_MANIFEST');
     expect(cache.open).not.toHaveBeenCalled();
-    expect(await syncEvents.count()).toBe(before);
   } finally { group.version = originalVersion; vi.unstubAllGlobals(); }
 });
 

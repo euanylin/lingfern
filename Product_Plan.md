@@ -1005,7 +1005,7 @@ Sync exchanges completed learning records and settings; it is not a real-time co
 | Goal-review evidence | Full private materials and attachments |
 | Saved-item IDs, interests, settings | Full writing, dictation, and other user-entered text |
 | Material exposure and variant-group records | Unfinished independent checks |
-| Official content hashes and installation intentions | Downloaded audio and complete corpus packages |
+| Query history | Downloaded audio and complete corpus packages |
 
 AI sharing requires separate confirmation and must not be hidden in ordinary sync payloads. The data repository runs no workflows and stores no tokens. A public repository or secret Gist is not a substitute for a private repository.
 
@@ -1022,7 +1022,7 @@ records/
 
 `deviceId` is a random device identifier for the profile; `batchId` is a persisted random ID. Do not use hardware fingerprints. On restoration to a new device, generate a new deviceId but retain event IDs for deduplication.
 
-A batch contains at most 500 events and no more than 250 KiB decoded. Each event has an ID, logical order, type, and constrained payload. Types cover task completion, exposure, bookmark changes, preferences/settings, installation intentions, completion-time corrections, query history and deletion markers. Query events preserve the existing kind, normalized term and original lookup time; the current view retains the latest100 distinct kind/term pairs. New bookmark events contain only a stable sense ID and save/remove state, excluding private definitions. Valid historical review fields/events remain strictly validated and byte-preserved for sync/backup integrity; the retired review interface and calculations stay removed.
+A batch contains at most 500 events and no more than 250 KiB decoded. Each event has an ID, logical order, type, and constrained payload. Types cover task completion, exposure, bookmark changes, preferences/settings, completion-time corrections, query history and deletion markers. Query events preserve the existing kind, normalized term and original lookup time; the current view retains the latest100 distinct kind/term pairs. New bookmark events contain only a stable sense ID and save/remove state, excluding private definitions. Historical review and installation events remain strictly validated and byte-preserved for sync/backup integrity; the retired review interface and calculations stay removed.
 
 After explicit account/profile association and private-repository configuration, enable automatic bidirectional sync by default, preserving explicit scoped opt-out. Debounce local changes for2seconds with a10second maximum wait; coordinate foreground rounds across tabs, with a15second minimum automatic request gap and a2minute remote poll. Check on startup, sign-in, online recovery and foreground return; keep one Sync now/retry action. Read and merge every remote page before upload, then recheck remote state after writes. A bounded partial round remains pending and resumes from its persisted cursor; only a fully read/applied/drained round updates the success time. Offline events survive reload. Use finite backoff and respect rate limits; closed pages do not promise background execution.
 

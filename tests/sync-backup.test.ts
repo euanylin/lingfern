@@ -2,9 +2,28 @@ import { beforeEach, expect, it } from 'vitest';
 import { db, profiles } from '../src/data/db';
 import { saveSense, removeSense } from '../src/data/memory';
 import { exportBackup, inspectBackup, importBackup } from '../src/data/backup';
-import { appendSyncEvent, confirmSyncUpload, nextSyncUpload, pendingSyncBatch, confirmSyncBatch, readSyncEvents } from '../src/data/sync';
+import { appendSyncEvent, confirmSyncUpload, nextSyncUpload, pendingSyncBatch, confirmSyncBatch, readSyncEvents, receiveSyncBatch } from '../src/data/sync';
+import { projectSyncEvents, validateSyncBatch, type SyncEvent } from '../src/shared/sync';
 
 beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())); });
+
+it('preserves old mixed sync batches and backups without sealing retired installation choices into new batches', async () => {
+  const saved: SyncEvent = { id: 'saved', deviceId: 'old-device', counter: 1, occurredAt: '2026-11-18T00:00:00.000Z', type: 'saved_item', payload: { memoryId: 'sense', saved: true } };
+  const legacy: SyncEvent = { ...saved, id: 'installation', counter: 2, type: 'installation', payload: { contentId: 'grammar', contentHash: 'a'.repeat(64), wanted: true } };
+  const { batch, hash } = await validateSyncBatch({ product: 'Lingfern', formatVersion: 1, profileId: 'p', deviceId: saved.deviceId, batchId: 'old-batch', events: [saved, legacy] });
+  await receiveSyncBatch('p', batch, hash);
+  await db.table('syncEvents').add({ ...legacy, id: 'unbatched', profileId: 'p' });
+
+  const restored = await importBackup(await inspectBackup(await exportBackup('p')));
+  const events = await readSyncEvents(restored);
+  expect(events).toEqual(await readSyncEvents('p'));
+  expect(projectSyncEvents(events).savedItems.get('sense')).toEqual(saved);
+  expect(await db.table('syncBatches').get([restored, saved.deviceId, batch.batchId])).toMatchObject({ batch, hash });
+  expect(await pendingSyncBatch(restored)).toBeUndefined();
+
+  const next = await appendSyncEvent(restored, { type: 'saved_item', payload: { memoryId: 'next', saved: true } });
+  expect((await pendingSyncBatch(restored))?.batch.events).toEqual([next]);
+});
 
 it('restores fixed pending batch identity/hash and event IDs into a separate local profile with a new device', async () => {
   await profiles.add({ id: 'p', name: 'Local', createdAt: new Date().toISOString() });

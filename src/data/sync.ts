@@ -7,14 +7,14 @@ import { profileIdSchema } from '../shared/repository';
 export type StoredEvent = SyncEvent & { profileId: string; batchId?: string };
 export type StoredBatch = { profileId: string; deviceId: string; batchId: string; hash: string; batch: SyncBatch; state: 'pending' | 'confirmed' | 'received' | 'conflict' };
 export type Clock = { profileId: string; deviceId: string; counter: SyncCounter; logicalProfileId?: string; localRevision?: number; deleted?: true };
-export type NewEvent = SyncEvent extends infer Event ? Event extends SyncEvent ? Pick<Event, 'type' | 'payload'> : never : never;
+export type NewEvent = SyncEvent extends infer Event ? Event extends Exclude<SyncEvent, { type: 'installation' }> ? Pick<Event, 'type' | 'payload'> : never : never;
 
 // Hash only imported IDs exceeding wire limits; preserve ordinary IDs and local validity.
 
 export async function boundedReferences(value: NewEvent): Promise<NewEvent> {
   if (value.type === 'preferences' || value.type === 'setting') return value;
   const payload = { ...value.payload } as Record<string, unknown>;
-  for (const key of ['recordId', 'questionId', 'rootId', 'goalId', 'materialId', 'variantGroup', 'memoryId', 'targetId', 'contentId']) {
+  for (const key of ['recordId', 'questionId', 'rootId', 'goalId', 'materialId', 'variantGroup', 'memoryId', 'targetId']) {
     const reference = payload[key];
     if (typeof reference === 'string' && reference.length > 160) {
       const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(reference));
@@ -49,7 +49,7 @@ export async function pendingSyncBatch(profileId: string, database: Dexie = db):
   const pending = await database.table('syncBatches').where('[profileId+state]').equals([profileId, 'pending']).first();
   if (pending) return pending;
   // Hash outside IndexedDB; compare selected rows before sealing the transaction.
-  const selected: StoredEvent[] = await database.table('syncEvents').where('profileId').equals(profileId).filter(event => !event.batchId).toArray();
+  const selected: StoredEvent[] = await database.table('syncEvents').where('profileId').equals(profileId).filter(event => !event.batchId && event.type !== 'installation').toArray();
   // shortcut: pending-queue scan; add a profile/counter index if large queues slow sealing.
   selected.sort(compareSyncEvents);
   selected.splice(500);

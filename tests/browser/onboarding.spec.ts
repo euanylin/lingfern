@@ -974,6 +974,8 @@ test('mobile introduction waits for its first visible observation before growing
 for (const width of [1440, 390]) test(`the same fern reverses its growth when Today leaves and resumes on return: ${width}`, async ({ page }) => {
   await page.setViewportSize({ width, height: 844 });
   await page.goto('/'); await expect(page.locator('.welcome')).toBeVisible();
+  await expect(page.locator('.welcome-card[data-current=true] .brand-symbol svg path').first()).toBeAttached();
+  await expect(page.locator('.welcome-site-header .brand-symbol title')).toHaveCount(0);
   const fern = page.locator('.welcome .fern');
   await expect.poll(() => fern.getAttribute('data-growth').then(Number)).toBeGreaterThan(.3);
   await fern.evaluate(el => { (window as unknown as { introFern: Element }).introFern = el; });

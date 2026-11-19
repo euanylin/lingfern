@@ -31,7 +31,7 @@ for (const width of [390, 1120]) test(`keeps checked analyses across all nine fo
       if (form === 'ccg') {
         await expect(page.getByRole('treeitem', { name: '?', exact: true })).toHaveCount(0);
         await expect(page.getByRole('treeitem', { name: 'S', exact: true }).first()).toBeVisible();
-        await expect(page.locator('#tree-generated-note')).toHaveText('自动生成，仅供参考。');
+        await expect(page.locator('#tree-generated-note')).toHaveCount(0);
       }
       if (form === 'dependency' && sentence === 'how old is she') {
         await expect(page.locator('.tree-edge-label').filter({ hasText: /^cop$/u })).toHaveCount(1);

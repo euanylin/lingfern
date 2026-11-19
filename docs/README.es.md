@@ -143,7 +143,7 @@ Las copias incluyen sesiones, respuestas, borradores, marcadores, historial, com
 
 1. Conecta GitHub desde Ajustes y selecciona un perfil de la cuenta o copia el local a ella.
 2. Crea un repositorio de datos dedicado **privado**, autoriza la GitHub App y selecciona/verifica el repositorio en la configuración.
-3. La sincronización bidireccional intercambia resúmenes de aprendizaje, marcadores, historial, preferencias, elecciones de instalación y eliminaciones compatibles. Los cambios sin conexión esperan la reconexión.
+3. La sincronización bidireccional intercambia resúmenes de aprendizaje, marcadores, historial, preferencias y eliminaciones compatibles. Los cambios sin conexión esperan la reconexión.
 
 La tarjeta muestra sincronizando, sincronizado, pendiente sin conexión o error y la última sincronización correcta. Usa **Sincronizar ahora / Reintentar**, pausa el modo automático o desvincula el repositorio en la configuración. Los conflictos pueden exportarse cuando aparezca la recuperación. No se transfieren sesiones completas, respuestas ni audio instalado: usa copias de seguridad para todos los registros.
 

@@ -9,8 +9,8 @@ beforeEach(async () => { await Promise.all(db.tables.map(table => table.clear())
 const group = offlineGroups.find(group => group.id === 'grammar')!;
 const files = Object.fromEntries(group.files.map(file => [file.path.slice(1), new Uint8Array(readFileSync(`public${file.path}`))]));
 const installers = [
-  { name: 'download', install: (signal: AbortSignal) => installOfflineResources(group.id, () => {}, signal, 'cancelled-resource-test') },
-  { name: 'ZIP import', install: (signal: AbortSignal) => installResourcePack({ id: group.id, version: group.version, files }, 'cancelled-resource-test', signal) },
+  { name: 'download', install: (signal: AbortSignal) => installOfflineResources(group.id, () => {}, signal) },
+  { name: 'ZIP import', install: (signal: AbortSignal) => installResourcePack({ id: group.id, version: group.version, files }, signal) },
 ];
 
 it.each(installers.flatMap(installer => ['cached', 'marker', 'final readiness'].map(phase => ({ ...installer, phase }))))('rejects $name cancellation during $phase without deleting an existing complete cache', async ({ install, phase }) => {

@@ -46,7 +46,7 @@ export function CommunityImport({ locale, profileId, onInstalled }: { locale: Lo
         instance.onerror = () => { request.signal.removeEventListener('abort', abort); instance.terminate(); worker.current = null; reject(new Error('COMMUNITY_INVALID')); };
         instance.postMessage(bytes, [bytes.buffer]);
       });
-      if (pack.kind === 'resource') await (await import('../data/resourcePack')).installResourcePack(pack.pack, profileId, request.signal);
+      if (pack.kind === 'resource') await (await import('../data/resourcePack')).installResourcePack(pack.pack, request.signal);
       else await installCommunityPack(pack.pack, profileId, request.signal);
       notifyResourceChange();
       }
@@ -82,7 +82,7 @@ export function InstalledResources({ locale, profileId }: { locale: Locale; prof
   if (!packages.length) return null;
   return <AnimatedDetails className="installed-resources"><summary>{t.installed} <span className="muted">{packages.length}</span><span className="installed-resources-chevron" aria-hidden="true">⌄</span></summary>
     <ul className="installed-resource-list">{packages.map(({ pack, ready }) => <li className="installed-resource-row" key={pack.hash}>
-      <div className="installed-resource-heading"><span className="installed-resource-title" title={pack.id}>{pack.id}</span><span className="installed-resource-status">{ready ? pack.spoken || pack.lessons.some(lesson => lesson.skill === 'listening') ? t.offline : t.installed : t.repair}</span></div>
+      <div className="installed-resource-heading"><span className="installed-resource-title">{pack.id}</span><span className="installed-resource-status">{ready ? pack.spoken || pack.lessons.some(lesson => lesson.skill === 'listening') ? t.offline : t.installed : t.repair}</span></div>
       <p className="installed-resource-meta">{pack.spoken ? `${pack.spoken.records.length} ${messages('additional')[locale].recordingSources}` : pack.corpus ? `${pack.corpus.records.length} ${messages('additional')[locale].articles}` : `${pack.lessons.length} ${t.lessons}`}{pack.dictionary?.length ? ` · ${pack.dictionary.length} ${t.meanings}` : ''}</p>
       <AnimatedDetails className="installed-resource-sources"><summary>{t.sources}</summary><ul>{pack.sources.map(source => <li key={source.id}>{source.title} · {source.attribution} · {source.license}</li>)}</ul></AnimatedDetails>
     </li>)}</ul>

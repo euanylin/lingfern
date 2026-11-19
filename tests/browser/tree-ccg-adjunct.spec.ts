@@ -19,7 +19,7 @@ for (const width of [390, 1120]) test(`derives reason and manner questions at ${
     await expect(page.getByRole('treeitem', { name: new RegExp(`^${marker}\\s`, 'u') }).first()).toBeVisible();
     await expect(page.getByRole('treeitem', { name: '?', exact: true })).toHaveCount(0);
     await expect(page.getByRole('treeitem', { name: 'S', exact: true }).first()).toBeVisible();
-    await expect(page.locator('#tree-generated-note')).toHaveText('自动生成，仅供参考。');
+    await expect(page.locator('#tree-generated-note')).toHaveCount(0);
     await expect(page.getByRole('alert')).toHaveCount(0);
   }
 });

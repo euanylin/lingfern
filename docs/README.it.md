@@ -143,7 +143,7 @@ I backup contengono sessioni, risposte, bozze, preferiti, cronologia, feedback e
 
 1. Collega GitHub nelle Impostazioni e scegli un profilo dell’account o copiaci quello locale.
 2. Crea un repository dati dedicato **privato**, autorizza la GitHub App e seleziona/verifica il repository durante la configurazione.
-3. La sincronizzazione bidirezionale scambia riepiloghi di apprendimento, preferiti, cronologia, preferenze, scelte d’installazione ed eliminazioni supportate. Le modifiche offline attendono la riconnessione.
+3. La sincronizzazione bidirezionale scambia riepiloghi di apprendimento, preferiti, cronologia, preferenze ed eliminazioni supportate. Le modifiche offline attendono la riconnessione.
 
 La scheda mostra sincronizzazione in corso, completata, in attesa offline o errore e l’ultimo successo. Usa **Sincronizza ora / Riprova**, sospendi l’automatismo o scollega il repository nella configurazione. I dati in conflitto sono esportabili quando viene proposta la funzione di recupero. Sessioni complete, risposte e audio installato non vengono trasferiti: usa un backup per tutti i record.
 

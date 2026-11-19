@@ -312,6 +312,9 @@ test('detailed English circle switch hides and restores marks without moving sym
   await expect(page.locator('.ipa-scope')).toContainText('Solid circles mark General American sounds');
   await expect(page.locator('.ipa-english-circle')).toHaveCount(41);
   await expect(page.locator('.ipa-english-variant')).toHaveCount(5);
+  const variant = page.locator('.ipa-vowel-pair [data-ipa="ɒ"] button');
+  await expect(variant).toHaveAccessibleDescription('English accent variant or allophone');
+  await expect(variant.locator('[title]')).toHaveCount(0);
   const vowel = page.locator('.ipa-vowel-pair [data-ipa="i"] button');
   const place = () => vowel.evaluate(button => {
     const chart = button.closest('.ipa-vowel-scroll')!.getBoundingClientRect(), box = button.getBoundingClientRect();
@@ -321,7 +324,7 @@ test('detailed English circle switch hides and restores marks without moving sym
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-pressed', 'false');
   await expect(page.locator('.ipa-english-circle, .ipa-english-variant')).toHaveCount(0);
-  await expect(page.locator('.ipa-vowel-pair [data-ipa="ɒ"] span')).not.toHaveAttribute('title', /variant/);
+  await expect(variant).toHaveAccessibleDescription('');
   await expect(page.locator('.ipa-scope')).not.toContainText('Solid circles');
   expect(await place()).toEqual(before);
   await page.getByRole('button', { name: '简易版', exact: true }).click();

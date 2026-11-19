@@ -26,14 +26,13 @@ export async function inspectResourcePack(bytes: Uint8Array) {
 export type ResourcePack = Awaited<ReturnType<typeof inspectResourcePack>>;
 
 // Keep database mutations out of inspection-worker imports.
-export async function installResourcePack(pack: ResourcePack, profileId: string, signal?: AbortSignal) {
+export async function installResourcePack(pack: ResourcePack, signal?: AbortSignal) {
   await loadRuntimeResources();
   // The inspection worker can have a newer catalogue than the open page.
   const group = offlineGroups.find(item => item.id === pack.id && item.version === pack.version);
   if (!group) throw new Error('PACKAGE_MANIFEST');
   if (!('caches' in window)) throw new Error('UNSUPPORTED');
   await waitForOfflineWorker(signal);
-  await (await import('./installationIntent')).saveInstallationIntent(profileId, group.id, true);
   const ready = await offlineGroupReady(group);
   signal?.throwIfAborted();
   if (ready) return group.id;

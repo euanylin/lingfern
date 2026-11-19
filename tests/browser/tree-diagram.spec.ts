@@ -246,32 +246,17 @@ test('draws, edits, saves and exports a syntax tree from Reference', async ({ pa
   await expect(page.getByRole('treeitem', { name: /λ$/ })).toBeVisible();
 });
 
-test('shows the generated-tree caveat on the sentence label line', async ({ page }) => {
-  await page.setViewportSize({ width: 1120, height: 900 });
+test('keeps the sentence field clear for complete generated and written trees', async ({ page }) => {
   await page.goto('/library/trees');
   const source = page.getByRole('textbox', { name: '句子、括号、缩进或依存' });
-  const note = page.locator('.tree-generated-note');
   await expect(source).toBeEnabled();
-  // The opening example comes from the sentence reader.
-  await expect(note).toHaveText('自动生成，仅供参考。');
-  // It shares the field's label line, so it adds no paragraph of its own.
-  const shared = await page.evaluate(() => {
-    const head = document.querySelector('.tree-source-head')!.getBoundingClientRect();
-    const hint = document.querySelector('.tree-generated-note')!.getBoundingClientRect();
-    return hint.top >= head.top - 1 && hint.bottom <= head.bottom + 1;
-  });
-  expect(shared).toBe(true);
-  // A written bracket tree or an outline keeps the typed structure, so it carries no caveat.
-  await source.fill('(S (NP (DT the) (NN cat)) (VP (VBD sat)))');
-  await source.press('Enter');
-  await expect(note).toHaveCount(0);
-  await source.fill('the students read the old book');
-  await source.press('Enter');
-  await expect(note).toHaveCount(1);
-  // The caveat is small supporting text, not a heading or an error.
-  expect(await note.evaluate(element => getComputedStyle(element).fontSize)).toBe('12px');
-  await page.getByRole('button', { name: '清空' }).click();
-  await expect(note).toHaveCount(0);
+  await expect(page.locator('#tree-generated-note')).toHaveCount(0);
+  for (const [text, word] of [['(S (NP (DT the) (NN cat)) (VP (VBD sat)))', 'cat'], ['the students read the old book', 'book']]) {
+    await source.fill(text);
+    await source.press('Enter');
+    await expect(page.getByRole('treeitem', { name: word, exact: true })).toBeVisible();
+    await expect(page.locator('#tree-generated-note')).toHaveCount(0);
+  }
 });
 
 for (const width of [1120, 390]) test(`separates movement rails at ${width}px`, async ({ page }, info) => {

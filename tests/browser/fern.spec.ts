@@ -26,6 +26,8 @@ test('saved practice and unique lookups grow the same SVG through intermediate s
   await page.goto('/today');
   const fern = page.locator('.fern'), stem = fern.locator('.fern-stem');
   await expect(fern).toHaveAttribute('aria-label', /阅读 0 次，听力 0 次，查询 0 项/);
+  await fern.hover();
+  await expect(fern.locator('title')).toHaveCount(0);
   const initial = await stem.getAttribute('d');
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await seedLegacyAnswers(page, 2); await page.goto('/today');

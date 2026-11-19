@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "句法樹",
-    "intro": "用括號、縮排或句子生成句法樹，也可以手動編輯節點。",
-    "generated": "自動生成，僅供參考。",
     "incomplete": "推導未完成：? 表示無法組合。",
     "source": "句子、括號、縮排或依存",
     "draw": "自動繪製",
@@ -329,8 +327,6 @@
     "failed": "複製失敗，請選取位址手動複製。"
   },
   "offlineInstall": {
-    "wanted": "已記下安裝意向",
-    "intentFailed": "此資源的安裝選擇未儲存，請重試；未繼續變更其本機檔案。",
     "categories": {
       "reading": "閱讀",
       "listening": "聽力",
@@ -601,7 +597,7 @@
     "offline": "離線待同步",
     "lastSuccess": "上次成功同步",
     "disabled": "自動同步已關閉。",
-    "detail": "學習摘要、書籤、查詢歷史、偏好、安裝選擇與刪除紀錄會同步到此私人儲存庫。",
+    "detail": "學習摘要、書籤、查詢歷史、偏好與刪除紀錄會同步到此私人儲存庫。",
     "syncing": "正在同步…",
     "failed": "同步尚未完成，請重試。本機紀錄仍保留。",
     "conflict": "發現衝突，已保留衝突批次，暫停上傳。",
@@ -800,7 +796,6 @@
     "updateUnavailable": "目前環境無法檢查更新。",
     "updateFailed": "檢查更新失敗，請重試。",
     "updateBlocked": "另一分頁仍在進行任務。請先完成或離開該任務。",
-    "unsupported": "目前版本尚未提供此頁面。",
     "palette": "主題配色",
     "paletteNames": [
       "預設",

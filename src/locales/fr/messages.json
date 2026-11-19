@@ -217,8 +217,6 @@
   },
   "treeDiagram": {
     "title": "Arbre syntaxique",
-    "intro": "Dessinez un arbre syntaxique à partir de crochets, d’un plan ou d’une phrase, puis modifiez-le à la main.",
-    "generated": "Généré automatiquement, peut être inexact.",
     "incomplete": "Dérivation incomplète : ? indique une combinaison non résolue.",
     "source": "Phrase, crochets, plan ou dépendances",
     "draw": "Dessiner automatiquement",
@@ -329,8 +327,6 @@
     "failed": "Copie impossible. Sélectionnez l’adresse et copiez-la manuellement."
   },
   "offlineInstall": {
-    "wanted": "Installation souhaitée",
-    "intentFailed": "Le choix d’installation n’a pas été enregistré. Réessayez ; les fichiers locaux n’ont pas été modifiés davantage.",
     "categories": {
       "reading": "Lecture",
       "listening": "Écoute",
@@ -601,7 +597,7 @@
     "offline": "Hors ligne · synchronisation en attente",
     "lastSuccess": "Dernière synchronisation réussie",
     "disabled": "La synchronisation automatique est désactivée.",
-    "detail": "Synchronise les résumés d’apprentissage, favoris, historiques de recherche, préférences, choix d’installation et suppressions avec ce dépôt privé.",
+    "detail": "Synchronise les résumés d’apprentissage, favoris, historiques de recherche, préférences et suppressions avec ce dépôt privé.",
     "syncing": "Synchronisation…",
     "failed": "La synchronisation n’est pas terminée. Réessayez. Les données locales sont conservées.",
     "conflict": "Les lots en conflit sont conservés. Envois suspendus.",
@@ -800,7 +796,6 @@
     "updateUnavailable": "La recherche de mises à jour est indisponible ici.",
     "updateFailed": "Impossible de rechercher les mises à jour. Réessayez.",
     "updateBlocked": "Une activité est ouverte dans un autre onglet. Terminez-la ou quittez-la avant la mise à jour.",
-    "unsupported": "Cette page n’est pas disponible dans cette version.",
     "palette": "Palette",
     "paletteNames": [
       "Par défaut",

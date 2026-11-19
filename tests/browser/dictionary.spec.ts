@@ -410,6 +410,7 @@ test('four external lookups follow the current phrase without prefetching or lea
   await query.fill('take off');
   await expect(links).toHaveCount(4);
   expect(await links.allTextContents()).toEqual(['Cambridge ↗', 'Oxford ↗', 'Wiktionary ↗', 'Merriam-Webster ↗']);
+  await expect(page.locator('.online-lookup-links [title]')).toHaveCount(0);
   await links.first().focus();
   await expect(links.first()).toBeFocused();
   expect(await links.first().evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');
