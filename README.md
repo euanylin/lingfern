@@ -6,7 +6,7 @@
 
 <img src="public/icon.svg" width="96" alt="Lingfern">
 
-English reading and listening practice for learners aged 16 and over, with learning goals from A1 to C2. Practice is generated locally from source texts and recordings. Learning works without an account or AI service.
+Lingfern combines English reading and listening practice with reference tools for vocabulary, usage, pronunciation and syntax. For learners aged 16 and up with A1–C2 goals, practice is generated on the device from texts and recordings. Install the resources you need to study offline without an account.
 
 <a id="readme-languages"></a>
 
@@ -36,8 +36,8 @@ English reading and listening practice for learners aged 16 and over, with learn
 2. [Practice and Test](#readme-practice)
 3. [Reading and listening controls](#readme-workspace)
 4. [History and progress](#readme-history)
-5. [References and bookmarks](#readme-library)
-6. [Offline and community resources](#readme-offline)
+5. [Library](#readme-library)
+6. [Offline downloads and ZIP imports](#readme-offline)
 7. [Profiles and backups](#readme-backup)
 8. [GitHub automatic sync](#readme-sync)
 9. [AI handoff and MCP](#readme-ai)
@@ -88,38 +88,42 @@ The activity fern reflects saved work, not certified proficiency. Daily quotatio
 
 <a id="readme-library"></a>
 
-## References and bookmarks
+## Library
+
+In [Library](https://lingfern.com/library), open **Reference** for these tools.
 
 | Tool | What it offers |
 |---|---|
-| [English dictionary](https://lingfern.com/library/dictionary) | Look up words and their English definitions, including from selected reading text. |
-| [Bookmarks](https://lingfern.com/library/saved) | Save/remove definitions with ★/☆ and collapse entries. Unchecked entries remain until reopening/refreshing, so they can be restored immediately. |
-| [IPA chart](https://lingfern.com/library/ipa) | Simple/Detailed views, sound search, recordings and English example words where available. |
+| [Dictionary](https://lingfern.com/library/dictionary) | Look up words and their English definitions, including from selected reading text. |
 | [English usage dictionary](https://lingfern.com/library/grammar) | Keyword search, alphabetical browsing and expandable explanations. |
-| [Syntax tree](#readme-syntax-tree) | Generate and edit nine tree presentations, save named snapshots, and export SVG, PNG, WebP, JPEG or PDF. |
-| [Lookup history](https://lingfern.com/library/history) | Reopen dictionary, usage and IPA lookups with their source, time and saved lookup state, or delete an entry after confirmation. |
+| [IPA sound chart](https://lingfern.com/library/ipa) | Simple/Detailed views, sound search, recordings and English example words where available. |
+| [Syntax tree](https://lingfern.com/library/trees) | Generate and edit nine tree presentations, save named snapshots, and export SVG, PNG, WebP, JPEG or PDF. |
 
-The usage dictionary has **191 entries**. Explanations follow the interface language with an English fallback. Examples, patterns and contrasts remain in English.
-
-<a id="readme-syntax-tree"></a>
-
-**Library** → **Reference** → **[Syntax tree](https://lingfern.com/library/trees)**
-
-Enter a sentence, bracketed tree, outline or dependency notation. Node controls sit above the canvas and symbol helpers directly below it. Turn on **Movement** to drag-link node coindices; click it again or press Escape to leave this mode. Right-click or hold a node on a touchscreen for its menu. Edits automatically restore from one device-local draft per profile; these tree drafts are excluded from backup and sync. Use **Save** for a separate named history snapshot. Clear is undoable during the visit; reopening a cleared draft restores the worked example. Press **Enter** to draw or **Shift+Enter** to add a line.
-
-The editor also accepts one CCGbank AUTO derivation and keeps its categories and branches.
-
-To install optional models, open **Library** → **Offline content** → **References** → **Syntax tree**, select the packages and choose **Download selected**. UDPipe handles dependency trees. Constituency uses Stanza with UDPipe, then Charniak if available. Hol-CCG handles CCG. The built-in rules remain available offline and handle unsupported model output. Review generated trees before reusing them.
+The usage dictionary shows explanations in the interface language, with English as a fallback. Examples, patterns and contrasts are in English.
 
 Choose Cambridge, Oxford Learner’s Dictionaries, Wiktionary or Merriam-Webster for external lookup. Links open the provider's website; usage links use Cambridge Grammar.
 
+Open [Bookmarks](https://lingfern.com/library/saved) from the dictionary. Use ★/☆ beside a definition to save or remove it. Use [History](https://lingfern.com/library/history) at the top of the Library to reopen dictionary, usage or IPA lookups and named syntax-tree saves.
+
+<a id="readme-syntax-tree"></a>
+
+### Syntax tree
+
+Enter a sentence, bracketed tree, outline or dependency notation. Press **Enter** to draw or **Shift+Enter** to add a line. The editor also accepts one CCGbank AUTO derivation and keeps its categories and branches.
+
+Turn on **Move** to drag-link node coindices; click it again or press Escape to leave this mode. Right-click or hold a node on a touchscreen for its menu.
+
+Edits automatically restore from one device-local draft per profile; these tree drafts are excluded from backup and sync. Use **Save** for a separate named history snapshot.
+
 <a id="readme-offline"></a>
 
-## Offline and community resources
+## Offline downloads and ZIP imports
 
-Search, select, install, update or remove text, audio and reference packages in Library. Once required resources are installed, learning, scoring, saving and installed references work offline. Connection changes have temporary status feedback.
+Under **Offline content**, search or browse **Reading**, **Listening** and **References**. Select the packs you need, then choose **Download**. To free space, select installed packs and choose **Remove**. Installed packs are available offline on this device.
 
-Import compatible community ZIPs containing materials/resources and keep the original ZIPs for reinstalling or another device. Downloads, GitHub, MCP and external websites need a connection; resource packages and recordings are installed per device.
+For optional syntax models, expand **References → Syntax tree** in **Offline content**. UDPipe handles dependency trees. Constituency uses Stanza with UDPipe, then Charniak if available. Hol-CCG handles CCG. The built-in rules remain available offline and handle unsupported model output. Review generated trees before reusing them.
+
+To install a compatible ZIP, use **Resource import → Import ZIP**. Keep the file for reinstalling or using it on another device.
 
 Where supported, use your browser’s install/add-to-home-screen command to run Lingfern as a web app.
 

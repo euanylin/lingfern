@@ -6,7 +6,7 @@
 
 <img src="../public/icon.svg" width="96" alt="Lingfern">
 
-Prática de leitura e compreensão oral em inglês para pessoas a partir dos 16 anos, com objetivos de A1 a C2. Os exercícios são gerados localmente a partir de textos e gravações. Não é preciso uma conta nem um serviço de IA para aprender.
+O Lingfern combina a prática de leitura e compreensão oral em inglês com ferramentas de consulta sobre vocabulário, uso, pronúncia e sintaxe. Os exercícios são gerados no seu dispositivo a partir de textos e gravações, para pessoas a partir dos 16 anos com objetivos de A1 a C2. Depois de instalar os recursos necessários, pode estudar offline sem conta.
 
 <a id="readme-languages"></a>
 
@@ -36,8 +36,8 @@ Prática de leitura e compreensão oral em inglês para pessoas a partir dos 16 
 2. [Prática e teste](#readme-practice)
 3. [Leitura e controlos de áudio](#readme-workspace)
 4. [Histórico e progresso](#readme-history)
-5. [Consultas e favoritos](#readme-library)
-6. [Recursos offline e da comunidade](#readme-offline)
+5. [Biblioteca](#readme-library)
+6. [Transferências offline e importação de ZIP](#readme-offline)
 7. [Perfis e cópias de segurança](#readme-backup)
 8. [Sincronização automática com GitHub](#readme-sync)
 9. [Transferência para IA e MCP](#readme-ai)
@@ -88,38 +88,42 @@ O feto representa atividade guardada, não proficiência certificada. As citaç�
 
 <a id="readme-library"></a>
 
-## Consultas e favoritos
+## Biblioteca
+
+Na [Biblioteca](https://lingfern.com/library), a secção **Referência** dá acesso a estas ferramentas.
 
 | Ferramenta | Funções |
 |---|---|
-| [Dicionário de inglês](https://lingfern.com/library/dictionary) | Consultar palavras e definições em inglês, também a partir de texto selecionado. |
-| [Favoritos](https://lingfern.com/library/saved) | Guardar/retirar definições com ★/☆ e recolher entradas. As entradas retiradas ficam até reabrir/atualizar para permitir reposição imediata. |
-| [Tabela IPA](https://lingfern.com/library/ipa) | Vistas simples/detalhada, pesquisa de sons, gravações e palavras inglesas de exemplo disponíveis. |
+| [Dicionário](https://lingfern.com/library/dictionary) | Consultar palavras e definições em inglês, também a partir de texto selecionado. |
 | [Dicionário de uso do inglês](https://lingfern.com/library/grammar) | Pesquisa por palavra-chave, navegação alfabética e explicações expansíveis. |
-| [Árvore sintática](#readme-syntax-tree) | Gere e edite nove representações, guarde instantâneos com nome e exporte SVG, PNG, WebP, JPEG ou PDF. |
-| [Histórico de consultas](https://lingfern.com/library/history) | Reabrir pesquisas do dicionário, uso e IPA com origem, hora e estado guardado. |
+| [Tabela de sons IPA](https://lingfern.com/library/ipa) | Vistas simples/detalhada, pesquisa de sons, gravações e palavras inglesas de exemplo disponíveis. |
+| [Árvore sintática](https://lingfern.com/library/trees) | Gere e edite nove representações, guarde instantâneos com nome e exporte SVG, PNG, WebP, JPEG ou PDF. |
 
-O dicionário de uso tem **191 entradas**. As explicações seguem o idioma da interface e recorrem ao inglês quando falta tradução. Exemplos, padrões e contrastes ficam em inglês.
-
-<a id="readme-syntax-tree"></a>
-
-**Biblioteca** → **Referência** → **[Árvore sintática](https://lingfern.com/library/trees)**
-
-Introduza uma frase, árvore entre parênteses, estrutura indentada ou notação de dependências. Os controlos dos nós ficam acima da área de desenho e os símbolos logo abaixo. Ative **Movimento** para ligar nós por coindexação ao arrastar; clique novamente ou prima Escape para sair. O botão direito ou um toque prolongado abre o menu. Um rascunho local por perfil é guardado e restaurado automaticamente; estes rascunhos de árvores não entram nas cópias de segurança nem na sincronização. **Guardar** cria um instantâneo com nome separado no histórico. Limpar pode ser anulado durante a visita; reabrir um rascunho vazio repõe o exemplo. Pressione **Enter** para desenhar ou **Shift+Enter** para inserir uma linha.
-
-Também pode colar uma derivação CCGbank AUTO para manter as categorias e os ramos originais.
-
-Em **Biblioteca** → **Conteúdo offline** → **Referências** → **Árvore sintática**, selecione os modelos e escolha **Baixar seleção**. UDPipe analisa dependências. Para constituintes, use Stanza (requer UDPipe) ou Charniak instalado. Hol-CCG gera derivações CCG. As regras integradas funcionam offline se o modelo não estiver disponível ou a saída for rejeitada. Revise a análise antes de usar.
+O dicionário de uso apresenta explicações no idioma da interface e recorre ao inglês quando falta uma tradução. Os exemplos, padrões e contrastes estão em inglês.
 
 Escolha Cambridge, Oxford Learner’s Dictionaries, Wiktionary ou Merriam-Webster para consultas externas. As ligações abrem o site do fornecedor; as de uso recorrem a Cambridge Grammar.
 
+Abra os [Favoritos](https://lingfern.com/library/saved) a partir do dicionário. Use ★/☆ junto a uma definição para a guardar ou remover. Use o [Histórico](https://lingfern.com/library/history) no topo da biblioteca para reabrir consultas do dicionário, do dicionário de uso e do AFI, bem como árvores sintáticas guardadas com nome.
+
+<a id="readme-syntax-tree"></a>
+
+### Árvore sintática
+
+Introduza uma frase, árvore entre parênteses, estrutura indentada ou notação de dependências. Pressione **Enter** para desenhar ou **Shift+Enter** para inserir uma linha. Também pode colar uma derivação CCGbank AUTO para manter as categorias e os ramos originais.
+
+Ative **Movimento** para ligar nós por coindexação ao arrastar; clique novamente ou prima Escape para sair. O botão direito ou um toque prolongado abre o menu.
+
+Um rascunho local por perfil é guardado e restaurado automaticamente; estes rascunhos de árvores não entram nas cópias de segurança nem na sincronização. **Guardar** cria um instantâneo com nome separado no histórico.
+
 <a id="readme-offline"></a>
 
-## Recursos offline e da comunidade
+## Transferências offline e importação de ZIP
 
-Na Biblioteca, procure, selecione, instale, atualize ou remova pacotes de texto, áudio e referência. Com os recursos necessários instalados, aprendizagem, correção, gravação de dados e referências instaladas funcionam offline. Um aviso breve indica mudanças de ligação.
+Em **Conteúdo offline**, pesquise ou explore **Leitura**, **Escuta** e **Referências**. Selecione os pacotes e escolha **Baixar**. Para libertar espaço, selecione os pacotes instalados e escolha **Remover**. Os pacotes instalados ficam disponíveis offline neste dispositivo.
 
-Importe ZIPs comunitários compatíveis e guarde os originais para reinstalar ou usar noutro dispositivo. Transferências, GitHub, MCP e sites externos precisam de ligação; recursos e áudio são instalados por dispositivo.
+Os modelos sintáticos opcionais estão em **Conteúdo offline → Referências → Árvore sintática**. UDPipe analisa dependências. Para constituintes, use Stanza (requer UDPipe) ou Charniak instalado. Hol-CCG gera derivações CCG. As regras integradas funcionam offline se o modelo não estiver disponível ou a saída for rejeitada. Revise a análise antes de usar.
+
+Para instalar um ZIP compatível, use **Importação de recursos → Importar ZIP**. Guarde o ficheiro para reinstalação ou para outro dispositivo.
 
 Se o navegador permitir, instale o Lingfern ou adicione-o ao ecrã inicial para o usar como aplicação web.
 

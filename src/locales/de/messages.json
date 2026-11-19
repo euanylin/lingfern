@@ -230,7 +230,7 @@
     "moveRight": "Nach rechts",
     "autoSaveFailed": "Automatisches Speichern fehlgeschlagen. Prüfe den freien Speicher und speichere manuell.",
     "move": "Bewegung",
-    "movePick": "Bewegen mit…",
+    "moveIndexFull": "Alle 99 Bewegungsindizes sind belegt. Hebe eine Bewegungsverknüpfung auf, um einen Index freizugeben.",
     "moveClear": "Bewegung lösen",
     "undo": "Rückgängig",
     "redo": "Wiederholen",

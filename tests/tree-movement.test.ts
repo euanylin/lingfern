@@ -209,10 +209,48 @@ it('keeps the branch continuous through an unavoidable bottom-route crossing', (
   }
 });
 
+it('gives crossed movement rails more room without spreading disjoint links', () => {
+  const crossed = layoutTree(drawTree('(S a₁ b₂ t₁ t₂)'));
+  const crossing = crossed.edges.find(edge => edge.strokes)!;
+  const [start, stop] = crossing.strokes![0];
+  expect(start.x).toBe(stop.x);
+  expect(Math.abs(stop.y - start.y)).toBeGreaterThanOrEqual(24);
+
+  const disjoint = layoutTree(drawTree('(S a₁ t₁ b₂ t₂)'));
+  const arrows = disjoint.edges.filter(edge => edge.movement);
+  expect(arrows).toHaveLength(2);
+  expect(arrows.every(edge => !edge.strokes && edge.rail === edge.y1 + 18)).toBe(true);
+  expect(disjoint.height).toBeLessThan(crossed.height);
+});
+
+it('widens branches when the extra room clears a crossing in an X′ tree', () => {
+  const diagram = drawTree('The book I read was written by Mary', 'xbar', lookup);
+  const layout = layoutTree(diagram);
+  const arrows = layout.edges.filter(edge => edge.movement);
+  expect(layout.width).toBeGreaterThan(900);
+  expect(arrows).toHaveLength(3);
+  expect(arrows.map(edge => movementStrokes(edge).length).sort()).toEqual([1, 1, 2]);
+  expect(layoutTree({ ...diagram, nodes: [...diagram.nodes].reverse() })).toMatchObject({
+    width: layout.width,
+    height: layout.height,
+  });
+});
+
+it('lengthens branches when a taller layout makes both movement paths continuous', () => {
+  const diagram = drawTree('(AA (BBB₁ (CCC₂ (FFF I JJJ))) D EE (GGG (HH t₁) t₂))');
+  const layout = layoutTree(diagram);
+  const branches = layout.edges.filter(edge => !edge.movement);
+  expect(branches.every(edge => edge.y2 - edge.y1 > 28)).toBe(true);
+  const arrows = layout.edges.filter(edge => edge.movement);
+  expect(arrows).toHaveLength(2);
+  expect(arrows.every(edge => !edge.strokes)).toBe(true);
+});
+
 it('keeps arrowheads separate on a heavily shared target', () => {
   const layout = layoutTree(drawTree('(S b₁ (VP t₁ t₁ t₁ t₁ t₁ t₁ t₁))'));
   const heads = layout.edges.filter(edge => edge.movement).map(treeArrowPoints).sort((a, b) => a[0].x - b[0].x);
   expect(heads).toHaveLength(7);
+  for (const [, left, right] of heads) expect(right.x - left.x).toBeCloseTo(9);
   for (let i = 1; i < heads.length; i++) expect(heads[i - 1][2].x).toBeLessThan(heads[i][1].x);
 });
 
@@ -315,6 +353,23 @@ it('treats a manually indexed pair the same way as an automatic one', () => {
   expect(linkedArcs).toHaveLength(1);
   const left = layoutTree(linked).nodes.find(node => node.label === 'left₁')!;
   expect(Math.abs(linkedArcs[0].x1 - (left.x + left.width / 2))).toBeLessThan(1);
+});
+
+it('allocates a free movement index when the tree already uses 99', () => {
+  const diagram = drawTree('(S known₉₉ t₉₉ new t)');
+  const filler = diagram.nodes.find(node => node.label === 'new')!;
+  const trace = diagram.nodes.find(node => node.label === 't')!;
+  const linked = linkMovement(diagram, filler.id, trace.id);
+  expect(linked.nodes.map(node => node.label)).toEqual(['S', 'known₉₉', 't₉₉', 'new₁', 't₁']);
+  expect(layoutTree(linked).edges.filter(edge => edge.movement)).toHaveLength(2);
+  expect(() => nextIndex(Array.from({ length: 99 }, (_, index) => withIndex('used', index + 1)))).toThrow('TREE_MOVE_INDEX');
+});
+
+it('keeps equal-depth manual arrow directions when stored nodes are reordered', () => {
+  const diagram = drawTree('(S A₁ B₁)');
+  const movements = (tree: TreeDiagram) => layoutTree(tree).edges.filter(edge => edge.movement);
+  expect(movements(diagram)).toHaveLength(1);
+  expect(movements({ ...diagram, nodes: [...diagram.nodes].reverse() })).toEqual(movements(diagram));
 });
 
 

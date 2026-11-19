@@ -6,7 +6,7 @@
 
 <img src="../public/icon.svg" width="96" alt="Lingfern">
 
-Latihan membaca dan menyimak bahasa Inggris untuk usia 16 tahun ke atas, dengan sasaran belajar A1–C2. Latihan dibuat secara lokal dari teks sumber dan rekaman. Belajar tidak memerlukan akun atau layanan AI.
+Lingfern menggabungkan latihan membaca dan menyimak bahasa Inggris dengan alat rujukan untuk kosakata, penggunaan bahasa, pelafalan, dan sintaksis. Latihan dibuat di perangkat dari teks dan rekaman bagi pelajar berusia 16 tahun ke atas dengan sasaran A1–C2. Setelah memasang sumber yang diperlukan, Anda dapat belajar secara luring tanpa akun.
 
 <a id="readme-languages"></a>
 
@@ -36,8 +36,8 @@ Latihan membaca dan menyimak bahasa Inggris untuk usia 16 tahun ke atas, dengan 
 2. [Latihan dan tes](#readme-practice)
 3. [Kontrol membaca dan audio](#readme-workspace)
 4. [Riwayat dan kemajuan](#readme-history)
-5. [Referensi dan markah](#readme-library)
-6. [Sumber offline dan komunitas](#readme-offline)
+5. [Pustaka](#readme-library)
+6. [Unduhan luring dan impor ZIP](#readme-offline)
 7. [Profil dan cadangan](#readme-backup)
 8. [Sinkronisasi GitHub otomatis](#readme-sync)
 9. [Penyerahan konteks ke AI dan MCP](#readme-ai)
@@ -88,38 +88,42 @@ Pakis mencerminkan aktivitas tersimpan, bukan tingkat kemahiran bersertifikat. K
 
 <a id="readme-library"></a>
 
-## Referensi dan markah
+## Pustaka
+
+Di [Pustaka](https://lingfern.com/library), buka **Referensi** untuk mengakses alat berikut.
 
 | Alat | Fungsi |
 |---|---|
-| [Kamus Inggris](https://lingfern.com/library/dictionary) | Cari kata dengan definisi bahasa Inggris, termasuk dari teks bacaan yang dipilih. |
-| [Markah](https://lingfern.com/library/saved) | Simpan/hapus definisi dengan ★/☆ dan lipat entri. Entri yang dilepas tetap ada sampai dibuka ulang/dimuat ulang agar dapat segera dipulihkan. |
-| [Bagan IPA](https://lingfern.com/library/ipa) | Tampilan sederhana/terperinci, pencarian bunyi, rekaman, dan kata contoh yang tersedia. |
+| [Kamus](https://lingfern.com/library/dictionary) | Cari kata dengan definisi bahasa Inggris, termasuk dari teks bacaan yang dipilih. |
 | [Kamus penggunaan bahasa Inggris](https://lingfern.com/library/grammar) | Pencarian kata kunci, penelusuran alfabet, dan penjelasan yang dapat dibuka. |
-| [Pohon sintaksis](#readme-syntax-tree) | Buat dan edit sembilan tampilan, simpan cuplikan bernama, dan ekspor SVG, PNG, WebP, JPEG, atau PDF. |
-| [Riwayat pencarian](https://lingfern.com/library/history) | Buka kembali pencarian kamus, penggunaan, dan IPA dengan sumber, waktu, serta status tersimpan. |
+| [Bagan bunyi IPA](https://lingfern.com/library/ipa) | Tampilan sederhana/terperinci, pencarian bunyi, rekaman, dan kata contoh yang tersedia. |
+| [Pohon sintaksis](https://lingfern.com/library/trees) | Buat dan edit sembilan tampilan, simpan cuplikan bernama, dan ekspor SVG, PNG, WebP, JPEG, atau PDF. |
 
-Kamus penggunaan memuat **191 entri**. Penjelasan mengikuti bahasa antarmuka dan memakai bahasa Inggris jika terjemahan belum tersedia. Contoh, pola, dan perbandingan tetap dalam bahasa Inggris.
-
-<a id="readme-syntax-tree"></a>
-
-**Pustaka** → **Referensi** → **[Pohon sintaksis](https://lingfern.com/library/trees)**
-
-Masukkan kalimat, pohon berkurung, kerangka berindentasi, atau notasi dependensi. Kontrol simpul berada di atas kanvas dan bantuan simbol tepat di bawahnya. Aktifkan **Pemindahan** untuk menautkan simpul dengan indeks yang sama saat diseret; klik lagi atau tekan Escape untuk keluar. Klik kanan atau tekan lama pada layar sentuh untuk membuka menu. Satu draf lokal per profil disimpan dan dipulihkan otomatis; draf pohon ini tidak disertakan dalam cadangan atau sinkronisasi. **Simpan** membuat cuplikan bernama terpisah di riwayat. Pengosongan dapat diurungkan selama kunjungan; membuka kembali draf kosong memulihkan contoh. Tekan **Enter** untuk menggambar atau **Shift+Enter** untuk baris baru.
-
-Anda juga dapat menempel satu derivasi CCGbank AUTO dan mempertahankan kategori serta cabang aslinya.
-
-Di **Pustaka** → **Konten luring** → **Referensi** → **Pohon sintaksis**, pilih model lalu tekan **Unduh pilihan**. UDPipe menganalisis dependensi. Pohon konstituen memakai Stanza (memerlukan UDPipe) atau Charniak jika terpasang. Hol-CCG menghasilkan derivasi CCG. Aturan bawaan bekerja luring jika model tidak tersedia atau keluarannya ditolak. Periksa analisis sebelum menggunakannya.
+Kamus penggunaan menampilkan penjelasan dalam bahasa antarmuka atau dalam bahasa Inggris jika terjemahan belum tersedia. Contoh, pola, dan perbandingan ditulis dalam bahasa Inggris.
 
 Pilih Cambridge, Oxford Learner’s Dictionaries, Wiktionary, atau Merriam-Webster untuk pencarian eksternal. Tautan membuka situs penyedia; tautan penggunaan memakai Cambridge Grammar.
 
+Buka [Markah](https://lingfern.com/library/saved) dari kamus. Gunakan ★/☆ di samping definisi untuk menyimpan atau menghapusnya. Gunakan [Riwayat](https://lingfern.com/library/history) di bagian atas pustaka untuk membuka kembali pencarian kamus, penggunaan, dan IPA, serta pohon sintaksis yang disimpan dengan nama.
+
+<a id="readme-syntax-tree"></a>
+
+### Pohon sintaksis
+
+Masukkan kalimat, pohon berkurung, kerangka berindentasi, atau notasi dependensi. Tekan **Enter** untuk menggambar atau **Shift+Enter** untuk baris baru. Anda juga dapat menempel satu derivasi CCGbank AUTO dan mempertahankan kategori serta cabang aslinya.
+
+Aktifkan **Pemindahan** untuk menautkan simpul dengan indeks yang sama saat diseret; klik lagi atau tekan Escape untuk keluar. Klik kanan atau tekan lama pada layar sentuh untuk membuka menu.
+
+Satu draf lokal per profil disimpan dan dipulihkan otomatis; draf pohon ini tidak disertakan dalam cadangan atau sinkronisasi. **Simpan** membuat cuplikan bernama terpisah di riwayat.
+
 <a id="readme-offline"></a>
 
-## Sumber offline dan komunitas
+## Unduhan luring dan impor ZIP
 
-Cari, pilih, pasang, perbarui, atau hapus paket teks, audio, dan referensi di Pustaka. Setelah sumber yang diperlukan terpasang, belajar, penilaian, penyimpanan, dan referensi terpasang dapat digunakan offline. Perubahan koneksi ditandai pemberitahuan singkat.
+Di **Konten luring**, cari atau jelajahi **Membaca**, **Menyimak**, dan **Referensi**. Pilih paket yang dibutuhkan, lalu pilih **Unduh**. Untuk mengosongkan ruang, pilih paket terpasang dan pilih **Hapus**. Paket terpasang dapat digunakan secara luring di perangkat ini.
 
-Impor ZIP komunitas yang kompatibel dan simpan berkas asli untuk pemasangan ulang atau perangkat lain. Unduhan, GitHub, MCP, dan situs eksternal memerlukan koneksi; sumber dan audio dipasang per perangkat.
+Model sintaksis opsional ada di **Konten luring → Referensi → Pohon sintaksis**. UDPipe menganalisis dependensi. Pohon konstituen memakai Stanza (memerlukan UDPipe) atau Charniak jika terpasang. Hol-CCG menghasilkan derivasi CCG. Aturan bawaan bekerja luring jika model tidak tersedia atau keluarannya ditolak. Periksa analisis sebelum menggunakannya.
+
+Untuk memasang ZIP yang kompatibel, gunakan **Impor sumber daya → Impor ZIP**. Simpan berkas untuk pemasangan ulang atau penggunaan di perangkat lain.
 
 Jika didukung browser, gunakan pemasangan aplikasi atau tambahkan ke layar utama untuk memakai Lingfern sebagai aplikasi web.
 

@@ -20,6 +20,9 @@ const nodeHeight = 44;
 const gapX = 16;
 const gapY = 28;
 const pad = 20;
+const arrowheadSpacing = 12;
+const movementRailGap = 18;
+const localRailGap = 12;
 const labelSchema = z.string().trim().min(1).max(maxLabel).regex(/^[^\p{C}]+$/u);
 const roleSchema = z.string().trim().min(1).max(maxRole).regex(/^[^\p{C}]+$/u);
 const nodeIdSchema = z.string().regex(/^[a-z0-9]{1,10}$/);
@@ -439,9 +442,9 @@ export function sentenceFileName(text: string, limit = 80) {
 }
 
 // Try near-endpoint paths before using the reserved bottom rail.
-function shortenMovement(edge: TreeLayout['edges'][number], nodes: TreeLayout['nodes'], movements: TreeLayout['edges'], branches: TreeLayout['edges']) {
+function shortenMovement(edge: TreeLayout['edges'][number], nodes: TreeLayout['nodes'], movements: TreeLayout['edges'], branches: TreeLayout['edges'], treeBottom: number) {
   const { x1, y1, x2, y2 } = edge;
-  const drop = 18;
+  const drop = movementRailGap;
   const bottom = Math.max(y1, y2) + drop;
   if (bottom + gapY > edge.rail!) return;
   const left = Math.min(x1, x2) - nodeHeight, right = Math.max(x1, x2) + nodeHeight;
@@ -467,7 +470,8 @@ function shortenMovement(edge: TreeLayout['edges'][number], nodes: TreeLayout['n
       : from.y > box.y - clearance && from.y < box.y + box.height + clearance && overlaps(from.x, to.x, box.x, box.x + box.width))
       && !otherSegments.some(([a, b]) => vertical
         ? a.x === b.x && a.x === from.x && overlaps(from.y, to.y, a.y, b.y)
-        : a.y === b.y && a.y === from.y && overlaps(from.x, to.x, a.x, b.x));
+        : a.y === b.y && overlaps(from.x, to.x, a.x, b.x)
+          && Math.abs(a.y - from.y) < (a.y > treeBottom && from.y > treeBottom ? movementRailGap : localRailGap));
   });
 
   if (x1 !== x2) {
@@ -499,29 +503,51 @@ export function layoutTree(diagram: TreeDiagram, measure: (label: string) => num
   if (diagram.kind === 'dependency') return layoutDependency(diagram, measure);
   const pairs = movementPairs(diagram.nodes, diagram.root);
   const byId = new Map(diagram.nodes.map(node => [node.id, node]));
+  const landings = new Map<string, number>();
+  for (const { antecedent } of pairs) landings.set(antecedent, (landings.get(antecedent) ?? 0) + 1);
   const build = (id: string): TidyInput => {
     const node = byId.get(id)!;
     const lines = labelLines(node.label);
+    const heads = landings.get(id) ?? 0;
+    // Leave a slot for a central child branch when it could split an odd number of arrowheads.
+    const slots = heads + (heads > 1 && heads % 2 === 1 && node.children.length ? 2 : 0);
+    const landingWidth = Math.min(14, slots) * arrowheadSpacing;
     return {
       id,
-      width: Math.max(nodeHeight, ...lines.map(measure)),
+      width: Math.max(nodeHeight, landingWidth, ...lines.map(measure)),
       height: lines.length === 1 ? nodeHeight : lines.length * 18 + 16,
       children: node.children.map(build),
     };
   };
+  const root = build(diagram.root);
   // Each movement has two legs; reserve room for separate 4px turns around a shared obstacle.
-  const { placed, bounds } = tidyTreeLayout(build(diagram.root), gapX, Math.max(gapY, pairs.length * 8 + 12));
+  const verticalGap = Math.max(gapY, pairs.length * 8 + 12);
+  const arrange = (x: number, y: number, railStep: number) => layoutPhraseTree(diagram, pairs, byId, tidyTreeLayout(root, x, y), railStep);
+  let best = arrange(gapX, verticalGap, movementRailGap);
+  // shortcut: keep the first layout for unusually large routing workloads; extend the search if routing moves off the UI thread.
+  if (diagram.nodes.length * pairs.length > 6000) return best.layout;
+  // Try wider branches, longer branches and more space between bottom rails when strokes break up.
+  for (const [extraX, extraY, extraRail] of [[0, 0, 10], [12, 0, 0], [0, 16, 0], [12, 16, 10]]) {
+    if (best.clutter < 2) break;
+    const candidate = arrange(gapX + extraX, verticalGap + extraY, movementRailGap + extraRail);
+    if (candidate.clutter <= best.clutter - 2) best = candidate;
+  }
+  return best.layout;
+}
+
+function layoutPhraseTree(diagram: TreeDiagram, pairs: ReturnType<typeof movementPairs>, byId: Map<string, TreeDiagram['nodes'][number]>,
+  { placed, bounds }: ReturnType<typeof tidyTreeLayout>, railStep: number) {
   const dx = pad - bounds.left, dy = pad - bounds.top;
+  const treeBottom = bounds.bottom + dy;
   const nodes: TreeLayout['nodes'] = diagram.nodes.map(node => {
-    const at = placed.get(node.id)!;
-    const lines = labelLines(node.label);
+    const { x, y, width, height } = placed.get(node.id)!;
     return {
       id: node.id,
       label: node.label,
-      x: round(at.x + dx),
-      y: round(at.y + dy),
-      width: Math.max(nodeHeight, ...lines.map(measure)),
-      height: lines.length === 1 ? nodeHeight : lines.length * 18 + 16,
+      x: round(x + dx),
+      y: round(y + dy),
+      width,
+      height,
     };
   });
   const byLayout = new Map(nodes.map(node => [node.id, node]));
@@ -552,7 +578,7 @@ export function layoutTree(diagram: TreeDiagram, measure: (label: string) => num
     if (incoming.length === 1 && !avoidCenter) continue;
     // Separate arrowheads along a shared bottom edge and leave vertical branches visible.
     const halfSlots = (incoming.length - 1) / 2;
-    const step = Math.min(12, (box.width / 2 - 6) / (halfSlots + (avoidCenter ? 1 : 0)));
+    const step = Math.min(arrowheadSpacing, (box.width / 2 - 6) / (halfSlots + (avoidCenter ? 1 : 0)));
     incoming.sort((a, b) => a.x1 - b.x1 || a.y1 - b.y1);
     incoming.forEach((edge, index) => {
       const slot = index - halfSlots;
@@ -594,14 +620,14 @@ export function layoutTree(diagram: TreeDiagram, measure: (label: string) => num
     let lane = rails.findIndex(spans => spans.every(span => right + 12 < span.left || left > span.right + 12));
     if (lane < 0) { lane = rails.length; rails.push([]); }
     rails[lane].push({ left, right });
-    edge.rail = round(bounds.bottom + dy + (lane + 1) * 18);
+    edge.rail = round(treeBottom + (lane + 1) * railStep);
     edge.points = [...start, { x: start.at(-1)!.x, y: edge.rail }, { x: end.at(-1)!.x, y: edge.rail }, ...end.reverse()];
   }
-  for (const edge of movements) shortenMovement(edge, nodes, movements, edges);
-  const bottom = Math.max(bounds.bottom + dy, ...movements.map(edge => edge.rail!));
-  separateMovementStrokes(movements, edges);
+  for (const edge of movements) shortenMovement(edge, nodes, movements, edges, treeBottom);
+  const bottom = Math.max(treeBottom, ...movements.map(edge => edge.rail!));
+  const clutter = separateMovementStrokes(movements, edges);
   edges.push(...movements);
-  return { width: Math.ceil(bounds.right + dx + pad), height: Math.ceil(bottom + pad), nodes, edges };
+  return { layout: { width: Math.ceil(bounds.right + dx + pad), height: Math.ceil(bottom + pad), nodes, edges }, clutter };
 }
 
 // Dependency arcs follow displaCy: one level per distinct span, so longer arcs sit higher.
@@ -612,17 +638,17 @@ function layoutDependency(diagram: TreeDiagram, measure: (label: string) => numb
   const centers: number[] = [];
   let cursor = pad;
   ordered.forEach((_, position) => { centers.push(cursor + widths[position] / 2); cursor += widths[position] + gapX; });
-  const arcs = diagram.nodes.flatMap(node => node.children.map(childId => ({
-    head: index.get(node.id) ?? 0,
-    dependent: index.get(childId) ?? 0,
-    role: diagram.nodes.find(item => item.id === childId)?.role,
-  })));
+  const arcs = diagram.nodes.flatMap(node => node.children.map(childId => {
+    const dependent = index.get(childId)!;
+    return { head: index.get(node.id)!, dependent, role: ordered[dependent].role };
+  }));
   const spans = [...new Set(arcs.map(arc => Math.abs(arc.dependent - arc.head)))].sort((left, right) => left - right);
+  const levels = new Map(spans.map((span, index) => [span, index + 1]));
   const step = 20, base = 12;
   const top = Math.max(nodeHeight, pad + (spans.length + 1) * step);
   const nodes = ordered.map((node, position) => ({ id: node.id, label: node.label, x: round(centers[position] - widths[position] / 2), y: top, width: widths[position], height: nodeHeight }));
   const edges = arcs.map(arc => {
-    const level = spans.indexOf(Math.abs(arc.dependent - arc.head)) + 1;
+    const level = levels.get(Math.abs(arc.dependent - arc.head))!;
     return {
       x1: round(centers[arc.head]), y1: top,
       x2: round(centers[arc.dependent]), y2: top,

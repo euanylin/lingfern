@@ -230,7 +230,7 @@
     "moveRight": "Sposta a destra",
     "autoSaveFailed": "Salvataggio automatico non riuscito. Controlla lo spazio disponibile e salva manualmente.",
     "move": "Movimento",
-    "movePick": "Sposta con…",
+    "moveIndexFull": "Tutti i 99 indici di movimento sono in uso. Scollega un movimento per liberare un indice.",
     "moveClear": "Scollega movimento",
     "undo": "Annulla",
     "redo": "Ripristina",

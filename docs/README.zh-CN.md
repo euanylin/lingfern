@@ -6,7 +6,7 @@
 
 <img src="../public/icon.svg" width="96" alt="Lingfern">
 
-面向 16 岁及以上学习者的英语阅读与听力练习，学习目标覆盖 A1–C2。根据原始文章和录音在本地生成练习，学习无需注册账号或使用 AI 服务。
+Lingfern 将英语阅读、听力训练与查询工具放在一起。你可以用英英词典、用法词典和 IPA 发音表查阅词义、用法与发音，也可以用句法树编辑器分析句子。阅读与听力训练面向 16 岁及以上学习者，目标涵盖 A1–C2，由设备根据文章和录音生成。安装所需资源后，无需账号即可离线学习。
 
 <a id="readme-languages"></a>
 
@@ -36,8 +36,8 @@
 2. [练习与测试](#readme-practice)
 3. [阅读与听力操作](#readme-workspace)
 4. [历史记录与进度](#readme-history)
-5. [查询工具与书签](#readme-library)
-6. [离线与社区资源](#readme-offline)
+5. [资料库](#readme-library)
+6. [离线下载与 ZIP 导入](#readme-offline)
 7. [档案与备份](#readme-backup)
 8. [GitHub 自动同步](#readme-sync)
 9. [AI 交接与 MCP](#readme-ai)
@@ -88,38 +88,42 @@
 
 <a id="readme-library"></a>
 
-## 查询工具与书签
+## 资料库
+
+在[资料库](https://lingfern.com/library)的**查询资料**区打开以下工具。
 
 | 工具 | 功能 |
 |---|---|
 | [英英词典](https://lingfern.com/library/dictionary) | 按词查阅英语释义，也可在阅读中选词查询。 |
-| [书签](https://lingfern.com/library/saved) | 用 ★／☆ 保存、取消释义，折叠词条；取消后的词条在重开或刷新前保留，便于立即恢复。 |
-| [IPA 发音表](https://lingfern.com/library/ipa) | 简易／详细视图、音标搜索，以及可用的音标录音和英语例词。 |
 | [英语用法词典](https://lingfern.com/library/grammar) | 关键词搜索、字母浏览、展开解释。 |
-| [句法树](#readme-syntax-tree) | 生成和编辑九种树形表示，命名保存，并导出 SVG、PNG、WebP、JPEG 或 PDF。 |
-| [查询历史](https://lingfern.com/library/history) | 根据来源、时间与保存的查询状态，重新打开词典、用法与 IPA 记录。 |
+| [IPA 发音表](https://lingfern.com/library/ipa) | 简易／详细视图、音标搜索，以及可用的音标录音和英语例词。 |
+| [句法树](https://lingfern.com/library/trees) | 生成和编辑九种树形表示，命名保存，并导出 SVG、PNG、WebP、JPEG 或 PDF。 |
 
-英语用法词典收录 **191 条**用法。解释随界面语言切换，缺失时回退到英文。例句、句型和用法对照保留英文。
-
-<a id="readme-syntax-tree"></a>
-
-**资料库** → **查询资料** → **[句法树](https://lingfern.com/library/trees)**
-
-可输入句子、括号树、缩进或依存标记。节点操作位于画布上方，符号输入辅助紧贴画布下方。开启**移位**后拖动节点可建立同标关系；再次点击或按 Escape 退出。右键或在触屏上长按节点可打开菜单。编辑会自动保存为每个档案的一份本机草稿，离开、刷新后可恢复；句法树自动草稿不参与备份或同步。使用**保存**另建命名历史快照。清空在本次访问中可撤销，重新进入已清空的草稿时恢复预设示例。
-
-按 **Enter** 绘制，按 **Shift+Enter** 换行。还可粘贴一条 CCGbank AUTO 推导，保留原有范畴和分支。
-
-如需可选模型，打开 **资料库** → **离线内容** → **参考资料** → **句法树**，勾选资源后点击**下载所选资源**。UDPipe 用于依存树，成分树优先使用 Stanza（需安装 UDPipe），其次使用已安装的 Charniak，CCG 使用 Hol-CCG。模型不可用或结果不合格时可离线使用内置规则。使用生成结果前请核对。
+用法词典的解释随界面语言切换，缺失时显示英文。例句、句型和用法对照使用英文。
 
 可选择 Cambridge、Oxford Learner’s Dictionaries、Wiktionary 或 Merriam-Webster 进行在线查询。链接在对应网站打开，用法查询使用 Cambridge Grammar。
 
+从英英词典进入[书签](https://lingfern.com/library/saved)。用释义旁的 ★／☆ 保存或取消书签。在资料库顶部打开[历史记录](https://lingfern.com/library/history)，可以重新查看词典、用法和 IPA 查询，以及命名保存的句法树。
+
+<a id="readme-syntax-tree"></a>
+
+### 句法树
+
+可输入句子、括号树、缩进或依存标记。按 **Enter** 绘制，按 **Shift+Enter** 换行。还可粘贴一条 CCGbank AUTO 推导，保留原有范畴和分支。
+
+开启**移位**后拖动节点可建立同标关系；再次点击或按 Escape 退出。右键或在触屏上长按节点可打开菜单。
+
+编辑会自动保存为每个档案的一份本机草稿，离开、刷新后可恢复；句法树自动草稿不参与备份或同步。使用**保存**另建命名历史快照。
+
 <a id="readme-offline"></a>
 
-## 离线与社区资源
+## 离线下载与 ZIP 导入
 
-在资料库搜索、选择、安装、更新或移除文章、音频与查询资源包。安装所需资源后，学习、评分、保存与已安装的查询工具均可离线使用；连接变化有短暂状态提示。
+在**离线内容**中搜索，或按**阅读**、**听力**和**参考资料**查找资源。勾选需要的项目后点**下载**。要释放空间，勾选已安装的项目后点**删除**。下载并安装的资源可在本机离线使用。
 
-可导入兼容的社区 ZIP 材料／资源包；保留原始 ZIP，便于重装或换设备。下载、GitHub、MCP 和外部网站需要联网；资源和录音需在各设备分别安装。
+可选句法分析模型位于**离线内容 → 参考资料 → 句法树**。UDPipe 用于依存树，成分树优先使用 Stanza（需安装 UDPipe），其次使用已安装的 Charniak，CCG 使用 Hol-CCG。模型不可用或结果不合格时可离线使用内置规则。使用生成结果前请核对。
+
+已有兼容的 ZIP 时，在**资源导入**中点**导入 ZIP**。保留原文件，以便重装或在其他设备使用。
 
 在支持的浏览器中，可通过“安装应用／添加到主屏幕”将 Lingfern 作为网页应用使用。
 

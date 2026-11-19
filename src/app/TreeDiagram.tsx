@@ -8,8 +8,8 @@ import { findSavedTree, recordTree } from '../data/lookupHistory';
 import { readTreeDraft, saveTreeDraft } from '../data/treeDraft';
 import { createTreeParser } from '../data/treeParser';
 import { useExitPresence } from './DisclosurePanel';
-import { closeModal, showModal } from './modal';
-import { addChild, addSibling, blankTree, canDropNode, drawTree, isClearedTree, isWrittenTreeInput, linkMovement, unlinkMovement, exampleSentence, exampleTree, labelAllowed, labelLines, layoutTree, moveNode, orderedDependencyNodes, removeNode, renameNode, reorderTo, reparentNode, sentenceFileName, treeEdgeLabelPoint, treeFileName, treeForms, movementPath, treeArrowPath, treeArrowPoints, treePdf, treeSvg, treeText, type TreeDiagram as Diagram, type TreeForm, type TreeLayout, type TreePdfLabel } from '../shared/tree';
+import { closeModal, cycleModalFocus, showModal } from './modal';
+import { addChild, addSibling, blankTree, canDropNode, drawTree, isClearedTree, isWrittenTreeInput, linkMovement, unlinkMovement, exampleSentence, exampleTree, labelAllowed, labelLines, layoutTree, moveNode, orderedDependencyNodes, removeNode, renameNode, reorderTo, reparentNode, sentenceFileName, treeEdgeLabelPoint, treeFileName, treeForms, movementPath, treeArrowPath, treeArrowPoints, treePdf, treeSvg, treeText, type TreeDiagram as Diagram, type TreeForm, type TreePdfLabel } from '../shared/tree';
 import { loadWordNetPos, type PosLookup } from '../shared/wordnet-pos';
 import { SettingsPicker } from './SettingsPicker';
 import { isTraceLabel, labelIndex } from '../shared/tree-movement';
@@ -127,17 +127,15 @@ function NodeMenu({ menu, label, items, onClose }: { menu: NodeMenuState; label:
   useLayoutEffect(() => { root.current?.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus({ preventScroll: true }); }, []);
   useEffect(() => {
     const outside = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) onClose(); };
-    const escape = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') { event.preventDefault(); menu.invoker.focus({ preventScroll: true }); onClose(); } };
     const scroll = (event: Event) => { if (!(event.target instanceof Node && root.current?.contains(event.target))) onClose(); };
     document.addEventListener('pointerdown', outside);
-    document.addEventListener('keydown', escape);
     window.addEventListener('scroll', scroll, true);
     window.addEventListener('resize', onClose);
     const viewport = innerWidth < 1200 ? window.visualViewport : undefined;
     viewport?.addEventListener('scroll', onClose);
     viewport?.addEventListener('resize', onClose);
-    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); window.removeEventListener('scroll', scroll, true); window.removeEventListener('resize', onClose); viewport?.removeEventListener('scroll', onClose); viewport?.removeEventListener('resize', onClose); };
-  }, [onClose, menu.invoker]);
+    return () => { document.removeEventListener('pointerdown', outside); window.removeEventListener('scroll', scroll, true); window.removeEventListener('resize', onClose); viewport?.removeEventListener('scroll', onClose); viewport?.removeEventListener('resize', onClose); };
+  }, [onClose]);
   useEffect(() => {
     if (!root.current) return;
     const observer = new ResizeObserver(([entry]) => setSize({ width: entry.borderBoxSize[0].inlineSize, height: entry.borderBoxSize[0].blockSize }));
@@ -151,7 +149,12 @@ function NodeMenu({ menu, label, items, onClose }: { menu: NodeMenuState; label:
   const left = Math.max(viewportLeft + 8, Math.min((menu.rect.left + menu.rect.right - size.width) / 2, viewportLeft + viewportWidth - size.width - 8));
   const top = Math.max(viewportTop + 8, Math.min(below ? menu.rect.bottom + 10 : menu.rect.top - size.height - 10, viewportBottom - size.height - 8));
   return <div ref={root} className="tree-node-menu" role="menu" aria-label={label} onKeyDown={event => {
-    if (event.key === 'Tab') { menu.invoker.focus({ preventScroll: true }); onClose(); return; }
+    if (event.key === 'Tab' || event.key === 'Escape') {
+      if (event.key === 'Escape' || menu.invoker.closest('[aria-modal=true]')) event.preventDefault();
+      menu.invoker.focus({ preventScroll: true });
+      onClose();
+      return;
+    }
     const options = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')];
     const index = options.indexOf(document.activeElement as HTMLButtonElement);
     const next = event.key === 'ArrowDown' ? (index + 1) % options.length : event.key === 'ArrowUp' ? (index - 1 + options.length) % options.length : event.key === 'Home' ? 0 : event.key === 'End' ? options.length - 1 : -1;
@@ -230,6 +233,8 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
   const formatMenu = useRef<HTMLDivElement>(null);
   const formatFromKeys = useRef(false);
   const formatsPresent = useExitPresence(formatsOpen, formatMenu);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const fullscreenButton = useRef<HTMLButtonElement>(null);
   // Vertical scrolling stays native until the board is wide enough for two-axis touch panning.
   const scrollRef = useRef<HTMLDivElement>(null);
   const [frame, setFrame] = useState({ width: 0, height: 0, left: 0, top: 0 });
@@ -302,21 +307,38 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     pendingScroll.current = null;
     if (scrollRef.current) scrollRef.current.scrollTop = 0;
   };
-  // Fullscreen keeps one board: the same card becomes a fixed layer, and Escape leaves it.
-  const toggleExpanded = () => { setExpanded(value => !value); setPanX(0); pendingScroll.current = 0; };
-  useEffect(() => {
-    if (!expanded) return;
+  const setFullscreen = useCallback((value: boolean) => {
+    fullscreenButton.current?.focus({ preventScroll: true });
+    setExpanded(value);
+    setPanX(0);
+    pendingScroll.current = 0;
+  }, []);
+  useLayoutEffect(() => {
+    const board = frameRef.current;
+    if (!expanded || !board) return;
     const root = document.documentElement;
     const previous = root.style.overflow;
     root.style.overflow = 'hidden';
-    const escape = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') setExpanded(false); };
+    // Keep the same mounted board while removing the obscured controls from focus and accessibility.
+    const background: HTMLElement[] = [];
+    for (let element: HTMLElement = board; element.parentElement && element.parentElement !== document.body; element = element.parentElement) {
+      for (const sibling of element.parentElement.children) {
+        if (sibling !== element && sibling instanceof HTMLElement && !sibling.inert) {
+          sibling.inert = true;
+          background.push(sibling);
+        }
+      }
+    }
+    const escape = (event: globalThis.KeyboardEvent) => {
+      if (event.key === 'Escape' && !event.defaultPrevented && !event.isComposing) setFullscreen(false);
+    };
     document.addEventListener('keydown', escape);
     return () => {
       root.style.overflow = previous;
+      for (const sibling of background) sibling.inert = false;
       document.removeEventListener('keydown', escape);
-      scrollRef.current?.focus({ preventScroll: true });
     };
-  }, [expanded]);
+  }, [expanded, setFullscreen]);
 
   const startGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (event.button !== 0 || (event.target instanceof Element && event.target.closest('.tree-node-edit'))) return;
@@ -641,7 +663,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     try {
       const next = linkMovement(diagram, fromId, partnerId);
       pushHistory(); edited(); setDiagram(next); setSelected(fromId); setNotice(''); setProblem('');
-    } catch { setProblem(t.tooBig); }
+    } catch (error) { setProblem(error instanceof Error && error.message === 'TREE_MOVE_INDEX' ? t.moveIndexFull : t.tooBig); }
   };
   const movementTarget = (event: ReactPointerEvent<HTMLButtonElement>) => {
     const target = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLElement>('[data-tree-node]');
@@ -949,15 +971,15 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     if (!filename) { setExportError(backupLabels[locale].invalidName); return; }
     try {
       if (naming === 'save') await recordTree(profileId, filename, diagram);
-      else await saveExport(filename, format, layout);
+      else await saveExport(filename, format);
       closeModal(nameDialog.current, () => { setNaming(undefined); setNotice(naming === 'save' ? t.saved : ''); setProblem(''); (naming === 'export' ? exportButton : saveButton).current?.focus(); });
     } catch { setExportError(naming === 'save' ? historyCopy[locale].saveFailed : t.exportFailed); }
   };
-  async function saveExport(filename: string, selectedFormat: ExportFormat, current: TreeLayout) {
+  async function saveExport(filename: string, selectedFormat: ExportFormat) {
     const extension = exportExtension[selectedFormat];
-    if (selectedFormat === 'svg') { saveFile(new Blob([treeSvg(current, themeColors())], { type: 'image/svg+xml' }), `${filename}.${extension}`); return; }
+    if (selectedFormat === 'svg') { saveFile(new Blob([treeSvg(layout, themeColors())], { type: 'image/svg+xml' }), `${filename}.${extension}`); return; }
     if (selectedFormat === 'pdf') {
-      saveFile(new Blob([treePdf(current, current.nodes.map(node => labelBitmap(node.label)), current.edges.map(edge => edge.label ? labelBitmap(edge.label) : null))], { type: 'application/pdf' }), `${filename}.${extension}`);
+      saveFile(new Blob([treePdf(layout, layout.nodes.map(node => labelBitmap(node.label)), layout.edges.map(edge => edge.label ? labelBitmap(edge.label) : null))], { type: 'application/pdf' }), `${filename}.${extension}`);
       return;
     }
     const type = selectedFormat === 'jpeg' ? 'image/jpeg' : selectedFormat === 'webp' ? 'image/webp' : 'image/png';
@@ -966,7 +988,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
     saveFile(blob, `${filename}.${extension}`);
   }
 
-  return <section className="reference-page tree-page" onKeyDown={event => { if (event.key === 'Escape' && movementMode) { setMoveOpen(false); movementDrag.current = null; finishDrag(); } }}><h1>{t.title}</h1>
+  return <section className="reference-page tree-page" onKeyDown={event => { if (event.key === 'Escape' && movementMode && !event.defaultPrevented && !event.nativeEvent.isComposing) { event.preventDefault(); setMoveOpen(false); movementDrag.current = null; finishDrag(); } }}><h1>{t.title}</h1>
     <p className="muted tree-intro">{t.intro}</p>
     {problem && <p className="error" role="alert">{problem}</p>}
     {autoSaveFailed && <p className="error" role="alert">{t.autoSaveFailed}</p>}
@@ -985,12 +1007,12 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
         </div>
       </div>
     </div>
-    <div className="tree-frame" data-expanded={expanded ? '' : undefined}>
+    <div ref={frameRef} className="tree-frame" data-expanded={expanded ? '' : undefined} role={expanded ? 'dialog' : undefined} aria-modal={expanded || undefined} aria-label={expanded ? t.title : undefined} onKeyDown={expanded ? event => cycleModalFocus(event, event.currentTarget) : undefined}>
     <div className="tree-zoom" dir="ltr" role="group" aria-label={t.zoom.group}>
       <button type="button" aria-label={t.zoom.out} title={t.zoom.out} disabled={scale <= minScale} onClick={() => zoomAtCentre(1 / 1.25)}><ZoomIcon direction="out"/></button>
       <button type="button" className="tree-zoom-level" aria-label={`${t.zoom.fit}: ${percent}%`} title={t.zoom.fit} onClick={fitToCard}>{percent}%</button>
       <button type="button" aria-label={t.zoom.in} title={t.zoom.in} disabled={scale >= 4} onClick={() => zoomAtCentre(1.25)}><ZoomIcon direction="in"/></button>
-      <button type="button" className="tree-zoom-fullscreen" aria-label={expanded ? t.zoom.exitFullscreen : t.zoom.fullscreen} title={expanded ? t.zoom.exitFullscreen : t.zoom.fullscreen} aria-pressed={expanded} onClick={toggleExpanded}><FullscreenIcon exit={expanded}/></button>
+      <button ref={fullscreenButton} type="button" className="tree-zoom-fullscreen" aria-label={expanded ? t.zoom.exitFullscreen : t.zoom.fullscreen} title={expanded ? t.zoom.exitFullscreen : t.zoom.fullscreen} aria-pressed={expanded} onClick={() => setFullscreen(!expanded)}><FullscreenIcon exit={expanded}/></button>
     </div>
     <div className="tree-scroll" dir="ltr" ref={scrollRef} data-sideways={sideways ? '' : undefined} tabIndex={0} role="group" aria-label={t.zoom.group} onPointerDownCapture={event => { if (!event.isPrimary) cancelLongPress(); }} onPointerDown={startGesture} onPointerMove={moveGesture} onPointerUp={endGesture} onPointerCancel={endGesture} onKeyDown={onBoardKeyDown}>
       <div className="tree-canvas" style={{ left: frame.left + baseX + panShift, top: frame.top + baseY, width: contentWidth, height: contentHeight }}>
@@ -1003,7 +1025,7 @@ export function TreeDiagram({ locale, profileId, initialQuery = '', disabled = f
       </div>
     </div>
     </div>
-    {nodeMenu && diagram.nodes.some(node => node.id === nodeMenu.id) && createPortal(<NodeMenu menu={nodeMenu} label={diagram.nodes.find(node => node.id === nodeMenu.id)?.label ?? t.title} onClose={closeNodeMenu} items={(() => { const id = nodeMenu.id; return [{ label: t.addChild, run: () => createChild(id) }, { label: t.addSibling, disabled: !diagram.nodes.some(node => node.children.includes(id)), run: () => createSibling(id) }, { label: t.moveLeft, disabled: !canShift(id, -1), run: () => shiftNode(id, -1) }, { label: t.moveRight, disabled: !canShift(id, 1), run: () => shiftNode(id, 1) }, { label: t.move, disabled: disabled || diagram.nodes.length < 2, checked: movementMode, run: toggleMovement }, ...(labelIndex(diagram.nodes.find(node => node.id === id)!.label) !== undefined ? [{ label: t.moveClear, run: () => clearMove(id) }] : []), { label: t.remove, disabled: id === diagram.root, run: () => deleteNode(id) }]; })()}/>, document.body)}
+    {nodeMenu && diagram.nodes.some(node => node.id === nodeMenu.id) && createPortal(<NodeMenu menu={nodeMenu} label={diagram.nodes.find(node => node.id === nodeMenu.id)?.label ?? t.title} onClose={closeNodeMenu} items={(() => { const id = nodeMenu.id; return [{ label: t.addChild, run: () => createChild(id) }, { label: t.addSibling, disabled: !diagram.nodes.some(node => node.children.includes(id)), run: () => createSibling(id) }, { label: t.moveLeft, disabled: !canShift(id, -1), run: () => shiftNode(id, -1) }, { label: t.moveRight, disabled: !canShift(id, 1), run: () => shiftNode(id, 1) }, { label: t.move, disabled: disabled || diagram.nodes.length < 2, checked: movementMode, run: toggleMovement }, ...(labelIndex(diagram.nodes.find(node => node.id === id)!.label) !== undefined ? [{ label: t.moveClear, run: () => clearMove(id) }] : []), { label: t.remove, disabled: id === diagram.root, run: () => deleteNode(id) }]; })()}/>, expanded ? frameRef.current ?? document.body : document.body)}
     <div className="tree-symbols" dir="ltr" role="group" aria-label={t.symbol.group}>{treeSymbols.map(([name, glyph]) => <button key={name} type="button" dir="ltr" disabled={disabled} aria-label={t.symbol[name]} onPointerDown={event => event.preventDefault()} onClick={() => insertSymbol(glyph)}>{glyph}</button>)}</div>
     <label className="reference-search tree-source"><span className="tree-source-head">{t.source}{generated && diagram.nodes.length > 1 && <small id="tree-generated-note" className="tree-generated-note">{form === 'ccg' && diagram.nodes.some(node => node.label === '?') ? t.incomplete : t.generated}</small>}</span><textarea autoComplete="off" id="tree-source" dir="ltr" aria-label={t.source} aria-describedby={generated && diagram.nodes.length > 1 ? "tree-generated-note" : undefined} ref={sourceRef} rows={1} value={source} maxLength={200_000} disabled={disabled} onFocus={event => noteSymbolField(event.currentTarget)} onBlur={event => noteSymbolField(event.currentTarget)} onChange={event => { edited(true); setSource(event.target.value); }} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); draw(event.currentTarget.value); } }}/></label>
     <label className="tree-field" htmlFor="tree-label">{t.label}<SingleLineField id="tree-label" dir="auto" ref={labelRef} value={draft} maxLength={200} disabled={disabled} onFocus={event => noteSymbolField(event.currentTarget)} onChange={event => changeLabel(event.target.value)} onBlur={event => { noteSymbolField(event.currentTarget); const toSymbols = event.relatedTarget instanceof Element && !!event.relatedTarget.closest('.tree-symbols'); if (!toSymbols) setDraft(diagram.nodes.find(node => node.id === selectedId)?.label ?? draft); }}/></label>

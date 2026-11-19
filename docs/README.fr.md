@@ -6,7 +6,7 @@
 
 <img src="../public/icon.svg" width="96" alt="Lingfern">
 
-Entraînement à la lecture et à la compréhension orale en anglais, dès 16 ans, avec des objectifs de A1 à C2. Les exercices sont générés localement à partir de textes et d’enregistrements. Aucun compte ni service d’IA n’est nécessaire pour apprendre.
+Lingfern associe des exercices de lecture et de compréhension orale en anglais à des outils de référence sur le vocabulaire, l’usage, la prononciation et la syntaxe. Les exercices sont générés sur votre appareil à partir de textes et d’enregistrements, pour les personnes de 16 ans et plus qui visent des objectifs de A1 à C2. Une fois les ressources nécessaires installées, vous pouvez étudier hors ligne sans compte.
 
 <a id="readme-languages"></a>
 
@@ -36,8 +36,8 @@ Entraînement à la lecture et à la compréhension orale en anglais, dès 16 an
 2. [Entraînement et test](#readme-practice)
 3. [Lecture et commandes audio](#readme-workspace)
 4. [Historique et progression](#readme-history)
-5. [Références et favoris](#readme-library)
-6. [Ressources hors ligne et communautaires](#readme-offline)
+5. [Bibliothèque](#readme-library)
+6. [Téléchargements hors ligne et import de ZIP](#readme-offline)
 7. [Profils et sauvegardes](#readme-backup)
 8. [Synchronisation GitHub automatique](#readme-sync)
 9. [Transfert vers une IA et MCP](#readme-ai)
@@ -88,38 +88,42 @@ La fougère représente l’activité sauvegardée, pas un niveau certifié. Les
 
 <a id="readme-library"></a>
 
-## Références et favoris
+## Bibliothèque
+
+Dans la [Bibliothèque](https://lingfern.com/library), la section **Référence** donne accès aux outils suivants.
 
 | Outil | Fonctions |
 |---|---|
-| [Dictionnaire anglais](https://lingfern.com/library/dictionary) | Recherche de mots avec définitions en anglais, y compris depuis un texte sélectionné. |
-| [Favoris](https://lingfern.com/library/saved) | ★/☆ pour enregistrer ou retirer une définition ; entrées repliables. Une entrée retirée reste jusqu’à la réouverture ou l’actualisation pour pouvoir être rétablie. |
-| [Tableau IPA](https://lingfern.com/library/ipa) | Vues simple/détaillée, recherche de sons, enregistrements et exemples anglais disponibles. |
+| [Dictionnaire](https://lingfern.com/library/dictionary) | Recherche de mots avec définitions en anglais, y compris depuis un texte sélectionné. |
 | [Dictionnaire d’usage anglais](https://lingfern.com/library/grammar) | Recherche par mot-clé, parcours alphabétique et explications dépliables. |
-| [Arbre syntaxique](#readme-syntax-tree) | Générer et modifier neuf représentations, enregistrer des instantanés nommés et exporter en SVG, PNG, WebP, JPEG ou PDF. |
-| [Historique des recherches](https://lingfern.com/library/history) | Réouverture des recherches dictionnaire, usage et IPA avec source, heure et état conservé. |
+| [Tableau phonétique IPA](https://lingfern.com/library/ipa) | Vues simple/détaillée, recherche de sons, enregistrements et exemples anglais disponibles. |
+| [Arbre syntaxique](https://lingfern.com/library/trees) | Générer et modifier neuf représentations, enregistrer des instantanés nommés et exporter en SVG, PNG, WebP, JPEG ou PDF. |
 
-Le dictionnaire d’usage contient **191 entrées**. Les explications suivent la langue de l’interface et reviennent à l’anglais si nécessaire. Exemples, constructions et contrastes restent en anglais.
-
-<a id="readme-syntax-tree"></a>
-
-**Bibliothèque** → **Référence** → **[Arbre syntaxique](https://lingfern.com/library/trees)**
-
-Saisissez une phrase, un arbre entre parenthèses, un plan indenté ou une notation de dépendances. Les commandes des nœuds sont au-dessus du canevas, les symboles juste en dessous. Activez **Déplacement** pour relier des nœuds par coindexation ; cliquez à nouveau ou appuyez sur Échap pour quitter ce mode. Le clic droit ou l’appui long ouvre le menu. Un brouillon local par profil est automatiquement enregistré et restauré, mais exclu des sauvegardes et de la synchronisation. **Enregistrer** crée un instantané nommé distinct dans l’historique. Effacer reste annulable pendant la visite ; rouvrir un brouillon vidé rétablit l’exemple. Appuyez sur **Entrée** pour dessiner ou sur **Maj+Entrée** pour insérer une ligne.
-
-Vous pouvez aussi coller une dérivation CCGbank AUTO pour en conserver les catégories et les branches.
-
-Dans **Bibliothèque** → **Contenu hors ligne** → **Références** → **Arbre syntaxique**, sélectionnez les modèles voulus puis **Télécharger la sélection**. UDPipe analyse les dépendances. Stanza (avec UDPipe) ou Charniak installé analyse les constituants. Hol-CCG produit les dérivations CCG. Les règles intégrées fonctionnent hors ligne si le modèle est indisponible ou si sa sortie est rejetée. Vérifiez l’analyse avant de l’utiliser.
+Le dictionnaire d’usage affiche les explications dans la langue de l’interface ou en anglais si nécessaire. Les exemples, les constructions et les contrastes sont en anglais.
 
 Choisissez Cambridge, Oxford Learner’s Dictionaries, Wiktionary ou Merriam-Webster pour les recherches externes. Les liens ouvrent le site du fournisseur ; les liens d’usage utilisent Cambridge Grammar.
 
+Ouvrez les [Favoris](https://lingfern.com/library/saved) depuis le dictionnaire. Utilisez ★/☆ à côté d’une définition pour l’ajouter ou la retirer. En haut de la bibliothèque, l’[Historique](https://lingfern.com/library/history) permet de rouvrir les recherches de dictionnaire, d’usage et d’IPA ainsi que les arbres syntaxiques enregistrés par nom.
+
+<a id="readme-syntax-tree"></a>
+
+### Arbre syntaxique
+
+Saisissez une phrase, un arbre entre parenthèses, un plan indenté ou une notation de dépendances. Appuyez sur **Entrée** pour dessiner ou sur **Maj+Entrée** pour insérer une ligne. Vous pouvez aussi coller une dérivation CCGbank AUTO pour en conserver les catégories et les branches.
+
+Activez **Déplacement** pour relier des nœuds par coindexation ; cliquez à nouveau ou appuyez sur Échap pour quitter ce mode. Le clic droit ou l’appui long ouvre le menu.
+
+Un brouillon local par profil est automatiquement enregistré et restauré, mais exclu des sauvegardes et de la synchronisation. **Enregistrer** crée un instantané nommé distinct dans l’historique.
+
 <a id="readme-offline"></a>
 
-## Ressources hors ligne et communautaires
+## Téléchargements hors ligne et import de ZIP
 
-Dans la Bibliothèque, recherchez, sélectionnez, installez, mettez à jour ou supprimez les packs de textes, d’audio et de références. Une fois les ressources nécessaires installées, apprentissage, correction, sauvegarde et références installées fonctionnent hors ligne. Un bref indicateur signale les changements de connexion.
+Dans **Contenu hors ligne**, effectuez une recherche ou parcourez **Lecture**, **Écoute** et **Références**. Sélectionnez les ressources, puis choisissez **Télécharger**. Pour libérer de l’espace, sélectionnez les ressources installées et choisissez **Retirer**. Les ressources installées sont accessibles hors ligne sur cet appareil.
 
-Importez des ZIP communautaires compatibles et gardez les originaux pour réinstallation ou changement d’appareil. Téléchargements, GitHub, MCP et sites externes nécessitent une connexion ; ressources et audio s’installent sur chaque appareil.
+Les modèles syntaxiques facultatifs se trouvent dans **Contenu hors ligne → Références → Arbre syntaxique**. UDPipe analyse les dépendances. Stanza (avec UDPipe) ou Charniak installé analyse les constituants. Hol-CCG produit les dérivations CCG. Les règles intégrées fonctionnent hors ligne si le modèle est indisponible ou si sa sortie est rejetée. Vérifiez l’analyse avant de l’utiliser.
+
+Pour installer un ZIP compatible, utilisez **Importer des ressources → Importer un ZIP**. Gardez le fichier pour le réinstaller ou l’utiliser sur un autre appareil.
 
 Si le navigateur le permet, utilisez son option d’installation ou d’ajout à l’écran d’accueil pour utiliser Lingfern comme application web.
 

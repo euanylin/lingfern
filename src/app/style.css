@@ -725,15 +725,15 @@ details.animated-details[data-expanded=true]>summary::after,details.animated-det
 .tree-source-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
 .tree-generated-note{color:var(--muted);font-size:.75rem;font-weight:400;line-height:1.5}
 /* Keep the board stable while mobile browser chrome hides or returns. */
-.tree-frame{position:relative;margin:8px 0 16px}.tree-scroll{position:relative;height:min(70svh,640px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:auto;padding:68px 24px 24px;background:var(--card);border-radius:var(--corner-radius);touch-action:pan-y;user-select:none;scrollbar-width:none}
+.tree-frame{position:relative;margin:8px 0 16px}:is(.tree-scroll,.tree-zoom){overscroll-behavior-x:contain}.tree-scroll{position:relative;height:min(70svh,640px);overflow-x:hidden;overflow-y:auto;padding:68px 24px 24px;background:var(--card);border-radius:var(--corner-radius);touch-action:pan-y;user-select:none;scrollbar-width:none}
 /* The card keeps native scrolling but hides its bar; the board is moved by the wheel, touch or drag. */
 @media not (forced-colors:active){.tree-scroll::-webkit-scrollbar{display:none}}.tree-scroll[data-sideways]{cursor:grab}.tree-scroll[data-sideways]:active{cursor:grabbing}.tree-canvas{position:absolute;transform-origin:top left;overflow-anchor:none}.tree-page .tree-source{margin-top:0;margin-bottom:8px}.tree-board{flex:none}.tree-node[draggable=true]{cursor:grab}.tree-node[draggable=true]:active{cursor:grabbing}.tree-node-dragging{opacity:.45}.tree-node-drop{outline:2px dashed var(--accent);outline-offset:3px}
 .tree-frame:not([data-expanded]){animation:content-in 220ms cubic-bezier(.2,0,0,1)}
 .tree-scroll[data-sideways]{touch-action:none}
-.tree-frame[data-expanded]{position:fixed;inset:0;z-index:70;margin:0;padding:76px 24px 24px;background:var(--bg);display:flex;flex-direction:column}
+.tree-frame[data-expanded]{position:fixed;inset:0;z-index:70;margin:0;background:var(--bg);display:flex;flex-direction:column}
 .tree-frame[data-expanded] .tree-scroll{flex:1;height:auto;padding:0;background:transparent;border-radius:0}
 .tree-zoom-fullscreen{margin-inline-start:2px}
-.tree-zoom{position:absolute;z-index:3;top:10px;right:10px;display:flex;align-items:center;gap:2px;padding:4px;border:1px solid color-mix(in srgb,var(--line) 82%,var(--ink));border-radius:99px;background:var(--menu-glass);background-clip:padding-box;-webkit-backdrop-filter:var(--menu-filter);backdrop-filter:var(--menu-filter);box-shadow:0 6px 18px #0002,inset 0 1px #fff2}
+.tree-zoom{position:absolute;z-index:3;overflow:hidden;top:10px;right:10px;display:flex;align-items:center;gap:2px;padding:4px;border:1px solid color-mix(in srgb,var(--line) 82%,var(--ink));border-radius:99px;background:var(--menu-glass);background-clip:padding-box;-webkit-backdrop-filter:var(--menu-filter);backdrop-filter:var(--menu-filter);box-shadow:0 6px 18px #0002,inset 0 1px #fff2}
 .tree-frame[data-expanded] .tree-zoom{top:14px;right:24px}
 .tree-zoom button{display:grid;place-items:center;min-width:44px;height:44px;padding:0 10px;border-radius:99px;background:transparent;font-size:.8125rem;font-weight:600;color:var(--ink);-webkit-tap-highlight-color:transparent}
 .tree-zoom button:is(:active,[data-touch-active]):not(:disabled){background:color-mix(in srgb,var(--ink) 11%,transparent);transform:none}

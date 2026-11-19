@@ -230,7 +230,7 @@
     "moveRight": "Mover a la derecha",
     "autoSaveFailed": "Error al guardar automáticamente. Comprueba el espacio disponible y guarda manualmente.",
     "move": "Movimiento",
-    "movePick": "Mover con…",
+    "moveIndexFull": "Los 99 índices de movimiento están en uso. Desvincula un movimiento para liberar un índice.",
     "moveClear": "Desvincular movimiento",
     "undo": "Deshacer",
     "redo": "Rehacer",

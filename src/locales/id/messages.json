@@ -230,7 +230,7 @@
     "moveRight": "Geser ke kanan",
     "autoSaveFailed": "Gagal menyimpan otomatis. Periksa ruang penyimpanan dan simpan secara manual.",
     "move": "Pemindahan",
-    "movePick": "Pindahkan dengan…",
+    "moveIndexFull": "Semua 99 indeks perpindahan sudah digunakan. Lepaskan tautan perpindahan untuk mengosongkan satu indeks.",
     "moveClear": "Lepas pemindahan",
     "undo": "Urungkan",
     "redo": "Ulangi",

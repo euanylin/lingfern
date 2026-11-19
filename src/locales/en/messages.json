@@ -230,7 +230,7 @@
     "moveRight": "Move right",
     "autoSaveFailed": "Auto-save failed. Check available storage and save manually.",
     "move": "Move",
-    "movePick": "Move with…",
+    "moveIndexFull": "All 99 movement indices are in use. Unlink a movement to free an index.",
     "moveClear": "Unlink move",
     "undo": "Undo",
     "redo": "Redo",

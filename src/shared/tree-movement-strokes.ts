@@ -40,7 +40,7 @@ function blockedInterval([a, b]: Segment, [c, d]: Segment, length: number, overl
 
 function separateStroke(points: Point[], visible: Segment[]) {
   const strokes: Point[][] = [];
-  let clipped = false;
+  let clippedLength = 0;
   const painted: Segment[] = [];
   for (const segment of segments(points)) {
     const [a, b] = segment;
@@ -55,7 +55,6 @@ function separateStroke(points: Point[], visible: Segment[]) {
       if (hit) gaps.push(hit);
     }
     gaps.sort((left, right) => left[0] - right[0]);
-    if (gaps.length) clipped = true;
     const append = (start: number, end: number) => {
       if (start >= end) return;
       const from = pointAt(a, b, start), to = pointAt(a, b, end);
@@ -68,21 +67,35 @@ function separateStroke(points: Point[], visible: Segment[]) {
     let cursor = 0;
     for (const [start, end] of gaps) {
       append(cursor, start);
+      clippedLength += Math.max(0, end - Math.max(cursor, start)) * length;
       cursor = Math.max(cursor, end);
     }
     append(cursor, 1);
   }
-  return clipped ? strokes : undefined;
+  return { strokes, clippedLength };
 }
 
 // Branches draw continuously. In an unavoidable crossing, break only the lower-priority path.
 export function separateMovementStrokes(movements: Edge[], branches: Edge[]) {
   const visible: Segment[] = branches.map(edge => [{ x: edge.x1, y: edge.y1 }, { x: edge.x2, y: edge.y2 }]);
+  let clutter = 0;
   for (const movement of movements) {
-    const strokes = separateStroke(movement.points!, visible);
-    if (strokes) movement.strokes = strokes;
-    for (const stroke of movementStrokes(movement)) visible.push(...segments(stroke));
+    const result = separateStroke(movement.points!, visible);
+    if (result.clippedLength) {
+      movement.strokes = result.strokes;
+      clutter += result.clippedLength;
+    }
+    for (const stroke of movementStrokes(movement)) {
+      const lines = segments(stroke);
+      if (result.clippedLength) {
+        const length = lines.reduce((sum, [a, b]) => sum + Math.abs(b.x - a.x) + Math.abs(b.y - a.y), 0);
+        // Leave enough continuous line around each break to show which way the arrow runs.
+        clutter += Math.max(0, 24 - length) / 2;
+      }
+      visible.push(...lines);
+    }
   }
+  return clutter;
 }
 
 export function movementStrokes(edge: Edge) {

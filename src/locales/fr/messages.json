@@ -230,7 +230,7 @@
     "moveRight": "Déplacer à droite",
     "autoSaveFailed": "Échec de l’enregistrement automatique. Vérifiez l’espace disponible et enregistrez manuellement.",
     "move": "Déplacement",
-    "movePick": "Déplacer avec…",
+    "moveIndexFull": "Les 99 indices de déplacement sont utilisés. Dissociez un déplacement pour libérer un indice.",
     "moveClear": "Dissocier le déplacement",
     "undo": "Annuler",
     "redo": "Rétablir",

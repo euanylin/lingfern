@@ -6,7 +6,7 @@
 
 <img src="../public/icon.svg" width="96" alt="Lingfern">
 
-Englisches Lese- und Hörtraining ab 16 Jahren mit Lernzielen von A1 bis C2. Übungen werden lokal aus Quelltexten und Aufnahmen erzeugt. Zum Lernen sind weder Konto noch KI-Dienst nötig.
+Lingfern verbindet englisches Lese- und Hörtraining mit Nachschlagewerkzeugen für Wortschatz, Sprachgebrauch, Aussprache und Satzbau. Die Übungen entstehen auf deinem Gerät aus Texten und Aufnahmen und richten sich an Lernende ab 16 Jahren mit Zielen von A1 bis C2. Nach der Installation der benötigten Materialien kannst du offline und ohne Konto lernen.
 
 <a id="readme-languages"></a>
 
@@ -36,8 +36,8 @@ Englisches Lese- und Hörtraining ab 16 Jahren mit Lernzielen von A1 bis C2. Üb
 2. [Übung und Test](#readme-practice)
 3. [Lese- und Audiosteuerung](#readme-workspace)
 4. [Verlauf und Fortschritt](#readme-history)
-5. [Nachschlagen und Lesezeichen](#readme-library)
-6. [Offline- und Community-Ressourcen](#readme-offline)
+5. [Bibliothek](#readme-library)
+6. [Offline-Downloads und ZIP-Import](#readme-offline)
 7. [Profile und Sicherungen](#readme-backup)
 8. [Automatische GitHub-Synchronisierung](#readme-sync)
 9. [KI-Übergabe und MCP](#readme-ai)
@@ -88,36 +88,42 @@ Der Farn zeigt gespeicherte Aktivität, keine zertifizierte Fähigkeit. Tageszit
 
 <a id="readme-library"></a>
 
-## Nachschlagen und Lesezeichen
+## Bibliothek
+
+In der [Bibliothek](https://lingfern.com/library) findest du diese Werkzeuge unter **Nachschlagewerk**.
 
 | Werkzeug | Funktionen |
 |---|---|
-| [Englischwörterbuch](https://lingfern.com/library/dictionary) | Wörter mit englischen Definitionen nachschlagen, auch aus ausgewähltem Lesetext. |
-| [Lesezeichen](https://lingfern.com/library/saved) | Definitionen mit ★/☆ speichern/entfernen; Einträge einklappen. Entfernte Einträge bleiben bis zum erneuten Öffnen/Aktualisieren zum direkten Wiederherstellen sichtbar. |
-| [IPA-Tabelle](https://lingfern.com/library/ipa) | Einfache/detaillierte Ansicht, Lautsuche, verfügbare Aufnahmen und englische Beispielwörter. |
+| [Wörterbuch](https://lingfern.com/library/dictionary) | Wörter mit englischen Definitionen nachschlagen, auch aus ausgewähltem Lesetext. |
 | [Wörterbuch zum englischen Sprachgebrauch](https://lingfern.com/library/grammar) | Stichwortsuche, alphabetisches Blättern und aufklappbare Erläuterungen. |
-| [Syntaxbaum](#readme-syntax-tree) | Neun Darstellungen erzeugen und bearbeiten, benannte Momentaufnahmen speichern sowie SVG, PNG, WebP, JPEG oder PDF exportieren. |
-| [Nachschlageverlauf](https://lingfern.com/library/history) | Wörterbuch-, Sprachgebrauchs- und IPA-Suchen mit Quelle, Zeit und gespeichertem Suchzustand erneut öffnen. |
+| [IPA-Lauttabelle](https://lingfern.com/library/ipa) | Einfache/detaillierte Ansicht, Lautsuche, verfügbare Aufnahmen und englische Beispielwörter. |
+| [Syntaxbaum](https://lingfern.com/library/trees) | Neun Darstellungen erzeugen und bearbeiten, benannte Momentaufnahmen speichern sowie SVG, PNG, WebP, JPEG oder PDF exportieren. |
 
-Das Gebrauchswörterbuch enthält **191 Einträge**. Erklärungen folgen der Oberflächensprache und erscheinen bei fehlender Übersetzung auf Englisch. Beispiele, Muster und Gegenüberstellungen bleiben englisch.
-
-<a id="readme-syntax-tree"></a>
-
-**Bibliothek** → **Nachschlagewerk** → **[Syntaxbaum](https://lingfern.com/library/trees)**
-
-Gib einen Satz, einen Klammerbaum, eine eingerückte Gliederung oder eine Dependenznotation ein. Knotenwerkzeuge stehen über der Zeichenfläche, Symbolhilfen direkt darunter. Mit **Bewegung** verknüpft Ziehen die Knoten durch Koindizes; erneutes Klicken oder Escape beendet den Modus. Rechtsklick oder langes Berühren öffnet das Menü. Pro Profil wird ein lokaler Entwurf automatisch gespeichert und wiederhergestellt; diese Baumentwürfe sind von Sicherung und Synchronisierung ausgeschlossen. **Speichern** erstellt eine getrennte benannte Momentaufnahme im Verlauf. Leeren lässt sich während des Besuchs rückgängig machen; beim erneuten Öffnen eines geleerten Entwurfs erscheint das Beispiel. Automatische Analysen müssen geprüft werden. **Enter** zeichnet den Baum, **Umschalt+Enter** fügt einen Zeilenumbruch ein. Eine eingefügte CCGbank-AUTO-Ableitung behält ihre Kategorien und Verzweigungen.
-
-Wählen Sie unter **Bibliothek** → **Offline-Inhalte** → **Nachschlagewerke** → **Syntaxbaum** die Modelle und dann **Auswahl herunterladen**. UDPipe analysiert Abhängigkeiten. Für Konstituenten verwendet Lingfern Stanza (mit UDPipe) oder das installierte Charniak-Modell. Hol-CCG erzeugt CCG-Ableitungen. Die eingebauten Regeln funktionieren offline, wenn ein Modell fehlt oder sein Ergebnis verworfen wird. Prüfen Sie erzeugte Analysen vor der Verwendung.
+Das Gebrauchswörterbuch zeigt Erklärungen in der Sprache der Benutzeroberfläche und greift bei fehlender Übersetzung auf Englisch zurück. Beispiele, Muster und Gegenüberstellungen sind auf Englisch.
 
 Wähle Cambridge, Oxford Learner’s Dictionaries, Wiktionary oder Merriam-Webster für externe Suchen. Links öffnen die Website des Anbieters; Verweise zum Sprachgebrauch verwenden Cambridge Grammar.
 
+Die [Lesezeichen](https://lingfern.com/library/saved) öffnest du im Wörterbuch. Mit ★/☆ neben einer Definition speicherst oder entfernst du sie. Über den [Verlauf](https://lingfern.com/library/history) oben in der Bibliothek kannst du Wörterbuch-, Gebrauchs- und IPA-Abfragen sowie benannt gespeicherte Syntaxbäume erneut öffnen.
+
+<a id="readme-syntax-tree"></a>
+
+### Syntaxbaum
+
+Gib einen Satz, einen Klammerbaum, eine eingerückte Gliederung oder eine Dependenznotation ein. **Enter** zeichnet den Baum, **Umschalt+Enter** fügt einen Zeilenumbruch ein. Eine eingefügte CCGbank-AUTO-Ableitung behält ihre Kategorien und Verzweigungen.
+
+Mit **Bewegung** verknüpft Ziehen die Knoten durch Koindizes; erneutes Klicken oder Escape beendet den Modus. Rechtsklick oder langes Berühren öffnet das Menü.
+
+Pro Profil wird ein lokaler Entwurf automatisch gespeichert und wiederhergestellt; diese Baumentwürfe sind von Sicherung und Synchronisierung ausgeschlossen. **Speichern** erstellt eine getrennte benannte Momentaufnahme im Verlauf.
+
 <a id="readme-offline"></a>
 
-## Offline- und Community-Ressourcen
+## Offline-Downloads und ZIP-Import
 
-Suche, wähle, installiere, aktualisiere oder entferne Text-, Audio- und Nachschlagepakete in der Bibliothek. Mit installierten erforderlichen Ressourcen funktionieren Lernen, Bewertung, Speichern und installierte Nachschlagewerke offline. Verbindungswechsel werden kurz angezeigt.
+Suche unter **Offline-Inhalte** oder stöbere in **Lesen**, **Hören** und **Nachschlagewerke**. Wähle die gewünschten Pakete und dann **Herunterladen**. Um Speicher freizugeben, wähle installierte Pakete und dann **Entfernen**. Installierte Pakete stehen auf diesem Gerät offline zur Verfügung.
 
-Importiere kompatible Community-ZIPs und bewahre die Originale für Neuinstallation oder weitere Geräte auf. Downloads, GitHub, MCP und externe Websites benötigen Internet; Ressourcen und Aufnahmen werden je Gerät installiert.
+Optionale Syntaxmodelle findest du unter **Offline-Inhalte → Nachschlagewerke → Syntaxbaum**. UDPipe analysiert Abhängigkeiten. Für Konstituenten verwendet Lingfern Stanza (mit UDPipe) oder das installierte Charniak-Modell. Hol-CCG erzeugt CCG-Ableitungen. Die eingebauten Regeln funktionieren offline, wenn ein Modell fehlt oder sein Ergebnis verworfen wird. Prüfen Sie erzeugte Analysen vor der Verwendung.
+
+Installiere eine kompatible ZIP-Datei über **Ressourcen importieren → ZIP importieren**. Bewahre die Datei für eine erneute Installation oder ein anderes Gerät auf.
 
 Unterstützte Browser können Lingfern über „Installieren/Zum Startbildschirm hinzufügen“ als Web-App einrichten.
 

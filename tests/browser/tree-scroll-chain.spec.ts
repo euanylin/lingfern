@@ -23,6 +23,12 @@ test('the card scrolls natively like a text area, then hands over to the page', 
   await source.fill(long);
   await source.press('Enter');
   await expect(page.getByRole('treeitem', { name: 'door', exact: true })).toBeVisible();
+  const card = page.locator('.tree-scroll');
+  await expect(card).toHaveCSS('overscroll-behavior-x', 'contain');
+  await expect(card).toHaveCSS('overscroll-behavior-y', 'auto');
+  const toolbar = page.locator('.tree-zoom');
+  await expect(toolbar).toHaveCSS('overflow-x', 'hidden');
+  await expect(toolbar).toHaveCSS('overscroll-behavior-x', 'contain');
 
   const fitted = await read(page);
   console.log('fit', JSON.stringify(fitted));
@@ -33,8 +39,8 @@ test('the card scrolls natively like a text area, then hands over to the page', 
   for (let index = 0; index < 6; index++) await page.getByRole('button', { name: '放大' }).click();
   await expect.poll(async () => (await read(page)).scrollHeight).toBeGreaterThan(fitted.scrollHeight + 10);
   await page.evaluate(() => scrollTo(0, 150));
-  await page.locator('.tree-scroll').scrollIntoViewIfNeeded();
-  const box = (await page.locator('.tree-scroll').boundingBox())!;
+  await card.scrollIntoViewIfNeeded();
+  const box = (await card.boundingBox())!;
   const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
   await page.mouse.move(cx, cy);
   const start = await read(page);
@@ -59,10 +65,10 @@ test('the card scrolls natively like a text area, then hands over to the page', 
   expect(afterwards.cardTop).toBe(bottom.cardTop);
 
   // Scrolling up inside the card goes back through its own content before the page moves.
-  await page.locator('.tree-scroll').scrollIntoViewIfNeeded();
+  await card.scrollIntoViewIfNeeded();
   await page.waitForTimeout(150);
   const backPageY = (await read(page)).pageY;
-  const back = (await page.locator('.tree-scroll').boundingBox())!;
+  const back = (await card.boundingBox())!;
   await page.mouse.move(back.x + back.width / 2, back.y + back.height / 2);
   await page.mouse.wheel(0, -200);
   await page.waitForTimeout(250);

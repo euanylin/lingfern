@@ -1,5 +1,15 @@
 const closing = new WeakMap<HTMLDialogElement, () => void>();
 
+export function cycleModalFocus(event: Pick<KeyboardEvent, 'key' | 'shiftKey' | 'defaultPrevented' | 'preventDefault'>, dialog: HTMLElement) {
+  if (event.key !== 'Tab' || event.defaultPrevented) return;
+  const controls = [...dialog.querySelectorAll<HTMLElement>('a[href],button,input,select,textarea,[tabindex],[contenteditable="true"]')].filter(element => element.tabIndex >= 0 && !element.matches(':disabled') && !element.closest('[inert]') && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+  const first = controls[0], last = controls.at(-1), active = document.activeElement;
+  if (!first || !dialog.contains(active) || active === dialog || (event.shiftKey ? active === first : active === last)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first)?.focus();
+  }
+}
+
 export function showModal(dialog: HTMLDialogElement | null) {
   if (!dialog) return;
   closing.get(dialog)?.();
@@ -12,15 +22,7 @@ export function showModal(dialog: HTMLDialogElement | null) {
   }
   if (!dialog.open) {
     // Native dialogs can send boundary Tab presses to browser chrome.
-    const cycle = (event: KeyboardEvent) => {
-      if (event.key !== 'Tab' || event.defaultPrevented) return;
-      const controls = [...dialog.querySelectorAll<HTMLElement>('a[href],button,input,select,textarea,[tabindex],[contenteditable="true"]')].filter(element => element.tabIndex >= 0 && !element.matches(':disabled') && !element.closest('[inert]') && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
-      const first = controls[0], last = controls.at(-1), active = document.activeElement;
-      if (!first || !dialog.contains(active) || active === dialog || (event.shiftKey ? active === first : active === last)) {
-        event.preventDefault();
-        (event.shiftKey ? last : first)?.focus();
-      }
-    };
+    const cycle = (event: KeyboardEvent) => cycleModalFocus(event, dialog);
     dialog.addEventListener('keydown', cycle);
     dialog.addEventListener('close', () => dialog.removeEventListener('keydown', cycle), { once: true });
   }

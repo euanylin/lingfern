@@ -179,15 +179,16 @@ export function tidyTreeLayout(root: TidyInput, horizontalGap: number, verticalG
   const tree = new Node(root, root.width + horizontalGap, root.height + verticalGap, 0, horizontalGap, verticalGap);
   firstWalk(tree);
   secondWalk(tree, 0);
-  const placed = new Map<string, { x: number; y: number }>();
+  const placed = new Map<string, { x: number; y: number; width: number; height: number }>();
   const bounds = { left: Infinity, right: -Infinity, top: Infinity, bottom: -Infinity };
   const collect = (node: Node) => {
     const x = node.x + horizontalGap / 2;
-    placed.set(node.input.id, { x, y: node.y });
+    const { id, width, height } = node.input;
+    placed.set(id, { x, y: node.y, width, height });
     bounds.left = Math.min(bounds.left, x);
-    bounds.right = Math.max(bounds.right, x + node.input.width);
+    bounds.right = Math.max(bounds.right, x + width);
     bounds.top = Math.min(bounds.top, node.y);
-    bounds.bottom = Math.max(bounds.bottom, node.y + node.input.height);
+    bounds.bottom = Math.max(bounds.bottom, node.y + height);
     node.children.forEach(collect);
   };
   collect(tree);

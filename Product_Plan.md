@@ -43,6 +43,8 @@ This document covers product goals, curriculum structure, pages, data, synchroni
 
 Lingfern is an English-learning Web App for **users aged 16 and over, with teaching objectives spanning A1–C2**. Listening and reading are its core. Vocabulary, grammar, pragmatics, and comprehension strategies are embedded in meaningful tasks. Explainable difficulty adjustments help learners decide what to practise next, followed by unfamiliar materials to check independent application.
 
+The Library also supports standalone reference work. Learners can look up definitions and usage, listen to examples in the IPA chart, and draw, edit or export syntax trees without starting a practice session.
+
 The basic product flow is:
 
 **Understand the goal → study the material → obtain necessary support → respond → examine evidence and feedback → practise in a new context → review at intervals.**

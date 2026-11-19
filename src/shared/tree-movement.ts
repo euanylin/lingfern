@@ -43,12 +43,19 @@ export function isTraceLabel(label: string): boolean {
 }
 
 export function nextIndex(labels: Iterable<string>): number {
+  const used = new Set<number>();
   let highest = 0;
   for (const label of labels) {
     const index = labelIndex(label);
-    if (index !== undefined && index > highest) highest = index;
+    if (index === undefined) continue;
+    used.add(index);
+    highest = Math.max(highest, index);
   }
-  return Math.min(maxIndex, highest + 1);
+  if (highest < maxIndex) return highest + 1;
+  for (let index = 1; index <= maxIndex; index++) {
+    if (!used.has(index)) return index;
+  }
+  throw new Error('TREE_MOVE_INDEX');
 }
 
 type MovementNode = { id: string; label: string; children: string[] };
@@ -60,11 +67,11 @@ type MovementNode = { id: string; label: string; children: string[] };
  */
 export function movementPairs(nodes: readonly MovementNode[], root: string) {
   const byId = new Map(nodes.map(node => [node.id, node]));
-  const depth = new Map<string, number>();
+  const position = new Map<string, { depth: number; order: number }>();
   const walk = (id: string, level: number) => {
     const node = byId.get(id);
-    if (!node || depth.has(id)) return;
-    depth.set(id, level);
+    if (!node || position.has(id)) return;
+    position.set(id, { depth: level, order: position.size });
     for (const child of node.children) walk(child, level + 1);
   };
   walk(root, 0);
@@ -72,23 +79,26 @@ export function movementPairs(nodes: readonly MovementNode[], root: string) {
   for (const node of nodes) {
     const index = labelIndex(node.label);
     if (index === undefined) continue;
-    groups.set(index, [...(groups.get(index) ?? []), node]);
+    const group = groups.get(index);
+    if (group) group.push(node);
+    else groups.set(index, [node]);
   }
+  const depth = (node: MovementNode) => position.get(node.id)?.depth ?? 0;
+  const order = (node: MovementNode) => position.get(node.id)?.order ?? 0;
   const pairs: { trace: string; antecedent: string; index: number }[] = [];
   for (const [index, group] of groups) {
     if (group.length < 2) continue;
     const traces = group.filter(node => isTraceLabel(node.label)).sort((a, b) => a.id.localeCompare(b.id));
     if (traces.length) {
-      const antecedent = group.filter(node => !isTraceLabel(node.label)).sort((a, b) => (depth.get(a.id) ?? 0) - (depth.get(b.id) ?? 0) || a.id.localeCompare(b.id))[0];
+      const antecedent = group.filter(node => !isTraceLabel(node.label)).sort((a, b) => depth(a) - depth(b) || a.id.localeCompare(b.id))[0];
       if (antecedent) for (const trace of traces) pairs.push({ trace: trace.id, antecedent: antecedent.id, index });
       continue;
     }
-    // A hand-linked ordinary pair connects the deeper node to the shallower one.
-    const deepestFirst = [...group].sort((left, right) => (depth.get(right.id) ?? 0) - (depth.get(left.id) ?? 0));
-    const trace = deepestFirst[0];
-    const antecedent = [...group]
+    // Use child order to break equal-depth ties, independent of snapshot storage order.
+    const trace = group.sort((a, b) => depth(b) - depth(a) || order(a) - order(b))[0];
+    const antecedent = group
       .filter(node => node.id !== trace.id)
-      .sort((left, right) => (depth.get(left.id) ?? 0) - (depth.get(right.id) ?? 0))[0];
+      .sort((a, b) => depth(a) - depth(b) || order(a) - order(b))[0];
     if (!antecedent) continue;
     pairs.push({ trace: trace.id, antecedent: antecedent.id, index });
   }

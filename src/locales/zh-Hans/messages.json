@@ -230,7 +230,7 @@
     "moveRight": "右移",
     "autoSaveFailed": "自动保存失败，请检查可用存储空间并手动保存。",
     "move": "移位",
-    "movePick": "与…同标",
+    "moveIndexFull": "99 个移位编号均已使用。请先取消一组移位，释放一个编号。",
     "moveClear": "取消移位",
     "undo": "撤销",
     "redo": "重做",

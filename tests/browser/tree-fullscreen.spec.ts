@@ -32,6 +32,8 @@ test('fullscreen expands the board and Escape restores it', async ({ page }) => 
 
   await page.getByRole('button', { name: '全屏', exact: true }).click();
   await expect(page.locator('.tree-frame')).toHaveAttribute('data-expanded', '');
+  await expect(page.locator('.tree-scroll')).toHaveJSProperty('clientWidth', normal.viewport[0]);
+  await expect(page.locator('.tree-scroll')).toHaveJSProperty('clientHeight', normal.viewport[1]);
   await expect.poll(async () => (await read()).canvasWidth).toBeGreaterThan(normal.canvasWidth);
   const full = await read();
   console.log('normal', JSON.stringify(normal), 'full', JSON.stringify(full));
@@ -75,15 +77,45 @@ test('fullscreen works on a phone with a localised label', async ({ browser }, t
     await source.fill('the cat sat on the mat');
     await source.press('Enter');
     await expect(page.getByRole('treeitem', { name: 'NN', exact: true })).toHaveCount(2);
-    await page.getByRole('button', { name: 'Vollbild', exact: true }).click();
+    await page.getByRole('button', { name: 'Vollbild', exact: true }).tap();
     const info = await page.evaluate(() => {
-      const rect = (document.querySelector('.tree-frame') as HTMLElement).getBoundingClientRect();
-      return { width: Math.round(rect.width), height: Math.round(rect.height), viewport: [innerWidth, innerHeight], overflow: document.documentElement.scrollWidth <= innerWidth + 1 };
+      const rect = document.querySelector('.tree-scroll')!.getBoundingClientRect();
+      return {
+        edges: [rect.left, rect.top, rect.right, rect.bottom].map(Math.round),
+        viewport: [0, 0, innerWidth, innerHeight],
+        overflow: document.documentElement.scrollWidth <= innerWidth + 1,
+      };
     });
     console.log('mobile full', JSON.stringify(info));
-    expect(info.width).toBe(info.viewport[0]);
-    expect(info.height).toBe(info.viewport[1]);
+    expect(info.edges).toEqual(info.viewport);
     expect(info.overflow).toBe(true);
     await page.screenshot({ path: testInfo.outputPath('fullscreen-mobile.png') });
   } finally { await context.close(); }
+});
+
+test('fullscreen keeps keyboard focus on the board and closes a node menu first', async ({ page }) => {
+  await page.setViewportSize({ width: 1120, height: 900 });
+  await page.goto('/library/trees');
+  const source = page.locator('#tree-source');
+  await expect(source).toBeEnabled();
+  await source.fill('(S A B)');
+  await source.press('Enter');
+  const node = page.getByRole('treeitem', { name: 'B', exact: true });
+  await expect(node).toBeVisible();
+  const fullscreen = page.getByRole('button', { name: '全屏', exact: true });
+  await fullscreen.click();
+
+  await node.focus();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('.tree-zoom button:enabled').first()).toBeFocused();
+  await node.click({ button: 'right' });
+  await expect(page.getByRole('menu')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('menu')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: '退出全屏', exact: true })).toBeVisible();
+  await expect(node).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(fullscreen).toBeFocused();
+  await source.focus();
+  await expect(source).toBeFocused();
 });
