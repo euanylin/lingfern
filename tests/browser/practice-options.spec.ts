@@ -30,6 +30,13 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   await dialog.locator('[role=option][data-value=daily-life]').click();
   await expect(dialog.getByRole('listbox')).toHaveAttribute('aria-multiselectable', 'true');
   await expect(dialog.locator('[role=option][aria-selected=true]')).toHaveCount(2);
+  for (const value of ['culture', 'technology', 'environment']) await dialog.locator(`[role=option][data-value=${value}]`).click();
+  const fields = await dialog.locator('.practice-option-fields .setting-trigger').evaluateAll(elements => elements.map(element => {
+    const { y, height } = element.getBoundingClientRect();
+    return { y, height };
+  }));
+  expect(fields[0]).toEqual(fields[1]);
+  for (const value of ['culture', 'technology', 'environment']) await dialog.locator(`[role=option][data-value=${value}]`).click();
   await topic.click();
   const kind = dialog.getByRole('button', { name: t.kind }).and(dialog.locator('.setting-trigger'));
   await kind.click();
@@ -50,7 +57,11 @@ for (const [width, locale, theme] of [[375, 'en', 'light'], [320, 'zh-Hans', 'da
   expect(await dialog.evaluate(element => { const rect = element.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight && element.scrollWidth <= element.clientWidth; })).toBe(true);
   await expect(dialog.getByRole('button', { name: /^(Save|保存|儲存)$/ })).toHaveCount(0);
   expect(await dialog.locator('.practice-option-fields').evaluate(element => { const [first, second] = [...element.children].map(child => child.getBoundingClientRect()); return Math.abs(first.top - second.top) < 1 && Math.abs(first.left - second.left) > 100; })).toBe(true);
-  expect(await dialog.locator('.practice-material-search').evaluate(element => { const [automatic, search] = [...element.children].map(child => child.getBoundingClientRect()); return Math.abs(automatic.top - search.top) < 1 && automatic.height >= 44 && search.height >= 44; })).toBe(true);
+  const automatic = (await dialog.locator('.practice-material-search > button').boundingBox())!;
+  const search = (await dialog.getByRole('textbox', { name: t.search }).boundingBox())!;
+  expect(automatic.height).toBeGreaterThanOrEqual(44);
+  expect(search.height).toBe(automatic.height);
+  expect(search.y).toBe(automatic.y);
   if (width < 768) { const size = await dialog.boundingBox(); expect(size!.width).toBe(width); expect(size!.height).toBe(812); }
   await page.screenshot({ path: `output/playwright/practice-options-${width}-${locale}-${theme}.png` });
   await dialog.getByRole('button', { name: languagePacks[locale].taskDetail.close, exact: true }).click();
@@ -233,20 +244,47 @@ test('shared menus close on page or drawer scroll but keep their own options scr
   await cdp.detach();
 });
 
-test('automatic saves report a failed write and retry the latest rapid multi-selection', async ({ page }) => {
+test('practice settings retry a failed save before refreshing the material list', async ({ page }) => {
   await page.goto('/today');
   await page.locator('[data-practice-skill=reading]').first().click();
   const dialog = page.locator('.practice-options-dialog');
+  await expect(dialog.getByText(languagePacks['zh-Hans'].practiceOptions.loading, { exact: true })).toHaveCount(0);
   await page.evaluate(async () => {
     const path = '/src/data/db.ts', data = await import(path), put = data.settings.put.bind(data.settings);
+    const where = data.communityPacks.where.bind(data.communityPacks);
+    Reflect.set(window, 'failMaterialReads', true);
+    data.communityPacks.where = (index: unknown) => {
+      if (Reflect.get(window, 'failMaterialReads')) throw new Error('Test material list failure');
+      return where(index);
+    };
+    let failed = false;
+    Reflect.set(window, 'practiceWrites', 0);
     data.settings.put = async (entry: { key: string; value: string }) => {
-      if (entry.key.endsWith(':readingPractice')) { data.settings.put = put; throw new DOMException('Test quota failure', 'QuotaExceededError'); }
+      if (entry.key.endsWith(':readingPractice')) {
+        Reflect.set(window, 'practiceWrites', Reflect.get(window, 'practiceWrites') + 1);
+        if (!failed) { failed = true; throw new DOMException('Test quota failure', 'QuotaExceededError'); }
+      }
       return put(entry);
     };
+    window.dispatchEvent(new Event('lingfern-resources-installed'));
   });
-  await dialog.locator('.setting-trigger').last().click();
-  await dialog.locator('[role=option][data-value=completion]').click();
   await expect(dialog.getByRole('alert')).toBeVisible();
+  await dialog.locator('.practice-material-search > button').click();
+  expect(await page.evaluate(() => Reflect.get(window, 'practiceWrites'))).toBe(0);
+  const kind = dialog.locator('.setting-trigger').last();
+  await kind.click();
+  await dialog.locator('[role=option][data-value=completion]').click();
+  const writes = () => page.evaluate(() => Reflect.get(window, 'practiceWrites'));
+  await expect.poll(writes).toBe(1);
+  await kind.click();
+  const retry = dialog.getByRole('button', { name: languagePacks['zh-Hans'].app.retry, exact: true });
+  await retry.click();
+  await expect.poll(writes).toBe(2);
+  await expect(dialog.getByRole('alert')).toBeVisible();
+  await page.evaluate(() => Reflect.set(window, 'failMaterialReads', false));
+  await retry.click();
+  await expect(dialog.getByRole('alert')).toHaveCount(0);
+  await kind.click();
   await dialog.locator('[role=option][data-value=choice]').click();
   await dialog.locator('[role=option][data-value=matching]').click();
   await dialog.locator('.setting-trigger').last().click();

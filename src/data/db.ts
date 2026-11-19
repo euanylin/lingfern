@@ -147,8 +147,9 @@ export async function claimSession(id: string, owner: string, now = Date.now(), 
     await assertCheckDevice(session);
     if (session.owner && session.owner !== owner && session.leaseUntil > now && !(holdsWebLock && session.lockMode === 'web-lock')) throw new Error('BUSY');
     const lockMode = session.owner === owner ? session.lockMode : holdsWebLock ? 'web-lock' : undefined;
-    await sessions.update(id, { owner, leaseUntil: now + LEASE_MS, lockMode, ...(session.checkDeviceId ? { checkDeviceId: session.checkDeviceId } : {}) });
-    return { ...session, owner, leaseUntil: now + LEASE_MS, lockMode };
+    const leaseUntil = Math.max(session.owner === owner ? session.leaseUntil : 0, now + LEASE_MS);
+    await sessions.update(id, { owner, leaseUntil, lockMode, ...(session.checkDeviceId ? { checkDeviceId: session.checkDeviceId } : {}) });
+    return { ...session, owner, leaseUntil, lockMode };
   });
 }
 
@@ -162,10 +163,16 @@ async function owned(id: string, owner: string) {
   const session = await sessions.get(id);
   if (!session) throw new Error('NOT_FOUND');
   if (session.recordsDeleted) throw new Error('RECORD_DELETED');
-  if (session.owner !== owner || session.leaseUntil <= Date.now()) throw new Error('BUSY');
+  if (session.owner !== owner) throw new Error('BUSY');
   lessonSchema.parse(session.lesson);
   await assertCheckDevice(session);
   if (session.workspace) validateWorkspace(session.lesson, session.workspace);
+  const now = Date.now();
+  // Renew a suspended tab only if it still owns the session.
+  if (session.leaseUntil <= now) {
+    session.leaseUntil = now + LEASE_MS;
+    await sessions.update(id, { leaseUntil: session.leaseUntil });
+  }
   return session;
 }
 

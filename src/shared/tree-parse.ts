@@ -1341,8 +1341,7 @@ export function parseTaggedSentence(input: string, pos?: PosLookup): RawNode {
 }
 
 // Base nominals are folded into the NP so prenominal material is flat, as in PTB II.
-// Movement (移位) is added after the tree is complete, because a trace is placed by the shape of the
-// clause that contains it. Each trace is coindexed with the constituent that moved: "what₁ … t₁".
+// Place traces after building the clause that contains them.
 const whLabels = new Set(['WHNP', 'WHADVP', 'WHPP', 'WDT', 'WP', 'WP$', 'WRB']);
 const complementLabels = new Set(['NP', 'PP', 'SBAR', 'S', 'ADJP', 'PRP']);
 

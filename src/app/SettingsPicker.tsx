@@ -43,7 +43,7 @@ export function SettingsPicker(props: Props) {
       if (!trigger.current || !root.current) return;
       const visual = window.visualViewport;
       let viewport = { left: visual?.offsetLeft ?? 0, top: visual?.offsetTop ?? 0, width: visual?.width ?? innerWidth, height: visual?.height ?? innerHeight };
-      // Keep matching menus within the answer panel's visible area.
+      // Clip menus to the visible panel.
       const clip = popup.closest('.question-sheet-content,.task-detail-body')?.getBoundingClientRect();
       if (clip) {
         const left = Math.max(viewport.left, clip.left), top = Math.max(viewport.top, clip.top);
@@ -58,11 +58,11 @@ export function SettingsPicker(props: Props) {
       const center = option.offsetTop + option.offsetHeight / 2;
       if (centerSelected) scroller.scrollTop = Math.max(0, center - scroller.clientHeight / 2);
       const rtl = getComputedStyle(trigger.current).direction === 'rtl';
-      // Wide fields open from their text edge; compact row values keep end alignment.
+      // Align fields at the start and compact triggers at the end.
       const alignLeft = variant === 'field' ? !rtl : rtl;
       const placement = pickerMenuPosition(trigger.current.getBoundingClientRect(), { width: popup.offsetWidth, height: popup.offsetHeight }, viewport, alignLeft ? 'left' : 'right');
       const parent = popup.offsetParent;
-      // Closing dialogs can temporarily hide a menu retained for its exit motion.
+      // A closing dialog can hide its fading menu.
       if (!(parent instanceof HTMLElement)) return;
       const origin = parent.getBoundingClientRect();
       popup.style.right = 'auto';
@@ -78,7 +78,7 @@ export function SettingsPicker(props: Props) {
       window.removeEventListener('resize', reposition);
       visual?.removeEventListener('resize', reposition);
     };
-    // The fading menu still contributes to scrollable overflow until it unmounts.
+    // Reposition fading menus to avoid overflow.
     if (!open) return stopRepositioning;
     const openingScroll = new Map<EventTarget, { owner: Element; left: number; top: number }>();
     for (let owner: Element | null = root.current; owner; owner = owner.parentElement) openingScroll.set(owner, { owner, left: owner.scrollLeft, top: owner.scrollTop });
@@ -91,7 +91,7 @@ export function SettingsPicker(props: Props) {
       setOpen(false);
     };
     const scrolled = (event: Event) => {
-      // Focus may finish scrolling before its queued notification arrives.
+      // Ignore queued events from focus scrolling.
       const initial = event.target && openingScroll.get(event.target);
       if (initial && initial.owner.scrollLeft === initial.left && initial.owner.scrollTop === initial.top) return;
       if (event.target === visual && visual?.offsetLeft === visualLeft && visual?.offsetTop === visualTop) return;
@@ -100,7 +100,7 @@ export function SettingsPicker(props: Props) {
     let touchY: number | undefined;
     const touchStart = (event: TouchEvent) => { touchY = event.target instanceof Node && popup.contains(event.target) ? undefined : event.touches[0]?.clientY; };
     const touchMove = (event: TouchEvent) => { if (touchY !== undefined && Math.abs((event.touches[0]?.clientY ?? touchY) - touchY) > 10) dismiss(event); };
-    // Start scroll dismissal after the trigger finishes scrolling into view.
+    // Wait for focus scrolling before listening.
     const frame = requestAnimationFrame(() => { update(); window.addEventListener('scroll', scrolled, true); });
     window.addEventListener('wheel', dismiss, { capture: true, passive: true });
     window.addEventListener('touchstart', touchStart, { capture: true, passive: true });
@@ -154,14 +154,14 @@ export function SettingsPicker(props: Props) {
     else if (event.key === 'Escape' && open) { event.preventDefault(); setOpen(false); trigger.current?.focus({ preventScroll: true }); }
   }
   return <div className={`setting${variant === 'field' ? ' setting-field' : ''}`} ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
-    <span id={`${id}-label`} className={variant !== 'setting' ? 'sr-only' : undefined}><span>{label}</span>{description && <small id={`${id}-description`} className="setting-description">{description}</small>}</span>
-    {/* Keep pointer focus inside the control before Safari dispatches blur and click. */}
+    <span className={variant !== 'setting' ? 'sr-only' : undefined}><span>{label}</span>{description && <small id={`${id}-description`} className="setting-description">{description}</small>}</span>
+    {/* Focus before Safari dispatches blur and click. */}
     <button ref={trigger} className="setting-trigger" type="button" data-value={props.multiple ? props.value.join(',') : value} disabled={blocked} aria-label={`${label}: ${selectedText}`} aria-describedby={description ? `${id}-description` : undefined} aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-options`} onPointerDown={() => trigger.current?.focus({ preventScroll: true })} onMouseDown={event => event.preventDefault()} onClick={toggle} onKeyDown={event => { if (!open && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); show(event.key === 'ArrowDown' ? (selected + 1) % options.length : event.key === 'ArrowUp' ? (selected - 1 + options.length) % options.length : event.key === 'Home' ? 0 : options.length - 1); } else move(event, selected); }}>
-      {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span id={`${id}-value`}><bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span>}
+      {variant === 'field' && <span className="setting-field-label" aria-hidden="true">{label}</span>}<span><bdi lang={options[selected]?.lang}>{selectedText}</bdi></span>{variant !== 'field' && <span className="setting-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span>}
     </button>
     {present && <div ref={menu} id={`${id}-options`} className="setting-menu" data-open={open} inert={!open || blocked} aria-hidden={!open || blocked} role="listbox" aria-label={label} aria-multiselectable={props.multiple || undefined}>
       <div ref={scroll} className="setting-menu-scroll" tabIndex={-1} onKeyDown={event => { if (event.target === event.currentTarget) move(event, focusIndex); }}>
-        {/* Keep Safari menus open through pointer focus loss until the option click. */}
+        {/* Keep Safari focus in the menu until click. */}
         {options.map((option, index) => <button key={option.value} type="button" role="option" tabIndex={-1} disabled={blocked} data-value={option.value} aria-selected={isSelected(option)} onMouseDown={event => event.preventDefault()} onClick={() => choose(option, index)} onKeyDown={event => move(event, index)}><span className="setting-check" aria-hidden="true">{isSelected(option) && <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 8 3 3 7-8"/></svg>}</span>{option.palette && <span aria-hidden="true" className="palette-swatches" data-palette={option.palette}/>}<bdi lang={option.lang}>{option.label}</bdi></button>)}
       </div>
     </div>}

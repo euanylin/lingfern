@@ -198,6 +198,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
   const loadRevision = useRef(0), localPreferenceRevision = useRef(0);
   async function load(rejectFailure = false): Promise<void> {
     const current = ++loadRevision.current, preferencesAtStart = localPreferenceRevision.current;
+    let loadingProfile: string | undefined;
     setError('');
     try {
       // Reopen after a transient IndexedDB failure instead of retrying a closed connection.
@@ -213,6 +214,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
         if (selected !== profile.id) await settings.put({ key: 'activeProfile', value: profile.id });
         return profile.id;
       });
+      loadingProfile = profileId;
       await bootstrapSyncEvents(profileId).catch(() => { if (current === loadRevision.current) setError('save'); });
       await purgeDeletedRecords(profileId);
       const [all, answers, imported, context, clock, events, lookups] = await Promise.all([
@@ -257,7 +259,14 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
       setOnlineDictionary(defaultOnlineDictionary(savedValues.get('onlineDictionary')));
       setPracticeSelections({ reading: readPracticeSelection(savedValues.get('readingPractice')), listening: readPracticeSelection(savedValues.get('listeningPractice')) });
       setHistory(all.sort((a,b) => b.startedAt.localeCompare(a.startedAt))); setRecords(effective.records); setFernLookups(lookups); setReady(true);
-    } catch { if (current === loadRevision.current) { setError('read'); setReady(false); } if (rejectFailure) throw new Error('SYNC_APPLY_FAILED'); }
+    } catch {
+      if (current === loadRevision.current) {
+        setError('read');
+        // Keep the open editor through a refresh failure on the same profile.
+        if (!learning.current || loadingProfile && loadingProfile !== currentProfile.current) setReady(false);
+      }
+      if (rejectFailure) throw new Error('SYNC_APPLY_FAILED');
+    }
   }
   const syncLoad = useRef(load); syncLoad.current = load;
   useEffect(() => {

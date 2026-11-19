@@ -1,7 +1,6 @@
 .ipa-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px 24px}
 .ipa-heading h1{margin:0;font-family:var(--font-heading);font-size:2.25rem}
 .ipa-official-link{display:inline-flex;align-items:center;justify-self:end;gap:6px;min-height:44px;color:var(--muted);font-size:.875rem;text-decoration:none}
-.ipa-official-link:hover{color:var(--ink);text-decoration:underline}
 .ipa-scope{grid-column:1/-1;margin:0;line-height:1.6}
 @media(max-width:479px){
   .ipa-heading{column-gap:12px}

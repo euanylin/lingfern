@@ -155,6 +155,111 @@ test('a transient heartbeat failure preserves the open reading note through retr
   await page.locator('.reading-notes button', { hasText: '保存笔记' }).click();
   await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).readingAnnotations?.[0]?.note, id)).toBe('Preserve this unsaved note through heartbeat retry.');
 });
+
+test('a failed profile refresh preserves the open reading note through retry', async ({ page }) => {
+  await openSnapshot(page, 'a1-reading', true);
+  await page.locator('.reading-notes summary').click();
+  const note = page.locator('.reading-notes textarea');
+  await note.fill('Keep my note during a profile read failure.');
+  await page.evaluate(async () => {
+    const { profiles } = await import('/src/data/db.ts' as string);
+    const get = profiles.get.bind(profiles), profile = await get('local-guest');
+    Reflect.set(window, 'failProfileRead', true);
+    profiles.get = (key: string) => Reflect.get(window, 'failProfileRead') ? Promise.reject(new Error('Synthetic profile read failure')) : get(key);
+    await profiles.put({ ...profile, name: 'Synthetic profile refresh' });
+  });
+  const alert = page.getByRole('alert');
+  await expect(alert).toContainText(languagePacks['zh-Hans'].app.readError);
+  const retry = alert.getByRole('button', { name: languagePacks['zh-Hans'].app.retry, exact: true });
+  await retry.click();
+  await expect(alert).toContainText(languagePacks['zh-Hans'].app.readError);
+  await expect(note).toHaveValue('Keep my note during a profile read failure.');
+  await page.evaluate(() => Reflect.set(window, 'failProfileRead', false));
+  await retry.click();
+  await expect(alert).toHaveCount(0);
+  await expect(note).toHaveValue('Keep my note during a profile read failure.');
+});
+
+test('another tab taking the lease does not discard the open reading note', async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, 'locks', { value: undefined }));
+  await page.clock.install();
+  const { id } = await openSnapshot(page, 'a1-reading', true);
+  await page.locator('.reading-notes summary').click();
+  const note = page.locator('.reading-notes textarea');
+  const text = 'Keep my note until this tab can reclaim the session.';
+  await note.fill(text);
+  await page.evaluate(async id => {
+    const { db, settings, sessions, claimSession } = await import('/src/data/db.ts' as string);
+    await db.transaction('rw', sessions, settings, async () => {
+      await sessions.update(id, { leaseUntil: 0 });
+      await claimSession(id, 'synthetic-other-tab');
+    });
+  }, id);
+  await page.clock.fastForward(5000);
+  const alert = page.getByRole('alert');
+  await expect(alert).toContainText(languagePacks['zh-Hans'].app.busy);
+  await expect(note).toHaveValue(text);
+  const retry = alert.getByRole('button', { name: languagePacks['zh-Hans'].app.retry, exact: true });
+  await retry.click();
+  await expect(alert).toContainText(languagePacks['zh-Hans'].app.busy);
+  await expect(note).toHaveValue(text);
+  await page.evaluate(async id => (await import('/src/data/db.ts' as string)).releaseSession(id, 'synthetic-other-tab'), id);
+  await retry.click();
+  await expect(alert).toHaveCount(0);
+  await expect(note).toHaveValue(text);
+  await page.locator('.reading-notes button', { hasText: '保存笔记' }).click();
+  await expect.poll(() => page.evaluate(async id => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).readingAnnotations?.[0]?.note, id)).toBe(text);
+});
+
+test('failure to clear a session lease still lets the user leave and resume in another tab', async ({ page, context }) => {
+  await page.route(/\/src\/data\/db\.ts(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}
+      const originalLeaseRelease = releaseSession;
+      releaseSession = async (...args) => {
+        if (window.failLeaseRelease) { window.failLeaseRelease = false; throw new Error('Synthetic lease release failure'); }
+        return originalLeaseRelease(...args);
+      };` });
+  });
+  const { id, lesson } = await openSnapshot(page, 'a1-reading', true);
+  const question = await focusQuestion(page, lesson, 0);
+  await question.getByRole('radio', { name: 'At the library.' }).check();
+  const questionId = lesson.materials[0].questions[0].id;
+  await expect.poll(() => page.evaluate(async ({ id, questionId }) => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace?.drafts[questionId], { id, questionId })).toBe(1);
+  await page.evaluate(() => Reflect.set(window, 'failLeaseRelease', true));
+  await page.locator('.session-header .back-button').click();
+  await expect(page).toHaveURL('/today');
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toBeVisible();
+  const other = await context.newPage();
+  await other.goto(new URL(`/learn/${id}`, page.url()).href);
+  await expect(other.locator('.material-workspace')).toBeVisible();
+  await expect((await focusQuestion(other, lesson, 0)).getByRole('radio', { name: 'At the library.' })).toBeChecked();
+  await other.close();
+});
+
+test('the open workspace follows answers committed in another tab', async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, 'locks', { value: undefined }));
+  await page.clock.install();
+  const { id, lesson } = await openSnapshot(page, 'a1-reading', true);
+  const first = await focusQuestion(page, lesson, 0);
+  await first.getByRole('radio', { name: 'At the library.' }).check();
+  const questionIds = lesson.materials.map(material => material.questions[0].id);
+  await expect.poll(() => page.evaluate(async ({ id, questionId }) => (await (await import('/src/data/db.ts' as string)).sessions.get(id)).workspace?.drafts[questionId], { id, questionId: questionIds[0] })).toBe(1);
+  await page.evaluate(async ({ id, questionIds }) => {
+    const { sessions, claimSession, saveWorkspaceDraft, submitWorkspace, releaseSession } = await import('/src/data/db.ts' as string);
+    const otherOwner = 'synthetic-other-tab';
+    await sessions.update(id, { leaseUntil: 0 });
+    await claimSession(id, otherOwner);
+    for (const questionId of questionIds) await saveWorkspaceDraft(id, otherOwner, questionId, 0);
+    await submitWorkspace(id, otherOwner);
+    await releaseSession(id, otherOwner);
+  }, { id, questionIds });
+  await page.clock.fastForward(5000);
+  await expect(page.locator('#workspace-result')).toBeVisible();
+  await expect(first.getByRole('radio', { name: 'At the café.' })).toBeChecked();
+  await expect(first.getByRole('radio', { name: 'At the library.' })).not.toBeChecked();
+});
+
 test('a failed strict-check start shows its retry action without revealing the material', async ({ page }) => {
   await page.route(/\/src\/data\/db\.ts(?:\?.*)?$/, async route => {
     const response = await route.fetch();

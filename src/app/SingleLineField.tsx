@@ -3,7 +3,7 @@ import type { ComponentPropsWithRef } from 'react';
 type Props = ComponentPropsWithRef<'textarea'> & { submitOnEnter?: boolean };
 
 export function SingleLineField({ onChange, onKeyDown, submitOnEnter, ...props }: Props) {
-  // Android Chrome can show its password and payment toolbar on inputs with autocomplete off.
+  // Avoid Android Chrome autofill on text inputs.
   return <textarea {...props} rows={1} wrap="off" aria-multiline={false} data-single-line="" autoComplete="off"
     onChange={event => {
       const field = event.currentTarget;

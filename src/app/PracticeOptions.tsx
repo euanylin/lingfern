@@ -15,6 +15,7 @@ import { SettingsPicker } from './SettingsPicker';
 type Props = { locale: Locale; profileId: string; skill: 'reading' | 'listening'; preferences?: Preferences; history: Session[]; records: Attempt[]; value: PracticeSelection; disabled: boolean; onChange: (value: PracticeSelection) => Promise<void> };
 type Material = { value: string; label: string; group: string };
 type MaterialGroup = { group: string; items: Material[] };
+const resourceEvents = ['lingfern-resources-installed', 'focus', 'online', 'offline'];
 
 export function PracticeOptions(props: Props) {
   const { locale, profileId, skill, preferences, history, records, value, disabled } = props, t = messages('practiceOptions')[locale];
@@ -26,9 +27,9 @@ export function PracticeOptions(props: Props) {
     const refresh = () => setResources(value => value + 1);
     const channel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('lingfern-resources') : undefined;
     if (channel) channel.onmessage = refresh;
-    for (const event of ['lingfern-resources-installed', 'focus', 'online', 'offline']) window.addEventListener(event, refresh);
+    for (const event of resourceEvents) window.addEventListener(event, refresh);
     document.addEventListener('visibilitychange', refresh);
-    return () => { channel?.close(); for (const event of ['lingfern-resources-installed', 'focus', 'online', 'offline']) window.removeEventListener(event, refresh); document.removeEventListener('visibilitychange', refresh); };
+    return () => { channel?.close(); for (const event of resourceEvents) window.removeEventListener(event, refresh); document.removeEventListener('visibilitychange', refresh); };
   }, [open]);
   useEffect(() => {
     if (!open) return;
@@ -56,13 +57,13 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
   const initialMaterials = useRef(value.materials);
   const saveQueue = useRef(Promise.resolve(true)), revision = useRef(0);
   const [saving, setSaving] = useState(false), [error, setError] = useState('');
-  const [expanded, setExpanded] = useState(new Set(['general', 'unavailable', 'community']));
+  const [expanded, setExpanded] = useState(() => new Set(['general', 'unavailable', 'community']));
   useEffect(() => { setExpanded(previous => new Set([...previous, ...materials.filter(item => initialMaterials.current.includes(item.value)).map(item => item.group)])); }, [materials]);
   const change = useCallback((next: PracticeSelection) => {
     setDraft(next);
     const request = ++revision.current;
     setSaving(true); setError('');
-    // Serialize selections so stale writes cannot replace newer choices.
+    // Save edits in order.
     saveQueue.current = saveQueue.current.then(async () => {
       try { await onChange(practiceSelectionSchema.parse(next)); return true; }
       catch { if (request === revision.current) setError(t.failed); return false; }
@@ -74,7 +75,7 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
   function close() {
     if (!saving) { motion.close(); return; }
     const request = revision.current;
-    // Further editing supersedes a close waiting on an earlier save.
+    // A newer edit cancels this close request.
     void saveQueue.current.then(saved => { if (saved && request === revision.current) motion.close(); });
   }
   const known = useMemo(() => new Map(materials.map(item => [item.value, item])), [materials]);
@@ -96,20 +97,19 @@ function PracticeOptionsPanel({ locale, skill, value, onChange, onClose, materia
         <SettingsPicker variant="field" label={t.kind} multiple value={draft.kinds} options={[{ value: '', label: automatic }, ...corpusQuestionKindSchema.options.map(value => ({ value, label: messages('taskDetail')[locale].kinds[value] }))]} onChange={kinds => change({ ...draft, kinds: corpusQuestionKindSchema.array().parse(kinds) })}/>
       </div>
       <fieldset><legend className="sr-only">{t.materials}</legend><div className="practice-material-heading"><span aria-hidden="true">{t.materials}</span>{selected > 0 && <small role="status">{t.selected.replace('{count}', String(selected))}</small>}</div>
-        <div className="practice-material-search"><button className="button" type="button" aria-pressed={!selected} onClick={() => change({ ...draft, materials: [] })}>{automatic}{!selected ? ' ✓' : ''}</button><label className="task-search"><span className="sr-only">{t.search}</span><SingleLineField enterKeyHint="search" placeholder={t.search} value={query} onChange={event => setQuery(event.target.value)}/></label></div>
+        <div className="practice-material-search"><button className="button" type="button" aria-pressed={!selected} onClick={() => { if (selected) change({ ...draft, materials: [] }); }}>{automatic}{!selected ? ' ✓' : ''}</button><label className="task-search"><span className="sr-only">{t.search}</span><SingleLineField enterKeyHint="search" placeholder={t.search} value={query} onChange={event => setQuery(event.target.value)}/></label></div>
         {selected > 0 && <div className="practice-selected-materials">{draft.materials.map(value => <button className="button" key={value} type="button" aria-pressed="true" onClick={() => change({ ...draft, materials: draft.materials.filter(item => item !== value) })}><bdi lang="en">{known.get(value)?.label ?? missing(value).label}</bdi><span aria-hidden="true">×</span></button>)}</div>}
         {selected === 1 && <p className="muted" role="status">{t.materialHint}</p>}
         {loading && <p className="muted" role="status">{t.loading}</p>}
         <PracticeMaterialList groups={groups} selected={draft.materials} expanded={expanded} searching={!!query.trim()} locale={locale} id={id} onToggle={toggleMaterial} onExpand={toggleGroup}/>
         {!loading && !groups.length && <p>{t.empty}</p>}
       </fieldset>
-      {(error || loadError) && <p className="error" role="alert">{error || loadError} <button className="button" type="button" disabled={saving} onClick={() => loadError ? onRefresh() : change(draft)}>{messages('app')[locale].retry}</button></p>}
+      {(error || loadError) && <p className="error" role="alert">{error || loadError} <button className="button" type="button" disabled={saving} onClick={() => error ? change(draft) : onRefresh()}>{messages('app')[locale].retry}</button></p>}
       {saving && <span className="sr-only" role="status">{t.saving}</span>}
     </div>
   </dialog>, document.body);
 }
 
-// Memoize material controls across feedback and save-status updates.
 const PracticeMaterialList = memo(function PracticeMaterialList({ groups, selected, expanded, searching, locale, id, onToggle, onExpand }: { groups: MaterialGroup[]; selected: string[]; expanded: Set<string>; searching: boolean; locale: Locale; id: string; onToggle: (value: string, checked: boolean) => void; onExpand: (group: string) => void }) {
   const t = messages('practiceOptions')[locale], ui = messages('offlineInstall_libraryLabels')[locale], checked = new Set(selected);
   return <div className="practice-material-list">{groups.map(bucket => {

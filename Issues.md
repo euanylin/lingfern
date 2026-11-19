@@ -14,6 +14,18 @@ The [phrase-head provenance review](LICENSING.md#phrase-head-rule-provenance) re
 
 - **LIBRARY-INSTALLATION-INTENTION:** The Library exposed a synchronised installation choice for resources missing on the current device. Removed the label, event capture and projection, and sync copy across all fourteen languages. Chrome verified the four parser rows, multi-resource download/removal, cross-tab status and offline ZIP import. A synthetic mixed sync batch retained its hash and bookmark after backup restoration. Retired events in the unbatched queue were skipped when the next batch was sealed.
 
+## Resolved appearance issue
+
+- **PALETTE-SWATCH-BRIGHTNESS:** The theme picker used the current mode's accent, making light-mode swatches too dark. Each swatch now uses the palette's brighter dark-mode accent in both modes. The browser regression compares all 33 swatches across both modes and checks them against their corresponding dark-mode accents.
+- **PRACTICE-MATERIAL-CONTROL-HEIGHT:** The search field's inline baseline added space beneath the field and made the adjacent Automatic button taller. The search field now stretches with the button. The browser regression compares the rendered controls' top edges and heights and checks the 44px minimum.
+- **PRACTICE-AND-EXPORT-CONTROL-HEIGHT:** The practice topic and question-type buttons now share their row height when selected values wrap. The tree export format button fills the filename row vertically. Focused Chrome regressions compare the actual controls' heights and top edges.
+- **ABOUT-CONTACT-TOUCH-FEEDBACK:** The Blog, Email and GitHub links now use the same accent and translation for mouse hover and touch contact. The touch state clears on release, and keyboard navigation has a visible focus outline.
+- **REFERENCE-CONTROL-TOUCH-FEEDBACK:** Dictionary bookmarks, online lookup, the official IPA chart, About credits and the About and History back arrows share their mouse and touch feedback. The regression checks the rendered cues and their removal on cancellation.
+- **PRACTICE-SETTINGS-RETRY:** When both reading the material list and saving practice settings fail, Retry saves the pending edits first. Selecting Automatic again skips the redundant write.
+- **TOUCH-TO-KEYBOARD:** Checkboxes and other controls now leave touch mode on keyboard input. Soft-keyboard text entry keeps its touch behavior.
+- **PRACTICE-SUBMISSION-RECOVERY:** An unchanged session owner can renew an expired lease inside the write transaction. Submission retries pending drafts and holds the session through commit or rollback. Retrying a draft error alone never submits the practice.
+- **LEARNING-RECOVERY:** A failed profile refresh or a temporary conflict with another tab keeps the open editor and unsaved input. Exiting waits for answer writes and can finish if clearing the lease fails. Committed records take precedence when another tab has already submitted.
+
 ## Resolved tooltip issue
 
 - **FERN-HOVER-TEXT:** The SVG title repeated the fern’s accessible activity summary as a browser tooltip. Removed the title in the shared fern and removed redundant titles from resource names, download progress and selected-material buttons. Chrome verified the Today and Introduction fern, the accessible name, resource names and material selection.

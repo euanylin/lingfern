@@ -30,9 +30,10 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
   function release() {
     mounted.current = false;
     // Navigation and unmount share one release after every queued write and claim.
-    return releasing.current ??= Promise.allSettled([claimPending.current, pending.current]).then(() => {
-      lockRelease.current?.(); lockRelease.current = undefined;
-      return releaseSession(id, owner);
+    return releasing.current ??= Promise.allSettled([claimPending.current, pending.current]).then(async () => {
+      try { await releaseSession(id, owner); }
+      catch { /* The lease expires if storage is unavailable. */ }
+      finally { lockRelease.current?.(); lockRelease.current = undefined; }
     });
   }
   useImperativeHandle(ref, () => ({ release, confirmLeave: () => confirmLeave.current() }));
@@ -71,7 +72,16 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
       if (!mounted.current || loading.current || claimPending.current || navigator.locks && !lockRelease.current) return;
       const claim = claimSession(id, owner, Date.now(), profileId);
       claimPending.current = claim;
-      void claim.catch(cause => { if (mounted.current) { if (cause instanceof Error && cause.message === 'CHECK_DEVICE') void load(); else setError(cause instanceof Error && ['BUSY', 'NOT_FOUND'].includes(cause.message) ? cause.message : 'READ'); } }).finally(() => { if (claimPending.current === claim) claimPending.current = undefined; });
+      void claim.then(current => {
+        if (!mounted.current || current.status === 'active' && !current.recordsDeleted) return;
+        // A different tab may have finished while this tab was suspended.
+        setSession(previous => previous?.status === current.status && previous.recordsDeleted === current.recordsDeleted ? previous : current);
+        setError(previous => previous === 'BUSY' ? '' : previous);
+      }).catch(cause => {
+        if (!mounted.current) return;
+        if (cause instanceof Error && cause.message === 'CHECK_DEVICE') void load();
+        else setError(cause instanceof Error && ['BUSY', 'NOT_FOUND'].includes(cause.message) ? cause.message : 'READ');
+      }).finally(() => { if (claimPending.current === claim) claimPending.current = undefined; });
     }, 5000);
     return () => {
       mounted.current = false; clearInterval(heartbeat);
@@ -83,12 +93,13 @@ export default function Learning({ ref, owner, id, profileId, locale, online, on
   const instructionLocale = practiceLocale(session.lesson, locale), title = <h1 lang={contentLanguage(session.lesson.title, instructionLocale)}>{contentText(session.lesson.title, instructionLocale)}</h1>;
   if (session.recordsDeleted) return <>{title}<p>{deletionCopy[locale].archived}</p><a className="button" href="/progress">{t.progress}</a></>;
   const checkIntro = session.lesson.mode === 'check' && session.status === 'active' && !session.checkStartedAt;
-  if (error && (blockingErrors.includes(error) || checkIntro)) return <section>{title}<p role="alert">{message}</p><div className="action-row"><button className="button" onClick={() => void load()}>{t.retry}</button><a className="button back-button" href="/today" aria-label={t.finish}><span dir="ltr" aria-hidden="true">←</span></a></div></section>;
+  const retryAndLeave = <div className="error" role="alert"><p>{message}</p><div className="action-row"><button className="button" onClick={() => void load()}>{t.retry}</button><a className="button back-button" href="/today" aria-label={t.finish}><span dir="ltr" aria-hidden="true">←</span></a></div></div>;
+  if (error && (checkIntro || error !== 'BUSY' && blockingErrors.includes(error))) return <section>{title}{retryAndLeave}</section>;
   if (checkIntro) return <section className="narrow check-intro">
     {title}<p lang={contentLanguage(session.lesson.goal, instructionLocale)}>{contentText(session.lesson.goal, instructionLocale)}</p><p>{t.checkUnseen}</p>
     <dl><div><dt>{t.checkExpectedDuration}</dt><dd>{session.lesson.expectedMinutes} {t.checkMinutes}</dd></div><div><dt>{t.dictionary}</dt><dd>{t.checkDictionaryRule}</dd></div><div><dt>{t.checkAudioLabel}</dt><dd>{session.lesson.skill === 'listening' ? t.checkAudioRule : t.checkNoAudio}</dd></div></dl>
     <button className="primary" disabled={busy} onClick={async () => { setBusy(true); try { setSession(await beginCheck(id, owner)); } catch (cause) { setError(cause instanceof Error ? cause.message : 'READ'); } finally { setBusy(false); } }}>{t.checkBegin}</button>
   </section>;
   // A transient storage failure must not discard the editor's unsaved input.
-  return <>{error && <div className="error" role="alert">{message} <button className="button" onClick={() => void load()}>{t.retry}</button></div>}<MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions} pending={pending} confirmLeave={confirmLeave}/></>;
+  return <>{error === 'BUSY' ? retryAndLeave : error && <div className="error" role="alert">{message} <button className="button" onClick={() => void load()}>{t.retry}</button></div>}<MaterialWorkspace session={session} owner={owner} locale={locale} profileId={profileId} online={online} onlineDictionary={onlineDictionary} onSession={setSession} combinedSessions={combinedSessions} pending={pending} confirmLeave={confirmLeave}/></>;
 }

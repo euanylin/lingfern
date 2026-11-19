@@ -25,6 +25,7 @@ for (const width of [1120, 390]) test(`all 33 palettes work in both modes at ${w
   await page.goto('/settings');
   await expect(page.getByRole('button', { name: '主题配色: 默认', exact: true })).toBeVisible();
   const samples = [];
+  const lightSwatches = new Map<string, string>();
   for (const mode of ['light', 'dark'] as const) {
     await page.getByRole('button', { name: /^显示模式:|^外观:|^主题:|^外观模式:/u }).click();
     await page.locator(`[role=option][data-value=${mode}]`).click();
@@ -32,10 +33,17 @@ for (const width of [1120, 390]) test(`all 33 palettes work in both modes at ${w
     for (const palette of paletteIds) {
       await page.getByRole('button', { name: /^主题配色:/u }).click();
       await expect(page.locator('[role=option]')).toHaveCount(33);
-      await expect(page.locator(`[role=option][data-value=${palette}] .palette-swatches`)).toHaveCount(1);
+      const swatch = page.locator(`[role=option][data-value=${palette}] .palette-swatches`);
+      const swatchColor = await swatch.evaluate(element => getComputedStyle(element).backgroundColor);
       await page.locator(`[role=option][data-value=${palette}]`).click();
       await expect(page.locator('html')).toHaveAttribute('data-palette', palette);
       const colors = await readColors(page);
+      if (mode === 'light') {
+        lightSwatches.set(palette, swatchColor);
+      } else {
+        expect(swatchColor, `${palette}: brighter accent swatch`).toBe(colors.accent);
+        expect(lightSwatches.get(palette), `${palette}: same swatch in both modes`).toBe(swatchColor);
+      }
       if (palette !== 'original') {
         expect(contrast(colors.line, colors.bg), `${palette}/${mode}: subtle page dividers`).toBeLessThanOrEqual(1.6);
         expect(contrast(colors.line, colors.raised), `${palette}/${mode}: subtle card dividers`).toBeLessThanOrEqual(1.5);

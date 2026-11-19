@@ -76,6 +76,22 @@ it('uses the shared answer workspace for snapshots without an organization marke
   expect((await inspectBackup(await exportBackup('p'))).records.sessions[0].lesson).toEqual(lesson);
 });
 
+it('submits after a suspended tab resumes and rejects a former owner after takeover', async () => {
+  const lesson = organizePractice(lessonSchema.parse(raw)), current = await createSession(lesson, 'p');
+  await claimSession(current.id, 'owner');
+  for (const { question } of questions(lesson)) await saveWorkspaceDraft(current.id, 'owner', question.id, answerFor(question));
+  await sessions.update(current.id, { leaseUntil: 0 });
+  const result = await submitWorkspace(current.id, 'owner');
+  expect(result.session.status).toBe('completed');
+  expect(result.session.leaseUntil).toBeGreaterThan(Date.now());
+  const renewed = await claimSession(current.id, 'owner', Date.now() - 60_000);
+  expect(renewed.leaseUntil).toBe(result.session.leaseUntil);
+  await sessions.update(current.id, { leaseUntil: 0 });
+  await claimSession(current.id, 'other');
+  await expect(submitWorkspace(current.id, 'owner')).rejects.toThrow('BUSY');
+  expect(await attempts.count()).toBe(result.attempts.length);
+});
+
 it('keeps strict checks concealed until started, saves drafts and commits all answers atomically', async () => {
   const { default: check } = await import('./fixtures/content/a1-check-reading.json');
   const { beginCheck, revealHint, recordDictionaryUse } = await import('../src/data/db');

@@ -4,7 +4,7 @@
 export type GrammarCase = { id: string; sentence: string; note?: string };
 
 export const grammarCases: GrammarCase[] = [
-  // 基本句型与语序
+  // Basic clause patterns and word order
   { id: '68', sentence: 'the baby slept' },
   { id: '69', sentence: 'she bought a book' },
   { id: '70', sentence: 'the teacher gave the students a test' },
@@ -23,7 +23,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '118', sentence: 'it takes two hours to get there' },
   { id: '122', sentence: 'this book sells well' },
   { id: '120', sentence: 'the vase broke' },
-  // 祈使与感叹
+  // Imperatives and exclamatives
   { id: '88', sentence: 'open the window' },
   { id: '87', sentence: 'be quiet' },
   { id: '93', sentence: 'never give up' },
@@ -32,7 +32,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '97', sentence: 'what a beautiful day' },
   { id: '100', sentence: 'how kind she is' },
   { id: '101', sentence: 'how quickly he runs' },
-  // 名词短语与冠词
+  // Noun phrases and articles
   { id: '139', sentence: 'a cat sat on the mat' },
   { id: '145', sentence: 'the tall student read the old book' },
   { id: '151', sentence: 'the rich are getting richer' },
@@ -47,7 +47,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '204', sentence: 'the police are coming' },
   { id: '212', sentence: 'she made a decision to leave' },
   { id: '218', sentence: 'he is a teacher' },
-  // 数量
+  // Quantity
   { id: '231', sentence: 'two students came' },
   { id: '240', sentence: 'a few students came' },
   { id: '244', sentence: 'a little water remained' },
@@ -60,7 +60,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '296', sentence: 'hundreds of people came' },
   { id: '297', sentence: 'two hundred people came' },
   { id: '300', sentence: 'the class has from ten to twenty students' },
-  // 限定词与代词
+  // Determiners and pronouns
   { id: '325', sentence: 'this book is good' },
   { id: '326', sentence: 'these books are good' },
   { id: '352', sentence: 'she hurt herself' },
@@ -69,7 +69,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '370', sentence: 'a number of students are coming' },
   { id: '372', sentence: 'the team is winning' },
   { id: '374', sentence: 'John as well as Mary came' },
-  // 形容词与副词
+  // Adjectives and adverbs
   { id: '412', sentence: 'she bought a big red ball' },
   { id: '413', sentence: 'a beautiful old house stood there' },
   { id: '432', sentence: 'she is very happy' },
@@ -81,7 +81,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '468', sentence: 'the people present were angry' },
   { id: '420', sentence: 'she is afraid of dogs' },
   { id: '425', sentence: 'he is good at maths' },
-  // 介词短语
+  // Prepositional phrases
   { id: '500', sentence: 'we met at five' },
   { id: '501', sentence: 'we met on Monday' },
   { id: '502', sentence: 'we met in July' },
@@ -94,7 +94,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '579', sentence: 'she sings like a professional' },
   { id: '582', sentence: 'she enjoys sports such as tennis' },
   { id: '550', sentence: 'after finishing the work, she left' },
-  // 时态与体
+  // Tense and aspect
   { id: '624', sentence: 'she reads books' },
   { id: '626', sentence: 'she is reading a book' },
   { id: '628', sentence: 'she has finished the work' },
@@ -107,7 +107,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '668', sentence: 'it has been two years since she left' },
   { id: '677', sentence: 'she left two hours ago' },
   { id: '647', sentence: 'she has just arrived' },
-  // 情态
+  // Modality
   { id: '700', sentence: 'she can swim' },
   { id: '707', sentence: 'you must be tired' },
   { id: '735', sentence: 'she should have called' },
@@ -120,7 +120,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '763', sentence: 'she is likely to win' },
   { id: '764', sentence: 'it is likely that she will win' },
   { id: '726', sentence: 'she is supposed to come' },
-  // 被动与使役
+  // Passives and causatives
   { id: '776', sentence: 'the letter was written' },
   { id: '786', sentence: 'the letter was written by John' },
   { id: '787', sentence: 'the window was broken with a stone' },
@@ -132,7 +132,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '816', sentence: 'she made him cry' },
   { id: '816', sentence: 'she let him go' },
   { id: '818', sentence: 'she had her car repaired' },
-  // 否定
+  // Negation
   { id: '845', sentence: 'she does not like coffee' },
   { id: '846', sentence: 'she did not go' },
   { id: '847', sentence: 'she is not happy' },
@@ -147,7 +147,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '889', sentence: 'not all students passed' },
   { id: '900', sentence: "I don't think she is right" },
   { id: '902', sentence: "she doesn't want to go" },
-  // 疑问与附加问句
+  // Questions and tags
   { id: '913', sentence: 'is she happy' },
   { id: '914', sentence: 'does she like coffee' },
   { id: '915', sentence: 'did she go' },
@@ -171,7 +171,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '957', sentence: "you don't like it, do you" },
   { id: '960', sentence: "let's go, shall we" },
   { id: '959', sentence: 'open the door, will you' },
-  // 动词配价
+  // Verb valency
   { id: '1001', sentence: 'she wants to go' },
   { id: '1002', sentence: 'she seems to know' },
   { id: '1003', sentence: 'she told him to go' },
@@ -202,7 +202,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1119', sentence: 'she robbed him of his money' },
   { id: '1124', sentence: 'she translated the book from French into English' },
   { id: '1125', sentence: 'she compared the copy with the original' },
-  // 名词性从句
+  // Nominal clauses
   { id: '1154', sentence: 'that she passed surprised everyone' },
   { id: '1155', sentence: 'she said that she was tired' },
   { id: '1156', sentence: 'she said she was tired' },
@@ -220,7 +220,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1188', sentence: 'she said that she had finished' },
   { id: '1194', sentence: 'I suggested that she leave' },
   { id: '1197', sentence: 'it is essential that she be informed' },
-  // 关系从句
+  // Relative clauses
   { id: '1234', sentence: 'the man who came is my uncle' },
   { id: '1235', sentence: 'the man whom I met is a teacher' },
   { id: '1239', sentence: 'the book that I read is good' },
@@ -238,7 +238,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1245', sentence: 'the house in which I live is old' },
   { id: '1274', sentence: 'what she bought was expensive' },
   { id: '1279', sentence: 'whoever comes is welcome' },
-  // 非限定从句
+  // Nonfinite clauses
   { id: '1307', sentence: 'to err is human' },
   { id: '1308', sentence: 'her job is teaching' },
   { id: '1311', sentence: 'it is hard to learn Chinese' },
@@ -260,7 +260,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1352', sentence: 'having finished the work, she left' },
   { id: '1354', sentence: 'exhausted, she sat down' },
   { id: '1356', sentence: 'with the work finished, she left' },
-  // 状语从句
+  // Adverbial clauses
   { id: '1384', sentence: 'when she arrived, we left' },
   { id: '1385', sentence: 'while she was reading, I cooked' },
   { id: '1387', sentence: 'before she left, she called me' },
@@ -280,7 +280,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1412', sentence: 'he likes tea, whereas she prefers coffee' },
   { id: '1413', sentence: 'where there is smoke, there is fire' },
   { id: '1386', sentence: 'as she spoke, I listened' },
-  // 条件与愿望
+  // Conditionals and wishes
   { id: '1455', sentence: 'if it rains, we will stay' },
   { id: '1464', sentence: 'if it rained, we would stay' },
   { id: '1467', sentence: 'if it had rained, we would have stayed' },
@@ -294,7 +294,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1499', sentence: 'if only I had known' },
   { id: '1503', sentence: 'it is time we left' },
   { id: '1501', sentence: 'I would rather you came tomorrow' },
-  // 比较
+  // Comparisons
   { id: '1531', sentence: 'she is taller than me' },
   { id: '1532', sentence: 'she is taller than I am' },
   { id: '1533', sentence: 'this book is more interesting than that one' },
@@ -309,7 +309,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1575', sentence: 'this room is twice as big as mine' },
   { id: '1592', sentence: 'my answer is different from yours' },
   { id: '1589', sentence: 'she bought the same book as me' },
-  // 并列、替代与省略
+  // Coordination, substitution and ellipsis
   { id: '1612', sentence: 'she sang and danced' },
   { id: '1609', sentence: 'she bought apples and oranges' },
   { id: '1622', sentence: 'either she or I was wrong' },
@@ -320,7 +320,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1650', sentence: 'she has finished, and so have I' },
   { id: '1639', sentence: 'she can swim and I can too' },
   { id: '1649', sentence: 'yes, I do' },
-  // 倒装与焦点
+  // Inversion and focus
   { id: '1689', sentence: 'never have I seen such a thing' },
   { id: '1690', sentence: 'rarely does she complain' },
   { id: '1692', sentence: 'hardly had I arrived when it rained' },
@@ -337,7 +337,7 @@ export const grammarCases: GrammarCase[] = [
   { id: '1729', sentence: 'the book I bought yesterday' },
   { id: '1751', sentence: 'as for me, I disagree' },
   { id: '1753', sentence: 'regarding the plan, I agree' },
-  // 话语
+  // Discourse
   { id: '1756', sentence: 'oh, I see' },
   { id: '1757', sentence: 'yes, it is true' },
   { id: '1760', sentence: 'well, I am not sure' },

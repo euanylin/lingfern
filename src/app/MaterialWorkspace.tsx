@@ -33,6 +33,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
   const sheet = useQuestionSheetLayout(`${material.id}:${locale}`, true, mobile && !listening, pane === 'question');
   const [hintLevels, setHintLevels] = useState<Record<string, number>>({});
   const [saved, setSaved] = useState<Attempt[]>([]), [error, setError] = useState(''), [busy, setBusy] = useState(false), [saving, setSaving] = useState(false);
+  const submitting = useRef(false), retrySubmission = useRef(false);
   const pendingVersions = useRef(new Map<string, number>());
   const unsaved = useRef(new Map<string, { questionId: string; answer?: Answer; skipped?: boolean }>()), version = useRef(0), annotationDirty = useRef(false);
   const audio = useRef<HTMLAudioElement>(null), playback = useRef<Promise<void>>(Promise.resolve()), audioStart = useRef<AbortController | undefined>(undefined), live = useRef(session);
@@ -101,7 +102,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     let current = true;
     void attempts.where('sessionId').equals(session.id).toArray().then(records => {
       if (!current) return;
-      setSaved(records); setAnswers(previous => ({ ...Object.fromEntries(records.map(record => [record.questionId, record.answer])), ...previous }));
+      setSaved(records); setAnswers(previous => ({ ...previous, ...Object.fromEntries(records.map(record => [record.questionId, record.answer])) }));
     }).catch(() => { if (current) setError(t.readError); });
     return () => { current = false; };
   }, [finished, session.id, t.readError]);
@@ -187,7 +188,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     });
   }
   async function navigate(questionId: string, slot = 0) {
-    if (busy) return;
+    if (busy || submitting.current) return;
     const target = all.find(item => item.question.id === questionId)!;
     if (target.material.id !== material.id && annotationDirty.current && !confirm(readingAnnotationCopy[locale].leave)) return;
     selection.current.questionId = questionId;
@@ -205,6 +206,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
     } catch { if (revision !== selection.current.version) return; if (focusRequest.current === request) focusRequest.current = undefined; setError(t.saveError); }
   }
   function activateQuestion(item: (typeof all)[number], target: HTMLElement) {
+    if (submitting.current || live.current.status !== 'active') return;
     setVisibleNumber(undefined);
     if (focusRequest.current && focusRequest.current.focused !== target) { focusRequest.current = undefined; selection.current.version++; }
     if (target.id.startsWith(`answer-${item.question.id}-`)) setSelectedSlot(Number(target.id.split('-').at(-1)));
@@ -257,18 +259,34 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
       await recordPlayback(session.id, owner, current.question.id, true); await refresh();
     } catch { if (audio.current === player) setError(t.saveError); }
   }
-  async function submitAll(invoker: EventTarget | null = document.activeElement) {
-    if (busy) return;
+  function retryDrafts() {
+    for (const change of unsaved.current.values()) persist(change);
+  }
+  function submitAll(invoker: EventTarget | null = document.activeElement) {
+    if (busy || saving || submitting.current || live.current.status !== 'active') return;
+    submitting.current = true;
+    retrySubmission.current = false;
+    focusRequest.current = undefined;
+    selection.current.version++;
     validationInvoker.current = invoker instanceof HTMLElement ? invoker : null;
     setBusy(true); setError('');
-    try {
-      await pending.current;
-      if (unsaved.current.size) throw new Error('SAVE');
-      const result = await submitWorkspace(session.id, owner);
-      setSaved(result.attempts); setPane('question'); publishSession(result.session);
-      document.getElementById('workspace-result')?.focus();
-    } catch (cause) { setError(cause instanceof Error && cause.message === 'NO_AUDIO' ? t.listenFirst : cause instanceof Error && ['UNSAVED', 'INVALID_ANSWER'].includes(cause.message) ? t.invalidAnswer : t.saveError); }
-    finally { setBusy(false); }
+    retryDrafts();
+    // Keep the session claimed until the submission transaction settles.
+    pending.current = pending.current.then(async () => {
+      try {
+        if (unsaved.current.size) throw new Error('SAVE');
+        const result = await submitWorkspace(session.id, owner);
+        setSaved(result.attempts); setPane('question'); publishSession(result.session);
+      } catch (cause) {
+        const reason = cause instanceof Error ? cause.message : '';
+        if (reason === 'NO_AUDIO') setError(t.listenFirst);
+        else if (reason === 'UNSAVED' || reason === 'INVALID_ANSWER') setError(t.invalidAnswer);
+        else { retrySubmission.current = true; setError(t.saveError); }
+      } finally {
+        submitting.current = false;
+        setBusy(false);
+      }
+    });
   }
   function download() {
     const url = URL.createObjectURL(new Blob([JSON.stringify({ sessionId: session.id, answers, skipped: [...skipped], status: 'draft' })], { type: 'application/json' }));
@@ -307,8 +325,8 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
         <AnimatedDetails ref={questionCard} className="workspace-card" open onFocus={() => { focusRequest.current = undefined; }}><summary><span>{w.card}</span></summary><nav id="workspace-question-nav" dir="ltr" aria-label={w.card}>{numbered.flatMap(item => Array.from({ length: questionSlots(item.question) }, (_, slot) => <button type="button" key={`${item.question.id}:${slot}`} aria-label={`${item.start + slot}. ${skipped.has(item.question.id) ? w.skipped : slotAnswered(item.question, answers[item.question.id], slot) ? w.answered : w.unanswered}`} aria-current={displayedNumber === item.start + slot ? 'step' : undefined} data-skipped={skipped.has(item.question.id)} data-answered={skipped.has(item.question.id) || slotAnswered(item.question, answers[item.question.id], slot)} onClick={() => void navigate(item.question.id, slot)}>{item.start + slot}</button>))}</nav></AnimatedDetails>
 
         <p className="saved workspace-save-status sr-only" role="status">{saving ? t.saving : unsaved.current.size ? t.saveError : t.saved}</p>
-        {error && error !== t.invalidAnswer && <div className="error" role="alert"><p>{error}</p><button className="button" type="button" disabled={busy} onClick={event => { for (const change of unsaved.current.values()) persist(change); if (!unsaved.current.size) void submitAll(event.currentTarget); }}>{t.retry}</button><button className="button" type="button" onClick={download}>{t.export}</button></div>}
-        <form autoComplete="off" onSubmit={event => { event.preventDefault(); if (!nextMaterial) void submitAll((event.nativeEvent as SubmitEvent).submitter ?? event.currentTarget.querySelector('button[type=submit]')); }}>
+        {error && error !== t.invalidAnswer && <div className="error" role="alert"><p>{error}</p>{(retrySubmission.current || unsaved.current.size > 0) && <button className="button" type="button" disabled={busy || saving} onClick={event => retrySubmission.current ? submitAll(event.currentTarget) : retryDrafts()}>{t.retry}</button>}<button className="button" type="button" onClick={download}>{t.export}</button></div>}
+        <form autoComplete="off" onSubmit={event => { event.preventDefault(); if (!nextMaterial) submitAll((event.nativeEvent as SubmitEvent).submitter ?? event.currentTarget.querySelector('button[type=submit]')); }}>
           {visible.map(item => {
             const split = 'kind' in item.question && item.question.kind === 'completion' ? item.question.prompt.indexOf('\n') : -1;
             const canSkip = 'criteria' in item.question && !finished && !saved.some(record => record.questionId === item.question.id);
@@ -337,7 +355,7 @@ export default function MaterialWorkspace({ session, owner, locale, profileId, o
         {lesson.mode === 'check' && !finished && <button className="button" type="button" disabled={busy || saving} onClick={async () => { setBusy(true); try { await pending.current; if (unsaved.current.size) throw new Error('SAVE'); publishSession(await endCheck(session.id, owner)); } catch { setError(t.saveError); } finally { setBusy(false); } }}>{t.endCheck}</button>}
         {finished && <section className="feedback"><h2 id="workspace-result" tabIndex={-1}>{session.status === 'ended' ? t.checkEnded : t.completed}</h2><p className="muted">{w.groups}: {all.length} · {w.blank}: {all.reduce((sum, item) => sum + ('gaps' in item.question ? item.question.gaps.length : 'rows' in item.question ? item.question.rows.length : 'kind' in item.question && item.question.kind === 'completion' ? 1 : 0), 0)} · {w.slots}: {number - 1}</p>{session.status === 'completed' && points.length > 0 && <p>{w.score}: {points.filter(point => point.correct === true).length}/{points.filter(point => point.correct !== null).length} · {points.filter(point => point.correct === null).length} {t.unscored}</p>}{numbered.map(item => {
           const record = saved.find(record => record.questionId === item.question.id);
-          if (!record && skipped.has(item.question.id)) return <article className="workspace-review" key={item.question.id}><h3 lang="en">{item.start}. {item.question.prompt}</h3><p>{w.skipped}</p></article>;
+          if (!record && session.workspace?.skipped?.includes(item.question.id)) return <article className="workspace-review" key={item.question.id}><h3 lang="en">{item.start}. {item.question.prompt}</h3><p>{w.skipped}</p></article>;
           return record && <article className="workspace-review" key={record.id}><h3 lang="en">{item.start}. {item.question.prompt}</h3><p>{t.yourAnswer}: <span lang="en" dir="ltr">{answerText(item.question, record.answer)}</span></p>{(!('criteria' in item.question) || item.question.modelAnswer) && !('gaps' in item.question) && <p>{'criteria' in item.question ? t.possibleResponse : t.answer}: <span lang="en" dir="ltr">{correctAnswerText(item.question)}</span></p>}<ul>{scoreParts(item.question, record.answer).map((part, index) => <li key={part.id}><span className="slot-result" data-correct={part.correct ?? undefined}>{item.start + index}: {part.correct === null ? t.unscored : part.correct ? `✓ ${t.correct}` : `× ${t.incorrect}`}</span>{'gaps' in item.question && <><p>{t.yourAnswer}: <span lang="en" dir="ltr">{Array.isArray(record.answer) ? record.answer[index] : ''}</span></p><p>{t.answer}: <span lang="en" dir="ltr">{item.question.gaps[index].answer}</span></p><blockquote className="slot-evidence" lang="en" dir="ltr">{item.material.blocks.find(block => block.id === item.question.blockId)?.text.slice(item.question.gaps[index].evidence.start, item.question.gaps[index].evidence.end)}{item.material.audio && <cite>{item.question.gaps[index].evidence.audioTiming ? '≈ ' : ''}{item.question.gaps[index].evidence.audioStart}–{item.question.gaps[index].evidence.audioEnd} s</cite>}</blockquote></>}</li>)}</ul>{[{ blockId: item.question.blockId, ...item.question.evidence }, ...(item.question.additionalEvidence ?? [])].map((span, index) => <blockquote lang="en" dir="ltr" key={index}><cite className="evidence-source">{item.material.blocks.find(block => block.id === span.blockId)?.title ?? item.material.title}</cite>{item.material.blocks.find(block => block.id === span.blockId)?.text.slice(span.start, span.end)}{item.material.audio && <cite>{span.audioTiming ? '≈ ' : ''}{span.audioStart}–{span.audioEnd} s</cite>}</blockquote>)}<p lang={contentLanguage('explanation' in item.question ? item.question.explanation : item.question.explanations[0], instructionLocale)}>{explanationText(item.question, record.answer, instructionLocale)}</p>{!lesson.mode && <>{'criteria' in item.question && <SelfAssessment locale={instructionLocale} question={item.question} attempt={record} owner={owner} onSaved={updated => setSaved(previous => previous.map(record => record.id === updated.id ? updated : record))}/>}<AiHandoff locale={locale} lesson={lesson} material={item.material} question={item.question} attempt={record}/></>}</article>;
         })}{lesson.nextStep && <p lang={contentLanguage(lesson.nextStep, instructionLocale)}>{contentText(lesson.nextStep, instructionLocale)}</p>}<a className={`button primary${next ? '' : ' back-button'}`} href={next ? `/learn/${next.id}` : '/today'} aria-label={next ? undefined : t.finish}>{next ? t.startListening : <span dir="ltr" aria-hidden="true">←</span>}</a></section>}
         </div>

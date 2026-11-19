@@ -199,6 +199,52 @@ test('failed answer transaction preserves selection and never advances before re
   await expect(page.locator('.slot-result').first()).toContainText('✓');
 });
 
+test('submission retries a failed draft and keeps the session claimed until commit', async ({ page }) => {
+  await page.route(/\/src\/data\/db\.ts(?:\?.*)?$/, async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: `${await response.text()}
+      const originalDraft = saveWorkspaceDraft;
+      saveWorkspaceDraft = async (...args) => {
+        if (window.failNextDraft) { window.failNextDraft = false; throw new Error('DISK_FULL'); }
+        return originalDraft(...args);
+      };
+      const originalSubmit = submitWorkspace;
+      submitWorkspace = async (...args) => {
+        await new Promise(resolve => { window.resumeSubmission = resolve; });
+        return originalSubmit(...args);
+      };` });
+  });
+  const { id, lesson } = await openSnapshot(page, 'a1-reading', true);
+  await fillWorkspace(page, lesson);
+  const all = lesson.materials.flatMap(material => material.questions);
+  const last = all.at(-1)!;
+  const radio = (await focusQuestion(page, lesson, all.length - 1)).getByRole('radio').first();
+  const alternative = await radio.isChecked() ? 1 : 0;
+  await page.evaluate(() => Reflect.set(window, 'failNextDraft', true));
+  await page.locator('.workspace-question[data-selected=true]').getByRole('radio').nth(alternative).check();
+  await expect(page.locator('.material-workspace [role=alert]')).toContainText('未能保存');
+  await page.locator('button[type=submit]').click();
+  await page.waitForFunction(() => typeof Reflect.get(window, 'resumeSubmission') === 'function');
+  const read = () => page.evaluate(async id => {
+    const { sessions, attempts } = await import('/src/data/db.ts' as string);
+    return { session: await sessions.get(id), answers: await attempts.where('sessionId').equals(id).toArray() };
+  }, id);
+  const before = await read();
+  expect(before.session.workspace.drafts[last.id]).toBe(alternative);
+  expect(before.session.owner).toBeTruthy();
+  await page.locator('.session-header>a').click();
+  const during = await read();
+  expect(during.session.owner).toBe(before.session.owner);
+  expect(during.answers).toHaveLength(0);
+  await page.evaluate(() => Reflect.get(window, 'resumeSubmission')());
+  await expect(page).toHaveURL(/\/today$/);
+  const after = await read();
+  expect(after.session.status).toBe('completed');
+  expect(after.session.owner).toBeUndefined();
+  expect(after.answers).toHaveLength(all.length);
+  expect(after.answers.find((answer: { questionId: string }) => answer.questionId === last.id)?.answer).toBe(alternative);
+});
+
 test('full browser refresh releases its tab lock and immediately recovers the saved answer', async ({ page }) => {
   await page.goto('/today'); await page.locator('.primary-task.reading-task').getByRole('button', { name: '开始', exact: true }).click(); await page.getByRole('dialog').locator('header button').click(); await openSnapshot(page, 'a1-reading', true);
   await page.getByRole('radio', { name: 'At the library.' }).check();

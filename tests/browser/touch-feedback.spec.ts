@@ -7,6 +7,94 @@ async function readyForTouch(control: Locator) {
   await control.click({ trial: true });
 }
 
+test('About contact links match mouse hover while touched', async ({ page, browser }) => {
+  await page.goto('/settings/about');
+  const mouseLink = page.locator('.about-links a').first();
+  await mouseLink.hover();
+  await expect(mouseLink).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 3, 0)');
+  const hover = await mouseLink.evaluate(el => getComputedStyle(el).color);
+
+  const touch = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  try {
+    const mobile = await touch.newPage();
+    await mobile.goto(page.url());
+    const links = mobile.locator('.about-links a');
+    await expect(links).toHaveCount(3);
+    await mobile.locator('.about-links').evaluate(el => el.addEventListener('click', event => event.preventDefault()));
+    const cdp = await touch.newCDPSession(mobile);
+    for (const link of await links.all()) {
+      await readyForTouch(link);
+      const idle = await link.evaluate(el => getComputedStyle(el).color);
+      expect(idle).not.toBe(hover);
+      const { x, y, width, height } = (await link.boundingBox())!;
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: x + width / 2, y: y + height / 2 }] });
+      await expect(link).toHaveAttribute('data-touch-active', '');
+      await expect(link).toHaveCSS('color', hover);
+      await expect(link).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 3, 0)');
+      await expect(link).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await expect(link).not.toHaveAttribute('data-touch-active');
+      await expect(link).toHaveCSS('color', idle);
+      await expect(link).toHaveCSS('transform', 'none');
+    }
+    await links.first().press('Tab');
+    await mobile.keyboard.press('Shift+Tab');
+    await expect(links.first()).toBeFocused();
+    await expect(links.first()).toHaveCSS('outline-width', '2px');
+  } finally {
+    await touch.close();
+  }
+});
+
+test('reference links, bookmark stars and back arrows match mouse feedback on touch', async ({ page, browser }) => {
+  const touch = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  try {
+    const mobile = await touch.newPage();
+    const cdp = await touch.newCDPSession(mobile);
+    for (const [route, selectors] of [
+      ['/library/dictionary', ['.dictionary-bookmarks', '.dictionary-results .sense-star']],
+      ['/library/grammar', ['.online-lookup-links a']],
+      ['/library/ipa', ['.ipa-official-link']],
+      ['/settings/about', ['.about-credits a', '.about-back']],
+      ['/library/history', ['.records-back']],
+      ['/progress', ['.records-back']],
+    ] as const) {
+      await page.goto(route);
+      await mobile.goto(page.url());
+      if (route === '/library/dictionary') {
+        for (const view of [page, mobile]) {
+          await view.locator('#dictionary-query').fill('apple');
+          await view.locator('#dictionary-query').press('Enter');
+        }
+      }
+      for (const selector of selectors) {
+        const mouse = page.locator(selector).first();
+        const finger = mobile.locator(selector).first();
+        const appearance = (link: Locator) => link.evaluate(el => {
+          const style = getComputedStyle(el);
+          return [style.color, style.backgroundColor, style.transform, style.textDecorationLine, style.textDecorationThickness];
+        });
+        await finger.evaluate(el => el.scrollIntoView({ block: 'center' }));
+        await expect(finger).toBeInViewport();
+        const idle = await appearance(finger);
+        const { x, y, width, height } = (await finger.boundingBox())!;
+        await mouse.hover();
+        await mouse.evaluate(el => Promise.allSettled(el.getAnimations().map(animation => animation.finished)));
+        const hover = await appearance(mouse);
+        expect(hover).not.toEqual(idle);
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: x + width / 2, y: y + height / 2 }] });
+        await expect(finger).toHaveAttribute('data-touch-active', '');
+        await expect.poll(() => appearance(finger)).toEqual(hover);
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+        await expect(finger).not.toHaveAttribute('data-touch-active');
+        await expect.poll(() => appearance(finger)).toEqual(idle);
+      }
+    }
+  } finally {
+    await touch.close();
+  }
+});
+
 test('daily quote refresh retains mouse hover feedback', async ({ page }) => {
   await page.goto('/today');
   const button = page.locator('.daily-quote-next');
@@ -352,6 +440,12 @@ for (const [width, theme] of [[375, 'light'], [1440, 'dark']] as const) test(`re
     await expect(control).toHaveCSS('background-color', idle);
   }
   const groupCheck = group.locator('.offline-group-check'), groupInput = groupCheck.locator('input');
+  await expect(page.locator('html')).toHaveAttribute('data-touch-input', '');
+  await groupInput.press('Space');
+  await expect(groupInput).toBeChecked();
+  await expect(page.locator('html')).not.toHaveAttribute('data-touch-input');
+  await groupInput.press('Space');
+  await expect(groupInput).not.toBeChecked();
   await groupCheck.scrollIntoViewIfNeeded(); await groupInput.evaluate(el => { (el as HTMLInputElement).disabled = true; });
   const disabledBox = (await groupCheck.boundingBox())!;
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: disabledBox.x + disabledBox.width / 2, y: disabledBox.y + disabledBox.height / 2 }] });

@@ -154,6 +154,10 @@ test('draws, edits, saves and exports a syntax tree from Reference', async ({ pa
   await page.getByRole('button', { name: '导出', exact: true }).click();
   const exportDialog = page.getByRole('dialog');
   await expect(exportDialog.locator('#tree-export-extension')).toHaveText('.svg');
+  const name = (await exportDialog.locator('#tree-export-name').boundingBox())!;
+  const format = (await exportDialog.locator('#tree-export-extension').boundingBox())!;
+  expect(format.height).toBe(name.height);
+  expect(format.y).toBe(name.y);
   await expect(exportDialog.getByRole('button', { name: '格式: SVG' })).toHaveCount(0);
   await expect(exportDialog.getByRole('option', { name: 'WebP' })).toHaveCount(0);
   await exportDialog.getByRole('button', { name: '格式: .svg' }).click();

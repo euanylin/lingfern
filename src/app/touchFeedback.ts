@@ -1,4 +1,4 @@
-import { cardActivity } from './cardInteraction';
+import { cardActivity, textEntry } from './cardInteraction';
 
 export function touchFeedback() {
   let target: HTMLElement | undefined, pointer: { id: number; x: number; y: number } | undefined;
@@ -10,8 +10,9 @@ export function touchFeedback() {
   const visibility = () => { if (document.hidden) cancel(); };
   const keyboard = (event: KeyboardEvent) => {
     if (event.isComposing || ['Shift', 'Control', 'Alt', 'Meta'].includes(event.key)) return;
-    // Soft-keyboard input must not activate keyboard-navigation focus rings.
-    if (event.target instanceof Element && event.target.closest('input,textarea,[contenteditable]:not([contenteditable=false])') && !['Tab', 'Escape'].includes(event.key)) return;
+    // Keep touch mode while typing.
+    if (textEntry(event.target) && !['Tab', 'Escape'].includes(event.key)) return;
+    cancel();
     delete document.documentElement.dataset.touchInput;
     delete document.documentElement.dataset.pointerInput;
   };
@@ -29,13 +30,14 @@ export function touchFeedback() {
   };
   const move = (event: PointerEvent) => {
     if (!pointer && event.isPrimary && event.pointerType === 'mouse' && document.documentElement.hasAttribute('data-touch-input')) {
+      cancel();
       delete document.documentElement.dataset.touchInput;
       document.documentElement.dataset.pointerInput = '';
     }
     if (pointer?.id === event.pointerId && !target?.matches('input[type=range]') && Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > 10) cancel();
   };
   const end = (event: PointerEvent) => { if (pointer?.id === event.pointerId) { pointer = undefined; state.end(); } };
-  // Observe native events without blocking clicks, scrolling, selection, or focus.
+  // Observe input without blocking native gestures.
   document.addEventListener('pointerdown', start, { passive: true, capture: true });
   document.addEventListener('keydown', keyboard, true);
   document.addEventListener('pointermove', move, { passive: true });

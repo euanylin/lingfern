@@ -1,6 +1,4 @@
-// Movement (移位) is represented with a subscript index shared by a moved constituent and the trace
-// it left behind: "what₁ ... t₁". The index lives in the label instead of a new schema field so that
-// every presentation, saved record and export keeps it without a separate migration.
+// A shared label subscript links a moved constituent to its trace across saves and exports.
 export const MOVEMENT_DIGITS = '₀₁₂₃₄₅₆₇₈₉';
 const subscriptRun = /[₀-₉]+(?=\||$)/u;
 // A trace is an empty node: the conventional "t", the empty-category glyph, or "e".
