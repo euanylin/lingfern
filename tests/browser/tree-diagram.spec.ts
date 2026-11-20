@@ -110,6 +110,11 @@ test('draws, edits, saves and exports a syntax tree from Reference', async ({ pa
   await page.waitForTimeout(150);
   await doubleClickNode(page, 'sat');
   const sat = page.getByRole('textbox', { name: 'sat', exact: true });
+  const lineOffset = await sat.evaluate(field => {
+    const style = getComputedStyle(field);
+    return parseFloat(style.borderTopWidth) + parseFloat(style.paddingTop) + parseFloat(style.lineHeight) / 2 - (field as HTMLElement).offsetHeight / 2;
+  });
+  expect(Math.abs(lineOffset)).toBeLessThan(1);
   await sat.fill('sits');
   await sat.press('Enter');
   await expect(page.getByRole('treeitem', { name: 'sits', exact: true })).toBeVisible();
@@ -250,17 +255,21 @@ test('draws, edits, saves and exports a syntax tree from Reference', async ({ pa
   await expect(page.getByRole('treeitem', { name: /λ$/ })).toBeVisible();
 });
 
-test('keeps the sentence field clear for complete generated and written trees', async ({ page }) => {
+test('labels automatically generated trees and skips written trees', async ({ page }) => {
   await page.goto('/library/trees');
   const source = page.getByRole('textbox', { name: '句子、括号、缩进或依存' });
   await expect(source).toBeEnabled();
   await expect(page.locator('#tree-generated-note')).toHaveCount(0);
+  const reference = page.locator('#tree-generated-reference');
   for (const [text, word] of [['(S (NP (DT the) (NN cat)) (VP (VBD sat)))', 'cat'], ['the students read the old book', 'book']]) {
     await source.fill(text);
     await source.press('Enter');
     await expect(page.getByRole('treeitem', { name: word, exact: true })).toBeVisible();
-    await expect(page.locator('#tree-generated-note')).toHaveCount(0);
+    if (word === 'cat') await expect(reference).toHaveCount(0);
+    else await expect(reference).toHaveText('自动生成，仅供参考。');
   }
+  await expect(reference).toBeVisible();
+  await expect(source).toHaveAccessibleDescription('自动生成，仅供参考。');
 });
 
 for (const width of [1120, 390]) test(`separates movement rails at ${width}px`, async ({ page }, info) => {

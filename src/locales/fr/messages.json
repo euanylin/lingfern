@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "Arbre syntaxique",
+    "generatedReference": "Généré automatiquement, à titre indicatif.",
     "incomplete": "Dérivation incomplète : ? indique une combinaison non résolue.",
     "source": "Phrase, crochets, plan ou dépendances",
     "draw": "Dessiner automatiquement",

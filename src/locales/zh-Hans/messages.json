@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "句法树",
+    "generatedReference": "自动生成，仅供参考。",
     "incomplete": "推导未完成：? 表示无法组合。",
     "source": "句子、括号、缩进或依存",
     "draw": "自动绘制",

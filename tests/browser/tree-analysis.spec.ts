@@ -12,7 +12,7 @@ test('shows incomplete CCG derivations and clears the warning after a valid redr
   await page.getByRole('option', { name: '组合范畴语法（CCG）', exact: true }).click();
   await expect(page.getByRole('treeitem', { name: '?', exact: true }).first()).toBeVisible();
   await expect(page.locator('#tree-generated-note')).toHaveText('推导未完成：? 表示无法组合。');
-  await expect(source).toHaveAttribute('aria-describedby', 'tree-generated-note');
+  await expect(source).toHaveAccessibleDescription('自动生成，仅供参考。 推导未完成：? 表示无法组合。');
   await page.screenshot({ path: testInfo.outputPath('ccg-incomplete.png'), fullPage: true });
   await source.fill('why did she leave');
   await source.press('Enter');

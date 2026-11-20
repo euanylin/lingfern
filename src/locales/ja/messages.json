@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "構文木",
+    "generatedReference": "自動生成された結果は参考用です。",
     "incomplete": "導出は未完了です。? は結合できない箇所です。",
     "source": "文、括弧、字下げ、または依存",
     "draw": "自動で描く",

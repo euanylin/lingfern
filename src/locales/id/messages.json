@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "Pohon sintaksis",
+    "generatedReference": "Dihasilkan secara otomatis, hanya sebagai referensi.",
     "incomplete": "Derivasi belum lengkap: ? menandai gabungan yang belum terselesaikan.",
     "source": "Kalimat, tanda kurung, kerangka, atau dependensi",
     "draw": "Gambar otomatis",

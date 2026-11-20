@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "Syntaxbaum",
+    "generatedReference": "Automatisch erstellt, nur zur Orientierung.",
     "incomplete": "Unvollständige Ableitung: ? kennzeichnet eine ungelöste Kombination.",
     "source": "Satz, Klammern, Gliederung oder Dependenz",
     "draw": "Automatisch zeichnen",

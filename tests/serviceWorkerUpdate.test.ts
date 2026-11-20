@@ -33,6 +33,7 @@ it('reports failed activation rather than silently leaving an inert confirmation
 function checking(installing = false) {
   const worker = Object.assign(new EventTarget(), { state: 'installing' as ServiceWorkerState });
   const registration = Object.assign(new EventTarget(), {
+    active: worker as typeof worker | null,
     waiting: null as typeof worker | null,
     installing: installing ? worker : null,
     update: vi.fn(async () => {}),
@@ -71,6 +72,18 @@ it('reuses an existing installation without queueing another update', async () =
   registration.waiting = worker; worker.state = 'installed'; worker.dispatchEvent(new Event('statechange'));
   await expect(result).resolves.toBe(true);
 });
+it('lets the initial offline installation finish without prompting for a reload', async () => {
+  const { registration, worker, check, preparing } = checking(true);
+  registration.active = null;
+  const result = check();
+  expect(preparing).toHaveBeenCalledOnce();
+  expect(registration.update).not.toHaveBeenCalled();
+  registration.installing = null;
+  worker.state = 'activated';
+  worker.dispatchEvent(new Event('statechange'));
+  await expect(result).resolves.toBe(false);
+});
+
 it('does not report a failed installation as the latest version', async () => {
   vi.useFakeTimers();
   const { registration, worker, check } = checking(true);

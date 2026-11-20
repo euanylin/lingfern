@@ -308,7 +308,7 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
     return () => observer.unsubscribe();
   }, [activeProfile, ready]);
   useEffect(() => {
-    registerSW({ onNeedRefresh: () => { updateOperation.current?.abort(); setUpdateCheck('idle'); setUpdateAvailable(true); setUpdateDismissed(false); } });
+    registerSW({ immediate: true, onNeedRefresh: () => { updateOperation.current?.abort(); setUpdateCheck('idle'); setUpdateAvailable(true); setUpdateDismissed(false); } });
     return () => updateOperation.current?.abort();
   }, []);
   useEffect(() => {
@@ -440,15 +440,23 @@ export function App({ initialPage, initialInterface }: { initialPage?: PublicPag
     const operation = new AbortController();
     updateOperation.current = operation; setUpdateCheck('checking');
     try {
-      const registration = await navigator.serviceWorker?.getRegistration('/');
+      const container = navigator.serviceWorker;
+      if (!container) { setUpdateCheck('unavailable'); return; }
+      const existing = await container.getRegistration('/');
       if (operation.signal.aborted) return;
-      if (!registration?.active) { setUpdateCheck('unavailable'); return; }
+      if (!existing && !import.meta.env.PROD) { setUpdateCheck('unavailable'); return; }
+      const registration = existing ?? await container.register('/sw.js', { scope: '/' });
+      if (operation.signal.aborted) return;
       const available = await checkServiceWorkerUpdate(registration, () => setUpdateCheck('preparing'), operation.signal);
       if (operation.signal.aborted) return;
       if (available) { setUpdateAvailable(true); setUpdateDismissed(false); setUpdateCheck('idle'); }
       else setUpdateCheck('current');
-    } catch { if (!operation.signal.aborted) setUpdateCheck(navigator.onLine ? 'failed' : 'offline'); }
-    finally { if (updateOperation.current === operation) updateOperation.current = undefined; }
+    } catch (error) {
+      if (!operation.signal.aborted) {
+        const blocked = error instanceof DOMException && error.name === 'SecurityError';
+        setUpdateCheck(!navigator.onLine ? 'offline' : blocked ? 'unavailable' : 'failed');
+      }
+    } finally { if (updateOperation.current === operation) updateOperation.current = undefined; }
   }
   const individualHistory = history.filter(item => !item.practiceGroupId || item.status !== 'active');
   const todayReading = selectPractice(catalogue, individualHistory, records, 'reading', undefined, new Date(), preferences, summaries);

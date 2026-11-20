@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "Árvore sintática",
+    "generatedReference": "Gerado automaticamente, apenas para referência.",
     "incomplete": "Derivação incompleta: ? indica uma combinação não resolvida.",
     "source": "Frase, colchetes, esquema ou dependências",
     "draw": "Desenhar automaticamente",

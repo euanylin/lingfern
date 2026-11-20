@@ -1,6 +1,7 @@
 export function checkServiceWorkerUpdate(registration: ServiceWorkerRegistration, preparing: () => void, signal: AbortSignal): Promise<boolean> {
   if (signal.aborted) return Promise.reject(signal.reason);
   if (registration.waiting) return Promise.resolve(true);
+  const firstInstall = !registration.active;
   return new Promise((resolve, reject) => {
     let worker: ServiceWorker | null = null, finished = false;
     const cleanup = () => {
@@ -16,7 +17,8 @@ export function checkServiceWorkerUpdate(registration: ServiceWorkerRegistration
     };
     const changed = () => {
       if (finished) return;
-      if (registration.waiting || worker?.state === 'activated') complete(undefined, true);
+      if (worker?.state === 'activated') complete(undefined, !firstInstall);
+      else if (registration.waiting && !firstInstall) complete(undefined, true);
       else if (registration.installing && registration.installing !== worker) observe();
       else if (worker?.state === 'redundant') complete(new Error('UPDATE_INSTALL_FAILED'));
     };

@@ -9,10 +9,16 @@ const previousBuild = process.argv.find(argument => argument.startsWith('--previ
 const previousRoot = previousBuild ? resolve(previousBuild) : root;
 let updated = false;
 let invalidUpdate = false;
+let rejectedScripts = 0;
 let installDelay = 0;
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.json': 'application/json' };
 const server = createServer(async (request, response) => {
   const pathname = new URL(request.url ?? '/', 'http://localhost').pathname;
+  if (pathname === '/sw.js' && invalidUpdate === 'unavailable') {
+    rejectedScripts++;
+    response.writeHead(503).end();
+    return;
+  }
   const pageRoute = /^\/(start|today|progress|library(?:\/(?:dictionary|saved|ipa|grammar|history|trees))?|settings(?:\/about)?|learn\/[^/]+)$/.test(pathname);
   const servingRoot = updated ? root : previousRoot;
   const file = resolve(join(servingRoot, pathname === '/' || pageRoute ? 'index.html' : pathname.slice(1)));
@@ -32,6 +38,22 @@ if (!address || typeof address === 'string') throw new Error('No local server');
 const origin = `http://127.0.0.1:${address.port}`;
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
+  if (!previousBuild) {
+    const fresh = await browser.newContext({ locale: 'zh-CN' });
+    try {
+      invalidUpdate = 'unavailable';
+      const firstVisit = await fresh.newPage();
+      await firstVisit.goto(`${origin}/settings`);
+      await expect.poll(() => rejectedScripts).toBeGreaterThan(0);
+      assert.equal(await firstVisit.evaluate(async () => !!await navigator.serviceWorker.getRegistration('/')), false);
+      invalidUpdate = false;
+      await firstVisit.getByRole('button', { name: '检查更新' }).click();
+      await expect(firstVisit.getByText('已是最新版本。')).toBeVisible();
+      await firstVisit.waitForFunction(() => !!navigator.serviceWorker.controller);
+      assert.equal(await firstVisit.locator('.update-notice').count(), 0);
+      console.log('Update check: initial registration recovered from HTTP 503.');
+    } finally { invalidUpdate = false; await fresh.close(); }
+  }
   const context = await browser.newContext({ locale: 'zh-CN' });
   context.setDefaultTimeout(30_000);
   const page = await context.newPage();
@@ -76,6 +98,8 @@ try {
         await page.locator('.settings-language .setting-trigger').click();
         await page.locator(`[role=option][data-value="${locale}"]`).click();
         await expect(page.locator('html')).toHaveAttribute('lang', locale);
+        // Measure the update row after the language picker has finished closing.
+        await page.locator('.settings-language .setting-menu').waitFor({ state: 'detached' });
         const label = JSON.parse(await readFile(`src/locales/${locale}/messages.json`, 'utf8')).app.updatePreparing;
         await section.getByText(label, { exact: true }).waitFor();
         for (const [width, theme] of [[320, 'dark'], [1440, 'light']]) {

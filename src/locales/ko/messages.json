@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "구문 트리",
+    "generatedReference": "자동으로 생성된 결과이며, 참고용입니다.",
     "incomplete": "미완성 도출: ?는 결합하지 못한 부분입니다.",
     "source": "문장, 괄호, 들여쓰기 또는 의존",
     "draw": "자동으로 그리기",

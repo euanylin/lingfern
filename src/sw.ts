@@ -1,13 +1,15 @@
 /// <reference lib="webworker" />
 import { canonicalPagePath, pageRoute } from './shared/pageRoutes';
-import { matchPrecache, precacheAndRoute } from 'workbox-precaching';
+import { PrecacheController, PrecacheRoute, type PrecacheEntry } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { createPartialResponse } from 'workbox-range-requests';
 import { catalogueCacheName, cataloguePath, publicResourcePathSchema, resourceCatalogueSchema } from './shared/resourceCatalogue';
 import { pageSeo, renderPageHtml } from './shared/seo';
 import { requestLocale } from './shared/locale';
 
-const sw = self as unknown as ServiceWorkerGlobalScope & { __WB_MANIFEST: Array<{ url: string; revision?: string }> };
+const sw = self as unknown as ServiceWorkerGlobalScope;
+const precache = new PrecacheController();
+const matchPrecache = (url: string) => precache.matchPrecache(url);
 let resourcePaths: Promise<Map<string, { id: string; version: string; bytes: number; sha256: string }>> | undefined;
 const paths = () => resourcePaths ??= (async () => {
   const cached = await (await caches.open(catalogueCacheName)).match(cataloguePath);
@@ -53,7 +55,21 @@ registerRoute(({ request, url }) => request.method === 'GET' && url.origin === s
 });
 
 // @ts-expect-error Workbox injects this manifest literal.
-precacheAndRoute(self.__WB_MANIFEST);
+const manifest: PrecacheEntry[] = self.__WB_MANIFEST;
+precache.addToCacheList(manifest);
+sw.addEventListener('install', event => {
+  // Reuse Workbox's cache keys and response checks with bounded parallel downloads.
+  event.waitUntil((async () => {
+    for (let start = 0; start < manifest.length; start += 6) {
+      await Promise.all(manifest.slice(start, start + 6).flatMap(({ url, revision, integrity }) =>
+        precache.strategy.handleAll({ event, request: new Request(new URL(url, sw.location.href), {
+          integrity, cache: revision ? 'reload' : 'default', credentials: 'same-origin',
+        }) })));
+    }
+  })());
+});
+sw.addEventListener('activate', precache.activate);
+registerRoute(new PrecacheRoute(precache));
 registerRoute(({ request, url }) => request.mode === 'navigate' && url.origin === sw.location.origin && (pageRoute(url.pathname) || canonicalPagePath(url.pathname) || url.pathname === '/'), async ({ request, url }) => {
   const canonical = canonicalPagePath(url.pathname);
   if (canonical) return Response.redirect(new URL(canonical + url.search, url).href, 301);

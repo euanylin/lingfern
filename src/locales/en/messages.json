@@ -217,6 +217,7 @@
   },
   "treeDiagram": {
     "title": "Syntax tree",
+    "generatedReference": "Automatically generated, for reference only.",
     "incomplete": "Incomplete derivation: ? marks an unresolved combination.",
     "source": "Sentence, brackets, outline or dependencies",
     "draw": "Draw automatically",
